@@ -58,7 +58,7 @@
                                 <color key="backgroundColor" red="0.1183027953" green="1" blue="0.83433375219999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="3kq-NS-dJI" kind="presentation" id="Acg-md-0Hv"/>
+                                    <segue destination="3kq-NS-dJI" kind="presentation" id="BUk-CF-sQx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -176,9 +176,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="registerButton" destination="H9h-TM-uGV" id="sgd-yu-xJZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiP-zR-m0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

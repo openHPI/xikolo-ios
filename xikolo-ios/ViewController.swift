@@ -19,14 +19,14 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     
-    let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
+    let pageTitles = ["Learn anywhere", "Find awesome courses", "Be social", "Start now."]
     var images = ["long3.png","long4.png","long1.png","long2.png"]
     var count = 0
     
     var pageViewController : UIPageViewController!
     
     @IBAction func swipeLeft(sender: AnyObject) {
-        print("SWipe left")
+        //print("SWipe left")
     }
     @IBAction func swiped(sender: AnyObject) {
         

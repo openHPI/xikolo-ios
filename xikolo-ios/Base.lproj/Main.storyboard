@@ -34,17 +34,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Learn anywhere." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oE-Ob-qTT">
-                                <rect key="frame" x="241" y="499" width="127" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-zB-kPU">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Learn anywhere." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oE-Ob-qTT">
+                                <rect key="frame" x="0.0" y="530" width="600" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="729" width="800" height="21"/>
+                                </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-zB-kPU">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5oE-Ob-qTT" firstAttribute="width" secondItem="mbz-zB-kPU" secondAttribute="width" id="2l1-6F-fNk"/>
+                            <constraint firstItem="FKp-c1-m3P" firstAttribute="top" secondItem="mbz-zB-kPU" secondAttribute="bottom" id="4cN-Qc-Kgc"/>
+                            <constraint firstAttribute="trailing" secondItem="mbz-zB-kPU" secondAttribute="trailing" id="5YE-O7-xh1"/>
+                            <constraint firstItem="mbz-zB-kPU" firstAttribute="leading" secondItem="Zh2-eN-C02" secondAttribute="leading" id="J4s-cE-9hn"/>
+                            <constraint firstItem="mbz-zB-kPU" firstAttribute="centerX" secondItem="Zh2-eN-C02" secondAttribute="centerX" id="hky-Ys-nPG"/>
+                            <constraint firstItem="mbz-zB-kPU" firstAttribute="top" secondItem="Zh2-eN-C02" secondAttribute="top" id="juZ-oH-AMw"/>
+                            <constraint firstItem="FKp-c1-m3P" firstAttribute="top" secondItem="5oE-Ob-qTT" secondAttribute="bottom" constant="50" id="kNa-hL-ILw"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="mbz-zB-kPU" id="pFc-Av-bgA"/>

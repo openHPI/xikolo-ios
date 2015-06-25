@@ -37,7 +37,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     func reset() {
         /* Getting the page View controller */
-        self.pageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WelcomePageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
         self.pageViewController.delegate = self
         
@@ -68,25 +68,25 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-    
+        
         var index = (viewController as! PageContentViewController).pageIndex!
         index++
         if(index >= self.images.count){
             return nil
         }
         return self.viewControllerAtIndex(index)
-    
+        
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-    
+        
         var index = (viewController as! PageContentViewController).pageIndex!
         if(index <= 0){
             return nil
         }
         index--
         return self.viewControllerAtIndex(index)
-    
+        
     }
     
     func viewControllerAtIndex(index : Int) -> UIViewController? {
@@ -94,7 +94,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
             return nil
         }
         let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
-    
+        
         pageContentViewController.imageName = self.images[index]
         pageContentViewController.titleText = self.pageTitles[index]
         pageContentViewController.pageIndex = index

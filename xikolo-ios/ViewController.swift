@@ -67,36 +67,36 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
     
-    var index = (viewController as! PageContentViewController).pageIndex!
-    index++
-    if(index >= self.images.count){
-    return nil
-    }
-    return self.viewControllerAtIndex(index)
+        var index = (viewController as! PageContentViewController).pageIndex!
+        index++
+        if(index >= self.images.count){
+            return nil
+        }
+        return self.viewControllerAtIndex(index)
     
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
     
-    var index = (viewController as! PageContentViewController).pageIndex!
-    if(index <= 0){
-    return nil
-    }
-    index--
-    return self.viewControllerAtIndex(index)
+        var index = (viewController as! PageContentViewController).pageIndex!
+        if(index <= 0){
+            return nil
+        }
+        index--
+        return self.viewControllerAtIndex(index)
     
     }
     
     func viewControllerAtIndex(index : Int) -> UIViewController? {
-    if((self.pageTitles.count == 0) || (index >= self.pageTitles.count)) {
-    return nil
-    }
-    let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
+        if((self.pageTitles.count == 0) || (index >= self.pageTitles.count)) {
+            return nil
+        }
+        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
     
-    pageContentViewController.imageName = self.images[index]
-    pageContentViewController.titleText = self.pageTitles[index]
-    pageContentViewController.pageIndex = index
-    return pageContentViewController
+        pageContentViewController.imageName = self.images[index]
+        pageContentViewController.titleText = self.pageTitles[index]
+        pageContentViewController.pageIndex = index
+        return pageContentViewController
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -106,5 +106,4 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
-    
 }

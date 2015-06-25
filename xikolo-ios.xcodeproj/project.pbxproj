@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587BE1B3BFC130095DB89 /* AppDelegate.swift */; };
+		A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587C01B3BFC130095DB89 /* ViewController.swift */; };
+		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
+		A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* Assets.xcassets */; };
+		A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
+		A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */; };
+		A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A90587D01B3BFC130095DB89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A90587BA1B3BFC130095DB89;
+			remoteInfo = "xikolo-ios";
+		};
+		A90587DB1B3BFC130095DB89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A90587BA1B3BFC130095DB89;
+			remoteInfo = "xikolo-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A90587BE1B3BFC130095DB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A90587C01B3BFC130095DB89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A90587C51B3BFC130095DB89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A90587C81B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A90587CA1B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosTests.swift; sourceTree = "<group>"; };
+		A90587D51B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosUITests.swift; sourceTree = "<group>"; };
+		A90587E01B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A90587B81B3BFC130095DB89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A90587CC1B3BFC130095DB89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A90587D71B3BFC130095DB89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A90587B21B3BFC130095DB89 = {
+			isa = PBXGroup;
+			children = (
+				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
+				A90587D21B3BFC130095DB89 /* xikolo-iosTests */,
+				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
+				A90587BC1B3BFC130095DB89 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A90587BC1B3BFC130095DB89 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A90587BB1B3BFC130095DB89 /* xikolo-ios.app */,
+				A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */,
+				A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
+			isa = PBXGroup;
+			children = (
+				A90587BE1B3BFC130095DB89 /* AppDelegate.swift */,
+				A90587C01B3BFC130095DB89 /* ViewController.swift */,
+				A90587C21B3BFC130095DB89 /* Main.storyboard */,
+				A90587C51B3BFC130095DB89 /* Assets.xcassets */,
+				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
+				A90587CA1B3BFC130095DB89 /* Info.plist */,
+			);
+			path = "xikolo-ios";
+			sourceTree = "<group>";
+		};
+		A90587D21B3BFC130095DB89 /* xikolo-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */,
+				A90587D51B3BFC130095DB89 /* Info.plist */,
+			);
+			path = "xikolo-iosTests";
+			sourceTree = "<group>";
+		};
+		A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */,
+				A90587E01B3BFC130095DB89 /* Info.plist */,
+			);
+			path = "xikolo-iosUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A90587BA1B3BFC130095DB89 /* xikolo-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-ios" */;
+			buildPhases = (
+				A90587B71B3BFC130095DB89 /* Sources */,
+				A90587B81B3BFC130095DB89 /* Frameworks */,
+				A90587B91B3BFC130095DB89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "xikolo-ios";
+			productName = "xikolo-ios";
+			productReference = A90587BB1B3BFC130095DB89 /* xikolo-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A90587CE1B3BFC130095DB89 /* xikolo-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A90587E61B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosTests" */;
+			buildPhases = (
+				A90587CB1B3BFC130095DB89 /* Sources */,
+				A90587CC1B3BFC130095DB89 /* Frameworks */,
+				A90587CD1B3BFC130095DB89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A90587D11B3BFC130095DB89 /* PBXTargetDependency */,
+			);
+			name = "xikolo-iosTests";
+			productName = "xikolo-iosTests";
+			productReference = A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A90587D91B3BFC130095DB89 /* xikolo-iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A90587E91B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosUITests" */;
+			buildPhases = (
+				A90587D61B3BFC130095DB89 /* Sources */,
+				A90587D71B3BFC130095DB89 /* Frameworks */,
+				A90587D81B3BFC130095DB89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A90587DC1B3BFC130095DB89 /* PBXTargetDependency */,
+			);
+			name = "xikolo-iosUITests";
+			productName = "xikolo-iosUITests";
+			productReference = A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A90587B31B3BFC130095DB89 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = HPI;
+				TargetAttributes = {
+					A90587BA1B3BFC130095DB89 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					A90587CE1B3BFC130095DB89 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = A90587BA1B3BFC130095DB89;
+					};
+					A90587D91B3BFC130095DB89 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = A90587BA1B3BFC130095DB89;
+					};
+				};
+			};
+			buildConfigurationList = A90587B61B3BFC130095DB89 /* Build configuration list for PBXProject "xikolo-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A90587B21B3BFC130095DB89;
+			productRefGroup = A90587BC1B3BFC130095DB89 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A90587BA1B3BFC130095DB89 /* xikolo-ios */,
+				A90587CE1B3BFC130095DB89 /* xikolo-iosTests */,
+				A90587D91B3BFC130095DB89 /* xikolo-iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A90587B91B3BFC130095DB89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
+				A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */,
+				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A90587CD1B3BFC130095DB89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A90587D81B3BFC130095DB89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A90587B71B3BFC130095DB89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */,
+				A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A90587CB1B3BFC130095DB89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A90587D61B3BFC130095DB89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A90587D11B3BFC130095DB89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A90587BA1B3BFC130095DB89 /* xikolo-ios */;
+			targetProxy = A90587D01B3BFC130095DB89 /* PBXContainerItemProxy */;
+		};
+		A90587DC1B3BFC130095DB89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A90587BA1B3BFC130095DB89 /* xikolo-ios */;
+			targetProxy = A90587DB1B3BFC130095DB89 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A90587C21B3BFC130095DB89 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A90587C31B3BFC130095DB89 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A90587C81B3BFC130095DB89 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A90587E11B3BFC130095DB89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A90587E21B3BFC130095DB89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A90587E41B3BFC130095DB89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A90587E51B3BFC130095DB89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A90587E71B3BFC130095DB89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "xikolo-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xikolo-ios.app/xikolo-ios";
+			};
+			name = Debug;
+		};
+		A90587E81B3BFC130095DB89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "xikolo-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xikolo-ios.app/xikolo-ios";
+			};
+			name = Release;
+		};
+		A90587EA1B3BFC130095DB89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "xikolo-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "xikolo-ios";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		A90587EB1B3BFC130095DB89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "xikolo-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "xikolo-ios";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A90587B61B3BFC130095DB89 /* Build configuration list for PBXProject "xikolo-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90587E11B3BFC130095DB89 /* Debug */,
+				A90587E21B3BFC130095DB89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90587E41B3BFC130095DB89 /* Debug */,
+				A90587E51B3BFC130095DB89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A90587E61B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90587E71B3BFC130095DB89 /* Debug */,
+				A90587E81B3BFC130095DB89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A90587E91B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90587EA1B3BFC130095DB89 /* Debug */,
+				A90587EB1B3BFC130095DB89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A90587B31B3BFC130095DB89 /* Project object */;
+}

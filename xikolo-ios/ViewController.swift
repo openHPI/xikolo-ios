@@ -30,7 +30,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     }
     @IBAction func swiped(sender: AnyObject) {
         
-        self.pageViewController.view .removeFromSuperview()
+        self.pageViewController.view.removeFromSuperview()
         self.pageViewController.removeFromParentViewController()
         reset()
     }

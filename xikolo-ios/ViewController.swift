@@ -37,8 +37,9 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     func reset() {
         /* Getting the page View controller */
-        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+        self.pageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
         self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
         
         let pageContentViewController = self.viewControllerAtIndex(0)
         self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
@@ -58,6 +59,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     override func viewDidLoad() {
         super.viewDidLoad()
         reset()
+        setupPageControl()
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,5 +107,12 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
+    }
+    
+    private func setupPageControl() {
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = UIColor.grayColor()
+        appearance.currentPageIndicatorTintColor = UIColor.redColor()
+        appearance.backgroundColor = UIColor.clearColor()
     }
 }

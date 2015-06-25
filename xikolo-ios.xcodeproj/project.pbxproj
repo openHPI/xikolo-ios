@@ -16,6 +16,8 @@
 		7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
 		7E4F62B41B3C2EFC006FCAD6 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */; };
 		7E4F62B51B3C2EFC006FCAD6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */; };
+		7E4F62BA1B3C3C56006FCAD6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62B91B3C3C56006FCAD6 /* Course.swift */; };
+		7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */; };
 		A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587BE1B3BFC130095DB89 /* AppDelegate.swift */; };
 		A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587C01B3BFC130095DB89 /* ViewController.swift */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
@@ -90,6 +92,8 @@
 		7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xikolo-ios-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E4F62B91B3C3C56006FCAD6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
 		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587BE1B3BFC130095DB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A90587C01B3BFC130095DB89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7E4F62BB1B3C3C5B006FCAD6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E4F62B91B3C3C56006FCAD6 /* Course.swift */,
+				7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +208,7 @@
 				A90587CA1B3BFC130095DB89 /* Info.plist */,
 				A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */,
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
+				7E4F62BB1B3C3C5B006FCAD6 /* Model */,
 			);
 			path = "xikolo-ios";
 			sourceTree = "<group>";
@@ -386,8 +400,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4F62BA1B3C3C56006FCAD6 /* Course.swift in Sources */,
 				A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */,
 				A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */,
+				7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */,
 				A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 			);

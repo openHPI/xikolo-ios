@@ -1,4 +1,5 @@
 # ios-app
 
 To clone use:
-git clone --recursive url
+
+```git clone --recursive URL```

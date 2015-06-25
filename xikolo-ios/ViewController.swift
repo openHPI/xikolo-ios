@@ -37,7 +37,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     func reset() {
         /* Getting the page View controller */
-        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("WelcomePageViewController") as! UIPageViewController
+        pageViewController = UIPageViewController(transitionStyle: UIPageViewControllerTransitionStyle.Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
         self.pageViewController.dataSource = self
         self.pageViewController.delegate = self
         

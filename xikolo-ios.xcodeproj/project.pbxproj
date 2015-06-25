@@ -24,6 +24,7 @@
 		A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */; };
 		A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */; };
 		A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */; };
+		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosUITests.swift; sourceTree = "<group>"; };
 		A90587E01B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
+		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,7 @@
 				A90587D21B3BFC130095DB89 /* xikolo-iosTests */,
 				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
 				A90587BC1B3BFC130095DB89 /* Products */,
+				F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +188,7 @@
 			children = (
 				A90587BE1B3BFC130095DB89 /* AppDelegate.swift */,
 				A90587C01B3BFC130095DB89 /* ViewController.swift */,
+				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 				A90587C21B3BFC130095DB89 /* Main.storyboard */,
 				A90587C51B3BFC130095DB89 /* Assets.xcassets */,
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
@@ -384,6 +389,7 @@
 				A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */,
 				A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */,
 				A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */,
+				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -189,6 +189,7 @@
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
 				A90587CA1B3BFC130095DB89 /* Info.plist */,
 				A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */,
+				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 			);
 			path = "xikolo-ios";
 			sourceTree = "<group>";
@@ -539,6 +540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -557,6 +559,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -2,4 +2,4 @@
 
 To clone use:
 
-```git clone --recursive URL```
+```git clone --recursive https://github.com/openHPI/ios-app.git```

@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+# Configure RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+rvm rvmrc load
+
+# Git submodules
+git submodule update --init
+
+# Bundler & CocoaPods
+bundle
+pod install
+
+# Run the build
+rake server:stop || true
+rake server:start
+rake test
+rake server:stop

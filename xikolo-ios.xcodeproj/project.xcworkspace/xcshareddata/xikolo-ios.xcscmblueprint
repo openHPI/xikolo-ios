@@ -1,0 +1,65 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "FE7DE95A686500300D28A53A6B7ECC7ECC43DC35",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "822670D72DA6CB3E094E900F0D31C5A6027736AD" : 0,
+    "FE7DE95A686500300D28A53A6B7ECC7ECC43DC35" : 0,
+    "D78740BB5B159EA13C82AB5AF1D92A0F3C627237" : 0,
+    "47A63E07BF2C4AE0426F985EBA351C687092A209" : 0,
+    "B4A2CA0E82E9AE44702AB02729DCFB235C2643C9" : 0,
+    "C80A0DCE7BA5516950B5677592E44706A6FDF392" : 0,
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "45DC24D8-3A7D-445D-88D5-A64AD43625D9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "822670D72DA6CB3E094E900F0D31C5A6027736AD" : "iosApp\/RestKit\/Vendor\/ISO8601DateFormatterValueTransformer\/",
+    "FE7DE95A686500300D28A53A6B7ECC7ECC43DC35" : "iosApp\/",
+    "D78740BB5B159EA13C82AB5AF1D92A0F3C627237" : "iosApp\/RestKit\/",
+    "47A63E07BF2C4AE0426F985EBA351C687092A209" : "iosApp\/RestKit\/Vendor\/TransitionKit\/",
+    "B4A2CA0E82E9AE44702AB02729DCFB235C2643C9" : "iosApp\/RestKit\/Vendor\/RKValueTransformers\/",
+    "C80A0DCE7BA5516950B5677592E44706A6FDF392" : "iosApp\/RestKit\/Vendor\/SOCKit\/",
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "iosApp\/RestKit\/Vendor\/AFNetworking\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "xikolo-ios",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "xikolo-ios.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/blakewatters\/TransitionKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47A63E07BF2C4AE0426F985EBA351C687092A209"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/blakewatters\/ISO8601DateFormatterValueTransformer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "822670D72DA6CB3E094E900F0D31C5A6027736AD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/RestKit\/RKValueTransformers.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B4A2CA0E82E9AE44702AB02729DCFB235C2643C9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NimbusKit\/sockit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C80A0DCE7BA5516950B5677592E44706A6FDF392"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/RestKit\/RestKit",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D78740BB5B159EA13C82AB5AF1D92A0F3C627237"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AFNetworking\/AFNetworking.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/openHPI\/ios-app",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FE7DE95A686500300D28A53A6B7ECC7ECC43DC35"
+    }
+  ]
+}

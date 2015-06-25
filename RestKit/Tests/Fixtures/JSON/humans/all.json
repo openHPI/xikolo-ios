@@ -1,0 +1,32 @@
+[
+    {
+        "human": {
+            "age": null, 
+            "birthday": null, 
+            "created_at": null, 
+            "id": 123, 
+            "name": "Blake Watters", 
+            "sex": null, 
+            "updated_at": null,
+            "favorite_cat": {
+                "name": "Asia",
+                "id": 1234
+            }
+        }
+    }, 
+    {
+        "human": {
+            "age": null, 
+            "birthday": null, 
+            "created_at": null, 
+            "id": 456, 
+            "name": "Other", 
+            "sex": null, 
+            "updated_at": null,
+            "favorite_cat": {
+                "name": "Roy",
+                "id": 5678
+            }
+        }
+    }
+]

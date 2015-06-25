@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E4F62A51B3C2EC6006FCAD6 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E002A301B3C2DC20095CFCF /* libRestKit.a */; };
+		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
+		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
+		7E4F62AB1B3C2EDE006FCAD6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
+		7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */; };
+		7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */; };
+		7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
+		7E4F62B41B3C2EFC006FCAD6 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */; };
+		7E4F62B51B3C2EFC006FCAD6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */; };
 		A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587BE1B3BFC130095DB89 /* AppDelegate.swift */; };
 		A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587C01B3BFC130095DB89 /* ViewController.swift */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
@@ -18,6 +27,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7E002A2F1B3C2DC20095CFCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D1614564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+		7E002A311B3C2DC20095CFCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D2614564E820060A5C5;
+			remoteInfo = RestKitTests;
+		};
+		7E002A331B3C2DC20095CFCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E62145651060060A5C5;
+			remoteInfo = RestKitFramework;
+		};
+		7E002A351B3C2DC20095CFCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E78145651060060A5C5;
+			remoteInfo = RestKitFrameworkTests;
+		};
+		7E4F62A31B3C2EAA006FCAD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
 		A90587D01B3BFC130095DB89 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -35,6 +79,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xikolo-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587BE1B3BFC130095DB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A90587C01B3BFC130095DB89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +110,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4F62B41B3C2EFC006FCAD6 /* libxml2.2.tbd in Frameworks */,
+				7E4F62B51B3C2EFC006FCAD6 /* libxml2.tbd in Frameworks */,
+				7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */,
+				7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */,
+				7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */,
+				7E4F62AB1B3C2EDE006FCAD6 /* MobileCoreServices.framework in Frameworks */,
+				7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */,
+				7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */,
+				7E4F62A51B3C2EC6006FCAD6 /* libRestKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,9 +139,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E002A291B3C2DC20095CFCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E002A301B3C2DC20095CFCF /* libRestKit.a */,
+				7E002A321B3C2DC20095CFCF /* RestKitTests.xctest */,
+				7E002A341B3C2DC20095CFCF /* RestKit.framework */,
+				7E002A361B3C2DC20095CFCF /* RestKitFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
+				7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */,
+				7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */,
+				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
+				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,
+				7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */,
+				7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */,
+				7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */,
+				7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */,
+				7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				A90587D21B3BFC130095DB89 /* xikolo-iosTests */,
 				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
@@ -142,6 +225,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7E4F62A41B3C2EAA006FCAD6 /* PBXTargetDependency */,
 			);
 			name = "xikolo-ios";
 			productName = "xikolo-ios";
@@ -190,6 +274,7 @@
 		A90587B31B3BFC130095DB89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
@@ -217,6 +302,12 @@
 			mainGroup = A90587B21B3BFC130095DB89;
 			productRefGroup = A90587BC1B3BFC130095DB89 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7E002A291B3C2DC20095CFCF /* Products */;
+					ProjectRef = 7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A90587BA1B3BFC130095DB89 /* xikolo-ios */,
@@ -225,6 +316,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7E002A301B3C2DC20095CFCF /* libRestKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKit.a;
+			remoteRef = 7E002A2F1B3C2DC20095CFCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E002A321B3C2DC20095CFCF /* RestKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitTests.xctest;
+			remoteRef = 7E002A311B3C2DC20095CFCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E002A341B3C2DC20095CFCF /* RestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RestKit.framework;
+			remoteRef = 7E002A331B3C2DC20095CFCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7E002A361B3C2DC20095CFCF /* RestKitFrameworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitFrameworkTests.xctest;
+			remoteRef = 7E002A351B3C2DC20095CFCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A90587B91B3BFC130095DB89 /* Resources */ = {
@@ -283,6 +405,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7E4F62A41B3C2EAA006FCAD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 7E4F62A31B3C2EAA006FCAD6 /* PBXContainerItemProxy */;
+		};
 		A90587D11B3BFC130095DB89 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A90587BA1B3BFC130095DB89 /* xikolo-ios */;
@@ -402,10 +529,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -413,8 +547,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -487,6 +627,7 @@
 				A90587E51B3BFC130095DB89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A90587E61B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +636,7 @@
 				A90587E81B3BFC130095DB89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A90587E91B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +645,7 @@
 				A90587EB1B3BFC130095DB89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

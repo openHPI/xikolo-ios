@@ -19,8 +19,14 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     
-    let pageTitles = ["Learn anywhere", "Find awesome courses", "Be social", "Start now."]
-    var images = ["long3.png","long4.png","long1.png","long2.png"]
+    let pageTitles = ["Learn anywhere. On any device.", "Learn anytime.", "Be social.", "Find courses now. For beginners and pros."]
+    var images = ["globus.png","speed.png","network.png","beginner.png"]
+    var bgColors = [
+        UIColor(red: 0.204, green: 0.208, blue: 0.22, alpha: 1.0),//dark gray
+        UIColor(red: 0.631, green: 0.106, blue: 0.259, alpha: 1.0),//dark red
+        UIColor(red: 0.0, green: 0.478, blue: 0.557, alpha: 1.0),//blue
+        UIColor(red: 0.204, green: 0.208, blue: 0.22, alpha: 1.0)//dark gray
+    ]
     var count = 0
     
     var pageViewController : UIPageViewController!
@@ -97,6 +103,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         
         pageContentViewController.imageName = self.images[index]
         pageContentViewController.titleText = self.pageTitles[index]
+        pageContentViewController.view.backgroundColor = self.bgColors[index]
         pageContentViewController.pageIndex = index
         return pageContentViewController
     }

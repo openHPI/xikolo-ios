@@ -31,6 +31,9 @@
 		A98850A71B412CD500DAF817 /* globus.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A31B412CD500DAF817 /* globus.png */; };
 		A98850A81B412CD500DAF817 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A41B412CD500DAF817 /* network.png */; };
 		A98850A91B412CD500DAF817 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A51B412CD500DAF817 /* speed.png */; };
+		F85225381B4D27D700C9BF56 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F85225351B4D27D700C9BF56 /* avatar.png */; };
+		F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */; };
+		F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +121,9 @@
 		A98850A31B412CD500DAF817 /* globus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globus.png; sourceTree = "<group>"; };
 		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
 		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
+		F85225351B4D27D700C9BF56 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_header_placeholder.jpg; sourceTree = "<group>"; };
+		F85225371B4D27D700C9BF56 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -213,6 +219,8 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F852253F1B4D27E800C9BF56 /* Images */,
+				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
 				A90587BE1B3BFC130095DB89 /* AppDelegate.swift */,
 				A90587C01B3BFC130095DB89 /* ViewController.swift */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
@@ -244,6 +252,15 @@
 				A90587E01B3BFC130095DB89 /* Info.plist */,
 			);
 			path = "xikolo-iosUITests";
+			sourceTree = "<group>";
+		};
+		F852253F1B4D27E800C9BF56 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F85225351B4D27D700C9BF56 /* avatar.png */,
+				F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +409,8 @@
 				A98850A61B412CD500DAF817 /* beginner.png in Resources */,
 				A98850A81B412CD500DAF817 /* network.png in Resources */,
 				A98850A91B412CD500DAF817 /* speed.png in Resources */,
+				F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */,
+				F85225381B4D27D700C9BF56 /* avatar.png in Resources */,
 				A98850A71B412CD500DAF817 /* globus.png in Resources */,
 				A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
@@ -425,6 +444,7 @@
 				A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */,
 				7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */,
 				A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */,
+				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

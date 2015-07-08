@@ -20,6 +20,7 @@
 		7E4F62BF1B3C4FA2006FCAD6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62BE1B3C4FA2006FCAD6 /* DataManager.swift */; };
 		7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */; };
 		7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */; };
+		7E5C55791B4D3AA7004DCDC7 /* CoursesOverviewViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55781B4D3AA7004DCDC7 /* CoursesOverviewViewCell.swift */; };
 		A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587BE1B3BFC130095DB89 /* AppDelegate.swift */; };
 		A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587C01B3BFC130095DB89 /* ViewController.swift */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
@@ -102,6 +103,7 @@
 		7E4F62BE1B3C4FA2006FCAD6 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
 		7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewViewController.swift; sourceTree = "<group>"; };
+		7E5C55781B4D3AA7004DCDC7 /* CoursesOverviewViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesOverviewViewCell.swift; sourceTree = "<group>"; };
 		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587BE1B3BFC130095DB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A90587C01B3BFC130095DB89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				7E4F62BB1B3C3C5B006FCAD6 /* Model */,
 				7E4F62BE1B3C4FA2006FCAD6 /* DataManager.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
+				7E5C55781B4D3AA7004DCDC7 /* CoursesOverviewViewCell.swift */,
 			);
 			path = "xikolo-ios";
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */,
 				A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */,
 				7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */,
+				7E5C55791B4D3AA7004DCDC7 /* CoursesOverviewViewCell.swift in Sources */,
 				A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,

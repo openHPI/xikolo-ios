@@ -34,6 +34,9 @@
 		F85225381B4D27D700C9BF56 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F85225351B4D27D700C9BF56 /* avatar.png */; };
 		F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */; };
 		F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
+		F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserModel.swift */; };
+		F85225451B4D2B3D00C9BF56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* User.swift */; };
+		F85225491B4D2CEF00C9BF56 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225481B4D2CEF00C9BF56 /* UserPreferences.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +127,9 @@
 		F85225351B4D27D700C9BF56 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_header_placeholder.jpg; sourceTree = "<group>"; };
 		F85225371B4D27D700C9BF56 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F85225401B4D299C00C9BF56 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		F85225441B4D2B3D00C9BF56 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F85225481B4D2CEF00C9BF56 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -178,6 +184,7 @@
 			children = (
 				7E4F62B91B3C3C56006FCAD6 /* Course.swift */,
 				7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */,
+				F85225401B4D299C00C9BF56 /* UserModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -219,6 +226,7 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F85225421B4D2B2900C9BF56 /* Data */,
 				F852253F1B4D27E800C9BF56 /* Images */,
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
 				A90587BE1B3BFC130095DB89 /* AppDelegate.swift */,
@@ -261,6 +269,31 @@
 				F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		F85225421B4D2B2900C9BF56 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F85225461B4D2CDA00C9BF56 /* Preferences */,
+				F85225431B4D2B2E00C9BF56 /* Entities */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		F85225431B4D2B2E00C9BF56 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				F85225441B4D2B3D00C9BF56 /* User.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		F85225461B4D2CDA00C9BF56 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				F85225481B4D2CEF00C9BF56 /* UserPreferences.swift */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,9 +476,12 @@
 				A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */,
 				A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */,
 				7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */,
+				F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */,
 				A90587BF1B3BFC130095DB89 /* AppDelegate.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
+				F85225451B4D2B3D00C9BF56 /* User.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
+				F85225491B4D2CEF00C9BF56 /* UserPreferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

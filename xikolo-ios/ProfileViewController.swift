@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         setupViews();
+        setViewData();
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +35,25 @@ class ProfileViewController: UIViewController {
         self.profileImage.layer.borderWidth = 3.0;
         self.profileImage.layer.borderColor = UIColor.whiteColor().CGColor;
 
+    }
+    
+    func setViewData() {
+        let prefs = UserPreferences();
+        let user = prefs.getUser();
+        
+        self.emailLabel.text = user.email;
+        self.nameLabel.text = user.firstName + " " + user.lastName;
+        
+        setAvatar(user);
+        setCourses();
+    }
+    
+    func setAvatar(user : User) {
+        // TODO Database / API call
+    }
+    
+    func setCourses() {
+        // TODO Set course enrollments
     }
 
 }

@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var coursesLabel: UILabel!
+    @IBOutlet weak var coursesCountLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
     override func viewDidLoad() {
@@ -53,7 +54,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setCourses() {
-        // TODO Set course enrollments
+        // TODO Set course enrollments count
     }
 
 }

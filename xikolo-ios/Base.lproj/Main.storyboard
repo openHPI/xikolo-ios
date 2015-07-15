@@ -331,22 +331,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 Kurseinschreibungen" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcq-PP-M8h">
-                                <rect key="frame" x="156" y="310" width="131" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Kurseinschreibungen" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcq-PP-M8h">
+                                <rect key="frame" x="240" y="366" width="120" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="max.mustermann@placeholdermail.com" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ap-cp-dOW">
-                                <rect key="frame" x="313" y="310" width="227" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="max.mustermann@placeholdermail.com" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ap-cp-dOW">
+                                <rect key="frame" x="187" y="300" width="227" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="|" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGi-EH-ZuZ">
-                                <rect key="frame" x="297" y="305" width="6" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.65745344065656564" green="0.65745344065656564" blue="0.65745344065656564" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vi2-xb-MK2">
@@ -356,31 +350,40 @@
                                     <constraint firstAttribute="width" priority="999" constant="80" id="uEQ-4e-FgA"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9c-KZ-Pbg">
+                                <rect key="frame" x="279" y="335" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ppz-T2-9Pu" firstAttribute="height" secondItem="vDH-59-jey" secondAttribute="height" multiplier="0.2" id="0h8-jn-Cbh"/>
                             <constraint firstItem="3aS-t4-jAK" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="1ng-eP-kdD"/>
-                            <constraint firstItem="gGi-EH-ZuZ" firstAttribute="baseline" secondItem="lcq-PP-M8h" secondAttribute="baseline" id="I63-Ti-LUg"/>
+                            <constraint firstItem="lcq-PP-M8h" firstAttribute="top" secondItem="G9c-KZ-Pbg" secondAttribute="bottom" constant="5" id="E4n-El-3Yf"/>
                             <constraint firstItem="3aS-t4-jAK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="10" id="IiU-63-BeJ"/>
+                            <constraint firstItem="G9c-KZ-Pbg" firstAttribute="top" secondItem="6Ap-cp-dOW" secondAttribute="bottom" constant="20" id="Juo-kg-mlj"/>
                             <constraint firstItem="Vi2-xb-MK2" firstAttribute="top" secondItem="iVs-ze-8bE" secondAttribute="bottom" constant="110" id="MOB-PS-b7N"/>
+                            <constraint firstItem="6Ap-cp-dOW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="10" id="NY7-rL-HiX"/>
                             <constraint firstItem="Ppz-T2-9Pu" firstAttribute="top" secondItem="iVs-ze-8bE" secondAttribute="bottom" id="Nm3-SP-Buj"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="6Ap-cp-dOW" secondAttribute="trailing" constant="10" id="P0D-b7-SQR"/>
                             <constraint firstItem="3aS-t4-jAK" firstAttribute="top" secondItem="Vi2-xb-MK2" secondAttribute="bottom" constant="20" id="Ptv-HT-gbL"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Vi2-xb-MK2" secondAttribute="trailing" constant="10" id="Qek-b8-5rd"/>
                             <constraint firstItem="Vi2-xb-MK2" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="Srj-0c-rEb"/>
                             <constraint firstItem="lcq-PP-M8h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3aS-t4-jAK" secondAttribute="bottom" constant="10" id="Szl-zN-bCS"/>
+                            <constraint firstItem="G9c-KZ-Pbg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="10" id="TeH-hD-8Dj"/>
                             <constraint firstItem="Vi2-xb-MK2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="10" id="Tow-wL-eIy"/>
-                            <constraint firstItem="gGi-EH-ZuZ" firstAttribute="leading" secondItem="lcq-PP-M8h" secondAttribute="trailing" constant="10" id="X5g-KH-w0e"/>
-                            <constraint firstItem="6Ap-cp-dOW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3aS-t4-jAK" secondAttribute="bottom" constant="10" id="XgA-HO-Oo1"/>
-                            <constraint firstItem="gGi-EH-ZuZ" firstAttribute="top" secondItem="3aS-t4-jAK" secondAttribute="bottom" constant="10" id="am3-xN-MbI"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="lcq-PP-M8h" secondAttribute="trailing" constant="10" id="UOS-P0-5y7"/>
+                            <constraint firstItem="lcq-PP-M8h" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="Vtb-11-aTW"/>
+                            <constraint firstItem="6Ap-cp-dOW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3aS-t4-jAK" secondAttribute="bottom" constant="2" id="XgA-HO-Oo1"/>
                             <constraint firstItem="Ppz-T2-9Pu" firstAttribute="leading" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="-20" id="bnc-OK-mng"/>
                             <constraint firstItem="lcq-PP-M8h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="10" id="dqz-1x-7RD"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3aS-t4-jAK" secondAttribute="trailing" constant="10" id="gKj-nP-Kb2"/>
-                            <constraint firstItem="gGi-EH-ZuZ" firstAttribute="baseline" secondItem="6Ap-cp-dOW" secondAttribute="baseline" id="jwE-by-KEo"/>
-                            <constraint firstItem="6Ap-cp-dOW" firstAttribute="leading" secondItem="gGi-EH-ZuZ" secondAttribute="trailing" constant="10" id="mum-3k-VvE"/>
-                            <constraint firstItem="gGi-EH-ZuZ" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="pBj-7N-TA7"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="G9c-KZ-Pbg" secondAttribute="trailing" constant="10" id="m9f-Mh-zow"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ppz-T2-9Pu" secondAttribute="trailing" constant="-20" id="shm-Y4-54Y"/>
+                            <constraint firstItem="G9c-KZ-Pbg" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="tiE-rK-poq"/>
+                            <constraint firstItem="6Ap-cp-dOW" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="tjP-wd-ma3"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -389,6 +392,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="coursesCountLabel" destination="G9c-KZ-Pbg" id="ru4-Ns-eTj"/>
                         <outlet property="coursesLabel" destination="lcq-PP-M8h" id="nqn-PC-vb1"/>
                         <outlet property="emailLabel" destination="6Ap-cp-dOW" id="jwV-vI-u5B"/>
                         <outlet property="headerImage" destination="Ppz-T2-9Pu" id="uLs-5m-QZQ"/>

@@ -41,6 +41,8 @@
 		F85225491B4D2CEF00C9BF56 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225481B4D2CEF00C9BF56 /* UserPreferences.swift */; };
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
+		F8FABFB61B5809440007F308 /* CourseLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FABFB51B5809440007F308 /* CourseLayout.xib */; };
+		F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,8 @@
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
+		F8FABFB51B5809440007F308 /* CourseLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseLayout.xib; sourceTree = "<group>"; };
+		F8FABFBC1B580B7A0007F308 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +236,9 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F8FABFBB1B580B5A0007F308 /* Layouts */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
+				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				F85225421B4D2B2900C9BF56 /* Data */,
 				F852253F1B4D27E800C9BF56 /* Images */,
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
@@ -303,6 +309,14 @@
 				F85225481B4D2CEF00C9BF56 /* UserPreferences.swift */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		F8FABFBB1B580B5A0007F308 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				F8FABFB51B5809440007F308 /* CourseLayout.xib */,
+			);
+			name = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +469,7 @@
 				F85225381B4D27D700C9BF56 /* avatar.png in Resources */,
 				A98850A71B412CD500DAF817 /* globus.png in Resources */,
 				A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */,
+				F8FABFB61B5809440007F308 /* CourseLayout.xib in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +504,7 @@
 				7E5C55791B4D3AA7004DCDC7 /* CoursesOverviewViewCell.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */,
+				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
 				F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
 				F85225451B4D2B3D00C9BF56 /* User.swift in Sources */,

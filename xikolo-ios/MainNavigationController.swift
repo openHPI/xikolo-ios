@@ -15,6 +15,7 @@ class MainNavigationController: UINavigationController {
 
         self.navigationBar.topItem!.title = "openHPI";
         self.navigationBar.barTintColor = UIColor(red: 222/255, green: 98/255, blue: 18/255, alpha: 1)
+        self.navigationBar.tintColor = UIColor(red: 180/255, green: 41/255, blue: 70/255, alpha: 1);
     }
 
     override func didReceiveMemoryWarning() {

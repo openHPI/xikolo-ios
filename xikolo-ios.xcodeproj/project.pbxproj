@@ -41,6 +41,7 @@
 		F85225491B4D2CEF00C9BF56 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225481B4D2CEF00C9BF56 /* UserPreferences.swift */; };
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
+		F8D45D2E1B58F7030039D442 /* open_hpi_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */; };
 		F8FABFB61B5809440007F308 /* CourseLayout.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FABFB51B5809440007F308 /* CourseLayout.xib */; };
 		F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,7 @@
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
+		F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = open_hpi_logo.jpg; sourceTree = "<group>"; };
 		F8FABFB51B5809440007F308 /* CourseLayout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseLayout.xib; sourceTree = "<group>"; };
 		F8FABFBC1B580B7A0007F308 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -280,6 +282,7 @@
 		F852253F1B4D27E800C9BF56 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */,
 				F85225351B4D27D700C9BF56 /* avatar.png */,
 				F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */,
 			);
@@ -462,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
+				F8D45D2E1B58F7030039D442 /* open_hpi_logo.jpg in Resources */,
 				A98850A61B412CD500DAF817 /* beginner.png in Resources */,
 				A98850A81B412CD500DAF817 /* network.png in Resources */,
 				A98850A91B412CD500DAF817 /* speed.png in Resources */,

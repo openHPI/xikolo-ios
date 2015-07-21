@@ -19,7 +19,7 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     
-    let pageTitles = ["Learn anywhere. On any device.", "Learn anytime.", "Be social.", "Find courses now. For beginners and pros."]
+    let pageTitles = ["Learn anywhere. On any device.", "Learn anytime.", "Be social.", "Find courses now. For beginners and pros.", "Login"]
     var images = ["globus.png","speed.png","network.png","beginner.png"]
     var bgColors = [
         UIColor(red: 0.204, green: 0.208, blue: 0.22, alpha: 1.0),//dark gray
@@ -75,9 +75,16 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        var index = (viewController as! PageContentViewController).pageIndex!
+        var index : Int
+        
+        if(viewController.isKindOfClass(PageContentViewController)) {
+            index = (viewController as! PageContentViewController).pageIndex!
+        } else {
+            index = (viewController as! RegisterViewController).pageIndex!
+        }
+        
         index++
-        if(index >= self.images.count){
+        if(index >= self.pageTitles.count){
             return nil
         }
         return self.viewControllerAtIndex(index)
@@ -86,7 +93,14 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        var index = (viewController as! PageContentViewController).pageIndex!
+        var index : Int
+        
+        if(viewController.isKindOfClass(PageContentViewController)) {
+            index = (viewController as! PageContentViewController).pageIndex!
+        } else {
+            index = (viewController as! RegisterViewController).pageIndex!
+        }
+        
         if(index <= 0){
             return nil
         }
@@ -99,13 +113,23 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         if((self.pageTitles.count == 0) || (index >= self.pageTitles.count)) {
             return nil
         }
-        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
         
-        pageContentViewController.imageName = self.images[index]
-        pageContentViewController.titleText = self.pageTitles[index]
-        pageContentViewController.view.backgroundColor = self.bgColors[index]
-        pageContentViewController.pageIndex = index
-        return pageContentViewController
+        if(index == self.pageTitles.count - 1) {
+            let loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! RegisterViewController
+            loginViewController.title = self.pageTitles[index]
+            loginViewController.pageIndex = index;
+            return loginViewController
+        } else {
+            let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
+            
+            pageContentViewController.imageName = self.images[index]
+            pageContentViewController.titleText = self.pageTitles[index]
+            pageContentViewController.view.backgroundColor = self.bgColors[index]
+            
+            pageContentViewController.pageIndex = index
+            return pageContentViewController
+        }
+        
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -121,5 +145,6 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         appearance.pageIndicatorTintColor = UIColor.grayColor()
         appearance.currentPageIndicatorTintColor = UIColor.redColor()
         appearance.backgroundColor = UIColor.clearColor()
+
     }
 }

@@ -10,10 +10,20 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
-    @IBAction func registerButton(sender: AnyObject) {
-        var url = NSURL(string: "https://open.hpi.de/account/new")
-        UIApplication.sharedApplication().openURL(url!)
+    @IBOutlet weak var emailTextFiel: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBAction func loginButton(sender: AnyObject) {
+        NSLog("Login clicked", 0)
     }
+    
+    @IBAction func registerButton(sender: AnyObject) {
+        let url = NSURL(string: "https://open.hpi.de/account/new")
+        UIApplication.sharedApplication().openURL(url!)
+
+    }
+    
+    var pageIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()

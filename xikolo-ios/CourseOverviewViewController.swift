@@ -25,6 +25,8 @@ class CourseOverviewViewController: UICollectionViewController {
         self.collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         width = self.collectionView!.frame.size.width - 20
+        
+        self.navigationItem.hidesBackButton = true
     }
     
 }

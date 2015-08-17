@@ -17,7 +17,7 @@ class UserModel: NSObject {
     static let preferenceVisual = "visual"
     static let preferenceToken = "token"
     
-    static func login(email: String, password: String) {
+    static func login(email: String, password: String, success:(Bool) -> Void) {
         
         let authenticateUrl = NSURL(string: Routes.BASE_URL)
         let objectManager = RKObjectManager(baseURL: authenticateUrl)
@@ -40,6 +40,10 @@ class UserModel: NSObject {
             let user = mappingResult.firstObject as! User
             saveToken(user.token)
             
+            print("Token: " + user.token)
+            
+            success(true)
+            
             }, failure: { operation, error in
                 print("Login error ")
                 // TODO Notify about failed login
@@ -47,6 +51,8 @@ class UserModel: NSObject {
                     // Error 401 Unauthorized
                     print("HTTP Error 401 Unauthorized")
                 }
+                
+                success(false)
         })
     }
     
@@ -72,8 +78,7 @@ class UserModel: NSObject {
     }
     
     static func isLoggedIn()->Bool {
-        // TODO
-        return false
+        return !getToken().isEmpty ?? false
     }
     
     // Reading

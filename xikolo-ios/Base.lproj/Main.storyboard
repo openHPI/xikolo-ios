@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="2GY-wg-EXn">
             <objects>
-                <viewController id="lNk-vE-GXl" customClass="ViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomePager" id="lNk-vE-GXl" customClass="ViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lGb-rd-WLQ"/>
                         <viewControllerLayoutGuide type="bottom" id="UG3-ib-9fK"/>
@@ -28,7 +28,7 @@
         <!--Course Overview View Controller-->
         <scene sceneID="aYm-tI-rNT">
             <objects>
-                <collectionViewController id="uLl-5G-DMn" customClass="CourseOverviewViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="CourseOverviewViewController" id="uLl-5G-DMn" customClass="CourseOverviewViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MA3-VX-yBw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-444" y="-692"/>
+            <point key="canvasLocation" x="988" y="4"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="pg6-LU-S32">
@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="-1187" y="-28"/>
         </scene>
-        <!--Register View Controller-->
+        <!--Login Check Controller-->
         <scene sceneID="gdl-53-khY">
             <objects>
-                <viewController id="d5U-5l-fCc" customClass="RegisterViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="d5U-5l-fCc" customClass="LoginCheckController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jhv-hl-ODQ"/>
                         <viewControllerLayoutGuide type="bottom" id="xsb-10-2xm"/>
@@ -80,24 +80,15 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVB-nW-3qu">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <connections>
-                                    <segue destination="lNk-vE-GXl" kind="embed" id="j1B-1d-aYg"/>
+                                    <segue destination="lNk-vE-GXl" kind="embed" id="X7l-TY-Ccc"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOd-ZK-b0G">
-                                <rect key="frame" x="277" y="550" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="HTd-vf-OyA" kind="show" id="WP5-Zc-2Dj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="cVB-nW-3qu" secondAttribute="trailing" id="5dq-N4-Fth"/>
                             <constraint firstAttribute="leadingMargin" secondItem="cVB-nW-3qu" secondAttribute="leading" id="EPT-Qk-xj0"/>
-                            <constraint firstItem="OOd-ZK-b0G" firstAttribute="centerX" secondItem="hb3-qe-LDR" secondAttribute="centerX" id="emU-mw-XUH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cVB-nW-3qu" secondAttribute="trailing" constant="-20" id="frb-Eh-GmL"/>
-                            <constraint firstItem="xsb-10-2xm" firstAttribute="top" secondItem="OOd-ZK-b0G" secondAttribute="bottom" constant="20" id="iwf-BH-ES5"/>
                             <constraint firstItem="xsb-10-2xm" firstAttribute="top" secondItem="cVB-nW-3qu" secondAttribute="bottom" id="nCw-Qe-xaq"/>
                             <constraint firstItem="cVB-nW-3qu" firstAttribute="leading" secondItem="hb3-qe-LDR" secondAttribute="leadingMargin" constant="-20" id="tm1-Ar-zfa"/>
                             <constraint firstItem="cVB-nW-3qu" firstAttribute="top" secondItem="Jhv-hl-ODQ" secondAttribute="bottom" id="uD0-pn-Hne"/>
@@ -110,6 +101,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="N4t-uQ-YHp"/>
+                    <connections>
+                        <outlet property="containerView" destination="cVB-nW-3qu" id="CXV-jT-lcK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sH2-0B-0GW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

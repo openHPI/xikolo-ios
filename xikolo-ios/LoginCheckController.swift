@@ -1,21 +1,28 @@
 //
-//  MainNavigationController.swift
+//  LoginCheckController.swift
 //  xikolo-ios
 //
-//  Created by Jonas Müller on 09.07.15.
+//  Created by Jonas Müller on 17.08.15.
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class LoginCheckController: UIViewController {
 
+
+    @IBOutlet weak var containerView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationBar.topItem!.title = "openHPI";
-        self.navigationBar.barTintColor = UIColor(red: 222/255, green: 98/255, blue: 18/255, alpha: 1)
-        self.navigationBar.tintColor = UIColor(red: 180/255, green: 41/255, blue: 70/255, alpha: 1);
+        // Check if logged in
+        let nextViewController : UIViewController!
+        
+        if(UserModel.isLoggedIn()) {
+            nextViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
+            self.navigationController?.pushViewController(nextViewController, animated: false)
+        }
         
     }
 

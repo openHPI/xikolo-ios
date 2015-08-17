@@ -17,7 +17,17 @@ class RegisterViewController: UIViewController {
         let email = emailTextField.text!
         let password = passwordTextField.text!
         
-        UserModel.login(email, password: password);
+        UserModel.login(email, password: password, success: {(success : Bool) -> Void in
+            
+            if(success) {
+                // TODO Segue to Main Screen
+                let mainScreen = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
+                self.navigationController?.pushViewController(mainScreen!, animated: true)
+            } else {
+                // TODO Notify user about failed login
+            }
+        
+        });
     }
     
     @IBAction func registerButton(sender: AnyObject) {

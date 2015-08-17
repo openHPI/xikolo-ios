@@ -9,24 +9,24 @@
 import UIKit
 
 class CourseOverviewViewController: UICollectionViewController {
-
+    
     private var courses : CourseList = DataManager.getAllCourses()
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     private let reuseIdentifier = "CourseCell"
     
-    private var width : CGFloat?
-
+    private var flowLayout : UICollectionViewFlowLayout?
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
-//        self.collectionView!.registerClass(CourseCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
-        width = self.collectionView!.frame.size.width - 20
-        
         self.navigationItem.hidesBackButton = true
+        
+        flowLayout = UICollectionViewFlowLayout()
+        self.collectionView?.setCollectionViewLayout(flowLayout!, animated: false)
     }
     
 }
@@ -51,12 +51,20 @@ extension CourseOverviewViewController {
         
         return cell
     }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.collectionView?.performBatchUpdates(nil, completion: nil)
+    }
+    
 }
 extension CourseOverviewViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSize(width: width!, height: width! * 0.6)
+            
+            let width = self.collectionView!.frame.size.width - 20
+            
+            return CGSize(width: width, height: width * 0.6)
     }
     
     func collectionView(collectionView: UICollectionView,

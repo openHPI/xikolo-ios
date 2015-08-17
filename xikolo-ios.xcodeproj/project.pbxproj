@@ -247,6 +247,7 @@
 				A90587C01B3BFC130095DB89 /* ViewController.swift */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 				F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */,
+				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
 				F8B926C21B81F13300A89143 /* LoginCheckController.swift */,
 				A90587C51B3BFC130095DB89 /* Assets.xcassets */,
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
@@ -255,7 +256,6 @@
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 				7E4F62BB1B3C3C5B006FCAD6 /* Model */,
 				7E4F62BE1B3C4FA2006FCAD6 /* DataManager.swift */,
-				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
 			);
 			path = "xikolo-ios";
 			sourceTree = "<group>";

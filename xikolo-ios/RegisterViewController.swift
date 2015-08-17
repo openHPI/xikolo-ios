@@ -10,11 +10,14 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
-    @IBOutlet weak var emailTextFiel: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func loginButton(sender: AnyObject) {
-        NSLog("Login clicked", 0)
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        
+        UserModel.login(email, password: password);
     }
     
     @IBAction func registerButton(sender: AnyObject) {

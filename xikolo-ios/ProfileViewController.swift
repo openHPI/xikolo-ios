@@ -39,8 +39,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setViewData() {
-        let prefs = UserPreferences();
-        let user = prefs.getUser();
+        let user = UserModel.getSavedUser()
         
         self.emailLabel.text = user.email;
         self.nameLabel.text = user.firstName + " " + user.lastName;

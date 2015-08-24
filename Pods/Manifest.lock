@@ -1,0 +1,30 @@
+PODS:
+  - RxCocoa (2.0-alpha.1):
+    - RxSwift
+  - RxSwift (2.0-alpha.1)
+
+DEPENDENCIES:
+  - RxCocoa (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
+  - RxSwift (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
+
+EXTERNAL SOURCES:
+  RxCocoa:
+    :branch: rxswift-2.0
+    :git: https://github.com/kzaher/RxSwift.git
+  RxSwift:
+    :branch: rxswift-2.0
+    :git: https://github.com/kzaher/RxSwift.git
+
+CHECKOUT OPTIONS:
+  RxCocoa:
+    :commit: 756a507db71663cf8a9d38be4f05a0d6d6e53309
+    :git: https://github.com/kzaher/RxSwift.git
+  RxSwift:
+    :commit: 756a507db71663cf8a9d38be4f05a0d6d6e53309
+    :git: https://github.com/kzaher/RxSwift.git
+
+SPEC CHECKSUMS:
+  RxCocoa: 6950f353d6ad66e55879fda8b996e8bc377516d7
+  RxSwift: 067c74f1c0c1e877043b3f2a25ba3ca1839dcea8
+
+COCOAPODS: 0.38.2

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002F92A21BEDE1C837B305D3 /* Pods_xikolo_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7E4F62A51B3C2EC6006FCAD6 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E002A301B3C2DC20095CFCF /* libRestKit.a */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
@@ -99,6 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32CD191B57184557BF0F210E /* Pods-xikolo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		74577FF07C23F1D79D3E693D /* Pods-xikolo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.release.xcconfig"; sourceTree = "<group>"; };
 		7E002A281B3C2DC20095CFCF /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -113,6 +116,7 @@
 		7E4F62BE1B3C4FA2006FCAD6 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
 		7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewViewController.swift; sourceTree = "<group>"; };
+		9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587C01B3BFC130095DB89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 				7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */,
 				7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */,
 				7E4F62A51B3C2EC6006FCAD6 /* libRestKit.a in Frameworks */,
+				002F92A21BEDE1C837B305D3 /* Pods_xikolo_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +185,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B8D4D8D5C320232B5BD598D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				32CD191B57184557BF0F210E /* Pods-xikolo-ios.debug.xcconfig */,
+				74577FF07C23F1D79D3E693D /* Pods-xikolo-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7E002A291B3C2DC20095CFCF /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +236,8 @@
 				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */,
+				4B8D4D8D5C320232B5BD598D /* Pods */,
+				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -314,6 +330,14 @@
 			name = Layouts;
 			sourceTree = "<group>";
 		};
+		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -321,9 +345,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-ios" */;
 			buildPhases = (
+				848D91CEEF85562E91816FA8 /* Check Pods Manifest.lock */,
 				A90587B71B3BFC130095DB89 /* Sources */,
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
+				11351E1A589967DC08B1D32F /* Embed Pods Frameworks */,
+				E74FC45C4114446586ADF878 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -485,6 +512,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11351E1A589967DC08B1D32F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		848D91CEEF85562E91816FA8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E74FC45C4114446586ADF878 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A90587B71B3BFC130095DB89 /* Sources */ = {
@@ -650,6 +725,7 @@
 		};
 		A90587E41B3BFC130095DB89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32CD191B57184557BF0F210E /* Pods-xikolo-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -669,6 +745,7 @@
 		};
 		A90587E51B3BFC130095DB89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74577FF07C23F1D79D3E693D /* Pods-xikolo-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

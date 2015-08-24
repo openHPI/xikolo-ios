@@ -1,0 +1,6 @@
+framework module Pods_xikolo_ios {
+  umbrella header "Pods-xikolo-ios-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -10,7 +10,7 @@ import UIKit
 
 class CourseOverviewViewController: UICollectionViewController {
     
-    private var courses : CourseList = DataManager.getAllCourses()
+    private var courses = CourseList()
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     private let reuseIdentifier = "CourseCell"
     
@@ -27,6 +27,16 @@ class CourseOverviewViewController: UICollectionViewController {
         
         flowLayout = UICollectionViewFlowLayout()
         self.collectionView?.setCollectionViewLayout(flowLayout!, animated: false)
+        
+        let data = CourseDataProvider.getCourseList()
+        data.subscribeNext{
+            self.courses = $0
+            
+            // TODO: Find a better solution
+            dispatch_async(dispatch_get_main_queue(), {
+                self.collectionView?.reloadData()
+            })
+        }
     }
     
 }
@@ -37,15 +47,19 @@ extension CourseOverviewViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return courses.courseList.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> CourseCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CourseCell
         
-        cell.nameLabel.text = "Name"
-        cell.teacherLabel.text = "Teacher"
-        cell.dateLabel.text = "Date"
+        let course = self.courses.courseList.objectAtIndex(indexPath.row) as! Course
+        
+        cell.nameLabel.text = course.name
+        cell.teacherLabel.text = course.lecturer
+        cell.dateLabel.text = course.language
+        
+        ImageProvider.loadImage(course.visual_url, imageView: cell.backgroundImage)
         
         cell.layer.cornerRadius = 3
         

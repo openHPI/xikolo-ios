@@ -7,9 +7,24 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class CourseList : NSObject {
 
-    var courseList : NSArray = []
+    var courseList : NSMutableArray = []
+    
+    override init() {
+        super.init()
+    }
+    
+    init(json: JSON) {
+        
+        for courseJson in json.array! {
+            
+            courseList.addObject(Course(json: courseJson))
+            
+        }
+        
+    }
 
 }

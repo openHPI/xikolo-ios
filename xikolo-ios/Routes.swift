@@ -17,8 +17,10 @@ class Routes: NSObject {
     
     static let HTTP_ACCEPT_HEADER = "Accept"
     static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.xikolo.v1, application/json"
+    static let HTTP_AUTH_HEADER = "Authorization"
     
     static let HTTP_PARAM_EMAIL = "email"
     static let HTTP_PARAM_PASSWORD = "password"
 
 }
+

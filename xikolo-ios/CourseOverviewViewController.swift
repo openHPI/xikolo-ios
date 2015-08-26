@@ -25,6 +25,19 @@ class CourseOverviewViewController: UICollectionViewController {
         
         self.navigationItem.hidesBackButton = true
         
+        // Profile View
+        let profileButton = UIButton(type: UIButtonType.Custom)
+        let image = UIImage(named: "Avatar")
+        profileButton.setImage(image, forState: UIControlState.Normal)
+        profileButton.frame.size = CGSize(width: 35, height: 35)
+        profileButton.layer.masksToBounds = false
+        // TODO:
+        // Make circle shaped view
+        profileButton.layer.cornerRadius = 8.0
+        profileButton.addTarget(self, action: "onProfileButtonClick:", forControlEvents: UIControlEvents.TouchDown)
+        let barButton = UIBarButtonItem(customView: profileButton)
+        self.navigationItem.rightBarButtonItem = barButton
+        
         flowLayout = UICollectionViewFlowLayout()
         self.collectionView?.setCollectionViewLayout(flowLayout!, animated: false)
         
@@ -37,6 +50,11 @@ class CourseOverviewViewController: UICollectionViewController {
                 self.collectionView?.reloadData()
             })
         }
+    }
+    
+    @IBAction private func onProfileButtonClick(sender: UIBarButtonItem) -> () {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController")
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
 }

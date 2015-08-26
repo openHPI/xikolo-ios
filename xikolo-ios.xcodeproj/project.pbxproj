@@ -34,6 +34,7 @@
 		F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
 		F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
+		F81DFF901B8C785600A80D27 /* ProfileDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */; };
 		F8328D0F1B8B5A9500C9B2B6 /* CourseDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8328D0E1B8B5A9500C9B2B6 /* CourseDataProvider.swift */; };
 		F85225381B4D27D700C9BF56 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F85225351B4D27D700C9BF56 /* avatar.png */; };
 		F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */; };
@@ -137,6 +138,7 @@
 		F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		F81523921B67AC9F009803B1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataProvider.swift; sourceTree = "<group>"; };
 		F8328D0E1B8B5A9500C9B2B6 /* CourseDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDataProvider.swift; sourceTree = "<group>"; };
 		F85225351B4D27D700C9BF56 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_header_placeholder.jpg; sourceTree = "<group>"; };
@@ -295,6 +297,16 @@
 			path = "xikolo-iosUITests";
 			sourceTree = "<group>";
 		};
+		F81DFF911B8C785F00A80D27 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				F8328D0E1B8B5A9500C9B2B6 /* CourseDataProvider.swift */,
+				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
+				F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */,
+			);
+			name = Provider;
+			sourceTree = "<group>";
+		};
 		F852253F1B4D27E800C9BF56 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,10 +320,9 @@
 		F85225421B4D2B2900C9BF56 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				F81DFF911B8C785F00A80D27 /* Provider */,
 				F85225431B4D2B2E00C9BF56 /* Entities */,
 				F81523921B67AC9F009803B1 /* Routes.swift */,
-				F8328D0E1B8B5A9500C9B2B6 /* CourseDataProvider.swift */,
-				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -582,6 +593,7 @@
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
 				F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */,
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
+				F81DFF901B8C785600A80D27 /* ProfileDataProvider.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
 				F85225451B4D2B3D00C9BF56 /* User.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,

@@ -39,21 +39,30 @@ class ProfileViewController: UIViewController {
     }
     
     func setViewData() {
-        let user = UserModel.getSavedUser()
+//        let user = UserModel.getSavedUser()
+//        
+//        self.emailLabel.text = user.email;
+//        self.nameLabel.text = user.firstName + " " + user.lastName;
+//        
+//        setAvatar(user);
+//        setCourses();
         
-        self.emailLabel.text = user.email;
-        self.nameLabel.text = user.firstName + " " + user.lastName;
+        let userProfileObservable = ProfileDataProvider.getObservable()
+        userProfileObservable.subscribeNext { userProfile in
+            self.nameLabel.text = userProfile.firstName + " " + userProfile.lastName
+            self.emailLabel.text = userProfile.email
+            
+            ImageProvider.loadImage(userProfile.visual, imageView: self.profileImage)
+        }
         
-        setAvatar(user);
-        setCourses();
     }
     
-    func setAvatar(user : User) {
-        // TODO Database / API call
-    }
-    
-    func setCourses() {
-        // TODO Set course enrollments count
-    }
+//    func setAvatar(user : User) {
+//        // TODO Database / API call
+//    }
+//    
+//    func setCourses() {
+//        // TODO Set course enrollments count
+//    }
 
 }

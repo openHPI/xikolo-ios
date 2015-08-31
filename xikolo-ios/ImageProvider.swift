@@ -32,16 +32,18 @@ class ImageProvider: NSObject {
 //                imageView.image = image
 //        }
         
-        let url = NSURL(string: visual_url)!
-        let request = NSURLRequest(URL: url)
-        
-        NSURLSession.sharedSession().rx_data(request)
-            .map { data in
-                UIImage(data: data)
-            }
-            .observeSingleOn(MainScheduler.sharedInstance)
-            .subscribeImageOf(imageView)
-//            .addDisposableTo(disposeBag)
+        if(!visual_url.isEmpty ?? false) {
+            let url = NSURL(string: visual_url)!
+            let request = NSURLRequest(URL: url)
+            
+            NSURLSession.sharedSession().rx_data(request)
+                .map { data in
+                    UIImage(data: data)
+                }
+                .observeSingleOn(MainScheduler.sharedInstance)
+                .subscribeImageOf(imageView)
+            //            .addDisposableTo(disposeBag)
+        }
         
     }
     

@@ -52,11 +52,13 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods-xikolo-ios/Realm.framework'
   install_framework 'Pods-xikolo-ios/RxCocoa.framework'
   install_framework 'Pods-xikolo-ios/RxSwift.framework'
   install_framework 'Pods-xikolo-ios/SwiftyJSON.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods-xikolo-ios/Realm.framework'
   install_framework 'Pods-xikolo-ios/RxCocoa.framework'
   install_framework 'Pods-xikolo-ios/RxSwift.framework'
   install_framework 'Pods-xikolo-ios/SwiftyJSON.framework'

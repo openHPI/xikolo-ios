@@ -10,13 +10,7 @@ import Foundation
 
 class UserModel: NSObject {
     
-    static let preferenceId = "id"
-    static let preferenceFirstName = "first_name"
-    static let preferenceLastName = "last_name"
-    static let preferenceEmail = "email"
-    static let preferenceVisual = "visual"
-    static let preferenceToken = "token"
-    
+        
     static func login(email: String, password: String, success:(Bool) -> Void) {
         
         let authenticateUrl = NSURL(string: Routes.BASE_URL)
@@ -24,7 +18,7 @@ class UserModel: NSObject {
         
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true
         
-        let userMapping = RKObjectMapping(forClass: User.self)
+        let userMapping = RKObjectMapping(forClass: UserProfile.self)
         userMapping.addAttributeMappingsFromDictionary(["token":"token"])
         
         let responseDescriptor = RKResponseDescriptor(mapping: userMapping, method: RKRequestMethod.POST, pathPattern: nil, keyPath: nil, statusCodes: RKStatusCodeIndexSetForClass(RKStatusCodeClass.Successful))
@@ -37,8 +31,8 @@ class UserModel: NSObject {
             
             print("Login successful")
             
-            let user = mappingResult.firstObject as! User
-            saveToken(user.token)
+            let user = mappingResult.firstObject as! UserProfile
+            UserProfile.save(user)
             
             print("Token: " + user.token)
             
@@ -56,81 +50,6 @@ class UserModel: NSObject {
         })
     }
     
-    static func getSavedUser()->User {
-        
-        let id = getID()
-        let firstName = getFirstName()
-        let lastName = getLastName()
-        let email = getEmail()
-        let visual = getVisual()
-        let token = getToken()
-        
-        return User(id: id, firstName: firstName, lastName: lastName, email: email, visual: visual, token: token)
-    }
     
-    static func saveUser(user: User) {
-        saveID(user.id)
-        saveFirstName(user.firstName)
-        saveLastName(user.lastName)
-        saveEmail(user.email)
-        saveVisual(user.visual)
-        saveToken(user.token)
-    }
-    
-    static func isLoggedIn()->Bool {
-        return !getToken().isEmpty ?? false
-    }
-    
-    // Reading
-    
-    static func getID()->String {
-        return NSUserDefaults.standardUserDefaults().stringForKey(preferenceId) ?? ""
-    }
-    
-    static func getFirstName()->String {
-        return NSUserDefaults.standardUserDefaults().stringForKey(preferenceFirstName) ?? ""
-    }
-    
-    static func getLastName()->String {
-        return NSUserDefaults.standardUserDefaults().stringForKey(preferenceLastName) ?? ""
-    }
-    
-    static func getEmail()->String {
-        return NSUserDefaults.standardUserDefaults().stringForKey(preferenceEmail) ?? ""
-    }
-    
-    static func getVisual()->String {
-        return NSUserDefaults.standardUserDefaults().stringForKey(preferenceVisual) ?? ""
-    }
-    
-    static func getToken()->String {
-        return NSUserDefaults.standardUserDefaults().stringForKey(preferenceToken) ?? ""
-    }
-    
-    // Saving
-    
-    static func saveID(id: String) {
-        NSUserDefaults.standardUserDefaults().setObject(id, forKey: preferenceId)
-    }
-    
-    static func saveFirstName(firstName: String) {
-        NSUserDefaults.standardUserDefaults().setObject(firstName, forKey: preferenceFirstName)
-    }
-    
-    static func saveLastName(lastName: String) {
-        NSUserDefaults.standardUserDefaults().setObject(lastName, forKey: preferenceLastName)
-    }
-    
-    static func saveEmail(email: String) {
-        NSUserDefaults.standardUserDefaults().setObject(email, forKey: preferenceEmail)
-    }
-    
-    static func saveVisual(visual: String) {
-        NSUserDefaults.standardUserDefaults().setObject(visual, forKey: preferenceVisual)
-    }
-    
-    static func saveToken(token: String) {
-        NSUserDefaults.standardUserDefaults().setObject(token, forKey: preferenceToken)
-    }
     
 }

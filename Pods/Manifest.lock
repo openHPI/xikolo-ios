@@ -1,15 +1,22 @@
 PODS:
+  - Realm (0.95.0):
+    - Realm/Headers (= 0.95.0)
+  - Realm/Headers (0.95.0)
   - RxCocoa (2.0-alpha.1):
     - RxSwift
   - RxSwift (2.0-alpha.1)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
   - RxCocoa (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
   - RxSwift (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
 
 EXTERNAL SOURCES:
+  Realm:
+    :branch: swift-2.0
+    :git: https://github.com/realm/realm-cocoa.git
   RxCocoa:
     :branch: rxswift-2.0
     :git: https://github.com/kzaher/RxSwift.git
@@ -21,6 +28,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  Realm:
+    :commit: ec6215c11c5d42389a105e84017397d3a8c8f6a7
+    :git: https://github.com/realm/realm-cocoa.git
   RxCocoa:
     :commit: 756a507db71663cf8a9d38be4f05a0d6d6e53309
     :git: https://github.com/kzaher/RxSwift.git
@@ -32,6 +42,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
+  Realm: bbb171b96728ea136ed5cd354dca2a3d6529923c
   RxCocoa: 6950f353d6ad66e55879fda8b996e8bc377516d7
   RxSwift: 067c74f1c0c1e877043b3f2a25ba3ca1839dcea8
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33

@@ -20,7 +20,6 @@ class RegisterViewController: UIViewController {
         UserModel.login(email, password: password, success: {(success : Bool) -> Void in
             
             if(success) {
-                // TODO Segue to Main Screen
                 let mainScreen = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
                 self.navigationController?.pushViewController(mainScreen!, animated: true)
             } else {

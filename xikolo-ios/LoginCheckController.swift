@@ -19,7 +19,7 @@ class LoginCheckController: UIViewController {
         // Check if logged in
         let nextViewController : UIViewController!
         
-        if(UserModel.isLoggedIn()) {
+        if(UserProfile.isLoggedIn()) {
             nextViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
             self.navigationController?.pushViewController(nextViewController, animated: false)
         }

@@ -12,6 +12,9 @@ pod 'RxCocoa', :git => "https://github.com/kzaher/RxSwift.git", :branch => 'rxsw
 # JSON Parsing
 pod 'SwiftyJSON', :git => "https://github.com/SwiftyJSON/SwiftyJSON.git", :branch => 'xcode7'
 
+# Realm
+pod 'Realm', :git => "https://github.com/realm/realm-cocoa.git", :branch => 'swift-2.0'
+
 end
 
 target 'xikolo-iosTests' do

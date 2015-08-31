@@ -20,7 +20,7 @@
 		7E4F62BA1B3C3C56006FCAD6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62B91B3C3C56006FCAD6 /* Course.swift */; };
 		7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */; };
 		7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */; };
-		A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587C01B3BFC130095DB89 /* ViewController.swift */; };
+		A90587C11B3BFC130095DB89 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587C01B3BFC130095DB89 /* WelcomeViewController.swift */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* Assets.xcassets */; };
 		A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
@@ -32,6 +32,8 @@
 		A98850A81B412CD500DAF817 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A41B412CD500DAF817 /* network.png */; };
 		A98850A91B412CD500DAF817 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A51B412CD500DAF817 /* speed.png */; };
 		F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */; };
+		F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */; };
+		F810A3AC1B8DDF2D00567188 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3AB1B8DDF2D00567188 /* DataSource.swift */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
 		F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
 		F81DFF901B8C785600A80D27 /* ProfileDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */; };
@@ -40,7 +42,7 @@
 		F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */; };
 		F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
 		F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserModel.swift */; };
-		F85225451B4D2B3D00C9BF56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* User.swift */; };
+		F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
 		F8B926C31B81F13300A89143 /* LoginCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B926C21B81F13300A89143 /* LoginCheckController.swift */; };
@@ -119,7 +121,7 @@
 		7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewViewController.swift; sourceTree = "<group>"; };
 		9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A90587C01B3BFC130095DB89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A90587C01B3BFC130095DB89 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A90587C81B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -136,6 +138,8 @@
 		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
 		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
 		F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSourceProvider.swift; sourceTree = "<group>"; };
+		F810A3AB1B8DDF2D00567188 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F81523921B67AC9F009803B1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataProvider.swift; sourceTree = "<group>"; };
@@ -144,7 +148,7 @@
 		F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_header_placeholder.jpg; sourceTree = "<group>"; };
 		F85225371B4D27D700C9BF56 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F85225401B4D299C00C9BF56 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		F85225441B4D2B3D00C9BF56 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F85225441B4D2B3D00C9BF56 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -212,6 +216,7 @@
 		7E4F62BB1B3C3C5B006FCAD6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F85225441B4D2B3D00C9BF56 /* UserProfile.swift */,
 				7E4F62B91B3C3C56006FCAD6 /* Course.swift */,
 				7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */,
 				F85225401B4D299C00C9BF56 /* UserModel.swift */,
@@ -264,7 +269,7 @@
 				F85225421B4D2B2900C9BF56 /* Data */,
 				F852253F1B4D27E800C9BF56 /* Images */,
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
-				A90587C01B3BFC130095DB89 /* ViewController.swift */,
+				A90587C01B3BFC130095DB89 /* WelcomeViewController.swift */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 				F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
@@ -303,6 +308,8 @@
 				F8328D0E1B8B5A9500C9B2B6 /* CourseDataProvider.swift */,
 				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
 				F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */,
+				F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */,
+				F810A3AB1B8DDF2D00567188 /* DataSource.swift */,
 			);
 			name = Provider;
 			sourceTree = "<group>";
@@ -321,18 +328,9 @@
 			isa = PBXGroup;
 			children = (
 				F81DFF911B8C785F00A80D27 /* Provider */,
-				F85225431B4D2B2E00C9BF56 /* Entities */,
 				F81523921B67AC9F009803B1 /* Routes.swift */,
 			);
 			name = Data;
-			sourceTree = "<group>";
-		};
-		F85225431B4D2B2E00C9BF56 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				F85225441B4D2B3D00C9BF56 /* User.swift */,
-			);
-			name = Entities;
 			sourceTree = "<group>";
 		};
 		F8FABFBB1B580B5A0007F308 /* Layouts */ = {
@@ -583,10 +581,12 @@
 				7E4F62BA1B3C3C56006FCAD6 /* Course.swift in Sources */,
 				F8B926C31B81F13300A89143 /* LoginCheckController.swift in Sources */,
 				A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */,
-				A90587C11B3BFC130095DB89 /* ViewController.swift in Sources */,
+				A90587C11B3BFC130095DB89 /* WelcomeViewController.swift in Sources */,
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
 				7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */,
+				F810A3AC1B8DDF2D00567188 /* DataSource.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
+				F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				F8328D0F1B8B5A9500C9B2B6 /* CourseDataProvider.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */,
@@ -595,7 +595,7 @@
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* ProfileDataProvider.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
-				F85225451B4D2B3D00C9BF56 /* User.swift in Sources */,
+				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

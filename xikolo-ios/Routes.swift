@@ -14,6 +14,7 @@ class Routes: NSObject {
     
     static let COURSES = "courses/"
     static let AUTHENTICATE = "authenticate/"
+    static let MY_PROFILE = "users/me"
     
     static let HTTP_ACCEPT_HEADER = "Accept"
     static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.xikolo.v1, application/json"

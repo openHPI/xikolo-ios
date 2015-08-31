@@ -34,8 +34,6 @@ class UserModel: NSObject {
             let user = mappingResult.firstObject as! UserProfile
             UserProfile.save(user)
             
-            print("Token: " + user.token)
-            
             success(true)
             
             }, failure: { operation, error in

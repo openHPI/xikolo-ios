@@ -32,6 +32,8 @@ public class UserProfile: RLMObject {
     
     public var token : String = ""
     
+    static private let prefs = NSUserDefaults.standardUserDefaults()
+    
     override init() {
         super.init()
     }
@@ -102,32 +104,36 @@ public class UserProfile: RLMObject {
     
     static func getSavedUser()->UserProfile {
         
-        let id = NSUserDefaults.standardUserDefaults().stringForKey(preferenceId) ?? ""
-        let firstName = NSUserDefaults.standardUserDefaults().stringForKey(preferenceFirstName) ?? ""
-        let lastName = NSUserDefaults.standardUserDefaults().stringForKey(preferenceLastName) ?? ""
-        let email = NSUserDefaults.standardUserDefaults().stringForKey(preferenceEmail) ?? ""
-        let visual = NSUserDefaults.standardUserDefaults().stringForKey(preferenceVisual) ?? ""
+        let id = prefs.stringForKey(preferenceId) ?? ""
+        let firstName = prefs.stringForKey(preferenceFirstName) ?? ""
+        let lastName = prefs.stringForKey(preferenceLastName) ?? ""
+        let email = prefs.stringForKey(preferenceEmail) ?? ""
+        let visual = prefs.stringForKey(preferenceVisual) ?? ""
         let token = getToken()
-        let language = NSUserDefaults.standardUserDefaults().stringForKey(preferenceLanguage) ?? ""
+        let language = prefs.stringForKey(preferenceLanguage) ?? ""
         
-        return UserProfile(id: id, firstName: firstName, lastName: lastName, email: email, visual: visual, token: token, language: language)
+        let user = UserProfile(id: id, firstName: firstName, lastName: lastName, email: email, visual: visual, token: token, language: language)
+        
+        return user
     }
     
     static func save(user: UserProfile) {
-        NSUserDefaults.standardUserDefaults().setObject(user.id, forKey: preferenceId)
-        NSUserDefaults.standardUserDefaults().setObject(user.firstName, forKey: preferenceFirstName)
-        NSUserDefaults.standardUserDefaults().setObject(user.lastName, forKey: preferenceLastName)
-        NSUserDefaults.standardUserDefaults().setObject(user.email, forKey: preferenceEmail)
-        NSUserDefaults.standardUserDefaults().setObject(user.visual, forKey: preferenceVisual)
-        NSUserDefaults.standardUserDefaults().setObject(user.token, forKey: preferenceToken)
+        prefs.setObject(user.id, forKey: preferenceId)
+        prefs.setObject(user.firstName, forKey: preferenceFirstName)
+        prefs.setObject(user.lastName, forKey: preferenceLastName)
+        prefs.setObject(user.email, forKey: preferenceEmail)
+        prefs.setObject(user.visual, forKey: preferenceVisual)
+        prefs.setObject(user.token, forKey: preferenceToken)
+        prefs.setObject(user.language, forKey: preferenceLanguage)
+        prefs.synchronize()
     }
     
     static func isLoggedIn()->Bool {
-        return !(NSUserDefaults.standardUserDefaults().stringForKey(preferenceToken) ?? "").isEmpty ?? false
+        return !(getToken().isEmpty ?? true)
     }
     
     static func getToken() -> String {
-        return NSUserDefaults.standardUserDefaults().stringForKey(preferenceToken) ?? ""
+        return prefs.stringForKey(preferenceToken) ?? ""
     }
     
 }

@@ -20,7 +20,7 @@ class LoginCheckController: UIViewController {
         let nextViewController : UIViewController!
         
         if(UserProfile.isLoggedIn()) {
-            nextViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
+            nextViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewTabBarController")
             self.navigationController?.pushViewController(nextViewController, animated: false)
         }
         

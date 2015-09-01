@@ -20,7 +20,7 @@ class RegisterViewController: UIViewController {
         UserModel.login(email, password: password, success: {(success : Bool) -> Void in
             
             if(success) {
-                let mainScreen = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
+                let mainScreen = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewTabBarController")
                 self.navigationController?.pushViewController(mainScreen!, animated: true)
             } else {
                 // TODO Notify user about failed login

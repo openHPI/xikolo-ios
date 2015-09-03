@@ -32,6 +32,9 @@
 		A98850A81B412CD500DAF817 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A41B412CD500DAF817 /* network.png */; };
 		A98850A91B412CD500DAF817 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A51B412CD500DAF817 /* speed.png */; };
 		F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */; };
+		F80D67891B958F9C00E27520 /* openHPI4.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F80D67881B958F6100E27520 /* openHPI4.ttf */; };
+		F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */; };
+		F80D678D1B95967D00E27520 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678C1B95967D00E27520 /* Icons.swift */; };
 		F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */; };
 		F810A3AC1B8DDF2D00567188 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3AB1B8DDF2D00567188 /* DataSource.swift */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
@@ -138,6 +141,9 @@
 		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
 		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
 		F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		F80D67881B958F6100E27520 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = openHPI4.ttf; path = "../../../../Downloads/openHPI Icon Font/fonts/openHPI4.ttf"; sourceTree = "<group>"; };
+		F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewTabBarController.swift; sourceTree = "<group>"; };
+		F80D678C1B95967D00E27520 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSourceProvider.swift; sourceTree = "<group>"; };
 		F810A3AB1B8DDF2D00567188 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F81523921B67AC9F009803B1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -263,15 +269,16 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F80D67831B958F4600E27520 /* Resources */,
 				F8FABFBB1B580B5A0007F308 /* Layouts */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				F85225421B4D2B2900C9BF56 /* Data */,
-				F852253F1B4D27E800C9BF56 /* Images */,
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
 				A90587C01B3BFC130095DB89 /* WelcomeViewController.swift */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 				F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */,
+				F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
 				F8B926C21B81F13300A89143 /* LoginCheckController.swift */,
 				A90587C51B3BFC130095DB89 /* Assets.xcassets */,
@@ -300,6 +307,24 @@
 				A90587E01B3BFC130095DB89 /* Info.plist */,
 			);
 			path = "xikolo-iosUITests";
+			sourceTree = "<group>";
+		};
+		F80D67831B958F4600E27520 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F80D67871B958F5100E27520 /* Fonts */,
+				F852253F1B4D27E800C9BF56 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F80D67871B958F5100E27520 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F80D67881B958F6100E27520 /* openHPI4.ttf */,
+				F80D678C1B95967D00E27520 /* Icons.swift */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		F81DFF911B8C785F00A80D27 /* Provider */ = {
@@ -495,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F80D67891B958F9C00E27520 /* openHPI4.ttf in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
 				F8D45D2E1B58F7030039D442 /* open_hpi_logo.jpg in Resources */,
 				A98850A61B412CD500DAF817 /* beginner.png in Resources */,
@@ -589,8 +615,10 @@
 				F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				F8328D0F1B8B5A9500C9B2B6 /* CourseDataProvider.swift in Sources */,
+				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
+				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,
 				F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */,
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* ProfileDataProvider.swift in Sources */,

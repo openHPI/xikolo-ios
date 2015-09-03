@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="327" y="-28"/>
         </scene>
-        <!--Item-->
+        <!--Course Overview View Controller-->
         <scene sceneID="aYm-tI-rNT">
             <objects>
                 <collectionViewController storyboardIdentifier="CourseOverviewViewController" id="uLl-5G-DMn" customClass="CourseOverviewViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -44,11 +44,30 @@
                             <outlet property="delegate" destination="uLl-5G-DMn" id="r9b-Z8-ClD"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Item" id="fhC-LU-HI2"/>
+                    <tabBarItem key="tabBarItem" id="fhC-LU-HI2"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1800" y="4"/>
+            <point key="canvasLocation" x="2536" y="4"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="Muy-Qu-K79">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="NVJ-Hl-PIf" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="stW-rW-ZlI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lo5-xV-nlY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hGn-BS-2CX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" id="S6C-5Q-gdW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W83-Vm-zjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2536" y="733"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="pg6-LU-S32">
@@ -370,7 +389,7 @@
         <!--Course Overview Tab Bar Controller-->
         <scene sceneID="ld2-gl-jnU">
             <objects>
-                <tabBarController storyboardIdentifier="CourseOverviewTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vmi-wr-Zk6" customClass="CourseOverviewTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CourseOverviewTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vmi-wr-Zk6" customClass="CourseOverviewTabBarController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -378,13 +397,29 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="uLl-5G-DMn" kind="relationship" relationship="viewControllers" id="L9j-LM-SeU"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gj-yV-bCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="4"/>
+            <point key="canvasLocation" x="1816" y="4"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="hXl-aj-vOT">
+            <objects>
+                <viewController storyboardIdentifier="NewsViewController" id="rQe-Ua-e4E" customClass="NewsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mou-Sn-I16"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q9g-rV-JWp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nA5-6d-DTh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" id="Iok-ZF-Mpk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kVr-QZ-VIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="733"/>
         </scene>
     </scenes>
     <resources>

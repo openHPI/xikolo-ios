@@ -139,10 +139,10 @@
 		A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosUITests.swift; sourceTree = "<group>"; };
 		A90587E01B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
-		A98850A21B412CD500DAF817 /* beginner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beginner.png; sourceTree = "<group>"; };
-		A98850A31B412CD500DAF817 /* globus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globus.png; sourceTree = "<group>"; };
-		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
-		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
+		A98850A21B412CD500DAF817 /* beginner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = beginner.png; path = ../beginner.png; sourceTree = "<group>"; };
+		A98850A31B412CD500DAF817 /* globus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = globus.png; path = ../globus.png; sourceTree = "<group>"; };
+		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = network.png; path = ../network.png; sourceTree = "<group>"; };
+		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speed.png; path = ../speed.png; sourceTree = "<group>"; };
 		F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		F80D67881B958F6100E27520 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = openHPI4.ttf; path = "../../../../Downloads/openHPI Icon Font/fonts/openHPI4.ttf"; sourceTree = "<group>"; };
 		F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewTabBarController.swift; sourceTree = "<group>"; };
@@ -244,10 +244,6 @@
 			children = (
 				7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */,
 				7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */,
-				A98850A21B412CD500DAF817 /* beginner.png */,
-				A98850A31B412CD500DAF817 /* globus.png */,
-				A98850A41B412CD500DAF817 /* network.png */,
-				A98850A51B412CD500DAF817 /* speed.png */,
 				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
 				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,
 				7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */,
@@ -370,6 +366,10 @@
 		F852253F1B4D27E800C9BF56 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A98850A21B412CD500DAF817 /* beginner.png */,
+				A98850A31B412CD500DAF817 /* globus.png */,
+				A98850A41B412CD500DAF817 /* network.png */,
+				A98850A51B412CD500DAF817 /* speed.png */,
 				F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */,
 				F85225351B4D27D700C9BF56 /* avatar.png */,
 				F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */,

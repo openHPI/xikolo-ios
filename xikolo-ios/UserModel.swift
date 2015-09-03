@@ -13,7 +13,7 @@ class UserModel: NSObject {
         
     static func login(email: String, password: String, success:(Bool) -> Void) {
         
-        let authenticateUrl = NSURL(string: Routes.BASE_URL)
+        let authenticateUrl = NSURL(string: Routes.API_URL)
         let objectManager = RKObjectManager(baseURL: authenticateUrl)
         
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true

@@ -39,7 +39,7 @@ class ProfileDataProvider: MultiSourceProvider {
     
     static internal func getNetworkDataObservable() -> Observable<UserProfile> {
         
-        let urlString = Routes.BASE_URL + Routes.MY_PROFILE
+        let urlString = Routes.API_URL + Routes.MY_PROFILE
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         var user = UserProfile()

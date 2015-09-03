@@ -43,10 +43,10 @@ class CourseOverviewTabBarController: UITabBarController {
         let attributes = [NSFontAttributeName:UIFont(name: "openHPI4", size: 25)!]
         appearance.setTitleTextAttributes(attributes, forState: UIControlState.Normal)
         
-        let titleAllCourses = Icons.learn2 + "\n" + "All Courses"
-        let titleMyCourses = Icons.subscribe + "\n" + "My Courses"
-        let titleNews = Icons.announcements + "\n" + "News"
-        let titleSettings = Icons.settings + "\n" + "Settings"
+        let titleAllCourses = Icons.learn2 + "\n" + NSLocalizedString("tab_all_courses", comment: "All Courses")
+        let titleMyCourses = Icons.subscribe + "\n" + NSLocalizedString("tab_my_courses", comment: "My Courses")
+        let titleNews = Icons.announcements + "\n" + NSLocalizedString("tab_news", comment: "News")
+        let titleSettings = Icons.settings + "\n" + NSLocalizedString("tab_settings", comment: "Settings")
         
         allCourses.tabBarItem = UITabBarItem(title: titleAllCourses, image: nil, tag: 0)
         myCourses.tabBarItem = UITabBarItem(title: titleMyCourses, image: nil, tag: 1)

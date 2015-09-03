@@ -37,6 +37,7 @@
 		F80D678D1B95967D00E27520 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678C1B95967D00E27520 /* Icons.swift */; };
 		F80D67911B98682300E27520 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67901B98682300E27520 /* SettingsViewController.swift */; };
 		F80D67931B98683400E27520 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* NewsViewController.swift */; };
+		F80D67981B98751700E27520 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */; };
 		F810A3AC1B8DDF2D00567188 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3AB1B8DDF2D00567188 /* DataSource.swift */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
@@ -148,6 +149,10 @@
 		F80D678C1B95967D00E27520 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		F80D67901B98682300E27520 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F80D67921B98683400E27520 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		F80D67961B9874F600E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		F80D67971B9874F700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F80D67991B98751700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F80D679B1B9875BA00E27520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSourceProvider.swift; sourceTree = "<group>"; };
 		F810A3AB1B8DDF2D00567188 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F81523921B67AC9F009803B1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -311,6 +316,7 @@
 			children = (
 				F80D67871B958F5100E27520 /* Fonts */,
 				F852253F1B4D27E800C9BF56 /* Images */,
+				F80D679A1B98751700E27520 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 				F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */,
 				F85225381B4D27D700C9BF56 /* avatar.png in Resources */,
 				A98850A71B412CD500DAF817 /* globus.png in Resources */,
+				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
 				A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */,
 				F8FABFB61B5809440007F308 /* CourseCell.xib in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
@@ -693,6 +700,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A90587C31B3BFC130095DB89 /* Base */,
+				F80D67961B9874F600E27520 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -701,8 +709,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				A90587C81B3BFC130095DB89 /* Base */,
+				F80D67971B9874F700E27520 /* de */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F80D679A1B98751700E27520 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F80D67991B98751700E27520 /* de */,
+				F80D679B1B9875BA00E27520 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

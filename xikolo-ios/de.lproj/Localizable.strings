@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  xikolo-ios
+
+  Created by Jonas Müller on 03.09.15.
+  Copyright © 2015 HPI. All rights reserved.
+*/
+
+// Onboarding
+"page_title_learn_anywhere" = "Lerne überall. Auf jedem Gerät.";
+"page_title_learn_anytime" = "Lerne wann immer du willst.";
+"page_title_be_social" = "Sei sozial.";
+"page_title_find_courses" = "Finde jetzt Kurse für Anfänger und Fortgeschrittene.";
+
+// Tab Bar
+"tab_all_courses" = "Alle Kurse";
+"tab_my_courses" = "Meine Kurses";
+"tab_news" = "Neuigkeiten";
+"tab_settings" = "Einstellungen";
+
+// Login
+"login" = "Login";

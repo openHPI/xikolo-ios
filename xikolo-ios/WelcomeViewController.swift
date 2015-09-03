@@ -19,7 +19,13 @@ import UIKit
 class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     
-    let pageTitles = ["Learn anywhere. On any device.", "Learn anytime.", "Be social.", "Find courses now. For beginners and pros.", "Login"]
+    let pageTitles = [
+        NSLocalizedString("page_title_learn_anywhere", comment: "Learn anywhere. On any device."),
+        NSLocalizedString("page_title_learn_anytime", comment: "Learn anytime."),
+        NSLocalizedString("page_title_be_social", comment: "Be social."),
+        NSLocalizedString("page_title_find_courses", comment: "Find courses now. For beginners and pros."),
+        NSLocalizedString("login", comment: "Login")]
+    
     var images = ["globus.png","speed.png","network.png","beginner.png"]
     var bgColors = [
         UIColor(red: 0.204, green: 0.208, blue: 0.22, alpha: 1.0),//dark gray
@@ -145,6 +151,6 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         appearance.pageIndicatorTintColor = UIColor.grayColor()
         appearance.currentPageIndicatorTintColor = UIColor.redColor()
         appearance.backgroundColor = UIColor.clearColor()
-
+        
     }
 }

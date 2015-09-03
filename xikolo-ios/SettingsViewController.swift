@@ -12,6 +12,8 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController!.title = NSLocalizedString("tab_settings", comment: "Settings")
 
         // Do any additional setup after loading the view.
     }

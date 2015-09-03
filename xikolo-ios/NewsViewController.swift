@@ -17,7 +17,7 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController!.title = "News"
+        self.tabBarController!.title = NSLocalizedString("tab_news", comment: "News")
         
         self.webView.delegate = self
         

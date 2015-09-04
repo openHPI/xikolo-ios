@@ -24,13 +24,13 @@ class CourseDataProvider: NSObject {
         // Deliver stored data
         // Deliver network data
         
-        let urlString = "https://staging.openhpi.de/api/courses/"
+        let urlString = Routes.API_URL + Routes.COURSES
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         var courseList = CourseList()
         
         request.addValue(Routes.HTTP_ACCEPT_HEADER_VALUE, forHTTPHeaderField: Routes.HTTP_ACCEPT_HEADER)
-        request.addValue("Token token=\"02408a79aa5aaf93fcd473f0edeb95de25cada520dd512d03f0bde07aad8e71c\"", forHTTPHeaderField: Routes.HTTP_AUTH_HEADER)
+        request.addValue("Token token=\"" + UserProfileHelper.getToken() + "\"", forHTTPHeaderField: Routes.HTTP_AUTH_HEADER)
         
         print("Starting network request")
         
@@ -51,6 +51,14 @@ class CourseDataProvider: NSObject {
             
             return courseList
             
+        }
+    }
+    
+    static func getMyCourses() -> Observable<CourseList> {
+        return self.getCourseList().map{courseList in
+            let removeArray = courseList.courseList.filteredArrayUsingPredicate(NSPredicate(format: "is_enrolled == false", argumentArray: nil))
+            courseList.courseList.removeObjectsInArray(removeArray)
+            return courseList
         }
     }
 }

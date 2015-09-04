@@ -8,8 +8,9 @@
 
 import Foundation
 import SwiftyJSON
+import Realm
 
-class Course : NSObject{
+class Course : RLMObject{
     
     var id : String = ""
     var name : String = ""
@@ -27,6 +28,7 @@ class Course : NSObject{
     
     // TODO: Refactor
     init(json: JSON) {
+        super.init()
         
         // TODO: DRY!!!
         

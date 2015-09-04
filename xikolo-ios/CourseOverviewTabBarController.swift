@@ -31,9 +31,11 @@ class CourseOverviewTabBarController: UITabBarController {
         let storyboard = self.storyboard
         
         let allCourses = storyboard!.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
-        let myCourses = storyboard!.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
+        let myCourses = storyboard!.instantiateViewControllerWithIdentifier("CourseOverviewViewController") as! CourseOverviewViewController
         let news = storyboard!.instantiateViewControllerWithIdentifier("NewsViewController")
         let settings = storyboard!.instantiateViewControllerWithIdentifier("SettingsViewController")
+        
+        myCourses.showMyCoursesOnly(true)
         
         let viewControllers = [allCourses, myCourses, news, settings]
         

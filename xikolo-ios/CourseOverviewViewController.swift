@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class CourseOverviewViewController: UICollectionViewController {
     
@@ -15,6 +16,8 @@ class CourseOverviewViewController: UICollectionViewController {
     private let reuseIdentifier = "CourseCell"
     
     private var flowLayout : UICollectionViewFlowLayout?
+    
+    private var showMyCourses = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,7 +31,13 @@ class CourseOverviewViewController: UICollectionViewController {
         flowLayout = UICollectionViewFlowLayout()
         self.collectionView?.setCollectionViewLayout(flowLayout!, animated: false)
         
-        let data = CourseDataProvider.getCourseList()
+        let data : Observable<CourseList>
+        if(showMyCourses) {
+            data = CourseDataProvider.getMyCourses()
+        } else {
+            data = CourseDataProvider.getCourseList()
+        }
+        
         data.subscribeNext{
             self.courses = $0
             
@@ -37,6 +46,10 @@ class CourseOverviewViewController: UICollectionViewController {
                 self.collectionView?.reloadData()
             })
         }
+    }
+    
+    internal func showMyCoursesOnly(showMyCourses: Bool) {
+        self.showMyCourses = showMyCourses
     }
     
 }

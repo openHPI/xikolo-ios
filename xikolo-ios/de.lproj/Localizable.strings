@@ -20,6 +20,9 @@
 
 // Login
 "login" = "Login";
+"email" = "Email";
+"password" = "Passwort";
+"register" = "Registrieren";
 
 // Profile
 "enrollments" = "Kurseinschreibungen";

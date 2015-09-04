@@ -230,6 +230,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="bp2-MP-IBy" id="ILk-Kn-mQy"/>
                         <outlet property="passwordTextField" destination="ETa-cI-bg8" id="JQO-2H-Qxa"/>
+                        <outlet property="registerButton" destination="rRI-Oq-dJK" id="cTn-J6-an2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiP-zR-m0K" userLabel="First Responder" sceneMemberID="firstResponder"/>

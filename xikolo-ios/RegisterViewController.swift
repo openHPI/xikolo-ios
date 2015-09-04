@@ -12,6 +12,7 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
     
     @IBAction func loginButton(sender: AnyObject) {
         let email = emailTextField.text!
@@ -39,6 +40,10 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.emailTextField.placeholder = NSLocalizedString("email", comment: "Email")
+        self.passwordTextField.placeholder = NSLocalizedString("password", comment: "Password")
+        self.registerButton.setTitle(NSLocalizedString("register", comment: "Register"), forState: UIControlState.Normal)
         
         // Do any additional setup after loading the view.
     }

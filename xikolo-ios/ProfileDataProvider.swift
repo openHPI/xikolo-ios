@@ -33,7 +33,7 @@ class ProfileDataProvider: MultiSourceProvider {
     }
     
     static internal func getLocalDataObservable() -> Observable<UserProfile> {
-        let user = UserProfile.getSavedUser()
+        let user = UserProfileHelper.getSavedUser()
         return just(user)
     }
     
@@ -45,7 +45,7 @@ class ProfileDataProvider: MultiSourceProvider {
         var user = UserProfile()
         
         request.addValue(Routes.HTTP_ACCEPT_HEADER_VALUE, forHTTPHeaderField: Routes.HTTP_ACCEPT_HEADER)
-        request.addValue("Token token=\"" + UserProfile.getToken() + "\"", forHTTPHeaderField: Routes.HTTP_AUTH_HEADER)
+        request.addValue("Token token=\"" + UserProfileHelper.getToken() + "\"", forHTTPHeaderField: Routes.HTTP_AUTH_HEADER)
         
         print("Starting profile request")
         
@@ -66,7 +66,7 @@ class ProfileDataProvider: MultiSourceProvider {
             
             print("Profile request finished")
             
-            UserProfile.save(user)
+            UserProfileHelper.update(user)
             return user
             
         }

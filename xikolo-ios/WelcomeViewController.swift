@@ -70,6 +70,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
         reset()
         setupPageControl()
     }

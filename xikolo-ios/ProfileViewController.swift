@@ -18,6 +18,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var coursesCountLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBAction func logoutAction(sender: AnyObject) {
+        UserProfileHelper.logout()
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginCheckController")
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +42,8 @@ class ProfileViewController: UIViewController {
         self.profileImage.clipsToBounds = true;
         self.profileImage.layer.borderWidth = 3.0;
         self.profileImage.layer.borderColor = UIColor.whiteColor().CGColor;
+        
+        
 
     }
     
@@ -46,6 +55,8 @@ class ProfileViewController: UIViewController {
 //        
 //        setAvatar(user);
 //        setCourses();
+        
+        self.logoutButton.setTitle(NSLocalizedString("logout", comment: "Logout"), forState: UIControlState.Normal)
         
         let userProfileObservable = ProfileDataProvider.getObservable()
         userProfileObservable.subscribeNext { userProfile in

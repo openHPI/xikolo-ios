@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController {
         let email = emailTextField.text!
         let password = passwordTextField.text!
         
-        UserModel.login(email, password: password, success: {(success : Bool) -> Void in
+        UserProfileHelper.login(email, password: password, success: {(success : Bool) -> Void in
             
             if(success) {
                 let mainScreen = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewTabBarController")

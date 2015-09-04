@@ -72,7 +72,7 @@
         <!--Main Navigation Controller-->
         <scene sceneID="pg6-LU-S32">
             <objects>
-                <navigationController id="4Yq-Sd-wFg" customClass="MainNavigationController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" id="4Yq-Sd-wFg" customClass="MainNavigationController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rjn-Kq-yWA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -89,7 +89,7 @@
         <!--Login Check Controller-->
         <scene sceneID="gdl-53-khY">
             <objects>
-                <viewController id="d5U-5l-fCc" customClass="LoginCheckController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginCheckController" id="d5U-5l-fCc" customClass="LoginCheckController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jhv-hl-ODQ"/>
                         <viewControllerLayoutGuide type="bottom" id="xsb-10-2xm"/>
@@ -338,11 +338,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f58-Di-ySw">
+                                <rect key="frame" x="277" y="550" width="46" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutAction:" destination="HTd-vf-OyA" eventType="touchUpInside" id="9C1-Oc-cYr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ppz-T2-9Pu" firstAttribute="height" secondItem="vDH-59-jey" secondAttribute="height" multiplier="0.2" id="0h8-jn-Cbh"/>
                             <constraint firstItem="3aS-t4-jAK" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="1ng-eP-kdD"/>
+                            <constraint firstItem="u0h-ps-DWX" firstAttribute="top" secondItem="f58-Di-ySw" secondAttribute="bottom" constant="20" id="9NK-wo-Dwd"/>
+                            <constraint firstItem="f58-Di-ySw" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="APp-hS-fYQ"/>
                             <constraint firstItem="lcq-PP-M8h" firstAttribute="top" secondItem="G9c-KZ-Pbg" secondAttribute="bottom" constant="5" id="E4n-El-3Yf"/>
                             <constraint firstItem="3aS-t4-jAK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="10" id="IiU-63-BeJ"/>
                             <constraint firstItem="G9c-KZ-Pbg" firstAttribute="top" secondItem="6Ap-cp-dOW" secondAttribute="bottom" constant="20" id="Juo-kg-mlj"/>
@@ -352,6 +361,7 @@
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="6Ap-cp-dOW" secondAttribute="trailing" constant="10" id="P0D-b7-SQR"/>
                             <constraint firstItem="3aS-t4-jAK" firstAttribute="top" secondItem="Vi2-xb-MK2" secondAttribute="bottom" constant="20" id="Ptv-HT-gbL"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Vi2-xb-MK2" secondAttribute="trailing" constant="10" id="Qek-b8-5rd"/>
+                            <constraint firstItem="f58-Di-ySw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lcq-PP-M8h" secondAttribute="bottom" constant="10" id="R7e-ls-Uzr"/>
                             <constraint firstItem="Vi2-xb-MK2" firstAttribute="centerX" secondItem="vDH-59-jey" secondAttribute="centerX" id="Srj-0c-rEb"/>
                             <constraint firstItem="lcq-PP-M8h" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3aS-t4-jAK" secondAttribute="bottom" constant="10" id="Szl-zN-bCS"/>
                             <constraint firstItem="G9c-KZ-Pbg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDH-59-jey" secondAttribute="leadingMargin" constant="10" id="TeH-hD-8Dj"/>
@@ -370,6 +380,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="0h8-jn-Cbh"/>
+                                <exclude reference="R7e-ls-Uzr"/>
                             </mask>
                         </variation>
                     </view>
@@ -378,6 +389,7 @@
                         <outlet property="coursesLabel" destination="lcq-PP-M8h" id="nqn-PC-vb1"/>
                         <outlet property="emailLabel" destination="6Ap-cp-dOW" id="jwV-vI-u5B"/>
                         <outlet property="headerImage" destination="Ppz-T2-9Pu" id="uLs-5m-QZQ"/>
+                        <outlet property="logoutButton" destination="f58-Di-ySw" id="KPx-ON-FP3"/>
                         <outlet property="nameLabel" destination="3aS-t4-jAK" id="L3O-6Y-wIH"/>
                         <outlet property="profileImage" destination="Vi2-xb-MK2" id="cPF-AW-cNS"/>
                     </connections>

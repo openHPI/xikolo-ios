@@ -15,11 +15,15 @@ class LoginCheckController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.hidesBackButton = true
 
         // Check if logged in
         let nextViewController : UIViewController!
         
-        if(UserProfile.isLoggedIn()) {
+        let loggedIn = UserProfileHelper.isLoggedIn()
+        
+        if(loggedIn) {
             nextViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewTabBarController")
             self.navigationController?.pushViewController(nextViewController, animated: false)
         }

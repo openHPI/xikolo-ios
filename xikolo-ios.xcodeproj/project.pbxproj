@@ -47,7 +47,7 @@
 		F85225381B4D27D700C9BF56 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F85225351B4D27D700C9BF56 /* avatar.png */; };
 		F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */; };
 		F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
-		F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserModel.swift */; };
+		F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
 		F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
@@ -162,7 +162,7 @@
 		F85225351B4D27D700C9BF56 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_header_placeholder.jpg; sourceTree = "<group>"; };
 		F85225371B4D27D700C9BF56 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F85225401B4D299C00C9BF56 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileHelper.swift; sourceTree = "<group>"; };
 		F85225441B4D2B3D00C9BF56 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -234,7 +234,6 @@
 				F85225441B4D2B3D00C9BF56 /* UserProfile.swift */,
 				7E4F62B91B3C3C56006FCAD6 /* Course.swift */,
 				7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */,
-				F85225401B4D299C00C9BF56 /* UserModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -274,6 +273,7 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F80D67DC1B9881FA00E27520 /* Helpers */,
 				F80D67831B958F4600E27520 /* Resources */,
 				F8FABFBB1B580B5A0007F308 /* Layouts */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
@@ -349,6 +349,14 @@
 				F80D67921B98683400E27520 /* NewsViewController.swift */,
 			);
 			name = Tabs;
+			sourceTree = "<group>";
+		};
+		F80D67DC1B9881FA00E27520 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		F81DFF911B8C785F00A80D27 /* Provider */ = {
@@ -646,7 +654,7 @@
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				F8328D0F1B8B5A9500C9B2B6 /* CourseDataProvider.swift in Sources */,
 				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
-				F85225411B4D299C00C9BF56 /* UserModel.swift in Sources */,
+				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,
 				F80D67911B98682300E27520 /* SettingsViewController.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
 				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,

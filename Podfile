@@ -15,6 +15,9 @@ pod 'SwiftyJSON', :git => "https://github.com/SwiftyJSON/SwiftyJSON.git", :branc
 # Realm
 pod 'Realm', :git => "https://github.com/realm/realm-cocoa.git", :branch => 'swift-2.0'
 
+# RestKit
+pod 'RestKit'
+
 end
 
 target 'xikolo-iosTests' do

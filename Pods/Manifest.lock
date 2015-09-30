@@ -1,14 +1,40 @@
 PODS:
+  - AFNetworking (1.3.4)
+  - ISO8601DateFormatterValueTransformer (0.6.1):
+    - RKValueTransformers (~> 1.1.0)
   - Realm (0.95.0):
     - Realm/Headers (= 0.95.0)
   - Realm/Headers (0.95.0)
+  - RestKit (0.25.0):
+    - RestKit/Core (= 0.25.0)
+  - RestKit/Core (0.25.0):
+    - RestKit/CoreData
+    - RestKit/Network
+    - RestKit/ObjectMapping
+  - RestKit/CoreData (0.25.0):
+    - RestKit/ObjectMapping
+  - RestKit/Network (0.25.0):
+    - AFNetworking (~> 1.3.0)
+    - RestKit/ObjectMapping
+    - RestKit/Support
+    - SOCKit
+  - RestKit/ObjectMapping (0.25.0):
+    - ISO8601DateFormatterValueTransformer (~> 0.6.1)
+    - RestKit/Support
+    - RKValueTransformers (~> 1.1.0)
+  - RestKit/Support (0.25.0):
+    - TransitionKit (~> 2.1.0)
+  - RKValueTransformers (1.1.2)
   - RxCocoa (2.0-alpha.1):
     - RxSwift
   - RxSwift (2.0-alpha.1)
+  - SOCKit (1.1)
   - SwiftyJSON (2.2.1)
+  - TransitionKit (2.1.1)
 
 DEPENDENCIES:
   - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
+  - RestKit
   - RxCocoa (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
   - RxSwift (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
@@ -42,9 +68,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
+  AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
   Realm: bbb171b96728ea136ed5cd354dca2a3d6529923c
+  RestKit: a4fcaf3d4bb2c204679856a46d596160bf208095
+  RKValueTransformers: 66ac5e4f077fdbe3496e792d89eeff4c3eb67701
   RxCocoa: 6950f353d6ad66e55879fda8b996e8bc377516d7
   RxSwift: 067c74f1c0c1e877043b3f2a25ba3ca1839dcea8
+  SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
 
 COCOAPODS: 0.38.2

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RestKit
 
 public class UserProfileHelper: NSObject {
     

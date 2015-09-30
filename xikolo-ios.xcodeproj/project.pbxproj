@@ -30,6 +30,7 @@
 		A98850A71B412CD500DAF817 /* globus.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A31B412CD500DAF817 /* globus.png */; };
 		A98850A81B412CD500DAF817 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A41B412CD500DAF817 /* network.png */; };
 		A98850A91B412CD500DAF817 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A51B412CD500DAF817 /* speed.png */; };
+		F801793C1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F801793A1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld */; };
 		F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */; };
 		F80D67891B958F9C00E27520 /* openHPI4.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F80D67881B958F6100E27520 /* openHPI4.ttf */; };
 		F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */; };
@@ -106,6 +107,7 @@
 		A98850A31B412CD500DAF817 /* globus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = globus.png; path = ../globus.png; sourceTree = "<group>"; };
 		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = network.png; path = ../network.png; sourceTree = "<group>"; };
 		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speed.png; path = ../speed.png; sourceTree = "<group>"; };
+		F801793B1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Xikolo-ios.xcdatamodel"; sourceTree = "<group>"; };
 		F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		F80D67881B958F6100E27520 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = openHPI4.ttf; path = "../../../../Downloads/openHPI Icon Font/fonts/openHPI4.ttf"; sourceTree = "<group>"; };
 		F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewTabBarController.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			children = (
 				F81DFF911B8C785F00A80D27 /* Provider */,
 				F81523921B67AC9F009803B1 /* Routes.swift */,
+				F801793A1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* ProfileDataProvider.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
+				F801793C1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld in Sources */,
 				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 			);
@@ -851,6 +855,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F801793A1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F801793B1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodel */,
+			);
+			currentVersion = F801793B1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodel */;
+			path = "Xikolo-ios.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A90587B31B3BFC130095DB89 /* Project object */;
 }

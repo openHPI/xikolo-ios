@@ -48,14 +48,6 @@ class ProfileViewController: UIViewController {
     }
     
     func setViewData() {
-//        let user = UserModel.getSavedUser()
-//        
-//        self.emailLabel.text = user.email;
-//        self.nameLabel.text = user.firstName + " " + user.lastName;
-//        
-//        setAvatar(user);
-//        setCourses();
-        
         self.logoutButton.setTitle(NSLocalizedString("logout", comment: "Logout"), forState: UIControlState.Normal)
         
         let userProfileObservable = ProfileDataProvider.getObservable()
@@ -66,14 +58,9 @@ class ProfileViewController: UIViewController {
             ImageProvider.loadImage(userProfile.visual, imageView: self.profileImage)
         }
         
+        let enrolledCoursesObservable = CourseDataProvider.getMyCourses();
+        enrolledCoursesObservable.subscribeNext { courseList in
+            self.coursesCountLabel.text = String(courseList.courseList.count)
+        }
     }
-    
-//    func setAvatar(user : User) {
-//        // TODO Database / API call
-//    }
-//    
-//    func setCourses() {
-//        // TODO Set course enrollments count
-//    }
-
 }

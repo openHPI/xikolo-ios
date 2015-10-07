@@ -59,7 +59,7 @@ class CourseHelper: NSObject {
             let fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as? [CourseCDModel]
             
             for managedObject in fetchedResults! {
-                courseList.courseList.addObject(managedObject)
+                courseList.courseList.addObject(managedObject.getCourseObject())
             }
             
             defer {

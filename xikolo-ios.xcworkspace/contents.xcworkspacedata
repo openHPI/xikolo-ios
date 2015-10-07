@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:xikolo-ios/CourseCDModel+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:xikolo-ios/CourseCDModel.swift">
-   </FileRef>
-   <FileRef
       location = "group:xikolo-ios.xcodeproj">
    </FileRef>
    <FileRef

@@ -44,6 +44,7 @@ class CourseOverviewViewController: UICollectionViewController {
             // TODO: Find a better solution
             dispatch_async(dispatch_get_main_queue(), {
                 self.collectionView?.reloadData()
+                print("Reload view")
             })
         }
     }

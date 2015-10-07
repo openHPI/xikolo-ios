@@ -19,10 +19,14 @@ class CourseDataProvider: NSObject {
     static let urlSession = NSURLSession.sharedSession()
     
     static func getCourseList() -> Observable<CourseList> {
-        // TODO:
-        // Start network request
-        // Deliver stored data
-        // Deliver network data
+        
+        let local = just(CourseHelper.getSavedCourseList())
+        let network = getNetworkCourseList()
+        
+        return concat([local,network])
+    }
+    
+    private static func getNetworkCourseList() -> Observable<CourseList> {
         
         let urlString = Routes.API_URL + Routes.COURSES
         let url = NSURL(string: urlString)!
@@ -51,31 +55,6 @@ class CourseDataProvider: NSObject {
             
             // Saving courses to CoreData
             CourseHelper.saveCourseList(courseList)
-            
-            // DEBUG LOGGING
-            var counter = -1;
-            let cl = CourseHelper.getSavedCourseList()
-            for c in cl.courseList {
-                let managedCourse = c as! NSManagedObject
-                let course = Course()
-                
-                course.id = managedCourse.valueForKey("id") as! String
-                course.name = managedCourse.valueForKey("name") as! String
-                course.visual_url = managedCourse.valueForKey("visual_url") as! String
-                course.lecturer = managedCourse.valueForKey("lecturer") as! String
-                course.is_enrolled = managedCourse.valueForKey("is_enrolled") as! Bool
-                course.language = managedCourse.valueForKey("language") as! String
-                course.locked = managedCourse.valueForKey("locked") as! Bool
-                course.course_description = managedCourse.valueForKey("course_description") as! String
-                course.course_code = managedCourse.valueForKey("course_code") as! String
-                
-                if(course.name.compare("Test & Test") == NSComparisonResult.OrderedSame) {
-                    counter++
-                }
-            }
-            //END DEBUG LOGGING
-            
-            print("Duplications: \(counter)")
             
             return courseList
             

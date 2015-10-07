@@ -1,0 +1,6 @@
+framework module RestKit {
+  umbrella header "RestKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

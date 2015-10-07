@@ -49,6 +49,34 @@ class CourseDataProvider: NSObject {
             
             print("Network request finished")
             
+            // Saving courses to CoreData
+            CourseHelper.saveCourseList(courseList)
+            
+            // DEBUG LOGGING
+            var counter = -1;
+            let cl = CourseHelper.getSavedCourseList()
+            for c in cl.courseList {
+                let managedCourse = c as! NSManagedObject
+                let course = Course()
+                
+                course.id = managedCourse.valueForKey("id") as! String
+                course.name = managedCourse.valueForKey("name") as! String
+                course.visual_url = managedCourse.valueForKey("visual_url") as! String
+                course.lecturer = managedCourse.valueForKey("lecturer") as! String
+                course.is_enrolled = managedCourse.valueForKey("is_enrolled") as! Bool
+                course.language = managedCourse.valueForKey("language") as! String
+                course.locked = managedCourse.valueForKey("locked") as! Bool
+                course.course_description = managedCourse.valueForKey("course_description") as! String
+                course.course_code = managedCourse.valueForKey("course_code") as! String
+                
+                if(course.name.compare("Test & Test") == NSComparisonResult.OrderedSame) {
+                    counter++
+                }
+            }
+            //END DEBUG LOGGING
+            
+            print("Duplications: \(counter)")
+            
             return courseList
             
         }

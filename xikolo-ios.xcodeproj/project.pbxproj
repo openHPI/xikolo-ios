@@ -31,6 +31,7 @@
 		A98850A81B412CD500DAF817 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A41B412CD500DAF817 /* network.png */; };
 		A98850A91B412CD500DAF817 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A51B412CD500DAF817 /* speed.png */; };
 		F801793C1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F801793A1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld */; };
+		F801793E1BBBE3880091ECD1 /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
 		F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */; };
 		F80D67891B958F9C00E27520 /* openHPI4.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F80D67881B958F6100E27520 /* openHPI4.ttf */; };
 		F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */; };
@@ -51,6 +52,8 @@
 		F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
+		F8AC93E31BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AC93E11BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift */; };
+		F8AC93E41BC518FC00E98F71 /* CourseCDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AC93E21BC518FC00E98F71 /* CourseCDModel.swift */; };
 		F8B926C31B81F13300A89143 /* LoginCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B926C21B81F13300A89143 /* LoginCheckController.swift */; };
 		F8D45D2E1B58F7030039D442 /* open_hpi_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */; };
 		F8FABFB61B5809440007F308 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FABFB51B5809440007F308 /* CourseCell.xib */; };
@@ -108,6 +111,7 @@
 		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = network.png; path = ../network.png; sourceTree = "<group>"; };
 		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speed.png; path = ../speed.png; sourceTree = "<group>"; };
 		F801793B1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Xikolo-ios.xcdatamodel"; sourceTree = "<group>"; };
+		F801793D1BBBE3880091ECD1 /* CourseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHelper.swift; sourceTree = "<group>"; };
 		F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		F80D67881B958F6100E27520 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = openHPI4.ttf; path = "../../../../Downloads/openHPI Icon Font/fonts/openHPI4.ttf"; sourceTree = "<group>"; };
 		F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewTabBarController.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
+		F8AC93E11BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseCDModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F8AC93E21BC518FC00E98F71 /* CourseCDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCDModel.swift; sourceTree = "<group>"; };
 		F8B926C21B81F13300A89143 /* LoginCheckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheckController.swift; sourceTree = "<group>"; };
 		F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = open_hpi_logo.jpg; sourceTree = "<group>"; };
 		F8FABFB51B5809440007F308 /* CourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseCell.xib; sourceTree = "<group>"; };
@@ -184,6 +190,8 @@
 		7E4F62BB1B3C3C5B006FCAD6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F8AC93E11BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift */,
+				F8AC93E21BC518FC00E98F71 /* CourseCDModel.swift */,
 				F85225441B4D2B3D00C9BF56 /* UserProfile.swift */,
 				7E4F62B91B3C3C56006FCAD6 /* Course.swift */,
 				7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */,
@@ -307,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
+				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -557,9 +566,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E4F62BA1B3C3C56006FCAD6 /* Course.swift in Sources */,
+				F8AC93E41BC518FC00E98F71 /* CourseCDModel.swift in Sources */,
+				F8AC93E31BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift in Sources */,
 				F8B926C31B81F13300A89143 /* LoginCheckController.swift in Sources */,
 				F80D67931B98683400E27520 /* NewsViewController.swift in Sources */,
 				A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */,
+				F801793E1BBBE3880091ECD1 /* CourseHelper.swift in Sources */,
 				A90587C11B3BFC130095DB89 /* WelcomeViewController.swift in Sources */,
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
 				7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */,

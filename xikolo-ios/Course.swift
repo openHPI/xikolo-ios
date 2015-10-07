@@ -8,9 +8,8 @@
 
 import Foundation
 import SwiftyJSON
-import Realm
 
-class Course : RLMObject{
+class Course : NSObject{
     
     var id : String = ""
     var name : String = ""

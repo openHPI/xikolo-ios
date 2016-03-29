@@ -2,8 +2,8 @@
 
 **Dowloading the project**
  
-- To clone use: ```git clone --recursive https://github.com/openHPI/ios-app.git```
-- Please use *Xcode 7 beta 5* or higher
+- Clone via XCode
+- Run
 
 **Contributing**
 

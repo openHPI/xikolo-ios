@@ -17,8 +17,6 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController!.title = NSLocalizedString("tab_news", comment: "News")
-        
         self.webView.delegate = self
         
         // Position of indicator
@@ -30,6 +28,10 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
         self.webView.loadRequest(request)
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.tabBarController!.title = NSLocalizedString("tab_news", comment: "News")
     }
 
     override func didReceiveMemoryWarning() {

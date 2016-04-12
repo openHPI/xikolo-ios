@@ -13,6 +13,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var loginFailedLabel: UILabel!
     
     @IBAction func loginButton(sender: AnyObject) {
         let email = emailTextField.text!
@@ -22,13 +23,16 @@ class RegisterViewController: UIViewController {
             
             if(success) {
                 let mainScreen = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewTabBarController")
+                self.loginFailedLabel.hidden = true
                 self.navigationController?.pushViewController(mainScreen!, animated: true)
             } else {
-                // TODO Notify user about failed login
+                self.shake(self.passwordTextField)
+                // TODO: maybe check whether email is valid
             }
         
         });
     }
+    
     
     @IBAction func registerButton(sender: AnyObject) {
         let url = NSURL(string: "https://open.hpi.de/account/new")
@@ -48,11 +52,15 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func shake(viewToAnimate: UIView){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = NSValue(CGPoint: CGPointMake(viewToAnimate.center.x - 2.0, viewToAnimate.center.y))
+        animation.toValue = NSValue(CGPoint: CGPointMake(viewToAnimate.center.x + 2.0, viewToAnimate.center.y))
+        viewToAnimate.layer.addAnimation(animation, forKey: "position")
     }
-    
     
     /*
     // MARK: - Navigation

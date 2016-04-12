@@ -233,6 +233,12 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login failed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hl-dD-fgO">
+                                <rect key="frame" x="256" y="390" width="88" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -240,8 +246,10 @@
                             <constraint firstItem="qMI-YT-Hlg" firstAttribute="centerY" secondItem="30k-FQ-9TO" secondAttribute="centerY" id="Dbh-gA-kCH"/>
                             <constraint firstItem="qMI-YT-Hlg" firstAttribute="width" secondItem="30k-FQ-9TO" secondAttribute="width" id="PpY-ug-mQX"/>
                             <constraint firstItem="qMI-YT-Hlg" firstAttribute="leading" secondItem="30k-FQ-9TO" secondAttribute="leadingMargin" id="VHD-8j-IPj"/>
+                            <constraint firstItem="9Hl-dD-fgO" firstAttribute="centerX" secondItem="qMI-YT-Hlg" secondAttribute="centerX" id="Zk4-2B-TgD"/>
                             <constraint firstItem="qMI-YT-Hlg" firstAttribute="centerX" secondItem="30k-FQ-9TO" secondAttribute="centerX" id="iiy-bM-5gp"/>
                             <constraint firstItem="qMI-YT-Hlg" firstAttribute="height" secondItem="30k-FQ-9TO" secondAttribute="height" id="jOi-9K-zc0"/>
+                            <constraint firstItem="9Hl-dD-fgO" firstAttribute="centerY" secondItem="qMI-YT-Hlg" secondAttribute="centerY" multiplier="4:3" id="kNJ-cM-wQ0"/>
                             <constraint firstItem="qMI-YT-Hlg" firstAttribute="height" secondItem="30k-FQ-9TO" secondAttribute="height" id="q2L-q9-U3F"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="qMI-YT-Hlg" secondAttribute="trailing" constant="16" id="uQF-Ze-O6w"/>
                             <constraint firstItem="qMI-YT-Hlg" firstAttribute="top" secondItem="xlL-D5-NcQ" secondAttribute="bottom" id="ynX-qw-90t"/>
@@ -259,6 +267,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="bp2-MP-IBy" id="ILk-Kn-mQy"/>
+                        <outlet property="loginFailedLabel" destination="9Hl-dD-fgO" id="OnM-XT-e8f"/>
                         <outlet property="passwordTextField" destination="ETa-cI-bg8" id="JQO-2H-Qxa"/>
                         <outlet property="registerButton" destination="rRI-Oq-dJK" id="cTn-J6-an2"/>
                     </connections>

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		002F92A21BEDE1C837B305D3 /* Pods_xikolo_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
+		24CB7E391CC678A000960269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E381CC678A000960269 /* ViewController.swift */; };
+		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
+		24CB7E3E1CC678A000960269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* Assets.xcassets */; };
+		24CB7E491CC678A000960269 /* xikolo_tvosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		7E4F62AB1B3C2EDE006FCAD6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
@@ -60,6 +65,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		24CB7E451CC678A000960269 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24CB7E331CC678A000960269;
+			remoteInfo = "xikolo-tvos";
+		};
 		A90587D01B3BFC130095DB89 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -77,6 +89,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24CB7E341CC678A000960269 /* xikolo-tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-tvos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		24CB7E381CC678A000960269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		24CB7E3D1CC678A000960269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		24CB7E3F1CC678A000960269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-tvosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_tvosUITests.swift; sourceTree = "<group>"; };
+		24CB7E4A1CC678A000960269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32CD191B57184557BF0F210E /* Pods-xikolo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		74577FF07C23F1D79D3E693D /* Pods-xikolo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.release.xcconfig"; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -144,6 +165,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		24CB7E311CC678A000960269 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24CB7E411CC678A000960269 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A90587B81B3BFC130095DB89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,6 +212,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24CB7E351CC678A000960269 /* xikolo-tvos */ = {
+			isa = PBXGroup;
+			children = (
+				24CB7E361CC678A000960269 /* AppDelegate.swift */,
+				24CB7E381CC678A000960269 /* ViewController.swift */,
+				24CB7E3A1CC678A000960269 /* Main.storyboard */,
+				24CB7E3D1CC678A000960269 /* Assets.xcassets */,
+				24CB7E3F1CC678A000960269 /* Info.plist */,
+			);
+			path = "xikolo-tvos";
+			sourceTree = "<group>";
+		};
+		24CB7E471CC678A000960269 /* xikolo-tvosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */,
+				24CB7E4A1CC678A000960269 /* Info.plist */,
+			);
+			path = "xikolo-tvosUITests";
+			sourceTree = "<group>";
+		};
 		4B8D4D8D5C320232B5BD598D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +268,8 @@
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				A90587D21B3BFC130095DB89 /* xikolo-iosTests */,
 				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
+				24CB7E351CC678A000960269 /* xikolo-tvos */,
+				24CB7E471CC678A000960269 /* xikolo-tvosUITests */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */,
 				4B8D4D8D5C320232B5BD598D /* Pods */,
@@ -225,6 +283,8 @@
 				A90587BB1B3BFC130095DB89 /* xikolo-ios.app */,
 				A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */,
 				A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */,
+				24CB7E341CC678A000960269 /* xikolo-tvos.app */,
+				24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -375,6 +435,41 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		24CB7E331CC678A000960269 /* xikolo-tvos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24CB7E4F1CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvos" */;
+			buildPhases = (
+				24CB7E301CC678A000960269 /* Sources */,
+				24CB7E311CC678A000960269 /* Frameworks */,
+				24CB7E321CC678A000960269 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "xikolo-tvos";
+			productName = "xikolo-tvos";
+			productReference = 24CB7E341CC678A000960269 /* xikolo-tvos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		24CB7E431CC678A000960269 /* xikolo-tvosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24CB7E501CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvosUITests" */;
+			buildPhases = (
+				24CB7E401CC678A000960269 /* Sources */,
+				24CB7E411CC678A000960269 /* Frameworks */,
+				24CB7E421CC678A000960269 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24CB7E461CC678A000960269 /* PBXTargetDependency */,
+			);
+			name = "xikolo-tvosUITests";
+			productName = "xikolo-tvosUITests";
+			productReference = 24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		A90587BA1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-ios" */;
@@ -437,10 +532,17 @@
 		A90587B31B3BFC130095DB89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
+					24CB7E331CC678A000960269 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					24CB7E431CC678A000960269 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 24CB7E331CC678A000960269;
+					};
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -470,11 +572,29 @@
 				A90587BA1B3BFC130095DB89 /* xikolo-ios */,
 				A90587CE1B3BFC130095DB89 /* xikolo-iosTests */,
 				A90587D91B3BFC130095DB89 /* xikolo-iosUITests */,
+				24CB7E331CC678A000960269 /* xikolo-tvos */,
+				24CB7E431CC678A000960269 /* xikolo-tvosUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		24CB7E321CC678A000960269 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24CB7E3E1CC678A000960269 /* Assets.xcassets in Resources */,
+				24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24CB7E421CC678A000960269 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A90587B91B3BFC130095DB89 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -559,6 +679,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		24CB7E301CC678A000960269 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24CB7E391CC678A000960269 /* ViewController.swift in Sources */,
+				24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24CB7E401CC678A000960269 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24CB7E491CC678A000960269 /* xikolo_tvosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A90587B71B3BFC130095DB89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -612,6 +749,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		24CB7E461CC678A000960269 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24CB7E331CC678A000960269 /* xikolo-tvos */;
+			targetProxy = 24CB7E451CC678A000960269 /* PBXContainerItemProxy */;
+		};
 		A90587D11B3BFC130095DB89 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A90587BA1B3BFC130095DB89 /* xikolo-ios */;
@@ -625,6 +767,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		24CB7E3A1CC678A000960269 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24CB7E3B1CC678A000960269 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		A90587C21B3BFC130095DB89 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -655,6 +805,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		24CB7E4B1CC678A000960269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "xikolo-tvos/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		24CB7E4C1CC678A000960269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "xikolo-tvos/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		24CB7E4D1CC678A000960269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "xikolo-tvosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_TARGET_NAME = "xikolo-tvos";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		24CB7E4E1CC678A000960269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "xikolo-tvosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_TARGET_NAME = "xikolo-tvos";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
 		A90587E11B3BFC130095DB89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -828,6 +1038,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		24CB7E4F1CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24CB7E4B1CC678A000960269 /* Debug */,
+				24CB7E4C1CC678A000960269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		24CB7E501CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24CB7E4D1CC678A000960269 /* Debug */,
+				24CB7E4E1CC678A000960269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A90587B61B3BFC130095DB89 /* Build configuration list for PBXProject "xikolo-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

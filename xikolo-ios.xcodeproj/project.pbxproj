@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002F92A21BEDE1C837B305D3 /* Pods_xikolo_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		002F92A21BEDE1C837B305D3 /* Pods_xikolo_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E391CC678A000960269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E381CC678A000960269 /* ViewController.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
@@ -19,8 +19,6 @@
 		7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */; };
 		7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */; };
 		7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
-		7E4F62B41B3C2EFC006FCAD6 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */; };
-		7E4F62B51B3C2EFC006FCAD6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */; };
 		7E4F62BA1B3C3C56006FCAD6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62B91B3C3C56006FCAD6 /* Course.swift */; };
 		7E4F62C11B3C55B4006FCAD6 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */; };
 		7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */; };
@@ -106,8 +104,6 @@
 		7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
-		7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xikolo-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E4F62B91B3C3C56006FCAD6 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		7E4F62C01B3C55B4006FCAD6 /* CourseList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
@@ -182,8 +178,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E4F62B41B3C2EFC006FCAD6 /* libxml2.2.tbd in Frameworks */,
-				7E4F62B51B3C2EFC006FCAD6 /* libxml2.tbd in Frameworks */,
 				7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */,
 				7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */,
 				7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */,
@@ -256,14 +250,7 @@
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
-				7E4F62B21B3C2EFC006FCAD6 /* libxml2.2.tbd */,
-				7E4F62B31B3C2EFC006FCAD6 /* libxml2.tbd */,
-				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
-				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,
-				7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */,
-				7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */,
-				7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */,
-				7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */,
+				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				A90587D21B3BFC130095DB89 /* xikolo-iosTests */,
 				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
@@ -271,7 +258,6 @@
 				24CB7E471CC678A000960269 /* xikolo-tvosUITests */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				4B8D4D8D5C320232B5BD598D /* Pods */,
-				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -425,6 +411,12 @@
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
+				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,
+				7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */,
+				7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */,
+				7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */,
+				7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */,
 				9C6F0AD29A44A378F3FA22DA /* Pods_xikolo_ios.framework */,
 			);
 			name = Frameworks;

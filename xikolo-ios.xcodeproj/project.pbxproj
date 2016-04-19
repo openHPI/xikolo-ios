@@ -155,7 +155,6 @@
 		F85225441B4D2B3D00C9BF56 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "xikolo-ios copy-Info.plist"; path = "/Users/haochenONE/Projects/Xikolo-iOS/ios-app/xikolo-ios copy-Info.plist"; sourceTree = "<absolute>"; };
 		F8AC93E11BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseCDModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F8AC93E21BC518FC00E98F71 /* CourseCDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCDModel.swift; sourceTree = "<group>"; };
 		F8B926C21B81F13300A89143 /* LoginCheckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheckController.swift; sourceTree = "<group>"; };
@@ -271,7 +270,6 @@
 				24CB7E351CC678A000960269 /* xikolo-tvos */,
 				24CB7E471CC678A000960269 /* xikolo-tvosUITests */,
 				A90587BC1B3BFC130095DB89 /* Products */,
-				F89473DD1B3C48F800553882 /* xikolo-ios copy-Info.plist */,
 				4B8D4D8D5C320232B5BD598D /* Pods */,
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 			);

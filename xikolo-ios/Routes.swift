@@ -24,6 +24,8 @@ class Routes: NSObject {
     
     static let HTTP_PARAM_EMAIL = "email"
     static let HTTP_PARAM_PASSWORD = "password"
+    
+    static let REGISTER_URL = "https://open.hpi.de/account/new"
 
 }
 

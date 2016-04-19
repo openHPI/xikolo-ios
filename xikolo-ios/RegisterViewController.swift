@@ -35,7 +35,7 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func registerButton(sender: AnyObject) {
-        let url = NSURL(string: "https://open.hpi.de/account/new")
+        let url = NSURL(string: Routes.REGISTER_URL)
         UIApplication.sharedApplication().openURL(url!)
 
     }

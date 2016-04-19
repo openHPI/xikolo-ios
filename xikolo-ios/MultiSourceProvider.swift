@@ -14,7 +14,7 @@ import UIKit
 
 protocol MultiSourceProvider {
     
-    typealias T
+    associatedtype T
     
     static func getObservable() -> Observable<T>
     

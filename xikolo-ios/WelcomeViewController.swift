@@ -90,7 +90,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
             index = (viewController as! RegisterViewController).pageIndex!
         }
         
-        index++
+        index += 1
         if(index >= self.pageTitles.count){
             return nil
         }
@@ -111,7 +111,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         if(index <= 0){
             return nil
         }
-        index--
+        index -= 1
         return self.viewControllerAtIndex(index)
         
     }

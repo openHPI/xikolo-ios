@@ -11,8 +11,10 @@
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E391CC678A000960269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E381CC678A000960269 /* ViewController.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
-		24CB7E3E1CC678A000960269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* Assets.xcassets */; };
+		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
 		24CB7E491CC678A000960269 /* xikolo_tvosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */; };
+		24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
+		24CB7E551CC6834C00960269 /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		7E4F62AB1B3C2EDE006FCAD6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
@@ -24,15 +26,11 @@
 		7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */; };
 		A90587C11B3BFC130095DB89 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587C01B3BFC130095DB89 /* WelcomeViewController.swift */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
-		A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* Assets.xcassets */; };
+		A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
 		A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */; };
 		A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */; };
 		A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */; };
-		A98850A61B412CD500DAF817 /* beginner.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A21B412CD500DAF817 /* beginner.png */; };
-		A98850A71B412CD500DAF817 /* globus.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A31B412CD500DAF817 /* globus.png */; };
-		A98850A81B412CD500DAF817 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A41B412CD500DAF817 /* network.png */; };
-		A98850A91B412CD500DAF817 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = A98850A51B412CD500DAF817 /* speed.png */; };
 		F801793C1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F801793A1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodeld */; };
 		F801793E1BBBE3880091ECD1 /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
 		F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */; };
@@ -47,8 +45,6 @@
 		F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
 		F81DFF901B8C785600A80D27 /* ProfileDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */; };
 		F8328D0F1B8B5A9500C9B2B6 /* CourseDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8328D0E1B8B5A9500C9B2B6 /* CourseDataProvider.swift */; };
-		F85225381B4D27D700C9BF56 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F85225351B4D27D700C9BF56 /* avatar.png */; };
-		F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */; };
 		F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
 		F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
 		F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
@@ -57,7 +53,6 @@
 		F8AC93E31BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AC93E11BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift */; };
 		F8AC93E41BC518FC00E98F71 /* CourseCDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AC93E21BC518FC00E98F71 /* CourseCDModel.swift */; };
 		F8B926C31B81F13300A89143 /* LoginCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B926C21B81F13300A89143 /* LoginCheckController.swift */; };
-		F8D45D2E1B58F7030039D442 /* open_hpi_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */; };
 		F8FABFB61B5809440007F308 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FABFB51B5809440007F308 /* CourseCell.xib */; };
 		F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 /* End PBXBuildFile section */
@@ -91,11 +86,12 @@
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CB7E381CC678A000960269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		24CB7E3D1CC678A000960269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-tvos.xcassets"; sourceTree = "<group>"; };
 		24CB7E3F1CC678A000960269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-tvosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_tvosUITests.swift; sourceTree = "<group>"; };
 		24CB7E4A1CC678A000960269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24CB7E531CC6833B00960269 /* assets-common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-common.xcassets"; sourceTree = "<group>"; };
 		32CD191B57184557BF0F210E /* Pods-xikolo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		74577FF07C23F1D79D3E693D /* Pods-xikolo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.release.xcconfig"; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -112,7 +108,7 @@
 		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587C01B3BFC130095DB89 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A90587C51B3BFC130095DB89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		A90587C81B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90587CA1B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,10 +118,6 @@
 		A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosUITests.swift; sourceTree = "<group>"; };
 		A90587E01B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
-		A98850A21B412CD500DAF817 /* beginner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = beginner.png; path = ../beginner.png; sourceTree = "<group>"; };
-		A98850A31B412CD500DAF817 /* globus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = globus.png; path = ../globus.png; sourceTree = "<group>"; };
-		A98850A41B412CD500DAF817 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = network.png; path = ../network.png; sourceTree = "<group>"; };
-		A98850A51B412CD500DAF817 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speed.png; path = ../speed.png; sourceTree = "<group>"; };
 		ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHPI4.ttf; sourceTree = "<group>"; };
 		F801793B1BBBE1F40091ECD1 /* Xikolo-ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Xikolo-ios.xcdatamodel"; sourceTree = "<group>"; };
 		F801793D1BBBE3880091ECD1 /* CourseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHelper.swift; sourceTree = "<group>"; };
@@ -144,8 +136,6 @@
 		F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		F81DFF8F1B8C785600A80D27 /* ProfileDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataProvider.swift; sourceTree = "<group>"; };
 		F8328D0E1B8B5A9500C9B2B6 /* CourseDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDataProvider.swift; sourceTree = "<group>"; };
-		F85225351B4D27D700C9BF56 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
-		F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_header_placeholder.jpg; sourceTree = "<group>"; };
 		F85225371B4D27D700C9BF56 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileHelper.swift; sourceTree = "<group>"; };
 		F85225441B4D2B3D00C9BF56 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
@@ -154,7 +144,6 @@
 		F8AC93E11BC518FC00E98F71 /* CourseCDModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseCDModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F8AC93E21BC518FC00E98F71 /* CourseCDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCDModel.swift; sourceTree = "<group>"; };
 		F8B926C21B81F13300A89143 /* LoginCheckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheckController.swift; sourceTree = "<group>"; };
-		F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = open_hpi_logo.jpg; sourceTree = "<group>"; };
 		F8FABFB51B5809440007F308 /* CourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseCell.xib; sourceTree = "<group>"; };
 		F8FABFBC1B580B7A0007F308 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,7 +200,7 @@
 				24CB7E361CC678A000960269 /* AppDelegate.swift */,
 				24CB7E381CC678A000960269 /* ViewController.swift */,
 				24CB7E3A1CC678A000960269 /* Main.storyboard */,
-				24CB7E3D1CC678A000960269 /* Assets.xcassets */,
+				24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */,
 				24CB7E3F1CC678A000960269 /* Info.plist */,
 			);
 			path = "xikolo-tvos";
@@ -224,6 +213,23 @@
 				24CB7E4A1CC678A000960269 /* Info.plist */,
 			);
 			path = "xikolo-tvosUITests";
+			sourceTree = "<group>";
+		};
+		24CB7E511CC6813A00960269 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		24CB7E521CC6830000960269 /* xikolo-common */ = {
+			isa = PBXGroup;
+			children = (
+				24CB7E511CC6813A00960269 /* Resources */,
+				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
+			);
+			path = "xikolo-common";
 			sourceTree = "<group>";
 		};
 		4B8D4D8D5C320232B5BD598D /* Pods */ = {
@@ -251,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
+				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				A90587D21B3BFC130095DB89 /* xikolo-iosTests */,
 				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
@@ -283,7 +290,7 @@
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				F85225421B4D2B2900C9BF56 /* Data */,
 				F80D678E1B9867D700E27520 /* ViewControllers */,
-				A90587C51B3BFC130095DB89 /* Assets.xcassets */,
+				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
 				A90587CA1B3BFC130095DB89 /* Info.plist */,
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
@@ -313,20 +320,10 @@
 		F80D67831B958F4600E27520 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F80D67871B958F5100E27520 /* Fonts */,
-				F852253F1B4D27E800C9BF56 /* Images */,
+				F80D678C1B95967D00E27520 /* Icons.swift */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		F80D67871B958F5100E27520 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */,
-				F80D678C1B95967D00E27520 /* Icons.swift */,
-			);
-			name = Fonts;
 			sourceTree = "<group>";
 		};
 		F80D678E1B9867D700E27520 /* ViewControllers */ = {
@@ -373,20 +370,6 @@
 				F810A3AB1B8DDF2D00567188 /* DataSource.swift */,
 			);
 			name = Provider;
-			sourceTree = "<group>";
-		};
-		F852253F1B4D27E800C9BF56 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				A98850A21B412CD500DAF817 /* beginner.png */,
-				A98850A31B412CD500DAF817 /* globus.png */,
-				A98850A41B412CD500DAF817 /* network.png */,
-				A98850A51B412CD500DAF817 /* speed.png */,
-				F8D45D2D1B58F7030039D442 /* open_hpi_logo.jpg */,
-				F85225351B4D27D700C9BF56 /* avatar.png */,
-				F85225361B4D27D700C9BF56 /* profile_header_placeholder.jpg */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 		F85225421B4D2B2900C9BF56 /* Data */ = {
@@ -573,7 +556,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24CB7E3E1CC678A000960269 /* Assets.xcassets in Resources */,
+				24CB7E551CC6834C00960269 /* assets-common.xcassets in Resources */,
+				24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */,
 				24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,16 +573,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
+				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
-				F8D45D2E1B58F7030039D442 /* open_hpi_logo.jpg in Resources */,
-				A98850A61B412CD500DAF817 /* beginner.png in Resources */,
-				A98850A81B412CD500DAF817 /* network.png in Resources */,
-				A98850A91B412CD500DAF817 /* speed.png in Resources */,
-				F85225391B4D27D700C9BF56 /* profile_header_placeholder.jpg in Resources */,
-				F85225381B4D27D700C9BF56 /* avatar.png in Resources */,
-				A98850A71B412CD500DAF817 /* globus.png in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
-				A90587C61B3BFC130095DB89 /* Assets.xcassets in Resources */,
 				F8FABFB61B5809440007F308 /* CourseCell.xib in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
 			);

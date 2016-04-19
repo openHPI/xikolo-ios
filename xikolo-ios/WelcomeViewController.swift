@@ -26,7 +26,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         NSLocalizedString("page_title_find_courses", comment: "Find courses now. For beginners and pros."),
         NSLocalizedString("login", comment: "Login")]
     
-    var images = ["globus.png","speed.png","network.png","beginner.png"]
+    var images = ["welcome-globe", "welcome-speed", "welcome-network", "welcome-beginner"]
     var bgColors = [
         UIColor(red: 0.204, green: 0.208, blue: 0.22, alpha: 1.0),//dark gray
         UIColor(red: 0.631, green: 0.106, blue: 0.259, alpha: 1.0),//dark red

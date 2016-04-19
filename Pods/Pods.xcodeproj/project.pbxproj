@@ -2803,6 +2803,20 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					423D1C74169D7806654BD712C1A0F811 = {
+						DevelopmentTeam = W2P47VEHM8;
+					};
+					862F37258B8CB6BD53B97E10BFC8BFD3 = {
+						DevelopmentTeam = W2P47VEHM8;
+					};
+					9953F2CF898574EE71114F83A0FA1899 = {
+						DevelopmentTeam = W2P47VEHM8;
+					};
+					A3123CBFAEA8F868A30B68D763CE37E0 = {
+						DevelopmentTeam = W2P47VEHM8;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3345,6 +3359,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2779288AA4CAE73A6608BDDFF6AD9211 /* AFNetworking-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.3.4;
 				DEFINES_MODULE = YES;
@@ -3360,6 +3375,7 @@
 				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = AFNetworking;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3429,6 +3445,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2779288AA4CAE73A6608BDDFF6AD9211 /* AFNetworking-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.3.4;
 				DEFINES_MODULE = YES;
@@ -3444,6 +3461,7 @@
 				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = AFNetworking;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3510,6 +3528,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AE6B236126A1093E67347990D10A276 /* Realm-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 0.95.0;
 				DEFINES_MODULE = YES;
@@ -3525,6 +3544,7 @@
 				MODULEMAP_FILE = "Target Support Files/Realm/Realm.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = Realm;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3537,6 +3557,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A4C9F2D57D0EDDF807BFBECB9E28F07 /* RKValueTransformers-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEFINES_MODULE = YES;
@@ -3552,6 +3573,7 @@
 				MODULEMAP_FILE = "Target Support Files/RKValueTransformers/RKValueTransformers.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = RKValueTransformers;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3603,6 +3625,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A4C9F2D57D0EDDF807BFBECB9E28F07 /* RKValueTransformers-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEFINES_MODULE = YES;
@@ -3618,6 +3641,7 @@
 				MODULEMAP_FILE = "Target Support Files/RKValueTransformers/RKValueTransformers.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = RKValueTransformers;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3746,6 +3770,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AE6B236126A1093E67347990D10A276 /* Realm-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 0.95.0;
 				DEFINES_MODULE = YES;
@@ -3761,6 +3786,7 @@
 				MODULEMAP_FILE = "Target Support Files/Realm/Realm.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Realm;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3773,6 +3799,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 197447D45C5B5DEFD6B8209172A2289E /* SOCKit-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.1.0;
 				DEFINES_MODULE = YES;
@@ -3788,6 +3815,7 @@
 				MODULEMAP_FILE = "Target Support Files/SOCKit/SOCKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = SOCKit;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3800,6 +3828,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 197447D45C5B5DEFD6B8209172A2289E /* SOCKit-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1.1.0;
 				DEFINES_MODULE = YES;
@@ -3815,6 +3844,7 @@
 				MODULEMAP_FILE = "Target Support Files/SOCKit/SOCKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = SOCKit;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

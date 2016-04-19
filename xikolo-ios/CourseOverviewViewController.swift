@@ -50,7 +50,7 @@ class CourseOverviewViewController: UICollectionViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.tabBarController!.title = NSLocalizedString("tab_all_courses", comment: "All Courses")
+        self.tabBarController!.title = NSLocalizedString("tab_courses", comment: "All Courses")
     }
     
     internal func showMyCoursesOnly(showMyCourses: Bool) {

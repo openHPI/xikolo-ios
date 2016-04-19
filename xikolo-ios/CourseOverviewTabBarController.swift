@@ -1,4 +1,4 @@
-//
+        //
 //  CourseOverviewTabBarController.swift
 //  xikolo-ios
 //
@@ -10,6 +10,8 @@ import UIKit
 
 class CourseOverviewTabBarController: UITabBarController {
     
+    var isLoggedIn = UserProfileHelper.isLoggedIn()
+    
     private struct Constants{
         static let ShowLoginSegue = "Show Login"
         static let ShowProfileSegue = "Show Profile"
@@ -20,89 +22,9 @@ class CourseOverviewTabBarController: UITabBarController {
         
         self.navigationItem.hidesBackButton = true
     }
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        self.navigationItem.hidesBackButton = true
-//        
-//        // Profile View
-//        let profileButton = UIButton(type: UIButtonType.Custom)
-//        let image = UIImage(named: "Avatar")
-//        profileButton.setImage(image, forState: UIControlState.Normal)
-//        profileButton.frame.size = CGSize(width: 35, height: 35)
-//        profileButton.layer.masksToBounds = false
-//        // TODO:
-//        // Make circle shaped view
-//        profileButton.layer.cornerRadius = 8.0
-//        profileButton.addTarget(self, action: "onProfileButtonClick:", forControlEvents: UIControlEvents.TouchDown)
-//        let barButton = UIBarButtonItem(customView: profileButton)
-//        self.navigationItem.rightBarButtonItem = barButton
-//
-//        let storyboard = self.storyboard
-//        
-//        let allCourses = storyboard!.instantiateViewControllerWithIdentifier("CourseOverviewViewController")
-//        let myCourses = storyboard!.instantiateViewControllerWithIdentifier("CourseOverviewViewController") as! CourseOverviewViewController
-//        let news = storyboard!.instantiateViewControllerWithIdentifier("NewsViewController")
-//        let settings = storyboard!.instantiateViewControllerWithIdentifier("SettingsViewController")
-//        
-//        myCourses.showMyCoursesOnly(true)
-//        
-//        let viewControllers = [allCourses, myCourses, news, settings]
-//        
-//        self.setViewControllers(viewControllers, animated: false)
-//        
-//        //let appearance = UITabBarItem.appearance()
-//        //let attributes = [NSFontAttributeName:UIFont(name: "openHPI4", size: 25)!]
-//        //appearance.setTitleTextAttributes(attributes, forState: UIControlState.Normal)
-//        
-//        let titleAllCourses = Icons.learn2 + "\n" + NSLocalizedString("tab_all_courses", comment: "All Courses")
-//        let titleMyCourses = Icons.subscribe + "\n" + NSLocalizedString("tab_my_courses", comment: "My Courses")
-//        let titleNews = Icons.announcements + "\n" + NSLocalizedString("tab_news", comment: "News")
-//        let titleSettings = Icons.settings + "\n" + NSLocalizedString("tab_settings", comment: "Settings")
-//        
-//        allCourses.tabBarItem = UITabBarItem(title: titleAllCourses, image: nil, tag: 0)
-//        myCourses.tabBarItem = UITabBarItem(title: titleMyCourses, image: nil, tag: 1)
-//        news.tabBarItem = UITabBarItem(title: titleNews, image: nil, tag: 2)
-//        settings.tabBarItem = UITabBarItem(title: titleSettings, image: nil, tag: 3)
-//        
-//        allCourses.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0,vertical: -15)
-//        myCourses.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0,vertical: -15)
-//        news.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0,vertical: -15)
-//        settings.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0,vertical: -15)
-//    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction private func onProfileButtonClick(sender: UIBarButtonItem) -> () {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController")
-        self.navigationController?.pushViewController(vc!, animated: true)
-    }
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        switch identifier {
-        case Constants.ShowLoginSegue:
-            return false
-        case Constants.ShowProfileSegue:
-            // TODO if not logged in return false and perform segue to LoginController
-            //performSegueWithIdentifier("Show Login", sender: sender)
-            return true
-        default:
-            return false
-        }
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -19,10 +19,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var logoutButton: UIButton!
-    @IBAction func logoutAction(sender: AnyObject) {
+    @IBOutlet weak var loginButton: UIButton!
+    
+    @IBAction func loginAction(sender: UIButton) {
+        
+    }
+    
+    @IBAction func logoutAction(sender: UIButton) {
         UserProfileHelper.logout()
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginCheckController")
-        self.navigationController?.pushViewController(vc!, animated: true)
+        relayout()
     }
     
     override func viewDidLoad() {
@@ -30,6 +35,14 @@ class ProfileViewController: UIViewController {
 
         setupViews();
         setViewData();
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        relayout()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.tabBarController!.title = NSLocalizedString("tab_profile", comment: "Profile")
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,9 +55,6 @@ class ProfileViewController: UIViewController {
         self.profileImage.clipsToBounds = true;
         self.profileImage.layer.borderWidth = 3.0;
         self.profileImage.layer.borderColor = UIColor.whiteColor().CGColor;
-        
-        
-
     }
     
     func setViewData() {
@@ -61,6 +71,26 @@ class ProfileViewController: UIViewController {
         let enrolledCoursesObservable = CourseDataProvider.getMyCourses();
         enrolledCoursesObservable.subscribeNext { courseList in
             self.coursesCountLabel.text = String(courseList.courseList.count)
+        }
+    }
+    
+    func relayout() {
+        if !UserProfileHelper.isLoggedIn() {
+            logoutButton.hidden = true
+            nameLabel.hidden = true
+            coursesLabel.hidden = true
+            coursesCountLabel.hidden = true
+            emailLabel.hidden = true
+            
+            loginButton.hidden = false
+        } else {
+            logoutButton.hidden = false
+            nameLabel.hidden = false
+            coursesLabel.hidden = false
+            coursesCountLabel.hidden = false
+            emailLabel.hidden = false
+            
+            loginButton.hidden = true
         }
     }
 }

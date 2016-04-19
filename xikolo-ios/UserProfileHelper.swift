@@ -52,9 +52,13 @@ public class UserProfileHelper: NSObject {
             }, failure: { operation, error in
                 print("Login error ")
                 // TODO Notify about failed login
-                if(operation.HTTPRequestOperation.response.statusCode == 401) {
-                    // Error 401 Unauthorized
-                    print("HTTP Error 401 Unauthorized")
+                if let statusCode: Int = operation?.HTTPRequestOperation?.response?.statusCode { //fails with status Code 16 without Internet
+                    if statusCode == 401 {
+                        // Error 401 Unauthorized
+                        print("HTTP Error 401 Unauthorized")
+                    }
+                } else {
+                    //probably offline?
                 }
                 
                 success(false)

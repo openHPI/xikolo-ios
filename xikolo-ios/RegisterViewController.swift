@@ -8,12 +8,14 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField! { didSet { emailTextField.delegate = self } }
+    @IBOutlet weak var passwordTextField: UITextField! { didSet { passwordTextField.delegate = self } }
     @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet weak var loginFailedLabel: UILabel!
+    @IBAction func dismissAction(sender: UIBarButtonItem) {
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func loginButton(sender: AnyObject) {
         let email = emailTextField.text!
@@ -22,9 +24,7 @@ class RegisterViewController: UIViewController {
         UserProfileHelper.login(email, password: password, success: {(success : Bool) -> Void in
             
             if(success) {
-                let mainScreen = self.storyboard?.instantiateViewControllerWithIdentifier("CourseOverviewTabBarController")
-                self.loginFailedLabel.hidden = true
-                self.navigationController?.pushViewController(mainScreen!, animated: true)
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 self.shake(self.passwordTextField)
                 // TODO: maybe check whether email is valid
@@ -48,8 +48,14 @@ class RegisterViewController: UIViewController {
         self.emailTextField.placeholder = NSLocalizedString("email", comment: "Email")
         self.passwordTextField.placeholder = NSLocalizedString("password", comment: "Password")
         self.registerButton.setTitle(NSLocalizedString("register", comment: "Register"), forState: UIControlState.Normal)
+        emailTextField.becomeFirstResponder()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     func shake(viewToAnimate: UIView){

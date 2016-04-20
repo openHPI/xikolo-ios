@@ -52,32 +52,18 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework 'Pods-xikolo-ios/AFNetworking.framework'
   install_framework 'Pods-xikolo-ios/Alamofire.framework'
   install_framework 'Pods-xikolo-ios/AlamofireObjectMapper.framework'
-  install_framework 'Pods-xikolo-ios/ISO8601DateFormatterValueTransformer.framework'
   install_framework 'Pods-xikolo-ios/ObjectMapper.framework'
-  install_framework 'Pods-xikolo-ios/RKValueTransformers.framework'
-  install_framework 'Pods-xikolo-ios/Realm.framework'
-  install_framework 'Pods-xikolo-ios/RestKit.framework'
   install_framework 'Pods-xikolo-ios/RxCocoa.framework'
   install_framework 'Pods-xikolo-ios/RxSwift.framework'
-  install_framework 'Pods-xikolo-ios/SOCKit.framework'
   install_framework 'Pods-xikolo-ios/SwiftyJSON.framework'
-  install_framework 'Pods-xikolo-ios/TransitionKit.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework 'Pods-xikolo-ios/AFNetworking.framework'
   install_framework 'Pods-xikolo-ios/Alamofire.framework'
   install_framework 'Pods-xikolo-ios/AlamofireObjectMapper.framework'
-  install_framework 'Pods-xikolo-ios/ISO8601DateFormatterValueTransformer.framework'
   install_framework 'Pods-xikolo-ios/ObjectMapper.framework'
-  install_framework 'Pods-xikolo-ios/RKValueTransformers.framework'
-  install_framework 'Pods-xikolo-ios/Realm.framework'
-  install_framework 'Pods-xikolo-ios/RestKit.framework'
   install_framework 'Pods-xikolo-ios/RxCocoa.framework'
   install_framework 'Pods-xikolo-ios/RxSwift.framework'
-  install_framework 'Pods-xikolo-ios/SOCKit.framework'
   install_framework 'Pods-xikolo-ios/SwiftyJSON.framework'
-  install_framework 'Pods-xikolo-ios/TransitionKit.framework'
 fi

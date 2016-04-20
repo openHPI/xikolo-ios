@@ -1,5 +1,0 @@
-#include "TransitionKit.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/TransitionKit" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Alamofire" "${PODS_ROOT}/Headers/Public/AlamofireObjectMapper" "${PODS_ROOT}/Headers/Public/ISO8601DateFormatterValueTransformer" "${PODS_ROOT}/Headers/Public/ObjectMapper" "${PODS_ROOT}/Headers/Public/RKValueTransformers" "${PODS_ROOT}/Headers/Public/Realm" "${PODS_ROOT}/Headers/Public/Realm/realm" "${PODS_ROOT}/Headers/Public/RestKit" "${PODS_ROOT}/Headers/Public/RestKit/CoreData" "${PODS_ROOT}/Headers/Public/RestKit/Network" "${PODS_ROOT}/Headers/Public/RestKit/ObjectMapping" "${PODS_ROOT}/Headers/Public/RestKit/Support" "${PODS_ROOT}/Headers/Public/RxCocoa" "${PODS_ROOT}/Headers/Public/RxSwift" "${PODS_ROOT}/Headers/Public/SOCKit" "${PODS_ROOT}/Headers/Public/SwiftyJSON" "${PODS_ROOT}/Headers/Public/TransitionKit" "${PODS_ROOT}/Headers/Public/Vendor/LibComponentLogging/Core"
-PODS_ROOT = ${SRCROOT}
-SKIP_INSTALL = YES

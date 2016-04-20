@@ -24,7 +24,8 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
         activityIndicator.tag = 100
         
         let url = NSURL(string: Routes.BASE_URL + Routes.NEWS)
-        let request = NSURLRequest(URL: url!)
+        let request = NSMutableURLRequest(URL: url!)
+        request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
         self.webView.loadRequest(request)
 
         // Do any additional setup after loading the view.

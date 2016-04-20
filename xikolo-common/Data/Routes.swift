@@ -13,6 +13,9 @@ class Routes: NSObject {
     static let API_URL = "https://staging.openhpi.de/api/"
     static let BASE_URL = "https://staging.openhpi.de/"
     
+    static let HEADER_USER_PLATFORM = "User-Platform"
+    static let HEADER_USER_PLATFORM_VALUE = "iOS"
+    
     static let COURSES = "courses/"
     static let AUTHENTICATE = "authenticate/"
     static let MY_PROFILE = "users/me"

@@ -151,7 +151,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-openhpi" translatesAutoresizingMaskIntoConstraints="NO" id="JXr-yf-NmQ">
-                                        <rect key="frame" x="20" y="20" width="360" height="125"/>
+                                        <rect key="frame" x="20" y="0.0" width="360" height="125"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="JXr-yf-NmQ" secondAttribute="height" constant="1" id="gpm-Wn-9Kj"/>
                                             <constraint firstAttribute="height" constant="250" id="unM-ZE-rSd"/>
@@ -366,16 +366,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJX-hy-6uB">
-                                <rect key="frame" x="20" y="64" width="560" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="aJX-hy-6uB" secondAttribute="trailing" id="99C-rR-9Tb"/>
-                            <constraint firstItem="aJX-hy-6uB" firstAttribute="leading" secondItem="nA5-6d-DTh" secondAttribute="leadingMargin" id="Cj3-g7-MRY"/>
-                            <constraint firstItem="Q9g-rV-JWp" firstAttribute="top" secondItem="aJX-hy-6uB" secondAttribute="bottom" id="VP1-i6-u0h"/>
-                            <constraint firstItem="aJX-hy-6uB" firstAttribute="top" secondItem="Mou-Sn-I16" secondAttribute="bottom" id="XNx-wH-OX8"/>
+                            <constraint firstItem="aJX-hy-6uB" firstAttribute="top" secondItem="Mou-Sn-I16" secondAttribute="bottom" id="LKR-RP-AOa"/>
+                            <constraint firstItem="aJX-hy-6uB" firstAttribute="leading" secondItem="nA5-6d-DTh" secondAttribute="leading" id="r0e-Na-0g8"/>
+                            <constraint firstItem="aJX-hy-6uB" firstAttribute="bottom" secondItem="Q9g-rV-JWp" secondAttribute="top" id="uJO-CV-eZJ"/>
+                            <constraint firstAttribute="trailing" secondItem="aJX-hy-6uB" secondAttribute="trailing" id="zvj-I8-29f"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="News" image="TabBarIconNews" selectedImage="TabBarIconNewsSelected" id="Iok-ZF-Mpk"/>
@@ -401,7 +401,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-header-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Q2u-d7-RfF">
-                                <rect key="frame" x="-1519" y="20" width="3638" height="150"/>
+                                <rect key="frame" x="-1519" y="64" width="3638" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="3q6-aQ-Lsz"/>
                                 </constraints>
@@ -413,7 +413,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="K4x-M6-0n9">
-                                <rect key="frame" x="260" y="130" width="80" height="80"/>
+                                <rect key="frame" x="260" y="174" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="999" constant="80" id="3Ra-1B-akr"/>
                                     <constraint firstAttribute="height" priority="999" constant="80" id="Mia-9z-efl"/>
@@ -523,8 +523,8 @@
                                 <exclude reference="wYD-Lo-nmD"/>
                                 <exclude reference="bmH-ut-clF"/>
                                 <exclude reference="dBS-2d-Kcw"/>
-                                <exclude reference="ywL-Zf-0Ho"/>
                                 <exclude reference="HVe-E9-qvL"/>
+                                <exclude reference="ywL-Zf-0Ho"/>
                                 <exclude reference="KyM-EY-YQG"/>
                                 <exclude reference="YAS-3h-mpd"/>
                                 <exclude reference="fSa-49-OnB"/>
@@ -567,17 +567,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="avatar" width="500" height="500"/>
-        <image name="logo-openhpi" width="612" height="125"/>
-        <image name="profile-header-placeholder" width="3638" height="580"/>
         <image name="TabBarIconCourses" width="25" height="25"/>
         <image name="TabBarIconCoursesSelected" width="25" height="25"/>
         <image name="TabBarIconNews" width="25" height="25"/>
         <image name="TabBarIconNewsSelected" width="25" height="25"/>
         <image name="TabBarIconUser" width="25" height="25"/>
         <image name="TabBarIconUserSelected" width="25" height="25"/>
-        <image name="avatar.png" width="500" height="500"/>
-        <image name="open_hpi_logo.jpg" width="612" height="125"/>
-        <image name="profile_header_placeholder.jpg" width="3638" height="580"/>
+        <image name="avatar" width="500" height="500"/>
+        <image name="logo-openhpi" width="612" height="125"/>
+        <image name="profile-header-placeholder" width="3638" height="580"/>
     </resources>
 </document>

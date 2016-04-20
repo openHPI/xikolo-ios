@@ -60,14 +60,15 @@ class ProfileViewController: UIViewController {
     func setViewData() {
         self.logoutButton.setTitle(NSLocalizedString("logout", comment: "Logout"), forState: UIControlState.Normal)
         
-        let userProfileObservable = ProfileDataProvider.getObservable()
-        userProfileObservable.subscribeNext { userProfile in
-            self.nameLabel.text = userProfile.firstName + " " + userProfile.lastName
-            self.emailLabel.text = userProfile.email
-            
-            ImageProvider.loadImage(userProfile.visual, imageView: self.profileImage)
-        }
-        
+        UserProfileHelper.self.getUser() { (user: UserProfile?, error: NSError?) -> () in
+            if user != nil {
+                self.nameLabel.text = user!.firstName + " " + user!.lastName
+                self.emailLabel.text = user!.email
+                
+                ImageProvider.loadImage(user!.visual, imageView: self.profileImage)
+            }
+        };
+
         let enrolledCoursesObservable = CourseDataProvider.getMyCourses();
         enrolledCoursesObservable.subscribeNext { courseList in
             self.coursesCountLabel.text = String(courseList.courseList.count)

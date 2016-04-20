@@ -6,116 +6,78 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
+import Alamofire
 import Foundation
-import RestKit
 
-public class UserProfileHelper: NSObject {
-    
-    static let preferenceId = "id"
-    static let preferenceFirstName = "first_name"
-    static let preferenceLastName = "last_name"
-    static let preferenceEmail = "email"
-    static let preferenceVisual = "visual"
-    static let preferenceToken = "token"
-    static let preferenceLanguage = "language"
-    
-    // To identify the user profile in Realm and prevent the creation of multiple user profiles in the database
-    public static let USER_PROFILE_IDENTIFIER = "user_profile_identifier"
-    
+public class UserProfileHelper {
+
+    static let preferenceUser = "user"
+    static let preferenceToken = "user_token"
+
     static private let prefs = NSUserDefaults.standardUserDefaults()
-    
-    static func login(email: String, password: String, success:(Bool) -> Void) {
-        
-        let authenticateUrl = NSURL(string: Routes.API_URL)
-        let objectManager = RKObjectManager(baseURL: authenticateUrl)
-        
-        AFNetworkActivityIndicatorManager.sharedManager().enabled = true
-        
-        let userMapping = RKObjectMapping(forClass: UserProfile.self)
-        userMapping.addAttributeMappingsFromDictionary(["token":"token"])
-        
-        let responseDescriptor = RKResponseDescriptor(mapping: userMapping, method: RKRequestMethod.POST, pathPattern: nil, keyPath: nil, statusCodes: RKStatusCodeIndexSetForClass(RKStatusCodeClass.Successful))
-        
-        objectManager.setAcceptHeaderWithMIMEType(RKMIMETypeJSON)
-        objectManager.HTTPClient.setDefaultHeader(Routes.HTTP_ACCEPT_HEADER, value: Routes.HTTP_ACCEPT_HEADER_VALUE)
-        objectManager.addResponseDescriptor(responseDescriptor)
-        
-        objectManager.postObject("", path: "authenticate", parameters: [Routes.HTTP_PARAM_EMAIL:email, Routes.HTTP_PARAM_PASSWORD:password], success: { operation, mappingResult in
-            
-            print("Login successful")
-            
-            let user = mappingResult.firstObject as! UserProfile
-            self.saveToken(user.token)
-            
-            success(true)
-            
-            }, failure: { operation, error in
-                print("Login error ")
-                // TODO Notify about failed login
-                if let statusCode: Int = operation?.HTTPRequestOperation?.response?.statusCode { //fails with status Code 16 without Internet
-                    if statusCode == 401 {
-                        // Error 401 Unauthorized
-                        print("HTTP Error 401 Unauthorized")
+
+    static func login(email: String, password: String, completionHandler: (token: String?, error: NSError?) -> ()) {
+        let url = Routes.API_URL + Routes.AUTHENTICATE
+
+        Alamofire.request(.POST, url, headers: [
+            Routes.HTTP_ACCEPT_HEADER: Routes.HTTP_ACCEPT_HEADER_VALUE
+            ], parameters:[
+                Routes.HTTP_PARAM_EMAIL: email,
+                Routes.HTTP_PARAM_PASSWORD: password,
+            ]).responseJSON { response in
+                if let json = response.result.value {
+                    if let token = json["token"] as? String {
+                        UserProfileHelper.saveToken(token)
+                        completionHandler(token: token, error: nil)
+                        return
                     }
-                } else {
-                    //probably offline?
                 }
-                
-                success(false)
-        })
+                completionHandler(token: nil, error: response.result.error)
+        }
     }
-    
+
     static func logout() {
         prefs.removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
         prefs.synchronize()
-        // TODO Clear Realm Database
     }
-    
-    static func getSavedUser()->UserProfile {
-        
-        let id = prefs.stringForKey(preferenceId) ?? ""
-        let firstName = prefs.stringForKey(preferenceFirstName) ?? ""
-        let lastName = prefs.stringForKey(preferenceLastName) ?? ""
-        let email = prefs.stringForKey(preferenceEmail) ?? ""
-        let visual = prefs.stringForKey(preferenceVisual) ?? ""
-        let token = getToken()
-        let language = prefs.stringForKey(preferenceLanguage) ?? ""
-        
-        let user = UserProfile(id: id, firstName: firstName, lastName: lastName, email: email, visual: visual, token: token, language: language)
-        
-        return user
+
+    static func getUser(completionHandler: (UserProfile?, NSError?) -> ()) {
+        if let user = loadUser() {
+            completionHandler(user, nil)
+        } else {
+            UserProfileProvider.getMyProfile() { (user: UserProfile?, error: NSError?) -> () in
+                if user != nil {
+                    UserProfileHelper.saveUser(user!)
+                }
+                completionHandler(user, error)
+            }
+        }
     }
-    
-    static func save(user: UserProfile) {
-        prefs.setObject(user.id, forKey: preferenceId)
-        prefs.setObject(user.firstName, forKey: preferenceFirstName)
-        prefs.setObject(user.lastName, forKey: preferenceLastName)
-        prefs.setObject(user.email, forKey: preferenceEmail)
-        prefs.setObject(user.visual, forKey: preferenceVisual)
-        prefs.setObject(user.token, forKey: preferenceToken)
-        prefs.setObject(user.language, forKey: preferenceLanguage)
+
+    static private func loadUser() -> UserProfile? {
+        if let data = prefs.objectForKey(preferenceUser) as? NSData {
+            return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? UserProfile
+        }
+        return nil
+    }
+
+    static func saveUser(user: UserProfile) {
+        prefs.setObject(NSKeyedArchiver.archivedDataWithRootObject(user), forKey: preferenceUser)
         prefs.synchronize()
     }
-    
-    static func update(user: UserProfile) {
-        user.token = getToken()
-        save(user)
+
+    static func isLoggedIn() -> Bool {
+        return !getToken().isEmpty
     }
-    
-    static func isLoggedIn()->Bool {
-        return !(getToken().isEmpty ?? true)
-    }
-    
+
     static func getToken() -> String {
         let token = prefs.stringForKey(preferenceToken) ?? ""
         return token
     }
-    
+
     static func saveToken(token: String) {
         prefs.setObject(token, forKey: preferenceToken)
         prefs.synchronize()
     }
-    
-    
-    
+
 }

@@ -6,86 +6,59 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
+import Alamofire
 import Foundation
-import SwiftyJSON
-import Realm
+import ObjectMapper
 
-public class UserProfile: RLMObject {
-    
+public class UserProfile: NSObject, NSCoding, Mappable {
+
     public var id : String = ""
     public var firstName : String = ""
     public var lastName : String = ""
     public var email : String = ""
     public var visual : String = ""
     public var language : String = ""
-    public var token : String = ""
     
-    override init() {
-        super.init()
+    required public init?(_ map: Map){
     }
     
-    init(id: String, firstName: String, lastName: String, email: String, visual: String, token: String, language: String) {
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.visual = visual
-        self.token = token
-        self.language = language
-        super.init()
+    public func mapping(map: Map) {
+        id <- map["id"]
+        firstName <- map["first_name"]
+        lastName <- map["last_name"]
+        email <- map["email"]
+        visual <- map["user_visual"]
+        language <- map["language"]
     }
     
-    init(json: JSON) {
-        
-        // ID
-        if let obj = json["id"].string {
-            self.id = obj
-        } else {
-            // Shouldn't be executed if type is right
-            // TODO: Handle if this is ever called
+    required public init(coder decoder: NSCoder) {
+        if let id = decoder.decodeObjectForKey("id") as? String {
+            self.id = id
         }
-        
-        // First name
-        if let obj = json["first_name"].string {
-            self.firstName = obj
-        } else {
-            // Shouldn't be executed if type is right
-            // TODO: Handle if this is ever called
+        if let firstName = decoder.decodeObjectForKey("firstName") as? String {
+            self.firstName = firstName
         }
-        
-        // Last Name
-        if let obj = json["last_name"].string {
-            self.lastName = obj
-        } else {
-            // Shouldn't be executed if type is right
-            // TODO: Handle if this is ever called
+        if let lastName = decoder.decodeObjectForKey("lastName") as? String {
+            self.lastName = lastName
         }
-        
-        // Email
-        if let obj = json["email"].string {
-            self.email = obj
-        } else {
-            // Shouldn't be executed if type is right
-            // TODO: Handle if this is ever called
+        if let email = decoder.decodeObjectForKey("email") as? String {
+            self.email = email
         }
-        
-        // Visual
-        if let obj = json["user_visual"].string {
-            self.visual = obj
-        } else {
-            // Shouldn't be executed if type is right
-            // TODO: Handle if this is ever called
+        if let visual = decoder.decodeObjectForKey("visual") as? String {
+            self.visual = visual
         }
-        
-        // Language
-        if let obj = json["language"].string {
-            self.language = obj
-        } else {
-            // Shouldn't be executed if type is right
-            // TODO: Handle if this is ever called
+        if let language = decoder.decodeObjectForKey("language") as? String {
+            self.language = language
         }
-        
-        super.init()
     }
     
+    public func encodeWithCoder(coder: NSCoder) {
+        coder.encodeObject(self.id, forKey: "id")
+        coder.encodeObject(self.firstName, forKey: "firstName")
+        coder.encodeObject(self.lastName, forKey: "lastName")
+        coder.encodeObject(self.email, forKey: "email")
+        coder.encodeObject(self.visual, forKey: "visual")
+        coder.encodeObject(self.language, forKey: "language")
+    }
+
 }

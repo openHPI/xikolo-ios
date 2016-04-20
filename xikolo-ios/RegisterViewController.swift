@@ -21,19 +21,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let email = emailTextField.text!
         let password = passwordTextField.text!
         
-        UserProfileHelper.login(email, password: password, success: {(success : Bool) -> Void in
-            
-            if(success) {
+        UserProfileHelper.login(email, password: password, completionHandler: {(token: String?, error: NSError?) -> () in
+            if token != nil {
                 self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 self.shake(self.passwordTextField)
                 // TODO: maybe check whether email is valid
             }
-        
         });
     }
-    
-    
+
     @IBAction func registerButton(sender: AnyObject) {
         let url = NSURL(string: Routes.REGISTER_URL)
         UIApplication.sharedApplication().openURL(url!)

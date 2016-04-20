@@ -18,6 +18,9 @@ pod 'Realm', :git => "https://github.com/realm/realm-cocoa.git", :branch => 'swi
 # RestKit
 pod 'RestKit'
 
+pod 'Alamofire'
+pod 'AlamofireObjectMapper'
+
 end
 
 target 'xikolo-iosTests' do

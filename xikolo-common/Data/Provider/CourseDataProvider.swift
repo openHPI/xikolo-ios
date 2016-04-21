@@ -20,10 +20,10 @@ class CourseDataProvider: NSObject {
     
     static func getCourseList() -> Observable<CourseList> {
         
-        let local = just(CourseHelper.getSavedCourseList())
+        let local = Observable.just(CourseHelper.getSavedCourseList())
         let network = getNetworkCourseList()
         
-        return concat([local,network])
+        return [local,network].concat()
     }
     
     private static func getNetworkCourseList() -> Observable<CourseList> {

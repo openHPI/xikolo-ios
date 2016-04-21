@@ -4,35 +4,33 @@ PODS:
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
   - ObjectMapper (1.2.0)
-  - RxCocoa (2.0-alpha.1):
-    - RxSwift
-  - RxSwift (2.0-alpha.1)
+  - RxCocoa (2.4):
+    - RxSwift (~> 2.4)
+  - RxSwift (2.4)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
-  - RxCocoa (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
-  - RxSwift (from `https://github.com/kzaher/RxSwift.git`, branch `rxswift-2.0`)
+  - RxCocoa (from `https://github.com/ReactiveX/RxSwift.git`)
+  - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
   RxCocoa:
-    :branch: rxswift-2.0
-    :git: https://github.com/kzaher/RxSwift.git
+    :git: https://github.com/ReactiveX/RxSwift.git
   RxSwift:
-    :branch: rxswift-2.0
-    :git: https://github.com/kzaher/RxSwift.git
+    :git: https://github.com/ReactiveX/RxSwift.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   RxCocoa:
-    :commit: 756a507db71663cf8a9d38be4f05a0d6d6e53309
-    :git: https://github.com/kzaher/RxSwift.git
+    :commit: 6dd6c9b211a768780802949c3b6c9fb57b1acac7
+    :git: https://github.com/ReactiveX/RxSwift.git
   RxSwift:
-    :commit: 756a507db71663cf8a9d38be4f05a0d6d6e53309
-    :git: https://github.com/kzaher/RxSwift.git
+    :commit: 6dd6c9b211a768780802949c3b6c9fb57b1acac7
+    :git: https://github.com/ReactiveX/RxSwift.git
   SwiftyJSON:
     :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
@@ -41,8 +39,8 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
-  RxCocoa: 6950f353d6ad66e55879fda8b996e8bc377516d7
-  RxSwift: 067c74f1c0c1e877043b3f2a25ba3ca1839dcea8
+  RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
+  RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

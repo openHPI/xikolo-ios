@@ -40,9 +40,9 @@ class ImageProvider: NSObject {
                 .map { data in
                     UIImage(data: data)
                 }
-                .observeSingleOn(MainScheduler.sharedInstance)
-                .subscribeImageOf(imageView)
-            //            .addDisposableTo(disposeBag)
+                .observeOn(MainScheduler.instance)
+                .bindTo(imageView.rx_image)
+            //  .addDisposableTo(disposeBag)
         }
         
     }

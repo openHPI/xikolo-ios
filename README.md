@@ -1,8 +1,11 @@
 # Readme
 
 **Dowloading the project**
- 
-- Clone via XCode
+
+- Install CocoaPods (use version 0.39+)
+- Clone the repository
+- Run `pod install`
+- Open xikolo-ios.xcworkspace in XCode
 - Run
 
 **Contributing**

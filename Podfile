@@ -10,7 +10,7 @@ pod 'RxSwift', :git => "https://github.com/kzaher/RxSwift.git", :branch => 'rxsw
 pod 'RxCocoa', :git => "https://github.com/kzaher/RxSwift.git", :branch => 'rxswift-2.0'
 
 # JSON Parsing
-pod 'SwiftyJSON', :git => "https://github.com/SwiftyJSON/SwiftyJSON.git", :branch => 'xcode7'
+pod 'SwiftyJSON', :git => "https://github.com/SwiftyJSON/SwiftyJSON.git"
 
 pod 'Alamofire'
 pod 'AlamofireObjectMapper'

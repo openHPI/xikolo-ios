@@ -2,7 +2,7 @@
 
 **Dowloading the project**
 
-- Install CocoaPods (use version 0.39+)
+- Install CocoaPods (use version 0.39+) `sudo gem update cocoapods`
 - Clone the repository
 - Run `pod install`
 - Open xikolo-ios.xcworkspace in XCode

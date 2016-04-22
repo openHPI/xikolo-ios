@@ -22,6 +22,7 @@
 		24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E1A1CCA551E00E8051E /* CourseProvider.swift */; };
 		24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
 		24D48E221CCA78A600E8051E /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
+		24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
 		39855206F0D13D3F537652CB /* Pods_xikolo_tvosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A7C859F16667DAD7CF2EB7 /* Pods_xikolo_tvosUITests.framework */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
@@ -106,6 +107,7 @@
 		24D48E171CCA4FC100E8051E /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		24D48E1A1CCA551E00E8051E /* CourseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseProvider.swift; sourceTree = "<group>"; };
 		24D48E201CCA742300E8051E /* NSDate+iso8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+iso8601.swift"; sourceTree = "<group>"; };
+		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -425,6 +427,7 @@
 		F80D67DC1B9881FA00E27520 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */,
 				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
 				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 			);
@@ -892,6 +895,7 @@
 				A90587C11B3BFC130095DB89 /* WelcomeViewController.swift in Sources */,
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
 				F810A3AC1B8DDF2D00567188 /* DataSource.swift in Sources */,
+				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
 				F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */,

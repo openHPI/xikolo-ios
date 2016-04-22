@@ -19,9 +19,7 @@ public class UserProfileHelper {
     static func login(email: String, password: String, completionHandler: (token: String?, error: NSError?) -> ()) {
         let url = Routes.API_URL + Routes.AUTHENTICATE
 
-        Alamofire.request(.POST, url, headers: [
-            Routes.HTTP_ACCEPT_HEADER: Routes.HTTP_ACCEPT_HEADER_VALUE
-            ], parameters:[
+        Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
                 Routes.HTTP_PARAM_EMAIL: email,
                 Routes.HTTP_PARAM_PASSWORD: password,
             ]).responseJSON { response in

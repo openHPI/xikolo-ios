@@ -9,19 +9,12 @@
 import UIKit
 import RxSwift
 
-class CourseOverviewViewController: UICollectionViewController {
-    
-    private var courses = CourseList()
+class CourseOverviewViewController: AbstractCourseListViewController {
+
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     private let reuseIdentifier = "CourseCell"
     
     private var flowLayout : UICollectionViewFlowLayout?
-    
-    private var showMyCourses = false
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         self.collectionView!.registerNib(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
@@ -31,22 +24,7 @@ class CourseOverviewViewController: UICollectionViewController {
         flowLayout = UICollectionViewFlowLayout()
         self.collectionView?.setCollectionViewLayout(flowLayout!, animated: false)
         
-        let data : Observable<CourseList>
-        if(showMyCourses) {
-            data = CourseDataProvider.getMyCourses()
-        } else {
-            data = CourseDataProvider.getCourseList()
-        }
-        
-        data.subscribeNext{
-            self.courses = $0
-            
-            // TODO: Find a better solution
-            dispatch_async(dispatch_get_main_queue(), {
-                self.collectionView?.reloadData()
-                print("Reload view")
-            })
-        }
+        super.viewDidLoad()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -54,7 +32,11 @@ class CourseOverviewViewController: UICollectionViewController {
     }
     
     internal func showMyCoursesOnly(showMyCourses: Bool) {
-        self.showMyCourses = showMyCourses
+        self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.collectionView?.performBatchUpdates(nil, completion: nil)
     }
     
 }
@@ -82,10 +64,6 @@ extension CourseOverviewViewController {
         cell.layer.cornerRadius = 3
         
         return cell
-    }
-    
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        self.collectionView?.performBatchUpdates(nil, completion: nil)
     }
     
 }

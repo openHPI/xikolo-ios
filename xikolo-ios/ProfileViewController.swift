@@ -69,9 +69,11 @@ class ProfileViewController: UIViewController {
             }
         };
 
-        let enrolledCoursesObservable = CourseDataProvider.getMyCourses();
-        enrolledCoursesObservable.subscribeNext { courseList in
-            self.coursesCountLabel.text = String(courseList.courseList.count)
+        do {
+            let numberOfEnrolledCourses = try CourseHelper.getNumberOfEnrolledCourses()
+            self.coursesCountLabel.text = String(numberOfEnrolledCourses)
+        } catch {
+            // TODO: Error handling
         }
     }
     

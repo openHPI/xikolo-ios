@@ -6,97 +6,71 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
-class CourseHelper: NSObject {
-    
+class CourseHelper {
+
     static private let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     static private let managedContext = appDelegate.managedObjectContext
-    static private let entity = NSEntityDescription.entityForName("CourseCDModel", inManagedObjectContext: managedContext)
-    
-    static func saveCourseList(courseList: CourseList) {
-    
-        for index in 1...courseList.courseList.count {
-            
-            let course = courseList.courseList.objectAtIndex(index-1) as! Course
-            
-            // TODO Update stored courses
-            if(!courseStored(course)) {
-                let courseCoreData = CourseCDModel(entity: entity!, insertIntoManagedObjectContext: managedContext)
-                
-                courseCoreData.setValue(course.id, forKey: "id")
-                courseCoreData.setValue(course.name, forKey: "name")
-                courseCoreData.setValue(course.visual_url, forKey: "visual_url")
-                courseCoreData.setValue(course.lecturer, forKey: "lecturer")
-                courseCoreData.setValue(course.is_enrolled, forKey: "is_enrolled")
-                courseCoreData.setValue(course.language, forKey: "language")
-                courseCoreData.setValue(course.locked, forKey: "locked")
-                courseCoreData.setValue(course.course_description, forKey: "course_description")
-                courseCoreData.setValue(course.course_code, forKey: "course_code")
-            }             
-        }
-        
-        do {
-            try managedContext.save()
-            
-            defer {
-                print("Saving successful")
-            }
-            
-        }
-        catch _ {
-            print("Error saving data to CoreData")
-        }
-        
+    static private let entity = NSEntityDescription.entityForName("Course", inManagedObjectContext: managedContext)!
+
+    static func getAllCoursesRequest() -> NSFetchRequest {
+        let request = NSFetchRequest(entityName: "Course")
+        let startDateSort = NSSortDescriptor(key: "start_date", ascending: true)
+        request.sortDescriptors = [startDateSort]
+        return request
     }
-    
-    static func getSavedCourseList() -> CourseList {
-        let courseList = CourseList()
-        let fetchRequest = NSFetchRequest(entityName: "CourseCDModel")
-        
-        do {
-            let fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as? [CourseCDModel]
-            
-            for managedObject in fetchedResults! {
-                courseList.courseList.addObject(managedObject.getCourseObject())
-            }
-            
-            defer {
-                print("Loading successful")
-            }
-            
-        }
-        catch _ {
-            print("Could not fetch Courses from CoreData")
-        }
-        
-        return courseList
+
+    static func getMyCoursesRequest() -> NSFetchRequest {
+        let request = getAllCoursesRequest()
+        request.predicate = NSPredicate(format: "is_enrolled_int == true")
+        return request
     }
-    
-    private static func courseStored(course: Course) -> Bool {
-        
-//        let predicateString = "course_code == " + course.course_code
-        let predicate = NSPredicate(format: "id ==  %@", course.id)
-        let fetchRequest = NSFetchRequest(entityName: "CourseCDModel")
-        
-        fetchRequest.entity = entity
-        fetchRequest.predicate = predicate
-        
-        var count = 0
-        do {
-            let fetchedObjects = try managedContext.executeFetchRequest(fetchRequest)
-            count = fetchedObjects.count
-            
-        } catch _ {
-            print("Could not fetch Courses from CoreData")
+
+    static func initializeFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
+        // TODO: Add cache name
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+    }
+
+    static func getNumberOfEnrolledCourses() throws -> Int {
+        let request = getMyCoursesRequest()
+        let courses = try managedContext.executeFetchRequest(request)
+        return courses.count
+    }
+
+    static func refreshCourses() {
+        CourseProvider.getCourses { (courses, error) in
+            if let courses = courses {
+                do {
+                    try syncCourses(courses)
+                } catch {
+                    // TODO: Error handling
+                }
+            }
         }
-        
-        if(count > 0) {
-            return true
+    }
+
+    private static func syncCourses(courses: [[String: AnyObject]]) throws {
+        let request = NSFetchRequest(entityName: "Course")
+        for course in courses {
+            if let id = course["id"] as? String {
+                let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
+                request.predicate = predicate
+
+                var cdCourse: Course!
+                let results = try managedContext.executeFetchRequest(request) as! [Course]
+                if (results.count > 0) {
+                    cdCourse = results[0]
+                } else {
+                    cdCourse = Course(entity: entity, insertIntoManagedObjectContext: managedContext)
+                    cdCourse.id = id
+                }
+                cdCourse.loadFromDict(course)
+            }
         }
-        
-        return false
+        // TODO: Delete courses from CD that have not been returned
+        try managedContext.save()
     }
 
 }

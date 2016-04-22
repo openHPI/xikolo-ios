@@ -57,7 +57,6 @@
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
 		F8B926C31B81F13300A89143 /* LoginCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B926C21B81F13300A89143 /* LoginCheckController.swift */; };
-		F8FABFB61B5809440007F308 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FABFB51B5809440007F308 /* CourseCell.xib */; };
 		F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -158,7 +157,6 @@
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F8B926C21B81F13300A89143 /* LoginCheckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheckController.swift; sourceTree = "<group>"; };
-		F8FABFB51B5809440007F308 /* CourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseCell.xib; sourceTree = "<group>"; };
 		F8FABFBC1B580B7A0007F308 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		FBE4A150E55AECDDAB931F05 /* Pods-xikolo-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC72A6690A20AE25CA6DC246 /* Pods-xikolo-tvos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvos/Pods-xikolo-tvos.debug.xcconfig"; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				A90587C21B3BFC130095DB89 /* Main.storyboard */,
-				F8FABFB51B5809440007F308 /* CourseCell.xib */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";
@@ -644,7 +641,6 @@
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
-				F8FABFB61B5809440007F308 /* CourseCell.xib in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

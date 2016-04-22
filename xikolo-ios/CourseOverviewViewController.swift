@@ -16,8 +16,6 @@ class CourseOverviewViewController: AbstractCourseListViewController {
     private var flowLayout : UICollectionViewFlowLayout?
     
     override func viewDidLoad() {
-        self.collectionView!.registerNib(UINib(nibName: cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: cellReuseIdentifier)
-        
         self.navigationItem.hidesBackButton = true
         
         flowLayout = UICollectionViewFlowLayout()

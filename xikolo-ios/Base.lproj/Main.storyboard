@@ -544,7 +544,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxy-rr-uoq">
-                                <rect key="frame" x="281" y="285" width="38" height="30"/>
+                                <rect key="frame" x="281" y="501" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginAction:" destination="BgN-Oc-elr" eventType="touchUpInside" id="6xV-Vv-Hc8"/>
@@ -572,6 +572,7 @@
                             <constraint firstItem="f7D-qI-RrW" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" id="DWl-47-ukP"/>
                             <constraint firstItem="yxy-rr-uoq" firstAttribute="centerY" secondItem="Tff-pa-10z" secondAttribute="centerY" id="GVI-aU-XkX"/>
                             <constraint firstItem="mzT-ul-QTA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zjX-Ew-Prz" secondAttribute="bottom" constant="10" id="HVe-E9-qvL"/>
+                            <constraint firstItem="W5H-YG-xfX" firstAttribute="top" secondItem="yxy-rr-uoq" secondAttribute="bottom" constant="20" id="I5p-Eo-Gft"/>
                             <constraint firstItem="mzT-ul-QTA" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" id="IrE-qO-QOq"/>
                             <constraint firstItem="zjX-Ew-Prz" firstAttribute="top" secondItem="f7D-qI-RrW" secondAttribute="bottom" constant="5" id="JYi-Uc-t11"/>
                             <constraint firstAttribute="bottom" secondItem="yxy-rr-uoq" secondAttribute="bottom" constant="200" id="KfX-pM-GxE"/>
@@ -618,9 +619,11 @@
                                 <exclude reference="cKh-Al-mQd"/>
                                 <exclude reference="llj-4i-bzD"/>
                                 <exclude reference="921-pY-NSA"/>
+                                <exclude reference="9yv-Ql-QKz"/>
                                 <exclude reference="GVI-aU-XkX"/>
                                 <exclude reference="KfX-pM-GxE"/>
                                 <exclude reference="RMC-Mi-wlw"/>
+                                <exclude reference="UNY-Sf-D5J"/>
                                 <exclude reference="uVJ-wD-TlB"/>
                                 <exclude reference="umX-qh-TJR"/>
                                 <exclude reference="3OF-Ws-tfp"/>
@@ -629,8 +632,8 @@
                                 <exclude reference="wYD-Lo-nmD"/>
                                 <exclude reference="bmH-ut-clF"/>
                                 <exclude reference="dBS-2d-Kcw"/>
-                                <exclude reference="HVe-E9-qvL"/>
                                 <exclude reference="ywL-Zf-0Ho"/>
+                                <exclude reference="HVe-E9-qvL"/>
                                 <exclude reference="KyM-EY-YQG"/>
                                 <exclude reference="YAS-3h-mpd"/>
                                 <exclude reference="fSa-49-OnB"/>

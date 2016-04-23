@@ -1,25 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="lgE-Ld-iJp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Course List View Controller-->
+        <scene sceneID="b6r-xM-2eG">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <collectionViewController id="lgE-Ld-iJp" customClass="CourseListViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YAH-v1-h0J">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="100" minimumInteritemSpacing="48" id="Ssm-Ku-hiC">
+                            <size key="itemSize" width="548" height="400"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="90" minY="60" maxX="90" maxY="60"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseCell" id="Z4b-yx-1QI" customClass="CourseCell" customModule="xikolo_tvos" customModuleProvider="target">
+                                <rect key="frame" x="90" y="60" width="548" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="548" height="400"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome-globe" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-DS-mCe">
+                                            <rect key="frame" x="0.0" y="0.0" width="548" height="330"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAj-2n-Bz2">
+                                            <rect key="frame" x="8" y="357" width="532" height="43"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PeE-DS-mCe" secondAttribute="trailing" id="8gb-RR-9sy"/>
+                                    <constraint firstItem="PeE-DS-mCe" firstAttribute="leading" secondItem="Z4b-yx-1QI" secondAttribute="leading" id="Pur-HX-jXv"/>
+                                    <constraint firstItem="TAj-2n-Bz2" firstAttribute="leading" secondItem="Z4b-yx-1QI" secondAttribute="leadingMargin" id="Wqj-Iy-3bh"/>
+                                    <constraint firstAttribute="bottom" secondItem="TAj-2n-Bz2" secondAttribute="bottom" id="apQ-X4-tmW"/>
+                                    <constraint firstAttribute="bottom" secondItem="PeE-DS-mCe" secondAttribute="bottom" constant="70" id="e6l-1S-3Xp"/>
+                                    <constraint firstItem="PeE-DS-mCe" firstAttribute="top" secondItem="Z4b-yx-1QI" secondAttribute="top" id="h70-ty-dd4"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="TAj-2n-Bz2" secondAttribute="trailing" id="nGC-IP-LRP"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="backgroundImage" destination="PeE-DS-mCe" id="sAE-5z-NPB"/>
+                                    <outlet property="nameLabel" destination="TAj-2n-Bz2" id="bWU-2l-iG3"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="lgE-Ld-iJp" id="ApQ-Ol-8vw"/>
+                            <outlet property="delegate" destination="lgE-Ld-iJp" id="Ro7-Kg-4i9"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YAc-FW-KOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1132" y="-526"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="welcome-globe" width="1200" height="675"/>
+    </resources>
 </document>

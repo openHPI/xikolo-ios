@@ -5,9 +5,6 @@ def common_pods
     pod 'RxSwift', :git => "https://github.com/ReactiveX/RxSwift.git"
     pod 'RxCocoa', :git => "https://github.com/ReactiveX/RxSwift.git"
 
-    # JSON Parsing
-    pod 'SwiftyJSON', :git => "https://github.com/SwiftyJSON/SwiftyJSON.git"
-
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
 end

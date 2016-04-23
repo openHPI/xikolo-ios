@@ -1,13 +1,19 @@
 {
   "layers" : [
     {
-      "filename" : "Front.imagestacklayer"
+      "filename" : "HPI.imagestacklayer"
     },
     {
-      "filename" : "Middle.imagestacklayer"
+      "filename" : "Orange.imagestacklayer"
     },
     {
-      "filename" : "Back.imagestacklayer"
+      "filename" : "Open + Red.imagestacklayer"
+    },
+    {
+      "filename" : "Yellow.imagestacklayer"
+    },
+    {
+      "filename" : "Background.imagestacklayer"
     }
   ],
   "info" : {

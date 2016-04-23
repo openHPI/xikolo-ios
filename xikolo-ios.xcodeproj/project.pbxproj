@@ -46,8 +46,6 @@
 		F80D678D1B95967D00E27520 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678C1B95967D00E27520 /* Icons.swift */; };
 		F80D67931B98683400E27520 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* NewsViewController.swift */; };
 		F80D67981B98751700E27520 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
-		F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */; };
-		F810A3AC1B8DDF2D00567188 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F810A3AB1B8DDF2D00567188 /* DataSource.swift */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
 		F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
 		F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */; };
@@ -145,8 +143,6 @@
 		F80D67971B9874F700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F80D67991B98751700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F80D679B1B9875BA00E27520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSourceProvider.swift; sourceTree = "<group>"; };
-		F810A3AB1B8DDF2D00567188 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		F81523921B67AC9F009803B1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileProvider.swift; sourceTree = "<group>"; };
@@ -289,8 +285,6 @@
 				24D48E1A1CCA551E00E8051E /* CourseProvider.swift */,
 				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
 				F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */,
-				F810A3A51B8DD4B500567188 /* MultiSourceProvider.swift */,
-				F810A3AB1B8DDF2D00567188 /* DataSource.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -301,13 +295,6 @@
 				24D48E201CCA742300E8051E /* NSDate+iso8601.swift */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		7E4F62BB1B3C3C5B006FCAD6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		A90587B21B3BFC130095DB89 = {
@@ -349,7 +336,6 @@
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
 				A90587CA1B3BFC130095DB89 /* Info.plist */,
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
-				7E4F62BB1B3C3C5B006FCAD6 /* Model */,
 			);
 			path = "xikolo-ios";
 			sourceTree = "<group>";
@@ -890,11 +876,9 @@
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				A90587C11B3BFC130095DB89 /* WelcomeViewController.swift in Sources */,
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
-				F810A3AC1B8DDF2D00567188 /* DataSource.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
-				F810A3A61B8DD4B500567188 /* MultiSourceProvider.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,

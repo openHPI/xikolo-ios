@@ -17,4 +17,15 @@ class CourseCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+
+    func configure(course: Course) {
+        layer.cornerRadius = 3
+
+        ImageProvider.loadImage(course.image_url!, imageView: backgroundImage)
+
+        nameLabel.text = course.name
+        teacherLabel.text = course.teachers
+        dateLabel.text = course.language
+    }
+
 }

@@ -69,14 +69,7 @@ extension AbstractCourseListViewController {
 
     func configureCell(cell: CourseCell, indexPath: NSIndexPath) {
         let course = resultsController.objectAtIndexPath(indexPath) as! Course
-
-        cell.nameLabel.text = course.name
-        cell.teacherLabel.text = course.teachers
-        cell.dateLabel.text = course.language
-
-        ImageProvider.loadImage(course.image_url!, imageView: cell.backgroundImage)
-
-        cell.layer.cornerRadius = 3
+        cell.configure(course)
     }
 
 }

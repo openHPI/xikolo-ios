@@ -61,11 +61,11 @@ class ProfileViewController: UIViewController {
         self.logoutButton.setTitle(NSLocalizedString("logout", comment: "Logout"), forState: UIControlState.Normal)
         
         UserProfileHelper.self.getUser() { (user: UserProfile?, error: NSError?) -> () in
-            if user != nil {
-                self.nameLabel.text = user!.firstName + " " + user!.lastName
-                self.emailLabel.text = user!.email
-                
-                ImageProvider.loadImage(user!.visual, imageView: self.profileImage)
+            if let user = user {
+                self.nameLabel.text = user.firstName + " " + user.lastName
+                self.emailLabel.text = user.email
+
+                ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImage)
             }
         };
 

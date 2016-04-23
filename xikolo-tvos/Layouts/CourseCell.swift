@@ -16,7 +16,7 @@ class CourseCell : UICollectionViewCell {
 
     func configure(course: Course) {
         if let image_url = course.image_url {
-            ImageProvider.loadImage(image_url, imageView: backgroundImage)
+            ImageHelper.loadImageFromURL(image_url, toImageView: backgroundImage)
         }
         nameLabel.text = course.name
     }

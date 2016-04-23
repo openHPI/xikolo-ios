@@ -131,6 +131,11 @@
                                     <constraint firstItem="b2s-2M-RvA" firstAttribute="height" secondItem="cRx-jm-Bdw" secondAttribute="height" multiplier="0.45" id="shc-Ky-srd"/>
                                 </constraints>
                                 <size key="customSize" width="400" height="240"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="backgroundImage" destination="cRx-jm-Bdw" id="3jB-OK-2ib"/>
                                     <outlet property="buttonEnter" destination="LKp-e3-WeA" id="A45-2b-jlh"/>

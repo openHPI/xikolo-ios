@@ -19,8 +19,6 @@ class CourseCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
 
     func configure(course: Course) {
-        layer.cornerRadius = 3
-
         ImageProvider.loadImage(course.image_url!, imageView: backgroundImage)
 
         nameLabel.text = course.name

@@ -11,7 +11,7 @@ import UIKit
 
 class CourseHelper {
 
-    static private let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    static private let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
     static private let managedContext = appDelegate.managedObjectContext
     static private let entity = NSEntityDescription.entityForName("Course", inManagedObjectContext: managedContext)!
 
@@ -70,7 +70,7 @@ class CourseHelper {
             }
         }
         // TODO: Delete courses from CD that have not been returned
-        try managedContext.save()
+        appDelegate.saveContext()
     }
 
 }

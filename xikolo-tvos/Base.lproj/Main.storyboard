@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="fa6-5p-taa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -63,6 +64,165 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAc-FW-KOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132" y="-526"/>
+        </scene>
+        <!--Course details-->
+        <scene sceneID="2Ee-f7-HEc">
+            <objects>
+                <viewController id="AEd-4M-ZaT" customClass="CourseDetailsViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0A8-AG-gQX"/>
+                        <viewControllerLayoutGuide type="bottom" id="DiY-4X-u5a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lpa-VI-3Zl">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Am1-X4-7ws">
+                                <rect key="frame" x="390" y="145" width="1440" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZFm-SB-bq0">
+                                <rect key="frame" x="1265" y="286" width="565" height="377"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZFm-SB-bq0" secondAttribute="height" multiplier="3:2" id="lbn-qo-mch"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="naB-Kp-dy7">
+                                <rect key="frame" x="390" y="300" width="800" height="227"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="227" id="GKF-ge-00G"/>
+                                    <constraint firstAttribute="width" constant="800" id="M4W-8v-gSb"/>
+                                </constraints>
+                                <string key="text">After the cataclysmic events in New York with The Avengers, Steve Rogers, aka Captain America is living quietly in Washington, D.C. and trying to adjust to the modern world. But when a S.H.I.E.L.D. colleague comes under attack, Steve becomes embroiled in a web of intrigues lorem ipsum dolor sit amet</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
+                                        <rect key="value" x="-4" y="-4" width="-4" height="-4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHP-mi-XoU">
+                                <rect key="frame" x="390" y="577" width="241" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Un-enroll"/>
+                                <connections>
+                                    <action selector="unenroll:" destination="AEd-4M-ZaT" eventType="primaryActionTriggered" id="TBh-dG-J2h"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LANGUAGE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3it-eJ-30e">
+                                <rect key="frame" x="90" y="226" width="260" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="EV5-tu-3kC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLP-ed-6jg">
+                                <rect key="frame" x="90" y="254" width="260" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="MnJ-IW-dPP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May 27 2015, 09:00 AM to June 26 2016, 11:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COK-sO-fhZ">
+                                <rect key="frame" x="390" y="226" width="800" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="800" id="HJS-GV-Imi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEACHER" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uH6-bb-gmV">
+                                <rect key="frame" x="90" y="322" width="260" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="jiV-E8-EgB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iR-QQ-Crh">
+                                <rect key="frame" x="90" y="350" width="260" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="gRU-yV-Tfg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="me5-Ae-LJK">
+                                <rect key="frame" x="390" y="577" width="176" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Enroll"/>
+                                <connections>
+                                    <action selector="enroll:" destination="AEd-4M-ZaT" eventType="primaryActionTriggered" id="80w-6U-CkX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="uH6-bb-gmV" firstAttribute="top" secondItem="wLP-ed-6jg" secondAttribute="bottom" constant="40" id="0QJ-ss-9mB"/>
+                            <constraint firstItem="naB-Kp-dy7" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="390" id="23I-G3-onr"/>
+                            <constraint firstItem="IHP-mi-XoU" firstAttribute="top" secondItem="naB-Kp-dy7" secondAttribute="bottom" constant="50" id="432-2O-j0a"/>
+                            <constraint firstItem="ZFm-SB-bq0" firstAttribute="leading" secondItem="naB-Kp-dy7" secondAttribute="trailing" constant="75" id="5FM-0w-DUZ"/>
+                            <constraint firstItem="IHP-mi-XoU" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="390" id="6Bf-dM-7F2"/>
+                            <constraint firstItem="COK-sO-fhZ" firstAttribute="top" secondItem="Am1-X4-7ws" secondAttribute="bottom" constant="35" id="7gs-aD-Zkp"/>
+                            <constraint firstItem="uH6-bb-gmV" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="90" id="ArC-MA-G9d"/>
+                            <constraint firstItem="wLP-ed-6jg" firstAttribute="top" secondItem="3it-eJ-30e" secondAttribute="bottom" id="Btz-qV-rAA"/>
+                            <constraint firstItem="me5-Ae-LJK" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="390" id="CBV-W2-WRJ"/>
+                            <constraint firstItem="wLP-ed-6jg" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="90" id="IeQ-uL-8LH"/>
+                            <constraint firstItem="5iR-QQ-Crh" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="90" id="M0P-9N-wZk"/>
+                            <constraint firstItem="Am1-X4-7ws" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="390" id="W4j-1H-BUq"/>
+                            <constraint firstItem="5iR-QQ-Crh" firstAttribute="top" secondItem="uH6-bb-gmV" secondAttribute="bottom" id="WsO-G3-c5s"/>
+                            <constraint firstItem="COK-sO-fhZ" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="390" id="Xk4-Sd-83q"/>
+                            <constraint firstItem="me5-Ae-LJK" firstAttribute="top" secondItem="naB-Kp-dy7" secondAttribute="bottom" constant="50" id="YSV-Xv-M7o"/>
+                            <constraint firstItem="3it-eJ-30e" firstAttribute="top" secondItem="0A8-AG-gQX" secondAttribute="bottom" constant="226" id="b9R-Ol-7eH"/>
+                            <constraint firstItem="ZFm-SB-bq0" firstAttribute="top" secondItem="Am1-X4-7ws" secondAttribute="bottom" constant="95" id="nhS-hS-skN"/>
+                            <constraint firstAttribute="trailing" secondItem="Am1-X4-7ws" secondAttribute="trailing" constant="90" id="tj7-71-BEB"/>
+                            <constraint firstItem="Am1-X4-7ws" firstAttribute="top" secondItem="0A8-AG-gQX" secondAttribute="bottom" constant="145" id="uvn-dW-5hd"/>
+                            <constraint firstItem="3it-eJ-30e" firstAttribute="leading" secondItem="Lpa-VI-3Zl" secondAttribute="leading" constant="90" id="wUX-YO-Eun"/>
+                            <constraint firstItem="naB-Kp-dy7" firstAttribute="top" secondItem="COK-sO-fhZ" secondAttribute="bottom" constant="44" id="zAD-Yq-Jho"/>
+                            <constraint firstAttribute="trailing" secondItem="ZFm-SB-bq0" secondAttribute="trailing" constant="90" id="zRl-V5-neD"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Course details" id="VEm-tl-Heb"/>
+                    <connections>
+                        <outlet property="abstractView" destination="naB-Kp-dy7" id="cQv-9j-pNe"/>
+                        <outlet property="courseImageView" destination="ZFm-SB-bq0" id="Rut-jl-A1k"/>
+                        <outlet property="dateView" destination="COK-sO-fhZ" id="WEF-yj-TLJ"/>
+                        <outlet property="enrollButton" destination="me5-Ae-LJK" id="3ju-RE-xVt"/>
+                        <outlet property="languageView" destination="wLP-ed-6jg" id="erf-Th-oIs"/>
+                        <outlet property="teacherView" destination="5iR-QQ-Crh" id="lDS-vV-YLx"/>
+                        <outlet property="titleView" destination="Am1-X4-7ws" id="E6h-yX-bMt"/>
+                        <outlet property="unenrollButton" destination="IHP-mi-XoU" id="iHm-Nn-yu0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rxj-XR-4Tt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5246" y="-1028"/>
+        </scene>
+        <!--Course Tab Bar Controller-->
+        <scene sceneID="0AF-rc-gJk">
+            <objects>
+                <tabBarController storyboardIdentifier="CourseDetailTabBarController" id="4Yh-6H-ggQ" customClass="CourseTabBarController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="sZI-9j-5WP">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="AEd-4M-ZaT" kind="relationship" relationship="viewControllers" id="qW2-s6-AQ9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i2g-Mx-OAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3144" y="-526"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7wc-Kd-2eA">

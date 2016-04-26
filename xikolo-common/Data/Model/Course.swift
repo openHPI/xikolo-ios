@@ -20,6 +20,14 @@ class Course : NSManagedObject {
         }
     }
 
+    var language_translated: String? {
+        if let language = language {
+            let locale = NSLocale.currentLocale()
+            return locale.displayNameForKey(NSLocaleIdentifier, value: language)
+        }
+        return nil
+    }
+
     func loadFromDict(dict: [String: AnyObject]) {
         course_code = dict["course_code"] as? String
         course_description = dict["description"] as? String

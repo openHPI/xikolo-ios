@@ -18,6 +18,9 @@
 		24A179F11CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */; };
 		24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */; };
 		24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */; };
+		24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
+		24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */; };
+		24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
@@ -118,6 +121,8 @@
 		24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractAppDelegate.swift; sourceTree = "<group>"; };
 		24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTabBarController.swift; sourceTree = "<group>"; };
+		24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractLoginViewController.swift; sourceTree = "<group>"; };
+		24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		24A17A011CD11E270056A8EE /* UIView+shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shake.swift"; sourceTree = "<group>"; };
 		24CB7E341CC678A000960269 /* xikolo-tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-tvos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */,
+				24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 				24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */,
 				24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */,
 				24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */,
+				24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -899,7 +906,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
+				24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */,
 				24D48E2D1CCA934500E8051E /* CourseHelper.swift in Sources */,
 				24A179F11CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */,
@@ -952,6 +961,7 @@
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,
+				24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
 				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,
 				F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */,

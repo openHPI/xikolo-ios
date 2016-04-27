@@ -11,15 +11,25 @@ import UIKit
 class CourseListViewController : AbstractCourseListViewController {
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let course = resultsController.objectAtIndexPath(indexPath) as! Course
-        openCourseDetailView(course)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        performSegueWithIdentifier("ShowCourseDetailSegue", sender: cell)
     }
 
-    func openCourseDetailView(course: Course) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("CourseDetailTabBarController") as! CourseTabBarController
-        vc.course = course
-        self.navigationController?.pushViewController(vc, animated: true)
+}
+
+extension CourseListViewController {
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+            case "ShowCourseDetailSegue"?:
+                let vc = segue.destinationViewController as! CourseTabBarController
+                let cell = sender as! CourseCell
+                let indexPath = collectionView!.indexPathForCell(cell)
+                let course = resultsController.objectAtIndexPath(indexPath!) as! Course
+                vc.course = course
+            default:
+                break
+        }
     }
 
 }

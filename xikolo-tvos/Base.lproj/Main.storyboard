@@ -60,6 +60,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Lmf-RF-jO6"/>
+                    <connections>
+                        <segue destination="4Yh-6H-ggQ" kind="show" identifier="ShowCourseDetailSegue" id="sy3-jR-4Nq"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAc-FW-KOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -278,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxj-XR-4Tt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5246" y="-1028"/>
+            <point key="canvasLocation" x="5374" y="-1028"/>
         </scene>
         <!--Course Tab Bar Controller-->
         <scene sceneID="0AF-rc-gJk">
@@ -295,7 +298,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2g-Mx-OAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3144" y="-526"/>
+            <point key="canvasLocation" x="3248" y="-526"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7wc-Kd-2eA">

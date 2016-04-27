@@ -15,8 +15,9 @@
 // Tab Bar
 "tab_all_courses" = "Alle Kurse";
 "tab_my_courses" = "Meine Kurses";
+"tab_courses" = "Kurse";
 "tab_news" = "Neuigkeiten";
-"tab_settings" = "Einstellungen";
+"tab_profile" = "Profil";
 
 // Login
 "login" = "Login";

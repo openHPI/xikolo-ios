@@ -25,7 +25,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             if token != nil {
                 self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             } else {
-                self.shake(self.passwordTextField)
+                self.passwordTextField.shake()
                 // TODO: maybe check whether email is valid
             }
         });
@@ -53,16 +53,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    func shake(viewToAnimate: UIView){
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.1
-        animation.repeatCount = 5
-        animation.autoreverses = true
-        animation.fromValue = NSValue(CGPoint: CGPointMake(viewToAnimate.center.x - 2.0, viewToAnimate.center.y))
-        animation.toValue = NSValue(CGPoint: CGPointMake(viewToAnimate.center.x + 2.0, viewToAnimate.center.y))
-        viewToAnimate.layer.addAnimation(animation, forKey: "position")
     }
     
     /*

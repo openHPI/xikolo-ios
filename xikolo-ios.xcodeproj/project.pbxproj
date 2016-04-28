@@ -24,6 +24,8 @@
 		24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
+		24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
+		24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
@@ -127,6 +129,7 @@
 		24A17A011CD11E270056A8EE /* UIView+shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shake.swift"; sourceTree = "<group>"; };
 		24A17A051CD189390056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		24A17A0B1CD18CBD0056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		24A17A0C1CD233050056A8EE /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		24CB7E341CC678A000960269 /* xikolo-tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-tvos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 		24597D231CC6C87600FB5338 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				24A17A0C1CD233050056A8EE /* BaseModel.swift */,
 				24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */,
 				24D48E171CCA4FC100E8051E /* Course.swift */,
 				F85225441B4D2B3D00C9BF56 /* UserProfile.swift */,
@@ -912,6 +916,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
 				24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
 				24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */,
@@ -962,6 +967,7 @@
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
+				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,

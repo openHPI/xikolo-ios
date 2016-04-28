@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-class Course : NSManagedObject {
+class Course : BaseModel {
 
     var is_enrolled: Bool {
         get {

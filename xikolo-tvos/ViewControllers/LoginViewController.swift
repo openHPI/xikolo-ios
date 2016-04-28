@@ -10,17 +10,4 @@ import UIKit
 
 class LoginViewController : AbstractLoginViewController {
 
-    override func viewDidLoad() {
-        self.delegate = self
-        super.viewDidLoad()
-    }
-
-}
-
-extension LoginViewController : AbstractLoginViewControllerDelegate {
-
-    func didSuccessfullyLogin() {
-        //TODO: Actually do something.
-    }
-
 }

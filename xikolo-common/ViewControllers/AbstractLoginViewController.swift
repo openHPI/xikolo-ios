@@ -22,12 +22,18 @@ class AbstractLoginViewController : UIViewController {
         UserProfileHelper.login(email, password: password) { (token: String?, error: NSError?) -> () in
             if token != nil {
                 self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-                self.delegate?.didSuccessfullyLogin()
+                self.didSuccessfullyLogin()
             } else {
                 self.emailField.shake()
                 self.passwordField.shake()
             }
         }
+    }
+
+    func didSuccessfullyLogin() {
+        CourseHelper.refreshCourses()
+
+        delegate?.didSuccessfullyLogin()
     }
 
 }

@@ -34,6 +34,30 @@ public class UserProfileHelper {
         }
     }
 
+    static func createEnrollement(courseId: String, completionHandler: (success: Bool, error: NSError?) -> ()) {
+        let url = Routes.API_URL + Routes.ENROLLMENTS
+
+        Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
+                Routes.HTTP_PARAM_COURSE_ID: courseId,
+            ]).responseJSON { response in
+                if let json = response.result.value {
+                    if (json["id"] as? String) != nil {
+                        completionHandler(success: true, error: nil)
+                        return
+                    }
+                }
+                completionHandler(success: false, error: response.result.error)
+        }
+    }
+
+    static func deleteEnrollement(courseId: String, completionHandler: (success: Bool, error: NSError?) -> ()) {
+        let url = Routes.API_URL + Routes.ENROLLMENTS + courseId
+
+        Alamofire.request(.DELETE, url, headers: NetworkHelper.getRequestHeaders()).response { (request, response, data, error) in
+            completionHandler(success: error == nil, error: error)
+        }
+    }
+
     static func logout() {
         prefs.removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
         prefs.synchronize()

@@ -19,6 +19,7 @@ class Routes: NSObject {
     static let COURSES = "courses/"
     static let AUTHENTICATE = "authenticate/"
     static let MY_PROFILE = "users/me"
+    static let ENROLLMENTS = "users/me/enrollments/"
     static let NEWS = "news"
     
     static let HTTP_ACCEPT_HEADER = "Accept"
@@ -28,6 +29,7 @@ class Routes: NSObject {
     
     static let HTTP_PARAM_EMAIL = "email"
     static let HTTP_PARAM_PASSWORD = "password"
+    static let HTTP_PARAM_COURSE_ID = "course_id"
     
     static let REGISTER_URL = "https://open.hpi.de/account/new"
 

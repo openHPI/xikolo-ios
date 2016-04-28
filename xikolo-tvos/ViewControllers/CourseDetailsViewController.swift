@@ -41,7 +41,8 @@ class CourseDetailsViewController : UIViewController {
         let startDateString: String? = course.start_date != nil ? dateFormatter.stringFromDate(course.start_date!) : nil
         let endDateString: String? = course.end_date != nil ? dateFormatter.stringFromDate(course.end_date!) : nil
         if let startDateString = startDateString, endDateString = endDateString {
-            let dateString = "\(startDateString) to \(endDateString)"
+            let format = NSLocalizedString("%@ to %@", comment: "<startDate> to <endDate>")
+            let dateString = String.localizedStringWithFormat(format, startDateString, endDateString)
             dateView.text = dateString
         }
 

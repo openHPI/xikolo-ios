@@ -23,6 +23,7 @@
 		24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
+		24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
@@ -124,6 +125,8 @@
 		24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractLoginViewController.swift; sourceTree = "<group>"; };
 		24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		24A17A011CD11E270056A8EE /* UIView+shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shake.swift"; sourceTree = "<group>"; };
+		24A17A051CD189390056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		24A17A0B1CD18CBD0056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24CB7E341CC678A000960269 /* xikolo-tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-tvos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -288,6 +291,7 @@
 				24CB7E3A1CC678A000960269 /* Main.storyboard */,
 				24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */,
 				24CB7E3F1CC678A000960269 /* Info.plist */,
+				24A17A0A1CD18CB50056A8EE /* Localizable.strings */,
 			);
 			path = "xikolo-tvos";
 			sourceTree = "<group>";
@@ -642,6 +646,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = A90587B21B3BFC130095DB89;
 			productRefGroup = A90587BC1B3BFC130095DB89 /* Products */;
@@ -663,6 +668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24CB7E551CC6834C00960269 /* assets-common.xcassets in Resources */,
+				24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */,
 				24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */,
 				24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */,
 			);
@@ -1013,10 +1019,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		24A17A0A1CD18CB50056A8EE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24A17A0B1CD18CBD0056A8EE /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		24CB7E3A1CC678A000960269 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				24CB7E3B1CC678A000960269 /* Base */,
+				24A17A051CD189390056A8EE /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

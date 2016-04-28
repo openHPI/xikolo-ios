@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "LANGUAGE"; ObjectID = "3it-eJ-30e"; */
+"3it-eJ-30e.text" = "SPRACHE";
+
+/* Class = "UIButton"; normalTitle = "Un-enroll"; ObjectID = "IHP-mi-XoU"; */
+"IHP-mi-XoU.normalTitle" = "Kursteilnahme beenden";
+
+/* Class = "UITabBarItem"; title = "Course details"; ObjectID = "VEm-tl-Heb"; */
+"VEm-tl-Heb.title" = "Kursdetails";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "di2-5e-mIX"; */
+"di2-5e-mIX.placeholder" = "Passwort";
+
+/* Class = "UITextField"; placeholder = "email@example.com"; ObjectID = "jUk-n3-ljj"; */
+"jUk-n3-ljj.placeholder" = "email@example.com";
+
+/* Class = "UILabel"; text = "You need to login to perform the requested action."; ObjectID = "kgg-6J-pbb"; */
+"kgg-6J-pbb.text" = "Bitte loggen Sie sich ein, um die gewählte Aktion durchzuführen.";
+
+/* Class = "UIButton"; normalTitle = "Enroll"; ObjectID = "me5-Ae-LJK"; */
+"me5-Ae-LJK.normalTitle" = "Einschreiben";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "t5j-ZR-DzJ"; */
+"t5j-ZR-DzJ.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "TEACHER"; ObjectID = "uH6-bb-gmV"; */
+"uH6-bb-gmV.text" = "DOZENT";

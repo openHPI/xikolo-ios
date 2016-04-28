@@ -20,13 +20,24 @@ class CourseDetailsViewController : UIViewController {
     @IBOutlet weak var enrollButton: UIButton!
     @IBOutlet weak var unenrollButton: UIButton!
 
+    weak var customPreferredFocusedView: UIView!
+    override weak var preferredFocusedView: UIView? {
+        return customPreferredFocusedView
+    }
+
     var courseTabBarController: CourseTabBarController!
+    var course: Course!
 
     override func viewDidLoad() {
         courseTabBarController = self.tabBarController as! CourseTabBarController
+        course = courseTabBarController.course
 
-        let course = courseTabBarController.course
+        customPreferredFocusedView = super.preferredFocusedView
 
+        configureViews()
+    }
+
+    func configureViews() {
         titleView.text = course.name
         if let imageURL = course.image_url {
             ImageHelper.loadImageFromURL(imageURL, toImageView: courseImageView)
@@ -52,9 +63,19 @@ class CourseDetailsViewController : UIViewController {
         teacherView.text = course.teachers
 
         if course.is_enrolled {
-            enrollButton.removeFromSuperview()
+            if enrollButton == UIScreen.mainScreen().focusedView {
+                self.customPreferredFocusedView = unenrollButton
+                setNeedsFocusUpdate()
+            }
+            enrollButton.hidden = true
+            unenrollButton.hidden = false
         } else {
-            unenrollButton.removeFromSuperview()
+            if unenrollButton == UIScreen.mainScreen().focusedView {
+                self.customPreferredFocusedView = enrollButton
+                setNeedsFocusUpdate()
+            }
+            enrollButton.hidden = false
+            unenrollButton.hidden = true
         }
     }
 

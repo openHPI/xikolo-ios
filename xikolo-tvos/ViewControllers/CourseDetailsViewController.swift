@@ -34,7 +34,17 @@ class CourseDetailsViewController : UIViewController {
 
         customPreferredFocusedView = super.preferredFocusedView
 
+        course.notifyOnChange(self, updatedHandler: { model in
+            self.configureViews()
+        }, deletedHandler: {
+            // If the course was deleted, go back to course list.
+            self.courseTabBarController.dismissViewControllerAnimated(true, completion: nil)
+        })
         configureViews()
+    }
+
+    deinit {
+        course.removeNotifications(self)
     }
 
     func configureViews() {

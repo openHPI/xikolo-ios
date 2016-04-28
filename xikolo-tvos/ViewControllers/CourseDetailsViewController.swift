@@ -91,14 +91,50 @@ class CourseDetailsViewController : UIViewController {
 
 }
 
-extension CourseDetailsViewController {
+extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
 
     @IBAction func enroll(sender: UIButton) {
-        //TODO: Actually do something.
+        // TODO: Move this somewhere more common. We probably need to do this all the time.
+        if (!UserProfileHelper.isLoggedIn()) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            vc.delegate = self
+            self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+        } else {
+            createEnrollment()
+        }
+    }
+
+    func didSuccessfullyLogin() {
+        createEnrollment()
+    }
+
+    func createEnrollment() {
+        if let id = course.id {
+            UserProfileHelper.createEnrollement(id) { success, error in
+                if success {
+                    self.course.is_enrolled = true
+                    CourseHelper.refreshCourses()
+                } else {
+                    // TODO: Error handling.
+                }
+            }
+        }
     }
 
     @IBAction func unenroll(sender: UIButton) {
-        //TODO: Actually do something.
+        // No need to check for login, cannot be enrolled without.
+
+        if let id = course.id {
+            UserProfileHelper.deleteEnrollement(id) { success, error in
+                if success {
+                    self.course.is_enrolled = false
+                    CourseHelper.refreshCourses()
+                } else {
+                    // TODO: Error handling.
+                }
+            }
+        }
     }
 
 }

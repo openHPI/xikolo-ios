@@ -3,6 +3,8 @@ use_frameworks!
 def common_pods
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
+
+    pod 'Spine', :git => 'https://github.com/invliD/Spine.git', :branch => 'master'
 end
 
 target 'xikolo-ios' do

@@ -12,12 +12,25 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var webViewNews: UIWebView!
+    @IBOutlet weak var webViewCourseActivity: UIWebView!
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            webViewCourseActivity.hidden = true
+            webViewNews.hidden = false
+        case 1:
+            webViewCourseActivity.hidden = true
+            webViewNews.hidden = false
+        default: break
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webView.delegate = self
+        self.webViewNews.delegate = self
         
         // Position of indicator
         activityIndicator.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 3)
@@ -26,7 +39,7 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
         let url = NSURL(string: Routes.BASE_URL + Routes.NEWS)
         let request = NSMutableURLRequest(URL: url!)
         request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
-        self.webView.loadRequest(request)
+        self.webViewNews.loadRequest(request)
 
         // Do any additional setup after loading the view.
     }
@@ -37,7 +50,6 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func webViewDidStartLoad(webView: UIWebView) {

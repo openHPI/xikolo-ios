@@ -11,8 +11,16 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="teachers" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection" syncable="YES"/>
+    </entity>
+    <entity name="CourseSection" representedClassName=".CourseSection" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="section_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="sections" inverseEntity="Course" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Course" positionX="-54" positionY="-9" width="128" height="193"/>
+        <element name="Course" positionX="-54" positionY="-9" width="128" height="210"/>
+        <element name="CourseSection" positionX="214" positionY="144" width="128" height="105"/>
     </elements>
 </model>

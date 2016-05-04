@@ -68,6 +68,7 @@
 		A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */; };
 		A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */; };
 		A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */; };
+		ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */; };
 		F5FB5773C17C2006E642A1C3 /* Pods_xikolo_tvos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A8F54E4452A1D9A8308D40 /* Pods_xikolo_tvos.framework */; };
 		F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F805748D1B4E904700FA8AD7 /* MainNavigationController.swift */; };
 		F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */; };
@@ -166,7 +167,9 @@
 		A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosUITests.swift; sourceTree = "<group>"; };
 		A90587E01B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A90587EC1B3BFDA30095DB89 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
+		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHPI4.ttf; sourceTree = "<group>"; };
+		ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		B78AAB6378C0E04428914D10 /* Pods-xikolo-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosUITests/Pods-xikolo-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C8ED7D8193796ED34E28F78D /* Pods-xikolo-tvosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvosUITests/Pods-xikolo-tvosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D0F9EF9841051DE94062DEAF /* Pods-xikolo-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosUITests/Pods-xikolo-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -468,6 +471,7 @@
 				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
 				F80D67921B98683400E27520 /* NewsViewController.swift */,
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
+				ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -494,6 +498,7 @@
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */,
 				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
 				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,
 				7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */,
@@ -985,6 +990,7 @@
 				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 				24D48E221CCA78A600E8051E /* NSDate+iso8601.swift in Sources */,
+				ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

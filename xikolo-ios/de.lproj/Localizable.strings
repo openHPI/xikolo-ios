@@ -13,6 +13,7 @@
 "page_title_find_courses" = "Finde jetzt Kurse für Anfänger und Fortgeschrittene.";
 
 // Tab Bar
+"tab_dashboard" = "Dashboard";
 "tab_all_courses" = "Alle Kurse";
 "tab_my_courses" = "Meine Kurses";
 "tab_courses" = "Kurse";

@@ -13,6 +13,7 @@
 "page_title_find_courses" = "Find courses now. For beginners and professionals.";
 
 // Tab Bar
+"tab_dashboard" = "Dashboard";
 "tab_all_courses" = "All Courses";
 "tab_my_courses" = "My Courses";
 "tab_courses" = "Courses";

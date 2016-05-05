@@ -13,17 +13,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var coursesLabel: UILabel!
-    @IBOutlet weak var coursesCountLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-    
-    @IBAction func loginAction(sender: UIButton) {
-        
-    }
+    @IBOutlet weak var containerTableView: UIView!
     
     @IBAction func logoutAction(sender: UIButton) {
         UserProfileHelper.logout()
@@ -62,37 +54,22 @@ class ProfileViewController: UIViewController {
         
         UserProfileHelper.self.getUser() { (user: UserProfile?, error: NSError?) -> () in
             if let user = user {
-                self.nameLabel.text = user.firstName + " " + user.lastName
-                self.emailLabel.text = user.email
+                //self.nameLabel.text = user.firstName + " " + user.lastName
+                //self.emailLabel.text = user.email
 
                 ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImage)
             }
         };
-
-        do {
-            let numberOfEnrolledCourses = try CourseHelper.getNumberOfEnrolledCourses()
-            self.coursesCountLabel.text = String(numberOfEnrolledCourses)
-        } catch {
-            // TODO: Error handling
-        }
     }
     
     func relayout() {
         if !UserProfileHelper.isLoggedIn() {
             logoutButton.hidden = true
-            nameLabel.hidden = true
-            coursesLabel.hidden = true
-            coursesCountLabel.hidden = true
-            emailLabel.hidden = true
-            
             loginButton.hidden = false
+            containerTableView.hidden = true
         } else {
+            containerTableView.hidden = false
             logoutButton.hidden = false
-            nameLabel.hidden = false
-            coursesLabel.hidden = false
-            coursesCountLabel.hidden = false
-            emailLabel.hidden = false
-            
             loginButton.hidden = true
         }
     }

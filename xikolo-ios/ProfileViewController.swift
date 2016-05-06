@@ -13,14 +13,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var containerTableView: UIView!
-    
-    @IBAction func logoutAction(sender: UIButton) {
-        UserProfileHelper.logout()
-        relayout()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +30,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         self.tabBarController!.title = NSLocalizedString("tab_profile", comment: "Profile")
+    }
+    @IBAction func logout(sender: UIButton) {
+        UserProfileHelper.logout()
+        relayout()
     }
 
     override func didReceiveMemoryWarning() {

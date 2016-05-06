@@ -287,7 +287,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginButton:" destination="3kq-NS-dJI" eventType="touchUpInside" id="Sf2-w3-M98"/>
+                                            <action selector="login:" destination="3kq-NS-dJI" eventType="touchUpInside" id="RjD-sO-MVf"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRI-Oq-dJK">
@@ -296,7 +296,7 @@
                                             <color key="titleColor" red="0.70588235294117652" green="0.16078431372549021" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="registerButton:" destination="3kq-NS-dJI" eventType="touchUpInside" id="y65-TB-PuE"/>
+                                            <action selector="registerButton:" destination="3kq-NS-dJI" eventType="touchUpInside" id="fXC-b1-6zw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -375,9 +375,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailTextField" destination="bp2-MP-IBy" id="ILk-Kn-mQy"/>
-                        <outlet property="passwordTextField" destination="ETa-cI-bg8" id="JQO-2H-Qxa"/>
-                        <outlet property="registerButton" destination="rRI-Oq-dJK" id="cTn-J6-an2"/>
+                        <outlet property="emailField" destination="bp2-MP-IBy" id="3wi-WB-q9I"/>
+                        <outlet property="passwordField" destination="ETa-cI-bg8" id="MrK-7i-uOk"/>
+                        <outlet property="registerButton" destination="rRI-Oq-dJK" id="Yzf-oR-AZq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiP-zR-m0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -544,20 +544,6 @@
                                     <constraint firstAttribute="height" priority="999" constant="80" id="Mia-9z-efl"/>
                                 </constraints>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxy-rr-uoq">
-                                <rect key="frame" x="281" y="501" width="38" height="30"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <segue destination="96V-El-4yZ" kind="presentation" id="xWW-jh-jHk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzT-ul-QTA">
-                                <rect key="frame" x="276" y="501" width="48" height="30"/>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="logoutAction:" destination="BgN-Oc-elr" eventType="touchUpInside" id="4Ud-TD-0BQ"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" tag="33" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13m-OG-K0U">
                                 <rect key="frame" x="0.0" y="262" width="600" height="208"/>
                                 <constraints>
@@ -567,48 +553,46 @@
                                     <segue destination="MmR-Ub-Xo1" kind="embed" id="U0L-OT-sV0"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Qr-Um-lmD">
+                                <rect key="frame" x="281" y="513" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <segue destination="96V-El-4yZ" kind="presentation" id="3cc-hR-dO2"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33Z-Lu-Cjm">
+                                <rect key="frame" x="276" y="513" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="BgN-Oc-elr" eventType="touchUpInside" id="ZLP-d8-FOJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="13m-OG-K0U" firstAttribute="top" secondItem="K4x-M6-0n9" secondAttribute="bottom" constant="8" symbolic="YES" id="4S4-yK-ruZ"/>
-                            <constraint firstItem="yxy-rr-uoq" firstAttribute="trailing" secondItem="mzT-ul-QTA" secondAttribute="trailing" id="921-pY-NSA"/>
-                            <constraint firstItem="yxy-rr-uoq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="K4x-M6-0n9" secondAttribute="bottom" constant="8" symbolic="YES" id="9yv-Ql-QKz"/>
-                            <constraint firstItem="yxy-rr-uoq" firstAttribute="centerY" secondItem="Tff-pa-10z" secondAttribute="centerY" id="GVI-aU-XkX"/>
-                            <constraint firstItem="W5H-YG-xfX" firstAttribute="top" secondItem="yxy-rr-uoq" secondAttribute="bottom" constant="20" id="I5p-Eo-Gft"/>
-                            <constraint firstItem="mzT-ul-QTA" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" id="IrE-qO-QOq"/>
-                            <constraint firstAttribute="bottom" secondItem="yxy-rr-uoq" secondAttribute="bottom" constant="200" id="KfX-pM-GxE"/>
+                            <constraint firstItem="W5H-YG-xfX" firstAttribute="top" secondItem="2Qr-Um-lmD" secondAttribute="bottom" constant="8" symbolic="YES" id="Gh9-83-QRf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Q2u-d7-RfF" secondAttribute="trailing" constant="-20" id="KyM-EY-YQG"/>
                             <constraint firstItem="Q2u-d7-RfF" firstAttribute="top" secondItem="L3X-f4-S5k" secondAttribute="bottom" id="LoR-WQ-Nyc"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="K4x-M6-0n9" secondAttribute="trailing" constant="10" id="PLo-Nv-fI0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yxy-rr-uoq" secondAttribute="trailing" constant="256" id="RMC-Mi-wlw"/>
-                            <constraint firstItem="yxy-rr-uoq" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" priority="950" id="TRe-pA-wjb"/>
+                            <constraint firstItem="W5H-YG-xfX" firstAttribute="top" secondItem="33Z-Lu-Cjm" secondAttribute="bottom" constant="8" symbolic="YES" id="Stw-Tn-cOm"/>
                             <constraint firstItem="Q2u-d7-RfF" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" id="TSv-kV-btu"/>
-                            <constraint firstItem="yxy-rr-uoq" firstAttribute="centerY" secondItem="Tff-pa-10z" secondAttribute="centerY" id="UNY-Sf-D5J"/>
                             <constraint firstItem="Q2u-d7-RfF" firstAttribute="leading" secondItem="Tff-pa-10z" secondAttribute="leadingMargin" constant="-20" id="YAS-3h-mpd"/>
                             <constraint firstItem="K4x-M6-0n9" firstAttribute="top" secondItem="Q2u-d7-RfF" secondAttribute="bottom" constant="-40" id="YfW-Mg-sG6"/>
                             <constraint firstItem="K4x-M6-0n9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Tff-pa-10z" secondAttribute="leadingMargin" constant="10" id="ZUy-bG-7dH"/>
+                            <constraint firstItem="33Z-Lu-Cjm" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" id="dK6-EJ-8Pt"/>
                             <constraint firstItem="Q2u-d7-RfF" firstAttribute="height" secondItem="Tff-pa-10z" secondAttribute="height" multiplier="0.2" id="fSa-49-OnB"/>
                             <constraint firstItem="K4x-M6-0n9" firstAttribute="top" secondItem="L3X-f4-S5k" secondAttribute="bottom" constant="110" id="jWT-kn-qpu"/>
+                            <constraint firstItem="2Qr-Um-lmD" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" id="ku5-gz-6gT"/>
                             <constraint firstItem="K4x-M6-0n9" firstAttribute="centerX" secondItem="Tff-pa-10z" secondAttribute="centerX" id="tbu-QI-JA8"/>
                             <constraint firstItem="13m-OG-K0U" firstAttribute="leading" secondItem="Tff-pa-10z" secondAttribute="leading" id="uPM-xL-fWR"/>
-                            <constraint firstItem="yxy-rr-uoq" firstAttribute="leading" secondItem="K4x-M6-0n9" secondAttribute="leading" id="uVJ-wD-TlB"/>
-                            <constraint firstItem="W5H-YG-xfX" firstAttribute="top" secondItem="mzT-ul-QTA" secondAttribute="bottom" constant="20" id="vAO-jd-7tb"/>
                             <constraint firstAttribute="trailing" secondItem="13m-OG-K0U" secondAttribute="trailing" id="xFT-5X-g1t"/>
-                            <constraint firstItem="W5H-YG-xfX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yxy-rr-uoq" secondAttribute="bottom" constant="160" id="ywL-Zf-0Ho"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="PLo-Nv-fI0"/>
                                 <exclude reference="ZUy-bG-7dH"/>
                                 <exclude reference="jWT-kn-qpu"/>
-                                <exclude reference="ywL-Zf-0Ho"/>
-                                <exclude reference="921-pY-NSA"/>
-                                <exclude reference="9yv-Ql-QKz"/>
-                                <exclude reference="GVI-aU-XkX"/>
-                                <exclude reference="KfX-pM-GxE"/>
-                                <exclude reference="RMC-Mi-wlw"/>
-                                <exclude reference="UNY-Sf-D5J"/>
-                                <exclude reference="uVJ-wD-TlB"/>
                                 <exclude reference="KyM-EY-YQG"/>
                                 <exclude reference="YAS-3h-mpd"/>
                                 <exclude reference="fSa-49-OnB"/>
@@ -620,14 +604,14 @@
                     <connections>
                         <outlet property="containerTableView" destination="13m-OG-K0U" id="Qbu-Ke-ysW"/>
                         <outlet property="headerImage" destination="Q2u-d7-RfF" id="QXn-tj-9dQ"/>
-                        <outlet property="loginButton" destination="yxy-rr-uoq" id="438-j7-sHM"/>
-                        <outlet property="logoutButton" destination="mzT-ul-QTA" id="hI8-ri-g3g"/>
+                        <outlet property="loginButton" destination="2Qr-Um-lmD" id="ToX-6G-Uvn"/>
+                        <outlet property="logoutButton" destination="33Z-Lu-Cjm" id="pec-CL-0AM"/>
                         <outlet property="profileImage" destination="K4x-M6-0n9" id="yyY-1s-F1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8d-hM-D9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3032" y="863"/>
+            <point key="canvasLocation" x="2834" y="961"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="p6v-zt-3Vp">

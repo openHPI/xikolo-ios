@@ -3,19 +3,19 @@
 "3aS-t4-jAK.text" = "Max Mustermann";
 
 /* Class = "UILabel"; text = "Learn anywhere."; ObjectID = "5oE-Ob-qTT"; */
-"5oE-Ob-qTT.text" = "Learn anywhere.";
+"5oE-Ob-qTT.text" = "Lerne überall.";
 
 /* Class = "UILabel"; text = "max.mustermann@placeholdermail.com"; ObjectID = "6Ap-cp-dOW"; */
 "6Ap-cp-dOW.text" = "max.mustermann@placeholdermail.com";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "ETa-cI-bg8"; */
-"ETa-cI-bg8.placeholder" = "Password";
+"ETa-cI-bg8.placeholder" = "Passwort";
 
 /* Class = "UILabel"; text = "6"; ObjectID = "G9c-KZ-Pbg"; */
 "G9c-KZ-Pbg.text" = "6";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "H9h-TM-uGV"; */
-"H9h-TM-uGV.normalTitle" = "Login";
+"H9h-TM-uGV.normalTitle" = "Einloggen";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "bp2-MP-IBy"; */
 "bp2-MP-IBy.placeholder" = "Email";
@@ -24,4 +24,4 @@
 "lcq-PP-M8h.text" = "Kurseinschreibungen";
 
 /* Class = "UIButton"; normalTitle = "Register"; ObjectID = "rRI-Oq-dJK"; */
-"rRI-Oq-dJK.normalTitle" = "Register";
+"rRI-Oq-dJK.normalTitle" = "Registrieren";

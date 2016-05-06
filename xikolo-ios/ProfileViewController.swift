@@ -15,7 +15,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var containerTableView: UIView!
+    @IBOutlet weak var container: UIView!
+    //@IBOutlet weak var containerTableView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class ProfileViewController: UIViewController {
     }
     @IBAction func logout(sender: UIButton) {
         UserProfileHelper.logout()
+        profileImage.image = UIImage.init(imageLiteral: "avatar")
         relayout()
     }
 
@@ -65,9 +67,9 @@ class ProfileViewController: UIViewController {
         if !UserProfileHelper.isLoggedIn() {
             logoutButton.hidden = true
             loginButton.hidden = false
-            containerTableView.hidden = true
+            container.hidden = true
         } else {
-            containerTableView.hidden = false
+            container.hidden = false
             logoutButton.hidden = false
             loginButton.hidden = true
         }

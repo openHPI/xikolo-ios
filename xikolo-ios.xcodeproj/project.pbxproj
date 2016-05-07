@@ -13,6 +13,8 @@
 		2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
 		2448A9D91CDA445D009A1AEA /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
+		2448A9DB1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */; };
+		2448A9DC1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */; };
 		24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */; };
 		24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */; };
@@ -127,6 +129,7 @@
 		241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCourseListViewController.swift; sourceTree = "<group>"; };
 		2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseSection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2448A9D51CDA445D009A1AEA /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
+		2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionProvider.swift; sourceTree = "<group>"; };
 		24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = xikolo.xcdatamodel; sourceTree = "<group>"; };
 		24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				24D48E1A1CCA551E00E8051E /* CourseProvider.swift */,
+				2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */,
 				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
 				F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */,
 			);
@@ -951,6 +955,7 @@
 				AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
 				24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */,
+				2448A9DC1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */,
 				24D48E2A1CCA931900E8051E /* ImageProvider.swift in Sources */,
 				24D48E271CCA92C500E8051E /* Course.swift in Sources */,
 				24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */,
@@ -1013,6 +1018,7 @@
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 				24D48E221CCA78A600E8051E /* NSDate+iso8601.swift in Sources */,
 				ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */,
+				2448A9DB1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

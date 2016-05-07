@@ -21,6 +21,7 @@ class Routes: NSObject {
     static let MY_PROFILE = "users/me"
     static let ENROLLMENTS = "users/me/enrollments/"
     static let NEWS = "news"
+    static let COURSE_SECTIONS = "v2/course_sections/"
     
     static let HTTP_ACCEPT_HEADER = "Accept"
     static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.xikolo.v1, application/json"

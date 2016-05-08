@@ -12,6 +12,10 @@ import Spine
 
 class CourseSection : BaseModel {
 
+    override class func spineType() -> Resource.Type {
+        return CourseSectionSpine.self
+    }
+
 }
 
 class CourseSectionSpine : Resource {

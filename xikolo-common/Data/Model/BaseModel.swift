@@ -7,11 +7,16 @@
 //
 
 import CoreData
+import Spine
 import UIKit
 
 class BaseModel : NSManagedObject {
 
     var baseModelObservers: Dictionary<UIViewController, BaseModelObserver>!
+
+    required override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
 
     func notifyOnChange(observer: UIViewController, updatedHandler: (model: BaseModel) -> (), deletedHandler: () -> ()) {
         if baseModelObservers == nil {
@@ -30,6 +35,21 @@ class BaseModel : NSManagedObject {
         if let baseModelObserver = baseModelObservers[observer] {
             NSNotificationCenter.defaultCenter().removeObserver(baseModelObserver)
             baseModelObservers.removeValueForKey(observer)
+        }
+    }
+
+}
+
+extension BaseModel {
+
+    // TODO: Make this a class var once Swift implements overriding them in subclasses.
+    class func spineType() -> Resource.Type! {
+        return nil
+    }
+
+    func loadFromSpine(section: Resource) {
+        for field in self.dynamicType.spineType().fields {
+            self.setValue(section.valueForKey(field.name), forKey: field.name)
         }
     }
 

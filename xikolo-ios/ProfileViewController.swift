@@ -20,7 +20,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.relayout), name: NotificationKeys.loginSuccessfulKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.relayout), name: NotificationKeys.logoutSuccessfulKey, object: nil)
         setupViews();
         setViewData();
     }

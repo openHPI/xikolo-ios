@@ -21,7 +21,8 @@
 "tab_profile" = "Profil";
 
 // Login
-"login" = "Login";
+"login" = "Einloggen";
+"logout" = "Ausloggen";
 "email" = "Email";
 "password" = "Passwort";
 "register" = "Registrieren";

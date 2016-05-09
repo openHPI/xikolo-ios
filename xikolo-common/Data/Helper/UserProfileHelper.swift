@@ -26,6 +26,7 @@ public class UserProfileHelper {
                 if let json = response.result.value {
                     if let token = json["token"] as? String {
                         UserProfileHelper.saveToken(token)
+                        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.loginSuccessfulKey, object: nil)
                         completionHandler(token: token, error: nil)
                         return
                     }
@@ -60,6 +61,7 @@ public class UserProfileHelper {
 
     static func logout() {
         prefs.removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.logoutSuccessfulKey, object: nil)
         prefs.synchronize()
     }
 

@@ -10,17 +10,55 @@ import UIKit
 
 class CourseOverviewTabBarController: UITabBarController {
     
-    var isLoggedIn = UserProfileHelper.isLoggedIn()
+    var isLoggedIn = UserProfileHelper.isLoggedIn() //TODO property observer?
     
     private struct Constants{
-        static let ShowLoginSegue = "Show Login"
-        static let ShowProfileSegue = "Show Profile"
+        static let ShowLoginSegue = "ShowLoginFromBarButton"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CourseOverviewTabBarController.updateLoginState), name: NotificationKeys.loginSuccessfulKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CourseOverviewTabBarController.updateLogoutState), name: NotificationKeys.logoutSuccessfulKey, object: nil)
         self.navigationItem.hidesBackButton = true
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        print("shouldPerformSeguewithidentifier")
+        switch identifier {
+        case Constants.ShowLoginSegue:
+            if isLoggedIn {
+                UserProfileHelper.logout() // TODO maybe fade transition
+                return false
+            } else {
+                return true
+            }
+        default:
+            return true
+        }
+    }
+    
+    func updateLoginState() {
+        isLoggedIn = true
+        updateBarButton()
+    }
+    
+    func updateLogoutState() {
+        isLoggedIn = false
+        updateBarButton()
+    }
+    
+    func updateBarButton() {
+        if isLoggedIn {
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("logout", comment: "Logout")
+
+            })
+        } else {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("login", comment: "Login")
+                
+            })        }
     }
     
     override func didReceiveMemoryWarning() {

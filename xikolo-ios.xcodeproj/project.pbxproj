@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		20CB27A3BBDAC54A979F1C4C /* Pods_xikolo_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85BA29B54BF756A5B725FFC /* Pods_xikolo_ios.framework */; };
+		240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
+		240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
 		241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
 		2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
@@ -128,6 +130,7 @@
 		171C2339277AA51E07F46534 /* Pods-xikolo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		18B84F62BCEE33BB89A28463 /* Pods_xikolo_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0493C1837058A949790C90 /* Pods_xikolo_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		240E03441CE38D590078A364 /* CourseSectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionHelper.swift; sourceTree = "<group>"; };
 		241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCourseListViewController.swift; sourceTree = "<group>"; };
 		2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseSection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2448A9D51CDA445D009A1AEA /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
@@ -504,6 +507,7 @@
 				24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */,
 				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
 				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
+				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
 				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
 				2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */,
 			);
@@ -972,6 +976,7 @@
 				24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */,
 				2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				24895DC31CCC09C700D6DFB8 /* ImageHelper.swift in Sources */,
+				240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -990,6 +995,7 @@
 			files = (
 				24D48E191CCA4FC100E8051E /* Course.swift in Sources */,
 				F8B926C31B81F13300A89143 /* LoginCheckController.swift in Sources */,
+				240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				F80D67931B98683400E27520 /* NewsViewController.swift in Sources */,
 				A90587ED1B3BFDA30095DB89 /* PageContentViewController.swift in Sources */,
 				24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */,

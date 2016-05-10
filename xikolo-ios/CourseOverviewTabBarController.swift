@@ -20,6 +20,7 @@ class CourseOverviewTabBarController: UITabBarController {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CourseOverviewTabBarController.updateLoginState), name: NotificationKeys.loginSuccessfulKey, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CourseOverviewTabBarController.updateLogoutState), name: NotificationKeys.logoutSuccessfulKey, object: nil)
+        updateBarButton()
         self.navigationItem.hidesBackButton = true
     }
     

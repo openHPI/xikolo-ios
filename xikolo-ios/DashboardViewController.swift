@@ -11,7 +11,7 @@ import UIKit
 class DashboardViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var deadlinesWebView: UIWebView!
-    @IBOutlet weak var notificationsWebView: UIWebView!
+    //@IBOutlet weak var notificationsWebView: UIWebView!
     @IBOutlet weak var deadlinesActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var notificationsActivityIndicator: UIActivityIndicatorView!
     
@@ -21,6 +21,12 @@ class DashboardViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.deadlinesWebView.delegate = self
+        let url = NSURL(string: Routes.NEWS) // TODO: change to Deadlines
+        let request = NSMutableURLRequest(URL: url!)
+        request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
+        self.deadlinesWebView.loadRequest(request)
         loadDeadlinesWebView()
         //loadNotificationsWebView()
     }
@@ -31,19 +37,15 @@ class DashboardViewController: UIViewController, UIWebViewDelegate {
     }
     
     func loadDeadlinesWebView() {
-        self.deadlinesWebView.delegate = self
-        let url = NSURL(string: Routes.NEWS) // TODO: change to Deadlines
-        let request = NSMutableURLRequest(URL: url!)
-        request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
-        self.deadlinesWebView.loadRequest(request)
+        
     }
     
     func loadNotificationsWebView() {
         //self.notificationsWebView.delegate = self
-        let url = NSURL(string: Routes.NEWS) // TODO: change to Notifications
+        /*let url = NSURL(string: Routes.NEWS) // TODO: change to Notifications
         let request = NSMutableURLRequest(URL: url!)
         request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
-        self.notificationsWebView.loadRequest(request)
+        self.notificationsWebView.loadRequest(request)*/
     }
     
     func webViewDidStartLoad(webView: UIWebView) {

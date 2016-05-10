@@ -13,8 +13,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var container: UIView!
     //@IBOutlet weak var containerTableView: UIView!
     
@@ -33,11 +31,6 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         self.tabBarController!.title = NSLocalizedString("tab_profile", comment: "Profile")
     }
-    @IBAction func logout(sender: UIButton) {
-        UserProfileHelper.logout()
-        profileImage.image = UIImage.init(imageLiteral: "avatar")
-        relayout()
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,7 +45,6 @@ class ProfileViewController: UIViewController {
     }
     
     func setViewData() {
-        self.logoutButton.setTitle(NSLocalizedString("logout", comment: "Logout"), forState: UIControlState.Normal)
         
         UserProfileHelper.self.getUser() { (user: UserProfile?, error: NSError?) -> () in
             if let user = user {
@@ -66,13 +58,10 @@ class ProfileViewController: UIViewController {
     
     func relayout() {
         if !UserProfileHelper.isLoggedIn() {
-            logoutButton.hidden = true
-            loginButton.hidden = false
             container.hidden = true
+            profileImage.image = UIImage.init(imageLiteral: "avatar")
         } else {
             container.hidden = false
-            logoutButton.hidden = false
-            loginButton.hidden = true
         }
     }
 }

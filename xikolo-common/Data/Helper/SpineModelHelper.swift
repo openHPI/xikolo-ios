@@ -15,7 +15,7 @@ class SpineModelHelper {
     static private let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
     static private let managedContext = appDelegate.managedObjectContext
 
-    class func syncObjects(model: BaseModel.Type, spineObjects: [Resource]) throws {
+    class func syncObjects(model: BaseModel.Type, spineObjects: [Resource], inject: [String: AnyObject?]?) throws {
         let entityName = String(model)
         let request = NSFetchRequest(entityName: entityName)
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedContext)!
@@ -35,6 +35,9 @@ class SpineModelHelper {
                     cdObject.setValue(id, forKey: "id")
                 }
                 cdObject.loadFromSpine(spineObject)
+                if let dict = inject {
+                    cdObject.loadFromDict(dict)
+                }
             }
         }
         // TODO: Delete objects from CD that have not been returned

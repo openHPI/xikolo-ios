@@ -53,6 +53,12 @@ extension BaseModel {
         }
     }
 
+    func loadFromDict(dict: [String: AnyObject?]) {
+        for (key, value) in dict {
+            self.setValue(value, forKey: key)
+        }
+    }
+
 }
 
 @objc class BaseModelObserver : NSObject {

@@ -19,6 +19,8 @@
 		2433A5A41CE634A00060DD98 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A01CE634A00060DD98 /* CourseItem.swift */; };
 		2433A5A61CE635E80060DD98 /* CourseItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */; };
 		2433A5A71CE635E80060DD98 /* CourseItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */; };
+		2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
+		2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
 		2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
@@ -145,6 +147,7 @@
 		2433A59F1CE634A00060DD98 /* CourseItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2433A5A01CE634A00060DD98 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
 		2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemProvider.swift; sourceTree = "<group>"; };
+		2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemHelper.swift; sourceTree = "<group>"; };
 		2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseSection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2448A9D51CDA445D009A1AEA /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
 		2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionProvider.swift; sourceTree = "<group>"; };
@@ -525,6 +528,7 @@
 				24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */,
 				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
 				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
+				2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */,
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
 				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
 				2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */,
@@ -967,6 +971,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
+				2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
 				24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */,
@@ -1047,6 +1052,7 @@
 				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,
 				F805748E1B4E904700FA8AD7 /* MainNavigationController.swift in Sources */,
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
+				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
 				24895DC21CCC09C300D6DFB8 /* ImageHelper.swift in Sources */,

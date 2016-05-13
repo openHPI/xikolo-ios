@@ -11,7 +11,7 @@ import Spine
 
 class CourseSectionProvider {
 
-    class func getCourseSections(courseId: String, completionHandler: (courses: [CourseSectionSpine]?, error: ErrorType?) -> ()) {
+    class func getCourseSections(courseId: String, completionHandler: (sections: [CourseSectionSpine]?, error: ErrorType?) -> ()) {
         let spine = Spine(baseURL: NSURL(string: Routes.API_URL)!)
         spine.registerResource(CourseSectionSpine)
 
@@ -20,9 +20,9 @@ class CourseSectionProvider {
 
         spine.find(query).onSuccess { resources, meta, jsonapi in
             // TODO: Pagination?
-            completionHandler(courses: resources.map { $0 as! CourseSectionSpine }, error: nil)
+            completionHandler(sections: resources.map { $0 as! CourseSectionSpine }, error: nil)
         }.onFailure { error in
-            completionHandler(courses: nil, error: error)
+            completionHandler(sections: nil, error: error)
         }
     }
 

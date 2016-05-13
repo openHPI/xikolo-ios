@@ -19,6 +19,7 @@ class AbstractCourseListViewController : UICollectionViewController {
     let cellReuseIdentifier = "CourseCell"
 
     var resultsController: NSFetchedResultsController!
+    var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
     var contentChangeOperations: [[AnyObject?]] = []
 
     var courseDisplayMode: CourseDisplayMode = .All
@@ -36,7 +37,9 @@ class AbstractCourseListViewController : UICollectionViewController {
                 request = CourseHelper.getAllCoursesRequest()
         }
         resultsController = CourseHelper.initializeFetchedResultsController(request)
-        resultsController.delegate = self
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!)
+        resultsControllerDelegateImplementation.delegate = self
+        resultsController.delegate = resultsControllerDelegateImplementation
 
         do {
             try resultsController.performFetch()
@@ -74,63 +77,10 @@ extension AbstractCourseListViewController {
 
 }
 
-extension AbstractCourseListViewController : NSFetchedResultsControllerDelegate {
+extension AbstractCourseListViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    enum FetchedResultsChangeContext : UInt {
-        case Section
-        case Object
-    }
-
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        contentChangeOperations.removeAll()
-    }
-
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        contentChangeOperations.append([FetchedResultsChangeContext.Section.rawValue, type.rawValue, NSIndexSet(index: sectionIndex)])
-    }
-
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        contentChangeOperations.append([FetchedResultsChangeContext.Object.rawValue, type.rawValue, indexPath, newIndexPath])
-    }
-
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        collectionView!.performBatchUpdates({
-            let collectionView = self.collectionView!
-            for change in self.contentChangeOperations {
-                let type = NSFetchedResultsChangeType(rawValue:change[1]! as! UInt)!
-                switch FetchedResultsChangeContext(rawValue:change[0]! as! UInt)! {
-                    case .Section:
-                        let indexSet = change[2] as? NSIndexSet
-                        switch type {
-                            case .Insert:
-                                collectionView.insertSections(indexSet!)
-                            case .Delete:
-                                collectionView.deleteSections(indexSet!)
-                            case .Move:
-                                break
-                            case .Update:
-                            break
-                        }
-                    case .Object:
-                        let indexPath = change[2] as? NSIndexPath
-                        let newIndexPath = change[3] as? NSIndexPath
-                        switch type {
-                            case .Insert:
-                                collectionView.insertItemsAtIndexPaths([newIndexPath!])
-                            case .Delete:
-                                collectionView.deleteItemsAtIndexPaths([indexPath!])
-                            case .Update:
-                                // No need to update a cell that has not been loaded.
-                                if let cell = collectionView.cellForItemAtIndexPath(indexPath!) as? CourseCell {
-                                    self.configureCell(cell, indexPath: indexPath!)
-                                }
-                            case .Move:
-                                collectionView.deleteItemsAtIndexPaths([indexPath!])
-                                collectionView.insertItemsAtIndexPaths([newIndexPath!])
-                        }
-                }
-            }
-        }, completion: nil)
+    func configureCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
+        self.configureCell(cell as! CourseCell, indexPath: indexPath)
     }
 
 }

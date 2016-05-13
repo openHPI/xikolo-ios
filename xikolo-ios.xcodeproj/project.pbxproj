@@ -21,6 +21,8 @@
 		2433A5A71CE635E80060DD98 /* CourseItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */; };
 		2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
 		2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
+		2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
+		2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
@@ -148,6 +150,7 @@
 		2433A5A01CE634A00060DD98 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
 		2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemProvider.swift; sourceTree = "<group>"; };
 		2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemHelper.swift; sourceTree = "<group>"; };
+		2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
 		2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseSection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2448A9D51CDA445D009A1AEA /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
 		2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionProvider.swift; sourceTree = "<group>"; };
@@ -295,6 +298,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		2433A5AB1CE641E70060DD98 /* ViewHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
+			);
+			path = ViewHelpers;
+			sourceTree = "<group>";
+		};
 		24597D231CC6C87600FB5338 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +381,7 @@
 				24CB7E561CC6C61A00960269 /* Data */,
 				24CB7E511CC6813A00960269 /* Resources */,
 				241D4AEA1CC9918600E35B1F /* ViewControllers */,
+				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */,
 			);
@@ -985,6 +997,7 @@
 				24D48E2F1CCA934A00E8051E /* xikolo.xcdatamodeld in Sources */,
 				AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */,
 				240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */,
+				2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
 				2448A9DF1CDCDCC7009A1AEA /* SpineModelHelper.swift in Sources */,
 				24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */,
@@ -1042,6 +1055,7 @@
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
+				2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,

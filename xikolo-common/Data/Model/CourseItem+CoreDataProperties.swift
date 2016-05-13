@@ -1,5 +1,5 @@
 //
-//  CourseSection+CoreDataProperties.swift
+//  CourseItem+CoreDataProperties.swift
 //  xikolo-ios
 //
 //  Created by Sebastian Brückner on 13.05.16.
@@ -12,12 +12,12 @@
 import Foundation
 import CoreData
 
-extension CourseSection {
+extension CourseItem {
 
     @NSManaged var id: String?
-    @NSManaged var section_description: String?
+    @NSManaged var content_type: String?
+    @NSManaged var content_id: String?
     @NSManaged var title: String?
-    @NSManaged var course: Course?
-    @NSManaged var items: NSSet?
+    @NSManaged var section: CourseSection?
 
 }

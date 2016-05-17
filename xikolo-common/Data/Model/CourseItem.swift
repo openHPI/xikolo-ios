@@ -16,6 +16,22 @@ class CourseItem : BaseModel {
         return CourseItemSpine.self
     }
 
+    var iconName: String? {
+        get {
+            if let contentType = self.content_type {
+                var iconName: String!
+                switch(contentType) {
+                case "peer_assessment":
+                    iconName = "homework"
+                default:
+                    iconName = contentType
+                }
+                return iconName
+            }
+            return nil
+        }
+    }
+
 }
 
 class CourseItemSpine : Resource {

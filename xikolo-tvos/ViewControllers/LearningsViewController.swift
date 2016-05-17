@@ -12,11 +12,14 @@ import UIKit
 class LearningsViewController : UIViewController {
 
     @IBOutlet weak var sectionTableView: UITableView!
+    @IBOutlet weak var itemCollectionView: UICollectionView!
 
     var courseTabBarController: CourseTabBarController!
     var course: Course!
 
     var sectionResultsController: NSFetchedResultsController!
+    var itemResultsController: NSFetchedResultsController?
+    var itemResultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
 
     override func viewDidLoad() {
         courseTabBarController = self.tabBarController as! CourseTabBarController
@@ -24,16 +27,43 @@ class LearningsViewController : UIViewController {
 
         if course.id != nil {
             let request = CourseSectionHelper.getSectionRequest(course)
-            sectionResultsController = CourseHelper.initializeFetchedResultsController(request)
+            sectionResultsController = CourseSectionHelper.initializeFetchedResultsController(request)
             sectionResultsController.delegate = self
+
+            itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
+            itemResultsControllerDelegateImplementation.delegate = self
 
             do {
                 try sectionResultsController.performFetch()
+
+                if sectionResultsController.fetchedObjects!.count > 0 {
+                    sectionTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Middle)
+                    if let section = sectionResultsController.fetchedObjects![0] as? CourseSection {
+                        loadItemsForSection(section)
+                    }
+                }
             } catch {
                 // TODO: Error handling.
             }
 
             CourseSectionHelper.syncCourseSections(course)
+        }
+    }
+
+    func loadItemsForSection(section: CourseSection) {
+        if section.id != nil {
+            let request = CourseItemHelper.getItemRequest(section)
+            itemCollectionView.reloadData()
+            itemResultsController = CourseItemHelper.initializeFetchedResultsController(request)
+            itemResultsController!.delegate = itemResultsControllerDelegateImplementation
+
+            do {
+                try itemResultsController!.performFetch()
+            } catch {
+                // TODO: Error handling
+            }
+
+            CourseItemHelper.syncCourseItems(section)
         }
     }
 
@@ -102,6 +132,53 @@ extension LearningsViewController : NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         sectionTableView.endUpdates()
+    }
+
+}
+
+extension LearningsViewController : UITableViewDelegate {
+
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        let section = sectionResultsController.objectAtIndexPath(indexPath) as! CourseSection
+        loadItemsForSection(section)
+        return indexPath
+    }
+
+}
+
+extension LearningsViewController : UICollectionViewDataSource {
+
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        if let sections = itemResultsController?.sections {
+            return sections.count
+        } else {
+            return 0
+        }
+    }
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let sections = itemResultsController!.sections! as [NSFetchedResultsSectionInfo]
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseItemCell", forIndexPath: indexPath) as! CourseItemCell
+        configureItemCell(cell, indexPath: indexPath)
+        return cell
+    }
+
+}
+
+extension LearningsViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
+
+    func configureCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
+        configureItemCell(cell as! CourseItemCell, indexPath: indexPath)
+    }
+
+    func configureItemCell(cell: CourseItemCell, indexPath: NSIndexPath) {
+        let item = itemResultsController!.objectAtIndexPath(indexPath) as! CourseItem
+        cell.configure(item)
     }
 
 }

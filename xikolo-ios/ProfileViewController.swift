@@ -14,7 +14,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var container: UIView!
-    //@IBOutlet weak var containerTableView: UIView!
+    @IBOutlet weak var logoutButton: UIButton!
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    @IBAction func logout(sender: UIButton) {
+        UserProfileHelper.logout()
+        relayout()
+        setViewData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +41,6 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         self.tabBarController!.title = NSLocalizedString("tab_profile", comment: "Profile")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func setupViews() {
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
@@ -48,8 +53,7 @@ class ProfileViewController: UIViewController {
         
         UserProfileHelper.self.getUser() { (user: UserProfile?, error: NSError?) -> () in
             if let user = user {
-                //self.nameLabel.text = user.firstName + " " + user.lastName
-                //self.emailLabel.text = user.email
+                // TODO get name, username etc.
 
                 ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImage)
             }
@@ -60,8 +64,10 @@ class ProfileViewController: UIViewController {
         if !UserProfileHelper.isLoggedIn() {
             container.hidden = true
             profileImage.image = UIImage.init(imageLiteral: "avatar")
+            logoutButton.hidden = true
         } else {
             container.hidden = false
+            logoutButton.hidden = false
         }
     }
 }

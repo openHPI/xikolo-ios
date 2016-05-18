@@ -10,7 +10,7 @@ import UIKit
 
 class CourseOverviewTabBarController: UITabBarController {
     
-    var isLoggedIn = UserProfileHelper.isLoggedIn() //TODO property observer?
+    var isLoggedIn = UserProfileHelper.isLoggedIn()
     
     private struct Constants{
         static let ShowLoginSegue = "ShowLoginFromBarButton"
@@ -52,7 +52,7 @@ class CourseOverviewTabBarController: UITabBarController {
     func updateBarButton() {
         if isLoggedIn {
             dispatch_async(dispatch_get_main_queue(), { 
-                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("logout", comment: "Logout")
+                self.navigationItem.rightBarButtonItem?.title = ""
 
             })
         } else {

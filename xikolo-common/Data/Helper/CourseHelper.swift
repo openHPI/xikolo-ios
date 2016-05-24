@@ -17,7 +17,7 @@ class CourseHelper {
 
     static func getAllCoursesRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "Course")
-        let startDateSort = NSSortDescriptor(key: "start_date", ascending: true)
+        let startDateSort = NSSortDescriptor(key: "start_date", ascending: false)
         request.sortDescriptors = [startDateSort]
         return request
     }

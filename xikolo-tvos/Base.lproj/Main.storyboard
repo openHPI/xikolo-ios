@@ -306,7 +306,7 @@
                                         <rect key="frame" x="0.0" y="54" width="510" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JQR-Rz-ckY" id="c2d-ZM-VmX">
-                                            <rect key="frame" x="0.0" y="0.0" width="510" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="494" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMS-cs-5td">
@@ -380,6 +380,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="TiG-l6-dl3" id="YDE-A2-B3o"/>
+                                    <outlet property="delegate" destination="TiG-l6-dl3" id="9Wh-R1-c1O"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -398,11 +399,20 @@
                     <connections>
                         <outlet property="itemCollectionView" destination="YiW-Ml-dEJ" id="uZt-eD-eX9"/>
                         <outlet property="sectionTableView" destination="aCX-8o-S7l" id="9eP-3q-NnJ"/>
+                        <segue destination="EZa-T4-NPm" kind="show" identifier="ShowCourseItemVideoSegue" id="rGn-OX-uAw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCm-TW-hAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5374" y="269"/>
+        </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="Phh-01-Be6">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="EZa-T4-NPm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0f-jw-idK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7502" y="-526"/>
         </scene>
         <!--Course Tab Bar Controller-->
         <scene sceneID="0AF-rc-gJk">

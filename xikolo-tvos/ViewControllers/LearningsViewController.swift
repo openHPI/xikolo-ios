@@ -6,6 +6,7 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import AVKit
 import CoreData
 import UIKit
 
@@ -179,6 +180,42 @@ extension LearningsViewController : CollectionViewResultsControllerDelegateImple
     func configureItemCell(cell: CourseItemCell, indexPath: NSIndexPath) {
         let item = itemResultsController!.objectAtIndexPath(indexPath) as! CourseItem
         cell.configure(item)
+    }
+
+}
+
+extension LearningsViewController : UICollectionViewDelegate {
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let item = itemResultsController!.objectAtIndexPath(indexPath) as! CourseItem
+        showItem(item)
+    }
+
+    func showItem(item: CourseItem) {
+        if let content_type = item.content_type {
+            switch content_type {
+                case "video":
+                    performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: item)
+                default:
+                    // TODO: show error: unsupported type
+                    break;
+            }
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+            case "ShowCourseItemVideoSegue"?:
+                let vc = segue.destinationViewController as! AVPlayerViewController
+                //let item = sender as! CourseItem
+                // TODO: Fetch real URL.
+                let mockUrl = NSURL(string: "https://player.vimeo.com/external/164726756.m3u8?s=69976e2f9e2216472fa63f8feff4503ee2d6513b&oauth2_token_id=621239406")!
+                let avPlayer = AVPlayer(URL: mockUrl)
+                avPlayer.play()
+                vc.player = avPlayer
+            default:
+                break
+        }
     }
 
 }

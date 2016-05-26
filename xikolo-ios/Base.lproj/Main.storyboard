@@ -410,100 +410,15 @@
             </objects>
             <point key="canvasLocation" x="1376" y="961"/>
         </scene>
-        <!--Dashboard-->
-        <scene sceneID="z86-wG-GKj">
+        <!--DashboardViewController-->
+        <scene sceneID="wQX-9l-R5D">
             <objects>
-                <viewController storyboardIdentifier="DashboardViewController" id="xXY-iO-myQ" customClass="DashboardViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="D3M-Zk-3uK"/>
-                        <viewControllerLayoutGuide type="bottom" id="OMT-77-tvN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UZR-a1-eyw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29g-rN-RnC">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOB-zD-zVQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadlines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaR-ew-o1P">
-                                                <rect key="frame" x="20" y="20" width="76" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <webView tag="10" contentMode="scaleToFill" restorationIdentifier="DeadlinesWebView" translatesAutoresizingMaskIntoConstraints="NO" id="cEK-zv-WTa">
-                                                <rect key="frame" x="0.0" y="49" width="600" height="200"/>
-                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="0I8-fc-AFD"/>
-                                                </constraints>
-                                            </webView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVO-R5-bvE">
-                                                <rect key="frame" x="20" y="269" width="97" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="aGv-Db-tlF"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="aGv-Db-tlF"/>
-                                                    </mask>
-                                                </variation>
-                                            </label>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SVy-2r-YxO">
-                                                <rect key="frame" x="290" y="139" width="20" height="20"/>
-                                            </activityIndicatorView>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rZd-TP-NsX">
-                                                <rect key="frame" x="290" y="363" width="20" height="20"/>
-                                            </activityIndicatorView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="cEK-zv-WTa" firstAttribute="leading" secondItem="MOB-zD-zVQ" secondAttribute="leading" id="404-d9-Pd2"/>
-                                            <constraint firstAttribute="height" constant="487" id="ApD-id-xlk"/>
-                                            <constraint firstItem="jaR-ew-o1P" firstAttribute="leading" secondItem="MOB-zD-zVQ" secondAttribute="leading" constant="20" id="Cte-eV-kz2"/>
-                                            <constraint firstItem="FVO-R5-bvE" firstAttribute="leading" secondItem="MOB-zD-zVQ" secondAttribute="leading" constant="20" id="L54-fF-Er9"/>
-                                            <constraint firstAttribute="trailing" secondItem="cEK-zv-WTa" secondAttribute="trailing" id="Rse-od-kWn"/>
-                                            <constraint firstItem="FVO-R5-bvE" firstAttribute="top" secondItem="cEK-zv-WTa" secondAttribute="bottom" constant="20" id="eDD-CN-55u"/>
-                                            <constraint firstItem="jaR-ew-o1P" firstAttribute="top" secondItem="MOB-zD-zVQ" secondAttribute="top" constant="20" symbolic="YES" id="f6K-2e-Xjl"/>
-                                            <constraint firstItem="cEK-zv-WTa" firstAttribute="top" secondItem="jaR-ew-o1P" secondAttribute="bottom" constant="8" symbolic="YES" id="lBg-l9-mUV"/>
-                                            <constraint firstItem="SVy-2r-YxO" firstAttribute="centerX" secondItem="cEK-zv-WTa" secondAttribute="centerX" id="qdE-Va-62W"/>
-                                            <constraint firstItem="SVy-2r-YxO" firstAttribute="centerY" secondItem="cEK-zv-WTa" secondAttribute="centerY" id="yW8-ID-IKe"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="MOB-zD-zVQ" secondAttribute="trailing" id="6L4-YG-QuF"/>
-                                    <constraint firstAttribute="bottom" secondItem="MOB-zD-zVQ" secondAttribute="bottom" id="TCu-bm-M4X"/>
-                                    <constraint firstItem="MOB-zD-zVQ" firstAttribute="leading" secondItem="29g-rN-RnC" secondAttribute="leading" id="cJV-6I-iTS"/>
-                                    <constraint firstItem="MOB-zD-zVQ" firstAttribute="top" secondItem="29g-rN-RnC" secondAttribute="top" id="dAl-ZG-Y99"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="MOB-zD-zVQ" firstAttribute="width" secondItem="UZR-a1-eyw" secondAttribute="width" id="8pH-lF-LoK"/>
-                            <constraint firstItem="OMT-77-tvN" firstAttribute="top" secondItem="29g-rN-RnC" secondAttribute="bottom" id="H5Q-ei-lfo"/>
-                            <constraint firstAttribute="trailing" secondItem="29g-rN-RnC" secondAttribute="trailing" id="Q83-07-CiS"/>
-                            <constraint firstItem="29g-rN-RnC" firstAttribute="top" secondItem="D3M-Zk-3uK" secondAttribute="bottom" id="rk1-7A-W1d"/>
-                            <constraint firstItem="29g-rN-RnC" firstAttribute="leading" secondItem="UZR-a1-eyw" secondAttribute="leading" id="xnT-Sd-BFB"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="TabBarIconDashboard" selectedImage="TabBarIconDashboardSelected" id="eqp-FY-Bn8"/>
-                    <connections>
-                        <outlet property="deadlinesActivityIndicator" destination="SVy-2r-YxO" id="cpo-SZ-6R2"/>
-                        <outlet property="deadlinesWebView" destination="cEK-zv-WTa" id="OxK-ma-PCB"/>
-                        <outlet property="notificationsActivityIndicator" destination="rZd-TP-NsX" id="XO7-Kj-ckm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="DashboardViewController" storyboardName="TabDashboard" referencedIdentifier="DashboardViewController" id="4IQ-dc-5NS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Dep-Da-lvB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7jy-pZ-fyz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2394" y="-179"/>
+            <point key="canvasLocation" x="2394" y="-614"/>
         </scene>
         <!--ProfileViewController-->
         <scene sceneID="w9f-ev-CqT">
@@ -519,8 +434,6 @@
     <resources>
         <image name="TabBarIconCourses" width="25" height="25"/>
         <image name="TabBarIconCoursesSelected" width="25" height="25"/>
-        <image name="TabBarIconDashboard" width="25" height="25"/>
-        <image name="TabBarIconDashboardSelected" width="25" height="25"/>
         <image name="TabBarIconNews" width="25" height="25"/>
         <image name="TabBarIconNewsSelected" width="25" height="25"/>
         <image name="logo-openhpi" width="612" height="125"/>

@@ -55,7 +55,7 @@ class LearningsViewController : UIViewController {
         if section.id != nil {
             let request = CourseItemHelper.getItemRequest(section)
             itemCollectionView.reloadData()
-            itemResultsController = CourseItemHelper.initializeFetchedResultsController(request)
+            itemResultsController = CourseItemHelper.initializeSectionResultsController(request)
             itemResultsController!.delegate = itemResultsControllerDelegateImplementation
 
             do {

@@ -23,10 +23,24 @@ class CourseItemHelper {
         request.sortDescriptors = [titleSort]
         return request
     }
-
-    static func initializeFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
+    
+    static func getItemRequest(course: Course) -> NSFetchRequest {
+        let request = NSFetchRequest(entityName: "CourseItem")
+        request.predicate = NSPredicate(format: "section.course = %@", course)
+        // TODO: Sort by position once that attribute exists in the API.
+        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        request.sortDescriptors = [titleSort]
+        return request
+    }
+    
+    static func initializeSectionResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
         // TODO: Add cache name
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+    }
+    
+    static func initializeItemResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
+        // TODO: Add cache name
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: "section.title", cacheName: nil)
     }
 
     static func syncCourseItems(section: CourseSection) {

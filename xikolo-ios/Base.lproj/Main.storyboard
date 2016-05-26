@@ -326,71 +326,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="uLl-5G-DMn" kind="relationship" relationship="viewControllers" id="xWY-FN-5Ad"/>
-                        <segue destination="rQe-Ua-e4E" kind="relationship" relationship="viewControllers" id="QjD-Fo-UOy"/>
+                        <segue destination="XcO-jX-Il5" kind="relationship" relationship="viewControllers" id="QjD-Fo-UOy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gj-yV-bCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1677" y="-328"/>
-        </scene>
-        <!--News-->
-        <scene sceneID="hXl-aj-vOT">
-            <objects>
-                <viewController storyboardIdentifier="NewsViewController" id="rQe-Ua-e4E" customClass="NewsViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mou-Sn-I16"/>
-                        <viewControllerLayoutGuide type="bottom" id="Q9g-rV-JWp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nA5-6d-DTh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" restorationIdentifier="NewsWebView" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJX-hy-6uB">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                            <webView hidden="YES" contentMode="scaleToFill" restorationIdentifier="CourseActivityWebView" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moD-hx-r4X">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="moD-hx-r4X" firstAttribute="leading" secondItem="nA5-6d-DTh" secondAttribute="leading" id="4Ux-6Q-itH"/>
-                            <constraint firstItem="aJX-hy-6uB" firstAttribute="top" secondItem="Mou-Sn-I16" secondAttribute="bottom" id="Ix6-be-grx"/>
-                            <constraint firstItem="aJX-hy-6uB" firstAttribute="top" secondItem="Mou-Sn-I16" secondAttribute="bottom" id="LKR-RP-AOa"/>
-                            <constraint firstItem="moD-hx-r4X" firstAttribute="top" secondItem="Mou-Sn-I16" secondAttribute="bottom" id="MCK-sg-2Ht"/>
-                            <constraint firstItem="Q9g-rV-JWp" firstAttribute="top" secondItem="moD-hx-r4X" secondAttribute="bottom" constant="7" id="Vih-Lf-cPK"/>
-                            <constraint firstItem="Q9g-rV-JWp" firstAttribute="top" secondItem="moD-hx-r4X" secondAttribute="bottom" id="Yw8-WR-Foq"/>
-                            <constraint firstItem="moD-hx-r4X" firstAttribute="top" secondItem="Mou-Sn-I16" secondAttribute="bottom" constant="-7" id="eNq-Xb-GKW"/>
-                            <constraint firstAttribute="trailing" secondItem="moD-hx-r4X" secondAttribute="trailing" id="jzA-Qe-V1f"/>
-                            <constraint firstItem="aJX-hy-6uB" firstAttribute="width" secondItem="nA5-6d-DTh" secondAttribute="width" id="p1m-hj-ifn"/>
-                            <constraint firstItem="aJX-hy-6uB" firstAttribute="leading" secondItem="nA5-6d-DTh" secondAttribute="leading" id="r0e-Na-0g8"/>
-                            <constraint firstItem="aJX-hy-6uB" firstAttribute="bottom" secondItem="Q9g-rV-JWp" secondAttribute="top" id="uJO-CV-eZJ"/>
-                            <constraint firstAttribute="trailing" secondItem="aJX-hy-6uB" secondAttribute="trailing" id="zvj-I8-29f"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="LKR-RP-AOa"/>
-                                <exclude reference="p1m-hj-ifn"/>
-                                <exclude reference="eNq-Xb-GKW"/>
-                                <exclude reference="Vih-Lf-cPK"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="News" image="TabBarIconNews" selectedImage="TabBarIconNewsSelected" id="Iok-ZF-Mpk"/>
-                    <navigationItem key="navigationItem" id="dRl-af-QvE">
-                        <nil key="title"/>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="webViewCourseActivity" destination="moD-hx-r4X" id="Sg1-dW-m5s"/>
-                        <outlet property="webViewNews" destination="aJX-hy-6uB" id="bYg-lu-Gwc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kVr-QZ-VIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3032" y="160"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3f6-5q-mcO">
@@ -409,6 +350,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pjk-cc-ado" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1376" y="961"/>
+        </scene>
+        <!--NewsViewController-->
+        <scene sceneID="ybp-Ei-DDc">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="NewsViewController" storyboardName="TabNews" referencedIdentifier="NewsViewController" id="XcO-jX-Il5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="k4P-wb-7dX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mY7-MI-Wek" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2394.5" y="-328"/>
         </scene>
         <!--DashboardViewController-->
         <scene sceneID="wQX-9l-R5D">
@@ -434,8 +385,6 @@
     <resources>
         <image name="TabBarIconCourses" width="25" height="25"/>
         <image name="TabBarIconCoursesSelected" width="25" height="25"/>
-        <image name="TabBarIconNews" width="25" height="25"/>
-        <image name="TabBarIconNewsSelected" width="25" height="25"/>
         <image name="logo-openhpi" width="612" height="125"/>
         <image name="welcome-beginner" width="1600" height="900"/>
     </resources>

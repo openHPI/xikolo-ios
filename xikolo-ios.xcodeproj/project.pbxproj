@@ -92,8 +92,13 @@
 		AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
 		AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
 		AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
+		AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
 		AB91F9E31CECD5A500007D06 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */; };
+		AB91F9E51CED029B00007D06 /* CourseContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */; };
 		AB9AF2531CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */; };
+		AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
+		AB9AF2CF1CF4C50400ED3EB0 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */; };
+		AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		AB9AF2D41CF72E1D00ED3EB0 /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D31CF72E1D00ED3EB0 /* TabNews.storyboard */; };
 		AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		AB9AF2DA1CF72EF100ED3EB0 /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */; };
@@ -208,8 +213,13 @@
 		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationKeys.swift; path = "../../xikolo-ios/NotificationKeys.swift"; sourceTree = "<group>"; };
 		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewController.swift; sourceTree = "<group>"; };
 		AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewCell.swift; sourceTree = "<group>"; };
 		AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileSettingsViewController.swift; sourceTree = "<group>"; };
+		AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizWebViewController.swift; sourceTree = "<group>"; };
+		AB9AF2D11CF72D9D00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabCourses.storyboard; sourceTree = "<group>"; };
 		AB9AF2D31CF72E1D00ED3EB0 /* TabNews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabNews.storyboard; sourceTree = "<group>"; };
 		AB9AF2D61CF72E8E00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabDashboard.storyboard; sourceTree = "<group>"; };
 		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabProfile.storyboard; sourceTree = "<group>"; };
@@ -519,8 +529,12 @@
 				AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */,
 				F80D678F1B9867F400E27520 /* Tabs */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
+				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
 				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
+				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
 				AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */,
+				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
+				AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -558,6 +572,7 @@
 				AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */,
 				AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */,
 				AB9AF2D31CF72E1D00ED3EB0 /* TabNews.storyboard */,
+				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";
@@ -764,6 +779,7 @@
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				AB9AF2DA1CF72EF100ED3EB0 /* TabProfile.storyboard in Resources */,
+				AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
 				AB9AF2D41CF72E1D00ED3EB0 /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
@@ -1056,6 +1072,7 @@
 				2433A5A61CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
 				2433A5A31CE634A00060DD98 /* CourseItem.swift in Sources */,
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
+				AB9AF2CF1CF4C50400ED3EB0 /* QuizWebViewController.swift in Sources */,
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
@@ -1067,13 +1084,16 @@
 				2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
+				AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,
 				24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
 				AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */,
 				2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */,
+				AB91F9E51CED029B00007D06 /* CourseContentTableViewCell.swift in Sources */,
 				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
+				AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
@@ -1158,6 +1178,14 @@
 				F80D67971B9874F700E27520 /* de */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB9AF2D11CF72D9D00ED3EB0 /* Base */,
+			);
+			name = TabCourses.storyboard;
 			sourceTree = "<group>";
 		};
 		AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */ = {

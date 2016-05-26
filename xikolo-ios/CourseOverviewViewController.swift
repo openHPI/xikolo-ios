@@ -35,6 +35,19 @@ class CourseOverviewViewController: AbstractCourseListViewController {
         self.collectionView?.performBatchUpdates(nil, completion: nil)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+        case "ShowCourseDetailSegue"?:
+            let vc = segue.destinationViewController as! CourseContentTableViewController
+            let cell = sender as! CourseCell
+            let indexPath = collectionView!.indexPathForCell(cell)
+            let course = resultsController.objectAtIndexPath(indexPath!) as! Course
+            vc.course = course
+        default:
+            break
+        }
+    }
+    
 }
 extension CourseOverviewViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView,

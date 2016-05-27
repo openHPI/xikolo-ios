@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Course List View Controller-->
@@ -391,6 +392,7 @@
                         <outlet property="itemCollectionView" destination="YiW-Ml-dEJ" id="uZt-eD-eX9"/>
                         <outlet property="sectionTableView" destination="aCX-8o-S7l" id="9eP-3q-NnJ"/>
                         <segue destination="EZa-T4-NPm" kind="show" identifier="ShowCourseItemVideoSegue" id="rGn-OX-uAw"/>
+                        <segue destination="YAs-jy-T95" kind="show" identifier="ShowCourseItemRichTextSegue" id="Czr-oS-loG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCm-TW-hAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -404,6 +406,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0f-jw-idK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7502" y="-526"/>
+        </scene>
+        <!--Item Rich Text Controller-->
+        <scene sceneID="yZe-dS-aEl">
+            <objects>
+                <viewController id="YAs-jy-T95" customClass="ItemRichTextController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                    <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="1Nn-Cz-nKf">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nA7-CI-kHY">
+                            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlg-6r-iHI">
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sBY-AY-ZDI">
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEL-Eq-im3">
+                                                <rect key="frame" x="480" y="150" width="960" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="JEL-Eq-im3" firstAttribute="centerX" secondItem="sBY-AY-ZDI" secondAttribute="centerX" id="lw5-8T-0Xz"/>
+                                            <constraint firstItem="JEL-Eq-im3" firstAttribute="width" secondItem="sBY-AY-ZDI" secondAttribute="width" multiplier="0.5" id="pHf-2c-HfB"/>
+                                            <constraint firstItem="JEL-Eq-im3" firstAttribute="top" secondItem="sBY-AY-ZDI" secondAttribute="top" constant="150" id="z3f-IQ-YFX"/>
+                                        </constraints>
+                                    </view>
+                                    <vibrancyEffect>
+                                        <blurEffect style="dark"/>
+                                    </vibrancyEffect>
+                                </visualEffectView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="zlg-6r-iHI" firstAttribute="leading" secondItem="nA7-CI-kHY" secondAttribute="leading" id="8qz-18-KcV"/>
+                                <constraint firstItem="zlg-6r-iHI" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" id="Qgt-7t-wZd"/>
+                                <constraint firstAttribute="trailing" secondItem="zlg-6r-iHI" secondAttribute="trailing" id="bU7-YU-OeL"/>
+                                <constraint firstAttribute="bottom" secondItem="zlg-6r-iHI" secondAttribute="bottom" id="qrk-IM-ITA"/>
+                            </constraints>
+                        </view>
+                        <blurEffect style="dark"/>
+                    </visualEffectView>
+                    <connections>
+                        <outlet property="textView" destination="JEL-Eq-im3" id="mpm-ni-nDj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iXh-ch-RyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7502" y="695"/>
         </scene>
         <!--Course Tab Bar Controller-->
         <scene sceneID="0AF-rc-gJk">

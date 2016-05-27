@@ -189,6 +189,8 @@ extension LearningsViewController : UICollectionViewDelegate {
 
     func showItem(item: CourseItem) {
         switch item.content {
+            case is RichText:
+                performSegueWithIdentifier("ShowCourseItemRichTextSegue", sender: item)
             case is Video:
                 let video = item.content as! Video
                 VideoHelper.syncVideo(video).onSuccess { video in
@@ -202,6 +204,9 @@ extension LearningsViewController : UICollectionViewDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
+            case "ShowCourseItemRichTextSegue"?:
+                let vc = segue.destinationViewController as! ItemRichTextController
+                vc.courseItem = sender as! CourseItem
             case "ShowCourseItemVideoSegue"?:
                 let vc = segue.destinationViewController as! AVPlayerViewController
                 let video = sender as! Video

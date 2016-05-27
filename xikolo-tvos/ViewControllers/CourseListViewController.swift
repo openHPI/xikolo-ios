@@ -10,15 +10,6 @@ import UIKit
 
 class CourseListViewController : AbstractCourseListViewController {
 
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        performSegueWithIdentifier("ShowCourseDetailSegue", sender: cell)
-    }
-
-}
-
-extension CourseListViewController {
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
             case "ShowCourseDetailSegue"?:

@@ -497,6 +497,44 @@
 			path = "xikolo-iosUITests";
 			sourceTree = "<group>";
 		};
+		AB6AE0C41CF7D69200708654 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
+				AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */,
+				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
+				AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		AB6AE0C51CF7D6A700708654 /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
+				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
+				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
+				AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */,
+			);
+			name = Courses;
+			sourceTree = "<group>";
+		};
+		AB6AE0C61CF7D6B000708654 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		AB6AE0C71CF7D6CC00708654 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				F80D67921B98683400E27520 /* NewsViewController.swift */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
 		D7D6B56CF669E978F1E7A6E0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,29 +564,23 @@
 		F80D678E1B9867D700E27520 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */,
-				F80D678F1B9867F400E27520 /* Tabs */,
-				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
-				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
-				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
-				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
-				AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */,
-				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
-				AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */,
+				F80D678F1B9867F400E27520 /* Main */,
+				AB6AE0C61CF7D6B000708654 /* Dashboard */,
+				AB6AE0C51CF7D6A700708654 /* Courses */,
+				AB6AE0C71CF7D6CC00708654 /* News */,
+				AB6AE0C41CF7D69200708654 /* Profile */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		F80D678F1B9867F400E27520 /* Tabs */ = {
+		F80D678F1B9867F400E27520 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
-				F80D67921B98683400E27520 /* NewsViewController.swift */,
-				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
-				ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */,
+				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 			);
-			name = Tabs;
+			name = Main;
 			sourceTree = "<group>";
 		};
 		F80D67DC1B9881FA00E27520 /* Helper */ = {

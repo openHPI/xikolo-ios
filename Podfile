@@ -7,6 +7,8 @@ def common_pods
     pod 'BrightFutures'
     pod 'Result'
     pod 'Spine', :git => 'https://github.com/invliD/Spine.git', :branch => 'master'
+
+    pod 'TSMarkdownParser'
 end
 
 target 'xikolo-ios' do

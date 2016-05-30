@@ -690,12 +690,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24CB7E4F1CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvos" */;
 			buildPhases = (
-				4F26625FA7E6FE8E86D1AC4B /* 📦 Check Pods Manifest.lock */,
+				4F26625FA7E6FE8E86D1AC4B /* [CP] Check Pods Manifest.lock */,
 				24CB7E301CC678A000960269 /* Sources */,
 				24CB7E311CC678A000960269 /* Frameworks */,
 				24CB7E321CC678A000960269 /* Resources */,
-				5A499A68B14F5BD8C4A6BB03 /* 📦 Embed Pods Frameworks */,
-				B53042B3E4719BEEC568CEBD /* 📦 Copy Pods Resources */,
+				5A499A68B14F5BD8C4A6BB03 /* [CP] Embed Pods Frameworks */,
+				B53042B3E4719BEEC568CEBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -710,11 +710,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24CB7E501CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvosUITests" */;
 			buildPhases = (
-				0A4A355FEAC5006244B53B4E /* 📦 Check Pods Manifest.lock */,
+				0A4A355FEAC5006244B53B4E /* [CP] Check Pods Manifest.lock */,
 				24CB7E401CC678A000960269 /* Sources */,
 				24CB7E411CC678A000960269 /* Frameworks */,
 				24CB7E421CC678A000960269 /* Resources */,
-				DF434EDE0FABECCE3A0C6CE5 /* 📦 Copy Pods Resources */,
+				DF434EDE0FABECCE3A0C6CE5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -730,12 +730,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-ios" */;
 			buildPhases = (
-				675F726F01CFB36A8F89AFBE /* 📦 Check Pods Manifest.lock */,
+				675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */,
 				A90587B71B3BFC130095DB89 /* Sources */,
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
-				4F0AA42C7F773EF30322D506 /* 📦 Embed Pods Frameworks */,
-				AC51BF7E1DD4B0B165B5B82B /* 📦 Copy Pods Resources */,
+				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
+				AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -750,12 +750,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E61B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosTests" */;
 			buildPhases = (
-				368654A091A56AA40FB8916E /* 📦 Check Pods Manifest.lock */,
+				368654A091A56AA40FB8916E /* [CP] Check Pods Manifest.lock */,
 				A90587CB1B3BFC130095DB89 /* Sources */,
 				A90587CC1B3BFC130095DB89 /* Frameworks */,
 				A90587CD1B3BFC130095DB89 /* Resources */,
-				6067B5CA72861C906BC227FA /* 📦 Embed Pods Frameworks */,
-				5F9F6CD8C2DBCF3E8F31A064 /* 📦 Copy Pods Resources */,
+				6067B5CA72861C906BC227FA /* [CP] Embed Pods Frameworks */,
+				5F9F6CD8C2DBCF3E8F31A064 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -771,11 +771,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E91B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosUITests" */;
 			buildPhases = (
-				F4B581BAC0F838B00C0C6E43 /* 📦 Check Pods Manifest.lock */,
+				F4B581BAC0F838B00C0C6E43 /* [CP] Check Pods Manifest.lock */,
 				A90587D61B3BFC130095DB89 /* Sources */,
 				A90587D71B3BFC130095DB89 /* Frameworks */,
 				A90587D81B3BFC130095DB89 /* Resources */,
-				583B7340B772D784C1A2862E /* 📦 Copy Pods Resources */,
+				583B7340B772D784C1A2862E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -897,14 +897,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A4A355FEAC5006244B53B4E /* 📦 Check Pods Manifest.lock */ = {
+		0A4A355FEAC5006244B53B4E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -912,14 +912,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		368654A091A56AA40FB8916E /* 📦 Check Pods Manifest.lock */ = {
+		368654A091A56AA40FB8916E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,14 +927,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4F0AA42C7F773EF30322D506 /* 📦 Embed Pods Frameworks */ = {
+		4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -942,14 +942,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4F26625FA7E6FE8E86D1AC4B /* 📦 Check Pods Manifest.lock */ = {
+		4F26625FA7E6FE8E86D1AC4B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,14 +957,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		583B7340B772D784C1A2862E /* 📦 Copy Pods Resources */ = {
+		583B7340B772D784C1A2862E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -972,14 +972,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-iosUITests/Pods-xikolo-iosUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5A499A68B14F5BD8C4A6BB03 /* 📦 Embed Pods Frameworks */ = {
+		5A499A68B14F5BD8C4A6BB03 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -987,14 +987,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvos/Pods-xikolo-tvos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F9F6CD8C2DBCF3E8F31A064 /* 📦 Copy Pods Resources */ = {
+		5F9F6CD8C2DBCF3E8F31A064 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1002,14 +1002,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6067B5CA72861C906BC227FA /* 📦 Embed Pods Frameworks */ = {
+		6067B5CA72861C906BC227FA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1017,14 +1017,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		675F726F01CFB36A8F89AFBE /* 📦 Check Pods Manifest.lock */ = {
+		675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1032,14 +1032,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AC51BF7E1DD4B0B165B5B82B /* 📦 Copy Pods Resources */ = {
+		AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1047,14 +1047,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B53042B3E4719BEEC568CEBD /* 📦 Copy Pods Resources */ = {
+		B53042B3E4719BEEC568CEBD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1062,14 +1062,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvos/Pods-xikolo-tvos-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DF434EDE0FABECCE3A0C6CE5 /* 📦 Copy Pods Resources */ = {
+		DF434EDE0FABECCE3A0C6CE5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1077,14 +1077,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvosUITests/Pods-xikolo-tvosUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F4B581BAC0F838B00C0C6E43 /* 📦 Check Pods Manifest.lock */ = {
+		F4B581BAC0F838B00C0C6E43 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

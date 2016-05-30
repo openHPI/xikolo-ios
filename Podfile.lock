@@ -11,6 +11,7 @@ PODS:
     - BrightFutures (~> 4.0)
     - SwiftyJSON (~> 2.3)
   - SwiftyJSON (2.3.2)
+  - TSMarkdownParser (2.1.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - BrightFutures
   - Result
   - Spine (from `https://github.com/invliD/Spine.git`, branch `master`)
+  - TSMarkdownParser
 
 EXTERNAL SOURCES:
   Spine:
@@ -37,7 +39,8 @@ SPEC CHECKSUMS:
   Result: 9e75e1111c774c6ac594e14907b15057053a7959
   Spine: c7c400cdd44a0a313969fe623698d47460da1c09
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  TSMarkdownParser: 64cb52fe5a518b4875a6167a650cb0ed4b18cea5
 
-PODFILE CHECKSUM: 7d3f2e8113a12592781385ba14f555c2f667ab2d
+PODFILE CHECKSUM: fa45cd0f74321da69589478e770d719acd116a1e
 
-COCOAPODS: 1.0.0.beta.8
+COCOAPODS: 1.0.1

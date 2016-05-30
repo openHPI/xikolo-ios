@@ -27,7 +27,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="548" height="400"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome-globe" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-DS-mCe">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-DS-mCe">
                                             <rect key="frame" x="0.0" y="0.0" width="548" height="330"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAj-2n-Bz2">
@@ -449,7 +449,4 @@
             <point key="canvasLocation" x="-976" y="-526"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="welcome-globe" width="1200" height="675"/>
-    </resources>
 </document>

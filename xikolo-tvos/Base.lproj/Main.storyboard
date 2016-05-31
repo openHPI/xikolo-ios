@@ -423,36 +423,35 @@
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sBY-AY-ZDI">
                                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEL-Eq-im3">
-                                                <rect key="frame" x="480" y="150" width="960" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="JEL-Eq-im3" firstAttribute="centerX" secondItem="sBY-AY-ZDI" secondAttribute="centerX" id="lw5-8T-0Xz"/>
-                                            <constraint firstItem="JEL-Eq-im3" firstAttribute="width" secondItem="sBY-AY-ZDI" secondAttribute="width" multiplier="0.5" id="pHf-2c-HfB"/>
-                                            <constraint firstItem="JEL-Eq-im3" firstAttribute="top" secondItem="sBY-AY-ZDI" secondAttribute="top" constant="150" id="z3f-IQ-YFX"/>
-                                        </constraints>
                                     </view>
                                     <vibrancyEffect>
                                         <blurEffect style="dark"/>
                                     </vibrancyEffect>
                                 </visualEffectView>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xe8-VT-iVb">
+                                    <rect key="frame" x="480" y="150" width="960" height="930"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="Xe8-VT-iVb" firstAttribute="width" secondItem="nA7-CI-kHY" secondAttribute="width" multiplier="0.5" id="6en-yp-916"/>
                                 <constraint firstItem="zlg-6r-iHI" firstAttribute="leading" secondItem="nA7-CI-kHY" secondAttribute="leading" id="8qz-18-KcV"/>
+                                <constraint firstItem="Xe8-VT-iVb" firstAttribute="centerX" secondItem="nA7-CI-kHY" secondAttribute="centerX" id="Fnl-ye-lsJ"/>
                                 <constraint firstItem="zlg-6r-iHI" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" id="Qgt-7t-wZd"/>
                                 <constraint firstAttribute="trailing" secondItem="zlg-6r-iHI" secondAttribute="trailing" id="bU7-YU-OeL"/>
+                                <constraint firstItem="Xe8-VT-iVb" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" constant="150" id="eIr-Ca-hvl"/>
+                                <constraint firstAttribute="bottom" secondItem="Xe8-VT-iVb" secondAttribute="bottom" id="n6W-fj-ss1"/>
                                 <constraint firstAttribute="bottom" secondItem="zlg-6r-iHI" secondAttribute="bottom" id="qrk-IM-ITA"/>
                             </constraints>
                         </view>
                         <blurEffect style="dark"/>
                     </visualEffectView>
                     <connections>
-                        <outlet property="textView" destination="JEL-Eq-im3" id="mpm-ni-nDj"/>
+                        <outlet property="textView" destination="Xe8-VT-iVb" id="vid-cX-SHT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXh-ch-RyF" userLabel="First Responder" sceneMemberID="firstResponder"/>

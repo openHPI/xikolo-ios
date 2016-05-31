@@ -37,6 +37,24 @@
 		24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */; };
 		24895DC21CCC09C300D6DFB8 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */; };
 		24895DC31CCC09C700D6DFB8 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */; };
+		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
+		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
+		24A16D6F1CFC938700CAD9FE /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */; };
+		24A16D701CFC938700CAD9FE /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */; };
+		24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */; };
+		24A16D761CFDB5E900CAD9FE /* BaseModelSpine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */; };
+		24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D771CFDD27200CAD9FE /* RichText.swift */; };
+		24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D771CFDD27200CAD9FE /* RichText.swift */; };
+		24A16D7C1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */; };
+		24A16D7D1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */; };
+		24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
+		24A16D7F1CFDE60200CAD9FE /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
+		24A16D811CFDE6E400CAD9FE /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D801CFDE6E400CAD9FE /* Quiz.swift */; };
+		24A16D821CFDE6E400CAD9FE /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D801CFDE6E400CAD9FE /* Quiz.swift */; };
+		24A16D851CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */; };
+		24A16D861CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */; };
+		24A16D871CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D841CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift */; };
+		24A16D881CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D841CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift */; };
 		24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */; };
 		24A179F11CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */; };
 		24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */; };
@@ -167,6 +185,15 @@
 		24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModelSpine.swift; sourceTree = "<group>"; };
+		24A16D771CFDD27200CAD9FE /* RichText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichText.swift; sourceTree = "<group>"; };
+		24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24A16D7B1CFDE60200CAD9FE /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		24A16D801CFDE6E400CAD9FE /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RichText+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		24A16D841CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Quiz+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractAppDelegate.swift; sourceTree = "<group>"; };
 		24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTabBarController.swift; sourceTree = "<group>"; };
@@ -324,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				24A17A0C1CD233050056A8EE /* BaseModel.swift */,
+				24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */,
 				24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */,
 				24D48E171CCA4FC100E8051E /* Course.swift */,
 				2433A59F1CE634A00060DD98 /* CourseItem+CoreDataProperties.swift */,
@@ -331,6 +359,14 @@
 				2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */,
 				2448A9D51CDA445D009A1AEA /* CourseSection.swift */,
 				F85225441B4D2B3D00C9BF56 /* UserProfile.swift */,
+				24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */,
+				24A16D7B1CFDE60200CAD9FE /* Content.swift */,
+				24A16D841CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift */,
+				24A16D801CFDE6E400CAD9FE /* Quiz.swift */,
+				24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */,
+				24A16D771CFDD27200CAD9FE /* RichText.swift */,
+				24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */,
+				24A16D6B1CFC883A00CAD9FE /* Video.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1042,30 +1078,39 @@
 				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
 				2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */,
+				24A16D7F1CFDE60200CAD9FE /* Content.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
 				24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */,
+				24A16D861CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */,
 				24D48E2D1CCA934500E8051E /* CourseHelper.swift in Sources */,
 				24A179F11CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */,
 				24D48E281CCA92C800E8051E /* UserProfile.swift in Sources */,
 				24D48E291CCA92CB00E8051E /* CourseProvider.swift in Sources */,
+				24A16D7D1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,
 				24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */,
 				2448A9D91CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				24D48E2F1CCA934A00E8051E /* xikolo.xcdatamodeld in Sources */,
 				AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */,
 				240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */,
 				2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
+				24A16D761CFDB5E900CAD9FE /* BaseModelSpine.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
 				2448A9DF1CDCDCC7009A1AEA /* SpineModelHelper.swift in Sources */,
 				24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */,
+				24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */,
 				2448A9DC1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */,
 				24D48E2A1CCA931900E8051E /* ImageProvider.swift in Sources */,
 				24D48E271CCA92C500E8051E /* Course.swift in Sources */,
+				24A16D881CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */,
+				24A16D821CFDE6E400CAD9FE /* Quiz.swift in Sources */,
+				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
 				24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */,
 				24D48E2C1CCA934300E8051E /* UserProfileHelper.swift in Sources */,
 				24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */,
 				24D48E2B1CCA931C00E8051E /* UserProfileProvider.swift in Sources */,
 				2433A5A21CE634A00060DD98 /* CourseItem+CoreDataProperties.swift in Sources */,
+				24A16D701CFC938700CAD9FE /* Video+CoreDataProperties.swift in Sources */,
 				240E034A1CE6160D0078A364 /* CourseSectionCell.swift in Sources */,
 				2433A5A71CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
 				24D48E261CCA92C300E8051E /* Course+CoreDataProperties.swift in Sources */,
@@ -1102,6 +1147,7 @@
 				AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */,
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				2433A5A61CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
+				24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */,
 				2433A5A31CE634A00060DD98 /* CourseItem.swift in Sources */,
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
 				AB9AF2CF1CF4C50400ED3EB0 /* QuizWebViewController.swift in Sources */,
@@ -1113,29 +1159,37 @@
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
+				24A16D811CFDE6E400CAD9FE /* Quiz.swift in Sources */,
 				2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
+				24A16D7C1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,
 				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
 				AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,
 				24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */,
+				24A16D871CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
 				AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */,
 				2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */,
+				24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */,
 				AB91F9E51CED029B00007D06 /* CourseContentTableViewCell.swift in Sources */,
 				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
 				AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
+				24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
 				24895DC21CCC09C300D6DFB8 /* ImageHelper.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,
+				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 				24D48E221CCA78A600E8051E /* NSDate+iso8601.swift in Sources */,
+				24A16D6F1CFC938700CAD9FE /* Video+CoreDataProperties.swift in Sources */,
 				ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */,
+				24A16D851CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */,
 				2448A9DB1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

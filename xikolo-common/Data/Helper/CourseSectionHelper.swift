@@ -33,7 +33,7 @@ class CourseSectionHelper {
         CourseSectionProvider.getCourseSections(course.id!) { sections, error in
             if let sections = sections {
                 do {
-                    try SpineModelHelper.syncObjects(CourseSection.self, spineObjects: sections, inject:["course": course])
+                    try SpineModelHelper.syncObjects(sections, inject:["course": course])
                 } catch {
                     // TODO: Error handling.
                 }

@@ -11,6 +11,7 @@ import Foundation
 class Routes: NSObject {
     
     static let API_URL = "https://staging.openhpi.de/api/"
+    static let API_V2_URL = API_URL + "v2/"
     static let BASE_URL = "https://staging.openhpi.de/"
     
     static let HEADER_USER_PLATFORM = "User-Platform"
@@ -21,8 +22,6 @@ class Routes: NSObject {
     static let MY_PROFILE = "users/me"
     static let ENROLLMENTS = "users/me/enrollments/"
     static let NEWS = "news"
-    static let COURSE_ITEMS = "v2/course_items/"
-    static let COURSE_SECTIONS = "v2/course_sections/"
     
     static let HTTP_ACCEPT_HEADER = "Accept"
     static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.xikolo.v1, application/json"

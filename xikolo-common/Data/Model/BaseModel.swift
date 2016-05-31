@@ -42,14 +42,17 @@ class BaseModel : NSManagedObject {
 
 extension BaseModel {
 
-    // TODO: Make this a class var once Swift implements overriding them in subclasses.
-    class func spineType() -> Resource.Type! {
-        return nil
-    }
-
-    func loadFromSpine(section: Resource) {
-        for field in self.dynamicType.spineType().fields {
-            self.setValue(section.valueForKey(field.name), forKey: field.name)
+    func loadFromSpine(resource: BaseModelSpine) throws {
+        for field in resource.dynamicType.fields {
+            let value = resource.valueForKey(field.name)
+            if field is Relationship {
+                if let value = value as? BaseModelSpine {
+                    let cdObjects = try SpineModelHelper.syncObjects([value], inject: nil, save: false)
+                    self.setValue(cdObjects[0], forKey: field.name)
+                }
+            } else {
+                self.setValue(value, forKey: field.name)
+            }
         }
     }
 

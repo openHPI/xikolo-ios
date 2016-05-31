@@ -192,14 +192,12 @@ extension LearningsViewController : UICollectionViewDelegate {
     }
 
     func showItem(item: CourseItem) {
-        if let content_type = item.content_type {
-            switch content_type {
-                case "video":
-                    performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: item)
-                default:
-                    // TODO: show error: unsupported type
-                    break;
-            }
+        switch item.content {
+            case is Video:
+                performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: item)
+            default:
+                // TODO: show error: unsupported type
+                break
         }
     }
 

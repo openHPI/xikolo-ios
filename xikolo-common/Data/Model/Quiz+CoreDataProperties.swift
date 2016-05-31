@@ -1,5 +1,5 @@
 //
-//  CourseItem+CoreDataProperties.swift
+//  Quiz+CoreDataProperties.swift
 //  xikolo-ios
 //
 //  Created by Sebastian Brückner on 31.05.16.
@@ -12,11 +12,8 @@
 import Foundation
 import CoreData
 
-extension CourseItem {
+extension Quiz {
 
     @NSManaged var id: String?
-    @NSManaged var title: String?
-    @NSManaged var section: CourseSection?
-    @NSManaged var content: Content?
 
 }

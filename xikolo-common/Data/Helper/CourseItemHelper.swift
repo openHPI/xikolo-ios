@@ -47,7 +47,7 @@ class CourseItemHelper {
         CourseItemProvider.getCourseItems(section.id!) { items, error in
             if let items = items {
                 do {
-                    try SpineModelHelper.syncObjects(CourseItem.self, spineObjects: items, inject:["section": section])
+                    try SpineModelHelper.syncObjects(items, inject:["section": section])
                 } catch {
                     // TODO: Error handling.
                 }

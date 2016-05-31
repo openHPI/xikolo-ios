@@ -12,19 +12,19 @@ import Spine
 
 class CourseSection : BaseModel {
 
-    override class func spineType() -> Resource.Type {
-        return CourseSectionSpine.self
-    }
-
 }
 
-class CourseSectionSpine : Resource {
+class CourseSectionSpine : BaseModelSpine {
 
     var title: String?
     var section_description: String?
+    
+    override class var cdType: BaseModel.Type {
+        return CourseSection.self
+    }
 
     override class var resourceType: ResourceType {
-        return "course-section"
+        return "course-sections"
     }
 
     override class var fields: [Field] {

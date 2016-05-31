@@ -12,43 +12,36 @@ import Spine
 
 class CourseItem : BaseModel {
 
-    override class func spineType() -> Resource.Type {
-        return CourseItemSpine.self
-    }
-
     var iconName: String? {
         get {
-            if let contentType = self.content_type {
-                var iconName: String!
-                switch(contentType) {
-                case "peer_assessment":
-                    iconName = "homework"
-                default:
-                    iconName = contentType
-                }
-                return iconName
+            if let content = content {
+                return content.iconName()
             }
-            return nil
+            // TODO: better default icon
+            return "homework"
         }
     }
 
 }
 
-class CourseItemSpine : Resource {
+class CourseItemSpine : BaseModelSpine {
 
     var title: String?
-    var content_id: String?
-    var content_type: String?
+
+    var content: BaseModelSpine?
+
+    override class var cdType: BaseModel.Type {
+        return CourseItem.self
+    }
 
     override class var resourceType: ResourceType {
-        return "course-item"
+        return "course-items"
     }
 
     override class var fields: [Field] {
         return fieldsFromDictionary([
             "title": Attribute(),
-            "content_id": Attribute(),
-            "content_type": Attribute(),
+            "content": ToOneRelationship(VideoSpine),
         ])
     }
 

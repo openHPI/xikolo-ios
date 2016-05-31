@@ -14,12 +14,22 @@ class SpineModelHelper {
 
     static private let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
     static private let managedContext = appDelegate.managedObjectContext
+    
+    class func syncObjects(spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?) throws -> [BaseModel] {
+        return try syncObjects(spineObjects, inject: inject, save: true)
+    }
 
-    class func syncObjects(model: BaseModel.Type, spineObjects: [Resource], inject: [String: AnyObject?]?) throws {
+    class func syncObjects(spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
+        if spineObjects.count == 0 {
+            return []
+        }
+
+        let model = spineObjects[0].dynamicType.cdType
         let entityName = String(model)
         let request = NSFetchRequest(entityName: entityName)
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedContext)!
 
+        var cdObjects = [BaseModel]()
         for spineObject in spineObjects {
             if let id = spineObject.id {
                 let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
@@ -34,14 +44,18 @@ class SpineModelHelper {
                     cdObject = model.init(entity: entity, insertIntoManagedObjectContext: managedContext)
                     cdObject.setValue(id, forKey: "id")
                 }
-                cdObject.loadFromSpine(spineObject)
+                try cdObject.loadFromSpine(spineObject)
                 if let dict = inject {
                     cdObject.loadFromDict(dict)
                 }
+                cdObjects.append(cdObject)
             }
         }
         // TODO: Delete objects from CD that have not been returned
-        appDelegate.saveContext()
+        if save {
+            appDelegate.saveContext()
+        }
+        return cdObjects
     }
 
 }

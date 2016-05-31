@@ -787,6 +787,11 @@
 					};
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A90587CE1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
@@ -1471,7 +1476,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
@@ -1495,7 +1500,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";

@@ -45,7 +45,11 @@ extension BaseModel {
     func loadFromSpine(resource: BaseModelSpine) throws {
         for field in resource.dynamicType.fields {
             let value = resource.valueForKey(field.name)
-            if field is Relationship {
+            if field is CompoundAttribute {
+                if let value = value as? CompoundValue {
+                    value.saveToCoreData(self)
+                }
+            } else if field is Relationship {
                 if let value = value as? BaseModelSpine {
                     let cdObjects = try SpineModelHelper.syncObjects([value], inject: nil, save: false)
                     self.setValue(cdObjects[0], forKey: field.name)

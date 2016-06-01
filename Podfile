@@ -4,6 +4,8 @@ def common_pods
     pod 'Alamofire'
     pod 'AlamofireObjectMapper'
 
+    pod 'BrightFutures'
+    pod 'Result'
     pod 'Spine', :git => 'https://github.com/invliD/Spine.git', :branch => 'master'
 end
 

@@ -3,18 +3,20 @@ PODS:
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - BrightFutures (3.3.0):
-    - Result (~> 1.0)
+  - BrightFutures (4.1.0):
+    - Result (~> 2.0)
   - ObjectMapper (1.2.0)
-  - Result (1.0.2)
+  - Result (2.0.0)
   - Spine (0.3):
-    - BrightFutures (~> 3.3.0)
-    - SwiftyJSON (~> 2.3.1)
+    - BrightFutures (~> 4.0)
+    - SwiftyJSON (~> 2.3)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - BrightFutures
+  - Result
   - Spine (from `https://github.com/invliD/Spine.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -24,18 +26,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Spine:
-    :commit: 3c582673c9e231803fe25364c0b9cb807fdc6b0b
+    :commit: 4ea429e29a3650a7240e80aa34c91cb35123525c
     :git: https://github.com/invliD/Spine.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
-  BrightFutures: f4b491b3107487a0469973a74f81f334eb0ed60a
+  BrightFutures: e18b83fd6fa8562ceb9902ee609f0de23b0ee110
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
-  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
-  Spine: 2c327a17a5ea10a32d219bde3ee5ded08b73e66e
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+  Spine: c7c400cdd44a0a313969fe623698d47460da1c09
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: f37f12641cb8a32a3bef1f8d1134754ea9e255e8
+PODFILE CHECKSUM: 7d3f2e8113a12592781385ba14f555c2f667ab2d
 
 COCOAPODS: 1.0.0.beta.8

@@ -16,3 +16,14 @@ class BaseModelSpine : Resource {
     }
 
 }
+
+class CompoundAttribute : Attribute {
+}
+
+class CompoundValue : NSObject {
+
+    func saveToCoreData(model: BaseModel) {
+        fatalError("Subclasses of CompoundValue need to implement saveToCoreData(model:).")
+    }
+
+}

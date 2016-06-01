@@ -194,7 +194,10 @@ extension LearningsViewController : UICollectionViewDelegate {
     func showItem(item: CourseItem) {
         switch item.content {
             case is Video:
-                performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: item)
+                let video = item.content as! Video
+                VideoHelper.syncVideo(video).onSuccess { video in
+                    self.performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: video)
+                }
             default:
                 // TODO: show error: unsupported type
                 break
@@ -205,12 +208,12 @@ extension LearningsViewController : UICollectionViewDelegate {
         switch segue.identifier {
             case "ShowCourseItemVideoSegue"?:
                 let vc = segue.destinationViewController as! AVPlayerViewController
-                //let item = sender as! CourseItem
-                // TODO: Fetch real URL.
-                let mockUrl = NSURL(string: "https://player.vimeo.com/external/164726756.m3u8?s=69976e2f9e2216472fa63f8feff4503ee2d6513b&oauth2_token_id=621239406")!
-                let avPlayer = AVPlayer(URL: mockUrl)
-                avPlayer.play()
-                vc.player = avPlayer
+                let video = sender as! Video
+                if let url = video.single_stream_hls_url {
+                    let avPlayer = AVPlayer(URL: NSURL(string: url)!)
+                    avPlayer.play()
+                    vc.player = avPlayer
+                }
             default:
                 break
         }

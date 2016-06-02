@@ -8,13 +8,9 @@
 
 import CoreData
 import Foundation
-import Spine
 
-class SpineModelHelper {
+class SpineModelHelper : CoreDataHelper {
 
-    static private let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
-    static private let managedContext = appDelegate.managedObjectContext
-    
     class func syncObjects(spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?) throws -> [BaseModel] {
         return try syncObjects(spineObjects, inject: inject, save: true)
     }
@@ -37,7 +33,7 @@ class SpineModelHelper {
 
                 var cdObject: BaseModel!
 
-                let results = try managedContext.executeFetchRequest(request) as! [BaseModel]
+                let results = try executeFetchRequest(request)
                 if (results.count > 0) {
                     cdObject = results[0]
                 } else {

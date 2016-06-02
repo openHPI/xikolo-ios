@@ -9,10 +9,8 @@
 import CoreData
 import UIKit
 
-class CourseItemHelper {
+class CourseItemHelper : CoreDataHelper {
 
-    static private let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
-    static private let managedContext = appDelegate.managedObjectContext
     static private let entity = NSEntityDescription.entityForName("CourseItem", inManagedObjectContext: managedContext)!
 
     static func getItemRequest(section: CourseSection) -> NSFetchRequest {

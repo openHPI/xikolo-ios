@@ -9,10 +9,8 @@
 import CoreData
 import UIKit
 
-class CourseSectionHelper {
+class CourseSectionHelper : CoreDataHelper {
 
-    static private let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
-    static private let managedContext = appDelegate.managedObjectContext
     static private let entity = NSEntityDescription.entityForName("CourseSection", inManagedObjectContext: managedContext)!
 
     static func getSectionRequest(course: Course) -> NSFetchRequest {

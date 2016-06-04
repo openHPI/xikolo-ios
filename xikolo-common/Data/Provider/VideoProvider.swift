@@ -12,7 +12,7 @@ import Spine
 
 class VideoProvider {
 
-    class func getVideo(videoId: String) -> Future<VideoSpine, SpineError> {
+    class func getVideo(videoId: String) -> Future<VideoSpine, XikoloError> {
         let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
         spine.registerResource(VideoSpine)
 
@@ -20,7 +20,9 @@ class VideoProvider {
         spine.registerValueFormatter(DualStreamFormatter())
 
         return spine.findOne(videoId, ofType: VideoSpine.self).map { tuple in
-            return tuple.resource
+            tuple.resource
+        }.mapError { error in
+            XikoloError.API(error)
         }
     }
 

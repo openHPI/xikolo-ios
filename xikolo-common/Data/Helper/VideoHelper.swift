@@ -12,24 +12,23 @@ import Result
 
 class VideoHelper {
 
-    static func syncVideo(video: Video) -> Future<Video, NSError> {
+    static func syncVideo(video: Video) -> Future<Video, XikoloError> {
         if let id = video.id {
-            let future1: Future<VideoSpine, NSError> = VideoProvider.getVideo(id).mapError { error in
-                return error as NSError
-            }
-            return future1.flatMap{ videoSpine in
+            return VideoProvider.getVideo(id).flatMap { videoSpine in
                 future {
                     do {
                         try SpineModelHelper.syncObjects([videoSpine], inject: nil)
-                        return Result<Video, NSError>.Success(video)
-                    } catch let error as NSError {
-                        return Result<Video, NSError>.Failure(error)
+                        return Result.Success(video)
+                    } catch let error as XikoloError {
+                        return Result.Failure(error)
+                    } catch {
+                        return Result.Failure(XikoloError.UnknownError(error))
                     }
                 }
             }
         }
-        let failedPromise = Promise<Video, NSError>()
-        failedPromise.failure(NSError(domain: "de.xikolo", code: 2, userInfo: [:]))
+        let failedPromise = Promise<Video, XikoloError>()
+        failedPromise.failure(XikoloError.ModelIncomplete)
         return failedPromise.future
     }
 

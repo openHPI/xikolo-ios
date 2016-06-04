@@ -6,8 +6,9 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
-import UIKit
+import Result
 
 class CourseItemHelper : CoreDataHelper {
 
@@ -41,16 +42,18 @@ class CourseItemHelper : CoreDataHelper {
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: "section.title", cacheName: nil)
     }
 
-    static func syncCourseItems(section: CourseSection) {
-        CourseItemProvider.getCourseItems(section.id!) { items, error in
-            if let items = items {
+    static func syncCourseItems(section: CourseSection) -> Future<[CourseItem], XikoloError> {
+        return CourseItemProvider.getCourseItems(section.id!).flatMap { spineItems in
+            future {
                 do {
-                    try SpineModelHelper.syncObjects(items, inject:["section": section])
+                    let cdItems = try SpineModelHelper.syncObjects(spineItems, inject:["section": section])
+                    return Result.Success(cdItems as! [CourseItem])
+                } catch let error as XikoloError {
+                    return Result.Failure(error)
                 } catch {
-                    // TODO: Error handling.
+                    return Result.Failure(XikoloError.UnknownError(error))
                 }
             }
-            // TODO: Error handling
         }
     }
 

@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import Spine
 
 enum XikoloError : ErrorType {
 
+    case API(SpineError)
     case CoreData(NSError)
+    case ModelIncomplete
+
+    case UnknownError(ErrorType)
 
 }

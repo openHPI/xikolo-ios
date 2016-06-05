@@ -15,6 +15,8 @@ class CourseContentTableViewController: UITableViewController {
     var course: Course!
     
     var resultsController: NSFetchedResultsController!
+    
+    // MARK: - ViewController Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,8 @@ class CourseContentTableViewController: UITableViewController {
         switch item.content {
         case is Video:
             performSegueWithIdentifier("ShowVideoView", sender: item)
+        case is Quiz:
+            performSegueWithIdentifier("ShowQuizWebView", sender: item)
         default:
             // TODO: show error: unsupported type
             break
@@ -102,7 +106,7 @@ class CourseContentTableViewController: UITableViewController {
             break
         case "ShowQuizWebView":
             let quizView = segue.destinationViewController as! QuizWebViewController
-            quizView.url = Routes.BASE_URL + Routes.NEWS // TODO: insert Link to Quiz
+            quizView.courseItem = sender as! CourseItem
             break
         default:
             break

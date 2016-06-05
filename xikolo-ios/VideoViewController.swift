@@ -11,16 +11,15 @@ import AVKit
 import AVFoundation
 
 class VideoViewController: UIViewController {
-    
-    var url: String? = nil
 
     @IBOutlet weak var containerVideoView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    var courseItem: CourseItem! {
+        didSet {
+            updateUI()
+        }
     }
     
     // MARK: - Navigation
@@ -28,9 +27,11 @@ class VideoViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destination = segue.destinationViewController as!
         AVPlayerViewController
-        if self.url != nil {
-            let url = NSURL(string: self.url!)
-            destination.player = AVPlayer(URL: url!)
-        }
+        let url = NSURL(string: "https://player.vimeo.com/external/164726756.m3u8?s=69976e2f9e2216472fa63f8feff4503ee2d6513b&oauth2_token_id=621239406")
+        destination.player = AVPlayer(URL: url!)
+    }
+    
+    func updateUI() {
+        titleLabel?.text = courseItem?.title ?? "default Title"
     }
 }

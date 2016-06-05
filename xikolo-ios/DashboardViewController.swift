@@ -11,7 +11,7 @@ import UIKit
 class DashboardViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var deadlinesWebView: UIWebView!
-    //@IBOutlet weak var notificationsWebView: UIWebView!
+    @IBOutlet weak var notificationsWebView: UIWebView!
     @IBOutlet weak var deadlinesActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var notificationsActivityIndicator: UIActivityIndicatorView!
     
@@ -21,14 +21,8 @@ class DashboardViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.deadlinesWebView.delegate = self
-        let url = NSURL(string: Routes.NEWS) // TODO: change to Deadlines
-        let request = NSMutableURLRequest(URL: url!)
-        request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
-        self.deadlinesWebView.loadRequest(request)
         loadDeadlinesWebView()
-        //loadNotificationsWebView()
+        loadNotificationsWebView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,15 +31,15 @@ class DashboardViewController: UIViewController, UIWebViewDelegate {
     }
     
     func loadDeadlinesWebView() {
-        
+        self.deadlinesWebView.delegate = self
+        let url = Routes.BASE_URL + Routes.NEWS  // TODO: change url to deadlines
+        self.deadlinesWebView.loadRequest(NetworkHelper.getRequestForURL(url))
     }
     
     func loadNotificationsWebView() {
-        //self.notificationsWebView.delegate = self
-        /*let url = NSURL(string: Routes.NEWS) // TODO: change to Notifications
-        let request = NSMutableURLRequest(URL: url!)
-        request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
-        self.notificationsWebView.loadRequest(request)*/
+        self.notificationsWebView.delegate = self
+        let url = Routes.BASE_URL + Routes.NEWS  // TODO: change url to notifications
+        self.notificationsWebView.loadRequest(NetworkHelper.getRequestForURL(url))
     }
     
     func webViewDidStartLoad(webView: UIWebView) {

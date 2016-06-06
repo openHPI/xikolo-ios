@@ -30,18 +30,13 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webViewNews.delegate = self
-        
         // Position of indicator
         activityIndicator.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 3)
         activityIndicator.tag = 100
         
-        let url = NSURL(string: Routes.BASE_URL + Routes.NEWS)
-        let request = NSMutableURLRequest(URL: url!)
-        request.addValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
-        self.webViewNews.loadRequest(request)
-
-        // Do any additional setup after loading the view.
+        self.webViewNews.delegate = self
+        let url = Routes.BASE_URL + Routes.NEWS
+        self.webViewNews.loadRequest(NetworkHelper.getRequestForURL(url))
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -61,5 +56,4 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
         activityIndicator.removeFromSuperview()
         activityIndicator.stopAnimating()
     }
-
 }

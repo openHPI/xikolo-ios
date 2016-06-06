@@ -17,7 +17,15 @@ class NetworkHelper {
         if UserProfileHelper.isLoggedIn() {
             headers[Routes.HTTP_AUTH_HEADER] = Routes.HTTP_AUTH_HEADER_VALUE_PREFIX + UserProfileHelper.getToken()
         }
+        headers[Routes.HEADER_USER_PLATFORM] = Routes.HEADER_USER_PLATFORM_VALUE
         return headers
     }
-
+    
+    class func getRequestForURL(url: String) -> NSMutableURLRequest {
+        //TODO: test whether url is a valid url
+        let url = NSURL(string: url)
+        let request = NSMutableURLRequest(URL: url!)
+        request.allHTTPHeaderFields = getRequestHeaders()
+        return request
+    }
 }

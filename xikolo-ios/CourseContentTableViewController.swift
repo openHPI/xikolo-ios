@@ -15,6 +15,8 @@ class CourseContentTableViewController: UITableViewController {
     var course: Course!
     
     var resultsController: NSFetchedResultsController!
+    
+    // MARK: - ViewController Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,25 @@ class CourseContentTableViewController: UITableViewController {
             }
         }
 
+    }
+    
+    func showItem(item: CourseItem) {
+        switch item.content {
+        case is Video:
+            performSegueWithIdentifier("ShowVideoView", sender: item)
+        case is Quiz:
+            performSegueWithIdentifier("ShowQuizWebView", sender: item)
+        default:
+            // TODO: show error: unsupported type
+            break
+        }
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let item = resultsController!.objectAtIndexPath(indexPath) as! CourseItem
+        showItem(item)
     }
 
     // MARK: - Table view data source
@@ -80,12 +101,12 @@ class CourseContentTableViewController: UITableViewController {
         switch segue.identifier! {
         case "ShowVideoView":
             let videoView = segue.destinationViewController as! VideoViewController
-            //videoView.url =
-            // TODO: insert real Link to Video
+            //let item = sender as! CourseItem
+            //TODO: insert real CourseItem
             break
         case "ShowQuizWebView":
             let quizView = segue.destinationViewController as! QuizWebViewController
-            quizView.url = Routes.BASE_URL + Routes.NEWS // TODO: insert Link to Quiz
+            quizView.courseItem = sender as! CourseItem
             break
         default:
             break

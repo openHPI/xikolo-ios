@@ -29,6 +29,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRx-jm-Bdw">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
+                                        </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2s-2M-RvA">
                                             <rect key="frame" x="0.0" y="156" width="400" height="84"/>
                                             <subviews>
@@ -84,9 +87,6 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRx-jm-Bdw">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
-                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>

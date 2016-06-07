@@ -22,7 +22,7 @@
                             </webView>
                             <webView hidden="YES" contentMode="scaleToFill" restorationIdentifier="CourseActivityWebView" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moD-hx-r4X">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.95927601809999996" green="0.95927601809999996" blue="0.95927601809999996" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

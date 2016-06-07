@@ -55,20 +55,36 @@
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rZd-TP-NsX">
                                                 <rect key="frame" x="290" y="363" width="20" height="20"/>
                                             </activityIndicatorView>
+                                            <webView tag="10" contentMode="scaleToFill" restorationIdentifier="NotificationsWebView" translatesAutoresizingMaskIntoConstraints="NO" id="FzH-WL-Omw">
+                                                <rect key="frame" x="0.0" y="298" width="600" height="200"/>
+                                                <color key="backgroundColor" red="0.95927601809999996" green="0.95927601809999996" blue="0.95927601809999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="Aph-Ya-oOs"/>
+                                                </constraints>
+                                            </webView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="FzH-WL-Omw" firstAttribute="top" secondItem="FVO-R5-bvE" secondAttribute="bottom" constant="8" symbolic="YES" id="1yK-ws-ujA"/>
                                             <constraint firstItem="cEK-zv-WTa" firstAttribute="leading" secondItem="MOB-zD-zVQ" secondAttribute="leading" id="404-d9-Pd2"/>
+                                            <constraint firstAttribute="trailing" secondItem="FzH-WL-Omw" secondAttribute="trailing" id="6Uf-v1-SU3"/>
                                             <constraint firstAttribute="height" constant="487" id="ApD-id-xlk"/>
                                             <constraint firstItem="jaR-ew-o1P" firstAttribute="leading" secondItem="MOB-zD-zVQ" secondAttribute="leading" constant="20" id="Cte-eV-kz2"/>
                                             <constraint firstItem="FVO-R5-bvE" firstAttribute="leading" secondItem="MOB-zD-zVQ" secondAttribute="leading" constant="20" id="L54-fF-Er9"/>
                                             <constraint firstAttribute="trailing" secondItem="cEK-zv-WTa" secondAttribute="trailing" id="Rse-od-kWn"/>
+                                            <constraint firstItem="FzH-WL-Omw" firstAttribute="leading" secondItem="MOB-zD-zVQ" secondAttribute="leading" id="YBA-OD-ged"/>
                                             <constraint firstItem="FVO-R5-bvE" firstAttribute="top" secondItem="cEK-zv-WTa" secondAttribute="bottom" constant="20" id="eDD-CN-55u"/>
                                             <constraint firstItem="jaR-ew-o1P" firstAttribute="top" secondItem="MOB-zD-zVQ" secondAttribute="top" constant="20" symbolic="YES" id="f6K-2e-Xjl"/>
+                                            <constraint firstAttribute="bottom" secondItem="FzH-WL-Omw" secondAttribute="bottom" constant="20" symbolic="YES" id="gzY-U5-4zY"/>
                                             <constraint firstItem="cEK-zv-WTa" firstAttribute="top" secondItem="jaR-ew-o1P" secondAttribute="bottom" constant="8" symbolic="YES" id="lBg-l9-mUV"/>
                                             <constraint firstItem="SVy-2r-YxO" firstAttribute="centerX" secondItem="cEK-zv-WTa" secondAttribute="centerX" id="qdE-Va-62W"/>
                                             <constraint firstItem="SVy-2r-YxO" firstAttribute="centerY" secondItem="cEK-zv-WTa" secondAttribute="centerY" id="yW8-ID-IKe"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="ApD-id-xlk"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -95,6 +111,7 @@
                         <outlet property="deadlinesActivityIndicator" destination="SVy-2r-YxO" id="cpo-SZ-6R2"/>
                         <outlet property="deadlinesWebView" destination="cEK-zv-WTa" id="OxK-ma-PCB"/>
                         <outlet property="notificationsActivityIndicator" destination="rZd-TP-NsX" id="XO7-Kj-ckm"/>
+                        <outlet property="notificationsWebView" destination="FzH-WL-Omw" id="8F7-fw-qOI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>

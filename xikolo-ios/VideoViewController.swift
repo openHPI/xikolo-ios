@@ -28,6 +28,7 @@ class VideoViewController: UIViewController {
         let destination = segue.destinationViewController as!
         AVPlayerViewController
         let url = NSURL(string: "https://player.vimeo.com/external/164726756.m3u8?s=69976e2f9e2216472fa63f8feff4503ee2d6513b&oauth2_token_id=621239406")
+        //TODO: insert real link
         destination.player = AVPlayer(URL: url!)
     }
     

@@ -344,6 +344,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="textField" destination="Fhx-Tx-q3l" id="KCc-Qz-tN0"/>
                     </connections>
@@ -357,7 +358,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zuv-Ks-G5V" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3pm-w4-Wwd">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3pm-w4-Wwd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

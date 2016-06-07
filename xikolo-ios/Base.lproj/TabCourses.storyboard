@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uLl-5G-DMn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -213,6 +214,9 @@
                             <outlet property="delegate" destination="CK9-1h-i1I" id="h7M-1C-6Ng"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="y1N-Ie-3cw"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="courseContentTableView" destination="vFe-DM-VEd" id="f0C-Vc-ew7"/>
                         <segue destination="5Hh-M9-wy1" kind="show" identifier="ShowVideoView" id="0UY-Iy-ApH"/>
@@ -288,6 +292,8 @@
                             <constraint firstItem="jcH-yJ-rTE" firstAttribute="top" secondItem="7Gm-t5-gub" secondAttribute="bottom" id="tAx-LO-1UX"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVh-ZN-bc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

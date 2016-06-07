@@ -14,7 +14,7 @@ import CoreData
 
 extension CourseItem {
 
-    @NSManaged var id: String?
+    @NSManaged var id: String
     @NSManaged var title: String?
     @NSManaged var section: CourseSection?
     @NSManaged var content: Content?

@@ -2,7 +2,7 @@
 //  Video+CoreDataProperties.swift
 //  xikolo-ios
 //
-//  Created by Sebastian Brückner on 31.05.16.
+//  Created by Sebastian Brückner on 02.06.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,7 +16,6 @@ extension Video {
 
     @NSManaged var audio_url: String?
     @NSManaged var duration: NSNumber?
-    @NSManaged var id: String?
     @NSManaged var single_stream_hls_url: String?
     @NSManaged var single_stream_poster_url: String?
     @NSManaged var slides_url: String?

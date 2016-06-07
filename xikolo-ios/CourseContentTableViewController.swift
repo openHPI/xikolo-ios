@@ -20,32 +20,29 @@ class CourseContentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if course.id != nil {
-            let request = CourseItemHelper.getItemRequest(course)
-            resultsController = CourseItemHelper.initializeItemResultsController(request)
-            resultsController.delegate = self
-            do {
-                try resultsController.performFetch()
-            } catch {
-                // TODO: Error handling.
-            }
-            CourseSectionHelper.syncCourseSections(course)
-            
-            // TODO: Replace the following. e.g. add a completion handler to syncCourseSections and execute it there.
-            let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
-            let managedContext = appDelegate.managedObjectContext
-            
-            do {
-                let sectionRequest = CourseSectionHelper.getSectionRequest(course)
-                let sections = try managedContext.executeFetchRequest(sectionRequest)
-                for section in sections {
-                    CourseItemHelper.syncCourseItems(section as! CourseSection)
-                }
-            } catch {
-                // TODO: Error handling
-            }
+        let request = CourseItemHelper.getItemRequest(course)
+        resultsController = CourseItemHelper.initializeItemResultsController(request)
+        resultsController.delegate = self
+        do {
+            try resultsController.performFetch()
+        } catch {
+            // TODO: Error handling.
         }
+        CourseSectionHelper.syncCourseSections(course)
 
+        // TODO: Replace the following. e.g. add a completion handler to syncCourseSections and execute it there.
+        let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
+        let managedContext = appDelegate.managedObjectContext
+
+        do {
+            let sectionRequest = CourseSectionHelper.getSectionRequest(course)
+            let sections = try managedContext.executeFetchRequest(sectionRequest)
+            for section in sections {
+                CourseItemHelper.syncCourseItems(section as! CourseSection)
+            }
+        } catch {
+            // TODO: Error handling
+        }
     }
     
     func showItem(item: CourseItem) {

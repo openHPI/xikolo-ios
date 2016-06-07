@@ -17,7 +17,7 @@ extension Course {
     @NSManaged var course_code: String?
     @NSManaged var course_description: String?
     @NSManaged var end_date: NSDate?
-    @NSManaged var id: String?
+    @NSManaged var id: String
     @NSManaged var image_url: String?
     @NSManaged var is_enrolled_int: NSNumber?
     @NSManaged var language: String?

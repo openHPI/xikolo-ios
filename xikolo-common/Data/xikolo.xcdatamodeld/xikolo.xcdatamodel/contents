@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
-    <entity name="Content" representedClassName=".Content" isAbstract="YES" syncable="YES"/>
+    <entity name="Content" representedClassName=".Content" isAbstract="YES" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Course" representedClassName=".Course" syncable="YES">
         <attribute name="course_code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="course_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="end_date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="is_enrolled_int" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,28 +17,23 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection" syncable="YES"/>
     </entity>
     <entity name="CourseItem" representedClassName=".CourseItem" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" syncable="YES"/>
         <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection" syncable="YES"/>
     </entity>
     <entity name="CourseSection" representedClassName=".CourseSection" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="section_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="sections" inverseEntity="Course" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseItem" inverseName="section" inverseEntity="CourseItem" syncable="YES"/>
     </entity>
-    <entity name="Quiz" representedClassName=".Quiz" parentEntity="Content" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
+    <entity name="Quiz" representedClassName=".Quiz" parentEntity="Content" syncable="YES"/>
+    <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES"/>
     <entity name="Video" representedClassName=".Video" parentEntity="Content" syncable="YES">
         <attribute name="audio_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="single_stream_hls_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="single_stream_poster_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="slides_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,12 +46,12 @@
         <attribute name="video_description" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Course" positionX="-54" positionY="-9" width="128" height="210"/>
+        <element name="Course" positionX="-54" positionY="-9" width="128" height="208"/>
         <element name="CourseItem" positionX="432" positionY="144" width="128" height="103"/>
-        <element name="CourseSection" positionX="214" positionY="144" width="128" height="120"/>
-        <element name="Video" positionX="655" positionY="-99" width="128" height="238"/>
-        <element name="Content" positionX="666" positionY="198" width="128" height="43"/>
-        <element name="Quiz" positionX="828" positionY="198" width="128" height="58"/>
-        <element name="RichText" positionX="837" positionY="90" width="128" height="58"/>
+        <element name="CourseSection" positionX="214" positionY="144" width="128" height="118"/>
+        <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
+        <element name="Content" positionX="666" positionY="198" width="128" height="58"/>
+        <element name="Quiz" positionX="828" positionY="198" width="128" height="43"/>
+        <element name="RichText" positionX="837" positionY="90" width="128" height="43"/>
     </elements>
 </model>

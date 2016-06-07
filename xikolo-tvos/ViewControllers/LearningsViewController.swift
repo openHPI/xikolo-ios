@@ -26,46 +26,42 @@ class LearningsViewController : UIViewController {
         courseTabBarController = self.tabBarController as! CourseTabBarController
         course = courseTabBarController.course
 
-        if course.id != nil {
-            let request = CourseSectionHelper.getSectionRequest(course)
-            sectionResultsController = CourseSectionHelper.initializeFetchedResultsController(request)
-            sectionResultsController.delegate = self
+        let request = CourseSectionHelper.getSectionRequest(course)
+        sectionResultsController = CourseSectionHelper.initializeFetchedResultsController(request)
+        sectionResultsController.delegate = self
 
-            itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
-            itemResultsControllerDelegateImplementation.delegate = self
+        itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
+        itemResultsControllerDelegateImplementation.delegate = self
 
-            do {
-                try sectionResultsController.performFetch()
+        do {
+            try sectionResultsController.performFetch()
 
-                if sectionResultsController.fetchedObjects!.count > 0 {
-                    sectionTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Middle)
-                    if let section = sectionResultsController.fetchedObjects![0] as? CourseSection {
-                        loadItemsForSection(section)
-                    }
+            if sectionResultsController.fetchedObjects!.count > 0 {
+                sectionTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Middle)
+                if let section = sectionResultsController.fetchedObjects![0] as? CourseSection {
+                    loadItemsForSection(section)
                 }
-            } catch {
-                // TODO: Error handling.
             }
-
-            CourseSectionHelper.syncCourseSections(course)
+        } catch {
+            // TODO: Error handling.
         }
+
+        CourseSectionHelper.syncCourseSections(course)
     }
 
     func loadItemsForSection(section: CourseSection) {
-        if section.id != nil {
-            let request = CourseItemHelper.getItemRequest(section)
-            itemCollectionView.reloadData()
-            itemResultsController = CourseItemHelper.initializeSectionResultsController(request)
-            itemResultsController!.delegate = itemResultsControllerDelegateImplementation
+        let request = CourseItemHelper.getItemRequest(section)
+        itemCollectionView.reloadData()
+        itemResultsController = CourseItemHelper.initializeSectionResultsController(request)
+        itemResultsController!.delegate = itemResultsControllerDelegateImplementation
 
-            do {
-                try itemResultsController!.performFetch()
-            } catch {
-                // TODO: Error handling
-            }
-
-            CourseItemHelper.syncCourseItems(section)
+        do {
+            try itemResultsController!.performFetch()
+        } catch {
+            // TODO: Error handling
         }
+
+        CourseItemHelper.syncCourseItems(section)
     }
 
 }

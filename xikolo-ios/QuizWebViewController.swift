@@ -27,7 +27,7 @@ class QuizWebViewController: UIViewController, UIWebViewDelegate {
         
         if let courseID = courseItem.section?.course?.id {
             let courseURL = Routes.BASE_URL + Routes.COURSES + courseID
-            let quizpathURL = "/items/" + courseItem.id!
+            let quizpathURL = "/items/" + courseItem.id
             let url = courseURL + quizpathURL
             self.webViewNews.loadRequest(NetworkHelper.getRequestForURL(url))
         }

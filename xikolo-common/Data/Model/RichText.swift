@@ -21,7 +21,7 @@ class RichTextSpine : BaseModelSpine {
     }
     
     override class var resourceType: ResourceType {
-        return "richtexts"
+        return "rich-texts"
     }
     
     override class var fields: [Field] {

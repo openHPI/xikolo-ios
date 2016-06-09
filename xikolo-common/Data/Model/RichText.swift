@@ -12,6 +12,10 @@ import Spine
 
 class RichText : Content {
 
+    override func iconName() -> String {
+        return "rich_text"
+    }
+
 }
 
 class RichTextSpine : BaseModelSpine {

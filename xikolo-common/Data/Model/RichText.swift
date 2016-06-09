@@ -19,6 +19,8 @@ class RichText : Content {
 }
 
 class RichTextSpine : BaseModelSpine {
+
+    var markup: String?
     
     override class var cdType: BaseModel.Type {
         return RichText.self
@@ -29,7 +31,9 @@ class RichTextSpine : BaseModelSpine {
     }
     
     override class var fields: [Field] {
-        return fieldsFromDictionary([:])
+        return fieldsFromDictionary([
+            "markup": Attribute(),
+        ])
     }
     
 }

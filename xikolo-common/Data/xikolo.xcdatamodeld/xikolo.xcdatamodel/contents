@@ -30,7 +30,9 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseItem" inverseName="section" inverseEntity="CourseItem" syncable="YES"/>
     </entity>
     <entity name="Quiz" representedClassName=".Quiz" parentEntity="Content" syncable="YES"/>
-    <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES"/>
+    <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES">
+        <attribute name="markup" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Video" representedClassName=".Video" parentEntity="Content" syncable="YES">
         <attribute name="audio_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -52,6 +54,6 @@
         <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="58"/>
         <element name="Quiz" positionX="828" positionY="198" width="128" height="43"/>
-        <element name="RichText" positionX="837" positionY="90" width="128" height="43"/>
+        <element name="RichText" positionX="837" positionY="90" width="128" height="58"/>
     </elements>
 </model>

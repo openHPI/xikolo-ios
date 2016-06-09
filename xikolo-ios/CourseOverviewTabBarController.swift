@@ -59,11 +59,8 @@ class CourseOverviewTabBarController: UITabBarController {
             dispatch_async(dispatch_get_main_queue(), {
                 self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("login", comment: "Login")
                 
-            })        }
+            })
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }

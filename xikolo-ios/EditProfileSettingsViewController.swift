@@ -12,20 +12,20 @@ class EditProfileSettingsViewController: UIViewController, UITextFieldDelegate {
     
     var currentText = "currentSetting"
     
-
     @IBOutlet weak var textField: UITextField!
+    
+    @IBAction func saveAction(sender: UIBarButtonItem) {
+        dismiss(true)
+    }
+    
+    @IBAction func cancelAction(sender: UIBarButtonItem) {
+        dismiss(false)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.becomeFirstResponder()
         textField.text = currentText
-    }
-    
-    @IBAction func saveAction(sender: UIBarButtonItem) {
-        dismiss(true)
-    }
-    @IBAction func cancelAction(sender: UIBarButtonItem) {
-        dismiss(false)
     }
     
     func dismiss(shouldSave: Bool) -> () {
@@ -34,4 +34,5 @@ class EditProfileSettingsViewController: UIViewController, UITextFieldDelegate {
         }
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
+    
 }

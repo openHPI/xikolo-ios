@@ -42,10 +42,6 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
     override func viewDidAppear(animated: Bool) {
         self.tabBarController!.title = NSLocalizedString("tab_news", comment: "News")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     func webViewDidStartLoad(webView: UIWebView) {
         activityIndicator.startAnimating()

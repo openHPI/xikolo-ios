@@ -53,7 +53,7 @@ class ProfileViewController: UIViewController {
         
         UserProfileHelper.self.getUser() { (user: UserProfile?, error: NSError?) -> () in
             if let user = user {
-                // TODO get name, username etc.
+                // TODO: get name, username etc.
 
                 ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImage)
             }

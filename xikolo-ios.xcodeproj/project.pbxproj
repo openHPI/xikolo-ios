@@ -26,6 +26,10 @@
 		2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */; };
 		2447CE191D09C87A00B5C39A /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE181D09C87A00B5C39A /* MarkdownParser.swift */; };
 		2447CE1A1D09C88C00B5C39A /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE181D09C87A00B5C39A /* MarkdownParser.swift */; };
+		2447CE1C1D0AF32200B5C39A /* RichTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */; };
+		2447CE1D1D0AF32200B5C39A /* RichTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */; };
+		2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */; };
+		2447CE201D0AF36500B5C39A /* RichTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */; };
 		2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
 		2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
@@ -189,6 +193,8 @@
 		2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
 		2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
 		2447CE181D09C87A00B5C39A /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
+		2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextProvider.swift; sourceTree = "<group>"; };
+		2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextHelper.swift; sourceTree = "<group>"; };
 		2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseSection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2448A9D51CDA445D009A1AEA /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
 		2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionProvider.swift; sourceTree = "<group>"; };
@@ -479,6 +485,7 @@
 				2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */,
 				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
 				F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */,
+				2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */,
 				24A16D891CFEF9F800CAD9FE /* VideoProvider.swift */,
 			);
 			path = Provider;
@@ -650,6 +657,7 @@
 				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 				2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */,
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
+				2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */,
 				24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */,
 				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
 			);
@@ -1150,8 +1158,10 @@
 				24A16D941CFFA72B00CAD9FE /* Error.swift in Sources */,
 				24D48E251CCA92C000E8051E /* NSDate+iso8601.swift in Sources */,
 				24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */,
+				2447CE201D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				24895DC31CCC09C700D6DFB8 /* ImageHelper.swift in Sources */,
+				2447CE1D1D0AF32200B5C39A /* RichTextProvider.swift in Sources */,
 				2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */,
 				240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */,
@@ -1190,6 +1200,7 @@
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
 				2433A5A11CE634A00060DD98 /* CourseItem+CoreDataProperties.swift in Sources */,
+				2447CE1C1D0AF32200B5C39A /* RichTextProvider.swift in Sources */,
 				2447CE191D09C87A00B5C39A /* MarkdownParser.swift in Sources */,
 				AB9AF2531CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift in Sources */,
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
@@ -1214,6 +1225,7 @@
 				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
 				AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */,
+				2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */,

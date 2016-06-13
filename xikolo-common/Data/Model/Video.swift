@@ -43,12 +43,12 @@ class VideoSpine : BaseModelSpine {
         return fieldsFromDictionary([
             "video_description": Attribute().serializeAs("description"),
             "duration": Attribute(),
-            "audio_url": Attribute().serializeAs("audio-url"),
-            "subtitles_url": Attribute().serializeAs("subtitles-url"),
-            "transcript_url": Attribute().serializeAs("transcript-url"),
-            "slides_url": Attribute().serializeAs("slides-url"),
-            "single_stream": VideoStreamAttribute().serializeAs("single-stream"),
-            "dual_stream": DualStreamAttribute().serializeAs("dual-stream"),
+            "audio_url": Attribute(),
+            "subtitles_url": Attribute(),
+            "transcript_url": Attribute(),
+            "slides_url": Attribute(),
+            "single_stream": VideoStreamAttribute(),
+            "dual_stream": DualStreamAttribute(),
         ])
     }
 
@@ -61,8 +61,8 @@ class VideoStreamSpine : CompoundValue {
 
     init(_ dict: [String: AnyObject]?) {
         if let dict = dict {
-            self.hls_url = dict["hls-url"] as? String
-            self.poster_url = dict["poster-image-url"] as? String
+            self.hls_url = dict["hls_url"] as? String
+            self.poster_url = dict["poster_image_url"] as? String
         }
     }
 
@@ -103,10 +103,10 @@ class DualStreamSpine : CompoundValue {
     var stream_b: VideoStreamSpine?
 
     init(_ dict: [String: AnyObject]) {
-        if let value = dict["stream-a"] as? [String: AnyObject] {
+        if let value = dict["stream_a"] as? [String: AnyObject] {
             self.stream_a = formatter.unformat(value, attribute: attribute) as? VideoStreamSpine
         }
-        if let value = dict["stream-b"] as? [String: AnyObject] {
+        if let value = dict["stream_b"] as? [String: AnyObject] {
             self.stream_b = formatter.unformat(value, attribute: attribute) as? VideoStreamSpine
         }
     }

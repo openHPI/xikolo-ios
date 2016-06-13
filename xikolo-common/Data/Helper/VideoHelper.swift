@@ -14,7 +14,7 @@ class VideoHelper {
 
     static func syncVideo(video: Video) -> Future<Video, XikoloError> {
         return VideoProvider.getVideo(video.id).flatMap { videoSpine in
-            future {
+            future(context: ImmediateExecutionContext) {
                 do {
                     try SpineModelHelper.syncObjects([videoSpine], inject: nil)
                     return Result.Success(video)

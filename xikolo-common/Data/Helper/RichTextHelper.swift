@@ -14,7 +14,7 @@ class RichTextHelper {
 
     static func refreshRichText(richText: RichText) -> Future<RichText, XikoloError> {
         return RichTextProvider.getRichText(richText.id).flatMap { richTextSpine in
-            future {
+            future(context: ImmediateExecutionContext) {
                 do {
                     try SpineModelHelper.syncObjects([richTextSpine], inject: nil)
                     return Result.Success(richText)

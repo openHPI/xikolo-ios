@@ -44,7 +44,7 @@ class CourseItemHelper : CoreDataHelper {
 
     static func syncCourseItems(section: CourseSection) -> Future<[CourseItem], XikoloError> {
         return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems in
-            future {
+            future(context: ImmediateExecutionContext) {
                 do {
                     let cdItems = try SpineModelHelper.syncObjects(spineItems, inject:["section": section])
                     return Result.Success(cdItems as! [CourseItem])

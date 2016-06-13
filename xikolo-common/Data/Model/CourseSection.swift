@@ -18,6 +18,7 @@ class CourseSectionSpine : BaseModelSpine {
 
     var title: String?
     var section_description: String?
+    var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
     
     override class var cdType: BaseModel.Type {
         return CourseSection.self
@@ -31,6 +32,7 @@ class CourseSectionSpine : BaseModelSpine {
         return fieldsFromDictionary([
             "title": Attribute(),
             "section_description": Attribute().serializeAs("description"),
+            "position": Attribute(),
         ])
     }
 

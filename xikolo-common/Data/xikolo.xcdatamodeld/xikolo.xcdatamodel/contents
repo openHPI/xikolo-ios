@@ -18,12 +18,14 @@
     </entity>
     <entity name="CourseItem" representedClassName=".CourseItem" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" syncable="YES"/>
         <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection" syncable="YES"/>
     </entity>
     <entity name="CourseSection" representedClassName=".CourseSection" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="section_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="sections" inverseEntity="Course" syncable="YES"/>
@@ -48,12 +50,12 @@
         <attribute name="video_description" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Course" positionX="-54" positionY="-9" width="128" height="208"/>
-        <element name="CourseItem" positionX="432" positionY="144" width="128" height="103"/>
-        <element name="CourseSection" positionX="214" positionY="144" width="128" height="118"/>
-        <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="58"/>
-        <element name="Quiz" positionX="828" positionY="198" width="128" height="43"/>
+        <element name="Course" positionX="-54" positionY="27" width="128" height="208"/>
+        <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
+        <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
+        <element name="Quiz" positionX="828" positionY="198" width="128" height="45"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="58"/>
+        <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
     </elements>
 </model>

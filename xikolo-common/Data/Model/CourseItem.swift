@@ -27,6 +27,7 @@ class CourseItem : BaseModel {
 class CourseItemSpine : BaseModelSpine {
 
     var title: String?
+    var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
 
     var content: BaseModelSpine?
 
@@ -42,6 +43,7 @@ class CourseItemSpine : BaseModelSpine {
         return fieldsFromDictionary([
             "title": Attribute(),
             "content": ToOneRelationship(VideoSpine),
+            "position": Attribute(),
         ])
     }
 

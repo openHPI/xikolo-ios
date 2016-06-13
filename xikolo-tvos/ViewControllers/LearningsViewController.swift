@@ -12,6 +12,7 @@ import UIKit
 
 class LearningsViewController : UIViewController {
 
+    @IBOutlet weak var courseTitleView: UILabel!
     @IBOutlet weak var sectionTableView: UITableView!
     @IBOutlet weak var itemCollectionView: UICollectionView!
 
@@ -25,6 +26,8 @@ class LearningsViewController : UIViewController {
     override func viewDidLoad() {
         courseTabBarController = self.tabBarController as! CourseTabBarController
         course = courseTabBarController.course
+
+        courseTitleView.text = course.name
 
         let request = CourseSectionHelper.getSectionRequest(course)
         sectionResultsController = CourseSectionHelper.initializeFetchedResultsController(request)

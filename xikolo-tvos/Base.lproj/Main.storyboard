@@ -288,6 +288,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khS-sp-i4I">
+                                <rect key="frame" x="914" y="75" width="93" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aCX-8o-S7l">
                                 <rect key="frame" x="90" y="190" width="510" height="830"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -377,11 +383,13 @@
                             </collectionView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="khS-sp-i4I" firstAttribute="centerX" secondItem="B0X-Hx-SD3" secondAttribute="centerX" id="0Rx-dc-GVm"/>
                             <constraint firstItem="DuK-0Z-ehY" firstAttribute="top" secondItem="aCX-8o-S7l" secondAttribute="bottom" constant="60" id="1kd-jg-MWp"/>
                             <constraint firstItem="YiW-Ml-dEJ" firstAttribute="top" secondItem="xoI-7S-9LG" secondAttribute="bottom" constant="190" id="87B-NV-0at"/>
                             <constraint firstAttribute="trailing" secondItem="YiW-Ml-dEJ" secondAttribute="trailing" constant="90" id="EtX-rW-Ps0"/>
                             <constraint firstItem="aCX-8o-S7l" firstAttribute="top" secondItem="xoI-7S-9LG" secondAttribute="bottom" constant="190" id="KFM-Nj-kYI"/>
                             <constraint firstItem="YiW-Ml-dEJ" firstAttribute="leading" secondItem="aCX-8o-S7l" secondAttribute="trailing" constant="60" id="VK6-yn-4DO"/>
+                            <constraint firstItem="khS-sp-i4I" firstAttribute="top" secondItem="xoI-7S-9LG" secondAttribute="bottom" constant="75" id="fP1-46-mHB"/>
                             <constraint firstItem="aCX-8o-S7l" firstAttribute="leading" secondItem="B0X-Hx-SD3" secondAttribute="leading" constant="90" id="kWd-BB-uBn"/>
                             <constraint firstItem="DuK-0Z-ehY" firstAttribute="top" secondItem="YiW-Ml-dEJ" secondAttribute="bottom" id="mXJ-gS-ica"/>
                             <constraint firstItem="DuK-0Z-ehY" firstAttribute="top" secondItem="aCX-8o-S7l" secondAttribute="bottom" constant="60" id="pTT-Ky-Fjx"/>
@@ -389,6 +397,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Learnings" id="oeb-wO-Sds" userLabel="Learnings"/>
                     <connections>
+                        <outlet property="courseTitleView" destination="khS-sp-i4I" id="Urr-AG-dIb"/>
                         <outlet property="itemCollectionView" destination="YiW-Ml-dEJ" id="uZt-eD-eX9"/>
                         <outlet property="sectionTableView" destination="aCX-8o-S7l" id="9eP-3q-NnJ"/>
                         <segue destination="EZa-T4-NPm" kind="show" identifier="ShowCourseItemVideoSegue" id="rGn-OX-uAw"/>

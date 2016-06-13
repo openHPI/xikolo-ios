@@ -331,17 +331,17 @@
                                     <outlet property="delegate" destination="TiG-l6-dl3" id="eIp-c5-LjH"/>
                                 </connections>
                             </tableView>
-                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YiW-Ml-dEJ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YiW-Ml-dEJ">
                                 <rect key="frame" x="660" y="190" width="1170" height="890"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="50" minimumInteritemSpacing="10" id="qqU-Kt-uvt">
                                     <size key="itemSize" width="380" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="35" maxX="0.0" maxY="60"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseItemCell" id="xyo-T0-8s5" customClass="CourseItemCell" customModule="xikolo_tvos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="380" height="150"/>
+                                        <rect key="frame" x="0.0" y="35" width="380" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="380" height="150"/>

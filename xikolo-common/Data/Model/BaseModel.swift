@@ -49,9 +49,11 @@ extension BaseModel {
                 if let value = value as? CompoundValue {
                     value.saveToCoreData(self)
                 }
-            } else if field is Relationship {
+            } else if field is ToOneRelationship {
                 if let value = value as? BaseModelSpine {
-                    let cdObjects = try SpineModelHelper.syncObjects([value], inject: nil, save: false)
+                    let currentRelatedObject = self.valueForKey(field.name) as? BaseModel
+                    let relatedObjects = currentRelatedObject != nil ? [currentRelatedObject!] : [BaseModel]()
+                    let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: [value], inject: nil, save: false)
                     self.setValue(cdObjects[0], forKey: field.name)
                 }
             } else {

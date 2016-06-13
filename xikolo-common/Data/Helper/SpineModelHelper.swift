@@ -11,43 +11,49 @@ import Foundation
 
 class SpineModelHelper : CoreDataHelper {
 
-    class func syncObjects(spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?) throws -> [BaseModel] {
-        return try syncObjects(spineObjects, inject: inject, save: true)
+    class func syncObjects(objectsToUpdateRequest: NSFetchRequest, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
+        let objectsToUpdate = try managedContext.executeFetchRequest(objectsToUpdateRequest) as! [BaseModel]
+        return try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
     }
 
-    class func syncObjects(spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
-        if spineObjects.count == 0 {
-            return []
-        }
-
-        let model = spineObjects[0].dynamicType.cdType
-        let entityName = String(model)
-        let request = NSFetchRequest(entityName: entityName)
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedContext)!
+    class func syncObjects(objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
+        var objectsToUpdate = objectsToUpdate
 
         var cdObjects = [BaseModel]()
-        for spineObject in spineObjects {
-            if let id = spineObject.id {
-                let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
-                request.predicate = predicate
+        if spineObjects.count > 0 {
+            let model = spineObjects[0].dynamicType.cdType
+            let entityName = String(model)
+            let request = NSFetchRequest(entityName: entityName)
+            let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedContext)!
 
-                var cdObject: BaseModel!
+            for spineObject in spineObjects {
+                if let id = spineObject.id {
+                    let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
+                    request.predicate = predicate
 
-                let results = try executeFetchRequest(request)
-                if (results.count > 0) {
-                    cdObject = results[0]
-                } else {
-                    cdObject = model.init(entity: entity, insertIntoManagedObjectContext: managedContext)
-                    cdObject.setValue(id, forKey: "id")
+                    var cdObject: BaseModel!
+
+                    let results = try executeFetchRequest(request)
+                    if (results.count > 0) {
+                        cdObject = results[0]
+                    } else {
+                        cdObject = model.init(entity: entity, insertIntoManagedObjectContext: managedContext)
+                        cdObject.setValue(id, forKey: "id")
+                    }
+                    try cdObject.loadFromSpine(spineObject)
+                    if let dict = inject {
+                        cdObject.loadFromDict(dict)
+                    }
+                    cdObjects.append(cdObject)
+                    if let index = objectsToUpdate.indexOf(cdObject) {
+                        objectsToUpdate.removeAtIndex(index)
+                    }
                 }
-                try cdObject.loadFromSpine(spineObject)
-                if let dict = inject {
-                    cdObject.loadFromDict(dict)
-                }
-                cdObjects.append(cdObject)
             }
         }
-        // TODO: Delete objects from CD that have not been returned
+        for object in objectsToUpdate {
+            managedContext.deleteObject(object)
+        }
         if save {
             appDelegate.saveContext()
         }

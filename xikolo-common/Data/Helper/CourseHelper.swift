@@ -43,7 +43,8 @@ class CourseHelper {
         CourseProvider.getCourses { (courses, error) in
             if let courses = courses {
                 do {
-                    try syncCourses(courses)
+                    let request = getAllCoursesRequest()
+                    try syncCourses(request, courses: courses)
                 } catch {
                     // TODO: Error handling
                 }
@@ -51,7 +52,9 @@ class CourseHelper {
         }
     }
 
-    private static func syncCourses(courses: [[String: AnyObject]]) throws {
+    private static func syncCourses(objectsToUpdateRequest: NSFetchRequest, courses: [[String: AnyObject]]) throws {
+        var objectsToUpdate = try managedContext.executeFetchRequest(objectsToUpdateRequest) as! [Course]
+
         let request = NSFetchRequest(entityName: "Course")
         for course in courses {
             if let id = course["id"] as? String {
@@ -67,9 +70,15 @@ class CourseHelper {
                     cdCourse.id = id
                 }
                 cdCourse.loadFromDict(course)
+
+                if let index = objectsToUpdate.indexOf(cdCourse) {
+                    objectsToUpdate.removeAtIndex(index)
+                }
             }
         }
-        // TODO: Delete courses from CD that have not been returned
+        for object in objectsToUpdate {
+            managedContext.deleteObject(object)
+        }
         appDelegate.saveContext()
     }
 

@@ -16,7 +16,7 @@ class VideoHelper {
         return VideoProvider.getVideo(video.id).flatMap { videoSpine in
             future(context: ImmediateExecutionContext) {
                 do {
-                    try SpineModelHelper.syncObjects([videoSpine], inject: nil)
+                    try SpineModelHelper.syncObjects([video], spineObjects: [videoSpine], inject: nil, save: true)
                     return Result.Success(video)
                 } catch let error as XikoloError {
                     return Result.Failure(error)

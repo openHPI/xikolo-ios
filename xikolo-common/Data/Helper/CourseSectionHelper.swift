@@ -32,7 +32,8 @@ class CourseSectionHelper : CoreDataHelper {
         return CourseSectionProvider.getCourseSections(course.id).flatMap { spineSections in
             future(context: ImmediateExecutionContext) {
                 do {
-                    let cdSections = try SpineModelHelper.syncObjects(spineSections, inject:["course": course])
+                    let request = getSectionRequest(course)
+                    let cdSections = try SpineModelHelper.syncObjects(request, spineObjects: spineSections, inject:["course": course], save: true)
                     return Result.Success(cdSections as! [CourseSection])
                 } catch let error as XikoloError {
                     return Result.Failure(error)

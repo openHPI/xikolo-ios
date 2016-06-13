@@ -17,8 +17,7 @@ class CourseItemHelper : CoreDataHelper {
     static func getItemRequest(section: CourseSection) -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "CourseItem")
         request.predicate = NSPredicate(format: "section = %@", section)
-        // TODO: Sort by position once that attribute exists in the API.
-        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        let titleSort = NSSortDescriptor(key: "position", ascending: true)
         request.sortDescriptors = [titleSort]
         return request
     }
@@ -26,8 +25,7 @@ class CourseItemHelper : CoreDataHelper {
     static func getItemRequest(course: Course) -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "CourseItem")
         request.predicate = NSPredicate(format: "section.course = %@", course)
-        // TODO: Sort by position once that attribute exists in the API.
-        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        let titleSort = NSSortDescriptor(key: "position", ascending: true)
         request.sortDescriptors = [titleSort]
         return request
     }

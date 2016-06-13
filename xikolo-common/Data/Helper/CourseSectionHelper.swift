@@ -17,8 +17,7 @@ class CourseSectionHelper : CoreDataHelper {
     static func getSectionRequest(course: Course) -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "CourseSection")
         request.predicate = NSPredicate(format: "course = %@", course)
-        // TODO: Sort by position once that attribute exists in the API.
-        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        let titleSort = NSSortDescriptor(key: "position", ascending: true)
         request.sortDescriptors = [titleSort]
         return request
     }

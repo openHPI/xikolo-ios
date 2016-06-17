@@ -125,8 +125,8 @@
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="First"/>
-                                <segment title="Second"/>
+                                <segment title="All Courses"/>
+                                <segment title="My Courses"/>
                             </segments>
                         </segmentedControl>
                     </navigationItem>
@@ -297,10 +297,10 @@
             </objects>
             <point key="canvasLocation" x="4655" y="-1828"/>
         </scene>
-        <!--QuizWebviewController-->
+        <!--Quiz Web View Controller-->
         <scene sceneID="m7r-16-ntP">
             <objects>
-                <viewController storyboardIdentifier="QuizWebViewController" title="QuizWebviewController" id="qTX-IX-O1x" customClass="QuizWebViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizWebViewController" id="qTX-IX-O1x" customClass="QuizWebViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NZW-dL-rfb"/>
                         <viewControllerLayoutGuide type="bottom" id="1e2-yo-2eV"/>
@@ -332,10 +332,10 @@
             </objects>
             <point key="canvasLocation" x="5467" y="-1112"/>
         </scene>
-        <!--VideoViewController-->
+        <!--Video View Controller-->
         <scene sceneID="Zbn-mr-shH">
             <objects>
-                <viewController storyboardIdentifier="VideoViewController" title="VideoViewController" id="5Hh-M9-wy1" customClass="VideoViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoViewController" id="5Hh-M9-wy1" customClass="VideoViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ztS-j3-2Jk"/>
                         <viewControllerLayoutGuide type="bottom" id="eoR-na-C9E"/>

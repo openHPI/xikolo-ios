@@ -39,10 +39,6 @@ class NewsViewController: UIViewController, UIWebViewDelegate{
         self.webViewNews.loadRequest(NetworkHelper.getRequestForURL(url))
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.tabBarController!.title = NSLocalizedString("tab_news", comment: "News")
-    }
-    
     func webViewDidStartLoad(webView: UIWebView) {
         activityIndicator.startAnimating()
         self.view.addSubview(activityIndicator)

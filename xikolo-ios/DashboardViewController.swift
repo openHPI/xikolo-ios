@@ -15,10 +15,6 @@ class DashboardViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var deadlinesActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var notificationsActivityIndicator: UIActivityIndicatorView!
     
-    override func viewDidAppear(animated: Bool) {
-        self.tabBarController!.title = NSLocalizedString("tab_dashboard", comment: "Dashboard")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDeadlinesWebView()

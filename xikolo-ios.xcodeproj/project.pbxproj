@@ -575,6 +575,7 @@
 		AB6AE0C51CF7D6A700708654 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
 				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
 				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
 				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
@@ -641,7 +642,6 @@
 			isa = PBXGroup;
 			children = (
 				F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */,
-				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 			);
 			name = Main;

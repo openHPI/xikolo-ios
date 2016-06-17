@@ -6,7 +6,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="wo9-Tx-TCQ">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgN-Oc-elr" customClass="ProfileViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -118,7 +118,7 @@
                             <constraint firstItem="8gS-cM-lr5" firstAttribute="width" secondItem="Tff-pa-10z" secondAttribute="width" id="vPz-4T-eQu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jbm-65-XMz"/>
+                    <navigationItem key="navigationItem" title="Profile" id="jbm-65-XMz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

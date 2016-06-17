@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Dashboard View Controller-->
+        <!--Dashboard-->
         <scene sceneID="z86-wG-GKj">
             <objects>
                 <viewController storyboardIdentifier="DashboardViewController" id="xXY-iO-myQ" customClass="DashboardViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,7 +104,7 @@
                             <constraint firstItem="29g-rN-RnC" firstAttribute="leading" secondItem="UZR-a1-eyw" secondAttribute="leading" id="xnT-Sd-BFB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="AcW-uJ-dOa"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="AcW-uJ-dOa"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

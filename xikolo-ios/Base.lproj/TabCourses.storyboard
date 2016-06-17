@@ -299,7 +299,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="richtextTextView" destination="R67-QI-Tmy" id="YMe-Tc-ZIn"/>
+                        <outlet property="textView" destination="R67-QI-Tmy" id="BLo-Cx-K7I"/>
                         <outlet property="titleLabel" destination="cDO-oK-db9" id="vPN-fI-pDF"/>
                     </connections>
                 </viewController>

@@ -1,5 +1,5 @@
 //
-//  RichtextViewController.swift
+//  AbstractItemRichtextViewController.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 17.06.16.
@@ -8,9 +8,11 @@
 
 import UIKit
 
-class RichtextViewController: AbstractItemRichtextViewController {
+class AbstractItemRichtextViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var textView: UITextView!
+
+    var courseItem: CourseItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,5 @@ class RichtextViewController: AbstractItemRichtextViewController {
                 self.textView.attributedText = MarkdownParser.parse(markdown)
             }
         }
-        titleLabel.text = courseItem.title
     }
-
 }

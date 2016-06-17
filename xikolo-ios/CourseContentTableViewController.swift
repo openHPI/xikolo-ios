@@ -51,6 +51,8 @@ class CourseContentTableViewController: UITableViewController {
             performSegueWithIdentifier("ShowVideoView", sender: item)
         case is Quiz:
             performSegueWithIdentifier("ShowQuizWebView", sender: item)
+        case is RichText:
+            performSegueWithIdentifier("ShowRichTextView", sender: item)
         default:
             // TODO: show error: unsupported type
             break
@@ -104,6 +106,10 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowQuizWebView":
             let quizView = segue.destinationViewController as! QuizWebViewController
             quizView.courseItem = sender as! CourseItem
+            break
+        case "ShowRichTextView":
+            let richtextView = segue.destinationViewController as! RichtextViewController
+            richtextView.courseItem = sender as! CourseItem
             break
         default:
             break

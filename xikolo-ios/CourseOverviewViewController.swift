@@ -23,10 +23,6 @@ class CourseOverviewViewController: AbstractCourseListViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.tabBarController!.title = NSLocalizedString("tab_courses", comment: "All Courses")
-    }
-    
     internal func showMyCoursesOnly(showMyCourses: Bool) {
         self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
     }

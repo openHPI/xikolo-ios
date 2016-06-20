@@ -20,6 +20,9 @@ class CourseContentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.title = course.name
+
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CourseItemHelper.initializeItemResultsController(request)
         resultsController.delegate = self

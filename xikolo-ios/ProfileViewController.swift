@@ -38,10 +38,6 @@ class ProfileViewController: UIViewController {
         relayout()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.tabBarController!.title = NSLocalizedString("tab_profile", comment: "Profile")
-    }
-    
     func setupViews() {
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
         self.profileImage.clipsToBounds = true;

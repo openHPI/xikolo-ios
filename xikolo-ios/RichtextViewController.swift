@@ -14,7 +14,7 @@ class RichtextViewController: AbstractItemRichtextViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = courseItem?.title ?? "default title"
+        titleLabel.text = courseItem?.title ?? ""
     }
 
 }

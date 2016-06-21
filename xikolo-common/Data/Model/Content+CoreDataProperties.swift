@@ -2,7 +2,7 @@
 //  Content+CoreDataProperties.swift
 //  xikolo-ios
 //
-//  Created by Sebastian Brückner on 02.06.16.
+//  Created by Sebastian Brückner on 22.06.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,5 +15,6 @@ import CoreData
 extension Content {
 
     @NSManaged var id: String
+    @NSManaged var item: CourseItem?
 
 }

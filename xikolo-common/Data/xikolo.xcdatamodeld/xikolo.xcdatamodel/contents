@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Content" representedClassName=".Content" isAbstract="YES" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <relationship name="item" maxCount="1" deletionRule="Cascade" destinationEntity="CourseItem" inverseName="content" inverseEntity="CourseItem" syncable="YES"/>
     </entity>
     <entity name="Course" representedClassName=".Course" syncable="YES">
         <attribute name="course_code" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,7 +21,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" syncable="YES"/>
+        <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="item" inverseEntity="Content" syncable="YES"/>
         <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection" syncable="YES"/>
     </entity>
     <entity name="CourseSection" representedClassName=".CourseSection" syncable="YES">
@@ -50,7 +51,7 @@
         <attribute name="video_description" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Content" positionX="666" positionY="198" width="128" height="58"/>
+        <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
         <element name="Course" positionX="-54" positionY="27" width="128" height="208"/>
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>

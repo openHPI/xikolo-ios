@@ -13,7 +13,9 @@ enum XikoloError : ErrorType {
 
     case API(SpineError)
     case CoreData(NSError)
+    case InvalidData
     case ModelIncomplete
+    case Network(NSError)
 
     case UnknownError(ErrorType)
 

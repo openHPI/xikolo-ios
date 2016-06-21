@@ -11,11 +11,9 @@ import UIKit
 class ImageHelper {
 
     class func loadImageFromURL(imageUrl: String, toImageView imageView: UIImageView) {
-        ImageProvider.loadImage(imageUrl, completion: { image, error in
-            if let image = image {
-                imageView.image = image
-            }
-        })
+        ImageProvider.loadImage(imageUrl).onSuccess { image in
+            imageView.image = image
+        }
     }
 
 }

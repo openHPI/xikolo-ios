@@ -6,14 +6,44 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import AVFoundation
+import BrightFutures
 import CoreData
 import Foundation
 import Spine
 
 class Video : Content {
+
+    var poster: UIImage?
     
     override func iconName() -> String {
         return "video"
+    }
+
+    func loadPoster() -> Future<Void, XikoloError> {
+        if let url = single_stream_poster_url {
+            return ImageProvider.loadImage(url).onSuccess { image in
+                self.poster = image
+            }.map { _ in
+            }
+        }
+        let promise = Promise<Void, XikoloError>()
+        promise.success()
+        return promise.future
+    }
+
+    func metadata() -> [AVMetadataItem] {
+        var items: [AVMetadataItem] = []
+        if let course_item = self.item, item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {
+            items.append(item)
+        }
+        if let item = AVMetadataItem.item(AVMetadataCommonIdentifierDescription, value: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea reb") {
+            items.append(item)
+        }
+        if let poster = poster, item = AVMetadataItem.artworkItem(poster) {
+            items.append(item)
+        }
+        return items
     }
 
 }

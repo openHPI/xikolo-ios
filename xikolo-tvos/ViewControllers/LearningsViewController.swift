@@ -196,7 +196,9 @@ extension LearningsViewController : UICollectionViewDelegate {
                 performSegueWithIdentifier("ShowCourseItemRichTextSegue", sender: item)
             case is Video:
                 let video = item.content as! Video
-                VideoHelper.syncVideo(video).onSuccess { video in
+                VideoHelper.syncVideo(video).flatMap { video in
+                    video.loadPoster()
+                }.onSuccess {
                     self.performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: video)
                 }
             default:
@@ -214,7 +216,9 @@ extension LearningsViewController : UICollectionViewDelegate {
                 let vc = segue.destinationViewController as! AVPlayerViewController
                 let video = sender as! Video
                 if let url = video.single_stream_hls_url {
-                    let avPlayer = AVPlayer(URL: NSURL(string: url)!)
+                    let playerItem = AVPlayerItem(URL: NSURL(string: url)!)
+                    playerItem.externalMetadata = video.metadata()
+                    let avPlayer = AVPlayer(playerItem: playerItem)
                     avPlayer.play()
                     vc.player = avPlayer
                 }

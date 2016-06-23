@@ -12,7 +12,7 @@
             <objects>
                 <collectionViewController id="lgE-Ld-iJp" customClass="CourseListViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YAH-v1-h0J">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="940"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="48" id="Ssm-Ku-hiC">
                             <size key="itemSize" width="548" height="400"/>
@@ -65,7 +65,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAc-FW-KOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="-526"/>
+            <point key="canvasLocation" x="1132" y="-456"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Td3-Sl-SLm">
@@ -471,6 +471,8 @@
         <scene sceneID="0AF-rc-gJk">
             <objects>
                 <tabBarController storyboardIdentifier="CourseDetailTabBarController" id="4Yh-6H-ggQ" customClass="CourseTabBarController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1920" height="1080"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sZI-9j-5WP">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -494,12 +496,55 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="lgE-Ld-iJp" kind="relationship" relationship="rootViewController" id="5Yk-CM-Lzy"/>
+                        <segue destination="VQv-8X-xGr" kind="relationship" relationship="rootViewController" id="BTb-iZ-J9G"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGC-GA-2lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-976" y="-526"/>
+            <point key="canvasLocation" x="-2960" y="-526"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="SgO-8a-ECx">
+            <objects>
+                <viewController id="VQv-8X-xGr" customClass="MainViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VcN-RM-sH5"/>
+                        <viewControllerLayoutGuide type="bottom" id="6G3-UR-rqJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9mg-Ir-Nff">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HO9-5S-jhU">
+                                <rect key="frame" x="0.0" y="140" width="1920" height="940"/>
+                                <connections>
+                                    <segue destination="lgE-Ld-iJp" kind="embed" id="UOi-rO-ZIy"/>
+                                </connections>
+                            </containerView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-openhpi-100h" translatesAutoresizingMaskIntoConstraints="NO" id="raN-00-rX2">
+                                <rect key="frame" x="90" y="20" width="409" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="qfY-KR-4eb"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6G3-UR-rqJ" firstAttribute="top" secondItem="HO9-5S-jhU" secondAttribute="bottom" id="FWv-5n-69f"/>
+                            <constraint firstItem="HO9-5S-jhU" firstAttribute="leading" secondItem="9mg-Ir-Nff" secondAttribute="leading" id="RXZ-3h-t99"/>
+                            <constraint firstAttribute="trailing" secondItem="HO9-5S-jhU" secondAttribute="trailing" id="Xel-mv-Pge"/>
+                            <constraint firstItem="raN-00-rX2" firstAttribute="leading" secondItem="9mg-Ir-Nff" secondAttribute="leading" constant="90" id="b34-zt-fRp"/>
+                            <constraint firstItem="HO9-5S-jhU" firstAttribute="top" secondItem="VcN-RM-sH5" secondAttribute="bottom" constant="140" id="hCh-oa-R9w"/>
+                            <constraint firstItem="raN-00-rX2" firstAttribute="top" secondItem="VcN-RM-sH5" secondAttribute="bottom" constant="20" id="tPN-h9-D6G"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dqa-er-Nmi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fsm-Zt-tm1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-908" y="-526"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo-openhpi-100h" width="409" height="100"/>
+    </resources>
 </document>

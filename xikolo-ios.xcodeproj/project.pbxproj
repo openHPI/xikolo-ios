@@ -45,6 +45,7 @@
 		24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */; };
 		24895DC21CCC09C300D6DFB8 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */; };
 		24895DC31CCC09C700D6DFB8 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */; };
+		2490C4C71D1C158B00F42949 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4C61D1C158B00F42949 /* MainViewController.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -206,6 +207,7 @@
 		24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		2490C4C61D1C158B00F42949 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		24895DBE1CCB7FC900D6DFB8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2490C4C61D1C158B00F42949 /* MainViewController.swift */,
 				24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */,
 				24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */,
 				24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */,
@@ -1139,6 +1142,7 @@
 				AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */,
 				240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */,
 				2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
+				2490C4C71D1C158B00F42949 /* MainViewController.swift in Sources */,
 				24A16D761CFDB5E900CAD9FE /* BaseModelSpine.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
 				2448A9DF1CDCDCC7009A1AEA /* SpineModelHelper.swift in Sources */,

@@ -9,10 +9,8 @@
 import CoreData
 import UIKit
 
-class CourseHelper {
+class CourseHelper : CoreDataHelper {
 
-    static private let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
-    static private let managedContext = appDelegate.managedObjectContext
     static private let entity = NSEntityDescription.entityForName("Course", inManagedObjectContext: managedContext)!
 
     static func getAllCoursesRequest() -> NSFetchRequest {

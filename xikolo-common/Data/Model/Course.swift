@@ -20,6 +20,12 @@ class Course : BaseModel {
         }
     }
 
+    var is_enrolled_section: String {
+        get {
+            return is_enrolled ? "My Courses" : "All Courses"
+        }
+    }
+
     var language_translated: String? {
         if let language = language {
             let locale = NSLocale.currentLocale()

@@ -28,9 +28,22 @@ class CourseHelper {
         return request
     }
 
+    static func getSectionedRequest() -> NSFetchRequest {
+        let request = NSFetchRequest(entityName: "Course")
+        let enrolledSort = NSSortDescriptor(key: "is_enrolled_int", ascending: false)
+        let startDateSort = NSSortDescriptor(key: "start_date", ascending: false)
+        request.sortDescriptors = [enrolledSort, startDateSort]
+        return request
+    }
+
     static func initializeFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
         // TODO: Add cache name
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+    }
+
+    static func initializeSectionedFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
+        // TODO: Add cache name
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: "is_enrolled_section", cacheName: nil)
     }
 
     static func getNumberOfEnrolledCourses() throws -> Int {

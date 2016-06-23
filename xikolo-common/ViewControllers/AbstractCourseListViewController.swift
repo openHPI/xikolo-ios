@@ -14,6 +14,7 @@ class AbstractCourseListViewController : UICollectionViewController {
     enum CourseDisplayMode {
         case EnrolledOnly
         case All
+        case BothSectioned
     }
 
     let cellReuseIdentifier = "CourseCell"
@@ -33,10 +34,14 @@ class AbstractCourseListViewController : UICollectionViewController {
         switch courseDisplayMode {
             case .EnrolledOnly:
                 request = CourseHelper.getMyCoursesRequest()
+                resultsController = CourseHelper.initializeFetchedResultsController(request)
             case .All:
                 request = CourseHelper.getAllCoursesRequest()
+                resultsController = CourseHelper.initializeFetchedResultsController(request)
+            case .BothSectioned:
+                request = CourseHelper.getSectionedRequest()
+                resultsController = CourseHelper.initializeSectionedFetchedResultsController(request)
         }
-        resultsController = CourseHelper.initializeFetchedResultsController(request)
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!)
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation

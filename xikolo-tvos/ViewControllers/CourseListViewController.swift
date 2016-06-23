@@ -10,6 +10,12 @@ import UIKit
 
 class CourseListViewController : AbstractCourseListViewController {
 
+    override func viewDidLoad() {
+        self.courseDisplayMode = .BothSectioned
+
+        super.viewDidLoad()
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
             case "ShowCourseDetailSegue"?:
@@ -20,6 +26,21 @@ class CourseListViewController : AbstractCourseListViewController {
                 vc.course = course
             default:
                 break
+        }
+    }
+
+}
+
+extension CourseListViewController {
+
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "CourseHeaderView", forIndexPath: indexPath) as! CourseHeaderView
+            let section = resultsController.sections![indexPath.section]
+            view.configure(section)
+            return view
+        } else {
+            return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
         }
     }
 

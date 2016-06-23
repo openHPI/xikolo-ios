@@ -16,13 +16,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="48" id="Ssm-Ku-hiC">
                             <size key="itemSize" width="548" height="400"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="90" minY="60" maxX="90" maxY="60"/>
+                            <inset key="sectionInset" minX="90" minY="40" maxX="90" maxY="60"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseCell" id="Z4b-yx-1QI" customClass="CourseCell" customModule="xikolo_tvos" customModuleProvider="target">
-                                <rect key="frame" x="90" y="60" width="548" height="400"/>
+                                <rect key="frame" x="90" y="90" width="548" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="548" height="400"/>
@@ -56,6 +56,25 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="CourseHeaderView" id="kpe-th-jtH" customClass="CourseHeaderView" customModule="xikolo_tvos" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="1920" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0f-11-82p">
+                                    <rect key="frame" x="110" y="-4" width="118" height="58"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="W0f-11-82p" firstAttribute="leading" secondItem="kpe-th-jtH" secondAttribute="leading" constant="110" id="FYN-81-SEs"/>
+                                <constraint firstItem="W0f-11-82p" firstAttribute="centerY" secondItem="kpe-th-jtH" secondAttribute="centerY" id="rdy-zy-CD3"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="sectionTitleView" destination="W0f-11-82p" id="tdm-bR-JVX"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="lgE-Ld-iJp" id="ApQ-Ol-8vw"/>
                             <outlet property="delegate" destination="lgE-Ld-iJp" id="Ro7-Kg-4i9"/>

@@ -22,7 +22,11 @@ class Course : BaseModel {
 
     var is_enrolled_section: String {
         get {
-            return is_enrolled ? "My Courses" : "All Courses"
+            if is_enrolled {
+                return NSLocalizedString("My Courses", comment: "My Courses")
+            } else {
+                return NSLocalizedString("All Courses", comment: "All Courses")
+            }
         }
     }
 

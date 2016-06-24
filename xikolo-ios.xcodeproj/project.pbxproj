@@ -49,6 +49,9 @@
 		2490C4C91D1C486100F42949 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4C81D1C486100F42949 /* CourseHeaderView.swift */; };
 		2490C4D31D1D6F7100F42949 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Localizable.strings */; };
 		2490C4D41D1D6F7100F42949 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Localizable.strings */; };
+		2490C4DD1D1D92F200F42949 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
+		2490C4E01D1D92F200F42949 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4DF1D1D92F200F42949 /* ServiceProvider.swift */; };
+		2490C4E41D1D92F200F42949 /* xikolo-tvos-topshelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2490C4DB1D1D92F200F42949 /* xikolo-tvos-topshelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -114,6 +117,7 @@
 		24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
 		24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
 		39855206F0D13D3F537652CB /* Pods_xikolo_tvosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A7C859F16667DAD7CF2EB7 /* Pods_xikolo_tvosUITests.framework */; };
+		62D939D95689756EB34F59AC /* Pods_xikolo_tvos_topshelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82736BB5DFE59B7D1ED3ABA7 /* Pods_xikolo_tvos_topshelf.framework */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		7E4F62AB1B3C2EDE006FCAD6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
@@ -159,6 +163,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2490C4E21D1D92F200F42949 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2490C4DA1D1D92F200F42949;
+			remoteInfo = TopShelf;
+		};
 		24CB7E451CC678A000960269 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -181,6 +192,20 @@
 			remoteInfo = "xikolo-ios";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2490C4E81D1D92F200F42949 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2490C4E41D1D92F200F42949 /* xikolo-tvos-topshelf.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		03D7099C0A7852A773EFCD12 /* Pods-xikolo-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +238,10 @@
 		2490C4C61D1C158B00F42949 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2490C4C81D1C486100F42949 /* CourseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHeaderView.swift; sourceTree = "<group>"; };
 		2490C4D51D1D6F7100F42949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2490C4DB1D1D92F200F42949 /* xikolo-tvos-topshelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "xikolo-tvos-topshelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2490C4DC1D1D92F200F42949 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = Library/Frameworks/TVServices.framework; sourceTree = DEVELOPER_DIR; };
+		2490C4DF1D1D92F200F42949 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		2490C4E11D1D92F200F42949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -250,6 +279,7 @@
 		24D48E1A1CCA551E00E8051E /* CourseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseProvider.swift; sourceTree = "<group>"; };
 		24D48E201CCA742300E8051E /* NSDate+iso8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+iso8601.swift"; sourceTree = "<group>"; };
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		6B57F25E13546F3B21697151 /* Pods-xikolo-tvos-topshelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvos-topshelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvos-topshelf/Pods-xikolo-tvos-topshelf.debug.xcconfig"; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -258,7 +288,9 @@
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xikolo-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewViewController.swift; sourceTree = "<group>"; };
+		82736BB5DFE59B7D1ED3ABA7 /* Pods_xikolo_tvos_topshelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_tvos_topshelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85B8D5C7032AF58AFCA0C6A6 /* Pods-xikolo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.release.xcconfig"; sourceTree = "<group>"; };
+		9A4C0D883904BD0508C7BDA8 /* Pods-xikolo-tvos-topshelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvos-topshelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvos-topshelf/Pods-xikolo-tvos-topshelf.release.xcconfig"; sourceTree = "<group>"; };
 		A90587BB1B3BFC130095DB89 /* xikolo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
@@ -314,6 +346,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2490C4D81D1D92F200F42949 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2490C4DD1D1D92F200F42949 /* TVServices.framework in Frameworks */,
+				62D939D95689756EB34F59AC /* Pods_xikolo_tvos_topshelf.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24CB7E311CC678A000960269 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,9 +471,19 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		2490C4DE1D1D92F200F42949 /* TopShelf */ = {
+			isa = PBXGroup;
+			children = (
+				2490C4DF1D1D92F200F42949 /* ServiceProvider.swift */,
+				2490C4E11D1D92F200F42949 /* Info.plist */,
+			);
+			path = TopShelf;
+			sourceTree = "<group>";
+		};
 		24CB7E351CC678A000960269 /* xikolo-tvos */ = {
 			isa = PBXGroup;
 			children = (
+				2490C4DE1D1D92F200F42949 /* TopShelf */,
 				24895DBB1CCAF04200D6DFB8 /* Layouts */,
 				24895DBE1CCB7FC900D6DFB8 /* ViewControllers */,
 				24CB7E361CC678A000960269 /* AppDelegate.swift */,
@@ -537,6 +588,7 @@
 				A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */,
 				24CB7E341CC678A000960269 /* xikolo-tvos.app */,
 				24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */,
+				2490C4DB1D1D92F200F42949 /* xikolo-tvos-topshelf.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -627,6 +679,8 @@
 				D4296A540DF6B4432E0C8CB8 /* Pods-xikolo-tvos.release.xcconfig */,
 				C8ED7D8193796ED34E28F78D /* Pods-xikolo-tvosUITests.debug.xcconfig */,
 				03FA9C12ADF3D215343057BE /* Pods-xikolo-tvosUITests.release.xcconfig */,
+				6B57F25E13546F3B21697151 /* Pods-xikolo-tvos-topshelf.debug.xcconfig */,
+				9A4C0D883904BD0508C7BDA8 /* Pods-xikolo-tvos-topshelf.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -705,6 +759,8 @@
 				18B84F62BCEE33BB89A28463 /* Pods_xikolo_iosUITests.framework */,
 				E6A8F54E4452A1D9A8308D40 /* Pods_xikolo_tvos.framework */,
 				D8A7C859F16667DAD7CF2EB7 /* Pods_xikolo_tvosUITests.framework */,
+				2490C4DC1D1D92F200F42949 /* TVServices.framework */,
+				82736BB5DFE59B7D1ED3ABA7 /* Pods_xikolo_tvos_topshelf.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -712,6 +768,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2490C4DA1D1D92F200F42949 /* xikolo-tvos-topshelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2490C4E51D1D92F200F42949 /* Build configuration list for PBXNativeTarget "xikolo-tvos-topshelf" */;
+			buildPhases = (
+				8702673EFFED973EE4C3692B /* [CP] Check Pods Manifest.lock */,
+				2490C4D71D1D92F200F42949 /* Sources */,
+				2490C4D81D1D92F200F42949 /* Frameworks */,
+				2490C4D91D1D92F200F42949 /* Resources */,
+				00C7F73CE49898765A7641A6 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "xikolo-tvos-topshelf";
+			productName = TopShelf;
+			productReference = 2490C4DB1D1D92F200F42949 /* xikolo-tvos-topshelf.appex */;
+			productType = "com.apple.product-type.tv-app-extension";
+		};
 		24CB7E331CC678A000960269 /* xikolo-tvos */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24CB7E4F1CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvos" */;
@@ -722,10 +797,12 @@
 				24CB7E321CC678A000960269 /* Resources */,
 				5A499A68B14F5BD8C4A6BB03 /* [CP] Embed Pods Frameworks */,
 				B53042B3E4719BEEC568CEBD /* [CP] Copy Pods Resources */,
+				2490C4E81D1D92F200F42949 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2490C4E31D1D92F200F42949 /* PBXTargetDependency */,
 			);
 			name = "xikolo-tvos";
 			productName = "xikolo-tvos";
@@ -823,6 +900,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
+					2490C4DA1D1D92F200F42949 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					24CB7E331CC678A000960269 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -866,12 +946,20 @@
 				A90587CE1B3BFC130095DB89 /* xikolo-iosTests */,
 				A90587D91B3BFC130095DB89 /* xikolo-iosUITests */,
 				24CB7E331CC678A000960269 /* xikolo-tvos */,
+				2490C4DA1D1D92F200F42949 /* xikolo-tvos-topshelf */,
 				24CB7E431CC678A000960269 /* xikolo-tvosUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2490C4D91D1D92F200F42949 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24CB7E321CC678A000960269 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -925,6 +1013,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00C7F73CE49898765A7641A6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvos-topshelf/Pods-xikolo-tvos-topshelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0A4A355FEAC5006244B53B4E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1060,6 +1163,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		8702673EFFED973EE4C3692B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1123,6 +1241,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2490C4D71D1D92F200F42949 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2490C4E01D1D92F200F42949 /* ServiceProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24CB7E301CC678A000960269 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1284,6 +1410,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2490C4E31D1D92F200F42949 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2490C4DA1D1D92F200F42949 /* xikolo-tvos-topshelf */;
+			targetProxy = 2490C4E21D1D92F200F42949 /* PBXContainerItemProxy */;
+		};
 		24CB7E461CC678A000960269 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 24CB7E331CC678A000960269 /* xikolo-tvos */;
@@ -1381,6 +1512,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2490C4E61D1D92F200F42949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B57F25E13546F3B21697151 /* Pods-xikolo-tvos-topshelf.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos.TopShelf";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2490C4E71D1D92F200F42949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A4C0D883904BD0508C7BDA8 /* Pods-xikolo-tvos-topshelf.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos.TopShelf";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		24CB7E4B1CC678A000960269 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC72A6690A20AE25CA6DC246 /* Pods-xikolo-tvos.debug.xcconfig */;
@@ -1636,6 +1799,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2490C4E51D1D92F200F42949 /* Build configuration list for PBXNativeTarget "xikolo-tvos-topshelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2490C4E61D1D92F200F42949 /* Debug */,
+				2490C4E71D1D92F200F42949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		24CB7E4F1CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

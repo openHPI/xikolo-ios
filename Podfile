@@ -33,6 +33,11 @@ target 'xikolo-tvos' do
 
 end
 
+target 'xikolo-tvos-topshelf' do
+    platform :tvos, '9.0'
+
+end
+
 target 'xikolo-tvosUITests' do
     platform :tvos, '9.0'
 

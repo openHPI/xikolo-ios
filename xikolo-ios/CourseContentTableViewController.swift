@@ -24,7 +24,7 @@ class CourseContentTableViewController: UITableViewController {
         navigationItem.title = course.name
 
         let request = CourseItemHelper.getItemRequest(course)
-        resultsController = CourseItemHelper.initializeItemResultsController(request)
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
         resultsController.delegate = self
         do {
             try resultsController.performFetch()

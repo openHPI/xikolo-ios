@@ -34,13 +34,13 @@ class AbstractCourseListViewController : UICollectionViewController {
         switch courseDisplayMode {
             case .EnrolledOnly:
                 request = CourseHelper.getMyCoursesRequest()
-                resultsController = CourseHelper.initializeFetchedResultsController(request)
+                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
             case .All:
                 request = CourseHelper.getAllCoursesRequest()
-                resultsController = CourseHelper.initializeFetchedResultsController(request)
+                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
             case .BothSectioned:
                 request = CourseHelper.getSectionedRequest()
-                resultsController = CourseHelper.initializeSectionedFetchedResultsController(request)
+                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")
         }
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!)
         resultsControllerDelegateImplementation.delegate = self

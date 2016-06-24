@@ -22,11 +22,6 @@ class CourseSectionHelper {
         return request
     }
 
-    static func initializeFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
-        // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: nil, cacheName: nil)
-    }
-
     static func syncCourseSections(course: Course) -> Future<[CourseSection], XikoloError> {
         return CourseSectionProvider.getCourseSections(course.id).flatMap { spineSections in
             future(context: ImmediateExecutionContext) {

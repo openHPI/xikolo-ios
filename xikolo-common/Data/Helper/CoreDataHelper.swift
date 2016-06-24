@@ -49,6 +49,11 @@ class CoreDataHelper {
         }
     }
 
+    static func createResultsController(fetchRequest: NSFetchRequest, sectionNameKeyPath: String?) -> NSFetchedResultsController {
+        // TODO: Add cache name
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+    }
+
     static func executeFetchRequest(request: NSFetchRequest) throws -> [BaseModel] {
         do {
             return try managedContext.executeFetchRequest(request) as! [BaseModel]

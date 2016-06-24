@@ -34,16 +34,6 @@ class CourseHelper {
         return request
     }
 
-    static func initializeFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
-        // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: nil, cacheName: nil)
-    }
-
-    static func initializeSectionedFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
-        // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: "is_enrolled_section", cacheName: nil)
-    }
-
     static func getNumberOfEnrolledCourses() throws -> Int {
         let request = getMyCoursesRequest()
         let courses = try CoreDataHelper.executeFetchRequest(request)

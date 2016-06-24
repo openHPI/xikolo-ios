@@ -29,16 +29,6 @@ class CourseItemHelper {
         request.sortDescriptors = [titleSort]
         return request
     }
-    
-    static func initializeSectionResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
-        // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: nil, cacheName: nil)
-    }
-    
-    static func initializeItemResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
-        // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: "section.title", cacheName: nil)
-    }
 
     static func syncCourseItems(section: CourseSection) -> Future<[CourseItem], XikoloError> {
         return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems in

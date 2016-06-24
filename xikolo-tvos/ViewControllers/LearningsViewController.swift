@@ -30,7 +30,7 @@ class LearningsViewController : UIViewController {
         courseTitleView.text = course.name
 
         let request = CourseSectionHelper.getSectionRequest(course)
-        sectionResultsController = CourseSectionHelper.initializeFetchedResultsController(request)
+        sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         sectionResultsController.delegate = self
 
         itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
@@ -55,7 +55,7 @@ class LearningsViewController : UIViewController {
     func loadItemsForSection(section: CourseSection) {
         let request = CourseItemHelper.getItemRequest(section)
         itemCollectionView.reloadData()
-        itemResultsController = CourseItemHelper.initializeSectionResultsController(request)
+        itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         itemResultsController!.delegate = itemResultsControllerDelegateImplementation
 
         do {

@@ -9,9 +9,9 @@
 import CoreData
 import UIKit
 
-class CourseHelper : CoreDataHelper {
+class CourseHelper {
 
-    static private let entity = NSEntityDescription.entityForName("Course", inManagedObjectContext: managedContext)!
+    static private let entity = NSEntityDescription.entityForName("Course", inManagedObjectContext: CoreDataHelper.managedContext)!
 
     static func getAllCoursesRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "Course")
@@ -36,17 +36,17 @@ class CourseHelper : CoreDataHelper {
 
     static func initializeFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
         // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: nil, cacheName: nil)
     }
 
     static func initializeSectionedFetchedResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
         // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: "is_enrolled_section", cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: "is_enrolled_section", cacheName: nil)
     }
 
     static func getNumberOfEnrolledCourses() throws -> Int {
         let request = getMyCoursesRequest()
-        let courses = try managedContext.executeFetchRequest(request)
+        let courses = try CoreDataHelper.executeFetchRequest(request)
         return courses.count
     }
 
@@ -64,7 +64,7 @@ class CourseHelper : CoreDataHelper {
     }
 
     private static func syncCourses(objectsToUpdateRequest: NSFetchRequest, courses: [[String: AnyObject]]) throws {
-        var objectsToUpdate = try managedContext.executeFetchRequest(objectsToUpdateRequest) as! [Course]
+        var objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest) as! [Course]
 
         let request = NSFetchRequest(entityName: "Course")
         for course in courses {
@@ -73,11 +73,11 @@ class CourseHelper : CoreDataHelper {
                 request.predicate = predicate
 
                 var cdCourse: Course!
-                let results = try managedContext.executeFetchRequest(request) as! [Course]
+                let results = try CoreDataHelper.executeFetchRequest(request) as! [Course]
                 if (results.count > 0) {
                     cdCourse = results[0]
                 } else {
-                    cdCourse = Course(entity: entity, insertIntoManagedObjectContext: managedContext)
+                    cdCourse = Course(entity: entity, insertIntoManagedObjectContext: CoreDataHelper.managedContext)
                     cdCourse.id = id
                 }
                 cdCourse.loadFromDict(course)
@@ -88,9 +88,9 @@ class CourseHelper : CoreDataHelper {
             }
         }
         for object in objectsToUpdate {
-            managedContext.deleteObject(object)
+            CoreDataHelper.managedContext.deleteObject(object)
         }
-        appDelegate.saveContext()
+        CoreDataHelper.saveContext()
     }
 
 }

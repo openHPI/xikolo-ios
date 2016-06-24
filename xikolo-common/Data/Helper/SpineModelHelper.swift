@@ -9,10 +9,10 @@
 import CoreData
 import Foundation
 
-class SpineModelHelper : CoreDataHelper {
+class SpineModelHelper {
 
     class func syncObjects(objectsToUpdateRequest: NSFetchRequest, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
-        let objectsToUpdate = try managedContext.executeFetchRequest(objectsToUpdateRequest) as! [BaseModel]
+        let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
         return try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
     }
 
@@ -24,7 +24,7 @@ class SpineModelHelper : CoreDataHelper {
             let model = spineObjects[0].dynamicType.cdType
             let entityName = String(model)
             let request = NSFetchRequest(entityName: entityName)
-            let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedContext)!
+            let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: CoreDataHelper.managedContext)!
 
             for spineObject in spineObjects {
                 if let id = spineObject.id {
@@ -33,11 +33,11 @@ class SpineModelHelper : CoreDataHelper {
 
                     var cdObject: BaseModel!
 
-                    let results = try executeFetchRequest(request)
+                    let results = try CoreDataHelper.executeFetchRequest(request)
                     if (results.count > 0) {
                         cdObject = results[0]
                     } else {
-                        cdObject = model.init(entity: entity, insertIntoManagedObjectContext: managedContext)
+                        cdObject = model.init(entity: entity, insertIntoManagedObjectContext: CoreDataHelper.managedContext)
                         cdObject.setValue(id, forKey: "id")
                     }
                     try cdObject.loadFromSpine(spineObject)
@@ -52,10 +52,10 @@ class SpineModelHelper : CoreDataHelper {
             }
         }
         for object in objectsToUpdate {
-            managedContext.deleteObject(object)
+            CoreDataHelper.managedContext.deleteObject(object)
         }
         if save {
-            appDelegate.saveContext()
+            CoreDataHelper.saveContext()
         }
         return cdObjects
     }

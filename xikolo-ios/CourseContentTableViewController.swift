@@ -34,12 +34,9 @@ class CourseContentTableViewController: UITableViewController {
         CourseSectionHelper.syncCourseSections(course)
 
         // TODO: Replace the following. e.g. add a completion handler to syncCourseSections and execute it there.
-        let appDelegate = UIApplication.sharedApplication().delegate as! AbstractAppDelegate
-        let managedContext = appDelegate.managedObjectContext
-
         do {
             let sectionRequest = CourseSectionHelper.getSectionRequest(course)
-            let sections = try managedContext.executeFetchRequest(sectionRequest)
+            let sections = try CoreDataHelper.executeFetchRequest(sectionRequest)
             for section in sections {
                 CourseItemHelper.syncCourseItems(section as! CourseSection)
             }

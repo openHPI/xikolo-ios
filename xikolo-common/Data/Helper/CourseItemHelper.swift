@@ -10,9 +10,9 @@ import BrightFutures
 import CoreData
 import Result
 
-class CourseItemHelper : CoreDataHelper {
+class CourseItemHelper {
 
-    static private let entity = NSEntityDescription.entityForName("CourseItem", inManagedObjectContext: managedContext)!
+    static private let entity = NSEntityDescription.entityForName("CourseItem", inManagedObjectContext: CoreDataHelper.managedContext)!
 
     static func getItemRequest(section: CourseSection) -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "CourseItem")
@@ -32,12 +32,12 @@ class CourseItemHelper : CoreDataHelper {
     
     static func initializeSectionResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
         // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: nil, cacheName: nil)
     }
     
     static func initializeItemResultsController(request: NSFetchRequest) -> NSFetchedResultsController {
         // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedContext, sectionNameKeyPath: "section.title", cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataHelper.managedContext, sectionNameKeyPath: "section.title", cacheName: nil)
     }
 
     static func syncCourseItems(section: CourseSection) -> Future<[CourseItem], XikoloError> {

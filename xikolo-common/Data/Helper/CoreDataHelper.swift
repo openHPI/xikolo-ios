@@ -11,10 +11,15 @@ import UIKit
 
 class CoreDataHelper {
 
-    static private var applicationCachesDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "de.xikolo.xikolo-ios" in the application's caches Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1]
+    static private var coreDataDirectory: NSURL = {
+        let fileManager = NSFileManager.defaultManager()
+
+        #if os(tvOS)
+            return fileManager.containerURLForSecurityApplicationGroupIdentifier("group.de.xikolo.xikolo-tvos")!
+        #else
+            let urls = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
+            return urls[urls.count-1]
+        #endif
     }()
 
     static private var managedObjectModel: NSManagedObjectModel = {
@@ -24,7 +29,7 @@ class CoreDataHelper {
 
     static private var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        let url = applicationCachesDirectory.URLByAppendingPathComponent("xikolo.sqlite")
+        let url = coreDataDirectory.URLByAppendingPathComponent("xikolo.sqlite")
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
         } catch let error as NSError {

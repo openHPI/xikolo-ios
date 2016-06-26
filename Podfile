@@ -35,6 +35,7 @@ end
 
 target 'xikolo-tvos-topshelf' do
     platform :tvos, '9.0'
+    common_pods
 
 end
 

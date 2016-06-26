@@ -52,6 +52,23 @@
 		2490C4DD1D1D92F200F42949 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
 		2490C4E01D1D92F200F42949 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4DF1D1D92F200F42949 /* ServiceProvider.swift */; };
 		2490C4E41D1D92F200F42949 /* xikolo-tvos-topshelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2490C4DB1D1D92F200F42949 /* xikolo-tvos-topshelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2490C4EB1D216C9500F42949 /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
+		2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D911CFFA72100CAD9FE /* CoreDataHelper.swift */; };
+		2490C4ED1D216CAB00F42949 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
+		2490C4EE1D216CAF00F42949 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
+		2490C4EF1D216D2E00F42949 /* BaseModelSpine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */; };
+		2490C4F01D216D3B00F42949 /* CourseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E1A1CCA551E00E8051E /* CourseProvider.swift */; };
+		2490C4F11D216D4500F42949 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
+		2490C4F21D216D5200F42949 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
+		2490C4F31D216D5A00F42949 /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
+		2490C4F41D216D6500F42949 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D8F1CFFA3E500CAD9FE /* Error.swift */; };
+		2490C4F51D216D6900F42949 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
+		2490C4F61D216D7800F42949 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
+		2490C4F71D216D8500F42949 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */; };
+		2490C4F81D216D8C00F42949 /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */; };
+		2490C4F91D216D9700F42949 /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
+		2490C4FA1D216DA200F42949 /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
+		2490C4FB1D216E3D00F42949 /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -1261,7 +1278,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2490C4F81D216D8C00F42949 /* UserProfileProvider.swift in Sources */,
+				2490C4F91D216D9700F42949 /* SpineModelHelper.swift in Sources */,
+				2490C4F71D216D8500F42949 /* Course+CoreDataProperties.swift in Sources */,
+				2490C4F51D216D6900F42949 /* NotificationKeys.swift in Sources */,
+				2490C4EF1D216D2E00F42949 /* BaseModelSpine.swift in Sources */,
+				2490C4F21D216D5200F42949 /* NetworkHelper.swift in Sources */,
+				2490C4F11D216D4500F42949 /* Routes.swift in Sources */,
+				2490C4F41D216D6500F42949 /* Error.swift in Sources */,
+				2490C4FA1D216DA200F42949 /* NSDate+iso8601.swift in Sources */,
+				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
+				2490C4EB1D216C9500F42949 /* CourseHelper.swift in Sources */,
+				2490C4F01D216D3B00F42949 /* CourseProvider.swift in Sources */,
+				2490C4F31D216D5A00F42949 /* UserProfileHelper.swift in Sources */,
+				2490C4EE1D216CAF00F42949 /* Course.swift in Sources */,
+				2490C4ED1D216CAB00F42949 /* BaseModel.swift in Sources */,
+				2490C4FB1D216E3D00F42949 /* xikolo.xcdatamodeld in Sources */,
 				2490C4E01D1D92F200F42949 /* ServiceProvider.swift in Sources */,
+				2490C4F61D216D7800F42949 /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

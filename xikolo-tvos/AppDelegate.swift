@@ -40,4 +40,26 @@ class AppDelegate : AbstractAppDelegate {
         super.applicationWillTerminate(application)
     }
 
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        if let target = XikoloURL.parseURL(url) {
+            switch target.type {
+                case .Course:
+                    var course: Course?
+                    do {
+                        course = try CourseHelper.getByID(target.targetId)
+                    } catch {
+                        course = nil
+                    }
+                    if let course = course {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = storyboard.instantiateViewControllerWithIdentifier("CourseDetailTabBarController") as! CourseTabBarController
+                        vc.course = course
+                        window?.rootViewController?.presentViewController(vc, animated: false, completion: nil)
+                        return true
+                    }
+            }
+        }
+        return false
+    }
+
 }

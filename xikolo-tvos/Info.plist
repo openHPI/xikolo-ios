@@ -28,6 +28,17 @@
 	<array>
 		<string>arm64</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>xikolo-tvos</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>Xikolo URL</string>
+		</dict>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

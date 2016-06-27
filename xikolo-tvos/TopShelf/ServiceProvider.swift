@@ -20,7 +20,45 @@ class ServiceProvider: NSObject, TVTopShelfProvider {
     }
 
     var topShelfItems: [TVContentItem] {
-        return []
+        let myCoursesSectionIdentifier = TVContentIdentifier(identifier: "my-courses", container: nil)!
+        let myCoursesSection = TVContentItem(contentIdentifier: myCoursesSectionIdentifier)!
+        myCoursesSection.title = NSLocalizedString("My Courses", comment: "My Courses")
+        let allCoursesSectionIdentifier = TVContentIdentifier(identifier: "all-courses", container: nil)!
+        let allCoursesSection = TVContentItem(contentIdentifier: allCoursesSectionIdentifier)!
+        allCoursesSection.title = NSLocalizedString("All Courses", comment: "All Courses")
+
+
+        let request = CourseHelper.getSectionedRequest()
+        do {
+            var myCoursesItems: [TVContentItem] = []
+            var allCoursesItems: [TVContentItem] = []
+
+            let courses = try CoreDataHelper.executeFetchRequest(request) as! [Course]
+            for course in courses {
+                let identifier = TVContentIdentifier(identifier: course.id, container: nil)!
+                let item = TVContentItem(contentIdentifier: identifier)!
+                item.title = course.name
+                item.imageShape = .HDTV
+                if let imageUrl = course.image_url, url = NSURL(string: imageUrl) {
+                    item.imageURL = url
+                }
+                let target = XikoloURL(type: .Course, targetId: course.id)
+                item.displayURL = target.toURL()
+
+                if course.is_enrolled {
+                    myCoursesItems.append(item)
+                } else {
+                    allCoursesItems.append(item)
+                }
+            }
+            myCoursesSection.topShelfItems = myCoursesItems
+            allCoursesSection.topShelfItems = allCoursesItems
+        } catch {
+            
+        }
+        
+
+        return [myCoursesSection, allCoursesSection]
     }
 
 }

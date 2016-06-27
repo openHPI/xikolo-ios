@@ -69,6 +69,9 @@
 		2490C4F91D216D9700F42949 /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
 		2490C4FA1D216DA200F42949 /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
 		2490C4FB1D216E3D00F42949 /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
+		2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		2490C4FF1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -261,6 +264,7 @@
 		2490C4E11D1D92F200F42949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2490C4E91D1DA3BE00F42949 /* xikolo-tvos-topshelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos-topshelf.entitlements"; sourceTree = "<group>"; };
 		2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos.entitlements"; sourceTree = "<group>"; };
+		2490C4FC1D2175BA00F42949 /* XikoloURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloURL.swift; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -545,6 +549,7 @@
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Localizable.strings */,
 				24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */,
+				2490C4FC1D2175BA00F42949 /* XikoloURL.swift */,
 			);
 			path = "xikolo-common";
 			sourceTree = "<group>";
@@ -1278,6 +1283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2490C4FF1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				2490C4F81D216D8C00F42949 /* UserProfileProvider.swift in Sources */,
 				2490C4F91D216D9700F42949 /* SpineModelHelper.swift in Sources */,
 				2490C4F71D216D8500F42949 /* Course+CoreDataProperties.swift in Sources */,
@@ -1361,6 +1367,7 @@
 				240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */,
 				24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */,
+				2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,6 +1434,7 @@
 				F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
 				24895DC21CCC09C300D6DFB8 /* ImageHelper.swift in Sources */,
+				2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,

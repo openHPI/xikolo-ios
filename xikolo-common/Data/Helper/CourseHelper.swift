@@ -40,6 +40,17 @@ class CourseHelper {
         return courses.count
     }
 
+    static func getByID(id: String) throws -> Course? {
+        let request = NSFetchRequest(entityName: "Course")
+        request.predicate = NSPredicate(format: "id == %@", id)
+        request.fetchLimit = 1
+        let courses = try CoreDataHelper.executeFetchRequest(request) as! [Course]
+        if courses.isEmpty {
+            return nil
+        }
+        return courses[0]
+    }
+
     static func refreshCourses() {
         CourseProvider.getCourses { (courses, error) in
             if let courses = courses {

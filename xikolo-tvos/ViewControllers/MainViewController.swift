@@ -10,4 +10,8 @@ import UIKit
 
 class MainViewController : UIViewController {
 
+    @IBAction func openSettings(sender: UIButton) {
+        Settings.open()
+    }
+
 }

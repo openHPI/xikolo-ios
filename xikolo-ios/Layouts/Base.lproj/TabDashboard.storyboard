@@ -112,7 +112,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Dashboard" id="AcW-uJ-dOa"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="AcW-uJ-dOa">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="cHU-8h-YGE">
+                            <connections>
+                                <segue destination="uQr-ep-IsD" kind="presentation" id="Fyg-2c-xdr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -125,6 +131,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3365" y="-975"/>
+        </scene>
+        <!--LoginNavigationController-->
+        <scene sceneID="14a-YJ-IRd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="LoginNavigationController" id="uQr-ep-IsD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RsD-Tu-mxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3895.5" y="-1222"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="TWB-cd-P4n">

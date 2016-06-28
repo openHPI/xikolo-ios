@@ -8,34 +8,33 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: AbstractTabContentViewController {
 
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var logoutButton: UIButton!
-    
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     @IBAction func logout(sender: UIButton) {
         UserProfileHelper.logout()
-        relayout()
         setViewData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.relayout), name: NotificationKeys.loginSuccessfulKey, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.relayout), name: NotificationKeys.logoutSuccessfulKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.updateUIAfterLoginLogoutAction), name: NotificationKeys.loginSuccessfulKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.updateUIAfterLoginLogoutAction), name: NotificationKeys.logoutSuccessfulKey, object: nil)
         setupViews();
         setViewData();
     }
     
     override func viewWillAppear(animated: Bool) {
-        relayout()
+        updateUIAfterLoginLogoutAction()
     }
     
     func setupViews() {
@@ -55,8 +54,9 @@ class ProfileViewController: UIViewController {
             }
         };
     }
-    
-    func relayout() {
+
+    override func updateUIAfterLoginLogoutAction() {
+        super.updateUIAfterLoginLogoutAction()
         if !UserProfileHelper.isLoggedIn() {
             container.hidden = true
             profileImage.image = UIImage.init(imageLiteral: "avatar")
@@ -66,4 +66,5 @@ class ProfileViewController: UIViewController {
             logoutButton.hidden = false
         }
     }
+
 }

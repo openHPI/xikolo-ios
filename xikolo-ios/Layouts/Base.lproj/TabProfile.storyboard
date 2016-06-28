@@ -126,7 +126,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="jbm-65-XMz"/>
+                    <navigationItem key="navigationItem" title="Profile" id="jbm-65-XMz">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="Mnf-wa-pbl">
+                            <connections>
+                                <action selector="loginBarButton:" destination="BgN-Oc-elr" id="X9u-hu-cPI"/>
+                                <segue destination="O8W-IG-m3E" kind="presentation" id="C1B-wi-v8Q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -139,6 +146,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8d-hM-D9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3710" y="780"/>
+        </scene>
+        <!--LoginNavigationController-->
+        <scene sceneID="xrA-sn-gfI">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Main" referencedIdentifier="LoginNavigationController" id="O8W-IG-m3E" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oIA-ic-Kqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4210.5" y="516"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="p6v-zt-3Vp">

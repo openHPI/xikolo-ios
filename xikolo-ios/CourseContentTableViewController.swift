@@ -100,8 +100,8 @@ class CourseContentTableViewController: UITableViewController {
         switch segue.identifier! {
         case "ShowVideoView":
             let videoView = segue.destinationViewController as! VideoViewController
-            //let item = sender as! CourseItem
-            //TODO: insert real CourseItem
+            let item = sender as! CourseItem
+            videoView.courseItem = item
             break
         case "ShowQuizWebView":
             let quizView = segue.destinationViewController as! QuizWebViewController

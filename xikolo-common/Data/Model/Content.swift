@@ -12,7 +12,8 @@ import Foundation
 class Content : BaseModel {
 
     func iconName() -> String {
-        return "homework"
+        // TODO: Add "unsupported" icon.
+        return "lti_exercise"
     }
 
 }

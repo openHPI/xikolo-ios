@@ -12,6 +12,10 @@ import Spine
 
 class Quiz : Content {
 
+    override func iconName() -> String {
+        return "quiz"
+    }
+
 }
 
 class QuizSpine : BaseModelSpine {

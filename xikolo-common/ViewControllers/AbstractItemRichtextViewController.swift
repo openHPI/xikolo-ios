@@ -10,6 +10,7 @@ import UIKit
 
 class AbstractItemRichtextViewController: UIViewController {
 
+    @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var textView: UITextView!
 
     var courseItem: CourseItem!
@@ -22,5 +23,7 @@ class AbstractItemRichtextViewController: UIViewController {
                 self.textView.attributedText = MarkdownParser.parse(markdown)
             }
         }
+
+        titleView.text = courseItem.title
     }
 }

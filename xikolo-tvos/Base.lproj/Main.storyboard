@@ -446,6 +446,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGI-9d-YrP">
+                                    <rect key="frame" x="913" y="75" width="93" height="46"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlg-6r-iHI">
                                     <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sBY-AY-ZDI">
@@ -474,6 +480,8 @@
                                 <constraint firstItem="Xe8-VT-iVb" firstAttribute="width" secondItem="nA7-CI-kHY" secondAttribute="width" multiplier="0.5" id="6en-yp-916"/>
                                 <constraint firstItem="zlg-6r-iHI" firstAttribute="leading" secondItem="nA7-CI-kHY" secondAttribute="leading" id="8qz-18-KcV"/>
                                 <constraint firstItem="Xe8-VT-iVb" firstAttribute="centerX" secondItem="nA7-CI-kHY" secondAttribute="centerX" id="Fnl-ye-lsJ"/>
+                                <constraint firstItem="ZGI-9d-YrP" firstAttribute="centerX" secondItem="nA7-CI-kHY" secondAttribute="centerX" id="NVA-ut-3ew"/>
+                                <constraint firstItem="ZGI-9d-YrP" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" constant="75" id="PML-Lj-QeZ"/>
                                 <constraint firstItem="zlg-6r-iHI" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" id="Qgt-7t-wZd"/>
                                 <constraint firstAttribute="trailing" secondItem="zlg-6r-iHI" secondAttribute="trailing" id="bU7-YU-OeL"/>
                                 <constraint firstItem="Xe8-VT-iVb" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" constant="150" id="eIr-Ca-hvl"/>
@@ -485,6 +493,7 @@
                     </visualEffectView>
                     <connections>
                         <outlet property="textView" destination="Xe8-VT-iVb" id="vid-cX-SHT"/>
+                        <outlet property="titleView" destination="ZGI-9d-YrP" id="Fpw-JB-CtS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXh-ch-RyF" userLabel="First Responder" sceneMemberID="firstResponder"/>

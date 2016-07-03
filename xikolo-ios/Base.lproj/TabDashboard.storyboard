@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29g-rN-RnC">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOB-zD-zVQ">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="518"/>
@@ -98,11 +98,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MOB-zD-zVQ" firstAttribute="width" secondItem="UZR-a1-eyw" secondAttribute="width" id="8pH-lF-LoK"/>
+                            <constraint firstItem="29g-rN-RnC" firstAttribute="centerY" secondItem="UZR-a1-eyw" secondAttribute="centerY" id="9R9-mg-9va"/>
                             <constraint firstItem="OMT-77-tvN" firstAttribute="top" secondItem="29g-rN-RnC" secondAttribute="bottom" id="H5Q-ei-lfo"/>
                             <constraint firstAttribute="trailing" secondItem="29g-rN-RnC" secondAttribute="trailing" id="Q83-07-CiS"/>
+                            <constraint firstItem="29g-rN-RnC" firstAttribute="height" secondItem="UZR-a1-eyw" secondAttribute="height" id="RSl-uz-dNV"/>
                             <constraint firstItem="29g-rN-RnC" firstAttribute="top" secondItem="D3M-Zk-3uK" secondAttribute="bottom" id="rk1-7A-W1d"/>
                             <constraint firstItem="29g-rN-RnC" firstAttribute="leading" secondItem="UZR-a1-eyw" secondAttribute="leading" id="xnT-Sd-BFB"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="rk1-7A-W1d"/>
+                                <exclude reference="H5Q-ei-lfo"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard" id="AcW-uJ-dOa"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

@@ -219,17 +219,17 @@
                         <outlet property="courseContentTableView" destination="vFe-DM-VEd" id="f0C-Vc-ew7"/>
                         <segue destination="5Hh-M9-wy1" kind="show" identifier="ShowVideoView" id="0UY-Iy-ApH"/>
                         <segue destination="qTX-IX-O1x" kind="show" identifier="ShowQuizWebView" id="kqR-eJ-mfT"/>
-                        <segue destination="xJm-gx-LIF" kind="show" identifier="ShowTextView" id="Gdn-oc-21n"/>
+                        <segue destination="xJm-gx-LIF" kind="show" identifier="ShowRichTextView" id="Gdn-oc-21n"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rj-3l-8gO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4590" y="-943"/>
         </scene>
-        <!--View Controller-->
+        <!--Richtext View Controller-->
         <scene sceneID="M4d-6f-bqM">
             <objects>
-                <viewController id="xJm-gx-LIF" sceneMemberID="viewController">
+                <viewController id="xJm-gx-LIF" customClass="RichtextViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Gm-t5-gub"/>
                         <viewControllerLayoutGuide type="bottom" id="Z3M-dR-NHC"/>
@@ -242,24 +242,30 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKb-2s-Erb">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="115.5"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="R67-QI-Tmy">
-                                                <rect key="frame" x="20" y="49" width="580" height="200"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="b4v-BN-L2C"/>
-                                                </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDO-oK-db9">
                                                 <rect key="frame" x="20" y="20" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="R67-QI-Tmy">
+                                                <rect key="frame" x="20" y="49" width="580" height="66.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="b4v-BN-L2C"/>
+                                                </constraints>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="b4v-BN-L2C"/>
+                                                    </mask>
+                                                </variation>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -292,6 +298,10 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="textView" destination="R67-QI-Tmy" id="BLo-Cx-K7I"/>
+                        <outlet property="titleLabel" destination="cDO-oK-db9" id="vPN-fI-pDF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVh-ZN-bc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

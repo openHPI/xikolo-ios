@@ -15,10 +15,22 @@ class VideoViewController: UIViewController {
     @IBOutlet weak var containerVideoView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var openSlidesButton: UIButton!
+    @IBOutlet weak var previousItemButton: UIButton!
+    @IBOutlet weak var nextItemButton: UIButton!
+    @IBOutlet weak var containerHeighConstraint: NSLayoutConstraint!
     
-    var courseItem: CourseItem! {
-        didSet {
-            updateUI()
+    var courseItem: CourseItem!
+    var video: Video?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        containerHeighConstraint.constant = self.view.frame.size.width * (9/16)
+        titleLabel.text = courseItem.title
+        let videoIncomplete = courseItem.content as! Video
+        VideoHelper.syncVideo(videoIncomplete).onSuccess { videoComplete in
+            self.video = videoComplete
+            self.performSegueWithIdentifier("EmbedAVPlayer", sender: self.video)
         }
     }
     
@@ -27,12 +39,24 @@ class VideoViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destination = segue.destinationViewController as!
         AVPlayerViewController
-        let url = NSURL(string: "https://player.vimeo.com/external/164726756.m3u8?s=69976e2f9e2216472fa63f8feff4503ee2d6513b&oauth2_token_id=621239406")
-        //TODO: insert real link
-        destination.player = AVPlayer(URL: url!)
+        let myVideo = sender as! Video
+        if let urlString = myVideo.single_stream_hls_url {
+            let url = NSURL(string: urlString)
+            destination.player = AVPlayer(URL: url!)
+        }
     }
-    
-    func updateUI() {
-        titleLabel?.text = courseItem?.title ?? "default Title"
+
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        switch identifier {
+        case "EmbedAVPlayer":
+            if video != nil {
+                return true
+            } else {
+                return false
+            }
+        default:
+            return true
+        }
     }
+
 }

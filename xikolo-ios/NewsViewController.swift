@@ -8,44 +8,6 @@
 
 import UIKit
 
-class NewsViewController: UIViewController, UIWebViewDelegate{
+class NewsViewController: UIViewController {
     
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var webViewNews: UIWebView!
-    @IBOutlet weak var webViewCourseActivity: UIWebView!
-    @IBAction func indexChanged(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            webViewCourseActivity.hidden = true
-            webViewNews.hidden = false
-        case 1:
-            webViewCourseActivity.hidden = true
-            webViewNews.hidden = false
-        default: break
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Position of indicator
-        activityIndicator.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 3)
-        activityIndicator.tag = 100
-        
-        self.webViewNews.delegate = self
-        let url = Routes.BASE_URL + Routes.NEWS
-        self.webViewNews.loadRequest(NetworkHelper.getRequestForURL(url))
-    }
-    
-    func webViewDidStartLoad(webView: UIWebView) {
-        activityIndicator.startAnimating()
-        self.view.addSubview(activityIndicator)
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        activityIndicator.removeFromSuperview()
-        activityIndicator.stopAnimating()
-    }
 }

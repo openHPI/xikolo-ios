@@ -18,18 +18,18 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - BrightFutures
   - Result
-  - Spine (from `https://github.com/invliD/Spine.git`, branch `master`)
+  - Spine (from `https://github.com/wvteijlingen/Spine.git`, branch `master`)
   - TSMarkdownParser
 
 EXTERNAL SOURCES:
   Spine:
     :branch: master
-    :git: https://github.com/invliD/Spine.git
+    :git: https://github.com/wvteijlingen/Spine.git
 
 CHECKOUT OPTIONS:
   Spine:
-    :commit: 4ea429e29a3650a7240e80aa34c91cb35123525c
-    :git: https://github.com/invliD/Spine.git
+    :commit: 5edd44bae7923d3a8cf7804d3bf7844f67ec0fd3
+    :git: https://github.com/wvteijlingen/Spine.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
@@ -41,6 +41,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TSMarkdownParser: 64cb52fe5a518b4875a6167a650cb0ed4b18cea5
 
-PODFILE CHECKSUM: bb81b4d2174db0bf8e895068673bc859e7d9f660
+PODFILE CHECKSUM: ecd7eb8f6b4e1d3c7bfcaacec9362856ddaf2710
 
 COCOAPODS: 1.0.1

@@ -42,7 +42,7 @@ class CourseItemSpine : BaseModelSpine {
     override class var fields: [Field] {
         return fieldsFromDictionary([
             "title": Attribute(),
-            "content": ToOneRelationship(VideoSpine),
+            "content": ToOneRelationship(ContentSpine),
             "position": Attribute(),
         ])
     }

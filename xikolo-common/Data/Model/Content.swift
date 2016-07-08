@@ -8,12 +8,25 @@
 
 import CoreData
 import Foundation
+import Spine
 
 class Content : BaseModel {
 
     func iconName() -> String {
         // TODO: Add "unsupported" icon.
         return "lti_exercise"
+    }
+
+}
+
+class ContentSpine : BaseModelSpine {
+
+    override class var cdType: BaseModel.Type {
+        return Content.self
+    }
+
+    override class var resourceType: ResourceType {
+        return "unsupported-content"
     }
 
 }

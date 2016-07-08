@@ -18,7 +18,7 @@ class RichText : Content {
 
 }
 
-class RichTextSpine : BaseModelSpine {
+class RichTextSpine : ContentSpine {
 
     var markup: String?
     

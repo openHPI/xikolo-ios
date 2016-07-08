@@ -48,7 +48,7 @@ class Video : Content {
 
 }
 
-class VideoSpine : BaseModelSpine {
+class VideoSpine : ContentSpine {
 
     var video_description: String?
     var duration: NSNumber?

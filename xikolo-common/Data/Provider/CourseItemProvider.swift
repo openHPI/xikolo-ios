@@ -15,6 +15,7 @@ class CourseItemProvider {
     class func getCourseItems(sectionId: String) -> Future<[CourseItemSpine], XikoloError> {
         let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
         spine.registerResource(CourseItemSpine)
+        spine.registerResource(ContentSpine)
         spine.registerResource(QuizSpine)
         spine.registerResource(RichTextSpine)
         spine.registerResource(VideoSpine)

@@ -18,7 +18,7 @@ class Quiz : Content {
 
 }
 
-class QuizSpine : BaseModelSpine {
+class QuizSpine : ContentSpine {
     
     override class var cdType: BaseModel.Type {
         return Quiz.self

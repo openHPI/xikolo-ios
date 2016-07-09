@@ -14,6 +14,13 @@ class MarkdownParser {
     class func parse(markdown: String) -> NSAttributedString {
         let parser = TSMarkdownParser.standardParser()
 
+        parser.addShortHeaderParsingWithMaxLevel(0, leadFormattingBlock: { attributedString, range, level in
+            attributedString.deleteCharactersInRange(range)
+        }, textFormattingBlock: { [unowned parser] attributedString, range, level in
+            let attributes = Int(level) < parser.headerAttributes.count ? parser.headerAttributes[Int(level)] : parser.headerAttributes.last!
+            attributedString.addAttributes(attributes, range:range)
+        })
+
 #if os(tvOS)
         parser.defaultAttributes = [
             NSForegroundColorAttributeName: UIColor.whiteColor(),

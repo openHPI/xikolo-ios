@@ -8,7 +8,7 @@ def common_pods
     pod 'Result'
     pod 'Spine', :git => 'https://github.com/wvteijlingen/Spine.git', :branch => 'master'
 
-    pod 'TSMarkdownParser'
+    pod 'TSMarkdownParser', :git => 'https://github.com/laptobbe/TSMarkdownParser.git', :branch => 'master'
 end
 
 target 'xikolo-ios' do

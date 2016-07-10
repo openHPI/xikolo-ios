@@ -22,18 +22,25 @@ class MarkdownParser {
         })
 
 #if os(tvOS)
-        parser.defaultAttributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont.systemFontOfSize(29),
-        ]
-
-        let headerSizes: [CGFloat] = [76, 57, 48, 40, 36, 32]
-        parser.headerAttributes = headerSizes.map { size in
-            return [
-                NSForegroundColorAttributeName: UIColor.whiteColor(),
-                NSFontAttributeName: UIFont.systemFontOfSize(size),
-            ]
+        func fixFontStyle(inout fontStyle: [String: AnyObject]) {
+            fontStyle[NSForegroundColorAttributeName] = UIColor.whiteColor()
         }
+        func fixFontStyles(inout fontStyles: [[String: AnyObject]]) {
+            for i in 0..<fontStyles.count {
+                fixFontStyle(&fontStyles[i])
+            }
+        }
+
+        if parser.defaultAttributes != nil {
+            fixFontStyle(&parser.defaultAttributes!)
+        }
+        fixFontStyles(&parser.headerAttributes)
+        fixFontStyles(&parser.listAttributes)
+        fixFontStyles(&parser.quoteAttributes)
+        fixFontStyle(&parser.linkAttributes)
+        fixFontStyle(&parser.monospaceAttributes)
+        fixFontStyle(&parser.strongAttributes)
+        fixFontStyle(&parser.emphasisAttributes)
 #endif
 
         return parser.attributedStringFromMarkdown(markdown)

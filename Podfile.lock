@@ -19,17 +19,23 @@ DEPENDENCIES:
   - BrightFutures
   - Result
   - Spine (from `https://github.com/wvteijlingen/Spine.git`, branch `master`)
-  - TSMarkdownParser
+  - TSMarkdownParser (from `https://github.com/laptobbe/TSMarkdownParser.git`, branch `master`)
 
 EXTERNAL SOURCES:
   Spine:
     :branch: master
     :git: https://github.com/wvteijlingen/Spine.git
+  TSMarkdownParser:
+    :branch: master
+    :git: https://github.com/laptobbe/TSMarkdownParser.git
 
 CHECKOUT OPTIONS:
   Spine:
     :commit: 5edd44bae7923d3a8cf7804d3bf7844f67ec0fd3
     :git: https://github.com/wvteijlingen/Spine.git
+  TSMarkdownParser:
+    :commit: cdfb56c4ad589f6a63a9299ba75ac7a53dc9a959
+    :git: https://github.com/laptobbe/TSMarkdownParser.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
@@ -41,6 +47,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TSMarkdownParser: 64cb52fe5a518b4875a6167a650cb0ed4b18cea5
 
-PODFILE CHECKSUM: ecd7eb8f6b4e1d3c7bfcaacec9362856ddaf2710
+PODFILE CHECKSUM: 5e2960414e71714de9c8ebb5a9feb0424358982e
 
 COCOAPODS: 1.0.1

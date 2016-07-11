@@ -16,6 +16,8 @@ class LearningsViewController : UIViewController {
     @IBOutlet weak var sectionTableView: UITableView!
     @IBOutlet weak var itemCollectionView: UICollectionView!
 
+    @IBOutlet weak var errorMessageView: UILabel!
+
     var courseTabBarController: CourseTabBarController!
     var course: Course!
 
@@ -36,6 +38,23 @@ class LearningsViewController : UIViewController {
         itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
         itemResultsControllerDelegateImplementation.delegate = self
 
+        if !UserProfileHelper.isLoggedIn() {
+            showError(NSLocalizedString("You are currently not logged in.\nYou can only see a course's content when you're logged in.", comment: "You are currently not logged in.\nYou can only see a course's content when you're logged in."))
+        } else if !course.is_enrolled {
+            showError(NSLocalizedString("You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled.", comment: "You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled."))
+        } else {
+            loadSections()
+        }
+    }
+
+    func showError(message: String) {
+        errorMessageView.text = message
+        errorMessageView.hidden = false
+        sectionTableView.hidden = true
+        itemCollectionView.hidden = true
+    }
+
+    func loadSections() {
         do {
             try sectionResultsController.performFetch()
 
@@ -72,7 +91,7 @@ class LearningsViewController : UIViewController {
 extension LearningsViewController : UITableViewDataSource {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sectionResultsController.sections!.count
+        return sectionResultsController.sections?.count ?? 0
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

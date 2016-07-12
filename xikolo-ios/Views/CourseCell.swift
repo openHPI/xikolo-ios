@@ -8,12 +8,10 @@
 
 import UIKit
 
-class CourseCell: UICollectionViewCell {
-    
+class CourseCell : UICollectionViewCell {
+
     @IBOutlet weak var backgroundImage: UIImageView!
-    
-    @IBOutlet weak var buttonEnter: UIButton!
-    
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

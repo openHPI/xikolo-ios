@@ -157,6 +157,7 @@
 		A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
 		A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */; };
 		A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */; };
+		AB2802C31D29D4D2008C8BAE /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		AB2802CA1D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */; };
 		AB2802CB1D2A8ABB008C8BAE /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */; };
 		AB2802CF1D2AAEC9008C8BAE /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
@@ -185,7 +186,6 @@
 		ABAC560A1D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */; };
 		F5FB5773C17C2006E642A1C3 /* Pods_xikolo_tvos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A8F54E4452A1D9A8308D40 /* Pods_xikolo_tvos.framework */; };
-		F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */; };
 		F80D67931B98683400E27520 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* NewsViewController.swift */; };
 		F80D67981B98751700E27520 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
@@ -345,6 +345,7 @@
 		A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosUITests.swift; sourceTree = "<group>"; };
 		A90587E01B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTabContentViewController.swift; sourceTree = "<group>"; };
 		AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewsArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
 		AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticleProvider.swift; sourceTree = "<group>"; };
@@ -375,7 +376,6 @@
 		D8A7C859F16667DAD7CF2EB7 /* Pods_xikolo_tvosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_tvosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A8F54E4452A1D9A8308D40 /* Pods_xikolo_tvos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_tvos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F801793D1BBBE3880091ECD1 /* CourseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHelper.swift; sourceTree = "<group>"; };
-		F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewTabBarController.swift; sourceTree = "<group>"; };
 		F80D67921B98683400E27520 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		F80D67961B9874F600E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		F80D67971B9874F700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -772,6 +772,7 @@
 				AB6AE0C51CF7D6A700708654 /* Courses */,
 				AB6AE0C71CF7D6CC00708654 /* News */,
 				AB6AE0C41CF7D69200708654 /* Profile */,
+				AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -779,7 +780,6 @@
 		F80D678F1B9867F400E27520 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 			);
 			path = Main;
@@ -1459,6 +1459,7 @@
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */,
 				2433A5A11CE634A00060DD98 /* CourseItem+CoreDataProperties.swift in Sources */,
+				AB2802C31D29D4D2008C8BAE /* AbstractTabContentViewController.swift in Sources */,
 				2447CE1C1D0AF32200B5C39A /* RichTextProvider.swift in Sources */,
 				2447CE191D09C87A00B5C39A /* MarkdownParser.swift in Sources */,
 				AB9AF2531CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift in Sources */,
@@ -1472,7 +1473,6 @@
 				2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				24A16D7C1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,
-				F80D678B1B95909100E27520 /* CourseOverviewTabBarController.swift in Sources */,
 				AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,
 				24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */,

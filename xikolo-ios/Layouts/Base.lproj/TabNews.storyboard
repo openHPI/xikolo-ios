@@ -42,6 +42,11 @@
                                 <segment title="Course Activity"/>
                             </segments>
                         </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="uB0-1p-Kgk">
+                            <connections>
+                                <segue destination="qGo-0W-01E" kind="presentation" id="zFe-49-oat"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -123,6 +128,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWT-bM-V1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4533" y="160"/>
+        </scene>
+        <!--LoginNavigationController-->
+        <scene sceneID="Vue-6L-BPF">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Main" referencedIdentifier="LoginNavigationController" id="qGo-0W-01E" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t1b-Cp-Yw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4356.5" y="-253"/>
         </scene>
         <!--News-->
         <scene sceneID="a7D-B7-NgZ">

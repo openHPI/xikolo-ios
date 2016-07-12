@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: UIViewController, UIWebViewDelegate {
+class DashboardViewController: AbstractTabContentViewController, UIWebViewDelegate {
 
     @IBOutlet weak var deadlinesWebView: UIWebView!
     @IBOutlet weak var notificationsWebView: UIWebView!

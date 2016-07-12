@@ -541,6 +541,7 @@
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB91F9E41CED029B00007D06 /* CourseItemCell.swift */,
 				AB2802D31D2AC425008C8BAE /* NewsArticleCell.swift */,
 				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
@@ -670,7 +671,6 @@
 				F80D67831B958F4600E27520 /* Resources */,
 				F8FABFBB1B580B5A0007F308 /* Layouts */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
-				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				F80D678E1B9867D700E27520 /* ViewControllers */,
 				24B651471D3551C400624DBC /* Views */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,

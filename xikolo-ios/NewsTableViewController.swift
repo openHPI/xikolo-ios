@@ -11,8 +11,6 @@ import UIKit
 
 class NewsTableViewController: UITableViewController {
 
-    @IBOutlet var newsTableView: UITableView!
-
     var resultsController: NSFetchedResultsController!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
@@ -24,7 +22,7 @@ class NewsTableViewController: UITableViewController {
         let request = NewsArticleHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(newsTableView, resultsController: resultsController, cellReuseIdentifier: "newsTableViewCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "newsTableViewCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation

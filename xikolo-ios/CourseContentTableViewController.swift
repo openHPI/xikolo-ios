@@ -10,8 +10,7 @@ import CoreData
 import UIKit
 
 class CourseContentTableViewController: UITableViewController {
-    
-    @IBOutlet var courseContentTableView: UITableView!
+
     var course: Course!
     
     var resultsController: NSFetchedResultsController!
@@ -27,7 +26,7 @@ class CourseContentTableViewController: UITableViewController {
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(courseContentTableView, resultsController: resultsController, cellReuseIdentifier: "CourseContentTableViewCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "CourseContentTableViewCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation

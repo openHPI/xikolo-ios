@@ -32,11 +32,11 @@ class QuizWebViewController : UIViewController {
 extension QuizWebViewController : UIWebViewDelegate {
 
     func webViewDidStartLoad(webView: UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        NetworkIndicator.start()
     }
 
     func webViewDidFinishLoad(webView: UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        NetworkIndicator.end()
     }
 
 }

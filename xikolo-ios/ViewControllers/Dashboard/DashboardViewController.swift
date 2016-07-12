@@ -8,60 +8,38 @@
 
 import UIKit
 
-class DashboardViewController: AbstractTabContentViewController, UIWebViewDelegate {
+class DashboardViewController : AbstractTabContentViewController {
 
-    @IBOutlet weak var deadlinesWebView: UIWebView!
-    @IBOutlet weak var notificationsWebView: UIWebView!
-    @IBOutlet weak var deadlinesActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var notificationsActivityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var deadlineWebView: UIWebView!
+    @IBOutlet weak var notificationWebView: UIWebView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDeadlinesWebView()
-        loadNotificationsWebView()
+
+        loadDeadlineWebView()
+        loadNotificationWebView()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func loadDeadlinesWebView() {
-        self.deadlinesWebView.delegate = self
+    func loadDeadlineWebView() {
         let url = Routes.BASE_URL + Routes.NEWS  // TODO: change url to deadlines
-        self.deadlinesWebView.loadRequest(NetworkHelper.getRequestForURL(url))
+        deadlineWebView.loadRequest(NetworkHelper.getRequestForURL(url))
     }
-    
-    func loadNotificationsWebView() {
-        self.notificationsWebView.delegate = self
+
+    func loadNotificationWebView() {
         let url = Routes.BASE_URL + Routes.NEWS  // TODO: change url to notifications
-        self.notificationsWebView.loadRequest(NetworkHelper.getRequestForURL(url))
+        notificationWebView.loadRequest(NetworkHelper.getRequestForURL(url))
     }
-    
+
+}
+
+extension DashboardViewController : UIWebViewDelegate {
+
     func webViewDidStartLoad(webView: UIWebView) {
-        switch webView.tag {
-        case 10:
-            deadlinesActivityIndicator.hidden = false
-            deadlinesActivityIndicator.startAnimating()
-        case 20:
-            notificationsActivityIndicator.hidden = false
-            notificationsActivityIndicator.startAnimating()
-        default:
-            break
-        }
+        NetworkIndicator.start()
     }
-    
+
     func webViewDidFinishLoad(webView: UIWebView) {
-        switch webView.tag {
-        case 10:
-            deadlinesActivityIndicator.hidden = true
-            deadlinesActivityIndicator.stopAnimating()
-        case 20:
-            notificationsActivityIndicator.hidden = true
-            notificationsActivityIndicator.stopAnimating()
-        default:
-            break
-        }
+        NetworkIndicator.end()
     }
-    
+
 }

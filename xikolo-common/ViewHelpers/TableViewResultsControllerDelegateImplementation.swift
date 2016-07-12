@@ -54,9 +54,11 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
             if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
                 self.delegate?.configureTableCell(cell, indexPath: indexPath!)
             } else {
+                #if os(tvOS)
                 // Undocumented by Apple:
-                // Need to create rows that don't exist here to prevent assertion errors.
+                // Need to create rows that don't exist here to prevent assertion errors (tvOS only).
                 tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+                #endif
             }
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)

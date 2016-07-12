@@ -538,6 +538,16 @@
 			path = TopShelf;
 			sourceTree = "<group>";
 		};
+		24B651471D3551C400624DBC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
+				AB2802D31D2AC425008C8BAE /* NewsTableViewCell.swift */,
+				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		24CB7E351CC678A000960269 /* xikolo-tvos */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +672,7 @@
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				F80D678E1B9867D700E27520 /* ViewControllers */,
+				24B651471D3551C400624DBC /* Views */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
 				A90587CA1B3BFC130095DB89 /* Info.plist */,
@@ -691,7 +702,6 @@
 		AB6AE0C41CF7D69200708654 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
 				AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */,
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
 				AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */,
@@ -704,7 +714,6 @@
 			children = (
 				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
 				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
-				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
 				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
 				AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */,
 				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
@@ -724,7 +733,6 @@
 			isa = PBXGroup;
 			children = (
 				F80D67921B98683400E27520 /* NewsViewController.swift */,
-				AB2802D31D2AC425008C8BAE /* NewsTableViewCell.swift */,
 				AB2802D51D2AD18F008C8BAE /* NewsTableViewController.swift */,
 				AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */,
 			);

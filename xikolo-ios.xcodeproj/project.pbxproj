@@ -172,7 +172,7 @@
 		AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
 		AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
 		AB91F9E31CECD5A500007D06 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */; };
-		AB91F9E51CED029B00007D06 /* CourseContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */; };
+		AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
 		AB9AF2531CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */; };
 		AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
 		AB9AF2CF1CF4C50400ED3EB0 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */; };
@@ -357,7 +357,7 @@
 		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewController.swift; sourceTree = "<group>"; };
 		AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
-		AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewCell.swift; sourceTree = "<group>"; };
+		AB91F9E41CED029B00007D06 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
 		AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizWebViewController.swift; sourceTree = "<group>"; };
@@ -541,7 +541,7 @@
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
+				AB91F9E41CED029B00007D06 /* CourseItemCell.swift */,
 				AB2802D31D2AC425008C8BAE /* NewsTableViewCell.swift */,
 				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
 			);
@@ -1485,7 +1485,7 @@
 				2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				AB2802D61D2AD18F008C8BAE /* NewsTableViewController.swift in Sources */,
 				24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */,
-				AB91F9E51CED029B00007D06 /* CourseContentTableViewCell.swift in Sources */,
+				AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */,
 				24A16D901CFFA3E500CAD9FE /* Error.swift in Sources */,
 				AB2802DC1D2D7586008C8BAE /* NewsArticle+CoreDataProperties.swift in Sources */,
 				F80D678D1B95967D00E27520 /* Icons.swift in Sources */,

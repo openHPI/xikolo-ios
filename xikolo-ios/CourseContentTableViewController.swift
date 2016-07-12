@@ -26,7 +26,7 @@ class CourseContentTableViewController: UITableViewController {
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "CourseContentTableViewCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "CourseItemCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -90,7 +90,7 @@ class CourseContentTableViewController: UITableViewController {
 extension CourseContentTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
     func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-        let cell = cell as! CourseContentTableViewCell
+        let cell = cell as! CourseItemCell
 
         let item = resultsController.objectAtIndexPath(indexPath) as! CourseItem
         cell.courseItem = item

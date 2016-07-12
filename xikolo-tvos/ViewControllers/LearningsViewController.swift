@@ -32,12 +32,13 @@ class LearningsViewController : UIViewController {
 
         courseTitleView.text = course.name
 
-        sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView)
-        sectionResultsControllerDelegateImplementation.delegate = self
-
         let request = CourseSectionHelper.getSectionRequest(course)
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+
+        sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: sectionResultsController, cellReuseIdentifier: "CourseSectionCell")
+        sectionResultsControllerDelegateImplementation.delegate = self
         sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
+        sectionTableView.dataSource = sectionResultsControllerDelegateImplementation
 
         itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView, cellReuseIdentifier: "CourseItemCell")
         itemResultsControllerDelegateImplementation.delegate = self
@@ -82,7 +83,7 @@ class LearningsViewController : UIViewController {
         do {
             try sectionResultsController.performFetch()
 
-            if sectionResultsController.fetchedObjects!.count > 0 && sectionTableView.numberOfRowsInSection(0) > 0 {
+            if sectionTableView.numberOfSections > 0 && sectionTableView.numberOfRowsInSection(0) > 0 {
                 sectionTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Middle)
                 if let section = sectionResultsController.fetchedObjects![0] as? CourseSection {
                     loadItemsForSection(section)
@@ -109,26 +110,6 @@ class LearningsViewController : UIViewController {
         }
 
         CourseItemHelper.syncCourseItems(section)
-    }
-
-}
-
-extension LearningsViewController : UITableViewDataSource {
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sectionResultsController.sections?.count ?? 1
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = sectionResultsController.sections
-        let sectionInfo = sections?[section]
-        return sectionInfo?.numberOfObjects ?? 0
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CourseSectionCell", forIndexPath: indexPath)
-        configureTableCell(cell, indexPath: indexPath)
-        return cell
     }
 
 }

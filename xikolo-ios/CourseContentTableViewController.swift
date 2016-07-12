@@ -24,12 +24,14 @@ class CourseContentTableViewController: UITableViewController {
 
         navigationItem.title = course.name
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(courseContentTableView)
-        resultsControllerDelegateImplementation.delegate = self
-
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
+
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(courseContentTableView, resultsController: resultsController, cellReuseIdentifier: "CourseContentTableViewCell")
+        resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
+        tableView.dataSource = resultsControllerDelegateImplementation
+
         do {
             try resultsController.performFetch()
         } catch {
@@ -68,29 +70,6 @@ class CourseContentTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = resultsController!.objectAtIndexPath(indexPath) as! CourseItem
         showItem(item)
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return resultsController.sections!.count
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = resultsController.sections! as [NSFetchedResultsSectionInfo]
-        let sectionInfo = sections[section]
-        
-        return sectionInfo.numberOfObjects
-    }
-
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return resultsController.sections![section].name
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CourseContentTableViewCell", forIndexPath: indexPath)
-        configureTableCell(cell, indexPath: indexPath)
-        return cell
     }
 
     // MARK: - Navigation

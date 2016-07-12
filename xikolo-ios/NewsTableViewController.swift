@@ -21,12 +21,14 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(newsTableView)
-        resultsControllerDelegateImplementation.delegate = self
-
         let request = NewsArticleHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(newsTableView, resultsController: resultsController, cellReuseIdentifier: "newsTableViewCell")
+        resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
+        tableView.dataSource = resultsControllerDelegateImplementation
+
         do {
             try resultsController.performFetch()
         } catch {

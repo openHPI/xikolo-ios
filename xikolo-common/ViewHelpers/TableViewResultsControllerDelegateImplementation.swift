@@ -12,10 +12,19 @@ import UIKit
 class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
 
     weak var tableView: UITableView!
+    weak var resultsController: NSFetchedResultsController?
+    var cellReuseIdentifier: String
+
     weak var delegate: TableViewResultsControllerDelegateImplementationDelegate?
 
-    required init(_ tableView: UITableView) {
+    required init(_ tableView: UITableView, resultsController: NSFetchedResultsController?, cellReuseIdentifier: String) {
         self.tableView = tableView
+        self.resultsController = resultsController
+        self.cellReuseIdentifier = cellReuseIdentifier
+    }
+
+    convenience init(_ tableView: UITableView, cellReuseIdentifier: String) {
+        self.init(tableView, resultsController: nil, cellReuseIdentifier: cellReuseIdentifier)
     }
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -57,6 +66,35 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
+    }
+
+}
+
+extension TableViewResultsControllerDelegateImplementation : UITableViewDataSource {
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if let resultsController = resultsController {
+            if resultsController.sectionNameKeyPath == nil {
+                return 1
+            } else {
+                return resultsController.sections?.count ?? 0
+            }
+        }
+        return 0
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return resultsController?.sections?[section].numberOfObjects ?? 0
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+        self.delegate?.configureTableCell(cell, indexPath: indexPath)
+        return cell
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return resultsController?.sections?[section].name
     }
 
 }

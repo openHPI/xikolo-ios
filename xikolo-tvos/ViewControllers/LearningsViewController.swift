@@ -37,12 +37,20 @@ class LearningsViewController : UIViewController {
 
         itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
         itemResultsControllerDelegateImplementation.delegate = self
+    }
 
+    override func viewWillAppear(animated: Bool) {
+        checkDisplay()
+        super.viewWillAppear(animated)
+    }
+
+    func checkDisplay() {
         if !UserProfileHelper.isLoggedIn() {
             showError(NSLocalizedString("You are currently not logged in.\nYou can only see a course's content when you're logged in.", comment: "You are currently not logged in.\nYou can only see a course's content when you're logged in."))
         } else if !course.is_enrolled {
             showError(NSLocalizedString("You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled.", comment: "You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled."))
         } else {
+            hideError()
             loadSections()
         }
     }
@@ -54,11 +62,22 @@ class LearningsViewController : UIViewController {
         itemCollectionView.hidden = true
     }
 
+    func hideError() {
+        errorMessageView.hidden = true
+        sectionTableView.hidden = false
+        itemCollectionView.hidden = false
+    }
+
     func loadSections() {
+        if sectionResultsController.fetchedObjects != nil {
+            // The results controller has already loaded its data.
+            return
+        }
+
         do {
             try sectionResultsController.performFetch()
 
-            if sectionResultsController.fetchedObjects!.count > 0 {
+            if sectionResultsController.fetchedObjects!.count > 0 && sectionTableView.numberOfRowsInSection(0) > 0 {
                 sectionTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Middle)
                 if let section = sectionResultsController.fetchedObjects![0] as? CourseSection {
                     loadItemsForSection(section)
@@ -91,13 +110,13 @@ class LearningsViewController : UIViewController {
 extension LearningsViewController : UITableViewDataSource {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sectionResultsController.sections?.count ?? 0
+        return sectionResultsController.sections?.count ?? 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = sectionResultsController.sections! as [NSFetchedResultsSectionInfo]
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
+        let sections = sectionResultsController.sections
+        let sectionInfo = sections?[section]
+        return sectionInfo?.numberOfObjects ?? 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -139,9 +158,12 @@ extension LearningsViewController : NSFetchedResultsControllerDelegate {
         case .Delete:
             sectionTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
-            // No need to update a cell that has not been loaded.
             if let cell = sectionTableView.cellForRowAtIndexPath(indexPath!) as? CourseSectionCell {
                 configureSectionCell(cell, atIndexPath: indexPath!)
+            } else {
+                // Undocumented by Apple:
+                // Need to create rows that don't exist here to prevent assertion errors.
+                sectionTableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             }
         case .Move:
             sectionTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)

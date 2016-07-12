@@ -115,6 +115,7 @@
 		24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
 		24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
+		24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
@@ -177,7 +178,6 @@
 		AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
 		AB9AF2CF1CF4C50400ED3EB0 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */; };
 		AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
-		AB9AF2D41CF72E1D00ED3EB0 /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D31CF72E1D00ED3EB0 /* TabNews.storyboard */; };
 		AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		AB9AF2DA1CF72EF100ED3EB0 /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */; };
 		ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
@@ -307,6 +307,7 @@
 		24A17A0B1CD18CBD0056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24A17A0C1CD233050056A8EE /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
+		24B6514A1D355B4A00624DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabNews.storyboard; sourceTree = "<group>"; };
 		24CB7E341CC678A000960269 /* xikolo-tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-tvos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -361,7 +362,6 @@
 		AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizWebViewController.swift; sourceTree = "<group>"; };
 		AB9AF2D11CF72D9D00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabCourses.storyboard; sourceTree = "<group>"; };
-		AB9AF2D31CF72E1D00ED3EB0 /* TabNews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabNews.storyboard; sourceTree = "<group>"; };
 		AB9AF2D61CF72E8E00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabDashboard.storyboard; sourceTree = "<group>"; };
 		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabProfile.storyboard; sourceTree = "<group>"; };
 		ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHPI4.ttf; sourceTree = "<group>"; };
@@ -809,10 +809,10 @@
 				A90587C21B3BFC130095DB89 /* Main.storyboard */,
 				AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */,
 				AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */,
-				AB9AF2D31CF72E1D00ED3EB0 /* TabNews.storyboard */,
+				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 			);
-			name = Layouts;
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
@@ -1072,7 +1072,7 @@
 				AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
 				2490C4D31D1D6F7100F42949 /* Localizable.strings in Resources */,
-				AB9AF2D41CF72E1D00ED3EB0 /* TabNews.storyboard in Resources */,
+				24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
@@ -1567,6 +1567,14 @@
 				24A17A0B1CD18CBD0056A8EE /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		24B6514B1D355B4A00624DBC /* TabNews.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24B6514A1D355B4A00624DBC /* Base */,
+			);
+			name = TabNews.storyboard;
 			sourceTree = "<group>";
 		};
 		24CB7E3A1CC678A000960269 /* Main.storyboard */ = {

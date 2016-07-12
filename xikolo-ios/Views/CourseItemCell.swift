@@ -10,26 +10,14 @@ import UIKit
 
 class CourseItemCell : UITableViewCell {
 
+    @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressView: UILabel!
 
-    var courseItem: CourseItem! {
-        didSet {
-            updateUI()
-        }
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        //TODO: 
-        // Configure the view for the selected state
-    }
-
-    func updateUI() {
-        titleLabel?.text = courseItem?.title ?? "default Title"
-        readStateView?.backgroundColor = UIColor.greenColor()
+    func configure(courseItem: CourseItem) {
+        titleView.text = courseItem.title
+        readStateView.backgroundColor = UIColor.greenColor()
     }
 
 }

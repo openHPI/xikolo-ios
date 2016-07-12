@@ -93,7 +93,7 @@ extension CourseContentTableViewController : TableViewResultsControllerDelegateI
         let cell = cell as! CourseItemCell
 
         let item = resultsController.objectAtIndexPath(indexPath) as! CourseItem
-        cell.courseItem = item
+        cell.configure(item)
     }
 
 }

@@ -504,6 +504,7 @@
 		24895DBB1CCAF04200D6DFB8 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
+				24CB7E3A1CC678A000960269 /* Main.storyboard */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -562,7 +563,6 @@
 				24895DBE1CCB7FC900D6DFB8 /* ViewControllers */,
 				24B651481D35581F00624DBC /* Views */,
 				24CB7E361CC678A000960269 /* AppDelegate.swift */,
-				24CB7E3A1CC678A000960269 /* Main.storyboard */,
 				24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */,
 				24CB7E3F1CC678A000960269 /* Info.plist */,
 				24A17A0A1CD18CB50056A8EE /* Localizable.strings */,

@@ -666,14 +666,14 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F80D67831B958F4600E27520 /* Resources */,
 				F8FABFBB1B580B5A0007F308 /* Layouts */,
-				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				F80D678E1B9867D700E27520 /* ViewControllers */,
 				24B651471D3551C400624DBC /* Views */,
+				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
 				A90587CA1B3BFC130095DB89 /* Info.plist */,
+				F80D679A1B98751700E27520 /* Localizable.strings */,
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 			);
 			path = "xikolo-ios";
@@ -754,14 +754,6 @@
 				9A4C0D883904BD0508C7BDA8 /* Pods-xikolo-tvos-topshelf.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		F80D67831B958F4600E27520 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F80D679A1B98751700E27520 /* Localizable.strings */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		F80D678E1B9867D700E27520 /* ViewControllers */ = {

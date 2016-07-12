@@ -36,17 +36,10 @@ class CourseContentTableViewController: UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-        CourseSectionHelper.syncCourseSections(course)
-
-        // TODO: Replace the following. e.g. add a completion handler to syncCourseSections and execute it there.
-        do {
-            let sectionRequest = CourseSectionHelper.getSectionRequest(course)
-            let sections = try CoreDataHelper.executeFetchRequest(sectionRequest)
-            for section in sections {
-                CourseItemHelper.syncCourseItems(section as! CourseSection)
-            }
-        } catch {
-            // TODO: Error handling
+        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
+            sections.map { section in
+                CourseItemHelper.syncCourseItems(section)
+            }.sequence()
         }
     }
     

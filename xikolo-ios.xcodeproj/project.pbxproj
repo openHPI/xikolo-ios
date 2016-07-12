@@ -706,7 +706,7 @@
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
 				AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */,
 			);
-			name = Profile;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		AB6AE0C51CF7D6A700708654 /* Courses */ = {
@@ -718,7 +718,7 @@
 				AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */,
 				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
 			);
-			name = Courses;
+			path = Courses;
 			sourceTree = "<group>";
 		};
 		AB6AE0C61CF7D6B000708654 /* Dashboard */ = {
@@ -726,7 +726,7 @@
 			children = (
 				ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */,
 			);
-			name = Dashboard;
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		AB6AE0C71CF7D6CC00708654 /* News */ = {
@@ -736,7 +736,7 @@
 				AB2802D51D2AD18F008C8BAE /* NewsTableViewController.swift */,
 				AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */,
 			);
-			name = News;
+			path = News;
 			sourceTree = "<group>";
 		};
 		D7D6B56CF669E978F1E7A6E0 /* Pods */ = {
@@ -776,7 +776,7 @@
 				AB6AE0C71CF7D6CC00708654 /* News */,
 				AB6AE0C41CF7D69200708654 /* Profile */,
 			);
-			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F80D678F1B9867F400E27520 /* Main */ = {
@@ -785,7 +785,7 @@
 				F80D678A1B95909100E27520 /* CourseOverviewTabBarController.swift */,
 				F89473C11B3C46FD00553882 /* RegisterViewController.swift */,
 			);
-			name = Main;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		F80D67DC1B9881FA00E27520 /* Helper */ = {

@@ -10,13 +10,6 @@ import UIKit
 
 class ProfileTableViewController: UITableViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 0
     }
@@ -31,5 +24,5 @@ class ProfileTableViewController: UITableViewController {
         }
         return false
     }
-    
+
 }

@@ -1,5 +1,5 @@
 //
-//  NewsTableViewCell.swift
+//  NewsArticleCell.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 04.07.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsTableViewCell: UITableViewCell {
+class NewsArticleCell : UITableViewCell {
 
     @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var titleLable: UILabel!

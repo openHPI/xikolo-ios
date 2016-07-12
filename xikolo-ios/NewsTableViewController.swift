@@ -22,7 +22,7 @@ class NewsTableViewController: UITableViewController {
         let request = NewsArticleHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "newsTableViewCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "NewsArticleCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -60,7 +60,7 @@ class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("newsTableViewCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("NewsArticleCell", forIndexPath: indexPath)
         configureTableCell(cell, indexPath: indexPath)
         return cell
     }
@@ -78,7 +78,7 @@ class NewsTableViewController: UITableViewController {
 extension NewsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
     func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-        let cell = cell as! NewsTableViewCell
+        let cell = cell as! NewsArticleCell
 
         let item = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
         cell.newsArticle = item

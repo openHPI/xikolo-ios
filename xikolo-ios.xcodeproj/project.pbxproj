@@ -352,7 +352,7 @@
 		AB2802D51D2AD18F008C8BAE /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticleViewController.swift; sourceTree = "<group>"; };
 		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationKeys.swift; path = "../../xikolo-ios/NotificationKeys.swift"; sourceTree = "<group>"; };
+		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewController.swift; sourceTree = "<group>"; };
 		AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -576,7 +576,6 @@
 			isa = PBXGroup;
 			children = (
 				ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */,
-				AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -592,6 +591,7 @@
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Localizable.strings */,
 				24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */,
+				AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */,
 				2490C4FC1D2175BA00F42949 /* XikoloURL.swift */,
 			);
 			path = "xikolo-common";

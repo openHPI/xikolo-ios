@@ -10,19 +10,13 @@ import UIKit
 
 class NewsArticleCell : UITableViewCell {
 
+    @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var descriptionView: UILabel!
     @IBOutlet weak var readStateView: UIView!
-    @IBOutlet weak var titleLable: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
 
-    var newsArticle: NewsArticle! {
-        didSet {
-            updateUI()
-        }
-    }
-
-    func updateUI() {
-        titleLable.text = newsArticle.title
-        descriptionLabel.text = newsArticle.text
+    func configure(newsArticle: NewsArticle) {
+        titleView.text = newsArticle.title
+        descriptionView.text = newsArticle.text
     }
 
 }

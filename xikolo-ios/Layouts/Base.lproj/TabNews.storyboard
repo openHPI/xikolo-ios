@@ -106,9 +106,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="descriptionLabel" destination="m9B-8u-val" id="LsW-UI-ujF"/>
+                                    <outlet property="descriptionView" destination="m9B-8u-val" id="gra-4c-pMD"/>
                                     <outlet property="readStateView" destination="xem-MR-52U" id="5UO-Qo-nH5"/>
-                                    <outlet property="titleLable" destination="K6L-Mu-DQ9" id="9p5-w0-eaI"/>
+                                    <outlet property="titleView" destination="K6L-Mu-DQ9" id="teO-Gq-SBH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -57,8 +57,8 @@ extension NewsTableViewController : TableViewResultsControllerDelegateImplementa
     func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
         let cell = cell as! NewsArticleCell
 
-        let item = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
-        cell.newsArticle = item
+        let article = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
+        cell.configure(article)
     }
 
 }

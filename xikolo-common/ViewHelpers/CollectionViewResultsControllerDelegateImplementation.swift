@@ -12,11 +12,20 @@ import UIKit
 class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
 
     weak var collectionView: UICollectionView!
+    weak var resultsController: NSFetchedResultsController?
+    var cellReuseIdentifier: String
+
     weak var delegate: CollectionViewResultsControllerDelegateImplementationDelegate?
     private var contentChangeOperations: [ContentChangeOperation] = []
 
-    required init(_ collectionView: UICollectionView) {
+    required init(_ collectionView: UICollectionView, resultsController: NSFetchedResultsController?, cellReuseIdentifier: String) {
         self.collectionView = collectionView
+        self.resultsController = resultsController
+        self.cellReuseIdentifier = cellReuseIdentifier
+    }
+
+    convenience init(_ collectionView: UICollectionView, cellReuseIdentifier: String) {
+        self.init(collectionView, resultsController: nil, cellReuseIdentifier: cellReuseIdentifier)
     }
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -65,6 +74,24 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
                 }
             }
         }, completion: nil)
+    }
+
+}
+
+extension CollectionViewResultsControllerDelegateImplementation : UICollectionViewDataSource {
+
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return resultsController?.sections?.count ?? 0
+    }
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return resultsController?.sections?[section].numberOfObjects ?? 0
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+        self.delegate?.configureCollectionCell(cell, indexPath: indexPath)
+        return cell
     }
 
 }

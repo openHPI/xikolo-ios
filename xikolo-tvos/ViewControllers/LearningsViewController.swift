@@ -39,8 +39,9 @@ class LearningsViewController : UIViewController {
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
 
-        itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
+        itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView, cellReuseIdentifier: "CourseItemCell")
         itemResultsControllerDelegateImplementation.delegate = self
+        itemCollectionView.dataSource = itemResultsControllerDelegateImplementation
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -99,6 +100,7 @@ class LearningsViewController : UIViewController {
         itemCollectionView.reloadData()
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         itemResultsController!.delegate = itemResultsControllerDelegateImplementation
+        itemResultsControllerDelegateImplementation.resultsController = itemResultsController
 
         do {
             try itemResultsController!.performFetch()
@@ -148,30 +150,6 @@ extension LearningsViewController : UITableViewDelegate {
         let section = sectionResultsController.objectAtIndexPath(indexPath) as! CourseSection
         loadItemsForSection(section)
         return indexPath
-    }
-
-}
-
-extension LearningsViewController : UICollectionViewDataSource {
-
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        if let sections = itemResultsController?.sections {
-            return sections.count
-        } else {
-            return 0
-        }
-    }
-
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let sections = itemResultsController!.sections! as [NSFetchedResultsSectionInfo]
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
-    }
-
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseItemCell", forIndexPath: indexPath)
-        configureCollectionCell(cell, indexPath: indexPath)
-        return cell
     }
 
 }

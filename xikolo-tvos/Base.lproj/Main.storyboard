@@ -76,7 +76,6 @@
                             </connections>
                         </collectionReusableView>
                         <connections>
-                            <outlet property="dataSource" destination="lgE-Ld-iJp" id="ApQ-Ol-8vw"/>
                             <outlet property="delegate" destination="lgE-Ld-iJp" id="Ro7-Kg-4i9"/>
                         </connections>
                     </collectionView>
@@ -402,7 +401,6 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="TiG-l6-dl3" id="YDE-A2-B3o"/>
                                     <outlet property="delegate" destination="TiG-l6-dl3" id="9Wh-R1-c1O"/>
                                 </connections>
                             </collectionView>

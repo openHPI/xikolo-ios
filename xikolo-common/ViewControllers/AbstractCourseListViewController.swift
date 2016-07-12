@@ -17,8 +17,6 @@ class AbstractCourseListViewController : UICollectionViewController {
         case BothSectioned
     }
 
-    let cellReuseIdentifier = "CourseCell"
-
     var resultsController: NSFetchedResultsController!
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
     var contentChangeOperations: [[AnyObject?]] = []
@@ -42,9 +40,10 @@ class AbstractCourseListViewController : UICollectionViewController {
                 request = CourseHelper.getSectionedRequest()
                 resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")
         }
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!)
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!, resultsController: resultsController, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
+        collectionView!.dataSource = resultsControllerDelegateImplementation
 
         do {
             try resultsController.performFetch()
@@ -53,26 +52,6 @@ class AbstractCourseListViewController : UICollectionViewController {
         }
 
         CourseHelper.refreshCourses()
-    }
-
-}
-
-extension AbstractCourseListViewController {
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return resultsController.sections!.count
-    }
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let sections = resultsController.sections! as [NSFetchedResultsSectionInfo]
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
-    }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
-        configureCollectionCell(cell, indexPath: indexPath)
-        return cell
     }
 
 }

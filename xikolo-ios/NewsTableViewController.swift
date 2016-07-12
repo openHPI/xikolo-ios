@@ -14,15 +14,19 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet var newsTableView: UITableView!
 
     var resultsController: NSFetchedResultsController!
+    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
     // MARK: - ViewController Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(newsTableView)
+        resultsControllerDelegateImplementation.delegate = self
+
         let request = NewsArticleHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-        resultsController.delegate = self
+        resultsController.delegate = resultsControllerDelegateImplementation
         do {
             try resultsController.performFetch()
         } catch {
@@ -76,44 +80,10 @@ class NewsTableViewController: UITableViewController {
     }
 }
 
-extension NewsTableViewController : NSFetchedResultsControllerDelegate {
+extension NewsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        newsTableView.beginUpdates()
-    }
-
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            newsTableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            newsTableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Move:
-            break
-        case .Update:
-            break
-        }
-    }
-
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            newsTableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            newsTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Update:
-            // No need to update a cell that has not been loaded.
-            if let cell = newsTableView.cellForRowAtIndexPath(indexPath!) as? NewsTableViewCell {
-                configureCell(cell, atIndexPath: indexPath!)
-            }
-        case .Move:
-            newsTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            newsTableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        }
-    }
-
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        newsTableView.endUpdates()
+    func configureTableCell(delegateImplementation: TableViewResultsControllerDelegateImplementation, cell: UITableViewCell, indexPath: NSIndexPath) {
+        configureCell(cell as! NewsTableViewCell, atIndexPath: indexPath)
     }
 
 }

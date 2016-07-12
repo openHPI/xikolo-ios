@@ -22,6 +22,7 @@ class LearningsViewController : UIViewController {
     var course: Course!
 
     var sectionResultsController: NSFetchedResultsController!
+    var sectionResultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
     var itemResultsController: NSFetchedResultsController?
     var itemResultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
 
@@ -31,9 +32,12 @@ class LearningsViewController : UIViewController {
 
         courseTitleView.text = course.name
 
+        sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView)
+        sectionResultsControllerDelegateImplementation.delegate = self
+
         let request = CourseSectionHelper.getSectionRequest(course)
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-        sectionResultsController.delegate = self
+        sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
 
         itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView)
         itemResultsControllerDelegateImplementation.delegate = self
@@ -125,54 +129,17 @@ extension LearningsViewController : UITableViewDataSource {
         return cell
     }
 
+}
+
+extension LearningsViewController : TableViewResultsControllerDelegateImplementationDelegate {
+
+    func configureTableCell(delegateImplementation: TableViewResultsControllerDelegateImplementation, cell: UITableViewCell, indexPath: NSIndexPath) {
+        configureSectionCell(cell as! CourseSectionCell, atIndexPath: indexPath)
+    }
+
     func configureSectionCell(cell: CourseSectionCell, atIndexPath indexPath: NSIndexPath) {
         let section = sectionResultsController.objectAtIndexPath(indexPath) as! CourseSection
         cell.configure(section)
-    }
-
-}
-
-extension LearningsViewController : NSFetchedResultsControllerDelegate {
-
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        sectionTableView.beginUpdates()
-    }
-
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            sectionTableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            sectionTableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Move:
-            break
-        case .Update:
-            break
-        }
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            sectionTableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            sectionTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Update:
-            if let cell = sectionTableView.cellForRowAtIndexPath(indexPath!) as? CourseSectionCell {
-                configureSectionCell(cell, atIndexPath: indexPath!)
-            } else {
-                // Undocumented by Apple:
-                // Need to create rows that don't exist here to prevent assertion errors.
-                sectionTableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            }
-        case .Move:
-            sectionTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            sectionTableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        }
-    }
-
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        sectionTableView.endUpdates()
     }
 
 }
@@ -213,7 +180,7 @@ extension LearningsViewController : UICollectionViewDataSource {
 
 extension LearningsViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCollectionCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
         configureItemCell(cell as! CourseItemCell, indexPath: indexPath)
     }
 

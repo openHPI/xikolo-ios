@@ -56,7 +56,7 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
                             case .Update:
                                 // No need to update a cell that has not been loaded.
                                 if let cell = collectionView.cellForItemAtIndexPath(change.indexPath!) {
-                                    self.delegate?.configureCell(self, cell: cell, indexPath: change.indexPath!)
+                                    self.delegate?.configureCollectionCell(self, cell: cell, indexPath: change.indexPath!)
                                 }
                             case .Move:
                                 collectionView.deleteItemsAtIndexPaths([change.indexPath!])
@@ -71,7 +71,7 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
 
 protocol CollectionViewResultsControllerDelegateImplementationDelegate : class {
 
-    func configureCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath)
+    func configureCollectionCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath)
 
 }
 

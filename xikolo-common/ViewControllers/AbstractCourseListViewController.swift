@@ -84,7 +84,7 @@ extension AbstractCourseListViewController {
 
 extension AbstractCourseListViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCollectionCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
         self.configureCell(cell as! CourseCell, indexPath: indexPath)
     }
 

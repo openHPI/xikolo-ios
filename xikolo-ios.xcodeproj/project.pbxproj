@@ -113,6 +113,8 @@
 		24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
 		24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
+		24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
+		24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
@@ -305,6 +307,7 @@
 		24A17A051CD189390056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		24A17A0B1CD18CBD0056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24A17A0C1CD233050056A8EE /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
 		24CB7E341CC678A000960269 /* xikolo-tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xikolo-tvos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -467,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
+				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
 				2447CE181D09C87A00B5C39A /* MarkdownParser.swift */,
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
 			);
@@ -1386,6 +1390,7 @@
 				24A16D821CFDE6E400CAD9FE /* Quiz.swift in Sources */,
 				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
 				24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */,
+				24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				24D48E2C1CCA934300E8051E /* UserProfileHelper.swift in Sources */,
 				24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */,
 				24D48E2B1CCA931C00E8051E /* UserProfileProvider.swift in Sources */,
@@ -1490,6 +1495,7 @@
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,
 				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
+				24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
 				24D48E221CCA78A600E8051E /* NSDate+iso8601.swift in Sources */,
 				24A16D8D1CFF2F4300CAD9FE /* VideoHelper.swift in Sources */,

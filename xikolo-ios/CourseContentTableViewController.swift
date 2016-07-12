@@ -15,6 +15,7 @@ class CourseContentTableViewController: UITableViewController {
     var course: Course!
     
     var resultsController: NSFetchedResultsController!
+    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
     
     // MARK: - ViewController Lifecycle
 
@@ -23,9 +24,12 @@ class CourseContentTableViewController: UITableViewController {
 
         navigationItem.title = course.name
 
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(courseContentTableView)
+        resultsControllerDelegateImplementation.delegate = self
+
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
-        resultsController.delegate = self
+        resultsController.delegate = resultsControllerDelegateImplementation
         do {
             try resultsController.performFetch()
         } catch {
@@ -117,44 +121,10 @@ class CourseContentTableViewController: UITableViewController {
     }
 }
 
-extension CourseContentTableViewController : NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        courseContentTableView.beginUpdates()
+extension CourseContentTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
+
+    func configureTableCell(delegateImplementation: TableViewResultsControllerDelegateImplementation, cell: UITableViewCell, indexPath: NSIndexPath) {
+        self.configureCell(cell as! CourseContentTableViewCell, atIndexPath: indexPath)
     }
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            courseContentTableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            courseContentTableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Move:
-            break
-        case .Update:
-            break
-        }
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            courseContentTableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            courseContentTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Update:
-            // No need to update a cell that has not been loaded.
-            if let cell = courseContentTableView.cellForRowAtIndexPath(indexPath!) as? CourseContentTableViewCell {
-                configureCell(cell, atIndexPath: indexPath!)
-            }
-        case .Move:
-            courseContentTableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            courseContentTableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        }
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        courseContentTableView.endUpdates()
-    }
-    
+
 }

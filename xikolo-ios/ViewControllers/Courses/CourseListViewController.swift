@@ -8,39 +8,29 @@
 
 import UIKit
 
-class CourseListViewController: AbstractCourseListViewController {
-
-    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-
-    private var flowLayout : UICollectionViewFlowLayout?
-
-    override func viewDidLoad() {
-        self.navigationItem.hidesBackButton = true
-        
-        flowLayout = UICollectionViewFlowLayout()
-        self.collectionView?.setCollectionViewLayout(flowLayout!, animated: false)
-        
-        super.viewDidLoad()
-    }
+class CourseListViewController : AbstractCourseListViewController {
 
     internal func showMyCoursesOnly(showMyCourses: Bool) {
         self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
     }
 
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        self.collectionView?.performBatchUpdates(nil, completion: nil)
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animateAlongsideTransition({ context in
+            // Force redraw
+            self.collectionView!.performBatchUpdates(nil, completion: nil)
+        }, completion: nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
-        case "ShowCourseDetailSegue"?:
-            let vc = segue.destinationViewController as! CourseContentTableViewController
-            let cell = sender as! CourseCell
-            let indexPath = collectionView!.indexPathForCell(cell)
-            let course = resultsController.objectAtIndexPath(indexPath!) as! Course
-            vc.course = course
-        default:
-            break
+            case "ShowCourseDetailSegue"?:
+                let vc = segue.destinationViewController as! CourseContentTableViewController
+                let cell = sender as! CourseCell
+                let indexPath = collectionView!.indexPathForCell(cell)
+                let course = resultsController.objectAtIndexPath(indexPath!) as! Course
+                vc.course = course
+            default:
+                break
         }
     }
 
@@ -48,19 +38,9 @@ class CourseListViewController: AbstractCourseListViewController {
 
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            
-            let width = self.collectionView!.frame.size.width - 20
-            
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            let width = collectionView.frame.size.width - (10 + 10) // section insets left + right
             return CGSize(width: width, height: width * 0.6)
-    }
-
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-            return sectionInsets
     }
 
 }

@@ -12,11 +12,9 @@ import UIKit
 class CourseContentTableViewController: UITableViewController {
 
     var course: Course!
-    
+
     var resultsController: NSFetchedResultsController!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
-    
-    // MARK: - ViewController Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,29 +40,20 @@ class CourseContentTableViewController: UITableViewController {
             }.sequence()
         }
     }
-    
+
     func showItem(item: CourseItem) {
         switch item.content {
-        case is Video:
-            performSegueWithIdentifier("ShowVideoView", sender: item)
-        case is Quiz:
-            performSegueWithIdentifier("ShowQuizWebView", sender: item)
-        case is RichText:
-            performSegueWithIdentifier("ShowRichTextView", sender: item)
-        default:
-            // TODO: show error: unsupported type
-            break
+            case is Video:
+                performSegueWithIdentifier("ShowVideoView", sender: item)
+            case is Quiz:
+                performSegueWithIdentifier("ShowQuizWebView", sender: item)
+            case is RichText:
+                performSegueWithIdentifier("ShowRichTextView", sender: item)
+            default:
+                // TODO: show error: unsupported type
+                break
         }
     }
-    
-    // MARK: - Table view delegate
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = resultsController!.objectAtIndexPath(indexPath) as! CourseItem
-        showItem(item)
-    }
-
-    // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
@@ -85,6 +74,16 @@ class CourseContentTableViewController: UITableViewController {
             break
         }
     }
+
+}
+
+extension CourseContentTableViewController { // TableViewDelegate
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let item = resultsController.objectAtIndexPath(indexPath) as! CourseItem
+        showItem(item)
+    }
+
 }
 
 extension CourseContentTableViewController : TableViewResultsControllerDelegateImplementationDelegate {

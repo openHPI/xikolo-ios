@@ -8,38 +8,35 @@
 
 import UIKit
 
-class QuizWebViewController: UIViewController, UIWebViewDelegate {
+class QuizWebViewController : UIViewController {
 
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    
-    @IBOutlet weak var webViewNews: UIWebView!
-    
+    @IBOutlet weak var quizWebView: UIWebView!
+
     var courseItem: CourseItem!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.webViewNews.delegate = self
-        
-        // Position of indicator
-        activityIndicator.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 3)
-        activityIndicator.tag = 100
-        
+
+        quizWebView.delegate = self
+
         if let courseID = courseItem.section?.course?.id {
             let courseURL = Routes.BASE_URL + Routes.COURSES + courseID
             let quizpathURL = "/items/" + courseItem.id
             let url = courseURL + quizpathURL
-            self.webViewNews.loadRequest(NetworkHelper.getRequestForURL(url))
+            quizWebView.loadRequest(NetworkHelper.getRequestForURL(url))
         }
     }
-    
+
+}
+
+extension QuizWebViewController : UIWebViewDelegate {
+
     func webViewDidStartLoad(webView: UIWebView) {
-        activityIndicator.startAnimating()
-        self.view.addSubview(activityIndicator)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
     }
-    
+
     func webViewDidFinishLoad(webView: UIWebView) {
-        activityIndicator.removeFromSuperview()
-        activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
+
 }

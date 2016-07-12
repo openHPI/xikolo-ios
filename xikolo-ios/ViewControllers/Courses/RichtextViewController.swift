@@ -8,6 +8,6 @@
 
 import UIKit
 
-class RichtextViewController: AbstractItemRichtextViewController {
+class RichtextViewController : AbstractItemRichtextViewController {
 
 }

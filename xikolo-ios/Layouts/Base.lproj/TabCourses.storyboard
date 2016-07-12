@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="krt-FK-dfi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -18,11 +19,11 @@
                             <size key="itemSize" width="400" height="240"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CourseCell" reuseIdentifier="CourseCell" id="JrV-Po-3CS" customClass="CourseCell" customModule="xikolo_ios" customModuleProvider="target">
-                                <rect key="frame" x="100" y="64" width="400" height="240"/>
+                                <rect key="frame" x="100" y="74" width="400" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
@@ -352,7 +353,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="webViewNews" destination="Yh9-YM-hqK" id="1Pu-GB-0xV"/>
+                        <outlet property="quizWebView" destination="Yh9-YM-hqK" id="jZP-EE-1rZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTA-nh-Qzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -378,34 +379,40 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQq-V5-oXY">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="APL-U1-dlz"/>
+                                                    <constraint firstAttribute="width" secondItem="HQq-V5-oXY" secondAttribute="height" multiplier="16:9" id="Psh-wG-7G9"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="APL-U1-dlz"/>
+                                                    </mask>
+                                                </variation>
                                                 <connections>
                                                     <segue destination="li8-SI-LT1" kind="embed" identifier="EmbedAVPlayer" id="eUX-Zj-aUz"/>
                                                 </connections>
                                             </containerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xms-E7-0kp">
-                                                <rect key="frame" x="20" y="308" width="34" height="21"/>
+                                                <rect key="frame" x="20" y="346" width="34" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3P-4C-sVC">
-                                                <rect key="frame" x="261" y="345" width="78" height="30"/>
+                                                <rect key="frame" x="261" y="383" width="78" height="30"/>
                                                 <state key="normal" title="open slides"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-BP-h5m">
-                                                <rect key="frame" x="20" y="383" width="59" height="30"/>
+                                                <rect key="frame" x="20" y="421" width="59" height="30"/>
                                                 <state key="normal" title="previous"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-pA-0CD">
-                                                <rect key="frame" x="550" y="383" width="30" height="30"/>
+                                                <rect key="frame" x="550" y="421" width="30" height="30"/>
                                                 <state key="normal" title="next"/>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sTP-0O-gWC">
-                                                <rect key="frame" x="20" y="337" width="560" height="0.0"/>
+                                                <rect key="frame" x="20" y="375" width="560" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="HSw-M3-KA9"/>
@@ -462,7 +469,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="containerHeighConstraint" destination="APL-U1-dlz" id="NOZ-qE-f7h"/>
                         <outlet property="containerVideoView" destination="HQq-V5-oXY" id="Prq-yw-825"/>
                         <outlet property="descriptionTextView" destination="sTP-0O-gWC" id="4pa-A7-zO2"/>
                         <outlet property="nextItemButton" destination="TMS-pA-0CD" id="H5d-v0-v2G"/>

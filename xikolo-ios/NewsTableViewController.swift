@@ -42,29 +42,6 @@ class NewsTableViewController: UITableViewController {
         performSegueWithIdentifier("ShowNewsArticle", sender: newsArticle)
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return resultsController.sections!.count
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = resultsController.sections! as [NSFetchedResultsSectionInfo]
-        let sectionInfo = sections[section]
-
-        return sectionInfo.numberOfObjects
-    }
-
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return nil //resultsController.sections![section].name
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsArticleCell", forIndexPath: indexPath)
-        configureTableCell(cell, indexPath: indexPath)
-        return cell
-    }
-
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

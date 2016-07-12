@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NewsArticleViewController: UIViewController {
+class NewsArticleViewController : UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var textView: UITextView!
 
     var newsArticle: NewsArticle!
@@ -18,9 +18,8 @@ class NewsArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = newsArticle.title
+        titleView.text = newsArticle.title
         textView.text = newsArticle.text
     }
-    
-}
 
+}

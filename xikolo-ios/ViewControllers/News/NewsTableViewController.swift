@@ -9,12 +9,10 @@
 import CoreData
 import UIKit
 
-class NewsTableViewController: UITableViewController {
+class NewsTableViewController : UITableViewController {
 
     var resultsController: NSFetchedResultsController!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
-
-    // MARK: - ViewController Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,21 +33,21 @@ class NewsTableViewController: UITableViewController {
         NewsArticleHelper.syncNewsArticles()
     }
 
-    // MARK: - Table view delegate
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let newsVC = segue.destinationViewController as! NewsArticleViewController
+        let newsArticle = sender as! NewsArticle
+        newsVC.newsArticle = newsArticle
+    }
+
+}
+
+extension NewsTableViewController { // TableViewDelegate
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let newsArticle = resultsController!.objectAtIndexPath(indexPath) as! NewsArticle
+        let newsArticle = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
         performSegueWithIdentifier("ShowNewsArticle", sender: newsArticle)
     }
 
-    // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let newsView = segue.destinationViewController as! NewsArticleViewController
-        let newsArticle = sender as! NewsArticle // Could not cast value of type 'xikolo_ios.NewsArticle' (0x7a105378) to 'xikolo_ios.NewsTableViewCell' (0x9a814). 
-        // Could not cast value of type 'xikolo_ios.NewsTableViewCell' (0xed814) to 'xikolo_ios.NewsArticle' (0xed284).
-        newsView.newsArticle = newsArticle
-    }
 }
 
 extension NewsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {

@@ -8,6 +8,6 @@
 
 import UIKit
 
-class NewsViewController: AbstractTabContentViewController{
+class NewsViewController : AbstractTabContentViewController {
 
 }

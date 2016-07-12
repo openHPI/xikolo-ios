@@ -239,7 +239,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textView" destination="rzo-V0-2VV" id="iRB-pg-K7D"/>
-                        <outlet property="titleLabel" destination="jjt-zb-hgL" id="i40-Ho-87t"/>
+                        <outlet property="titleView" destination="jjt-zb-hgL" id="geT-bE-zLi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMG-hg-Kz8" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -25,8 +25,9 @@ class CourseItemHelper {
     static func getItemRequest(course: Course) -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "CourseItem")
         request.predicate = NSPredicate(format: "section.course = %@", course)
-        let titleSort = NSSortDescriptor(key: "position", ascending: true)
-        request.sortDescriptors = [titleSort]
+        let sectionSort = NSSortDescriptor(key: "section.position", ascending: true)
+        let positionSort = NSSortDescriptor(key: "position", ascending: true)
+        request.sortDescriptors = [sectionSort, positionSort]
         return request
     }
 

@@ -504,10 +504,6 @@
 		24895DBB1CCAF04200D6DFB8 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */,
-				2490C4C81D1C486100F42949 /* CourseHeaderView.swift */,
-				240E03491CE6160D0078A364 /* CourseSectionCell.swift */,
-				2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -547,12 +543,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		24B651481D35581F00624DBC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */,
+				2490C4C81D1C486100F42949 /* CourseHeaderView.swift */,
+				240E03491CE6160D0078A364 /* CourseSectionCell.swift */,
+				2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		24CB7E351CC678A000960269 /* xikolo-tvos */ = {
 			isa = PBXGroup;
 			children = (
 				2490C4DE1D1D92F200F42949 /* TopShelf */,
 				24895DBB1CCAF04200D6DFB8 /* Layouts */,
 				24895DBE1CCB7FC900D6DFB8 /* ViewControllers */,
+				24B651481D35581F00624DBC /* Views */,
 				24CB7E361CC678A000960269 /* AppDelegate.swift */,
 				24CB7E3A1CC678A000960269 /* Main.storyboard */,
 				24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */,

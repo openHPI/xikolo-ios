@@ -1,5 +1,5 @@
 //
-//  CourseOverviewViewController.swift
+//  CourseListViewController.swift
 //  xikolo-ios
 //
 //  Created by Arne Boockmeyer on 08/07/15.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class CourseOverviewViewController: AbstractCourseListViewController {
+class CourseListViewController: AbstractCourseListViewController {
 
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-    
+
     private var flowLayout : UICollectionViewFlowLayout?
-    
+
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         
@@ -22,15 +22,15 @@ class CourseOverviewViewController: AbstractCourseListViewController {
         
         super.viewDidLoad()
     }
-    
+
     internal func showMyCoursesOnly(showMyCourses: Bool) {
         self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
     }
-    
+
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         self.collectionView?.performBatchUpdates(nil, completion: nil)
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
         case "ShowCourseDetailSegue"?:
@@ -43,9 +43,11 @@ class CourseOverviewViewController: AbstractCourseListViewController {
             break
         }
     }
-    
+
 }
-extension CourseOverviewViewController : UICollectionViewDelegateFlowLayout {
+
+extension CourseListViewController : UICollectionViewDelegateFlowLayout {
+
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -54,10 +56,11 @@ extension CourseOverviewViewController : UICollectionViewDelegateFlowLayout {
             
             return CGSize(width: width, height: width * 0.6)
     }
-    
+
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAtIndex section: Int) -> UIEdgeInsets {
             return sectionInsets
     }
+
 }

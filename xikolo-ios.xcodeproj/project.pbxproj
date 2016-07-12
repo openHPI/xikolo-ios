@@ -148,7 +148,7 @@
 		7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */; };
 		7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */; };
 		7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
-		7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */; };
+		7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
 		8A4F11F0A60ED98ED0604FDD /* Pods_xikolo_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B84F62BCEE33BB89A28463 /* Pods_xikolo_iosUITests.framework */; };
 		990D34C2C032846EBCE65BF1 /* Pods_xikolo_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0493C1837058A949790C90 /* Pods_xikolo_iosTests.framework */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
@@ -330,7 +330,7 @@
 		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xikolo-ios-Bridging-Header.h"; sourceTree = "<group>"; };
-		7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewViewController.swift; sourceTree = "<group>"; };
+		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		82736BB5DFE59B7D1ED3ABA7 /* Pods_xikolo_tvos_topshelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_tvos_topshelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85B8D5C7032AF58AFCA0C6A6 /* Pods-xikolo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.release.xcconfig"; sourceTree = "<group>"; };
 		9A4C0D883904BD0508C7BDA8 /* Pods-xikolo-tvos-topshelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvos-topshelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvos-topshelf/Pods-xikolo-tvos-topshelf.release.xcconfig"; sourceTree = "<group>"; };
@@ -702,7 +702,7 @@
 		AB6AE0C51CF7D6A700708654 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				7E5C55701B4D32B3004DCDC7 /* CourseOverviewViewController.swift */,
+				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
 				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
 				AB91F9E41CED029B00007D06 /* CourseContentTableViewCell.swift */,
 				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
@@ -1452,7 +1452,7 @@
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
 				AB2802D81D2AD571008C8BAE /* NewsArticleViewController.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
-				7E5C55711B4D32B3004DCDC7 /* CourseOverviewViewController.swift in Sources */,
+				7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */,
 				2433A5A11CE634A00060DD98 /* CourseItem+CoreDataProperties.swift in Sources */,
 				2447CE1C1D0AF32200B5C39A /* RichTextProvider.swift in Sources */,
 				2447CE191D09C87A00B5C39A /* MarkdownParser.swift in Sources */,

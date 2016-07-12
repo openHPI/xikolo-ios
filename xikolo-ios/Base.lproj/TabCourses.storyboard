@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Course Overview View Controller-->
+        <!--Course List View Controller-->
         <scene sceneID="aYm-tI-rNT">
             <objects>
-                <collectionViewController storyboardIdentifier="CourseOverviewViewController" id="uLl-5G-DMn" customClass="CourseOverviewViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="uLl-5G-DMn" customClass="CourseListViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MA3-VX-yBw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

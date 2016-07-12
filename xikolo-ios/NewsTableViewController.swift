@@ -60,14 +60,9 @@ class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("newsTableViewCell", forIndexPath: indexPath) as! NewsTableViewCell
-        self.configureCell(cell, atIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("newsTableViewCell", forIndexPath: indexPath)
+        configureTableCell(cell, indexPath: indexPath)
         return cell
-    }
-
-    func configureCell(cell: NewsTableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let item = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
-        cell.newsArticle = item
     }
 
     // MARK: - Navigation
@@ -82,8 +77,11 @@ class NewsTableViewController: UITableViewController {
 
 extension NewsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(delegateImplementation: TableViewResultsControllerDelegateImplementation, cell: UITableViewCell, indexPath: NSIndexPath) {
-        configureCell(cell as! NewsTableViewCell, atIndexPath: indexPath)
+    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let cell = cell as! NewsTableViewCell
+
+        let item = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
+        cell.newsArticle = item
     }
 
 }

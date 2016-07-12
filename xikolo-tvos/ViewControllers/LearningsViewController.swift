@@ -124,8 +124,8 @@ extension LearningsViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CourseSectionCell", forIndexPath: indexPath) as! CourseSectionCell
-        self.configureSectionCell(cell, atIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("CourseSectionCell", forIndexPath: indexPath)
+        configureTableCell(cell, indexPath: indexPath)
         return cell
     }
 
@@ -133,11 +133,9 @@ extension LearningsViewController : UITableViewDataSource {
 
 extension LearningsViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(delegateImplementation: TableViewResultsControllerDelegateImplementation, cell: UITableViewCell, indexPath: NSIndexPath) {
-        configureSectionCell(cell as! CourseSectionCell, atIndexPath: indexPath)
-    }
+    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let cell = cell as! CourseSectionCell
 
-    func configureSectionCell(cell: CourseSectionCell, atIndexPath indexPath: NSIndexPath) {
         let section = sectionResultsController.objectAtIndexPath(indexPath) as! CourseSection
         cell.configure(section)
     }
@@ -171,8 +169,8 @@ extension LearningsViewController : UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseItemCell", forIndexPath: indexPath) as! CourseItemCell
-        configureItemCell(cell, indexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseItemCell", forIndexPath: indexPath)
+        configureCollectionCell(cell, indexPath: indexPath)
         return cell
     }
 
@@ -180,11 +178,9 @@ extension LearningsViewController : UICollectionViewDataSource {
 
 extension LearningsViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
-        configureItemCell(cell as! CourseItemCell, indexPath: indexPath)
-    }
+    func configureCollectionCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+        let cell = cell as! CourseItemCell
 
-    func configureItemCell(cell: CourseItemCell, indexPath: NSIndexPath) {
         let item = itemResultsController!.objectAtIndexPath(indexPath) as! CourseItem
         cell.configure(item)
     }

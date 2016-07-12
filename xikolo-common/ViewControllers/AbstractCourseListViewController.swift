@@ -69,23 +69,21 @@ extension AbstractCourseListViewController {
         return sectionInfo.numberOfObjects
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> CourseCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! CourseCell
-        configureCell(cell, indexPath: indexPath)
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+        configureCollectionCell(cell, indexPath: indexPath)
         return cell
-    }
-
-    func configureCell(cell: CourseCell, indexPath: NSIndexPath) {
-        let course = resultsController.objectAtIndexPath(indexPath) as! Course
-        cell.configure(course)
     }
 
 }
 
 extension AbstractCourseListViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(delegateImplementation: CollectionViewResultsControllerDelegateImplementation, cell: UICollectionViewCell, indexPath: NSIndexPath) {
-        self.configureCell(cell as! CourseCell, indexPath: indexPath)
+    func configureCollectionCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+        let cell = cell as! CourseCell
+
+        let course = resultsController.objectAtIndexPath(indexPath) as! Course
+        cell.configure(course)
     }
 
 }

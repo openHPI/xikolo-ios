@@ -88,14 +88,9 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CourseContentTableViewCell", forIndexPath: indexPath) as! CourseContentTableViewCell
-        self.configureCell(cell, atIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("CourseContentTableViewCell", forIndexPath: indexPath)
+        configureTableCell(cell, indexPath: indexPath)
         return cell
-    }
-    
-    func configureCell(cell: CourseContentTableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let item = resultsController.objectAtIndexPath(indexPath) as! CourseItem
-        cell.courseItem = item
     }
 
     // MARK: - Navigation
@@ -123,8 +118,11 @@ class CourseContentTableViewController: UITableViewController {
 
 extension CourseContentTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(delegateImplementation: TableViewResultsControllerDelegateImplementation, cell: UITableViewCell, indexPath: NSIndexPath) {
-        self.configureCell(cell as! CourseContentTableViewCell, atIndexPath: indexPath)
+    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let cell = cell as! CourseContentTableViewCell
+
+        let item = resultsController.objectAtIndexPath(indexPath) as! CourseItem
+        cell.courseItem = item
     }
 
 }

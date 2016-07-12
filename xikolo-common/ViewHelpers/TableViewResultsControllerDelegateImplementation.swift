@@ -43,7 +43,7 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
             if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
-                self.delegate?.configureTableCell(self, cell: cell, indexPath: indexPath!)
+                self.delegate?.configureTableCell(cell, indexPath: indexPath!)
             } else {
                 // Undocumented by Apple:
                 // Need to create rows that don't exist here to prevent assertion errors.
@@ -63,6 +63,6 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
 
 protocol TableViewResultsControllerDelegateImplementationDelegate : class {
 
-    func configureTableCell(delegateImplementation: TableViewResultsControllerDelegateImplementation, cell: UITableViewCell, indexPath: NSIndexPath)
+    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath)
 
 }

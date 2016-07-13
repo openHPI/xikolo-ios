@@ -135,7 +135,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3798" y="-943"/>
+            <point key="canvasLocation" x="812" y="0.0"/>
         </scene>
         <!--Course Content Table View Controller-->
         <scene sceneID="XFj-pH-TxF">
@@ -222,7 +222,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rj-3l-8gO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4590" y="-943"/>
+            <point key="canvasLocation" x="1604" y="0.0"/>
         </scene>
         <!--Richtext View Controller-->
         <scene sceneID="M4d-6f-bqM">
@@ -311,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVh-ZN-bc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5467" y="-1840"/>
+            <point key="canvasLocation" x="2481" y="-897"/>
         </scene>
         <!--Quiz Web View Controller-->
         <scene sceneID="m7r-16-ntP">
@@ -358,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTA-nh-Qzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5467" y="-1112"/>
+            <point key="canvasLocation" x="2481" y="-169"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="Zbn-mr-shH">
@@ -479,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOY-fk-G0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5467" y="-382"/>
+            <point key="canvasLocation" x="2481" y="561"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="Tl3-1b-ctw">
@@ -487,7 +487,7 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="li8-SI-LT1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bD-81-FHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6218" y="-484"/>
+            <point key="canvasLocation" x="3232" y="459"/>
         </scene>
         <!--Courses-->
         <scene sceneID="O7e-6a-qIC">
@@ -506,7 +506,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wb-oK-Vy4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2986" y="-943"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

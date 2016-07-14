@@ -14,6 +14,7 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
     weak var collectionView: UICollectionView!
     weak var resultsController: NSFetchedResultsController?
     var cellReuseIdentifier: String
+    var headerReuseIdentifier: String?
 
     weak var delegate: CollectionViewResultsControllerDelegateImplementationDelegate?
     private var contentChangeOperations: [ContentChangeOperation] = []
@@ -94,11 +95,25 @@ extension CollectionViewResultsControllerDelegateImplementation : UICollectionVi
         return cell
     }
 
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        if kind == UICollectionElementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier!, forIndexPath: indexPath)
+            if let section = resultsController?.sections?[indexPath.section] {
+                delegate?.configureCollectionHeaderView?(view, section: section)
+            }
+            return view
+        } else {
+            fatalError("Unsupported supplementary view kind.")
+        }
+    }
+
 }
 
-protocol CollectionViewResultsControllerDelegateImplementationDelegate : class {
+@objc protocol CollectionViewResultsControllerDelegateImplementationDelegate : class {
 
     func configureCollectionCell(cell: UICollectionViewCell, indexPath: NSIndexPath)
+
+    optional func configureCollectionHeaderView(view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
 
 }
 

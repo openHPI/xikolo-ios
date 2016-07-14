@@ -6,6 +6,7 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class CourseListViewController : AbstractCourseListViewController {
@@ -14,6 +15,8 @@ class CourseListViewController : AbstractCourseListViewController {
         self.courseDisplayMode = .BothSectioned
 
         super.viewDidLoad()
+
+        resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -33,15 +36,9 @@ class CourseListViewController : AbstractCourseListViewController {
 
 extension CourseListViewController {
 
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "CourseHeaderView", forIndexPath: indexPath) as! CourseHeaderView
-            let section = resultsController.sections![indexPath.section]
-            view.configure(section)
-            return view
-        } else {
-            return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
-        }
+    func configureCollectionHeaderView(view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
+        let view = view as! CourseHeaderView
+        view.configure(section)
     }
 
 }

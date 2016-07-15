@@ -21,9 +21,14 @@ class AbstractItemRichtextViewController: UIViewController {
         RichTextHelper.refreshRichText(courseItem.content as! RichText).onSuccess { richText in
             if let markdown = richText.markup {
                 self.textView.attributedText = MarkdownParser.parse(markdown)
+                self.richTextLoaded()
             }
         }
 
         titleView.text = courseItem.title
     }
+
+    func richTextLoaded() {
+    }
+
 }

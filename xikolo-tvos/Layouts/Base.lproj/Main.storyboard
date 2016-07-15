@@ -498,6 +498,7 @@
                         <blurEffect style="dark"/>
                     </visualEffectView>
                     <connections>
+                        <outlet property="containerView" destination="nA7-CI-kHY" id="sDW-cE-ehG"/>
                         <outlet property="textView" destination="Xe8-VT-iVb" id="vid-cX-SHT"/>
                         <outlet property="titleView" destination="ZGI-9d-YrP" id="Fpw-JB-CtS"/>
                     </connections>

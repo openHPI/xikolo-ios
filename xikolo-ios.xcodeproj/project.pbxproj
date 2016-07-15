@@ -74,6 +74,7 @@
 		2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FF1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		249C01A51D39169600B54AAC /* ViewControllerLoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -286,6 +287,7 @@
 		2490C4E91D1DA3BE00F42949 /* xikolo-tvos-topshelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos-topshelf.entitlements"; sourceTree = "<group>"; };
 		2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos.entitlements"; sourceTree = "<group>"; };
 		2490C4FC1D2175BA00F42949 /* XikoloURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloURL.swift; sourceTree = "<group>"; };
+		249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoadingHelper.swift; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -538,6 +540,14 @@
 			path = TopShelf;
 			sourceTree = "<group>";
 		};
+		249C01A31D39164A00B54AAC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +585,7 @@
 				24895DBB1CCAF04200D6DFB8 /* Layouts */,
 				24895DBE1CCB7FC900D6DFB8 /* ViewControllers */,
 				24B651481D35581F00624DBC /* Views */,
+				249C01A31D39164A00B54AAC /* Helpers */,
 				24CB7E361CC678A000960269 /* AppDelegate.swift */,
 				24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */,
 				24CB7E3F1CC678A000960269 /* Info.plist */,
@@ -1388,6 +1399,7 @@
 				24128FAD1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
 				24A16D7D1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,
 				ABAC560A1D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
+				249C01A51D39169600B54AAC /* ViewControllerLoadingHelper.swift in Sources */,
 				24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */,
 				2448A9D91CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				24A16D8E1CFF302900CAD9FE /* VideoHelper.swift in Sources */,

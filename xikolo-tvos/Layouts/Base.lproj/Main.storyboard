@@ -465,7 +465,7 @@
         <!--Item Rich Text Controller-->
         <scene sceneID="yZe-dS-aEl">
             <objects>
-                <viewController id="YAs-jy-T95" customClass="ItemRichTextController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemRichTextController" id="YAs-jy-T95" customClass="ItemRichTextController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="1Nn-Cz-nKf">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -502,11 +502,31 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iro-BS-df5">
+                                    <rect key="frame" x="1480" y="934" width="160" height="86"/>
+                                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                    <state key="normal" title="Next"/>
+                                    <connections>
+                                        <action selector="showNextItem:" destination="YAs-jy-T95" eventType="primaryActionTriggered" id="WNh-UQ-Fgj"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpI-Qy-Fof">
+                                    <rect key="frame" x="212" y="934" width="228" height="86"/>
+                                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                    <state key="normal" title="Previous"/>
+                                    <connections>
+                                        <action selector="showPreviousItem:" destination="YAs-jy-T95" eventType="primaryActionTriggered" id="g7L-D5-nVw"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="Xe8-VT-iVb" firstAttribute="width" secondItem="nA7-CI-kHY" secondAttribute="width" multiplier="0.5" id="6en-yp-916"/>
                                 <constraint firstItem="zlg-6r-iHI" firstAttribute="leading" secondItem="nA7-CI-kHY" secondAttribute="leading" id="8qz-18-KcV"/>
+                                <constraint firstAttribute="bottom" secondItem="tpI-Qy-Fof" secondAttribute="bottom" constant="60" id="AXX-Vm-qDN"/>
+                                <constraint firstAttribute="bottom" secondItem="iro-BS-df5" secondAttribute="bottom" constant="60" id="CMW-kf-goN"/>
                                 <constraint firstItem="Xe8-VT-iVb" firstAttribute="centerX" secondItem="nA7-CI-kHY" secondAttribute="centerX" id="Fnl-ye-lsJ"/>
+                                <constraint firstItem="tpI-Qy-Fof" firstAttribute="trailing" secondItem="Xe8-VT-iVb" secondAttribute="leading" constant="-40" id="HE0-q7-Hh4"/>
+                                <constraint firstItem="iro-BS-df5" firstAttribute="leading" secondItem="Xe8-VT-iVb" secondAttribute="trailing" constant="40" id="IeU-xI-C7a"/>
                                 <constraint firstItem="ZGI-9d-YrP" firstAttribute="centerX" secondItem="nA7-CI-kHY" secondAttribute="centerX" id="NVA-ut-3ew"/>
                                 <constraint firstItem="ZGI-9d-YrP" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" constant="75" id="PML-Lj-QeZ"/>
                                 <constraint firstItem="zlg-6r-iHI" firstAttribute="top" secondItem="nA7-CI-kHY" secondAttribute="top" id="Qgt-7t-wZd"/>
@@ -520,6 +540,9 @@
                     </visualEffectView>
                     <connections>
                         <outlet property="containerView" destination="nA7-CI-kHY" id="sDW-cE-ehG"/>
+                        <outlet property="nextButton" destination="iro-BS-df5" id="h1f-mn-PI0"/>
+                        <outlet property="preferredFocusedView" destination="Xe8-VT-iVb" id="hWw-7j-JHu"/>
+                        <outlet property="previousButton" destination="tpI-Qy-Fof" id="8zx-Zg-eY4"/>
                         <outlet property="textView" destination="Xe8-VT-iVb" id="vid-cX-SHT"/>
                         <outlet property="titleView" destination="ZGI-9d-YrP" id="Fpw-JB-CtS"/>
                     </connections>

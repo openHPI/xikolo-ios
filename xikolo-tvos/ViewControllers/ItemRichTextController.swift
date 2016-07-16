@@ -11,6 +11,10 @@ import UIKit
 class ItemRichTextController : AbstractItemRichtextViewController {
 
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+
+    var delegate: ItemViewControllerDelegate?
 
     var loadingHelper: ViewControllerLoadingHelper!
 
@@ -25,6 +29,30 @@ class ItemRichTextController : AbstractItemRichtextViewController {
 
     override func richTextLoaded() {
         loadingHelper.stopLoading()
+
+        if courseItem.previous == nil {
+            previousButton.hidden = true
+        }
+        if courseItem.next == nil {
+            nextButton.hidden = true
+        }
+    }
+
+}
+
+extension ItemRichTextController {
+
+    @IBAction func showPreviousItem(sender: UIButton) {
+        showItem(courseItem.previous!)
+    }
+
+    @IBAction func showNextItem(sender: UIButton) {
+        showItem(courseItem.next!)
+    }
+
+    func showItem(item: CourseItem) {
+        navigationController!.popViewControllerAnimated(true)
+        delegate?.showItem(item)
     }
 
 }

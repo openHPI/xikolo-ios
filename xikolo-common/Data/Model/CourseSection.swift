@@ -12,6 +12,19 @@ import Spine
 
 class CourseSection : BaseModel {
 
+    var itemsSorted: [CourseItem] {
+        if items == nil {
+            return []
+        }
+        return items!.sort { a, b in
+            let a = a as! CourseItem, b = b as! CourseItem
+            if a.position == nil || b.position == nil {
+                return false
+            }
+            return UInt(a.position!) < UInt(b.position!)
+        } as! [CourseItem]
+    }
+
 }
 
 class CourseSectionSpine : BaseModelSpine {

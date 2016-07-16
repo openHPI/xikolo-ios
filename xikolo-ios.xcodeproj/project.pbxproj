@@ -77,6 +77,8 @@
 		249C01A51D39169600B54AAC /* ViewControllerLoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */; };
 		249C01A71D3CFCE800B54AAC /* ItemVideoLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */; };
 		249C01A91D3D034700B54AAC /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A81D3D034700B54AAC /* ReplaceSegue.swift */; };
+		249C01AB1D3D139400B54AAC /* CollectionType+dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */; };
+		249C01AC1D3D139400B54AAC /* CollectionType+dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -292,6 +294,7 @@
 		249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoadingHelper.swift; sourceTree = "<group>"; };
 		249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVideoLoadingController.swift; sourceTree = "<group>"; };
 		249C01A81D3D034700B54AAC /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
+		249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+dict.swift"; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -670,6 +673,7 @@
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */,
 				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
+				249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1414,6 +1418,7 @@
 				240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */,
 				2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				2490C4C71D1C158B00F42949 /* MainViewController.swift in Sources */,
+				249C01AC1D3D139400B54AAC /* CollectionType+dict.swift in Sources */,
 				24A16D761CFDB5E900CAD9FE /* BaseModelSpine.swift in Sources */,
 				AB2802DB1D2D7582008C8BAE /* NewsArticle.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
@@ -1508,6 +1513,7 @@
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
 				24A16D8A1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				24A16D811CFDE6E400CAD9FE /* Quiz.swift in Sources */,
+				249C01AB1D3D139400B54AAC /* CollectionType+dict.swift in Sources */,
 				2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				24A16D7C1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,

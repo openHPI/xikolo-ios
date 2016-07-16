@@ -145,7 +145,7 @@ extension LearningsViewController : CollectionViewResultsControllerDelegateImple
 
 }
 
-extension LearningsViewController : UICollectionViewDelegate {
+extension LearningsViewController : UICollectionViewDelegate, ItemViewControllerDelegate {
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let item = itemResultsController!.objectAtIndexPath(indexPath) as! CourseItem
@@ -169,6 +169,7 @@ extension LearningsViewController : UICollectionViewDelegate {
         switch segue.identifier {
             case "ShowCourseItemRichTextSegue"?:
                 let vc = segue.destinationViewController as! ItemRichTextController
+                vc.delegate = self
                 vc.courseItem = sender as! CourseItem
             case "ShowCourseItemVideoSegue"?:
                 let vc = segue.destinationViewController as! ItemVideoLoadingController
@@ -177,5 +178,11 @@ extension LearningsViewController : UICollectionViewDelegate {
                 break
         }
     }
+
+}
+
+protocol ItemViewControllerDelegate {
+
+    func showItem(item: CourseItem)
 
 }

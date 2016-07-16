@@ -22,6 +22,30 @@ class CourseItem : BaseModel {
         }
     }
 
+    var next: CourseItem? {
+        get {
+            return neighbor(1)
+        }
+    }
+
+    var previous: CourseItem? {
+        get {
+            return neighbor(-1)
+        }
+    }
+
+    private func neighbor(direction: Int) -> CourseItem? {
+        let items = section?.itemsSorted ?? []
+        if var index = items.indexOf(self) {
+            index += direction
+            if index < 0 || index >= items.count {
+                return nil
+            }
+            return items[index]
+        }
+        return nil
+    }
+
 }
 
 class CourseItemSpine : BaseModelSpine {

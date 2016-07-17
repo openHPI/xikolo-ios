@@ -97,20 +97,32 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32.03.1987" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcn-a2-G7d">
+                                            <rect key="frame" x="512" y="14" width="80" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="2l2-y7-xSx"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="m9B-8u-val" firstAttribute="leading" secondItem="xem-MR-52U" secondAttribute="trailing" constant="8" symbolic="YES" id="3kn-RB-d9d"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="m9B-8u-val" secondAttribute="bottom" id="9fl-QF-EJ5"/>
+                                        <constraint firstItem="m9B-8u-val" firstAttribute="top" secondItem="Hcn-a2-G7d" secondAttribute="bottom" constant="8" id="GLE-xP-rAJ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="m9B-8u-val" secondAttribute="trailing" id="JWw-Qz-F9h"/>
                                         <constraint firstItem="xem-MR-52U" firstAttribute="leading" secondItem="PpP-JB-HQs" secondAttribute="leadingMargin" constant="6" id="LgK-cV-wIx"/>
+                                        <constraint firstItem="Hcn-a2-G7d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="K6L-Mu-DQ9" secondAttribute="trailing" constant="8" symbolic="YES" id="PAm-AP-lIl"/>
                                         <constraint firstItem="m9B-8u-val" firstAttribute="top" secondItem="K6L-Mu-DQ9" secondAttribute="bottom" constant="8" symbolic="YES" id="UzW-nO-3A1"/>
                                         <constraint firstItem="K6L-Mu-DQ9" firstAttribute="leading" secondItem="xem-MR-52U" secondAttribute="trailing" constant="8" symbolic="YES" id="VTW-7X-IDG"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Hcn-a2-G7d" secondAttribute="trailing" id="Wfh-DD-bmH"/>
                                         <constraint firstItem="K6L-Mu-DQ9" firstAttribute="centerY" secondItem="xem-MR-52U" secondAttribute="centerY" id="cHE-0P-8IH"/>
-                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="K6L-Mu-DQ9" secondAttribute="trailing" id="cqK-hQ-scP"/>
                                         <constraint firstItem="xem-MR-52U" firstAttribute="top" secondItem="PpP-JB-HQs" secondAttribute="topMargin" constant="5" id="d1O-Li-GET"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="dateView" destination="Hcn-a2-G7d" id="mlr-IU-Pae"/>
                                     <outlet property="descriptionView" destination="m9B-8u-val" id="gra-4c-pMD"/>
                                     <outlet property="readStateView" destination="xem-MR-52U" id="5UO-Qo-nH5"/>
                                     <outlet property="titleView" destination="K6L-Mu-DQ9" id="teO-Gq-SBH"/>
@@ -199,7 +211,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32.04.1987" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1R-Ej-QPw">
                                                 <rect key="frame" x="507" y="49" width="73" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>

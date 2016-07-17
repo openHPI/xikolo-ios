@@ -27,7 +27,9 @@ class NewsArticleViewController : UIViewController {
         }
 
         titleView.text = newsArticle.title
-        textView.text = newsArticle.text
+        if let newsText = newsArticle.text {
+            textView.attributedText = MarkdownParser.parse(newsText)
+        }
     }
 
 }

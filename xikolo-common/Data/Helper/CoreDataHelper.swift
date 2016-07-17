@@ -67,4 +67,26 @@ class CoreDataHelper {
         }
     }
 
+    static func clearCoreDataStorage() {
+        clearCoreDataEntity("Course")
+        clearCoreDataEntity("CourseSection")
+        clearCoreDataEntity("CourseItem")
+        clearCoreDataEntity("Content")
+        clearCoreDataEntity("Video")
+        clearCoreDataEntity("RichText")
+        clearCoreDataEntity("Quiz")
+        clearCoreDataEntity("NewsArticle")
+    }
+
+    static func clearCoreDataEntity(entityName: String) {
+        let fetchRequest = NSFetchRequest(entityName: entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try persistentStoreCoordinator.executeRequest(deleteRequest, withContext: managedContext)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
+    }
+
 }

@@ -12,7 +12,7 @@ import Foundation
 class CourseProvider {
 
     static func getCourses(completionHandler: (courses: [[String: AnyObject]]?, error: NSError?) -> ()) {
-        let url = Routes.API_URL + Routes.COURSES
+        let url = Routes.COURSES_API_URL
 
         Alamofire.request(.GET, url, headers: NetworkHelper.getRequestHeaders()).responseJSON() { (response: Response<AnyObject, NSError>) in
             if let courses = response.result.value as! [[String: AnyObject]]? {

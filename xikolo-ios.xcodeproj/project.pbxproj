@@ -79,6 +79,12 @@
 		249C01A91D3D034700B54AAC /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A81D3D034700B54AAC /* ReplaceSegue.swift */; };
 		249C01AB1D3D139400B54AAC /* CollectionType+dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */; };
 		249C01AC1D3D139400B54AAC /* CollectionType+dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */; };
+		249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249C01B11D3F729E00B54AAC /* assets-brand.xcassets */; };
+		249C01C11D3F78DD00B54AAC /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249C01B11D3F729E00B54AAC /* assets-brand.xcassets */; };
+		249C01C21D3F78DD00B54AAC /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249C01B11D3F729E00B54AAC /* assets-brand.xcassets */; };
+		249C01C31D3F78DF00B54AAC /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B71D3F72BD00B54AAC /* Brand.swift */; };
+		249C01C41D3F78E100B54AAC /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B71D3F72BD00B54AAC /* Brand.swift */; };
+		249C01C51D3F78E100B54AAC /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B71D3F72BD00B54AAC /* Brand.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -295,6 +301,10 @@
 		249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVideoLoadingController.swift; sourceTree = "<group>"; };
 		249C01A81D3D034700B54AAC /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
 		249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+dict.swift"; sourceTree = "<group>"; };
+		249C01B01D3F729300B54AAC /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-brand.xcassets"; sourceTree = "<group>"; };
+		249C01B11D3F729E00B54AAC /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-brand.xcassets"; sourceTree = "<group>"; };
+		249C01B41D3F72B400B54AAC /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		249C01B71D3F72BD00B54AAC /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -557,6 +567,33 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		249C01AD1D3F721E00B54AAC /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				249C01AF1D3F724D00B54AAC /* openSAP */,
+				249C01AE1D3F724700B54AAC /* openHPI */,
+			);
+			path = Branding;
+			sourceTree = "<group>";
+		};
+		249C01AE1D3F724700B54AAC /* openHPI */ = {
+			isa = PBXGroup;
+			children = (
+				249C01B11D3F729E00B54AAC /* assets-brand.xcassets */,
+				249C01B71D3F72BD00B54AAC /* Brand.swift */,
+			);
+			path = openHPI;
+			sourceTree = "<group>";
+		};
+		249C01AF1D3F724D00B54AAC /* openSAP */ = {
+			isa = PBXGroup;
+			children = (
+				249C01B01D3F729300B54AAC /* assets-brand.xcassets */,
+				249C01B41D3F72B400B54AAC /* Brand.swift */,
+			);
+			path = openSAP;
+			sourceTree = "<group>";
+		};
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +663,7 @@
 			children = (
 				24D48E1F1CCA740500E8051E /* Categories */,
 				24CB7E561CC6C61A00960269 /* Data */,
+				249C01AD1D3F721E00B54AAC /* Branding */,
 				24CB7E511CC6813A00960269 /* Resources */,
 				241D4AEA1CC9918600E35B1F /* ViewControllers */,
 				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
@@ -1076,6 +1114,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249C01C21D3F78DD00B54AAC /* assets-brand.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1084,6 +1123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2490C4D41D1D6F7100F42949 /* Localizable.strings in Resources */,
+				249C01C11D3F78DD00B54AAC /* assets-brand.xcassets in Resources */,
 				24CB7E551CC6834C00960269 /* assets-common.xcassets in Resources */,
 				24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */,
 				24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */,
@@ -1108,6 +1148,7 @@
 				AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
 				2490C4D31D1D6F7100F42949 /* Localizable.strings in Resources */,
+				249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */,
 				24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
@@ -1377,6 +1418,7 @@
 				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
 				2490C4EB1D216C9500F42949 /* CourseHelper.swift in Sources */,
 				2490C4F01D216D3B00F42949 /* CourseProvider.swift in Sources */,
+				249C01C51D3F78E100B54AAC /* Brand.swift in Sources */,
 				2490C4F31D216D5A00F42949 /* UserProfileHelper.swift in Sources */,
 				2490C4EE1D216CAF00F42949 /* Course.swift in Sources */,
 				2490C4ED1D216CAB00F42949 /* BaseModel.swift in Sources */,
@@ -1427,6 +1469,7 @@
 				24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */,
 				24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */,
 				2490C4CB1D1C5A9900F42949 /* Settings.swift in Sources */,
+				249C01C41D3F78E100B54AAC /* Brand.swift in Sources */,
 				2448A9DC1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */,
 				24D48E2A1CCA931900E8051E /* ImageProvider.swift in Sources */,
 				249C01A91D3D034700B54AAC /* ReplaceSegue.swift in Sources */,
@@ -1522,6 +1565,7 @@
 				24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */,
 				24A16D871CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
+				249C01C31D3F78DF00B54AAC /* Brand.swift in Sources */,
 				AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */,
 				2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				AB2802D61D2AD18F008C8BAE /* NewsTableViewController.swift in Sources */,
@@ -1827,6 +1871,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1866,6 +1911,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.2;

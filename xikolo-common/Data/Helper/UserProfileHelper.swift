@@ -17,7 +17,7 @@ public class UserProfileHelper {
     static private let prefs = NSUserDefaults.standardUserDefaults()
 
     static func login(email: String, password: String, completionHandler: (token: String?, error: NSError?) -> ()) {
-        let url = Routes.API_URL + Routes.AUTHENTICATE
+        let url = Routes.AUTHENTICATE_API_URL
 
         Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
                 Routes.HTTP_PARAM_EMAIL: email,
@@ -36,7 +36,7 @@ public class UserProfileHelper {
     }
 
     static func createEnrollement(courseId: String, completionHandler: (success: Bool, error: NSError?) -> ()) {
-        let url = Routes.API_URL + Routes.ENROLLMENTS
+        let url = Routes.ENROLLMENTS_API_URL
 
         Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
                 Routes.HTTP_PARAM_COURSE_ID: courseId,
@@ -52,7 +52,7 @@ public class UserProfileHelper {
     }
 
     static func deleteEnrollement(courseId: String, completionHandler: (success: Bool, error: NSError?) -> ()) {
-        let url = Routes.API_URL + Routes.ENROLLMENTS + courseId
+        let url = Routes.ENROLLMENTS_API_URL + courseId
 
         Alamofire.request(.DELETE, url, headers: NetworkHelper.getRequestHeaders()).response { (request, response, data, error) in
             completionHandler(success: error == nil, error: error)

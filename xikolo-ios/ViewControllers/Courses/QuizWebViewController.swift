@@ -20,7 +20,7 @@ class QuizWebViewController : UIViewController {
         quizWebView.delegate = self
 
         if let courseID = courseItem.section?.course?.id {
-            let courseURL = Routes.BASE_URL + Routes.COURSES + courseID
+            let courseURL = Routes.COURSES_URL + courseID
             let quizpathURL = "/items/" + courseItem.id
             let url = courseURL + quizpathURL
             quizWebView.loadRequest(NetworkHelper.getRequestForURL(url))

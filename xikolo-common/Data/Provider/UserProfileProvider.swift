@@ -13,7 +13,7 @@ import Foundation
 class UserProfileProvider {
 
     static func getMyProfile(completionHandler: (user: UserProfile?, error: NSError?) -> ()) {
-        let url = Routes.API_URL + Routes.MY_PROFILE
+        let url = Routes.MY_PROFILE_API_URL
 
         Alamofire.request(.GET, url, headers: NetworkHelper.getRequestHeaders()).responseObject() { (response: Response<UserProfile, NSError>) in
             if let user = response.result.value {

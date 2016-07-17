@@ -21,12 +21,12 @@ class DashboardViewController : AbstractTabContentViewController {
     }
 
     func loadDeadlineWebView() {
-        let url = Routes.BASE_URL + Routes.NEWS  // TODO: change url to deadlines
+        let url = Routes.NEWS_URL  // TODO: change url to deadlines
         deadlineWebView.loadRequest(NetworkHelper.getRequestForURL(url))
     }
 
     func loadNotificationWebView() {
-        let url = Routes.BASE_URL + Routes.NEWS  // TODO: change url to notifications
+        let url = Routes.NEWS_URL  // TODO: change url to notifications
         notificationWebView.loadRequest(NetworkHelper.getRequestForURL(url))
     }
 

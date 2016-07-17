@@ -26,7 +26,9 @@ class NewsArticleViewController : UIViewController {
 
         dateView.text = dateFormatter.stringFromDate(date)
         titleView.text = newsArticle.title
-        textView.text = newsArticle.text
+        if let newsText = newsArticle.text {
+            textView.attributedText = MarkdownParser.parse(newsText)
+        }
     }
 
 }

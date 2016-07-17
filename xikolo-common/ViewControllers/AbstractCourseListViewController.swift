@@ -28,17 +28,21 @@ class AbstractCourseListViewController : UICollectionViewController {
     }
 
     override func viewDidLoad() {
+        updateView()
+    }
+
+    func updateView() {
         var request: NSFetchRequest
         switch courseDisplayMode {
-            case .EnrolledOnly:
-                request = CourseHelper.getMyCoursesRequest()
-                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-            case .All:
-                request = CourseHelper.getAllCoursesRequest()
-                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-            case .BothSectioned:
-                request = CourseHelper.getSectionedRequest()
-                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")
+        case .EnrolledOnly:
+            request = CourseHelper.getMyCoursesRequest()
+            resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+        case .All:
+            request = CourseHelper.getAllCoursesRequest()
+            resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+        case .BothSectioned:
+            request = CourseHelper.getSectionedRequest()
+            resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")
         }
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!, resultsController: resultsController, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.delegate = self

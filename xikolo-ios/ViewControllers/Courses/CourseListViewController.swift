@@ -10,8 +10,25 @@ import UIKit
 
 class CourseListViewController : AbstractCourseListViewController {
 
+    @IBAction func segmentedControlChanged(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            showMyCoursesOnly(false)
+        case 1:
+            if UserProfileHelper.isLoggedIn() {
+                showMyCoursesOnly(true)
+            } else {
+                sender.selectedSegmentIndex = 0
+                performSegueWithIdentifier("ShowLoginForMyCourses", sender: sender) // maybe switch to My Courses after succesful login?
+            }
+        default:
+            showMyCoursesOnly(true)
+        }
+    }
+
     internal func showMyCoursesOnly(showMyCourses: Bool) {
         self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
+        updateView()
     }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

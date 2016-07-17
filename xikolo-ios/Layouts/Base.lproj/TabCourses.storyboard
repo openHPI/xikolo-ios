@@ -128,10 +128,16 @@
                                 <segment title="All Courses"/>
                                 <segment title="My Courses"/>
                             </segments>
+                            <connections>
+                                <action selector="segmentedControlChanged:" destination="uLl-5G-DMn" eventType="valueChanged" id="2kC-ua-6Ft"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="bqb-dp-zic" kind="presentation" identifier="ShowLoginForMyCourses" id="xR8-E6-ooy"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -507,6 +513,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wb-oK-Vy4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--LoginNavigationController-->
+        <scene sceneID="mNZ-5J-YoA">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Main" referencedIdentifier="LoginNavigationController" id="bqb-dp-zic" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ztg-db-FSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1320.5" y="-393"/>
         </scene>
     </scenes>
     <resources>

@@ -46,8 +46,29 @@ class CourseListViewController : AbstractCourseListViewController {
                 let indexPath = collectionView!.indexPathForCell(cell)
                 let course = resultsController.objectAtIndexPath(indexPath!) as! Course
                 vc.course = course
+            case "ShowCourseDetails"?:
+                let vc = segue.destinationViewController as! CourseDetailViewController
+                let course = sender as! Course
+                vc.course = course
             default:
                 break
+        }
+    }
+
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        switch identifier {
+        case "ShowCourseDetailSegue":
+            let cell = sender as! CourseCell
+            let indexPath = collectionView!.indexPathForCell(cell)
+            let course = resultsController.objectAtIndexPath(indexPath!) as! Course
+            if course.is_enrolled {
+                return true
+            } else {
+                performSegueWithIdentifier("ShowCourseDetails", sender: course)
+                return false
+            }
+        default:
+            return true
         }
     }
 

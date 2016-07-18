@@ -63,6 +63,7 @@ public class UserProfileHelper {
         prefs.removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.logoutSuccessfulKey, object: nil)
         prefs.synchronize()
+        CoreDataHelper.clearCoreDataStorage()
     }
 
     static func getUser(completionHandler: (UserProfile?, NSError?) -> ()) {

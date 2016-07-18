@@ -58,7 +58,7 @@ class CourseListViewController : AbstractCourseListViewController {
                 let course = resultsController.objectAtIndexPath(indexPath!) as! Course
                 vc.course = course
             case "ShowCourseDetails"?:
-                let vc = segue.destinationViewController as! CourseDetailViewController
+                let vc = segue.destinationViewController as! CourseDetailsWebViewController
                 let course = sender as! Course
                 vc.course = course
             default:
@@ -82,6 +82,8 @@ class CourseListViewController : AbstractCourseListViewController {
             return true
         }
     }
+
+    @IBAction func unwindToCourseListViewController(segue: UIStoryboardSegue) { }
 
 }
 

@@ -26,6 +26,11 @@ class CourseListViewController : AbstractCourseListViewController {
         }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUIAfterLogin), name: NotificationKeys.loginSuccessfulKey, object: nil)
+    }
+
     internal func showMyCoursesOnly(showMyCourses: Bool) {
         self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
         updateView()
@@ -70,6 +75,10 @@ class CourseListViewController : AbstractCourseListViewController {
         default:
             return true
         }
+    }
+
+    func updateUIAfterLogin() {
+        updateView()
     }
 
     @IBAction func unwindToCourseListViewController(segue: UIStoryboardSegue) { }

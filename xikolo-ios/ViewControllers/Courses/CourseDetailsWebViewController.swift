@@ -15,22 +15,19 @@ class CourseDetailsWebViewController: UIViewController {
     var course: Course!
 
     @IBAction func enrollButton(sender: UIBarButtonItem) {
+        if UserProfileHelper.isLoggedIn() {
+            createEnrollment(sender)
+        } else {
+            performSegueWithIdentifier("ShowLoginFromDetailsView", sender: sender)
+        }
+    }
+
+    func createEnrollment(sender: UIBarButtonItem) {
         UserProfileHelper.createEnrollement(course.id) { success, error in
             if success {
                 self.course.is_enrolled = true
                 CourseHelper.refreshCourses()
                 self.performSegueWithIdentifier("UnwindSegueToCourseList", sender: sender)
-            } else {
-                // TODO: Error handling.
-            }
-        }
-    }
-
-    func createEnrollment() {
-        UserProfileHelper.createEnrollement(course.id) { success, error in
-            if success {
-                self.course.is_enrolled = true
-                CourseHelper.refreshCourses()
             } else {
                 // TODO: Error handling.
             }

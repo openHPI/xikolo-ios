@@ -28,6 +28,8 @@ class CourseListViewController : AbstractCourseListViewController {
         }
     }
 
+    @IBAction func unwindToCourseListViewController(segue: UIStoryboardSegue) { }
+
     internal func showMyCoursesOnly(showMyCourses: Bool) {
         self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
         updateView()
@@ -53,9 +55,7 @@ class CourseListViewController : AbstractCourseListViewController {
         switch segue.identifier {
             case "ShowCourseDetailSegue"?:
                 let vc = segue.destinationViewController as! CourseDecisionViewController
-                let cell = sender as! CourseCell
-                let indexPath = collectionView!.indexPathForCell(cell)
-                let course = resultsController.objectAtIndexPath(indexPath!) as! Course
+                let course = sender as! Course
                 vc.course = course
             case "ShowCourseDetails"?:
                 let vc = segue.destinationViewController as! CourseDetailsWebViewController
@@ -66,24 +66,16 @@ class CourseListViewController : AbstractCourseListViewController {
         }
     }
 
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        switch identifier {
-        case "ShowCourseDetailSegue":
-            let cell = sender as! CourseCell
-            let indexPath = collectionView!.indexPathForCell(cell)
-            let course = resultsController.objectAtIndexPath(indexPath!) as! Course
-            if course.is_enrolled {
-                return true
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let course = resultsController.objectAtIndexPath(indexPath) as? Course {
+            if course.enrollment != nil {
+                performSegueWithIdentifier("ShowCourseDetailSegue", sender: course)
             } else {
                 performSegueWithIdentifier("ShowCourseDetails", sender: course)
-                return false
             }
-        default:
-            return true
         }
-    }
 
-    @IBAction func unwindToCourseListViewController(segue: UIStoryboardSegue) { }
+    }
 
 }
 

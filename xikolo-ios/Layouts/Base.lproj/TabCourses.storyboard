@@ -173,6 +173,7 @@
                     <connections>
                         <segue destination="bqb-dp-zic" kind="presentation" identifier="ShowLoginForMyCourses" id="xR8-E6-ooy"/>
                         <segue destination="x0N-ef-Gra" kind="show" identifier="ShowCourseDetails" id="CX5-4F-L0I"/>
+                        <segue destination="CK9-1h-i1I" kind="show" identifier="ShowCourseDetailSegue" id="5Qe-Wc-G0L"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -918,7 +919,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FnQ-AB-jyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1540" y="-892"/>
+            <point key="canvasLocation" x="1400" y="-375"/>
+        </scene>
+        <!--LoginNavigationController-->
+        <scene sceneID="Kri-cH-IB8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="LoginNavigationController" id="X0J-Tk-CGH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rbW-7Z-vqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2075" y="-1025"/>
         </scene>
         <!--Course Details Web View Controller-->
         <scene sceneID="ysy-zh-ybM">
@@ -972,12 +981,13 @@
                     <connections>
                         <outlet property="webView" destination="nXM-hf-2XD" id="sEx-cf-JGA"/>
                         <segue destination="FMU-IY-gMG" kind="unwind" identifier="UnwindSegueToCourseList" unwindAction="unwindToCourseListViewController:" id="IB4-hl-yod"/>
+                        <segue destination="X0J-Tk-CGH" kind="presentation" identifier="ShowLoginFromDetailsView" id="gyR-Ea-yTs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9Y-6Y-YBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FMU-IY-gMG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1515" y="-655"/>
+            <point key="canvasLocation" x="1604" y="-765"/>
         </scene>
     </scenes>
     <resources>

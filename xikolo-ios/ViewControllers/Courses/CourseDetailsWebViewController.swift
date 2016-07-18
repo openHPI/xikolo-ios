@@ -15,29 +15,27 @@ class CourseDetailsWebViewController: UIViewController {
     var course: Course!
 
     @IBAction func enrollButton(sender: UIBarButtonItem) {
-        UserProfileHelper.createEnrollement(course.id).onSuccess { (nil) in
-            self.course.is_enrolled = true
-            CourseHelper.refreshCourses()
-            self.performSegueWithIdentifier("UnwindSegueToCourseList", sender: sender)
+        if UserProfileHelper.isLoggedIn() {
+            createEnrollment()
+        } else {
+            performSegueWithIdentifier("ShowLoginFromDetailsView", sender: sender)
         }
     }
 
     func createEnrollment() {
-        UserProfileHelper.createEnrollement(course.id).onSuccess { (nil) in
-            self.course.is_enrolled = true
+        UserProfileHelper.createEnrollement(course.id).onSuccess {
             CourseHelper.refreshCourses()
+            self.performSegueWithIdentifier("UnwindSegueToCourseList", sender: self)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = course.name
+        navigationItem.title = course.title
 
-        if let courseID = course.course_code {
-            let url = Routes.COURSES_URL + courseID
-            webView.loadRequest(NetworkHelper.getRequestForURL(url))
-        }
+        let url = Routes.COURSES_URL + course.id
+        webView.loadRequest(NetworkHelper.getRequestForURL(url))
     }
 
 }

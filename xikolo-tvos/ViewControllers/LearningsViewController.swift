@@ -6,7 +6,6 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import AVKit
 import CoreData
 import UIKit
 
@@ -159,11 +158,7 @@ extension LearningsViewController : UICollectionViewDelegate {
                 performSegueWithIdentifier("ShowCourseItemRichTextSegue", sender: item)
             case is Video:
                 let video = item.content as! Video
-                VideoHelper.syncVideo(video).flatMap { video in
-                    video.loadPoster()
-                }.onSuccess {
-                    self.performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: video)
-                }
+                performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: video)
             default:
                 // TODO: show error: unsupported type
                 break
@@ -176,15 +171,8 @@ extension LearningsViewController : UICollectionViewDelegate {
                 let vc = segue.destinationViewController as! ItemRichTextController
                 vc.courseItem = sender as! CourseItem
             case "ShowCourseItemVideoSegue"?:
-                let vc = segue.destinationViewController as! AVPlayerViewController
-                let video = sender as! Video
-                if let url = video.single_stream_hls_url {
-                    let playerItem = AVPlayerItem(URL: NSURL(string: url)!)
-                    playerItem.externalMetadata = video.metadata()
-                    let avPlayer = AVPlayer(playerItem: playerItem)
-                    avPlayer.play()
-                    vc.player = avPlayer
-                }
+                let vc = segue.destinationViewController as! ItemVideoLoadingController
+                vc.video = sender as! Video
             default:
                 break
         }

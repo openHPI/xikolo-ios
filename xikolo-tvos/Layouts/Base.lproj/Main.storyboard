@@ -425,13 +425,34 @@
                         <outlet property="errorMessageView" destination="t0g-Dj-kDN" id="Y4Z-Cl-Ymc"/>
                         <outlet property="itemCollectionView" destination="YiW-Ml-dEJ" id="uZt-eD-eX9"/>
                         <outlet property="sectionTableView" destination="aCX-8o-S7l" id="9eP-3q-NnJ"/>
-                        <segue destination="EZa-T4-NPm" kind="show" identifier="ShowCourseItemVideoSegue" id="rGn-OX-uAw"/>
                         <segue destination="YAs-jy-T95" kind="show" identifier="ShowCourseItemRichTextSegue" id="Czr-oS-loG"/>
+                        <segue destination="7n4-sb-Pkn" kind="show" identifier="ShowCourseItemVideoSegue" id="SLg-9M-tR3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCm-TW-hAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5374" y="269"/>
+        </scene>
+        <!--Item Video Loading Controller-->
+        <scene sceneID="2yL-Uf-VXk">
+            <objects>
+                <viewController id="7n4-sb-Pkn" customClass="ItemVideoLoadingController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DSt-TN-z4T"/>
+                        <viewControllerLayoutGuide type="bottom" id="hz0-Zh-yqP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JVi-Ou-Mba">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="EZa-T4-NPm" kind="custom" identifier="ShowCourseItemVideoSegue" customClass="ReplaceSegue" customModule="xikolo_tvos" customModuleProvider="target" id="UDd-T3-dAW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yP-Dz-TQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7502" y="-526"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="Phh-01-Be6">
@@ -439,7 +460,7 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="EZa-T4-NPm" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0f-jw-idK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7502" y="-526"/>
+            <point key="canvasLocation" x="9629" y="-526"/>
         </scene>
         <!--Item Rich Text Controller-->
         <scene sceneID="yZe-dS-aEl">

@@ -17,16 +17,6 @@ target 'xikolo-ios' do
 
 end
 
-target 'xikolo-iosTests' do
-    platform :ios, '9.0'
-
-end
-
-target 'xikolo-iosUITests' do
-    platform :ios, '9.0'
-
-end
-
 target 'xikolo-tvos' do
     platform :tvos, '9.0'
     common_pods
@@ -36,10 +26,5 @@ end
 target 'xikolo-tvos-topshelf' do
     platform :tvos, '9.0'
     common_pods
-
-end
-
-target 'xikolo-tvosUITests' do
-    platform :tvos, '9.0'
 
 end

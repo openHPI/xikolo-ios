@@ -133,7 +133,6 @@
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
-		24CB7E491CC678A000960269 /* xikolo_tvosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */; };
 		24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		24CB7E551CC6834C00960269 /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */; };
@@ -155,7 +154,6 @@
 		24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
 		24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
 		24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
-		39855206F0D13D3F537652CB /* Pods_xikolo_tvosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A7C859F16667DAD7CF2EB7 /* Pods_xikolo_tvosUITests.framework */; };
 		62D939D95689756EB34F59AC /* Pods_xikolo_tvos_topshelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82736BB5DFE59B7D1ED3ABA7 /* Pods_xikolo_tvos_topshelf.framework */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
@@ -164,13 +162,9 @@
 		7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */; };
 		7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
 		7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
-		8A4F11F0A60ED98ED0604FDD /* Pods_xikolo_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B84F62BCEE33BB89A28463 /* Pods_xikolo_iosUITests.framework */; };
-		990D34C2C032846EBCE65BF1 /* Pods_xikolo_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0493C1837058A949790C90 /* Pods_xikolo_iosTests.framework */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
-		A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */; };
-		A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */; };
 		AB2802C31D29D4D2008C8BAE /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		AB2802CA1D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */; };
 		AB2802CB1D2A8ABB008C8BAE /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */; };
@@ -221,27 +215,6 @@
 			remoteGlobalIDString = 2490C4DA1D1D92F200F42949;
 			remoteInfo = TopShelf;
 		};
-		24CB7E451CC678A000960269 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 24CB7E331CC678A000960269;
-			remoteInfo = "xikolo-tvos";
-		};
-		A90587D01B3BFC130095DB89 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A90587BA1B3BFC130095DB89;
-			remoteInfo = "xikolo-ios";
-		};
-		A90587DB1B3BFC130095DB89 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A90587BA1B3BFC130095DB89;
-			remoteInfo = "xikolo-ios";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -259,11 +232,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		03D7099C0A7852A773EFCD12 /* Pods-xikolo-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests.release.xcconfig"; sourceTree = "<group>"; };
-		03FA9C12ADF3D215343057BE /* Pods-xikolo-tvosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvosUITests/Pods-xikolo-tvosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		171C2339277AA51E07F46534 /* Pods-xikolo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-ios/Pods-xikolo-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		18B84F62BCEE33BB89A28463 /* Pods_xikolo_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0493C1837058A949790C90 /* Pods_xikolo_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240E03441CE38D590078A364 /* CourseSectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionHelper.swift; sourceTree = "<group>"; };
 		240E03471CE4E0F10078A364 /* LearningsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningsViewController.swift; sourceTree = "<group>"; };
 		240E03491CE6160D0078A364 /* CourseSectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionCell.swift; sourceTree = "<group>"; };
@@ -337,9 +306,6 @@
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-tvos.xcassets"; sourceTree = "<group>"; };
 		24CB7E3F1CC678A000960269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-tvosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_tvosUITests.swift; sourceTree = "<group>"; };
-		24CB7E4A1CC678A000960269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24CB7E531CC6833B00960269 /* assets-common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-common.xcassets"; sourceTree = "<group>"; };
 		24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24D48E171CCA4FC100E8051E /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -363,12 +329,6 @@
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		A90587C81B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90587CA1B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosTests.swift; sourceTree = "<group>"; };
-		A90587D51B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xikolo-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xikolo_iosUITests.swift; sourceTree = "<group>"; };
-		A90587E01B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTabContentViewController.swift; sourceTree = "<group>"; };
 		AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewsArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
@@ -393,12 +353,7 @@
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
 		ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		B78AAB6378C0E04428914D10 /* Pods-xikolo-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosUITests/Pods-xikolo-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C8ED7D8193796ED34E28F78D /* Pods-xikolo-tvosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvosUITests/Pods-xikolo-tvosUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		D0F9EF9841051DE94062DEAF /* Pods-xikolo-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosUITests/Pods-xikolo-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D4296A540DF6B4432E0C8CB8 /* Pods-xikolo-tvos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvos.release.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvos/Pods-xikolo-tvos.release.xcconfig"; sourceTree = "<group>"; };
-		D8A7C859F16667DAD7CF2EB7 /* Pods_xikolo_tvosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_tvosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6A8F54E4452A1D9A8308D40 /* Pods_xikolo_tvos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xikolo_tvos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F801793D1BBBE3880091ECD1 /* CourseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHelper.swift; sourceTree = "<group>"; };
 		F80D67921B98683400E27520 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		F80D67961B9874F600E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -415,7 +370,6 @@
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F8FABFBC1B580B7A0007F308 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
-		FBE4A150E55AECDDAB931F05 /* Pods-xikolo-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC72A6690A20AE25CA6DC246 /* Pods-xikolo-tvos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xikolo-tvos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xikolo-tvos/Pods-xikolo-tvos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -437,14 +391,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24CB7E411CC678A000960269 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				39855206F0D13D3F537652CB /* Pods_xikolo_tvosUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A90587B81B3BFC130095DB89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,22 +402,6 @@
 				7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */,
 				7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */,
 				20CB27A3BBDAC54A979F1C4C /* Pods_xikolo_ios.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A90587CC1B3BFC130095DB89 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				990D34C2C032846EBCE65BF1 /* Pods_xikolo_iosTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A90587D71B3BFC130095DB89 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A4F11F0A60ED98ED0604FDD /* Pods_xikolo_iosUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,15 +571,6 @@
 			path = "xikolo-tvos";
 			sourceTree = "<group>";
 		};
-		24CB7E471CC678A000960269 /* xikolo-tvosUITests */ = {
-			isa = PBXGroup;
-			children = (
-				24CB7E481CC678A000960269 /* xikolo_tvosUITests.swift */,
-				24CB7E4A1CC678A000960269 /* Info.plist */,
-			);
-			path = "xikolo-tvosUITests";
-			sourceTree = "<group>";
-		};
 		24CB7E511CC6813A00960269 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,10 +643,7 @@
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
-				A90587D21B3BFC130095DB89 /* xikolo-iosTests */,
-				A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */,
 				24CB7E351CC678A000960269 /* xikolo-tvos */,
-				24CB7E471CC678A000960269 /* xikolo-tvosUITests */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				D7D6B56CF669E978F1E7A6E0 /* Pods */,
 			);
@@ -735,10 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				A90587BB1B3BFC130095DB89 /* xikolo-ios.app */,
-				A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */,
-				A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */,
 				24CB7E341CC678A000960269 /* xikolo-tvos.app */,
-				24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */,
 				2490C4DB1D1D92F200F42949 /* xikolo-tvos-topshelf.appex */,
 			);
 			name = Products;
@@ -759,24 +674,6 @@
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 			);
 			path = "xikolo-ios";
-			sourceTree = "<group>";
-		};
-		A90587D21B3BFC130095DB89 /* xikolo-iosTests */ = {
-			isa = PBXGroup;
-			children = (
-				A90587D31B3BFC130095DB89 /* xikolo_iosTests.swift */,
-				A90587D51B3BFC130095DB89 /* Info.plist */,
-			);
-			path = "xikolo-iosTests";
-			sourceTree = "<group>";
-		};
-		A90587DD1B3BFC130095DB89 /* xikolo-iosUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A90587DE1B3BFC130095DB89 /* xikolo_iosUITests.swift */,
-				A90587E01B3BFC130095DB89 /* Info.plist */,
-			);
-			path = "xikolo-iosUITests";
 			sourceTree = "<group>";
 		};
 		AB6AE0C41CF7D69200708654 /* Profile */ = {
@@ -824,14 +721,8 @@
 			children = (
 				171C2339277AA51E07F46534 /* Pods-xikolo-ios.debug.xcconfig */,
 				85B8D5C7032AF58AFCA0C6A6 /* Pods-xikolo-ios.release.xcconfig */,
-				FBE4A150E55AECDDAB931F05 /* Pods-xikolo-iosTests.debug.xcconfig */,
-				03D7099C0A7852A773EFCD12 /* Pods-xikolo-iosTests.release.xcconfig */,
-				D0F9EF9841051DE94062DEAF /* Pods-xikolo-iosUITests.debug.xcconfig */,
-				B78AAB6378C0E04428914D10 /* Pods-xikolo-iosUITests.release.xcconfig */,
 				FC72A6690A20AE25CA6DC246 /* Pods-xikolo-tvos.debug.xcconfig */,
 				D4296A540DF6B4432E0C8CB8 /* Pods-xikolo-tvos.release.xcconfig */,
-				C8ED7D8193796ED34E28F78D /* Pods-xikolo-tvosUITests.debug.xcconfig */,
-				03FA9C12ADF3D215343057BE /* Pods-xikolo-tvosUITests.release.xcconfig */,
 				6B57F25E13546F3B21697151 /* Pods-xikolo-tvos-topshelf.debug.xcconfig */,
 				9A4C0D883904BD0508C7BDA8 /* Pods-xikolo-tvos-topshelf.release.xcconfig */,
 			);
@@ -900,10 +791,7 @@
 				7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */,
 				7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */,
 				F85BA29B54BF756A5B725FFC /* Pods_xikolo_ios.framework */,
-				1A0493C1837058A949790C90 /* Pods_xikolo_iosTests.framework */,
-				18B84F62BCEE33BB89A28463 /* Pods_xikolo_iosUITests.framework */,
 				E6A8F54E4452A1D9A8308D40 /* Pods_xikolo_tvos.framework */,
-				D8A7C859F16667DAD7CF2EB7 /* Pods_xikolo_tvosUITests.framework */,
 				2490C4DC1D1D92F200F42949 /* TVServices.framework */,
 				82736BB5DFE59B7D1ED3ABA7 /* Pods_xikolo_tvos_topshelf.framework */,
 			);
@@ -954,26 +842,6 @@
 			productReference = 24CB7E341CC678A000960269 /* xikolo-tvos.app */;
 			productType = "com.apple.product-type.application";
 		};
-		24CB7E431CC678A000960269 /* xikolo-tvosUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 24CB7E501CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvosUITests" */;
-			buildPhases = (
-				0A4A355FEAC5006244B53B4E /* [CP] Check Pods Manifest.lock */,
-				24CB7E401CC678A000960269 /* Sources */,
-				24CB7E411CC678A000960269 /* Frameworks */,
-				24CB7E421CC678A000960269 /* Resources */,
-				DF434EDE0FABECCE3A0C6CE5 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				24CB7E461CC678A000960269 /* PBXTargetDependency */,
-			);
-			name = "xikolo-tvosUITests";
-			productName = "xikolo-tvosUITests";
-			productReference = 24CB7E441CC678A000960269 /* xikolo-tvosUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		A90587BA1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-ios" */;
@@ -993,47 +861,6 @@
 			productName = "xikolo-ios";
 			productReference = A90587BB1B3BFC130095DB89 /* xikolo-ios.app */;
 			productType = "com.apple.product-type.application";
-		};
-		A90587CE1B3BFC130095DB89 /* xikolo-iosTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A90587E61B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosTests" */;
-			buildPhases = (
-				368654A091A56AA40FB8916E /* [CP] Check Pods Manifest.lock */,
-				A90587CB1B3BFC130095DB89 /* Sources */,
-				A90587CC1B3BFC130095DB89 /* Frameworks */,
-				A90587CD1B3BFC130095DB89 /* Resources */,
-				6067B5CA72861C906BC227FA /* [CP] Embed Pods Frameworks */,
-				5F9F6CD8C2DBCF3E8F31A064 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A90587D11B3BFC130095DB89 /* PBXTargetDependency */,
-			);
-			name = "xikolo-iosTests";
-			productName = "xikolo-iosTests";
-			productReference = A90587CF1B3BFC130095DB89 /* xikolo-iosTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A90587D91B3BFC130095DB89 /* xikolo-iosUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A90587E91B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosUITests" */;
-			buildPhases = (
-				F4B581BAC0F838B00C0C6E43 /* [CP] Check Pods Manifest.lock */,
-				A90587D61B3BFC130095DB89 /* Sources */,
-				A90587D71B3BFC130095DB89 /* Frameworks */,
-				A90587D81B3BFC130095DB89 /* Resources */,
-				583B7340B772D784C1A2862E /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A90587DC1B3BFC130095DB89 /* PBXTargetDependency */,
-			);
-			name = "xikolo-iosUITests";
-			productName = "xikolo-iosUITests";
-			productReference = A90587DA1B3BFC130095DB89 /* xikolo-iosUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -1063,10 +890,6 @@
 							};
 						};
 					};
-					24CB7E431CC678A000960269 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 24CB7E331CC678A000960269;
-					};
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
 						SystemCapabilities = {
@@ -1074,14 +897,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					A90587CE1B3BFC130095DB89 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = A90587BA1B3BFC130095DB89;
-					};
-					A90587D91B3BFC130095DB89 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = A90587BA1B3BFC130095DB89;
 					};
 				};
 			};
@@ -1100,11 +915,8 @@
 			projectRoot = "";
 			targets = (
 				A90587BA1B3BFC130095DB89 /* xikolo-ios */,
-				A90587CE1B3BFC130095DB89 /* xikolo-iosTests */,
-				A90587D91B3BFC130095DB89 /* xikolo-iosUITests */,
 				24CB7E331CC678A000960269 /* xikolo-tvos */,
 				2490C4DA1D1D92F200F42949 /* xikolo-tvos-topshelf */,
-				24CB7E431CC678A000960269 /* xikolo-tvosUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1131,13 +943,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24CB7E421CC678A000960269 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A90587B91B3BFC130095DB89 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1153,20 +958,6 @@
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A90587CD1B3BFC130095DB89 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A90587D81B3BFC130095DB89 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,36 +977,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvos-topshelf/Pods-xikolo-tvos-topshelf-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0A4A355FEAC5006244B53B4E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		368654A091A56AA40FB8916E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */ = {
@@ -1248,21 +1009,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		583B7340B772D784C1A2862E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-iosUITests/Pods-xikolo-iosUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5A499A68B14F5BD8C4A6BB03 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1276,36 +1022,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvos/Pods-xikolo-tvos-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F9F6CD8C2DBCF3E8F31A064 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6067B5CA72861C906BC227FA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-iosTests/Pods-xikolo-iosTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */ = {
@@ -1366,36 +1082,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvos/Pods-xikolo-tvos-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF434EDE0FABECCE3A0C6CE5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xikolo-tvosUITests/Pods-xikolo-tvosUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F4B581BAC0F838B00C0C6E43 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1507,14 +1193,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24CB7E401CC678A000960269 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24CB7E491CC678A000960269 /* xikolo_tvosUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A90587B71B3BFC130095DB89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1599,22 +1277,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A90587CB1B3BFC130095DB89 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A90587D41B3BFC130095DB89 /* xikolo_iosTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A90587D61B3BFC130095DB89 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A90587DF1B3BFC130095DB89 /* xikolo_iosUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1622,21 +1284,6 @@
 			isa = PBXTargetDependency;
 			target = 2490C4DA1D1D92F200F42949 /* xikolo-tvos-topshelf */;
 			targetProxy = 2490C4E21D1D92F200F42949 /* PBXContainerItemProxy */;
-		};
-		24CB7E461CC678A000960269 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 24CB7E331CC678A000960269 /* xikolo-tvos */;
-			targetProxy = 24CB7E451CC678A000960269 /* PBXContainerItemProxy */;
-		};
-		A90587D11B3BFC130095DB89 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A90587BA1B3BFC130095DB89 /* xikolo-ios */;
-			targetProxy = A90587D01B3BFC130095DB89 /* PBXContainerItemProxy */;
-		};
-		A90587DC1B3BFC130095DB89 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A90587BA1B3BFC130095DB89 /* xikolo-ios */;
-			targetProxy = A90587DB1B3BFC130095DB89 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1802,36 +1449,6 @@
 			};
 			name = Release;
 		};
-		24CB7E4D1CC678A000960269 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C8ED7D8193796ED34E28F78D /* Pods-xikolo-tvosUITests.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = "xikolo-tvosUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvosUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_TARGET_NAME = "xikolo-tvos";
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-			};
-			name = Debug;
-		};
-		24CB7E4E1CC678A000960269 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03FA9C12ADF3D215343057BE /* Pods-xikolo-tvosUITests.release.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = "xikolo-tvosUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvosUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_TARGET_NAME = "xikolo-tvos";
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-			};
-			name = Release;
-		};
 		A90587E11B3BFC130095DB89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1966,58 +1583,6 @@
 			};
 			name = Release;
 		};
-		A90587E71B3BFC130095DB89 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBE4A150E55AECDDAB931F05 /* Pods-xikolo-iosTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "xikolo-iosTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xikolo-ios.app/xikolo-ios";
-			};
-			name = Debug;
-		};
-		A90587E81B3BFC130095DB89 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03D7099C0A7852A773EFCD12 /* Pods-xikolo-iosTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "xikolo-iosTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xikolo-ios.app/xikolo-ios";
-			};
-			name = Release;
-		};
-		A90587EA1B3BFC130095DB89 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0F9EF9841051DE94062DEAF /* Pods-xikolo-iosUITests.debug.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = "xikolo-iosUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "xikolo-ios";
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		A90587EB1B3BFC130095DB89 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B78AAB6378C0E04428914D10 /* Pods-xikolo-iosUITests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = "xikolo-iosUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-iosUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "xikolo-ios";
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2039,15 +1604,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		24CB7E501CC678A000960269 /* Build configuration list for PBXNativeTarget "xikolo-tvosUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				24CB7E4D1CC678A000960269 /* Debug */,
-				24CB7E4E1CC678A000960269 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A90587B61B3BFC130095DB89 /* Build configuration list for PBXProject "xikolo-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2062,24 +1618,6 @@
 			buildConfigurations = (
 				A90587E41B3BFC130095DB89 /* Debug */,
 				A90587E51B3BFC130095DB89 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A90587E61B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A90587E71B3BFC130095DB89 /* Debug */,
-				A90587E81B3BFC130095DB89 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A90587E91B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "xikolo-iosUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A90587EA1B3BFC130095DB89 /* Debug */,
-				A90587EB1B3BFC130095DB89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

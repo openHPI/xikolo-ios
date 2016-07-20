@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "tv",
+      "filename" : "opensap-logo-open.png",
       "scale" : "1x"
     }
   ],

@@ -325,6 +325,11 @@
 		24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24BA41331D3F9D2200E38C2C /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
 		24BA41341D3F9D2500E38C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
+		24BA41391D3FA54800E38C2C /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 24BA41381D3FA54800E38C2C /* xikolo-tvos.entitlements */; };
+		24BA413B1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA413A1D3FA75800E38C2C /* Brand+tvOS.swift */; };
+		24BA413C1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA413A1D3FA75800E38C2C /* Brand+tvOS.swift */; };
+		24BA413E1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA413D1D3FA7AE00E38C2C /* Brand+tvOS.swift */; };
+		24BA413F1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA413D1D3FA7AE00E38C2C /* Brand+tvOS.swift */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
@@ -481,7 +486,6 @@
 		2490C4DC1D1D92F200F42949 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = Library/Frameworks/TVServices.framework; sourceTree = DEVELOPER_DIR; };
 		2490C4DF1D1D92F200F42949 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		2490C4E11D1D92F200F42949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2490C4E91D1DA3BE00F42949 /* xikolo-tvos-topshelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos-topshelf.entitlements"; sourceTree = "<group>"; };
 		2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos.entitlements"; sourceTree = "<group>"; };
 		2490C4FC1D2175BA00F42949 /* XikoloURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloURL.swift; sourceTree = "<group>"; };
 		249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoadingHelper.swift; sourceTree = "<group>"; };
@@ -522,6 +526,9 @@
 		24BA40341D3F976700E38C2C /* openSAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openSAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BA40511D3F98CA00E38C2C /* openSAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openSAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BA40641D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "openSAP-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24BA41381D3FA54800E38C2C /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "xikolo-tvos.entitlements"; sourceTree = "<group>"; };
+		24BA413A1D3FA75800E38C2C /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+tvOS.swift"; sourceTree = "<group>"; };
+		24BA413D1D3FA7AE00E38C2C /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+tvOS.swift"; sourceTree = "<group>"; };
 		24CB7E341CC678A000960269 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -745,7 +752,6 @@
 			children = (
 				2490C4DF1D1D92F200F42949 /* ServiceProvider.swift */,
 				2490C4E11D1D92F200F42949 /* Info.plist */,
-				2490C4E91D1DA3BE00F42949 /* xikolo-tvos-topshelf.entitlements */,
 			);
 			path = TopShelf;
 			sourceTree = "<group>";
@@ -816,6 +822,33 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		24BA41351D3FA4AD00E38C2C /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				24BA41361D3FA4C500E38C2C /* openHPI */,
+				24BA41371D3FA4C900E38C2C /* openSAP */,
+			);
+			path = Branding;
+			sourceTree = "<group>";
+		};
+		24BA41361D3FA4C500E38C2C /* openHPI */ = {
+			isa = PBXGroup;
+			children = (
+				2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */,
+				24BA413D1D3FA7AE00E38C2C /* Brand+tvOS.swift */,
+			);
+			path = openHPI;
+			sourceTree = "<group>";
+		};
+		24BA41371D3FA4C900E38C2C /* openSAP */ = {
+			isa = PBXGroup;
+			children = (
+				24BA41381D3FA54800E38C2C /* xikolo-tvos.entitlements */,
+				24BA413A1D3FA75800E38C2C /* Brand+tvOS.swift */,
+			);
+			path = openSAP;
+			sourceTree = "<group>";
+		};
 		24CB7E351CC678A000960269 /* xikolo-tvos */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,11 +857,11 @@
 				24895DBE1CCB7FC900D6DFB8 /* ViewControllers */,
 				24B651481D35581F00624DBC /* Views */,
 				249C01A31D39164A00B54AAC /* Helpers */,
+				24BA41351D3FA4AD00E38C2C /* Branding */,
 				24CB7E361CC678A000960269 /* AppDelegate.swift */,
 				24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */,
 				24CB7E3F1CC678A000960269 /* Info.plist */,
 				24A17A0A1CD18CB50056A8EE /* Localizable.strings */,
-				2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */,
 			);
 			path = "xikolo-tvos";
 			sourceTree = "<group>";
@@ -1218,6 +1251,7 @@
 					};
 					24BA40331D3F976700E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WP53SSE8S6;
 					};
 					24BA40501D3F98CA00E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1248,6 +1282,7 @@
 					};
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = WP53SSE8S6;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1354,6 +1389,7 @@
 				249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */,
 				24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
+				24BA41391D3FA54800E38C2C /* xikolo-tvos.entitlements in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
 				A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */,
 			);
@@ -1622,6 +1658,7 @@
 				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
 				2490C4EB1D216C9500F42949 /* CourseHelper.swift in Sources */,
 				2490C4F01D216D3B00F42949 /* CourseProvider.swift in Sources */,
+				24BA413F1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */,
 				249C01C51D3F78E100B54AAC /* Brand.swift in Sources */,
 				2490C4F31D216D5A00F42949 /* UserProfileHelper.swift in Sources */,
 				2490C4EE1D216CAF00F42949 /* Course.swift in Sources */,
@@ -1789,6 +1826,7 @@
 				24BA40C11D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
 				24BA40921D3F9A9900E38C2C /* CourseItem.swift in Sources */,
 				24BA409B1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
+				24BA413B1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24BA40D91D3F9AF900E38C2C /* ImageHelper.swift in Sources */,
 				24BA412B1D3F9D0D00E38C2C /* LoginViewController.swift in Sources */,
 				24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
@@ -1812,6 +1850,7 @@
 				24BA40E11D3F9B0200E38C2C /* Routes.swift in Sources */,
 				24BA408E1D3F9A9400E38C2C /* Course.swift in Sources */,
 				24BA408B1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */,
+				24BA413C1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24BA40CE1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
 				24BA40C21D3F9AE000E38C2C /* CoreDataHelper.swift in Sources */,
 				24BA41041D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
@@ -1895,6 +1934,7 @@
 				2447CE1D1D0AF32200B5C39A /* RichTextProvider.swift in Sources */,
 				2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */,
 				240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
+				24BA413E1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */,
 				24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */,
 				24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */,
 				2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */,
@@ -2093,12 +2133,12 @@
 			baseConfigurationReference = E9CDFF1CD5FD8B31230182C3 /* Pods-openHPI-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/TopShelf/xikolo-tvos-topshelf.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos.TopShelf";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2110,12 +2150,12 @@
 			baseConfigurationReference = 0BB2EE40302E6F69C25A0E68 /* Pods-openHPI-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/TopShelf/xikolo-tvos-topshelf.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos.TopShelf";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2128,9 +2168,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
 			};
 			name = Debug;
@@ -2141,9 +2182,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
 			};
 			name = Release;
@@ -2155,11 +2197,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/xikolo-tvos.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -2173,11 +2215,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/xikolo-tvos.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -2189,10 +2231,10 @@
 			baseConfigurationReference = 7E1FBE4324F13EDB067EDEA6 /* Pods-openSAP-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/TopShelf/xikolo-tvos-topshelf.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP.TopShelf;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2204,10 +2246,10 @@
 			baseConfigurationReference = 75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/TopShelf/xikolo-tvos-topshelf.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP.TopShelf;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2221,12 +2263,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/xikolo-tvos.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = appletvos;
@@ -2241,12 +2283,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/xikolo-tvos.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = appletvos;

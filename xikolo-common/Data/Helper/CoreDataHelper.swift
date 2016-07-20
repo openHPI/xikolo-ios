@@ -15,7 +15,7 @@ class CoreDataHelper {
         let fileManager = NSFileManager.defaultManager()
 
         #if os(tvOS)
-            return fileManager.containerURLForSecurityApplicationGroupIdentifier("group.de.xikolo.xikolo-tvos")!
+            return fileManager.containerURLForSecurityApplicationGroupIdentifier(Brand.APP_GROUP_ID)!
         #else
             let urls = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
             return urls[urls.count-1]

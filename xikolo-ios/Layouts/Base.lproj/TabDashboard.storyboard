@@ -7,7 +7,7 @@
         <!--Dashboard-->
         <scene sceneID="z86-wG-GKj">
             <objects>
-                <viewController storyboardIdentifier="DashboardViewController" id="xXY-iO-myQ" customClass="DashboardViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardViewController" id="xXY-iO-myQ" customClass="DashboardViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D3M-Zk-3uK"/>
                         <viewControllerLayoutGuide type="bottom" id="OMT-77-tvN"/>

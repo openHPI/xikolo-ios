@@ -10,7 +10,7 @@
         <!--Course List View Controller-->
         <scene sceneID="b6r-xM-2eG">
             <objects>
-                <collectionViewController id="lgE-Ld-iJp" customClass="CourseListViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="lgE-Ld-iJp" customClass="CourseListViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YAH-v1-h0J">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="940"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                             <inset key="sectionInset" minX="90" minY="40" maxX="90" maxY="60"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseCell" id="Z4b-yx-1QI" customClass="CourseCell" customModule="xikolo_tvos" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseCell" id="Z4b-yx-1QI" customClass="CourseCell" customModule="openHPI" customModuleProvider="target">
                                 <rect key="frame" x="90" y="90" width="548" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -56,7 +56,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="CourseHeaderView" id="kpe-th-jtH" customClass="CourseHeaderView" customModule="xikolo_tvos" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="CourseHeaderView" id="kpe-th-jtH" customClass="CourseHeaderView" customModule="openHPI" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="1920" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -88,7 +88,7 @@
         <!--Login View Controller-->
         <scene sceneID="Td3-Sl-SLm">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="rjz-el-ZYE" customClass="LoginViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="rjz-el-ZYE" customClass="LoginViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tLG-tK-wz4"/>
                         <viewControllerLayoutGuide type="bottom" id="kZh-HE-TBR"/>
@@ -159,7 +159,7 @@
         <!--Course details-->
         <scene sceneID="2Ee-f7-HEc">
             <objects>
-                <viewController id="AEd-4M-ZaT" customClass="CourseDetailsViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AEd-4M-ZaT" customClass="CourseDetailsViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0A8-AG-gQX"/>
                         <viewControllerLayoutGuide type="bottom" id="DiY-4X-u5a"/>
@@ -297,7 +297,7 @@
         <!--Learnings-->
         <scene sceneID="1AC-2g-GvT">
             <objects>
-                <viewController id="TiG-l6-dl3" userLabel="Learnings" customClass="LearningsViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TiG-l6-dl3" userLabel="Learnings" customClass="LearningsViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xoI-7S-9LG"/>
                         <viewControllerLayoutGuide type="bottom" id="DuK-0Z-ehY"/>
@@ -325,7 +325,7 @@
                                     <constraint firstAttribute="width" constant="510" id="rGe-aO-ilh"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseSectionCell" id="JQR-Rz-ckY" customClass="CourseSectionCell" customModule="xikolo_tvos" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseSectionCell" id="JQR-Rz-ckY" customClass="CourseSectionCell" customModule="openHPI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="54" width="510" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JQR-Rz-ckY" id="c2d-ZM-VmX">
@@ -363,7 +363,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="35" maxX="0.0" maxY="60"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseItemCell" id="xyo-T0-8s5" customClass="CourseItemCell" customModule="xikolo_tvos" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseItemCell" id="xyo-T0-8s5" customClass="CourseItemCell" customModule="openHPI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="35" width="380" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -436,7 +436,7 @@
         <!--Item Video Loading Controller-->
         <scene sceneID="2yL-Uf-VXk">
             <objects>
-                <viewController id="7n4-sb-Pkn" customClass="ItemVideoLoadingController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7n4-sb-Pkn" customClass="ItemVideoLoadingController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DSt-TN-z4T"/>
                         <viewControllerLayoutGuide type="bottom" id="hz0-Zh-yqP"/>
@@ -447,7 +447,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="EZa-T4-NPm" kind="custom" identifier="ShowCourseItemVideoSegue" customClass="ReplaceSegue" customModule="xikolo_tvos" customModuleProvider="target" id="UDd-T3-dAW"/>
+                        <segue destination="EZa-T4-NPm" kind="custom" identifier="ShowCourseItemVideoSegue" customClass="ReplaceSegue" customModule="openHPI" customModuleProvider="target" id="UDd-T3-dAW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yP-Dz-TQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -465,7 +465,7 @@
         <!--Item Rich Text Controller-->
         <scene sceneID="yZe-dS-aEl">
             <objects>
-                <viewController storyboardIdentifier="ItemRichTextController" id="YAs-jy-T95" customClass="ItemRichTextController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemRichTextController" id="YAs-jy-T95" customClass="ItemRichTextController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="1Nn-Cz-nKf">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -554,7 +554,7 @@
         <!--Course Tab Bar Controller-->
         <scene sceneID="0AF-rc-gJk">
             <objects>
-                <tabBarController storyboardIdentifier="CourseDetailTabBarController" id="4Yh-6H-ggQ" customClass="CourseTabBarController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CourseDetailTabBarController" id="4Yh-6H-ggQ" customClass="CourseTabBarController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1920" height="1080"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sZI-9j-5WP">
@@ -590,7 +590,7 @@
         <!--Main View Controller-->
         <scene sceneID="SgO-8a-ECx">
             <objects>
-                <viewController id="VQv-8X-xGr" customClass="MainViewController" customModule="xikolo_tvos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VQv-8X-xGr" customClass="MainViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VcN-RM-sH5"/>
                         <viewControllerLayoutGuide type="bottom" id="6G3-UR-rqJ"/>

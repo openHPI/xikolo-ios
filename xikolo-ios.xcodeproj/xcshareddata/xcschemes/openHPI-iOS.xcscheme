@@ -14,9 +14,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8A5614A628B85EFC0D8639A9E8FB5975"
-               BuildableName = "Pods_xikolo_tvos.framework"
-               BlueprintName = "Pods-xikolo-tvos"
+               BlueprintIdentifier = "729DD3368595C74F66B0B5E5639B342D"
+               BuildableName = "Pods_xikolo_ios.framework"
+               BlueprintName = "Pods-xikolo-ios"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24CB7E331CC678A000960269"
-               BuildableName = "xikolo-tvos.app"
-               BlueprintName = "xikolo-tvos"
+               BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
+               BuildableName = "openHPI.app"
+               BlueprintName = "openHPI-iOS"
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24CB7E331CC678A000960269"
-            BuildableName = "xikolo-tvos.app"
-            BlueprintName = "xikolo-tvos"
+            BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
+            BuildableName = "openHPI.app"
+            BlueprintName = "openHPI-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -69,9 +69,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24CB7E331CC678A000960269"
-            BuildableName = "xikolo-tvos.app"
-            BlueprintName = "xikolo-tvos"
+            BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
+            BuildableName = "openHPI.app"
+            BlueprintName = "openHPI-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -88,9 +88,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24CB7E331CC678A000960269"
-            BuildableName = "xikolo-tvos.app"
-            BlueprintName = "xikolo-tvos"
+            BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
+            BuildableName = "openHPI.app"
+            BlueprintName = "openHPI-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -4,8 +4,8 @@ xcode_workspace: xikolo-ios.xcworkspace
 xcode_scheme: xikolo-ios
 
 env:
-  - SCHEME="xikolo-ios" SDK="iphonesimulator"
-  - SCHEME="xikolo-tvos" SDK="appletvsimulator"
+  - SCHEME="openHPI-iOS" SDK="iphonesimulator"
+  - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
 
 script:
   - xctool -workspace xikolo-ios.xcworkspace -scheme $SCHEME -sdk $SDK build

@@ -8,7 +8,7 @@
         <!--News View Controller-->
         <scene sceneID="hXl-aj-vOT">
             <objects>
-                <viewController storyboardIdentifier="NewsViewController" id="rQe-Ua-e4E" customClass="NewsViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsViewController" id="rQe-Ua-e4E" customClass="NewsViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mou-Sn-I16"/>
                         <viewControllerLayoutGuide type="bottom" id="Q9g-rV-JWp"/>
@@ -58,13 +58,13 @@
         <!--News Table View Controller-->
         <scene sceneID="8B9-4V-QDc">
             <objects>
-                <tableViewController id="vxq-Ct-km1" customClass="NewsTableViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vxq-Ct-km1" customClass="NewsTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" id="RGo-Bq-Vec">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsArticleCell" rowHeight="124" id="VzP-Hy-mPE" customClass="NewsArticleCell" customModule="xikolo_ios" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsArticleCell" rowHeight="124" id="VzP-Hy-mPE" customClass="NewsArticleCell" customModule="openHPI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="124"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VzP-Hy-mPE" id="PpP-JB-HQs">
@@ -159,7 +159,7 @@
         <!--News Article View Controller-->
         <scene sceneID="4ai-qd-h8d">
             <objects>
-                <viewController storyboardIdentifier="RichtextViewController" id="eQp-3j-Pq9" customClass="NewsArticleViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RichtextViewController" id="eQp-3j-Pq9" customClass="NewsArticleViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8AP-Eg-xcL"/>
                         <viewControllerLayoutGuide type="bottom" id="era-Hu-hvy"/>

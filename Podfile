@@ -11,19 +11,19 @@ def common_pods
     pod 'TSMarkdownParser', :git => 'https://github.com/laptobbe/TSMarkdownParser.git', :branch => 'master'
 end
 
-target 'xikolo-ios' do
+target 'openHPI-iOS' do
     platform :ios, '9.0'
     common_pods
 
 end
 
-target 'xikolo-tvos' do
+target 'openHPI-tvOS' do
     platform :tvos, '9.0'
     common_pods
 
 end
 
-target 'xikolo-tvos-topshelf' do
+target 'openHPI-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
 

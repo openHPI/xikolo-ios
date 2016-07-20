@@ -9,7 +9,7 @@
         <!--Login-->
         <scene sceneID="LFp-Jf-nC8">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="3kq-NS-dJI" customClass="RegisterViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="3kq-NS-dJI" customClass="RegisterViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xlL-D5-NcQ"/>
                         <viewControllerLayoutGuide type="bottom" id="6B4-vD-wND"/>

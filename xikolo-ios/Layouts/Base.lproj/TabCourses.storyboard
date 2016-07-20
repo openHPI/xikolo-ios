@@ -10,7 +10,7 @@
         <!--Course List View Controller-->
         <scene sceneID="aYm-tI-rNT">
             <objects>
-                <collectionViewController id="uLl-5G-DMn" customClass="CourseListViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="uLl-5G-DMn" customClass="CourseListViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MA3-VX-yBw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CourseCell" reuseIdentifier="CourseCell" id="JrV-Po-3CS" customClass="CourseCell" customModule="xikolo_ios" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CourseCell" reuseIdentifier="CourseCell" id="JrV-Po-3CS" customClass="CourseCell" customModule="openHPI" customModuleProvider="target">
                                 <rect key="frame" x="100" y="74" width="400" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -140,7 +140,7 @@
         <!--Course Content Table View Controller-->
         <scene sceneID="XFj-pH-TxF">
             <objects>
-                <tableViewController id="CK9-1h-i1I" customClass="CourseContentTableViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="CK9-1h-i1I" customClass="CourseContentTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="vFe-DM-VEd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,7 +227,7 @@
         <!--Richtext View Controller-->
         <scene sceneID="M4d-6f-bqM">
             <objects>
-                <viewController id="xJm-gx-LIF" customClass="RichtextViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xJm-gx-LIF" customClass="RichtextViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Gm-t5-gub"/>
                         <viewControllerLayoutGuide type="bottom" id="Z3M-dR-NHC"/>
@@ -316,7 +316,7 @@
         <!--Quiz Web View Controller-->
         <scene sceneID="m7r-16-ntP">
             <objects>
-                <viewController storyboardIdentifier="QuizWebViewController" id="qTX-IX-O1x" customClass="QuizWebViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizWebViewController" id="qTX-IX-O1x" customClass="QuizWebViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NZW-dL-rfb"/>
                         <viewControllerLayoutGuide type="bottom" id="1e2-yo-2eV"/>
@@ -363,7 +363,7 @@
         <!--Video View Controller-->
         <scene sceneID="Zbn-mr-shH">
             <objects>
-                <viewController storyboardIdentifier="VideoViewController" id="5Hh-M9-wy1" customClass="VideoViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoViewController" id="5Hh-M9-wy1" customClass="VideoViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ztS-j3-2Jk"/>
                         <viewControllerLayoutGuide type="bottom" id="eoR-na-C9E"/>

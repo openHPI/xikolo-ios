@@ -129,6 +129,202 @@
 		24B6514D1D35797400624DBC /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		24B6514E1D35797400624DBC /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
+		24BA40651D3F98FE00E38C2C /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
+		24BA406C1D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24BA40641D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		24BA40711D3F9A7000E38C2C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */; };
+		24BA40721D3F9A7000E38C2C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
+		24BA40731D3F9A7000E38C2C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */; };
+		24BA40741D3F9A7000E38C2C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */; };
+		24BA40751D3F9A7000E38C2C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
+		24BA40761D3F9A7000E38C2C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
+		24BA40771D3F9A7000E38C2C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
+		24BA40781D3F9A7900E38C2C /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
+		24BA40791D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
+		24BA407A1D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
+		24BA407B1D3F9A7D00E38C2C /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
+		24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
+		24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
+		24BA407E1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
+		24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
+		24BA40801D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
+		24BA40811D3F9A8500E38C2C /* CollectionType+dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */; };
+		24BA40821D3F9A8600E38C2C /* CollectionType+dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */; };
+		24BA40831D3F9A8A00E38C2C /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
+		24BA40841D3F9A8A00E38C2C /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
+		24BA40851D3F9A8B00E38C2C /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A0C1CD233050056A8EE /* BaseModel.swift */; };
+		24BA40861D3F9A8D00E38C2C /* BaseModelSpine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */; };
+		24BA40871D3F9A8E00E38C2C /* BaseModelSpine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */; };
+		24BA40881D3F9A8E00E38C2C /* BaseModelSpine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */; };
+		24BA40891D3F9A9000E38C2C /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */; };
+		24BA408A1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */; };
+		24BA408B1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */; };
+		24BA408C1D3F9A9300E38C2C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
+		24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
+		24BA408E1D3F9A9400E38C2C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
+		24BA408F1D3F9A9600E38C2C /* CourseItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A59F1CE634A00060DD98 /* CourseItem+CoreDataProperties.swift */; };
+		24BA40901D3F9A9700E38C2C /* CourseItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A59F1CE634A00060DD98 /* CourseItem+CoreDataProperties.swift */; };
+		24BA40911D3F9A9900E38C2C /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A01CE634A00060DD98 /* CourseItem.swift */; };
+		24BA40921D3F9A9900E38C2C /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A01CE634A00060DD98 /* CourseItem.swift */; };
+		24BA40931D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
+		24BA40941D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */; };
+		24BA40951D3F9A9F00E38C2C /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
+		24BA40961D3F9A9F00E38C2C /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
+		24BA40971D3F9AA700E38C2C /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
+		24BA40981D3F9AA800E38C2C /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
+		24BA40991D3F9AA800E38C2C /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
+		24BA409A1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */; };
+		24BA409B1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */; };
+		24BA409C1D3F9AAD00E38C2C /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
+		24BA409D1D3F9AAE00E38C2C /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
+		24BA409E1D3F9AB000E38C2C /* Quiz+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D841CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift */; };
+		24BA409F1D3F9AB000E38C2C /* Quiz+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D841CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift */; };
+		24BA40A01D3F9AB200E38C2C /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D801CFDE6E400CAD9FE /* Quiz.swift */; };
+		24BA40A11D3F9AB300E38C2C /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D801CFDE6E400CAD9FE /* Quiz.swift */; };
+		24BA40A21D3F9AB500E38C2C /* RichText+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */; };
+		24BA40A31D3F9AB600E38C2C /* RichText+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */; };
+		24BA40A41D3F9AB800E38C2C /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D771CFDD27200CAD9FE /* RichText.swift */; };
+		24BA40A51D3F9AB900E38C2C /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D771CFDD27200CAD9FE /* RichText.swift */; };
+		24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */; };
+		24BA40A71D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */; };
+		24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
+		24BA40A91D3F9ABE00E38C2C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
+		24BA40AA1D3F9AC100E38C2C /* NewsArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */; };
+		24BA40AB1D3F9AC100E38C2C /* NewsArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */; };
+		24BA40AC1D3F9AC300E38C2C /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */; };
+		24BA40AD1D3F9AC300E38C2C /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */; };
+		24BA40AE1D3F9AC800E38C2C /* CourseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E1A1CCA551E00E8051E /* CourseProvider.swift */; };
+		24BA40AF1D3F9AC800E38C2C /* CourseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E1A1CCA551E00E8051E /* CourseProvider.swift */; };
+		24BA40B01D3F9AC800E38C2C /* CourseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E1A1CCA551E00E8051E /* CourseProvider.swift */; };
+		24BA40B11D3F9ACB00E38C2C /* CourseItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */; };
+		24BA40B21D3F9ACB00E38C2C /* CourseItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */; };
+		24BA40B31D3F9ACD00E38C2C /* CourseSectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */; };
+		24BA40B41D3F9ACE00E38C2C /* CourseSectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */; };
+		24BA40B51D3F9AD100E38C2C /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
+		24BA40B61D3F9AD100E38C2C /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
+		24BA40B71D3F9AD300E38C2C /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */; };
+		24BA40B81D3F9AD400E38C2C /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */; };
+		24BA40B91D3F9AD400E38C2C /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */; };
+		24BA40BA1D3F9AD600E38C2C /* RichTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */; };
+		24BA40BB1D3F9AD600E38C2C /* RichTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */; };
+		24BA40BC1D3F9AD800E38C2C /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D891CFEF9F800CAD9FE /* VideoProvider.swift */; };
+		24BA40BD1D3F9AD900E38C2C /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D891CFEF9F800CAD9FE /* VideoProvider.swift */; };
+		24BA40BE1D3F9ADB00E38C2C /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
+		24BA40BF1D3F9ADB00E38C2C /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
+		24BA40C01D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D911CFFA72100CAD9FE /* CoreDataHelper.swift */; };
+		24BA40C11D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D911CFFA72100CAD9FE /* CoreDataHelper.swift */; };
+		24BA40C21D3F9AE000E38C2C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D911CFFA72100CAD9FE /* CoreDataHelper.swift */; };
+		24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
+		24BA40C41D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
+		24BA40C51D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
+		24BA40C61D3F9AE500E38C2C /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
+		24BA40C71D3F9AE500E38C2C /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
+		24BA40C81D3F9AE500E38C2C /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
+		24BA40C91D3F9AE700E38C2C /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
+		24BA40CA1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
+		24BA40CB1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
+		24BA40CC1D3F9AEA00E38C2C /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
+		24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
+		24BA40CE1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
+		24BA40D01D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
+		24BA40D11D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
+		24BA40D21D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
+		24BA40D31D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
+		24BA40D41D3F9AF300E38C2C /* RichTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */; };
+		24BA40D51D3F9AF300E38C2C /* RichTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */; };
+		24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */; };
+		24BA40D71D3F9AF600E38C2C /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */; };
+		24BA40D81D3F9AF800E38C2C /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */; };
+		24BA40D91D3F9AF900E38C2C /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */; };
+		24BA40DA1D3F9AFB00E38C2C /* NewsArticleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D01D2AAFDB008C8BAE /* NewsArticleHelper.swift */; };
+		24BA40DB1D3F9AFC00E38C2C /* NewsArticleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D01D2AAFDB008C8BAE /* NewsArticleHelper.swift */; };
+		24BA40DC1D3F9AFE00E38C2C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D8F1CFFA3E500CAD9FE /* Error.swift */; };
+		24BA40DD1D3F9AFF00E38C2C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D8F1CFFA3E500CAD9FE /* Error.swift */; };
+		24BA40DE1D3F9AFF00E38C2C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D8F1CFFA3E500CAD9FE /* Error.swift */; };
+		24BA40DF1D3F9B0100E38C2C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
+		24BA40E01D3F9B0200E38C2C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
+		24BA40E11D3F9B0200E38C2C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
+		24BA40E21D3F9B0500E38C2C /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
+		24BA40E31D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
+		24BA40E41D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
+		24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249C01B01D3F729300B54AAC /* assets-brand.xcassets */; };
+		24BA40E61D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249C01B01D3F729300B54AAC /* assets-brand.xcassets */; };
+		24BA40E71D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249C01B01D3F729300B54AAC /* assets-brand.xcassets */; };
+		24BA40E81D3F9B1100E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
+		24BA40E91D3F9B1200E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
+		24BA40EA1D3F9B1200E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
+		24BA40EB1D3F9B2000E38C2C /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
+		24BA40EC1D3F9B2000E38C2C /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
+		24BA40ED1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
+		24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
+		24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
+		24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
+		24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
+		24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
+		24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
+		24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
+		24BA40F51D3F9B2F00E38C2C /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE181D09C87A00B5C39A /* MarkdownParser.swift */; };
+		24BA40F61D3F9B2F00E38C2C /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE181D09C87A00B5C39A /* MarkdownParser.swift */; };
+		24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
+		24BA40F81D3F9B3200E38C2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
+		24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
+		24BA40FA1D3F9B3600E38C2C /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
+		24BA40FB1D3F9B3900E38C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Localizable.strings */; };
+		24BA40FC1D3F9B3900E38C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Localizable.strings */; };
+		24BA40FD1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */; };
+		24BA40FE1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */; };
+		24BA40FF1D3F9B3E00E38C2C /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
+		24BA41001D3F9B3F00E38C2C /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
+		24BA41011D3F9B3F00E38C2C /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
+		24BA41021D3F9B4100E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		24BA41041D3F9B4200E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
+		24BA41061D3F9B5500E38C2C /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */; };
+		24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
+		24BA41081D3F9B5E00E38C2C /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
+		24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
+		24BA410A1D3F9B6900E38C2C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
+		24BA410B1D3F9B6C00E38C2C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */; };
+		24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
+		24BA410D1D3F9B7300E38C2C /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
+		24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
+		24BA410F1D3F9B7800E38C2C /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */; };
+		24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
+		24BA41111D3F9B7D00E38C2C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* NewsViewController.swift */; };
+		24BA41121D3F9B7F00E38C2C /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D51D2AD18F008C8BAE /* NewsTableViewController.swift */; };
+		24BA41131D3F9B8100E38C2C /* NewsArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */; };
+		24BA41141D3F9B8600E38C2C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
+		24BA41151D3F9B8800E38C2C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
+		24BA41161D3F9B8A00E38C2C /* EditProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */; };
+		24BA41171D3F9B8C00E38C2C /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
+		24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
+		24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
+		24BA411A1D3F9B9500E38C2C /* NewsArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D31D2AC425008C8BAE /* NewsArticleCell.swift */; };
+		24BA411B1D3F9B9700E38C2C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */; };
+		24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
+		24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
+		24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
+		24BA411F1D3F9BA400E38C2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
+		24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
+		24BA41211D3F9CA500E38C2C /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4DF1D1D92F200F42949 /* ServiceProvider.swift */; };
+		24BA41231D3F9CF800E38C2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
+		24BA41241D3F9CFD00E38C2C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4C61D1C158B00F42949 /* MainViewController.swift */; };
+		24BA41251D3F9CFF00E38C2C /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */; };
+		24BA41261D3F9D0200E38C2C /* CourseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */; };
+		24BA41271D3F9D0400E38C2C /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */; };
+		24BA41281D3F9D0600E38C2C /* LearningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03471CE4E0F10078A364 /* LearningsViewController.swift */; };
+		24BA41291D3F9D0900E38C2C /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
+		24BA412A1D3F9D0B00E38C2C /* ItemVideoLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */; };
+		24BA412B1D3F9D0D00E38C2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */; };
+		24BA412C1D3F9D1100E38C2C /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */; };
+		24BA412D1D3F9D1300E38C2C /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4C81D1C486100F42949 /* CourseHeaderView.swift */; };
+		24BA412E1D3F9D1500E38C2C /* CourseSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03491CE6160D0078A364 /* CourseSectionCell.swift */; };
+		24BA412F1D3F9D1700E38C2C /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */; };
+		24BA41301D3F9D1A00E38C2C /* ViewControllerLoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */; };
+		24BA41311D3F9D1D00E38C2C /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A81D3D034700B54AAC /* ReplaceSegue.swift */; };
+		24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
+		24BA41331D3F9D2200E38C2C /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
+		24BA41341D3F9D2500E38C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3C1CC678A000960269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3A1CC678A000960269 /* Main.storyboard */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
@@ -153,6 +349,7 @@
 		24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
 		24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
 		24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
+		7D190E0D6B4AA51BAE68D0CB /* Pods_openSAP_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA9A0A8ACDB3778D29842F1 /* Pods_openSAP_tvOS.framework */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		7E4F62AB1B3C2EDE006FCAD6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
@@ -161,6 +358,7 @@
 		7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */; };
 		7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
 		7F9BAA3514FE7C9C3F37B2BC /* Pods_openHPI_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */; };
+		8049E4958756E55FA427BA60 /* Pods_openSAP_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */; };
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
@@ -194,6 +392,7 @@
 		ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */; };
 		BBCD1F7365EF38979197C0CE /* Pods_openHPI_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37D28B951796642F9337FBF /* Pods_openHPI_tvOS_TopShelf.framework */; };
 		E6EDDBD1946C11E27237DCE5 /* Pods_openHPI_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */; };
+		E99E83DA77DC34EFE6E0032E /* Pods_openSAP_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */; };
 		F80D67931B98683400E27520 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* NewsViewController.swift */; };
 		F80D67981B98751700E27520 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
@@ -215,6 +414,13 @@
 			remoteGlobalIDString = 2490C4DA1D1D92F200F42949;
 			remoteInfo = TopShelf;
 		};
+		24BA406A1D3F98FE00E38C2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24BA40631D3F98FE00E38C2C;
+			remoteInfo = TopShelf;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -225,6 +431,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				2490C4E41D1D92F200F42949 /* openHPI-tvOS-TopShelf.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA40701D3F98FE00E38C2C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				24BA406C1D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +519,9 @@
 		24B6514A1D355B4A00624DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabNews.storyboard; sourceTree = "<group>"; };
 		24B6514C1D35797400624DBC /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
 		24B651501D3595C100624DBC /* NetworkIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkIndicator.swift; sourceTree = "<group>"; };
+		24BA40341D3F976700E38C2C /* openSAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openSAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24BA40511D3F98CA00E38C2C /* openSAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openSAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24BA40641D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "openSAP-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E341CC678A000960269 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CB7E361CC678A000960269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24CB7E3B1CC678A000960269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -313,8 +533,14 @@
 		24D48E1A1CCA551E00E8051E /* CourseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseProvider.swift; sourceTree = "<group>"; };
 		24D48E201CCA742300E8051E /* NSDate+iso8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+iso8601.swift"; sourceTree = "<group>"; };
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		3EFE4C53E4D0BE59A3B7D3DC /* Pods-openHPI-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
+		7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7E1FBE4324F13EDB067EDEA6 /* Pods-openSAP-tvOS-TopShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.debug.xcconfig"; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -323,6 +549,7 @@
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xikolo-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
+		89EBB281C9BB3737C016302D /* Pods-openSAP-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		9F427CBBBED778ACDBF30978 /* Pods-openHPI-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A37D28B951796642F9337FBF /* Pods_openHPI_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587BB1B3BFC130095DB89 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +582,8 @@
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
 		ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6E711C93FE9752419B308E0 /* Pods-openSAP-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BDA9A0A8ACDB3778D29842F1 /* Pods_openSAP_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC22580FF58B98BA63742298 /* Pods-openHPI-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E9CDFF1CD5FD8B31230182C3 /* Pods-openHPI-tvOS-TopShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS-TopShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf.debug.xcconfig"; sourceTree = "<group>"; };
 		F801793D1BBBE3880091ECD1 /* CourseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHelper.swift; sourceTree = "<group>"; };
@@ -381,6 +610,38 @@
 			files = (
 				2490C4DD1D1D92F200F42949 /* TVServices.framework in Frameworks */,
 				BBCD1F7365EF38979197C0CE /* Pods_openHPI_tvOS_TopShelf.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA40311D3F976700E38C2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40711D3F9A7000E38C2C /* MediaPlayer.framework in Frameworks */,
+				24BA40721D3F9A7000E38C2C /* QuartzCore.framework in Frameworks */,
+				24BA40731D3F9A7000E38C2C /* SystemConfiguration.framework in Frameworks */,
+				24BA40741D3F9A7000E38C2C /* Security.framework in Frameworks */,
+				24BA40751D3F9A7000E38C2C /* MobileCoreServices.framework in Frameworks */,
+				24BA40761D3F9A7000E38C2C /* CoreData.framework in Frameworks */,
+				24BA40771D3F9A7000E38C2C /* CFNetwork.framework in Frameworks */,
+				E99E83DA77DC34EFE6E0032E /* Pods_openSAP_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA404E1D3F98CA00E38C2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D190E0D6B4AA51BAE68D0CB /* Pods_openSAP_tvOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA40611D3F98FE00E38C2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40651D3F98FE00E38C2C /* TVServices.framework in Frameworks */,
+				8049E4958756E55FA427BA60 /* Pods_openSAP_tvOS_TopShelf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +917,9 @@
 				A90587BB1B3BFC130095DB89 /* openHPI.app */,
 				24CB7E341CC678A000960269 /* openHPI.app */,
 				2490C4DB1D1D92F200F42949 /* openHPI-tvOS-TopShelf.appex */,
+				24BA40341D3F976700E38C2C /* openSAP.app */,
+				24BA40511D3F98CA00E38C2C /* openSAP.app */,
+				24BA40641D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -726,6 +990,12 @@
 				0363807390E0CD6A7F3DFE25 /* Pods-openHPI-tvOS.release.xcconfig */,
 				E9CDFF1CD5FD8B31230182C3 /* Pods-openHPI-tvOS-TopShelf.debug.xcconfig */,
 				0BB2EE40302E6F69C25A0E68 /* Pods-openHPI-tvOS-TopShelf.release.xcconfig */,
+				7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */,
+				286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */,
+				B6E711C93FE9752419B308E0 /* Pods-openSAP-tvOS.debug.xcconfig */,
+				89EBB281C9BB3737C016302D /* Pods-openSAP-tvOS.release.xcconfig */,
+				7E1FBE4324F13EDB067EDEA6 /* Pods-openSAP-tvOS-TopShelf.debug.xcconfig */,
+				75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -795,6 +1065,9 @@
 				B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */,
 				5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */,
 				A37D28B951796642F9337FBF /* Pods_openHPI_tvOS_TopShelf.framework */,
+				4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */,
+				BDA9A0A8ACDB3778D29842F1 /* Pods_openSAP_tvOS.framework */,
+				4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -819,6 +1092,67 @@
 			name = "openHPI-tvOS-TopShelf";
 			productName = TopShelf;
 			productReference = 2490C4DB1D1D92F200F42949 /* openHPI-tvOS-TopShelf.appex */;
+			productType = "com.apple.product-type.tv-app-extension";
+		};
+		24BA40331D3F976700E38C2C /* openSAP-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24BA40431D3F976800E38C2C /* Build configuration list for PBXNativeTarget "openSAP-iOS" */;
+			buildPhases = (
+				7919434A264A33D8AF707163 /* [CP] Check Pods Manifest.lock */,
+				24BA40301D3F976700E38C2C /* Sources */,
+				24BA40311D3F976700E38C2C /* Frameworks */,
+				24BA40321D3F976700E38C2C /* Resources */,
+				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
+				747AA6185FE4F61F6B113EC5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "openSAP-iOS";
+			productName = openSAP;
+			productReference = 24BA40341D3F976700E38C2C /* openSAP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		24BA40501D3F98CA00E38C2C /* openSAP-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24BA405D1D3F98CA00E38C2C /* Build configuration list for PBXNativeTarget "openSAP-tvOS" */;
+			buildPhases = (
+				58118927B0F15975FBA50627 /* [CP] Check Pods Manifest.lock */,
+				24BA404D1D3F98CA00E38C2C /* Sources */,
+				24BA404E1D3F98CA00E38C2C /* Frameworks */,
+				24BA404F1D3F98CA00E38C2C /* Resources */,
+				24BA40701D3F98FE00E38C2C /* Embed App Extensions */,
+				25042D2EFBE1EAF5532E6113 /* [CP] Embed Pods Frameworks */,
+				19FC46E9D29437D5322190FA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24BA406B1D3F98FE00E38C2C /* PBXTargetDependency */,
+			);
+			name = "openSAP-tvOS";
+			productName = openSAP;
+			productReference = 24BA40511D3F98CA00E38C2C /* openSAP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		24BA40631D3F98FE00E38C2C /* openSAP-tvOS-TopShelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24BA406D1D3F98FE00E38C2C /* Build configuration list for PBXNativeTarget "openSAP-tvOS-TopShelf" */;
+			buildPhases = (
+				1F0E86B90D7C2D17097DE5B7 /* [CP] Check Pods Manifest.lock */,
+				24BA40601D3F98FE00E38C2C /* Sources */,
+				24BA40611D3F98FE00E38C2C /* Frameworks */,
+				24BA40621D3F98FE00E38C2C /* Resources */,
+				7D58F7DE5603835E5B6E3EA8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "openSAP-tvOS-TopShelf";
+			productName = TopShelf;
+			productReference = 24BA40641D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex */;
 			productType = "com.apple.product-type.tv-app-extension";
 		};
 		24CB7E331CC678A000960269 /* openHPI-tvOS */ = {
@@ -882,6 +1216,27 @@
 							};
 						};
 					};
+					24BA40331D3F976700E38C2C = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					24BA40501D3F98CA00E38C2C = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WP53SSE8S6;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					24BA40631D3F98FE00E38C2C = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WP53SSE8S6;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					24CB7E331CC678A000960269 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = WP53SSE8S6;
@@ -918,6 +1273,9 @@
 				A90587BA1B3BFC130095DB89 /* openHPI-iOS */,
 				24CB7E331CC678A000960269 /* openHPI-tvOS */,
 				2490C4DA1D1D92F200F42949 /* openHPI-tvOS-TopShelf */,
+				24BA40331D3F976700E38C2C /* openSAP-iOS */,
+				24BA40501D3F98CA00E38C2C /* openSAP-tvOS */,
+				24BA40631D3F98FE00E38C2C /* openSAP-tvOS-TopShelf */,
 			);
 		};
 /* End PBXProject section */
@@ -928,6 +1286,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				249C01C21D3F78DD00B54AAC /* assets-brand.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA40321D3F976700E38C2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
+				24BA41081D3F9B5E00E38C2C /* TabNews.storyboard in Resources */,
+				24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */,
+				24BA40FB1D3F9B3900E38C2C /* Localizable.strings in Resources */,
+				24BA411F1D3F9BA400E38C2C /* LaunchScreen.storyboard in Resources */,
+				24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */,
+				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
+				24BA41061D3F9B5500E38C2C /* TabProfile.storyboard in Resources */,
+				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
+				24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */,
+				24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA404F1D3F98CA00E38C2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40E61D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
+				24BA41341D3F9D2500E38C2C /* Localizable.strings in Resources */,
+				24BA40FC1D3F9B3900E38C2C /* Localizable.strings in Resources */,
+				24BA40FA1D3F9B3600E38C2C /* assets-common.xcassets in Resources */,
+				24BA41331D3F9D2200E38C2C /* assets-tvos.xcassets in Resources */,
+				24BA41231D3F9CF800E38C2C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA40621D3F98FE00E38C2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40E71D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,6 +1377,51 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		19FC46E9D29437D5322190FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F0E86B90D7C2D17097DE5B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		25042D2EFBE1EAF5532E6113 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -996,6 +1438,21 @@
 			showEnvVarsInLog = 0;
 		};
 		4F26625FA7E6FE8E86D1AC4B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		58118927B0F15975FBA50627 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1040,6 +1497,51 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		747AA6185FE4F61F6B113EC5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7919434A264A33D8AF707163 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7D58F7DE5603835E5B6E3EA8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8702673EFFED973EE4C3692B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1053,6 +1555,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */ = {
@@ -1112,6 +1629,196 @@
 				2490C4FB1D216E3D00F42949 /* xikolo.xcdatamodeld in Sources */,
 				2490C4E01D1D92F200F42949 /* ServiceProvider.swift in Sources */,
 				2490C4F61D216D7800F42949 /* UserProfile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA40301D3F976700E38C2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40BE1D3F9ADB00E38C2C /* NewsArticleProvider.swift in Sources */,
+				24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */,
+				24BA40A21D3F9AB500E38C2C /* RichText+CoreDataProperties.swift in Sources */,
+				24BA40D41D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
+				24BA40BC1D3F9AD800E38C2C /* VideoProvider.swift in Sources */,
+				24BA408C1D3F9A9300E38C2C /* Course.swift in Sources */,
+				24BA40B11D3F9ACB00E38C2C /* CourseItemProvider.swift in Sources */,
+				24BA41131D3F9B8100E38C2C /* NewsArticleViewController.swift in Sources */,
+				24BA40F51D3F9B2F00E38C2C /* MarkdownParser.swift in Sources */,
+				24BA40861D3F9A8D00E38C2C /* BaseModelSpine.swift in Sources */,
+				24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
+				24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */,
+				24BA40971D3F9AA700E38C2C /* UserProfile.swift in Sources */,
+				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
+				24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */,
+				24BA40C61D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
+				24BA409C1D3F9AAD00E38C2C /* Content.swift in Sources */,
+				24BA40D01D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
+				24BA41151D3F9B8800E38C2C /* ProfileViewController.swift in Sources */,
+				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
+				24BA40AA1D3F9AC100E38C2C /* NewsArticle+CoreDataProperties.swift in Sources */,
+				24BA40831D3F9A8A00E38C2C /* BaseModel.swift in Sources */,
+				24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
+				24BA40781D3F9A7900E38C2C /* NSDate+iso8601.swift in Sources */,
+				24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */,
+				24BA40AE1D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
+				24BA40EB1D3F9B2000E38C2C /* AbstractCourseListViewController.swift in Sources */,
+				24BA40C91D3F9AE700E38C2C /* UserProfileHelper.swift in Sources */,
+				24BA40E81D3F9B1100E38C2C /* Brand.swift in Sources */,
+				24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
+				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
+				24BA41121D3F9B7F00E38C2C /* NewsTableViewController.swift in Sources */,
+				24BA40B51D3F9AD100E38C2C /* ImageProvider.swift in Sources */,
+				24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
+				24BA40D21D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
+				24BA410B1D3F9B6C00E38C2C /* DashboardViewController.swift in Sources */,
+				24BA40FF1D3F9B3E00E38C2C /* NotificationKeys.swift in Sources */,
+				24BA40DF1D3F9B0100E38C2C /* Routes.swift in Sources */,
+				24BA40A41D3F9AB800E38C2C /* RichText.swift in Sources */,
+				24BA40DA1D3F9AFB00E38C2C /* NewsArticleHelper.swift in Sources */,
+				24BA40FD1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */,
+				24BA410D1D3F9B7300E38C2C /* CourseContentTableViewController.swift in Sources */,
+				24BA40E21D3F9B0500E38C2C /* xikolo.xcdatamodeld in Sources */,
+				24BA41021D3F9B4100E38C2C /* XikoloURL.swift in Sources */,
+				24BA40B31D3F9ACD00E38C2C /* CourseSectionProvider.swift in Sources */,
+				24BA41171D3F9B8C00E38C2C /* AbstractTabContentViewController.swift in Sources */,
+				24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */,
+				24BA40CC1D3F9AEA00E38C2C /* CourseHelper.swift in Sources */,
+				24BA40ED1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
+				24BA407B1D3F9A7D00E38C2C /* UIView+shake.swift in Sources */,
+				24BA411B1D3F9B9700E38C2C /* ProfileTableViewCell.swift in Sources */,
+				24BA40AC1D3F9AC300E38C2C /* NewsArticle.swift in Sources */,
+				24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */,
+				24BA40A01D3F9AB200E38C2C /* Quiz.swift in Sources */,
+				24BA40BA1D3F9AD600E38C2C /* RichTextProvider.swift in Sources */,
+				24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */,
+				24BA411A1D3F9B9500E38C2C /* NewsArticleCell.swift in Sources */,
+				24BA40891D3F9A9000E38C2C /* Course+CoreDataProperties.swift in Sources */,
+				24BA40811D3F9A8500E38C2C /* CollectionType+dict.swift in Sources */,
+				24BA409E1D3F9AB000E38C2C /* Quiz+CoreDataProperties.swift in Sources */,
+				24BA40B71D3F9AD300E38C2C /* UserProfileProvider.swift in Sources */,
+				24BA408F1D3F9A9600E38C2C /* CourseItem+CoreDataProperties.swift in Sources */,
+				24BA40DC1D3F9AFE00E38C2C /* Error.swift in Sources */,
+				24BA40951D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
+				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
+				24BA41141D3F9B8600E38C2C /* ProfileTableViewController.swift in Sources */,
+				24BA40931D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */,
+				24BA40C01D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
+				24BA41111D3F9B7D00E38C2C /* NewsViewController.swift in Sources */,
+				24BA410F1D3F9B7800E38C2C /* QuizWebViewController.swift in Sources */,
+				24BA40911D3F9A9900E38C2C /* CourseItem.swift in Sources */,
+				24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */,
+				24BA409A1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
+				24BA40D81D3F9AF800E38C2C /* ImageHelper.swift in Sources */,
+				24BA41161D3F9B8A00E38C2C /* EditProfileSettingsViewController.swift in Sources */,
+				24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
+				24BA410A1D3F9B6900E38C2C /* RegisterViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA404D1D3F98CA00E38C2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40BF1D3F9ADB00E38C2C /* NewsArticleProvider.swift in Sources */,
+				24BA40A31D3F9AB600E38C2C /* RichText+CoreDataProperties.swift in Sources */,
+				24BA41271D3F9D0400E38C2C /* CourseDetailsViewController.swift in Sources */,
+				24BA40D51D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
+				24BA40BD1D3F9AD900E38C2C /* VideoProvider.swift in Sources */,
+				24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */,
+				24BA412A1D3F9D0B00E38C2C /* ItemVideoLoadingController.swift in Sources */,
+				24BA40B21D3F9ACB00E38C2C /* CourseItemProvider.swift in Sources */,
+				24BA40F61D3F9B2F00E38C2C /* MarkdownParser.swift in Sources */,
+				24BA40871D3F9A8E00E38C2C /* BaseModelSpine.swift in Sources */,
+				24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
+				24BA40981D3F9AA800E38C2C /* UserProfile.swift in Sources */,
+				24BA41311D3F9D1D00E38C2C /* ReplaceSegue.swift in Sources */,
+				24BA40C71D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
+				24BA409D1D3F9AAE00E38C2C /* Content.swift in Sources */,
+				24BA412D1D3F9D1300E38C2C /* CourseHeaderView.swift in Sources */,
+				24BA40D11D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
+				24BA41241D3F9CFD00E38C2C /* MainViewController.swift in Sources */,
+				24BA40D71D3F9AF600E38C2C /* VideoHelper.swift in Sources */,
+				24BA40AB1D3F9AC100E38C2C /* NewsArticle+CoreDataProperties.swift in Sources */,
+				24BA40841D3F9A8A00E38C2C /* BaseModel.swift in Sources */,
+				24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
+				24BA40791D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */,
+				24BA40A91D3F9ABE00E38C2C /* Video.swift in Sources */,
+				24BA40AF1D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
+				24BA40EC1D3F9B2000E38C2C /* AbstractCourseListViewController.swift in Sources */,
+				24BA40CA1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
+				24BA40E91D3F9B1200E38C2C /* Brand.swift in Sources */,
+				24BA40801D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
+				24BA412E1D3F9D1500E38C2C /* CourseSectionCell.swift in Sources */,
+				24BA40F81D3F9B3200E38C2C /* Settings.swift in Sources */,
+				24BA40B61D3F9AD100E38C2C /* ImageProvider.swift in Sources */,
+				24BA40A71D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
+				24BA40D31D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
+				24BA41001D3F9B3F00E38C2C /* NotificationKeys.swift in Sources */,
+				24BA40E01D3F9B0200E38C2C /* Routes.swift in Sources */,
+				24BA40A51D3F9AB900E38C2C /* RichText.swift in Sources */,
+				24BA40DB1D3F9AFC00E38C2C /* NewsArticleHelper.swift in Sources */,
+				24BA41251D3F9CFF00E38C2C /* CourseListViewController.swift in Sources */,
+				24BA412C1D3F9D1100E38C2C /* CourseCell.swift in Sources */,
+				24BA412F1D3F9D1700E38C2C /* CourseItemCell.swift in Sources */,
+				24BA40FE1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */,
+				24BA40E31D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */,
+				24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
+				24BA40B41D3F9ACE00E38C2C /* CourseSectionProvider.swift in Sources */,
+				24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
+				24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
+				24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */,
+				24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */,
+				24BA40AD1D3F9AC300E38C2C /* NewsArticle.swift in Sources */,
+				24BA40A11D3F9AB300E38C2C /* Quiz.swift in Sources */,
+				24BA41301D3F9D1A00E38C2C /* ViewControllerLoadingHelper.swift in Sources */,
+				24BA41281D3F9D0600E38C2C /* LearningsViewController.swift in Sources */,
+				24BA40BB1D3F9AD600E38C2C /* RichTextProvider.swift in Sources */,
+				24BA407E1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */,
+				24BA408A1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */,
+				24BA41291D3F9D0900E38C2C /* ItemRichTextController.swift in Sources */,
+				24BA40821D3F9A8600E38C2C /* CollectionType+dict.swift in Sources */,
+				24BA409F1D3F9AB000E38C2C /* Quiz+CoreDataProperties.swift in Sources */,
+				24BA41261D3F9D0200E38C2C /* CourseTabBarController.swift in Sources */,
+				24BA40B81D3F9AD400E38C2C /* UserProfileProvider.swift in Sources */,
+				24BA40901D3F9A9700E38C2C /* CourseItem+CoreDataProperties.swift in Sources */,
+				24BA40DD1D3F9AFF00E38C2C /* Error.swift in Sources */,
+				24BA40961D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
+				24BA40C41D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
+				24BA40941D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */,
+				24BA40C11D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
+				24BA40921D3F9A9900E38C2C /* CourseItem.swift in Sources */,
+				24BA409B1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
+				24BA40D91D3F9AF900E38C2C /* ImageHelper.swift in Sources */,
+				24BA412B1D3F9D0D00E38C2C /* LoginViewController.swift in Sources */,
+				24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24BA40601D3F98FE00E38C2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24BA40EA1D3F9B1200E38C2C /* Brand.swift in Sources */,
+				24BA40881D3F9A8E00E38C2C /* BaseModelSpine.swift in Sources */,
+				24BA40E41D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */,
+				24BA40851D3F9A8B00E38C2C /* BaseModel.swift in Sources */,
+				24BA40CB1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
+				24BA40991D3F9AA800E38C2C /* UserProfile.swift in Sources */,
+				24BA41011D3F9B3F00E38C2C /* NotificationKeys.swift in Sources */,
+				24BA40C51D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
+				24BA40C81D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
+				24BA40B01D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
+				24BA40E11D3F9B0200E38C2C /* Routes.swift in Sources */,
+				24BA408E1D3F9A9400E38C2C /* Course.swift in Sources */,
+				24BA408B1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */,
+				24BA40CE1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
+				24BA40C21D3F9AE000E38C2C /* CoreDataHelper.swift in Sources */,
+				24BA41041D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
+				24BA41211D3F9CA500E38C2C /* ServiceProvider.swift in Sources */,
+				24BA407A1D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */,
+				24BA40DE1D3F9AFF00E38C2C /* Error.swift in Sources */,
+				24BA40B91D3F9AD400E38C2C /* UserProfileProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1993,11 @@
 			target = 2490C4DA1D1D92F200F42949 /* openHPI-tvOS-TopShelf */;
 			targetProxy = 2490C4E21D1D92F200F42949 /* PBXContainerItemProxy */;
 		};
+		24BA406B1D3F98FE00E38C2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24BA40631D3F98FE00E38C2C /* openSAP-tvOS-TopShelf */;
+			targetProxy = 24BA406A1D3F98FE00E38C2C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1404,6 +2116,98 @@
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.xikolo-tvos.TopShelf";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		24BA40441D3F976800E38C2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_NAME = openSAP;
+			};
+			name = Debug;
+		};
+		24BA40451D3F976800E38C2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_NAME = openSAP;
+			};
+			name = Release;
+		};
+		24BA405E1D3F98CA00E38C2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6E711C93FE9752419B308E0 /* Pods-openSAP-tvOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/xikolo-tvos.entitlements";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_NAME = openSAP;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		24BA405F1D3F98CA00E38C2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89EBB281C9BB3737C016302D /* Pods-openSAP-tvOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/xikolo-tvos.entitlements";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP;
+				PRODUCT_NAME = openSAP;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		24BA406E1D3F98FE00E38C2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E1FBE4324F13EDB067EDEA6 /* Pods-openSAP-tvOS-TopShelf.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/TopShelf/xikolo-tvos-topshelf.entitlements";
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP.TopShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		24BA406F1D3F98FE00E38C2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/TopShelf/xikolo-tvos-topshelf.entitlements";
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.open.openSAP.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1581,6 +2385,33 @@
 			buildConfigurations = (
 				2490C4E61D1D92F200F42949 /* Debug */,
 				2490C4E71D1D92F200F42949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24BA40431D3F976800E38C2C /* Build configuration list for PBXNativeTarget "openSAP-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24BA40441D3F976800E38C2C /* Debug */,
+				24BA40451D3F976800E38C2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24BA405D1D3F98CA00E38C2C /* Build configuration list for PBXNativeTarget "openSAP-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24BA405E1D3F98CA00E38C2C /* Debug */,
+				24BA405F1D3F98CA00E38C2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24BA406D1D3F98FE00E38C2C /* Build configuration list for PBXNativeTarget "openSAP-tvOS-TopShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24BA406E1D3F98FE00E38C2C /* Debug */,
+				24BA406F1D3F98FE00E38C2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

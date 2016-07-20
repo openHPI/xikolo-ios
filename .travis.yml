@@ -6,6 +6,8 @@ xcode_scheme: xikolo-ios
 env:
   - SCHEME="openHPI-iOS" SDK="iphonesimulator"
   - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
+  - SCHEME="openSAP-iOS" SDK="iphonesimulator"
+  - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
 
 script:
   - xctool -workspace xikolo-ios.xcworkspace -scheme $SCHEME -sdk $SDK build

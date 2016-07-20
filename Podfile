@@ -28,3 +28,21 @@ target 'openHPI-tvOS-TopShelf' do
     common_pods
 
 end
+
+target 'openSAP-iOS' do
+    platform :ios, '9.0'
+    common_pods
+
+end
+
+target 'openSAP-tvOS' do
+    platform :tvos, '9.0'
+    common_pods
+
+end
+
+target 'openSAP-tvOS-TopShelf' do
+    platform :tvos, '9.0'
+    common_pods
+
+end

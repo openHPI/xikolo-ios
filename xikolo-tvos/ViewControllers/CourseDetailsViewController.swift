@@ -28,11 +28,15 @@ class CourseDetailsViewController : UIViewController {
     var courseTabBarController: CourseTabBarController!
     var course: Course!
 
+    var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
+
     override func viewDidLoad() {
         courseTabBarController = self.tabBarController as! CourseTabBarController
         course = courseTabBarController.course
 
         customPreferredFocusedView = super.preferredFocusedView
+
+        backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
 
         course.notifyOnChange(self, updatedHandler: { model in
             self.configureViews()
@@ -51,6 +55,7 @@ class CourseDetailsViewController : UIViewController {
         titleView.text = course.name
         if let imageURL = course.image_url {
             ImageHelper.loadImageFromURL(imageURL, toImageView: courseImageView)
+            ImageHelper.loadImageFromURL(imageURL, toImageView: backgroundImageHelper.imageView)
         }
         // TODO: Show abstract instead of description once we're on APIv2.
         abstractView.text = course.course_description

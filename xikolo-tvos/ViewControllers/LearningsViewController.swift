@@ -25,11 +25,18 @@ class LearningsViewController : UIViewController {
     var itemResultsController: NSFetchedResultsController?
     var itemResultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
 
+    var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
+
     override func viewDidLoad() {
         courseTabBarController = self.tabBarController as! CourseTabBarController
         course = courseTabBarController.course
 
         courseTitleView.text = course.name
+
+        backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
+        if let imageURL = course.image_url {
+            ImageHelper.loadImageFromURL(imageURL, toImageView: backgroundImageHelper.imageView)
+        }
 
         let request = CourseSectionHelper.getSectionRequest(course)
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)

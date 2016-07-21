@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Content" representedClassName=".Content" isAbstract="YES" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
         <relationship name="item" maxCount="1" deletionRule="Cascade" destinationEntity="CourseItem" inverseName="content" inverseEntity="CourseItem" syncable="YES"/>
@@ -9,6 +9,7 @@
         <attribute name="course_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="end_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="is_enrolled_int" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
@@ -59,12 +60,12 @@
     </entity>
     <elements>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
-        <element name="Course" positionX="-54" positionY="27" width="128" height="208"/>
+        <element name="Course" positionX="-54" positionY="27" width="128" height="225"/>
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
+        <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="120"/>
         <element name="Quiz" positionX="828" positionY="198" width="128" height="45"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="58"/>
         <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
-        <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="120"/>
     </elements>
 </model>

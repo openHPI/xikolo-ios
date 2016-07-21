@@ -6,8 +6,10 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
 import Foundation
+import Result
 
 class Course : BaseModel {
 
@@ -36,6 +38,23 @@ class Course : BaseModel {
             return locale.displayNameForKey(NSLocaleIdentifier, value: language)
         }
         return nil
+    }
+
+    func loadImage() -> Future<UIImage, XikoloError> {
+        if let image = image {
+            return future {
+                Result.Success(image)
+            }
+        }
+        if image_url == nil {
+            return future {
+                return Result.Failure(XikoloError.ModelIncomplete)
+            }
+        }
+        return ImageProvider.loadImage(image_url!).onSuccess { image in
+            self.image = image
+            CoreDataHelper.saveContext()
+        }
     }
 
     func loadFromDict(dict: [String: AnyObject]) {

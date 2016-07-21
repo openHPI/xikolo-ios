@@ -53,9 +53,9 @@ class CourseDetailsViewController : UIViewController {
 
     func configureViews() {
         titleView.text = course.name
-        if let imageURL = course.image_url {
-            ImageHelper.loadImageFromURL(imageURL, toImageView: courseImageView)
-            ImageHelper.loadImageFromURL(imageURL, toImageView: backgroundImageHelper.imageView)
+        course.loadImage().onSuccess { image in
+            self.courseImageView.image = image
+            self.backgroundImageHelper.imageView.image = image
         }
         // TODO: Show abstract instead of description once we're on APIv2.
         abstractView.text = course.course_description

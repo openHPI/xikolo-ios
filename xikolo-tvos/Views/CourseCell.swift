@@ -15,8 +15,8 @@ class CourseCell : UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 
     func configure(course: Course) {
-        if let image_url = course.image_url {
-            ImageHelper.loadImageFromURL(image_url, toImageView: backgroundImage)
+        course.loadImage().onSuccess { image in
+            self.backgroundImage.image = image
         }
         nameLabel.text = course.name
     }

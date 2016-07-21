@@ -2,15 +2,15 @@
 //  Course+CoreDataProperties.swift
 //  xikolo-ios
 //
-//  Created by Sebastian Brückner on 13.05.16.
+//  Created by Sebastian Brückner on 21.07.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
 import CoreData
+import UIKit
 
 extension Course {
 
@@ -24,6 +24,7 @@ extension Course {
     @NSManaged var name: String?
     @NSManaged var start_date: NSDate?
     @NSManaged var teachers: String?
+    @NSManaged var image: UIImage?
     @NSManaged var sections: NSSet?
 
 }

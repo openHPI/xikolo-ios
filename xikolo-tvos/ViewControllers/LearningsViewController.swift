@@ -34,8 +34,8 @@ class LearningsViewController : UIViewController {
         courseTitleView.text = course.name
 
         backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
-        if let imageURL = course.image_url {
-            ImageHelper.loadImageFromURL(imageURL, toImageView: backgroundImageHelper.imageView)
+        course.loadImage().onSuccess { image in
+            self.backgroundImageHelper.imageView.image = image
         }
 
         let request = CourseSectionHelper.getSectionRequest(course)

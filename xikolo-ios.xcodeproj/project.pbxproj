@@ -86,6 +86,8 @@
 		249C01C51D3F78E100B54AAC /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B71D3F72BD00B54AAC /* Brand.swift */; };
 		249E3A9A1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3A991D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift */; };
 		249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3A991D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift */; };
+		249E3A9C1D41135400D7663F /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
+		249E3A9D1D41135500D7663F /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -1669,6 +1671,7 @@
 				2490C4FA1D216DA200F42949 /* NSDate+iso8601.swift in Sources */,
 				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
 				2490C4EB1D216C9500F42949 /* CourseHelper.swift in Sources */,
+				249E3A9C1D41135400D7663F /* ImageProvider.swift in Sources */,
 				2490C4F01D216D3B00F42949 /* CourseProvider.swift in Sources */,
 				24BA413F1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */,
 				249C01C51D3F78E100B54AAC /* Brand.swift in Sources */,
@@ -1862,6 +1865,7 @@
 				24BA40B01D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
 				24BA40E11D3F9B0200E38C2C /* Routes.swift in Sources */,
 				24BA408E1D3F9A9400E38C2C /* Course.swift in Sources */,
+				249E3A9D1D41135500D7663F /* ImageProvider.swift in Sources */,
 				24BA408B1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */,
 				24BA413C1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24BA40CE1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,

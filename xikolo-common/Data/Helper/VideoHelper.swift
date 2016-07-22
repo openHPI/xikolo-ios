@@ -13,17 +13,10 @@ import Result
 class VideoHelper {
 
     static func syncVideo(video: Video) -> Future<Video, XikoloError> {
-        return VideoProvider.getVideo(video.id).flatMap { videoSpine in
-            future(context: ImmediateExecutionContext) {
-                do {
-                    try SpineModelHelper.syncObjects([video], spineObjects: [videoSpine], inject: nil, save: true)
-                    return Result.Success(video)
-                } catch let error as XikoloError {
-                    return Result.Failure(error)
-                } catch {
-                    return Result.Failure(XikoloError.UnknownError(error))
-                }
-            }
+        return VideoProvider.getVideo(video.id).flatMap { spineVideo -> Future<[BaseModel], XikoloError> in
+            return SpineModelHelper.syncObjectsFuture([video], spineObjects: [spineVideo], inject: nil, save: true)
+        }.map { cdVideos in
+            return cdVideos[0] as! Video
         }
     }
 

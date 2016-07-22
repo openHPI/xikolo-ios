@@ -6,8 +6,10 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
 import Foundation
+import Result
 
 class SpineModelHelper {
 
@@ -58,6 +60,32 @@ class SpineModelHelper {
             CoreDataHelper.saveContext()
         }
         return cdObjects
+    }
+
+    class func syncObjectsFuture(objectsToUpdateRequest: NSFetchRequest, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
+        return future(context: ImmediateExecutionContext) {
+            do {
+                let cdItems = try syncObjects(objectsToUpdateRequest, spineObjects: spineObjects, inject:inject, save: save)
+                return Result.Success(cdItems)
+            } catch let error as XikoloError {
+                return Result.Failure(error)
+            } catch {
+                return Result.Failure(XikoloError.UnknownError(error))
+            }
+        }
+    }
+
+    class func syncObjectsFuture(objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
+        return future(context: ImmediateExecutionContext) {
+            do {
+                let cdItems = try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject:inject, save: save)
+                return Result.Success(cdItems)
+            } catch let error as XikoloError {
+                return Result.Failure(error)
+            } catch {
+                return Result.Failure(XikoloError.UnknownError(error))
+            }
+        }
     }
 
 }

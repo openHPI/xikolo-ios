@@ -22,19 +22,12 @@ class NewsArticleHelper {
     }
 
     static func syncNewsArticles() -> Future<[NewsArticle], XikoloError> {
-        return NewsArticleProvider.getNewsArticles().flatMap { spineItems in
-            future(context: ImmediateExecutionContext) {
-                do {
-                    let request = getRequest()
-                    let cdItems = try SpineModelHelper.syncObjects(request, spineObjects: spineItems, inject: nil, save: true)
-                    return Result.Success(cdItems as! [NewsArticle])
-                } catch let error as XikoloError {
-                    return Result.Failure(error)
-                } catch {
-                    return Result.Failure(XikoloError.UnknownError(error))
-                }
-            }
+        return NewsArticleProvider.getNewsArticles().flatMap { spineNewsArticles -> Future<[BaseModel], XikoloError> in
+            let request = getRequest()
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineNewsArticles, inject: nil, save: true)
+        }.map { cdNewsArticles in
+            return cdNewsArticles as! [NewsArticle]
         }
     }
-    
+
 }

@@ -13,18 +13,11 @@ import Result
 class RichTextHelper {
 
     static func refreshRichText(richText: RichText) -> Future<RichText, XikoloError> {
-        return RichTextProvider.getRichText(richText.id).flatMap { richTextSpine in
-            future(context: ImmediateExecutionContext) {
-                do {
-                    try SpineModelHelper.syncObjects([richText], spineObjects: [richTextSpine], inject: nil, save: true)
-                    return Result.Success(richText)
-                } catch let error as XikoloError {
-                    return Result.Failure(error)
-                } catch {
-                    return Result.Failure(XikoloError.UnknownError(error))
-                }
-            }
+        return RichTextProvider.getRichText(richText.id).flatMap { spineRichText -> Future<[BaseModel], XikoloError> in
+            return SpineModelHelper.syncObjectsFuture([richText], spineObjects: [spineRichText], inject: nil, save: true)
+        }.map { cdRichTexts in
+            return cdRichTexts[0] as! RichText
         }
     }
-    
+
 }

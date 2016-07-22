@@ -32,18 +32,11 @@ class CourseItemHelper {
     }
 
     static func syncCourseItems(section: CourseSection) -> Future<[CourseItem], XikoloError> {
-        return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems in
-            future(context: ImmediateExecutionContext) {
-                do {
-                    let request = getItemRequest(section)
-                    let cdItems = try SpineModelHelper.syncObjects(request, spineObjects: spineItems, inject:["section": section], save: true)
-                    return Result.Success(cdItems as! [CourseItem])
-                } catch let error as XikoloError {
-                    return Result.Failure(error)
-                } catch {
-                    return Result.Failure(XikoloError.UnknownError(error))
-                }
-            }
+        return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems -> Future<[BaseModel], XikoloError> in
+            let request = getItemRequest(section)
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineItems, inject: ["section": section], save: true)
+        }.map { cdItems in
+            return cdItems as! [CourseItem]
         }
     }
 

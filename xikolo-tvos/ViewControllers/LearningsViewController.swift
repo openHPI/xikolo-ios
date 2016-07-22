@@ -167,8 +167,13 @@ extension LearningsViewController : UICollectionViewDelegate, ItemViewController
                 let video = item.content as! Video
                 performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: video)
             default:
-                // TODO: show error: unsupported type
-                break
+                let title = NSLocalizedString("Unsupported item", comment: "Unsupported item")
+                let message = NSLocalizedString("The type of this content item is unsupported on tvOS. Please use a different device to view it.", comment: "The type of this content item is unsupported on tvOS. Please use a different device to view it.")
+                let ok = NSLocalizedString("OK", comment: "OK")
+
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: ok, style: .Cancel, handler: nil))
+                presentViewController(alert, animated: true, completion: nil)
         }
     }
 

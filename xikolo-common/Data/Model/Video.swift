@@ -37,7 +37,7 @@ class Video : Content {
         if let course_item = self.item, item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {
             items.append(item)
         }
-        if let item = AVMetadataItem.item(AVMetadataCommonIdentifierDescription, value: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea reb") {
+        if let item = AVMetadataItem.item(AVMetadataCommonIdentifierDescription, value: video_description) {
             items.append(item)
         }
         if let poster = poster, item = AVMetadataItem.artworkItem(poster) {

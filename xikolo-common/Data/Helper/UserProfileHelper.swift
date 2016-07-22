@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import BrightFutures
 import Foundation
 
 public class UserProfileHelper {
@@ -65,15 +66,12 @@ public class UserProfileHelper {
         prefs.synchronize()
     }
 
-    static func getUser(completionHandler: (UserProfile?, NSError?) -> ()) {
+    static func getUser() -> Future<UserProfile, XikoloError> {
         if let user = loadUser() {
-            completionHandler(user, nil)
+            return Future.init(value: user)
         } else {
-            UserProfileProvider.getMyProfile() { (user: UserProfile?, error: NSError?) -> () in
-                if user != nil {
-                    UserProfileHelper.saveUser(user!)
-                }
-                completionHandler(user, error)
+            return UserProfileProvider.getMyProfile().onSuccess { user in
+                UserProfileHelper.saveUser(user)
             }
         }
     }

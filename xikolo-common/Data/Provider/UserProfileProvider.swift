@@ -8,20 +8,27 @@
 
 import Alamofire
 import AlamofireObjectMapper
+import BrightFutures
 import Foundation
 
 class UserProfileProvider {
 
-    static func getMyProfile(completionHandler: (user: UserProfile?, error: NSError?) -> ()) {
-        let url = Routes.MY_PROFILE_API_URL
+    static func getMyProfile() -> Future<UserProfile, XikoloError> {
+        let promise = Promise<UserProfile, XikoloError>()
 
+        let url = Routes.MY_PROFILE_API_URL
         Alamofire.request(.GET, url, headers: NetworkHelper.getRequestHeaders()).responseObject() { (response: Response<UserProfile, NSError>) in
             if let user = response.result.value {
-                completionHandler(user: user, error: nil)
+                promise.success(user)
                 return
             }
-            completionHandler(user: nil, error: response.result.error)
+            if let error = response.result.error {
+                promise.failure(XikoloError.Network(error))
+                return
+            }
+            promise.failure(XikoloError.TotallyUnknownError)
         }
+        return promise.future
     }
 
 }

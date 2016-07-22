@@ -27,12 +27,9 @@ class ProfileViewController: AbstractTabContentViewController {
             container.hidden = false
             logoutButton.hidden = false
 
-            UserProfileHelper.getUser() { user, error -> () in
-                if let user = user {
-                    // TODO: get name, username etc.
-                    ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImage)
-                }
-                // TODO: Error handling.
+            UserProfileHelper.getUser().onSuccess { user in
+                // TODO: get name, username etc.
+                ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImage)
             }
         } else {
             container.hidden = true

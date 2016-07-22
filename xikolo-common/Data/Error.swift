@@ -18,5 +18,6 @@ enum XikoloError : ErrorType {
     case Network(NSError)
 
     case UnknownError(ErrorType)
+    case TotallyUnknownError
 
 }

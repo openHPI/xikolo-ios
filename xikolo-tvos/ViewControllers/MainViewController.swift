@@ -23,17 +23,15 @@ class MainViewController : UIViewController {
 
     func configureViews() {
         if UserProfileHelper.isLoggedIn() {
-            UserProfileHelper.getUser{ user, error in
-                if let user = user {
-                    self.displayNameView.text = user.firstName + " " + user.lastName
-                    if user.visual != "" {
-                        ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImageView)
-                    }
-                    self.profileImageView.hidden = false
-                    self.displayNameView.hidden = false
-                    self.settingsButton.hidden = false
-                    self.loginButton.hidden = true
+            UserProfileHelper.getUser().onSuccess { user in
+                self.displayNameView.text = user.firstName + " " + user.lastName
+                if user.visual != "" {
+                    ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImageView)
                 }
+                self.profileImageView.hidden = false
+                self.displayNameView.hidden = false
+                self.settingsButton.hidden = false
+                self.loginButton.hidden = true
             }
         } else {
             profileImageView.hidden = true

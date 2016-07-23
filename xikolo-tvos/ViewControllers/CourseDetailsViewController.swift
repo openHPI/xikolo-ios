@@ -115,26 +115,18 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
     }
 
     func createEnrollment() {
-        UserProfileHelper.createEnrollement(course.id) { success, error in
-            if success {
-                self.course.is_enrolled = true
-                CourseHelper.refreshCourses()
-            } else {
-                // TODO: Error handling.
-            }
+        UserProfileHelper.createEnrollement(course.id).onSuccess {
+            self.course.is_enrolled = true
+            CourseHelper.refreshCourses()
         }
     }
 
     @IBAction func unenroll(sender: UIButton) {
         // No need to check for login, cannot be enrolled without.
 
-        UserProfileHelper.deleteEnrollement(course.id) { success, error in
-            if success {
-                self.course.is_enrolled = false
-                CourseHelper.refreshCourses()
-            } else {
-                // TODO: Error handling.
-            }
+        UserProfileHelper.deleteEnrollement(course.id).onSuccess {
+            self.course.is_enrolled = false
+            CourseHelper.refreshCourses()
         }
     }
 

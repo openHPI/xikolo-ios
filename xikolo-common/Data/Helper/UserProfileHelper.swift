@@ -44,28 +44,42 @@ public class UserProfileHelper {
         return promise.future
     }
 
-    static func createEnrollement(courseId: String, completionHandler: (success: Bool, error: NSError?) -> ()) {
-        let url = Routes.ENROLLMENTS_API_URL
+    static func createEnrollement(courseId: String) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
 
+        let url = Routes.ENROLLMENTS_API_URL
         Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
                 Routes.HTTP_PARAM_COURSE_ID: courseId,
-            ]).responseJSON { response in
-                if let json = response.result.value {
-                    if (json["id"] as? String) != nil {
-                        completionHandler(success: true, error: nil)
-                        return
-                    }
+        ]).responseJSON { response in
+            if let json = response.result.value {
+                if (json["id"] as? String) != nil {
+                    promise.success()
+                    return
                 }
-                completionHandler(success: false, error: response.result.error)
+                promise.failure(XikoloError.TotallyUnknownError)
+                return
+            }
+            if let error = response.result.error {
+                promise.failure(XikoloError.Network(error))
+                return
+            }
+            promise.failure(XikoloError.TotallyUnknownError)
         }
+        return promise.future
     }
 
-    static func deleteEnrollement(courseId: String, completionHandler: (success: Bool, error: NSError?) -> ()) {
-        let url = Routes.ENROLLMENTS_API_URL + courseId
+    static func deleteEnrollement(courseId: String) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
 
+        let url = Routes.ENROLLMENTS_API_URL + courseId
         Alamofire.request(.DELETE, url, headers: NetworkHelper.getRequestHeaders()).response { (request, response, data, error) in
-            completionHandler(success: error == nil, error: error)
+            if let error = error {
+                promise.failure(XikoloError.Network(error))
+                return
+            }
+            promise.success()
         }
+        return promise.future
     }
 
     static func logout() {

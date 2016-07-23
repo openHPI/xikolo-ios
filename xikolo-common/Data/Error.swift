@@ -16,6 +16,7 @@ enum XikoloError : ErrorType {
     case InvalidData
     case ModelIncomplete
     case Network(NSError)
+    case AuthenticationError
 
     case UnknownError(ErrorType)
     case TotallyUnknownError

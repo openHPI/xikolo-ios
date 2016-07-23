@@ -19,14 +19,13 @@ class AbstractLoginViewController : UIViewController {
         let email = emailField.text!
         let password = passwordField.text!
 
-        UserProfileHelper.login(email, password: password) { (token: String?, error: NSError?) -> () in
-            if token != nil {
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-                self.didSuccessfullyLogin()
-            } else {
-                self.emailField.shake()
-                self.passwordField.shake()
-            }
+        UserProfileHelper.login(email, password: password).onSuccess { token in
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            self.didSuccessfullyLogin()
+        }.onFailure { error in
+            // TODO: Differentiate errors.
+            self.emailField.shake()
+            self.passwordField.shake()
         }
     }
 

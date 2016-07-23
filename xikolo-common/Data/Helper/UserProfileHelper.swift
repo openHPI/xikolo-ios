@@ -17,23 +17,31 @@ public class UserProfileHelper {
 
     static private let prefs = NSUserDefaults.standardUserDefaults()
 
-    static func login(email: String, password: String, completionHandler: (token: String?, error: NSError?) -> ()) {
-        let url = Routes.AUTHENTICATE_API_URL
+    static func login(email: String, password: String) -> Future<String, XikoloError> {
+        let promise = Promise<String, XikoloError>()
 
+        let url = Routes.AUTHENTICATE_API_URL
         Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
                 Routes.HTTP_PARAM_EMAIL: email,
                 Routes.HTTP_PARAM_PASSWORD: password,
-            ]).responseJSON { response in
-                if let json = response.result.value {
-                    if let token = json["token"] as? String {
-                        UserProfileHelper.saveToken(token)
-                        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.loginSuccessfulKey, object: nil)
-                        completionHandler(token: token, error: nil)
-                        return
-                    }
+        ]).responseJSON { response in
+            if let json = response.result.value {
+                if let token = json["token"] as? String {
+                    UserProfileHelper.saveToken(token)
+                    NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.loginSuccessfulKey, object: nil)
+                    promise.success(token)
+                    return
                 }
-                completionHandler(token: nil, error: response.result.error)
+                promise.failure(XikoloError.AuthenticationError)
+                return
+            }
+            if let error = response.result.error {
+                promise.failure(XikoloError.Network(error))
+                return
+            }
+            promise.failure(XikoloError.TotallyUnknownError)
         }
+        return promise.future
     }
 
     static func createEnrollement(courseId: String, completionHandler: (success: Bool, error: NSError?) -> ()) {

@@ -24,12 +24,9 @@ class Video : Content {
         if let url = single_stream_poster_url {
             return ImageProvider.loadImage(url).onSuccess { image in
                 self.poster = image
-            }.map { _ in
-            }
+            }.asVoid()
         }
-        let promise = Promise<Void, XikoloError>()
-        promise.success()
-        return promise.future
+        return Future.init(value: ())
     }
 
     func metadata() -> [AVMetadataItem] {

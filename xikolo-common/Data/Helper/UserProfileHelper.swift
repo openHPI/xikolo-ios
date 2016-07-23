@@ -29,17 +29,14 @@ public class UserProfileHelper {
                 if let token = json["token"] as? String {
                     UserProfileHelper.saveToken(token)
                     NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.loginSuccessfulKey, object: nil)
-                    promise.success(token)
-                    return
+                    return promise.success(token)
                 }
-                promise.failure(XikoloError.AuthenticationError)
-                return
+                return promise.failure(XikoloError.AuthenticationError)
             }
             if let error = response.result.error {
-                promise.failure(XikoloError.Network(error))
-                return
+                return promise.failure(XikoloError.Network(error))
             }
-            promise.failure(XikoloError.TotallyUnknownError)
+            return promise.failure(XikoloError.TotallyUnknownError)
         }
         return promise.future
     }
@@ -53,17 +50,14 @@ public class UserProfileHelper {
         ]).responseJSON { response in
             if let json = response.result.value {
                 if (json["id"] as? String) != nil {
-                    promise.success()
-                    return
+                    return promise.success()
                 }
-                promise.failure(XikoloError.TotallyUnknownError)
-                return
+                return promise.failure(XikoloError.TotallyUnknownError)
             }
             if let error = response.result.error {
-                promise.failure(XikoloError.Network(error))
-                return
+                return promise.failure(XikoloError.Network(error))
             }
-            promise.failure(XikoloError.TotallyUnknownError)
+            return promise.failure(XikoloError.TotallyUnknownError)
         }
         return promise.future
     }
@@ -74,10 +68,9 @@ public class UserProfileHelper {
         let url = Routes.ENROLLMENTS_API_URL + courseId
         Alamofire.request(.DELETE, url, headers: NetworkHelper.getRequestHeaders()).response { (request, response, data, error) in
             if let error = error {
-                promise.failure(XikoloError.Network(error))
-                return
+                return promise.failure(XikoloError.Network(error))
             }
-            promise.success()
+            return promise.success()
         }
         return promise.future
     }

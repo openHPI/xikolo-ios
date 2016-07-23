@@ -19,14 +19,12 @@ class UserProfileProvider {
         let url = Routes.MY_PROFILE_API_URL
         Alamofire.request(.GET, url, headers: NetworkHelper.getRequestHeaders()).responseObject() { (response: Response<UserProfile, NSError>) in
             if let user = response.result.value {
-                promise.success(user)
-                return
+                return promise.success(user)
             }
             if let error = response.result.error {
-                promise.failure(XikoloError.Network(error))
-                return
+                return promise.failure(XikoloError.Network(error))
             }
-            promise.failure(XikoloError.TotallyUnknownError)
+            return promise.failure(XikoloError.TotallyUnknownError)
         }
         return promise.future
     }

@@ -16,16 +16,14 @@ class ImageProvider {
         let promise = Promise<UIImage, XikoloError>()
         Alamofire.request(.GET, imageUrl).responseData { response in
             if let error = response.result.error {
-                promise.failure(XikoloError.Network(error))
-                return
+                return promise.failure(XikoloError.Network(error))
             }
             if let data = response.result.value {
                 if let image = UIImage(data: data, scale: 1.0) {
-                    promise.success(image)
-                    return
+                    return promise.success(image)
                 }
             }
-            promise.failure(XikoloError.InvalidData)
+            return promise.failure(XikoloError.InvalidData)
         }
         return promise.future
     }

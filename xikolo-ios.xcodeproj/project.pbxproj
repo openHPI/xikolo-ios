@@ -103,6 +103,8 @@
 		249E3AAF1D43C7C900D7663F /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA91D43C7C900D7663F /* QuizQuestion.swift */; };
 		249E3AB01D43C7C900D7663F /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA91D43C7C900D7663F /* QuizQuestion.swift */; };
 		249E3AB11D43C7C900D7663F /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA91D43C7C900D7663F /* QuizQuestion.swift */; };
+		249E3AB31D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AB21D43CEF400D7663F /* ItemQuizIntroductionController.swift */; };
+		249E3AB41D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AB21D43CEF400D7663F /* ItemQuizIntroductionController.swift */; };
 		249E3AB51D43D88700D7663F /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
 		249E3AB61D43D88800D7663F /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
@@ -529,6 +531,7 @@
 		249E3AA31D43C0A100D7663F /* QuizHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHelper.swift; sourceTree = "<group>"; };
 		249E3AA81D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuizQuestion+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		249E3AA91D43C7C900D7663F /* QuizQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		249E3AB21D43CEF400D7663F /* ItemQuizIntroductionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemQuizIntroductionController.swift; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -781,6 +784,7 @@
 				24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */,
 				24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */,
 				240E03471CE4E0F10078A364 /* LearningsViewController.swift */,
+				249E3AB21D43CEF400D7663F /* ItemQuizIntroductionController.swift */,
 				24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */,
 				249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */,
 				24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */,
@@ -1850,6 +1854,7 @@
 				24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */,
 				24BA412A1D3F9D0B00E38C2C /* ItemVideoLoadingController.swift in Sources */,
 				24BA40B21D3F9ACB00E38C2C /* CourseItemProvider.swift in Sources */,
+				249E3AB41D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
 				24BA40F61D3F9B2F00E38C2C /* MarkdownParser.swift in Sources */,
 				24BA40871D3F9A8E00E38C2C /* BaseModelSpine.swift in Sources */,
 				24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
@@ -1965,6 +1970,7 @@
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
 				2447CE1A1D09C88C00B5C39A /* MarkdownParser.swift in Sources */,
 				24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */,
+				249E3AB31D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
 				24A16D861CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */,
 				24D48E2D1CCA934500E8051E /* CourseHelper.swift in Sources */,
 				24A179F11CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,

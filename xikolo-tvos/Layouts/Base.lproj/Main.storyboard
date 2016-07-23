@@ -427,6 +427,7 @@
                         <outlet property="sectionTableView" destination="aCX-8o-S7l" id="9eP-3q-NnJ"/>
                         <segue destination="YAs-jy-T95" kind="show" identifier="ShowCourseItemRichTextSegue" id="Czr-oS-loG"/>
                         <segue destination="7n4-sb-Pkn" kind="show" identifier="ShowCourseItemVideoSegue" id="SLg-9M-tR3"/>
+                        <segue destination="YSt-lK-Q2X" kind="show" identifier="ShowCourseItemQuizSegue" id="pPg-Ff-s9t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCm-TW-hAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -550,6 +551,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXh-ch-RyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7502" y="695"/>
+        </scene>
+        <!--Item Quiz Introduction Controller-->
+        <scene sceneID="Nnd-ZO-Aqg">
+            <objects>
+                <viewController id="YSt-lK-Q2X" customClass="ItemQuizIntroductionController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jZk-nk-NQx"/>
+                        <viewControllerLayoutGuide type="bottom" id="UdT-iY-4NN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cHv-41-Ie9">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCC-Mw-GM5">
+                                <rect key="frame" x="913" y="75" width="93" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FN-Kc-Av5">
+                                <rect key="frame" x="834" y="794" width="252" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Start Quiz"/>
+                                <connections>
+                                    <action selector="startQuiz:" destination="YSt-lK-Q2X" eventType="primaryActionTriggered" id="jxK-wa-7A1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZ9-YO-hkH">
+                                <rect key="frame" x="240" y="190" width="1440" height="35"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="UdT-iY-4NN" firstAttribute="top" secondItem="9FN-Kc-Av5" secondAttribute="bottom" constant="200" id="3yW-U6-V1w"/>
+                            <constraint firstItem="lCC-Mw-GM5" firstAttribute="top" secondItem="jZk-nk-NQx" secondAttribute="bottom" constant="75" id="BVp-g3-vb0"/>
+                            <constraint firstAttribute="trailing" secondItem="GZ9-YO-hkH" secondAttribute="trailing" constant="240" id="EBd-DO-R32"/>
+                            <constraint firstItem="GZ9-YO-hkH" firstAttribute="leading" secondItem="cHv-41-Ie9" secondAttribute="leading" constant="240" id="Sh0-7U-dSz"/>
+                            <constraint firstItem="9FN-Kc-Av5" firstAttribute="centerX" secondItem="cHv-41-Ie9" secondAttribute="centerX" id="gTS-m9-ZOM"/>
+                            <constraint firstItem="lCC-Mw-GM5" firstAttribute="centerX" secondItem="cHv-41-Ie9" secondAttribute="centerX" id="r50-qu-dyd"/>
+                            <constraint firstItem="GZ9-YO-hkH" firstAttribute="top" secondItem="jZk-nk-NQx" secondAttribute="bottom" constant="190" id="udM-rw-XGw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="GZ9-YO-hkH" id="6P4-1j-lXf"/>
+                        <outlet property="titleView" destination="lCC-Mw-GM5" id="5Fe-oU-iR1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3hE-JC-t2v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7502" y="1911"/>
         </scene>
         <!--Course Tab Bar Controller-->
         <scene sceneID="0AF-rc-gJk">

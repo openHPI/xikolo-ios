@@ -161,6 +161,9 @@ extension LearningsViewController : UICollectionViewDelegate, ItemViewController
 
     func showItem(item: CourseItem) {
         switch item.content {
+            case is Quiz:
+                let quiz = item.content as! Quiz
+                performSegueWithIdentifier("ShowCourseItemQuizSegue", sender: quiz)
             case is RichText:
                 performSegueWithIdentifier("ShowCourseItemRichTextSegue", sender: item)
             case is Video:
@@ -179,6 +182,9 @@ extension LearningsViewController : UICollectionViewDelegate, ItemViewController
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
+            case "ShowCourseItemQuizSegue"?:
+                let vc = segue.destinationViewController as! ItemQuizIntroductionController
+                vc.quiz = sender as! Quiz
             case "ShowCourseItemRichTextSegue"?:
                 let vc = segue.destinationViewController as! ItemRichTextController
                 vc.delegate = self

@@ -88,6 +88,14 @@
 		249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3A991D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift */; };
 		249E3A9C1D41135400D7663F /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
 		249E3A9D1D41135500D7663F /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */; };
+		249E3A9F1D43BF6F00D7663F /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3A9E1D43BF6F00D7663F /* QuizProvider.swift */; };
+		249E3AA01D43BF6F00D7663F /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3A9E1D43BF6F00D7663F /* QuizProvider.swift */; };
+		249E3AA11D43BF6F00D7663F /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3A9E1D43BF6F00D7663F /* QuizProvider.swift */; };
+		249E3AA21D43BF6F00D7663F /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3A9E1D43BF6F00D7663F /* QuizProvider.swift */; };
+		249E3AA41D43C0A100D7663F /* QuizHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA31D43C0A100D7663F /* QuizHelper.swift */; };
+		249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA31D43C0A100D7663F /* QuizHelper.swift */; };
+		249E3AA61D43C0A100D7663F /* QuizHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA31D43C0A100D7663F /* QuizHelper.swift */; };
+		249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA31D43C0A100D7663F /* QuizHelper.swift */; };
 		24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */; };
 		24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -505,6 +513,8 @@
 		249C01B41D3F72B400B54AAC /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		249C01B71D3F72BD00B54AAC /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		249E3A991D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBlurredBackgroundHelper.swift; sourceTree = "<group>"; };
+		249E3A9E1D43BF6F00D7663F /* QuizProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizProvider.swift; sourceTree = "<group>"; };
+		249E3AA31D43C0A100D7663F /* QuizHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHelper.swift; sourceTree = "<group>"; };
 		24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRichTextController.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -929,6 +939,7 @@
 				2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */,
 				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
 				F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */,
+				249E3A9E1D43BF6F00D7663F /* QuizProvider.swift */,
 				2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */,
 				24A16D891CFEF9F800CAD9FE /* VideoProvider.swift */,
 				AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */,
@@ -1106,6 +1117,7 @@
 				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 				2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */,
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
+				249E3AA31D43C0A100D7663F /* QuizHelper.swift */,
 				2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */,
 				24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */,
 				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
@@ -1721,6 +1733,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249E3AA61D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24BA40BE1D3F9ADB00E38C2C /* NewsArticleProvider.swift in Sources */,
 				24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */,
 				24BA40A21D3F9AB500E38C2C /* RichText+CoreDataProperties.swift in Sources */,
@@ -1752,6 +1765,7 @@
 				24BA40E81D3F9B1100E38C2C /* Brand.swift in Sources */,
 				24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
 				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
+				249E3AA11D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				24BA41121D3F9B7F00E38C2C /* NewsTableViewController.swift in Sources */,
 				24BA40B51D3F9AD100E38C2C /* ImageProvider.swift in Sources */,
 				24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
@@ -1805,6 +1819,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24BA40BF1D3F9ADB00E38C2C /* NewsArticleProvider.swift in Sources */,
 				24BA40A31D3F9AB600E38C2C /* RichText+CoreDataProperties.swift in Sources */,
 				24BA41271D3F9D0400E38C2C /* CourseDetailsViewController.swift in Sources */,
@@ -1830,6 +1845,7 @@
 				24BA40791D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */,
 				24BA40A91D3F9ABE00E38C2C /* Video.swift in Sources */,
 				24BA40AF1D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
+				249E3AA21D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				24BA40EC1D3F9B2000E38C2C /* AbstractCourseListViewController.swift in Sources */,
 				24BA40CA1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
 				24BA40E91D3F9B1200E38C2C /* Brand.swift in Sources */,
@@ -1915,6 +1931,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24A16D8B1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
 				2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
@@ -1940,6 +1957,7 @@
 				24A16D8E1CFF302900CAD9FE /* VideoHelper.swift in Sources */,
 				24D48E2F1CCA934A00E8051E /* xikolo.xcdatamodeld in Sources */,
 				AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */,
+				249E3AA01D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */,
 				2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				2490C4C71D1C158B00F42949 /* MainViewController.swift in Sources */,
@@ -1996,6 +2014,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249E3AA41D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24D48E191CCA4FC100E8051E /* Course.swift in Sources */,
 				240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A16D921CFFA72100CAD9FE /* CoreDataHelper.swift in Sources */,
@@ -2027,6 +2046,7 @@
 				24B6514D1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
 				AB9AF2531CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift in Sources */,
 				ABAC56091D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
+				249E3A9F1D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* NewsArticleCell.swift in Sources */,
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,

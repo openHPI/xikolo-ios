@@ -48,6 +48,16 @@
         <attribute name="publish_results_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="show_welcome_page_int" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="time_limit" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="QuizQuestion" inverseName="quiz" inverseEntity="QuizQuestion" syncable="YES"/>
+    </entity>
+    <entity name="QuizQuestion" representedClassName=".QuizQuestion" syncable="YES">
+        <attribute name="explanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="max_points" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="shuffle_answers_int" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Quiz" inverseName="questions" inverseEntity="Quiz" syncable="YES"/>
     </entity>
     <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
@@ -72,7 +82,8 @@
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
         <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="120"/>
-        <element name="Quiz" positionX="828" positionY="198" width="128" height="148"/>
+        <element name="Quiz" positionX="828" positionY="198" width="128" height="165"/>
+        <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="150"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
         <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
     </elements>

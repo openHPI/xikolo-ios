@@ -21,5 +21,6 @@ extension Quiz {
     @NSManaged var time_limit: NSNumber?
     @NSManaged var allowed_attempts: NSNumber?
     @NSManaged var max_points: NSDecimalNumber?
+    @NSManaged var questions: Set<QuizQuestion>?
 
 }

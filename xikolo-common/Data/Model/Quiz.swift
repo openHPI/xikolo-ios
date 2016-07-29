@@ -56,6 +56,7 @@ class QuizSpine : ContentSpine {
             "allowed_attempts": Attribute(),
             "max_points": Attribute(),
             "show_welcome_page_int": Attribute().serializeAs("show_welcome_page"),
+            "questions": ToManyRelationship(QuizQuestionSpine),
         ])
     }
 

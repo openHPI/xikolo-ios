@@ -13,7 +13,7 @@ import Spine
 class VideoProvider {
 
     class func getVideo(videoId: String) -> Future<VideoSpine, XikoloError> {
-        let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
+        let spine = SpineModelHelper.createSpineClient()
         spine.registerResource(VideoSpine)
 
         spine.registerValueFormatter(VideoStreamFormatter())

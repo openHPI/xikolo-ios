@@ -13,7 +13,7 @@ import Spine
 class QuizProvider {
 
     class func getQuiz(quizId: String) -> Future<QuizSpine, XikoloError> {
-        let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
+        let spine = SpineModelHelper.createSpineClient()
         spine.registerResource(QuizSpine)
 
         return spine.findOne(quizId, ofType: QuizSpine.self).map { tuple in

@@ -10,8 +10,26 @@ import BrightFutures
 import CoreData
 import Foundation
 import Result
+import Spine
 
 class SpineModelHelper {
+
+    class func createSpineClient() -> Spine {
+        #if DEBUG
+            Spine.setLogLevel(.Debug, forDomain: .Networking)
+            Spine.setLogLevel(.Debug, forDomain: .Serializing)
+            Spine.setLogLevel(.Debug, forDomain: .Spine)
+        #endif
+
+        let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
+        let httpClient = spine.networkClient as! HTTPClient
+
+        NetworkHelper.getRequestHeaders().forEach { key, value in
+            httpClient.setHeader(key, to: value)
+        }
+
+        return spine
+    }
 
     class func syncObjects(objectsToUpdateRequest: NSFetchRequest, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)

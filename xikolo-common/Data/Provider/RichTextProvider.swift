@@ -13,7 +13,7 @@ import Spine
 class RichTextProvider {
 
     class func getRichText(richTextId: String) -> Future<RichTextSpine, XikoloError> {
-        let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
+        let spine = SpineModelHelper.createSpineClient()
         spine.registerResource(RichTextSpine)
 
         return spine.findOne(richTextId, ofType: RichTextSpine.self).map { tuple in

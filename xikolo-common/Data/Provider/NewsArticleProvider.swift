@@ -13,7 +13,7 @@ import Spine
 class NewsArticleProvider {
 
     class func getNewsArticles() -> Future<[NewsArticleSpine], XikoloError> {
-        let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
+        let spine = SpineModelHelper.createSpineClient()
         spine.registerResource(NewsArticleSpine)
 
         return spine.findAll(NewsArticleSpine).map { tuple in

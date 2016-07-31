@@ -13,7 +13,7 @@ import Spine
 class CourseSectionProvider {
 
     class func getCourseSections(courseId: String) -> Future<[CourseSectionSpine], XikoloError> {
-        let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
+        let spine = SpineModelHelper.createSpineClient()
         spine.registerResource(CourseSectionSpine)
 
         var query: Query<CourseSectionSpine> = Query(resourceType: CourseSectionSpine.self)

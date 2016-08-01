@@ -53,6 +53,13 @@ extension BaseModel {
                     let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: [value], inject: nil, save: false)
                     self.setValue(cdObjects[0], forKey: field.name)
                 }
+            } else if field is ToManyRelationship {
+                if let value = value as? ResourceCollection {
+                    let spineObjects = value.resources as! [BaseModelSpine]
+                    let relatedObjects = self.valueForKey(field.name) as? [BaseModel] ?? []
+                    let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: spineObjects, inject: nil, save: false)
+                    self.setValue(NSSet(array: cdObjects), forKey: field.name)
+                }
             } else {
                 self.setValue(value, forKey: field.name)
             }

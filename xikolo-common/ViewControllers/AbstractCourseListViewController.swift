@@ -28,6 +28,10 @@ class AbstractCourseListViewController : UICollectionViewController {
     }
 
     override func viewDidLoad() {
+        updateView()
+    }
+
+    func updateView() {
         var request: NSFetchRequest
         switch courseDisplayMode {
             case .EnrolledOnly:

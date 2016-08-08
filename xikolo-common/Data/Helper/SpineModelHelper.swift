@@ -28,6 +28,8 @@ class SpineModelHelper {
             httpClient.setHeader(key, to: value)
         }
 
+        spine.registerValueFormatter(EmbeddedObjectsFormatter())
+
         return spine
     }
 

@@ -27,3 +27,33 @@ class CompoundValue : NSObject {
     }
 
 }
+
+protocol EmbeddedObject : NSObjectProtocol {
+
+    init(_ dict: [String: AnyObject])
+
+}
+
+class EmbeddedObjectsAttribute : Attribute {
+
+    let linkedType: EmbeddedObject.Type
+
+    init(_ type: EmbeddedObject.Type) {
+        linkedType = type
+    }
+
+}
+
+struct EmbeddedObjectsFormatter : ValueFormatter {
+
+    func unformat(value: [[String: AnyObject]], attribute: EmbeddedObjectsAttribute) -> AnyObject {
+        let type = attribute.linkedType
+        return value.map { dict in type.init(dict) } as [AnyObject]
+    }
+
+    func format(value: [AnyObject], attribute: EmbeddedObjectsAttribute) -> AnyObject {
+        // Implement in case we need it.
+        return NSNull()
+    }
+    
+}

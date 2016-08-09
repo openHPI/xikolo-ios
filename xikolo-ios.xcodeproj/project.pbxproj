@@ -376,6 +376,10 @@
 		24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
 		24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
 		24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */; };
+		24E3DD181D5DFD5000297118 /* QuizAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD171D5DFD5000297118 /* QuizAnswer.swift */; };
+		24E3DD191D5DFD5000297118 /* QuizAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD171D5DFD5000297118 /* QuizAnswer.swift */; };
+		24E3DD1A1D5DFD5000297118 /* QuizAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD171D5DFD5000297118 /* QuizAnswer.swift */; };
+		24E3DD1B1D5DFD5000297118 /* QuizAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD171D5DFD5000297118 /* QuizAnswer.swift */; };
 		7D190E0D6B4AA51BAE68D0CB /* Pods_openSAP_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA9A0A8ACDB3778D29842F1 /* Pods_openSAP_tvOS.framework */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
@@ -571,6 +575,7 @@
 		24D48E1A1CCA551E00E8051E /* CourseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseProvider.swift; sourceTree = "<group>"; };
 		24D48E201CCA742300E8051E /* NSDate+iso8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+iso8601.swift"; sourceTree = "<group>"; };
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		24E3DD171D5DFD5000297118 /* QuizAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizAnswer.swift; sourceTree = "<group>"; };
 		286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		3EFE4C53E4D0BE59A3B7D3DC /* Pods-openHPI-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -749,6 +754,7 @@
 				24A16D801CFDE6E400CAD9FE /* Quiz.swift */,
 				249E3AA81D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift */,
 				249E3AA91D43C7C900D7663F /* QuizQuestion.swift */,
+				24E3DD171D5DFD5000297118 /* QuizAnswer.swift */,
 				24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */,
 				24A16D771CFDD27200CAD9FE /* RichText.swift */,
 				24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */,
@@ -1805,6 +1811,7 @@
 				24BA40BA1D3F9AD600E38C2C /* RichTextProvider.swift in Sources */,
 				24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */,
 				24BA411A1D3F9B9500E38C2C /* NewsArticleCell.swift in Sources */,
+				24E3DD1A1D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				24BA40891D3F9A9000E38C2C /* Course+CoreDataProperties.swift in Sources */,
 				249E3AAC1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				24BA40811D3F9A8500E38C2C /* CollectionType+dict.swift in Sources */,
@@ -1837,6 +1844,7 @@
 				24BA40BF1D3F9ADB00E38C2C /* NewsArticleProvider.swift in Sources */,
 				24BA40A31D3F9AB600E38C2C /* RichText+CoreDataProperties.swift in Sources */,
 				24BA41271D3F9D0400E38C2C /* CourseDetailsViewController.swift in Sources */,
+				24E3DD1B1D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				24BA40D51D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
 				24BA40BD1D3F9AD900E38C2C /* VideoProvider.swift in Sources */,
 				24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */,
@@ -1951,6 +1959,7 @@
 				24A16D8B1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
 				2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
+				24E3DD191D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */,
 				24A16D7F1CFDE60200CAD9FE /* Content.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
@@ -2092,6 +2101,7 @@
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
 				AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */,
 				2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
+				24E3DD181D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				249E3AAA1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				AB2802D91D2D754F008C8BAE /* NewsArticleHelper.swift in Sources */,

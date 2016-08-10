@@ -12,12 +12,15 @@ class CourseItemCell : UITableViewCell {
 
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var readStateView: UIView!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var progressView: UILabel!
 
     func configure(courseItem: CourseItem) {
         titleView.text = courseItem.title
-        readStateView.backgroundColor = UIColor.greenColor()
+
+        if let iconName = courseItem.iconName {
+            iconView.image = UIImage(named: "item-\(iconName)-160")
+        }
     }
 
 }

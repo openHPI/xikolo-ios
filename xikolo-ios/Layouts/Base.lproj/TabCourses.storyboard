@@ -150,15 +150,21 @@
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4DL-lh-q2e" id="Utk-yk-LoN">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8sq-t2-iJE">
-                                            <rect key="frame" x="48" y="8" width="41" height="28"/>
+                                            <rect key="frame" x="48" y="8" width="28" height="28"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="28" id="3aM-2l-CpV"/>
                                                 <constraint firstAttribute="width" constant="41" id="a01-jM-Kwk"/>
-                                                <constraint firstAttribute="height" constant="27.5" id="cWn-1o-4a0"/>
+                                                <constraint firstAttribute="height" constant="28" id="cWn-1o-4a0"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="a01-jM-Kwk"/>
+                                                </mask>
+                                            </variation>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hN-fd-wGm">
                                             <rect key="frame" x="16" y="13" width="16" height="16"/>
@@ -167,6 +173,11 @@
                                                 <constraint firstAttribute="width" constant="16" id="qp7-xJ-DWQ"/>
                                                 <constraint firstAttribute="height" constant="16" id="ruH-Yz-sex"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geH-1M-GhK" userLabel="progress">
                                             <rect key="frame" x="592" y="21" width="0.0" height="0.0"/>
@@ -175,7 +186,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="850" text="[item title]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lb-me-JVK">
-                                            <rect key="frame" x="97" y="11" width="487" height="21"/>
+                                            <rect key="frame" x="84" y="11" width="500" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -200,7 +211,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="iconImageView" destination="8sq-t2-iJE" id="BGR-qt-Fql"/>
+                                    <outlet property="iconView" destination="8sq-t2-iJE" id="xp3-MS-ldS"/>
                                     <outlet property="progressView" destination="geH-1M-GhK" id="JFd-Ai-djT"/>
                                     <outlet property="readStateView" destination="4hN-fd-wGm" id="fgf-xa-d5M"/>
                                     <outlet property="titleView" destination="8Lb-me-JVK" id="MDU-Ih-C9T"/>

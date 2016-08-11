@@ -2,7 +2,7 @@
 //  QuizQuestion+CoreDataProperties.swift
 //  xikolo-ios
 //
-//  Created by Sebastian Brückner on 28.07.16.
+//  Created by Sebastian Brückner on 11.08.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,6 +20,7 @@ extension QuizQuestion {
     @NSManaged var shuffle_answers_int: NSNumber?
     @NSManaged var text: String?
     @NSManaged var type: String?
+    @NSManaged var answers: [QuizAnswer]?
     @NSManaged var quiz: Quiz?
 
 }

@@ -44,6 +44,7 @@ class ViewControllerLoadingHelper {
 
         activityNameView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         activityNameView.textColor = UIColor.darkGrayColor()
+        activityNameView.text = activityName
 
         activityIndicatorView.color = UIColor.darkGrayColor()
         activityIndicatorView.startAnimating()

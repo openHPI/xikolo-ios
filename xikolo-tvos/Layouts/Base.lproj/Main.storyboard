@@ -598,11 +598,77 @@
                     <connections>
                         <outlet property="textView" destination="GZ9-YO-hkH" id="6P4-1j-lXf"/>
                         <outlet property="titleView" destination="lCC-Mw-GM5" id="5Fe-oU-iR1"/>
+                        <segue destination="vo9-zy-Jdi" kind="show" identifier="QuizShowSegue" id="MSi-9Z-Gjc"/>
+                        <segue destination="vo9-zy-Jdi" kind="custom" identifier="QuizReplaceSegue" customClass="ReplaceSegue" customModule="openHPI" customModuleProvider="target" id="z9C-kn-4yK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3hE-JC-t2v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7502" y="1911"/>
+        </scene>
+        <!--Item Quiz View Controller-->
+        <scene sceneID="sjH-cz-Clm">
+            <objects>
+                <viewController id="vo9-zy-Jdi" customClass="ItemQuizViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Krf-J5-yyG"/>
+                        <viewControllerLayoutGuide type="bottom" id="ktz-th-7GD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kx1-Yx-6e9">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H90-rG-qcd">
+                                <rect key="frame" x="90" y="934" width="228" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="previousQuestion:" destination="vo9-zy-Jdi" eventType="primaryActionTriggered" id="ng6-cT-4gh"/>
+                                    <action selector="showPreviousItem:" destination="YAs-jy-T95" eventType="primaryActionTriggered" id="fqX-Fc-SUh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gG-eB-x7J">
+                                <rect key="frame" x="1670" y="934" width="160" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextQuestion:" destination="vo9-zy-Jdi" eventType="primaryActionTriggered" id="4zD-Hu-xrM"/>
+                                    <action selector="showNextItem:" destination="YAs-jy-T95" eventType="primaryActionTriggered" id="QWT-dA-n5B"/>
+                                </connections>
+                            </button>
+                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTV-JK-kp6" customClass="QuestionIndicatorListView" customModule="openHPI" customModuleProvider="target">
+                                <rect key="frame" x="960" y="60" width="0.0" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="6Mz-x1-PAM"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znz-1Y-rkJ">
+                                <rect key="frame" x="400" y="200" width="1120" height="820"/>
+                            </containerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ktz-th-7GD" firstAttribute="top" secondItem="H90-rG-qcd" secondAttribute="bottom" constant="60" id="BY4-6b-faG"/>
+                            <constraint firstItem="znz-1Y-rkJ" firstAttribute="leading" secondItem="kx1-Yx-6e9" secondAttribute="leading" constant="400" id="Un1-Co-yAP"/>
+                            <constraint firstAttribute="trailing" secondItem="znz-1Y-rkJ" secondAttribute="trailing" constant="400" id="bhL-pe-DvH"/>
+                            <constraint firstItem="qTV-JK-kp6" firstAttribute="top" secondItem="Krf-J5-yyG" secondAttribute="bottom" constant="60" id="d73-IY-c08"/>
+                            <constraint firstItem="ktz-th-7GD" firstAttribute="top" secondItem="4gG-eB-x7J" secondAttribute="bottom" constant="60" id="icO-H2-wGl"/>
+                            <constraint firstItem="H90-rG-qcd" firstAttribute="leading" secondItem="kx1-Yx-6e9" secondAttribute="leading" constant="90" id="lAh-QW-5lp"/>
+                            <constraint firstItem="ktz-th-7GD" firstAttribute="top" secondItem="znz-1Y-rkJ" secondAttribute="bottom" constant="60" id="uXu-US-fxI"/>
+                            <constraint firstAttribute="trailing" secondItem="4gG-eB-x7J" secondAttribute="trailing" constant="90" id="vN8-Xt-xm1"/>
+                            <constraint firstItem="znz-1Y-rkJ" firstAttribute="top" secondItem="Krf-J5-yyG" secondAttribute="bottom" constant="200" id="wa5-62-Guy"/>
+                            <constraint firstItem="qTV-JK-kp6" firstAttribute="centerX" secondItem="kx1-Yx-6e9" secondAttribute="centerX" id="xyd-It-Bs3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="indicatorView" destination="qTV-JK-kp6" id="GO5-XX-hvL"/>
+                        <outlet property="nextButton" destination="4gG-eB-x7J" id="vUG-a0-9tM"/>
+                        <outlet property="previousButton" destination="H90-rG-qcd" id="dFG-JC-z4g"/>
+                        <outlet property="questionView" destination="znz-1Y-rkJ" id="st0-67-ixT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bqz-jM-GtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9629" y="1911"/>
         </scene>
         <!--Course Tab Bar Controller-->
         <scene sceneID="0AF-rc-gJk">
@@ -739,4 +805,7 @@
         <image name="brand-logo-100h" width="409" height="100"/>
         <image name="icon-gear-60" width="60" height="60"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="z9C-kn-4yK"/>
+    </inferredMetricsTieBreakers>
 </document>

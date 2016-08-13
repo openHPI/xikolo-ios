@@ -386,6 +386,8 @@
 		24E3DD191D5DFD5000297118 /* QuizAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD171D5DFD5000297118 /* QuizAnswer.swift */; };
 		24E3DD1A1D5DFD5000297118 /* QuizAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD171D5DFD5000297118 /* QuizAnswer.swift */; };
 		24E3DD1B1D5DFD5000297118 /* QuizAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD171D5DFD5000297118 /* QuizAnswer.swift */; };
+		24E3DD1D1D5E219E00297118 /* ItemQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD1C1D5E219E00297118 /* ItemQuizViewController.swift */; };
+		24E3DD1E1D5E219E00297118 /* ItemQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD1C1D5E219E00297118 /* ItemQuizViewController.swift */; };
 		24E3DD201D6211A100297118 /* QuestionIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */; };
 		24E3DD211D6211A100297118 /* QuestionIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */; };
 		7D190E0D6B4AA51BAE68D0CB /* Pods_openSAP_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA9A0A8ACDB3778D29842F1 /* Pods_openSAP_tvOS.framework */; };
@@ -587,6 +589,7 @@
 		24D48E201CCA742300E8051E /* NSDate+iso8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+iso8601.swift"; sourceTree = "<group>"; };
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		24E3DD171D5DFD5000297118 /* QuizAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizAnswer.swift; sourceTree = "<group>"; };
+		24E3DD1C1D5E219E00297118 /* ItemQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemQuizViewController.swift; sourceTree = "<group>"; };
 		24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionIndicatorView.swift; sourceTree = "<group>"; };
 		286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		3EFE4C53E4D0BE59A3B7D3DC /* Pods-openHPI-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -802,6 +805,7 @@
 				24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */,
 				240E03471CE4E0F10078A364 /* LearningsViewController.swift */,
 				249E3AB21D43CEF400D7663F /* ItemQuizIntroductionController.swift */,
+				24E3DD1C1D5E219E00297118 /* ItemQuizViewController.swift */,
 				240CAA151D64BC760072F96D /* ItemQuizQuestionControllers */,
 				24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */,
 				249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */,
@@ -1891,6 +1895,7 @@
 				24BA40841D3F9A8A00E38C2C /* BaseModel.swift in Sources */,
 				24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
 				24BA40791D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */,
+				24E3DD1E1D5E219E00297118 /* ItemQuizViewController.swift in Sources */,
 				24BA40A91D3F9ABE00E38C2C /* Video.swift in Sources */,
 				24BA40AF1D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
 				249E3AA21D43BF6F00D7663F /* QuizProvider.swift in Sources */,
@@ -2010,6 +2015,7 @@
 				24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */,
 				2448A9D91CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				24A16D8E1CFF302900CAD9FE /* VideoHelper.swift in Sources */,
+				24E3DD1D1D5E219E00297118 /* ItemQuizViewController.swift in Sources */,
 				24D48E2F1CCA934A00E8051E /* xikolo.xcdatamodeld in Sources */,
 				AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */,
 				249E3AA01D43BF6F00D7663F /* QuizProvider.swift in Sources */,

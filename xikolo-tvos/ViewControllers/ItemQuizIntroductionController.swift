@@ -28,8 +28,7 @@ class ItemQuizIntroductionController : UIViewController {
                 self.loadingHelper.stopLoading()
                 self.configureUI()
             } else {
-                // TODO
-                NSLog("Should replace-segue to first question now.")
+                self.performSegueWithIdentifier("QuizReplaceSegue", sender: nil)
             }
         }
     }
@@ -40,8 +39,17 @@ class ItemQuizIntroductionController : UIViewController {
     }
 
     @IBAction func startQuiz(sender: UIButton) {
-        // TODO
-        NSLog("Should segue to first question now.")
+        performSegueWithIdentifier("QuizShowSegue", sender: nil)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+            case "QuizShowSegue"?, "QuizReplaceSegue"?:
+                let vc = segue.destinationViewController as! ItemQuizViewController
+                vc.quiz = quiz
+            default:
+                super.prepareForSegue(segue, sender: sender)
+        }
     }
 
 }

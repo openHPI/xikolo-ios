@@ -10,13 +10,15 @@ import UIKit
 
 class ReplaceSegue : UIStoryboardSegue {
 
+    var animated = true
+
     override func perform() {
         // If the sourceViewController was dismissed before the segue completes, don't continue with the segue.
         if let navigationController = sourceViewController.navigationController {
             var stack = navigationController.viewControllers
             stack[stack.indexOf(sourceViewController)!] = destinationViewController
 
-            navigationController.setViewControllers(stack, animated: false)
+            navigationController.setViewControllers(stack, animated: animated)
         }
     }
 

@@ -26,6 +26,10 @@ class ItemVideoLoadingController : UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
             case "ShowCourseItemVideoSegue"?:
+                // Disable animation so the difference between the loading controller and the actual video controller is invisible.
+                let segue = segue as! ReplaceSegue
+                segue.animated = false
+
                 let vc = segue.destinationViewController as! AVPlayerViewController
                 let video = sender as! Video
                 if let url = video.single_stream_hls_url {

@@ -39,6 +39,8 @@
 		2448A9DC1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */; };
 		2448A9DE1CDCD9F3009A1AEA /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
 		2448A9DF1CDCDCC7009A1AEA /* SpineModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */; };
+		245929921D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */; };
+		245929931D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */; };
 		24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */; };
 		24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */; };
@@ -506,6 +508,7 @@
 		2448A9D51CDA445D009A1AEA /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
 		2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionProvider.swift; sourceTree = "<group>"; };
 		2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpineModelHelper.swift; sourceTree = "<group>"; };
+		245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionIndicatorListView.swift; sourceTree = "<group>"; };
 		24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = xikolo.xcdatamodel; sourceTree = "<group>"; };
 		24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
@@ -860,6 +863,7 @@
 				240E03491CE6160D0078A364 /* CourseSectionCell.swift */,
 				2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */,
 				24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */,
+				245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1854,6 +1858,7 @@
 				24BA41271D3F9D0400E38C2C /* CourseDetailsViewController.swift in Sources */,
 				24E3DD1B1D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				24BA40D51D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
+				245929931D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */,
 				24BA40BD1D3F9AD900E38C2C /* VideoProvider.swift in Sources */,
 				24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */,
 				24BA412A1D3F9D0B00E38C2C /* ItemVideoLoadingController.swift in Sources */,
@@ -1971,6 +1976,7 @@
 				2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				24E3DD191D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */,
+				245929921D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */,
 				24A16D7F1CFDE60200CAD9FE /* Content.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
 				2447CE1A1D09C88C00B5C39A /* MarkdownParser.swift in Sources */,

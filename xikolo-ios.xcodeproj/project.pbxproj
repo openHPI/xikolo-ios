@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240CAA131D649E980072F96D /* AbstractQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */; };
+		240CAA141D649E980072F96D /* AbstractQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */; };
 		240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
 		240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
 		240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03471CE4E0F10078A364 /* LearningsViewController.swift */; };
@@ -490,6 +492,7 @@
 /* Begin PBXFileReference section */
 		0363807390E0CD6A7F3DFE25 /* Pods-openHPI-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		0BB2EE40302E6F69C25A0E68 /* Pods-openHPI-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
+		240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractQuestionViewController.swift; sourceTree = "<group>"; };
 		240E03441CE38D590078A364 /* CourseSectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionHelper.swift; sourceTree = "<group>"; };
 		240E03471CE4E0F10078A364 /* LearningsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningsViewController.swift; sourceTree = "<group>"; };
 		240E03491CE6160D0078A364 /* CourseSectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionCell.swift; sourceTree = "<group>"; };
@@ -724,6 +727,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		240CAA151D64BC760072F96D /* ItemQuizQuestionControllers */ = {
+			isa = PBXGroup;
+			children = (
+				240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */,
+			);
+			path = ItemQuizQuestionControllers;
+			sourceTree = "<group>";
+		};
 		241D4AEA1CC9918600E35B1F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +802,7 @@
 				24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */,
 				240E03471CE4E0F10078A364 /* LearningsViewController.swift */,
 				249E3AB21D43CEF400D7663F /* ItemQuizIntroductionController.swift */,
+				240CAA151D64BC760072F96D /* ItemQuizQuestionControllers */,
 				24A16D661CF840CB00CAD9FE /* ItemRichTextController.swift */,
 				249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */,
 				24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */,
@@ -1905,6 +1917,7 @@
 				24BA40B41D3F9ACE00E38C2C /* CourseSectionProvider.swift in Sources */,
 				24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
 				24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
+				240CAA141D649E980072F96D /* AbstractQuestionViewController.swift in Sources */,
 				24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */,
 				24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */,
 				249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
@@ -2023,6 +2036,7 @@
 				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
 				24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */,
 				24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
+				240CAA131D649E980072F96D /* AbstractQuestionViewController.swift in Sources */,
 				24D48E2C1CCA934300E8051E /* UserProfileHelper.swift in Sources */,
 				24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */,
 				249E3A9A1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,

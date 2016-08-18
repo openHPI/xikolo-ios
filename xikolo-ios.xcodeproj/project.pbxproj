@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		240CAA131D649E980072F96D /* AbstractQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */; };
 		240CAA141D649E980072F96D /* AbstractQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */; };
+		240CAA171D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA161D64BCEE0072F96D /* ChoiceQuestionViewController.swift */; };
+		240CAA181D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA161D64BCEE0072F96D /* ChoiceQuestionViewController.swift */; };
+		240CAA1A1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA191D65EB930072F96D /* ChoiceAnswerCell.swift */; };
+		240CAA1B1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA191D65EB930072F96D /* ChoiceAnswerCell.swift */; };
 		240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
 		240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03441CE38D590078A364 /* CourseSectionHelper.swift */; };
 		240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E03471CE4E0F10078A364 /* LearningsViewController.swift */; };
@@ -495,6 +499,8 @@
 		0363807390E0CD6A7F3DFE25 /* Pods-openHPI-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		0BB2EE40302E6F69C25A0E68 /* Pods-openHPI-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractQuestionViewController.swift; sourceTree = "<group>"; };
+		240CAA161D64BCEE0072F96D /* ChoiceQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceQuestionViewController.swift; sourceTree = "<group>"; };
+		240CAA191D65EB930072F96D /* ChoiceAnswerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceAnswerCell.swift; sourceTree = "<group>"; };
 		240E03441CE38D590078A364 /* CourseSectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionHelper.swift; sourceTree = "<group>"; };
 		240E03471CE4E0F10078A364 /* LearningsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningsViewController.swift; sourceTree = "<group>"; };
 		240E03491CE6160D0078A364 /* CourseSectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionCell.swift; sourceTree = "<group>"; };
@@ -734,6 +740,7 @@
 			isa = PBXGroup;
 			children = (
 				240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */,
+				240CAA161D64BCEE0072F96D /* ChoiceQuestionViewController.swift */,
 			);
 			path = ItemQuizQuestionControllers;
 			sourceTree = "<group>";
@@ -880,6 +887,7 @@
 				2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */,
 				24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */,
 				245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */,
+				240CAA191D65EB930072F96D /* ChoiceAnswerCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1888,6 +1896,7 @@
 				24BA40C71D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
 				24BA409D1D3F9AAE00E38C2C /* Content.swift in Sources */,
 				24BA412D1D3F9D1300E38C2C /* CourseHeaderView.swift in Sources */,
+				240CAA1B1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24BA40D11D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
 				24BA41241D3F9CFD00E38C2C /* MainViewController.swift in Sources */,
 				24BA40D71D3F9AF600E38C2C /* VideoHelper.swift in Sources */,
@@ -1944,6 +1953,7 @@
 				24E3DD211D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				24BA40C41D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
 				249E3AAD1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
+				240CAA181D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */,
 				24BA40941D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */,
 				24BA40C11D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
 				24BA40921D3F9A9900E38C2C /* CourseItem.swift in Sources */,
@@ -2008,6 +2018,7 @@
 				AB2802CA1D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift in Sources */,
 				24D48E281CCA92C800E8051E /* UserProfile.swift in Sources */,
 				24D48E291CCA92CB00E8051E /* CourseProvider.swift in Sources */,
+				240CAA1A1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24128FAD1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
 				24A16D7D1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,
 				ABAC560A1D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
@@ -2064,6 +2075,7 @@
 				24E3DD201D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				2490C4C91D1C486100F42949 /* CourseHeaderView.swift in Sources */,
 				249E3AAB1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
+				240CAA171D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */,
 				24895DC31CCC09C700D6DFB8 /* ImageHelper.swift in Sources */,
 				2447CE1D1D0AF32200B5C39A /* RichTextProvider.swift in Sources */,
 				2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */,

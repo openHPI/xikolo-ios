@@ -21,6 +21,22 @@ class QuizQuestion : BaseModel {
         }
     }
 
+    var questionType: QuizQuestionType {
+        if type == nil {
+            return .Unsupported
+        }
+        switch type! {
+            case "multiple_choice":
+                return .SingleChoice
+            case "multiple_answer":
+                return .MultipleChoice
+            case "free_text":
+                return .FreeText
+            default:
+                return .Unsupported
+        }
+    }
+
 }
 
 class QuizQuestionSpine : BaseModelSpine {
@@ -51,4 +67,11 @@ class QuizQuestionSpine : BaseModelSpine {
         ])
     }
 
+}
+
+enum QuizQuestionType {
+    case SingleChoice
+    case MultipleChoice
+    case FreeText
+    case Unsupported
 }

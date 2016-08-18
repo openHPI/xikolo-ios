@@ -17,6 +17,8 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 66
+
+        tableView.allowsMultipleSelection = question.questionType == .MultipleChoice
     }
 
 }
@@ -36,6 +38,18 @@ extension ChoiceQuestionViewController : UITableViewDataSource {
         let answer = question.answers![indexPath.row]
         cell.configure(answer)
         return cell
+    }
+
+}
+
+extension ChoiceQuestionViewController : UITableViewDelegate {
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+    }
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
     }
 
 }

@@ -25,6 +25,12 @@ class ItemQuizViewController : UIViewController {
             updateCurrentQuestion()
         }
     }
+    var questionViewController: AbstractQuestionViewController?
+
+    weak var customPreferredFocusedView: UIView!
+    override weak var preferredFocusedView: UIView? {
+        return customPreferredFocusedView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +69,33 @@ class ItemQuizViewController : UIViewController {
     func updateCurrentQuestion() {
         indicatorView.activeQuestion = questions[currentQuestion]
         updateButtons()
+        updateQuestionView()
+    }
+
+    func updateQuestionView() {
+        // TODO: Animation?
+        if let vc = questionViewController {
+            vc.willMoveToParentViewController(nil)
+            vc.view.removeFromSuperview()
+            vc.removeFromParentViewController()
+            questionViewController = nil
+        }
+
+        // TODO: Different question types
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
+
+        vc.question = questions[currentQuestion]
+
+        questionView.addSubview(vc.view)
+        vc.view.frame = questionView.bounds
+        addChildViewController(vc)
+        vc.didMoveToParentViewController(self)
+
+        questionFocusGuide.preferredFocusedView = vc.preferredFocusedView
+
+        questionViewController = vc
+        customPreferredFocusedView = vc.preferredFocusedView
     }
 
     @IBAction func previousQuestion(sender: UIButton) {
@@ -84,6 +117,7 @@ class ItemQuizViewController : UIViewController {
         } else {
             nextButton.hidden = false
         }
+        setNeedsFocusUpdate()
     }
 
 }

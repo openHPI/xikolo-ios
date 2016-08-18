@@ -12,6 +12,8 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var answers: [QuizAnswer]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +21,12 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
         tableView.estimatedRowHeight = 66
 
         tableView.allowsMultipleSelection = question.questionType == .MultipleChoice
+
+        if question.shuffle_answers {
+            answers = question.answers?.shuffle() ?? []
+        } else {
+            answers = question.answers ?? []
+        }
     }
 
 }
@@ -30,12 +38,12 @@ extension ChoiceQuestionViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return question.answers?.count ?? 0
+        return answers.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChoiceAnswerCell") as! ChoiceAnswerCell
-        let answer = question.answers![indexPath.row]
+        let answer = answers[indexPath.row]
         cell.configure(answer)
         return cell
     }

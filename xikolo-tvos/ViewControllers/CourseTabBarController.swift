@@ -12,4 +12,13 @@ class CourseTabBarController : UITabBarController {
 
     var course: Course!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if course.is_enrolled {
+            // If the user is already enrolled, directly switch to learnings tab.
+            selectedIndex = 1
+        }
+    }
+
 }

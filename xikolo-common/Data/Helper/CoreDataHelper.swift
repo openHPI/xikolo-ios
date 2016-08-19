@@ -15,7 +15,8 @@ class CoreDataHelper {
         let fileManager = NSFileManager.defaultManager()
 
         #if os(tvOS)
-            return fileManager.containerURLForSecurityApplicationGroupIdentifier(Brand.APP_GROUP_ID)!
+            let groupURL = fileManager.containerURLForSecurityApplicationGroupIdentifier(Brand.APP_GROUP_ID)!
+            return groupURL.URLByAppendingPathComponent("Library/Caches")
         #else
             let urls = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
             return urls[urls.count-1]

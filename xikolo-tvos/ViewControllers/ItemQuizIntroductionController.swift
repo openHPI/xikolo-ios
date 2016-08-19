@@ -15,10 +15,18 @@ class ItemQuizIntroductionController : UIViewController {
 
     var quiz: Quiz!
 
+    var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
     var loadingHelper: ViewControllerLoadingHelper!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let course = quiz.item?.section?.course {
+            backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
+            course.loadImage().onSuccess { image in
+                self.backgroundImageHelper.imageView.image = image
+            }
+        }
 
         loadingHelper = ViewControllerLoadingHelper(self, rootView: view)
         loadingHelper.startLoading(quiz.item?.title ?? NSLocalizedString("Loading", comment: "Loading"))

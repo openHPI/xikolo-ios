@@ -10,6 +10,8 @@ import UIKit
 
 class ViewControllerLoadingHelper {
 
+    static let DoNotHideViewTag = 0xdeadbeef
+
     weak var viewController: UIViewController!
     weak var rootView: UIView!
     var originalViews: [UIView]!
@@ -28,7 +30,7 @@ class ViewControllerLoadingHelper {
     }
 
     func startLoading(activityName: String) {
-        originalViews = rootView.subviews.filter { !$0.hidden }
+        originalViews = rootView.subviews.filter { !$0.hidden && $0.tag != self.dynamicType.DoNotHideViewTag }
 
         for view in originalViews {
             view.hidden = true

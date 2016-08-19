@@ -32,8 +32,17 @@ class ItemQuizViewController : UIViewController {
         return customPreferredFocusedView
     }
 
+    var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let course = quiz.item?.section?.course {
+            backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
+            course.loadImage().onSuccess { image in
+                self.backgroundImageHelper.imageView.image = image
+            }
+        }
 
         if let quizQuestions = quiz.questions {
             // TODO: Correctly sort questions

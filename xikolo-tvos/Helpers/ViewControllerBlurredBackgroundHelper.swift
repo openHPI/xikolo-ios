@@ -17,6 +17,7 @@ class ViewControllerBlurredBackgroundHelper {
         self.rootView = rootView
 
         imageView = UIImageView()
+        imageView.tag = ViewControllerLoadingHelper.DoNotHideViewTag
         imageView.frame = rootView.frame
 
         let blurEffect = UIBlurEffect(style: .ExtraLight)

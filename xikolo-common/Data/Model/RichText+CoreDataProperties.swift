@@ -2,7 +2,7 @@
 //  RichText+CoreDataProperties.swift
 //  xikolo-ios
 //
-//  Created by Sebastian Brückner on 09.06.16.
+//  Created by Sebastian Brückner on 19.08.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,6 +14,6 @@ import CoreData
 
 extension RichText {
 
-    @NSManaged var markup: String?
+    @NSManaged var text: String?
 
 }

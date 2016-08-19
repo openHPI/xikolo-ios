@@ -42,7 +42,7 @@
     </entity>
     <entity name="Quiz" representedClassName=".Quiz" parentEntity="Content" syncable="YES"/>
     <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES">
-        <attribute name="markup" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Video" representedClassName=".Video" parentEntity="Content" syncable="YES">
         <attribute name="audio_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -65,7 +65,7 @@
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
         <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="120"/>
         <element name="Quiz" positionX="828" positionY="198" width="128" height="45"/>
-        <element name="RichText" positionX="837" positionY="90" width="128" height="58"/>
+        <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
         <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
     </elements>
 </model>

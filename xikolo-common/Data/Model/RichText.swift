@@ -20,20 +20,20 @@ class RichText : Content {
 
 class RichTextSpine : ContentSpine {
 
-    var markup: String?
-    
+    var text: String?
+
     override class var cdType: BaseModel.Type {
         return RichText.self
     }
-    
+
     override class var resourceType: ResourceType {
         return "rich-texts"
     }
-    
+
     override class var fields: [Field] {
         return fieldsFromDictionary([
-            "markup": Attribute(),
+            "text": Attribute(),
         ])
     }
-    
+
 }

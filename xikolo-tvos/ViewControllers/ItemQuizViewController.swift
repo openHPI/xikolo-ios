@@ -90,21 +90,32 @@ class ItemQuizViewController : UIViewController {
             questionViewController = nil
         }
 
-        // TODO: Different question types
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
+        let question = questions[currentQuestion]
 
-        vc.question = questions[currentQuestion]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc: AbstractQuestionViewController!
+        switch question.questionType {
+            case .SingleChoice, .MultipleChoice:
+                vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
+            default:
+                vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
+        }
+        vc.question = question
 
         questionView.addSubview(vc.view)
         vc.view.frame = questionView.bounds
         addChildViewController(vc)
         vc.didMoveToParentViewController(self)
 
-        questionFocusGuide.preferredFocusedView = vc.preferredFocusedView
+        if vc is UnsupportedQuestionViewController {
+            questionFocusGuide.preferredFocusedView = previousButton
+            customPreferredFocusedView = nextButton
+        } else {
+            questionFocusGuide.preferredFocusedView = vc.preferredFocusedView
+            customPreferredFocusedView = vc.preferredFocusedView
+        }
 
         questionViewController = vc
-        customPreferredFocusedView = vc.preferredFocusedView
     }
 
     @IBAction func previousQuestion(sender: UIButton) {

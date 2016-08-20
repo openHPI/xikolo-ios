@@ -875,6 +875,50 @@
             </objects>
             <point key="canvasLocation" x="11362" y="1979"/>
         </scene>
+        <!--Unsupported Question View Controller-->
+        <scene sceneID="BX9-O5-Y3F">
+            <objects>
+                <viewController storyboardIdentifier="UnsupportedQuestionViewController" id="gsP-Q1-KWJ" customClass="UnsupportedQuestionViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4tN-ty-JXG"/>
+                        <viewControllerLayoutGuide type="bottom" id="ou3-m9-QLl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u1x-dA-Hkw">
+                        <rect key="frame" x="0.0" y="0.0" width="1120" height="820"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZk-tk-K6b">
+                                <rect key="frame" x="0.0" y="0.0" width="1120" height="35"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unfortunately, this type of question is unsupported on tvOS. Please use a different device to answer this question." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-uC-mYv">
+                                <rect key="frame" x="0.0" y="95" width="1120" height="71"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="MhK-uC-mYv" firstAttribute="top" secondItem="xZk-tk-K6b" secondAttribute="bottom" constant="60" id="9O8-Ba-mM6"/>
+                            <constraint firstItem="xZk-tk-K6b" firstAttribute="top" secondItem="4tN-ty-JXG" secondAttribute="bottom" id="DUB-ue-aX4"/>
+                            <constraint firstItem="MhK-uC-mYv" firstAttribute="leading" secondItem="u1x-dA-Hkw" secondAttribute="leading" id="MXx-cx-URx"/>
+                            <constraint firstItem="xZk-tk-K6b" firstAttribute="leading" secondItem="u1x-dA-Hkw" secondAttribute="leading" id="Mmm-H0-Q9q"/>
+                            <constraint firstAttribute="trailing" secondItem="MhK-uC-mYv" secondAttribute="trailing" id="hPt-B2-3Qf"/>
+                            <constraint firstAttribute="trailing" secondItem="xZk-tk-K6b" secondAttribute="trailing" id="xlE-Uw-hEX"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1120" height="820"/>
+                    <connections>
+                        <outlet property="textView" destination="xZk-tk-K6b" id="btj-V2-R4k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BnZ-8F-04c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11362" y="2876"/>
+        </scene>
     </scenes>
     <resources>
         <image name="brand-logo-100h" width="409" height="100"/>

@@ -33,6 +33,8 @@
 		2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */; };
 		243CE4731D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4721D660F1F007C59B6 /* CollectionType+shuffle.swift */; };
 		243CE4741D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4721D660F1F007C59B6 /* CollectionType+shuffle.swift */; };
+		243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4751D6B1639007C59B6 /* UnsupportedQuestionViewController.swift */; };
+		243CE4771D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4751D6B1639007C59B6 /* UnsupportedQuestionViewController.swift */; };
 		2447CE191D09C87A00B5C39A /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE181D09C87A00B5C39A /* MarkdownParser.swift */; };
 		2447CE1A1D09C88C00B5C39A /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE181D09C87A00B5C39A /* MarkdownParser.swift */; };
 		2447CE1C1D0AF32200B5C39A /* RichTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */; };
@@ -515,6 +517,7 @@
 		2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
 		2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
 		243CE4721D660F1F007C59B6 /* CollectionType+shuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+shuffle.swift"; sourceTree = "<group>"; };
+		243CE4751D6B1639007C59B6 /* UnsupportedQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsupportedQuestionViewController.swift; sourceTree = "<group>"; };
 		2447CE181D09C87A00B5C39A /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextProvider.swift; sourceTree = "<group>"; };
 		2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextHelper.swift; sourceTree = "<group>"; };
@@ -744,6 +747,7 @@
 			children = (
 				240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */,
 				240CAA161D64BCEE0072F96D /* ChoiceQuestionViewController.swift */,
+				243CE4751D6B1639007C59B6 /* UnsupportedQuestionViewController.swift */,
 			);
 			path = ItemQuizQuestionControllers;
 			sourceTree = "<group>";
@@ -1954,6 +1958,7 @@
 				24BA40B81D3F9AD400E38C2C /* UserProfileProvider.swift in Sources */,
 				24BA40901D3F9A9700E38C2C /* CourseItem+CoreDataProperties.swift in Sources */,
 				24BA40DD1D3F9AFF00E38C2C /* Error.swift in Sources */,
+				243CE4771D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
 				24BA40961D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
 				24E3DD211D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				24BA40C41D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
@@ -2077,6 +2082,7 @@
 				24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */,
 				AB2802CF1D2AAEC9008C8BAE /* NewsArticleProvider.swift in Sources */,
 				2447CE201D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
+				243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
 				2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				24E3DD201D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				2490C4C91D1C486100F42949 /* CourseHeaderView.swift in Sources */,

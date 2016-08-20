@@ -30,7 +30,6 @@ class NewsTableViewController : UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-        NewsArticleHelper.syncNewsArticles()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

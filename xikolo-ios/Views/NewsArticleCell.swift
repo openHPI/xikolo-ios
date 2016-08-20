@@ -26,7 +26,9 @@ class NewsArticleCell : UITableViewCell {
         }
 
         titleView.text = newsArticle.title
-        descriptionView.text = newsArticle.text
+        if let newsText = newsArticle.text {
+            descriptionView.attributedText = MarkdownParser.parse(newsText)
+        }
     }
 
 }

@@ -47,7 +47,7 @@ class CourseContentTableViewController: UITableViewController {
         switch item.content {
             case is Video:
                 performSegueWithIdentifier("ShowVideoView", sender: item)
-            case is Quiz:
+            case is LTIExercise, is Quiz, is PeerAssessment:
                 performSegueWithIdentifier("ShowQuizWebView", sender: item)
             case is RichText:
                 performSegueWithIdentifier("ShowRichTextView", sender: item)
@@ -58,28 +58,27 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let courseItem = sender as? CourseItem
         switch segue.identifier! {
         case "ShowVideoView":
             let videoView = segue.destinationViewController as! VideoViewController
-            let item = sender as! CourseItem
-            videoView.courseItem = item
+            videoView.courseItem = courseItem
             break
         case "ShowQuizWebView":
             let webView = segue.destinationViewController as! WebViewController
-            let courseItem = sender as! CourseItem
-            if let courseID = courseItem.section?.course?.id {
+            if let courseID = courseItem!.section?.course?.id {
                 let courseURL = Routes.COURSES_URL + courseID
-                let quizpathURL = "/items/" + courseItem.id
+                let quizpathURL = "/items/" + courseItem!.id
                 let url = courseURL + quizpathURL
                 webView.url = url
             }
             break
         case "ShowRichTextView":
             let richtextView = segue.destinationViewController as! RichtextViewController
-            richtextView.courseItem = sender as! CourseItem
+            richtextView.courseItem = courseItem
             break
         default:
-            break
+            super.prepareForSegue(segue, sender: sender)
         }
     }
 

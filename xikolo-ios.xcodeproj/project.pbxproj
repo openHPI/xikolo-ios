@@ -520,6 +520,8 @@
 		ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		ABAC56091D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		ABAC560A1D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
+		ABC8A14D1D6895A00059CEF2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
+		ABC8A14E1D6895A00059CEF2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
 		ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */; };
 		BBCD1F7365EF38979197C0CE /* Pods_openHPI_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37D28B951796642F9337FBF /* Pods_openHPI_tvOS_TopShelf.framework */; };
 		E6EDDBD1946C11E27237DCE5 /* Pods_openHPI_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */; };
@@ -740,6 +742,7 @@
 		ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHPI4.ttf; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
+		ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E711C93FE9752419B308E0 /* Pods-openSAP-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1176,6 +1179,7 @@
 				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
 				AB9AF2CE1CF4C50400ED3EB0 /* QuizWebViewController.swift */,
 				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
+				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -1980,6 +1984,7 @@
 				24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */,
 				24BA411A1D3F9B9500E38C2C /* NewsArticleCell.swift in Sources */,
 				24E3DD1A1D5DFD5000297118 /* QuizAnswer.swift in Sources */,
+				ABC8A14E1D6895A00059CEF2 /* WebViewController.swift in Sources */,
 				24BA40891D3F9A9000E38C2C /* Course+CoreDataProperties.swift in Sources */,
 				243CE49D1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				2474C85E1D86FBFB009BDB94 /* SpineHelper.swift in Sources */,
@@ -2337,6 +2342,7 @@
 				AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */,
 				2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				24E3DD181D5DFD5000297118 /* QuizAnswer.swift in Sources */,
+				ABC8A14D1D6895A00059CEF2 /* WebViewController.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				2474C85C1D86FBFB009BDB94 /* SpineHelper.swift in Sources */,
 				243CE49B1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,

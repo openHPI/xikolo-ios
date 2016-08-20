@@ -65,8 +65,14 @@ class CourseContentTableViewController: UITableViewController {
             videoView.courseItem = item
             break
         case "ShowQuizWebView":
-            let quizView = segue.destinationViewController as! QuizWebViewController
-            quizView.courseItem = sender as! CourseItem
+            let webView = segue.destinationViewController as! WebViewController
+            let courseItem = sender as! CourseItem
+            if let courseID = courseItem.section?.course?.id {
+                let courseURL = Routes.COURSES_URL + courseID
+                let quizpathURL = "/items/" + courseItem.id
+                let url = courseURL + quizpathURL
+                webView.url = url
+            }
             break
         case "ShowRichTextView":
             let richtextView = segue.destinationViewController as! RichtextViewController

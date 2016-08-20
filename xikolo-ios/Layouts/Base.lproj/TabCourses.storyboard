@@ -330,10 +330,10 @@
             </objects>
             <point key="canvasLocation" x="2481" y="-897"/>
         </scene>
-        <!--Quiz Web View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="m7r-16-ntP">
             <objects>
-                <viewController storyboardIdentifier="QuizWebViewController" id="qTX-IX-O1x" customClass="QuizWebViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" id="qTX-IX-O1x" customClass="WebViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NZW-dL-rfb"/>
                         <viewControllerLayoutGuide type="bottom" id="1e2-yo-2eV"/>
@@ -345,6 +345,9 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yh9-YM-hqK">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.95927601809954743" green="0.95927601809954743" blue="0.95927601809954743" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qTX-IX-O1x" id="7zd-Bp-gHi"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -370,7 +373,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="quizWebView" destination="Yh9-YM-hqK" id="jZP-EE-1rZ"/>
+                        <outlet property="webView" destination="Yh9-YM-hqK" id="qxa-8e-23e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTA-nh-Qzk" userLabel="First Responder" sceneMemberID="firstResponder"/>

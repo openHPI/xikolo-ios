@@ -34,7 +34,7 @@ class Video : Content {
         if let course_item = self.item, item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {
             items.append(item)
         }
-        if let item = AVMetadataItem.item(AVMetadataCommonIdentifierDescription, value: video_description) {
+        if let item = AVMetadataItem.item(AVMetadataCommonIdentifierDescription, value: summary) {
             items.append(item)
         }
         if let poster = poster, item = AVMetadataItem.artworkItem(poster) {
@@ -47,13 +47,12 @@ class Video : Content {
 
 class VideoSpine : ContentSpine {
 
-    var video_description: String?
+    var summary: String?
     var duration: NSNumber?
 
-    var audio_url: String?
-    var subtitles_url: String?
-    var transcript_url: String?
-    var slides_url: String?
+    var transcript_url: NSURL?
+    var thumbnail_url: NSURL?
+    var slides_url: NSURL?
 
     var single_stream: VideoStreamSpine?
     var dual_stream: DualStreamSpine?
@@ -68,12 +67,11 @@ class VideoSpine : ContentSpine {
 
     override class var fields: [Field] {
         return fieldsFromDictionary([
-            "video_description": Attribute().serializeAs("description"),
+            "summary": Attribute(),
             "duration": Attribute(),
-            "audio_url": Attribute(),
-            "subtitles_url": Attribute(),
-            "transcript_url": Attribute(),
-            "slides_url": Attribute(),
+            "transcript_url": URLAttribute(baseURL: NSURL(string: Brand.BaseURL)!),
+            "thumbnail_url": URLAttribute(baseURL: NSURL(string: Brand.BaseURL)!),
+            "slides_url": URLAttribute(baseURL: NSURL(string: Brand.BaseURL)!),
             "single_stream": VideoStreamAttribute(),
             "dual_stream": DualStreamAttribute(),
         ])

@@ -80,18 +80,17 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Video" representedClassName=".Video" parentEntity="Content" syncable="YES">
-        <attribute name="audio_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="single_stream_hls_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="single_stream_poster_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="slides_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="slides_url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="stream_a_hls_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stream_a_poster_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stream_b_hls_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stream_b_poster_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="subtitles_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="transcript_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="video_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="transcript_url" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
@@ -105,6 +104,6 @@
         <element name="Quiz" positionX="828" positionY="198" width="128" height="163"/>
         <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="163"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
-        <element name="Video" positionX="655" positionY="-99" width="128" height="223"/>
+        <element name="Video" positionX="655" positionY="-99" width="128" height="210"/>
     </elements>
 </model>

@@ -22,4 +22,7 @@ class AbstractQuestionViewController : UIViewController {
         }
     }
 
+    func saveSubmission() {
+    }
+
 }

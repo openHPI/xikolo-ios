@@ -88,6 +88,9 @@ class ItemQuizViewController : UIViewController {
     func updateQuestionView() {
         // TODO: Animation?
         if let vc = questionViewController {
+            vc.saveSubmission()
+
+            // Hide ViewController
             vc.willMoveToParentViewController(nil)
             vc.view.removeFromSuperview()
             vc.removeFromParentViewController()

@@ -18,4 +18,8 @@ class QuizAnswerSubmission : NSObject, EmbeddedObject {
         text = dict["user_answer_text"] as? String
     }
 
+    init(answer: QuizAnswer) {
+        id = answer.id
+    }
+
 }

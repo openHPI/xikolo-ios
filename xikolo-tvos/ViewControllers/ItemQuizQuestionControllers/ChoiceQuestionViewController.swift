@@ -27,6 +27,34 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
         } else {
             answers = question.answers ?? []
         }
+
+        loadSubmission()
+    }
+
+    func loadSubmission() {
+        guard let submissionAnswers = question.submission?.answers else {
+            return
+        }
+        for answerSubmission in submissionAnswers {
+            guard let index = answers.indexOf({ $0.id == answerSubmission }) else {
+                continue
+            }
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+            tableView(tableView, didSelectRowAtIndexPath: indexPath)
+        }
+    }
+
+    override func saveSubmission() {
+        question.submission = nil
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            let answers = indexPaths.map { self.answers[$0.row] }
+            if answers.count > 0 {
+                let submission = QuizQuestionSubmission(question: question)
+                submission.answers = answers.map { $0.id }.filter { $0 != nil }.map { $0! }
+                question.submission = submission
+            }
+        }
     }
 
 }

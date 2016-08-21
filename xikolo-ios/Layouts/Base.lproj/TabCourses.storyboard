@@ -423,14 +423,6 @@
                                                 <rect key="frame" x="261" y="383" width="78" height="30"/>
                                                 <state key="normal" title="open slides"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-BP-h5m">
-                                                <rect key="frame" x="20" y="421" width="59" height="30"/>
-                                                <state key="normal" title="previous"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-pA-0CD">
-                                                <rect key="frame" x="550" y="421" width="30" height="30"/>
-                                                <state key="normal" title="next"/>
-                                            </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sTP-0O-gWC">
                                                 <rect key="frame" x="20" y="375" width="560" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -443,7 +435,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="wD6-BP-h5m" firstAttribute="top" secondItem="e3P-4C-sVC" secondAttribute="bottom" constant="8" symbolic="YES" id="0gy-aD-yk0"/>
                                             <constraint firstAttribute="trailing" secondItem="HQq-V5-oXY" secondAttribute="trailing" id="4D7-03-sdo"/>
                                             <constraint firstAttribute="trailing" secondItem="sTP-0O-gWC" secondAttribute="trailing" constant="20" symbolic="YES" id="DxR-eq-yVt"/>
                                             <constraint firstItem="sTP-0O-gWC" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="G9r-CG-pl2"/>
@@ -451,9 +442,6 @@
                                             <constraint firstItem="Xms-E7-0kp" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="VjH-WD-wUq"/>
                                             <constraint firstItem="sTP-0O-gWC" firstAttribute="top" secondItem="Xms-E7-0kp" secondAttribute="bottom" constant="8" symbolic="YES" id="Vn7-AF-b4w"/>
                                             <constraint firstItem="HQq-V5-oXY" firstAttribute="top" secondItem="ZpX-LD-XKR" secondAttribute="top" id="Xyc-3V-BKE"/>
-                                            <constraint firstItem="TMS-pA-0CD" firstAttribute="top" secondItem="e3P-4C-sVC" secondAttribute="bottom" constant="8" symbolic="YES" id="epD-Jo-kBU"/>
-                                            <constraint firstItem="wD6-BP-h5m" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="rar-lh-xTV"/>
-                                            <constraint firstAttribute="trailing" secondItem="TMS-pA-0CD" secondAttribute="trailing" constant="20" symbolic="YES" id="t0E-LU-IZw"/>
                                             <constraint firstItem="HQq-V5-oXY" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" id="umZ-cm-cpr"/>
                                             <constraint firstItem="e3P-4C-sVC" firstAttribute="centerX" secondItem="ZpX-LD-XKR" secondAttribute="centerX" id="zob-1b-Bar"/>
                                             <constraint firstItem="Xms-E7-0kp" firstAttribute="top" secondItem="HQq-V5-oXY" secondAttribute="bottom" constant="8" symbolic="YES" id="zyV-0b-DTo"/>
@@ -491,9 +479,7 @@
                     <connections>
                         <outlet property="containerVideoView" destination="HQq-V5-oXY" id="Prq-yw-825"/>
                         <outlet property="descriptionTextView" destination="sTP-0O-gWC" id="4pa-A7-zO2"/>
-                        <outlet property="nextItemButton" destination="TMS-pA-0CD" id="H5d-v0-v2G"/>
                         <outlet property="openSlidesButton" destination="e3P-4C-sVC" id="sRQ-1b-aSe"/>
-                        <outlet property="previousItemButton" destination="wD6-BP-h5m" id="3DR-u7-2eS"/>
                         <outlet property="titleLabel" destination="Xms-E7-0kp" id="pZh-8j-HFg"/>
                     </connections>
                 </viewController>

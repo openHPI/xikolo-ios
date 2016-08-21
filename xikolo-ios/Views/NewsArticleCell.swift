@@ -15,6 +15,7 @@ class NewsArticleCell : UITableViewCell {
     @IBOutlet weak var readStateView: UIView!
 
     func configure(newsArticle: NewsArticle) {
+        readStateView.backgroundColor = Brand.tintColor
         titleView.text = newsArticle.title
         descriptionView.text = newsArticle.text
     }

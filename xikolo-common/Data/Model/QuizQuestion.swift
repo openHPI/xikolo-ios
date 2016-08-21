@@ -12,6 +12,8 @@ import Spine
 
 class QuizQuestion : BaseModel {
 
+    var submission: QuizQuestionSubmission?
+
     var shuffle_answers: Bool {
         get {
             return shuffle_answers_int?.boolValue ?? false
@@ -25,16 +27,7 @@ class QuizQuestion : BaseModel {
         if type == nil {
             return .Unsupported
         }
-        switch type! {
-            case "single_answer":
-                return .SingleAnswer
-            case "multiple_answer":
-                return .MultipleAnswer
-            case "free_text":
-                return .FreeText
-            default:
-                return .Unsupported
-        }
+        return QuizQuestionType.fromString(type!)
     }
 
 }
@@ -70,8 +63,23 @@ class QuizQuestionSpine : BaseModelSpine {
 }
 
 enum QuizQuestionType {
+
     case SingleAnswer
     case MultipleAnswer
     case FreeText
     case Unsupported
+
+    static func fromString(str: String) -> QuizQuestionType {
+        switch str {
+            case "single_answer":
+                return .SingleAnswer
+            case "multiple_answer":
+                return .MultipleAnswer
+            case "free_text":
+                return .FreeText
+            default:
+                return .Unsupported
+        }
+    }
+
 }

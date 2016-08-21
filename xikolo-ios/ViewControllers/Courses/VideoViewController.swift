@@ -18,6 +18,7 @@ class VideoViewController : UIViewController {
     @IBOutlet weak var openSlidesButton: UIButton!
     @IBOutlet weak var previousItemButton: UIButton!
     @IBOutlet weak var nextItemButton: UIButton!
+    @IBOutlet weak var summaryView: UITextView!
 
     var courseItem: CourseItem!
     var video: Video?
@@ -29,6 +30,7 @@ class VideoViewController : UIViewController {
         let videoIncomplete = courseItem.content as! Video
         VideoHelper.syncVideo(videoIncomplete).onSuccess { videoComplete in
             self.video = videoComplete
+            self.summaryView.text = videoComplete.summary
             self.performSegueWithIdentifier("EmbedAVPlayer", sender: self.video)
         }
     }

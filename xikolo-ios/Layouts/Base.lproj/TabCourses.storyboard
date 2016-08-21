@@ -413,7 +413,7 @@
                                                     <segue destination="li8-SI-LT1" kind="embed" identifier="EmbedAVPlayer" id="eUX-Zj-aUz"/>
                                                 </connections>
                                             </containerView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xms-E7-0kp">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xms-E7-0kp">
                                                 <rect key="frame" x="20" y="346" width="34" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -432,16 +432,40 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-Ee-w10">
+                                                <rect key="frame" x="20" y="421" width="560" height="66.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="wI1-MF-zLq"/>
+                                                </constraints>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value=""/>
+                                                </userDefinedRuntimeAttributes>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="wI1-MF-zLq"/>
+                                                    </mask>
+                                                </variation>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="HQq-V5-oXY" secondAttribute="trailing" id="4D7-03-sdo"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="rGq-Ee-w10" secondAttribute="bottom" constant="20" symbolic="YES" id="6xo-yt-tht"/>
                                             <constraint firstAttribute="trailing" secondItem="sTP-0O-gWC" secondAttribute="trailing" constant="20" symbolic="YES" id="DxR-eq-yVt"/>
                                             <constraint firstItem="sTP-0O-gWC" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="G9r-CG-pl2"/>
                                             <constraint firstItem="e3P-4C-sVC" firstAttribute="top" secondItem="sTP-0O-gWC" secondAttribute="bottom" constant="8" symbolic="YES" id="Ire-mf-1Jk"/>
+                                            <constraint firstItem="rGq-Ee-w10" firstAttribute="top" secondItem="e3P-4C-sVC" secondAttribute="bottom" constant="8" symbolic="YES" id="O0h-RB-MS9"/>
+                                            <constraint firstAttribute="trailing" secondItem="rGq-Ee-w10" secondAttribute="trailing" constant="20" symbolic="YES" id="UOO-Ob-N1A"/>
                                             <constraint firstItem="Xms-E7-0kp" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="VjH-WD-wUq"/>
                                             <constraint firstItem="sTP-0O-gWC" firstAttribute="top" secondItem="Xms-E7-0kp" secondAttribute="bottom" constant="8" symbolic="YES" id="Vn7-AF-b4w"/>
                                             <constraint firstItem="HQq-V5-oXY" firstAttribute="top" secondItem="ZpX-LD-XKR" secondAttribute="top" id="Xyc-3V-BKE"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xms-E7-0kp" secondAttribute="trailing" constant="20" symbolic="YES" id="bFk-Rk-uL8"/>
+                                            <constraint firstItem="rGq-Ee-w10" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="dHP-WV-pOq"/>
                                             <constraint firstItem="HQq-V5-oXY" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" id="umZ-cm-cpr"/>
                                             <constraint firstItem="e3P-4C-sVC" firstAttribute="centerX" secondItem="ZpX-LD-XKR" secondAttribute="centerX" id="zob-1b-Bar"/>
                                             <constraint firstItem="Xms-E7-0kp" firstAttribute="top" secondItem="HQq-V5-oXY" secondAttribute="bottom" constant="8" symbolic="YES" id="zyV-0b-DTo"/>
@@ -480,6 +504,7 @@
                         <outlet property="containerVideoView" destination="HQq-V5-oXY" id="Prq-yw-825"/>
                         <outlet property="descriptionTextView" destination="sTP-0O-gWC" id="4pa-A7-zO2"/>
                         <outlet property="openSlidesButton" destination="e3P-4C-sVC" id="sRQ-1b-aSe"/>
+                        <outlet property="summaryView" destination="rGq-Ee-w10" id="KEj-Yz-Q6g"/>
                         <outlet property="titleLabel" destination="Xms-E7-0kp" id="pZh-8j-HFg"/>
                     </connections>
                 </viewController>

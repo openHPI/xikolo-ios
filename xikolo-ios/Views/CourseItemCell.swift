@@ -20,7 +20,7 @@ class CourseItemCell : UITableViewCell {
         titleView.text = courseItem.title
 
         if let iconName = courseItem.iconName {
-            iconView.image = UIImage(named: "item-\(iconName)-160")
+            iconView.image = UIImage(named: "item-\(iconName)-28")
         }
     }
 

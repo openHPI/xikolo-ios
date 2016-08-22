@@ -388,6 +388,8 @@
 		AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
 		AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
 		AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
+		AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
+		AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */; };
 		AB91F9E01CECB1A300007D06 /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
 		AB91F9E31CECD5A500007D06 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */; };
 		AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -584,6 +586,8 @@
 		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openHPI/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
+		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewController.swift; sourceTree = "<group>"; };
 		AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		AB91F9E41CED029B00007D06 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
@@ -976,6 +980,7 @@
 				F80D678E1B9867D700E27520 /* ViewControllers */,
 				24B651471D3551C400624DBC /* Views */,
 				24B6514F1D35959C00624DBC /* Helpers */,
+				AB91831F1D6B091300018C1D /* Branding */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
@@ -1024,6 +1029,31 @@
 				AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		AB91831F1D6B091300018C1D /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				AB9183211D6B092400018C1D /* openHPI */,
+				AB9183201D6B091E00018C1D /* openSAP */,
+			);
+			name = Branding;
+			sourceTree = "<group>";
+		};
+		AB9183201D6B091E00018C1D /* openSAP */ = {
+			isa = PBXGroup;
+			children = (
+				AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */,
+			);
+			name = openSAP;
+			sourceTree = "<group>";
+		};
+		AB9183211D6B092400018C1D /* openHPI */ = {
+			isa = PBXGroup;
+			children = (
+				AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */,
+			);
+			name = openHPI;
 			sourceTree = "<group>";
 		};
 		D7D6B56CF669E978F1E7A6E0 /* Pods */ = {
@@ -1349,6 +1379,7 @@
 				24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
 				24BA41061D3F9B5500E38C2C /* TabProfile.storyboard in Resources */,
+				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
 				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
 				24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */,
 				24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */,
@@ -1401,6 +1432,7 @@
 				AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
 				2490C4D31D1D6F7100F42949 /* Localizable.strings in Resources */,
+				AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */,
 				249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */,
 				24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,

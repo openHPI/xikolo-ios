@@ -16,6 +16,7 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var progressView: UILabel!
 
     func configure(courseItem: CourseItem) {
+        readStateView.backgroundColor = Brand.tintColor
         titleView.text = courseItem.title
 
         if let iconName = courseItem.iconName {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Brand {
 
@@ -15,5 +16,7 @@ struct Brand {
     #else
     static let BASE_URL = "https://open.hpi.de"
     #endif
+
+    static let tintColor = UIColor.init(red: 222/255, green: 98/255, blue: 18/255, alpha: 1.0)
 
 }

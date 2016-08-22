@@ -70,9 +70,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRI-Oq-dJK">
                                         <rect key="frame" x="168" y="264" width="64" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Register">
-                                            <color key="titleColor" red="0.70588235294117652" green="0.16078431372549021" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
+                                        <state key="normal" title="Register"/>
                                         <connections>
                                             <action selector="registerButton:" destination="3kq-NS-dJI" eventType="touchUpInside" id="fXC-b1-6zw"/>
                                         </connections>
@@ -155,8 +153,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="emailField" destination="bp2-MP-IBy" id="3wi-WB-q9I"/>
+                        <outlet property="loginButton" destination="H9h-TM-uGV" id="bvA-19-9q6"/>
                         <outlet property="passwordField" destination="ETa-cI-bg8" id="MrK-7i-uOk"/>
-                        <outlet property="registerButton" destination="rRI-Oq-dJK" id="Yzf-oR-AZq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiP-zR-m0K" userLabel="First Responder" sceneMemberID="firstResponder"/>

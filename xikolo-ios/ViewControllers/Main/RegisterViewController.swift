@@ -20,10 +20,11 @@ class RegisterViewController : AbstractLoginViewController, UITextFieldDelegate 
         UIApplication.sharedApplication().openURL(url!)
     }
 
-    var pageIndex: Int?
+    @IBOutlet weak var loginButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButton.backgroundColor = Brand.tintColor
         emailField.becomeFirstResponder()
     }
 

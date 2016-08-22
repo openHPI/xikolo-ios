@@ -22,7 +22,9 @@ class ItemQuizViewController : UIViewController {
 
     var currentQuestion = 0 {
         didSet {
-            updateCurrentQuestion()
+            if oldValue != currentQuestion {
+                updateCurrentQuestion()
+            }
         }
     }
     var questionViewController: AbstractQuestionViewController?
@@ -36,6 +38,8 @@ class ItemQuizViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        indicatorView.delegate = self
 
         if let course = quiz.item?.section?.course {
             backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
@@ -138,6 +142,14 @@ class ItemQuizViewController : UIViewController {
             nextButton.hidden = false
         }
         setNeedsFocusUpdate()
+    }
+
+}
+
+extension ItemQuizViewController : QuestionIndicatorListViewDelegate {
+
+    func indicatorListView(indicatorListView: QuestionIndicatorListView, didSelectQuestionWithIndex index: Int) {
+        currentQuestion = index
     }
 
 }

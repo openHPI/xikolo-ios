@@ -27,6 +27,8 @@ class QuestionIndicatorListView : UIView {
         }
     }
 
+    var delegate: QuestionIndicatorListViewDelegate?
+
     var indicators = [QuizQuestion: QuestionIndicatorView]()
 
     func configure() {
@@ -48,6 +50,7 @@ class QuestionIndicatorListView : UIView {
             let view = QuestionIndicatorView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.opaque = false
+            view.delegate = self
             indicators[question] = view
             view.question = question
             addSubview(view)
@@ -65,5 +68,21 @@ class QuestionIndicatorListView : UIView {
             previousView = view
         }
     }
+
+}
+
+extension QuestionIndicatorListView : QuestionIndicatorViewDelegate {
+
+    func indicatorViewDidSelect(indicatorView: QuestionIndicatorView) {
+        let question = indicatorView.question
+        let index = questions.indexOf(question)!
+        delegate?.indicatorListView(self, didSelectQuestionWithIndex: index)
+    }
+
+}
+
+protocol QuestionIndicatorListViewDelegate {
+
+    func indicatorListView(indicatorListView: QuestionIndicatorListView, didSelectQuestionWithIndex index: Int)
 
 }

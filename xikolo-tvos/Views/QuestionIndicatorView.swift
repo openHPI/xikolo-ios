@@ -19,9 +19,12 @@ class QuestionIndicatorView : UIView {
         }
     }
 
+    var delegate: QuestionIndicatorViewDelegate?
+
     let ringThickness: CGFloat = 6
     let ringColor = UIColor.darkGrayColor()
-    let answeredColor = UIColor.grayColor()
+    let focusedRingColor = UIColor.whiteColor()
+    let answeredColor = UIColor.lightGrayColor()
     let correctColor = UIColor.greenColor()
     let incorrectColor = UIColor.redColor()
 
@@ -29,14 +32,42 @@ class QuestionIndicatorView : UIView {
     private var radius: CGFloat!
     private var thickness: CGFloat!
 
+    required override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialize()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initialize()
+    }
+
+    func initialize() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        addGestureRecognizer(tapRecognizer)
+    }
+
+    override func canBecomeFocused() -> Bool {
+        return true
+    }
+
+    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+        setNeedsDisplay()
+    }
+
     func update() {
         setNeedsDisplay()
+    }
+
+    func handleTap(recognizer: UITapGestureRecognizer) {
+        delegate?.indicatorViewDidSelect(self)
     }
 
     override func drawRect(rect: CGRect) {
         layer.sublayers = []
 
-        thickness = selected ? ringThickness * 1.5 : ringThickness
+        thickness = focused || selected ? ringThickness * 1.5 : ringThickness
         boundsCenter = CGPointMake(bounds.width / 2, bounds.height / 2)
         radius = min(bounds.width, bounds.height) / 2 - (thickness / 2)
 
@@ -89,7 +120,7 @@ class QuestionIndicatorView : UIView {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.CGPath
         shapeLayer.fillColor = UIColor.clearColor().CGColor
-        shapeLayer.strokeColor = ringColor.CGColor
+        shapeLayer.strokeColor = focused ? focusedRingColor.CGColor : ringColor.CGColor
         shapeLayer.lineWidth = thickness
         layer.addSublayer(shapeLayer)
     }
@@ -99,4 +130,10 @@ class QuestionIndicatorView : UIView {
 enum QuestionIndicatorState {
     case Answered
     case Unanswered
+}
+
+protocol QuestionIndicatorViewDelegate {
+
+    func indicatorViewDidSelect(indicatorView: QuestionIndicatorView)
+
 }

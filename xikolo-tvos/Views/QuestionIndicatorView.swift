@@ -57,6 +57,12 @@ class QuestionIndicatorView : UIView {
     }
 
     func update() {
+        if let submission = question.submission {
+            state = .Answered
+            // TODO: Implement correctness check.
+        } else {
+            state = .Unanswered
+        }
         setNeedsDisplay()
     }
 

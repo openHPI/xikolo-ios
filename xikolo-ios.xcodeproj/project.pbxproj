@@ -972,7 +972,7 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F8FABFBB1B580B5A0007F308 /* Layouts */,
+				F8FABFBB1B580B5A0007F308 /* Storyboards */,
 				F80D678E1B9867D700E27520 /* ViewControllers */,
 				24B651471D3551C400624DBC /* Views */,
 				24B6514F1D35959C00624DBC /* Helpers */,
@@ -1084,7 +1084,7 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		F8FABFBB1B580B5A0007F308 /* Layouts */ = {
+		F8FABFBB1B580B5A0007F308 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				A90587C21B3BFC130095DB89 /* Main.storyboard */,
@@ -1093,6 +1093,7 @@
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 			);
+			name = Storyboards;
 			path = Layouts;
 			sourceTree = "<group>";
 		};

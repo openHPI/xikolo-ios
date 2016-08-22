@@ -76,9 +76,9 @@ class ItemQuizViewController : UIViewController {
     }
 
     func updateCurrentQuestion() {
-        indicatorView.activeQuestion = questions[currentQuestion]
         updateButtons()
         updateQuestionView()
+        indicatorView.activeQuestion = questions[currentQuestion]
     }
 
     func updateQuestionView() {

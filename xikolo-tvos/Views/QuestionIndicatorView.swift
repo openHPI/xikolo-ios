@@ -10,16 +10,9 @@ import UIKit
 
 class QuestionIndicatorView : UIView {
 
-    var state: QuestionIndicatorState = .Unanswered {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-    var correctness: Float? {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
+    var question: QuizQuestion!
+    var state: QuestionIndicatorState = .Unanswered
+    var correctness: Float?
     var selected = false {
         didSet {
             setNeedsDisplay()
@@ -35,6 +28,10 @@ class QuestionIndicatorView : UIView {
     private var boundsCenter: CGPoint!
     private var radius: CGFloat!
     private var thickness: CGFloat!
+
+    func update() {
+        setNeedsDisplay()
+    }
 
     override func drawRect(rect: CGRect) {
         layer.sublayers = []

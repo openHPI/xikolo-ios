@@ -39,7 +39,7 @@ class QuestionIndicatorListView : UIView {
         }
 
         let actualWidth = CGFloat(questions.count) * size + margins
-        superview!.addConstraint(NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .Width, multiplier: 1, constant: actualWidth))
+        self.widthAnchor.constraintEqualToConstant(actualWidth).active = true
 
         var previousView: UIView?
         for question in questions {
@@ -50,14 +50,14 @@ class QuestionIndicatorListView : UIView {
             addSubview(view)
 
             if let previousView = previousView {
-                addConstraint(NSLayoutConstraint(item: view, attribute: .Left, relatedBy: .Equal, toItem: previousView, attribute: .Right, multiplier: 1, constant: margin))
+                view.leftAnchor.constraintEqualToAnchor(previousView.rightAnchor, constant: margin).active = true
             } else {
-                addConstraint(NSLayoutConstraint(item: view, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .Left, multiplier: 1, constant: 0))
+                view.leftAnchor.constraintEqualToAnchor(self.leftAnchor).active = true
             }
-            addConstraint(NSLayoutConstraint(item: view, attribute: .CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0))
+            view.centerYAnchor.constraintEqualToAnchor(self.centerYAnchor).active = true
 
-            addConstraint(NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .Width, multiplier: 1, constant: size))
-            addConstraint(NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1, constant: size))
+            view.widthAnchor.constraintEqualToConstant(size).active = true
+            view.heightAnchor.constraintEqualToConstant(size).active = true
 
             previousView = view
         }

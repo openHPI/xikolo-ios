@@ -52,18 +52,18 @@ class ViewControllerLoadingHelper {
         activityIndicatorView.startAnimating()
 
         // Make mainView the same size as the ViewController.
-        rootView.addConstraint(NSLayoutConstraint(item: mainView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: rootView, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0))
-        rootView.addConstraint(NSLayoutConstraint(item: mainView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: rootView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0))
-        rootView.addConstraint(NSLayoutConstraint(item: mainView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: rootView, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
-        rootView.addConstraint(NSLayoutConstraint(item: mainView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: rootView, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+        mainView.leftAnchor.constraintEqualToAnchor(rootView.leftAnchor).active = true
+        mainView.topAnchor.constraintEqualToAnchor(rootView.topAnchor).active = true
+        mainView.widthAnchor.constraintEqualToAnchor(rootView.widthAnchor).active = true
+        mainView.heightAnchor.constraintEqualToAnchor(rootView.heightAnchor).active = true
 
         // Fix Activity Indicator to the center of mainView.
-        mainView.addConstraint(NSLayoutConstraint(item: activityIndicatorView, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-        mainView.addConstraint(NSLayoutConstraint(item: activityIndicatorView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+        activityIndicatorView.centerXAnchor.constraintEqualToAnchor(mainView.centerXAnchor).active = true
+        activityIndicatorView.centerYAnchor.constraintEqualToAnchor(mainView.centerYAnchor).active = true
 
         // Fix Activity Name to the top of the indicator
-        mainView.addConstraint(NSLayoutConstraint(item: activityNameView, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-        mainView.addConstraint(NSLayoutConstraint(item: activityNameView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: activityIndicatorView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -20))
+        activityNameView.centerXAnchor.constraintEqualToAnchor(mainView.centerXAnchor).active = true
+        activityNameView.bottomAnchor.constraintEqualToAnchor(activityIndicatorView.topAnchor, constant: -20).active = true
     }
 
     func stopLoading() {

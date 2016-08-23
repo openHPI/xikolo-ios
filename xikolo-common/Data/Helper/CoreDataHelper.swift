@@ -80,7 +80,7 @@ class CoreDataHelper {
 
         do {
             try persistentStoreCoordinator.executeRequest(deleteRequest, withContext: managedContext)
-        } catch let error as NSError {
+        } catch {
             // TODO: handle the error
         }
     }

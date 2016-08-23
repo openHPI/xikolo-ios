@@ -10,17 +10,17 @@ import Foundation
 
 struct Routes {
 
-    static let API_URL = Brand.BASE_URL + "/api"
-    static let API_V2_URL = Brand.BASE_URL + "/api/v2/"
+    static let API_URL = Brand.BaseURL + "/api"
+    static let API_V2_URL = Brand.BaseURL + "/api/v2/"
 
     static let COURSES_API_URL = API_URL + "/courses/"
     static let AUTHENTICATE_API_URL = API_URL + "/authenticate/"
     static let MY_PROFILE_API_URL = API_URL + "/users/me"
     static let ENROLLMENTS_API_URL = API_URL + "/users/me/enrollments/"
 
-    static let COURSES_URL = Brand.BASE_URL + "/courses/"
-    static let NEWS_URL = Brand.BASE_URL + "/news"
-    static let REGISTER_URL = Brand.BASE_URL + "/account/new"
+    static let COURSES_URL = Brand.BaseURL + "/courses/"
+    static let NEWS_URL = Brand.BaseURL + "/news"
+    static let REGISTER_URL = Brand.BaseURL + "/account/new"
 
     static let HEADER_USER_PLATFORM = "User-Platform"
     static let HEADER_USER_PLATFORM_VALUE = "iOS"

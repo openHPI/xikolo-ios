@@ -24,7 +24,7 @@ class RegisterViewController : AbstractLoginViewController, UITextFieldDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.backgroundColor = Brand.tintColor
+        loginButton.backgroundColor = Brand.TintColor
         emailField.becomeFirstResponder()
     }
 

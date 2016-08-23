@@ -10,6 +10,6 @@ import Foundation
 
 extension Brand {
 
-    static let APP_GROUP_ID = "group.de.xikolo.opensap"
+    static let AppGroupID = "group.de.xikolo.opensap"
 
 }

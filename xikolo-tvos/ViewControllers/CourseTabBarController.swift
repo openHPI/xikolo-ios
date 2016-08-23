@@ -15,7 +15,7 @@ class CourseTabBarController : UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBar.barTintColor = Brand.tintColor
+        tabBar.barTintColor = Brand.TintColor
 
         if course.is_enrolled {
             // If the user is already enrolled, directly switch to learnings tab.

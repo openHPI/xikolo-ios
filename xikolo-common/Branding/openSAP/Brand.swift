@@ -11,7 +11,7 @@ import UIKit
 
 struct Brand {
 
-    static let BASE_URL = "https://open.sap.com"
-    static let tintColor = UIColor.init(red: 212/255, green: 101/255, blue: 45/255, alpha: 1.0)
+    static let BaseURL = "https://open.sap.com"
+    static let TintColor = UIColor.init(red: 212/255, green: 101/255, blue: 45/255, alpha: 1.0)
 
 }

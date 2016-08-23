@@ -10,6 +10,6 @@ import Foundation
 
 extension Brand {
 
-    static let APP_GROUP_ID = "group.de.xikolo.openhpi"
+    static let AppGroupID = "group.de.xikolo.openhpi"
 
 }

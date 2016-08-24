@@ -43,7 +43,9 @@ class ItemQuizIntroductionController : UIViewController {
 
     func configureUI() {
         titleView.text = quiz.item?.title
-        textView.text = quiz.instructions
+        if let text = quiz.instructions {
+            textView.attributedText = MarkdownParser.parse(text)
+        }
     }
 
     @IBAction func startQuiz(sender: UIButton) {

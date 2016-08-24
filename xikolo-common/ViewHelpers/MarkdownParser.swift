@@ -12,36 +12,52 @@ import TSMarkdownParser
 class MarkdownParser {
 
     class func parse(markdown: String) -> NSAttributedString {
-        let parser = TSMarkdownParser.standardParser()
+        let parser = MarkdownParser()
+        return parser.parse(markdown)
+    }
+
+    let parser: TSMarkdownParser
+
+    required init() {
+        parser = TSMarkdownParser.standardParser()
 
         parser.addShortHeaderParsingWithMaxLevel(0, leadFormattingBlock: { attributedString, range, level in
             attributedString.deleteCharactersInRange(range)
         }, textFormattingBlock: { [unowned parser] attributedString, range, level in
-            let attributes = Int(level) < parser.headerAttributes.count ? parser.headerAttributes[Int(level)] : parser.headerAttributes.last!
+            let level = Int(level)
+            let attributes = level < parser.headerAttributes.count ? parser.headerAttributes[level] : parser.headerAttributes.last!
             attributedString.addAttributes(attributes, range:range)
         })
+    }
 
-#if os(tvOS)
-        func fixFontStyle(inout fontStyle: [String: AnyObject]) {
-            fontStyle[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        }
-        func fixFontStyles(inout fontStyles: [[String: AnyObject]]) {
-            for i in 0..<fontStyles.count {
-                fixFontStyle(&fontStyles[i])
-            }
-        }
+    func setColor(color: UIColor) {
+        setFontStyle(NSForegroundColorAttributeName, value: color)
+    }
 
+    internal func setFontStyle(key: String, value: AnyObject) {
         if parser.defaultAttributes != nil {
-            fixFontStyle(&parser.defaultAttributes!)
+            overrideFontStyle(&parser.defaultAttributes!, key: key, value: value)
         }
-        fixFontStyles(&parser.headerAttributes)
-        fixFontStyles(&parser.listAttributes)
-        fixFontStyles(&parser.quoteAttributes)
-        fixFontStyle(&parser.linkAttributes)
-        fixFontStyle(&parser.monospaceAttributes)
-        fixFontStyle(&parser.strongAttributes)
-        fixFontStyle(&parser.emphasisAttributes)
-#endif
+        overrideFontStyles(&parser.headerAttributes, key: key, value: value)
+        overrideFontStyles(&parser.listAttributes, key: key, value: value)
+        overrideFontStyles(&parser.quoteAttributes, key: key, value: value)
+        overrideFontStyle(&parser.linkAttributes, key: key, value: value)
+        overrideFontStyle(&parser.monospaceAttributes, key: key, value: value)
+        overrideFontStyle(&parser.strongAttributes, key: key, value: value)
+        overrideFontStyle(&parser.emphasisAttributes, key: key, value: value)
+    }
+
+    internal func overrideFontStyles(inout fontStyles: [[String: AnyObject]], key: String, value: AnyObject) {
+        for i in 0..<fontStyles.count {
+            overrideFontStyle(&fontStyles[i], key: key, value: value)
+        }
+    }
+
+    internal func overrideFontStyle(inout fontStyle: [String: AnyObject], key: String, value: AnyObject) {
+        fontStyle[key] = value
+    }
+
+    func parse(markdown: String) -> NSAttributedString {
 
         return parser.attributedStringFromMarkdown(markdown)
     }

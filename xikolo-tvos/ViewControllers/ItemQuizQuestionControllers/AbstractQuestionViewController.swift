@@ -17,7 +17,9 @@ class AbstractQuestionViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textView.text = question.text
+        if let text = question.text {
+            textView.attributedText = MarkdownParser.parse(text)
+        }
     }
 
 }

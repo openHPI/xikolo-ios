@@ -21,7 +21,7 @@ class Video : Content {
     }
 
     func loadPoster() -> Future<Void, XikoloError> {
-        if let url = single_stream_poster_url {
+        if let posterUrl = single_stream_poster_url, url = NSURL(string: posterUrl) {
             return ImageProvider.loadImage(url).onSuccess { image in
                 self.poster = image
             }.asVoid()

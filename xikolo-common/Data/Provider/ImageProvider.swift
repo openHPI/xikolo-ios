@@ -12,9 +12,9 @@ import UIKit
 
 class ImageProvider {
 
-    class func loadImage(imageUrl: String) -> Future<UIImage, XikoloError> {
+    class func loadImage(url: NSURL) -> Future<UIImage, XikoloError> {
         let promise = Promise<UIImage, XikoloError>()
-        Alamofire.request(.GET, imageUrl).responseData { response in
+        Alamofire.request(.GET, url).responseData { response in
             if let error = response.result.error {
                 return promise.failure(XikoloError.Network(error))
             }

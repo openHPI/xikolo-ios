@@ -31,7 +31,7 @@ class LearningsViewController : UIViewController {
         courseTabBarController = self.tabBarController as! CourseTabBarController
         course = courseTabBarController.course
 
-        courseTitleView.text = course.name
+        courseTitleView.text = course.title
 
         backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
         course.loadImage().onSuccess { image in
@@ -59,7 +59,7 @@ class LearningsViewController : UIViewController {
     func checkDisplay() {
         if !UserProfileHelper.isLoggedIn() {
             showError(NSLocalizedString("You are currently not logged in.\nYou can only see a course's content when you're logged in.", comment: "You are currently not logged in.\nYou can only see a course's content when you're logged in."))
-        } else if !course.is_enrolled {
+        } else if course.enrollment == nil {
             showError(NSLocalizedString("You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled.", comment: "You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled."))
         } else {
             hideError()

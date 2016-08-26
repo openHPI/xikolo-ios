@@ -18,7 +18,7 @@ class CourseCell : UICollectionViewCell {
         course.loadImage().onSuccess { image in
             self.backgroundImage.image = image
         }
-        nameLabel.text = course.name
+        nameLabel.text = course.title
     }
 
 }

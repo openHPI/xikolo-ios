@@ -21,7 +21,7 @@ class CourseCell : UICollectionViewCell {
             self.backgroundImage.image = image
         }
 
-        nameLabel.text = course.name
+        nameLabel.text = course.title
         teacherLabel.text = course.teachers
         dateLabel.text = course.language
     }

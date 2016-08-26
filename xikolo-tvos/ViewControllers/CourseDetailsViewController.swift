@@ -52,7 +52,7 @@ class CourseDetailsViewController : UIViewController {
     }
 
     func configureViews() {
-        titleView.text = course.name
+        titleView.text = course.title
         course.loadImage().onSuccess { image in
             self.courseImageView.image = image
             self.backgroundImageHelper.imageView.image = image
@@ -64,8 +64,8 @@ class CourseDetailsViewController : UIViewController {
         dateFormatter.dateStyle = .MediumStyle
         dateFormatter.timeStyle = .ShortStyle
 
-        let startDateString: String? = course.start_date != nil ? dateFormatter.stringFromDate(course.start_date!) : nil
-        let endDateString: String? = course.end_date != nil ? dateFormatter.stringFromDate(course.end_date!) : nil
+        let startDateString: String? = course.start_at != nil ? dateFormatter.stringFromDate(course.start_at!) : nil
+        let endDateString: String? = course.end_at != nil ? dateFormatter.stringFromDate(course.end_at!) : nil
         if let startDateString = startDateString, endDateString = endDateString {
             let format = NSLocalizedString("%@ to %@", comment: "<startDate> to <endDate>")
             let dateString = String.localizedStringWithFormat(format, startDateString, endDateString)
@@ -77,7 +77,7 @@ class CourseDetailsViewController : UIViewController {
         }
         teacherView.text = course.teachers
 
-        if course.is_enrolled {
+        if course.enrollment != nil {
             if enrollButton == UIScreen.mainScreen().focusedView {
                 self.customPreferredFocusedView = unenrollButton
                 setNeedsFocusUpdate()
@@ -116,7 +116,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
 
     func createEnrollment() {
         UserProfileHelper.createEnrollement(course.id).onSuccess {
-            self.course.is_enrolled = true
+            // TODO: Update once new enrollment endpoint exists.
             CourseHelper.refreshCourses()
         }
     }
@@ -125,7 +125,11 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
         // No need to check for login, cannot be enrolled without.
 
         UserProfileHelper.deleteEnrollement(course.id).onSuccess {
-            self.course.is_enrolled = false
+            // TODO: Update once new enrollment endpoint exists.
+            if let enrollment = self.course.enrollment {
+                CoreDataHelper.managedContext.deleteObject(enrollment)
+                CoreDataHelper.saveContext()
+            }
             CourseHelper.refreshCourses()
         }
     }

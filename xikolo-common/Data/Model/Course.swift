@@ -9,22 +9,13 @@
 import BrightFutures
 import CoreData
 import Foundation
-import Result
+import Spine
 
 class Course : BaseModel {
 
-    var is_enrolled: Bool {
-        get {
-            return is_enrolled_int?.boolValue ?? false
-        }
-        set(new_is_enrolled) {
-            is_enrolled_int = new_is_enrolled
-        }
-    }
-
     var is_enrolled_section: String {
         get {
-            if is_enrolled {
+            if enrollment != nil {
                 return NSLocalizedString("My Courses", comment: "My Courses")
             } else {
                 return NSLocalizedString("All Courses", comment: "All Courses")
@@ -42,31 +33,55 @@ class Course : BaseModel {
 
     func loadImage() -> Future<UIImage, XikoloError> {
         if let image = image {
-            return future {
-                Result.Success(image)
-            }
+            return Future.init(value: image)
         }
-        if image_url == nil {
-            return future {
-                return Result.Failure(XikoloError.ModelIncomplete)
+        if let imageUrl = image_url {
+            return ImageProvider.loadImage(imageUrl).onSuccess { image in
+                self.image = image
+                CoreDataHelper.saveContext()
             }
-        }
-        return ImageProvider.loadImage(image_url!).onSuccess { image in
-            self.image = image
-            CoreDataHelper.saveContext()
+        } else {
+            return Future.init(error: XikoloError.ModelIncomplete)
         }
     }
 
-    func loadFromDict(dict: [String: AnyObject]) {
-        course_code = dict["course_code"] as? String
-        course_description = dict["description"] as? String
-        name = dict["name"] as? String
-        teachers = dict["lecturer"] as? String
-        language = dict["language"] as? String
-        image_url = dict["visual_url"] as? String
-        start_date = NSDate.dateFromISOString(dict["available_from"] as? String)
-        end_date = NSDate.dateFromISOString(dict["available_to"] as? String)
-        is_enrolled = (dict["is_enrolled"] as? Bool) ?? false
+}
+
+class CourseSpine : BaseModelSpine {
+
+    var title: String?
+    var slug: String?
+    var abstract: String?
+    var course_description: String?
+    var image_url: NSURL?
+    var teachers: String?
+    var language: String?
+    var start_at: NSDate?
+    var end_at: NSDate?
+
+    var enrollment: CourseEnrollmentSpine?
+
+    override class var cdType: BaseModel.Type {
+        return Course.self
+    }
+
+    override class var resourceType: ResourceType {
+        return "courses"
+    }
+
+    override class var fields: [Field] {
+        return fieldsFromDictionary([
+            "title": Attribute(),
+            "slug": Attribute(),
+            "abstract": Attribute(),
+            "course_description": Attribute().serializeAs("description"),
+            "image_url": URLAttribute(baseURL: NSURL(string: Brand.BaseURL)!),
+            "teachers": Attribute(),
+            "language": Attribute(),
+            "start_at": DateAttribute(format: "yyyy-MM-dd'T'HH:mm:ssZZZZZ"),
+            "end_at": DateAttribute(format: "yyyy-MM-dd'T'HH:mm:ssZZZZZ"),
+            "enrollment": ToOneRelationship(CourseEnrollmentSpine).serializeAs("user_enrollment"),
+        ])
     }
 
 }

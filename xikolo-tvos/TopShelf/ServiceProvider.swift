@@ -37,15 +37,15 @@ class ServiceProvider: NSObject, TVTopShelfProvider {
             for course in courses {
                 let identifier = TVContentIdentifier(identifier: course.id, container: nil)!
                 let item = TVContentItem(contentIdentifier: identifier)!
-                item.title = course.name
+                item.title = course.title
                 item.imageShape = .HDTV
-                if let imageUrl = course.image_url, url = NSURL(string: imageUrl) {
-                    item.imageURL = url
+                if let imageUrl = course.image_url {
+                    item.imageURL = imageUrl
                 }
                 let target = XikoloURL(type: .Course, targetId: course.id)
                 item.displayURL = target.toURL()
 
-                if course.is_enrolled {
+                if course.enrollment != nil {
                     myCoursesItems.append(item)
                 } else {
                     allCoursesItems.append(item)

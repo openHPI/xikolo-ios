@@ -17,7 +17,7 @@ class CourseTabBarController : UITabBarController {
 
         tabBar.barTintColor = Brand.TintColor
 
-        if course.is_enrolled {
+        if course.enrollment != nil {
             // If the user is already enrolled, directly switch to learnings tab.
             selectedIndex = 1
         }

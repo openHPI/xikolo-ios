@@ -2,7 +2,7 @@
 //  Course+CoreDataProperties.swift
 //  xikolo-ios
 //
-//  Created by Sebastian Brückner on 21.07.16.
+//  Created by Sebastian Brückner on 26.08.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,17 +14,18 @@ import UIKit
 
 extension Course {
 
-    @NSManaged var course_code: String?
+    @NSManaged var abstract: String?
     @NSManaged var course_description: String?
-    @NSManaged var end_date: NSDate?
+    @NSManaged var end_at: NSDate?
     @NSManaged var id: String
-    @NSManaged var image_url: String?
-    @NSManaged var is_enrolled_int: NSNumber?
-    @NSManaged var language: String?
-    @NSManaged var name: String?
-    @NSManaged var start_date: NSDate?
-    @NSManaged var teachers: String?
     @NSManaged var image: UIImage?
+    @NSManaged var image_url: NSURL?
+    @NSManaged var language: String?
+    @NSManaged var slug: String?
+    @NSManaged var start_at: NSDate?
+    @NSManaged var teachers: String?
+    @NSManaged var title: String?
     @NSManaged var sections: NSSet?
+    @NSManaged var enrollment: CourseEnrollment?
 
 }

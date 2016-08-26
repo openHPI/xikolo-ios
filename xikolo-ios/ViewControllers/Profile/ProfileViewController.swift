@@ -29,7 +29,9 @@ class ProfileViewController: AbstractTabContentViewController {
 
             UserProfileHelper.getUser().onSuccess { user in
                 // TODO: get name, username etc.
-                ImageHelper.loadImageFromURL(user.visual, toImageView: self.profileImage)
+                if let url = NSURL(string: user.visual) {
+                    ImageHelper.loadImageFromURL(url, toImageView: self.profileImage)
+                }
             }
         } else {
             container.hidden = true

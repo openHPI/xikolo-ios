@@ -6,20 +6,21 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import Alamofire
+import BrightFutures
 import Foundation
+import Spine
 
 class CourseProvider {
 
-    static func getCourses(completionHandler: (courses: [[String: AnyObject]]?, error: NSError?) -> ()) {
-        let url = Routes.COURSES_API_URL
+    class func getCourses() -> Future<[CourseSpine], XikoloError> {
+        let spine = SpineModelHelper.createSpineClient()
+        spine.registerResource(CourseSpine)
+        spine.registerResource(CourseEnrollmentSpine)
 
-        Alamofire.request(.GET, url, headers: NetworkHelper.getRequestHeaders()).responseJSON() { (response: Response<AnyObject, NSError>) in
-            if let courses = response.result.value as! [[String: AnyObject]]? {
-                completionHandler(courses: courses, error: nil)
-                return
-            }
-            completionHandler(courses: nil, error: response.result.error)
+        return spine.findAll(CourseSpine.self).map { tuple in
+            tuple.resources.map { $0 as! CourseSpine }
+        }.mapError { error in
+            XikoloError.API(error)
         }
     }
 

@@ -6,8 +6,8 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
-import UIKit
 
 class CourseHelper {
 
@@ -15,21 +15,21 @@ class CourseHelper {
 
     static func getAllCoursesRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "Course")
-        let startDateSort = NSSortDescriptor(key: "start_date", ascending: false)
+        let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
         request.sortDescriptors = [startDateSort]
         return request
     }
 
     static func getMyCoursesRequest() -> NSFetchRequest {
         let request = getAllCoursesRequest()
-        request.predicate = NSPredicate(format: "is_enrolled_int == true")
+        request.predicate = NSPredicate(format: "enrollment != null")
         return request
     }
 
     static func getSectionedRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "Course")
-        let enrolledSort = NSSortDescriptor(key: "is_enrolled_int", ascending: false)
-        let startDateSort = NSSortDescriptor(key: "start_date", ascending: false)
+        let enrolledSort = NSSortDescriptor(key: "enrollment", ascending: false)
+        let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
         request.sortDescriptors = [enrolledSort, startDateSort]
         return request
     }
@@ -51,47 +51,13 @@ class CourseHelper {
         return courses[0]
     }
 
-    static func refreshCourses() {
-        CourseProvider.getCourses { (courses, error) in
-            if let courses = courses {
-                do {
-                    let request = getAllCoursesRequest()
-                    try syncCourses(request, courses: courses)
-                } catch {
-                    // TODO: Error handling
-                }
-            }
+    static func refreshCourses() -> Future<[Course], XikoloError> {
+        return CourseProvider.getCourses().flatMap { spineCourses -> Future<[BaseModel], XikoloError> in
+            let request = getAllCoursesRequest()
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourses, inject: nil, save: true)
+        }.map { cdCourses in
+            return cdCourses as! [Course]
         }
-    }
-
-    private static func syncCourses(objectsToUpdateRequest: NSFetchRequest, courses: [[String: AnyObject]]) throws {
-        var objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest) as! [Course]
-
-        let request = NSFetchRequest(entityName: "Course")
-        for course in courses {
-            if let id = course["id"] as? String {
-                let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
-                request.predicate = predicate
-
-                var cdCourse: Course!
-                let results = try CoreDataHelper.executeFetchRequest(request) as! [Course]
-                if (results.count > 0) {
-                    cdCourse = results[0]
-                } else {
-                    cdCourse = Course(entity: entity, insertIntoManagedObjectContext: CoreDataHelper.managedContext)
-                    cdCourse.id = id
-                }
-                cdCourse.loadFromDict(course)
-
-                if let index = objectsToUpdate.indexOf(cdCourse) {
-                    objectsToUpdate.removeAtIndex(index)
-                }
-            }
-        }
-        for object in objectsToUpdate {
-            CoreDataHelper.managedContext.deleteObject(object)
-        }
-        CoreDataHelper.saveContext()
     }
 
 }

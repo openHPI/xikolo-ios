@@ -59,6 +59,10 @@
 		243CE4971D7868A7007C59B6 /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
 		243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
 		243CE4991D7868A7007C59B6 /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
+		243CE49B1D7876F1007C59B6 /* TrackingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */; };
+		243CE49C1D7876F1007C59B6 /* TrackingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */; };
+		243CE49D1D7876F1007C59B6 /* TrackingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */; };
+		243CE49E1D7876F1007C59B6 /* TrackingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */; };
 		243CE4A01D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */; };
 		243CE4A11D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */; };
 		243CE4A21D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */; };
@@ -555,6 +559,7 @@
 		243CE48B1D786421007C59B6 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
 		243CE4901D786717007C59B6 /* TrackingEventUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventUser.swift; sourceTree = "<group>"; };
 		243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventResource.swift; sourceTree = "<group>"; };
+		243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHelper.swift; sourceTree = "<group>"; };
 		243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventVerb.swift; sourceTree = "<group>"; };
 		2447CE181D09C87A00B5C39A /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextProvider.swift; sourceTree = "<group>"; };
@@ -1230,6 +1235,7 @@
 				24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */,
 				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
 				AB2802D01D2AAFDB008C8BAE /* NewsArticleHelper.swift */,
+				243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1910,6 +1916,7 @@
 				24BA411A1D3F9B9500E38C2C /* NewsArticleCell.swift in Sources */,
 				24E3DD1A1D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				24BA40891D3F9A9000E38C2C /* Course+CoreDataProperties.swift in Sources */,
+				243CE49D1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				249E3AAC1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				24BA40811D3F9A8500E38C2C /* CollectionType+dict.swift in Sources */,
 				24BA409E1D3F9AB000E38C2C /* Quiz+CoreDataProperties.swift in Sources */,
@@ -1979,6 +1986,7 @@
 				24BA412E1D3F9D1500E38C2C /* CourseSectionCell.swift in Sources */,
 				24BA40F81D3F9B3200E38C2C /* Settings.swift in Sources */,
 				24BA40B61D3F9AD100E38C2C /* ImageProvider.swift in Sources */,
+				243CE49E1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				243CE4741D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */,
 				24BA40A71D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
 				24BA40D31D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
@@ -2112,6 +2120,7 @@
 				24A16D761CFDB5E900CAD9FE /* BaseModelSpine.swift in Sources */,
 				AB2802DB1D2D7582008C8BAE /* NewsArticle.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
+				243CE49C1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				243CE4731D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */,
 				249C01A71D3CFCE800B54AAC /* ItemVideoLoadingController.swift in Sources */,
 				2448A9DF1CDCDCC7009A1AEA /* SpineModelHelper.swift in Sources */,
@@ -2241,6 +2250,7 @@
 				2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				24E3DD181D5DFD5000297118 /* QuizAnswer.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
+				243CE49B1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				249E3AAA1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				AB2802D91D2D754F008C8BAE /* NewsArticleHelper.swift in Sources */,
 				24A16D6C1CFC883A00CAD9FE /* Video.swift in Sources */,

@@ -42,6 +42,8 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func showItem(item: CourseItem) {
+        TrackingHelper.sendEvent("VISITED_ITEM", resource: item)
+
         switch item.content {
             case is Video:
                 performSegueWithIdentifier("ShowVideoView", sender: item)

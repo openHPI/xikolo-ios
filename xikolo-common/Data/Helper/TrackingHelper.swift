@@ -25,9 +25,13 @@ class TrackingHelper {
     private static let device: String = {
         var sysinfo = utsname()
         uname(&sysinfo)
-        return withUnsafeMutablePointer(&sysinfo.machine) { ptr in
+        var name = withUnsafeMutablePointer(&sysinfo.machine) { ptr in
             String.fromCString(UnsafePointer<CChar>(ptr))!
         }
+        if ["i386", "x86_64"].contains(name) {
+            name = "Simulator"
+        }
+        return name
     }()
 
     private class func defaultContext() -> [String: String] {

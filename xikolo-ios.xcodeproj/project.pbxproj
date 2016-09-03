@@ -115,7 +115,6 @@
 		2490C4F61D216D7800F42949 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
 		2490C4F71D216D8500F42949 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */; };
 		2490C4F81D216D8C00F42949 /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */; };
-		2490C4FA1D216DA200F42949 /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
 		2490C4FB1D216E3D00F42949 /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
@@ -209,9 +208,6 @@
 		24BA40751D3F9A7000E38C2C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
 		24BA40761D3F9A7000E38C2C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		24BA40771D3F9A7000E38C2C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
-		24BA40781D3F9A7900E38C2C /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
-		24BA40791D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
-		24BA407A1D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
 		24BA407B1D3F9A7D00E38C2C /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
@@ -411,8 +407,6 @@
 		24D48E191CCA4FC100E8051E /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E1A1CCA551E00E8051E /* CourseProvider.swift */; };
 		24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801793D1BBBE3880091ECD1 /* CourseHelper.swift */; };
-		24D48E221CCA78A600E8051E /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
-		24D48E251CCA92C000E8051E /* NSDate+iso8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E201CCA742300E8051E /* NSDate+iso8601.swift */; };
 		24D48E261CCA92C300E8051E /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */; };
 		24D48E271CCA92C500E8051E /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		24D48E281CCA92C800E8051E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225441B4D2B3D00C9BF56 /* UserProfile.swift */; };
@@ -642,7 +636,6 @@
 		24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		24D48E171CCA4FC100E8051E /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		24D48E1A1CCA551E00E8051E /* CourseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseProvider.swift; sourceTree = "<group>"; };
-		24D48E201CCA742300E8051E /* NSDate+iso8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+iso8601.swift"; sourceTree = "<group>"; };
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		24E3DD171D5DFD5000297118 /* QuizAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizAnswer.swift; sourceTree = "<group>"; };
 		24E3DD1C1D5E219E00297118 /* ItemQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemQuizViewController.swift; sourceTree = "<group>"; };
@@ -1061,7 +1054,6 @@
 		24D48E1F1CCA740500E8051E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				24D48E201CCA742300E8051E /* NSDate+iso8601.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */,
 				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
@@ -1828,7 +1820,6 @@
 				243CE4871D709A1B007C59B6 /* CourseEnrollment.swift in Sources */,
 				2490C4F11D216D4500F42949 /* Routes.swift in Sources */,
 				2490C4F41D216D6500F42949 /* Error.swift in Sources */,
-				2490C4FA1D216DA200F42949 /* NSDate+iso8601.swift in Sources */,
 				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
 				2490C4EB1D216C9500F42949 /* CourseHelper.swift in Sources */,
 				249E3A9C1D41135400D7663F /* ImageProvider.swift in Sources */,
@@ -1878,7 +1869,6 @@
 				24BA40AA1D3F9AC100E38C2C /* NewsArticle+CoreDataProperties.swift in Sources */,
 				24BA40831D3F9A8A00E38C2C /* BaseModel.swift in Sources */,
 				24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
-				24BA40781D3F9A7900E38C2C /* NSDate+iso8601.swift in Sources */,
 				24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */,
 				24BA40AE1D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
 				24BA40EB1D3F9B2000E38C2C /* AbstractCourseListViewController.swift in Sources */,
@@ -1974,7 +1964,6 @@
 				24BA40AB1D3F9AC100E38C2C /* NewsArticle+CoreDataProperties.swift in Sources */,
 				24BA40841D3F9A8A00E38C2C /* BaseModel.swift in Sources */,
 				24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
-				24BA40791D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */,
 				24E3DD1E1D5E219E00297118 /* ItemQuizViewController.swift in Sources */,
 				24BA40A91D3F9ABE00E38C2C /* Video.swift in Sources */,
 				24BA40AF1D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
@@ -2070,7 +2059,6 @@
 				24BA40C21D3F9AE000E38C2C /* CoreDataHelper.swift in Sources */,
 				24BA41041D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
 				24BA41211D3F9CA500E38C2C /* ServiceProvider.swift in Sources */,
-				24BA407A1D3F9A7A00E38C2C /* NSDate+iso8601.swift in Sources */,
 				24BA40DE1D3F9AFF00E38C2C /* Error.swift in Sources */,
 				24BA40B91D3F9AD400E38C2C /* UserProfileProvider.swift in Sources */,
 			);
@@ -2155,7 +2143,6 @@
 				2433A5A41CE634A00060DD98 /* CourseItem.swift in Sources */,
 				24A16D941CFFA72B00CAD9FE /* Error.swift in Sources */,
 				243CE4A11D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
-				24D48E251CCA92C000E8051E /* NSDate+iso8601.swift in Sources */,
 				AB2802D21D2AAFDB008C8BAE /* NewsArticleHelper.swift in Sources */,
 				24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */,
 				AB2802CF1D2AAEC9008C8BAE /* NewsArticleProvider.swift in Sources */,
@@ -2265,7 +2252,6 @@
 				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
 				24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
-				24D48E221CCA78A600E8051E /* NSDate+iso8601.swift in Sources */,
 				24A16D8D1CFF2F4300CAD9FE /* VideoHelper.swift in Sources */,
 				243CE4A01D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24A16D6F1CFC938700CAD9FE /* Video+CoreDataProperties.swift in Sources */,

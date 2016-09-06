@@ -50,4 +50,26 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
         self.question = question
     }
 
+    func data() -> AnyObject {
+        var data: AnyObject!
+
+        // At this point we can assume the question has been set (see QuizHelper).
+        switch (question!.questionType) {
+            case .SingleAnswer:
+                data = answers?.first ?? NSNull()
+            case .MultipleAnswer:
+                data = answers ?? NSNull()
+            case .FreeText:
+                data = text ?? NSNull()
+            case .Unsupported:
+                data = unsupportedData ?? NSNull()
+        }
+
+        let ret: [String: AnyObject] = [
+            "type": question!.type!,
+            "data": data,
+        ]
+        return ret
+    }
+
 }

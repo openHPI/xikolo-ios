@@ -22,4 +22,15 @@ class QuizAnswerSubmission : NSObject, EmbeddedObject {
         id = answer.id
     }
 
+    func toDict() -> [String : AnyObject] {
+        var dict = [String: AnyObject]()
+        if let id = id {
+            dict["id"] = id
+        }
+        if let text = text {
+            dict["user_answer_text"] = text
+        }
+        return dict
+    }
+
 }

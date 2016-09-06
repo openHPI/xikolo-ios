@@ -123,8 +123,13 @@ struct EmbeddedDictFormatter : ValueFormatter {
     }
 
     func format(value: [String: EmbeddedDictObject], attribute: EmbeddedDictAttribute) -> AnyObject {
-        // Implement in case we need it.
-        return NSNull()
+        var out = [String: AnyObject]()
+        for (_, obj) in value {
+            if let key = obj.key, data = obj.data?() {
+                out[key] = data
+            }
+        }
+        return out
     }
 
 }

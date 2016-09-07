@@ -17,21 +17,16 @@ class QuizProvider {
         spine.registerResource(QuizSpine)
         spine.registerResource(QuizQuestionSpine)
 
-        return spine.findOne(quizId, ofType: QuizSpine.self).map { tuple in
-            tuple.resource
-        }.mapError { error in
+        var query = Query(resourceType: QuizSpine.self, resourceIDs: [quizId])
+        query.include("questions")
+
+        return spine.find(query).mapError { error in
             XikoloError.API(error)
-        }.flatMap { (quiz: QuizSpine) -> Future<QuizSpine, XikoloError> in
-            if let questions = quiz.questions {
-                return spine.find(Query(resourceType: QuizQuestionSpine.self, resourceCollection: questions)).map { resources, _, _ in
-                    quiz.questions = resources
-                    return quiz
-                }.mapError { error in
-                    XikoloError.API(error)
-                }
-            } else {
-                return Future.init(error: XikoloError.InvalidData)
+        }.flatMap { (resources, _, _) -> Future<QuizSpine, XikoloError> in
+            if let quiz = resources[0] as? QuizSpine {
+                return Future.init(value: quiz)
             }
+            return Future.init(error: XikoloError.InvalidData)
         }
     }
 

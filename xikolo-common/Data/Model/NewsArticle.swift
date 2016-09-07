@@ -12,6 +12,16 @@ import Spine
 
 class NewsArticle : BaseModel {
 
+    var visited: Bool? {
+        get {
+            return visited_int?.boolValue
+        }
+        set(new_has_visited) {
+            visited_int = new_has_visited
+        }
+    }
+
+
 }
 
 class NewsArticleSpine : BaseModelSpine {
@@ -19,7 +29,9 @@ class NewsArticleSpine : BaseModelSpine {
     var title: String?
     var text: String?
     var published_at: NSDate?
-    var visited: NSNumber?
+    var visited_int: NSNumber?
+
+    var course: CourseSpine?
 
     override class var cdType: BaseModel.Type {
         return NewsArticle.self
@@ -34,8 +46,9 @@ class NewsArticleSpine : BaseModelSpine {
             "title": Attribute(),
             "text": Attribute(),
             "published_at": DateAttribute(),
-            "visited": Attribute(),
-            ])
+            "visited_int": Attribute().serializeAs("visited"),
+            "course": ToOneRelationship(CourseSpine),
+        ])
     }
     
 }

@@ -29,6 +29,7 @@ class NewsArticleCell : UITableViewCell {
         if let newsText = newsArticle.text {
             descriptionView.attributedText = MarkdownParser.parse(newsText)
         }
+        readStateView.hidden = newsArticle.visited ?? true
     }
 
 }

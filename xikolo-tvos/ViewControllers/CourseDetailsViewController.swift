@@ -57,8 +57,7 @@ class CourseDetailsViewController : UIViewController {
             self.courseImageView.image = image
             self.backgroundImageHelper.imageView.image = image
         }
-        // TODO: Show abstract instead of description once we're on APIv2.
-        abstractView.text = course.course_description
+        abstractView.text = course.abstract
 
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .MediumStyle

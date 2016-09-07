@@ -147,6 +147,8 @@
 		2474C88B1D86FE36009BDB94 /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
 		2474C88C1D86FE63009BDB94 /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		2474C88D1D86FE64009BDB94 /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
+		2474C88E1D8707E8009BDB94 /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE251D7DCF1E008466CC /* QuizSubmission.swift */; };
+		2474C88F1D8707E9009BDB94 /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE251D7DCF1E008466CC /* QuizSubmission.swift */; };
 		24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */; };
 		24895DC01CCB7FE400D6DFB8 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DBF1CCB7FE400D6DFB8 /* CourseListViewController.swift */; };
 		24895DC21CCC09C300D6DFB8 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */; };
@@ -2830,6 +2832,7 @@
 				ABDD84C11D8E010C00C7D193 /* LTIExercise+CoreDataProperties.swift in Sources */,
 				2474C8781D86FE1D009BDB94 /* RichText+CoreDataProperties.swift in Sources */,
 				AB9589761DC2049400586137 /* Channel.swift in Sources */,
+				2474C88E1D8707E8009BDB94 /* QuizSubmission.swift in Sources */,
 				249E3AB51D43D88700D7663F /* SpineModelHelper.swift in Sources */,
 				2474C86A1D86FE0A009BDB94 /* Content+CoreDataProperties.swift in Sources */,
 				2474C87E1D86FE25009BDB94 /* Video.swift in Sources */,
@@ -3151,6 +3154,7 @@
 				ABDD84C21D8E010D00C7D193 /* LTIExercise+CoreDataProperties.swift in Sources */,
 				2474C8791D86FE1D009BDB94 /* RichText+CoreDataProperties.swift in Sources */,
 				AB9589791DC2049400586137 /* Channel.swift in Sources */,
+				2474C88F1D8707E9009BDB94 /* QuizSubmission.swift in Sources */,
 				24BA408B1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */,
 				2474C86B1D86FE0B009BDB94 /* Content+CoreDataProperties.swift in Sources */,
 				2474C87F1D86FE26009BDB94 /* Video.swift in Sources */,

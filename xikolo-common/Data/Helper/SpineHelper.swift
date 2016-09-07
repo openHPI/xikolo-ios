@@ -40,6 +40,7 @@ class SpineHelper {
         spine.registerResource(PlatformEventSpine)
         spine.registerResource(QuizSpine)
         spine.registerResource(QuizQuestionSpine)
+        spine.registerResource(QuizSubmission)
         spine.registerResource(RichTextSpine)
         spine.registerResource(VideoSpine)
         spine.registerResource(NewsArticleSpine)

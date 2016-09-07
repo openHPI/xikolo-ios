@@ -14,6 +14,8 @@ class NewsArticleCell : UITableViewCell {
     @IBOutlet weak var descriptionView: UILabel!
     @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var dateView: UILabel!
+    @IBOutlet weak var courseView: UILabel!
+    @IBOutlet weak var roundedTagBackgroundView: UIView!
 
     func configure(newsArticle: NewsArticle) {
         readStateView.backgroundColor = Brand.TintColor
@@ -30,6 +32,9 @@ class NewsArticleCell : UITableViewCell {
             descriptionView.attributedText = MarkdownParser.parse(newsText)
         }
         readStateView.hidden = newsArticle.visited ?? true
+
+        roundedTagBackgroundView.hidden = newsArticle.course == nil
+        courseView.text = newsArticle.course?.title
     }
 
 }

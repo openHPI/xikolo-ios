@@ -54,6 +54,7 @@ class ItemQuizViewController : UIViewController {
 
             indicatorView.questions = questions
             updateCurrentQuestion()
+            indicatorView.updateAll()
 
             view.addLayoutGuide(questionFocusGuide)
             questionFocusGuide.trailingAnchor.constraintEqualToAnchor(nextButton.leadingAnchor).active = true

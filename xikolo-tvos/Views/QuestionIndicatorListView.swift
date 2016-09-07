@@ -69,6 +69,12 @@ class QuestionIndicatorListView : UIView {
         }
     }
 
+    func updateAll() {
+        for (_, indicator) in indicators {
+            indicator.update()
+        }
+    }
+
 }
 
 extension QuestionIndicatorListView : QuestionIndicatorViewDelegate {

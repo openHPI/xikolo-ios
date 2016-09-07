@@ -20,7 +20,7 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 66
 
-        tableView.allowsMultipleSelection = question.questionType == .MultipleChoice
+        tableView.allowsMultipleSelection = question.questionType == .MultipleAnswer
 
         if question.shuffle_answers {
             answers = question.answers?.shuffle() ?? []

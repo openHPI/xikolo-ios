@@ -99,7 +99,7 @@ class ItemQuizViewController : UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var vc: AbstractQuestionViewController!
         switch question.questionType {
-            case .SingleChoice, .MultipleChoice:
+            case .SingleAnswer, .MultipleAnswer:
                 vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
             default:
                 vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController

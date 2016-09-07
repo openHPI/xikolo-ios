@@ -26,10 +26,10 @@ class QuizQuestion : BaseModel {
             return .Unsupported
         }
         switch type! {
-            case "multiple_choice":
-                return .SingleChoice
+            case "single_answer":
+                return .SingleAnswer
             case "multiple_answer":
-                return .MultipleChoice
+                return .MultipleAnswer
             case "free_text":
                 return .FreeText
             default:
@@ -70,8 +70,8 @@ class QuizQuestionSpine : BaseModelSpine {
 }
 
 enum QuizQuestionType {
-    case SingleChoice
-    case MultipleChoice
+    case SingleAnswer
+    case MultipleAnswer
     case FreeText
     case Unsupported
 }

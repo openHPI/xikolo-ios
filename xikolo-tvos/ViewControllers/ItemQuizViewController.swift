@@ -19,6 +19,7 @@ class ItemQuizViewController : UIViewController {
 
     var quiz: Quiz!
     var questions: [QuizQuestion]!
+    var submissionMode: QuizSubmissionDisplayMode!
 
     var currentQuestion = 0 {
         didSet {

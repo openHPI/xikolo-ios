@@ -572,20 +572,33 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FN-Kc-Av5">
-                                <rect key="frame" x="834" y="794" width="252" height="86"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="Start Quiz"/>
-                                <connections>
-                                    <action selector="startQuiz:" destination="YSt-lK-Q2X" eventType="primaryActionTriggered" id="jxK-wa-7A1"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZ9-YO-hkH">
                                 <rect key="frame" x="400" y="190" width="1120" height="35"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Iu7-Zn-ReD">
+                                <rect key="frame" x="625" y="794" width="671" height="86"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxp-5t-Vx6">
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="86"/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Show Submission"/>
+                                        <connections>
+                                            <action selector="showSubmission:" destination="YSt-lK-Q2X" eventType="primaryActionTriggered" id="CQs-KG-KaZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FN-Kc-Av5">
+                                        <rect key="frame" x="423" y="0.0" width="248" height="86"/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Take Quiz"/>
+                                        <connections>
+                                            <action selector="startQuiz:" destination="YSt-lK-Q2X" eventType="primaryActionTriggered" id="jxK-wa-7A1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME LIMIT" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ci-vr-EYC">
                                 <rect key="frame" x="90" y="190" width="260" height="28"/>
                                 <constraints>
@@ -605,20 +618,22 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="UdT-iY-4NN" firstAttribute="top" secondItem="9FN-Kc-Av5" secondAttribute="bottom" constant="200" id="3yW-U6-V1w"/>
                             <constraint firstItem="x8V-06-6Ex" firstAttribute="top" secondItem="0ci-vr-EYC" secondAttribute="bottom" id="6SQ-M2-9LK"/>
                             <constraint firstItem="lCC-Mw-GM5" firstAttribute="top" secondItem="jZk-nk-NQx" secondAttribute="bottom" constant="75" id="BVp-g3-vb0"/>
                             <constraint firstAttribute="trailing" secondItem="GZ9-YO-hkH" secondAttribute="trailing" constant="400" id="EBd-DO-R32"/>
                             <constraint firstItem="0ci-vr-EYC" firstAttribute="leading" secondItem="cHv-41-Ie9" secondAttribute="leading" constant="90" id="Igo-LW-TaU"/>
+                            <constraint firstItem="Iu7-Zn-ReD" firstAttribute="centerX" secondItem="cHv-41-Ie9" secondAttribute="centerX" id="JBD-gk-O8I"/>
                             <constraint firstItem="0ci-vr-EYC" firstAttribute="top" secondItem="jZk-nk-NQx" secondAttribute="bottom" constant="190" id="Rp5-ky-9sJ"/>
                             <constraint firstItem="GZ9-YO-hkH" firstAttribute="leading" secondItem="cHv-41-Ie9" secondAttribute="leading" constant="400" id="Sh0-7U-dSz"/>
-                            <constraint firstItem="9FN-Kc-Av5" firstAttribute="centerX" secondItem="cHv-41-Ie9" secondAttribute="centerX" id="gTS-m9-ZOM"/>
                             <constraint firstItem="x8V-06-6Ex" firstAttribute="leading" secondItem="cHv-41-Ie9" secondAttribute="leading" constant="90" id="qM8-66-ee4"/>
                             <constraint firstItem="lCC-Mw-GM5" firstAttribute="centerX" secondItem="cHv-41-Ie9" secondAttribute="centerX" id="r50-qu-dyd"/>
                             <constraint firstItem="GZ9-YO-hkH" firstAttribute="top" secondItem="jZk-nk-NQx" secondAttribute="bottom" constant="190" id="udM-rw-XGw"/>
+                            <constraint firstItem="UdT-iY-4NN" firstAttribute="top" secondItem="Iu7-Zn-ReD" secondAttribute="bottom" constant="200" id="yvJ-tG-pWX"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="showSubmissionButton" destination="uxp-5t-Vx6" id="eXp-3n-dxC"/>
+                        <outlet property="startQuizButton" destination="9FN-Kc-Av5" id="MAC-jw-bfX"/>
                         <outlet property="textView" destination="GZ9-YO-hkH" id="6P4-1j-lXf"/>
                         <outlet property="timeLimitHeaderView" destination="0ci-vr-EYC" id="CgU-SZ-1nk"/>
                         <outlet property="timeLimitView" destination="x8V-06-6Ex" id="RDe-5x-Tmw"/>

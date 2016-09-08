@@ -54,6 +54,9 @@ class MainViewController : UIViewController {
         self.navigationController?.presentViewController(vc, animated: true, completion: nil)
     }
 
+    @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
+    }
+
 }
 
 extension MainViewController : AbstractLoginViewControllerDelegate {

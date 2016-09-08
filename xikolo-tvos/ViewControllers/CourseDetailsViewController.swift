@@ -42,7 +42,7 @@ class CourseDetailsViewController : UIViewController {
             self.configureViews()
         }, deletedHandler: {
             // If the course was deleted, go back to course list.
-            self.courseTabBarController.dismissViewControllerAnimated(true, completion: nil)
+            self.performSegueWithIdentifier("CourseDetailsUnwindSegue", sender: nil)
         })
         configureViews()
     }

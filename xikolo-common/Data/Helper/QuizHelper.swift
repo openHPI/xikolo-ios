@@ -28,4 +28,8 @@ class QuizHelper {
         }
     }
 
+    static func saveSubmission(submission: QuizSubmission) -> Future<QuizSubmission, XikoloError> {
+        return SpineHelper.save(submission)
+    }
+
 }

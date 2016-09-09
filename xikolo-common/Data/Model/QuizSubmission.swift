@@ -21,6 +21,7 @@ class QuizSubmission : Resource {
     var submitted_int: NSNumber?
     var points: NSNumber?
     var answers: [String: QuizQuestionSubmission]?
+    var quiz: QuizSpine?
 
     override class var resourceType: ResourceType {
         return "quiz-submissions"
@@ -33,6 +34,7 @@ class QuizSubmission : Resource {
             "submitted_int": Attribute().serializeAs("submitted"),
             "points": Attribute(),
             "answers": EmbeddedDictAttribute(QuizQuestionSubmission),
+            "quiz": ToOneRelationship(QuizSpine),
         ])
     }
 

@@ -36,6 +36,7 @@ class ItemQuizViewController : UIViewController {
     }
 
     var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
+    var loadingHelper: ViewControllerLoadingHelper!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,27 @@ class ItemQuizViewController : UIViewController {
         if let quizQuestions = quiz.questions {
             // TODO: Correctly sort questions
             questions = Array(quizQuestions)
+
+            loadingHelper = ViewControllerLoadingHelper(self, rootView: view)
+            if submissionMode! == .TakeQuiz || submissionMode! == .RetakeQuiz {
+                loadingHelper.startLoading(NSLocalizedString("Starting Quiz", comment: "Starting Quiz"))
+                if submissionMode! == .RetakeQuiz {
+                    // Remove all QuestionSubmissions if retaking the quiz.
+                    for question in questions {
+                        question.submission = nil
+                    }
+                }
+
+                let submission = QuizSubmission()
+                submission.submitted = false
+                submission.quiz = QuizSpine(id: quiz.id)
+                quiz.submission = submission
+
+                QuizHelper.saveSubmission(submission).onSuccess { _ in
+                    self.loadingHelper.stopLoading()
+                }
+                // TODO: Error handling
+            }
 
             indicatorView.questions = questions
             updateCurrentQuestion()

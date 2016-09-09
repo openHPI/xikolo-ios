@@ -68,6 +68,19 @@ class QuizSpine : ContentSpine {
     var questions: ResourceCollection?
     var submission: QuizSubmission?
 
+    required init() {
+        super.init()
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    init(id: String) {
+        super.init()
+        self.id = id
+    }
+
     override class var cdType: BaseModel.Type {
         return Quiz.self
     }

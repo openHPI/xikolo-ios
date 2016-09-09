@@ -41,7 +41,11 @@ extension BaseModel {
 
     func loadFromSpine(resource: BaseModelSpine) throws {
         for field in resource.dynamicType.fields {
-            let value = resource.valueForKey(field.name)
+            var value = resource.valueForKey(field.name)
+            if value is NSNull {
+                // This can happen, e.g. if a DateAttribute cannot be converted to NSDate.
+                value = nil
+            }
             if field is CompoundAttribute {
                 if let value = value as? CompoundValue {
                     value.saveToCoreData(self)

@@ -13,6 +13,7 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var answers: [QuizAnswer]!
+    var submissionLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
         }
 
         loadSubmission()
+        submissionLoaded = true
     }
 
     func loadSubmission() {
@@ -79,6 +81,14 @@ extension ChoiceQuestionViewController : UITableViewDataSource {
 }
 
 extension ChoiceQuestionViewController : UITableViewDelegate {
+
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        return !readOnly || !submissionLoaded ? indexPath : nil
+    }
+
+    func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        return !readOnly || !submissionLoaded ? indexPath : nil
+    }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark

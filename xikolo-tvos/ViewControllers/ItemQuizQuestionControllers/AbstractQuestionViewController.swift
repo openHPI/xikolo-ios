@@ -13,6 +13,7 @@ class AbstractQuestionViewController : UIViewController {
     @IBOutlet weak var textView: UILabel!
 
     var question: QuizQuestion!
+    var readOnly = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

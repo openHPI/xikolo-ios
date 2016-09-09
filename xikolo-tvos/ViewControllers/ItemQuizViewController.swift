@@ -90,7 +90,9 @@ class ItemQuizViewController : UIViewController {
     func updateQuestionView() {
         // TODO: Animation?
         if let vc = questionViewController {
-            vc.saveSubmission()
+            if submissionMode! != .ShowSubmission {
+                vc.saveSubmission()
+            }
 
             // Hide ViewController
             vc.willMoveToParentViewController(nil)
@@ -110,6 +112,7 @@ class ItemQuizViewController : UIViewController {
                 vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
         }
         vc.question = question
+        vc.readOnly = submissionMode! == .ShowSubmission
 
         questionView.addSubview(vc.view)
         vc.view.frame = questionView.bounds

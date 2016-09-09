@@ -30,6 +30,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="courses" inverseEntity="Channel" syncable="YES"/>
         <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CourseEnrollment" inverseName="course" inverseEntity="CourseEnrollment" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlatformEvent" inverseName="course" inverseEntity="PlatformEvent" syncable="YES"/>
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NewsArticle" inverseName="course" inverseEntity="NewsArticle" syncable="YES"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection" syncable="YES"/>
     </entity>
@@ -69,6 +70,14 @@
     </entity>
     <entity name="PeerAssessment" representedClassName=".PeerAssessment" parentEntity="Content" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PlatformEvent" representedClassName=".PlatformEvent" syncable="YES">
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preview" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="events" inverseEntity="Course" syncable="YES"/>
     </entity>
     <entity name="Quiz" representedClassName=".Quiz" parentEntity="Content" syncable="YES">
         <attribute name="allowed_attempts" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -116,6 +125,7 @@
         <element name="LTIExercise" positionX="684" positionY="308" width="128" height="103"/>
         <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="133"/>
         <element name="PeerAssessment" positionX="540" positionY="299" width="128" height="58"/>
+        <element name="PlatformEvent" positionX="7" positionY="308" width="128" height="133"/>
         <element name="Quiz" positionX="828" positionY="198" width="128" height="163"/>
         <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="163"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>

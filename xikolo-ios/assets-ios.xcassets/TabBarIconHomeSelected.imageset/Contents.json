@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Dashboard-25.png",
+      "filename" : "Home Filled-25.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Dashboard-50.png",
+      "filename" : "Home Filled-50.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Dashboard-75.png",
+      "filename" : "Home Filled-75.png",
       "scale" : "3x"
     }
   ],

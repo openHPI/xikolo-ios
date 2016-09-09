@@ -14,7 +14,7 @@ class Content : BaseModel {
 
     func iconName() -> String {
         // TODO: Add "unsupported" icon.
-        return "lti_exercise"
+        return "homework"
     }
 
 }

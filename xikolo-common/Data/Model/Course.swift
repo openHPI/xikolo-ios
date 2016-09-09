@@ -78,8 +78,8 @@ class CourseSpine : BaseModelSpine {
             "image_url": URLAttribute(baseURL: NSURL(string: Brand.BaseURL)!),
             "teachers": Attribute(),
             "language": Attribute(),
-            "start_at": DateAttribute(format: "yyyy-MM-dd'T'HH:mm:ssZZZZZ"),
-            "end_at": DateAttribute(format: "yyyy-MM-dd'T'HH:mm:ssZZZZZ"),
+            "start_at": DateAttribute(),
+            "end_at": DateAttribute(),
             "enrollment": ToOneRelationship(CourseEnrollmentSpine).serializeAs("user_enrollment"),
         ])
     }

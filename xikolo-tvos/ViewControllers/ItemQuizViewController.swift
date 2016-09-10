@@ -114,6 +114,16 @@ class ItemQuizViewController : UIViewController {
         if let vc = questionViewController {
             if submissionMode! != .ShowSubmission {
                 vc.saveSubmission()
+                if vc.question.submission != nil {
+                    var answers = [String: QuizQuestionSubmission]()
+                    for question in questions {
+                        if let submission = question.submission {
+                            answers[question.id] = submission
+                        }
+                    }
+                    quiz.submission!.answers = answers
+                    QuizHelper.saveSubmission(quiz.submission!)
+                }
             }
 
             // Hide ViewController

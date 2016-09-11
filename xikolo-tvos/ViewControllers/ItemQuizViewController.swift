@@ -115,14 +115,7 @@ class ItemQuizViewController : UIViewController {
             if submissionMode! != .ShowSubmission {
                 vc.saveSubmission()
                 if vc.question.submission != nil {
-                    var answers = [String: QuizQuestionSubmission]()
-                    for question in questions {
-                        if let submission = question.submission {
-                            answers[question.id] = submission
-                        }
-                    }
-                    quiz.submission!.answers = answers
-                    QuizHelper.saveSubmission(quiz.submission!)
+                    QuizHelper.saveSubmission(quiz.submission!, questions: questions)
                 }
             }
 
@@ -167,7 +160,18 @@ class ItemQuizViewController : UIViewController {
     }
 
     @IBAction func nextQuestion(sender: UIButton) {
-        currentQuestion += 1
+        if currentQuestion == questions.count - 1 {
+            // Save current question.
+            questionViewController?.saveSubmission()
+
+            // TODO: Check if all questions have been answered, warn the user otherwise.
+
+            quiz.submission!.submitted = true
+            QuizHelper.saveSubmission(quiz.submission!, questions: questions)
+            // TODO: Success / error handling.
+        } else {
+            currentQuestion += 1
+        }
     }
 
     func updateButtons() {
@@ -177,9 +181,9 @@ class ItemQuizViewController : UIViewController {
             previousButton.hidden = false
         }
         if currentQuestion == questions.count - 1 {
-            nextButton.hidden = true
+            nextButton.setTitle(NSLocalizedString("Finish", comment: "Finish"), forState: .Normal)
         } else {
-            nextButton.hidden = false
+            nextButton.setTitle(NSLocalizedString("Next", comment: "Next"), forState: .Normal)
         }
         setNeedsFocusUpdate()
     }

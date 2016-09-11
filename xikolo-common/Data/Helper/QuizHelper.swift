@@ -28,7 +28,16 @@ class QuizHelper {
         }
     }
 
-    static func saveSubmission(submission: QuizSubmission) -> Future<QuizSubmission, XikoloError> {
+    static func saveSubmission(submission: QuizSubmission, questions: [QuizQuestion]? = nil) -> Future<QuizSubmission, XikoloError> {
+        if let questions = questions {
+            var answers = [String: QuizQuestionSubmission]()
+            for question in questions {
+                if let questionSubmission = question.submission {
+                    answers[question.id] = questionSubmission
+                }
+            }
+            submission.answers = answers
+        }
         return SpineHelper.save(submission)
     }
 

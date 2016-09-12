@@ -8,19 +8,11 @@
 
 import BrightFutures
 import Foundation
-import Spine
 
 class NewsArticleProvider {
 
     class func getNewsArticles() -> Future<[NewsArticleSpine], XikoloError> {
-        let spine = SpineModelHelper.createSpineClient()
-        spine.registerResource(NewsArticleSpine)
-
-        return spine.findAll(NewsArticleSpine).map { tuple in
-            tuple.resources.map { $0 as! NewsArticleSpine }
-        }.mapError { error in
-            XikoloError.API(error)
-        }
+        return SpineHelper.findAll(NewsArticleSpine)
     }
-    
+
 }

@@ -82,10 +82,7 @@ class TrackingHelper {
 
     class func sendEvent(verb: String, resource: BaseModel, context: [String: String] = [:]) -> Future<Void, XikoloError> {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
-            let spine = SpineModelHelper.createSpineClient()
-            return spine.save(event).asVoid().mapError { error in
-                return XikoloError.API(error)
-            }
+            SpineHelper.save(event).asVoid()
         }
     }
 

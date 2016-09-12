@@ -8,22 +8,11 @@
 
 import BrightFutures
 import Foundation
-import Spine
 
 class VideoProvider {
 
     class func getVideo(videoId: String) -> Future<VideoSpine, XikoloError> {
-        let spine = SpineModelHelper.createSpineClient()
-        spine.registerResource(VideoSpine)
-
-        spine.registerValueFormatter(VideoStreamFormatter())
-        spine.registerValueFormatter(DualStreamFormatter())
-
-        return spine.findOne(videoId, ofType: VideoSpine.self).map { tuple in
-            tuple.resource
-        }.mapError { error in
-            XikoloError.API(error)
-        }
+        return SpineHelper.findOne(videoId, ofType: VideoSpine.self)
     }
 
 }

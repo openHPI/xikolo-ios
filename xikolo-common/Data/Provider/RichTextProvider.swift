@@ -8,19 +8,11 @@
 
 import BrightFutures
 import Foundation
-import Spine
 
 class RichTextProvider {
 
     class func getRichText(richTextId: String) -> Future<RichTextSpine, XikoloError> {
-        let spine = SpineModelHelper.createSpineClient()
-        spine.registerResource(RichTextSpine)
-
-        return spine.findOne(richTextId, ofType: RichTextSpine.self).map { tuple in
-            tuple.resource
-        }.mapError { error in
-            XikoloError.API(error)
-        }
+        return SpineHelper.findOne(richTextId, ofType: RichTextSpine.self)
     }
-    
+
 }

@@ -15,27 +15,15 @@ class QuizAnswer : NSObject, NSCoding, EmbeddedObject {
     var position: NSNumber?
 
     required init(_ dict: [String : AnyObject]) {
-        if let value = dict["id"] as? String {
-            id = value
-        }
-        if let value = dict["text"] as? String {
-            text = value
-        }
-        if let value = dict["position"] as? NSNumber {
-            position = value
-        }
+        id = dict["id"] as? String
+        text = dict["text"] as? String
+        position = dict["position"] as? NSNumber
     }
 
     required init(coder decoder: NSCoder) {
-        if let value = decoder.decodeObjectForKey("id") as? String {
-            id = value
-        }
-        if let value = decoder.decodeObjectForKey("text") as? String {
-            text = value
-        }
-        if let value = decoder.decodeObjectForKey("position") as? NSNumber {
-            position = value
-        }
+        id = decoder.decodeObjectForKey("id") as? String
+        text = decoder.decodeObjectForKey("text") as? String
+        position = decoder.decodeObjectForKey("position") as? NSNumber
     }
 
     func encodeWithCoder(coder: NSCoder) {

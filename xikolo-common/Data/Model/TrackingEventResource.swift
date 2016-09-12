@@ -14,12 +14,8 @@ class TrackingEventResource : NSObject, EmbeddedObject {
     var uuid: String?
 
     required init(_ dict: [String : AnyObject]) {
-        if let type = dict["type"] as? String {
-            self.type = type
-        }
-        if let uuid = dict["uuid"] as? String {
-            self.uuid = uuid
-        }
+        type = dict["type"] as? String
+        uuid = dict["uuid"] as? String
     }
 
     init?(resource: BaseModel) {

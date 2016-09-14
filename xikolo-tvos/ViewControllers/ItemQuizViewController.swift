@@ -6,6 +6,7 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import BrightFutures
 import UIKit
 
 class ItemQuizViewController : UIViewController {
@@ -29,6 +30,7 @@ class ItemQuizViewController : UIViewController {
         }
     }
     var questionViewController: AbstractQuestionViewController?
+    var currentSaveOperation: Future<QuizSubmission, XikoloError>?
 
     weak var customPreferredFocusedView: UIView!
     override weak var preferredFocusedView: UIView? {
@@ -115,7 +117,16 @@ class ItemQuizViewController : UIViewController {
             if submissionMode! != .ShowSubmission {
                 vc.saveSubmission()
                 if vc.question.submission != nil {
-                    QuizHelper.saveSubmission(quiz.submission!, questions: questions)
+                    let submission = quiz.submission!, questions = self.questions
+                    let saveOperation = { () -> Future<QuizSubmission, XikoloError> in
+                        return QuizHelper.saveSubmission(submission, questions: questions)
+                    }
+                    if currentSaveOperation == nil {
+                        currentSaveOperation = saveOperation()
+                    } else {
+                        // Make sure the save operations happen serially.
+                        currentSaveOperation = currentSaveOperation.flatMap { _ in saveOperation() }
+                    }
                 }
             }
 

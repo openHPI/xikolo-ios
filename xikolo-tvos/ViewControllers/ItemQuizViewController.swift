@@ -130,30 +130,16 @@ class ItemQuizViewController : UIViewController {
                 }
             }
 
-            // Hide ViewController
-            vc.willMoveToParentViewController(nil)
-            vc.view.removeFromSuperview()
-            vc.removeFromParentViewController()
+            vc.removeChildViewControllerFromParent()
             questionViewController = nil
         }
 
         let question = questions[currentQuestion]
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: AbstractQuestionViewController!
-        switch question.questionType {
-            case .SingleAnswer, .MultipleAnswer:
-                vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
-            default:
-                vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
-        }
-        vc.question = question
+        let vc = viewControllerForQuestion(question)
         vc.readOnly = submissionMode! == .ShowSubmission
 
-        questionView.addSubview(vc.view)
-        vc.view.frame = questionView.bounds
-        addChildViewController(vc)
-        vc.didMoveToParentViewController(self)
+        addChildViewController(vc, into: questionView)
 
         if vc is UnsupportedQuestionViewController {
             questionFocusGuide.preferredFocusedView = previousButton
@@ -164,6 +150,19 @@ class ItemQuizViewController : UIViewController {
         }
 
         questionViewController = vc
+    }
+
+    private func viewControllerForQuestion(question: QuizQuestion) -> AbstractQuestionViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc: AbstractQuestionViewController!
+        switch question.questionType {
+            case .SingleAnswer, .MultipleAnswer:
+                vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
+            default:
+                vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
+        }
+        vc.question = question
+        return vc
     }
 
     @IBAction func previousQuestion(sender: UIButton) {

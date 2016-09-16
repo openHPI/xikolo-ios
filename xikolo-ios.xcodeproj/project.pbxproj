@@ -180,6 +180,8 @@
 		2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FF1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		249347FD1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
+		249347FE1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
 		249348001D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */; };
 		249348011D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */; };
 		249348131D9550FD006D4F2C /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Localizable.stringsdict */; };
@@ -1123,6 +1125,7 @@
 		2490C4E11D1D92F200F42949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos.entitlements"; sourceTree = "<group>"; };
 		2490C4FC1D2175BA00F42949 /* XikoloURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloURL.swift; sourceTree = "<group>"; };
+		249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorHelper.swift"; sourceTree = "<group>"; };
 		249348191D9550FD006D4F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2493481B1D955101006D4F2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -1719,6 +1722,7 @@
 				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
 				2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
+				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3002,6 +3006,7 @@
 				245929931D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */,
 				24BA40BD1D3F9AD900E38C2C /* VideoProvider.swift in Sources */,
 				24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */,
+				249347FE1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */,
 				24BA412A1D3F9D0B00E38C2C /* ItemVideoLoadingController.swift in Sources */,
 				AB1C03411D8E0CA70053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				243CE4861D709999007C59B6 /* CourseEnrollment.swift in Sources */,
@@ -3194,6 +3199,7 @@
 				245929921D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */,
 				24A16D7F1CFDE60200CAD9FE /* Content.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
+				249347FD1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */,
 				2447CE1A1D09C88C00B5C39A /* MarkdownParser.swift in Sources */,
 				AB1C033F1D8E0CA50053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				243CE4841D709999007C59B6 /* CourseEnrollment.swift in Sources */,

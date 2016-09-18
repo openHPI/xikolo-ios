@@ -169,6 +169,8 @@
 		2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FF1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
+		249348001D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */; };
+		249348011D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */; };
 		249C01A51D39169600B54AAC /* ViewControllerLoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */; };
 		249C01A71D3CFCE800B54AAC /* ItemVideoLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */; };
 		249C01A91D3D034700B54AAC /* ReplaceSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01A81D3D034700B54AAC /* ReplaceSegue.swift */; };
@@ -669,6 +671,7 @@
 		2490C4E11D1D92F200F42949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xikolo-tvos.entitlements"; sourceTree = "<group>"; };
 		2490C4FC1D2175BA00F42949 /* XikoloURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloURL.swift; sourceTree = "<group>"; };
+		249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorHelper.swift"; sourceTree = "<group>"; };
 		249C01A41D39169600B54AAC /* ViewControllerLoadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoadingHelper.swift; sourceTree = "<group>"; };
 		249C01A61D3CFCE800B54AAC /* ItemVideoLoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVideoLoadingController.swift; sourceTree = "<group>"; };
 		249C01A81D3D034700B54AAC /* ReplaceSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceSegue.swift; sourceTree = "<group>"; };
@@ -983,6 +986,14 @@
 			path = TopShelf;
 			sourceTree = "<group>";
 		};
+		249348021D8C5169006D4F2C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		249C01A31D39164A00B54AAC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1085,6 +1096,7 @@
 		24CB7E351CC678A000960269 /* xikolo-tvos */ = {
 			isa = PBXGroup;
 			children = (
+				249348021D8C5169006D4F2C /* Categories */,
 				2490C4DE1D1D92F200F42949 /* TopShelf */,
 				24895DBB1CCAF04200D6DFB8 /* Layouts */,
 				24895DBE1CCB7FC900D6DFB8 /* ViewControllers */,
@@ -2146,6 +2158,7 @@
 				24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
 				240CAA141D649E980072F96D /* AbstractQuestionViewController.swift in Sources */,
 				243CE4941D786717007C59B6 /* TrackingEventUser.swift in Sources */,
+				249348011D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */,
 				24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */,
 				24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */,
 				249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
@@ -2314,6 +2327,7 @@
 				24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */,
 				24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				240CAA131D649E980072F96D /* AbstractQuestionViewController.swift in Sources */,
+				249348001D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */,
 				243CE4921D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				24D48E2C1CCA934300E8051E /* UserProfileHelper.swift in Sources */,
 				24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */,

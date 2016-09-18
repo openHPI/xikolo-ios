@@ -119,7 +119,8 @@ class ItemQuizViewController : UIViewController {
                 if vc.question.submission != nil {
                     let submission = quiz.submission!, questions = self.questions
                     let saveOperation = { () -> Future<QuizSubmission, XikoloError> in
-                        return QuizHelper.saveSubmission(submission, questions: questions)
+                        let errorMessage = NSLocalizedString("Your progress could not be saved online. Please try again later.", comment: "Your progress could not be saved online. Please try again later.")
+                        return QuizHelper.saveSubmission(submission, questions: questions).onFailure(callback: self.handleError(errorMessage))
                     }
                     if currentSaveOperation == nil {
                         currentSaveOperation = saveOperation()
@@ -177,8 +178,9 @@ class ItemQuizViewController : UIViewController {
             // TODO: Check if all questions have been answered, warn the user otherwise.
 
             quiz.submission!.submitted = true
-            QuizHelper.saveSubmission(quiz.submission!, questions: questions)
-            // TODO: Success / error handling.
+            let errorMessage = NSLocalizedString("The quiz could not be submitted. Please try again later.", comment: "The quiz could not be submitted. Please try again later.")
+            QuizHelper.saveSubmission(quiz.submission!, questions: questions).onFailure(callback: handleError(errorMessage))
+            // TODO: Success handling.
         } else {
             currentQuestion += 1
         }

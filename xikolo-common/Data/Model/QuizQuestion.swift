@@ -30,6 +30,13 @@ class QuizQuestion : BaseModel {
         return QuizQuestionType.fromString(type!)
     }
 
+    var hasCorrectnessData: Bool {
+        guard let answers = answers else {
+            return false
+        }
+        return answers.filter({ $0.correct ?? false }).count > 0
+    }
+
 }
 
 class QuizQuestionSpine : BaseModelSpine {

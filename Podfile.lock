@@ -31,7 +31,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Spine:
-    :commit: 5edd44bae7923d3a8cf7804d3bf7844f67ec0fd3
+    :commit: 53971cf16661f90d43b10a9efffc604d8d921eb9
     :git: https://github.com/wvteijlingen/Spine.git
   TSMarkdownParser:
     :commit: cdfb56c4ad589f6a63a9299ba75ac7a53dc9a959

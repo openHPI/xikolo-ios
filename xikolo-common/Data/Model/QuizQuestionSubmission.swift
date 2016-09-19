@@ -21,6 +21,38 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
     var questionID: String?
     var question: QuizQuestion?
 
+    var correctness: Float? {
+        guard let question = question, answers = answers else {
+            return nil
+        }
+        if !question.hasCorrectnessData {
+            return nil
+        }
+        switch (question.questionType) {
+            case .SingleAnswer, .MultipleAnswer:
+                guard let questionAnswers = question.answers else {
+                    return nil
+                }
+
+                var baseScore = 0
+                questionAnswers.forEach { answer in
+                    let correct = answer.correct ?? false
+                    let answerSelected = answers.contains(answer.id!)
+                    if answerSelected && correct {
+                        baseScore += 1
+                    } else if answerSelected && !correct {
+                        baseScore -= 1
+                    }
+                }
+                if baseScore < 0 {
+                    baseScore = 0
+                }
+                return Float(baseScore) / Float(questionAnswers.filter({ $0.correct ?? false }).count)
+            case .FreeText, .Unsupported:
+                return nil
+        }
+    }
+
     required init?(key: String, data: AnyObject) {
         guard let dict = data as? [String: AnyObject] else {
             return nil

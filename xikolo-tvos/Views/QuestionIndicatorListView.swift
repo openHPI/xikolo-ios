@@ -20,10 +20,8 @@ class QuestionIndicatorListView : UIView {
         didSet {
             if oldValue != nil {
                 indicators[oldValue]?.selected = false
-                indicators[oldValue]?.update()
             }
             indicators[activeQuestion]?.selected = true
-            indicators[activeQuestion]?.update()
         }
     }
 

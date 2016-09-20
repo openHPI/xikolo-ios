@@ -10,7 +10,11 @@ import UIKit
 
 class QuestionIndicatorView : UIView {
 
-    var question: QuizQuestion!
+    var question: QuizQuestion! {
+        didSet {
+            question.addObserver(self, forKeyPath: "submission", options: NSKeyValueObservingOptions(), context: nil)
+        }
+    }
     var state: QuestionIndicatorState = .Unanswered
     var correctness: Float?
     var selected = false {
@@ -42,6 +46,10 @@ class QuestionIndicatorView : UIView {
         initialize()
     }
 
+    deinit {
+        question.removeObserver(self, forKeyPath: "submission")
+    }
+
     func initialize() {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         addGestureRecognizer(tapRecognizer)
@@ -54,6 +62,10 @@ class QuestionIndicatorView : UIView {
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
         setNeedsDisplay()
+    }
+
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        update()
     }
 
     func update() {

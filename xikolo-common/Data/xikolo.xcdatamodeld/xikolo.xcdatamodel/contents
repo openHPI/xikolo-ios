@@ -38,12 +38,21 @@
         <relationship name="course" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="sections" inverseEntity="Course" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseItem" inverseName="section" inverseEntity="CourseItem" syncable="YES"/>
     </entity>
+    <entity name="LTIExercise" representedClassName=".LTIExercise" parentEntity="Content" syncable="YES">
+        <attribute name="allowed_attempts" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lock_submissions_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="NewsArticle" representedClassName=".NewsArticle" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="published_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visited" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="PeerAssessment" representedClassName=".PeerAssessment" parentEntity="Content" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Quiz" representedClassName=".Quiz" parentEntity="Content" syncable="YES">
         <attribute name="allowed_attempts" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -88,7 +97,9 @@
         <element name="CourseEnrollment" positionX="18" positionY="-124" width="128" height="73"/>
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
+        <element name="LTIExercise" positionX="684" positionY="308" width="128" height="103"/>
         <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="120"/>
+        <element name="PeerAssessment" positionX="540" positionY="299" width="128" height="58"/>
         <element name="Quiz" positionX="828" positionY="198" width="128" height="163"/>
         <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="163"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>

@@ -419,9 +419,12 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3P-4C-sVC">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3P-4C-sVC">
                                                 <rect key="frame" x="261" y="383" width="78" height="30"/>
                                                 <state key="normal" title="open slides"/>
+                                                <connections>
+                                                    <action selector="openSlides:" destination="5Hh-M9-wy1" eventType="touchUpInside" id="p4R-LU-3EZ"/>
+                                                </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sTP-0O-gWC">
                                                 <rect key="frame" x="20" y="375" width="560" height="0.0"/>
@@ -506,6 +509,7 @@
                         <outlet property="openSlidesButton" destination="e3P-4C-sVC" id="sRQ-1b-aSe"/>
                         <outlet property="summaryView" destination="rGq-Ee-w10" id="KEj-Yz-Q6g"/>
                         <outlet property="titleLabel" destination="Xms-E7-0kp" id="pZh-8j-HFg"/>
+                        <segue destination="EZt-rR-Ceh" kind="show" identifier="ShowSlides" id="lP2-l3-t0e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOY-fk-G0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -519,6 +523,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bD-81-FHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3232" y="459"/>
+        </scene>
+        <!--WebViewController-->
+        <scene sceneID="uqh-vq-i1I">
+            <objects>
+                <viewControllerPlaceholder referencedIdentifier="WebViewController" id="EZt-rR-Ceh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iHB-9h-2iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3006" y="688"/>
         </scene>
         <!--Courses-->
         <scene sceneID="O7e-6a-qIC">

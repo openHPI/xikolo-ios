@@ -16,12 +16,14 @@ class VideoViewController : UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
-    @IBOutlet weak var previousItemButton: UIButton!
-    @IBOutlet weak var nextItemButton: UIButton!
     @IBOutlet weak var summaryView: UITextView!
 
     var courseItem: CourseItem!
     var video: Video?
+
+    @IBAction func openSlides(sender: UIButton) {
+        performSegueWithIdentifier("ShowSlides", sender: video)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +34,25 @@ class VideoViewController : UIViewController {
             self.video = videoComplete
             self.summaryView.text = videoComplete.summary
             self.performSegueWithIdentifier("EmbedAVPlayer", sender: self.video)
+            self.openSlidesButton.hidden = self.video?.slides_url == nil
         }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController as! AVPlayerViewController
-        let myVideo = sender as! Video
-        if let urlString = myVideo.single_stream_hls_url {
-            let url = NSURL(string: urlString)
-            destination.player = AVPlayer(URL: url!)
+        switch segue.identifier {
+            case "EmbedAVPlayer"?:
+                let destination = segue.destinationViewController as! AVPlayerViewController
+                let video = sender as! Video
+                if let urlString = video.single_stream_hls_url {
+                    let url = NSURL(string: urlString)
+                    destination.player = AVPlayer(URL: url!)
+                }
+            case "ShowSlides"?:
+                let vc = segue.destinationViewController as! WebViewController
+                let video = sender as! Video
+                vc.url = video.slides_url?.absoluteString
+        default:
+            super.prepareForSegue(segue, sender: sender)
         }
     }
 

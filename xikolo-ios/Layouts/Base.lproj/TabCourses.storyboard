@@ -33,10 +33,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2s-2M-RvA">
-                                            <rect key="frame" x="0.0" y="156" width="400" height="84"/>
+                                            <rect key="frame" x="0.0" y="165.5" width="400" height="74"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="980" verticalCompressionResistancePriority="980" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Oh-p5-LQK">
-                                                    <rect key="frame" x="8" y="8" width="372" height="20"/>
+                                                    <rect key="frame" x="8" y="8" width="42.5" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="one-zU-aDq"/>
                                                     </constraints>
@@ -49,31 +49,33 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuh-ck-Mxp">
-                                                    <rect key="frame" x="8" y="57" width="31" height="27"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuh-ck-Mxp">
+                                                    <rect key="frame" x="8" y="51" width="56" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.39729324490000001" green="0.39729324490000001" blue="0.39729324490000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blabla" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXf-3j-5OZ">
-                                                    <rect key="frame" x="8" y="36" width="35" height="13"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="teacher label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXf-3j-5OZ">
+                                                    <rect key="frame" x="8" y="32" width="74" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.87058823529999996" green="0.38431372549999998" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="0.79767287229999995" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="6Oh-p5-LQK" firstAttribute="centerX" secondItem="xXf-3j-5OZ" secondAttribute="centerX" id="0sO-B3-0lN"/>
-                                                <constraint firstAttribute="trailing" secondItem="6Oh-p5-LQK" secondAttribute="trailing" constant="20" symbolic="YES" id="3J0-mR-EWH"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Oh-p5-LQK" secondAttribute="trailing" constant="20" symbolic="YES" id="3J0-mR-EWH"/>
                                                 <constraint firstItem="xXf-3j-5OZ" firstAttribute="height" secondItem="6Oh-p5-LQK" secondAttribute="height" id="5Pr-ZP-yfq"/>
-                                                <constraint firstItem="nuh-ck-Mxp" firstAttribute="top" secondItem="xXf-3j-5OZ" secondAttribute="bottom" constant="8" symbolic="YES" id="5Rx-ej-8H1"/>
+                                                <constraint firstItem="nuh-ck-Mxp" firstAttribute="top" secondItem="xXf-3j-5OZ" secondAttribute="bottom" constant="4" id="5Rx-ej-8H1"/>
                                                 <constraint firstItem="nuh-ck-Mxp" firstAttribute="leading" secondItem="b2s-2M-RvA" secondAttribute="leadingMargin" id="Ffi-KU-S04"/>
                                                 <constraint firstItem="xXf-3j-5OZ" firstAttribute="leading" secondItem="b2s-2M-RvA" secondAttribute="leadingMargin" id="GnR-mc-hTW"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nuh-ck-Mxp" secondAttribute="trailing" constant="20" symbolic="YES" id="PbP-hm-Qak"/>
                                                 <constraint firstItem="6Oh-p5-LQK" firstAttribute="leading" secondItem="b2s-2M-RvA" secondAttribute="leadingMargin" id="UmI-Zw-wAb"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="nuh-ck-Mxp" secondAttribute="bottomMargin" id="VQ2-fA-5KF"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nuh-ck-Mxp" secondAttribute="bottomMargin" constant="8" id="VQ2-fA-5KF"/>
                                                 <constraint firstItem="6Oh-p5-LQK" firstAttribute="top" secondItem="b2s-2M-RvA" secondAttribute="topMargin" id="W1A-IV-hVc"/>
-                                                <constraint firstItem="xXf-3j-5OZ" firstAttribute="top" secondItem="6Oh-p5-LQK" secondAttribute="bottom" constant="8" symbolic="YES" id="aif-0U-sfq"/>
+                                                <constraint firstItem="xXf-3j-5OZ" firstAttribute="top" secondItem="6Oh-p5-LQK" secondAttribute="bottom" constant="4" id="aif-0U-sfq"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xXf-3j-5OZ" secondAttribute="trailing" constant="20" symbolic="YES" id="fQv-O8-vri"/>
                                                 <constraint firstItem="xXf-3j-5OZ" firstAttribute="centerY" secondItem="b2s-2M-RvA" secondAttribute="centerY" priority="950" id="pDH-zm-j8R"/>
                                                 <constraint firstItem="nuh-ck-Mxp" firstAttribute="height" secondItem="6Oh-p5-LQK" secondAttribute="height" id="rwF-a4-nxr"/>
                                                 <constraint firstItem="xXf-3j-5OZ" firstAttribute="leading" secondItem="b2s-2M-RvA" secondAttribute="leading" constant="8" id="zS5-nu-ITv"/>
@@ -82,6 +84,7 @@
                                                 <mask key="constraints">
                                                     <exclude reference="0sO-B3-0lN"/>
                                                     <exclude reference="5Pr-ZP-yfq"/>
+                                                    <exclude reference="pDH-zm-j8R"/>
                                                     <exclude reference="zS5-nu-ITv"/>
                                                     <exclude reference="rwF-a4-nxr"/>
                                                 </mask>
@@ -106,6 +109,11 @@
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="shc-Ky-srd"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="backgroundImage" destination="cRx-jm-Bdw" id="3jB-OK-2ib"/>
                                     <outlet property="dateLabel" destination="nuh-ck-Mxp" id="XPq-MP-qme"/>

@@ -23,7 +23,7 @@ class CourseCell : UICollectionViewCell {
 
         nameLabel.text = course.title
         teacherLabel.text = course.teachers
-        dateLabel.text = course.language
+        dateLabel.text = course.language_translated
     }
 
 }

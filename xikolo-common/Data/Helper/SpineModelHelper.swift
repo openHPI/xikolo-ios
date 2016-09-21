@@ -43,7 +43,9 @@ class SpineModelHelper {
                         cdObject = model.init(entity: entity, insertIntoManagedObjectContext: CoreDataHelper.managedContext)
                         cdObject.setValue(id, forKey: "id")
                     }
-                    try cdObject.loadFromSpine(spineObject)
+                    if spineObject.isLoaded {
+                        try cdObject.loadFromSpine(spineObject)
+                    }
                     if let dict = inject {
                         cdObject.loadFromDict(dict)
                     }

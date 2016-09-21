@@ -13,11 +13,28 @@ class NewsArticleCell : UITableViewCell {
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var descriptionView: UILabel!
     @IBOutlet weak var readStateView: UIView!
+    @IBOutlet weak var dateView: UILabel!
+    @IBOutlet weak var courseView: UILabel!
+    @IBOutlet weak var roundedTagBackgroundView: UIView!
 
     func configure(newsArticle: NewsArticle) {
         readStateView.backgroundColor = Brand.TintColor
+
+        if let date = newsArticle.published_at {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = .MediumStyle
+            dateFormatter.timeStyle = .NoStyle
+            dateView.text = dateFormatter.stringFromDate(date)
+        }
+
         titleView.text = newsArticle.title
-        descriptionView.text = newsArticle.text
+        if let newsText = newsArticle.text {
+            descriptionView.attributedText = MarkdownParser.parse(newsText)
+        }
+        readStateView.hidden = newsArticle.visited ?? true
+
+        roundedTagBackgroundView.hidden = newsArticle.course == nil
+        courseView.text = newsArticle.course?.title
     }
 
 }

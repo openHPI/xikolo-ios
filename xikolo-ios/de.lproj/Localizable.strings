@@ -27,6 +27,11 @@
 "password" = "Passwort";
 "register" = "Registrieren";
 
+//Courses
+"active" = "Läuft";
+"self-paced" = "Selbststudium";
+"upcoming" = "Zukünftig";
+
 // Profile
 "enrollments" = "Kurseinschreibungen";
 "logout" = "Ausloggen";

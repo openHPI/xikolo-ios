@@ -10,6 +10,8 @@ import UIKit
 
 class CourseListViewController : AbstractCourseListViewController {
 
+    var numberOfItemsPerRow = 1
+
     @IBAction func segmentedControlChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -29,6 +31,15 @@ class CourseListViewController : AbstractCourseListViewController {
     internal func showMyCoursesOnly(showMyCourses: Bool) {
         self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
         updateView()
+    }
+
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        switch traitCollection.horizontalSizeClass {
+        case .Compact, .Unspecified:
+            numberOfItemsPerRow = 1
+        case .Regular:
+            numberOfItemsPerRow = 2
+        }
     }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -56,7 +67,11 @@ class CourseListViewController : AbstractCourseListViewController {
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            let width = collectionView.frame.size.width - (10 + 10) // section insets left + right
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+            let blankSpace = flowLayout.sectionInset.left
+                + flowLayout.sectionInset.right
+                + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfItemsPerRow - 1))
+            let width = (collectionView.bounds.width - blankSpace) / CGFloat(numberOfItemsPerRow)
             return CGSize(width: width, height: width * 0.6)
     }
 

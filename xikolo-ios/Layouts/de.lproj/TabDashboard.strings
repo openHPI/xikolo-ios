@@ -1,0 +1,15 @@
+
+/* Class = "UINavigationItem"; title = "Dashboard"; ObjectID = "AcW-uJ-dOa"; */
+"AcW-uJ-dOa.title" = "Dashboard";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "FVO-R5-bvE"; */
+"FVO-R5-bvE.text" = "Benachrichtigungen";
+
+/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "cHU-8h-YGE"; */
+"cHU-8h-YGE.title" = "Einloggen";
+
+/* Class = "UITabBarItem"; title = "Dashboard"; ObjectID = "eqp-FY-Bn8"; */
+"eqp-FY-Bn8.title" = "Dashboard";
+
+/* Class = "UILabel"; text = "Deadlines"; ObjectID = "jaR-ew-o1P"; */
+"jaR-ew-o1P.text" = "Abgaben";

@@ -12,7 +12,7 @@ extension UIView {
 
     func shake() {
 #if os(iOS)
-        let deltaX = 2.0 as CGFloat
+        let deltaX = 5.0 as CGFloat
 #else
         let deltaX = 10.0 as CGFloat
 #endif

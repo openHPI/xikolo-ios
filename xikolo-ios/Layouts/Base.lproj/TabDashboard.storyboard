@@ -140,7 +140,7 @@
         <scene sceneID="TWB-cd-P4n">
             <objects>
                 <navigationController storyboardIdentifier="DashboardNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="hvL-LF-B6i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="TabBarIconDashboard" selectedImage="TabBarIconDashboardSelected" id="eqp-FY-Bn8"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="TabBarIconHome" selectedImage="TabBarIconHomeSelected" id="eqp-FY-Bn8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m42-qA-Z45">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

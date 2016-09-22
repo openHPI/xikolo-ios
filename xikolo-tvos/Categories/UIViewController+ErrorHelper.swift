@@ -24,7 +24,7 @@ extension UIViewController {
     func handleError(error: XikoloError) {
         var message: String!
         switch (error) {
-            case .API:
+            case .API, .Network:
                 message = NSLocalizedString("A network error occurred. Please try again later.", comment: "A network error occurred. Please try again later.")
             default:
                 message = NSLocalizedString("An unknown error occurred. Please try again later.", comment: "An unknown error occurred. Please try again later.")

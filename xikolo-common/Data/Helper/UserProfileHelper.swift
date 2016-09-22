@@ -25,6 +25,14 @@ public class UserProfileHelper {
                 Routes.HTTP_PARAM_EMAIL: email,
                 Routes.HTTP_PARAM_PASSWORD: password,
         ]).responseJSON { response in
+            // The API does not return valid JSON when returning a 401.
+            // TODO: Remove once the API does that.
+            if let response = response.response {
+                if response.statusCode == 401 {
+                    return promise.failure(XikoloError.AuthenticationError)
+                }
+            }
+
             if let json = response.result.value {
                 if let token = json["token"] as? String {
                     UserProfileHelper.saveToken(token)

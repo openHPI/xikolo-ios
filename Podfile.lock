@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.3.1)
+  - Alamofire (3.5.0)
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
@@ -38,7 +38,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/laptobbe/TSMarkdownParser.git
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   BrightFutures: e18b83fd6fa8562ceb9902ee609f0de23b0ee110
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f

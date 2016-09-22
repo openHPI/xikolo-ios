@@ -23,9 +23,15 @@ class AbstractLoginViewController : UIViewController {
             self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             self.didSuccessfullyLogin()
         }.onFailure { error in
-            // TODO: Differentiate errors.
-            self.emailField.shake()
-            self.passwordField.shake()
+            if case XikoloError.AuthenticationError = error {
+                self.emailField.shake()
+                self.passwordField.shake()
+            } else {
+                #if os(tvOS)
+                self.handleError(error)
+                #endif
+                // TODO (iOS): Error handling
+            }
         }
     }
 

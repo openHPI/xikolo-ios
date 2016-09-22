@@ -20,11 +20,7 @@ class SpineHelper {
         #endif
 
         let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
-        let httpClient = spine.networkClient as! HTTPClient
-
-        NetworkHelper.getRequestHeaders().forEach { key, value in
-            httpClient.setHeader(key, to: value)
-        }
+        SpineHelper.updateHttpHeaders(spine)
 
         spine.registerValueFormatter(EmbeddedObjectFormatter())
         spine.registerValueFormatter(EmbeddedObjectsFormatter())
@@ -45,8 +41,23 @@ class SpineHelper {
         spine.registerResource(NewsArticleSpine)
         spine.registerResource(TrackingEvent)
 
+        let nsCenter = NSNotificationCenter.defaultCenter()
+        nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.loginSuccessfulKey, object: nil)
+        nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.logoutSuccessfulKey, object: nil)
+
         return spine
     }()
+
+    @objc private static func updateAfterLoginLogout() {
+        updateHttpHeaders(client)
+    }
+
+    private static func updateHttpHeaders(spine: Spine) {
+        let httpClient = spine.networkClient as! HTTPClient
+        NetworkHelper.getRequestHeaders().forEach { key, value in
+            httpClient.setHeader(key, to: value)
+        }
+    }
 
     static func findAll<T: Resource>(type: T.Type) -> Future<[T], XikoloError> {
         return client.findAll(type).map { resources, _, _ in

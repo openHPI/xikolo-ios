@@ -12,5 +12,7 @@ class NotificationKeys: NSObject {
     
     static let loginSuccessfulKey = "de.hpi.open.loginsuccessful"
     static let logoutSuccessfulKey = "de.hpi.open.logoutsuccessful"
+
+    static let dropdownCourseContentKey = "de.hpi.open.dropdown.courseContent"
     
 }

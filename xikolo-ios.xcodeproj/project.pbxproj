@@ -526,6 +526,8 @@
 		AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
 		AB77C29B1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
 		AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB4F226E1D7CB95500ED0BF1 /* CourseDecisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */; };
+		AB4F226F1D7CB95500ED0BF1 /* CourseDecisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */; };
 		AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
 		AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
 		AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */; };
@@ -790,6 +792,7 @@
 		AB4D93C21D884CA300987A0C /* PeerAssessmentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerAssessmentProvider.swift; sourceTree = "<group>"; };
 		AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIExerciseProvider.swift; sourceTree = "<group>"; };
 		AB77C2961DF956EE00B30619 /* Brand+generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+generic.swift"; sourceTree = "<group>"; };
+		AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDecisionViewController.swift; sourceTree = "<group>"; };
 		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openHPI/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -1263,6 +1266,7 @@
 				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
 				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
 				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
+				AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -2074,6 +2078,7 @@
 				24BA41021D3F9B4100E38C2C /* XikoloURL.swift in Sources */,
 				24BA40B31D3F9ACD00E38C2C /* CourseSectionProvider.swift in Sources */,
 				24BA41171D3F9B8C00E38C2C /* AbstractTabContentViewController.swift in Sources */,
+				AB4F226F1D7CB95500ED0BF1 /* CourseDecisionViewController.swift in Sources */,
 				24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */,
 				24BA40CC1D3F9AEA00E38C2C /* CourseHelper.swift in Sources */,
 				24BA40ED1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
@@ -2463,6 +2468,7 @@
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,
 				24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */,
 				24A16D871CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */,
+				AB4F226E1D7CB95500ED0BF1 /* CourseDecisionViewController.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
 				249C01C31D3F78DF00B54AAC /* Brand.swift in Sources */,
 				AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */,

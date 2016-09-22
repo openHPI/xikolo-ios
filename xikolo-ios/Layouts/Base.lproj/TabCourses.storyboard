@@ -754,55 +754,130 @@
                         <sections>
                             <tableViewSection id="pJZ-eD-NCg">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KM1-Su-WXC" style="IBUITableViewCellStyleDefault" id="eTt-Qe-rQs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eTt-Qe-rQs">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTt-Qe-rQs" id="pYT-HH-VdQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Learnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KM1-Su-WXC">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O7-F1-Kii">
+                                                    <rect key="frame" x="52" y="11" width="75" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-learnings-28" translatesAutoresizingMaskIntoConstraints="NO" id="1UH-DM-pHp">
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="41" id="5Io-xj-7oV"/>
+                                                        <constraint firstAttribute="height" constant="28" id="FFT-kw-bXR"/>
+                                                        <constraint firstAttribute="width" constant="28" id="u4o-m3-ccL"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="5Io-xj-7oV"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="7O7-F1-Kii" secondAttribute="trailing" constant="16" id="6cs-ER-Vct"/>
+                                                <constraint firstItem="7O7-F1-Kii" firstAttribute="centerY" secondItem="pYT-HH-VdQ" secondAttribute="centerY" id="Y7K-HQ-Oqu"/>
+                                                <constraint firstItem="7O7-F1-Kii" firstAttribute="leading" secondItem="pYT-HH-VdQ" secondAttribute="leadingMargin" constant="7" id="fUz-TP-XZB"/>
+                                                <constraint firstItem="1UH-DM-pHp" firstAttribute="centerY" secondItem="pYT-HH-VdQ" secondAttribute="centerY" id="jp3-uP-oNX"/>
+                                                <constraint firstItem="7O7-F1-Kii" firstAttribute="leading" secondItem="1UH-DM-pHp" secondAttribute="trailing" constant="8" symbolic="YES" id="rM7-wi-HPH"/>
+                                                <constraint firstItem="1UH-DM-pHp" firstAttribute="leading" secondItem="pYT-HH-VdQ" secondAttribute="leadingMargin" constant="8" id="vzm-j4-4LE"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="fUz-TP-XZB"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="FyA-vU-bEc" style="IBUITableViewCellStyleDefault" id="oe7-jo-kSN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FyT-iL-PEe">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oe7-jo-kSN" id="ILz-Aj-SnR">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FyT-iL-PEe" id="RHG-bZ-00D">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Discussion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FyA-vU-bEc">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discussions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etf-qu-OLk">
+                                                    <rect key="frame" x="52" y="11" width="92" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-discussions-28" translatesAutoresizingMaskIntoConstraints="NO" id="k9h-Ba-pbg">
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="41" id="cu5-If-aFU"/>
+                                                        <constraint firstAttribute="height" constant="28" id="rar-EZ-94I"/>
+                                                        <constraint firstAttribute="width" constant="28" id="xNh-fH-BDD"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="cu5-If-aFU"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="etf-qu-OLk" secondAttribute="trailing" constant="16" id="WrG-pa-uA1"/>
+                                                <constraint firstItem="k9h-Ba-pbg" firstAttribute="leading" secondItem="RHG-bZ-00D" secondAttribute="leadingMargin" constant="8" id="ZuH-fg-XQZ"/>
+                                                <constraint firstItem="k9h-Ba-pbg" firstAttribute="centerY" secondItem="RHG-bZ-00D" secondAttribute="centerY" id="feA-bE-mUz"/>
+                                                <constraint firstItem="etf-qu-OLk" firstAttribute="centerY" secondItem="RHG-bZ-00D" secondAttribute="centerY" id="kUj-DE-j69"/>
+                                                <constraint firstItem="etf-qu-OLk" firstAttribute="leading" secondItem="RHG-bZ-00D" secondAttribute="leadingMargin" constant="7" id="oXX-Y6-cqa"/>
+                                                <constraint firstItem="etf-qu-OLk" firstAttribute="leading" secondItem="k9h-Ba-pbg" secondAttribute="trailing" constant="8" symbolic="YES" id="ofT-cX-wqA"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="oXX-Y6-cqa"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="toD-X0-w6w" style="IBUITableViewCellStyleDefault" id="zSb-Im-l0k">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ss7-Ez-VKE">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zSb-Im-l0k" id="AsW-kM-FRs">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ss7-Ez-VKE" id="FI4-wh-olG">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Course Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="toD-X0-w6w">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pA-is-ZLH">
+                                                    <rect key="frame" x="52" y="11" width="112" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-couse_details-28" translatesAutoresizingMaskIntoConstraints="NO" id="O1d-ez-FBh">
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="41" id="SYj-8u-VTt"/>
+                                                        <constraint firstAttribute="height" constant="28" id="W26-Ln-71K"/>
+                                                        <constraint firstAttribute="width" constant="28" id="gee-Bo-jXw"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="SYj-8u-VTt"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="4pA-is-ZLH" secondAttribute="trailing" constant="16" id="2ZD-Pm-bR6"/>
+                                                <constraint firstItem="O1d-ez-FBh" firstAttribute="centerY" secondItem="FI4-wh-olG" secondAttribute="centerY" id="58R-ec-9ch"/>
+                                                <constraint firstItem="4pA-is-ZLH" firstAttribute="centerY" secondItem="FI4-wh-olG" secondAttribute="centerY" id="Gfy-a9-Uen"/>
+                                                <constraint firstItem="4pA-is-ZLH" firstAttribute="leading" secondItem="O1d-ez-FBh" secondAttribute="trailing" constant="8" symbolic="YES" id="MHU-aQ-8S2"/>
+                                                <constraint firstItem="O1d-ez-FBh" firstAttribute="leading" secondItem="FI4-wh-olG" secondAttribute="leadingMargin" constant="8" id="RpC-7B-S6d"/>
+                                                <constraint firstItem="4pA-is-ZLH" firstAttribute="leading" secondItem="FI4-wh-olG" secondAttribute="leadingMargin" constant="7" id="r4S-8Q-Yme"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="r4S-8Q-Yme"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -848,6 +923,9 @@
     <resources>
         <image name="TabBarIconCourses" width="25" height="25"/>
         <image name="TabBarIconCoursesSelected" width="25" height="25"/>
+        <image name="content-couse_details-28" width="28" height="28"/>
+        <image name="content-discussions-28" width="28" height="28"/>
+        <image name="content-learnings-28" width="28" height="28"/>
         <image name="titlebar-dropdown-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

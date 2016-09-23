@@ -12,6 +12,32 @@ import Spine
 
 class Quiz : Content {
 
+    var time_limit_formatted: [String] {
+        guard let time_limit = time_limit?.integerValue else {
+            return []
+        }
+
+        let hours = time_limit / 3600
+        let minutes = (time_limit % 3600) / 60
+        let seconds = time_limit % 60
+
+        var strings = [String]()
+        if hours > 0 {
+            let format = NSLocalizedString("%d hour(s)", comment: "<number> hours")
+            strings.append(String.localizedStringWithFormat(format, hours))
+        }
+        if minutes > 0 {
+            let format = NSLocalizedString("%d minute(s)", comment: "<number> minutes")
+            strings.append(String.localizedStringWithFormat(format, minutes))
+        }
+        if seconds > 0 {
+            let format = NSLocalizedString("%d second(s)", comment: "<number> seconds")
+            strings.append(String.localizedStringWithFormat(format, seconds))
+        }
+
+        return strings
+    }
+
     var show_welcome_page: Bool {
         get {
             return show_welcome_page_int?.boolValue ?? false

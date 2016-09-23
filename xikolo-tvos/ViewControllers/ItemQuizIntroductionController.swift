@@ -12,6 +12,8 @@ class ItemQuizIntroductionController : UIViewController {
 
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var textView: UILabel!
+    @IBOutlet weak var timeLimitHeaderView: UILabel!
+    @IBOutlet weak var timeLimitView: UILabel!
 
     var quiz: Quiz!
 
@@ -45,6 +47,14 @@ class ItemQuizIntroductionController : UIViewController {
         titleView.text = quiz.item?.title
         if let text = quiz.instructions {
             textView.attributedText = MarkdownParser.parse(text)
+        }
+
+        let formattedTimeLimit = quiz.time_limit_formatted
+        let timeLimitHidden = formattedTimeLimit.count == 0
+        timeLimitHeaderView.hidden = timeLimitHidden
+        timeLimitView.hidden = timeLimitHidden
+        if !timeLimitHidden {
+            timeLimitView.text = formattedTimeLimit.joinWithSeparator("\n")
         }
     }
 

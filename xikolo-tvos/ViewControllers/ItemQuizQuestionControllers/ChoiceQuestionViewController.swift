@@ -12,6 +12,12 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    override var readOnly: Bool {
+        didSet {
+            tableView?.reloadData()
+        }
+    }
+
     var answers: [QuizAnswer]!
     var submissionLoaded = false
 
@@ -74,7 +80,20 @@ extension ChoiceQuestionViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChoiceAnswerCell") as! ChoiceAnswerCell
         let answer = answers[indexPath.row]
-        cell.configure(answer)
+
+        var state: ChoiceAnswerState? = nil
+        if let answerID = answer.id, correct = answer.correct, submissionAnswers = question.submission?.answers {
+            let selected = submissionAnswers.contains(answerID) ?? false
+            if correct {
+                state = .Correct
+            } else if selected {
+                state = .IncorrectSelected
+            } else {
+                state = .IncorrectUnselected
+            }
+        }
+
+        cell.configure(answer, choiceState: state)
         return cell
     }
 

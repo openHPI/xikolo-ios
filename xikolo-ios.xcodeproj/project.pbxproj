@@ -766,6 +766,11 @@
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		A90587C81B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90587CA1B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB1C034A1D92BF2F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabProfile.strings; sourceTree = "<group>"; };
+		AB1C034C1D92BF360053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabDashboard.strings; sourceTree = "<group>"; };
+		AB1C03501D92BF3F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabCourses.strings; sourceTree = "<group>"; };
+		AB1C03521D92C1C40053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		AB1C03541D92CCED0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabNews.strings; sourceTree = "<group>"; };
 		AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTabContentViewController.swift; sourceTree = "<group>"; };
 		AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewsArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
@@ -807,7 +812,6 @@
 		E9CDFF1CD5FD8B31230182C3 /* Pods-openHPI-tvOS-TopShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS-TopShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf.debug.xcconfig"; sourceTree = "<group>"; };
 		F801793D1BBBE3880091ECD1 /* CourseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHelper.swift; sourceTree = "<group>"; };
 		F80D67921B98683400E27520 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		F80D67961B9874F600E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		F80D67971B9874F700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F80D67991B98751700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F80D679B1B9875BA00E27520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2534,6 +2538,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				24B6514A1D355B4A00624DBC /* Base */,
+				AB1C03541D92CCED0053B4E3 /* de */,
 			);
 			name = TabNews.storyboard;
 			sourceTree = "<group>";
@@ -2551,7 +2556,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A90587C31B3BFC130095DB89 /* Base */,
-				F80D67961B9874F600E27520 /* de */,
+				AB1C03521D92C1C40053B4E3 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2569,6 +2574,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D11CF72D9D00ED3EB0 /* Base */,
+				AB1C03501D92BF3F0053B4E3 /* de */,
 			);
 			name = TabCourses.storyboard;
 			sourceTree = "<group>";
@@ -2577,6 +2583,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D61CF72E8E00ED3EB0 /* Base */,
+				AB1C034C1D92BF360053B4E3 /* de */,
 			);
 			name = TabDashboard.storyboard;
 			sourceTree = "<group>";
@@ -2585,6 +2592,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D91CF72EF100ED3EB0 /* Base */,
+				AB1C034A1D92BF2F0053B4E3 /* de */,
 			);
 			name = TabProfile.storyboard;
 			sourceTree = "<group>";

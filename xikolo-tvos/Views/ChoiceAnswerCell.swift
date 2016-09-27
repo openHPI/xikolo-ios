@@ -18,11 +18,11 @@ class ChoiceAnswerCell : UITableViewCell {
         if let state = choiceState {
             switch state {
                 case .Correct:
-                    backgroundColor = UIColor.greenColor()
+                    backgroundColor = Brand.CorrectAnswerColor
                 case .IncorrectSelected:
-                    backgroundColor = UIColor.redColor()
+                    backgroundColor = Brand.IncorrectAnswerColor
                 case .IncorrectUnselected:
-                    backgroundColor = UIColor.lightGrayColor()
+                    backgroundColor = Brand.WrongAnswerColor
             }
         }
     }

@@ -29,8 +29,6 @@ class QuestionIndicatorView : UIView {
     let ringColor = UIColor.darkGrayColor()
     let focusedRingColor = UIColor.whiteColor()
     let answeredColor = UIColor.lightGrayColor()
-    let correctColor = UIColor.greenColor()
-    let incorrectColor = UIColor.redColor()
 
     private var boundsCenter: CGPoint!
     private var radius: CGFloat!
@@ -92,9 +90,9 @@ class QuestionIndicatorView : UIView {
         if state == .Answered {
             if let correctness = correctness {
                 if correctness == 0 {
-                    drawCircle(incorrectColor)
+                    drawCircle(Brand.IncorrectAnswerColor)
                 } else {
-                    drawCircle(correctColor)
+                    drawCircle(Brand.CorrectAnswerColor)
                     if correctness < 1 {
                         drawCircleSegment(Double(correctness))
                     }
@@ -127,7 +125,7 @@ class QuestionIndicatorView : UIView {
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.CGPath
-        shapeLayer.fillColor = UIColor.redColor().CGColor
+        shapeLayer.fillColor = Brand.IncorrectAnswerColor.CGColor
         layer.addSublayer(shapeLayer)
     }
 

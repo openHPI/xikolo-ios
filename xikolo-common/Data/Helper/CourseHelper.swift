@@ -15,6 +15,7 @@ class CourseHelper {
 
     static func getAllCoursesRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "Course")
+        request.predicate = NSPredicate(format: "external_int != true")
         let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
         request.sortDescriptors = [startDateSort]
         return request
@@ -28,6 +29,7 @@ class CourseHelper {
 
     static func getSectionedRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "Course")
+        request.predicate = NSPredicate(format: "external_int != true")
         let enrolledSort = NSSortDescriptor(key: "enrollment", ascending: false)
         let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
         request.sortDescriptors = [enrolledSort, startDateSort]

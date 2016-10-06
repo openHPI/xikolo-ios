@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CourseDecisionViewController: UIViewController {
-    
+class CourseDecisionViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleView: UILabel!
 

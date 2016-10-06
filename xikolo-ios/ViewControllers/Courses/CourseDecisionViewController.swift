@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CourseDecisionViewController: UIViewController {
+class CourseDecisionViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleView: UILabel!
@@ -74,6 +74,38 @@ class CourseDecisionViewController: UIViewController {
         default:
             break
         }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+        case "ShowContentChoice"?:
+            let dropdownViewController = segue.destinationViewController
+            if let ppc = dropdownViewController.popoverPresentationController {
+                if let view = navigationItem.titleView {
+                    ppc.sourceView = view
+                    ppc.sourceRect = view.bounds
+                }
+
+                let minimumSize = dropdownViewController.view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+                dropdownViewController.preferredContentSize = minimumSize
+                ppc.delegate = self
+            }
+            break
+        default:
+            break
+        }
+    }
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.OverFullScreen
+    }
+
+    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+        visualEffectView.frame = navigationController.view.bounds
+        navigationController.view.insertSubview(visualEffectView, atIndex: 0)
+        return navigationController
     }
 
     @IBAction func unwindSegueToCourseContent(segue: UIStoryboardSegue) { }

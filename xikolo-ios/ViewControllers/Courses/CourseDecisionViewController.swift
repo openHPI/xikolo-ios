@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CourseDecisionViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class CourseDecisionViewController: UIViewController {
 
     enum CourseContent : Int {
         case learnings = 0
@@ -103,6 +103,12 @@ class CourseDecisionViewController: UIViewController, UIPopoverPresentationContr
         }
     }
 
+    @IBAction func unwindSegueToCourseContent(segue: UIStoryboardSegue) { }
+
+}
+
+extension CourseDecisionViewController : UIPopoverPresentationControllerDelegate {
+
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.OverFullScreen
     }
@@ -114,7 +120,5 @@ class CourseDecisionViewController: UIViewController, UIPopoverPresentationContr
         navigationController.view.insertSubview(visualEffectView, atIndex: 0)
         return navigationController
     }
-
-    @IBAction func unwindSegueToCourseContent(segue: UIStoryboardSegue) { }
 
 }

@@ -235,7 +235,7 @@
                                                 </mask>
                                             </variation>
                                             <connections>
-                                                <segue destination="HIU-IN-RiG" kind="popoverPresentation" popoverAnchorView="BeC-bu-kRR" id="u7s-tl-wgY">
+                                                <segue destination="HIU-IN-RiG" kind="popoverPresentation" identifier="ShowContentChoice" popoverAnchorView="BeC-bu-kRR" id="u7s-tl-wgY">
                                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                 </segue>
                                             </connections>
@@ -731,7 +731,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="5XK-GS-ZCW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="uX3-Nw-sNO">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="uX3-Nw-sNO">
                             <connections>
                                 <segue destination="raT-u7-HWf" kind="unwind" identifier="UnwindSegueToCourseContent" unwindAction="unwindSegueToCourseContent:" id="dfM-nC-Gcf"/>
                             </connections>
@@ -748,7 +748,7 @@
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="t4D-DJ-cpt" customClass="DropdownTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Idi-N3-cXP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="132"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -904,7 +904,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vdE-Ou-kvc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GPj-xG-ltL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DropdownNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="GPj-xG-ltL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UuA-ye-7ZP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

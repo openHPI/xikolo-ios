@@ -10,6 +10,8 @@ import UIKit
 
 class CourseListViewController : AbstractCourseListViewController {
 
+    var numberOfItemsPerRow = 1
+
     @IBAction func segmentedControlChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -31,6 +33,15 @@ class CourseListViewController : AbstractCourseListViewController {
         updateView()
     }
 
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        switch traitCollection.horizontalSizeClass {
+        case UIUserInterfaceSizeClass.Compact, UIUserInterfaceSizeClass.Unspecified:
+            numberOfItemsPerRow = 1
+        case UIUserInterfaceSizeClass.Regular:
+            numberOfItemsPerRow = 2
+        }
+    }
+
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ context in
             // Force redraw
@@ -41,7 +52,7 @@ class CourseListViewController : AbstractCourseListViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
             case "ShowCourseDetailSegue"?:
-                let vc = segue.destinationViewController as! CourseContentTableViewController
+                let vc = segue.destinationViewController as! CourseDecisionViewController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPathForCell(cell)
                 let course = resultsController.objectAtIndexPath(indexPath!) as! Course
@@ -56,7 +67,11 @@ class CourseListViewController : AbstractCourseListViewController {
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            let width = collectionView.frame.size.width - (10 + 10) // section insets left + right
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+            let blankSpace = flowLayout.sectionInset.left
+                + flowLayout.sectionInset.right
+                + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfItemsPerRow - 1))
+            let width = (collectionView.bounds.width - blankSpace) / CGFloat(numberOfItemsPerRow)
             return CGSize(width: width, height: width * 0.6)
     }
 

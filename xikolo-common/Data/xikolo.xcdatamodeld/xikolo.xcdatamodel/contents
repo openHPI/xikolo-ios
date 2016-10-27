@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="Channel" representedClassName=".Channel" syncable="YES">
+        <attribute name="color_string" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="channel" inverseEntity="Course" syncable="YES"/>
+    </entity>
     <entity name="Content" representedClassName=".Content" isAbstract="YES" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
         <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="CourseItem" inverseName="content" inverseEntity="CourseItem" syncable="YES"/>
@@ -20,6 +27,7 @@
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teachers" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="courses" inverseEntity="Channel" syncable="YES"/>
         <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CourseEnrollment" inverseName="course" inverseEntity="CourseEnrollment" syncable="YES"/>
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NewsArticle" inverseName="course" inverseEntity="NewsArticle" syncable="YES"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection" syncable="YES"/>
@@ -98,7 +106,7 @@
     </entity>
     <elements>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
-        <element name="Course" positionX="9" positionY="9" width="128" height="315"/>
+        <element name="Course" positionX="9" positionY="9" width="128" height="328"/>
         <element name="CourseEnrollment" positionX="18" positionY="-124" width="128" height="73"/>
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
@@ -109,5 +117,6 @@
         <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="163"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
         <element name="Video" positionX="655" positionY="-99" width="128" height="210"/>
+        <element name="Channel" positionX="9" positionY="443" width="128" height="118"/>
     </elements>
 </model>

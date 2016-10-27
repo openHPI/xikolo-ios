@@ -91,6 +91,7 @@ class CourseSpine : BaseModelSpine {
     var external_int: NSNumber?
 
     var enrollment: CourseEnrollmentSpine?
+    var channel: ChannelSpine?
 
     override class var cdType: BaseModel.Type {
         return Course.self
@@ -116,6 +117,7 @@ class CourseSpine : BaseModelSpine {
             "open_int": Attribute().serializeAs("open"),
             "external_int": Attribute().serializeAs("external"),
             "enrollment": ToOneRelationship(CourseEnrollmentSpine).serializeAs("user_enrollment"),
+            "channel": ToOneRelationship(ChannelSpine),
         ])
     }
 

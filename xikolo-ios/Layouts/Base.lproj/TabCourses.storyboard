@@ -146,7 +146,6 @@
                                     <outlet property="statusLabel" destination="eS5-Ki-7jx" id="CKb-DQ-1gV"/>
                                     <outlet property="statusView" destination="aJ6-Je-BWC" id="HaK-sB-nC8"/>
                                     <outlet property="teacherLabel" destination="xXf-3j-5OZ" id="hpH-YN-165"/>
-                                    <segue destination="YF6-pE-sa6" kind="show" identifier="ShowCourseDetailSegue" id="8D4-lh-23V"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -173,7 +172,7 @@
                     <connections>
                         <segue destination="bqb-dp-zic" kind="presentation" identifier="ShowLoginForMyCourses" id="xR8-E6-ooy"/>
                         <segue destination="x0N-ef-Gra" kind="show" identifier="ShowCourseDetails" id="CX5-4F-L0I"/>
-                        <segue destination="CK9-1h-i1I" kind="show" identifier="ShowCourseDetailSegue" id="5Qe-Wc-G0L"/>
+                        <segue destination="YF6-pE-sa6" kind="show" identifier="ShowCourseDetailSegue" id="DcP-B7-RfQ"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -207,7 +206,7 @@
                     <navigationItem key="navigationItem" id="4x6-UC-eoD">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="1M6-B2-JWD">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVy-qU-9HS">
@@ -268,6 +267,8 @@
                             </constraints>
                         </view>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="containerView" destination="uCB-9t-OiH" id="946-ep-hBb"/>
                         <outlet property="titleView" destination="I0c-UK-HJw" id="D9R-JR-hUO"/>
@@ -275,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GvU-Vi-WtZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1540" y="0.0"/>
+            <point key="canvasLocation" x="1587" y="0.0"/>
         </scene>
         <!--Course Content Table View Controller-->
         <scene sceneID="XFj-pH-TxF">
@@ -287,10 +288,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" id="4DL-lh-q2e" customClass="CourseItemCell" customModule="openHPI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4DL-lh-q2e" id="Utk-yk-LoN">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8sq-t2-iJE">
@@ -462,7 +463,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVh-ZN-bc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3293" y="-897"/>
+            <point key="canvasLocation" x="3293" y="-862"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="m7r-16-ntP">
@@ -648,7 +649,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOY-fk-G0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3137" y="590"/>
+            <point key="canvasLocation" x="3293" y="499"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="Tl3-1b-ctw">
@@ -656,7 +657,7 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="li8-SI-LT1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bD-81-FHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3888" y="464"/>
+            <point key="canvasLocation" x="4009" y="368"/>
         </scene>
         <!--WebViewController-->
         <scene sceneID="uqh-vq-i1I">
@@ -664,7 +665,7 @@
                 <viewControllerPlaceholder referencedIdentifier="WebViewController" id="EZt-rR-Ceh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHB-9h-2iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3006" y="688"/>
+            <point key="canvasLocation" x="3293" y="894"/>
         </scene>
         <!--Courses-->
         <scene sceneID="O7e-6a-qIC">
@@ -743,14 +744,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qgp-Gg-RrF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="raT-u7-HWf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2325" y="-892"/>
+            <point key="canvasLocation" x="2325" y="-939"/>
         </scene>
         <!--Dropdown Table View Controller-->
         <scene sceneID="qMg-Og-BRL">
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="t4D-DJ-cpt" customClass="DropdownTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Idi-N3-cXP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="132"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -760,7 +761,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTt-Qe-rQs" id="pYT-HH-VdQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O7-F1-Kii">
@@ -801,8 +802,8 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FyT-iL-PEe">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FyT-iL-PEe" id="RHG-bZ-00D">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discussions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etf-qu-OLk">
@@ -843,8 +844,8 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ss7-Ez-VKE">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ss7-Ez-VKE" id="FI4-wh-olG">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pA-is-ZLH">
@@ -893,7 +894,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIy-wM-jfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2325" y="-1391"/>
+            <point key="canvasLocation" x="2756" y="-1427"/>
         </scene>
         <!--LoginNavigationController-->
         <scene sceneID="mNZ-5J-YoA">
@@ -901,7 +902,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Main" referencedIdentifier="LoginNavigationController" id="bqb-dp-zic" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ztg-db-FSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1320" y="-393"/>
+            <point key="canvasLocation" x="1382.5" y="-387"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vdE-Ou-kvc">
@@ -919,7 +920,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FnQ-AB-jyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1400" y="-375"/>
+            <point key="canvasLocation" x="1587" y="-939"/>
         </scene>
         <!--LoginNavigationController-->
         <scene sceneID="Kri-cH-IB8">
@@ -927,12 +928,12 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="LoginNavigationController" id="X0J-Tk-CGH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbW-7Z-vqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2075" y="-1025"/>
+            <point key="canvasLocation" x="1382.5" y="-576"/>
         </scene>
         <!--Course Details Web View Controller-->
         <scene sceneID="ysy-zh-ybM">
             <objects>
-                <viewController storyboardIdentifier="CourseDetailWebViewController" id="x0N-ef-Gra" customClass="CourseDetailsWebViewController" customModule="xikolo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseDetailWebViewController" id="x0N-ef-Gra" customClass="CourseDetailsWebViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w8V-Xf-N96"/>
                         <viewControllerLayoutGuide type="bottom" id="Slp-2a-fTz"/>
@@ -987,7 +988,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9Y-6Y-YBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FMU-IY-gMG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="-765"/>
+            <point key="canvasLocation" x="812" y="-733"/>
         </scene>
     </scenes>
     <resources>

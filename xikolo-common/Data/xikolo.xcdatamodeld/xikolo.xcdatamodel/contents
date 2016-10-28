@@ -8,12 +8,16 @@
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="course_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="end_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="external_int" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="hidden_int" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="image_url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="open_int" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teachers" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CourseEnrollment" inverseName="course" inverseEntity="CourseEnrollment" syncable="YES"/>
@@ -94,7 +98,7 @@
     </entity>
     <elements>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
-        <element name="Course" positionX="9" positionY="9" width="128" height="253"/>
+        <element name="Course" positionX="9" positionY="9" width="128" height="315"/>
         <element name="CourseEnrollment" positionX="18" positionY="-124" width="128" height="73"/>
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>

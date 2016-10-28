@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   xikolo-ios
 
@@ -26,6 +26,15 @@
 "email" = "Email";
 "password" = "Passwort";
 "register" = "Registrieren";
+
+//Courses
+"active" = "Läuft";
+"self-paced" = "Selbststudium";
+"upcoming" = "Zukünftig";
+
+"Learnings" = "Lernmaterial";
+"Discussions" = "Diskussionen";
+"Course Details" = "Kursdetails";
 
 // Profile
 "enrollments" = "Kurseinschreibungen";

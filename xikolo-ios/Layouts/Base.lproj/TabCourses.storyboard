@@ -32,7 +32,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRx-jm-Bdw">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
                                         </imageView>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-hV-1Uw">
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-hV-1Uw">
                                             <rect key="frame" x="0.0" y="166" width="400" height="74"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="knd-uh-hkB">
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="74"/>
@@ -142,7 +142,7 @@
                                     <outlet property="statusLabel" destination="eS5-Ki-7jx" id="CKb-DQ-1gV"/>
                                     <outlet property="statusView" destination="aJ6-Je-BWC" id="HaK-sB-nC8"/>
                                     <outlet property="teacherLabel" destination="yHD-1N-ZdC" id="hVf-7z-3bI"/>
-                                    <segue destination="YF6-pE-sa6" kind="show" identifier="ShowCourseDetailSegue" id="8D4-lh-23V"/>
+                                    <segue destination="YF6-pE-sa6" kind="show" identifier="ShowCourseContent" id="8D4-lh-23V"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -679,10 +679,10 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--View Controller-->
+        <!--Dropdown View Controller-->
         <scene sceneID="gSp-qo-Qqh">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="HIU-IN-RiG" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="HIU-IN-RiG" customClass="DropdownViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xwv-vq-r1M"/>
                         <viewControllerLayoutGuide type="bottom" id="UKi-FC-7gn"/>
@@ -697,7 +697,7 @@
                                     <constraint firstAttribute="height" constant="130" id="I95-Lh-Mgw"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="t4D-DJ-cpt" kind="embed" id="0di-FP-BPF"/>
+                                    <segue destination="t4D-DJ-cpt" kind="embed" identifier="EmbedDropdownTableView" id="0di-FP-BPF"/>
                                 </connections>
                             </containerView>
                         </subviews>

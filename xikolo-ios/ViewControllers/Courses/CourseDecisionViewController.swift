@@ -30,7 +30,11 @@ class CourseDecisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateContainerView(content)
+        if course.enrollment != nil {
+            updateContainerView(.learnings)
+        } else {
+            updateContainerView(.courseDetails)
+        }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
     }
 
@@ -86,13 +90,14 @@ class CourseDecisionViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
         case "ShowContentChoice"?:
-            let dropdownViewController = segue.destinationViewController
+            let dropdownViewController = segue.destinationViewController as! DropdownViewController
             if let ppc = dropdownViewController.popoverPresentationController {
                 if let view = navigationItem.titleView {
                     ppc.sourceView = view
                     ppc.sourceRect = view.bounds
                 }
 
+                dropdownViewController.course = course
                 let minimumSize = dropdownViewController.view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
                 dropdownViewController.preferredContentSize = minimumSize
                 ppc.delegate = self

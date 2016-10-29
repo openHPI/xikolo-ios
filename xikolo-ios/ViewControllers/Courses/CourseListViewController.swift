@@ -51,7 +51,7 @@ class CourseListViewController : AbstractCourseListViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
-            case "ShowCourseDetailSegue"?:
+            case "ShowCourseContent"?:
                 let vc = segue.destinationViewController as! CourseDecisionViewController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPathForCell(cell)

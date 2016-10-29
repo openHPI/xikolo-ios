@@ -17,6 +17,7 @@ class CourseDecisionViewController: UIViewController {
         case courseDetails = 2
     }
 
+    @IBOutlet weak var enrollButton: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleView: UILabel!
 
@@ -28,9 +29,23 @@ class CourseDecisionViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self);
     }
 
+    @IBAction func enroll(sender: UIBarButtonItem) {
+        if UserProfileHelper.isLoggedIn() {
+            UserProfileHelper.createEnrollement(course.id)
+                .flatMap { CourseHelper.refreshCourses() }
+                .onSuccess { _ in
+                    self.updateContainerView(.learnings)
+            }
+        } else {
+            performSegueWithIdentifier("ShowLoginForEnroll", sender: nil)
+        }
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if course.enrollment != nil {
+            navigationItem.rightBarButtonItem = nil
             updateContainerView(.learnings)
         } else {
             updateContainerView(.courseDetails)

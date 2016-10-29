@@ -34,7 +34,7 @@ class CourseDecisionViewController: UIViewController {
             UserProfileHelper.createEnrollement(course.id)
                 .flatMap { CourseHelper.refreshCourses() }
                 .onSuccess { _ in
-                    self.updateContainerView(.learnings)
+                    self.decideContent()
             }
         } else {
             performSegueWithIdentifier("ShowLoginForEnroll", sender: nil)
@@ -44,13 +44,15 @@ class CourseDecisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if course.enrollment != nil {
-            navigationItem.rightBarButtonItem = nil
-            updateContainerView(.learnings)
-        } else {
-            updateContainerView(.courseDetails)
-        }
+        decideContent()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
+    }
+
+    func decideContent() {
+        if(course.enrollment != nil) {
+            navigationItem.rightBarButtonItem = nil
+        }
+        updateContainerView(course.accessible ? .learnings : .courseDetails)
     }
 
     func switchViewController(notification: NSNotification) {

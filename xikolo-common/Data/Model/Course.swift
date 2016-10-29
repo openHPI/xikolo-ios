@@ -22,9 +22,9 @@ class Course : BaseModel {
         }
     }
 
-    var accessible: Bool? {
+    var accessible: Bool {
         get {
-            return accessible_int?.boolValue
+            return accessible_int?.boolValue ?? false
         }
         set(new_is_accessible) {
             accessible_int = new_is_accessible

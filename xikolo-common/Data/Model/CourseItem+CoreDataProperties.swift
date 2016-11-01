@@ -16,6 +16,7 @@ extension CourseItem {
 
     @NSManaged var id: String
     @NSManaged var title: String?
+    @NSManaged var visited_int: NSNumber?
     @NSManaged var position: NSNumber?
     @NSManaged var content: Content?
     @NSManaged var section: CourseSection?

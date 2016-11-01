@@ -34,6 +34,15 @@ class CourseItem : BaseModel {
         }
     }
 
+    var visited: Bool? {
+        get {
+            return visited_int?.boolValue
+        }
+        set(new_has_visited) {
+            visited_int = new_has_visited
+        }
+    }
+
     private func neighbor(direction: Int) -> CourseItem? {
         let items = section?.itemsSorted ?? []
         if var index = items.indexOf(self) {
@@ -51,6 +60,7 @@ class CourseItem : BaseModel {
 class CourseItemSpine : BaseModelSpine {
 
     var title: String?
+    var visited_int: NSNumber?
     var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
 
     var content: BaseModelSpine?
@@ -67,6 +77,7 @@ class CourseItemSpine : BaseModelSpine {
         return fieldsFromDictionary([
             "title": Attribute(),
             "content": ToOneRelationship(ContentSpine),
+            "visited_int": Attribute().serializeAs("visited"),
             "position": Attribute(),
         ])
     }

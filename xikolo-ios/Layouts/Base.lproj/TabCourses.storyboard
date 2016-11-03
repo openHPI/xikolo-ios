@@ -465,7 +465,7 @@
         <!--Web View Controller-->
         <scene sceneID="m7r-16-ntP">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" automaticallyAdjustsScrollViewInsets="NO" id="qTX-IX-O1x" customClass="WebViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" id="qTX-IX-O1x" customClass="WebViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NZW-dL-rfb"/>
                         <viewControllerLayoutGuide type="bottom" id="1e2-yo-2eV"/>

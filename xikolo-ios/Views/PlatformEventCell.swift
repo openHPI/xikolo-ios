@@ -41,9 +41,30 @@ class PlatformEventCell: UITableViewCell {
             dateView.text = dateFormatter.stringFromDate(date)
         }
 
-        switch platformEvent.type {
-        default:
-            categoryView.image = UIImage(named: "item-quiz-28")
+        if let type = platformEvent.type {
+            let iconName: String
+            switch type {
+            case EventTypes.PinboardAnswerComment.rawValue,
+                 EventTypes.PinboardQuestionComment.rawValue,
+                 EventTypes.PinboardAnswer.rawValue,
+                 EventTypes.PinboardDiscussionComment.rawValue,
+                 EventTypes.PinboardDiscussion.rawValue:
+                iconName = "events-comment-22"
+            case EventTypes.PinboardQuestion.rawValue:
+                iconName = "events-question-22"
+            case EventTypes.NewsAnnoucement.rawValue,
+                 EventTypes.CourseAnnouncement.rawValue:
+                iconName = "events-mail-22"
+            case EventTypes.LearningRoomNewFile.rawValue:
+                iconName = "events-file-22"
+            case EventTypes.LearningRoomNewMembership.rawValue:
+                iconName = "events-user-plus-22"
+            case EventTypes.LearningRoomQuitMemebership.rawValue:
+                iconName = "events-user-times-22"
+            default:
+                iconName = "events-mail-22"
+            }
+            categoryView.image = UIImage(named: iconName)
         }
 
         timelineView.backgroundColor = Brand.TintColor

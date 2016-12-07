@@ -46,3 +46,21 @@ target 'openSAP-tvOS-TopShelf' do
     common_pods
 
 end
+
+target 'openWHO-iOS' do
+    platform :ios, '9.0'
+    common_pods
+
+end
+
+target 'openWHO-tvOS' do
+    platform :tvos, '9.0'
+    common_pods
+
+end
+
+target 'openWHO-tvOS-TopShelf' do
+    platform :tvos, '9.0'
+    common_pods
+    
+end

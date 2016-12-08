@@ -25,7 +25,12 @@ extension Course {
     @NSManaged var start_at: NSDate?
     @NSManaged var teachers: String?
     @NSManaged var title: String?
+    @NSManaged var status: String?
+    @NSManaged var hidden_int: NSNumber?
+    @NSManaged var open_int: NSNumber?
+    @NSManaged var external_int: NSNumber?
     @NSManaged var sections: NSSet?
+    @NSManaged var news: NSSet?
     @NSManaged var enrollment: CourseEnrollment?
 
 }

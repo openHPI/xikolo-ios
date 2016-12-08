@@ -13,6 +13,33 @@ import Spine
 
 class Course : BaseModel {
 
+    var hidden: Bool? {
+        get {
+            return hidden_int?.boolValue
+        }
+        set(new_is_hidden) {
+            hidden_int = new_is_hidden
+        }
+    }
+
+    var open: Bool? {
+        get {
+            return open_int?.boolValue
+        }
+        set(new_is_open) {
+            open_int = new_is_open
+        }
+    }
+
+    var external: Bool? {
+        get {
+            return external_int?.boolValue
+        }
+        set(new_is_external) {
+            external_int = new_is_external
+        }
+    }
+
     var is_enrolled_section: String {
         get {
             if enrollment != nil {
@@ -58,6 +85,10 @@ class CourseSpine : BaseModelSpine {
     var language: String?
     var start_at: NSDate?
     var end_at: NSDate?
+    var status: String?
+    var hidden_int: NSNumber?
+    var open_int: NSNumber?
+    var external_int: NSNumber?
 
     var enrollment: CourseEnrollmentSpine?
 
@@ -80,6 +111,10 @@ class CourseSpine : BaseModelSpine {
             "language": Attribute(),
             "start_at": DateAttribute(),
             "end_at": DateAttribute(),
+            "status": Attribute(),
+            "hidden_int": Attribute().serializeAs("hidden"),
+            "open_int": Attribute().serializeAs("open"),
+            "external_int": Attribute().serializeAs("external"),
             "enrollment": ToOneRelationship(CourseEnrollmentSpine).serializeAs("user_enrollment"),
         ])
     }

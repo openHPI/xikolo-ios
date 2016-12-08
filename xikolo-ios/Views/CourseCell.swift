@@ -15,6 +15,8 @@ class CourseCell : UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusView: UIView!
 
     func configure(course: Course) {
         course.loadImage().onSuccess { image in
@@ -23,7 +25,24 @@ class CourseCell : UICollectionViewCell {
 
         nameLabel.text = course.title
         teacherLabel.text = course.teachers
-        dateLabel.text = course.language
+        dateLabel.text = course.language_translated
+
+        switch course.status {
+        case "active"?:
+            statusView.hidden = false
+            statusLabel.text = NSLocalizedString("running", comment: "course-status")
+            statusView.backgroundColor = Brand.FlagRunningColor
+        case "self-paced"?:
+            statusView.hidden = false
+            statusLabel.text = NSLocalizedString("self-paced", comment: "course-status")
+            statusView.backgroundColor = Brand.FlagSelfpacedColor
+        case "announced"?:
+            statusView.hidden = false
+            statusLabel.text = NSLocalizedString("upcoming", comment: "course-status")
+            statusView.backgroundColor = Brand.FlagUpcomingColor
+        default:
+            statusView.hidden = true
+        }
     }
 
 }

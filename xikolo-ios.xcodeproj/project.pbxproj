@@ -520,6 +520,12 @@
 		AB2802DC1D2D7586008C8BAE /* NewsArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */; };
 		AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
 		AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
+		AB77C2971DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB77C2981DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB77C2991DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB77C29B1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
 		AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
 		AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
 		AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */; };
@@ -783,6 +789,7 @@
 		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		AB4D93C21D884CA300987A0C /* PeerAssessmentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerAssessmentProvider.swift; sourceTree = "<group>"; };
 		AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIExerciseProvider.swift; sourceTree = "<group>"; };
+		AB77C2961DF956EE00B30619 /* Brand+generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+generic.swift"; sourceTree = "<group>"; };
 		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openHPI/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -1021,6 +1028,7 @@
 			children = (
 				249C01AF1D3F724D00B54AAC /* openSAP */,
 				249C01AE1D3F724700B54AAC /* openHPI */,
+				AB77C2961DF956EE00B30619 /* Brand+generic.swift */,
 			);
 			path = Branding;
 			sourceTree = "<group>";
@@ -1959,6 +1967,7 @@
 				2474C8741D86FE17009BDB94 /* QuizQuestion.swift in Sources */,
 				2490C4F51D216D6900F42949 /* NotificationKeys.swift in Sources */,
 				2490C4EF1D216D2E00F42949 /* BaseModelSpine.swift in Sources */,
+				AB77C2991DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				2474C8841D86FE2E009BDB94 /* TrackingEvent.swift in Sources */,
 				2474C88C1D86FE63009BDB94 /* AVMetadataItem+convenience.swift in Sources */,
 				2474C87A1D86FE20009BDB94 /* RichText.swift in Sources */,
@@ -2025,6 +2034,7 @@
 				24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */,
 				24BA40971D3F9AA700E38C2C /* UserProfile.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
+				AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */,
 				24BA40C61D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
 				24BA409C1D3F9AAD00E38C2C /* Content.swift in Sources */,
@@ -2182,6 +2192,7 @@
 				24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */,
 				249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
 				24BA40AD1D3F9AC300E38C2C /* NewsArticle.swift in Sources */,
+				AB77C29B1DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				24BA40A11D3F9AB300E38C2C /* Quiz.swift in Sources */,
 				24BA41301D3F9D1A00E38C2C /* ViewControllerLoadingHelper.swift in Sources */,
 				243CE4991D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
@@ -2233,6 +2244,7 @@
 				2474C8751D86FE18009BDB94 /* QuizQuestion.swift in Sources */,
 				24BA40851D3F9A8B00E38C2C /* BaseModel.swift in Sources */,
 				24BA40CB1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
+				AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				2474C8851D86FE2E009BDB94 /* TrackingEvent.swift in Sources */,
 				2474C88D1D86FE64009BDB94 /* AVMetadataItem+convenience.swift in Sources */,
 				2474C87B1D86FE20009BDB94 /* RichText.swift in Sources */,
@@ -2351,6 +2363,7 @@
 				24D48E2C1CCA934300E8051E /* UserProfileHelper.swift in Sources */,
 				24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */,
 				249E3A9A1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
+				AB77C2981DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				24D48E2B1CCA931C00E8051E /* UserProfileProvider.swift in Sources */,
 				2433A5A21CE634A00060DD98 /* CourseItem+CoreDataProperties.swift in Sources */,
 				24B6514E1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
@@ -2411,6 +2424,7 @@
 				2433A5A61CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
 				24128FAC1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
 				24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */,
+				AB77C2971DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				AB2802CB1D2A8ABB008C8BAE /* NewsArticle.swift in Sources */,
 				2433A5A31CE634A00060DD98 /* CourseItem.swift in Sources */,
 				AB2802DA1D2D756E008C8BAE /* NewsArticleProvider.swift in Sources */,

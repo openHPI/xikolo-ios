@@ -22,6 +22,7 @@ class CourseItemCell : UITableViewCell {
         if let iconName = courseItem.iconName {
             iconView.image = UIImage(named: "item-\(iconName)-28")
         }
+        readStateView.hidden = courseItem.visited ?? true
     }
 
 }

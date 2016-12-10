@@ -40,6 +40,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visited_int" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="item" inverseEntity="Content" syncable="YES"/>
         <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection" syncable="YES"/>
     </entity>
@@ -105,10 +106,11 @@
         <attribute name="transcript_url" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Channel" positionX="9" positionY="443" width="128" height="118"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
         <element name="Course" positionX="9" positionY="9" width="128" height="328"/>
         <element name="CourseEnrollment" positionX="18" positionY="-124" width="128" height="73"/>
-        <element name="CourseItem" positionX="432" positionY="135" width="128" height="120"/>
+        <element name="CourseItem" positionX="432" positionY="135" width="128" height="133"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
         <element name="LTIExercise" positionX="684" positionY="308" width="128" height="103"/>
         <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="133"/>
@@ -117,6 +119,5 @@
         <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="163"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
         <element name="Video" positionX="655" positionY="-99" width="128" height="210"/>
-        <element name="Channel" positionX="9" positionY="443" width="128" height="118"/>
     </elements>
 </model>

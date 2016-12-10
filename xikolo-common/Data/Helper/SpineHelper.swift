@@ -27,6 +27,7 @@ class SpineHelper {
         spine.registerValueFormatter(VideoStreamFormatter())
         spine.registerValueFormatter(DualStreamFormatter())
 
+        spine.registerResource(ChannelSpine)
         spine.registerResource(CourseSpine)
         spine.registerResource(CourseEnrollmentSpine)
         spine.registerResource(CourseItemSpine)

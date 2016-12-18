@@ -525,6 +525,9 @@
 		AB1C033F1D8E0CA50053B4E3 /* LTIExerciseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */; };
 		AB1C03401D8E0CA60053B4E3 /* LTIExerciseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */; };
 		AB1C03411D8E0CA70053B4E3 /* LTIExerciseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */; };
+		AB2193921E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
+		AB2193931E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
+		AB2193941E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
 		AB2802C31D29D4D2008C8BAE /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		AB2802CA1D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */; };
 		AB2802CB1D2A8ABB008C8BAE /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */; };
@@ -1144,6 +1147,7 @@
 		AB1C03521D92C1C40053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		AB1C03541D92CCED0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabNews.strings; sourceTree = "<group>"; };
 		AB2193961E07043C00E79DB5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabProfile.strings; sourceTree = "<group>"; };
+		AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownHelper.swift; sourceTree = "<group>"; };
 		AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTabContentViewController.swift; sourceTree = "<group>"; };
 		AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewsArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
@@ -1497,6 +1501,7 @@
 			isa = PBXGroup;
 			children = (
 				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
+				AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2757,6 +2762,7 @@
 				AB4F22801D80BB0A00ED0BF1 /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */,
+				AB2193931E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */,
 				24BA40971D3F9AA700E38C2C /* UserProfile.swift in Sources */,
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
@@ -3178,6 +3184,7 @@
 				AB4F227E1D80BB0A00ED0BF1 /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				2433A5A61CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
+				AB2193921E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */,
 				24128FAC1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
 				AB4F22871D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */,
@@ -3350,6 +3357,7 @@
 				ABA0F0341DF8CD0A0001D88D /* CALayer+UIColor.swift in Sources */,
 				ABA0F0311DF8CD050001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				ABA0F0191DF8CCA10001D88D /* CourseListViewController.swift in Sources */,
+				AB2193941E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
 				ABB49A8C1DF8D6D1004C59B6 /* PlatformEventProvider.swift in Sources */,
 				ABA0F0CA1DF8CE450001D88D /* CourseHelper.swift in Sources */,

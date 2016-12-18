@@ -31,6 +31,11 @@ class NewsArticleCell : UITableViewCell {
         if let newsText = newsArticle.text {
             descriptionView.attributedText = MarkdownParser.parse(newsText)
         }
+
+        if let newsText = newsArticle.text {
+            let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
+            self.descriptionView.attributedText = markDown
+        }
         readStateView.hidden = newsArticle.visited ?? true
 
         roundedTagBackgroundView.hidden = newsArticle.course == nil

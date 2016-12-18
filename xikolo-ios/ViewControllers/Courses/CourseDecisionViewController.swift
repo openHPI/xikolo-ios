@@ -31,7 +31,7 @@ class CourseDecisionViewController: UIViewController {
 
     @IBAction func enroll(sender: UIBarButtonItem) {
         if UserProfileHelper.isLoggedIn() {
-            UserProfileHelper.createEnrollement(course.id)
+            UserProfileHelper.createEnrollment(course.id)
                 .flatMap { CourseHelper.refreshCourses() }
                 .onSuccess { _ in
                     self.decideContent()

@@ -1,52 +1,53 @@
 PODS:
-  - Alamofire (3.5.0)
+  - Alamofire (3.2.0)
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - BrightFutures (4.1.0):
+  - BrightFutures (4.0.0):
     - Result (~> 2.0)
-  - ObjectMapper (1.2.0)
+  - ObjectMapper (1.0.0)
   - Result (2.0.0)
   - Spine (0.3):
     - BrightFutures (~> 4.0)
     - SwiftyJSON (~> 2.3)
-  - SwiftyJSON (2.3.2)
-  - TSMarkdownParser (2.1.1)
+  - SwiftyJSON (2.4.0)
+  - TSMarkdownParser (2.1.2)
 
 DEPENDENCIES:
-  - Alamofire
-  - AlamofireObjectMapper
-  - BrightFutures
-  - Result
-  - Spine (from `https://github.com/wvteijlingen/Spine.git`, branch `master`)
-  - TSMarkdownParser (from `https://github.com/laptobbe/TSMarkdownParser.git`, branch `master`)
+  - Alamofire (= 3.2.0)
+  - AlamofireObjectMapper (= 3.0.0)
+  - BrightFutures (= 4.0.0)
+  - ObjectMapper (= 1.0.0)
+  - Result (= 2.0.0)
+  - Spine (from `https://github.com/wvteijlingen/Spine.git`, commit `53971cf`)
+  - TSMarkdownParser (from `https://github.com/laptobbe/TSMarkdownParser.git`, commit `cff997a`)
 
 EXTERNAL SOURCES:
   Spine:
-    :branch: master
+    :commit: 53971cf
     :git: https://github.com/wvteijlingen/Spine.git
   TSMarkdownParser:
-    :branch: master
+    :commit: cff997a
     :git: https://github.com/laptobbe/TSMarkdownParser.git
 
 CHECKOUT OPTIONS:
   Spine:
-    :commit: 53971cf16661f90d43b10a9efffc604d8d921eb9
+    :commit: 53971cf
     :git: https://github.com/wvteijlingen/Spine.git
   TSMarkdownParser:
-    :commit: cdfb56c4ad589f6a63a9299ba75ac7a53dc9a959
+    :commit: cff997a
     :git: https://github.com/laptobbe/TSMarkdownParser.git
 
 SPEC CHECKSUMS:
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
-  BrightFutures: e18b83fd6fa8562ceb9902ee609f0de23b0ee110
-  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  BrightFutures: ddeb9a2747c101914d7b2cf5094acfd5fb67395c
+  ObjectMapper: 0cd8372a0da95ae146afc63d8b512c32dd372a49
   Result: 9e75e1111c774c6ac594e14907b15057053a7959
   Spine: c7c400cdd44a0a313969fe623698d47460da1c09
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  TSMarkdownParser: 64cb52fe5a518b4875a6167a650cb0ed4b18cea5
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
+  TSMarkdownParser: 5c8a0af7800da40a8d5ab53323fa6a1ba3a9dd88
 
-PODFILE CHECKSUM: fd8f75519b07caa598748e5d892ee797ef72aaea
+PODFILE CHECKSUM: 0afaf79e32b331212fe17aae76f83d46771fdcaa
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

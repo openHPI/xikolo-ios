@@ -19,8 +19,12 @@ struct Routes {
     static let ENROLLMENTS_API_URL = API_URL + "/users/me/enrollments/"
 
     static let COURSES_URL = Brand.BaseURL + "/courses/"
+    static let DASHBOARD_URL = Brand.BaseURL + "/dashboard"
+    static let PROFILE_URL = DASHBOARD_URL + "/profile"
     static let NEWS_URL = Brand.BaseURL + "/news"
     static let REGISTER_URL = Brand.BaseURL + "/account/new"
+    static let IMPRINT_URL = Brand.BaseURL + "/pages/imprint"
+    static let PRIVACY_URL = Brand.BaseURL + "/pages/privacy"
 
     static let HEADER_USER_PLATFORM = "User-Platform"
     static let HEADER_USER_PLATFORM_VALUE = "iOS"

@@ -15,6 +15,7 @@ import UIKit
 extension Course {
 
     @NSManaged var abstract: String?
+    @NSManaged var accessible_int: NSNumber?
     @NSManaged var course_description: String?
     @NSManaged var end_at: NSDate?
     @NSManaged var id: String
@@ -27,7 +28,7 @@ extension Course {
     @NSManaged var title: String?
     @NSManaged var status: String?
     @NSManaged var hidden_int: NSNumber?
-    @NSManaged var open_int: NSNumber?
+    @NSManaged var enrollable_int: NSNumber?
     @NSManaged var external_int: NSNumber?
     @NSManaged var sections: NSSet?
     @NSManaged var news: NSSet?

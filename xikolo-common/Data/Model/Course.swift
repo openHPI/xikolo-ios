@@ -22,12 +22,21 @@ class Course : BaseModel {
         }
     }
 
-    var open: Bool? {
+    var accessible: Bool? {
         get {
-            return open_int?.boolValue
+            return accessible_int?.boolValue
         }
-        set(new_is_open) {
-            open_int = new_is_open
+        set(new_is_accessible) {
+            accessible_int = new_is_accessible
+        }
+    }
+
+    var enrollable: Bool? {
+        get {
+            return enrollable_int?.boolValue
+        }
+        set(new_is_enrollable) {
+            enrollable_int = new_is_enrollable
         }
     }
 
@@ -87,7 +96,8 @@ class CourseSpine : BaseModelSpine {
     var end_at: NSDate?
     var status: String?
     var hidden_int: NSNumber?
-    var open_int: NSNumber?
+    var enrollable_int: NSNumber?
+    var accessible_int: NSNumber?
     var external_int: NSNumber?
 
     var enrollment: CourseEnrollmentSpine?
@@ -106,6 +116,7 @@ class CourseSpine : BaseModelSpine {
             "title": Attribute(),
             "slug": Attribute(),
             "abstract": Attribute(),
+            "accessible_int": Attribute().serializeAs("accessible"),
             "course_description": Attribute().serializeAs("description"),
             "image_url": URLAttribute(baseURL: NSURL(string: Brand.BaseURL)!),
             "teachers": Attribute(),
@@ -114,7 +125,7 @@ class CourseSpine : BaseModelSpine {
             "end_at": DateAttribute(),
             "status": Attribute(),
             "hidden_int": Attribute().serializeAs("hidden"),
-            "open_int": Attribute().serializeAs("open"),
+            "enrollable_int": Attribute().serializeAs("enrollable"),
             "external_int": Attribute().serializeAs("external"),
             "enrollment": ToOneRelationship(CourseEnrollmentSpine).serializeAs("user_enrollment"),
             "channel": ToOneRelationship(ChannelSpine),

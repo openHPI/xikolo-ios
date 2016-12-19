@@ -8,3 +8,5 @@
 /* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "cHU-8h-YGE"; */
 "cHU-8h-YGE.title" = "Einloggen";
 
+/* Class = "UILabel"; text = "My Courses"; ObjectID = "j6z-z6-QIm"; */
+"j6z-z6-QIm.text" = "Meine Kurse";

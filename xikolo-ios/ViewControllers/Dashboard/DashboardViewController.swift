@@ -12,6 +12,7 @@ class DashboardViewController : AbstractTabContentViewController {
 
     @IBOutlet var courseDeadlinesContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseStartsContainerHeight: NSLayoutConstraint!
+    @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
 
     override func viewWillAppear(animated: Bool) {
         CourseDateHelper.syncCourseDates()
@@ -24,6 +25,9 @@ class DashboardViewController : AbstractTabContentViewController {
             vc.delegate = self
         case "EmbedCourseStartsSegue"?:
             let vc = segue.destinationViewController as! CourseStartsTableViewController
+            vc.delegate = self
+        case "EmbedCourseActivitySegue"?:
+            let vc = segue.destinationViewController as! CourseActivityViewController
             vc.delegate = self
         default:
             break
@@ -50,5 +54,14 @@ extension DashboardViewController : CourseStartsTableViewControllerDelegate {
         }
     }
 
+}
+
+extension DashboardViewController : CourseActivityViewControllerDelegate {
+
+    func changedCourseActivityTableViewHeight(height: CGFloat) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.courseActivityContainerHeight.constant = height
+        }
+    }
 
 }

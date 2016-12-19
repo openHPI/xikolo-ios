@@ -409,7 +409,6 @@
 		24BA41081D3F9B5E00E38C2C /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
 		24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		24BA410A1D3F9B6900E38C2C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* RegisterViewController.swift */; };
-		24BA410B1D3F9B6C00E38C2C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */; };
 		24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
 		24BA410D1D3F9B7300E38C2C /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
 		24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
@@ -483,6 +482,10 @@
 		24E3DD1E1D5E219E00297118 /* ItemQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD1C1D5E219E00297118 /* ItemQuizViewController.swift */; };
 		24E3DD201D6211A100297118 /* QuestionIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */; };
 		24E3DD211D6211A100297118 /* QuestionIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */; };
+		4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
+		4E2B80AC1DDDE43D0058552D /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
+		4E2B82171DD9E9A400559217 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82161DD9E9A400559217 /* DashboardViewController.swift */; };
+		4E2B82181DD9E9A400559217 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82161DD9E9A400559217 /* DashboardViewController.swift */; };
 		4E2B821A1DDB00C900559217 /* CourseDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82191DDB00C900559217 /* CourseDateHelper.swift */; };
 		4E2B821B1DDB00C900559217 /* CourseDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82191DDB00C900559217 /* CourseDateHelper.swift */; };
 		4E2B821D1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */; };
@@ -553,6 +556,10 @@
 		AB17C5731DFCAD770013BBCD /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
 		AB17C5741DFCAD780013BBCD /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
 		AB17C5751DFCAD8E0013BBCD /* CourseDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82191DDB00C900559217 /* CourseDateHelper.swift */; };
+		AB17C5761DFCAE010013BBCD /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82161DD9E9A400559217 /* DashboardViewController.swift */; };
+		AB17C5771DFCAE040013BBCD /* CourseDeadlinesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */; };
+		AB17C5781DFCAE060013BBCD /* CourseStartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */; };
+		AB17C57A1DFCAE1E0013BBCD /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
 		AB1C033A1D8E0C990053B4E3 /* PeerAssessmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C21D884CA300987A0C /* PeerAssessmentProvider.swift */; };
 		AB1C033B1D8E0C9A0053B4E3 /* PeerAssessmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C21D884CA300987A0C /* PeerAssessmentProvider.swift */; };
 		AB1C033C1D8E0C9B0053B4E3 /* PeerAssessmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C21D884CA300987A0C /* PeerAssessmentProvider.swift */; };
@@ -961,7 +968,6 @@
 		ABE060AD1DF8C27100FC186D /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABE060A41DF8C24600FC186D /* xikolo-tvos.entitlements */; };
 		ABE060AE1DF8C28600FC186D /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */; };
 		ABE060AF1DF8C29500FC186D /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE060A21DF8C24600FC186D /* assets-tvos-brand.xcassets */; };
-		ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */; };
 		ABFEE0021D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABFEE0031D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		BBCD1F7365EF38979197C0CE /* Pods_openHPI_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37D28B951796642F9337FBF /* Pods_openHPI_tvOS_TopShelf.framework */; };
@@ -1161,7 +1167,11 @@
 		286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		3EFE4C53E4D0BE59A3B7D3DC /* Pods-openHPI-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateCell.swift; sourceTree = "<group>"; };
+		4E2B82161DD9E9A400559217 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4E2B82191DDB00C900559217 /* CourseDateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHelper.swift; sourceTree = "<group>"; };
+		4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDeadlinesTableViewController.swift; sourceTree = "<group>"; };
+		4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseStartsTableViewController.swift; sourceTree = "<group>"; };
 		4E6AB1F01DD36AB500B048DB /* CourseDate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseDate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4E6AB1F11DD36AB500B048DB /* CourseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDate.swift; sourceTree = "<group>"; };
 		4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateProvider.swift; sourceTree = "<group>"; };
@@ -1193,7 +1203,6 @@
 		AB17C57F1DFCC5B50013BBCD /* PlatformEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlatformEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB1357C41D996722004407AA /* PlatformEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventCell.swift; sourceTree = "<group>"; };
 		AB1C034A1D92BF2F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabProfile.strings; sourceTree = "<group>"; };
-		AB1C034C1D92BF360053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabDashboard.strings; sourceTree = "<group>"; };
 		AB1C03501D92BF3F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabCourses.strings; sourceTree = "<group>"; };
 		AB1C03521D92C1C40053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		AB1C03541D92CCED0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabNews.strings; sourceTree = "<group>"; };
@@ -1241,6 +1250,7 @@
 		ABC8A1641D689ED80059CEF2 /* LTIExercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTIExercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABC8A1651D689ED80059CEF2 /* PeerAssessment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerAssessment.swift; sourceTree = "<group>"; };
 		ABC8A1661D689ED80059CEF2 /* PeerAssessment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PeerAssessment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ABCF4A7C1E0B3EBD00FEFAC3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabDashboard.strings; sourceTree = "<group>"; };
 		ABDD84C31D8E056000C7D193 /* PeerAssessmentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerAssessmentHelper.swift; sourceTree = "<group>"; };
 		ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIExerciseHelper.swift; sourceTree = "<group>"; };
 		ABE0605E1DF8BDDE00FC186D /* openWHO-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "openWHO-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1536,6 +1546,7 @@
 				AB91F9E41CED029B00007D06 /* CourseItemCell.swift */,
 				AB2802D31D2AC425008C8BAE /* NewsArticleCell.swift */,
 				AB91F9E21CECD5A500007D06 /* ProfileTableViewCell.swift */,
+				4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1760,6 +1771,8 @@
 			isa = PBXGroup;
 			children = (
 				ABF845AE1CDA9F48003949B9 /* DashboardViewController.swift */,
+				4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */,
+				4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2836,6 +2849,7 @@
 				24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */,
 				AB2193931E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */,
+				4E2B821E1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift in Sources */,
 				4E6AB1F51DD36AB500B048DB /* CourseDate+CoreDataProperties.swift in Sources */,
 				24BA40971D3F9AA700E38C2C /* UserProfile.swift in Sources */,
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
@@ -2868,12 +2882,12 @@
 				24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
 				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
 				249E3AA11D43BF6F00D7663F /* QuizProvider.swift in Sources */,
+				4E2B80AC1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
 				ABC8A1691D689ED80059CEF2 /* LTIExercise.swift in Sources */,
 				24BA41121D3F9B7F00E38C2C /* NewsTableViewController.swift in Sources */,
 				24BA40B51D3F9AD100E38C2C /* ImageProvider.swift in Sources */,
 				24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
 				24BA40D21D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
-				24BA410B1D3F9B6C00E38C2C /* DashboardViewController.swift in Sources */,
 				24BA40FF1D3F9B3E00E38C2C /* NotificationKeys.swift in Sources */,
 				24BA40DF1D3F9B0100E38C2C /* Routes.swift in Sources */,
 				24BA40A41D3F9AB800E38C2C /* RichText.swift in Sources */,
@@ -2896,6 +2910,7 @@
 				243CE4931D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				24BA407B1D3F9A7D00E38C2C /* UIView+shake.swift in Sources */,
 				24BA411B1D3F9B9700E38C2C /* ProfileTableViewCell.swift in Sources */,
+				4E2B82181DD9E9A400559217 /* DashboardViewController.swift in Sources */,
 				24BA40AC1D3F9AC300E38C2C /* NewsArticle.swift in Sources */,
 				AB95897D1DC4A42800586137 /* UITableViewCell+enable.swift in Sources */,
 				24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */,
@@ -2929,6 +2944,7 @@
 				24BA41111D3F9B7D00E38C2C /* NewsViewController.swift in Sources */,
 				24BA40911D3F9A9900E38C2C /* CourseItem.swift in Sources */,
 				24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */,
+				4E2B82211DDB452300559217 /* CourseStartsTableViewController.swift in Sources */,
 				243CE4A21D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24BA409A1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
 				24BA40D81D3F9AF800E38C2C /* ImageHelper.swift in Sources */,
@@ -3276,6 +3292,7 @@
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				2433A5A61CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
 				AB2193921E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */,
+				4E2B821D1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift in Sources */,
 				4E6AB1F21DD36AB500B048DB /* CourseDate+CoreDataProperties.swift in Sources */,
 				24128FAC1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
 				AB4F22871D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
@@ -3307,6 +3324,7 @@
 				AB17C5811DFCC5B50013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				24B6514D1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
 				ABAC56091D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
+				4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
 				249E3A9F1D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* NewsArticleCell.swift in Sources */,
 				ABC8A1671D689ED80059CEF2 /* LTIExercise.swift in Sources */,
@@ -3337,6 +3355,7 @@
 				AB2802D61D2AD18F008C8BAE /* NewsTableViewController.swift in Sources */,
 				24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */,
 				AB95897C1DC4A42700586137 /* UITableViewCell+enable.swift in Sources */,
+				4E2B82171DD9E9A400559217 /* DashboardViewController.swift in Sources */,
 				AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */,
 				24A16D901CFFA3E500CAD9FE /* Error.swift in Sources */,
 				AB1C033E1D8E0CA50053B4E3 /* LTIExerciseProvider.swift in Sources */,
@@ -3367,10 +3386,10 @@
 				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
 				24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				F89473C21B3C46FD00553882 /* RegisterViewController.swift in Sources */,
+				4E2B82201DDB452300559217 /* CourseStartsTableViewController.swift in Sources */,
 				24A16D8D1CFF2F4300CAD9FE /* VideoHelper.swift in Sources */,
 				243CE4A01D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24A16D6F1CFC938700CAD9FE /* Video+CoreDataProperties.swift in Sources */,
-				ABF845AF1CDA9F49003949B9 /* DashboardViewController.swift in Sources */,
 				2490C4CF1D1C5F3600F42949 /* Settings.swift in Sources */,
 				24A16D851CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */,
 				2448A9DB1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */,
@@ -3384,6 +3403,7 @@
 				AB17C5751DFCAD8E0013BBCD /* CourseDateHelper.swift in Sources */,
 				ABA0F03E1DF8CD240001D88D /* BaseModelSpine.swift in Sources */,
 				ABA0F0591DF8CD900001D88D /* CourseSection+CoreDataProperties.swift in Sources */,
+				AB17C5781DFCAE060013BBCD /* CourseStartsTableViewController.swift in Sources */,
 				ABA0F0561DF8CD8C0001D88D /* CourseItem.swift in Sources */,
 				AB17C58F1DFCC5D10013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				ABA0F09F1DF8CDF60001D88D /* TrackingEventResource.swift in Sources */,
@@ -3424,6 +3444,7 @@
 				ABA0F01E1DF8CCAF0001D88D /* CourseDecisionViewController.swift in Sources */,
 				ABA0F0B71DF8CE1F0001D88D /* PeerAssessmentProvider.swift in Sources */,
 				ABA0F0931DF8CDE70001D88D /* Video.swift in Sources */,
+				AB17C5771DFCAE040013BBCD /* CourseDeadlinesTableViewController.swift in Sources */,
 				ABA0F0991DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				AB17C5871DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
 				ABA0F05F1DF8CD970001D88D /* UserProfile.swift in Sources */,
@@ -3461,6 +3482,7 @@
 				ABA0F0311DF8CD050001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				ABA0F0191DF8CCA10001D88D /* CourseListViewController.swift in Sources */,
 				AB2193941E06F1E700E79DB5 /* MarkdownHelper.swift in Sources */,
+				AB17C57A1DFCAE1E0013BBCD /* CourseDateCell.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
 				ABB49A8C1DF8D6D1004C59B6 /* PlatformEventProvider.swift in Sources */,
 				ABA0F0CA1DF8CE450001D88D /* CourseHelper.swift in Sources */,
@@ -3485,6 +3507,7 @@
 				ABA0F07E1DF8CDC90001D88D /* Quiz.swift in Sources */,
 				ABA0F0C11DF8CE2E0001D88D /* SpineModelHelper.swift in Sources */,
 				ABA0F0C41DF8CE320001D88D /* NetworkHelper.swift in Sources */,
+				AB17C5761DFCAE010013BBCD /* DashboardViewController.swift in Sources */,
 				ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F0391DF8CD180001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				ABA0F08D1DF8CDDF0001D88D /* RichText.swift in Sources */,
@@ -3784,7 +3807,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D61CF72E8E00ED3EB0 /* Base */,
-				AB1C034C1D92BF360053B4E3 /* de */,
+				ABCF4A7C1E0B3EBD00FEFAC3 /* de */,
 			);
 			name = TabDashboard.storyboard;
 			sourceTree = "<group>";

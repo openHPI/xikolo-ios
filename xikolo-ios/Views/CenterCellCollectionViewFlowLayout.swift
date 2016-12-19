@@ -12,14 +12,21 @@ import UIKit
 class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
 
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        if let cv = self.collectionView {
+        if let collectionView = self.collectionView {
 
-            let cvBounds = cv.bounds
-            let halfWidth = cvBounds.size.width * 0.5;
+            let collectionViewBounds = collectionView.bounds
+            let halfWidth = collectionViewBounds.size.width * 0.5;
             let proposedContentOffsetCenterX = proposedContentOffset.x + halfWidth;
 
-            if let attributesForVisibleCells = self.layoutAttributesForElementsInRect(cvBounds) {
+            if let attributesForVisibleCells = self.layoutAttributesForElementsInRect(collectionViewBounds) {
 
+                /*  == If we're at the beginning of the list, the item should be
+                       aligned with the left content inset of the collectionView    == */
+                if(proposedContentOffset.x == -(collectionView.contentInset.left)) {
+                    return proposedContentOffset
+                }
+
+                //  == If not, we need to calculate the "snapping" center position  == //
                 var candidateAttributes : UICollectionViewLayoutAttributes?
                 for attributes in attributesForVisibleCells {
 
@@ -28,7 +35,7 @@ class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
                         continue
                     }
 
-                    if (attributes.center.x == 0) || (attributes.center.x > (cv.contentOffset.x + halfWidth) && velocity.x < 0) {
+                    if (attributes.center.x == 0) || (attributes.center.x > (collectionView.contentOffset.x + halfWidth) && velocity.x < 0) {
                         continue
                     }
 
@@ -41,16 +48,10 @@ class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
                     let a = attributes.center.x - proposedContentOffsetCenterX
                     let b = candAttrs.center.x - proposedContentOffsetCenterX
 
-                    if fabsf(Float(a)) < fabsf(Float(b)) {
+                    if abs(Float(a)) < abs(Float(b)) {
                         candidateAttributes = attributes;
                     }
                 }
-
-                // Beautification step , I don't know why it works!
-                if(proposedContentOffset.x == -(cv.contentInset.left)) {
-                    return proposedContentOffset
-                }
-
                 return CGPoint(x: floor(candidateAttributes!.center.x - halfWidth), y: proposedContentOffset.y)
             }
         }

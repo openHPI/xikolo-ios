@@ -76,6 +76,14 @@ extension CourseDeadlinesTableViewController : TableViewResultsControllerDelegat
         cell.configure(courseDate)
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let courseDate = resultsController.objectAtIndexPath(indexPath) as! CourseDate
+        if let course = courseDate.course {
+            AppDelegate.instance().goToCourse(course)
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
 }
 
 protocol CourseDeadlinesTableViewControllerDelegate: class {

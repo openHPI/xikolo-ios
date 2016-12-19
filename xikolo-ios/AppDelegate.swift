@@ -12,6 +12,10 @@ import UIKit
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
 
+    class func instance() -> AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
+
     override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window?.tintColor = Brand.TintColor
         updateNews()
@@ -56,6 +60,32 @@ class AppDelegate : AbstractAppDelegate {
     override func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         super.applicationWillTerminate(application)
+    }
+
+    func goToCourse(course: Course, content: CourseDecisionViewController.CourseContent = .learnings) {
+        guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
+            print("UITabBarController could not be found")
+            return
+        }
+        guard let courseNavigationController = rootViewController.viewControllers?[1] as? UINavigationController else {
+            print("CourseNavigationController could not be found")
+            return
+        }
+
+        courseNavigationController.popToRootViewControllerAnimated(false)
+
+        let vc = UIStoryboard(name: "TabCourses", bundle: nil).instantiateViewControllerWithIdentifier("CourseDecisionViewController")
+
+        guard let courseDecisionViewController = vc as? CourseDecisionViewController else {
+            print("CourseDecisionViewController could not be found")
+            return
+        }
+
+        courseDecisionViewController.course = course
+        courseDecisionViewController.content = content
+        courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
+
+        rootViewController.selectedIndex = 1
     }
 
 }

@@ -29,10 +29,18 @@
         <attribute name="teachers" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="courses" inverseEntity="Channel" syncable="YES"/>
+        <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseDate" inverseName="course" inverseEntity="CourseDate" syncable="YES"/>
         <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CourseEnrollment" inverseName="course" inverseEntity="CourseEnrollment" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlatformEvent" inverseName="course" inverseEntity="PlatformEvent" syncable="YES"/>
         <relationship name="news" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NewsArticle" inverseName="course" inverseEntity="NewsArticle" syncable="YES"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection" syncable="YES"/>
+    </entity>
+    <entity name="CourseDate" representedClassName=".CourseDate" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="dates" inverseEntity="Course" syncable="YES"/>
     </entity>
     <entity name="CourseEnrollment" representedClassName=".CourseEnrollment" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -130,5 +138,6 @@
         <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="163"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
         <element name="Video" positionX="655" positionY="-99" width="128" height="210"/>
+        <element name="CourseDate" positionX="198" positionY="-9" width="128" height="120"/>
     </elements>
 </model>

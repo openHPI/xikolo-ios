@@ -8,11 +8,15 @@
 
 import BrightFutures
 import Foundation
+import Spine
 
 class NewsArticleProvider {
 
     class func getNewsArticles() -> Future<[NewsArticleSpine], XikoloError> {
-        return SpineHelper.findAll(NewsArticleSpine)
+        var query = Query(resourceType: NewsArticleSpine.self)
+        query.filterOn("global", equalTo: "true")
+
+        return SpineHelper.find(query)
     }
 
 }

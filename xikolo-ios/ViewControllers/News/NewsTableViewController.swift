@@ -80,12 +80,18 @@ extension NewsTableViewController : TableViewResultsControllerDelegateImplementa
 extension NewsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        if NetworkIndicator.counter > 0 {
+            return nil // blank screen for loading
+        }
         let title = NSLocalizedString("There are no news at the moment", comment: "")
         let attributedString = NSAttributedString(string: title)
         return attributedString
     }
 
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        if NetworkIndicator.counter > 0 {
+            return nil // blank screen for loading
+        }
         let description = NSLocalizedString("News can be published in courses or globally to announce new content or changes to the platform itself", comment: "")
         let attributedString = NSAttributedString(string: description)
         return attributedString

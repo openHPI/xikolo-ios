@@ -65,6 +65,9 @@ extension PlatformEventsTableViewController : TableViewResultsControllerDelegate
 extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        if NetworkIndicator.counter > 0 {
+            return nil // blank screen for loading
+        }
         let title: String
         if UserProfileHelper.isLoggedIn() {
             title = NSLocalizedString("There has been no course activity yet", comment: "")
@@ -76,6 +79,9 @@ extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDat
     }
 
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        if NetworkIndicator.counter > 0 {
+            return nil // blank screen for loading
+        }
         let description: String
         if UserProfileHelper.isLoggedIn() {
             description = NSLocalizedString("Notifications about course material or discussions of enrolled courses will appear here", comment: "")

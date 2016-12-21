@@ -22,10 +22,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KR-9t-YfO">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="738"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5l-Ld-SJ8">
+                                                <rect key="frame" x="20" y="20" width="560" height="36"/>
+                                                <color key="backgroundColor" red="0.078431372550000003" green="0.53333333329999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <state key="normal" title="Give feedback!">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="giveFeedback:" destination="xXY-iO-myQ" eventType="touchUpInside" id="2pn-oG-0Vm"/>
+                                                </connections>
+                                            </button>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0c-Nm-2Vw">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="350"/>
+                                                <rect key="frame" x="0.0" y="72" width="600" height="350"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="350" id="PRS-ng-4lB"/>
                                                 </constraints>
@@ -34,7 +45,7 @@
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6i-PS-Rko">
-                                                <rect key="frame" x="0.0" y="358" width="600" height="150"/>
+                                                <rect key="frame" x="0.0" y="430" width="600" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="Stc-t5-rS1"/>
                                                 </constraints>
@@ -43,7 +54,7 @@
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOA-Gx-qHo">
-                                                <rect key="frame" x="0.0" y="516" width="600" height="150"/>
+                                                <rect key="frame" x="0.0" y="588" width="600" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="5mz-Ks-YhX"/>
                                                 </constraints>
@@ -57,14 +68,23 @@
                                             <constraint firstItem="OOA-Gx-qHo" firstAttribute="top" secondItem="F6i-PS-Rko" secondAttribute="bottom" constant="8" symbolic="YES" id="458-ld-Vgu"/>
                                             <constraint firstAttribute="trailing" secondItem="F6i-PS-Rko" secondAttribute="trailing" id="6vw-cp-vTO"/>
                                             <constraint firstAttribute="bottom" secondItem="OOA-Gx-qHo" secondAttribute="bottom" id="H5D-Tg-7Tr"/>
+                                            <constraint firstItem="A5l-Ld-SJ8" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" constant="20" symbolic="YES" id="KZl-Zd-OJq"/>
                                             <constraint firstItem="OOA-Gx-qHo" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="Ned-k0-fM4"/>
+                                            <constraint firstItem="n0c-Nm-2Vw" firstAttribute="top" secondItem="A5l-Ld-SJ8" secondAttribute="bottom" constant="16" id="THT-ze-sIl"/>
                                             <constraint firstItem="n0c-Nm-2Vw" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="URP-9I-aIM"/>
+                                            <constraint firstAttribute="trailing" secondItem="A5l-Ld-SJ8" secondAttribute="trailing" constant="20" symbolic="YES" id="XrG-bB-aEW"/>
+                                            <constraint firstItem="A5l-Ld-SJ8" firstAttribute="top" secondItem="5KR-9t-YfO" secondAttribute="top" constant="20" symbolic="YES" id="fX9-8O-xkV"/>
                                             <constraint firstAttribute="trailing" secondItem="n0c-Nm-2Vw" secondAttribute="trailing" id="gpt-cZ-v7b"/>
                                             <constraint firstItem="F6i-PS-Rko" firstAttribute="top" secondItem="n0c-Nm-2Vw" secondAttribute="bottom" constant="8" symbolic="YES" id="jjF-ya-jnc"/>
                                             <constraint firstItem="n0c-Nm-2Vw" firstAttribute="top" secondItem="5KR-9t-YfO" secondAttribute="top" id="oik-0f-xGQ"/>
                                             <constraint firstAttribute="trailing" secondItem="OOA-Gx-qHo" secondAttribute="trailing" id="qEE-SV-7zz"/>
                                             <constraint firstItem="F6i-PS-Rko" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="v4r-ku-KNT"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="oik-0f-xGQ"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -98,6 +118,7 @@
                         <outlet property="courseActivityContainerHeight" destination="PRS-ng-4lB" id="1Ax-VW-LHV"/>
                         <outlet property="courseDeadlinesContainerHeight" destination="Stc-t5-rS1" id="806-rR-ekL"/>
                         <outlet property="courseStartsContainerHeight" destination="5mz-Ks-YhX" id="ddU-2H-PNj"/>
+                        <outlet property="feedbackButton" destination="A5l-Ld-SJ8" id="Gyt-Nw-nb2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>

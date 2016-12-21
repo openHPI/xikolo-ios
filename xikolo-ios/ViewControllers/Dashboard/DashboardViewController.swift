@@ -13,6 +13,19 @@ class DashboardViewController : AbstractTabContentViewController {
     @IBOutlet var courseDeadlinesContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseStartsContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
+    @IBOutlet weak var feedbackButton: UIButton!
+
+    @IBAction func giveFeedback(sender: AnyObject) {
+        let urlString = "https://beta.itunes.apple.com/v1/app/" + Brand.AppID
+        if let url = NSURL(string: urlString) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        feedbackButton.backgroundColor = Brand.TintColor
+    }
 
     override func viewWillAppear(animated: Bool) {
         CourseDateHelper.syncCourseDates()

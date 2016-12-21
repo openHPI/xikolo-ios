@@ -1,14 +1,15 @@
 use_frameworks!
 
 def common_pods
-    pod 'Alamofire'
-    pod 'AlamofireObjectMapper'
+    pod 'Alamofire', '3.2.0'
+    pod 'AlamofireObjectMapper', '3.0.0'
+    pod 'ObjectMapper', '1.0.0'
 
-    pod 'BrightFutures'
-    pod 'Result'
-    pod 'Spine', :git => 'https://github.com/wvteijlingen/Spine.git', :branch => 'master'
+    pod 'BrightFutures', '4.0.0'
+    pod 'Result', '2.0.0'
+    pod 'Spine', :git => 'https://github.com/wvteijlingen/Spine.git', :commit => '53971cf'
 
-    pod 'TSMarkdownParser', :git => 'https://github.com/laptobbe/TSMarkdownParser.git', :branch => 'master'
+    pod 'TSMarkdownParser', :git => 'https://github.com/laptobbe/TSMarkdownParser.git', :commit => 'cff997a'
 end
 
 target 'openHPI-iOS' do
@@ -62,5 +63,5 @@ end
 target 'openWHO-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-    
+
 end

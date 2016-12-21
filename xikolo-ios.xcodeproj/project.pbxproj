@@ -419,7 +419,6 @@
 		24BA41131D3F9B8100E38C2C /* NewsArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */; };
 		24BA41141D3F9B8600E38C2C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
 		24BA41151D3F9B8800E38C2C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
-		24BA41161D3F9B8A00E38C2C /* EditProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */; };
 		24BA41171D3F9B8C00E38C2C /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -546,7 +545,6 @@
 		AB9589771DC2049400586137 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95896D1DC2049400586137 /* Channel.swift */; };
 		AB9589781DC2049400586137 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95896D1DC2049400586137 /* Channel.swift */; };
 		AB9589791DC2049400586137 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95896D1DC2049400586137 /* Channel.swift */; };
-		AB9AF2531CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */; };
 		AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
 		AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
@@ -571,7 +569,6 @@
 		ABA0F0221DF8CCBA0001D88D /* NewsArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */; };
 		ABA0F0231DF8CCBC0001D88D /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
 		ABA0F0241DF8CCBF0001D88D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
-		ABA0F0251DF8CCC20001D88D /* EditProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */; };
 		ABA0F0261DF8CCC50001D88D /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		ABA0F0271DF8CCCA0001D88D /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		ABA0F0281DF8CCCC0001D88D /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -1102,11 +1099,11 @@
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		A90587C81B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90587CA1B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB1C034A1D92BF2F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabProfile.strings; sourceTree = "<group>"; };
 		AB1C034C1D92BF360053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabDashboard.strings; sourceTree = "<group>"; };
 		AB1C03501D92BF3F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabCourses.strings; sourceTree = "<group>"; };
 		AB1C03521D92C1C40053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		AB1C03541D92CCED0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabNews.strings; sourceTree = "<group>"; };
+		AB2193961E07043C00E79DB5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabProfile.strings; sourceTree = "<group>"; };
 		AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTabContentViewController.swift; sourceTree = "<group>"; };
 		AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewsArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB2802C81D2A8ABB008C8BAE /* NewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
@@ -1130,7 +1127,6 @@
 		AB91F9E41CED029B00007D06 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
 		AB95896C1DC2049400586137 /* Channel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB95896D1DC2049400586137 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		AB9AF2D11CF72D9D00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabCourses.storyboard; sourceTree = "<group>"; };
 		AB9AF2D61CF72E8E00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabDashboard.storyboard; sourceTree = "<group>"; };
@@ -1629,7 +1625,6 @@
 			children = (
 				AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */,
 				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
-				AB9AF2521CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2792,7 +2787,6 @@
 				243CE4A21D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24BA409A1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
 				24BA40D81D3F9AF800E38C2C /* ImageHelper.swift in Sources */,
-				24BA41161D3F9B8A00E38C2C /* EditProfileSettingsViewController.swift in Sources */,
 				24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				24BA410A1D3F9B6900E38C2C /* RegisterViewController.swift in Sources */,
 			);
@@ -3133,7 +3127,6 @@
 				ABC8A1731D689ED80059CEF2 /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				2447CE191D09C87A00B5C39A /* MarkdownParser.swift in Sources */,
 				24B6514D1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
-				AB9AF2531CEE805D00ED3EB0 /* EditProfileSettingsViewController.swift in Sources */,
 				ABAC56091D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
 				249E3A9F1D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* NewsArticleCell.swift in Sources */,
@@ -3227,7 +3220,6 @@
 				ABA0F0D51DF8CE5F0001D88D /* QuizHelper.swift in Sources */,
 				ABA0F0501DF8CD850001D88D /* CourseEnrollment.swift in Sources */,
 				ABA0F0201DF8CCB40001D88D /* NewsViewController.swift in Sources */,
-				ABA0F0251DF8CCC20001D88D /* EditProfileSettingsViewController.swift in Sources */,
 				ABA0F0E71DF8CE7E0001D88D /* xikolo.xcdatamodeld in Sources */,
 				ABA0F0721DF8CDB80001D88D /* NewsArticle.swift in Sources */,
 				ABA0F0811DF8CDCD0001D88D /* QuizQuestion+CoreDataProperties.swift in Sources */,
@@ -3584,7 +3576,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D91CF72EF100ED3EB0 /* Base */,
-				AB1C034A1D92BF2F0053B4E3 /* de */,
+				AB2193961E07043C00E79DB5 /* de */,
 			);
 			name = TabProfile.storyboard;
 			sourceTree = "<group>";

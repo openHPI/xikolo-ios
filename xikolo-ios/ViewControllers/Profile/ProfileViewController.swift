@@ -13,6 +13,8 @@ class ProfileViewController: AbstractTabContentViewController {
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
 
+    @IBOutlet weak var nameView: UILabel!
+    @IBOutlet weak var emailView: UILabel!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var logoutButton: UIButton!
 
@@ -20,21 +22,26 @@ class ProfileViewController: AbstractTabContentViewController {
         UserProfileHelper.logout()
     }
 
+    var user: UserProfile?
+
     override func updateUIAfterLoginLogoutAction() {
         super.updateUIAfterLoginLogoutAction()
 
         if UserProfileHelper.isLoggedIn() {
-            container.hidden = false
+            nameView.hidden = false
+            emailView.hidden = false
             logoutButton.hidden = false
 
             UserProfileHelper.getUser().onSuccess { user in
-                // TODO: get name, username etc.
+                self.nameView.text = user.firstName + " " + user.lastName
+                self.emailView.text = user.email
                 if let url = NSURL(string: user.visual) {
                     ImageHelper.loadImageFromURL(url, toImageView: self.profileImage)
                 }
             }
         } else {
-            container.hidden = true
+            nameView.hidden = true
+            emailView.hidden = true
             logoutButton.hidden = true
             profileImage.image = UIImage(named: "avatar")
         }

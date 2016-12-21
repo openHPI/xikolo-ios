@@ -10,19 +10,21 @@ import UIKit
 
 class ProfileTableViewController: UITableViewController {
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
-    }
+    var user: UserProfile?
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.row == 1 || indexPath.row == 2 || indexPath.row  == 3 {
-            return true
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.item {
+        case 0:
+            if let url = NSURL(string: Routes.IMPRINT_URL) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        case 1:
+            if let url = NSURL(string: Routes.PRIVACY_URL) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        default:
+            break
         }
-        return false
     }
 
 }

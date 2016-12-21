@@ -1,45 +1,18 @@
 
-/* Class = "UILabel"; text = "Receive mails"; ObjectID = "0PQ-ql-J8Z"; */
-"0PQ-ql-J8Z.text" = "Emails empfangen";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "2Pq-7R-SA4"; */
-"2Pq-7R-SA4.text" = "Details";
-
-/* Class = "UILabel"; text = "Email"; ObjectID = "3tc-Bo-jZp"; */
-"3tc-Bo-jZp.text" = "Email";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "9cF-Jc-0vK"; */
-"9cF-Jc-0vK.text" = "Details";
-
 /* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "Mnf-wa-pbl"; */
 "Mnf-wa-pbl.title" = "Einloggen";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "S4l-SC-Khh"; */
-"S4l-SC-Khh.text" = "Details";
-
-/* Class = "UILabel"; text = "Display Name"; ObjectID = "V7o-c0-cxp"; */
-"V7o-c0-cxp.text" = "Anzeigename";
 
 /* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "ctU-fN-Oxt"; */
 "ctU-fN-Oxt.normalTitle" = "Ausloggen";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "dWC-fP-JOv"; */
-"dWC-fP-JOv.text" = "Details";
-
 /* Class = "UINavigationItem"; title = "Profile"; ObjectID = "jbm-65-XMz"; */
 "jbm-65-XMz.title" = "Profil";
 
-/* Class = "UILabel"; text = "Change Password"; ObjectID = "lUL-sh-oXa"; */
-"lUL-sh-oXa.text" = "Passwort ändern";
-
-/* Class = "UILabel"; text = "Name"; ObjectID = "nRt-9N-HCu"; */
-"nRt-9N-HCu.text" = "Name";
-
-/* Class = "UILabel"; text = "Forum Subscriptions"; ObjectID = "pgA-hf-Z6b"; */
-"pgA-hf-Z6b.text" = "Abonnierte Diskussionen";
+/* Class = "UILabel"; text = "Imprint"; ObjectID = "lUL-sh-oXa"; */
+"lUL-sh-oXa.text" = "Impressum";
 
 /* Class = "UITabBarItem"; title = "Profile"; ObjectID = "r8t-cE-qA4"; */
 "r8t-cE-qA4.title" = "Profil";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "zMl-HD-9Sn"; */
-"zMl-HD-9Sn.text" = "Details";
+/* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "xUb-k5-964"; */
+"xUb-k5-964.text" = "Datenschutzerklärung";

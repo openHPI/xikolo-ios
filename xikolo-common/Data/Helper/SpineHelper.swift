@@ -35,6 +35,7 @@ class SpineHelper {
         spine.registerResource(ContentSpine)
         spine.registerResource(LTIExerciseSpine)
         spine.registerResource(PeerAssessmentSpine)
+        spine.registerResource(PlatformEventSpine)
         spine.registerResource(QuizSpine)
         spine.registerResource(QuizQuestionSpine)
         spine.registerResource(RichTextSpine)

@@ -561,6 +561,9 @@
 		AB4F228D1D80BC2200ED0BF1 /* PlatformEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F228B1D80BC2200ED0BF1 /* PlatformEventProvider.swift */; };
 		AB4F228E1D80BC2200ED0BF1 /* PlatformEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F228B1D80BC2200ED0BF1 /* PlatformEventProvider.swift */; };
 		AB4F228F1D80BC2200ED0BF1 /* PlatformEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F228B1D80BC2200ED0BF1 /* PlatformEventProvider.swift */; };
+		AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
+		AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
+		AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
 		AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
 		AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
 		AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */; };
@@ -1166,6 +1169,7 @@
 		AB4F22701D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventsTableViewController.swift; sourceTree = "<group>"; };
 		AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventHelper.swift; sourceTree = "<group>"; };
 		AB4F228B1D80BC2200ED0BF1 /* PlatformEventProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventProvider.swift; sourceTree = "<group>"; };
+		AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openHPI/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -1616,6 +1620,7 @@
 		24D48E1F1CCA740500E8051E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */,
 				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
@@ -2829,6 +2834,7 @@
 				ABC8A14E1D6895A00059CEF2 /* WebViewController.swift in Sources */,
 				AB4F228E1D80BC2200ED0BF1 /* PlatformEventProvider.swift in Sources */,
 				24BA40891D3F9A9000E38C2C /* Course+CoreDataProperties.swift in Sources */,
+				AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49D1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				2474C85E1D86FBFB009BDB94 /* SpineHelper.swift in Sources */,
 				249E3AAC1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
@@ -3251,6 +3257,7 @@
 				ABC8A14D1D6895A00059CEF2 /* WebViewController.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				2474C85C1D86FBFB009BDB94 /* SpineHelper.swift in Sources */,
+				AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49B1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				249E3AAA1D43C7C900D7663F /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				AB2802D91D2D754F008C8BAE /* NewsArticleHelper.swift in Sources */,
@@ -3297,6 +3304,7 @@
 				ABB49A881DF8D6B9004C59B6 /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				ABA0F0651DF8CD9F0001D88D /* Content.swift in Sources */,
 				ABA0F0BB1DF8CE270001D88D /* CoreDataHelper.swift in Sources */,
+				AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */,
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */,
 				ABA0F0291DF8CCCF0001D88D /* NewsArticleCell.swift in Sources */,

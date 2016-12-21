@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=master)](https://travis-ci.org/openHPI/xikolo-ios)
+
 # Readme
 
 **Dowloading the project**

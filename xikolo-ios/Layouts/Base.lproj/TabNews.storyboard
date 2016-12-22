@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hJj-vh-sHE">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hJj-vh-sHE">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -89,13 +89,13 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9B-8u-val">
-                                            <rect key="frame" x="34" y="62" width="558" height="53"/>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzw-Va-sVD">
+                                            <rect key="frame" x="34" y="62" width="558" height="53.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </string>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32.03.1987" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcn-a2-G7d">
                                             <rect key="frame" x="512" y="37" width="80" height="17"/>
                                             <constraints>
@@ -140,32 +140,34 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="K6L-Mu-DQ9" secondAttribute="trailing" constant="16" id="0Qe-vW-LoD"/>
-                                        <constraint firstItem="m9B-8u-val" firstAttribute="leading" secondItem="xem-MR-52U" secondAttribute="trailing" constant="8" symbolic="YES" id="3kn-RB-d9d"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="m9B-8u-val" secondAttribute="bottom" id="9fl-QF-EJ5"/>
-                                        <constraint firstItem="m9B-8u-val" firstAttribute="top" secondItem="Hcn-a2-G7d" secondAttribute="bottom" constant="8" symbolic="YES" id="GLE-xP-rAJ"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="m9B-8u-val" secondAttribute="trailing" id="JWw-Qz-F9h"/>
                                         <constraint firstItem="Hcn-a2-G7d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ILo-6g-W2O" secondAttribute="trailing" constant="8" symbolic="YES" id="K4a-2m-NZP"/>
                                         <constraint firstItem="xem-MR-52U" firstAttribute="leading" secondItem="PpP-JB-HQs" secondAttribute="leadingMargin" constant="6" id="LgK-cV-wIx"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="uzw-Va-sVD" secondAttribute="trailing" id="MFf-1y-QWH"/>
                                         <constraint firstItem="ILo-6g-W2O" firstAttribute="top" secondItem="K6L-Mu-DQ9" secondAttribute="bottom" constant="8" id="Mgr-v0-lTU"/>
                                         <constraint firstItem="ILo-6g-W2O" firstAttribute="leading" secondItem="K6L-Mu-DQ9" secondAttribute="leading" id="Ovy-nr-dsm"/>
                                         <constraint firstItem="Hcn-a2-G7d" firstAttribute="top" secondItem="K6L-Mu-DQ9" secondAttribute="bottom" constant="8" id="QzV-Nc-GpP"/>
-                                        <constraint firstItem="m9B-8u-val" firstAttribute="top" secondItem="K6L-Mu-DQ9" secondAttribute="bottom" constant="8" symbolic="YES" id="UzW-nO-3A1"/>
                                         <constraint firstItem="K6L-Mu-DQ9" firstAttribute="leading" secondItem="xem-MR-52U" secondAttribute="trailing" constant="8" symbolic="YES" id="VTW-7X-IDG"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Hcn-a2-G7d" secondAttribute="trailing" id="Wfh-DD-bmH"/>
-                                        <constraint firstItem="m9B-8u-val" firstAttribute="top" secondItem="ILo-6g-W2O" secondAttribute="bottom" constant="8" symbolic="YES" id="a98-Th-mRT"/>
+                                        <constraint firstItem="uzw-Va-sVD" firstAttribute="top" secondItem="ILo-6g-W2O" secondAttribute="bottom" constant="8" symbolic="YES" id="bQt-Em-y9A"/>
                                         <constraint firstItem="K6L-Mu-DQ9" firstAttribute="centerY" secondItem="xem-MR-52U" secondAttribute="centerY" id="cHE-0P-8IH"/>
                                         <constraint firstItem="xem-MR-52U" firstAttribute="top" secondItem="PpP-JB-HQs" secondAttribute="topMargin" constant="5" id="d1O-Li-GET"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="uzw-Va-sVD" secondAttribute="bottom" id="eT3-Bb-gag"/>
+                                        <constraint firstItem="uzw-Va-sVD" firstAttribute="top" secondItem="Hcn-a2-G7d" secondAttribute="bottom" constant="8" symbolic="YES" id="mbj-ym-chQ"/>
+                                        <constraint firstItem="uzw-Va-sVD" firstAttribute="leading" secondItem="xem-MR-52U" secondAttribute="trailing" constant="8" symbolic="YES" id="nLi-AC-Nqf"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="UzW-nO-3A1"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uzw-Va-sVD" secondAttribute="trailing" constant="12" id="w1E-IG-wFB"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="w1E-IG-wFB"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="courseView" destination="hHn-8I-BOH" id="9YQ-rq-VG3"/>
                                     <outlet property="dateView" destination="Hcn-a2-G7d" id="mlr-IU-Pae"/>
-                                    <outlet property="descriptionView" destination="m9B-8u-val" id="gra-4c-pMD"/>
+                                    <outlet property="descriptionView" destination="uzw-Va-sVD" id="fRk-79-Y3r"/>
                                     <outlet property="readStateView" destination="xem-MR-52U" id="5UO-Qo-nH5"/>
                                     <outlet property="roundedTagBackgroundView" destination="ILo-6g-W2O" id="aP7-B0-3XJ"/>
                                     <outlet property="titleView" destination="K6L-Mu-DQ9" id="teO-Gq-SBH"/>

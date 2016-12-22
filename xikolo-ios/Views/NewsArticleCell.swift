@@ -11,14 +11,18 @@ import UIKit
 class NewsArticleCell : UITableViewCell {
 
     @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var descriptionView: UILabel!
     @IBOutlet weak var readStateView: UIView!
+    @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var dateView: UILabel!
     @IBOutlet weak var courseView: UILabel!
     @IBOutlet weak var roundedTagBackgroundView: UIView!
 
     func configure(newsArticle: NewsArticle) {
         readStateView.backgroundColor = Brand.TintColor
+
+        descriptionView.scrollEnabled = false
+        descriptionView.textContainer.maximumNumberOfLines = 4
+        descriptionView.textContainer.lineBreakMode = .ByTruncatingTail
 
         if let date = newsArticle.published_at {
             let dateFormatter = NSDateFormatter()
@@ -28,9 +32,6 @@ class NewsArticleCell : UITableViewCell {
         }
 
         titleView.text = newsArticle.title
-        if let newsText = newsArticle.text {
-            descriptionView.attributedText = MarkdownParser.parse(newsText)
-        }
 
         if let newsText = newsArticle.text {
             let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling

@@ -58,6 +58,7 @@ end
 target 'openWHO-iOS' do
     platform :ios, '9.0'
     common_pods
+    ios_pods
 
 end
 

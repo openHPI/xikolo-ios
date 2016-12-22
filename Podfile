@@ -14,6 +14,7 @@ end
 
 def ios_pods
     pod 'Down', :git => 'https://github.com/iwasrobbed/Down.git', :commit => 'ae3161c'
+    pod 'PinpointKit', '~> 0.9'
 end
 
 target 'openHPI-iOS' do

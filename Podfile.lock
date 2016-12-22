@@ -7,6 +7,7 @@ PODS:
     - Result (~> 2.0)
   - Down (0.2)
   - ObjectMapper (1.0.0)
+  - PinpointKit (0.9)
   - Result (2.0.0)
   - Spine (0.3):
     - BrightFutures (~> 4.0)
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - BrightFutures (= 4.0.0)
   - Down (from `https://github.com/iwasrobbed/Down.git`, commit `ae3161c`)
   - ObjectMapper (= 1.0.0)
+  - PinpointKit (~> 0.9)
   - Result (= 2.0.0)
   - Spine (from `https://github.com/wvteijlingen/Spine.git`, commit `53971cf`)
   - TSMarkdownParser (from `https://github.com/laptobbe/TSMarkdownParser.git`, commit `cff997a`)
@@ -52,11 +54,12 @@ SPEC CHECKSUMS:
   BrightFutures: ddeb9a2747c101914d7b2cf5094acfd5fb67395c
   Down: a57a0d9f887721bada9667821d36966d2bf10661
   ObjectMapper: 0cd8372a0da95ae146afc63d8b512c32dd372a49
+  PinpointKit: dfbff1b4a95c5b71142a7c098717c2af082e2569
   Result: 9e75e1111c774c6ac594e14907b15057053a7959
   Spine: c7c400cdd44a0a313969fe623698d47460da1c09
   SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
   TSMarkdownParser: 5c8a0af7800da40a8d5ab53323fa6a1ba3a9dd88
 
-PODFILE CHECKSUM: 36bb86da79c48c698bfe7079e25f42ae264bf762
+PODFILE CHECKSUM: 5dc104b9c85a85278f5280f6108361512a63acbb
 
 COCOAPODS: 1.1.1

@@ -33,5 +33,6 @@ extension Course {
     @NSManaged var sections: NSSet?
     @NSManaged var news: NSSet?
     @NSManaged var enrollment: CourseEnrollment?
+    @NSManaged var dates: NSSet?
 
 }

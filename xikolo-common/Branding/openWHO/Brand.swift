@@ -14,5 +14,6 @@ struct Brand {
     static let BaseURL = "https://openwho.org"
 
     static let TintColor = UIColor.init(red: 11/255, green: 114/255, blue: 181/255, alpha: 1.0)
+    static let AppID = "de.xikolo.openwho"
 
 }

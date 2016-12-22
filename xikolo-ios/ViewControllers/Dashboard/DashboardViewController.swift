@@ -10,36 +10,71 @@ import UIKit
 
 class DashboardViewController : AbstractTabContentViewController {
 
-    @IBOutlet weak var deadlineWebView: UIWebView!
-    @IBOutlet weak var notificationWebView: UIWebView!
+    @IBOutlet var courseDeadlinesContainerHeight: NSLayoutConstraint!
+    @IBOutlet var courseStartsContainerHeight: NSLayoutConstraint!
+    @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
+    @IBOutlet weak var feedbackButton: UIButton!
+
+    @IBAction func giveFeedback(sender: AnyObject) {
+        let urlString = "https://beta.itunes.apple.com/v1/app/" + Brand.AppID
+        if let url = NSURL(string: urlString) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadDeadlineWebView()
-        loadNotificationWebView()
+        feedbackButton.backgroundColor = Brand.TintColor
     }
 
-    func loadDeadlineWebView() {
-        let url = Routes.NEWS_URL  // TODO: change url to deadlines
-        deadlineWebView.loadRequest(NetworkHelper.getRequestForURL(url))
+    override func viewWillAppear(animated: Bool) {
+        CourseDateHelper.syncCourseDates()
     }
 
-    func loadNotificationWebView() {
-        let url = Routes.NEWS_URL  // TODO: change url to notifications
-        notificationWebView.loadRequest(NetworkHelper.getRequestForURL(url))
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier {
+        case "EmbedCourseDeadlinesSegue"?:
+            let vc = segue.destinationViewController as! CourseDeadlinesTableViewController
+            vc.delegate = self
+        case "EmbedCourseStartsSegue"?:
+            let vc = segue.destinationViewController as! CourseStartsTableViewController
+            vc.delegate = self
+        case "EmbedCourseActivitySegue"?:
+            let vc = segue.destinationViewController as! CourseActivityViewController
+            vc.delegate = self
+        default:
+            break
+        }
     }
 
 }
 
-extension DashboardViewController : UIWebViewDelegate {
+extension DashboardViewController : CourseDeadlinesTableViewControllerDelegate {
 
-    func webViewDidStartLoad(webView: UIWebView) {
-        NetworkIndicator.start()
+    func changedCourseDeadlinesTableViewHeight(height: CGFloat) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.courseDeadlinesContainerHeight.constant = height
+        }
     }
 
-    func webViewDidFinishLoad(webView: UIWebView) {
-        NetworkIndicator.end()
+}
+
+extension DashboardViewController : CourseStartsTableViewControllerDelegate {
+
+    func changedCourseStartsTableViewHeight(height: CGFloat) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.courseStartsContainerHeight.constant = height
+        }
+    }
+
+}
+
+extension DashboardViewController : CourseActivityViewControllerDelegate {
+
+    func changedCourseActivityTableViewHeight(height: CGFloat) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.courseActivityContainerHeight.constant = height
+        }
     }
 
 }

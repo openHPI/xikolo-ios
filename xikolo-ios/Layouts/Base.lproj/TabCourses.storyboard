@@ -185,7 +185,7 @@
         <!--Course Decision View Controller-->
         <scene sceneID="sLk-sR-rsh">
             <objects>
-                <viewController id="YF6-pE-sa6" customClass="CourseDecisionViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseDecisionViewController" id="YF6-pE-sa6" customClass="CourseDecisionViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ef2-op-QKg"/>
                         <viewControllerLayoutGuide type="bottom" id="gKX-nf-Z6U"/>

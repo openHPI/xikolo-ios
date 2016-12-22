@@ -1,15 +1,15 @@
 
-/* Class = "UINavigationItem"; title = "Dashboard"; ObjectID = "AcW-uJ-dOa"; */
-"AcW-uJ-dOa.title" = "Dashboard";
+/* Class = "UILabel"; text = "Upcoming Dates and Deadlines"; ObjectID = "8qT-W3-LFc"; */
+"8qT-W3-LFc.text" = "Nächste Termine pro Kurs";
 
-/* Class = "UILabel"; text = "Notifications"; ObjectID = "FVO-R5-bvE"; */
-"FVO-R5-bvE.text" = "Benachrichtigungen";
+/* Class = "UIButton"; normalTitle = "Give feedback!"; ObjectID = "A5l-Ld-SJ8"; */
+"A5l-Ld-SJ8.normalTitle" = "Gib Feedback!";
+
+/* Class = "UILabel"; text = "Upcoming Course Starts"; ObjectID = "WOA-Rh-nQH"; */
+"WOA-Rh-nQH.text" = "Zukünftige Kurse";
 
 /* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "cHU-8h-YGE"; */
 "cHU-8h-YGE.title" = "Einloggen";
 
-/* Class = "UITabBarItem"; title = "Dashboard"; ObjectID = "eqp-FY-Bn8"; */
-"eqp-FY-Bn8.title" = "Dashboard";
-
-/* Class = "UILabel"; text = "Deadlines"; ObjectID = "jaR-ew-o1P"; */
-"jaR-ew-o1P.text" = "Abgaben";
+/* Class = "UILabel"; text = "My Courses"; ObjectID = "j6z-z6-QIm"; */
+"j6z-z6-QIm.text" = "Meine Kurse";

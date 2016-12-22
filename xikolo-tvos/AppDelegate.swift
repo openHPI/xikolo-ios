@@ -12,6 +12,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
 
+    var window: UIWindow?
+    
     override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)

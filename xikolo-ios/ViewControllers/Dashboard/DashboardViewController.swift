@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PinpointKit
 
 class DashboardViewController : AbstractTabContentViewController {
 
@@ -16,10 +17,7 @@ class DashboardViewController : AbstractTabContentViewController {
     @IBOutlet weak var feedbackButton: UIButton!
 
     @IBAction func giveFeedback(sender: AnyObject) {
-        let urlString = "https://beta.itunes.apple.com/v1/app/" + Brand.AppID
-        if let url = NSURL(string: urlString) {
-            UIApplication.sharedApplication().openURL(url)
-        }
+        // is done by shaking now
     }
 
     override func viewDidLoad() {

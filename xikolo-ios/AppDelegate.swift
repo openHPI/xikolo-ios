@@ -8,9 +8,15 @@
 
 import CoreData
 import UIKit
+import PinpointKit
 
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
+
+    private static let pinpointConfiguration = Configuration(feedbackRecipients: ["openhpi-info@hpi.de"])
+    private static let pinpointKit = PinpointKit(configuration: pinpointConfiguration)
+    var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds, delegate: AppDelegate.pinpointKit)
+
 
     class func instance() -> AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -19,7 +25,7 @@ class AppDelegate : AbstractAppDelegate {
     override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window?.tintColor = Brand.TintColor
         updateNews()
-
+       
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

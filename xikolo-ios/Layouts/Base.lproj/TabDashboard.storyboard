@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="20" y="20" width="560" height="36"/>
                                                 <color key="backgroundColor" red="0.078431372550000003" green="0.53333333329999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                <state key="normal" title="Give feedback!">
+                                                <state key="normal" title="Shake to give feedback">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>

@@ -6,6 +6,7 @@ PODS:
   - BrightFutures (4.0.0):
     - Result (~> 2.0)
   - Down (0.2)
+  - DZNEmptyDataSet (1.8.1)
   - ObjectMapper (1.0.0)
   - PinpointKit (0.9)
   - Result (2.0.0)
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - AlamofireObjectMapper (= 3.0.0)
   - BrightFutures (= 4.0.0)
   - Down (from `https://github.com/iwasrobbed/Down.git`, commit `ae3161c`)
+  - DZNEmptyDataSet (= 1.8.1)
   - ObjectMapper (= 1.0.0)
   - PinpointKit (~> 0.9)
   - Result (= 2.0.0)
@@ -53,6 +55,7 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   BrightFutures: ddeb9a2747c101914d7b2cf5094acfd5fb67395c
   Down: a57a0d9f887721bada9667821d36966d2bf10661
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   ObjectMapper: 0cd8372a0da95ae146afc63d8b512c32dd372a49
   PinpointKit: dfbff1b4a95c5b71142a7c098717c2af082e2569
   Result: 9e75e1111c774c6ac594e14907b15057053a7959
@@ -60,6 +63,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
   TSMarkdownParser: 5c8a0af7800da40a8d5ab53323fa6a1ba3a9dd88
 
-PODFILE CHECKSUM: ac3a1782723b36b73eeb78a022456da010b55cd6
+PODFILE CHECKSUM: 841430f3b868d559f55aadcf2442185056ee339a
 
 COCOAPODS: 1.1.1

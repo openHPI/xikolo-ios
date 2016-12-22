@@ -8,6 +8,7 @@
 
 import CoreData
 import UIKit
+import DZNEmptyDataSet
 
 class CourseContentTableViewController: UITableViewController {
 
@@ -16,6 +17,11 @@ class CourseContentTableViewController: UITableViewController {
     var resultsController: NSFetchedResultsController!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
+    deinit {
+        self.tableView?.emptyDataSetSource = nil
+        self.tableView?.emptyDataSetDelegate = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,8 +43,18 @@ class CourseContentTableViewController: UITableViewController {
         CourseSectionHelper.syncCourseSections(course).flatMap { sections in
             sections.map { section in
                 CourseItemHelper.syncCourseItems(section)
-            }.sequence()
+            }.sequence().onComplete { _ in
+                self.tableView.reloadEmptyDataSet()
+            }
         }
+        setupEmptyState()
+    }
+
+    func setupEmptyState() {
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
+        tableView.reloadEmptyDataSet()
     }
 
     func showItem(item: CourseItem) {
@@ -105,4 +121,26 @@ extension CourseContentTableViewController : TableViewResultsControllerDelegateI
         cell.configure(item)
     }
 
+}
+
+extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        if NetworkIndicator.counter > 0 {
+            return nil // blank screen for loading
+        }
+        let title = NSLocalizedString("Error loading course items", comment: "")
+        let attributedString = NSAttributedString(string: title)
+        return attributedString
+    }
+
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        if NetworkIndicator.counter > 0 {
+            return nil // blank screen for loading
+        }
+        let description = NSLocalizedString("Please check you internet connection", comment: "")
+        let attributedString = NSAttributedString(string: description)
+        return attributedString
+    }
+    
 }

@@ -10,3 +10,7 @@
 
 /* Class = "UITabBarItem"; title = "Courses"; ObjectID = "fhC-LU-HI2"; */
 "fhC-LU-HI2.title" = "Kurse";
+
+/* Class = "UIBarButtonItem"; title = "Enroll"; ObjectID = "VYw-23-AH5"; */
+"VYw-23-AH5.title" = "Einschreiben";
+

@@ -17,6 +17,7 @@ class CourseDecisionViewController: UIViewController {
         case courseDetails = 2
     }
 
+    @IBOutlet weak var enrollButton: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleView: UILabel!
 
@@ -28,10 +29,30 @@ class CourseDecisionViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self);
     }
 
+    @IBAction func enroll(sender: UIBarButtonItem) {
+        if UserProfileHelper.isLoggedIn() {
+            UserProfileHelper.createEnrollment(course.id)
+                .flatMap { CourseHelper.refreshCourses() }
+                .onSuccess { _ in
+                    self.decideContent()
+            }
+        } else {
+            performSegueWithIdentifier("ShowLoginForEnroll", sender: nil)
+        }
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateContainerView(content)
+        decideContent()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
+    }
+
+    func decideContent() {
+        if(course.enrollment != nil) {
+            navigationItem.rightBarButtonItem = nil
+        }
+        updateContainerView(course.accessible ? .learnings : .courseDetails)
     }
 
     func switchViewController(notification: NSNotification) {
@@ -86,13 +107,14 @@ class CourseDecisionViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
         case "ShowContentChoice"?:
-            let dropdownViewController = segue.destinationViewController
+            let dropdownViewController = segue.destinationViewController as! DropdownViewController
             if let ppc = dropdownViewController.popoverPresentationController {
                 if let view = navigationItem.titleView {
                     ppc.sourceView = view
                     ppc.sourceRect = view.bounds
                 }
 
+                dropdownViewController.course = course
                 let minimumSize = dropdownViewController.view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
                 dropdownViewController.preferredContentSize = minimumSize
                 ppc.delegate = self

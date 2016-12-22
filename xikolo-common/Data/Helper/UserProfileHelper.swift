@@ -49,7 +49,7 @@ public class UserProfileHelper {
         return promise.future
     }
 
-    static func createEnrollement(courseId: String) -> Future<Void, XikoloError> {
+    static func createEnrollment(courseId: String) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
         let url = Routes.ENROLLMENTS_API_URL

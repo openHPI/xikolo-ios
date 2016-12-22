@@ -27,6 +27,12 @@ class CourseHelper {
         return request
     }
 
+    static func getMyAccessibleCoursesRequest() -> NSFetchRequest {
+        let request = getAllCoursesRequest()
+        request.predicate = NSPredicate(format: "enrollment != null AND accessible_int == true")
+        return request
+    }
+
     static func getSectionedRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "Course")
         request.predicate = NSPredicate(format: "external_int != true")

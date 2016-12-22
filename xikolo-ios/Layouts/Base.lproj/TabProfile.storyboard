@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OO5-iD-7Qh">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OO5-iD-7Qh">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -24,8 +24,8 @@
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gS-cM-lr5" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="405"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-header-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="x8a-wj-cUm">
-                                                <rect key="frame" x="-1519" y="0.0" width="3638" height="150"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-header-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="x8a-wj-cUm">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="Rem-kb-qOZ"/>
                                                 </constraints>
@@ -96,10 +96,12 @@
                                             <constraint firstAttribute="bottom" secondItem="TNA-in-Ofz" secondAttribute="bottom" constant="20" symbolic="YES" id="Jti-AS-KXM"/>
                                             <constraint firstItem="ctU-fN-Oxt" firstAttribute="top" secondItem="TNA-in-Ofz" secondAttribute="bottom" constant="8" symbolic="YES" id="JwU-wN-Uxf"/>
                                             <constraint firstItem="RBV-SP-3Os" firstAttribute="top" secondItem="VMm-vb-VdP" secondAttribute="bottom" constant="8" symbolic="YES" id="Kho-NE-igs"/>
+                                            <constraint firstAttribute="trailing" secondItem="x8a-wj-cUm" secondAttribute="trailing" id="Lcp-b2-P4G"/>
                                             <constraint firstAttribute="height" constant="600" id="N5E-ki-DFh"/>
                                             <constraint firstItem="x8a-wj-cUm" firstAttribute="leading" secondItem="8gS-cM-lr5" secondAttribute="leadingMargin" constant="-20" id="Pjx-4n-qUD"/>
                                             <constraint firstItem="VMm-vb-VdP" firstAttribute="top" secondItem="O68-Sz-3fn" secondAttribute="bottom" constant="8" symbolic="YES" id="TOE-L9-M8F"/>
                                             <constraint firstItem="O68-Sz-3fn" firstAttribute="top" secondItem="x8a-wj-cUm" secondAttribute="bottom" constant="-40" id="Uwl-iA-cfX"/>
+                                            <constraint firstItem="x8a-wj-cUm" firstAttribute="leading" secondItem="8gS-cM-lr5" secondAttribute="leading" id="bS3-X0-rGf"/>
                                             <constraint firstItem="x8a-wj-cUm" firstAttribute="top" secondItem="8gS-cM-lr5" secondAttribute="top" id="cB5-ft-IfR"/>
                                             <constraint firstAttribute="trailing" secondItem="TNA-in-Ofz" secondAttribute="trailing" id="e31-Kr-wTA"/>
                                             <constraint firstAttribute="height" constant="600" id="f4r-xP-p9A"/>
@@ -118,6 +120,9 @@
                                                 <exclude reference="Fou-3v-dZB"/>
                                                 <exclude reference="N5E-ki-DFh"/>
                                                 <exclude reference="f4r-xP-p9A"/>
+                                                <exclude reference="7v7-Kx-mvG"/>
+                                                <exclude reference="Pjx-4n-qUD"/>
+                                                <exclude reference="kiu-J1-MUT"/>
                                                 <exclude reference="Jti-AS-KXM"/>
                                                 <exclude reference="i4Y-rH-W0R"/>
                                                 <exclude reference="Gi2-gf-6J5"/>
@@ -125,9 +130,6 @@
                                                 <exclude reference="JwU-wN-Uxf"/>
                                                 <exclude reference="m7b-rj-F8c"/>
                                                 <exclude reference="nDo-gH-yVN"/>
-                                                <exclude reference="7v7-Kx-mvG"/>
-                                                <exclude reference="Pjx-4n-qUD"/>
-                                                <exclude reference="kiu-J1-MUT"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -270,6 +272,6 @@
         <image name="TabBarIconUser" width="25" height="25"/>
         <image name="TabBarIconUserSelected" width="25" height="25"/>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile-header-placeholder" width="3638" height="580"/>
+        <image name="profile-header-placeholder" width="1734" height="808"/>
     </resources>
 </document>

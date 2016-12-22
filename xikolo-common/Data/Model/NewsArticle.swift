@@ -33,6 +33,13 @@ class NewsArticleSpine : BaseModelSpine {
 
     var course: CourseSpine?
 
+    //used for PATCH
+    convenience init(newsItem: NewsArticle){
+        self.init()
+        self.id = newsItem.id
+        self.visited_int = newsItem.visited_int
+    }
+    
     override class var cdType: BaseModel.Type {
         return NewsArticle.self
     }

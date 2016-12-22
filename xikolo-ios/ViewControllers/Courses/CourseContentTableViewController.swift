@@ -43,7 +43,10 @@ class CourseContentTableViewController: UITableViewController {
 
     func showItem(item: CourseItem) {
         TrackingHelper.sendEvent("VISITED_ITEM", resource: item)
-
+        //save read state to server
+        item.visited = true
+        SpineHelper.save(CourseItemSpine.init(courseItem: item))
+        
         switch item.content {
             case is Video:
                 performSegueWithIdentifier("ShowVideoView", sender: item)

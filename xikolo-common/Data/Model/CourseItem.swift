@@ -64,6 +64,14 @@ class CourseItemSpine : BaseModelSpine {
     var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
 
     var content: BaseModelSpine?
+    
+    //used for PATCH
+    convenience init(courseItem: CourseItem){
+        self.init()
+        self.id = courseItem.id
+        self.visited_int = courseItem.visited_int
+        //TODO: What about content
+    }
 
     override class var cdType: BaseModel.Type {
         return CourseItem.self

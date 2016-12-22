@@ -32,6 +32,9 @@ class NewsArticleViewController : UIViewController {
             let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
             self.textView.attributedText = markDown
         }
+        //save read state to server
+        newsArticle.visited = true
+        SpineHelper.save(NewsArticleSpine.init(newsItem: newsArticle))
     }
 
 }

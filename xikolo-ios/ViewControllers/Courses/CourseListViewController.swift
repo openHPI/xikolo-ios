@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class CourseListViewController : AbstractCourseListViewController {
 
@@ -26,6 +27,11 @@ class CourseListViewController : AbstractCourseListViewController {
         default:
             break
         }
+    }
+
+    deinit {
+        self.collectionView?.emptyDataSetSource = nil
+        self.collectionView?.emptyDataSetDelegate = nil
     }
 
     internal func showMyCoursesOnly(showMyCourses: Bool) {

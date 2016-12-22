@@ -33,7 +33,8 @@ class VideoViewController : UIViewController {
         VideoHelper.syncVideo(videoIncomplete).onSuccess { videoComplete in
             self.video = videoComplete
             if let summary = videoComplete.summary {
-                self.summaryView.attributedText = MarkdownParser.parse(summary)
+                let markDown = try? MarkdownHelper.parse(summary) // TODO: Error handling
+                self.descriptionTextView.attributedText = markDown
             }
             self.performSegueWithIdentifier("EmbedAVPlayer", sender: self.video)
             self.openSlidesButton.hidden = self.video?.slides_url == nil

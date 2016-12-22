@@ -12,9 +12,14 @@ def common_pods
     pod 'TSMarkdownParser', :git => 'https://github.com/laptobbe/TSMarkdownParser.git', :commit => 'cff997a'
 end
 
+def ios_pods
+    pod 'Down', :git => 'https://github.com/iwasrobbed/Down.git', :commit => 'ae3161c'
+end
+
 target 'openHPI-iOS' do
     platform :ios, '9.0'
     common_pods
+    ios_pods
 
 end
 
@@ -33,6 +38,7 @@ end
 target 'openSAP-iOS' do
     platform :ios, '9.0'
     common_pods
+    ios_pods
 
 end
 

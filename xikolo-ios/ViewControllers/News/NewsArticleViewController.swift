@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Down
 
 class NewsArticleViewController : UIViewController {
 
@@ -28,7 +29,8 @@ class NewsArticleViewController : UIViewController {
 
         titleView.text = newsArticle.title
         if let newsText = newsArticle.text {
-            textView.attributedText = MarkdownParser.parse(newsText)
+            let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
+            self.textView.attributedText = markDown
         }
     }
 

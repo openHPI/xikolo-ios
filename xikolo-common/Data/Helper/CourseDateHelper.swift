@@ -30,7 +30,7 @@ class CourseDateHelper {
 
     static func getCourseStartsRequest() -> NSFetchRequest {
         let request = NSFetchRequest(entityName: "CourseDate")
-        let dateSort = NSSortDescriptor(key: "date", ascending: false)
+        let dateSort = NSSortDescriptor(key: "date", ascending: true)
         let predicate = NSPredicate(format: "type = 'course_start'")
         request.predicate = predicate
         request.sortDescriptors = [dateSort]

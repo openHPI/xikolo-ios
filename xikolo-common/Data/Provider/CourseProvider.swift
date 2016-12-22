@@ -8,11 +8,15 @@
 
 import BrightFutures
 import Foundation
+import Spine
 
 class CourseProvider {
 
     class func getCourses() -> Future<[CourseSpine], XikoloError> {
-        return SpineHelper.findAll(CourseSpine.self)
+        var query = Query(resourceType: CourseSpine.self)
+        query.include("channel")
+
+        return SpineHelper.find(query)
     }
 
 }

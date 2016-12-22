@@ -27,7 +27,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bp2-MP-IBy">
                                                 <rect key="frame" x="0.0" y="108" width="540" height="44"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="3kq-NS-dJI" id="qng-rg-gcf"/>
                                                 </connections>

@@ -16,4 +16,7 @@ struct Brand {
     static let TintColor = UIColor.init(red: 11/255, green: 114/255, blue: 181/255, alpha: 1.0)
     static let AppID = "de.xikolo.openwho"
 
+    static let IMPRINT_URL = Brand.BaseURL + "/pages/imprint"
+    static let PRIVACY_URL = Brand.BaseURL + "/pages/terms_of_use"
+
 }

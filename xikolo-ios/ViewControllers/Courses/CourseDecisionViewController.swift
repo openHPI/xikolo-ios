@@ -51,8 +51,10 @@ class CourseDecisionViewController: UIViewController {
     func decideContent() {
         if(course.enrollment != nil) {
             navigationItem.rightBarButtonItem = nil
+            updateContainerView(course.accessible ? .learnings : .courseDetails)
+        } else {
+            updateContainerView(.courseDetails)
         }
-        updateContainerView(course.accessible ? .learnings : .courseDetails)
     }
 
     func switchViewController(notification: NSNotification) {

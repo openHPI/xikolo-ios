@@ -221,8 +221,14 @@
                                                                             <color key="textColor" red="0.87058823529999996" green="0.38431372549999998" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UyS-gf-Up2">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ch-6F-4hv">
                                                                             <rect key="frame" x="8" y="51" width="56" height="15"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <color key="textColor" red="0.39729324490000001" green="0.39729324490000001" blue="0.39729324490000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="language label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UyS-gf-Up2">
+                                                                            <rect key="frame" x="209.5" y="51" width="82.5" height="15"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <color key="textColor" red="0.39729324490000001" green="0.39729324490000001" blue="0.39729324490000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -231,18 +237,24 @@
                                                                     <constraints>
                                                                         <constraint firstItem="UyS-gf-Up2" firstAttribute="leading" secondItem="ZJ7-ou-eFC" secondAttribute="leadingMargin" id="0LO-Mp-Hry"/>
                                                                         <constraint firstItem="UyS-gf-Up2" firstAttribute="top" secondItem="3sD-Jc-GaE" secondAttribute="bottom" constant="4" id="0n4-qi-fgH"/>
+                                                                        <constraint firstItem="UyS-gf-Up2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2ch-6F-4hv" secondAttribute="trailing" constant="8" symbolic="YES" id="4qh-Ty-GP8"/>
                                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oxy-wk-IHS" secondAttribute="trailing" constant="20" symbolic="YES" id="7vU-E7-bQi"/>
                                                                         <constraint firstItem="Oxy-wk-IHS" firstAttribute="leading" secondItem="ZJ7-ou-eFC" secondAttribute="leadingMargin" id="Fw5-Df-WhD"/>
                                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UyS-gf-Up2" secondAttribute="trailing" constant="20" symbolic="YES" id="P8Q-vH-uRq"/>
                                                                         <constraint firstItem="3sD-Jc-GaE" firstAttribute="leading" secondItem="ZJ7-ou-eFC" secondAttribute="leadingMargin" id="R3O-mh-V8A"/>
+                                                                        <constraint firstItem="2ch-6F-4hv" firstAttribute="baseline" secondItem="UyS-gf-Up2" secondAttribute="baseline" id="ZEq-Ds-WHV"/>
                                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3sD-Jc-GaE" secondAttribute="trailing" constant="20" symbolic="YES" id="bDy-tb-rZv"/>
                                                                         <constraint firstAttribute="bottomMargin" secondItem="UyS-gf-Up2" secondAttribute="bottom" id="f2S-OL-eFu"/>
                                                                         <constraint firstItem="3sD-Jc-GaE" firstAttribute="top" secondItem="Oxy-wk-IHS" secondAttribute="bottom" constant="4" id="iHL-SK-Mhf"/>
                                                                         <constraint firstItem="Oxy-wk-IHS" firstAttribute="top" secondItem="ZJ7-ou-eFC" secondAttribute="topMargin" id="jsf-Im-gay"/>
+                                                                        <constraint firstItem="2ch-6F-4hv" firstAttribute="leading" secondItem="ZJ7-ou-eFC" secondAttribute="leadingMargin" id="vx8-u5-ZyJ"/>
+                                                                        <constraint firstAttribute="trailingMargin" secondItem="UyS-gf-Up2" secondAttribute="trailing" id="xdR-kj-VEx"/>
                                                                         <constraint firstItem="UyS-gf-Up2" firstAttribute="top" secondItem="ZJ7-ou-eFC" secondAttribute="top" constant="41" id="zMs-db-Ti5"/>
                                                                     </constraints>
                                                                     <variation key="default">
                                                                         <mask key="constraints">
+                                                                            <exclude reference="0LO-Mp-Hry"/>
+                                                                            <exclude reference="P8Q-vH-uRq"/>
                                                                             <exclude reference="zMs-db-Ti5"/>
                                                                         </mask>
                                                                     </variation>
@@ -294,7 +306,8 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="backgroundImage" destination="nSe-cs-flA" id="rMp-vg-B9Y"/>
-                                                        <outlet property="dateLabel" destination="UyS-gf-Up2" id="gy4-fy-K9A"/>
+                                                        <outlet property="dateLabel" destination="2ch-6F-4hv" id="gCP-wP-Hif"/>
+                                                        <outlet property="languageLabel" destination="UyS-gf-Up2" id="Eby-dJ-mf7"/>
                                                         <outlet property="nameLabel" destination="Oxy-wk-IHS" id="QtZ-O9-i6s"/>
                                                         <outlet property="statusLabel" destination="YtM-gC-P6a" id="rNC-2n-8gI"/>
                                                         <outlet property="statusView" destination="yac-qn-6wy" id="BKC-vV-3SV"/>

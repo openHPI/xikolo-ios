@@ -58,29 +58,45 @@
                                                         <color key="textColor" red="0.87058823529999996" green="0.38431372549999998" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFD-9C-1SW">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="date label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3v-pI-ix2">
                                                         <rect key="frame" x="8" y="51" width="56" height="15"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="0.39729324490000001" green="0.39729324490000001" blue="0.39729324490000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="language label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFD-9C-1SW">
+                                                        <rect key="frame" x="309.5" y="51" width="82.5" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.39729324490000001" green="0.39729324490000001" blue="0.39729324490000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="TFD-9C-1SW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="a3v-pI-ix2" secondAttribute="trailing" constant="8" symbolic="YES" id="5CN-dS-h7f"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a3v-pI-ix2" secondAttribute="trailing" constant="20" symbolic="YES" id="JAm-hb-tx1"/>
                                                     <constraint firstItem="TFD-9C-1SW" firstAttribute="top" secondItem="yHD-1N-ZdC" secondAttribute="bottom" constant="4" id="QaZ-Qj-iCt"/>
                                                     <constraint firstItem="yHD-1N-ZdC" firstAttribute="leading" secondItem="knd-uh-hkB" secondAttribute="leadingMargin" id="TQ3-iA-XBL"/>
+                                                    <constraint firstItem="a3v-pI-ix2" firstAttribute="baseline" secondItem="TFD-9C-1SW" secondAttribute="baseline" id="UEB-lR-brB"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="TFD-9C-1SW" secondAttribute="bottom" id="Y9l-Ar-Bot"/>
                                                     <constraint firstItem="yHD-1N-ZdC" firstAttribute="top" secondItem="UlH-iG-QnR" secondAttribute="bottom" constant="4" id="b67-Xw-ttv"/>
                                                     <constraint firstItem="TFD-9C-1SW" firstAttribute="top" secondItem="knd-uh-hkB" secondAttribute="top" constant="41" id="cKz-yv-eLV"/>
+                                                    <constraint firstItem="a3v-pI-ix2" firstAttribute="leading" secondItem="knd-uh-hkB" secondAttribute="leadingMargin" id="eIU-97-oTu"/>
                                                     <constraint firstItem="UlH-iG-QnR" firstAttribute="top" secondItem="knd-uh-hkB" secondAttribute="topMargin" id="fEN-bL-KiQ"/>
                                                     <constraint firstItem="UlH-iG-QnR" firstAttribute="leading" secondItem="knd-uh-hkB" secondAttribute="leadingMargin" id="jWf-WY-sVw"/>
                                                     <constraint firstItem="TFD-9C-1SW" firstAttribute="leading" secondItem="knd-uh-hkB" secondAttribute="leadingMargin" id="jhB-08-r4k"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yHD-1N-ZdC" secondAttribute="trailing" constant="20" symbolic="YES" id="rZV-04-qvc"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TFD-9C-1SW" secondAttribute="trailing" constant="20" symbolic="YES" id="uee-bC-7lS"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="TFD-9C-1SW" secondAttribute="trailing" id="wKZ-Yr-rv7"/>
+                                                    <constraint firstItem="a3v-pI-ix2" firstAttribute="leading" secondItem="TFD-9C-1SW" secondAttribute="trailing" constant="8" symbolic="YES" id="z2e-VU-BKH"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UlH-iG-QnR" secondAttribute="trailing" constant="20" symbolic="YES" id="z9K-Ks-u3T"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="JAm-hb-tx1"/>
+                                                        <exclude reference="z2e-VU-BKH"/>
                                                         <exclude reference="cKz-yv-eLV"/>
+                                                        <exclude reference="jhB-08-r4k"/>
+                                                        <exclude reference="uee-bC-7lS"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -137,7 +153,8 @@
                                 </variation>
                                 <connections>
                                     <outlet property="backgroundImage" destination="cRx-jm-Bdw" id="3jB-OK-2ib"/>
-                                    <outlet property="dateLabel" destination="TFD-9C-1SW" id="ftP-Xj-cj7"/>
+                                    <outlet property="dateLabel" destination="a3v-pI-ix2" id="UNu-fh-iXO"/>
+                                    <outlet property="languageLabel" destination="TFD-9C-1SW" id="46n-c6-WKJ"/>
                                     <outlet property="nameLabel" destination="UlH-iG-QnR" id="ysr-PW-5QT"/>
                                     <outlet property="statusLabel" destination="eS5-Ki-7jx" id="CKb-DQ-1gV"/>
                                     <outlet property="statusView" destination="aJ6-Je-BWC" id="HaK-sB-nC8"/>

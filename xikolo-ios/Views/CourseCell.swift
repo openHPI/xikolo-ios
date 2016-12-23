@@ -14,6 +14,7 @@ class CourseCell : UICollectionViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusView: UIView!
@@ -25,7 +26,14 @@ class CourseCell : UICollectionViewCell {
 
         nameLabel.text = course.title
         teacherLabel.text = course.teachers
-        dateLabel.text = course.language_translated
+        languageLabel.text = course.language_translated
+
+        if let startDate = course.start_at, endDate = course.end_at {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = .MediumStyle
+            dateFormatter.timeStyle = .NoStyle
+            dateLabel.text = dateFormatter.stringFromDate(startDate) + " - " + dateFormatter.stringFromDate(endDate)
+        }
 
         switch course.status {
         case "active"?:

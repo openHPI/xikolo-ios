@@ -184,7 +184,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="bqb-dp-zic" kind="presentation" identifier="ShowLoginForMyCourses" id="xR8-E6-ooy"/>
+                        <segue destination="bqb-dp-zic" kind="presentation" identifier="ShowLogin" id="xR8-E6-ooy"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -296,7 +296,7 @@
                         <outlet property="containerView" destination="uCB-9t-OiH" id="946-ep-hBb"/>
                         <outlet property="enrollButton" destination="VYw-23-AH5" id="vsC-Vb-KdI"/>
                         <outlet property="titleView" destination="I0c-UK-HJw" id="D9R-JR-hUO"/>
-                        <segue destination="rOJ-H4-9Ye" kind="presentation" identifier="ShowLoginForEnroll" id="afV-O8-WaT"/>
+                        <segue destination="rOJ-H4-9Ye" kind="presentation" identifier="ShowLogin" id="afV-O8-WaT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GvU-Vi-WtZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -391,9 +391,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="5Hh-M9-wy1" kind="show" identifier="ShowVideoView" id="0UY-Iy-ApH"/>
-                        <segue destination="qTX-IX-O1x" kind="show" identifier="ShowQuizWebView" id="kqR-eJ-mfT"/>
-                        <segue destination="xJm-gx-LIF" kind="show" identifier="ShowRichTextView" id="Gdn-oc-21n"/>
+                        <segue destination="5Hh-M9-wy1" kind="show" identifier="ShowVideo" id="0UY-Iy-ApH"/>
+                        <segue destination="qTX-IX-O1x" kind="show" identifier="ShowQuiz" id="kqR-eJ-mfT"/>
+                        <segue destination="xJm-gx-LIF" kind="show" identifier="ShowRichtext" id="Gdn-oc-21n"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rj-3l-8gO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -704,7 +704,7 @@
                                     <constraint firstAttribute="height" constant="130" id="I95-Lh-Mgw"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="t4D-DJ-cpt" kind="embed" identifier="EmbedDropdownTableView" id="0di-FP-BPF"/>
+                                    <segue destination="t4D-DJ-cpt" kind="embed" identifier="EmbedCourseContentChoice" id="0di-FP-BPF"/>
                                 </connections>
                             </containerView>
                         </subviews>

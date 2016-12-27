@@ -79,11 +79,11 @@ class CourseContentTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let courseItem = sender as? CourseItem
         switch segue.identifier! {
-        case "ShowVideoView":
+        case "ShowVideo":
             let videoView = segue.destinationViewController as! VideoViewController
             videoView.courseItem = courseItem
             break
-        case "ShowQuizWebView":
+        case "ShowQuiz":
             let webView = segue.destinationViewController as! WebViewController
             if let courseID = courseItem!.section?.course?.id {
                 let courseURL = Routes.COURSES_URL + courseID
@@ -92,7 +92,7 @@ class CourseContentTableViewController: UITableViewController {
                 webView.url = url
             }
             break
-        case "ShowRichTextView":
+        case "ShowRichtext":
             let richtextView = segue.destinationViewController as! RichtextViewController
             richtextView.courseItem = courseItem
             break

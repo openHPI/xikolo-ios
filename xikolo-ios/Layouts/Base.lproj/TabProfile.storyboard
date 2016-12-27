@@ -67,7 +67,7 @@
                                                     </mask>
                                                 </variation>
                                                 <connections>
-                                                    <segue destination="MmR-Ub-Xo1" kind="embed" id="9ZB-kf-UzE"/>
+                                                    <segue destination="MmR-Ub-Xo1" kind="embed" identifier="EmbedSettings" id="9ZB-kf-UzE"/>
                                                 </connections>
                                             </containerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMm-vb-VdP">
@@ -163,7 +163,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Login" id="Mnf-wa-pbl">
                             <connections>
                                 <action selector="loginBarButton:" destination="BgN-Oc-elr" id="X9u-hu-cPI"/>
-                                <segue destination="O8W-IG-m3E" kind="presentation" id="C1B-wi-v8Q"/>
+                                <segue destination="O8W-IG-m3E" kind="presentation" identifier="ShowLogin" id="C1B-wi-v8Q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

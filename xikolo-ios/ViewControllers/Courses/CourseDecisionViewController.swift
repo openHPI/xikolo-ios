@@ -43,7 +43,7 @@ class CourseDecisionViewController: UIViewController {
                     self.decideContent()
             }
         } else {
-            performSegueWithIdentifier("ShowLoginForEnroll", sender: nil)
+            performSegueWithIdentifier("ShowLogin", sender: nil)
         }
 
     }

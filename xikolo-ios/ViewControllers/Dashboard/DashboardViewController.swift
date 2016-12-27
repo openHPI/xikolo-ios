@@ -27,13 +27,13 @@ class DashboardViewController : AbstractTabContentViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
-        case "EmbedCourseDeadlinesSegue"?:
+        case "EmbedCourseDeadlines"?:
             let vc = segue.destinationViewController as! CourseDeadlinesTableViewController
             vc.delegate = self
-        case "EmbedCourseStartsSegue"?:
+        case "EmbedCourseStarts"?:
             let vc = segue.destinationViewController as! CourseStartsTableViewController
             vc.delegate = self
-        case "EmbedCourseActivitySegue"?:
+        case "EmbedCourseActivity"?:
             let vc = segue.destinationViewController as! CourseActivityViewController
             vc.delegate = self
         default:

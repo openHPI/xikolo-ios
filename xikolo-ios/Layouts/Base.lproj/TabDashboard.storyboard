@@ -38,7 +38,7 @@
                                                     <constraint firstAttribute="height" constant="350" id="PRS-ng-4lB"/>
                                                 </constraints>
                                                 <connections>
-                                                    <segue destination="Hvd-im-s3l" kind="embed" identifier="EmbedCourseActivitySegue" id="PAA-y1-gGY"/>
+                                                    <segue destination="Hvd-im-s3l" kind="embed" identifier="EmbedCourseActivity" id="PAA-y1-gGY"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6i-PS-Rko">
@@ -47,7 +47,7 @@
                                                     <constraint firstAttribute="height" constant="150" id="Stc-t5-rS1"/>
                                                 </constraints>
                                                 <connections>
-                                                    <segue destination="aO7-g3-Nd9" kind="embed" identifier="EmbedCourseDeadlinesSegue" id="o4Z-qU-ouD"/>
+                                                    <segue destination="aO7-g3-Nd9" kind="embed" identifier="EmbedCourseDeadlines" id="o4Z-qU-ouD"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOA-Gx-qHo">
@@ -56,7 +56,7 @@
                                                     <constraint firstAttribute="height" constant="150" id="5mz-Ks-YhX"/>
                                                 </constraints>
                                                 <connections>
-                                                    <segue destination="ij4-0b-6VB" kind="embed" identifier="EmbedCourseStartsSegue" id="t6E-mb-MbF"/>
+                                                    <segue destination="ij4-0b-6VB" kind="embed" identifier="EmbedCourseStarts" id="t6E-mb-MbF"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
@@ -105,7 +105,7 @@
                     <navigationItem key="navigationItem" title="Dashboard" id="AcW-uJ-dOa">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="cHU-8h-YGE">
                             <connections>
-                                <segue destination="uQr-ep-IsD" kind="presentation" id="Fyg-2c-xdr"/>
+                                <segue destination="uQr-ep-IsD" kind="presentation" identifier="ShowLogin" id="Fyg-2c-xdr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -170,7 +170,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="container" destination="TNA-in-Ofz" id="pe3-E7-skd"/>
                         <outlet property="emailView" destination="RBV-SP-3Os" id="Dww-mk-Zc4"/>
                         <outlet property="headerImage" destination="x8a-wj-cUm" id="X2A-1f-QvI"/>
                         <outlet property="logoutButton" destination="ctU-fN-Oxt" id="rUX-Wh-9co"/>

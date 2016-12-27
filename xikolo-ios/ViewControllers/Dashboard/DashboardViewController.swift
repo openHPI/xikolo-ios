@@ -16,10 +16,6 @@ class DashboardViewController : AbstractTabContentViewController {
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var feedbackButton: UIButton!
 
-    @IBAction func giveFeedback(sender: AnyObject) {
-        // is done by shaking now
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         feedbackButton.backgroundColor = Brand.TintColor

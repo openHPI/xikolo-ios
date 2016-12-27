@@ -378,7 +378,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconView" destination="8sq-t2-iJE" id="xp3-MS-ldS"/>
-                                    <outlet property="progressView" destination="geH-1M-GhK" id="JFd-Ai-djT"/>
                                     <outlet property="readStateView" destination="4hN-fd-wGm" id="fgf-xa-d5M"/>
                                     <outlet property="titleView" destination="8Lb-me-JVK" id="MDU-Ih-C9T"/>
                                 </connections>
@@ -594,40 +593,18 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rGq-Ee-w10">
-                                                <rect key="frame" x="20" y="421" width="560" height="67"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="26" id="wI1-MF-zLq"/>
-                                                </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value=""/>
-                                                </userDefinedRuntimeAttributes>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="wI1-MF-zLq"/>
-                                                    </mask>
-                                                </variation>
-                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="HQq-V5-oXY" secondAttribute="trailing" id="4D7-03-sdo"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="rGq-Ee-w10" secondAttribute="bottom" constant="20" symbolic="YES" id="6xo-yt-tht"/>
                                             <constraint firstAttribute="trailing" secondItem="sTP-0O-gWC" secondAttribute="trailing" constant="20" symbolic="YES" id="DxR-eq-yVt"/>
                                             <constraint firstItem="sTP-0O-gWC" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="G9r-CG-pl2"/>
                                             <constraint firstItem="e3P-4C-sVC" firstAttribute="top" secondItem="sTP-0O-gWC" secondAttribute="bottom" constant="8" symbolic="YES" id="Ire-mf-1Jk"/>
-                                            <constraint firstItem="rGq-Ee-w10" firstAttribute="top" secondItem="e3P-4C-sVC" secondAttribute="bottom" constant="8" symbolic="YES" id="O0h-RB-MS9"/>
-                                            <constraint firstAttribute="trailing" secondItem="rGq-Ee-w10" secondAttribute="trailing" constant="20" symbolic="YES" id="UOO-Ob-N1A"/>
                                             <constraint firstItem="Xms-E7-0kp" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="VjH-WD-wUq"/>
                                             <constraint firstItem="sTP-0O-gWC" firstAttribute="top" secondItem="Xms-E7-0kp" secondAttribute="bottom" constant="8" symbolic="YES" id="Vn7-AF-b4w"/>
                                             <constraint firstItem="HQq-V5-oXY" firstAttribute="top" secondItem="ZpX-LD-XKR" secondAttribute="top" id="Xyc-3V-BKE"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xms-E7-0kp" secondAttribute="trailing" constant="20" symbolic="YES" id="bFk-Rk-uL8"/>
-                                            <constraint firstItem="rGq-Ee-w10" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" constant="20" symbolic="YES" id="dHP-WV-pOq"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="e3P-4C-sVC" secondAttribute="bottom" constant="20" symbolic="YES" id="n7Z-rK-SM6"/>
                                             <constraint firstItem="HQq-V5-oXY" firstAttribute="leading" secondItem="ZpX-LD-XKR" secondAttribute="leading" id="umZ-cm-cpr"/>
                                             <constraint firstItem="e3P-4C-sVC" firstAttribute="centerX" secondItem="ZpX-LD-XKR" secondAttribute="centerX" id="zob-1b-Bar"/>
                                             <constraint firstItem="Xms-E7-0kp" firstAttribute="top" secondItem="HQq-V5-oXY" secondAttribute="bottom" constant="8" symbolic="YES" id="zyV-0b-DTo"/>
@@ -664,10 +641,9 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="containerVideoView" destination="HQq-V5-oXY" id="Prq-yw-825"/>
-                        <outlet property="descriptionTextView" destination="sTP-0O-gWC" id="4pa-A7-zO2"/>
+                        <outlet property="descriptionView" destination="sTP-0O-gWC" id="Ze6-3B-mDh"/>
                         <outlet property="openSlidesButton" destination="e3P-4C-sVC" id="sRQ-1b-aSe"/>
-                        <outlet property="summaryView" destination="rGq-Ee-w10" id="KEj-Yz-Q6g"/>
-                        <outlet property="titleLabel" destination="Xms-E7-0kp" id="pZh-8j-HFg"/>
+                        <outlet property="titleView" destination="Xms-E7-0kp" id="saQ-Se-Rhh"/>
                         <segue destination="EZt-rR-Ceh" kind="show" identifier="ShowSlides" id="lP2-l3-t0e"/>
                     </connections>
                 </viewController>
@@ -689,7 +665,7 @@
                 <viewControllerPlaceholder referencedIdentifier="WebViewController" id="EZt-rR-Ceh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHB-9h-2iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3006" y="688"/>
+            <point key="canvasLocation" x="3662" y="817"/>
         </scene>
         <!--Courses-->
         <scene sceneID="O7e-6a-qIC">

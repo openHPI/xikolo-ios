@@ -13,10 +13,9 @@ import AVFoundation
 class VideoViewController : UIViewController {
 
     @IBOutlet weak var containerVideoView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
-    @IBOutlet weak var summaryView: UITextView!
 
     var courseItem: CourseItem!
     var video: Video?
@@ -28,13 +27,13 @@ class VideoViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = courseItem.title
+        titleView.text = courseItem.title
         let videoIncomplete = courseItem.content as! Video
         VideoHelper.syncVideo(videoIncomplete).onSuccess { videoComplete in
             self.video = videoComplete
             if let summary = videoComplete.summary {
                 let markDown = try? MarkdownHelper.parse(summary) // TODO: Error handling
-                self.descriptionTextView.attributedText = markDown
+                self.descriptionView.attributedText = markDown
             }
             self.performSegueWithIdentifier("EmbedAVPlayer", sender: self.video)
             self.openSlidesButton.hidden = self.video?.slides_url == nil

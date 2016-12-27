@@ -31,9 +31,6 @@
                                                 <state key="normal" title="Shake to give feedback">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="giveFeedback:" destination="xXY-iO-myQ" eventType="touchUpInside" id="2pn-oG-0Vm"/>
-                                                </connections>
                                             </button>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0c-Nm-2Vw">
                                                 <rect key="frame" x="0.0" y="72" width="600" height="350"/>
@@ -132,14 +129,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RsD-Tu-mxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1407.5" y="-303"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="vA9-21-nOT">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="mXR-Nd-orH" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p0I-oe-MSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1744.5" y="-303"/>
         </scene>
         <!--Course Activity View Controller-->
         <scene sceneID="gaz-ZI-MAQ">
@@ -390,7 +379,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty9-Ou-Ahu">
                                             <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -413,9 +402,6 @@
                             <outlet property="delegate" destination="aO7-g3-Nd9" id="z3Z-gp-hsU"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="titleView" destination="8qT-W3-LFc" id="TAQ-c1-sPj"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7t-LS-PuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -467,7 +453,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8I-gh-Kc4">
                                             <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -490,9 +476,6 @@
                             <outlet property="delegate" destination="ij4-0b-6VB" id="iQp-kK-8wF"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="titleView" destination="WOA-Rh-nQH" id="n3G-WL-icR"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPk-zQ-YHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

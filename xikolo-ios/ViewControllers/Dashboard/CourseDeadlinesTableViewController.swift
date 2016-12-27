@@ -14,8 +14,6 @@ class CourseDeadlinesTableViewController : UITableViewController {
     var resultsController: NSFetchedResultsController!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
-    @IBOutlet var titleView: UILabel!
-
     weak var delegate: CourseDeadlinesTableViewControllerDelegate?
 
     override func viewDidLoad() {

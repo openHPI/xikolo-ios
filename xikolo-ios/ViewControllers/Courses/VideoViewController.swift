@@ -20,10 +20,6 @@ class VideoViewController : UIViewController {
     var courseItem: CourseItem!
     var video: Video?
 
-    @IBAction func openSlides(sender: UIButton) {
-        performSegueWithIdentifier("ShowSlides", sender: video)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +34,10 @@ class VideoViewController : UIViewController {
             self.performSegueWithIdentifier("EmbedAVPlayer", sender: self.video)
             self.openSlidesButton.hidden = self.video?.slides_url == nil
         }
+    }
+
+    @IBAction func openSlides(sender: UIButton) {
+        performSegueWithIdentifier("ShowSlides", sender: video)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

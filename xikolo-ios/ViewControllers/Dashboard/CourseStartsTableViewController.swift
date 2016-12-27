@@ -34,14 +34,14 @@ class CourseStartsTableViewController : UITableViewController {
         }
     }
 
-    func tableViewHeight() -> CGFloat {
-        tableView.layoutIfNeeded()
-        return tableView.contentSize.height
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         delegate?.changedCourseStartsTableViewHeight(tableViewHeight())
+    }
+
+    func tableViewHeight() -> CGFloat {
+        tableView.layoutIfNeeded()
+        return tableView.contentSize.height
     }
 
 }

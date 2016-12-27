@@ -34,11 +34,6 @@ class CourseDeadlinesTableViewController : UITableViewController {
         }
     }
 
-    func tableViewHeight() -> CGFloat {
-        tableView.layoutIfNeeded()
-        return tableView.contentSize.height
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         delegate?.changedCourseDeadlinesTableViewHeight(tableViewHeight())
@@ -62,6 +57,11 @@ class CourseDeadlinesTableViewController : UITableViewController {
             view.textLabel!.textColor = Brand.TintColor
             view.textLabel!.font = UIFont.systemFontOfSize(15)
         }
+    }
+
+    func tableViewHeight() -> CGFloat {
+        tableView.layoutIfNeeded()
+        return tableView.contentSize.height
     }
 
 }

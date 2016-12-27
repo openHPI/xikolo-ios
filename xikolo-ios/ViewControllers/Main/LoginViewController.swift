@@ -8,9 +8,17 @@
 
 import UIKit
 
-class RegisterViewController : AbstractLoginViewController, UITextFieldDelegate {
+class LoginViewController : AbstractLoginViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loginButton.backgroundColor = Brand.TintColor
+        emailField.becomeFirstResponder()
+    }
+
     @IBAction func dismissAction(sender: UIBarButtonItem) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -20,13 +28,9 @@ class RegisterViewController : AbstractLoginViewController, UITextFieldDelegate 
         UIApplication.sharedApplication().openURL(url!)
     }
 
-    @IBOutlet weak var loginButton: UIButton!
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loginButton.backgroundColor = Brand.TintColor
-        emailField.becomeFirstResponder()
-    }
+extension LoginViewController : UITextFieldDelegate {
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

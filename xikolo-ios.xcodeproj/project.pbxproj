@@ -1404,8 +1404,8 @@
 			isa = PBXGroup;
 			children = (
 				241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */,
-				24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */,
 				ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */,
+				24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1414,9 +1414,9 @@
 			isa = PBXGroup;
 			children = (
 				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
-				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
 				2447CE181D09C87A00B5C39A /* MarkdownParser.swift */,
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
+				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -1428,19 +1428,18 @@
 				24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */,
 				AB95896C1DC2049400586137 /* Channel+CoreDataProperties.swift */,
 				AB95896D1DC2049400586137 /* Channel.swift */,
+				24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */,
+				24A16D7B1CFDE60200CAD9FE /* Content.swift */,
 				24D48E161CCA4FC100E8051E /* Course+CoreDataProperties.swift */,
 				24D48E171CCA4FC100E8051E /* Course.swift */,
-				243CE47D1D709999007C59B6 /* CourseEnrollment+CoreDataProperties.swift */,
-				243CE47E1D709999007C59B6 /* CourseEnrollment.swift */,
 				4E6AB1F01DD36AB500B048DB /* CourseDate+CoreDataProperties.swift */,
 				4E6AB1F11DD36AB500B048DB /* CourseDate.swift */,
+				243CE47D1D709999007C59B6 /* CourseEnrollment+CoreDataProperties.swift */,
+				243CE47E1D709999007C59B6 /* CourseEnrollment.swift */,
 				2433A59F1CE634A00060DD98 /* CourseItem+CoreDataProperties.swift */,
 				2433A5A01CE634A00060DD98 /* CourseItem.swift */,
 				2448A9D41CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift */,
 				2448A9D51CDA445D009A1AEA /* CourseSection.swift */,
-				F85225441B4D2B3D00C9BF56 /* UserProfile.swift */,
-				24A16D7A1CFDE60200CAD9FE /* Content+CoreDataProperties.swift */,
-				24A16D7B1CFDE60200CAD9FE /* Content.swift */,
 				ABC8A1641D689ED80059CEF2 /* LTIExercise+CoreDataProperties.swift */,
 				ABC8A1631D689ED80059CEF2 /* LTIExercise.swift */,
 				AB2802C71D2A8ABB008C8BAE /* NewsArticle+CoreDataProperties.swift */,
@@ -1456,12 +1455,13 @@
 				24E3DD171D5DFD5000297118 /* QuizAnswer.swift */,
 				24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */,
 				24A16D771CFDD27200CAD9FE /* RichText.swift */,
-				24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */,
-				24A16D6B1CFC883A00CAD9FE /* Video.swift */,
 				243CE48B1D786421007C59B6 /* TrackingEvent.swift */,
 				243CE4901D786717007C59B6 /* TrackingEventUser.swift */,
 				243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */,
 				243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */,
+				F85225441B4D2B3D00C9BF56 /* UserProfile.swift */,
+				24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */,
+				24A16D6B1CFC883A00CAD9FE /* Video.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1522,8 +1522,8 @@
 		249C01AD1D3F721E00B54AAC /* Branding */ = {
 			isa = PBXGroup;
 			children = (
-				249C01AF1D3F724D00B54AAC /* openSAP */,
 				249C01AE1D3F724700B54AAC /* openHPI */,
+				249C01AF1D3F724D00B54AAC /* openSAP */,
 				ABE060901DF8C17800FC186D /* openWHO */,
 				AB77C2961DF956EE00B30619 /* Brand+generic.swift */,
 			);
@@ -1677,19 +1677,19 @@
 		24CB7E571CC6C62300960269 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
-				24D48E1A1CCA551E00E8051E /* CourseProvider.swift */,
 				4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */,
 				2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */,
+				24D48E1A1CCA551E00E8051E /* CourseProvider.swift */,
 				2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */,
 				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
-				F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */,
+				AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */,
+				AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */,
+				AB4D93C21D884CA300987A0C /* PeerAssessmentProvider.swift */,
 				AB4F228B1D80BC2200ED0BF1 /* PlatformEventProvider.swift */,
 				249E3A9E1D43BF6F00D7663F /* QuizProvider.swift */,
 				2447CE1B1D0AF32200B5C39A /* RichTextProvider.swift */,
+				F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */,
 				24A16D891CFEF9F800CAD9FE /* VideoProvider.swift */,
-				AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */,
-				AB4D93C21D884CA300987A0C /* PeerAssessmentProvider.swift */,
-				AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -1697,13 +1697,13 @@
 		24D48E1F1CCA740500E8051E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
-				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */,
 				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
 				249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */,
 				243CE4721D660F1F007C59B6 /* CollectionType+shuffle.swift */,
+				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
 				2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */,
+				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1767,14 +1767,14 @@
 		AB6AE0C51CF7D6A700708654 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
 				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
-				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
-				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
-				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
 				AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */,
+				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
 				ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */,
 				AB95897E1DC4A53900586137 /* DropdownViewController.swift */,
+				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
+				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
+				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -1912,23 +1912,23 @@
 			isa = PBXGroup;
 			children = (
 				24A16D911CFFA72100CAD9FE /* CoreDataHelper.swift */,
-				2474C85B1D86FBFB009BDB94 /* SpineHelper.swift */,
-				2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */,
-				24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */,
-				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
-				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 				4E2B82191DDB00C900559217 /* CourseDateHelper.swift */,
+				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 				2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */,
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
+				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
 				ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */,
+				24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */,
+				AB2802D01D2AAFDB008C8BAE /* NewsArticleHelper.swift */,
 				ABDD84C31D8E056000C7D193 /* PeerAssessmentHelper.swift */,
 				AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */,
 				249E3AA31D43C0A100D7663F /* QuizHelper.swift */,
 				2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */,
-				24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */,
-				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
-				AB2802D01D2AAFDB008C8BAE /* NewsArticleHelper.swift */,
+				2474C85B1D86FBFB009BDB94 /* SpineHelper.swift */,
+				2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */,
 				243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */,
+				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
+				24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1937,10 +1937,10 @@
 			isa = PBXGroup;
 			children = (
 				A90587C21B3BFC130095DB89 /* Main.storyboard */,
-				AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */,
 				AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */,
-				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
+				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
+				AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */,
 			);
 			name = Storyboards;
 			path = Layouts;

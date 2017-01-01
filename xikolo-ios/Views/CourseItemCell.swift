@@ -13,7 +13,6 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var progressView: UILabel!
 
     func configure(courseItem: CourseItem) {
         readStateView.backgroundColor = Brand.TintColor

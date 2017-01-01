@@ -14,8 +14,6 @@ class CourseDeadlinesTableViewController : UITableViewController {
     var resultsController: NSFetchedResultsController!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
-    @IBOutlet var titleView: UILabel!
-
     weak var delegate: CourseDeadlinesTableViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -34,11 +32,6 @@ class CourseDeadlinesTableViewController : UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-    }
-
-    func tableViewHeight() -> CGFloat {
-        tableView.layoutIfNeeded()
-        return tableView.contentSize.height
     }
 
     override func viewDidLayoutSubviews() {
@@ -64,6 +57,11 @@ class CourseDeadlinesTableViewController : UITableViewController {
             view.textLabel!.textColor = Brand.TintColor
             view.textLabel!.font = UIFont.systemFontOfSize(15)
         }
+    }
+
+    func tableViewHeight() -> CGFloat {
+        tableView.layoutIfNeeded()
+        return tableView.contentSize.height
     }
 
 }

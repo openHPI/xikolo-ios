@@ -13,6 +13,11 @@ class CourseListViewController : AbstractCourseListViewController {
 
     var numberOfItemsPerRow = 1
 
+    deinit {
+        self.collectionView?.emptyDataSetSource = nil
+        self.collectionView?.emptyDataSetDelegate = nil
+    }
+
     @IBAction func segmentedControlChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -29,16 +34,6 @@ class CourseListViewController : AbstractCourseListViewController {
         }
     }
 
-    deinit {
-        self.collectionView?.emptyDataSetSource = nil
-        self.collectionView?.emptyDataSetDelegate = nil
-    }
-
-    internal func showMyCoursesOnly(showMyCourses: Bool) {
-        self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
-        updateView()
-    }
-
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         switch traitCollection.horizontalSizeClass {
         case .Compact, .Unspecified:
@@ -53,6 +48,11 @@ class CourseListViewController : AbstractCourseListViewController {
             // Force redraw
             self.collectionView!.performBatchUpdates(nil, completion: nil)
         }, completion: nil)
+    }
+
+    internal func showMyCoursesOnly(showMyCourses: Bool) {
+        self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
+        updateView()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

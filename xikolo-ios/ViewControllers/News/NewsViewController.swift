@@ -10,13 +10,13 @@ import UIKit
 
 class NewsViewController : AbstractTabContentViewController {
 
+    @IBOutlet weak var containerView: UIView!
+
     enum TabContent : Int {
         case newsArticles = 0
         case platformEvents = 1
     }
-
-    @IBOutlet weak var containerView: UIView!
-
+    
     var containerContentViewController: UIViewController?
     
     @IBAction func switchViewControllers(sender: UISegmentedControl) {

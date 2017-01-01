@@ -67,7 +67,7 @@
                                                     </mask>
                                                 </variation>
                                                 <connections>
-                                                    <segue destination="MmR-Ub-Xo1" kind="embed" id="9ZB-kf-UzE"/>
+                                                    <segue destination="MmR-Ub-Xo1" kind="embed" identifier="EmbedSettings" id="9ZB-kf-UzE"/>
                                                 </connections>
                                             </containerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMm-vb-VdP">
@@ -163,14 +163,13 @@
                         <barButtonItem key="rightBarButtonItem" title="Login" id="Mnf-wa-pbl">
                             <connections>
                                 <action selector="loginBarButton:" destination="BgN-Oc-elr" id="X9u-hu-cPI"/>
-                                <segue destination="O8W-IG-m3E" kind="presentation" id="C1B-wi-v8Q"/>
+                                <segue destination="O8W-IG-m3E" kind="presentation" identifier="ShowLogin" id="C1B-wi-v8Q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="container" destination="TNA-in-Ofz" id="pe3-E7-skd"/>
                         <outlet property="emailView" destination="RBV-SP-3Os" id="Dww-mk-Zc4"/>
                         <outlet property="headerImage" destination="x8a-wj-cUm" id="X2A-1f-QvI"/>
                         <outlet property="logoutButton" destination="ctU-fN-Oxt" id="rUX-Wh-9co"/>
@@ -201,7 +200,7 @@
                         <sections>
                             <tableViewSection id="IG9-cs-8yz">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileImprintCell" textLabel="lUL-sh-oXa" style="IBUITableViewCellStyleDefault" id="72A-fr-n2X" customClass="ProfileTableViewCell" customModule="openHPI" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileImprintCell" textLabel="lUL-sh-oXa" style="IBUITableViewCellStyleDefault" id="72A-fr-n2X">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72A-fr-n2X" id="luK-V9-UuK">
@@ -218,7 +217,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileDataPrivacyCell" textLabel="xUb-k5-964" style="IBUITableViewCellStyleDefault" id="UJa-qb-H8T" customClass="ProfileTableViewCell" customModule="openHPI" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileDataPrivacyCell" textLabel="xUb-k5-964" style="IBUITableViewCellStyleDefault" id="UJa-qb-H8T">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJa-qb-H8T" id="HHV-Fy-oJG">

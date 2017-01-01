@@ -9,7 +9,7 @@
         <!--Login-->
         <scene sceneID="LFp-Jf-nC8">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="3kq-NS-dJI" customClass="RegisterViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="3kq-NS-dJI" customClass="LoginViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xlL-D5-NcQ"/>
                         <viewControllerLayoutGuide type="bottom" id="6B4-vD-wND"/>
@@ -60,9 +60,6 @@
                                                 <rect key="frame" x="238" y="264" width="64" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Register"/>
-                                                <connections>
-                                                    <action selector="registerButton:" destination="3kq-NS-dJI" eventType="touchUpInside" id="fXC-b1-6zw"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9h-TM-uGV">
                                                 <rect key="frame" x="0.0" y="212" width="540" height="44"/>
@@ -173,6 +170,7 @@
                         <outlet property="emailField" destination="bp2-MP-IBy" id="3wi-WB-q9I"/>
                         <outlet property="loginButton" destination="H9h-TM-uGV" id="bvA-19-9q6"/>
                         <outlet property="passwordField" destination="ETa-cI-bg8" id="MrK-7i-uOk"/>
+                        <outlet property="registerButton" destination="rRI-Oq-dJK" id="4iy-0g-H40"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiP-zR-m0K" userLabel="First Responder" sceneMemberID="firstResponder"/>

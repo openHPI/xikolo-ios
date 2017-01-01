@@ -29,6 +29,12 @@ class CourseDecisionViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self);
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        decideContent()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
+    }
+
     @IBAction func enroll(sender: UIBarButtonItem) {
         if UserProfileHelper.isLoggedIn() {
             UserProfileHelper.createEnrollment(course.id)
@@ -37,16 +43,12 @@ class CourseDecisionViewController: UIViewController {
                     self.decideContent()
             }
         } else {
-            performSegueWithIdentifier("ShowLoginForEnroll", sender: nil)
+            performSegueWithIdentifier("ShowLogin", sender: nil)
         }
 
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        decideContent()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
-    }
+    @IBAction func unwindSegueToCourseContent(segue: UIStoryboardSegue) { }
 
     func decideContent() {
         if(course.enrollment != nil) {
@@ -126,8 +128,6 @@ class CourseDecisionViewController: UIViewController {
             break
         }
     }
-
-    @IBAction func unwindSegueToCourseContent(segue: UIStoryboardSegue) { }
 
 }
 

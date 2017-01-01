@@ -13,6 +13,11 @@ class CourseActivityViewController : UITableViewController {
 
     weak var delegate: CourseActivityViewControllerDelegate?
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        delegate?.changedCourseActivityTableViewHeight(tableViewHeight())
+    }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -29,11 +34,6 @@ class CourseActivityViewController : UITableViewController {
     func tableViewHeight() -> CGFloat {
         tableView.layoutIfNeeded()
         return tableView.contentSize.height
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        delegate?.changedCourseActivityTableViewHeight(tableViewHeight())
     }
 
 }

@@ -15,7 +15,6 @@ class ProfileViewController: AbstractTabContentViewController {
 
     @IBOutlet weak var nameView: UILabel!
     @IBOutlet weak var emailView: UILabel!
-    @IBOutlet weak var container: UIView!
     @IBOutlet weak var logoutButton: UIButton!
 
     @IBAction func logout(sender: UIButton) {

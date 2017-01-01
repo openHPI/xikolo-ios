@@ -425,7 +425,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="R67-QI-Tmy">
-                                                <rect key="frame" x="20" y="49" width="580" height="33"/>
+                                                <rect key="frame" x="20" y="49" width="560" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="b4v-BN-L2C"/>
@@ -442,9 +442,10 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cDO-oK-db9" secondAttribute="trailing" constant="20" symbolic="YES" id="4lK-aH-65g"/>
                                             <constraint firstAttribute="bottom" secondItem="R67-QI-Tmy" secondAttribute="bottom" id="HjZ-8g-SGp"/>
                                             <constraint firstItem="R67-QI-Tmy" firstAttribute="top" secondItem="cDO-oK-db9" secondAttribute="bottom" constant="8" symbolic="YES" id="bHA-V5-55d"/>
-                                            <constraint firstAttribute="trailing" secondItem="R67-QI-Tmy" secondAttribute="trailing" id="iC9-Ky-O3L"/>
+                                            <constraint firstAttribute="trailing" secondItem="R67-QI-Tmy" secondAttribute="trailing" constant="20" symbolic="YES" id="iC9-Ky-O3L"/>
                                             <constraint firstItem="cDO-oK-db9" firstAttribute="leading" secondItem="MKb-2s-Erb" secondAttribute="leading" constant="20" symbolic="YES" id="j20-aa-h2P"/>
                                             <constraint firstItem="cDO-oK-db9" firstAttribute="top" secondItem="MKb-2s-Erb" secondAttribute="top" constant="20" symbolic="YES" id="txl-NG-NNO"/>
                                             <constraint firstItem="R67-QI-Tmy" firstAttribute="leading" secondItem="MKb-2s-Erb" secondAttribute="leading" constant="20" symbolic="YES" id="vVF-zj-sUP"/>

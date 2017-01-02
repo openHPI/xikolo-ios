@@ -34,7 +34,7 @@
                                                     <constraint firstAttribute="height" constant="150" id="Rem-kb-qOZ"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="O68-Sz-3fn">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="O68-Sz-3fn">
                                                 <rect key="frame" x="147.5" y="110" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="999" constant="80" id="2fV-CH-CO8"/>

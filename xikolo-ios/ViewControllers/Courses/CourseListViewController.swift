@@ -11,6 +11,7 @@ import DZNEmptyDataSet
 
 class CourseListViewController : AbstractCourseListViewController {
 
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     var numberOfItemsPerRow = 1
 
     deinit {
@@ -21,16 +22,25 @@ class CourseListViewController : AbstractCourseListViewController {
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            showMyCoursesOnly(false)
-        case 1:
             if UserProfileHelper.isLoggedIn() {
-                showMyCoursesOnly(true)
+                courseDisplayMode = .enrolledOnly
             } else {
-                sender.selectedSegmentIndex = 0
-                performSegue(withIdentifier: "ShowLogin", sender: sender) // maybe switch to My Courses after succesful login?
+                sender.selectedSegmentIndex = 1
+                performSegue(withIdentifier: "ShowLogin", sender: sender)
             }
+        case 1:
+            courseDisplayMode = UserProfileHelper.isLoggedIn() ? .explore : .all
         default:
             break
+        }
+        updateView()
+    }
+
+    override func viewDidLoad() {
+        if !UserProfileHelper.isLoggedIn() {
+            segmentedControl.selectedSegmentIndex = 1
+            courseDisplayMode = .all
+            updateView()
         }
     }
 
@@ -48,11 +58,6 @@ class CourseListViewController : AbstractCourseListViewController {
             // Force redraw
             self.collectionView!.performBatchUpdates(nil, completion: nil)
         }, completion: nil)
-    }
-
-    internal func showMyCoursesOnly(_ showMyCourses: Bool) {
-        self.courseDisplayMode = showMyCourses ? .enrolledOnly : .all
-        updateView()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

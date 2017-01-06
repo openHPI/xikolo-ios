@@ -13,23 +13,34 @@ class CourseHelper {
 
     static fileprivate let entity = NSEntityDescription.entity(forEntityName: "Course", in: CoreDataHelper.managedContext)!
 
-    static func getAllCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getGenericCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
-        request.predicate = NSPredicate(format: "external_int != true")
         let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
         request.sortDescriptors = [startDateSort]
         return request
     }
 
-    static func getMyCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = getAllCoursesRequest()
-        request.predicate = NSPredicate(format: "enrollment != null")
+    static func getAllCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = getGenericCoursesRequest()
+        request.predicate = NSPredicate(format: "external_int != true")
         return request
     }
 
-    static func getMyAccessibleCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = getAllCoursesRequest()
-        request.predicate = NSPredicate(format: "enrollment != null AND accessible_int == true")
+    static func getUnenrolledCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = getGenericCoursesRequest()
+        request.predicate = NSPredicate(format: "external_int != true AND hidden_int != true AND enrollment == null")
+        return request
+    }
+
+    static func getEnrolledCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = getGenericCoursesRequest()
+        request.predicate = NSPredicate(format: "external_int != true AND enrollment != null")
+        return request
+    }
+
+    static func getEnrolledAccessibleCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = getGenericCoursesRequest()
+        request.predicate = NSPredicate(format: "external_int != true AND enrollment != null AND accessible_int == true")
         return request
     }
 
@@ -43,7 +54,7 @@ class CourseHelper {
     }
 
     static func getNumberOfEnrolledCourses() throws -> Int {
-        let request = getMyCoursesRequest()
+        let request = getEnrolledCoursesRequest()
         let courses = try CoreDataHelper.executeFetchRequest(request)
         return courses.count
     }
@@ -61,7 +72,7 @@ class CourseHelper {
 
     static func refreshCourses() -> Future<[Course], XikoloError> {
         return CourseProvider.getCourses().flatMap { spineCourses -> Future<[BaseModel], XikoloError> in
-            let request = getAllCoursesRequest()
+            let request = getGenericCoursesRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourses, inject: nil, save: true)
         }.map { cdCourses in
             return cdCourses as! [Course]

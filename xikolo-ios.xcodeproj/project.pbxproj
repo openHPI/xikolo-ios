@@ -625,6 +625,9 @@
 		AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
 		AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */; };
 		AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
+		AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB947CE11E19E1EC009888B0 /* Settings.bundle */; };
+		AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB947CE11E19E1EC009888B0 /* Settings.bundle */; };
+		AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB947CE11E19E1EC009888B0 /* Settings.bundle */; };
 		AB95896E1DC2049400586137 /* Channel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95896C1DC2049400586137 /* Channel+CoreDataProperties.swift */; };
 		AB95896F1DC2049400586137 /* Channel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95896C1DC2049400586137 /* Channel+CoreDataProperties.swift */; };
 		AB9589701DC2049400586137 /* Channel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95896C1DC2049400586137 /* Channel+CoreDataProperties.swift */; };
@@ -1241,6 +1244,7 @@
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewController.swift; sourceTree = "<group>"; };
 		AB91F9E41CED029B00007D06 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
+		AB947CE11E19E1EC009888B0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		AB95896C1DC2049400586137 /* Channel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB95896D1DC2049400586137 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+enable.swift"; path = "Categories/UITableViewCell+enable.swift"; sourceTree = "<group>"; };
@@ -1744,6 +1748,7 @@
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */,
 				A90587CA1B3BFC130095DB89 /* Info.plist */,
+				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 			);
@@ -2286,6 +2291,7 @@
 				24BA40FB1D3F9B3900E38C2C /* Localizable.strings in Resources */,
 				24BA411F1D3F9BA400E38C2C /* LaunchScreen.storyboard in Resources */,
 				24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */,
+				AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
 				24BA41061D3F9B5500E38C2C /* TabProfile.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Localizable.stringsdict in Resources */,
@@ -2346,6 +2352,7 @@
 				AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */,
 				A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */,
 				2490C4D31D1D6F7100F42949 /* Localizable.strings in Resources */,
+				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
 				AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */,
 				249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */,
 				24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */,
@@ -2366,6 +2373,7 @@
 				ABA0F0131DF8CC2F0001D88D /* TabProfile.storyboard in Resources */,
 				ABA0F02C1DF8CCDD0001D88D /* assets-ios.xcassets in Resources */,
 				ABA0F0151DF8CC3B0001D88D /* TabNews.storyboard in Resources */,
+				AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */,
 				ABA0F02E1DF8CCE80001D88D /* Localizable.strings in Resources */,
 				ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */,
 				ABA0F0FC1DF8CEB60001D88D /* Localizable.stringsdict in Resources */,

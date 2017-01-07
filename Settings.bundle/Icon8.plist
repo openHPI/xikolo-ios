@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>StringsTable</key>
+        <string>Icon8</string>
+        <key>PreferenceSpecifiers</key>
+        <array>
+            <dict>
+                <key>FooterText</key>
+                <string>
+This app uses icons from https://icons8.com. Their work is licensed under a Creative Commons Attribution-NoDerivs 3.0 Unported License (https://creativecommons.org/licenses/by-nd/3.0/).
+                </string>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+            </dict>
+        </array>
+    </dict>
+</plist>

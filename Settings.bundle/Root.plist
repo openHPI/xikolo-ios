@@ -8,7 +8,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Licenses</string>
+			<string>Pod Licenses</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -18,69 +18,96 @@
 			<key>Title</key>
 			<string>Spine</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>TSMarkdownParser</string>
+			<key>Title</key>
+			<string>TSMarkdownParser</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>PinpointKit</string>
+			<key>Title</key>
+			<string>PinpointKit</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>DZNEmptyDataSet</string>
+			<key>Title</key>
+			<string>DZNEmptyDataSet</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>Alamofire</string>
+			<key>Title</key>
+			<string>Alamofire</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>AlamofireObjectMapper</string>
+			<key>Title</key>
+			<string>AlamofireObjectMapper</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>ObjectMapper</string>
+			<key>Title</key>
+			<string>ObjectMapper</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>BrightFutures</string>
+			<key>Title</key>
+			<string>BrightFutures</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>Result</string>
+			<key>Title</key>
+			<string>Result</string>
+		</dict>
         <dict>
             <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>TSMarkdownParser</string>
+            <string>PSGroupSpecifier</string>
             <key>Title</key>
-            <string>TSMarkdownParser</string>
+            <string>Font Licenses</string>
         </dict>
         <dict>
             <key>Type</key>
             <string>PSChildPaneSpecifier</string>
             <key>File</key>
-            <string>PinpointKit</string>
+            <string>FontAwesome</string>
             <key>Title</key>
-            <string>PinpointKit</string>
+            <string>FontAwesome 3.0</string>
+        </dict><dict>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+            <key>Title</key>
+            <string>Icon Licenses</string>
         </dict>
         <dict>
             <key>Type</key>
             <string>PSChildPaneSpecifier</string>
             <key>File</key>
-            <string>DZNEmptyDataSet</string>
+            <string>Icon8</string>
             <key>Title</key>
-            <string>DZNEmptyDataSet</string>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>Alamofire</string>
-            <key>Title</key>
-            <string>Alamofire</string>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>AlamofireObjectMapper</string>
-            <key>Title</key>
-            <string>AlamofireObjectMapper</string>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>ObjectMapper</string>
-            <key>Title</key>
-            <string>ObjectMapper</string>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>BrightFutures</string>
-            <key>Title</key>
-            <string>BrightFutures</string>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>Result</string>
-            <key>Title</key>
-            <string>Result</string>
+            <string>Icon8</string>
         </dict>
 	</array>
 	<key>StringsTable</key>

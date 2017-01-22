@@ -8,7 +8,7 @@
 
 import Foundation
 
-class QuizAnswer : NSObject, NSCoding, EmbeddedObject {
+class QuizOption : NSObject, NSCoding, EmbeddedObject {
 
     var id: String?
     var text: String?

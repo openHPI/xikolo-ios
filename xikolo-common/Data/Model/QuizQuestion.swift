@@ -16,10 +16,10 @@ class QuizQuestion : BaseModel {
 
     var shuffle_answers: Bool {
         get {
-            return shuffle_answers_int?.boolValue ?? false
+            return shuffle_options_int?.boolValue ?? false
         }
         set(new_shuffle_answers) {
-            shuffle_answers_int = new_shuffle_answers
+            shuffle_options_int = new_shuffle_answers
         }
     }
 
@@ -31,10 +31,10 @@ class QuizQuestion : BaseModel {
     }
 
     var hasCorrectnessData: Bool {
-        guard let answers = answers else {
+        guard let options = options else {
             return false
         }
-        return answers.filter({ $0.correct ?? false }).count > 0
+        return options.filter({ $0.correct ?? false }).count > 0
     }
 
 }
@@ -45,8 +45,8 @@ class QuizQuestionSpine : BaseModelSpine {
     var explanation: String?
     var type: String?
     var max_points: NSDecimalNumber?
-    var shuffle_answers_int: NSNumber?
-    var answers: [QuizAnswer]?
+    var shuffle_options_int: NSNumber?
+    var options: [QuizOption]?
 
     override class var cdType: BaseModel.Type {
         return QuizQuestion.self
@@ -62,8 +62,8 @@ class QuizQuestionSpine : BaseModelSpine {
             "explanation": Attribute(),
             "type": Attribute(),
             "max_points": Attribute(),
-            "shuffle_answers_int": Attribute().serializeAs("shuffle_answers"),
-            "answers": EmbeddedObjectsAttribute(QuizAnswer),
+            "shuffle_options_int": Attribute().serializeAs("shuffle_options"),
+            "options": EmbeddedObjectsAttribute(QuizOption),
         ])
     }
 
@@ -78,9 +78,9 @@ enum QuizQuestionType {
 
     static func fromString(str: String) -> QuizQuestionType {
         switch str {
-            case "single_answer":
+            case "select_one":
                 return .SingleAnswer
-            case "multiple_answer":
+            case "select_multiple":
                 return .MultipleAnswer
             case "free_text":
                 return .FreeText

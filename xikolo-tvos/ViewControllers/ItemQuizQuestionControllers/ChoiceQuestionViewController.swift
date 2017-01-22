@@ -18,7 +18,7 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
         }
     }
 
-    var answers: [QuizAnswer]!
+    var options: [QuizOption]!
     var submissionLoaded = false
 
     override func viewDidLoad() {
@@ -30,9 +30,9 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
         tableView.allowsMultipleSelection = question.questionType == .MultipleAnswer
 
         if question.shuffle_answers {
-            answers = question.answers?.shuffle() ?? []
+            options = question.options?.shuffle() ?? []
         } else {
-            answers = question.answers ?? []
+            options = question.options ?? []
         }
 
         loadSubmission()
@@ -44,7 +44,7 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
             return
         }
         for answerSubmission in submissionAnswers {
-            guard let index = answers.indexOf({ $0.id == answerSubmission }) else {
+            guard let index = options.indexOf({ $0.id == answerSubmission }) else {
                 continue
             }
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
@@ -56,7 +56,7 @@ class ChoiceQuestionViewController : AbstractQuestionViewController {
     override func saveSubmission() {
         question.submission = nil
         if let indexPaths = tableView.indexPathsForSelectedRows {
-            let answers = indexPaths.map { self.answers[$0.row] }
+            let answers = indexPaths.map { self.options[$0.row] }
             if answers.count > 0 {
                 let submission = QuizQuestionSubmission(question: question)
                 submission.answers = answers.map { $0.id }.filter { $0 != nil }.map { $0! }
@@ -74,14 +74,14 @@ extension ChoiceQuestionViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return answers.count
+        return options.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChoiceAnswerCell") as! ChoiceAnswerCell
-        let answer = answers[indexPath.row]
+        let answer = options[indexPath.row]
 
-        var state: ChoiceAnswerState? = nil
+        var state: ChoiceOptionState? = nil
         if let answerID = answer.id, correct = answer.correct, submissionAnswers = question.submission?.answers {
             let selected = submissionAnswers.contains(answerID) ?? false
             if correct {

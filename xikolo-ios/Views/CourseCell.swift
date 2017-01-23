@@ -18,7 +18,7 @@ class CourseCell : UICollectionViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusView: UIView!
 
-    func configure(course: Course) {
+    func configure(_ course: Course) {
         course.loadImage().onSuccess { image in
             self.backgroundImage.image = image
         }
@@ -27,28 +27,28 @@ class CourseCell : UICollectionViewCell {
         teacherLabel.text = course.teachers
         languageLabel.text = course.language_translated
 
-        if let startDate = course.start_at, endDate = course.end_at {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .MediumStyle
-            dateFormatter.timeStyle = .NoStyle
-            dateLabel.text = dateFormatter.stringFromDate(startDate) + " - " + dateFormatter.stringFromDate(endDate)
+        if let startDate = course.start_at, let endDate = course.end_at {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
+            dateLabel.text = dateFormatter.string(from: startDate) + " - " + dateFormatter.string(from: endDate)
         }
 
         switch course.status {
         case "active"?:
-            statusView.hidden = false
+            statusView.isHidden = false
             statusLabel.text = NSLocalizedString("running", comment: "course-status")
             statusView.backgroundColor = Brand.FlagRunningColor
         case "self-paced"?:
-            statusView.hidden = false
+            statusView.isHidden = false
             statusLabel.text = NSLocalizedString("self-paced", comment: "course-status")
             statusView.backgroundColor = Brand.FlagSelfpacedColor
         case "announced"?:
-            statusView.hidden = false
+            statusView.isHidden = false
             statusLabel.text = NSLocalizedString("upcoming", comment: "course-status")
             statusView.backgroundColor = Brand.FlagUpcomingColor
         default:
-            statusView.hidden = true
+            statusView.isHidden = true
         }
     }
 

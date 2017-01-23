@@ -12,15 +12,15 @@ class ProfileTableViewController: UITableViewController {
 
     var user: UserProfile?
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
-            if let url = NSURL(string: Brand.IMPRINT_URL) {
-                UIApplication.sharedApplication().openURL(url)
+            if let url = URL(string: Brand.IMPRINT_URL) {
+                UIApplication.shared.openURL(url)
             }
         case 1:
-            if let url = NSURL(string: Brand.PRIVACY_URL) {
-                UIApplication.sharedApplication().openURL(url)
+            if let url = URL(string: Brand.PRIVACY_URL) {
+                UIApplication.shared.openURL(url)
             }
         default:
             break

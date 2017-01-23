@@ -11,7 +11,7 @@ import CoreData
 
 class CourseStartsTableViewController : UITableViewController {
 
-    var resultsController: NSFetchedResultsController!
+    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
     weak var delegate: CourseStartsTableViewControllerDelegate?
@@ -48,24 +48,24 @@ class CourseStartsTableViewController : UITableViewController {
 
 extension CourseStartsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-        let courseDate = resultsController.objectAtIndexPath(indexPath) as! CourseDate
+    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+        let courseDate = resultsController.object(at: indexPath) as! CourseDate
         let cell = cell as! CourseDateCell
         cell.configure(courseDate)
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let courseDate = resultsController.objectAtIndexPath(indexPath) as! CourseDate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let courseDate = resultsController.object(at: indexPath) as! CourseDate
         if let course = courseDate.course {
             AppDelegate.instance().goToCourse(course, content: .courseDetails)
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }
 
 protocol CourseStartsTableViewControllerDelegate: class {
     
-    func changedCourseStartsTableViewHeight(height: CGFloat)
+    func changedCourseStartsTableViewHeight(_ height: CGFloat)
     
 }

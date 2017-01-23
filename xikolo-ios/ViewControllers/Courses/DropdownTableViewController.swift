@@ -12,13 +12,13 @@ class DropdownTableViewController: UITableViewController {
 
     var course: Course!
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let userList = [NotificationKeys.dropdownCourseContentKey:indexPath.row]
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.dropdownCourseContentKey, object: self, userInfo: userList)
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        NotificationCenter.default.post(name: NotificationKeys.dropdownCourseContentKey, object: self, userInfo: userList)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row != 2 {
             cell.enable(course.enrollment != nil && course.accessible)
         }

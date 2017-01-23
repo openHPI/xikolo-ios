@@ -19,7 +19,7 @@ class NewsViewController : AbstractTabContentViewController {
     
     var containerContentViewController: UIViewController?
     
-    @IBAction func switchViewControllers(sender: UISegmentedControl) {
+    @IBAction func switchViewControllers(_ sender: UISegmentedControl) {
         if let position = TabContent(rawValue: sender.selectedSegmentIndex) {
             updateContainerView(position)
         }
@@ -40,10 +40,10 @@ class NewsViewController : AbstractTabContentViewController {
         PlatformEventHelper.syncPlatformEvents()
     }
 
-    func updateContainerView(position: TabContent) {
+    func updateContainerView(_ position: TabContent) {
         // TODO: Animation?
         if let vc = containerContentViewController {
-            vc.willMoveToParentViewController(nil)
+            vc.willMove(toParentViewController: nil)
             vc.view.removeFromSuperview()
             vc.removeFromParentViewController()
             containerContentViewController = nil
@@ -52,10 +52,10 @@ class NewsViewController : AbstractTabContentViewController {
         let storyboard = UIStoryboard(name: "TabNews", bundle: nil)
         switch position {
         case .newsArticles:
-            let vc = storyboard.instantiateViewControllerWithIdentifier("NewsTableViewController") as! NewsTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
             changeToViewController(vc)
         case .platformEvents:
-            let vc = storyboard.instantiateViewControllerWithIdentifier("PlatformEventsTableViewController") as! PlatformEventsTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "PlatformEventsTableViewController") as! PlatformEventsTableViewController
             changeToViewController(vc)
         }
         navigationController?.view.setNeedsLayout() // This is needed, because otherwise the navigation controller
@@ -63,11 +63,11 @@ class NewsViewController : AbstractTabContentViewController {
         // view. Without this, the bars would cover parts of the content.
     }
 
-    func changeToViewController(viewController: UIViewController) {
+    func changeToViewController(_ viewController: UIViewController) {
         containerView.addSubview(viewController.view)
         viewController.view.frame = containerView.bounds
         addChildViewController(viewController)
-        viewController.didMoveToParentViewController(self)
+        viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
     }
 

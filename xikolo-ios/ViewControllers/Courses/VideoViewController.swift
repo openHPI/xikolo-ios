@@ -31,34 +31,34 @@ class VideoViewController : UIViewController {
                 let markDown = try? MarkdownHelper.parse(summary) // TODO: Error handling
                 self.descriptionView.attributedText = markDown
             }
-            self.performSegueWithIdentifier("EmbedAVPlayer", sender: self.video)
-            self.openSlidesButton.hidden = self.video?.slides_url == nil
+            self.performSegue(withIdentifier: "EmbedAVPlayer", sender: self.video)
+            self.openSlidesButton.isHidden = self.video?.slides_url == nil
         }
     }
 
-    @IBAction func openSlides(sender: UIButton) {
-        performSegueWithIdentifier("ShowSlides", sender: video)
+    @IBAction func openSlides(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowSlides", sender: video)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case "EmbedAVPlayer"?:
-                let destination = segue.destinationViewController as! AVPlayerViewController
+                let destination = segue.destination as! AVPlayerViewController
                 let video = sender as! Video
                 if let urlString = video.single_stream_hls_url {
-                    let url = NSURL(string: urlString)
-                    destination.player = AVPlayer(URL: url!)
+                    let url = URL(string: urlString)
+                    destination.player = AVPlayer(url: url!)
                 }
             case "ShowSlides"?:
-                let vc = segue.destinationViewController as! WebViewController
+                let vc = segue.destination as! WebViewController
                 let video = sender as! Video
                 vc.url = video.slides_url?.absoluteString
         default:
-            super.prepareForSegue(segue, sender: sender)
+            super.prepare(for: segue, sender: sender)
         }
     }
 
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
             case "EmbedAVPlayer":
                 return video != nil

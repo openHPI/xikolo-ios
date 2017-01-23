@@ -13,7 +13,7 @@ class AbstractTabContentViewController: UIViewController {
     @IBOutlet var loginButton: UIBarButtonItem?
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLoad() {
@@ -22,8 +22,8 @@ class AbstractTabContentViewController: UIViewController {
         loginButton = navigationItem.rightBarButtonItem
         navigationItem.hidesBackButton = true
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUIAfterLoginLogoutAction), name: NotificationKeys.loginSuccessfulKey, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUIAfterLoginLogoutAction), name: NotificationKeys.logoutSuccessfulKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUIAfterLoginLogoutAction), name: NotificationKeys.loginSuccessfulKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUIAfterLoginLogoutAction), name: NotificationKeys.logoutSuccessfulKey, object: nil)
         updateUIAfterLoginLogoutAction()
     }
 

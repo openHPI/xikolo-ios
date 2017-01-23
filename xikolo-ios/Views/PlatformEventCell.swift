@@ -30,15 +30,15 @@ class PlatformEventCell: UITableViewCell {
         case LearningRoomQuitMemebership = "learning_room.quit_membership"
     }
 
-    func configure(platformEvent: PlatformEvent) {
+    func configure(_ platformEvent: PlatformEvent) {
         titleView.text = platformEvent.title
         previewView.text = platformEvent.preview
 
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
         if let date = platformEvent.created_at {
-            dateView.text = dateFormatter.stringFromDate(date)
+            dateView.text = dateFormatter.string(from: date)
         }
 
         if let type = platformEvent.type {

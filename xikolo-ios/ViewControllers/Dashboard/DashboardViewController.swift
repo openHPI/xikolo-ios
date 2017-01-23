@@ -21,20 +21,20 @@ class DashboardViewController : AbstractTabContentViewController {
         feedbackButton.backgroundColor = Brand.TintColor
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         CourseDateHelper.syncCourseDates()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "EmbedCourseDeadlines"?:
-            let vc = segue.destinationViewController as! CourseDeadlinesTableViewController
+            let vc = segue.destination as! CourseDeadlinesTableViewController
             vc.delegate = self
         case "EmbedCourseStarts"?:
-            let vc = segue.destinationViewController as! CourseStartsTableViewController
+            let vc = segue.destination as! CourseStartsTableViewController
             vc.delegate = self
         case "EmbedCourseActivity"?:
-            let vc = segue.destinationViewController as! CourseActivityViewController
+            let vc = segue.destination as! CourseActivityViewController
             vc.delegate = self
         default:
             break
@@ -45,8 +45,8 @@ class DashboardViewController : AbstractTabContentViewController {
 
 extension DashboardViewController : CourseDeadlinesTableViewControllerDelegate {
 
-    func changedCourseDeadlinesTableViewHeight(height: CGFloat) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func changedCourseDeadlinesTableViewHeight(_ height: CGFloat) {
+        DispatchQueue.main.async {
             self.courseDeadlinesContainerHeight.constant = height
         }
     }
@@ -55,8 +55,8 @@ extension DashboardViewController : CourseDeadlinesTableViewControllerDelegate {
 
 extension DashboardViewController : CourseStartsTableViewControllerDelegate {
 
-    func changedCourseStartsTableViewHeight(height: CGFloat) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func changedCourseStartsTableViewHeight(_ height: CGFloat) {
+        DispatchQueue.main.async {
             self.courseStartsContainerHeight.constant = height
         }
     }
@@ -65,8 +65,8 @@ extension DashboardViewController : CourseStartsTableViewControllerDelegate {
 
 extension DashboardViewController : CourseActivityViewControllerDelegate {
 
-    func changedCourseActivityTableViewHeight(height: CGFloat) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func changedCourseActivityTableViewHeight(_ height: CGFloat) {
+        DispatchQueue.main.async {
             self.courseActivityContainerHeight.constant = height
         }
     }

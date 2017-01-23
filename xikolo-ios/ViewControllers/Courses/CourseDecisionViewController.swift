@@ -26,16 +26,16 @@ class CourseDecisionViewController: UIViewController {
     var content = CourseContent.learnings
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self);
+        NotificationCenter.default.removeObserver(self);
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         decideContent()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
     }
 
-    @IBAction func enroll(sender: UIBarButtonItem) {
+    @IBAction func enroll(_ sender: UIBarButtonItem) {
         if UserProfileHelper.isLoggedIn() {
             UserProfileHelper.createEnrollment(course.id)
                 .flatMap { CourseHelper.refreshCourses() }
@@ -43,12 +43,12 @@ class CourseDecisionViewController: UIViewController {
                     self.decideContent()
             }
         } else {
-            performSegueWithIdentifier("ShowLogin", sender: nil)
+            performSegue(withIdentifier: "ShowLogin", sender: nil)
         }
 
     }
 
-    @IBAction func unwindSegueToCourseContent(segue: UIStoryboardSegue) { }
+    @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
 
     func decideContent() {
         if(course.enrollment != nil) {
@@ -59,17 +59,16 @@ class CourseDecisionViewController: UIViewController {
         }
     }
 
-    func switchViewController(notification: NSNotification) {
-        let userInfo : [String:Int] = notification.userInfo as! [String:Int]
-        if let position = userInfo[NotificationKeys.dropdownCourseContentKey], content = CourseContent(rawValue: position) {
+    func switchViewController(_ notification: Notification) {
+        if let position = notification.userInfo?[NotificationKeys.dropdownCourseContentKey] as? Int, let content = CourseContent(rawValue: position) {
             updateContainerView(content)
         }
     }
 
-    func updateContainerView(content: CourseContent) {
+    func updateContainerView(_ content: CourseContent) {
         // TODO: Animation?
         if let vc = containerContentViewController {
-            vc.willMoveToParentViewController(nil)
+            vc.willMove(toParentViewController: nil)
             vc.view.removeFromSuperview()
             vc.removeFromParentViewController()
             containerContentViewController = nil
@@ -78,19 +77,19 @@ class CourseDecisionViewController: UIViewController {
         let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
         switch content {
         case .learnings:
-            let vc = storyboard.instantiateViewControllerWithIdentifier("CourseContentTableViewController") as! CourseContentTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "CourseContentTableViewController") as! CourseContentTableViewController
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("Learnings", comment: "")
         case .discussions:
-            let vc = storyboard.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
             changeToViewController(vc)
             titleView.text = NSLocalizedString("Discussions", comment: "")
         case .courseDetails:
-            let vc = storyboard.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug
             }
@@ -100,18 +99,18 @@ class CourseDecisionViewController: UIViewController {
         self.content = content
     }
 
-    func changeToViewController(viewController: UIViewController) {
+    func changeToViewController(_ viewController: UIViewController) {
         containerView.addSubview(viewController.view)
         viewController.view.frame = containerView.bounds
         addChildViewController(viewController)
-        viewController.didMoveToParentViewController(self)
+        viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowContentChoice"?:
-            let dropdownViewController = segue.destinationViewController as! DropdownViewController
+            let dropdownViewController = segue.destination as! DropdownViewController
             if let ppc = dropdownViewController.popoverPresentationController {
                 if let view = navigationItem.titleView {
                     ppc.sourceView = view
@@ -119,7 +118,7 @@ class CourseDecisionViewController: UIViewController {
                 }
 
                 dropdownViewController.course = course
-                let minimumSize = dropdownViewController.view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+                let minimumSize = dropdownViewController.view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
                 dropdownViewController.preferredContentSize = minimumSize
                 ppc.delegate = self
             }
@@ -133,15 +132,15 @@ class CourseDecisionViewController: UIViewController {
 
 extension CourseDecisionViewController : UIPopoverPresentationControllerDelegate {
 
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.OverFullScreen
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.overFullScreen
     }
 
-    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
         let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
         visualEffectView.frame = navigationController.view.bounds
-        navigationController.view.insertSubview(visualEffectView, atIndex: 0)
+        navigationController.view.insertSubview(visualEffectView, at: 0)
         return navigationController
     }
 

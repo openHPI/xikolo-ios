@@ -2206,6 +2206,7 @@
 					24BA40331D3F976700E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 					};
 					24BA40501D3F98CA00E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -2240,6 +2241,7 @@
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2249,6 +2251,7 @@
 					AB48B4341DF8BB2A00523062 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -3946,6 +3949,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3960,6 +3964,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -4186,6 +4191,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4204,6 +4210,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -4269,6 +4276,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4334,6 +4342,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

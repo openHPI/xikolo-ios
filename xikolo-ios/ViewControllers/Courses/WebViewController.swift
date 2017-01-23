@@ -17,18 +17,18 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        webView.loadRequest(NetworkHelper.getRequestForURL(url))
+        webView.loadRequest(NetworkHelper.getRequestForURL(url) as URLRequest)
     }
 
 }
 
 extension WebViewController : UIWebViewDelegate {
 
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         NetworkIndicator.start()
     }
 
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         NetworkIndicator.end()
     }
 }

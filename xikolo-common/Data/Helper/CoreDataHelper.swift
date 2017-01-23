@@ -18,7 +18,7 @@ class CoreDataHelper {
             let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Brand.AppGroupID)!
             return groupURL.appendingPathComponent("Library/Caches")
         #else
-            let urls = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
+            let urls = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
             return urls[urls.count-1]
         #endif
     }()

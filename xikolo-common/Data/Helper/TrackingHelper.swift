@@ -14,7 +14,7 @@ class TrackingHelper {
     #if os(tvOS)
     fileprivate static let platform = "tvOS"
     #else
-    private static let platform = "iOS"
+    fileprivate static let platform = "iOS"
     #endif
 
     fileprivate static let osVersion: String = {

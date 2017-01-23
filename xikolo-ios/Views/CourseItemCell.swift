@@ -14,14 +14,14 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var iconView: UIImageView!
 
-    func configure(courseItem: CourseItem) {
+    func configure(_ courseItem: CourseItem) {
         readStateView.backgroundColor = Brand.TintColor
         titleView.text = courseItem.title
 
         if let iconName = courseItem.iconName {
             iconView.image = UIImage(named: "item-\(iconName)-28")
         }
-        readStateView.hidden = courseItem.visited ?? true
+        readStateView.isHidden = courseItem.visited ?? true
     }
 
 }

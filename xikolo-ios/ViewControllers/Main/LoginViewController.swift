@@ -19,20 +19,20 @@ class LoginViewController : AbstractLoginViewController {
         emailField.becomeFirstResponder()
     }
 
-    @IBAction func dismissAction(sender: UIBarButtonItem) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismissAction(_ sender: UIBarButtonItem) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func registerButton(sender: AnyObject) {
-        let url = NSURL(string: Routes.REGISTER_URL)
-        UIApplication.sharedApplication().openURL(url!)
+    @IBAction func registerButton(_ sender: AnyObject) {
+        let url = URL(string: Routes.REGISTER_URL)
+        UIApplication.shared.openURL(url!)
     }
 
 }
 
 extension LoginViewController : UITextFieldDelegate {
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

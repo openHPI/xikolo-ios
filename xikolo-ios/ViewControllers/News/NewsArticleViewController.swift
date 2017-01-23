@@ -21,10 +21,10 @@ class NewsArticleViewController : UIViewController {
         super.viewDidLoad()
 
         if let date = newsArticle.published_at {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .MediumStyle
-            dateFormatter.timeStyle = .NoStyle
-            dateView.text = dateFormatter.stringFromDate(date)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
+            dateView.text = dateFormatter.string(from: date)
         }
 
         titleView.text = newsArticle.title

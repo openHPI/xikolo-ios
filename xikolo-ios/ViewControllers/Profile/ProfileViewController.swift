@@ -17,7 +17,7 @@ class ProfileViewController: AbstractTabContentViewController {
     @IBOutlet weak var emailView: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
 
-    @IBAction func logout(sender: UIButton) {
+    @IBAction func logout(_ sender: UIButton) {
         UserProfileHelper.logout()
     }
 
@@ -27,21 +27,21 @@ class ProfileViewController: AbstractTabContentViewController {
         super.updateUIAfterLoginLogoutAction()
 
         if UserProfileHelper.isLoggedIn() {
-            nameView.hidden = false
-            emailView.hidden = false
-            logoutButton.hidden = false
+            nameView.isHidden = false
+            emailView.isHidden = false
+            logoutButton.isHidden = false
 
             UserProfileHelper.getUser().onSuccess { user in
                 self.nameView.text = user.firstName + " " + user.lastName
                 self.emailView.text = user.email
                 if let url = NSURL(string: user.visual) {
-                    ImageHelper.loadImageFromURL(url, toImageView: self.profileImage)
+                    ImageHelper.loadImageFromURL(url as URL, toImageView: self.profileImage)
                 }
             }
         } else {
-            nameView.hidden = true
-            emailView.hidden = true
-            logoutButton.hidden = true
+            nameView.isHidden = true
+            emailView.isHidden = true
+            logoutButton.isHidden = true
             profileImage.image = UIImage(named: "avatar")
         }
     }

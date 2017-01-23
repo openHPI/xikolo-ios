@@ -12,7 +12,7 @@ import DZNEmptyDataSet
 
 class PlatformEventsTableViewController: UITableViewController {
 
-    var resultsController: NSFetchedResultsController!
+    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
     deinit {
@@ -53,10 +53,10 @@ class PlatformEventsTableViewController: UITableViewController {
 
 extension PlatformEventsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
         let cell = cell as! PlatformEventCell
 
-        let event = resultsController.objectAtIndexPath(indexPath) as! PlatformEvent
+        let event = resultsController.object(at: indexPath) as! PlatformEvent
         cell.configure(event)
     }
 
@@ -64,7 +64,7 @@ extension PlatformEventsTableViewController : TableViewResultsControllerDelegate
 
 extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }
@@ -78,7 +78,7 @@ extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDat
         return attributedString
     }
 
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }

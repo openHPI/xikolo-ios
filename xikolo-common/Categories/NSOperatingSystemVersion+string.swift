@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSOperatingSystemVersion {
+extension OperatingSystemVersion {
 
     func toString() -> String {
         return String(format: "%d.%d.%d", majorVersion, minorVersion, patchVersion)

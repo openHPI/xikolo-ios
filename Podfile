@@ -1,13 +1,13 @@
 use_frameworks!
 
 def common_pods
-    pod 'Alamofire', '3.2.0'
-    pod 'AlamofireObjectMapper', '3.0.0'
-    pod 'ObjectMapper', '1.0.0'
+    pod 'Alamofire', '4.3.0'
+    pod 'AlamofireObjectMapper', '4.0.1'
+    pod 'ObjectMapper', '2.0'
 
-    pod 'BrightFutures', '4.0.0'
-    pod 'Result', '2.0.0'
-    pod 'Spine', :git => 'https://github.com/wvteijlingen/Spine.git', :commit => '53971cf'
+    pod 'BrightFutures', '5.1.0'
+    pod 'Result', '3.1.0'
+    pod 'Spine', :git => 'https://github.com/wvteijlingen/Spine.git', :commit => 'ee1ad2b'
 
     pod 'TSMarkdownParser', :git => 'https://github.com/laptobbe/TSMarkdownParser.git', :commit => 'cff997a'
 end

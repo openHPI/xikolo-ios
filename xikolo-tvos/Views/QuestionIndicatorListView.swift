@@ -41,27 +41,27 @@ class QuestionIndicatorListView : UIView {
         }
 
         let actualWidth = CGFloat(questions.count) * size + margins
-        self.widthAnchor.constraintEqualToConstant(actualWidth).active = true
+        self.widthAnchor.constraint(equalToConstant: actualWidth).isActive = true
 
         var previousView: UIView?
         for question in questions {
             let view = QuestionIndicatorView()
             view.translatesAutoresizingMaskIntoConstraints = false
-            view.opaque = false
+            view.isOpaque = false
             view.delegate = self
             indicators[question] = view
             view.question = question
             addSubview(view)
 
             if let previousView = previousView {
-                view.leftAnchor.constraintEqualToAnchor(previousView.rightAnchor, constant: margin).active = true
+                view.leftAnchor.constraint(equalTo: previousView.rightAnchor, constant: margin).isActive = true
             } else {
-                view.leftAnchor.constraintEqualToAnchor(self.leftAnchor).active = true
+                view.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
             }
-            view.centerYAnchor.constraintEqualToAnchor(self.centerYAnchor).active = true
+            view.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 
-            view.widthAnchor.constraintEqualToConstant(size).active = true
-            view.heightAnchor.constraintEqualToConstant(size).active = true
+            view.widthAnchor.constraint(equalToConstant: size).isActive = true
+            view.heightAnchor.constraint(equalToConstant: size).isActive = true
 
             previousView = view
         }
@@ -77,9 +77,9 @@ class QuestionIndicatorListView : UIView {
 
 extension QuestionIndicatorListView : QuestionIndicatorViewDelegate {
 
-    func indicatorViewDidSelect(indicatorView: QuestionIndicatorView) {
-        let question = indicatorView.question
-        let index = questions.indexOf(question)!
+    func indicatorViewDidSelect(_ indicatorView: QuestionIndicatorView) {
+        let question = indicatorView.question!
+        let index = questions.index(of: question)!
         delegate?.indicatorListView(self, didSelectQuestionWithIndex: index)
     }
 
@@ -87,6 +87,6 @@ extension QuestionIndicatorListView : QuestionIndicatorViewDelegate {
 
 protocol QuestionIndicatorListViewDelegate {
 
-    func indicatorListView(indicatorListView: QuestionIndicatorListView, didSelectQuestionWithIndex index: Int)
+    func indicatorListView(_ indicatorListView: QuestionIndicatorListView, didSelectQuestionWithIndex index: Int)
 
 }

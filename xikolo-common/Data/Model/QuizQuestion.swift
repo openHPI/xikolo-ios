@@ -19,13 +19,13 @@ class QuizQuestion : BaseModel {
             return shuffle_options_int?.boolValue ?? false
         }
         set(new_shuffle_answers) {
-            shuffle_options_int = new_shuffle_answers
+            shuffle_options_int = new_shuffle_answers as NSNumber?
         }
     }
 
     var questionType: QuizQuestionType {
         if type == nil {
-            return .Unsupported
+            return .unsupported
         }
         return QuizQuestionType.fromString(type!)
     }
@@ -63,7 +63,7 @@ class QuizQuestionSpine : BaseModelSpine {
             "type": Attribute(),
             "max_points": Attribute(),
             "shuffle_options_int": Attribute().serializeAs("shuffle_options"),
-            "options": EmbeddedObjectsAttribute(QuizOption),
+            "options": EmbeddedObjectsAttribute(QuizOption.self),
         ])
     }
 
@@ -71,21 +71,21 @@ class QuizQuestionSpine : BaseModelSpine {
 
 enum QuizQuestionType {
 
-    case SingleAnswer
-    case MultipleAnswer
-    case FreeText
-    case Unsupported
+    case singleAnswer
+    case multipleAnswer
+    case freeText
+    case unsupported
 
-    static func fromString(str: String) -> QuizQuestionType {
+    static func fromString(_ str: String) -> QuizQuestionType {
         switch str {
             case "select_one":
-                return .SingleAnswer
+                return .singleAnswer
             case "select_multiple":
-                return .MultipleAnswer
+                return .multipleAnswer
             case "free_text":
-                return .FreeText
+                return .freeText
             default:
-                return .Unsupported
+                return .unsupported
         }
     }
 

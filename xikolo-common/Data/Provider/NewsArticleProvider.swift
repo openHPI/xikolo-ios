@@ -14,7 +14,7 @@ class NewsArticleProvider {
 
     class func getNewsArticles() -> Future<[NewsArticleSpine], XikoloError> {
         var query = Query(resourceType: NewsArticleSpine.self)
-        query.filterOn("global", equalTo: "true")
+        query.addPredicateWithKey("global", value: "true", type: .equalTo)
 
         return SpineHelper.find(query)
     }

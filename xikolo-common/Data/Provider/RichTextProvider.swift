@@ -11,7 +11,7 @@ import Foundation
 
 class RichTextProvider {
 
-    class func getRichText(richTextId: String) -> Future<RichTextSpine, XikoloError> {
+    class func getRichText(_ richTextId: String) -> Future<RichTextSpine, XikoloError> {
         return SpineHelper.findOne(richTextId, ofType: RichTextSpine.self)
     }
 

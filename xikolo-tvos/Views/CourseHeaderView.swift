@@ -13,7 +13,7 @@ class CourseHeaderView : UICollectionReusableView {
 
     @IBOutlet weak var sectionTitleView: UILabel!
 
-    func configure(section: NSFetchedResultsSectionInfo) {
+    func configure(_ section: NSFetchedResultsSectionInfo) {
         sectionTitleView.text = section.name
     }
 

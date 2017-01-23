@@ -12,7 +12,7 @@ import Spine
 
 class QuizProvider {
 
-    class func getQuiz(quizId: String) -> Future<QuizSpine, XikoloError> {
+    class func getQuiz(_ quizId: String) -> Future<QuizSpine, XikoloError> {
         var query = Query(resourceType: QuizSpine.self, resourceIDs: [quizId])
         query.include("questions")
         query.include("submission")

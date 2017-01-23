@@ -11,7 +11,7 @@ import TSMarkdownParser
 
 class MarkdownParser {
 
-    class func parse(markdown: String) -> NSAttributedString {
+    class func parse(_ markdown: String) -> NSAttributedString {
         let parser = MarkdownParser()
         return parser.parse(markdown)
     }
@@ -19,10 +19,10 @@ class MarkdownParser {
     let parser: TSMarkdownParser
 
     required init() {
-        parser = TSMarkdownParser.standardParser()
+        parser = TSMarkdownParser.standard()
 
-        parser.addShortHeaderParsingWithMaxLevel(0, leadFormattingBlock: { attributedString, range, level in
-            attributedString.deleteCharactersInRange(range)
+        parser.addShortHeaderParsing(withMaxLevel: 0, leadFormattingBlock: { attributedString, range, level in
+            attributedString.deleteCharacters(in: range)
         }, textFormattingBlock: { [unowned parser] attributedString, range, level in
             let level = Int(level)
             let attributes = level < parser.headerAttributes.count ? parser.headerAttributes[level] : parser.headerAttributes.last!
@@ -30,11 +30,11 @@ class MarkdownParser {
         })
     }
 
-    func setColor(color: UIColor) {
+    func setColor(_ color: UIColor) {
         setFontStyle(NSForegroundColorAttributeName, value: color)
     }
 
-    internal func setFontStyle(key: String, value: AnyObject) {
+    internal func setFontStyle(_ key: String, value: AnyObject) {
         if parser.defaultAttributes != nil {
             overrideFontStyle(&parser.defaultAttributes!, key: key, value: value)
         }
@@ -47,19 +47,19 @@ class MarkdownParser {
         overrideFontStyle(&parser.emphasisAttributes, key: key, value: value)
     }
 
-    internal func overrideFontStyles(inout fontStyles: [[String: AnyObject]], key: String, value: AnyObject) {
+    internal func overrideFontStyles(_ fontStyles: inout [[String: Any]], key: String, value: AnyObject) {
         for i in 0..<fontStyles.count {
             overrideFontStyle(&fontStyles[i], key: key, value: value)
         }
     }
 
-    internal func overrideFontStyle(inout fontStyle: [String: AnyObject], key: String, value: AnyObject) {
+    internal func overrideFontStyle(_ fontStyle: inout [String: Any], key: String, value: AnyObject) {
         fontStyle[key] = value
     }
 
-    func parse(markdown: String) -> NSAttributedString {
+    func parse(_ markdown: String) -> NSAttributedString {
 
-        return parser.attributedStringFromMarkdown(markdown)
+        return parser.attributedString(fromMarkdown: markdown)
     }
 
 }

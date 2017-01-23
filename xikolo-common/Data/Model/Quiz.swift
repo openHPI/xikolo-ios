@@ -15,7 +15,7 @@ class Quiz : Content {
     var submission: QuizSubmission?
 
     var time_limit_formatted: [String] {
-        guard let time_limit = time_limit?.integerValue else {
+        guard let time_limit = time_limit?.intValue else {
             return []
         }
 
@@ -45,7 +45,7 @@ class Quiz : Content {
             return show_welcome_page_int?.boolValue ?? false
         }
         set(new_show_welcome_page) {
-            show_welcome_page_int = new_show_welcome_page
+            show_welcome_page_int = new_show_welcome_page as NSNumber?
         }
     }
 
@@ -58,8 +58,8 @@ class Quiz : Content {
 class QuizSpine : ContentSpine {
 
     var instructions: String?
-    var lock_submissions_at: NSDate?
-    var publish_results_at: NSDate?
+    var lock_submissions_at: Date?
+    var publish_results_at: Date?
     var time_limit: NSNumber?
     var allowed_attempts: NSNumber?
     var max_points: NSDecimalNumber?
@@ -98,8 +98,8 @@ class QuizSpine : ContentSpine {
             "allowed_attempts": Attribute(),
             "max_points": Attribute(),
             "show_welcome_page_int": Attribute().serializeAs("show_welcome_page"),
-            "questions": ToManyRelationship(QuizQuestionSpine),
-            "submission": ToOneRelationship(QuizSubmission).serializeAs("newest_user_submission"),
+            "questions": ToManyRelationship(QuizQuestionSpine.self),
+            "submission": ToOneRelationship(QuizSubmission.self).serializeAs("newest_user_submission"),
         ])
     }
 

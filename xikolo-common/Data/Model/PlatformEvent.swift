@@ -17,7 +17,7 @@ class PlatformEvent : BaseModel {
 
 class PlatformEventSpine : BaseModelSpine {
 
-    var created_at: NSDate?
+    var created_at: Date?
     var preview: String?
     var title: String?
     var type: String?
@@ -38,7 +38,7 @@ class PlatformEventSpine : BaseModelSpine {
             "type": Attribute(),
             "created_at": DateAttribute(),
             "preview": Attribute(),
-            "course": ToOneRelationship(CourseSpine),
+            "course": ToOneRelationship(CourseSpine.self),
         ])
     }
 }

@@ -16,7 +16,7 @@ class CourseSection : BaseModel {
         if items == nil {
             return []
         }
-        return items!.sort { a, b in
+        return items!.sorted { a, b in
             let a = a as! CourseItem, b = b as! CourseItem
             if a.position == nil || b.position == nil {
                 return false

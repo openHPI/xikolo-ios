@@ -39,13 +39,13 @@ class CourseItem : BaseModel {
             return visited_int?.boolValue
         }
         set(new_has_visited) {
-            visited_int = new_has_visited
+            visited_int = new_has_visited as NSNumber?
         }
     }
 
-    private func neighbor(direction: Int) -> CourseItem? {
+    fileprivate func neighbor(_ direction: Int) -> CourseItem? {
         let items = section?.itemsSorted ?? []
-        if var index = items.indexOf(self) {
+        if var index = items.index(of: self) {
             index += direction
             if index < 0 || index >= items.count {
                 return nil
@@ -84,7 +84,7 @@ class CourseItemSpine : BaseModelSpine {
     override class var fields: [Field] {
         return fieldsFromDictionary([
             "title": Attribute(),
-            "content": ToOneRelationship(ContentSpine),
+            "content": ToOneRelationship(ContentSpine.self),
             "visited_int": Attribute().serializeAs("visited"),
             "position": Attribute(),
         ])

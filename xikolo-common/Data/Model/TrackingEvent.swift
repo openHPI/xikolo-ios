@@ -14,7 +14,7 @@ class TrackingEvent : Resource {
     var user: TrackingEventUser?
     var verb: TrackingEventVerb?
     var resource: TrackingEventResource?
-    var timestamp: NSDate?
+    var timestamp: Date?
     var result: [String: AnyObject]?
     var context: [String: AnyObject]?
 
@@ -24,9 +24,9 @@ class TrackingEvent : Resource {
 
     override class var fields: [Field] {
         return fieldsFromDictionary([
-            "user": EmbeddedObjectAttribute(TrackingEventUser),
-            "verb": EmbeddedObjectAttribute(TrackingEventVerb),
-            "resource": EmbeddedObjectAttribute(TrackingEventResource),
+            "user": EmbeddedObjectAttribute(TrackingEventUser.self),
+            "verb": EmbeddedObjectAttribute(TrackingEventVerb.self),
+            "resource": EmbeddedObjectAttribute(TrackingEventResource.self),
             "timestamp": DateAttribute(),
             "result": Attribute(),
             "context": Attribute(),

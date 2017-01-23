@@ -17,7 +17,7 @@ extension CourseDate {
     @NSManaged var id: String?
     @NSManaged var title: String?
     @NSManaged var type: String?
-    @NSManaged var date: NSDate?
+    @NSManaged var date: Date?
     @NSManaged var course: Course?
 
 }

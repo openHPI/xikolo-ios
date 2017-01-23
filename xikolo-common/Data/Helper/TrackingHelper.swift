@@ -12,21 +12,21 @@ import UIKit
 class TrackingHelper {
 
     #if os(tvOS)
-    private static let platform = "tvOS"
+    fileprivate static let platform = "tvOS"
     #else
     private static let platform = "iOS"
     #endif
 
-    private static let osVersion: String = {
-        let version = NSProcessInfo().operatingSystemVersion
+    fileprivate static let osVersion: String = {
+        let version = ProcessInfo().operatingSystemVersion
         return version.toString()
     }()
 
-    private static let device: String = {
+    fileprivate static let device: String = {
         var sysinfo = utsname()
         uname(&sysinfo)
-        var name = withUnsafeMutablePointer(&sysinfo.machine) { ptr in
-            String.fromCString(UnsafePointer<CChar>(ptr))!
+        var name = withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
+            String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
         }
         if ["i386", "x86_64"].contains(name) {
             name = "Simulator"
@@ -34,10 +34,10 @@ class TrackingHelper {
         return name
     }()
 
-    private class func defaultContext() -> [String: String] {
-        let bundleInfo = NSBundle.mainBundle().infoDictionary!
+    fileprivate class func defaultContext() -> [String: String] {
+        let bundleInfo = Bundle.main.infoDictionary!
 
-        let screenSize = UIScreen.mainScreen().bounds.size
+        let screenSize = UIScreen.main.bounds.size
 
         return [
             "platform": platform,
@@ -52,9 +52,9 @@ class TrackingHelper {
         ]
     }
 
-    private class func createEvent(verb: String, resource: BaseModel, context: [String: String]) -> Future<TrackingEvent, XikoloError> {
+    fileprivate class func createEvent(_ verb: String, resource: BaseModel, context: [String: String]) -> Future<TrackingEvent, XikoloError> {
         guard let trackingResource = TrackingEventResource(resource: resource) else {
-            return Future.init(error: XikoloError.ModelIncomplete)
+            return Future.init(error: XikoloError.modelIncomplete)
         }
 
         let trackingVerb = TrackingEventVerb()
@@ -68,8 +68,8 @@ class TrackingHelper {
         let trackingEvent = TrackingEvent()
         trackingEvent.verb = trackingVerb
         trackingEvent.resource = trackingResource
-        trackingEvent.timestamp = NSDate()
-        trackingEvent.context = trackingContext
+        trackingEvent.timestamp = Date()
+        trackingEvent.context = trackingContext as [String : AnyObject]?
 
         return UserProfileHelper.getUser().map { user in
             let trackingUser = TrackingEventUser()
@@ -80,7 +80,7 @@ class TrackingHelper {
         }
     }
 
-    class func sendEvent(verb: String, resource: BaseModel, context: [String: String] = [:]) -> Future<Void, XikoloError> {
+    class func sendEvent(_ verb: String, resource: BaseModel, context: [String: String] = [:]) -> Future<Void, XikoloError> {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
             SpineHelper.save(event).asVoid()
         }

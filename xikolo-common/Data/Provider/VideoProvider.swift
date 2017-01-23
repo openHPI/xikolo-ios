@@ -11,7 +11,7 @@ import Foundation
 
 class VideoProvider {
 
-    class func getVideo(videoId: String) -> Future<VideoSpine, XikoloError> {
+    class func getVideo(_ videoId: String) -> Future<VideoSpine, XikoloError> {
         return SpineHelper.findOne(videoId, ofType: VideoSpine.self)
     }
 

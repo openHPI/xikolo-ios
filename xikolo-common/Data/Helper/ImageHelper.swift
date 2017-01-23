@@ -10,7 +10,7 @@ import UIKit
 
 class ImageHelper {
 
-    class func loadImageFromURL(url: NSURL, toImageView imageView: UIImageView) {
+    class func loadImageFromURL(_ url: URL, toImageView imageView: UIImageView) {
         ImageProvider.loadImage(url).onSuccess { image in
             imageView.image = image
         }

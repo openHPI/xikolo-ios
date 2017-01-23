@@ -12,20 +12,20 @@ import UIKit
 class CourseListViewController : AbstractCourseListViewController {
 
     override func viewDidLoad() {
-        self.courseDisplayMode = .BothSectioned
+        self.courseDisplayMode = .bothSectioned
 
         super.viewDidLoad()
 
         resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case "ShowCourseDetailSegue"?:
-                let vc = segue.destinationViewController as! CourseTabBarController
+                let vc = segue.destination as! CourseTabBarController
                 let cell = sender as! CourseCell
-                let indexPath = collectionView!.indexPathForCell(cell)
-                let course = resultsController.objectAtIndexPath(indexPath!) as! Course
+                let indexPath = collectionView!.indexPath(for: cell)
+                let course = resultsController.object(at: indexPath!) as! Course
                 vc.course = course
             default:
                 break
@@ -36,7 +36,7 @@ class CourseListViewController : AbstractCourseListViewController {
 
 extension CourseListViewController {
 
-    func configureCollectionHeaderView(view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
+    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
         let view = view as! CourseHeaderView
         view.configure(section)
     }

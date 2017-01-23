@@ -14,20 +14,20 @@ import Spine
 
 class SpineModelHelper {
 
-    class func syncObjects(objectsToUpdateRequest: NSFetchRequest, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
+    class func syncObjects(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
         return try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
     }
 
-    class func syncObjects(objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
+    class func syncObjects(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         var objectsToUpdate = objectsToUpdate
 
         var cdObjects = [BaseModel]()
         if spineObjects.count > 0 {
-            let model = spineObjects[0].dynamicType.cdType
-            let entityName = String(model)
-            let request = NSFetchRequest(entityName: entityName)
-            let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: CoreDataHelper.managedContext)!
+            let model = type(of: spineObjects[0]).cdType
+            let entityName = String(describing: model)
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let entity = NSEntityDescription.entity(forEntityName: entityName, in: CoreDataHelper.managedContext)!
 
             for spineObject in spineObjects {
                 if let id = spineObject.id {
@@ -40,7 +40,7 @@ class SpineModelHelper {
                     if (results.count > 0) {
                         cdObject = results[0]
                     } else {
-                        cdObject = model.init(entity: entity, insertIntoManagedObjectContext: CoreDataHelper.managedContext)
+                        cdObject = model.init(entity: entity, insertInto: CoreDataHelper.managedContext)
                         cdObject.setValue(id, forKey: "id")
                     }
                     if spineObject.isLoaded {
@@ -50,14 +50,14 @@ class SpineModelHelper {
                         cdObject.loadFromDict(dict)
                     }
                     cdObjects.append(cdObject)
-                    if let index = objectsToUpdate.indexOf(cdObject) {
-                        objectsToUpdate.removeAtIndex(index)
+                    if let index = objectsToUpdate.index(of: cdObject) {
+                        objectsToUpdate.remove(at: index)
                     }
                 }
             }
         }
         for object in objectsToUpdate {
-            CoreDataHelper.managedContext.deleteObject(object)
+            CoreDataHelper.managedContext.delete(object)
         }
         if save {
             CoreDataHelper.saveContext()
@@ -65,28 +65,28 @@ class SpineModelHelper {
         return cdObjects
     }
 
-    class func syncObjectsFuture(objectsToUpdateRequest: NSFetchRequest, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
-        return future(context: ImmediateExecutionContext) {
+    class func syncObjectsFuture(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
+        return Future { complete in
             do {
                 let cdItems = try syncObjects(objectsToUpdateRequest, spineObjects: spineObjects, inject:inject, save: save)
-                return Result.Success(cdItems)
+                complete(.success(cdItems))
             } catch let error as XikoloError {
-                return Result.Failure(error)
+                complete(.failure(error))
             } catch {
-                return Result.Failure(XikoloError.UnknownError(error))
+                complete(.failure(XikoloError.unknownError(error)))
             }
         }
     }
 
-    class func syncObjectsFuture(objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
-        return future(context: ImmediateExecutionContext) {
+    class func syncObjectsFuture(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
+        return Future { complete in
             do {
                 let cdItems = try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject:inject, save: save)
-                return Result.Success(cdItems)
+                complete(.success(cdItems))
             } catch let error as XikoloError {
-                return Result.Failure(error)
+                complete(.failure(error))
             } catch {
-                return Result.Failure(XikoloError.UnknownError(error))
+                complete(.failure(XikoloError.unknownError(error)))
             }
         }
     }

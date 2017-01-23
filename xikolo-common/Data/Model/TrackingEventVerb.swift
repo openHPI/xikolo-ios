@@ -24,7 +24,7 @@ class TrackingEventVerb : NSObject, EmbeddedObject {
     func toDict() -> [String : AnyObject] {
         var dict = [String: AnyObject]()
         if let type = type {
-            dict["type"] = type
+            dict["type"] = type as AnyObject?
         }
         return dict
     }

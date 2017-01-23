@@ -26,35 +26,35 @@ class MainViewController : UIViewController {
             UserProfileHelper.getUser().onSuccess { user in
                 self.displayNameView.text = user.firstName + " " + user.lastName
                 if user.visual != "" {
-                    if let url = NSURL(string: user.visual) {
+                    if let url = URL(string: user.visual) {
                         ImageHelper.loadImageFromURL(url, toImageView: self.profileImageView)
                     }
                 }
-                self.profileImageView.hidden = false
-                self.displayNameView.hidden = false
-                self.settingsButton.hidden = false
-                self.loginButton.hidden = true
+                self.profileImageView.isHidden = false
+                self.displayNameView.isHidden = false
+                self.settingsButton.isHidden = false
+                self.loginButton.isHidden = true
             }
         } else {
-            profileImageView.hidden = true
-            displayNameView.hidden = true
-            settingsButton.hidden = true
-            loginButton.hidden = false
+            profileImageView.isHidden = true
+            displayNameView.isHidden = true
+            settingsButton.isHidden = true
+            loginButton.isHidden = false
         }
     }
 
-    @IBAction func openSettings(sender: UIButton) {
+    @IBAction func openSettings(_ sender: UIButton) {
         Settings.open()
     }
 
-    @IBAction func openLogin(sender: UIButton) {
+    @IBAction func openLogin(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         vc.delegate = self
-        self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+        self.navigationController?.present(vc, animated: true, completion: nil)
     }
 
-    @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
+    @IBAction func unwindToMainViewController(_ segue: UIStoryboardSegue) {
     }
 
 }

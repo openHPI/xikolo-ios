@@ -11,30 +11,30 @@ import CoreData
 
 class CourseHelper {
 
-    static private let entity = NSEntityDescription.entityForName("Course", inManagedObjectContext: CoreDataHelper.managedContext)!
+    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "Course", in: CoreDataHelper.managedContext)!
 
-    static func getAllCoursesRequest() -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "Course")
+    static func getAllCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
         request.predicate = NSPredicate(format: "external_int != true")
         let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
         request.sortDescriptors = [startDateSort]
         return request
     }
 
-    static func getMyCoursesRequest() -> NSFetchRequest {
+    static func getMyCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = getAllCoursesRequest()
         request.predicate = NSPredicate(format: "enrollment != null")
         return request
     }
 
-    static func getMyAccessibleCoursesRequest() -> NSFetchRequest {
+    static func getMyAccessibleCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = getAllCoursesRequest()
         request.predicate = NSPredicate(format: "enrollment != null AND accessible_int == true")
         return request
     }
 
-    static func getSectionedRequest() -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "Course")
+    static func getSectionedRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
         request.predicate = NSPredicate(format: "external_int != true")
         let enrolledSort = NSSortDescriptor(key: "enrollment", ascending: false)
         let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
@@ -48,8 +48,8 @@ class CourseHelper {
         return courses.count
     }
 
-    static func getByID(id: String) throws -> Course? {
-        let request = NSFetchRequest(entityName: "Course")
+    static func getByID(_ id: String) throws -> Course? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
         request.predicate = NSPredicate(format: "id == %@", id)
         request.fetchLimit = 1
         let courses = try CoreDataHelper.executeFetchRequest(request) as! [Course]

@@ -15,15 +15,15 @@ class AbstractLoginViewController : UIViewController {
 
     var delegate : AbstractLoginViewControllerDelegate?
 
-    @IBAction func login(button: UIButton) {
+    @IBAction func login(_ button: UIButton) {
         let email = emailField.text!
         let password = passwordField.text!
 
         UserProfileHelper.login(email, password: password).onSuccess { token in
-            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
             self.didSuccessfullyLogin()
         }.onFailure { error in
-            if case XikoloError.AuthenticationError = error {
+            if case XikoloError.authenticationError = error {
                 self.emailField.shake()
                 self.passwordField.shake()
             } else {

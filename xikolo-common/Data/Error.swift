@@ -9,17 +9,17 @@
 import Foundation
 import Spine
 
-enum XikoloError : ErrorType {
+enum XikoloError : Error {
 
-    case API(SpineError)
-    case CoreData(NSError)
-    case InvalidData
-    case ModelIncomplete
-    case Network(NSError)
-    case AuthenticationError
-    case MarkdownError
+    case api(SpineError)
+    case coreData(NSError)
+    case invalidData
+    case modelIncomplete
+    case network(Error)
+    case authenticationError
+    case markdownError
 
-    case UnknownError(ErrorType)
-    case TotallyUnknownError
+    case unknownError(Error)
+    case totallyUnknownError
 
 }

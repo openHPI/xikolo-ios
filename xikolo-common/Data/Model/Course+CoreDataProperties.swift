@@ -17,13 +17,13 @@ extension Course {
     @NSManaged var abstract: String?
     @NSManaged var accessible_int: NSNumber?
     @NSManaged var course_description: String?
-    @NSManaged var end_at: NSDate?
+    @NSManaged var end_at: Date?
     @NSManaged var id: String
     @NSManaged var image: UIImage?
-    @NSManaged var image_url: NSURL?
+    @NSManaged var image_url: URL?
     @NSManaged var language: String?
     @NSManaged var slug: String?
-    @NSManaged var start_at: NSDate?
+    @NSManaged var start_at: Date?
     @NSManaged var teachers: String?
     @NSManaged var title: String?
     @NSManaged var status: String?

@@ -13,7 +13,7 @@ import Spine
 class PlatformEventProvider {
 
     class func getPlatformEvents() -> Future<[PlatformEventSpine], XikoloError> {
-        return SpineHelper.findAll(PlatformEventSpine)
+        return SpineHelper.findAll(PlatformEventSpine.self)
     }
     
 }

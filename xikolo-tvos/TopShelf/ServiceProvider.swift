@@ -16,7 +16,7 @@ class ServiceProvider: NSObject, TVTopShelfProvider {
     }
 
     var topShelfStyle: TVTopShelfContentStyle {
-        return .Sectioned
+        return .sectioned
     }
 
     var topShelfItems: [TVContentItem] {
@@ -42,7 +42,7 @@ class ServiceProvider: NSObject, TVTopShelfProvider {
                 if let imageUrl = course.image_url {
                     item.imageURL = imageUrl
                 }
-                let target = XikoloURL(type: .Course, targetId: course.id)
+                let target = XikoloURL(type: .course, targetId: course.id)
                 item.displayURL = target.toURL()
 
                 if course.enrollment != nil {

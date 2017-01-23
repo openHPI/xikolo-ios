@@ -20,8 +20,8 @@ class ItemRichTextController : AbstractItemRichtextViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.selectable = true
-        textView.panGestureRecognizer.allowedTouchTypes = [ UITouchType.Indirect.rawValue ]
+        textView.isSelectable = true
+        textView.panGestureRecognizer.allowedTouchTypes = [ NSNumber(value: UITouchType.indirect.rawValue) ]
 
         loadingHelper = ViewControllerLoadingHelper(self, rootView: containerView)
         loadingHelper.startLoading(courseItem.title ?? NSLocalizedString("Loading", comment: "Loading"))
@@ -31,10 +31,10 @@ class ItemRichTextController : AbstractItemRichtextViewController {
         loadingHelper.stopLoading()
 
         if courseItem.previous == nil {
-            previousButton.hidden = true
+            previousButton.isHidden = true
         }
         if courseItem.next == nil {
-            nextButton.hidden = true
+            nextButton.isHidden = true
         }
     }
 
@@ -42,16 +42,16 @@ class ItemRichTextController : AbstractItemRichtextViewController {
 
 extension ItemRichTextController {
 
-    @IBAction func showPreviousItem(sender: UIButton) {
+    @IBAction func showPreviousItem(_ sender: UIButton) {
         showItem(courseItem.previous!)
     }
 
-    @IBAction func showNextItem(sender: UIButton) {
+    @IBAction func showNextItem(_ sender: UIButton) {
         showItem(courseItem.next!)
     }
 
-    func showItem(item: CourseItem) {
-        navigationController!.popViewControllerAnimated(true)
+    func showItem(_ item: CourseItem) {
+        navigationController!.popViewController(animated: true)
         delegate?.showItem(item)
     }
 

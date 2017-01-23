@@ -23,7 +23,7 @@ class LTIExerciseSpine : ContentSpine {
     var instructions: String?
     var weight: NSNumber?
     var allowed_attempts: NSNumber?
-    var lock_submissions_at: NSDate?
+    var lock_submissions_at: Date?
 
     override class var cdType: BaseModel.Type {
         return LTIExercise.self

@@ -12,9 +12,9 @@ import Spine
 
 class CourseItemProvider {
 
-    class func getCourseItems(sectionId: String) -> Future<[CourseItemSpine], XikoloError> {
+    class func getCourseItems(_ sectionId: String) -> Future<[CourseItemSpine], XikoloError> {
         var query = Query(resourceType: CourseItemSpine.self)
-        query.filterOn("section", equalTo: sectionId)
+        query.addPredicateWithKey("section", value: sectionId, type: .equalTo)
 
         return SpineHelper.find(query)
     }

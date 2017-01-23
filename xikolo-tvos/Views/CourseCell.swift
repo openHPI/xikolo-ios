@@ -14,7 +14,7 @@ class CourseCell : UICollectionViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
 
-    func configure(course: Course) {
+    func configure(_ course: Course) {
         course.loadImage().onSuccess { image in
             self.backgroundImage.image = image
         }

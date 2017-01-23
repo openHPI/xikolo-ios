@@ -22,7 +22,7 @@ class AbstractItemRichtextViewController: UIViewController {
             if let markdown = richText.text {
                 let parser = MarkdownParser()
                 #if os(tvOS)
-                    parser.setColor(UIColor.whiteColor())
+                    parser.setColor(UIColor.white)
                     self.textView.attributedText = parser.parse(markdown)
                 #endif
                 #if os(iOS)

@@ -11,28 +11,28 @@ import UIKit
 
 class CoreDataHelper {
 
-    static private var coreDataDirectory: NSURL = {
-        let fileManager = NSFileManager.defaultManager()
+    static fileprivate var coreDataDirectory: URL = {
+        let fileManager = FileManager.default
 
         #if os(tvOS)
-            let groupURL = fileManager.containerURLForSecurityApplicationGroupIdentifier(Brand.AppGroupID)!
-            return groupURL.URLByAppendingPathComponent("Library/Caches")
+            let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Brand.AppGroupID)!
+            return groupURL.appendingPathComponent("Library/Caches")
         #else
             let urls = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)
             return urls[urls.count-1]
         #endif
     }()
 
-    static private var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = NSBundle.mainBundle().URLForResource("xikolo", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+    static fileprivate var managedObjectModel: NSManagedObjectModel = {
+        let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    static private var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+    static fileprivate var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        let url = coreDataDirectory.URLByAppendingPathComponent("xikolo.sqlite")
+        let url = coreDataDirectory.appendingPathComponent("xikolo.sqlite")
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
         } catch let error as NSError {
             NSLog("Error adding persistent CoreData store: \(error), \(error.userInfo)")
         }
@@ -40,7 +40,7 @@ class CoreDataHelper {
     }()
 
     static var managedContext: NSManagedObjectContext = {
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
         return managedObjectContext
     }()
@@ -55,16 +55,16 @@ class CoreDataHelper {
         }
     }
 
-    static func createResultsController(fetchRequest: NSFetchRequest, sectionNameKeyPath: String?) -> NSFetchedResultsController {
+    static func createResultsController(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>, sectionNameKeyPath: String?) -> NSFetchedResultsController<NSFetchRequestResult> {
         // TODO: Add cache name
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 
-    static func executeFetchRequest(request: NSFetchRequest) throws -> [BaseModel] {
+    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [BaseModel] {
         do {
-            return try managedContext.executeFetchRequest(request) as! [BaseModel]
+            return try managedContext.fetch(request) as! [BaseModel]
         } catch let error as NSError {
-            throw XikoloError.CoreData(error)
+            throw XikoloError.coreData(error)
         }
     }
 
@@ -74,12 +74,12 @@ class CoreDataHelper {
         }
     }
 
-    static func clearCoreDataEntity(entityName: String) {
-        let fetchRequest = NSFetchRequest(entityName: entityName)
+    static func clearCoreDataEntity(_ entityName: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
-            try persistentStoreCoordinator.executeRequest(deleteRequest, withContext: managedContext)
+            try persistentStoreCoordinator.execute(deleteRequest, with: managedContext)
         } catch {
             // TODO: handle the error
         }

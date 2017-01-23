@@ -22,14 +22,14 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
     var question: QuizQuestion?
 
     var correctness: Float? {
-        guard let question = question, answers = answers else {
+        guard let question = question, let answers = answers else {
             return nil
         }
         if !question.hasCorrectnessData {
             return nil
         }
         switch (question.questionType) {
-            case .SingleAnswer, .MultipleAnswer:
+            case .singleAnswer, .multipleAnswer:
                 guard let questionOptions = question.options else {
                     return nil
                 }
@@ -48,7 +48,7 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
                     baseScore = 0
                 }
                 return Float(baseScore) / Float(questionOptions.filter({ $0.correct ?? false }).count)
-            case .FreeText, .Unsupported:
+            case .freeText, .unsupported:
                 return nil
         }
     }
@@ -64,16 +64,16 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
 
         let questionType = QuizQuestionType.fromString(type)
         switch (questionType) {
-            case .SingleAnswer:
+            case .singleAnswer:
                 answers = []
                 if let id = dict["data"] as? String {
                     answers?.append(id)
                 }
-            case .MultipleAnswer:
+            case .multipleAnswer:
                 answers = dict["data"] as? [String]
-            case .FreeText:
+            case .freeText:
                 text = dict["data"] as? String
-            case .Unsupported:
+            case .unsupported:
                 unsupportedData = dict["data"]
         }
     }
@@ -87,21 +87,21 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
 
         // At this point we can assume the question has been set (see QuizHelper).
         switch (question!.questionType) {
-            case .SingleAnswer:
-                data = answers?.first ?? NSNull()
-            case .MultipleAnswer:
-                data = answers ?? NSNull()
-            case .FreeText:
-                data = text ?? NSNull()
-            case .Unsupported:
+            case .singleAnswer:
+                data = answers?.first as AnyObject?? ?? NSNull()
+            case .multipleAnswer:
+                data = answers as AnyObject?? ?? NSNull()
+            case .freeText:
+                data = text as AnyObject?? ?? NSNull()
+            case .unsupported:
                 data = unsupportedData ?? NSNull()
         }
 
         let ret: [String: AnyObject] = [
-            "type": question!.type!,
+            "type": question!.type! as AnyObject,
             "data": data,
         ]
-        return ret
+        return ret as AnyObject
     }
 
 }

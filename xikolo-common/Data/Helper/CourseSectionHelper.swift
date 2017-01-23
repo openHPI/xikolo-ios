@@ -12,17 +12,17 @@ import Result
 
 class CourseSectionHelper {
 
-    static private let entity = NSEntityDescription.entityForName("CourseSection", inManagedObjectContext: CoreDataHelper.managedContext)!
+    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "CourseSection", in: CoreDataHelper.managedContext)!
 
-    static func getSectionRequest(course: Course) -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "CourseSection")
+    static func getSectionRequest(_ course: Course) -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseSection")
         request.predicate = NSPredicate(format: "course = %@", course)
         let titleSort = NSSortDescriptor(key: "position", ascending: true)
         request.sortDescriptors = [titleSort]
         return request
     }
 
-    static func syncCourseSections(course: Course) -> Future<[CourseSection], XikoloError> {
+    static func syncCourseSections(_ course: Course) -> Future<[CourseSection], XikoloError> {
         return CourseSectionProvider.getCourseSections(course.id).flatMap { spineSections -> Future<[BaseModel], XikoloError> in
             let request = getSectionRequest(course)
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineSections, inject: ["course": course], save: true)

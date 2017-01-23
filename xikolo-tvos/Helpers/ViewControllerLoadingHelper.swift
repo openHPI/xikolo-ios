@@ -18,7 +18,7 @@ class ViewControllerLoadingHelper {
 
     var mainView = UIView()
     var activityNameView = UILabel()
-    var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     var isLoading: Bool {
         return originalViews != nil
@@ -33,11 +33,11 @@ class ViewControllerLoadingHelper {
         self.init(viewController, rootView: viewController.view)
     }
 
-    func startLoading(activityName: String) {
-        originalViews = rootView.subviews.filter { !$0.hidden && $0.tag != self.dynamicType.DoNotHideViewTag }
+    func startLoading(_ activityName: String) {
+        originalViews = rootView.subviews.filter { !$0.isHidden && $0.tag != type(of: self).DoNotHideViewTag }
 
         for view in originalViews {
-            view.hidden = true
+            view.isHidden = true
         }
 
         rootView.addSubview(mainView)
@@ -48,26 +48,26 @@ class ViewControllerLoadingHelper {
         mainView.addSubview(activityNameView)
         mainView.addSubview(activityIndicatorView)
 
-        activityNameView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        activityNameView.textColor = UIColor.darkGrayColor()
+        activityNameView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        activityNameView.textColor = UIColor.darkGray
         activityNameView.text = activityName
 
-        activityIndicatorView.color = UIColor.darkGrayColor()
+        activityIndicatorView.color = UIColor.darkGray
         activityIndicatorView.startAnimating()
 
         // Make mainView the same size as the ViewController.
-        mainView.leftAnchor.constraintEqualToAnchor(rootView.leftAnchor).active = true
-        mainView.topAnchor.constraintEqualToAnchor(rootView.topAnchor).active = true
-        mainView.widthAnchor.constraintEqualToAnchor(rootView.widthAnchor).active = true
-        mainView.heightAnchor.constraintEqualToAnchor(rootView.heightAnchor).active = true
+        mainView.leftAnchor.constraint(equalTo: rootView.leftAnchor).isActive = true
+        mainView.topAnchor.constraint(equalTo: rootView.topAnchor).isActive = true
+        mainView.widthAnchor.constraint(equalTo: rootView.widthAnchor).isActive = true
+        mainView.heightAnchor.constraint(equalTo: rootView.heightAnchor).isActive = true
 
         // Fix Activity Indicator to the center of mainView.
-        activityIndicatorView.centerXAnchor.constraintEqualToAnchor(mainView.centerXAnchor).active = true
-        activityIndicatorView.centerYAnchor.constraintEqualToAnchor(mainView.centerYAnchor).active = true
+        activityIndicatorView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+        activityIndicatorView.centerYAnchor.constraint(equalTo: mainView.centerYAnchor).isActive = true
 
         // Fix Activity Name to the top of the indicator
-        activityNameView.centerXAnchor.constraintEqualToAnchor(mainView.centerXAnchor).active = true
-        activityNameView.bottomAnchor.constraintEqualToAnchor(activityIndicatorView.topAnchor, constant: -20).active = true
+        activityNameView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+        activityNameView.bottomAnchor.constraint(equalTo: activityIndicatorView.topAnchor, constant: -20).isActive = true
     }
 
     func stopLoading() {
@@ -75,10 +75,10 @@ class ViewControllerLoadingHelper {
 
         for view in originalViews {
             view.alpha = 0
-            view.hidden = false
+            view.isHidden = false
         }
 
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             for view in self.originalViews {
                 view.alpha = 1
             }

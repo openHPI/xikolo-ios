@@ -32,7 +32,7 @@ class CompoundValue : NSObject {
 
     init(_ dict: [String: AnyObject])
 
-    optional func toDict() -> [String: AnyObject]
+    @objc optional func toDict() -> [String: AnyObject]
 
 }
 
@@ -47,20 +47,23 @@ class EmbeddedObjectAttribute : Attribute {
 }
 
 struct EmbeddedObjectFormatter : ValueFormatter {
+    typealias FormattedType = [String: AnyObject]
+    typealias UnformattedType = AnyObject
+    typealias AttributeType = EmbeddedObjectAttribute
 
-    func unformat(value: [String: AnyObject], attribute: EmbeddedObjectAttribute) -> AnyObject {
-        let type = attribute.linkedType
+    func unformatValue(_ value: FormattedType, forAttribute: AttributeType) -> UnformattedType {
+        let type = forAttribute.linkedType
         return type.init(value)
     }
 
-    func format(value: AnyObject, attribute: EmbeddedObjectAttribute) -> AnyObject {
+    func formatValue(_ value: UnformattedType, forAttribute: AttributeType) -> FormattedType {
         guard let value = value as? EmbeddedObject else {
-            return NSNull()
+            return [:]
         }
         if let dict = value.toDict?() {
             return dict
         }
-        return NSNull()
+        return [:]
     }
 
 }
@@ -76,15 +79,18 @@ class EmbeddedObjectsAttribute : Attribute {
 }
 
 struct EmbeddedObjectsFormatter : ValueFormatter {
+    typealias FormattedType = [[String: AnyObject]]
+    typealias UnformattedType = [AnyObject]
+    typealias AttributeType = EmbeddedObjectsAttribute
 
-    func unformat(value: [[String: AnyObject]], attribute: EmbeddedObjectsAttribute) -> AnyObject {
-        let type = attribute.linkedType
+    func unformatValue(_ value: FormattedType, forAttribute: AttributeType) -> UnformattedType {
+        let type = forAttribute.linkedType
         return value.map { dict in type.init(dict) } as [AnyObject]
     }
 
-    func format(value: [AnyObject], attribute: EmbeddedObjectsAttribute) -> AnyObject {
+    func formatValue(_ value: UnformattedType, forAttribute: AttributeType) -> FormattedType {
         // Implement in case we need it.
-        return NSNull()
+        return []
     }
 
 }
@@ -95,7 +101,7 @@ struct EmbeddedObjectsFormatter : ValueFormatter {
 
     init?(key: String, data: AnyObject)
 
-    optional func data() -> AnyObject
+    @objc optional func data() -> AnyObject
 
 }
 
@@ -110,9 +116,12 @@ class EmbeddedDictAttribute : Attribute {
 }
 
 struct EmbeddedDictFormatter : ValueFormatter {
+    typealias FormattedType = [String: AnyObject]
+    typealias UnformattedType = [String: EmbeddedDictObject]
+    typealias AttributeType = EmbeddedDictAttribute
 
-    func unformat(value: [String: AnyObject], attribute: EmbeddedDictAttribute) -> AnyObject {
-        let type = attribute.linkedType
+    func unformatValue(_ value: FormattedType, forAttribute: AttributeType) -> UnformattedType {
+        let type = forAttribute.linkedType
         var out = [String: EmbeddedDictObject]()
         value.forEach { (key, value) in
             if let obj = type.init(key: key, data: value) {
@@ -122,10 +131,10 @@ struct EmbeddedDictFormatter : ValueFormatter {
         return out
     }
 
-    func format(value: [String: EmbeddedDictObject], attribute: EmbeddedDictAttribute) -> AnyObject {
+    func formatValue(_ value: UnformattedType, forAttribute: AttributeType) -> FormattedType {
         var out = [String: AnyObject]()
         for (_, obj) in value {
-            if let key = obj.key, data = obj.data?() {
+            if let key = obj.key, let data = obj.data?() {
                 out[key] = data
             }
         }

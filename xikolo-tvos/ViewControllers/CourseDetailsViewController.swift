@@ -42,7 +42,7 @@ class CourseDetailsViewController : UIViewController {
             self.configureViews()
         }, deletedHandler: {
             // If the course was deleted, go back to course list.
-            self.performSegueWithIdentifier("CourseDetailsUnwindSegue", sender: nil)
+            self.performSegue(withIdentifier: "CourseDetailsUnwindSegue", sender: nil)
         })
         configureViews()
     }
@@ -59,13 +59,13 @@ class CourseDetailsViewController : UIViewController {
         }
         abstractView.text = course.abstract
 
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .ShortStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
 
-        let startDateString: String? = course.start_at != nil ? dateFormatter.stringFromDate(course.start_at!) : nil
-        let endDateString: String? = course.end_at != nil ? dateFormatter.stringFromDate(course.end_at!) : nil
-        if let startDateString = startDateString, endDateString = endDateString {
+        let startDateString: String? = course.start_at != nil ? dateFormatter.string(from: course.start_at! as Date) : nil
+        let endDateString: String? = course.end_at != nil ? dateFormatter.string(from: course.end_at! as Date) : nil
+        if let startDateString = startDateString, let endDateString = endDateString {
             let format = NSLocalizedString("%@ to %@", comment: "<startDate> to <endDate>")
             let dateString = String.localizedStringWithFormat(format, startDateString, endDateString)
             dateView.text = dateString
@@ -77,19 +77,19 @@ class CourseDetailsViewController : UIViewController {
         teacherView.text = course.teachers
 
         if course.enrollment != nil {
-            if enrollButton == UIScreen.mainScreen().focusedView {
+            if enrollButton == UIScreen.main.focusedView {
                 self.customPreferredFocusedView = unenrollButton
                 setNeedsFocusUpdate()
             }
-            enrollButton.hidden = true
-            unenrollButton.hidden = false
+            enrollButton.isHidden = true
+            unenrollButton.isHidden = false
         } else {
-            if unenrollButton == UIScreen.mainScreen().focusedView {
+            if unenrollButton == UIScreen.main.focusedView {
                 self.customPreferredFocusedView = enrollButton
                 setNeedsFocusUpdate()
             }
-            enrollButton.hidden = false
-            unenrollButton.hidden = true
+            enrollButton.isHidden = false
+            unenrollButton.isHidden = true
         }
     }
 
@@ -97,13 +97,13 @@ class CourseDetailsViewController : UIViewController {
 
 extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
 
-    @IBAction func enroll(sender: UIButton) {
+    @IBAction func enroll(_ sender: UIButton) {
         // TODO: Move this somewhere more common. We probably need to do this all the time.
         if (!UserProfileHelper.isLoggedIn()) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             vc.delegate = self
-            self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+            self.navigationController?.present(vc, animated: true, completion: nil)
         } else {
             createEnrollment()
         }
@@ -120,13 +120,13 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
         }
     }
 
-    @IBAction func unenroll(sender: UIButton) {
+    @IBAction func unenroll(_ sender: UIButton) {
         // No need to check for login, cannot be enrolled without.
 
         UserProfileHelper.deleteEnrollement(course.id).onSuccess {
             // TODO: Update once new enrollment endpoint exists.
             if let enrollment = self.course.enrollment {
-                CoreDataHelper.managedContext.deleteObject(enrollment)
+                CoreDataHelper.managedContext.delete(enrollment)
                 CoreDataHelper.saveContext()
             }
             CourseHelper.refreshCourses()

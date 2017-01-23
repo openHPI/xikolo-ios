@@ -12,16 +12,16 @@ import UIKit
 class AbstractCourseListViewController : UICollectionViewController {
 
     enum CourseDisplayMode {
-        case EnrolledOnly
-        case All
-        case BothSectioned
+        case enrolledOnly
+        case all
+        case bothSectioned
     }
 
-    var resultsController: NSFetchedResultsController!
+    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
     var contentChangeOperations: [[AnyObject?]] = []
 
-    var courseDisplayMode: CourseDisplayMode = .All
+    var courseDisplayMode: CourseDisplayMode = .all
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,15 +32,15 @@ class AbstractCourseListViewController : UICollectionViewController {
     }
 
     func updateView() {
-        var request: NSFetchRequest
+        var request: NSFetchRequest<NSFetchRequestResult>
         switch courseDisplayMode {
-            case .EnrolledOnly:
+            case .enrolledOnly:
                 request = CourseHelper.getMyCoursesRequest()
                 resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-            case .All:
+            case .all:
                 request = CourseHelper.getAllCoursesRequest()
                 resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-            case .BothSectioned:
+            case .bothSectioned:
                 request = CourseHelper.getSectionedRequest()
                 resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")
         }
@@ -62,10 +62,10 @@ class AbstractCourseListViewController : UICollectionViewController {
 
 extension AbstractCourseListViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
         let cell = cell as! CourseCell
 
-        let course = resultsController.objectAtIndexPath(indexPath) as! Course
+        let course = resultsController.object(at: indexPath) as! Course
         cell.configure(course)
     }
 

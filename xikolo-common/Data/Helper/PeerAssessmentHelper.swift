@@ -12,7 +12,7 @@ import Result
 
 class PeerAssessmentHelper {
 
-    static func refreshPeerAssessment(peerAssessment: PeerAssessment) -> Future<PeerAssessment, XikoloError> {
+    static func refreshPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<PeerAssessment, XikoloError> {
         return PeerAssessmentProvider.getPeerAssessment(peerAssessment.id).flatMap { spinePeerAssessment -> Future<[BaseModel], XikoloError> in
             return SpineModelHelper.syncObjectsFuture([peerAssessment], spineObjects: [spinePeerAssessment], inject: nil, save: true)
         }.map { cdPeerAssessments in

@@ -12,7 +12,7 @@ class CourseSectionCell : UITableViewCell {
 
     @IBOutlet weak var titleView: UILabel!
 
-    func configure(section: CourseSection) {
+    func configure(_ section: CourseSection) {
         titleView.text = section.title
     }
 

@@ -10,15 +10,15 @@ import UIKit
 
 extension UIViewController {
 
-    func addChildViewController(childViewController: UIViewController, into containerView: UIView) {
+    func addChildViewController(_ childViewController: UIViewController, into containerView: UIView) {
         containerView.addSubview(childViewController.view)
         childViewController.view.frame = containerView.bounds
         addChildViewController(childViewController)
-        childViewController.didMoveToParentViewController(self)
+        childViewController.didMove(toParentViewController: self)
     }
 
     func removeChildViewControllerFromParent() {
-        willMoveToParentViewController(nil)
+        willMove(toParentViewController: nil)
         view.removeFromSuperview()
         removeFromParentViewController()
     }

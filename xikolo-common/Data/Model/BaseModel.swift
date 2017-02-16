@@ -56,6 +56,8 @@ extension BaseModel {
                     let relatedObjects = currentRelatedObject != nil ? [currentRelatedObject!] : [BaseModel]()
                     let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: [value], inject: nil, save: false)
                     self.setValue(cdObjects[0], forKey: field.name)
+                } else if let value = value as? Resource {
+                    self.setValue(value, forKey: field.name)
                 }
             } else if field is ToManyRelationship {
                 if let value = value as? ResourceCollection {

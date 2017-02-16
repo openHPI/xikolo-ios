@@ -24,6 +24,7 @@ class SpineHelper {
 
         spine.registerValueFormatter(EmbeddedObjectFormatter())
         spine.registerValueFormatter(EmbeddedObjectsFormatter())
+        spine.registerValueFormatter(EmbeddedDictFormatter())
         spine.registerValueFormatter(VideoStreamFormatter())
         spine.registerValueFormatter(DualStreamFormatter())
 
@@ -39,6 +40,7 @@ class SpineHelper {
         spine.registerResource(PlatformEventSpine)
         spine.registerResource(QuizSpine)
         spine.registerResource(QuizQuestionSpine)
+        spine.registerResource(QuizSubmission)
         spine.registerResource(RichTextSpine)
         spine.registerResource(VideoSpine)
         spine.registerResource(NewsArticleSpine)

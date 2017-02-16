@@ -98,11 +98,11 @@
         <relationship name="questions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QuizQuestion" inverseName="quiz" inverseEntity="QuizQuestion" syncable="YES"/>
     </entity>
     <entity name="QuizQuestion" representedClassName=".QuizQuestion" syncable="YES">
-        <attribute name="answers" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="explanation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="max_points" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="shuffle_answers_int" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="options" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="shuffle_options_int" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="questions" inverseEntity="Quiz" syncable="YES"/>
@@ -127,6 +127,7 @@
         <element name="Channel" positionX="9" positionY="443" width="128" height="118"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
         <element name="Course" positionX="9" positionY="9" width="128" height="343"/>
+        <element name="CourseDate" positionX="198" positionY="-9" width="128" height="120"/>
         <element name="CourseEnrollment" positionX="18" positionY="-124" width="128" height="73"/>
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="133"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
@@ -135,9 +136,8 @@
         <element name="PeerAssessment" positionX="540" positionY="299" width="128" height="58"/>
         <element name="PlatformEvent" positionX="7" positionY="308" width="128" height="133"/>
         <element name="Quiz" positionX="828" positionY="198" width="128" height="163"/>
-        <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="163"/>
+        <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="165"/>
         <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
         <element name="Video" positionX="655" positionY="-99" width="128" height="210"/>
-        <element name="CourseDate" positionX="198" positionY="-9" width="128" height="120"/>
     </elements>
 </model>

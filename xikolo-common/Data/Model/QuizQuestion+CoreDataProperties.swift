@@ -17,10 +17,10 @@ extension QuizQuestion {
     @NSManaged var explanation: String?
     @NSManaged var id: String
     @NSManaged var max_points: NSDecimalNumber?
-    @NSManaged var shuffle_answers_int: NSNumber?
+    @NSManaged var shuffle_options_int: NSNumber?
     @NSManaged var text: String?
     @NSManaged var type: String?
-    @NSManaged var answers: [QuizAnswer]?
+    @NSManaged var options: [QuizOption]?
     @NSManaged var quiz: Quiz?
 
 }

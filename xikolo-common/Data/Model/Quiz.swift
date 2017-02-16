@@ -12,6 +12,8 @@ import Spine
 
 class Quiz : Content {
 
+    var submission: QuizSubmission?
+
     var time_limit_formatted: [String] {
         guard let time_limit = time_limit?.integerValue else {
             return []
@@ -64,6 +66,20 @@ class QuizSpine : ContentSpine {
     var show_welcome_page_int: NSNumber?
 
     var questions: ResourceCollection?
+    var submission: QuizSubmission?
+
+    required init() {
+        super.init()
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    init(id: String) {
+        super.init()
+        self.id = id
+    }
 
     override class var cdType: BaseModel.Type {
         return Quiz.self
@@ -83,6 +99,7 @@ class QuizSpine : ContentSpine {
             "max_points": Attribute(),
             "show_welcome_page_int": Attribute().serializeAs("show_welcome_page"),
             "questions": ToManyRelationship(QuizQuestionSpine),
+            "submission": ToOneRelationship(QuizSubmission).serializeAs("newest_user_submission"),
         ])
     }
 

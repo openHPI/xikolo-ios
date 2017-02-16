@@ -15,6 +15,7 @@ class QuizProvider {
     class func getQuiz(quizId: String) -> Future<QuizSpine, XikoloError> {
         var query = Query(resourceType: QuizSpine.self, resourceIDs: [quizId])
         query.include("questions")
+        query.include("submission")
 
         return SpineHelper.findOne(query)
     }

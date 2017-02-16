@@ -88,3 +88,48 @@ struct EmbeddedObjectsFormatter : ValueFormatter {
     }
 
 }
+
+@objc protocol EmbeddedDictObject : NSObjectProtocol {
+
+    var key: String? { get }
+
+    init?(key: String, data: AnyObject)
+
+    optional func data() -> AnyObject
+
+}
+
+class EmbeddedDictAttribute : Attribute {
+
+    let linkedType: EmbeddedDictObject.Type
+
+    init(_ type: EmbeddedDictObject.Type) {
+        linkedType = type
+    }
+
+}
+
+struct EmbeddedDictFormatter : ValueFormatter {
+
+    func unformat(value: [String: AnyObject], attribute: EmbeddedDictAttribute) -> AnyObject {
+        let type = attribute.linkedType
+        var out = [String: EmbeddedDictObject]()
+        value.forEach { (key, value) in
+            if let obj = type.init(key: key, data: value) {
+                out[key] = obj
+            }
+        }
+        return out
+    }
+
+    func format(value: [String: EmbeddedDictObject], attribute: EmbeddedDictAttribute) -> AnyObject {
+        var out = [String: AnyObject]()
+        for (_, obj) in value {
+            if let key = obj.key, data = obj.data?() {
+                out[key] = data
+            }
+        }
+        return out
+    }
+
+}

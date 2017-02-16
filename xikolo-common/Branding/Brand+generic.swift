@@ -14,4 +14,8 @@ extension Brand {
     static let FlagSelfpacedColor = UIColor.init(red: 245/255, green: 167/255, blue: 4/255, alpha: 1.0)
     static let FlagRunningColor = UIColor.init(red: 140/255, green: 179/255, blue: 13/255, alpha: 1.0)
 
+    static let CorrectAnswerColor = UIColor(red: 140 / 255, green: 179 / 255, blue: 13 / 255, alpha: 1)
+    static let IncorrectAnswerColor = UIColor(red: 214 / 255, green: 0 / 255, blue: 26 / 255, alpha: 1)
+    static let WrongAnswerColor = UIColor(red: 187 / 255, green: 188 / 255, blue: 190 / 255, alpha: 1)
+
 }

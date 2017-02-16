@@ -10,7 +10,11 @@ import UIKit
 
 class QuestionIndicatorView : UIView {
 
-    var question: QuizQuestion!
+    var question: QuizQuestion! {
+        didSet {
+            question.addObserver(self, forKeyPath: "submission", options: NSKeyValueObservingOptions(), context: nil)
+        }
+    }
     var state: QuestionIndicatorState = .Unanswered
     var correctness: Float?
     var selected = false {
@@ -25,8 +29,6 @@ class QuestionIndicatorView : UIView {
     let ringColor = UIColor.darkGrayColor()
     let focusedRingColor = UIColor.whiteColor()
     let answeredColor = UIColor.lightGrayColor()
-    let correctColor = UIColor.greenColor()
-    let incorrectColor = UIColor.redColor()
 
     private var boundsCenter: CGPoint!
     private var radius: CGFloat!
@@ -40,6 +42,10 @@ class QuestionIndicatorView : UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initialize()
+    }
+
+    deinit {
+        question.removeObserver(self, forKeyPath: "submission")
     }
 
     func initialize() {
@@ -56,7 +62,17 @@ class QuestionIndicatorView : UIView {
         setNeedsDisplay()
     }
 
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        update()
+    }
+
     func update() {
+        if let submission = question.submission {
+            state = .Answered
+            correctness = submission.correctness
+        } else {
+            state = .Unanswered
+        }
         setNeedsDisplay()
     }
 
@@ -74,9 +90,9 @@ class QuestionIndicatorView : UIView {
         if state == .Answered {
             if let correctness = correctness {
                 if correctness == 0 {
-                    drawCircle(incorrectColor)
+                    drawCircle(Brand.IncorrectAnswerColor)
                 } else {
-                    drawCircle(correctColor)
+                    drawCircle(Brand.CorrectAnswerColor)
                     if correctness < 1 {
                         drawCircleSegment(Double(correctness))
                     }
@@ -109,7 +125,7 @@ class QuestionIndicatorView : UIView {
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.CGPath
-        shapeLayer.fillColor = UIColor.redColor().CGColor
+        shapeLayer.fillColor = Brand.IncorrectAnswerColor.CGColor
         layer.addSublayer(shapeLayer)
     }
 

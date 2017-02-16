@@ -6,6 +6,7 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import BrightFutures
 import UIKit
 
 class ItemQuizViewController : UIViewController {
@@ -19,6 +20,7 @@ class ItemQuizViewController : UIViewController {
 
     var quiz: Quiz!
     var questions: [QuizQuestion]!
+    var submissionMode: QuizSubmissionDisplayMode!
 
     var currentQuestion = 0 {
         didSet {
@@ -28,6 +30,7 @@ class ItemQuizViewController : UIViewController {
         }
     }
     var questionViewController: AbstractQuestionViewController?
+    var currentSaveOperation: Future<QuizSubmission, XikoloError>?
 
     weak var customPreferredFocusedView: UIView!
     override weak var preferredFocusedView: UIView? {
@@ -35,6 +38,7 @@ class ItemQuizViewController : UIViewController {
     }
 
     var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
+    var loadingHelper: ViewControllerLoadingHelper!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +56,30 @@ class ItemQuizViewController : UIViewController {
             // TODO: Correctly sort questions
             questions = Array(quizQuestions)
 
+            loadingHelper = ViewControllerLoadingHelper(self, rootView: view)
+            if submissionMode! == .TakeQuiz || submissionMode! == .RetakeQuiz {
+                loadingHelper.startLoading(NSLocalizedString("Starting Quiz", comment: "Starting Quiz"))
+                if submissionMode! == .RetakeQuiz {
+                    // Remove all QuestionSubmissions if retaking the quiz.
+                    for question in questions {
+                        question.submission = nil
+                    }
+                }
+
+                let submission = QuizSubmission()
+                submission.submitted = false
+                submission.quiz = QuizSpine(id: quiz.id)
+                quiz.submission = submission
+
+                QuizHelper.saveSubmission(submission).onSuccess { _ in
+                    self.loadingHelper.stopLoading()
+                }
+                // TODO: Error handling
+            }
+
             indicatorView.questions = questions
             updateCurrentQuestion()
+            indicatorView.updateAll()
 
             view.addLayoutGuide(questionFocusGuide)
             questionFocusGuide.trailingAnchor.constraintEqualToAnchor(nextButton.leadingAnchor).active = true
@@ -80,36 +106,29 @@ class ItemQuizViewController : UIViewController {
     }
 
     func updateCurrentQuestion() {
-        updateButtons()
         updateQuestionView()
+        updateButtons()
+        setNeedsFocusUpdate()
         indicatorView.activeQuestion = questions[currentQuestion]
     }
 
     func updateQuestionView() {
         // TODO: Animation?
         if let vc = questionViewController {
-            vc.willMoveToParentViewController(nil)
-            vc.view.removeFromSuperview()
-            vc.removeFromParentViewController()
+            if !vc.question.hasCorrectnessData && !vc.readOnly {
+                saveProgress(vc)
+            }
+
+            vc.removeChildViewControllerFromParent()
             questionViewController = nil
         }
 
         let question = questions[currentQuestion]
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: AbstractQuestionViewController!
-        switch question.questionType {
-            case .SingleAnswer, .MultipleAnswer:
-                vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
-            default:
-                vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
-        }
-        vc.question = question
+        let vc = viewControllerForQuestion(question)
+        vc.readOnly = submissionMode! == .ShowSubmission || (question.hasCorrectnessData && question.submission != nil)
 
-        questionView.addSubview(vc.view)
-        vc.view.frame = questionView.bounds
-        addChildViewController(vc)
-        vc.didMoveToParentViewController(self)
+        addChildViewController(vc, into: questionView)
 
         if vc is UnsupportedQuestionViewController {
             questionFocusGuide.preferredFocusedView = previousButton
@@ -122,12 +141,64 @@ class ItemQuizViewController : UIViewController {
         questionViewController = vc
     }
 
+    private func saveProgress(vc: AbstractQuestionViewController) {
+        vc.saveSubmission()
+        if vc.question.submission != nil {
+            let submission = quiz.submission!, questions = self.questions
+            let saveOperation = { () -> Future<QuizSubmission, XikoloError> in
+                let errorMessage = NSLocalizedString("Your progress could not be saved online. Please try again later.", comment: "Your progress could not be saved online. Please try again later.")
+                return QuizHelper.saveSubmission(submission, questions: questions).onFailure(callback: self.handleError(errorMessage))
+            }
+            if currentSaveOperation == nil {
+                currentSaveOperation = saveOperation()
+            } else {
+                // Make sure the save operations happen serially.
+                currentSaveOperation = currentSaveOperation.flatMap { _ in saveOperation() }
+            }
+        }
+    }
+
+    private func viewControllerForQuestion(question: QuizQuestion) -> AbstractQuestionViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc: AbstractQuestionViewController!
+        switch question.questionType {
+            case .SingleAnswer, .MultipleAnswer:
+                vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
+            default:
+                vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
+        }
+        vc.question = question
+        return vc
+    }
+
     @IBAction func previousQuestion(sender: UIButton) {
         currentQuestion -= 1
     }
 
     @IBAction func nextQuestion(sender: UIButton) {
-        currentQuestion += 1
+        let vc = questionViewController!
+        if vc.question.hasCorrectnessData && !vc.readOnly {
+            saveProgress(vc)
+            if vc.question.submission != nil {
+                vc.readOnly = true
+            }
+            updateButtons()
+        } else {
+            if currentQuestion == questions.count - 1 {
+                // TODO: Check if all questions have been answered, warn the user otherwise.
+
+                quiz.submission!.submitted = true
+                let errorMessage = NSLocalizedString("The quiz could not be submitted. Please try again later.", comment: "The quiz could not be submitted. Please try again later.")
+                QuizHelper.saveSubmission(quiz.submission!, questions: questions)
+                    .onFailure(callback: handleError(errorMessage))
+                    .onFailure { _ in
+                        self.quiz.submission!.submitted = false
+                    }
+                // TODO: Success handling.
+            } else {
+                currentQuestion += 1
+            }
+        }
     }
 
     func updateButtons() {
@@ -136,12 +207,13 @@ class ItemQuizViewController : UIViewController {
         } else {
             previousButton.hidden = false
         }
-        if currentQuestion == questions.count - 1 {
-            nextButton.hidden = true
+        if questions[currentQuestion].hasCorrectnessData && !questionViewController!.readOnly {
+            nextButton.setTitle(NSLocalizedString("Submit", comment: "Submit"), forState: .Normal)
+        } else if currentQuestion == questions.count - 1 {
+            nextButton.setTitle(NSLocalizedString("Finish", comment: "Finish"), forState: .Normal)
         } else {
-            nextButton.hidden = false
+            nextButton.setTitle(NSLocalizedString("Next", comment: "Next"), forState: .Normal)
         }
-        setNeedsFocusUpdate()
     }
 
 }

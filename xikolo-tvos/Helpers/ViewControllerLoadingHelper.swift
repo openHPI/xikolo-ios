@@ -20,6 +20,10 @@ class ViewControllerLoadingHelper {
     var activityNameView = UILabel()
     var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
 
+    var isLoading: Bool {
+        return originalViews != nil
+    }
+
     init(_ viewController: UIViewController, rootView: UIView) {
         self.viewController = viewController
         self.rootView = rootView

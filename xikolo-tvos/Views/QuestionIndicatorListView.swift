@@ -20,10 +20,8 @@ class QuestionIndicatorListView : UIView {
         didSet {
             if oldValue != nil {
                 indicators[oldValue]?.selected = false
-                indicators[oldValue]?.update()
             }
             indicators[activeQuestion]?.selected = true
-            indicators[activeQuestion]?.update()
         }
     }
 
@@ -66,6 +64,12 @@ class QuestionIndicatorListView : UIView {
             view.heightAnchor.constraintEqualToConstant(size).active = true
 
             previousView = view
+        }
+    }
+
+    func updateAll() {
+        for (_, indicator) in indicators {
+            indicator.update()
         }
     }
 

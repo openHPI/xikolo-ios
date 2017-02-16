@@ -9,5 +9,8 @@ env:
   - SCHEME="openSAP-iOS" SDK="iphonesimulator"
   - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
 
+before_install:
+  - pod repo update
+
 script:
-  - xctool -workspace xikolo-ios.xcworkspace -scheme $SCHEME -sdk $SDK build
+  - xctool -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build

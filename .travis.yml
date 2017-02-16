@@ -10,7 +10,9 @@ env:
   - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
 
 before_install:
+  - gem install xcpretty
   - pod repo update > /dev/null
 
 script:
-  - xctool -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build
+  - set -o pipefail
+  - xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty

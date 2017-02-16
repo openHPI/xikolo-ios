@@ -11,7 +11,7 @@ import Foundation
 
 class LTIExerciseProvider {
 
-    class func getLTIExercise(ltiExerciseId: String) -> Future<LTIExerciseSpine, XikoloError> {
+    class func getLTIExercise(_ ltiExerciseId: String) -> Future<LTIExerciseSpine, XikoloError> {
         return SpineHelper.findOne(ltiExerciseId, ofType: LTIExerciseSpine.self)
     }
 

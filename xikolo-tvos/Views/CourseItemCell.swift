@@ -13,7 +13,7 @@ class CourseItemCell : UICollectionViewCell {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var titleView: UILabel!
 
-    func configure(item: CourseItem) {
+    func configure(_ item: CourseItem) {
         titleView.text = item.title
 
         if let iconName = item.iconName {

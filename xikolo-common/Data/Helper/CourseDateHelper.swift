@@ -11,15 +11,15 @@ import CoreData
 
 class CourseDateHelper {
 
-    static func getCourseDatesRequest() -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "CourseDate")
+    static func getCourseDatesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseDate")
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         request.sortDescriptors = [dateSort]
         return request
     }
 
-    static func getCourseDeadlinesRequest() -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "CourseDate")
+    static func getCourseDeadlinesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseDate")
         let courseSort = NSSortDescriptor(key: "course.title", ascending: true)
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         let predicate = NSPredicate(format: "type != 'course_start'")
@@ -28,8 +28,8 @@ class CourseDateHelper {
         return request
     }
 
-    static func getCourseStartsRequest() -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "CourseDate")
+    static func getCourseStartsRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseDate")
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         let predicate = NSPredicate(format: "type = 'course_start'")
         request.predicate = predicate

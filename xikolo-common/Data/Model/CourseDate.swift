@@ -19,7 +19,7 @@ class CourseDateSpine : BaseModelSpine {
 
     var type: String?
     var title: String?
-    var date: NSDate?
+    var date: Date?
 
     var course: CourseSpine?
 
@@ -36,7 +36,7 @@ class CourseDateSpine : BaseModelSpine {
             "type": Attribute(),
             "title": Attribute(),
             "date": DateAttribute(),
-            "course": ToOneRelationship(CourseSpine)
+            "course": ToOneRelationship(CourseSpine.self)
         ])
     }
 

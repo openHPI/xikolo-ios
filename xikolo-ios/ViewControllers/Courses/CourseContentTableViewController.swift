@@ -14,7 +14,7 @@ class CourseContentTableViewController: UITableViewController {
 
     var course: Course!
 
-    var resultsController: NSFetchedResultsController!
+    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
     deinit {
@@ -57,7 +57,7 @@ class CourseContentTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func showItem(item: CourseItem) {
+    func showItem(_ item: CourseItem) {
         TrackingHelper.sendEvent("VISITED_ITEM", resource: item)
         //save read state to server
         item.visited = true
@@ -65,26 +65,26 @@ class CourseContentTableViewController: UITableViewController {
         
         switch item.content {
             case is Video:
-                performSegueWithIdentifier("ShowVideoView", sender: item)
+                performSegue(withIdentifier: "ShowVideoView", sender: item)
             case is LTIExercise, is Quiz, is PeerAssessment:
-                performSegueWithIdentifier("ShowQuizWebView", sender: item)
+                performSegue(withIdentifier: "ShowQuizWebView", sender: item)
             case is RichText:
-                performSegueWithIdentifier("ShowRichTextView", sender: item)
+                performSegue(withIdentifier: "ShowRichTextView", sender: item)
             default:
                 // TODO: show error: unsupported type
                 break
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let courseItem = sender as? CourseItem
         switch segue.identifier! {
         case "ShowVideo":
-            let videoView = segue.destinationViewController as! VideoViewController
+            let videoView = segue.destination as! VideoViewController
             videoView.courseItem = courseItem
             break
         case "ShowQuiz":
-            let webView = segue.destinationViewController as! WebViewController
+            let webView = segue.destination as! WebViewController
             if let courseID = courseItem!.section?.course?.id {
                 let courseURL = Routes.COURSES_URL + courseID
                 let quizpathURL = "/items/" + courseItem!.id
@@ -93,11 +93,11 @@ class CourseContentTableViewController: UITableViewController {
             }
             break
         case "ShowRichtext":
-            let richtextView = segue.destinationViewController as! RichtextViewController
+            let richtextView = segue.destination as! RichtextViewController
             richtextView.courseItem = courseItem
             break
         default:
-            super.prepareForSegue(segue, sender: sender)
+            super.prepare(for: segue, sender: sender)
         }
     }
 
@@ -105,8 +105,8 @@ class CourseContentTableViewController: UITableViewController {
 
 extension CourseContentTableViewController { // TableViewDelegate
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = resultsController.objectAtIndexPath(indexPath) as! CourseItem
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = resultsController.object(at: indexPath) as! CourseItem
         showItem(item)
     }
 
@@ -114,10 +114,10 @@ extension CourseContentTableViewController { // TableViewDelegate
 
 extension CourseContentTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
 
-        let item = resultsController.objectAtIndexPath(indexPath) as! CourseItem
+        let item = resultsController.object(at: indexPath) as! CourseItem
         cell.configure(item)
     }
 
@@ -125,7 +125,7 @@ extension CourseContentTableViewController : TableViewResultsControllerDelegateI
 
 extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }
@@ -134,7 +134,7 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         return attributedString
     }
 
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }

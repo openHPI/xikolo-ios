@@ -14,7 +14,7 @@ import CoreData
 
 extension PlatformEvent {
 
-    @NSManaged var created_at: NSDate?
+    @NSManaged var created_at: Date?
     @NSManaged var preview: String?
     @NSManaged var title: String?
     @NSManaged var type: String?

@@ -17,7 +17,7 @@ extension NewsArticle {
     @NSManaged var id: String
     @NSManaged var title: String?
     @NSManaged var text: String?
-    @NSManaged var published_at: NSDate?
+    @NSManaged var published_at: Date?
     @NSManaged var visited_int: NSNumber?
     @NSManaged var course: Course?
 

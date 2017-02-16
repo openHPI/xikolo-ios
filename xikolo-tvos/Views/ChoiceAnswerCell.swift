@@ -12,16 +12,16 @@ class ChoiceAnswerCell : UITableViewCell {
 
     @IBOutlet weak var textView: UILabel!
 
-    func configure(option: QuizOption, choiceState: ChoiceOptionState? = nil) {
+    func configure(_ option: QuizOption, choiceState: ChoiceOptionState? = nil) {
         textView.text = option.text
 
         if let state = choiceState {
             switch state {
-                case .Correct:
+                case .correct:
                     backgroundColor = Brand.CorrectAnswerColor
-                case .IncorrectSelected:
+                case .incorrectSelected:
                     backgroundColor = Brand.IncorrectAnswerColor
-                case .IncorrectUnselected:
+                case .incorrectUnselected:
                     backgroundColor = Brand.WrongAnswerColor
             }
         }
@@ -31,8 +31,8 @@ class ChoiceAnswerCell : UITableViewCell {
 
 enum ChoiceOptionState {
 
-    case Correct
-    case IncorrectSelected
-    case IncorrectUnselected
+    case correct
+    case incorrectSelected
+    case incorrectUnselected
 
 }

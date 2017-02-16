@@ -11,7 +11,7 @@ import CoreData
 
 class CourseDeadlinesTableViewController : UITableViewController {
 
-    var resultsController: NSFetchedResultsController!
+    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
     weak var delegate: CourseDeadlinesTableViewControllerDelegate?
@@ -39,7 +39,7 @@ class CourseDeadlinesTableViewController : UITableViewController {
         delegate?.changedCourseDeadlinesTableViewHeight(tableViewHeight())
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionTitle: String? = self.tableView(tableView, titleForHeaderInSection: section)
         if sectionTitle == nil || sectionTitle == "" {
             return nil
@@ -50,12 +50,12 @@ class CourseDeadlinesTableViewController : UITableViewController {
         return UILabel()
     }
 
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let view = view as? UITableViewHeaderFooterView {
-            view.backgroundView?.backgroundColor = UIColor.clearColor()
-            view.textLabel!.backgroundColor = UIColor.clearColor()
+            view.backgroundView?.backgroundColor = UIColor.clear
+            view.textLabel!.backgroundColor = UIColor.clear
             view.textLabel!.textColor = Brand.TintColor
-            view.textLabel!.font = UIFont.systemFontOfSize(15)
+            view.textLabel!.font = UIFont.systemFont(ofSize: 15)
         }
     }
 
@@ -68,24 +68,24 @@ class CourseDeadlinesTableViewController : UITableViewController {
 
 extension CourseDeadlinesTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-        let courseDate = resultsController.objectAtIndexPath(indexPath) as! CourseDate
+    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+        let courseDate = resultsController.object(at: indexPath) as! CourseDate
         let cell = cell as! CourseDateCell
         cell.configure(courseDate)
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let courseDate = resultsController.objectAtIndexPath(indexPath) as! CourseDate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let courseDate = resultsController.object(at: indexPath) as! CourseDate
         if let course = courseDate.course {
             AppDelegate.instance().goToCourse(course)
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
 
 protocol CourseDeadlinesTableViewControllerDelegate: class {
 
-    func changedCourseDeadlinesTableViewHeight(height: CGFloat)
+    func changedCourseDeadlinesTableViewHeight(_ height: CGFloat)
 
 }

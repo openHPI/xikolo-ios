@@ -20,9 +20,9 @@ extension UIView {
         animation.duration = 0.1
         animation.repeatCount = 5
         animation.autoreverses = true
-        animation.fromValue = NSValue(CGPoint: CGPointMake(center.x - deltaX, center.y))
-        animation.toValue = NSValue(CGPoint: CGPointMake(center.x + deltaX, center.y))
-        layer.addAnimation(animation, forKey: "position")
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - deltaX, y: center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: center.x + deltaX, y: center.y))
+        layer.add(animation, forKey: "position")
     }
 
 }

@@ -12,7 +12,7 @@ import DZNEmptyDataSet
 
 class NewsTableViewController : UITableViewController {
 
-    var resultsController: NSFetchedResultsController!
+    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
     deinit {
@@ -49,8 +49,8 @@ class NewsTableViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let newsVC = segue.destinationViewController as! NewsArticleViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let newsVC = segue.destination as! NewsArticleViewController
         let newsArticle = sender as! NewsArticle
         newsVC.newsArticle = newsArticle
     }
@@ -59,19 +59,19 @@ class NewsTableViewController : UITableViewController {
 
 extension NewsTableViewController { // TableViewDelegate
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let newsArticle = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
-        performSegueWithIdentifier("ShowNewsArticle", sender: newsArticle)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let newsArticle = resultsController.object(at: indexPath) as! NewsArticle
+        performSegue(withIdentifier: "ShowNewsArticle", sender: newsArticle)
     }
 
 }
 
 extension NewsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
         let cell = cell as! NewsArticleCell
 
-        let article = resultsController.objectAtIndexPath(indexPath) as! NewsArticle
+        let article = resultsController.object(at: indexPath) as! NewsArticle
         cell.configure(article)
     }
 
@@ -79,7 +79,7 @@ extension NewsTableViewController : TableViewResultsControllerDelegateImplementa
 
 extension NewsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }
@@ -88,7 +88,7 @@ extension NewsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelega
         return attributedString
     }
 
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }

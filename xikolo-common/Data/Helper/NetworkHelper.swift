@@ -21,10 +21,10 @@ class NetworkHelper {
         return headers
     }
     
-    class func getRequestForURL(url: String) -> NSMutableURLRequest {
+    class func getRequestForURL(_ url: String) -> NSMutableURLRequest {
         //TODO: test whether url is a valid url
-        let url = NSURL(string: url)
-        let request = NSMutableURLRequest(URL: url!)
+        let url = URL(string: url)
+        let request = NSMutableURLRequest(url: url!)
         request.allHTTPHeaderFields = getRequestHeaders()
         return request
     }

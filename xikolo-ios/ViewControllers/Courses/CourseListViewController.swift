@@ -18,7 +18,7 @@ class CourseListViewController : AbstractCourseListViewController {
         self.collectionView?.emptyDataSetDelegate = nil
     }
 
-    @IBAction func segmentedControlChanged(sender: UISegmentedControl) {
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             showMyCoursesOnly(false)
@@ -27,41 +27,41 @@ class CourseListViewController : AbstractCourseListViewController {
                 showMyCoursesOnly(true)
             } else {
                 sender.selectedSegmentIndex = 0
-                performSegueWithIdentifier("ShowLoginForMyCourses", sender: sender) // maybe switch to My Courses after succesful login?
+                performSegue(withIdentifier: "ShowLoginForMyCourses", sender: sender) // maybe switch to My Courses after succesful login?
             }
         default:
             break
         }
     }
 
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         switch traitCollection.horizontalSizeClass {
-        case .Compact, .Unspecified:
+        case .compact, .unspecified:
             numberOfItemsPerRow = 1
-        case .Regular:
+        case .regular:
             numberOfItemsPerRow = 2
         }
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animateAlongsideTransition({ context in
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
             // Force redraw
             self.collectionView!.performBatchUpdates(nil, completion: nil)
         }, completion: nil)
     }
 
-    internal func showMyCoursesOnly(showMyCourses: Bool) {
-        self.courseDisplayMode = showMyCourses ? .EnrolledOnly : .All
+    internal func showMyCoursesOnly(_ showMyCourses: Bool) {
+        self.courseDisplayMode = showMyCourses ? .enrolledOnly : .all
         updateView()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case "ShowCourseContent"?:
-                let vc = segue.destinationViewController as! CourseDecisionViewController
+                let vc = segue.destination as! CourseDecisionViewController
                 let cell = sender as! CourseCell
-                let indexPath = collectionView!.indexPathForCell(cell)
-                let course = resultsController.objectAtIndexPath(indexPath!) as! Course
+                let indexPath = collectionView!.indexPath(for: cell)
+                let course = resultsController.object(at: indexPath!) as! Course
                 vc.course = course
             default:
                 break
@@ -72,7 +72,7 @@ class CourseListViewController : AbstractCourseListViewController {
 
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
             let blankSpace = flowLayout.sectionInset.left
                 + flowLayout.sectionInset.right

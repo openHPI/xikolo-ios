@@ -13,11 +13,11 @@ class QuizSubmission : Resource {
 
     var submitted: Bool {
         get { return submitted_int == 1 }
-        set { submitted_int = newValue }
+        set { submitted_int = newValue as NSNumber? }
     }
 
-    var created_at: NSDate?
-    var submitted_at: NSDate?
+    var created_at: Date?
+    var submitted_at: Date?
     var submitted_int: NSNumber?
     var points: NSNumber?
     var answers: [String: QuizQuestionSubmission]?
@@ -33,8 +33,8 @@ class QuizSubmission : Resource {
             "submitted_at": DateAttribute(),
             "submitted_int": Attribute().serializeAs("submitted"),
             "points": Attribute(),
-            "answers": EmbeddedDictAttribute(QuizQuestionSubmission),
-            "quiz": ToOneRelationship(QuizSpine),
+            "answers": EmbeddedDictAttribute(QuizQuestionSubmission.self),
+            "quiz": ToOneRelationship(QuizSpine.self),
         ])
     }
 

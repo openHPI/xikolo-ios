@@ -23,9 +23,9 @@ class NetworkIndicator {
         update()
     }
 
-    private class func update() {
-        dispatch_async(dispatch_get_main_queue()) {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = counter > 0
+    fileprivate class func update() {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = counter > 0
         }
     }
 
@@ -33,11 +33,11 @@ class NetworkIndicator {
 
 struct XikoloClientDelegate: HTTPClientDelegate {
 
-    func httpClient(client: HTTPClient, willPerformRequestWithMethod method: String, URL: NSURL, payload: NSData?) {
+    func httpClient(_ client: HTTPClient, willPerformRequestWithMethod method: String, url URL: Foundation.URL, payload: Data?) {
         NetworkIndicator.start()
     }
 
-    func httpClient(client: HTTPClient, didPerformRequestWithMethod method: String, URL: NSURL, success: Bool) {
+    func httpClient(_ client: HTTPClient, didPerformRequestWithMethod method: String, url URL: Foundation.URL, success: Bool) {
         NetworkIndicator.end()
     }
     

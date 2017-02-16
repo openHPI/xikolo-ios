@@ -17,7 +17,7 @@ class NewsArticle : BaseModel {
             return visited_int?.boolValue
         }
         set(new_has_visited) {
-            visited_int = new_has_visited
+            visited_int = new_has_visited as NSNumber?
         }
     }
 
@@ -28,7 +28,7 @@ class NewsArticleSpine : BaseModelSpine {
 
     var title: String?
     var text: String?
-    var published_at: NSDate?
+    var published_at: Date?
     var visited_int: NSNumber?
 
     var course: CourseSpine?
@@ -54,7 +54,7 @@ class NewsArticleSpine : BaseModelSpine {
             "text": Attribute(),
             "published_at": DateAttribute(),
             "visited_int": Attribute().serializeAs("visited"),
-            "course": ToOneRelationship(CourseSpine),
+            "course": ToOneRelationship(CourseSpine.self),
         ])
     }
     

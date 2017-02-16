@@ -18,35 +18,35 @@ class XikoloURL {
         self.targetId = targetId
     }
 
-    func toURL() -> NSURL {
-        let components = NSURLComponents()
+    func toURL() -> URL {
+        var components = URLComponents()
         components.scheme = "xikolo-tvos"
 
         switch(type) {
-        case .Course:
+        case .course:
             components.path = "course/\(targetId)"
         }
-        return components.URL!
+        return components.url!
     }
 
-    class func parseURL(url: NSURL) -> XikoloURL? {
-        if let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false) {
+    class func parseURL(_ url: URL) -> XikoloURL? {
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: false) {
             if components.scheme != "xikolo-tvos" {
                 return nil
             }
 
-            let pathComponents = components.path?.componentsSeparatedByString("/")
-            if pathComponents?.isEmpty ?? true {
+            let pathComponents = components.path.components(separatedBy: "/")
+            if pathComponents.isEmpty {
                 return nil
             }
 
-            let type = pathComponents![0]
+            let type = pathComponents[0]
             switch type {
             case "course":
-                if pathComponents!.count != 2 {
+                if pathComponents.count != 2 {
                     return nil
                 }
-                return XikoloURL(type: .Course, targetId: pathComponents![1])
+                return XikoloURL(type: .course, targetId: pathComponents[1])
             default:
                 return nil
             }
@@ -58,6 +58,6 @@ class XikoloURL {
 
 enum XikoloURLTypes {
 
-    case Course;
+    case course;
 
 }

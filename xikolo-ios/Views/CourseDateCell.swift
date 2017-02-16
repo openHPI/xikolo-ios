@@ -14,15 +14,15 @@ class CourseDateCell : UITableViewCell {
     @IBOutlet var titleView: UILabel!
     @IBOutlet var detailView: UILabel!
 
-    func configure(courseDate: CourseDate) {
+    func configure(_ courseDate: CourseDate) {
         titleView.text = courseDate.title
 
         if let date = courseDate.date {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .MediumStyle
-            dateFormatter.timeStyle = .NoStyle
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
 
-            detailView.text = dateFormatter.stringFromDate(date)
+            detailView.text = dateFormatter.string(from: date)
         } else {
             detailView.text = courseDate.type
         }

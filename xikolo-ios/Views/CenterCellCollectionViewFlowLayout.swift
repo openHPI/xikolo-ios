@@ -11,14 +11,14 @@ import UIKit
 
 class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
 
-    override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         if let collectionView = self.collectionView {
 
             let collectionViewBounds = collectionView.bounds
             let halfWidth = collectionViewBounds.size.width * 0.5;
             let proposedContentOffsetCenterX = proposedContentOffset.x + halfWidth;
 
-            if let attributesForVisibleCells = self.layoutAttributesForElementsInRect(collectionViewBounds) {
+            if let attributesForVisibleCells = self.layoutAttributesForElements(in: collectionViewBounds) {
 
                 /*  == If we're at the beginning of the list, the item should be
                        aligned with the left content inset of the collectionView    == */
@@ -31,7 +31,7 @@ class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
                 for attributes in attributesForVisibleCells {
 
                     // == Skip comparison with non-cell items (headers and footers) == //
-                    if attributes.representedElementCategory != .Cell {
+                    if attributes.representedElementCategory != .cell {
                         continue
                     }
 
@@ -57,7 +57,7 @@ class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
         }
 
         // fallback
-        return super.targetContentOffsetForProposedContentOffset(proposedContentOffset)
+        return super.targetContentOffset(forProposedContentOffset: proposedContentOffset)
     }
     
 }

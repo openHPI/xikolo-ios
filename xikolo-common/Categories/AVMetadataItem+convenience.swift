@@ -11,27 +11,25 @@ import UIKit
 
 extension AVMetadataItem {
 
-    class func item(identifier: String, value: protocol<NSCopying, NSObjectProtocol>?) -> AVMetadataItem? {
-        if var value = value {
-            if let str = value as? String {
-                // HACKHACK: Fix description to prevent visual bug in metadata display.
-                if identifier == AVMetadataCommonIdentifierDescription && str.characters.count < 212 {
-                    value = str.stringByAppendingString("                                                                                                                                  \n\n\n                                                                                                                                                                                     ")
-                }
-            }
-
-            let item = AVMutableMetadataItem()
-            item.value = value
-            item.identifier = identifier
-            item.extendedLanguageTag = "und" // Undefined language
-            return item.copy() as? AVMetadataItem
+    class func item(_ identifier: String, value: String?) -> AVMetadataItem? {
+        guard var str = value else {
+            return nil
         }
-        return nil
+        // HACKHACK: Fix description to prevent visual bug in metadata display.
+        if identifier == AVMetadataCommonIdentifierDescription && str.characters.count < 212 {
+            str = str + "                                                                                                                                  \n\n\n                                                                                                                                                                                     "
+        }
+
+        let item = AVMutableMetadataItem()
+        item.value = str as NSString
+        item.identifier = identifier
+        item.extendedLanguageTag = "und" // Undefined language
+        return item.copy() as? AVMetadataItem
     }
 
-    class func artworkItem(image: UIImage) -> AVMetadataItem? {
+    class func artworkItem(_ image: UIImage) -> AVMetadataItem? {
         let item = AVMutableMetadataItem()
-        item.value = UIImagePNGRepresentation(image)
+        item.value = UIImagePNGRepresentation(image) as (NSCopying & NSObjectProtocol)?
         item.dataType = kCMMetadataBaseDataType_PNG as String
         item.identifier = AVMetadataCommonIdentifierArtwork
         item.extendedLanguageTag = "und" // Undefined language

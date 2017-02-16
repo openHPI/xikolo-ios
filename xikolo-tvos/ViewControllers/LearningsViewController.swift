@@ -20,9 +20,9 @@ class LearningsViewController : UIViewController {
     var courseTabBarController: CourseTabBarController!
     var course: Course!
 
-    var sectionResultsController: NSFetchedResultsController!
+    var sectionResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var sectionResultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
-    var itemResultsController: NSFetchedResultsController?
+    var itemResultsController: NSFetchedResultsController<NSFetchRequestResult>?
     var itemResultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
 
     var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
@@ -51,7 +51,7 @@ class LearningsViewController : UIViewController {
         itemCollectionView.dataSource = itemResultsControllerDelegateImplementation
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         checkDisplay()
         super.viewWillAppear(animated)
     }
@@ -67,17 +67,17 @@ class LearningsViewController : UIViewController {
         }
     }
 
-    func showError(message: String) {
+    func showError(_ message: String) {
         errorMessageView.text = message
-        errorMessageView.hidden = false
-        sectionTableView.hidden = true
-        itemCollectionView.hidden = true
+        errorMessageView.isHidden = false
+        sectionTableView.isHidden = true
+        itemCollectionView.isHidden = true
     }
 
     func hideError() {
-        errorMessageView.hidden = true
-        sectionTableView.hidden = false
-        itemCollectionView.hidden = false
+        errorMessageView.isHidden = true
+        sectionTableView.isHidden = false
+        itemCollectionView.isHidden = false
     }
 
     func loadSections() {
@@ -89,8 +89,8 @@ class LearningsViewController : UIViewController {
         do {
             try sectionResultsController.performFetch()
 
-            if sectionTableView.numberOfSections > 0 && sectionTableView.numberOfRowsInSection(0) > 0 {
-                sectionTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Middle)
+            if sectionTableView.numberOfSections > 0 && sectionTableView.numberOfRows(inSection: 0) > 0 {
+                sectionTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .middle)
                 if let section = sectionResultsController.fetchedObjects![0] as? CourseSection {
                     loadItemsForSection(section)
                 }
@@ -102,7 +102,7 @@ class LearningsViewController : UIViewController {
         CourseSectionHelper.syncCourseSections(course)
     }
 
-    func loadItemsForSection(section: CourseSection) {
+    func loadItemsForSection(_ section: CourseSection) {
         let request = CourseItemHelper.getItemRequest(section)
         itemCollectionView.reloadData()
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
@@ -122,10 +122,10 @@ class LearningsViewController : UIViewController {
 
 extension LearningsViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
         let cell = cell as! CourseSectionCell
 
-        let section = sectionResultsController.objectAtIndexPath(indexPath) as! CourseSection
+        let section = sectionResultsController.object(at: indexPath) as! CourseSection
         cell.configure(section)
     }
 
@@ -133,8 +133,8 @@ extension LearningsViewController : TableViewResultsControllerDelegateImplementa
 
 extension LearningsViewController : UITableViewDelegate {
 
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        let section = sectionResultsController.objectAtIndexPath(indexPath) as! CourseSection
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let section = sectionResultsController.object(at: indexPath) as! CourseSection
         loadItemsForSection(section)
         return indexPath
     }
@@ -143,10 +143,10 @@ extension LearningsViewController : UITableViewDelegate {
 
 extension LearningsViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
 
-        let item = itemResultsController!.objectAtIndexPath(indexPath) as! CourseItem
+        let item = itemResultsController!.object(at: indexPath) as! CourseItem
         cell.configure(item)
     }
 
@@ -154,45 +154,45 @@ extension LearningsViewController : CollectionViewResultsControllerDelegateImple
 
 extension LearningsViewController : UICollectionViewDelegate, ItemViewControllerDelegate {
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let item = itemResultsController!.objectAtIndexPath(indexPath) as! CourseItem
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = itemResultsController!.object(at: indexPath) as! CourseItem
         showItem(item)
     }
 
-    func showItem(item: CourseItem) {
+    func showItem(_ item: CourseItem) {
         TrackingHelper.sendEvent("VISITED_ITEM", resource: item)
 
         switch item.content {
             case is Quiz:
                 let quiz = item.content as! Quiz
-                performSegueWithIdentifier("ShowCourseItemQuizSegue", sender: quiz)
+                performSegue(withIdentifier: "ShowCourseItemQuizSegue", sender: quiz)
             case is RichText:
-                performSegueWithIdentifier("ShowCourseItemRichTextSegue", sender: item)
+                performSegue(withIdentifier: "ShowCourseItemRichTextSegue", sender: item)
             case is Video:
                 let video = item.content as! Video
-                performSegueWithIdentifier("ShowCourseItemVideoSegue", sender: video)
+                performSegue(withIdentifier: "ShowCourseItemVideoSegue", sender: video)
             default:
                 let title = NSLocalizedString("Unsupported item", comment: "Unsupported item")
                 let message = NSLocalizedString("The type of this content item is unsupported on tvOS. Please use a different device to view it.", comment: "The type of this content item is unsupported on tvOS. Please use a different device to view it.")
                 let ok = NSLocalizedString("OK", comment: "OK")
 
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: ok, style: .Cancel, handler: nil))
-                presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: ok, style: .cancel, handler: nil))
+                present(alert, animated: true, completion: nil)
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case "ShowCourseItemQuizSegue"?:
-                let vc = segue.destinationViewController as! ItemQuizIntroductionController
+                let vc = segue.destination as! ItemQuizIntroductionController
                 vc.quiz = sender as! Quiz
             case "ShowCourseItemRichTextSegue"?:
-                let vc = segue.destinationViewController as! ItemRichTextController
+                let vc = segue.destination as! ItemRichTextController
                 vc.delegate = self
                 vc.courseItem = sender as! CourseItem
             case "ShowCourseItemVideoSegue"?:
-                let vc = segue.destinationViewController as! ItemVideoLoadingController
+                let vc = segue.destination as! ItemVideoLoadingController
                 vc.video = sender as! Video
             default:
                 break
@@ -203,6 +203,6 @@ extension LearningsViewController : UICollectionViewDelegate, ItemViewController
 
 protocol ItemViewControllerDelegate {
 
-    func showItem(item: CourseItem)
+    func showItem(_ item: CourseItem)
 
 }

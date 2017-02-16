@@ -10,10 +10,10 @@ import UIKit
 
 extension UITableViewCell {
 
-    func enable(on: Bool) {
-        self.userInteractionEnabled = on
+    func enable(_ on: Bool) {
+        self.isUserInteractionEnabled = on
         for view in contentView.subviews {
-            view.userInteractionEnabled = on
+            view.isUserInteractionEnabled = on
             view.alpha = on ? 1 : 0.5
         }
     }

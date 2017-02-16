@@ -17,6 +17,6 @@ extension LTIExercise {
     @NSManaged var instructions: String?
     @NSManaged var weight: NSNumber?
     @NSManaged var allowed_attempts: NSNumber?
-    @NSManaged var lock_submissions_at: NSDate?
+    @NSManaged var lock_submissions_at: Date?
 
 }

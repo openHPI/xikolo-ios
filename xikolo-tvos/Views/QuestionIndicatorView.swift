@@ -15,7 +15,7 @@ class QuestionIndicatorView : UIView {
             question.addObserver(self, forKeyPath: "submission", options: NSKeyValueObservingOptions(), context: nil)
         }
     }
-    var state: QuestionIndicatorState = .Unanswered
+    var state: QuestionIndicatorState = .unanswered
     var correctness: Float?
     var selected = false {
         didSet {
@@ -26,13 +26,13 @@ class QuestionIndicatorView : UIView {
     var delegate: QuestionIndicatorViewDelegate?
 
     let ringThickness: CGFloat = 6
-    let ringColor = UIColor.darkGrayColor()
-    let focusedRingColor = UIColor.whiteColor()
-    let answeredColor = UIColor.lightGrayColor()
+    let ringColor = UIColor.darkGray
+    let focusedRingColor = UIColor.white
+    let answeredColor = UIColor.lightGray
 
-    private var boundsCenter: CGPoint!
-    private var radius: CGFloat!
-    private var thickness: CGFloat!
+    fileprivate var boundsCenter: CGPoint!
+    fileprivate var radius: CGFloat!
+    fileprivate var thickness: CGFloat!
 
     required override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,41 +53,41 @@ class QuestionIndicatorView : UIView {
         addGestureRecognizer(tapRecognizer)
     }
 
-    override func canBecomeFocused() -> Bool {
+    override var canBecomeFocused : Bool {
         return true
     }
 
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
         setNeedsDisplay()
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         update()
     }
 
     func update() {
         if let submission = question.submission {
-            state = .Answered
+            state = .answered
             correctness = submission.correctness
         } else {
-            state = .Unanswered
+            state = .unanswered
         }
         setNeedsDisplay()
     }
 
-    func handleTap(recognizer: UITapGestureRecognizer) {
+    func handleTap(_ recognizer: UITapGestureRecognizer) {
         delegate?.indicatorViewDidSelect(self)
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         layer.sublayers = []
 
-        thickness = focused || selected ? ringThickness * 1.5 : ringThickness
-        boundsCenter = CGPointMake(bounds.width / 2, bounds.height / 2)
+        thickness = isFocused || selected ? ringThickness * 1.5 : ringThickness
+        boundsCenter = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         radius = min(bounds.width, bounds.height) / 2 - (thickness / 2)
 
-        if state == .Answered {
+        if state == .answered {
             if let correctness = correctness {
                 if correctness == 0 {
                     drawCircle(Brand.IncorrectAnswerColor)
@@ -105,38 +105,38 @@ class QuestionIndicatorView : UIView {
         drawRing()
     }
 
-    internal func drawCircle(color: UIColor) {
+    internal func drawCircle(_ color: UIColor) {
         let path = UIBezierPath()
-        path.addArcWithCenter(boundsCenter, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+        path.addArc(withCenter: boundsCenter, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
 
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.CGPath
-        shapeLayer.fillColor = color.CGColor
+        shapeLayer.path = path.cgPath
+        shapeLayer.fillColor = color.cgColor
         layer.addSublayer(shapeLayer)
     }
 
-    internal func drawCircleSegment(percentage: Double) {
+    internal func drawCircleSegment(_ percentage: Double) {
         let angle = CGFloat((percentage * 2 * M_PI) - M_PI_2)
 
         let path = UIBezierPath()
-        path.moveToPoint(boundsCenter)
-        path.addArcWithCenter(boundsCenter, radius: radius, startAngle: angle, endAngle: CGFloat(-M_PI_2), clockwise: true)
-        path.closePath()
+        path.move(to: boundsCenter)
+        path.addArc(withCenter: boundsCenter, radius: radius, startAngle: angle, endAngle: CGFloat(-M_PI_2), clockwise: true)
+        path.close()
 
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.CGPath
-        shapeLayer.fillColor = Brand.IncorrectAnswerColor.CGColor
+        shapeLayer.path = path.cgPath
+        shapeLayer.fillColor = Brand.IncorrectAnswerColor.cgColor
         layer.addSublayer(shapeLayer)
     }
 
     internal func drawRing() {
         let path = UIBezierPath()
-        path.addArcWithCenter(boundsCenter, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+        path.addArc(withCenter: boundsCenter, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
 
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.CGPath
-        shapeLayer.fillColor = UIColor.clearColor().CGColor
-        shapeLayer.strokeColor = focused ? focusedRingColor.CGColor : ringColor.CGColor
+        shapeLayer.path = path.cgPath
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = isFocused ? focusedRingColor.cgColor : ringColor.cgColor
         shapeLayer.lineWidth = thickness
         layer.addSublayer(shapeLayer)
     }
@@ -144,12 +144,12 @@ class QuestionIndicatorView : UIView {
 }
 
 enum QuestionIndicatorState {
-    case Answered
-    case Unanswered
+    case answered
+    case unanswered
 }
 
 protocol QuestionIndicatorViewDelegate {
 
-    func indicatorViewDidSelect(indicatorView: QuestionIndicatorView)
+    func indicatorViewDidSelect(_ indicatorView: QuestionIndicatorView)
 
 }

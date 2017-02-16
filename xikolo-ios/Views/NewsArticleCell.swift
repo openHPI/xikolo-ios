@@ -17,18 +17,18 @@ class NewsArticleCell : UITableViewCell {
     @IBOutlet weak var courseView: UILabel!
     @IBOutlet weak var roundedTagBackgroundView: UIView!
 
-    func configure(newsArticle: NewsArticle) {
+    func configure(_ newsArticle: NewsArticle) {
         readStateView.backgroundColor = Brand.TintColor
 
-        descriptionView.scrollEnabled = false
+        descriptionView.isScrollEnabled = false
         descriptionView.textContainer.maximumNumberOfLines = 4
-        descriptionView.textContainer.lineBreakMode = .ByTruncatingTail
+        descriptionView.textContainer.lineBreakMode = .byTruncatingTail
 
         if let date = newsArticle.published_at {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .MediumStyle
-            dateFormatter.timeStyle = .NoStyle
-            dateView.text = dateFormatter.stringFromDate(date)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
+            dateView.text = dateFormatter.string(from: date)
         }
 
         titleView.text = newsArticle.title
@@ -37,9 +37,9 @@ class NewsArticleCell : UITableViewCell {
             let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
             self.descriptionView.attributedText = markDown
         }
-        readStateView.hidden = newsArticle.visited ?? true
+        readStateView.isHidden = newsArticle.visited ?? true
 
-        roundedTagBackgroundView.hidden = newsArticle.course == nil
+        roundedTagBackgroundView.isHidden = newsArticle.course == nil
         courseView.text = newsArticle.course?.title
     }
 

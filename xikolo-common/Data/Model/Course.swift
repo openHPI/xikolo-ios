@@ -18,7 +18,7 @@ class Course : BaseModel {
             return hidden_int?.boolValue
         }
         set(new_is_hidden) {
-            hidden_int = new_is_hidden
+            hidden_int = new_is_hidden as NSNumber?
         }
     }
 
@@ -27,7 +27,7 @@ class Course : BaseModel {
             return accessible_int?.boolValue ?? false
         }
         set(new_is_accessible) {
-            accessible_int = new_is_accessible
+            accessible_int = new_is_accessible as NSNumber?
         }
     }
 
@@ -36,7 +36,7 @@ class Course : BaseModel {
             return enrollable_int?.boolValue
         }
         set(new_is_enrollable) {
-            enrollable_int = new_is_enrollable
+            enrollable_int = new_is_enrollable as NSNumber?
         }
     }
 
@@ -45,7 +45,7 @@ class Course : BaseModel {
             return external_int?.boolValue
         }
         set(new_is_external) {
-            external_int = new_is_external
+            external_int = new_is_external as NSNumber?
         }
     }
 
@@ -61,8 +61,8 @@ class Course : BaseModel {
 
     var language_translated: String? {
         if let language = language {
-            let locale = NSLocale.currentLocale()
-            return locale.displayNameForKey(NSLocaleIdentifier, value: language)
+            let locale = Locale.current
+            return (locale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: language)
         }
         return nil
     }
@@ -77,7 +77,7 @@ class Course : BaseModel {
                 CoreDataHelper.saveContext()
             }
         } else {
-            return Future.init(error: XikoloError.ModelIncomplete)
+            return Future.init(error: XikoloError.modelIncomplete)
         }
     }
 
@@ -89,11 +89,11 @@ class CourseSpine : BaseModelSpine {
     var slug: String?
     var abstract: String?
     var course_description: String?
-    var image_url: NSURL?
+    var image_url: URL?
     var teachers: String?
     var language: String?
-    var start_at: NSDate?
-    var end_at: NSDate?
+    var start_at: Date?
+    var end_at: Date?
     var status: String?
     var hidden_int: NSNumber?
     var enrollable_int: NSNumber?
@@ -118,7 +118,7 @@ class CourseSpine : BaseModelSpine {
             "abstract": Attribute(),
             "accessible_int": Attribute().serializeAs("accessible"),
             "course_description": Attribute().serializeAs("description"),
-            "image_url": URLAttribute(baseURL: NSURL(string: Brand.BaseURL)!),
+            "image_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "teachers": Attribute(),
             "language": Attribute(),
             "start_at": DateAttribute(),
@@ -127,8 +127,8 @@ class CourseSpine : BaseModelSpine {
             "hidden_int": Attribute().serializeAs("hidden"),
             "enrollable_int": Attribute().serializeAs("enrollable"),
             "external_int": Attribute().serializeAs("external"),
-            "enrollment": ToOneRelationship(CourseEnrollmentSpine).serializeAs("user_enrollment"),
-            "channel": ToOneRelationship(ChannelSpine),
+            "enrollment": ToOneRelationship(CourseEnrollmentSpine.self).serializeAs("user_enrollment"),
+            "channel": ToOneRelationship(ChannelSpine.self),
         ])
     }
 

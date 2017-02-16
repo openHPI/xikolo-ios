@@ -12,10 +12,10 @@ import Result
 
 class NewsArticleHelper {
 
-    static private let entity = NSEntityDescription.entityForName("NewsArticle", inManagedObjectContext: CoreDataHelper.managedContext)!
+    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "NewsArticle", in: CoreDataHelper.managedContext)!
 
-    static func getRequest() -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "NewsArticle")
+    static func getRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NewsArticle")
         let dateSort = NSSortDescriptor(key: "published_at", ascending: false)
         request.sortDescriptors = [dateSort]
         return request

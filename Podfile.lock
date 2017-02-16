@@ -1,68 +1,70 @@
 PODS:
-  - Alamofire (3.2.0)
-  - AlamofireObjectMapper (3.0.0):
-    - Alamofire (~> 3.2)
-    - ObjectMapper (~> 1.0)
-  - BrightFutures (4.0.0):
-    - Result (~> 2.0)
-  - Down (0.2)
+  - Alamofire (4.3.0)
+  - AlamofireObjectMapper (4.0.1):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 2.0)
+  - BrightFutures (5.1.0):
+    - Result (~> 3.0)
+  - Down (0.3)
   - DZNEmptyDataSet (1.8.1)
-  - ObjectMapper (1.0.0)
-  - PinpointKit (0.9)
-  - Result (2.0.0)
+  - ObjectMapper (2.0.0)
+  - PinpointKit (0.9):
+    - PinpointKit/Core (= 0.9)
+  - PinpointKit/Core (0.9)
+  - Result (3.1.0)
   - Spine (0.3):
-    - BrightFutures (~> 4.0)
-    - SwiftyJSON (~> 2.3)
-  - SwiftyJSON (2.4.0)
+    - BrightFutures (~> 5.0)
+    - SwiftyJSON (~> 3.1.4)
+  - SwiftyJSON (3.1.4)
   - TSMarkdownParser (2.1.2)
 
 DEPENDENCIES:
-  - Alamofire (= 3.2.0)
-  - AlamofireObjectMapper (= 3.0.0)
-  - BrightFutures (= 4.0.0)
-  - Down (from `https://github.com/iwasrobbed/Down.git`, commit `ae3161c`)
+  - Alamofire (= 4.3.0)
+  - AlamofireObjectMapper (= 4.0.1)
+  - BrightFutures (= 5.1.0)
+  - Down (= 0.3)
   - DZNEmptyDataSet (= 1.8.1)
-  - ObjectMapper (= 1.0.0)
-  - PinpointKit (~> 0.9)
-  - Result (= 2.0.0)
-  - Spine (from `https://github.com/wvteijlingen/Spine.git`, commit `53971cf`)
+  - ObjectMapper (= 2.0)
+  - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
+  - Result (= 3.1.0)
+  - Spine (from `https://github.com/wvteijlingen/Spine.git`, commit `ee1ad2b`)
   - TSMarkdownParser (from `https://github.com/laptobbe/TSMarkdownParser.git`, commit `cff997a`)
 
 EXTERNAL SOURCES:
-  Down:
-    :commit: ae3161c
-    :git: https://github.com/iwasrobbed/Down.git
+  PinpointKit:
+    :commit: dd5731c
+    :git: https://github.com/Lickability/PinpointKit
   Spine:
-    :commit: 53971cf
+    :commit: ee1ad2b
     :git: https://github.com/wvteijlingen/Spine.git
   TSMarkdownParser:
     :commit: cff997a
     :git: https://github.com/laptobbe/TSMarkdownParser.git
 
 CHECKOUT OPTIONS:
-  Down:
-    :commit: ae3161c
-    :git: https://github.com/iwasrobbed/Down.git
+  PinpointKit:
+    :commit: dd5731c
+    :git: https://github.com/Lickability/PinpointKit
   Spine:
-    :commit: 53971cf
+    :commit: ee1ad2b
     :git: https://github.com/wvteijlingen/Spine.git
   TSMarkdownParser:
     :commit: cff997a
     :git: https://github.com/laptobbe/TSMarkdownParser.git
 
 SPEC CHECKSUMS:
-  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
-  BrightFutures: ddeb9a2747c101914d7b2cf5094acfd5fb67395c
-  Down: a57a0d9f887721bada9667821d36966d2bf10661
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
+  BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
+  Down: dea228f55b736ea0a7b96e02dd14b33600ce83a2
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  ObjectMapper: 0cd8372a0da95ae146afc63d8b512c32dd372a49
-  PinpointKit: dfbff1b4a95c5b71142a7c098717c2af082e2569
-  Result: 9e75e1111c774c6ac594e14907b15057053a7959
-  Spine: c7c400cdd44a0a313969fe623698d47460da1c09
-  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
+  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
+  PinpointKit: 6d19d08afddfad2753aee95e2a6160f2d8d30764
+  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
+  Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TSMarkdownParser: 5c8a0af7800da40a8d5ab53323fa6a1ba3a9dd88
 
-PODFILE CHECKSUM: 841430f3b868d559f55aadcf2442185056ee339a
+PODFILE CHECKSUM: 5aa10335e58eeca4eca13177e6f14116434fd798
 
 COCOAPODS: 1.1.1

@@ -466,6 +466,13 @@
 		24BA413F1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA413D1D3FA7AE00E38C2C /* Brand+tvOS.swift */; };
 		24BA41411D3FAAB800E38C2C /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BA41401D3FAAB800E38C2C /* assets-tvos-brand.xcassets */; };
 		24BA41431D3FAAC600E38C2C /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BA41421D3FAAC600E38C2C /* assets-tvos-brand.xcassets */; };
+		24C4EF891E3594BC00200144 /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE251D7DCF1E008466CC /* QuizSubmission.swift */; };
+		24C4EF8A1E3594BC00200144 /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE251D7DCF1E008466CC /* QuizSubmission.swift */; };
+		24C4EF8B1E3594BD00200144 /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE251D7DCF1E008466CC /* QuizSubmission.swift */; };
+		24C4EF8C1E3594C100200144 /* QuizQuestionSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4781D6B40C6007C59B6 /* QuizQuestionSubmission.swift */; };
+		24C4EF8D1E3594C200200144 /* QuizQuestionSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4781D6B40C6007C59B6 /* QuizQuestionSubmission.swift */; };
+		24C4EF8E1E3594C200200144 /* QuizQuestionSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4781D6B40C6007C59B6 /* QuizQuestionSubmission.swift */; };
+		24C4EF8F1E35952A00200144 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
 		24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -2183,12 +2190,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
 					2490C4DA1D1D92F200F42949 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2198,10 +2206,12 @@
 					24BA40331D3F976700E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 					};
 					24BA40501D3F98CA00E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2211,6 +2221,7 @@
 					24BA40631D3F98FE00E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2220,6 +2231,7 @@
 					24CB7E331CC678A000960269 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2229,6 +2241,7 @@
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2238,6 +2251,7 @@
 					AB48B4341DF8BB2A00523062 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2247,6 +2261,7 @@
 					ABE0605D1DF8BDDE00FC186D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2256,6 +2271,7 @@
 					ABE060831DF8BFE100FC186D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3457,6 +3473,7 @@
 				ABA0F05C1DF8CD940001D88D /* CourseSection.swift in Sources */,
 				ABA0F06E1DF8CDAE0001D88D /* NewsArticle+CoreDataProperties.swift in Sources */,
 				ABA0F01A1DF8CCA40001D88D /* CourseContentTableViewController.swift in Sources */,
+				24C4EF8C1E3594C100200144 /* QuizQuestionSubmission.swift in Sources */,
 				ABA0F0E41DF8CE790001D88D /* Routes.swift in Sources */,
 				ABA0F04D1DF8CD7F0001D88D /* CourseEnrollment+CoreDataProperties.swift in Sources */,
 				ABA0F0651DF8CD9F0001D88D /* Content.swift in Sources */,
@@ -3470,6 +3487,7 @@
 				ABA0F0361DF8CD0D0001D88D /* CollectionType+dict.swift in Sources */,
 				ABA0F0281DF8CCCC0001D88D /* CourseItemCell.swift in Sources */,
 				ABA0F0F01DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
+				24C4EF891E3594BC00200144 /* QuizSubmission.swift in Sources */,
 				ABA0F0751DF8CDBC0001D88D /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				ABA0F0D51DF8CE5F0001D88D /* QuizHelper.swift in Sources */,
 				ABA0F0501DF8CD850001D88D /* CourseEnrollment.swift in Sources */,
@@ -3600,6 +3618,7 @@
 				ABA0F0DE1DF8CE6C0001D88D /* NewsArticleHelper.swift in Sources */,
 				ABA0F0A31DF8CDFE0001D88D /* CourseProvider.swift in Sources */,
 				ABA0F10F1DF8CF5B0001D88D /* CourseDetailsViewController.swift in Sources */,
+				24C4EF8D1E3594C200200144 /* QuizQuestionSubmission.swift in Sources */,
 				ABA0F0851DF8CDD10001D88D /* QuizQuestion.swift in Sources */,
 				ABA0F0511DF8CD850001D88D /* CourseEnrollment.swift in Sources */,
 				ABA0F0F11DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
@@ -3653,6 +3672,7 @@
 				ABE060AB1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */,
 				ABA0F0F31DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F1161DF8CF710001D88D /* ItemRichTextController.swift in Sources */,
+				24C4EF8A1E3594BC00200144 /* QuizSubmission.swift in Sources */,
 				ABA0F0A01DF8CDF70001D88D /* TrackingEventResource.swift in Sources */,
 				ABA0F08E1DF8CDDF0001D88D /* RichText.swift in Sources */,
 				ABA0F0371DF8CD0E0001D88D /* CollectionType+dict.swift in Sources */,
@@ -3676,6 +3696,7 @@
 				ABA0F0701DF8CDB00001D88D /* NewsArticle+CoreDataProperties.swift in Sources */,
 				ABA0F0821DF8CDCE0001D88D /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				ABA0F1151DF8CF6D0001D88D /* UnsupportedQuestionViewController.swift in Sources */,
+				24C4EF8F1E35952A00200144 /* UIViewController+ChildViewController.swift in Sources */,
 				ABA0F1191DF8CF7F0001D88D /* CourseCell.swift in Sources */,
 				ABA0F11B1DF8CF850001D88D /* CourseSectionCell.swift in Sources */,
 				ABA0F0541DF8CD890001D88D /* CourseItem+CoreDataProperties.swift in Sources */,
@@ -3729,6 +3750,7 @@
 				ABA0F03D1DF8CD220001D88D /* BaseModel.swift in Sources */,
 				ABA0F0E61DF8CE7A0001D88D /* Routes.swift in Sources */,
 				ABA0F0E91DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */,
+				24C4EF8E1E3594C200200144 /* QuizQuestionSubmission.swift in Sources */,
 				ABA0F0741DF8CDB90001D88D /* NewsArticle.swift in Sources */,
 				ABA0F0491DF8CD310001D88D /* Course+CoreDataProperties.swift in Sources */,
 				ABA0F07D1DF8CDC50001D88D /* Quiz+CoreDataProperties.swift in Sources */,
@@ -3747,6 +3769,7 @@
 				ABA0F0CC1DF8CE450001D88D /* CourseHelper.swift in Sources */,
 				ABA0F0C31DF8CE2F0001D88D /* SpineModelHelper.swift in Sources */,
 				ABA0F04F1DF8CD800001D88D /* CourseEnrollment+CoreDataProperties.swift in Sources */,
+				24C4EF8B1E3594BD00200144 /* QuizSubmission.swift in Sources */,
 				ABA0F08F1DF8CDDF0001D88D /* RichText.swift in Sources */,
 				ABA0F0C01DF8CE2B0001D88D /* SpineHelper.swift in Sources */,
 				ABA0F0A11DF8CDF70001D88D /* TrackingEventResource.swift in Sources */,
@@ -3887,13 +3910,13 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3905,13 +3928,13 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -3926,6 +3949,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3940,6 +3964,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -3951,12 +3976,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -3969,12 +3994,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
@@ -3985,13 +4010,13 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4001,13 +4026,13 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -4027,6 +4052,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -4047,6 +4073,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
@@ -4055,6 +4082,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -4064,8 +4092,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4104,6 +4134,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -4113,8 +4144,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4135,6 +4168,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALIDATE_PRODUCT = YES;
@@ -4157,6 +4191,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4175,6 +4210,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -4240,6 +4276,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4305,6 +4342,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -4316,12 +4354,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -4334,12 +4372,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
@@ -4356,6 +4394,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -4371,6 +4410,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

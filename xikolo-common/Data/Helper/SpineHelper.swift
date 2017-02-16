@@ -12,14 +12,14 @@ import Spine
 
 class SpineHelper {
 
-    private static var client: Spine = {
+    fileprivate static var client: Spine = {
         #if DEBUG
-            Spine.setLogLevel(.Debug, forDomain: .Networking)
-            Spine.setLogLevel(.Debug, forDomain: .Serializing)
-            Spine.setLogLevel(.Debug, forDomain: .Spine)
+            Spine.setLogLevel(.debug, forDomain: .networking)
+            Spine.setLogLevel(.debug, forDomain: .serializing)
+            Spine.setLogLevel(.debug, forDomain: .spine)
         #endif
 
-        let spine = Spine(baseURL: NSURL(string: Routes.API_V2_URL)!)
+        let spine = Spine(baseURL: URL(string: Routes.API_V2_URL)!)
         SpineHelper.updateHttpHeaders(spine)
 
         spine.registerValueFormatter(EmbeddedObjectFormatter())
@@ -28,72 +28,72 @@ class SpineHelper {
         spine.registerValueFormatter(VideoStreamFormatter())
         spine.registerValueFormatter(DualStreamFormatter())
 
-        spine.registerResource(ChannelSpine)
-        spine.registerResource(CourseSpine)
-        spine.registerResource(CourseEnrollmentSpine)
-        spine.registerResource(CourseItemSpine)
-        spine.registerResource(CourseSectionSpine)
-        spine.registerResource(CourseDateSpine)
-        spine.registerResource(ContentSpine)
-        spine.registerResource(LTIExerciseSpine)
-        spine.registerResource(PeerAssessmentSpine)
-        spine.registerResource(PlatformEventSpine)
-        spine.registerResource(QuizSpine)
-        spine.registerResource(QuizQuestionSpine)
-        spine.registerResource(QuizSubmission)
-        spine.registerResource(RichTextSpine)
-        spine.registerResource(VideoSpine)
-        spine.registerResource(NewsArticleSpine)
-        spine.registerResource(TrackingEvent)
+        spine.registerResource(ChannelSpine.self)
+        spine.registerResource(CourseSpine.self)
+        spine.registerResource(CourseEnrollmentSpine.self)
+        spine.registerResource(CourseItemSpine.self)
+        spine.registerResource(CourseSectionSpine.self)
+        spine.registerResource(CourseDateSpine.self)
+        spine.registerResource(ContentSpine.self)
+        spine.registerResource(LTIExerciseSpine.self)
+        spine.registerResource(PeerAssessmentSpine.self)
+        spine.registerResource(PlatformEventSpine.self)
+        spine.registerResource(QuizSpine.self)
+        spine.registerResource(QuizQuestionSpine.self)
+        spine.registerResource(QuizSubmission.self)
+        spine.registerResource(RichTextSpine.self)
+        spine.registerResource(VideoSpine.self)
+        spine.registerResource(NewsArticleSpine.self)
+        spine.registerResource(TrackingEvent.self)
 
-        let nsCenter = NSNotificationCenter.defaultCenter()
+        let nsCenter = NotificationCenter.default
         nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.loginSuccessfulKey, object: nil)
         nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.logoutSuccessfulKey, object: nil)
 
         return spine
     }()
 
-    @objc private static func updateAfterLoginLogout() {
+    @objc fileprivate static func updateAfterLoginLogout() {
         updateHttpHeaders(client)
     }
 
-    private static func updateHttpHeaders(spine: Spine) {
+    fileprivate static func updateHttpHeaders(_ spine: Spine) {
         let httpClient = spine.networkClient as! HTTPClient
         NetworkHelper.getRequestHeaders().forEach { key, value in
             httpClient.setHeader(key, to: value)
         }
     }
 
-    static func findAll<T: Resource>(type: T.Type) -> Future<[T], XikoloError> {
+    static func findAll<T: Resource>(_ type: T.Type) -> Future<[T], XikoloError> {
         return client.findAll(type).map { resources, _, _ in
             return resources.map { $0 as! T }
         }.mapError(mapXikoloError)
     }
 
-    static func find<T: Resource>(query: Query<T>) -> Future<[T], XikoloError> {
+    static func find<T: Resource>(_ query: Query<T>) -> Future<[T], XikoloError> {
         return client.find(query).map { resources, _, _ in
             return resources.map { $0 as! T }
         }.mapError(mapXikoloError)
     }
 
-    static func findOne<T: Resource>(id: String, ofType type: T.Type) -> Future<T, XikoloError> {
+    static func findOne<T: Resource>(_ id: String, ofType type: T.Type) -> Future<T, XikoloError> {
         return client.findOne(id, ofType: type).map { resource, _, _ in
             return resource
         }.mapError(mapXikoloError)
     }
 
-    static func findOne<T: Resource>(query: Query<T>) -> Future<T, XikoloError> {
+    static func findOne<T: Resource>(_ query: Query<T>) -> Future<T, XikoloError> {
         return client.findOne(query).map { resource, _, _ in
             return resource
         }.mapError(mapXikoloError)
     }
 
-    static func save<T: Resource>(resource: T) -> Future<T, XikoloError> {
+    static func save<T: Resource>(_ resource: T) -> Future<T, XikoloError> {
         return client.save(resource).mapError(mapXikoloError)
     }
 
-    private static func mapXikoloError(error: SpineError) -> XikoloError {
-        return XikoloError.API(error)
+    fileprivate static func mapXikoloError(_ error: SpineError) -> XikoloError {
+        return XikoloError.api(error)
     }
 
 }

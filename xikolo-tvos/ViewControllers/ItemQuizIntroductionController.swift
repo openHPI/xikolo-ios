@@ -21,9 +21,9 @@ class ItemQuizIntroductionController : UIViewController {
     var quiz: Quiz!
     var submissionState: QuizSubmissionState {
         if let submission = quiz.submission {
-            return submission.submitted ? .SubmissionSubmitted : .SubmissionUnsubmitted
+            return submission.submitted ? .submissionSubmitted : .submissionUnsubmitted
         }
-        return .NoSubmission
+        return .noSubmission
     }
 
     var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
@@ -47,12 +47,12 @@ class ItemQuizIntroductionController : UIViewController {
                 self.loadingHelper.stopLoading()
                 self.configureUI()
             } else {
-                self.performSegueWithIdentifier("QuizReplaceSegue", sender: false)
+                self.performSegue(withIdentifier: "QuizReplaceSegue", sender: false)
             }
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !loadingHelper.isLoading {
             // Don't configure when the quiz is loading. It will be configured anyway.
@@ -68,45 +68,45 @@ class ItemQuizIntroductionController : UIViewController {
 
         let formattedTimeLimit = quiz.time_limit_formatted
         let timeLimitHidden = formattedTimeLimit.count == 0
-        timeLimitHeaderView.hidden = timeLimitHidden
-        timeLimitView.hidden = timeLimitHidden
+        timeLimitHeaderView.isHidden = timeLimitHidden
+        timeLimitView.isHidden = timeLimitHidden
         if !timeLimitHidden {
-            timeLimitView.text = formattedTimeLimit.joinWithSeparator("\n")
+            timeLimitView.text = formattedTimeLimit.joined(separator: "\n")
         }
 
         switch submissionState {
-            case .NoSubmission:
-                showSubmissionButton.hidden = true
-            case .SubmissionUnsubmitted:
-                showSubmissionButton.hidden = true
-                startQuizButton.setTitle(NSLocalizedString("Continue Quiz", comment: "Continue Quiz"), forState: .Normal)
-            case .SubmissionSubmitted:
-                showSubmissionButton.hidden = false
-                startQuizButton.setTitle(NSLocalizedString("Retake Quiz", comment: "Retake Quiz"), forState: .Normal)
+            case .noSubmission:
+                showSubmissionButton.isHidden = true
+            case .submissionUnsubmitted:
+                showSubmissionButton.isHidden = true
+                startQuizButton.setTitle(NSLocalizedString("Continue Quiz", comment: "Continue Quiz"), for: UIControlState())
+            case .submissionSubmitted:
+                showSubmissionButton.isHidden = false
+                startQuizButton.setTitle(NSLocalizedString("Retake Quiz", comment: "Retake Quiz"), for: UIControlState())
                 // TODO: Disable "Retake Quiz" button if the user has no more attempts.
         }
     }
 
-    @IBAction func showSubmission(sender: UIButton) {
-        performSegueWithIdentifier("QuizShowSegue", sender: true)
+    @IBAction func showSubmission(_ sender: UIButton) {
+        performSegue(withIdentifier: "QuizShowSegue", sender: true)
     }
 
-    @IBAction func startQuiz(sender: UIButton) {
-        performSegueWithIdentifier("QuizShowSegue", sender: false)
+    @IBAction func startQuiz(_ sender: UIButton) {
+        performSegue(withIdentifier: "QuizShowSegue", sender: false)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             case "QuizShowSegue"?, "QuizReplaceSegue"?:
-                let vc = segue.destinationViewController as! ItemQuizViewController
+                let vc = segue.destination as! ItemQuizViewController
                 vc.quiz = quiz
                 if (sender as! Bool) {
-                    vc.submissionMode = .ShowSubmission
+                    vc.submissionMode = .showSubmission
                 } else {
                     vc.submissionMode = QuizSubmissionDisplayMode.fromSubmissionState(submissionState)
                 }
             default:
-                super.prepareForSegue(segue, sender: sender)
+                super.prepare(for: segue, sender: sender)
         }
     }
 
@@ -114,24 +114,24 @@ class ItemQuizIntroductionController : UIViewController {
 
 enum QuizSubmissionState {
 
-    case NoSubmission
-    case SubmissionUnsubmitted
-    case SubmissionSubmitted
+    case noSubmission
+    case submissionUnsubmitted
+    case submissionSubmitted
 
 }
 
 enum QuizSubmissionDisplayMode {
 
-    case TakeQuiz
-    case ContinueQuiz
-    case RetakeQuiz
-    case ShowSubmission
+    case takeQuiz
+    case continueQuiz
+    case retakeQuiz
+    case showSubmission
 
-    static func fromSubmissionState(state: QuizSubmissionState) -> QuizSubmissionDisplayMode {
+    static func fromSubmissionState(_ state: QuizSubmissionState) -> QuizSubmissionDisplayMode {
         switch(state) {
-            case .NoSubmission: return .TakeQuiz
-            case .SubmissionUnsubmitted: return .ContinueQuiz
-            case .SubmissionSubmitted: return .RetakeQuiz
+            case .noSubmission: return .takeQuiz
+            case .submissionUnsubmitted: return .continueQuiz
+            case .submissionSubmitted: return .retakeQuiz
         }
     }
 

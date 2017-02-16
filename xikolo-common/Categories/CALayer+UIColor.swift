@@ -12,10 +12,10 @@ extension CALayer {
 
     @IBInspectable var borderUIColor: UIColor? {
         get {
-            return borderColor == nil ? nil : UIColor(CGColor: borderColor!)
+            return borderColor == nil ? nil : UIColor(cgColor: borderColor!)
         }
         set(newColor) {
-            borderColor = newColor?.CGColor
+            borderColor = newColor?.cgColor
         }
     }
 

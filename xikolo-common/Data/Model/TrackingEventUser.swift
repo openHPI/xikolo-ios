@@ -24,7 +24,7 @@ class TrackingEventUser : NSObject, EmbeddedObject {
     func toDict() -> [String : AnyObject] {
         var dict = [String: AnyObject]()
         if let uuid = uuid {
-            dict["uuid"] = uuid
+            dict["uuid"] = uuid as AnyObject?
         }
         return dict
     }

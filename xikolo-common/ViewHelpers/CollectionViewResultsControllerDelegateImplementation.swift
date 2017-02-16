@@ -12,14 +12,14 @@ import UIKit
 class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
 
     weak var collectionView: UICollectionView!
-    weak var resultsController: NSFetchedResultsController?
+    weak var resultsController: NSFetchedResultsController<NSFetchRequestResult>?
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
     weak var delegate: CollectionViewResultsControllerDelegateImplementationDelegate?
-    private var contentChangeOperations: [ContentChangeOperation] = []
+    fileprivate var contentChangeOperations: [ContentChangeOperation] = []
 
-    required init(_ collectionView: UICollectionView, resultsController: NSFetchedResultsController?, cellReuseIdentifier: String) {
+    required init(_ collectionView: UICollectionView, resultsController: NSFetchedResultsController<NSFetchRequestResult>?, cellReuseIdentifier: String) {
         self.collectionView = collectionView
         self.resultsController = resultsController
         self.cellReuseIdentifier = cellReuseIdentifier
@@ -29,48 +29,48 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
         self.init(collectionView, resultsController: nil, cellReuseIdentifier: cellReuseIdentifier)
     }
 
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         contentChangeOperations.removeAll()
     }
 
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        contentChangeOperations.append(ContentChangeOperation(type: type, indexSet: NSIndexSet(index: sectionIndex)))
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        contentChangeOperations.append(ContentChangeOperation(type: type, indexSet: IndexSet(integer: sectionIndex)))
     }
 
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         contentChangeOperations.append(ContentChangeOperation(type: type, indexPath: indexPath, newIndexPath: newIndexPath))
     }
 
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         collectionView!.performBatchUpdates({
             let collectionView = self.collectionView!
             for change in self.contentChangeOperations {
                 switch change.context {
-                    case .Section:
+                    case .section:
                         switch change.type {
-                            case .Insert:
+                            case .insert:
                                 collectionView.insertSections(change.indexSet!)
-                            case .Delete:
+                            case .delete:
                                 collectionView.deleteSections(change.indexSet!)
-                            case .Move:
+                            case .move:
                                 break
-                            case .Update:
+                            case .update:
                                 break
                             }
-                    case .Object:
+                    case .object:
                         switch change.type {
-                            case .Insert:
-                                collectionView.insertItemsAtIndexPaths([change.newIndexPath!])
-                            case .Delete:
-                                collectionView.deleteItemsAtIndexPaths([change.indexPath!])
-                            case .Update:
+                            case .insert:
+                                collectionView.insertItems(at: [change.newIndexPath!])
+                            case .delete:
+                                collectionView.deleteItems(at: [change.indexPath!])
+                            case .update:
                                 // No need to update a cell that has not been loaded.
-                                if let cell = collectionView.cellForItemAtIndexPath(change.indexPath!) {
+                                if let cell = collectionView.cellForItem(at: change.indexPath!) {
                                     self.delegate?.configureCollectionCell(cell, indexPath: change.indexPath!)
                                 }
-                            case .Move:
-                                collectionView.deleteItemsAtIndexPaths([change.indexPath!])
-                                collectionView.insertItemsAtIndexPaths([change.newIndexPath!])
+                            case .move:
+                                collectionView.deleteItems(at: [change.indexPath!])
+                                collectionView.insertItems(at: [change.newIndexPath!])
                         }
                 }
             }
@@ -81,23 +81,23 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
 
 extension CollectionViewResultsControllerDelegateImplementation : UICollectionViewDataSource {
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return resultsController?.sections?.count ?? 0
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return resultsController?.sections?[section].numberOfObjects ?? 0
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
         self.delegate?.configureCollectionCell(cell, indexPath: indexPath)
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier!, forIndexPath: indexPath)
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
             if let section = resultsController?.sections?[indexPath.section] {
                 delegate?.configureCollectionHeaderView?(view, section: section)
             }
@@ -111,9 +111,9 @@ extension CollectionViewResultsControllerDelegateImplementation : UICollectionVi
 
 @objc protocol CollectionViewResultsControllerDelegateImplementationDelegate : class {
 
-    func configureCollectionCell(cell: UICollectionViewCell, indexPath: NSIndexPath)
+    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath)
 
-    optional func configureCollectionHeaderView(view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
+    @objc optional func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
 
 }
 
@@ -121,18 +121,18 @@ private struct ContentChangeOperation {
 
     var context: FetchedResultsChangeContext
     var type: NSFetchedResultsChangeType
-    var indexSet: NSIndexSet?
-    var indexPath: NSIndexPath?
-    var newIndexPath: NSIndexPath?
+    var indexSet: IndexSet?
+    var indexPath: IndexPath?
+    var newIndexPath: IndexPath?
 
-    init(type: NSFetchedResultsChangeType, indexSet: NSIndexSet) {
-        self.context = .Section
+    init(type: NSFetchedResultsChangeType, indexSet: IndexSet) {
+        self.context = .section
         self.type = type
         self.indexSet = indexSet
     }
 
-    init(type: NSFetchedResultsChangeType, indexPath: NSIndexPath?, newIndexPath: NSIndexPath?) {
-        self.context = .Object
+    init(type: NSFetchedResultsChangeType, indexPath: IndexPath?, newIndexPath: IndexPath?) {
+        self.context = .object
         self.type = type
         self.indexPath = indexPath
         self.newIndexPath = newIndexPath
@@ -141,6 +141,6 @@ private struct ContentChangeOperation {
 }
 
 private enum FetchedResultsChangeContext {
-    case Section
-    case Object
+    case section
+    case object
 }

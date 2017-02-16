@@ -23,17 +23,17 @@ class QuizOption : NSObject, NSCoding, EmbeddedObject {
     }
 
     required init(coder decoder: NSCoder) {
-        id = decoder.decodeObjectForKey("id") as? String
-        text = decoder.decodeObjectForKey("text") as? String
-        position = decoder.decodeObjectForKey("position") as? NSNumber
-        correct = decoder.decodeObjectForKey("correct") as? Bool
+        id = decoder.decodeObject(forKey: "id") as? String
+        text = decoder.decodeObject(forKey: "text") as? String
+        position = decoder.decodeObject(forKey: "position") as? NSNumber
+        correct = decoder.decodeObject(forKey: "correct") as? Bool
     }
 
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(id, forKey: "id")
-        coder.encodeObject(text, forKey: "text")
-        coder.encodeObject(position, forKey: "position")
-        coder.encodeObject(correct, forKey: "correct")
+    func encode(with coder: NSCoder) {
+        coder.encode(id, forKey: "id")
+        coder.encode(text, forKey: "text")
+        coder.encode(position, forKey: "position")
+        coder.encode(correct, forKey: "correct")
     }
 
 }

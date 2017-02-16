@@ -12,18 +12,18 @@ import Result
 
 class CourseItemHelper {
 
-    static private let entity = NSEntityDescription.entityForName("CourseItem", inManagedObjectContext: CoreDataHelper.managedContext)!
+    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "CourseItem", in: CoreDataHelper.managedContext)!
 
-    static func getItemRequest(section: CourseSection) -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "CourseItem")
+    static func getItemRequest(_ section: CourseSection) -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
         request.predicate = NSPredicate(format: "section = %@", section)
         let titleSort = NSSortDescriptor(key: "position", ascending: true)
         request.sortDescriptors = [titleSort]
         return request
     }
     
-    static func getItemRequest(course: Course) -> NSFetchRequest {
-        let request = NSFetchRequest(entityName: "CourseItem")
+    static func getItemRequest(_ course: Course) -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
         request.predicate = NSPredicate(format: "section.course = %@", course)
         let sectionSort = NSSortDescriptor(key: "section.position", ascending: true)
         let positionSort = NSSortDescriptor(key: "position", ascending: true)
@@ -31,7 +31,7 @@ class CourseItemHelper {
         return request
     }
 
-    static func syncCourseItems(section: CourseSection) -> Future<[CourseItem], XikoloError> {
+    static func syncCourseItems(_ section: CourseSection) -> Future<[CourseItem], XikoloError> {
         return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems -> Future<[BaseModel], XikoloError> in
             let request = getItemRequest(section)
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineItems, inject: ["section": section], save: true)

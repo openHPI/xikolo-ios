@@ -12,7 +12,7 @@ import CoreData
 
 class CourseActivityRow : UITableViewCell {
 
-    var resultsController: NSFetchedResultsController!
+    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
 
     @IBOutlet var collectionView: UICollectionView!
@@ -47,15 +47,15 @@ class CourseActivityRow : UITableViewCell {
 
 extension CourseActivityRow : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
         let cell = cell as! CourseCell
 
-        let course = resultsController.objectAtIndexPath(indexPath) as! Course
+        let course = resultsController.object(at: indexPath) as! Course
         cell.configure(course)
     }
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let course = resultsController.objectAtIndexPath(indexPath) as! Course
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let course = resultsController.object(at: indexPath) as! Course
         AppDelegate.instance().goToCourse(course)
     }
     
@@ -63,7 +63,7 @@ extension CourseActivityRow : CollectionViewResultsControllerDelegateImplementat
 
 extension CourseActivityRow : UICollectionViewDelegateFlowLayout {
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemWidth = 300
         let itemHeight = 240
         return CGSize(width: itemWidth, height: itemHeight)

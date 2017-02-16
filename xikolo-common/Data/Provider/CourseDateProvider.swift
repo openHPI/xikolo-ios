@@ -12,7 +12,7 @@ import Foundation
 class CourseDateProvider {
 
     class func getCourseDates() -> Future<[CourseDateSpine], XikoloError> {
-        return SpineHelper.findAll(CourseDateSpine)
+        return SpineHelper.findAll(CourseDateSpine.self)
     }
     
 }

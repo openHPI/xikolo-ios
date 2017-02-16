@@ -12,12 +12,12 @@ import UIKit
 class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
 
     weak var tableView: UITableView!
-    weak var resultsController: NSFetchedResultsController?
+    weak var resultsController: NSFetchedResultsController<NSFetchRequestResult>?
     var cellReuseIdentifier: String
 
     weak var delegate: TableViewResultsControllerDelegateImplementationDelegate?
 
-    required init(_ tableView: UITableView, resultsController: NSFetchedResultsController?, cellReuseIdentifier: String) {
+    required init(_ tableView: UITableView, resultsController: NSFetchedResultsController<NSFetchRequestResult>?, cellReuseIdentifier: String) {
         self.tableView = tableView
         self.resultsController = resultsController
         self.cellReuseIdentifier = cellReuseIdentifier
@@ -27,46 +27,46 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
         self.init(tableView, resultsController: nil, cellReuseIdentifier: cellReuseIdentifier)
     }
 
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
 
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         switch type {
-        case .Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Move:
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .move:
             break
-        case .Update:
+        case .update:
             break
         }
     }
 
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Update:
-            if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            if let cell = tableView.cellForRow(at: indexPath!) {
                 self.delegate?.configureTableCell(cell, indexPath: indexPath!)
             } else {
                 #if os(tvOS)
                 // Undocumented by Apple:
                 // Need to create rows that don't exist here to prevent assertion errors (tvOS only).
-                tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+                tableView.insertRows(at: [indexPath!], with: .fade)
                 #endif
             }
-        case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .move:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.insertRows(at: [indexPath!], with: .fade)
         }
     }
 
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
 
@@ -74,7 +74,7 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
 
 extension TableViewResultsControllerDelegateImplementation : UITableViewDataSource {
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if let resultsController = resultsController {
             if resultsController.sectionNameKeyPath == nil {
                 return 1
@@ -85,17 +85,17 @@ extension TableViewResultsControllerDelegateImplementation : UITableViewDataSour
         return 0
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resultsController?.sections?[section].numberOfObjects ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
         self.delegate?.configureTableCell(cell, indexPath: indexPath)
         return cell
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return resultsController?.sections?[section].name
     }
 
@@ -103,6 +103,6 @@ extension TableViewResultsControllerDelegateImplementation : UITableViewDataSour
 
 protocol TableViewResultsControllerDelegateImplementationDelegate : class {
 
-    func configureTableCell(cell: UITableViewCell, indexPath: NSIndexPath)
+    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath)
 
 }

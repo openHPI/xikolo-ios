@@ -57,9 +57,9 @@ class ItemQuizViewController : UIViewController {
             questions = Array(quizQuestions)
 
             loadingHelper = ViewControllerLoadingHelper(self, rootView: view)
-            if submissionMode! == .TakeQuiz || submissionMode! == .RetakeQuiz {
+            if submissionMode! == .takeQuiz || submissionMode! == .retakeQuiz {
                 loadingHelper.startLoading(NSLocalizedString("Starting Quiz", comment: "Starting Quiz"))
-                if submissionMode! == .RetakeQuiz {
+                if submissionMode! == .retakeQuiz {
                     // Remove all QuestionSubmissions if retaking the quiz.
                     for question in questions {
                         question.submission = nil
@@ -82,25 +82,25 @@ class ItemQuizViewController : UIViewController {
             indicatorView.updateAll()
 
             view.addLayoutGuide(questionFocusGuide)
-            questionFocusGuide.trailingAnchor.constraintEqualToAnchor(nextButton.leadingAnchor).active = true
-            questionFocusGuide.centerYAnchor.constraintEqualToAnchor(nextButton.centerYAnchor).active = true
-            questionFocusGuide.widthAnchor.constraintEqualToConstant(100).active = true
-            questionFocusGuide.heightAnchor.constraintEqualToAnchor(nextButton.heightAnchor).active = true
+            questionFocusGuide.trailingAnchor.constraint(equalTo: nextButton.leadingAnchor).isActive = true
+            questionFocusGuide.centerYAnchor.constraint(equalTo: nextButton.centerYAnchor).isActive = true
+            questionFocusGuide.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            questionFocusGuide.heightAnchor.constraint(equalTo: nextButton.heightAnchor).isActive = true
 
             let previousFocusGuide = UIFocusGuide()
             view.addLayoutGuide(previousFocusGuide)
-            previousFocusGuide.trailingAnchor.constraintEqualToAnchor(questionView.leadingAnchor).active = true
-            previousFocusGuide.centerYAnchor.constraintEqualToAnchor(questionView.centerYAnchor).active = true
-            previousFocusGuide.widthAnchor.constraintEqualToConstant(100).active = true
-            previousFocusGuide.heightAnchor.constraintEqualToAnchor(questionView.heightAnchor).active = true
+            previousFocusGuide.trailingAnchor.constraint(equalTo: questionView.leadingAnchor).isActive = true
+            previousFocusGuide.centerYAnchor.constraint(equalTo: questionView.centerYAnchor).isActive = true
+            previousFocusGuide.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            previousFocusGuide.heightAnchor.constraint(equalTo: questionView.heightAnchor).isActive = true
             previousFocusGuide.preferredFocusedView = previousButton
 
             let nextFocusGuide = UIFocusGuide()
             view.addLayoutGuide(nextFocusGuide)
-            nextFocusGuide.leadingAnchor.constraintEqualToAnchor(questionView.trailingAnchor).active = true
-            nextFocusGuide.centerYAnchor.constraintEqualToAnchor(questionView.centerYAnchor).active = true
-            nextFocusGuide.widthAnchor.constraintEqualToConstant(100).active = true
-            nextFocusGuide.heightAnchor.constraintEqualToAnchor(questionView.heightAnchor).active = true
+            nextFocusGuide.leadingAnchor.constraint(equalTo: questionView.trailingAnchor).isActive = true
+            nextFocusGuide.centerYAnchor.constraint(equalTo: questionView.centerYAnchor).isActive = true
+            nextFocusGuide.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            nextFocusGuide.heightAnchor.constraint(equalTo: questionView.heightAnchor).isActive = true
             nextFocusGuide.preferredFocusedView = nextButton
         }
     }
@@ -126,7 +126,7 @@ class ItemQuizViewController : UIViewController {
         let question = questions[currentQuestion]
 
         let vc = viewControllerForQuestion(question)
-        vc.readOnly = submissionMode! == .ShowSubmission || (question.hasCorrectnessData && question.submission != nil)
+        vc.readOnly = submissionMode! == .showSubmission || (question.hasCorrectnessData && question.submission != nil)
 
         addChildViewController(vc, into: questionView)
 
@@ -141,7 +141,7 @@ class ItemQuizViewController : UIViewController {
         questionViewController = vc
     }
 
-    private func saveProgress(vc: AbstractQuestionViewController) {
+    fileprivate func saveProgress(_ vc: AbstractQuestionViewController) {
         vc.saveSubmission()
         if vc.question.submission != nil {
             let submission = quiz.submission!, questions = self.questions
@@ -158,24 +158,24 @@ class ItemQuizViewController : UIViewController {
         }
     }
 
-    private func viewControllerForQuestion(question: QuizQuestion) -> AbstractQuestionViewController {
+    fileprivate func viewControllerForQuestion(_ question: QuizQuestion) -> AbstractQuestionViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var vc: AbstractQuestionViewController!
         switch question.questionType {
-            case .SingleAnswer, .MultipleAnswer:
-                vc = storyboard.instantiateViewControllerWithIdentifier("ChoiceQuestionViewController") as! ChoiceQuestionViewController
+            case .singleAnswer, .multipleAnswer:
+                vc = storyboard.instantiateViewController(withIdentifier: "ChoiceQuestionViewController") as! ChoiceQuestionViewController
             default:
-                vc = storyboard.instantiateViewControllerWithIdentifier("UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
+                vc = storyboard.instantiateViewController(withIdentifier: "UnsupportedQuestionViewController") as! UnsupportedQuestionViewController
         }
         vc.question = question
         return vc
     }
 
-    @IBAction func previousQuestion(sender: UIButton) {
+    @IBAction func previousQuestion(_ sender: UIButton) {
         currentQuestion -= 1
     }
 
-    @IBAction func nextQuestion(sender: UIButton) {
+    @IBAction func nextQuestion(_ sender: UIButton) {
         let vc = questionViewController!
         if vc.question.hasCorrectnessData && !vc.readOnly {
             saveProgress(vc)
@@ -203,16 +203,16 @@ class ItemQuizViewController : UIViewController {
 
     func updateButtons() {
         if currentQuestion == 0 {
-            previousButton.hidden = true
+            previousButton.isHidden = true
         } else {
-            previousButton.hidden = false
+            previousButton.isHidden = false
         }
         if questions[currentQuestion].hasCorrectnessData && !questionViewController!.readOnly {
-            nextButton.setTitle(NSLocalizedString("Submit", comment: "Submit"), forState: .Normal)
+            nextButton.setTitle(NSLocalizedString("Submit", comment: "Submit"), for: UIControlState())
         } else if currentQuestion == questions.count - 1 {
-            nextButton.setTitle(NSLocalizedString("Finish", comment: "Finish"), forState: .Normal)
+            nextButton.setTitle(NSLocalizedString("Finish", comment: "Finish"), for: UIControlState())
         } else {
-            nextButton.setTitle(NSLocalizedString("Next", comment: "Next"), forState: .Normal)
+            nextButton.setTitle(NSLocalizedString("Next", comment: "Next"), for: UIControlState())
         }
     }
 
@@ -220,7 +220,7 @@ class ItemQuizViewController : UIViewController {
 
 extension ItemQuizViewController : QuestionIndicatorListViewDelegate {
 
-    func indicatorListView(indicatorListView: QuestionIndicatorListView, didSelectQuestionWithIndex index: Int) {
+    func indicatorListView(_ indicatorListView: QuestionIndicatorListView, didSelectQuestionWithIndex index: Int) {
         currentQuestion = index
     }
 

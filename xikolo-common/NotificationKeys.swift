@@ -9,10 +9,10 @@
 import Foundation
 
 class NotificationKeys: NSObject {
-    
-    static let loginSuccessfulKey = "de.hpi.open.loginsuccessful"
-    static let logoutSuccessfulKey = "de.hpi.open.logoutsuccessful"
 
-    static let dropdownCourseContentKey = "de.hpi.open.dropdown.courseContent"
-    
+    static let loginSuccessfulKey = Notification.Name("de.hpi.open.loginsuccessful")
+    static let logoutSuccessfulKey = Notification.Name("de.hpi.open.logoutsuccessful")
+
+    static let dropdownCourseContentKey = Notification.Name("de.hpi.open.dropdown.courseContent")
+
 }

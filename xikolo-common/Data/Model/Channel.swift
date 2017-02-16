@@ -36,7 +36,7 @@ class ChannelSpine : BaseModelSpine {
             "name": Attribute(),
             "slug": Attribute(),
             "color_string": Attribute().serializeAs("color"),
-            "courses": ToManyRelationship(CourseSpine),
+            "courses": ToManyRelationship(CourseSpine.self),
         ])
     }
     

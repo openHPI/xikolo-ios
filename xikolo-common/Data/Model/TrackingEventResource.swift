@@ -25,7 +25,7 @@ class TrackingEventResource : NSObject, EmbeddedObject {
             default:
                 fatalError("Tracking event for unsupported resource: \(resource)")
         }
-        uuid = resource.valueForKey("id") as? String
+        uuid = resource.value(forKey: "id") as? String
         if uuid == nil {
             return nil
         }
@@ -34,10 +34,10 @@ class TrackingEventResource : NSObject, EmbeddedObject {
     func toDict() -> [String : AnyObject] {
         var dict = [String: AnyObject]()
         if let type = type {
-            dict["type"] = type
+            dict["type"] = type as AnyObject?
         }
         if let uuid = uuid {
-            dict["uuid"] = uuid
+            dict["uuid"] = uuid as AnyObject?
         }
         return dict
     }

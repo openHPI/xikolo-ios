@@ -11,7 +11,7 @@ import Foundation
 
 class PeerAssessmentProvider {
 
-    class func getPeerAssessment(peerAssessmentId: String) -> Future<PeerAssessmentSpine, XikoloError> {
+    class func getPeerAssessment(_ peerAssessmentId: String) -> Future<PeerAssessmentSpine, XikoloError> {
         return SpineHelper.findOne(peerAssessmentId, ofType: PeerAssessmentSpine.self)
     }
     

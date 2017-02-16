@@ -10,73 +10,73 @@ import Alamofire
 import BrightFutures
 import Foundation
 
-public class UserProfileHelper {
+open class UserProfileHelper {
 
     static let preferenceUser = "user"
     static let preferenceToken = "user_token"
 
-    static private let prefs = NSUserDefaults.standardUserDefaults()
+    static fileprivate let prefs = UserDefaults.standard
 
-    static func login(email: String, password: String) -> Future<String, XikoloError> {
+    static func login(_ email: String, password: String) -> Future<String, XikoloError> {
         let promise = Promise<String, XikoloError>()
 
         let url = Routes.AUTHENTICATE_API_URL
-        Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
+        Alamofire.request(url, method: .post, parameters:[
                 Routes.HTTP_PARAM_EMAIL: email,
                 Routes.HTTP_PARAM_PASSWORD: password,
-        ]).responseJSON { response in
+        ], headers: NetworkHelper.getRequestHeaders()).responseJSON { response in
             // The API does not return valid JSON when returning a 401.
             // TODO: Remove once the API does that.
             if let response = response.response {
                 if response.statusCode == 401 {
-                    return promise.failure(XikoloError.AuthenticationError)
+                    return promise.failure(XikoloError.authenticationError)
                 }
             }
 
-            if let json = response.result.value {
+            if let json = response.result.value as? [String: Any] {
                 if let token = json["token"] as? String {
                     UserProfileHelper.saveToken(token)
-                    NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.loginSuccessfulKey, object: nil)
+                    NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
                     return promise.success(token)
                 }
-                return promise.failure(XikoloError.AuthenticationError)
+                return promise.failure(XikoloError.authenticationError)
             }
             if let error = response.result.error {
-                return promise.failure(XikoloError.Network(error))
+                return promise.failure(XikoloError.network(error))
             }
-            return promise.failure(XikoloError.TotallyUnknownError)
+            return promise.failure(XikoloError.totallyUnknownError)
         }
         return promise.future
     }
 
-    static func createEnrollment(courseId: String) -> Future<Void, XikoloError> {
+    static func createEnrollment(_ courseId: String) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
         let url = Routes.ENROLLMENTS_API_URL
-        Alamofire.request(.POST, url, headers: NetworkHelper.getRequestHeaders(), parameters:[
+        Alamofire.request(url, method: .post, parameters:[
                 Routes.HTTP_PARAM_COURSE_ID: courseId,
-        ]).responseJSON { response in
-            if let json = response.result.value {
+        ], headers: NetworkHelper.getRequestHeaders()).responseJSON { response in
+            if let json = response.result.value as? [String: Any] {
                 if (json["id"] as? String) != nil {
                     return promise.success()
                 }
-                return promise.failure(XikoloError.TotallyUnknownError)
+                return promise.failure(XikoloError.totallyUnknownError)
             }
             if let error = response.result.error {
-                return promise.failure(XikoloError.Network(error))
+                return promise.failure(XikoloError.network(error))
             }
-            return promise.failure(XikoloError.TotallyUnknownError)
+            return promise.failure(XikoloError.totallyUnknownError)
         }
         return promise.future
     }
 
-    static func deleteEnrollement(courseId: String) -> Future<Void, XikoloError> {
+    static func deleteEnrollement(_ courseId: String) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
         let url = Routes.ENROLLMENTS_API_URL + courseId
-        Alamofire.request(.DELETE, url, headers: NetworkHelper.getRequestHeaders()).response { (request, response, data, error) in
-            if let error = error {
-                return promise.failure(XikoloError.Network(error))
+        Alamofire.request(url, method: .delete, headers: NetworkHelper.getRequestHeaders()).responseData { response in
+            if let error = response.error {
+                return promise.failure(XikoloError.network(error))
             }
             return promise.success()
         }
@@ -84,8 +84,8 @@ public class UserProfileHelper {
     }
 
     static func logout() {
-        prefs.removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKeys.logoutSuccessfulKey, object: nil)
+        prefs.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        NotificationCenter.default.post(name: NotificationKeys.logoutSuccessfulKey, object: nil)
         prefs.synchronize()
         CoreDataHelper.clearCoreDataStorage()
     }
@@ -100,15 +100,15 @@ public class UserProfileHelper {
         }
     }
 
-    static private func loadUser() -> UserProfile? {
-        if let data = prefs.objectForKey(preferenceUser) as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? UserProfile
+    static fileprivate func loadUser() -> UserProfile? {
+        if let data = prefs.object(forKey: preferenceUser) as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: data) as? UserProfile
         }
         return nil
     }
 
-    static func saveUser(user: UserProfile) {
-        prefs.setObject(NSKeyedArchiver.archivedDataWithRootObject(user), forKey: preferenceUser)
+    static func saveUser(_ user: UserProfile) {
+        prefs.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: preferenceUser)
         prefs.synchronize()
     }
 
@@ -117,12 +117,12 @@ public class UserProfileHelper {
     }
 
     static func getToken() -> String {
-        let token = prefs.stringForKey(preferenceToken) ?? ""
+        let token = prefs.string(forKey: preferenceToken) ?? ""
         return token
     }
 
-    static func saveToken(token: String) {
-        prefs.setObject(token, forKey: preferenceToken)
+    static func saveToken(_ token: String) {
+        prefs.set(token, forKey: preferenceToken)
         prefs.synchronize()
     }
 

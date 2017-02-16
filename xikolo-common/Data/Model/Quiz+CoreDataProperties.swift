@@ -15,8 +15,8 @@ import CoreData
 extension Quiz {
 
     @NSManaged var instructions: String?
-    @NSManaged var lock_submissions_at: NSDate?
-    @NSManaged var publish_results_at: NSDate?
+    @NSManaged var lock_submissions_at: Date?
+    @NSManaged var publish_results_at: Date?
     @NSManaged var show_welcome_page_int: NSNumber?
     @NSManaged var time_limit: NSNumber?
     @NSManaged var allowed_attempts: NSNumber?

@@ -82,8 +82,8 @@ extension ChoiceQuestionViewController : UITableViewDataSource {
         let answer = options[indexPath.row]
 
         var state: ChoiceOptionState? = nil
-        if let answerID = answer.id, let correct = answer.correct, let submissionAnswers = question.submission?.answers {
-            let selected = submissionAnswers.contains(answerID) 
+        if question.hasCorrectnessData, let answerID = answer.id, let correct = answer.correct, let submissionAnswers = question.submission?.answers {
+            let selected = submissionAnswers.contains(answerID)
             if correct {
                 state = .correct
             } else if selected {

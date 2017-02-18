@@ -50,11 +50,11 @@ class NewsArticleSpine : BaseModelSpine {
 
     override class var fields: [Field] {
         return fieldsFromDictionary([
-            "title": Attribute(),
-            "text": Attribute(),
-            "published_at": DateAttribute(),
+            "title": Attribute().readOnly(),
+            "text": Attribute().readOnly(),
+            "published_at": DateAttribute().readOnly(),
             "visited_int": Attribute().serializeAs("visited"),
-            "course": ToOneRelationship(CourseSpine.self),
+            "course": ToOneRelationship(CourseSpine.self).readOnly(),
         ])
     }
     

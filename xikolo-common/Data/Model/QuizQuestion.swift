@@ -31,7 +31,7 @@ class QuizQuestion : BaseModel {
     }
 
     var hasCorrectnessData: Bool {
-        guard let options = options else {
+        guard questionType != .unsupported, let options = options else {
             return false
         }
         return options.filter({ $0.correct ?? false }).count > 0
@@ -73,7 +73,7 @@ enum QuizQuestionType {
 
     case singleAnswer
     case multipleAnswer
-    case freeText
+    // case freeText
     case unsupported
 
     static func fromString(_ str: String) -> QuizQuestionType {
@@ -82,8 +82,8 @@ enum QuizQuestionType {
                 return .singleAnswer
             case "select_multiple":
                 return .multipleAnswer
-            case "free_text":
-                return .freeText
+            // case "free_text":
+            //     return .freeText
             default:
                 return .unsupported
         }

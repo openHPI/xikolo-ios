@@ -48,7 +48,7 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
                     baseScore = 0
                 }
                 return Float(baseScore) / Float(questionOptions.filter({ $0.correct ?? false }).count)
-            case .freeText, .unsupported:
+            case .unsupported:
                 return nil
         }
     }
@@ -71,8 +71,8 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
                 }
             case .multipleAnswer:
                 answers = dict["data"] as? [String]
-            case .freeText:
-                text = dict["data"] as? String
+            // case .freeText:
+            //     text = dict["data"] as? String
             case .unsupported:
                 unsupportedData = dict["data"]
         }
@@ -91,8 +91,8 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
                 data = answers?.first as AnyObject?? ?? NSNull()
             case .multipleAnswer:
                 data = answers as AnyObject?? ?? NSNull()
-            case .freeText:
-                data = text as AnyObject?? ?? NSNull()
+            // case .freeText:
+            //     data = text as AnyObject?? ?? NSNull()
             case .unsupported:
                 data = unsupportedData ?? NSNull()
         }

@@ -27,7 +27,7 @@ DEPENDENCIES:
   - ObjectMapper (= 2.0)
   - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
   - Result (= 3.1.0)
-  - Spine (from `https://github.com/wvteijlingen/Spine.git`, commit `ee1ad2b`)
+  - Spine (from `https://github.com/invliD/Spine.git`, commit `1171b90`)
   - TSMarkdownParser (from `https://github.com/laptobbe/TSMarkdownParser.git`, commit `cff997a`)
 
 EXTERNAL SOURCES:
@@ -35,8 +35,8 @@ EXTERNAL SOURCES:
     :commit: dd5731c
     :git: https://github.com/Lickability/PinpointKit
   Spine:
-    :commit: ee1ad2b
-    :git: https://github.com/wvteijlingen/Spine.git
+    :commit: 1171b90
+    :git: https://github.com/invliD/Spine.git
   TSMarkdownParser:
     :commit: cff997a
     :git: https://github.com/laptobbe/TSMarkdownParser.git
@@ -46,8 +46,8 @@ CHECKOUT OPTIONS:
     :commit: dd5731c
     :git: https://github.com/Lickability/PinpointKit
   Spine:
-    :commit: ee1ad2b
-    :git: https://github.com/wvteijlingen/Spine.git
+    :commit: 1171b90
+    :git: https://github.com/invliD/Spine.git
   TSMarkdownParser:
     :commit: cff997a
     :git: https://github.com/laptobbe/TSMarkdownParser.git
@@ -65,6 +65,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TSMarkdownParser: 5c8a0af7800da40a8d5ab53323fa6a1ba3a9dd88
 
-PODFILE CHECKSUM: 5aa10335e58eeca4eca13177e6f14116434fd798
+PODFILE CHECKSUM: a928e8052b73dca72f82278c32da3ce4f2b69b7f
 
 COCOAPODS: 1.1.1

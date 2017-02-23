@@ -37,7 +37,7 @@
                     <navigationItem key="navigationItem" id="dRl-af-QvE">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ytp-SX-B4p">
-                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <rect key="frame" x="68" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="News"/>
@@ -101,7 +101,7 @@
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32.03.1987" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcn-a2-G7d">
-                                            <rect key="frame" x="287" y="37" width="80" height="17"/>
+                                            <rect key="frame" x="263" y="37" width="80" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="2l2-y7-xSx"/>
                                             </constraints>
@@ -141,6 +141,13 @@
                                                 </mask>
                                             </variation>
                                         </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation-arrow-32" translatesAutoresizingMaskIntoConstraints="NO" id="EM0-ta-8af">
+                                            <rect key="frame" x="351" y="37" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="EkB-ST-UR9"/>
+                                                <constraint firstAttribute="height" constant="16" id="H1a-oi-JQ7"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="K6L-Mu-DQ9" secondAttribute="trailing" constant="16" id="0Qe-vW-LoD"/>
@@ -151,11 +158,13 @@
                                         <constraint firstItem="ILo-6g-W2O" firstAttribute="leading" secondItem="K6L-Mu-DQ9" secondAttribute="leading" id="Ovy-nr-dsm"/>
                                         <constraint firstItem="Hcn-a2-G7d" firstAttribute="top" secondItem="K6L-Mu-DQ9" secondAttribute="bottom" constant="8" id="QzV-Nc-GpP"/>
                                         <constraint firstItem="K6L-Mu-DQ9" firstAttribute="leading" secondItem="xem-MR-52U" secondAttribute="trailing" constant="8" symbolic="YES" id="VTW-7X-IDG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Hcn-a2-G7d" secondAttribute="trailing" id="Wfh-DD-bmH"/>
                                         <constraint firstItem="uzw-Va-sVD" firstAttribute="top" secondItem="ILo-6g-W2O" secondAttribute="bottom" constant="8" symbolic="YES" id="bQt-Em-y9A"/>
                                         <constraint firstItem="K6L-Mu-DQ9" firstAttribute="centerY" secondItem="xem-MR-52U" secondAttribute="centerY" id="cHE-0P-8IH"/>
                                         <constraint firstItem="xem-MR-52U" firstAttribute="top" secondItem="PpP-JB-HQs" secondAttribute="topMargin" constant="5" id="d1O-Li-GET"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="uzw-Va-sVD" secondAttribute="bottom" id="eT3-Bb-gag"/>
+                                        <constraint firstItem="EM0-ta-8af" firstAttribute="centerY" secondItem="Hcn-a2-G7d" secondAttribute="centerY" id="fxI-lS-5bC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="EM0-ta-8af" secondAttribute="trailing" id="hUc-4L-8fa"/>
+                                        <constraint firstItem="EM0-ta-8af" firstAttribute="leading" secondItem="Hcn-a2-G7d" secondAttribute="trailing" constant="8" symbolic="YES" id="jm1-4M-cgM"/>
                                         <constraint firstItem="uzw-Va-sVD" firstAttribute="top" secondItem="Hcn-a2-G7d" secondAttribute="bottom" constant="8" symbolic="YES" id="mbj-ym-chQ"/>
                                         <constraint firstItem="uzw-Va-sVD" firstAttribute="leading" secondItem="xem-MR-52U" secondAttribute="trailing" constant="8" symbolic="YES" id="nLi-AC-Nqf"/>
                                     </constraints>
@@ -487,5 +496,6 @@
     <resources>
         <image name="TabBarIconNews" width="25" height="25"/>
         <image name="TabBarIconNewsSelected" width="25" height="25"/>
+        <image name="navigation-arrow-32" width="22" height="32"/>
     </resources>
 </document>

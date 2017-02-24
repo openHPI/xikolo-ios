@@ -27,7 +27,7 @@ class CourseListViewController : AbstractCourseListViewController {
                 showMyCoursesOnly(true)
             } else {
                 sender.selectedSegmentIndex = 0
-                performSegue(withIdentifier: "ShowLoginForMyCourses", sender: sender) // maybe switch to My Courses after succesful login?
+                performSegue(withIdentifier: "ShowLogin", sender: sender) // maybe switch to My Courses after succesful login?
             }
         default:
             break

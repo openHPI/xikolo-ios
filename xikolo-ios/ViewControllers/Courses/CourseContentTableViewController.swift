@@ -65,11 +65,11 @@ class CourseContentTableViewController: UITableViewController {
         
         switch item.content {
             case is Video:
-                performSegue(withIdentifier: "ShowVideoView", sender: item)
+                performSegue(withIdentifier: "ShowVideo", sender: item)
             case is LTIExercise, is Quiz, is PeerAssessment:
-                performSegue(withIdentifier: "ShowQuizWebView", sender: item)
+                performSegue(withIdentifier: "ShowQuiz", sender: item)
             case is RichText:
-                performSegue(withIdentifier: "ShowRichTextView", sender: item)
+                performSegue(withIdentifier: "ShowRichtext", sender: item)
             default:
                 // TODO: show error: unsupported type
                 break

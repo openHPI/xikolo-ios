@@ -6,7 +6,7 @@ def common_pods
     pod 'ObjectMapper', '2.0'
 
     pod 'BrightFutures', '5.1.0'
-    pod 'Down', :git => 'https://github.com/invliD/Down', :commit => '3094573'
+    pod 'Down', '0.3.2'
     pod 'Result', '3.1.0'
     pod 'Spine', :git => 'https://github.com/invliD/Spine.git', :commit => '1171b90'
 end

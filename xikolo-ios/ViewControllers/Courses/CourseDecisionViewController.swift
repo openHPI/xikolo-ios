@@ -95,6 +95,7 @@ class CourseDecisionViewController: UIViewController {
             titleView.text = NSLocalizedString("Course Details", comment: "")
         }
         self.content = content
+        navigationController?.view.setNeedsLayout()
     }
 
     func changeToViewController(_ viewController: UIViewController) {

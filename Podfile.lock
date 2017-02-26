@@ -5,7 +5,7 @@ PODS:
     - ObjectMapper (~> 2.0)
   - BrightFutures (5.1.0):
     - Result (~> 3.0)
-  - Down (0.3.1)
+  - Down (0.3.2)
   - DZNEmptyDataSet (1.8.1)
   - ObjectMapper (2.0.0)
   - PinpointKit (0.9):
@@ -21,7 +21,7 @@ DEPENDENCIES:
   - Alamofire (= 4.3.0)
   - AlamofireObjectMapper (= 4.0.1)
   - BrightFutures (= 5.1.0)
-  - Down (from `https://github.com/invliD/Down`, commit `3094573`)
+  - Down (= 0.3.2)
   - DZNEmptyDataSet (= 1.8.1)
   - ObjectMapper (= 2.0)
   - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
@@ -29,9 +29,6 @@ DEPENDENCIES:
   - Spine (from `https://github.com/invliD/Spine.git`, commit `1171b90`)
 
 EXTERNAL SOURCES:
-  Down:
-    :commit: '3094573'
-    :git: https://github.com/invliD/Down
   PinpointKit:
     :commit: dd5731c
     :git: https://github.com/Lickability/PinpointKit
@@ -40,9 +37,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/invliD/Spine.git
 
 CHECKOUT OPTIONS:
-  Down:
-    :commit: '3094573'
-    :git: https://github.com/invliD/Down
   PinpointKit:
     :commit: dd5731c
     :git: https://github.com/Lickability/PinpointKit
@@ -54,7 +48,7 @@ SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
   BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
-  Down: 691ec017b0545b5063a09cfb0dc077b5c76bd75e
+  Down: afcfa1a49381b19733b67074bf239789edfa8ad4
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   PinpointKit: 6d19d08afddfad2753aee95e2a6160f2d8d30764
@@ -62,6 +56,6 @@ SPEC CHECKSUMS:
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 8d49eaddc8c1aac65e373df5c7c58a7f264b44f1
+PODFILE CHECKSUM: ac00727f4973c1a2409ef8ae35f3c5582ed1f92d
 
 COCOAPODS: 1.1.1

@@ -6,14 +6,12 @@ def common_pods
     pod 'ObjectMapper', '2.0'
 
     pod 'BrightFutures', '5.1.0'
+    pod 'Down', :git => 'https://github.com/invliD/Down', :commit => '3094573'
     pod 'Result', '3.1.0'
     pod 'Spine', :git => 'https://github.com/invliD/Spine.git', :commit => '1171b90'
-
-    pod 'TSMarkdownParser', :git => 'https://github.com/laptobbe/TSMarkdownParser.git', :commit => 'cff997a'
 end
 
 def ios_pods
-    pod 'Down', '0.3'
     pod 'PinpointKit', :git => 'https://github.com/Lickability/PinpointKit', :commit => 'dd5731c'
     pod 'DZNEmptyDataSet', '1.8.1'
 end

@@ -63,7 +63,7 @@ class ItemQuizIntroductionController : UIViewController {
     func configureUI() {
         titleView.text = quiz.item?.title
         if let text = quiz.instructions {
-            textView.attributedText = MarkdownParser.parse(text)
+            textView.attributedText = try? MarkdownHelper.parse(text)
         }
 
         let formattedTimeLimit = quiz.time_limit_formatted

@@ -20,15 +20,8 @@ class AbstractItemRichtextViewController: UIViewController {
 
         RichTextHelper.refreshRichText(courseItem.content as! RichText).onSuccess { richText in
             if let markdown = richText.text {
-                let parser = MarkdownParser()
-                #if os(tvOS)
-                    parser.setColor(UIColor.white)
-                    self.textView.attributedText = parser.parse(markdown)
-                #endif
-                #if os(iOS)
-                    let markDown = try? MarkdownHelper.parse(markdown) // TODO: Error handling
-                    self.textView.attributedText = markDown
-                #endif
+                let markDown = try? MarkdownHelper.parse(markdown) // TODO: Error handling
+                self.textView.attributedText = markDown
 
                 self.richTextLoaded()
             }

@@ -19,7 +19,7 @@ class AbstractQuestionViewController : UIViewController {
         super.viewDidLoad()
 
         if let text = question.text {
-            textView.attributedText = MarkdownParser.parse(text)
+            textView.attributedText = try? MarkdownHelper.parse(text)
         }
     }
 

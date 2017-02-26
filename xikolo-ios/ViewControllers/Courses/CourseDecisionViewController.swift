@@ -89,10 +89,8 @@ class CourseDecisionViewController: UIViewController {
             changeToViewController(vc)
             titleView.text = NSLocalizedString("Discussions", comment: "")
         case .courseDetails:
-            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-            if let slug = course.slug {
-                vc.url = Routes.COURSES_URL + slug
-            }
+            let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController") as! CourseDetailViewController
+            vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("Course Details", comment: "")
         }

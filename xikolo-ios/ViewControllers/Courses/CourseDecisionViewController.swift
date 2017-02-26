@@ -37,11 +37,7 @@ class CourseDecisionViewController: UIViewController {
 
     @IBAction func enroll(_ sender: UIBarButtonItem) {
         if UserProfileHelper.isLoggedIn() {
-            UserProfileHelper.createEnrollment(course.id)
-                .flatMap { CourseHelper.refreshCourses() }
-                .onSuccess { _ in
-                    self.decideContent()
-            }
+            showEnrollmentDialog()
         } else {
             performSegue(withIdentifier: "ShowLogin", sender: nil)
         }
@@ -105,6 +101,26 @@ class CourseDecisionViewController: UIViewController {
         addChildViewController(viewController)
         viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
+    }
+
+    func showEnrollmentDialog() {
+        let title = NSLocalizedString("Enroll in course?", comment: "Shown in confirmation dialog")
+        let message = NSLocalizedString("You can always un-enroll.", comment: "Shown in confirmation dialog")
+        let confirm = NSLocalizedString("Enroll", comment: "")
+        let decline = NSLocalizedString("Cancel", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+
+        alert.addAction(UIAlertAction(title: confirm, style: .default, handler: { (action: UIAlertAction!) in
+            UserProfileHelper.createEnrollment(self.course.id)
+                .flatMap { CourseHelper.refreshCourses() }
+                .onSuccess { _ in
+                    self.decideContent()
+                }
+        }))
+
+        alert.addAction(UIAlertAction(title: decline, style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

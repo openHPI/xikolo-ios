@@ -28,6 +28,8 @@ class NewsArticleViewController : UIViewController {
         }
 
         titleView.text = newsArticle.title
+        titleView.heroID = "news_headline_" + newsArticle.id
+        
         if let newsText = newsArticle.text {
             let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
             self.textView.attributedText = markDown

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class CourseCell : UICollectionViewCell {
 
@@ -26,8 +27,13 @@ class CourseCell : UICollectionViewCell {
         }
 
         nameLabel.text = course.title
+        nameLabel.heroID = "course_title_" + course.id
         teacherLabel.text = course.teachers
+        teacherLabel.heroID = "course_teacher_" + course.id
         languageLabel.text = course.language_translated
+        languageLabel.heroID = "course_language_" + course.id
+        languageLabel.text = course.language_translated
+        backgroundImage.heroID = "course_image_" + course.id
 
         if let startDate = course.start_at, let endDate = course.end_at {
             let dateFormatter = DateFormatter()

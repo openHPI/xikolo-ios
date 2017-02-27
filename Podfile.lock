@@ -7,6 +7,7 @@ PODS:
     - Result (~> 3.0)
   - Down (0.3.2)
   - DZNEmptyDataSet (1.8.1)
+  - Hero (0.3.3)
   - ObjectMapper (2.0.0)
   - PinpointKit (0.9):
     - PinpointKit/Core (= 0.9)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - BrightFutures (= 5.1.0)
   - Down (= 0.3.2)
   - DZNEmptyDataSet (= 1.8.1)
+  - Hero
   - ObjectMapper (= 2.0)
   - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
   - Result (= 3.1.0)
@@ -50,12 +52,13 @@ SPEC CHECKSUMS:
   BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
   Down: afcfa1a49381b19733b67074bf239789edfa8ad4
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  Hero: bee4e762e84185b16a902dd11335c119515bb912
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   PinpointKit: 6d19d08afddfad2753aee95e2a6160f2d8d30764
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: ac00727f4973c1a2409ef8ae35f3c5582ed1f92d
+PODFILE CHECKSUM: fb73dcb1ed95894b6b61847978a4bec8673c761b
 
 COCOAPODS: 1.1.1

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class CourseDetailViewController: UIViewController {
 
@@ -18,14 +19,18 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet weak var descriptionView: UITextView!
 
     var course: Course!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         titleView.text = course.title
+        titleView.heroID = "course_title_" + course.id
         languageView.text = course.language_translated
+        languageView.heroID = "course_language_" + course.id
         teacherView.text = course.teachers
-
+        teacherView.heroID = "course_teacher_" + course.id
+        imageView.heroID = "course_image_" + course.id
+        
         if let startDate = course.start_at, let endDate = course.end_at {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium

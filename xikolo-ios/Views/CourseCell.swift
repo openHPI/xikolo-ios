@@ -19,6 +19,8 @@ class CourseCell : UICollectionViewCell {
     @IBOutlet weak var statusView: UIView!
 
     func configure(_ course: Course) {
+        backgroundImage.image = nil
+        backgroundImage.backgroundColor = UIColor.gray
         course.loadImage().onSuccess { image in
             self.backgroundImage.image = image
         }

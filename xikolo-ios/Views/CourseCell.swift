@@ -18,11 +18,12 @@ class CourseCell : UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusView: UIView!
-    
+
     func configure(_ course: Course) {
         course.loadImage().onSuccess { image in
             self.backgroundImage.image = image
         }
+
         nameLabel.text = course.title
         nameLabel.heroID = "course_title_" + course.id
         teacherLabel.text = course.teachers
@@ -31,7 +32,7 @@ class CourseCell : UICollectionViewCell {
         languageLabel.heroID = "course_language_" + course.id
         languageLabel.text = course.language_translated
         backgroundImage.heroID = "course_image_" + course.id
-        
+
         if let startDate = course.start_at, let endDate = course.end_at {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium

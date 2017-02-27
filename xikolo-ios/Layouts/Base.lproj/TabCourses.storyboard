@@ -177,7 +177,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="My Courses"/>
-                                <segment title="Explore"/>
+                                <segment title="Find Courses"/>
                             </segments>
                             <connections>
                                 <action selector="segmentedControlChanged:" destination="uLl-5G-DMn" eventType="valueChanged" id="2kC-ua-6Ft"/>

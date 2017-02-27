@@ -40,8 +40,8 @@ class CourseListViewController : AbstractCourseListViewController {
         if !UserProfileHelper.isLoggedIn() {
             segmentedControl.selectedSegmentIndex = 1
             courseDisplayMode = .all
-            updateView()
         }
+        updateView()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

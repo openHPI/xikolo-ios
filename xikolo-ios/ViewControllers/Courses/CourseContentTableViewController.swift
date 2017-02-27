@@ -40,12 +40,15 @@ class CourseContentTableViewController: UITableViewController {
         } catch {
             // TODO: Error handling.
         }
+        NetworkIndicator.start()
         CourseSectionHelper.syncCourseSections(course).flatMap { sections in
             sections.map { section in
                 CourseItemHelper.syncCourseItems(section)
             }.sequence().onComplete { _ in
                 self.tableView.reloadEmptyDataSet()
             }
+        }.onSuccess { _ in
+            NetworkIndicator.end()
         }
         setupEmptyState()
     }

@@ -36,6 +36,12 @@
 "Discussions" = "Diskussionen";
 "Course Details" = "Kursdetails";
 
+//Dialogs
+"Enroll" = "Einschreiben";
+"Cancel" = "Abbrechen";
+"Enroll in course?" = "In Kurs einschreiben?";
+"You can always un-enroll." = "Du kannst dich jederzeit wieder austragen.";
+
 // Profile
 "enrollments" = "Kurseinschreibungen";
 "logout" = "Ausloggen";

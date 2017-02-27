@@ -1,9 +1,9 @@
 
-/* Class = "UISegmentedControl"; CXl-G3-ErQ.segmentTitles[0] = "All Courses"; ObjectID = "CXl-G3-ErQ"; */
-"CXl-G3-ErQ.segmentTitles[0]" = "Alle Kurse";
+/* Class = "UISegmentedControl"; CXl-G3-ErQ.segmentTitles[0] = "My Courses"; ObjectID = "CXl-G3-ErQ"; */
+"CXl-G3-ErQ.segmentTitles[0]" = "Meine Kurse";
 
-/* Class = "UISegmentedControl"; CXl-G3-ErQ.segmentTitles[1] = "My Courses"; ObjectID = "CXl-G3-ErQ"; */
-"CXl-G3-ErQ.segmentTitles[1]" = "Meine Kurse";
+/* Class = "UISegmentedControl"; CXl-G3-ErQ.segmentTitles[1] = "Explore"; ObjectID = "CXl-G3-ErQ"; */
+"CXl-G3-ErQ.segmentTitles[1]" = "Entdecken";
 
 /* Class = "UIButton"; normalTitle = "open slides"; ObjectID = "e3P-4C-sVC"; */
 "e3P-4C-sVC.normalTitle" = "Folien anschauen";

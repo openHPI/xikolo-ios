@@ -46,6 +46,7 @@ class VideoViewController : UIViewController {
                 let destination = segue.destination as! AVPlayerViewController
                 let video = sender as! Video
                 if let urlString = video.single_stream_hls_url {
+                    try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                     let url = URL(string: urlString)
                     destination.player = AVPlayer(url: url!)
                 }

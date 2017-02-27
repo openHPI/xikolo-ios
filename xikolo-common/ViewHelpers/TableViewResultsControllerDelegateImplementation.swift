@@ -62,7 +62,7 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
             }
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .fade)
-            tableView.insertRows(at: [indexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
         }
     }
 

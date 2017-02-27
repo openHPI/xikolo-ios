@@ -14,6 +14,7 @@ class AbstractCourseListViewController : UICollectionViewController {
     enum CourseDisplayMode {
         case enrolledOnly
         case all
+        case explore
         case bothSectioned
     }
 
@@ -21,7 +22,7 @@ class AbstractCourseListViewController : UICollectionViewController {
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
     var contentChangeOperations: [[AnyObject?]] = []
 
-    var courseDisplayMode: CourseDisplayMode = .all
+    var courseDisplayMode: CourseDisplayMode = .enrolledOnly
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,10 +36,13 @@ class AbstractCourseListViewController : UICollectionViewController {
         var request: NSFetchRequest<NSFetchRequestResult>
         switch courseDisplayMode {
             case .enrolledOnly:
-                request = CourseHelper.getMyCoursesRequest()
+                request = CourseHelper.getEnrolledCoursesRequest()
                 resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
             case .all:
                 request = CourseHelper.getAllCoursesRequest()
+                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+            case .explore:
+                request = CourseHelper.getUnenrolledCoursesRequest()
                 resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
             case .bothSectioned:
                 request = CourseHelper.getSectionedRequest()

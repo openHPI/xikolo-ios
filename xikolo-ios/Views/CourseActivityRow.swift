@@ -26,7 +26,7 @@ class CourseActivityRow : UITableViewCell {
 
     func initCollectionView() {
         // TODO: proper API call and cell UI
-        let request = CourseHelper.getMyAccessibleCoursesRequest()
+        let request = CourseHelper.getEnrolledAccessibleCoursesRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsController: resultsController, cellReuseIdentifier: "LastCourseCell")

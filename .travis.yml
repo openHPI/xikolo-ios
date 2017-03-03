@@ -8,6 +8,7 @@ env:
   - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
   - SCHEME="openSAP-iOS" SDK="iphonesimulator"
   - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
+  - SCHEME="openWHO-iOS" SDK="iphonesimulator"
 
 before_install:
   - gem install xcpretty

@@ -4230,7 +4230,6 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Result-iOS\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Spine-iOS\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/TSMarkdownParser-iOS\"",
 				);
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -4252,8 +4251,6 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Spine-iOS/Spine.framework/Headers\"",
 					"-iquote",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS/SwiftyJSON.framework/Headers\"",
-					"-iquote",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/TSMarkdownParser-iOS/TSMarkdownParser.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -4271,8 +4268,6 @@
 					"\"Spine\"",
 					"-framework",
 					"\"SwiftyJSON\"",
-					"-framework",
-					"\"TSMarkdownParser\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
@@ -4296,7 +4291,6 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Result-iOS\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Spine-iOS\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/TSMarkdownParser-iOS\"",
 				);
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -4318,8 +4312,6 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Spine-iOS/Spine.framework/Headers\"",
 					"-iquote",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS/SwiftyJSON.framework/Headers\"",
-					"-iquote",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/TSMarkdownParser-iOS/TSMarkdownParser.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -4337,8 +4329,6 @@
 					"\"Spine\"",
 					"-framework",
 					"\"SwiftyJSON\"",
-					"-framework",
-					"\"TSMarkdownParser\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;

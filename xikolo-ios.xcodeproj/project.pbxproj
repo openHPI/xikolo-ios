@@ -32,6 +32,7 @@
 		2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */; };
+		243484041E6969E700F0DAA5 /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */; };
 		243CE4731D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4721D660F1F007C59B6 /* CollectionType+shuffle.swift */; };
 		243CE4741D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4721D660F1F007C59B6 /* CollectionType+shuffle.swift */; };
 		243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4751D6B1639007C59B6 /* UnsupportedQuestionViewController.swift */; };
@@ -997,7 +998,6 @@
 		ABE060AB1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE060A31DF8C24600FC186D /* Brand+tvOS.swift */; };
 		ABE060AC1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE060A31DF8C24600FC186D /* Brand+tvOS.swift */; };
 		ABE060AD1DF8C27100FC186D /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABE060A41DF8C24600FC186D /* xikolo-tvos.entitlements */; };
-		ABE060AE1DF8C28600FC186D /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */; };
 		ABE060AF1DF8C29500FC186D /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE060A21DF8C24600FC186D /* assets-tvos-brand.xcassets */; };
 		ABFEE0021D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABFEE0031D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
@@ -2197,6 +2197,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2207,11 +2208,13 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 					24BA40501D3F98CA00E38C2C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2222,6 +2225,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2232,6 +2236,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2242,6 +2247,7 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2252,6 +2258,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2262,6 +2269,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2272,6 +2280,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = WP53SSE8S6;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2373,6 +2382,7 @@
 				ABA0F10A1DF8CF230001D88D /* Main.storyboard in Resources */,
 				24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */,
 				24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */,
+				243484041E6969E700F0DAA5 /* xikolo-tvos.entitlements in Resources */,
 				249348141D9550FD006D4F2C /* Localizable.stringsdict in Resources */,
 				24BA41411D3FAAB800E38C2C /* assets-tvos-brand.xcassets in Resources */,
 			);
@@ -2428,7 +2438,6 @@
 				ABA0F0FB1DF8CEB30001D88D /* Localizable.strings in Resources */,
 				ABE060AD1DF8C27100FC186D /* xikolo-tvos.entitlements in Resources */,
 				ABA0F10B1DF8CF270001D88D /* Main.storyboard in Resources */,
-				ABE060AE1DF8C28600FC186D /* xikolo-tvos.entitlements in Resources */,
 				ABA0F1251DF8CFAC0001D88D /* Localizable.strings in Resources */,
 				ABE060AF1DF8C29500FC186D /* assets-tvos-brand.xcassets in Resources */,
 				ABE060961DF8C19800FC186D /* assets-brand.xcassets in Resources */,
@@ -3908,12 +3917,15 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c3ff7e2c-efe2-481a-8105-ef956b012b74";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-tvOS-TopShelf-dev";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -3926,12 +3938,15 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7401e642-bdba-4fa7-9b4f-0f8721b0208e";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-tvOS-TopShelf-dist";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -3944,11 +3959,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				PROVISIONING_PROFILE = "c0a6525c-0cde-463e-8c37-906d0cc1bde4";
+				PROVISIONING_PROFILE_SPECIFIER = "openSAP-iOS-dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -3959,11 +3977,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				PROVISIONING_PROFILE = "b78e4646-259b-43bd-b970-9273d3030c5d";
+				PROVISIONING_PROFILE_SPECIFIER = "openSAP-iOS-dist";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -3976,10 +3997,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				PROVISIONING_PROFILE = "5efae391-9142-449c-9751-b44483c8822a";
+				PROVISIONING_PROFILE_SPECIFIER = "openSAP-tvOS-dev";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -3994,10 +4018,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
 				PRODUCT_NAME = openSAP;
+				PROVISIONING_PROFILE = "9a8cf0d1-78b8-4fa1-b9b3-00ba6d3796c2";
+				PROVISIONING_PROFILE_SPECIFIER = "openSAP-tvOS-dist";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -4010,10 +4038,14 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5a76d188-d040-478a-b852-3c4f1c7bdad2";
+				PROVISIONING_PROFILE_SPECIFIER = "openSAP-tvOS-TopShelf-dev";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -4026,10 +4058,15 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "93baf144-91d1-4793-a0b8-6328934dd8c5";
+				PROVISIONING_PROFILE_SPECIFIER = "openSAP-tvOS-TopShelf-dist";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -4044,13 +4081,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "18fd0933-1fc2-4a2d-81f1-e5701a8d0f69";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-tvOS-dev";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -4065,13 +4103,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "78d0d102-158f-4537-adee-dcc103fdc58d";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-tvOS-dist";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -4098,7 +4137,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -4150,7 +4188,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -4182,14 +4219,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ce1aab70-c0c5-42af-805f-9cc16f8d6854";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-iOS-dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -4201,14 +4239,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c39831e9-8820-42f7-b66d-9371be9f9705";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-iOS-dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -4220,7 +4259,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire-iOS\"",
@@ -4271,6 +4311,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
+				PROVISIONING_PROFILE = "c6ce2ab7-d928-4e00-8ce7-696a26d828c1";
+				PROVISIONING_PROFILE_SPECIFIER = "openWHO-iOS-dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -4281,7 +4323,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire-iOS\"",
@@ -4332,6 +4375,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
+				PROVISIONING_PROFILE = "e5d84a13-9388-43b9-88dc-742f5e3c9c0f";
+				PROVISIONING_PROFILE_SPECIFIER = "openWHO-iOS-dist";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -4344,10 +4389,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2353cf76-47ab-4b2c-afd8-ad3d1f7417f8";
+				PROVISIONING_PROFILE_SPECIFIER = "openWHO-tvOS-dev";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -4362,10 +4410,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "671327d6-c734-4909-be3a-0efdb478257e";
+				PROVISIONING_PROFILE_SPECIFIER = "openWHO-tvOS-dist";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -4378,10 +4430,14 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c10f2df4-a272-4c3c-a096-6d9f41ec6563";
+				PROVISIONING_PROFILE_SPECIFIER = "openWHO-tvOS-TopShelf-dev";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -4394,10 +4450,15 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho.TopShelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "48522c80-c766-4931-a344-90dbb5fdafc4";
+				PROVISIONING_PROFILE_SPECIFIER = "openWHO-tvOS-TopShelf-dist";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;

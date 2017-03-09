@@ -34,14 +34,11 @@ class CourseCell : UICollectionViewCell {
         languageLabel.heroID = "course_language_" + course.id
         languageLabel.text = course.language_translated
         backgroundImage.heroID = "course_image_" + course.id
+        dateLabel.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
 
-        if let startDate = course.start_at, let endDate = course.end_at {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-            dateLabel.text = dateFormatter.string(from: startDate) + " - " + dateFormatter.string(from: endDate)
-        }
-
+        #if OPENWHO
+            statusView.isHidden = true
+        #else
         switch course.status {
         case "active"?:
             statusView.isHidden = false
@@ -58,6 +55,7 @@ class CourseCell : UICollectionViewCell {
         default:
             statusView.isHidden = true
         }
+        #endif
     }
 
 }

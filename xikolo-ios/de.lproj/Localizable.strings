@@ -36,6 +36,11 @@
 "Discussions" = "Diskussionen";
 "Course Details" = "Kursdetails";
 
+"Since" = "Seit";
+"Coming soon" = "Bald verfügbar";
+"Self-paced" = "Selbststudium";
+"Beginning" = "Ab";
+
 //Dialogs
 "Enroll" = "Einschreiben";
 "Cancel" = "Abbrechen";

@@ -15,8 +15,8 @@ class CourseHelper {
 
     static func getGenericCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
-        let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
-        request.sortDescriptors = [startDateSort]
+        let customOrderSort = NSSortDescriptor(key: "order", ascending: true)
+        request.sortDescriptors = [customOrderSort]
         return request
     }
 

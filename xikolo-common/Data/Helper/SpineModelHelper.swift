@@ -49,6 +49,9 @@ class SpineModelHelper {
                     if let dict = inject {
                         cdObject.loadFromDict(dict)
                     }
+                    if let sortableObject = cdObject as? DynamicSort {
+                        sortableObject.computeOrder()
+                    }
                     cdObjects.append(cdObject)
                     if let index = objectsToUpdate.index(of: cdObject) {
                         objectsToUpdate.remove(at: index)

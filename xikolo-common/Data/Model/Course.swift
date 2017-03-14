@@ -83,6 +83,14 @@ class Course : BaseModel {
 
 }
 
+extension Course : DynamicSort {
+
+    func computeOrder() {
+        self.order = NSNumber(value: abs(start_at?.timeIntervalSinceNow ?? TimeInterval.infinity))
+    }
+
+}
+
 class CourseSpine : BaseModelSpine {
 
     var title: String?

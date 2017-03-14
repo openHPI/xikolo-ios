@@ -553,6 +553,15 @@
 		A90587C41B3BFC130095DB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		A90587C91B3BFC130095DB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C71B3BFC130095DB89 /* LaunchScreen.storyboard */; };
+		AB07C3701E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3711E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3721E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3731E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3741E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3751E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3761E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3771E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
+		AB07C3781E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
 		AB1357C51D996722004407AA /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1357C41D996722004407AA /* PlatformEventCell.swift */; };
 		AB1357C61D996722004407AA /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1357C41D996722004407AA /* PlatformEventCell.swift */; };
 		AB17C56C1DFCAD420013BBCD /* CourseDate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1F01DD36AB500B048DB /* CourseDate+CoreDataProperties.swift */; };
@@ -1238,6 +1247,7 @@
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
 		A90587C81B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90587CA1B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicSort.swift; sourceTree = "<group>"; };
 		AB1357C41D996722004407AA /* PlatformEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventCell.swift; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
 		AB17C57F1DFCC5B50013BBCD /* PlatformEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlatformEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1453,6 +1463,7 @@
 		24597D231CC6C87600FB5338 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AB07C36E1E77E12200DA0011 /* Protocols */,
 				24A17A0C1CD233050056A8EE /* BaseModel.swift */,
 				24A16D741CFDB59F00CAD9FE /* BaseModelSpine.swift */,
 				AB95896C1DC2049400586137 /* Channel+CoreDataProperties.swift */,
@@ -1784,6 +1795,14 @@
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 			);
 			path = "xikolo-ios";
+			sourceTree = "<group>";
+		};
+		AB07C36E1E77E12200DA0011 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		AB6AE0C41CF7D69200708654 /* Profile */ = {
@@ -2840,6 +2859,7 @@
 				ABDD84BB1D8E010200C7D193 /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				4E6AB2011DD60EBD00B048DB /* CourseDateProvider.swift in Sources */,
 				2474C8741D86FE17009BDB94 /* QuizQuestion.swift in Sources */,
+				AB07C3721E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				2490C4F51D216D6900F42949 /* NotificationKeys.swift in Sources */,
 				2490C4EF1D216D2E00F42949 /* BaseModelSpine.swift in Sources */,
 				AB77C2991DF956EE00B30619 /* Brand+generic.swift in Sources */,
@@ -2982,6 +3002,7 @@
 				AB95897D1DC4A42800586137 /* UITableViewCell+enable.swift in Sources */,
 				24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */,
 				AB1C03401D8E0CA60053B4E3 /* LTIExerciseProvider.swift in Sources */,
+				AB07C3731E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24BA40A01D3F9AB200E38C2C /* Quiz.swift in Sources */,
 				24BA40BA1D3F9AD600E38C2C /* RichTextProvider.swift in Sources */,
 				24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */,
@@ -3093,6 +3114,7 @@
 				24BA412F1D3F9D1700E38C2C /* CourseItemCell.swift in Sources */,
 				24BA40FE1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */,
 				24BA40E31D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */,
+				AB07C3741E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
 				24BA40B41D3F9ACE00E38C2C /* CourseSectionProvider.swift in Sources */,
 				24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
@@ -3164,6 +3186,7 @@
 				ABDD84BC1D8E010200C7D193 /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				4E6AB2041DD60EBD00B048DB /* CourseDateProvider.swift in Sources */,
 				2474C8751D86FE18009BDB94 /* QuizQuestion.swift in Sources */,
+				AB07C3751E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24BA40851D3F9A8B00E38C2C /* BaseModel.swift in Sources */,
 				24BA40CB1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
 				AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */,
@@ -3286,6 +3309,7 @@
 				24D48E2A1CCA931900E8051E /* ImageProvider.swift in Sources */,
 				249C01A91D3D034700B54AAC /* ReplaceSegue.swift in Sources */,
 				24D48E271CCA92C500E8051E /* Course.swift in Sources */,
+				AB07C3711E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24A16D881CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */,
 				24A16D821CFDE6E400CAD9FE /* Quiz.swift in Sources */,
 				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
@@ -3432,6 +3456,7 @@
 				4E2B82171DD9E9A400559217 /* DashboardViewController.swift in Sources */,
 				AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */,
 				24A16D901CFFA3E500CAD9FE /* Error.swift in Sources */,
+				AB07C3701E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				AB1C033E1D8E0CA50053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				AB2802DC1D2D7586008C8BAE /* NewsArticle+CoreDataProperties.swift in Sources */,
 				F81DFF8E1B8C6A5500A80D27 /* ImageProvider.swift in Sources */,
@@ -3563,6 +3588,7 @@
 				ABA0F0191DF8CCA10001D88D /* CourseListViewController.swift in Sources */,
 				AB17C57A1DFCAE1E0013BBCD /* CourseDateCell.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
+				AB07C3761E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				ABB49A8C1DF8D6D1004C59B6 /* PlatformEventProvider.swift in Sources */,
 				ABA0F0CA1DF8CE450001D88D /* CourseHelper.swift in Sources */,
 				ABA0F07B1DF8CDC40001D88D /* Quiz+CoreDataProperties.swift in Sources */,
@@ -3674,6 +3700,7 @@
 				ABA0F1171DF8CF730001D88D /* ItemVideoLoadingController.swift in Sources */,
 				AB17C5731DFCAD770013BBCD /* CourseDateProvider.swift in Sources */,
 				ABA0F0A81DF8CE060001D88D /* CourseSectionProvider.swift in Sources */,
+				AB07C3771E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				ABA0F0321DF8CD060001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				AB4F6CFD1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
 				ABA0F1131DF8CF680001D88D /* AbstractQuestionViewController.swift in Sources */,
@@ -3745,6 +3772,7 @@
 				AB4F6CFE1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
 				ABA0F0401DF8CD260001D88D /* BaseModelSpine.swift in Sources */,
 				AB17C5911DFCC5D20013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
+				AB07C3781E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				ABA0F08C1DF8CDDA0001D88D /* RichText+CoreDataProperties.swift in Sources */,
 				AB17C5711DFCAD470013BBCD /* CourseDate.swift in Sources */,
 				ABA0F0A41DF8CDFF0001D88D /* CourseProvider.swift in Sources */,

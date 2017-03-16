@@ -30,7 +30,7 @@ class SpineHelper {
 
         spine.registerResource(ChannelSpine.self)
         spine.registerResource(CourseSpine.self)
-        spine.registerResource(CourseEnrollmentSpine.self)
+        spine.registerResource(EnrollmentSpine.self)
         spine.registerResource(CourseItemSpine.self)
         spine.registerResource(CourseSectionSpine.self)
         spine.registerResource(CourseDateSpine.self)

@@ -112,7 +112,7 @@ class CourseSpine : BaseModelSpine {
     var accessible_int: NSNumber?
     var external_int: NSNumber?
 
-    var enrollment: CourseEnrollmentSpine?
+    var enrollment: EnrollmentSpine?
     var channel: ChannelSpine?
 
     override class var cdType: BaseModel.Type {
@@ -139,7 +139,7 @@ class CourseSpine : BaseModelSpine {
             "hidden_int": Attribute().serializeAs("hidden"),
             "enrollable_int": Attribute().serializeAs("enrollable"),
             "external_int": Attribute().serializeAs("external"),
-            "enrollment": ToOneRelationship(CourseEnrollmentSpine.self).serializeAs("user_enrollment"),
+            "enrollment": ToOneRelationship(EnrollmentSpine.self).serializeAs("user_enrollment"),
             "channel": ToOneRelationship(ChannelSpine.self),
         ])
     }

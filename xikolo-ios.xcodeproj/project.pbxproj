@@ -993,6 +993,24 @@
 		ABB49A8F1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
 		ABB49A901DF8D703004C59B6 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22701D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift */; };
 		ABB49A921DF8D70B004C59B6 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1357C41D996722004407AA /* PlatformEventCell.swift */; };
+		ABC1BF151E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF161E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF171E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF181E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF191E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF1A1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF1B1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF1C1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF1D1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
+		ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF201E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF211E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF231E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF241E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF261E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
+		ABC1BF271E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */; };
 		ABC8A14D1D6895A00059CEF2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
 		ABC8A14E1D6895A00059CEF2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
 		ABC8A1671D689ED80059CEF2 /* LTIExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A1631D689ED80059CEF2 /* LTIExercise.swift */; };
@@ -1329,6 +1347,8 @@
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
 		ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 2.xcdatamodel"; sourceTree = "<group>"; };
+		ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentProvider.swift; sourceTree = "<group>"; };
+		ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentHelper.swift; sourceTree = "<group>"; };
 		ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		ABC8A1631D689ED80059CEF2 /* LTIExercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIExercise.swift; sourceTree = "<group>"; };
 		ABC8A1641D689ED80059CEF2 /* LTIExercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LTIExercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1760,6 +1780,7 @@
 				2433A5A51CE635E80060DD98 /* CourseItemProvider.swift */,
 				24D48E1A1CCA551E00E8051E /* CourseProvider.swift */,
 				2448A9DA1CDA598B009A1AEA /* CourseSectionProvider.swift */,
+				ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */,
 				F81DFF8D1B8C6A5500A80D27 /* ImageProvider.swift */,
 				AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */,
 				AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */,
@@ -2006,6 +2027,7 @@
 				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 				2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */,
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
+				ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */,
 				24895DC11CCC09C300D6DFB8 /* ImageHelper.swift */,
 				ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */,
 				24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */,
@@ -2896,6 +2918,7 @@
 				2474C8761D86FE1A009BDB94 /* QuizOption.swift in Sources */,
 				2474C8821D86FE2B009BDB94 /* NewsArticle.swift in Sources */,
 				ABDD84BB1D8E010200C7D193 /* PeerAssessment+CoreDataProperties.swift in Sources */,
+				ABC1BF171E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				4E6AB2011DD60EBD00B048DB /* CourseDateProvider.swift in Sources */,
 				2474C8741D86FE17009BDB94 /* QuizQuestion.swift in Sources */,
 				AB07C3721E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -2929,6 +2952,7 @@
 				2474C88E1D8707E8009BDB94 /* QuizSubmission.swift in Sources */,
 				249E3AB51D43D88700D7663F /* SpineModelHelper.swift in Sources */,
 				2474C86A1D86FE0A009BDB94 /* Content+CoreDataProperties.swift in Sources */,
+				ABC1BF211E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2474C87E1D86FE25009BDB94 /* Video.swift in Sources */,
 				2474C8641D86FE01009BDB94 /* CourseItem+CoreDataProperties.swift in Sources */,
 				2474C86E1D86FE0F009BDB94 /* Quiz+CoreDataProperties.swift in Sources */,
@@ -3017,6 +3041,7 @@
 				24BA41121D3F9B7F00E38C2C /* NewsTableViewController.swift in Sources */,
 				24BA40B51D3F9AD100E38C2C /* ImageProvider.swift in Sources */,
 				24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
+				ABC1BF181E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				24BA40D21D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
 				24BA40FF1D3F9B3E00E38C2C /* NotificationKeys.swift in Sources */,
 				4E2B82241DDC9DB200559217 /* CourseActivityViewController.swift in Sources */,
@@ -3071,6 +3096,7 @@
 				24BA40DC1D3F9AFE00E38C2C /* Error.swift in Sources */,
 				24BA40951D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
 				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
+				ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				24BA41141D3F9B8600E38C2C /* ProfileTableViewController.swift in Sources */,
 				24BA40931D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */,
 				24BA40C01D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
@@ -3176,6 +3202,7 @@
 				AB4A019E1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
 				249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
 				AB4F228F1D80BC2200ED0BF1 /* PlatformEventProvider.swift in Sources */,
+				ABC1BF191E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				24BA40AD1D3F9AC300E38C2C /* NewsArticle.swift in Sources */,
 				AB77C29B1DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				24BA40A11D3F9AB300E38C2C /* Quiz.swift in Sources */,
@@ -3189,6 +3216,7 @@
 				AB17C58D1DFCC5D00013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				24BA408A1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */,
 				24BA41291D3F9D0900E38C2C /* ItemRichTextController.swift in Sources */,
+				ABC1BF231E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				24BA40821D3F9A8600E38C2C /* CollectionType+dict.swift in Sources */,
 				243CE4A31D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24BA409F1D3F9AB000E38C2C /* Quiz+CoreDataProperties.swift in Sources */,
@@ -3233,6 +3261,7 @@
 				2474C8771D86FE1A009BDB94 /* QuizOption.swift in Sources */,
 				2474C8831D86FE2B009BDB94 /* NewsArticle.swift in Sources */,
 				ABDD84BC1D8E010200C7D193 /* PeerAssessment+CoreDataProperties.swift in Sources */,
+				ABC1BF1A1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				4E6AB2041DD60EBD00B048DB /* CourseDateProvider.swift in Sources */,
 				2474C8751D86FE18009BDB94 /* QuizQuestion.swift in Sources */,
 				AB07C3751E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -3266,6 +3295,7 @@
 				2474C88F1D8707E9009BDB94 /* QuizSubmission.swift in Sources */,
 				24BA408B1D3F9A9100E38C2C /* Course+CoreDataProperties.swift in Sources */,
 				2474C86B1D86FE0B009BDB94 /* Content+CoreDataProperties.swift in Sources */,
+				ABC1BF241E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2474C87F1D86FE26009BDB94 /* Video.swift in Sources */,
 				2474C8651D86FE02009BDB94 /* CourseItem+CoreDataProperties.swift in Sources */,
 				2474C86F1D86FE10009BDB94 /* Quiz+CoreDataProperties.swift in Sources */,
@@ -3377,6 +3407,7 @@
 				AB4A019B1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
 				24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */,
 				AB4F228D1D80BC2200ED0BF1 /* PlatformEventProvider.swift in Sources */,
+				ABC1BF161E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				249E3A9A1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
 				AB77C2981DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				24D48E2B1CCA931C00E8051E /* UserProfileProvider.swift in Sources */,
@@ -3390,6 +3421,7 @@
 				AB17C58A1DFCC5CF0013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				2433A5A71CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
 				24D48E261CCA92C300E8051E /* Course+CoreDataProperties.swift in Sources */,
+				ABC1BF201E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2433A5A41CE634A00060DD98 /* CourseItem.swift in Sources */,
 				24A16D941CFFA72B00CAD9FE /* Error.swift in Sources */,
 				243CE4A11D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
@@ -3484,6 +3516,7 @@
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
+				ABC1BF151E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				4E2B82231DDC9DB200559217 /* CourseActivityViewController.swift in Sources */,
 				24A16D8A1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				24A16D811CFDE6E400CAD9FE /* Quiz.swift in Sources */,
@@ -3538,6 +3571,7 @@
 				24895DC21CCC09C300D6DFB8 /* ImageHelper.swift in Sources */,
 				2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
+				ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,
 				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
@@ -3620,6 +3654,7 @@
 				ABA0F0531DF8CD880001D88D /* CourseItem+CoreDataProperties.swift in Sources */,
 				AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				ABA0F0A21DF8CDFE0001D88D /* CourseProvider.swift in Sources */,
+				ABC1BF1B1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				ABA0F0261DF8CCC50001D88D /* AbstractTabContentViewController.swift in Sources */,
 				ABA0F0231DF8CCBC0001D88D /* ProfileTableViewController.swift in Sources */,
 				ABA0F0781DF8CDC00001D88D /* PeerAssessment.swift in Sources */,
@@ -3674,6 +3709,7 @@
 				ABA0F0C41DF8CE320001D88D /* NetworkHelper.swift in Sources */,
 				AB17C5761DFCAE010013BBCD /* DashboardViewController.swift in Sources */,
 				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
+				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F0391DF8CD180001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				AB17C57C1DFCAE260013BBCD /* CourseActivityRow.swift in Sources */,
@@ -3779,6 +3815,7 @@
 				AB4A01A11E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
 				ABA0F0381DF8CD130001D88D /* CollectionType+shuffle.swift in Sources */,
 				ABA0F04B1DF8CD7C0001D88D /* Course.swift in Sources */,
+				ABC1BF1C1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				ABE060AB1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */,
 				ABA0F0F31DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F1161DF8CF710001D88D /* ItemRichTextController.swift in Sources */,
@@ -3792,6 +3829,7 @@
 				ABA0F0BA1DF8CE210001D88D /* LTIExerciseProvider.swift in Sources */,
 				ABA0F1221DF8CF9A0001D88D /* ReplaceSegue.swift in Sources */,
 				ABA0F0571DF8CD8D0001D88D /* CourseItem.swift in Sources */,
+				ABC1BF261E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				ABA0F10C1DF8CF2C0001D88D /* MainViewController.swift in Sources */,
 				ABA0F0D01DF8CE4C0001D88D /* CourseSectionHelper.swift in Sources */,
 				ABA0F0DA1DF8CE650001D88D /* VideoHelper.swift in Sources */,
@@ -3836,6 +3874,7 @@
 				ABA0F0461DF8CD2D0001D88D /* Channel.swift in Sources */,
 				AB17C5741DFCAD780013BBCD /* CourseDateProvider.swift in Sources */,
 				AB4F6CFE1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
+				ABC1BF1D1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				ABA0F0401DF8CD260001D88D /* BaseModelSpine.swift in Sources */,
 				AB17C5911DFCC5D20013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				AB07C3781E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -3869,6 +3908,7 @@
 				ABA0F06D1DF8CDAB0001D88D /* LTIExercise.swift in Sources */,
 				ABA0F0551DF8CD890001D88D /* CourseItem+CoreDataProperties.swift in Sources */,
 				ABA0F0981DF8CDEC0001D88D /* TrackingEvent.swift in Sources */,
+				ABC1BF271E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				ABA0F09B1DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				ABA0F0891DF8CDD50001D88D /* QuizOption.swift in Sources */,
 				ABA0F1081DF8CF120001D88D /* ServiceProvider.swift in Sources */,

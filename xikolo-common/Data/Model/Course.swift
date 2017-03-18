@@ -115,6 +115,13 @@ class CourseSpine : BaseModelSpine {
     var enrollment: EnrollmentSpine?
     var channel: ChannelSpine?
 
+    //used for PATCH
+    convenience init(course: Course){
+        self.init()
+        self.id = course.id
+        //TODO: What about content
+    }
+
     override class var cdType: BaseModel.Type {
         return Course.self
     }

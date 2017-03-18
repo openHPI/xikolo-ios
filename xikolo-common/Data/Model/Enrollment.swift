@@ -49,6 +49,13 @@ class EnrollmentSpine : BaseModelSpine {
 
     var course: CourseSpine?
 
+    //used for PATCH
+    convenience init(course: CourseSpine){
+        self.init()
+        self.course = course
+        //TODO: What about content
+    }
+
     override class var cdType: BaseModel.Type {
         return Enrollment.self
     }

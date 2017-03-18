@@ -114,8 +114,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
     }
 
     func createEnrollment() {
-        UserProfileHelper.createEnrollment(course.id).onSuccess {
-            // TODO: Update once new enrollment endpoint exists.
+        UserProfileHelper.createEnrollment(for: course).onSuccess {
             CourseHelper.refreshCourses()
         }
     }

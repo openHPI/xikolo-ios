@@ -49,23 +49,15 @@ open class UserProfileHelper {
         return promise.future
     }
 
-    static func createEnrollment(_ courseId: String) -> Future<Void, XikoloError> {
+    static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        let url = Routes.ENROLLMENTS_API_URL
-        Alamofire.request(url, method: .post, parameters:[
-                Routes.HTTP_PARAM_COURSE_ID: courseId,
-        ], headers: NetworkHelper.getRequestHeaders()).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                if (json["id"] as? String) != nil {
-                    return promise.success()
-                }
-                return promise.failure(XikoloError.totallyUnknownError)
-            }
-            if let error = response.result.error {
-                return promise.failure(XikoloError.network(error))
-            }
-            return promise.failure(XikoloError.totallyUnknownError)
+        let courseSpine = CourseSpine(course: course)
+        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
+        SpineHelper.save(enrollmentSpine).onSuccess { _ in
+            return promise.success()
+        }.onFailure { xikoloError in
+            return promise.failure(xikoloError)
         }
         return promise.future
     }

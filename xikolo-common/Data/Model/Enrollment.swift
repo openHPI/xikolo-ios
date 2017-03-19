@@ -66,9 +66,9 @@ class EnrollmentSpine : BaseModelSpine {
 
     override class var fields: [Field] {
         return fieldsFromDictionary([
-            "visits": EmbeddedObjectsAttribute(EnrollmentVisits.self),
-            "points": EmbeddedObjectsAttribute(EnrollmentPoints.self),
-            "certificates": EmbeddedObjectsAttribute(EnrollmentCertificates.self),
+//            "visits": EmbeddedObjectsAttribute(EnrollmentVisits.self),
+//            "points": EmbeddedObjectsAttribute(EnrollmentPoints.self),
+//            "certificates": EmbeddedObjectsAttribute(EnrollmentCertificates.self),
             "completed_int": Attribute().serializeAs("completed"),
             "reactivated_int": Attribute().serializeAs("reactivated"),
             "course": ToOneRelationship(CourseSpine.self)

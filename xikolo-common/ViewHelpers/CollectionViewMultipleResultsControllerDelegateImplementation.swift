@@ -11,22 +11,19 @@ import UIKit
 
 class CollectionViewMultipleResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
 
-//    deinit {
-//        resultsController = nil
-//    }
-
     weak var collectionView: UICollectionView!
-    var resultsController: [NSFetchedResultsController<NSFetchRequestResult>]
+    var resultsController: [NSFetchedResultsController<NSFetchRequestResult>] // 2Think: Do we create a memory loop here?
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
     weak var delegate: CollectionViewMultipleResultsControllerDelegateImplementationDelegate?
     fileprivate var contentChangeOperations: [ContentChangeOperation] = []
 
-    required init(_ collectionView: UICollectionView, resultsController: [NSFetchedResultsController<NSFetchRequestResult>], cellReuseIdentifier: String) {
+    required init(_ collectionView: UICollectionView, resultsController: [NSFetchedResultsController<NSFetchRequestResult>], cellReuseIdentifier: String, headerReuseIdentifier: String) {
         self.collectionView = collectionView
         self.resultsController = resultsController
         self.cellReuseIdentifier = cellReuseIdentifier
+        self.headerReuseIdentifier = headerReuseIdentifier
     }
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -83,7 +80,7 @@ class CollectionViewMultipleResultsControllerDelegateImplementation : NSObject, 
 extension CollectionViewMultipleResultsControllerDelegateImplementation : UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return resultsController.count 
+        return resultsController.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,7 +97,9 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation : UIColl
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
             if let section = resultsController[indexPath.section].sections?[0] {
-                delegate?.configureCollectionHeaderView?(view, section: section)
+                if resultsController.count != 1 { // If there is only one section we don't need a header
+                    delegate?.configureCollectionHeaderView?(view, section: section)
+                }
             }
             return view
         } else {

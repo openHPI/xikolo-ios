@@ -55,6 +55,9 @@ class CourseListViewController : UICollectionViewController {
     }
 
     override func viewDidLoad() {
+        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionHeadersPinToVisibleBounds = true
+        }
         if !UserProfileHelper.isLoggedIn() {
             segmentedControl.selectedSegmentIndex = 1
             courseDisplayMode = .all
@@ -96,19 +99,16 @@ class CourseListViewController : UICollectionViewController {
         switch courseDisplayMode {
         case .enrolledOnly:
             request = CourseHelper.getEnrolledCoursesRequest()
-            resultsController = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)]
-        case .all:
-            request = CourseHelper.getAllCoursesRequest()
-            resultsController = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)]
-        case .explore:
+            resultsController = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "enrolled_section")]
+        case .explore, .all:
             let upcomingRunningRequest = CourseHelper.getInterestingCoursesRequest()
             let selfpacedRequest = CourseHelper.getPastCoursesRequest()
-            resultsController = [CoreDataHelper.createResultsController(upcomingRunningRequest, sectionNameKeyPath: nil),
-                                 CoreDataHelper.createResultsController(selfpacedRequest, sectionNameKeyPath: nil)]
+            resultsController = [CoreDataHelper.createResultsController(upcomingRunningRequest, sectionNameKeyPath: "interesting_section"),
+                                 CoreDataHelper.createResultsController(selfpacedRequest, sectionNameKeyPath: "selfpaced_section")]
         default:
             break
         }
-        resultsMultipleControllerDelegateImplementation = CollectionViewMultipleResultsControllerDelegateImplementation(collectionView!, resultsController: resultsController, cellReuseIdentifier: "CourseCell")
+        resultsMultipleControllerDelegateImplementation = CollectionViewMultipleResultsControllerDelegateImplementation(collectionView!, resultsController: resultsController, cellReuseIdentifier: "CourseCell", headerReuseIdentifier: "SectionTitleView")
         resultsMultipleControllerDelegateImplementation.delegate = self
         for rC in resultsController { rC.delegate = resultsMultipleControllerDelegateImplementation }
         collectionView!.dataSource = resultsMultipleControllerDelegateImplementation
@@ -131,6 +131,11 @@ extension CourseListViewController : CollectionViewMultipleResultsControllerDele
 
         let course = resultsController[indexPath.section].fetchedObjects?[indexPath.row] as! Course
         cell.configure(course)
+    }
+
+    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
+        let view = view as! SectionTitleView
+        view.configure(section.name)
     }
     
 }

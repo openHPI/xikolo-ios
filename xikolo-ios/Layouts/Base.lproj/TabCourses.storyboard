@@ -15,31 +15,31 @@
         <scene sceneID="aYm-tI-rNT">
             <objects>
                 <collectionViewController id="uLl-5G-DMn" customClass="CourseListViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MA3-VX-yBw">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="MA3-VX-yBw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="k4y-MS-E4F">
                             <size key="itemSize" width="400" height="240"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="200" height="38"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CourseCell" reuseIdentifier="CourseCell" id="JrV-Po-3CS" customClass="CourseCell" customModule="openHPI" customModuleProvider="target">
-                                <rect key="frame" x="-13" y="10" width="400" height="240"/>
+                                <rect key="frame" x="15" y="48" width="345" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRx-jm-Bdw">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="240"/>
                                         </imageView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-hV-1Uw">
-                                            <rect key="frame" x="0.0" y="166" width="400" height="74"/>
+                                            <rect key="frame" x="0.0" y="166" width="345" height="74"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="knd-uh-hkB">
-                                                <rect key="frame" x="0.0" y="0.0" width="400" height="74"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="74"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="980" verticalCompressionResistancePriority="980" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlH-iG-QnR">
@@ -69,7 +69,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="language label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFD-9C-1SW">
-                                                        <rect key="frame" x="309.5" y="51" width="82.5" height="15"/>
+                                                        <rect key="frame" x="254" y="51" width="83" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.39729324490000001" green="0.39729324490000001" blue="0.39729324490000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -159,13 +159,51 @@
                                     <outlet property="dateLabel" destination="a3v-pI-ix2" id="UNu-fh-iXO"/>
                                     <outlet property="languageLabel" destination="TFD-9C-1SW" id="46n-c6-WKJ"/>
                                     <outlet property="nameLabel" destination="UlH-iG-QnR" id="ysr-PW-5QT"/>
-                                    <outlet property="statusLabel" destination="eS5-Ki-7jx" id="CKb-DQ-1gV"/>
-                                    <outlet property="statusView" destination="aJ6-Je-BWC" id="HaK-sB-nC8"/>
                                     <outlet property="teacherLabel" destination="yHD-1N-ZdC" id="hVf-7z-3bI"/>
                                     <segue destination="YF6-pE-sa6" kind="show" identifier="ShowCourseContent" id="8D4-lh-23V"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SectionTitleView" id="q0D-sD-ZcF" customClass="SectionTitleView" customModule="openHPI" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5J-b4-qt9">
+                                    <rect key="frame" x="94" y="10" width="187.5" height="28"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SectionTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntR-bY-hxe">
+                                            <rect key="frame" x="20" y="4" width="147.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.94117647059999998" green="0.59215686270000001" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ntR-bY-hxe" secondAttribute="bottom" id="6k2-6K-sZP"/>
+                                        <constraint firstItem="ntR-bY-hxe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="a5J-b4-qt9" secondAttribute="top" id="7UZ-cN-uB8"/>
+                                        <constraint firstItem="ntR-bY-hxe" firstAttribute="leading" secondItem="a5J-b4-qt9" secondAttribute="leading" constant="20" symbolic="YES" id="FzW-rS-oeJ"/>
+                                        <constraint firstItem="ntR-bY-hxe" firstAttribute="centerY" secondItem="a5J-b4-qt9" secondAttribute="centerY" id="Jud-Y5-Mid"/>
+                                        <constraint firstAttribute="trailing" secondItem="ntR-bY-hxe" secondAttribute="trailing" constant="20" symbolic="YES" id="vbd-6u-jXO"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="a5J-b4-qt9" firstAttribute="width" secondItem="q0D-sD-ZcF" secondAttribute="width" multiplier="0.5" id="Er3-bz-i5g"/>
+                                <constraint firstAttribute="bottom" secondItem="a5J-b4-qt9" secondAttribute="bottom" id="Jzb-uF-z45"/>
+                                <constraint firstItem="a5J-b4-qt9" firstAttribute="top" secondItem="q0D-sD-ZcF" secondAttribute="top" constant="10" id="QLS-SN-HcL"/>
+                                <constraint firstItem="a5J-b4-qt9" firstAttribute="centerX" secondItem="q0D-sD-ZcF" secondAttribute="centerX" id="jsc-Rw-dT7"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="backgroundView" destination="a5J-b4-qt9" id="VQt-WZ-zxq"/>
+                                <outlet property="titleView" destination="ntR-bY-hxe" id="NKY-hs-jrP"/>
+                            </connections>
+                        </collectionReusableView>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="cascade"/>
                         </userDefinedRuntimeAttributes>
@@ -199,7 +237,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="0.0"/>
+            <point key="canvasLocation" x="812" y="-0.44977511244377816"/>
         </scene>
         <!--LoginNavigationController-->
         <scene sceneID="qTz-oe-drl">
@@ -775,7 +813,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTt-Qe-rQs" id="pYT-HH-VdQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O7-F1-Kii">
@@ -817,7 +855,7 @@
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FyT-iL-PEe" id="RHG-bZ-00D">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discussions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etf-qu-OLk">
@@ -859,7 +897,7 @@
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ss7-Ez-VKE" id="FI4-wh-olG">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pA-is-ZLH">

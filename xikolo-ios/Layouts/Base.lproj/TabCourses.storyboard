@@ -106,44 +106,19 @@
                                             </view>
                                             <blurEffect style="extraLight"/>
                                         </visualEffectView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJ6-Je-BWC">
-                                            <rect key="frame" x="322" y="25" width="82" height="29"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eS5-Ki-7jx">
-                                                    <rect key="frame" x="20" y="4" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.54901960780000003" green="0.70196078429999997" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="eS5-Ki-7jx" secondAttribute="trailing" constant="20" symbolic="YES" id="KuA-hg-asW"/>
-                                                <constraint firstItem="eS5-Ki-7jx" firstAttribute="top" secondItem="aJ6-Je-BWC" secondAttribute="top" constant="4" id="VV2-Zt-XeL"/>
-                                                <constraint firstAttribute="bottom" secondItem="eS5-Ki-7jx" secondAttribute="bottom" constant="4" id="sCx-IW-lEU"/>
-                                                <constraint firstItem="eS5-Ki-7jx" firstAttribute="leading" secondItem="aJ6-Je-BWC" secondAttribute="leading" constant="20" symbolic="YES" id="yfD-he-hmA"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Tb1-hV-1Uw" secondAttribute="bottom" id="3tY-Ut-55u"/>
                                     <constraint firstAttribute="trailing" secondItem="Tb1-hV-1Uw" secondAttribute="trailing" id="50o-S3-z2h"/>
-                                    <constraint firstItem="aJ6-Je-BWC" firstAttribute="centerY" secondItem="JrV-Po-3CS" secondAttribute="centerY" multiplier="1/3" id="AVE-ky-Web"/>
                                     <constraint firstAttribute="trailing" secondItem="cRx-jm-Bdw" secondAttribute="trailing" id="CDU-ep-zjm"/>
                                     <constraint firstItem="cRx-jm-Bdw" firstAttribute="leading" secondItem="JrV-Po-3CS" secondAttribute="leading" id="Dal-EV-CII"/>
                                     <constraint firstAttribute="bottom" secondItem="cRx-jm-Bdw" secondAttribute="bottom" id="FCp-Ps-02h"/>
                                     <constraint firstItem="Tb1-hV-1Uw" firstAttribute="height" secondItem="JrV-Po-3CS" secondAttribute="height" multiplier="0.4" id="Npg-ud-BpU"/>
-                                    <constraint firstItem="cRx-jm-Bdw" firstAttribute="trailing" secondItem="aJ6-Je-BWC" secondAttribute="trailing" constant="-4" id="b3J-gT-g5L"/>
                                     <constraint firstItem="Tb1-hV-1Uw" firstAttribute="leading" secondItem="JrV-Po-3CS" secondAttribute="leading" id="ml2-zA-S97"/>
                                     <constraint firstItem="cRx-jm-Bdw" firstAttribute="top" secondItem="JrV-Po-3CS" secondAttribute="top" id="p8i-cz-yUy"/>
                                 </constraints>
-                                <size key="customSize" width="400" height="240"/>
+                                <size key="customSize" width="345" height="240"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="3"/>

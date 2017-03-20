@@ -35,27 +35,6 @@ class CourseCell : UICollectionViewCell {
         languageLabel.text = course.language_translated
         backgroundImage.heroID = "course_image_" + course.id
         dateLabel.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
-
-        #if OPENWHO
-            statusView.isHidden = true
-        #else
-        switch course.status {
-        case "active"?:
-            statusView.isHidden = false
-            statusLabel.text = NSLocalizedString("running", comment: "course-status")
-            statusView.backgroundColor = Brand.FlagRunningColor
-        case "self-paced"?:
-            statusView.isHidden = false
-            statusLabel.text = NSLocalizedString("self-paced", comment: "course-status")
-            statusView.backgroundColor = Brand.FlagSelfpacedColor
-        case "announced"?:
-            statusView.isHidden = false
-            statusLabel.text = NSLocalizedString("upcoming", comment: "course-status")
-            statusView.backgroundColor = Brand.FlagUpcomingColor
-        default:
-            statusView.isHidden = true
-        }
-        #endif
     }
 
 }

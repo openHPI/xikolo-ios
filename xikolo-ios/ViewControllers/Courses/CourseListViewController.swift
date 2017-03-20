@@ -8,11 +8,29 @@
 
 import UIKit
 import DZNEmptyDataSet
+import CoreData
 
-class CourseListViewController : AbstractCourseListViewController {
+class CourseListViewController : UICollectionViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var numberOfItemsPerRow = 1
+
+    enum CourseDisplayMode {
+        case enrolledOnly
+        case all
+        case explore
+        case bothSectioned
+    }
+
+    var resultsController: [NSFetchedResultsController<NSFetchRequestResult>]!
+    var resultsMultipleControllerDelegateImplementation: CollectionViewMultipleResultsControllerDelegateImplementation!
+    var contentChangeOperations: [[AnyObject?]] = []
+
+    var courseDisplayMode: CourseDisplayMode = .enrolledOnly
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     deinit {
         self.collectionView?.emptyDataSetSource = nil
@@ -66,14 +84,57 @@ class CourseListViewController : AbstractCourseListViewController {
                 let vc = segue.destination as! CourseDecisionViewController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)
-                let course = resultsController.object(at: indexPath!) as! Course
+                let course = resultsController[indexPath!.section].fetchedObjects?[indexPath!.row] as! Course
                 vc.course = course
             default:
                 break
         }
     }
 
+    func updateView() {
+        var request: NSFetchRequest<NSFetchRequestResult>
+        switch courseDisplayMode {
+        case .enrolledOnly:
+            request = CourseHelper.getEnrolledCoursesRequest()
+            resultsController = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)]
+        case .all:
+            request = CourseHelper.getAllCoursesRequest()
+            resultsController = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)]
+        case .explore:
+            let upcomingRunningRequest = CourseHelper.getInterestingCoursesRequest()
+            let selfpacedRequest = CourseHelper.getPastCoursesRequest()
+            resultsController = [CoreDataHelper.createResultsController(upcomingRunningRequest, sectionNameKeyPath: nil),
+                                 CoreDataHelper.createResultsController(selfpacedRequest, sectionNameKeyPath: nil)]
+        default:
+            break
+        }
+        resultsMultipleControllerDelegateImplementation = CollectionViewMultipleResultsControllerDelegateImplementation(collectionView!, resultsController: resultsController, cellReuseIdentifier: "CourseCell")
+        resultsMultipleControllerDelegateImplementation.delegate = self
+        for rC in resultsController { rC.delegate = resultsMultipleControllerDelegateImplementation }
+        collectionView!.dataSource = resultsMultipleControllerDelegateImplementation
+
+        do {
+            for rC in resultsController { try rC.performFetch() }
+        } catch {
+            // TODO: Error handling.
+        }
+
+        CourseHelper.refreshCourses()
+    }
+
 }
+
+extension CourseListViewController : CollectionViewMultipleResultsControllerDelegateImplementationDelegate {
+
+    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+        let cell = cell as! CourseCell
+
+        let course = resultsController[indexPath.section].fetchedObjects?[indexPath.row] as! Course
+        cell.configure(course)
+    }
+    
+}
+
 
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 

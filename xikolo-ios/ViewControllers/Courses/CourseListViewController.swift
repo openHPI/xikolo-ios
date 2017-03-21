@@ -10,7 +10,7 @@ import UIKit
 import DZNEmptyDataSet
 import CoreData
 
-class CourseListViewController : UICollectionViewController {
+class CourseListViewController : AbstractCourseListViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var numberOfItemsPerRow = 1
@@ -21,12 +21,6 @@ class CourseListViewController : UICollectionViewController {
         case explore
         case bothSectioned
     }
-
-    var resultsController: [NSFetchedResultsController<NSFetchRequestResult>]!
-    var resultsMultipleControllerDelegateImplementation: CollectionViewMultipleResultsControllerDelegateImplementation!
-    var contentChangeOperations: [[AnyObject?]] = []
-
-    var courseDisplayMode: CourseDisplayMode = .enrolledOnly
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -62,11 +56,7 @@ class CourseListViewController : UICollectionViewController {
             segmentedControl.selectedSegmentIndex = 1
             courseDisplayMode = .all
         }
-        updateView()
-
-        CourseHelper.refreshCourses().onSuccess(callback: { _ in
-            self.updateView()
-        })
+        super.viewDidLoad()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -91,57 +81,15 @@ class CourseListViewController : UICollectionViewController {
                 let vc = segue.destination as! CourseDecisionViewController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)
-                let course = resultsController[indexPath!.section].fetchedObjects?[indexPath!.row] as! Course
+                let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndCorrectIndexPath(for: indexPath!)!
+                let course = controller.object(at: dataIndexPath) as! Course
                 vc.course = course
             default:
                 break
         }
     }
 
-    func updateView() {
-        var request: NSFetchRequest<NSFetchRequestResult>
-        switch courseDisplayMode {
-        case .enrolledOnly:
-            request = CourseHelper.getEnrolledCoursesRequest()
-            resultsController = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "enrolled_section")]
-        case .explore, .all:
-            let upcomingRunningRequest = CourseHelper.getInterestingCoursesRequest()
-            let selfpacedRequest = CourseHelper.getPastCoursesRequest()
-            resultsController = [CoreDataHelper.createResultsController(upcomingRunningRequest, sectionNameKeyPath: "interesting_section"),
-                                 CoreDataHelper.createResultsController(selfpacedRequest, sectionNameKeyPath: "selfpaced_section")]
-        default:
-            break
-        }
-        resultsMultipleControllerDelegateImplementation = CollectionViewMultipleResultsControllerDelegateImplementation(collectionView!, resultsController: resultsController, cellReuseIdentifier: "CourseCell", headerReuseIdentifier: "SectionTitleView")
-        resultsMultipleControllerDelegateImplementation.delegate = self
-        for rC in resultsController { rC.delegate = resultsMultipleControllerDelegateImplementation }
-        collectionView!.dataSource = resultsMultipleControllerDelegateImplementation
-
-        do {
-            for rC in resultsController { try rC.performFetch() }
-        } catch {
-            // TODO: Error handling.
-        }
-    }
-
 }
-
-extension CourseListViewController : CollectionViewMultipleResultsControllerDelegateImplementationDelegate {
-
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
-        let cell = cell as! CourseCell
-
-        let course = controller.object(at: indexPath) as! Course
-        cell.configure(course)
-    }
-
-    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
-        let view = view as! SectionTitleView
-        view.configure(section.name)
-    }
-    
-}
-
 
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 

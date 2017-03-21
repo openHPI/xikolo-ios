@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
-class SectionTitleView : UICollectionReusableView {
+class CourseHeaderView : UICollectionReusableView {
 
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var titleView: UILabel!
 
-    func configure(_ title: String) {
+    func configure(_ section: NSFetchedResultsSectionInfo) {
         backgroundView.backgroundColor = Brand.TintColorSecond
         backgroundView.isHidden = false
-        titleView.text = title
+        titleView.text = section.name
     }
 
 }

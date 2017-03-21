@@ -12,21 +12,17 @@ import UIKit
 class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
 
     weak var collectionView: UICollectionView!
-    weak var resultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    var resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>] // 2Think: Do we create a memory loop here?
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
     weak var delegate: CollectionViewResultsControllerDelegateImplementationDelegate?
     fileprivate var contentChangeOperations: [ContentChangeOperation] = []
 
-    required init(_ collectionView: UICollectionView, resultsController: NSFetchedResultsController<NSFetchRequestResult>?, cellReuseIdentifier: String) {
+    required init(_ collectionView: UICollectionView, resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>], cellReuseIdentifier: String) {
         self.collectionView = collectionView
-        self.resultsController = resultsController
+        self.resultsControllers = resultsControllers
         self.cellReuseIdentifier = cellReuseIdentifier
-    }
-
-    convenience init(_ collectionView: UICollectionView, cellReuseIdentifier: String) {
-        self.init(collectionView, resultsController: nil, cellReuseIdentifier: cellReuseIdentifier)
     }
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -46,32 +42,35 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
             let collectionView = self.collectionView!
             for change in self.contentChangeOperations {
                 switch change.context {
-                    case .section:
-                        switch change.type {
-                            case .insert:
-                                collectionView.insertSections(change.indexSet!)
-                            case .delete:
-                                collectionView.deleteSections(change.indexSet!)
-                            case .move:
-                                break
-                            case .update:
-                                break
-                            }
-                    case .object:
-                        switch change.type {
-                            case .insert:
-                                collectionView.insertItems(at: [change.newIndexPath!])
-                            case .delete:
-                                collectionView.deleteItems(at: [change.indexPath!])
-                            case .update:
-                                // No need to update a cell that has not been loaded.
-                                if let cell = collectionView.cellForItem(at: change.indexPath!) {
-                                    self.delegate?.configureCollectionCell(cell, indexPath: change.indexPath!)
-                                }
-                            case .move:
-                                collectionView.deleteItems(at: [change.indexPath!])
-                                collectionView.insertItems(at: [change.newIndexPath!])
+                case .section:
+                    let convertedIndexSet = self.indexSet(for: controller, with: change.indexSet)
+                    switch change.type {
+                    case .insert:
+                        collectionView.insertSections(convertedIndexSet!)
+                    case .delete:
+                        collectionView.deleteSections(convertedIndexSet!)
+                    case .move:
+                        break
+                    case .update:
+                        break
+                    }
+                case .object:
+                    let convertedIndexPath = self.indexPath(for: controller, with: change.indexPath)
+                    let convertedNewIndexPath = self.indexPath(for: controller, with: change.newIndexPath)
+                    switch change.type {
+                    case .insert:
+                        collectionView.insertItems(at: [convertedNewIndexPath!]) // TODO: nilhandling
+                    case .delete:
+                        collectionView.deleteItems(at: [convertedIndexPath!])
+                    case .update:
+                        // No need to update a cell that has not been loaded.
+                        if let cell = collectionView.cellForItem(at: convertedIndexPath!) {
+                            self.delegate?.configureCollectionCell(cell, for: controller, indexPath: change.indexPath!)
                         }
+                    case .move:
+                        collectionView.deleteItems(at: [convertedIndexPath!])
+                        collectionView.insertItems(at: [convertedNewIndexPath!])
+                    }
                 }
             }
         }, completion: nil)
@@ -82,24 +81,40 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
 extension CollectionViewResultsControllerDelegateImplementation : UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return resultsController?.sections?.count ?? 0
+        return resultsControllers.reduce(0, { (partialCount, controller) -> Int in
+            return (controller.sections?.count ?? 0) + partialCount
+        })
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return resultsController?.sections?[section].numberOfObjects ?? 0
+        var sectionsToGo = section
+        for controller in resultsControllers {
+            let sectionCount = controller.sections?.count ?? 0
+            if sectionsToGo >= sectionCount {
+                sectionsToGo -= sectionCount
+            } else {
+                return controller.sections?[sectionsToGo].numberOfObjects ?? 0
+            }
+        }
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-        self.delegate?.configureCollectionCell(cell, indexPath: indexPath)
+        let (controller, newIndexPath) = self.controllerAndCorrectIndexPath(for: indexPath)! // TODO nil-handling or logging
+        self.delegate?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
-            if let section = resultsController?.sections?[indexPath.section] {
-                delegate?.configureCollectionHeaderView?(view, section: section)
+            if resultsControllers[indexPath.section].sections?.count != 0 {
+                if let section = resultsControllers[indexPath.section].sections?[0] {
+                    if resultsControllers.count != 1 { // If there is only one section we don't need a header
+                        delegate?.configureCollectionHeaderView?(view, section: section)
+                    }
+                }
             }
             return view
         } else {
@@ -109,9 +124,61 @@ extension CollectionViewResultsControllerDelegateImplementation : UICollectionVi
 
 }
 
+extension CollectionViewResultsControllerDelegateImplementation { // Conversion of indices between data and views
+    // correct "visual" indexPath for data controller and its indexPath (data->visual)
+    func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
+        guard var newIndexPath = indexPath else {
+            return nil
+        }
+        for contr in resultsControllers {
+            if contr == controller {
+                return newIndexPath
+            } else {
+                newIndexPath.section += contr.sections?.count ?? 0
+            }
+        }
+        return nil
+    }
+
+    // correct "visual" indexSet for data controller and its indexSet (data->visual)
+    func indexSet(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexSet: IndexSet?) -> IndexSet? {
+        guard let newIndexSet = indexSet else {
+            return nil
+        }
+        var convertedIndexSet = IndexSet()
+        var passedSections = 0
+        for contr in resultsControllers {
+            if contr == controller {
+                newIndexSet.forEach { (i) in
+                    convertedIndexSet.insert(i + passedSections)
+                }
+                break
+            } else {
+                passedSections += contr.sections?.count ?? 0
+            }
+        }
+        return convertedIndexSet
+    }
+
+    // find data controller and its indexPath for a given "visual" indexPath (visual->data)
+    func controllerAndCorrectIndexPath(for indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
+        var passedSections = 0
+        for contr in resultsControllers {
+            if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
+                let newIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - passedSections)
+                return (contr, newIndexPath)
+            } else {
+                passedSections += (contr.sections?.count ?? 0)
+            }
+        }
+        return nil
+    }
+
+}
+
 @objc protocol CollectionViewResultsControllerDelegateImplementationDelegate : class {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath)
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>,indexPath: IndexPath)
 
     @objc optional func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
 

@@ -166,7 +166,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SectionTitleView" id="q0D-sD-ZcF" customClass="SectionTitleView" customModule="openHPI" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseHeaderView" id="q0D-sD-ZcF" customClass="CourseHeaderView" customModule="openHPI" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>

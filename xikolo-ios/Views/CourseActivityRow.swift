@@ -29,7 +29,7 @@ class CourseActivityRow : UITableViewCell {
         let request = CourseHelper.getEnrolledAccessibleCoursesRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsController: resultsController, cellReuseIdentifier: "LastCourseCell")
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         collectionView.dataSource = resultsControllerDelegateImplementation
@@ -47,10 +47,10 @@ class CourseActivityRow : UITableViewCell {
 
 extension CourseActivityRow : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! CourseCell
 
-        let course = resultsController.object(at: indexPath) as! Course
+        let course = controller.object(at: indexPath) as! Course
         cell.configure(course)
     }
 

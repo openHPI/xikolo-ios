@@ -63,6 +63,10 @@ class CourseListViewController : UICollectionViewController {
             courseDisplayMode = .all
         }
         updateView()
+
+        CourseHelper.refreshCourses().onSuccess(callback: { _ in
+            self.updateView()
+        })
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -118,8 +122,6 @@ class CourseListViewController : UICollectionViewController {
         } catch {
             // TODO: Error handling.
         }
-
-        CourseHelper.refreshCourses()
     }
 
 }

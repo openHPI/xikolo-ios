@@ -84,7 +84,12 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation : UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return resultsController[section].sections?[0].numberOfObjects ?? 0
+        if resultsController[section].sections?.count != 0 {
+            return resultsController[section].sections?[0].numberOfObjects ?? 0
+        } else {
+            return 0
+        }
+
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -96,9 +101,11 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation : UIColl
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
-            if let section = resultsController[indexPath.section].sections?[0] {
-                if resultsController.count != 1 { // If there is only one section we don't need a header
-                    delegate?.configureCollectionHeaderView?(view, section: section)
+            if resultsController[indexPath.section].sections?.count != 0 {
+                if let section = resultsController[indexPath.section].sections?[0] {
+                    if resultsController.count != 1 { // If there is only one section we don't need a header
+                        delegate?.configureCollectionHeaderView?(view, section: section)
+                    }
                 }
             }
             return view

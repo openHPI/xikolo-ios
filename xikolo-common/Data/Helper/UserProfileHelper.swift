@@ -9,6 +9,7 @@
 import Alamofire
 import BrightFutures
 import Foundation
+import CoreData
 
 open class UserProfileHelper {
 
@@ -37,8 +38,10 @@ open class UserProfileHelper {
             }
 
             if let json = response.result.value as? [String: Any] {
-                if let token = json["token"] as? String {
+                if let token = json["token"] as? String, let id = json["user_id"] as? String {
                     UserProfileHelper.saveToken(token)
+                    UserProfileHelper.saveId(id)
+                    NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
                     return promise.success(token)
                 }
                 return promise.failure(XikoloError.authenticationError)
@@ -58,28 +61,6 @@ open class UserProfileHelper {
         CoreDataHelper.clearCoreDataStorage()
     }
 
-    static func getUser() -> Future<UserProfile, XikoloError> {
-        if let user = loadUser() {
-            return Future.init(value: user)
-        } else {
-            return UserProfileProvider.getMyProfile().onSuccess { user in
-                UserProfileHelper.saveUser(user)
-            }
-        }
-    }
-
-    static fileprivate func loadUser() -> UserProfile? {
-        if let data = prefs.object(forKey: Keys.user.rawValue) as? Data {
-            return NSKeyedUnarchiver.unarchiveObject(with: data) as? UserProfile
-        }
-        return nil
-    }
-
-    static func saveUser(_ user: UserProfile) {
-        prefs.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: Keys.user.rawValue)
-        prefs.synchronize()
-    }
-
     static func isLoggedIn() -> Bool {
         return !getToken().isEmpty
     }
@@ -97,6 +78,14 @@ open class UserProfileHelper {
         return prefs.string(forKey: key.rawValue)
     }
 
+    static func getUserId() -> String? {
+        if let id = get(.user) {
+            return id
+        } else {
+            return nil
+        }
+    }
+
     static func saveToken(_ token: String) {
         save(.token, withValue: token)
         NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
@@ -105,9 +94,14 @@ open class UserProfileHelper {
     }
 
     static func refreshUserDependentData() {
+        UserHelper.syncMe()
         CourseHelper.refreshCourses()
         CourseDateHelper.syncCourseDates()
         NewsArticleHelper.syncNewsArticles()
+    }
+
+    static func saveId(_ id: String) {
+        save(.user, withValue: id)
     }
 
 }

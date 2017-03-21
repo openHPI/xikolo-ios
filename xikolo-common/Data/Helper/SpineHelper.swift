@@ -44,6 +44,8 @@ class SpineHelper {
         spine.registerResource(VideoSpine.self)
         spine.registerResource(NewsArticleSpine.self)
         spine.registerResource(TrackingEvent.self)
+        spine.registerResource(UserSpine.self)
+        spine.registerResource(UserProfileSpine.self)
 
         let nsCenter = NotificationCenter.default
         nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.loginSuccessfulKey, object: nil)

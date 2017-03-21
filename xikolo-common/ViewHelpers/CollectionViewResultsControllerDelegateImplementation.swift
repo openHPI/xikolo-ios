@@ -109,12 +109,9 @@ extension CollectionViewResultsControllerDelegateImplementation : UICollectionVi
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
-            if resultsControllers[indexPath.section].sections?.count != 0 {
-                if let section = resultsControllers[indexPath.section].sections?[0] {
-                    if resultsControllers.count != 1 { // If there is only one section we don't need a header
-                        delegate?.configureCollectionHeaderView?(view, section: section)
-                    }
-                }
+            let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
+            if let section = controller.sections?[newIndexPath.section] {
+                delegate?.configureCollectionHeaderView?(view, section: section)
             }
             return view
         } else {

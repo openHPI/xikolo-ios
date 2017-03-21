@@ -12,16 +12,16 @@ import UIKit
 class CollectionViewMultipleResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
 
     weak var collectionView: UICollectionView!
-    var resultsController: [NSFetchedResultsController<NSFetchRequestResult>] // 2Think: Do we create a memory loop here?
+    var resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>] // 2Think: Do we create a memory loop here?
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
     weak var delegate: CollectionViewMultipleResultsControllerDelegateImplementationDelegate?
     fileprivate var contentChangeOperations: [ContentChangeOperation] = []
 
-    required init(_ collectionView: UICollectionView, resultsController: [NSFetchedResultsController<NSFetchRequestResult>], cellReuseIdentifier: String, headerReuseIdentifier: String) {
+    required init(_ collectionView: UICollectionView, resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>], cellReuseIdentifier: String, headerReuseIdentifier: String) {
         self.collectionView = collectionView
-        self.resultsController = resultsController
+        self.resultsControllers = resultsControllers
         self.cellReuseIdentifier = cellReuseIdentifier
         self.headerReuseIdentifier = headerReuseIdentifier
     }
@@ -82,14 +82,14 @@ class CollectionViewMultipleResultsControllerDelegateImplementation : NSObject, 
 extension CollectionViewMultipleResultsControllerDelegateImplementation : UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return resultsController.reduce(0, { (partialCount, controller) -> Int in
+        return resultsControllers.reduce(0, { (partialCount, controller) -> Int in
             return (controller.sections?.count ?? 0) + partialCount
         })
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var sectionsToGo = section
-        for controller in resultsController {
+        for controller in resultsControllers {
             let sectionCount = controller.sections?.count ?? 0
             if sectionsToGo >= sectionCount {
                 sectionsToGo -= sectionCount
@@ -98,17 +98,11 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation : UIColl
             }
         }
         return 0
-//        if resultsController[section].sections?.count != 0 {
-//            return resultsController[section].sections?[0].numberOfObjects ?? 0
-//        } else {
-//            return 0
-//        }
-
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-        let (controller, newIndexPath) = self.controller(for: indexPath)! // TODO nil-handling or logging
+        let (controller, newIndexPath) = self.controllerAndCorrectIndexPath(for: indexPath)! // TODO nil-handling or logging
         self.delegate?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
         return cell
     }
@@ -116,9 +110,9 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation : UIColl
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
-            if resultsController[indexPath.section].sections?.count != 0 {
-                if let section = resultsController[indexPath.section].sections?[0] {
-                    if resultsController.count != 1 { // If there is only one section we don't need a header
+            if resultsControllers[indexPath.section].sections?.count != 0 {
+                if let section = resultsControllers[indexPath.section].sections?[0] {
+                    if resultsControllers.count != 1 { // If there is only one section we don't need a header
                         delegate?.configureCollectionHeaderView?(view, section: section)
                     }
                 }
@@ -131,13 +125,13 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation : UIColl
 
 }
 
-extension CollectionViewMultipleResultsControllerDelegateImplementation {
+extension CollectionViewMultipleResultsControllerDelegateImplementation { // Conversion of indices between data and views
+    // correct "visual" indexPath for data controller and its indexPath (data->visual)
     func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
         guard var newIndexPath = indexPath else {
             return nil
         }
-
-        for contr in resultsController {
+        for contr in resultsControllers {
             if contr == controller {
                 return newIndexPath
             } else {
@@ -147,13 +141,14 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation {
         return nil
     }
 
+    // correct "visual" indexSet for data controller and its indexSet (data->visual)
     func indexSet(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexSet: IndexSet?) -> IndexSet? {
         guard let newIndexSet = indexSet else {
             return nil
         }
         var convertedIndexSet = IndexSet()
         var passedSections = 0
-        for contr in resultsController {
+        for contr in resultsControllers {
             if contr == controller {
                 newIndexSet.forEach { (i) in
                     convertedIndexSet.insert(i + passedSections)
@@ -166,9 +161,10 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation {
         return convertedIndexSet
     }
 
-    func controller(for indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
+    // find data controller and its indexPath for a given "visual" indexPath (visual->data)
+    func controllerAndCorrectIndexPath(for indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
         var passedSections = 0
-        for contr in resultsController {
+        for contr in resultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
                 let newIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - passedSections)
                 return (contr, newIndexPath)

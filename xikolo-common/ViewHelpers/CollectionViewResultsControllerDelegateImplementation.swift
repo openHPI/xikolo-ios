@@ -102,7 +102,7 @@ extension CollectionViewResultsControllerDelegateImplementation : UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-        let (controller, newIndexPath) = self.controllerAndCorrectIndexPath(for: indexPath)! // TODO nil-handling or logging
+        let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)! // TODO nil-handling or logging
         self.delegate?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
         return cell
     }
@@ -159,7 +159,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
     }
 
     // find data controller and its indexPath for a given "visual" indexPath (visual->data)
-    func controllerAndCorrectIndexPath(for indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
+    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
         var passedSections = 0
         for contr in resultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {

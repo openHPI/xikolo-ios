@@ -81,7 +81,7 @@ class CourseListViewController : AbstractCourseListViewController {
                 let vc = segue.destination as! CourseDecisionViewController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)
-                let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndCorrectIndexPath(for: indexPath!)!
+                let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath!)!
                 let course = controller.object(at: dataIndexPath) as! Course
                 vc.course = course
             default:

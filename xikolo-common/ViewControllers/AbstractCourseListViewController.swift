@@ -30,6 +30,8 @@ class AbstractCourseListViewController : UICollectionViewController {
 
     override func viewDidLoad() {
         updateView()
+
+        CourseHelper.refreshCourses()
     }
 
     func updateView() {
@@ -58,8 +60,6 @@ class AbstractCourseListViewController : UICollectionViewController {
         } catch {
             // TODO: Error handling.
         }
-
-        CourseHelper.refreshCourses()
     }
 
 }

@@ -63,7 +63,6 @@ class Course : BaseModel {
     var selfpaced_section = NSLocalizedString("Self-paced", comment: "section title for selfpaced courses")
     var enrolled_section = NSLocalizedString("Enrolled Courses", comment: "section title for enrolled courses")
 
-
     var language_translated: String? {
         if let language = language {
             let locale = Locale.current

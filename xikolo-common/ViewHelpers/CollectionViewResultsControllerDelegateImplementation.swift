@@ -29,6 +29,7 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
         contentChangeOperations.removeAll()
     }
 
+    // TODO: Still need to do this one?
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         contentChangeOperations.append(ContentChangeOperation(type: type, indexSet: IndexSet(integer: sectionIndex)))
     }

@@ -196,7 +196,7 @@
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="a5J-b4-qt9" firstAttribute="width" secondItem="q0D-sD-ZcF" secondAttribute="width" multiplier="0.5" id="Er3-bz-i5g"/>
+                                <constraint firstItem="a5J-b4-qt9" firstAttribute="width" secondItem="q0D-sD-ZcF" secondAttribute="width" multiplier="0.5" priority="700" id="Er3-bz-i5g"/>
                                 <constraint firstAttribute="bottom" secondItem="a5J-b4-qt9" secondAttribute="bottom" id="Jzb-uF-z45"/>
                                 <constraint firstItem="a5J-b4-qt9" firstAttribute="top" secondItem="q0D-sD-ZcF" secondAttribute="top" constant="10" id="QLS-SN-HcL"/>
                                 <constraint firstItem="a5J-b4-qt9" firstAttribute="centerX" secondItem="q0D-sD-ZcF" secondAttribute="centerX" id="jsc-Rw-dT7"/>

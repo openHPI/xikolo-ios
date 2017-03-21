@@ -15,6 +15,7 @@ class SectionTitleView : UICollectionReusableView {
 
     func configure(_ title: String) {
         backgroundView.backgroundColor = Brand.TintColorSecond
+        backgroundView.isHidden = false
         titleView.text = title
     }
 

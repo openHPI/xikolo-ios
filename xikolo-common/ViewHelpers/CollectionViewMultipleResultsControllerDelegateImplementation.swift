@@ -38,37 +38,39 @@ class CollectionViewMultipleResultsControllerDelegateImplementation : NSObject, 
         contentChangeOperations.append(ContentChangeOperation(type: type, indexPath: indexPath, newIndexPath: newIndexPath))
     }
 
-    // TODO: Update to new
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         collectionView!.performBatchUpdates({
             let collectionView = self.collectionView!
             for change in self.contentChangeOperations {
                 switch change.context {
                     case .section:
+                        let convertedIndexSet = self.indexSet(for: controller, with: change.indexSet)
                         switch change.type {
                             case .insert:
-                                collectionView.insertSections(change.indexSet!) // Shit, I don't know what to do
+                                collectionView.insertSections(convertedIndexSet!)
                             case .delete:
-                                collectionView.deleteSections(change.indexSet!)
+                                collectionView.deleteSections(convertedIndexSet!)
                             case .move:
                                 break
                             case .update:
                                 break
                             }
                     case .object:
+                        let convertedIndexPath = self.indexPath(for: controller, with: change.indexPath)
+                        let convertedNewIndexPath = self.indexPath(for: controller, with: change.newIndexPath)
                         switch change.type {
                             case .insert:
-                                collectionView.insertItems(at: [change.newIndexPath!])
+                                collectionView.insertItems(at: [convertedNewIndexPath!]) // TODO: nilhandling
                             case .delete:
-                                collectionView.deleteItems(at: [change.indexPath!])
+                                collectionView.deleteItems(at: [convertedIndexPath!])
                             case .update:
                                 // No need to update a cell that has not been loaded.
-                                if let cell = collectionView.cellForItem(at: change.indexPath!) {
-                                    self.delegate?.configureCollectionCell(cell, indexPath: change.indexPath!)
+                                if let cell = collectionView.cellForItem(at: convertedIndexPath!) {
+                                    self.delegate?.configureCollectionCell(cell, for: controller, indexPath: change.indexPath!)
                                 }
                             case .move:
-                                collectionView.deleteItems(at: [change.indexPath!])
-                                collectionView.insertItems(at: [change.newIndexPath!])
+                                collectionView.deleteItems(at: [convertedIndexPath!])
+                                collectionView.insertItems(at: [convertedNewIndexPath!])
                         }
                 }
             }
@@ -80,21 +82,34 @@ class CollectionViewMultipleResultsControllerDelegateImplementation : NSObject, 
 extension CollectionViewMultipleResultsControllerDelegateImplementation : UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return resultsController.count
+        return resultsController.reduce(0, { (partialCount, controller) -> Int in
+            return (controller.sections?.count ?? 0) + partialCount
+        })
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if resultsController[section].sections?.count != 0 {
-            return resultsController[section].sections?[0].numberOfObjects ?? 0
-        } else {
-            return 0
+        var sectionsToGo = section
+        for controller in resultsController {
+            let sectionCount = controller.sections?.count ?? 0
+            if sectionsToGo >= sectionCount {
+                sectionsToGo -= sectionCount
+            } else {
+                return controller.sections?[sectionsToGo].numberOfObjects ?? 0
+            }
         }
+        return 0
+//        if resultsController[section].sections?.count != 0 {
+//            return resultsController[section].sections?[0].numberOfObjects ?? 0
+//        } else {
+//            return 0
+//        }
 
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-        self.delegate?.configureCollectionCell(cell, indexPath: indexPath)
+        let (controller, newIndexPath) = self.controller(for: indexPath)! // TODO nil-handling or logging
+        self.delegate?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
         return cell
     }
 
@@ -116,9 +131,59 @@ extension CollectionViewMultipleResultsControllerDelegateImplementation : UIColl
 
 }
 
+extension CollectionViewMultipleResultsControllerDelegateImplementation {
+    func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
+        guard var newIndexPath = indexPath else {
+            return nil
+        }
+
+        for contr in resultsController {
+            if contr == controller {
+                return newIndexPath
+            } else {
+                newIndexPath.section += contr.sections?.count ?? 0
+            }
+        }
+        return nil
+    }
+
+    func indexSet(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexSet: IndexSet?) -> IndexSet? {
+        guard let newIndexSet = indexSet else {
+            return nil
+        }
+        var convertedIndexSet = IndexSet()
+        var passedSections = 0
+        for contr in resultsController {
+            if contr == controller {
+                newIndexSet.forEach { (i) in
+                    convertedIndexSet.insert(i + passedSections)
+                }
+                break
+            } else {
+                passedSections += contr.sections?.count ?? 0
+            }
+        }
+        return convertedIndexSet
+    }
+
+    func controller(for indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
+        var passedSections = 0
+        for contr in resultsController {
+            if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
+                let newIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - passedSections)
+                return (contr, newIndexPath)
+            } else {
+                passedSections += (contr.sections?.count ?? 0)
+            }
+        }
+        return nil
+    }
+
+}
+
 @objc protocol CollectionViewMultipleResultsControllerDelegateImplementationDelegate : class {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath)
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>,indexPath: IndexPath)
 
     @objc optional func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
 

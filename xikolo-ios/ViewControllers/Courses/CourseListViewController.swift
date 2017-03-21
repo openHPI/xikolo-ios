@@ -128,10 +128,10 @@ class CourseListViewController : UICollectionViewController {
 
 extension CourseListViewController : CollectionViewMultipleResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! CourseCell
 
-        let course = resultsController[indexPath.section].fetchedObjects?[indexPath.row] as! Course
+        let course = controller.object(at: indexPath) as! Course
         cell.configure(course)
     }
 

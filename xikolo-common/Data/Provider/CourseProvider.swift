@@ -15,6 +15,7 @@ class CourseProvider {
     class func getCourses() -> Future<[CourseSpine], XikoloError> {
         var query = Query(resourceType: CourseSpine.self)
         query.include("channel")
+        query.include("user_enrollment")
 
         return SpineHelper.find(query)
     }

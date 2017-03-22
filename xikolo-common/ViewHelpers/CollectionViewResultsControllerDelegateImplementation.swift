@@ -176,7 +176,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
 
 @objc protocol CollectionViewResultsControllerDelegateImplementationDelegate : class {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>,indexPath: IndexPath)
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath)
 
     @objc optional func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
 

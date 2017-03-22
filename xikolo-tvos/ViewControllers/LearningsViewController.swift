@@ -107,7 +107,7 @@ class LearningsViewController : UIViewController {
         itemCollectionView.reloadData()
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         itemResultsController!.delegate = itemResultsControllerDelegateImplementation
-        itemResultsControllerDelegateImplementation.resultsController = itemResultsController
+        itemResultsControllerDelegateImplementation.resultsControllers = [itemResultsController!]
 
         do {
             try itemResultsController!.performFetch()
@@ -143,10 +143,11 @@ extension LearningsViewController : UITableViewDelegate {
 
 extension LearningsViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
+        let (controller, newIndexPath) = itemResultsControllerDelegateImplementation.indexPath(for: controller, with: indexPath)
 
-        let item = itemResultsController!.object(at: indexPath) as! CourseItem
+        let item = controller.object(at: newIndexPath) as! CourseItem
         cell.configure(item)
     }
 

@@ -15,9 +15,9 @@ import CoreData
 extension Enrollment {
 
     @NSManaged var id: String
-    @NSManaged var visits: [EnrollmentVisits]?
-    @NSManaged var points: [EnrollmentPoints]?
-    @NSManaged var certificates: [EnrollmentCertificates]?
+    @NSManaged var visits: EnrollmentVisits?
+    @NSManaged var points: EnrollmentPoints?
+    @NSManaged var certificates: EnrollmentCertificates?
     @NSManaged var completed_int: NSNumber?
     @NSManaged var reactivated_int: NSNumber?
     @NSManaged var course: Course?

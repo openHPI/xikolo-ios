@@ -41,9 +41,9 @@ class Enrollment : BaseModel {
 
 class EnrollmentSpine : BaseModelSpine {
 
-    var visits: [EnrollmentVisits]?
-    var points: [EnrollmentPoints]?
-    var certificates: [EnrollmentCertificates]?
+    var visits: EnrollmentVisits?
+    var points: EnrollmentPoints?
+    var certificates: EnrollmentCertificates?
     var completed_int: NSNumber?
     var reactivated_int: NSNumber?
 
@@ -66,9 +66,9 @@ class EnrollmentSpine : BaseModelSpine {
 
     override class var fields: [Field] {
         return fieldsFromDictionary([
-//            "visits": EmbeddedObjectsAttribute(EnrollmentVisits.self),
-//            "points": EmbeddedObjectsAttribute(EnrollmentPoints.self),
-//            "certificates": EmbeddedObjectsAttribute(EnrollmentCertificates.self),
+            "visits": EmbeddedObjectAttribute(EnrollmentVisits.self),
+            "points": EmbeddedObjectAttribute(EnrollmentPoints.self),
+            "certificates": EmbeddedObjectAttribute(EnrollmentCertificates.self),
             "completed_int": Attribute().serializeAs("completed"),
             "reactivated_int": Attribute().serializeAs("reactivated"),
             "course": ToOneRelationship(CourseSpine.self)

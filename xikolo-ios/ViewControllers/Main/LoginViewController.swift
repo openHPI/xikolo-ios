@@ -12,11 +12,19 @@ class LoginViewController : AbstractLoginViewController {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var singleSignOnView: UIView!
+    @IBOutlet weak var singleSignOnButton: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.backgroundColor = Brand.TintColor
         emailField.becomeFirstResponder()
+        #if OPENSAP
+            singleSignOnView.isHidden = false
+            singleSignOnButton.backgroundColor = Brand.TintColor
+        #else
+            singleSignOnView.isHidden = true
+        #endif
     }
 
     @IBAction func dismissAction(_ sender: UIBarButtonItem) {
@@ -25,6 +33,11 @@ class LoginViewController : AbstractLoginViewController {
 
     @IBAction func registerButton(_ sender: AnyObject) {
         let url = URL(string: Routes.REGISTER_URL)
+        UIApplication.shared.openURL(url!)
+    }
+
+    @IBAction func singleSignIn(_ sender: UIButton) {
+        let url = URL(string: Routes.SSO_URL)
         UIApplication.shared.openURL(url!)
     }
 

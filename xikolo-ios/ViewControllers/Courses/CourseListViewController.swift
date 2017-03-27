@@ -8,11 +8,23 @@
 
 import UIKit
 import DZNEmptyDataSet
+import CoreData
 
 class CourseListViewController : AbstractCourseListViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var numberOfItemsPerRow = 1
+
+    enum CourseDisplayMode {
+        case enrolledOnly
+        case all
+        case explore
+        case bothSectioned
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     deinit {
         self.collectionView?.emptyDataSetSource = nil
@@ -37,11 +49,14 @@ class CourseListViewController : AbstractCourseListViewController {
     }
 
     override func viewDidLoad() {
+        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionHeadersPinToVisibleBounds = true
+        }
         if !UserProfileHelper.isLoggedIn() {
             segmentedControl.selectedSegmentIndex = 1
             courseDisplayMode = .all
         }
-        updateView()
+        super.viewDidLoad()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -66,7 +81,8 @@ class CourseListViewController : AbstractCourseListViewController {
                 let vc = segue.destination as! CourseDecisionViewController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)
-                let course = resultsController.object(at: indexPath!) as! Course
+                let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath!)!
+                let course = controller.object(at: dataIndexPath) as! Course
                 vc.course = course
             default:
                 break

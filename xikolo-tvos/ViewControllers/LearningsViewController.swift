@@ -45,10 +45,6 @@ class LearningsViewController : UIViewController {
         sectionResultsControllerDelegateImplementation.delegate = self
         sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
         sectionTableView.dataSource = sectionResultsControllerDelegateImplementation
-
-        itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView, cellReuseIdentifier: "CourseItemCell")
-        itemResultsControllerDelegateImplementation.delegate = self
-        itemCollectionView.dataSource = itemResultsControllerDelegateImplementation
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -106,8 +102,12 @@ class LearningsViewController : UIViewController {
         let request = CourseItemHelper.getItemRequest(section)
         itemCollectionView.reloadData()
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+
+        itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView, resultsControllers: [itemResultsController!], cellReuseIdentifier: "CourseItemCell")
+        itemResultsControllerDelegateImplementation.delegate = self
+        itemCollectionView.dataSource = itemResultsControllerDelegateImplementation
         itemResultsController!.delegate = itemResultsControllerDelegateImplementation
-        itemResultsControllerDelegateImplementation.resultsController = itemResultsController
+        itemResultsControllerDelegateImplementation.resultsControllers = [itemResultsController!]
 
         do {
             try itemResultsController!.performFetch()
@@ -143,10 +143,10 @@ extension LearningsViewController : UITableViewDelegate {
 
 extension LearningsViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
 
-        let item = itemResultsController!.object(at: indexPath) as! CourseItem
+        let item = controller.object(at: indexPath) as! CourseItem
         cell.configure(item)
     }
 

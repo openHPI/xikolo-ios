@@ -18,7 +18,7 @@ class AbstractCourseListViewController : UICollectionViewController {
         case bothSectioned
     }
 
-    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
+    var resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>]!
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
     var contentChangeOperations: [[AnyObject?]] = []
 
@@ -30,47 +30,52 @@ class AbstractCourseListViewController : UICollectionViewController {
 
     override func viewDidLoad() {
         updateView()
+
+        CourseHelper.refreshCourses()
     }
 
     func updateView() {
         var request: NSFetchRequest<NSFetchRequestResult>
         switch courseDisplayMode {
-            case .enrolledOnly:
-                request = CourseHelper.getEnrolledCoursesRequest()
-                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-            case .all:
-                request = CourseHelper.getAllCoursesRequest()
-                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-            case .explore:
-                request = CourseHelper.getUnenrolledCoursesRequest()
-                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-            case .bothSectioned:
-                request = CourseHelper.getSectionedRequest()
-                resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")
+        case .enrolledOnly:
+            request = CourseHelper.getEnrolledCoursesRequest()
+            resultsControllers = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "enrolled_section")]
+        case .explore, .all:
+            let upcomingRunningRequest = CourseHelper.getInterestingCoursesRequest()
+            let selfpacedRequest = CourseHelper.getPastCoursesRequest()
+            resultsControllers = [CoreDataHelper.createResultsController(upcomingRunningRequest, sectionNameKeyPath: "interesting_section"),
+                                  CoreDataHelper.createResultsController(selfpacedRequest, sectionNameKeyPath: "selfpaced_section")]
+        case .bothSectioned:
+            request = CourseHelper.getSectionedRequest()
+            resultsControllers = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")]
         }
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!, resultsController: resultsController, cellReuseIdentifier: "CourseCell")
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!, resultsControllers: resultsControllers, cellReuseIdentifier: "CourseCell")
+        resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
         resultsControllerDelegateImplementation.delegate = self
-        resultsController.delegate = resultsControllerDelegateImplementation
+        for rC in resultsControllers { rC.delegate = resultsControllerDelegateImplementation }
         collectionView!.dataSource = resultsControllerDelegateImplementation
 
         do {
-            try resultsController.performFetch()
+            for rC in resultsControllers { try rC.performFetch() }
         } catch {
             // TODO: Error handling.
         }
-
-        CourseHelper.refreshCourses()
     }
 
 }
 
 extension AbstractCourseListViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! CourseCell
 
-        let course = resultsController.object(at: indexPath) as! Course
+        let course = controller.object(at: indexPath) as! Course
         cell.configure(course)
+    }
+
+    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
+        let view = view as! CourseHeaderView
+        view.configure(section)
     }
 
 }

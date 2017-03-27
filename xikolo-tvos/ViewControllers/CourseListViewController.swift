@@ -15,8 +15,6 @@ class CourseListViewController : AbstractCourseListViewController {
         self.courseDisplayMode = .bothSectioned
 
         super.viewDidLoad()
-
-        resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -25,20 +23,12 @@ class CourseListViewController : AbstractCourseListViewController {
                 let vc = segue.destination as! CourseTabBarController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)
-                let course = resultsController.object(at: indexPath!) as! Course
+                let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath!)!
+                let course = controller.object(at: dataIndexPath) as! Course
                 vc.course = course
             default:
                 break
         }
-    }
-
-}
-
-extension CourseListViewController {
-
-    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
-        let view = view as! CourseHeaderView
-        view.configure(section)
     }
 
 }

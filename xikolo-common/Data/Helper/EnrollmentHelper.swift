@@ -24,5 +24,35 @@ class EnrollmentHelper {
                 return cdEnrollments as! [Enrollment]
         }
     }
-    
+
+    static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        let courseSpine = CourseSpine(course: course)
+        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
+        SpineHelper.save(enrollmentSpine).onSuccess { _ in
+            return promise.success()
+            }.onFailure { xikoloError in
+                return promise.failure(xikoloError)
+        }
+        return promise.future
+    }
+
+    static func deleteEnrollment(for course: Course) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        let courseSpine = CourseSpine(course: course)
+        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
+        SpineHelper.delete(enrollmentSpine).onSuccess { _ in
+            if let enrollment = course.enrollment {
+                CoreDataHelper.managedContext.delete(enrollment)
+                CoreDataHelper.saveContext()
+            }
+            return promise.success()
+            }.onFailure { xikoloError in
+                return promise.failure(xikoloError)
+        }
+        return promise.future
+    }
+
 }

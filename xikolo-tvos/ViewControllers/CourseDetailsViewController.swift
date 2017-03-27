@@ -114,7 +114,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
     }
 
     func createEnrollment() {
-        UserProfileHelper.createEnrollment(for: course).onSuccess {
+        EnrollmentHelper.createEnrollment(for: course).onSuccess {
             CourseHelper.refreshCourses()
         }
     }
@@ -122,7 +122,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
     @IBAction func unenroll(_ sender: UIButton) {
         // No need to check for login, cannot be enrolled without.
 
-        UserProfileHelper.deleteEnrollment(course).onSuccess {
+        EnrollmentHelper.deleteEnrollment(course).onSuccess {
             CourseHelper.refreshCourses()
         }
     }

@@ -29,6 +29,27 @@ class AppDelegate : AbstractAppDelegate {
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                return false
+        }
+
+        if let token = url.lastPathComponent {
+            return true
+        }
+
+        // 3
+        let webpageUrl = url
+        application.openURL(webpageUrl)
+        
+        return false
+    }
+
     func updateNews() {
         NewsArticleHelper.syncNewsArticles().onSuccess { (newsArticles) in // sync news and show badge on news tab with number of unread articles
             if let rootViewController = self.window?.rootViewController as? UITabBarController {

@@ -23,6 +23,7 @@
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="image_url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
@@ -131,7 +132,7 @@
     <elements>
         <element name="Channel" positionX="9" positionY="443" width="128" height="118"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
-        <element name="Course" positionX="9" positionY="9" width="128" height="343"/>
+        <element name="Course" positionX="9" positionY="9" width="128" height="390"/>
         <element name="CourseDate" positionX="198" positionY="-9" width="128" height="120"/>
         <element name="CourseItem" positionX="432" positionY="135" width="128" height="133"/>
         <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>

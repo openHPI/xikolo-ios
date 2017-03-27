@@ -39,7 +39,7 @@ class AppDelegate : AbstractAppDelegate {
                 return false
         }
 
-        if let token = url.lastPathComponent {
+        if let token = url.query {
             return true
         }
 

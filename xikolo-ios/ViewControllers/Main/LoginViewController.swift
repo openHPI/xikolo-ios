@@ -19,7 +19,7 @@ class LoginViewController : AbstractLoginViewController {
         super.viewDidLoad()
         loginButton.backgroundColor = Brand.TintColor
         emailField.becomeFirstResponder()
-        #if OPENSAP
+        #if OPENHPI
             singleSignOnView.isHidden = false
             singleSignOnButton.backgroundColor = Brand.TintColor
         #else

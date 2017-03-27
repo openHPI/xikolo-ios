@@ -92,6 +92,10 @@ class SpineHelper {
         return client.save(resource).mapError(mapXikoloError)
     }
 
+    static func delete<T: Resource>(_ resource: T) -> Future<Void, XikoloError> {
+        return client.delete(resource).mapError(mapXikoloError)
+    }
+
     fileprivate static func mapXikoloError(_ error: SpineError) -> XikoloError {
         return XikoloError.api(error)
     }

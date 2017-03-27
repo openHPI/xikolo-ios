@@ -62,15 +62,19 @@ open class UserProfileHelper {
         return promise.future
     }
 
-    static func deleteEnrollement(_ courseId: String) -> Future<Void, XikoloError> {
+    static func deleteEnrollment(for course: Course) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        let url = Routes.ENROLLMENTS_API_URL + courseId
-        Alamofire.request(url, method: .delete, headers: NetworkHelper.getRequestHeaders()).responseData { response in
-            if let error = response.error {
-                return promise.failure(XikoloError.network(error))
+        let courseSpine = CourseSpine(course: course)
+        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
+        SpineHelper.delete(enrollmentSpine).onSuccess { _ in
+            if let enrollment = course.enrollment {
+                CoreDataHelper.managedContext.delete(enrollment)
+                CoreDataHelper.saveContext()
             }
             return promise.success()
+            }.onFailure { xikoloError in
+                return promise.failure(xikoloError)
         }
         return promise.future
     }

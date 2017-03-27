@@ -14,11 +14,9 @@ class DashboardViewController : AbstractTabContentViewController {
     @IBOutlet var courseDeadlinesContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseStartsContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var feedbackButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        feedbackButton.backgroundColor = Brand.TintColor
     }
 
     override func viewWillAppear(_ animated: Bool) {

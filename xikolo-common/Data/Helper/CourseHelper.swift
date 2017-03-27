@@ -21,8 +21,8 @@ class CourseHelper {
     static fileprivate let selfpacedPredicate = NSPredicate(format: "status = %@", "self-paced")
     static fileprivate let interestingPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [announcedPredicate,previewPredicate,activePredicate])
     static fileprivate let accessiblePredicate = NSPredicate(format: "accessible_int == true")
-    static fileprivate let completedPredicate = NSPredicate(format: "enrollment.completed_int == true")
-    static fileprivate let notcompletedPredicate = NSPredicate(format: "enrollment.completed_int != true")
+    static fileprivate let completedPredicate = NSPredicate(format: "ALL enrollment.completed_int == 'true'")
+    static fileprivate let notcompletedPredicate = NSPredicate(format: "ALL enrollment.completed_int != 'true'")
 
     static func getGenericCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
@@ -62,7 +62,7 @@ class CourseHelper {
 
     static func getEnrolledAccessibleCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = getGenericCoursesRequest()
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, accessiblePredicate, notcompletedPredicate])
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, accessiblePredicate]) // notcompletedPredicate
         return request
     }
 

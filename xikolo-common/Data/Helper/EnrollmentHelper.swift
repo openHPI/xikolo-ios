@@ -32,8 +32,8 @@ class EnrollmentHelper {
         let enrollmentSpine = EnrollmentSpine(course: courseSpine)
         SpineHelper.save(enrollmentSpine).onSuccess { _ in
             return promise.success()
-            }.onFailure { xikoloError in
-                return promise.failure(xikoloError)
+        }.onFailure { xikoloError in
+            return promise.failure(xikoloError)
         }
         return promise.future
     }
@@ -49,8 +49,8 @@ class EnrollmentHelper {
                 CoreDataHelper.saveContext()
             }
             return promise.success()
-            }.onFailure { xikoloError in
-                return promise.failure(xikoloError)
+        }.onFailure { xikoloError in
+            return promise.failure(xikoloError)
         }
         return promise.future
     }

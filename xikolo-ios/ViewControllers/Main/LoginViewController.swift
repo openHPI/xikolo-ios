@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class LoginViewController : AbstractLoginViewController {
 
@@ -37,8 +38,14 @@ class LoginViewController : AbstractLoginViewController {
     }
 
     @IBAction func singleSignIn(_ sender: UIButton) {
-        let url = URL(string: Routes.SSO_URL)
-        UIApplication.shared.openURL(url!)
+
+        let url = URL(string: Routes.SSO_URL)!
+
+        let safariViewController = SFSafariViewController.in
+            SFSafariViewController(url: url)
+        safariViewController.
+        self.present(safariViewController, animated: true, completion: nil)
+//        UIApplication.shared.openURL(url!)
     }
 
 }

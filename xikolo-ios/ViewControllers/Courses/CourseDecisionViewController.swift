@@ -110,7 +110,7 @@ class CourseDecisionViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
 
         alert.addAction(UIAlertAction(title: confirm, style: .default, handler: { (action: UIAlertAction!) in
-            UserProfileHelper.createEnrollment(self.course.id)
+            EnrollmentHelper.createEnrollment(for: self.course)
                 .flatMap { CourseHelper.refreshCourses() }
                 .onSuccess { _ in
                     self.decideContent()

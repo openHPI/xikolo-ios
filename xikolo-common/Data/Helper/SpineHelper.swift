@@ -30,7 +30,7 @@ class SpineHelper {
 
         spine.registerResource(ChannelSpine.self)
         spine.registerResource(CourseSpine.self)
-        spine.registerResource(CourseEnrollmentSpine.self)
+        spine.registerResource(EnrollmentSpine.self)
         spine.registerResource(CourseItemSpine.self)
         spine.registerResource(CourseSectionSpine.self)
         spine.registerResource(CourseDateSpine.self)
@@ -90,6 +90,10 @@ class SpineHelper {
 
     static func save<T: Resource>(_ resource: T) -> Future<T, XikoloError> {
         return client.save(resource).mapError(mapXikoloError)
+    }
+
+    static func delete<T: Resource>(_ resource: T) -> Future<Void, XikoloError> {
+        return client.delete(resource).mapError(mapXikoloError)
     }
 
     fileprivate static func mapXikoloError(_ error: SpineError) -> XikoloError {

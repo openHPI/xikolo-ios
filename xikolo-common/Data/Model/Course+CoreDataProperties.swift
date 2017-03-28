@@ -33,7 +33,7 @@ extension Course {
     @NSManaged var external_int: NSNumber?
     @NSManaged var sections: NSSet?
     @NSManaged var news: NSSet?
-    @NSManaged var enrollment: CourseEnrollment?
+    @NSManaged var enrollment: Enrollment?
     @NSManaged var dates: NSSet?
 
 }

@@ -24,6 +24,7 @@ class AppDelegate : AbstractAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
         updateNews()
+        EnrollmentHelper.syncEnrollments()
        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }

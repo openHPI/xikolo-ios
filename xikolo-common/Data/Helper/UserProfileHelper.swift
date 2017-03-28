@@ -49,40 +49,6 @@ open class UserProfileHelper {
         return promise.future
     }
 
-    static func createEnrollment(_ courseId: String) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
-
-        let url = Routes.ENROLLMENTS_API_URL
-        Alamofire.request(url, method: .post, parameters:[
-                Routes.HTTP_PARAM_COURSE_ID: courseId,
-        ], headers: NetworkHelper.getRequestHeaders()).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                if (json["id"] as? String) != nil {
-                    return promise.success()
-                }
-                return promise.failure(XikoloError.totallyUnknownError)
-            }
-            if let error = response.result.error {
-                return promise.failure(XikoloError.network(error))
-            }
-            return promise.failure(XikoloError.totallyUnknownError)
-        }
-        return promise.future
-    }
-
-    static func deleteEnrollement(_ courseId: String) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
-
-        let url = Routes.ENROLLMENTS_API_URL + courseId
-        Alamofire.request(url, method: .delete, headers: NetworkHelper.getRequestHeaders()).responseData { response in
-            if let error = response.error {
-                return promise.failure(XikoloError.network(error))
-            }
-            return promise.success()
-        }
-        return promise.future
-    }
-
     static func logout() {
         prefs.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         NotificationCenter.default.post(name: NotificationKeys.logoutSuccessfulKey, object: nil)

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G31" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Channel" representedClassName=".Channel" syncable="YES">
+        <attribute name="color_string" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="channel" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="Content" representedClassName=".Content" isAbstract="YES" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="CourseItem" inverseName="content" inverseEntity="CourseItem" syncable="YES"/>
+    </entity>
+    <entity name="Course" representedClassName=".Course" syncable="YES">
+        <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="accessible_int" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="course_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="end_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="enrollable_int" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="external_int" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="hidden_int" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="image_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teachers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="courses" inverseEntity="Channel" syncable="YES"/>
+        <relationship name="dates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseDate" inverseName="course" inverseEntity="CourseDate" syncable="YES"/>
+        <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlatformEvent" inverseName="course" inverseEntity="PlatformEvent" syncable="YES"/>
+        <relationship name="news" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NewsArticle" inverseName="course" inverseEntity="NewsArticle" syncable="YES"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection" syncable="YES"/>
+    </entity>
+    <entity name="CourseDate" representedClassName=".CourseDate" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="dates" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="CourseItem" representedClassName=".CourseItem" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visited_int" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="item" inverseEntity="Content" syncable="YES"/>
+        <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection" syncable="YES"/>
+    </entity>
+    <entity name="CourseSection" representedClassName=".CourseSection" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="section_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="sections" inverseEntity="Course" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CourseItem" inverseName="section" inverseEntity="CourseItem" syncable="YES"/>
+    </entity>
+    <entity name="Enrollment" representedClassName=".Enrollment" syncable="YES">
+        <attribute name="certificates" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="completed_int" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="points" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="reactivated_int" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="visits" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollment" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="LTIExercise" representedClassName=".LTIExercise" parentEntity="Content" syncable="YES">
+        <attribute name="allowed_attempts" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lock_submissions_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="NewsArticle" representedClassName=".NewsArticle" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="published_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visited_int" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="news" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="PeerAssessment" representedClassName=".PeerAssessment" parentEntity="Content" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PlatformEvent" representedClassName=".PlatformEvent" syncable="YES">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preview" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="events" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="Quiz" representedClassName=".Quiz" parentEntity="Content" syncable="YES">
+        <attribute name="allowed_attempts" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lock_submissions_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="max_points" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="publish_results_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="show_welcome_page_int" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="time_limit" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QuizQuestion" inverseName="quiz" inverseEntity="QuizQuestion" syncable="YES"/>
+    </entity>
+    <entity name="QuizQuestion" representedClassName=".QuizQuestion" syncable="YES">
+        <attribute name="explanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="max_points" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="options" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="shuffle_options_int" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="questions" inverseEntity="Quiz" syncable="YES"/>
+    </entity>
+    <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES">
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Video" representedClassName=".Video" parentEntity="Content" syncable="YES">
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="single_stream_hls_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="single_stream_poster_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="slides_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="stream_a_hls_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stream_a_poster_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stream_b_hls_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stream_b_poster_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="transcript_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Channel" positionX="9" positionY="443" width="128" height="118"/>
+        <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
+        <element name="Course" positionX="9" positionY="9" width="128" height="390"/>
+        <element name="CourseDate" positionX="198" positionY="-9" width="128" height="120"/>
+        <element name="CourseItem" positionX="432" positionY="135" width="128" height="133"/>
+        <element name="CourseSection" positionX="214" positionY="117" width="128" height="135"/>
+        <element name="Enrollment" positionX="18" positionY="-124" width="128" height="150"/>
+        <element name="LTIExercise" positionX="684" positionY="308" width="128" height="103"/>
+        <element name="NewsArticle" positionX="225" positionY="-165" width="128" height="133"/>
+        <element name="PeerAssessment" positionX="540" positionY="299" width="128" height="58"/>
+        <element name="PlatformEvent" positionX="7" positionY="308" width="128" height="133"/>
+        <element name="Quiz" positionX="828" positionY="198" width="128" height="163"/>
+        <element name="QuizQuestion" positionX="1033" positionY="228" width="128" height="165"/>
+        <element name="RichText" positionX="837" positionY="90" width="128" height="60"/>
+        <element name="Video" positionX="655" positionY="-99" width="128" height="210"/>
+    </elements>
+</model>

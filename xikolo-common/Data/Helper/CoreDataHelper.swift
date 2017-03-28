@@ -31,8 +31,11 @@ class CoreDataHelper {
     static fileprivate var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
         let url = coreDataDirectory.appendingPathComponent("xikolo.sqlite")
+        let options = [NSMigratePersistentStoresAutomaticallyOption: true,
+                        NSInferMappingModelAutomaticallyOption: true]
+
         do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
         } catch let error as NSError {
             NSLog("Error adding persistent CoreData store: \(error), \(error.userInfo)")
         }

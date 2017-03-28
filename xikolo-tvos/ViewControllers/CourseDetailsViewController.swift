@@ -122,7 +122,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
     @IBAction func unenroll(_ sender: UIButton) {
         // No need to check for login, cannot be enrolled without.
 
-        EnrollmentHelper.deleteEnrollment(course).onSuccess {
+        EnrollmentHelper.deleteEnrollment(for: course).onSuccess {
             CourseHelper.refreshCourses()
         }
     }

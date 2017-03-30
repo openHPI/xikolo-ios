@@ -23,7 +23,7 @@ struct Routes {
     static let PROFILE_URL = DASHBOARD_URL + "/profile"
     static let NEWS_URL = Brand.BaseURL + "/news"
     static let REGISTER_URL = Brand.BaseURL + "/account/new"
-    static let SSO_URL = Brand.BaseURL + "/auth/" + Brand.PlatformTitle
+    static let SSO_URL = "https://open.sap.com/?in_app=true&redirect_to=/auth/app"// Brand.BaseURL + "/auth/" + Brand.PlatformTitle
 
     static let HEADER_USER_PLATFORM = "User-Platform"
     static let HEADER_USER_PLATFORM_VALUE = "iOS"

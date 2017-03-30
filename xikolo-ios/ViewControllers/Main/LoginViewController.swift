@@ -7,14 +7,15 @@
 //
 
 import UIKit
-import SafariServices
+import WebKit
 
-class LoginViewController : AbstractLoginViewController {
+class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var singleSignOnView: UIView!
     @IBOutlet weak var singleSignOnButton: UIView!
+    @IBOutlet var parentView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +39,14 @@ class LoginViewController : AbstractLoginViewController {
     }
 
     @IBAction func singleSignIn(_ sender: UIButton) {
-
         let url = URL(string: Routes.SSO_URL)!
-
-        let safariViewController = SFSafariViewController.in
-            SFSafariViewController(url: url)
-        safariViewController.
-        self.present(safariViewController, animated: true, completion: nil)
-//        UIApplication.shared.openURL(url!)
+        UIApplication.shared.openURL(url)
+//        let request = URLRequest(url: url)
+//        let wkViewController = CustomHeaderWebView(frame: .zero)
+//        wkViewController.header = ["X-User-Platform" : "iOS"]
+//        wkViewController.uiDelegate = self
+//        view = wkViewController
+//        wkViewController.load(request)
     }
 
 }

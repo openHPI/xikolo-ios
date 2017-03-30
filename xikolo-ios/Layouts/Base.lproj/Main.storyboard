@@ -226,6 +226,7 @@
                     <connections>
                         <outlet property="emailField" destination="bp2-MP-IBy" id="3wi-WB-q9I"/>
                         <outlet property="loginButton" destination="H9h-TM-uGV" id="bvA-19-9q6"/>
+                        <outlet property="parentView" destination="30k-FQ-9TO" id="kin-pp-8FK"/>
                         <outlet property="passwordField" destination="ETa-cI-bg8" id="MrK-7i-uOk"/>
                         <outlet property="registerButton" destination="rRI-Oq-dJK" id="4iy-0g-H40"/>
                         <outlet property="singleSignOnButton" destination="wFF-sx-KDY" id="MG0-xl-Dtv"/>

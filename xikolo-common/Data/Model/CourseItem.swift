@@ -34,6 +34,15 @@ class CourseItem : BaseModel {
         }
     }
 
+    var proctored: Bool {
+        get {
+            return proctored_int?.boolValue ?? false
+        }
+        set(new_is_proctored) {
+            proctored_int = new_is_proctored as NSNumber?
+        }
+    }
+
     var visited: Bool? {
         get {
             return visited_int?.boolValue
@@ -61,10 +70,11 @@ class CourseItemSpine : BaseModelSpine {
 
     var title: String?
     var visited_int: NSNumber?
+    var proctored_int: NSNumber?
     var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
 
     var content: BaseModelSpine?
-    
+
     //used for PATCH
     convenience init(courseItem: CourseItem){
         self.init()
@@ -86,6 +96,7 @@ class CourseItemSpine : BaseModelSpine {
             "title": Attribute(),
             "content": ToOneRelationship(ContentSpine.self),
             "visited_int": BooleanAttribute().serializeAs("visited"),
+            "proctored_int": BooleanAttribute().serializeAs("proctored"),
             "position": Attribute(),
         ])
     }

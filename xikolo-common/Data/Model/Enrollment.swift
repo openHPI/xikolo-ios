@@ -19,6 +19,15 @@ class Enrollment : BaseModel {
         return .orderedSame
     }
 
+    var proctored: Bool {
+        get {
+            return proctored_int?.boolValue ?? false
+        }
+        set(new_is_proctored) {
+            proctored_int = new_is_proctored as NSNumber?
+        }
+    }
+
     var completed: Bool {
         get {
             return completed_int?.boolValue ?? false
@@ -44,6 +53,7 @@ class EnrollmentSpine : BaseModelSpine {
     var visits: EnrollmentVisits?
     var points: EnrollmentPoints?
     var certificates: EnrollmentCertificates?
+    var proctored_int: NSNumber?
     var completed_int: NSNumber?
     var reactivated_int: NSNumber?
 
@@ -69,6 +79,7 @@ class EnrollmentSpine : BaseModelSpine {
             "visits": EmbeddedObjectAttribute(EnrollmentVisits.self),
             "points": EmbeddedObjectAttribute(EnrollmentPoints.self),
             "certificates": EmbeddedObjectAttribute(EnrollmentCertificates.self),
+            "proctored_int": BooleanAttribute().serializeAs("proctored"),
             "completed_int": BooleanAttribute().serializeAs("completed"),
             "reactivated_int": BooleanAttribute().serializeAs("reactivated"),
             "course": ToOneRelationship(CourseSpine.self)

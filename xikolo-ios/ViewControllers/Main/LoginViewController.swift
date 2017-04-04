@@ -39,14 +39,22 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
     }
 
     @IBAction func singleSignIn(_ sender: UIButton) {
-        let url = URL(string: Routes.SSO_URL)!
-        UIApplication.shared.openURL(url)
-//        let request = URLRequest(url: url)
-//        let wkViewController = CustomHeaderWebView(frame: .zero)
-//        wkViewController.header = ["X-User-Platform" : "iOS"]
-//        wkViewController.uiDelegate = self
-//        view = wkViewController
-//        wkViewController.load(request)
+        performSegue(withIdentifier: "ShowSSOWebView", sender: self)
+        /*let url = URL(string: Routes.SSO_URL)!
+        let request = URLRequest(url: url)
+        let wkViewController = CustomHeaderWebView(frame: .zero)
+        wkViewController.header = ["X-User-Platform" : "iOS"]
+        wkViewController.uiDelegate = self
+        wkViewController.
+        view = wkViewController
+        wkViewController.load(request)*/
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowSSOWebView" {
+            let vc = segue.destination as! WebViewController
+            vc.url = Routes.SSO_URL
+        }
     }
 
 }

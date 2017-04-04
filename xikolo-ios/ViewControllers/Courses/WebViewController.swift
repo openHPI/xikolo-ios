@@ -16,6 +16,7 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        webView.delegate = self
 
         webView.loadRequest(NetworkHelper.getRequestForURL(url) as URLRequest)
     }
@@ -30,5 +31,18 @@ extension WebViewController : UIWebViewDelegate {
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
         NetworkIndicator.end()
+    }
+
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        print("Test#")
+        print(request.debugDescription)
+        if let dict = request.allHTTPHeaderFields {
+            for entry in dict { print(entry.key + " : " + entry.value) }
+        }
+        if let body = request.httpBody {
+            print(body)
+        }
+        return true
+
     }
 }

@@ -28,7 +28,7 @@ class CourseContentTableViewController: UITableViewController {
         navigationItem.title = course.title
 
         let request = CourseItemHelper.getItemRequest(course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "CourseItemCell")
         resultsControllerDelegateImplementation.delegate = self

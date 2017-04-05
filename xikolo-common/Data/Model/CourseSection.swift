@@ -25,6 +25,10 @@ class CourseSection : BaseModel {
         } as! [CourseItem]
     }
 
+    var sectionName: String? {
+        return self.title
+    }
+
 }
 
 class CourseSectionSpine : BaseModelSpine {

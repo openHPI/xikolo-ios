@@ -999,6 +999,7 @@
 		ABB49A8F1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
 		ABB49A901DF8D703004C59B6 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22701D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift */; };
 		ABB49A921DF8D70B004C59B6 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1357C41D996722004407AA /* PlatformEventCell.swift */; };
+		ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */; };
 		ABC1BF151E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
 		ABC1BF161E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
 		ABC1BF171E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
@@ -1071,6 +1072,8 @@
 		ABF26F971E9637F000763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		ABF26FA41E963A0200763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F9C1E96383800763A39 /* LaunchScreen.storyboard */; };
 		ABF26FA61E963A1200763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26FA01E96384A00763A39 /* LaunchScreen.storyboard */; };
+		ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */; };
+		ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */; };
 		ABFEE0021D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABFEE0031D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABFFA85C1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFFA85B1EAB6F4700544AB3 /* CourseCertificatesHash.swift */; };
@@ -1332,7 +1335,6 @@
 		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+VersionInfo.swift"; path = "Categories/UIApplication+VersionInfo.swift"; sourceTree = "<group>"; };
 		AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openSAP/xikolo-ios.entitlements"; sourceTree = "<group>"; };
-		AB32A7B51E8961200083E949 /* openHPI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = openHPI.entitlements; sourceTree = "<group>"; };
 		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCertificates.swift; sourceTree = "<group>"; };
 		AB48B4351DF8BB2A00523062 /* openWHO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openWHO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1367,6 +1369,8 @@
 		ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHPI4.ttf; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
+		ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openWHO/xikolo-ios.entitlements"; sourceTree = "<group>"; };
+		ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openHPI/xikolo-ios.entitlements"; sourceTree = "<group>"; };
 		ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 2.xcdatamodel"; sourceTree = "<group>"; };
 		ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentProvider.swift; sourceTree = "<group>"; };
 		ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentHelper.swift; sourceTree = "<group>"; };
@@ -1839,7 +1843,6 @@
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
-				AB32A7B51E8961200083E949 /* openHPI.entitlements */,
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
@@ -1963,6 +1966,7 @@
 			isa = PBXGroup;
 			children = (
 				ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */,
+				ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */,
 				AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */,
 			);
 			name = openHPI;
@@ -1990,6 +1994,7 @@
 			isa = PBXGroup;
 			children = (
 				ABF26FA01E96384A00763A39 /* LaunchScreen.storyboard */,
+				ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */,
 				ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */,
 			);
 			name = openWHO;
@@ -2328,6 +2333,9 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
 							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
@@ -2390,7 +2398,7 @@
 								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -2459,6 +2467,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */,
 				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
 				24BA41081D3F9B5E00E38C2C /* TabNews.storyboard in Resources */,
 				24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */,
@@ -2521,6 +2530,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				AB9AF2DA1CF72EF100ED3EB0 /* TabProfile.storyboard in Resources */,
@@ -2542,6 +2552,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
+				ABA0F02D1DF8CCE10001D88D /* LaunchScreen.storyboard in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Localizable.strings in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
 				ABA0F0131DF8CC2F0001D88D /* TabProfile.storyboard in Resources */,
@@ -4181,7 +4193,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openSAP/xikolo-ios.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -4202,7 +4214,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openSAP/xikolo-ios.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -4447,8 +4459,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = openHPI.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -4470,8 +4482,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = openHPI.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -4493,6 +4505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4558,6 +4571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				FRAMEWORK_SEARCH_PATHS = (

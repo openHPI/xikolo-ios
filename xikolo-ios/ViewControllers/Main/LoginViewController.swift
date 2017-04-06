@@ -21,7 +21,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         super.viewDidLoad()
         loginButton.backgroundColor = Brand.TintColor
         emailField.becomeFirstResponder()
-        #if OPENHPI
+        #if OPENSAP
             singleSignOnView.isHidden = false
             singleSignOnButton.backgroundColor = Brand.TintColor
         #else

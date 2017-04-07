@@ -38,8 +38,12 @@ class AbstractCourseListViewController : UICollectionViewController {
         var request: NSFetchRequest<NSFetchRequestResult>
         switch courseDisplayMode {
         case .enrolledOnly:
-            request = CourseHelper.getEnrolledCoursesRequest()
-            resultsControllers = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "enrolled_section")]
+            let enrolledRequest = CourseHelper.getEnrolledAccessibleCoursesRequest()
+            let upcomingRequest = CourseHelper.getEnrolledUpcomingCoursesRequest()
+            let completedRequest = CourseHelper.getCompletedCoursesRequest()
+            resultsControllers = [CoreDataHelper.createResultsController(enrolledRequest, sectionNameKeyPath: "enrolled_section"),
+                                    CoreDataHelper.createResultsController(upcomingRequest, sectionNameKeyPath: "upcoming_section"),
+                                    CoreDataHelper.createResultsController(completedRequest, sectionNameKeyPath: "completed_section")]
         case .explore, .all:
             let upcomingRunningRequest = CourseHelper.getInterestingCoursesRequest()
             let selfpacedRequest = CourseHelper.getPastCoursesRequest()

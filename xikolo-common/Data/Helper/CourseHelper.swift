@@ -54,7 +54,7 @@ class CourseHelper {
         return request
     }
 
-    static func getPastCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> { // unenrolled: self-paced
+    static func getPastCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = getGenericCoursesRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [unenrolledPredicate, selfpacedPredicate])
         return request
@@ -62,7 +62,13 @@ class CourseHelper {
 
     static func getEnrolledAccessibleCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = getGenericCoursesRequest()
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, accessiblePredicate]) // notcompletedPredicate
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, accessiblePredicate, notcompletedPredicate])
+        return request
+    }
+
+    static func getEnrolledUpcomingCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = getGenericCoursesRequest()
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, announcedPredicate, notcompletedPredicate])
         return request
     }
 

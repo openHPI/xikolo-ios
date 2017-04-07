@@ -41,6 +41,9 @@
 "Self-paced" = "Selbststudium";
 "Beginning" = "Ab";
 "Suggested" = "Vorgeschlagen";
+"Enrolled" = "Eingeschrieben";
+"Upcoming" = "Zukünftig";
+"Completed" = "Abgeschlossen";
 
 //Dialogs
 "Enroll" = "Einschreiben";

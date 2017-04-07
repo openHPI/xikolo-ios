@@ -33,21 +33,8 @@ class AppDelegate : AbstractAppDelegate {
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
 
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-            let url = userActivity.webpageURL,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-                return false
-        }
-
-        if let token = url.query {
-            return true
-        }
-
-        // 3
-        let webpageUrl = url
-        application.openURL(webpageUrl)
         
-        return false
+        return true
     }
 
     func updateNews() {

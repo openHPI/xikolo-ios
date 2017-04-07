@@ -41,7 +41,7 @@ class AbstractCourseListViewController : UICollectionViewController {
             let enrolledRequest = CourseHelper.getEnrolledAccessibleCoursesRequest()
             let upcomingRequest = CourseHelper.getEnrolledUpcomingCoursesRequest()
             let completedRequest = CourseHelper.getCompletedCoursesRequest()
-            resultsControllers = [CoreDataHelper.createResultsController(enrolledRequest, sectionNameKeyPath: "enrolled_section"),
+            resultsControllers = [CoreDataHelper.createResultsController(enrolledRequest, sectionNameKeyPath: "current_section"),
                                     CoreDataHelper.createResultsController(upcomingRequest, sectionNameKeyPath: "upcoming_section"),
                                     CoreDataHelper.createResultsController(completedRequest, sectionNameKeyPath: "completed_section")]
         case .explore, .all:

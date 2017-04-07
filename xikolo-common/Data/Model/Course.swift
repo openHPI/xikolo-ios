@@ -61,7 +61,7 @@ class Course : BaseModel {
 
     var interesting_section = NSLocalizedString("Suggested", comment: "section title for collapsed upcoming & active courses")
     var selfpaced_section = NSLocalizedString("Self-paced", comment: "section title for selfpaced courses")
-    var enrolled_section = NSLocalizedString("Enrolled", comment: "section title for enrolled courses")
+    var current_section = NSLocalizedString("Current", comment: "section title for current courses")
     var upcoming_section = NSLocalizedString("Upcoming", comment: "section title for upcoming courses")
     var completed_section = NSLocalizedString("Completed", comment: "section title for completed courses")
 

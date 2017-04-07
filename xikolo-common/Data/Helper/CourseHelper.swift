@@ -21,8 +21,8 @@ class CourseHelper {
     static fileprivate let selfpacedPredicate = NSPredicate(format: "status = %@", "self-paced")
     static fileprivate let interestingPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [announcedPredicate,previewPredicate,activePredicate])
     static fileprivate let accessiblePredicate = NSPredicate(format: "accessible_int == true")
-    static fileprivate let completedPredicate = NSPredicate(format: "ALL enrollment.completed_int == 'true'")
-    static fileprivate let notcompletedPredicate = NSPredicate(format: "ALL enrollment.completed_int != 'true'")
+    static fileprivate let completedPredicate = NSPredicate(format: "enrollment.completed_int == 1")
+    static fileprivate let notcompletedPredicate = NSPredicate(format: "enrollment.completed_int == 0")
 
     static func getGenericCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
@@ -54,7 +54,7 @@ class CourseHelper {
         return request
     }
 
-    static func getPastCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> { // unenrolled: self-paced
+    static func getPastCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = getGenericCoursesRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [unenrolledPredicate, selfpacedPredicate])
         return request
@@ -62,7 +62,13 @@ class CourseHelper {
 
     static func getEnrolledAccessibleCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = getGenericCoursesRequest()
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, accessiblePredicate]) // notcompletedPredicate
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, accessiblePredicate, notcompletedPredicate])
+        return request
+    }
+
+    static func getEnrolledUpcomingCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = getGenericCoursesRequest()
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, announcedPredicate, notcompletedPredicate])
         return request
     }
 

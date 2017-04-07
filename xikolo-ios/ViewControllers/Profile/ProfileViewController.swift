@@ -16,12 +16,20 @@ class ProfileViewController: AbstractTabContentViewController {
     @IBOutlet weak var nameView: UILabel!
     @IBOutlet weak var emailView: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var versionView: UILabel!
+    @IBOutlet weak var buildView: UILabel!
 
     @IBAction func logout(_ sender: UIButton) {
         UserProfileHelper.logout()
     }
 
     var user: UserProfile?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
+        buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
+    }
 
     override func updateUIAfterLoginLogoutAction() {
         super.updateUIAfterLoginLogoutAction()

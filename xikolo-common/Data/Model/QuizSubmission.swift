@@ -31,7 +31,7 @@ class QuizSubmission : Resource {
         return fieldsFromDictionary([
             "created_at": DateAttribute().readOnly(),
             "submitted_at": DateAttribute().readOnly(),
-            "submitted_int": Attribute().serializeAs("submitted"),
+            "submitted_int": BooleanAttribute().serializeAs("submitted"),
             "points": Attribute().readOnly(),
             "answers": EmbeddedDictAttribute(QuizQuestionSubmission.self),
             "quiz": ToOneRelationship(QuizSpine.self),

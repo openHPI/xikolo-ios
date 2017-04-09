@@ -53,7 +53,7 @@ class NewsArticleSpine : BaseModelSpine {
             "title": Attribute().readOnly(),
             "text": Attribute().readOnly(),
             "published_at": DateAttribute().readOnly(),
-            "visited_int": Attribute().serializeAs("visited"),
+            "visited_int": BooleanAttribute().serializeAs("visited"),
             "course": ToOneRelationship(CourseSpine.self).readOnly(),
         ])
     }

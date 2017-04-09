@@ -30,13 +30,8 @@ class CourseDetailViewController: UIViewController {
         teacherView.text = course.teachers
         teacherView.heroID = "course_teacher_" + course.id
         imageView.heroID = "course_image_" + course.id
-
-        if let startDate = course.start_at, let endDate = course.end_at {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-            dateView.text = dateFormatter.string(from: startDate) + " - " + dateFormatter.string(from: endDate)
-        }
+        
+        dateView.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
 
         course.loadImage().onSuccess { image in
             self.imageView.image = image

@@ -62,7 +62,7 @@ class QuizQuestionSpine : BaseModelSpine {
             "explanation": Attribute(),
             "type": Attribute(),
             "max_points": Attribute(),
-            "shuffle_options_int": Attribute().serializeAs("shuffle_options"),
+            "shuffle_options_int": BooleanAttribute().serializeAs("shuffle_options"),
             "options": EmbeddedObjectsAttribute(QuizOption.self),
         ])
     }

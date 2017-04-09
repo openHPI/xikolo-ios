@@ -85,7 +85,7 @@ class CourseItemSpine : BaseModelSpine {
         return fieldsFromDictionary([
             "title": Attribute(),
             "content": ToOneRelationship(ContentSpine.self),
-            "visited_int": Attribute().serializeAs("visited"),
+            "visited_int": BooleanAttribute().serializeAs("visited"),
             "position": Attribute(),
         ])
     }

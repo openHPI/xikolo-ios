@@ -97,7 +97,7 @@ class QuizSpine : ContentSpine {
             "time_limit": Attribute(),
             "allowed_attempts": Attribute(),
             "max_points": Attribute(),
-            "show_welcome_page_int": Attribute().serializeAs("show_welcome_page"),
+            "show_welcome_page_int": BooleanAttribute().serializeAs("show_welcome_page"),
             "questions": ToManyRelationship(QuizQuestionSpine.self),
             "submission": ToOneRelationship(QuizSubmission.self).serializeAs("newest_user_submission"),
         ])

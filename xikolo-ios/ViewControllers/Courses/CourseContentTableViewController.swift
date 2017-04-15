@@ -81,7 +81,7 @@ class CourseContentTableViewController: UITableViewController {
 
     func showProctoringDialog(onComplete completionBlock: @escaping () -> Void) {
         let title = NSLocalizedString("This item needs to be proctored", comment: "Shown in proctoring dialog")
-        let message = NSLocalizedString("In order to receive your qualified certificate you have to complete this assignment on a computer.", comment: "Shown in proctoring dialog")
+        let message = NSLocalizedString("In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.", comment: "Shown in proctoring dialog")
         let confirm = NSLocalizedString("Ok", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
 

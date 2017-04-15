@@ -17,6 +17,7 @@ extension Course {
     @NSManaged var abstract: String?
     @NSManaged var accessible_int: NSNumber?
     @NSManaged var course_description: String?
+    @NSManaged var certificates: 
     @NSManaged var end_at: Date?
     @NSManaged var id: String
     @NSManaged var image: UIImage?

@@ -10,26 +10,26 @@ import Foundation
 
 class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
 
-    var confirmationOfParticipation: Bool?
-    var recordOfAchievement: Bool?
-    var certificate: Bool?
+    var confirmationOfParticipation: CourseCertificatesHash?
+    var recordOfAchievement: CourseCertificatesHash?
+    var certificate: CourseCertificatesHash?
 
     required init(_ dict: [String : AnyObject]) {
-        confirmationOfParticipation = dict["confirmationOfParticipation"] as? Bool
-        recordOfAchievement = dict["recordOfAchievement"] as? Bool
-        certificate = dict["certificate"] as? Bool
+        confirmationOfParticipation = dict["confirmation_of_participation"] as? CourseCertificatesHash
+        recordOfAchievement = dict["record_of_achievement"] as? CourseCertificatesHash
+        certificate = dict["qualified_certificate"] as? CourseCertificatesHash
     }
 
     required init(coder decoder: NSCoder) {
-        confirmationOfParticipation = decoder.decodeObject(forKey: "confirmationOfParticipation") as? Bool
-        recordOfAchievement = decoder.decodeObject(forKey: "recordOfAchievement") as? Bool
-        certificate = decoder.decodeObject(forKey: "certificate") as? Bool
+        confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as? CourseCertificatesHash
+        recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as? CourseCertificatesHash
+        certificate = decoder.decodeObject(forKey: "qualified_certificate") as? CourseCertificatesHash
     }
 
     func encode(with coder: NSCoder) {
-        coder.encode(confirmationOfParticipation, forKey: "confirmationOfParticipation")
-        coder.encode(recordOfAchievement, forKey: "recordOfAchievement")
-        coder.encode(certificate, forKey: "certificate")
+        coder.encode(confirmationOfParticipation, forKey: "confirmation_of_participation")
+        coder.encode(recordOfAchievement, forKey: "record_of_achievement")
+        coder.encode(certificate, forKey: "qualified_certificate")
     }
     
 }

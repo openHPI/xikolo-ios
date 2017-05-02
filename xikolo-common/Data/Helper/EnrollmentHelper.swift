@@ -45,8 +45,7 @@ class EnrollmentHelper {
         let enrollmentSpine = EnrollmentSpine(course: courseSpine)
         SpineHelper.delete(enrollmentSpine).onSuccess { _ in
             if let enrollment = course.enrollment {
-                CoreDataHelper.managedContext.delete(enrollment)
-                CoreDataHelper.saveContext()
+                CoreDataHelper.delete(enrollment)
             }
             return promise.success()
         }.onFailure { xikoloError in

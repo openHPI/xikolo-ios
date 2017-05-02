@@ -23,35 +23,40 @@ class CoreDataHelper {
         #endif
     }()
 
+    static var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
+        //container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: coreDataDirectory)]
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            // TODO: check for space etc
+            // TODO: change URL back to URL from earlier
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    static func saveViewContext () {
+        if persistentContainer.viewContext.hasChanges {
+            do {
+                try persistentContainer.viewContext.save()
+            } catch let error as NSError {
+                NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
+            }
+        }
+    }
+
+    static var viewContext = persistentContainer.viewContext
+    
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    static fileprivate var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        let url = coreDataDirectory.appendingPathComponent("xikolo.sqlite")
-        let options = [NSMigratePersistentStoresAutomaticallyOption: true,
-                        NSInferMappingModelAutomaticallyOption: true]
-
-        do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
-        } catch let error as NSError {
-            NSLog("Error adding persistent CoreData store: \(error), \(error.userInfo)")
-        }
-        return coordinator
-    }()
-
-    static var managedContext: NSManagedObjectContext = {
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
-        return managedObjectContext
-    }()
-
-    static func saveContext () {
-        if managedContext.hasChanges {
+    static func saveContext (_ context: NSManagedObjectContext) {
+        if context.hasChanges {
             do {
-                try managedContext.save()
+                try context.save()
             } catch let error as NSError {
                 NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
             }
@@ -60,15 +65,21 @@ class CoreDataHelper {
 
     static func createResultsController(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>, sectionNameKeyPath: String?) -> NSFetchedResultsController<NSFetchRequestResult> {
         // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 
     static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [BaseModel] {
         do {
-            return try managedContext.fetch(request) as! [BaseModel]
+            return try persistentContainer.viewContext.fetch(request) as! [BaseModel]
         } catch let error as NSError {
             throw XikoloError.coreData(error)
         }
+    }
+
+    static func delete(_ object: NSManagedObject) {
+        let context = persistentContainer.newBackgroundContext()
+        context.delete(object)
+        saveContext(context)
     }
 
     static func clearCoreDataStorage() {
@@ -82,7 +93,7 @@ class CoreDataHelper {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
-            try persistentStoreCoordinator.execute(deleteRequest, with: managedContext)
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: persistentContainer.newBackgroundContext())
         } catch {
             // TODO: handle the error
         }

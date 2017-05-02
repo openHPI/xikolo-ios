@@ -80,7 +80,7 @@ class Course : BaseModel {
         if let imageUrl = image_url {
             return ImageProvider.loadImage(imageUrl).onSuccess { image in
                 self.image = image
-                CoreDataHelper.saveContext()
+                CoreDataHelper.saveViewContext() // TODO: store pictures somewhere else
             }
         } else {
             return Future.init(error: XikoloError.modelIncomplete)

@@ -21,13 +21,14 @@ class SpineModelHelper {
 
     class func syncObjects(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         var objectsToUpdate = objectsToUpdate
+        let backgroundContext = CoreDataHelper.persistentContainer.newBackgroundContext()
 
         var cdObjects = [BaseModel]()
         if spineObjects.count > 0 {
             let model = type(of: spineObjects[0]).cdType
             let entityName = String(describing: model)
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-            let entity = NSEntityDescription.entity(forEntityName: entityName, in: CoreDataHelper.managedContext)!
+            let entity = NSEntityDescription.entity(forEntityName: entityName, in: backgroundContext)!
 
             for spineObject in spineObjects {
                 if let id = spineObject.id {
@@ -36,11 +37,11 @@ class SpineModelHelper {
 
                     var cdObject: BaseModel!
 
-                    let results = try CoreDataHelper.executeFetchRequest(request)
+                    let results = try CoreDataHelper.executeFetchRequest(request) // TODO?!
                     if (results.count > 0) {
                         cdObject = results[0]
                     } else {
-                        cdObject = model.init(entity: entity, insertInto: CoreDataHelper.managedContext)
+                        cdObject = model.init(entity: entity, insertInto: backgroundContext)
                         cdObject.setValue(id, forKey: "id")
                     }
                     if spineObject.isLoaded {
@@ -60,10 +61,10 @@ class SpineModelHelper {
             }
         }
         for object in objectsToUpdate {
-            CoreDataHelper.managedContext.delete(object)
+            backgroundContext.delete(object)
         }
         if save {
-            CoreDataHelper.saveContext()
+            CoreDataHelper.saveContext(backgroundContext)
         }
         return cdObjects
     }

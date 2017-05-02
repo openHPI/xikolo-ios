@@ -24,7 +24,10 @@ class BaseModel : NSManagedObject {
         }
 
         let baseModelObserver = BaseModelObserver(model: self, updatedHandler: updatedHandler, deletedHandler: deletedHandler)
-        NotificationCenter.default.addObserver(baseModelObserver, selector: #selector(BaseModelObserver.dataModelDidChange), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.managedContext)
+        NotificationCenter.default.addObserver(baseModelObserver,
+                                               selector: #selector(BaseModelObserver.dataModelDidChange),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
         baseModelObservers[observer] = baseModelObserver
     }
 

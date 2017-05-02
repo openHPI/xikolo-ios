@@ -21,7 +21,7 @@ class SpineModelHelper {
 
     class func syncObjects(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         var objectsToUpdate = objectsToUpdate
-        let backgroundContext = CoreDataHelper.persistentContainer.newBackgroundContext()
+        let backgroundContext = CoreDataHelper.backgroundContext
 
         var cdObjects = [BaseModel]()
         if spineObjects.count > 0 {
@@ -37,7 +37,7 @@ class SpineModelHelper {
 
                     var cdObject: BaseModel!
 
-                    let results = try CoreDataHelper.executeFetchRequest(request) // TODO?!
+                    let results = try CoreDataHelper.executeFetchRequest(request, inContext: backgroundContext)
                     if (results.count > 0) {
                         cdObject = results[0]
                     } else {

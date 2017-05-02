@@ -47,6 +47,9 @@ class CoreDataHelper {
     }
 
     static var viewContext = persistentContainer.viewContext
+    static var backgroundContext = {
+        return persistentContainer.newBackgroundContext()
+    }()
     
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
@@ -70,16 +73,23 @@ class CoreDataHelper {
 
     static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [BaseModel] {
         do {
-            return try persistentContainer.viewContext.fetch(request) as! [BaseModel]
+            return try executeFetchRequest(request, inContext: persistentContainer.viewContext)
+        } catch let error as NSError {
+            throw XikoloError.coreData(error)
+        }
+    }
+
+    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>, inContext context: NSManagedObjectContext) throws -> [BaseModel] {
+        do {
+            return try context.fetch(request) as! [BaseModel]
         } catch let error as NSError {
             throw XikoloError.coreData(error)
         }
     }
 
     static func delete(_ object: NSManagedObject) {
-        let context = persistentContainer.newBackgroundContext()
-        context.delete(object)
-        saveContext(context)
+        backgroundContext.delete(object)
+        saveContext(backgroundContext)
     }
 
     static func clearCoreDataStorage() {
@@ -93,7 +103,7 @@ class CoreDataHelper {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
-            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: persistentContainer.newBackgroundContext())
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: backgroundContext)
         } catch {
             // TODO: handle the error
         }

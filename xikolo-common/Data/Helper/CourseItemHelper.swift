@@ -12,8 +12,6 @@ import Result
 
 class CourseItemHelper {
 
-    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "CourseItem", in: CoreDataHelper.managedContext)!
-
     static func getItemRequest(_ section: CourseSection) -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
         request.predicate = NSPredicate(format: "section = %@", section)

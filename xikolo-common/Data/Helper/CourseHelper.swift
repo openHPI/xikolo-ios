@@ -11,7 +11,6 @@ import CoreData
 
 class CourseHelper {
 
-    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "Course", in: CoreDataHelper.managedContext)!
     static fileprivate let genericPredicate = NSPredicate(format: "external_int != true")
     static fileprivate let enrolledPredicate = NSPredicate(format: "external_int != true AND enrollment != null")
     static fileprivate let unenrolledPredicate = NSPredicate(format: "external_int != true AND enrollment == null")

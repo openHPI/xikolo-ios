@@ -12,8 +12,6 @@ import Result
 
 class NewsArticleHelper {
 
-    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "NewsArticle", in: CoreDataHelper.managedContext)!
-
     static func getRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NewsArticle")
         let dateSort = NSSortDescriptor(key: "published_at", ascending: false)

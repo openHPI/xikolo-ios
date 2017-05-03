@@ -27,7 +27,7 @@ class BaseModel : NSManagedObject {
         NotificationCenter.default.addObserver(baseModelObserver,
                                                selector: #selector(BaseModelObserver.dataModelDidChange),
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.self.backgroundContext) // right?
+                                               object: CoreDataHelper.persistentContainer.newBackgroundContext()) // right?
         baseModelObservers[observer] = baseModelObserver
     }
 

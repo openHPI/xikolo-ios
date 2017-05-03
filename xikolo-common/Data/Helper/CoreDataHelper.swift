@@ -8,6 +8,7 @@
 
 import CoreData
 import UIKit
+import BrightFutures
 
 class CoreDataHelper {
 
@@ -35,21 +36,6 @@ class CoreDataHelper {
         })
         return container
     }()
-
-    static func saveViewContext () {
-        if persistentContainer.viewContext.hasChanges {
-            do {
-                try persistentContainer.viewContext.save()
-            } catch let error as NSError {
-                NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
-            }
-        }
-    }
-
-    static var viewContext = persistentContainer.viewContext
-    static var backgroundContext = {
-        return persistentContainer.newBackgroundContext()
-    }()
     
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
@@ -71,25 +57,29 @@ class CoreDataHelper {
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 
-    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [BaseModel] {
-        do {
-            return try executeFetchRequest(request, inContext: persistentContainer.viewContext)
-        } catch let error as NSError {
-            throw XikoloError.coreData(error)
+    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) -> Future<[BaseModel], XikoloError> {
+        let promise = Promise<[BaseModel], XikoloError>()
+        persistentContainer.performBackgroundTask { (context) in
+            do {
+                promise.success(try context.fetch(request) as! [BaseModel])
+            } catch let error as NSError {
+                promise.failure(XikoloError.coreData(error))
+            } catch {
+                promise.failure(XikoloError.unknownError(error))
+            }
         }
-    }
-
-    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>, inContext context: NSManagedObjectContext) throws -> [BaseModel] {
-        do {
-            return try context.fetch(request) as! [BaseModel]
-        } catch let error as NSError {
-            throw XikoloError.coreData(error)
-        }
+        return promise.future
     }
 
     static func delete(_ object: NSManagedObject) {
-        backgroundContext.delete(object)
-        saveContext(backgroundContext)
+        persistentContainer.performBackgroundTask { (context) in
+            context.delete(object)
+            do {
+                try context.save()
+            } catch {
+                fatalError("Failure to save context: \(error)")
+            }
+        }
     }
 
     static func clearCoreDataStorage() {
@@ -101,11 +91,13 @@ class CoreDataHelper {
     static func clearCoreDataEntity(_ entityName: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
-        do {
-            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: backgroundContext)
-        } catch {
-            // TODO: handle the error
+        persistentContainer.performBackgroundTask { (context) in
+            do {
+                try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: context)
+                try context.save()
+            } catch {
+                fatalError("Failure to save context: \(error)")
+            }
         }
     }
 

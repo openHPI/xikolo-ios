@@ -14,7 +14,7 @@ class QuizHelper {
 
     static func refreshQuiz(_ quiz: Quiz) -> Future<Quiz, XikoloError> {
         return QuizProvider.getQuiz(quiz.id).flatMap { spineQuiz -> Future<[BaseModel], XikoloError> in
-            return SpineModelHelper.syncObjectsFuture([quiz], spineObjects: [spineQuiz], inject: nil, save: true)
+            return SpineModelHelper.syncObjects([quiz], spineObjects: [spineQuiz], inject: nil, save: true)
         }.map { cdQuizzes in
             return cdQuizzes[0] as! Quiz
         }.onSuccess { quiz in

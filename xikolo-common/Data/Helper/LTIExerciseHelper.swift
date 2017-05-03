@@ -14,7 +14,7 @@ class LTIExerciseHelper {
 
     static func refreshLTIExercise(_ ltiExercise: LTIExercise) -> Future<LTIExercise, XikoloError> {
         return LTIExerciseProvider.getLTIExercise(ltiExercise.id).flatMap { spineLTIExercise -> Future<[BaseModel], XikoloError> in
-            return SpineModelHelper.syncObjectsFuture([ltiExercise], spineObjects: [spineLTIExercise], inject: nil, save: true)
+            return SpineModelHelper.syncObjects([ltiExercise], spineObjects: [spineLTIExercise], inject: nil, save: true)
         }.map { cdLTIExercises in
             return cdLTIExercises[0] as! LTIExercise
         }

@@ -85,27 +85,30 @@ class CourseHelper {
         return request
     }
 
-    static func getNumberOfEnrolledCourses() throws -> Int {
+    static func getNumberOfEnrolledCourses() -> Future<Int, XikoloError> {
         let request = getEnrolledCoursesRequest()
-        let courses = try CoreDataHelper.executeFetchRequest(request)
-        return courses.count
+        return CoreDataHelper.executeFetchRequest(request).map({ (courses) -> Int in
+            return courses.count
+        })
     }
 
-    static func getByID(_ id: String) throws -> Course? {
+    static func getByID(_ id: String) -> Future<Course?, XikoloError> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
         request.predicate = NSPredicate(format: "id == %@", id)
         request.fetchLimit = 1
-        let courses = try CoreDataHelper.executeFetchRequest(request) as! [Course]
-        if courses.isEmpty {
-            return nil
-        }
-        return courses[0]
+        return CoreDataHelper.executeFetchRequest(request).map({ (courses) -> Course? in
+            if courses.isEmpty {
+                return nil
+            } else {
+                return courses[0] as? Course
+            }
+        })
     }
 
     static func refreshCourses() -> Future<[Course], XikoloError> {
         return CourseProvider.getCourses().flatMap { spineCourses -> Future<[BaseModel], XikoloError> in
             let request = getGenericCoursesRequest()
-            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourses, inject: nil, save: true)
+            return SpineModelHelper.syncObjects(request, spineObjects: spineCourses, inject: nil, save: true)
         }.map { cdCourses in
             return cdCourses as! [Course]
         }

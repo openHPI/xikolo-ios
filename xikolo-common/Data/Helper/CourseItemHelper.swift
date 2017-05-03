@@ -32,7 +32,7 @@ class CourseItemHelper {
     static func syncCourseItems(_ section: CourseSection) -> Future<[CourseItem], XikoloError> {
         return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems -> Future<[BaseModel], XikoloError> in
             let request = getItemRequest(section)
-            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineItems, inject: ["section": section], save: true)
+            return SpineModelHelper.syncObjects(request, spineObjects: spineItems, inject: ["section": section], save: true)
         }.map { cdItems in
             return cdItems as! [CourseItem]
         }

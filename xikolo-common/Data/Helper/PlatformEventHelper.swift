@@ -22,7 +22,7 @@ class PlatformEventHelper {
     static func syncPlatformEvents() -> Future<[PlatformEvent], XikoloError> {
         return PlatformEventProvider.getPlatformEvents().flatMap { spinePlatformEvents -> Future<[BaseModel], XikoloError> in
             let request = getRequest()
-            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spinePlatformEvents, inject: nil, save: true)
+            return SpineModelHelper.syncObjects(request, spineObjects: spinePlatformEvents, inject: nil, save: true)
         }.map { cdPlatformEvents in
                 return cdPlatformEvents as! [PlatformEvent]
         }

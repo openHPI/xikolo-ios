@@ -19,7 +19,7 @@ class EnrollmentHelper {
     static func syncEnrollments() -> Future<[Enrollment], XikoloError> {
         return EnrollmentProvider.getEnrollments().flatMap { spineEnrollments -> Future<[BaseModel], XikoloError> in
             let request = getEnrollmentsRequest()
-            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineEnrollments, inject: nil, save: true)
+            return SpineModelHelper.syncObjects(request, spineObjects: spineEnrollments, inject: nil, save: true)
             }.map { cdEnrollments in
                 return cdEnrollments as! [Enrollment]
         }

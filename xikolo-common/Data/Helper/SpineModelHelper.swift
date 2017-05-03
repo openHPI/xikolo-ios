@@ -46,13 +46,7 @@ class SpineModelHelper {
                                 cdObject.setValue(id, forKey: "id")
                             }
                             if spineObject.isLoaded {
-                                do {
-                                    try cdObject.loadFromSpine(spineObject)
-                                } catch let error as XikoloError {
-                                    promise.failure(error)
-                                } catch {
-                                    promise.failure(XikoloError.unknownError(error))
-                                }
+                                cdObject.loadFromSpine(spineObject)
                             }
                             if let dict = inject {
                                 cdObject.loadFromDict(dict)

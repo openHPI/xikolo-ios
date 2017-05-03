@@ -26,6 +26,11 @@ class CoreDataHelper {
 
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
+        do {
+            try container.viewContext.setQueryGenerationFrom(container.viewContext.queryGenerationToken)
+        } catch {
+            fatalError("Blabla \(error)")
+        }
         //container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: coreDataDirectory)]
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             // TODO: check for space etc

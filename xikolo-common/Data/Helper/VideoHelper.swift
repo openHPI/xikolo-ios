@@ -14,7 +14,7 @@ class VideoHelper {
 
     static func syncVideo(_ video: Video) -> Future<Video, XikoloError> {
         return VideoProvider.getVideo(video.id).flatMap { spineVideo -> Future<[BaseModel], XikoloError> in
-            return SpineModelHelper.syncObjects([video], spineObjects: [spineVideo], inject: nil, save: true)
+            return SpineModelHelper.syncObjectsFuture([video], spineObjects: [spineVideo], inject: nil, save: true)
         }.map { cdVideos in
             return cdVideos[0] as! Video
         }

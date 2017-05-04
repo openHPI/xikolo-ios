@@ -23,7 +23,7 @@ class CourseSectionHelper {
     static func syncCourseSections(_ course: Course) -> Future<[CourseSection], XikoloError> {
         return CourseSectionProvider.getCourseSections(course.id).flatMap { spineSections -> Future<[BaseModel], XikoloError> in
             let request = getSectionRequest(course)
-            return SpineModelHelper.syncObjects(request, spineObjects: spineSections, inject: ["course": course], save: true)
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineSections, inject: ["course": course], save: true)
         }.map { cdSections in
             return cdSections as! [CourseSection]
         }

@@ -22,7 +22,7 @@ class NewsArticleHelper {
     static func syncNewsArticles() -> Future<[NewsArticle], XikoloError> {
         return NewsArticleProvider.getNewsArticles().flatMap { spineNewsArticles -> Future<[BaseModel], XikoloError> in
             let request = getRequest()
-            return SpineModelHelper.syncObjects(request, spineObjects: spineNewsArticles, inject: nil, save: true)
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineNewsArticles, inject: nil, save: true)
         }.map { cdNewsArticles in
             return cdNewsArticles as! [NewsArticle]
         }

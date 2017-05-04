@@ -24,6 +24,10 @@ class CoreDataHelper {
         #endif
     }()
 
+    static var backgroundContext = {
+        return persistentContainer.newBackgroundContext()
+    }()
+
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
         do {
@@ -106,4 +110,12 @@ class CoreDataHelper {
         }
     }
 
+}
+
+extension NSPersistentContainer {
+    func performBackgroundTaskAndWait(_ block: @escaping ((NSManagedObjectContext)->()) ) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            block(CoreDataHelper.backgroundContext)
+        }
+    }
 }

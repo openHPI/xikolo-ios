@@ -29,6 +29,17 @@ class CourseItemHelper {
         return request
     }
 
+    static func getByID(_ id: String) throws -> CourseItem? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
+        request.predicate = NSPredicate(format: "id == %@", id)
+        request.fetchLimit = 1
+        let courseItems = try CoreDataHelper.executeFetchRequest(request) as! [CourseItem]
+        if courseItems.isEmpty {
+            return nil
+        }
+        return courseItems[0]
+    }
+
     static func syncCourseItems(_ section: CourseSection) -> Future<[CourseItem], XikoloError> {
         return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems -> Future<[BaseModel], XikoloError> in
             let request = getItemRequest(section)

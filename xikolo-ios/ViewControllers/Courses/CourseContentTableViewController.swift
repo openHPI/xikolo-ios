@@ -84,7 +84,7 @@ class CourseContentTableViewController: UITableViewController {
         switch segue.identifier! {
         case "ShowVideo":
             let videoView = segue.destination as! VideoViewController
-            videoView.courseItem = courseItem
+            videoView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
             break
         case "ShowQuiz":
             let webView = segue.destination as! WebViewController
@@ -97,7 +97,7 @@ class CourseContentTableViewController: UITableViewController {
             break
         case "ShowRichtext":
             let richtextView = segue.destination as! RichtextViewController
-            richtextView.courseItem = courseItem
+            richtextView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
             break
         default:
             super.prepare(for: segue, sender: sender)

@@ -25,12 +25,7 @@ class CoreDataHelper {
 
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
-        do {
-            try container.viewContext.setQueryGenerationFrom(container.viewContext.queryGenerationToken)
-        } catch {
-            fatalError("Blabla \(error)")
-        }
-        //container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: coreDataDirectory)]
+        container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             // TODO: check for space etc
             // TODO: change URL back to URL from earlier
@@ -114,15 +109,6 @@ class CoreDataHelper {
 }
 
 extension NSPersistentContainer {
-
-    typealias CompletionBlock = (_ inner: (NSManagedObjectContext) throws -> [BaseModel]) -> Void
-    typealias InnerBlock = (NSManagedObjectContext) throws -> [BaseModel]
-
-    func performBackgroundSyncAndWait(_ inner: @escaping(NSManagedObjectContext) throws -> [BaseModel], _ completion: @escaping (_ inner: (NSManagedObjectContext) throws -> [BaseModel]) -> Void) throws -> Void {
-        CoreDataHelper.backgroundContext.performAndWait {
-            completion(inner)
-        }
-    }
 
     func performBackgroundLoadSpineAndWait(cdObject: BaseModel, spineObject: BaseModelSpine, completion: @escaping (_ inner: () throws -> Void) -> Void) {
         CoreDataHelper.backgroundContext.performAndWait {

@@ -56,10 +56,10 @@ class CoreDataHelper {
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    static func saveContext (_ context: NSManagedObjectContext) {
-        if context.hasChanges {
+    static func saveContext () {
+        if backgroundContext.hasChanges {
             do {
-                try context.save()
+                try backgroundContext.save()
             } catch let error as NSError {
                 NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
             }
@@ -86,7 +86,7 @@ class CoreDataHelper {
 
     static func delete(_ object: NSManagedObject) {
         backgroundContext.delete(object)
-        saveContext(backgroundContext)
+        saveContext()
     }
 
     static func clearCoreDataStorage() {

@@ -16,7 +16,7 @@ class AbstractAppDelegate : UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        //CoreDataHelper.saveViewContext()
+        CoreDataHelper.saveContext()
     }
 
 }

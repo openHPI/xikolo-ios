@@ -78,7 +78,7 @@ class SpineModelHelper {
             backgroundContext.delete(object)
         }
         if save {
-            CoreDataHelper.saveContext(backgroundContext) // Maybe back to main context?
+            CoreDataHelper.saveContext()
         }
         return cdObjects
     }

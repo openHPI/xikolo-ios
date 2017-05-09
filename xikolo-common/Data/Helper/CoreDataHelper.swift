@@ -146,10 +146,22 @@ extension NSPersistentContainer {
         }
     }
 
-    func performBackgroundSyncAndWait(_ request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+    func performBackgroundSyncAndWait(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
-                let results = try CoreDataHelper.backgroundContext.fetch(request) as! [BaseModel]
+                let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
+                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
+                completion({_ in return results})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
+        }
+    }
+
+    func performBackgroundSyncAndWait(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
                 completion({_ in return results})
             } catch let error as NSError {
                 completion({_ in throw XikoloError.coreData(error)})

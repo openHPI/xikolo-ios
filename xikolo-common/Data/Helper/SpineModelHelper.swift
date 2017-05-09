@@ -14,10 +14,10 @@ import Spine
 
 class SpineModelHelper {
 
-    class func syncObjects(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
+    /*class func syncObjects(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
         return try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-    }
+    }*/
 
     class func syncObjects(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         var objectsToUpdate = objectsToUpdate
@@ -85,27 +85,31 @@ class SpineModelHelper {
 
     class func syncObjectsFuture(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
         return Future { complete in
-            do {
-                let cdItems = try syncObjects(objectsToUpdateRequest, spineObjects: spineObjects, inject:inject, save: save)
-                complete(.success(cdItems))
-            } catch let error as XikoloError {
-                complete(.failure(error))
-            } catch {
-                complete(.failure(XikoloError.unknownError(error)))
-            }
+            CoreDataHelper.persistentContainer.performBackgroundSyncAndWait(objectsToUpdateRequest, spineObjects: spineObjects, inject:inject, save: save, completion: { (inner: () throws -> [BaseModel]) -> Void in
+                do {
+                    let result = try inner()
+                    complete(.success(result))
+                } catch let error as XikoloError{
+                    complete(.failure(error))
+                } catch {
+                    complete(.failure(XikoloError.unknownError(error)))
+                }
+            })
         }
     }
 
     class func syncObjectsFuture(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
         return Future { complete in
-            do {
-                let cdItems = try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject:inject, save: save)
-                complete(.success(cdItems))
-            } catch let error as XikoloError {
-                complete(.failure(error))
-            } catch {
-                complete(.failure(XikoloError.unknownError(error)))
-            }
+            CoreDataHelper.persistentContainer.performBackgroundSyncAndWait(objectsToUpdate, spineObjects: spineObjects, inject:inject, save: save, completion: { (inner: () throws -> [BaseModel]) -> Void in
+                do {
+                    let result = try inner()
+                    complete(.success(result))
+                } catch let error as XikoloError{
+                    complete(.failure(error))
+                } catch {
+                    complete(.failure(XikoloError.unknownError(error)))
+                }
+            })
         }
     }
 

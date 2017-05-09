@@ -28,7 +28,7 @@ class BaseModel : NSManagedObject {
         NotificationCenter.default.addObserver(baseModelObserver,
                                                selector: #selector(BaseModelObserver.dataModelDidChange),
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: CoreDataHelper.persistentContainer.newBackgroundContext()) // right?
+                                               object: CoreDataHelper.self.backgroundContext) // right?
         baseModelObservers[observer] = baseModelObserver
     }
 
@@ -43,7 +43,7 @@ class BaseModel : NSManagedObject {
 
 extension BaseModel {
 
-    func loadFromSpine(_ resource: BaseModelSpine) {
+    func loadFromSpine(_ resource: BaseModelSpine) throws {
         for field in type(of: resource).fields {
             var value = resource.value(forKey: field.name)
             if value is NSNull {
@@ -58,9 +58,8 @@ extension BaseModel {
                 if let value = value as? BaseModelSpine {
                     let currentRelatedObject = self.value(forKey: field.name) as? BaseModel
                     let relatedObjects = currentRelatedObject != nil ? [currentRelatedObject!] : [BaseModel]()
-                    SpineModelHelper.syncObjects(relatedObjects, spineObjects: [value], inject: nil, save: false).onSuccess(callback: { (cdObjects) in
-                        self.setValue(cdObjects[0], forKey: field.name)
-                    })
+                    let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: [value], inject: nil, save: false)
+                    self.setValue(cdObjects[0], forKey: field.name)
                 } else if let value = value as? Resource {
                     self.setValue(value, forKey: field.name)
                 }
@@ -68,9 +67,8 @@ extension BaseModel {
                 if let value = value as? ResourceCollection {
                     let spineObjects = value.resources as! [BaseModelSpine]
                     let relatedObjects = self.value(forKey: field.name) as? [BaseModel] ?? []
-                    SpineModelHelper.syncObjects(relatedObjects, spineObjects: spineObjects, inject: nil, save: false).onSuccess(callback: { (cdObjects) in
-                        self.setValue(NSSet(array: cdObjects), forKey: field.name)
-                    })
+                    let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: spineObjects, inject: nil, save: false)
+                    self.setValue(NSSet(array: cdObjects), forKey: field.name)
                 }
             } else {
                 self.setValue(value, forKey: field.name)

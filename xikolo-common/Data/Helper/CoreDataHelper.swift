@@ -8,7 +8,6 @@
 
 import CoreData
 import UIKit
-import BrightFutures
 
 class CoreDataHelper {
 
@@ -22,10 +21,6 @@ class CoreDataHelper {
             let urls = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
             return urls[urls.count-1]
         #endif
-    }()
-
-    static var backgroundContext = {
-        return persistentContainer.newBackgroundContext()
     }()
 
     static var persistentContainer: NSPersistentContainer = {
@@ -44,6 +39,21 @@ class CoreDataHelper {
             }
         })
         return container
+    }()
+
+    static func saveViewContext () {
+        if persistentContainer.viewContext.hasChanges {
+            do {
+                try persistentContainer.viewContext.save()
+            } catch let error as NSError {
+                NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
+            }
+        }
+    }
+
+    static var viewContext = persistentContainer.viewContext
+    static var backgroundContext = {
+        return persistentContainer.newBackgroundContext()
     }()
     
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
@@ -66,29 +76,22 @@ class CoreDataHelper {
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 
-    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) -> Future<[BaseModel], XikoloError> {
-        let promise = Promise<[BaseModel], XikoloError>()
-        persistentContainer.performBackgroundTask { (context) in
+    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [BaseModel] {
+        var baseModels: [BaseModel]?
+        CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [BaseModel]) -> Void in
             do {
-                promise.success(try context.fetch(request) as! [BaseModel])
-            } catch let error as NSError {
-                promise.failure(XikoloError.coreData(error))
-            } catch {
-                promise.failure(XikoloError.unknownError(error))
+                baseModels = try inner()
+            } catch let error {
+                fatalError("\(error)")
             }
-        }
-        return promise.future
+        } )
+        return baseModels!;
+
     }
 
     static func delete(_ object: NSManagedObject) {
-        persistentContainer.performBackgroundTask { (context) in
-            context.delete(object)
-            do {
-                try context.save()
-            } catch {
-                fatalError("Failure to save context: \(error)")
-            }
-        }
+        backgroundContext.delete(object)
+        saveContext(backgroundContext)
     }
 
     static func clearCoreDataStorage() {
@@ -100,22 +103,57 @@ class CoreDataHelper {
     static func clearCoreDataEntity(_ entityName: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        persistentContainer.performBackgroundTask { (context) in
-            do {
-                try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: context)
-                try context.save()
-            } catch {
-                fatalError("Failure to save context: \(error)")
-            }
+
+        do {
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: backgroundContext)
+        } catch {
+            // TODO: handle the error
         }
     }
 
 }
 
 extension NSPersistentContainer {
-    func performBackgroundTaskAndWait(_ block: @escaping ((NSManagedObjectContext)->()) ) {
+
+    typealias CompletionBlock = (_ inner: (NSManagedObjectContext) throws -> [BaseModel]) -> Void
+    typealias InnerBlock = (NSManagedObjectContext) throws -> [BaseModel]
+
+    func performBackgroundSyncAndWait(_ inner: @escaping(NSManagedObjectContext) throws -> [BaseModel], _ completion: @escaping (_ inner: (NSManagedObjectContext) throws -> [BaseModel]) -> Void) throws -> Void {
         CoreDataHelper.backgroundContext.performAndWait {
-            block(CoreDataHelper.backgroundContext)
+            completion(inner)
+        }
+    }
+
+    func performBackgroundLoadSpineAndWait(cdObject: BaseModel, spineObject: BaseModelSpine, completion: @escaping (_ inner: () throws -> Void) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                try cdObject.loadFromSpine(spineObject)
+                completion({})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
+        }
+    }
+
+    func performBackgroundFetchAndWait(_ request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                let results = try CoreDataHelper.backgroundContext.fetch(request) as! [BaseModel]
+                completion({_ in return results})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
+        }
+    }
+
+    func performBackgroundSyncAndWait(_ request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                let results = try CoreDataHelper.backgroundContext.fetch(request) as! [BaseModel]
+                completion({_ in return results})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
         }
     }
 }

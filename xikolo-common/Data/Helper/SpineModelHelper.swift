@@ -14,66 +14,99 @@ import Spine
 
 class SpineModelHelper {
 
-    class func syncObjects(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
-        return CoreDataHelper.executeFetchRequest(objectsToUpdateRequest).flatMap { objectsToUpdate -> Future<[BaseModel], XikoloError> in
-            return syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-        }
+    class func syncObjects(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
+        let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
+        return try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
     }
 
-    class func syncObjects(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
+    class func syncObjects(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         var objectsToUpdate = objectsToUpdate
-        let promise = Promise<[BaseModel], XikoloError>()
+        let backgroundContext = CoreDataHelper.backgroundContext // do we need this? does it work?
 
-        CoreDataHelper.persistentContainer.performBackgroundTask { (context) in
-            var cdObjects = [BaseModel]()
-            if spineObjects.count > 0 {
-                let model = type(of: spineObjects[0]).cdType
-                let entityName = String(describing: model)
-                let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-                let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)!
+        var cdObjects = [BaseModel]()
+        if spineObjects.count > 0 {
+            let model = type(of: spineObjects[0]).cdType
+            let entityName = String(describing: model)
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let entity = NSEntityDescription.entity(forEntityName: entityName, in: backgroundContext)!
 
-                for spineObject in spineObjects {
-                    if let id = spineObject.id {
-                        let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
-                        request.predicate = predicate
+            for spineObject in spineObjects {
+                if let id = spineObject.id {
+                    let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
+                    request.predicate = predicate
 
-                        CoreDataHelper.executeFetchRequest(request).onSuccess(callback: { (results) in
-                            var cdObject: BaseModel!
-                            if (results.count > 0) {
-                                cdObject = results[0]
-                            } else {
-                                cdObject = model.init(entity: entity, insertInto: context)
-                                cdObject.setValue(id, forKey: "id")
+                    var cdObject: BaseModel!
+                    var results: [BaseModel]
+                    results = try CoreDataHelper.executeFetchRequest(request);
+                    /*CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [BaseModel]) -> Void in
+                        do {
+                            results = try inner()
+                        } catch let error {
+                            fatalError("\(error)")
+                        }
+                    })*/
+                    
+                    if (results.count > 0) {
+                        cdObject = results[0]
+                    } else {
+                        cdObject = model.init(entity: entity, insertInto: backgroundContext)
+                        cdObject.setValue(id, forKey: "id")
+                    }
+                    if spineObject.isLoaded {
+                        CoreDataHelper.persistentContainer.performBackgroundLoadSpineAndWait(cdObject: cdObject, spineObject: spineObject, completion: { (inner: () throws -> Void) -> Void in
+                            do {
+                                try inner()
+                            } catch let error {
+                                fatalError("\(error)")
                             }
-                            if spineObject.isLoaded {
-                                cdObject.loadFromSpine(spineObject)
-                            }
-                            if let dict = inject {
-                                cdObject.loadFromDict(dict)
-                            }
-                            if let sortableObject = cdObject as? DynamicSort {
-                                sortableObject.computeOrder()
-                            }
-                            cdObjects.append(cdObject)
-                            if let index = objectsToUpdate.index(of: cdObject) {
-                                objectsToUpdate.remove(at: index)
-                            }
-                        }).onFailure(callback: { (xikoloError) in
-                            promise.failure(xikoloError)
                         })
+                    }
+                    if let dict = inject {
+                        cdObject.loadFromDict(dict)
+                    }
+                    if let sortableObject = cdObject as? DynamicSort {
+                        sortableObject.computeOrder()
+                    }
+                    cdObjects.append(cdObject)
+                    if let index = objectsToUpdate.index(of: cdObject) {
+                        objectsToUpdate.remove(at: index)
                     }
                 }
             }
-            for object in objectsToUpdate {
-                context.delete(object)
-            }
-            if save {
-                CoreDataHelper.saveContext(context)
-            }
-
-            return promise.success(cdObjects)
         }
-        return promise.future
+        for object in objectsToUpdate {
+            backgroundContext.delete(object)
+        }
+        if save {
+            CoreDataHelper.saveContext(backgroundContext) // Maybe back to main context?
+        }
+        return cdObjects
+    }
+
+    class func syncObjectsFuture(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
+        return Future { complete in
+            do {
+                let cdItems = try syncObjects(objectsToUpdateRequest, spineObjects: spineObjects, inject:inject, save: save)
+                complete(.success(cdItems))
+            } catch let error as XikoloError {
+                complete(.failure(error))
+            } catch {
+                complete(.failure(XikoloError.unknownError(error)))
+            }
+        }
+    }
+
+    class func syncObjectsFuture(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) -> Future<[BaseModel], XikoloError> {
+        return Future { complete in
+            do {
+                let cdItems = try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject:inject, save: save)
+                complete(.success(cdItems))
+            } catch let error as XikoloError {
+                complete(.failure(error))
+            } catch {
+                complete(.failure(XikoloError.unknownError(error)))
+            }
+        }
     }
 
 }

@@ -22,7 +22,7 @@ class CourseDecisionViewController: UIViewController {
     @IBOutlet weak var titleView: UILabel!
 
     var containerContentViewController: UIViewController?
-    var course: Course!
+    var cdCourse: Course!
     var content = CourseContent.learnings
 
     deinit {
@@ -47,9 +47,9 @@ class CourseDecisionViewController: UIViewController {
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
 
     func decideContent() {
-        if(course.enrollment != nil) {
+        if(cdCourse.enrollment != nil) {
             navigationItem.rightBarButtonItem = nil
-            updateContainerView(course.accessible ? .learnings : .courseDetails)
+            updateContainerView(cdCourse.accessible ? .learnings : .courseDetails)
         } else {
             updateContainerView(.courseDetails)
         }
@@ -74,19 +74,19 @@ class CourseDecisionViewController: UIViewController {
         switch content {
         case .learnings:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseContentTableViewController") as! CourseContentTableViewController
-            vc.course = course
+            vc.cdCourse = cdCourse
             changeToViewController(vc)
             titleView.text = NSLocalizedString("Learnings", comment: "")
         case .discussions:
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-            if let slug = course.slug {
+            if let slug = cdCourse.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
             changeToViewController(vc)
             titleView.text = NSLocalizedString("Discussions", comment: "")
         case .courseDetails:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController") as! CourseDetailViewController
-            vc.course = course
+            vc.cdCourse = cdCourse
             changeToViewController(vc)
             titleView.text = NSLocalizedString("Course Details", comment: "")
         }
@@ -110,7 +110,7 @@ class CourseDecisionViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
 
         alert.addAction(UIAlertAction(title: confirm, style: .default, handler: { (action: UIAlertAction!) in
-            EnrollmentHelper.createEnrollment(for: self.course)
+            EnrollmentHelper.createEnrollment(for: self.cdCourse)
                 .flatMap { CourseHelper.refreshCourses() }
                 .onSuccess { _ in
                     self.decideContent()
@@ -132,7 +132,7 @@ class CourseDecisionViewController: UIViewController {
                     ppc.sourceRect = view.bounds
                 }
 
-                dropdownViewController.course = course
+                dropdownViewController.cdCourse = cdCourse
                 let minimumSize = dropdownViewController.view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
                 dropdownViewController.preferredContentSize = minimumSize
                 ppc.delegate = self

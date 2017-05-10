@@ -10,7 +10,7 @@ import UIKit
 
 class DropdownTableViewController: UITableViewController {
 
-    var course: Course!
+    var cdCourse: Course!
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let userList = [NotificationKeys.dropdownCourseContentKey:indexPath.row]
@@ -20,7 +20,7 @@ class DropdownTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row != 2 {
-            cell.enable(course.enrollment != nil && course.accessible)
+            cell.enable(cdCourse.enrollment != nil && cdCourse.accessible)
         }
     }
 

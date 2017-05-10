@@ -22,15 +22,6 @@ class Course : BaseModel {
         }
     }
 
-    var proctored: Bool {
-        get {
-            return proctored_int?.boolValue ?? false
-        }
-        set(new_is_proctored) {
-            proctored_int = new_is_proctored as NSNumber?
-        }
-    }
-
     var accessible: Bool {
         get {
             return accessible_int?.boolValue ?? false
@@ -112,6 +103,7 @@ class CourseSpine : BaseModelSpine {
     var slug: String?
     var abstract: String?
     var course_description: String?
+    var certificates: CourseCertificates?
     var image_url: URL?
     var teachers: String?
     var language: String?
@@ -119,7 +111,6 @@ class CourseSpine : BaseModelSpine {
     var end_at: Date?
     var status: String?
     var hidden_int: NSNumber?
-    var proctored_int: NSNumber?
     var enrollable_int: NSNumber?
     var accessible_int: NSNumber?
     var external_int: NSNumber?
@@ -149,6 +140,7 @@ class CourseSpine : BaseModelSpine {
             "abstract": Attribute(),
             "accessible_int": BooleanAttribute().serializeAs("accessible"),
             "course_description": Attribute().serializeAs("description"),
+            "certificates": EmbeddedObjectAttribute(CourseCertificates.self),
             "image_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "teachers": Attribute(),
             "language": Attribute(),
@@ -156,7 +148,6 @@ class CourseSpine : BaseModelSpine {
             "end_at": DateAttribute(),
             "status": Attribute(),
             "hidden_int": BooleanAttribute().serializeAs("hidden"),
-            "proctored_int": BooleanAttribute().serializeAs("proctored"),
             "enrollable_int": BooleanAttribute().serializeAs("enrollable"),
             "external_int": BooleanAttribute().serializeAs("external"),
             "enrollment": ToOneRelationship(EnrollmentSpine.self).serializeAs("user_enrollment"),

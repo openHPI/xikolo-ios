@@ -30,7 +30,6 @@ extension Course {
     @NSManaged var order: NSNumber?
     @NSManaged var status: String?
     @NSManaged var hidden_int: NSNumber?
-    @NSManaged var proctored_int: NSNumber?
     @NSManaged var enrollable_int: NSNumber?
     @NSManaged var external_int: NSNumber?
     @NSManaged var sections: NSSet?

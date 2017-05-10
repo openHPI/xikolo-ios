@@ -28,23 +28,12 @@ class CoreDataHelper {
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             // TODO: check for space etc
-            // TODO: change URL back to URL from earlier
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
     }()
-
-    static func saveViewContext () {
-        if persistentContainer.viewContext.hasChanges {
-            do {
-                try persistentContainer.viewContext.save()
-            } catch let error as NSError {
-                NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
-            }
-        }
-    }
 
     static var viewContext = persistentContainer.viewContext
     static var backgroundContext = {

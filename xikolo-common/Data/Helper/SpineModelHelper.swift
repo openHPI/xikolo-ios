@@ -14,11 +14,6 @@ import Spine
 
 class SpineModelHelper {
 
-    /*class func syncObjects(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
-        let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
-        return try syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-    }*/
-
     class func syncObjects(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool) throws -> [BaseModel] {
         var objectsToUpdate = objectsToUpdate
         let backgroundContext = CoreDataHelper.backgroundContext // do we need this? does it work?
@@ -38,13 +33,6 @@ class SpineModelHelper {
                     var cdObject: BaseModel!
                     var results: [BaseModel]
                     results = try CoreDataHelper.executeFetchRequest(request);
-                    /*CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [BaseModel]) -> Void in
-                        do {
-                            results = try inner()
-                        } catch let error {
-                            fatalError("\(error)")
-                        }
-                    })*/
                     
                     if (results.count > 0) {
                         cdObject = results[0]

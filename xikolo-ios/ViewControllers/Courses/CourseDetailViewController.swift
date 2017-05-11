@@ -18,26 +18,26 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet weak var teacherView: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
 
-    var course: Course!
+    var cdCourse: Course!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleView.text = course.title
-        titleView.heroID = "course_title_" + course.id
-        languageView.text = course.language_translated
-        languageView.heroID = "course_language_" + course.id
-        teacherView.text = course.teachers
-        teacherView.heroID = "course_teacher_" + course.id
-        imageView.heroID = "course_image_" + course.id
+        titleView.text = cdCourse.title
+        titleView.heroID = "course_title_" + cdCourse.id
+        languageView.text = cdCourse.language_translated
+        languageView.heroID = "course_language_" + cdCourse.id
+        teacherView.text = cdCourse.teachers
+        teacherView.heroID = "course_teacher_" + cdCourse.id
+        imageView.heroID = "course_image_" + cdCourse.id
         
-        dateView.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
+        dateView.text = DateLabelHelper.labelFor(startdate: cdCourse.start_at, enddate: cdCourse.end_at)
 
-        course.loadImage().onSuccess { image in
+        cdCourse.loadImage().onSuccess { image in
             self.imageView.image = image
         }
 
-        if let description = course.abstract {//TODO: change back to course_description when API works
+        if let description = cdCourse.abstract {//TODO: change back to course_description when API works
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
             descriptionView.attributedText = markDown
         }

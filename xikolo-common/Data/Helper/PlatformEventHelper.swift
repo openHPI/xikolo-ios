@@ -12,8 +12,6 @@ import Result
 
 class PlatformEventHelper {
 
-    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "PlatformEvent", in: CoreDataHelper.managedContext)!
-
     static func getRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PlatformEvent")
         let dateSort = NSSortDescriptor(key: "created_at", ascending: false)

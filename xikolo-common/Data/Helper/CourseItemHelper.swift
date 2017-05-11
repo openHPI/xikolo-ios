@@ -12,8 +12,6 @@ import Result
 
 class CourseItemHelper {
 
-    static fileprivate let entity = NSEntityDescription.entity(forEntityName: "CourseItem", in: CoreDataHelper.managedContext)!
-
     static func getItemRequest(_ section: CourseSection) -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
         request.predicate = NSPredicate(format: "section = %@", section)
@@ -29,6 +27,17 @@ class CourseItemHelper {
         let positionSort = NSSortDescriptor(key: "position", ascending: true)
         request.sortDescriptors = [sectionSort, positionSort]
         return request
+    }
+
+    static func getByID(_ id: String) throws -> CourseItem? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
+        request.predicate = NSPredicate(format: "id == %@", id)
+        request.fetchLimit = 1
+        let courseItems = try CoreDataHelper.executeFetchRequest(request) as! [CourseItem]
+        if courseItems.isEmpty {
+            return nil
+        }
+        return courseItems[0]
     }
 
     static func syncCourseItems(_ section: CourseSection) -> Future<[CourseItem], XikoloError> {

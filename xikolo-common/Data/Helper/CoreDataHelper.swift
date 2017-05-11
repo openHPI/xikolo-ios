@@ -23,35 +23,32 @@ class CoreDataHelper {
         #endif
     }()
 
+    static var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            // TODO: check for space etc
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    static var viewContext = persistentContainer.viewContext
+    static var backgroundContext = {
+        return persistentContainer.newBackgroundContext()
+    }()
+    
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    static fileprivate var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        let url = coreDataDirectory.appendingPathComponent("xikolo.sqlite")
-        let options = [NSMigratePersistentStoresAutomaticallyOption: true,
-                        NSInferMappingModelAutomaticallyOption: true]
-
-        do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
-        } catch let error as NSError {
-            NSLog("Error adding persistent CoreData store: \(error), \(error.userInfo)")
-        }
-        return coordinator
-    }()
-
-    static var managedContext: NSManagedObjectContext = {
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
-        return managedObjectContext
-    }()
-
     static func saveContext () {
-        if managedContext.hasChanges {
+        if backgroundContext.hasChanges {
             do {
-                try managedContext.save()
+                try backgroundContext.save()
             } catch let error as NSError {
                 NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
             }
@@ -60,15 +57,25 @@ class CoreDataHelper {
 
     static func createResultsController(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>, sectionNameKeyPath: String?) -> NSFetchedResultsController<NSFetchRequestResult> {
         // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 
     static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [BaseModel] {
-        do {
-            return try managedContext.fetch(request) as! [BaseModel]
-        } catch let error as NSError {
-            throw XikoloError.coreData(error)
-        }
+        var baseModels: [BaseModel]?
+        CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [BaseModel]) -> Void in
+            do {
+                baseModels = try inner()
+            } catch let error {
+                fatalError("\(error)")
+            }
+        } )
+        return baseModels!;
+
+    }
+
+    static func delete(_ object: NSManagedObject) {
+        backgroundContext.delete(object)
+        saveContext()
     }
 
     static func clearCoreDataStorage() {
@@ -82,10 +89,58 @@ class CoreDataHelper {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
-            try persistentStoreCoordinator.execute(deleteRequest, with: managedContext)
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: backgroundContext)
         } catch {
             // TODO: handle the error
         }
     }
 
+}
+
+extension NSPersistentContainer {
+
+    func performBackgroundLoadSpineAndWait(cdObject: BaseModel, spineObject: BaseModelSpine, completion: @escaping (_ inner: () throws -> Void) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                try cdObject.loadFromSpine(spineObject)
+                completion({})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
+        }
+    }
+
+    func performBackgroundFetchAndWait(_ request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                let results = try CoreDataHelper.backgroundContext.fetch(request) as! [BaseModel]
+                completion({_ in return results})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
+        }
+    }
+
+    func performBackgroundSyncAndWait(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
+                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
+                completion({_ in return results})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
+        }
+    }
+
+    func performBackgroundSyncAndWait(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+        CoreDataHelper.backgroundContext.performAndWait {
+            do {
+                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
+                completion({_ in return results})
+            } catch let error as NSError {
+                completion({_ in throw XikoloError.coreData(error)})
+            }
+        }
+    }
 }

@@ -9,6 +9,7 @@
 import CoreData
 import Spine
 import UIKit
+import BrightFutures
 
 class BaseModel : NSManagedObject {
 
@@ -24,7 +25,10 @@ class BaseModel : NSManagedObject {
         }
 
         let baseModelObserver = BaseModelObserver(model: self, updatedHandler: updatedHandler, deletedHandler: deletedHandler)
-        NotificationCenter.default.addObserver(baseModelObserver, selector: #selector(BaseModelObserver.dataModelDidChange), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.managedContext)
+        NotificationCenter.default.addObserver(baseModelObserver,
+                                               selector: #selector(BaseModelObserver.dataModelDidChange),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.self.backgroundContext)
         baseModelObservers[observer] = baseModelObserver
     }
 
@@ -54,8 +58,15 @@ extension BaseModel {
                 if let value = value as? BaseModelSpine {
                     let currentRelatedObject = self.value(forKey: field.name) as? BaseModel
                     let relatedObjects = currentRelatedObject != nil ? [currentRelatedObject!] : [BaseModel]()
-                    let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: [value], inject: nil, save: false)
-                    self.setValue(cdObjects[0], forKey: field.name)
+                    var cdObjects: [BaseModel]?
+                    CoreDataHelper.persistentContainer.performBackgroundSyncAndWait(relatedObjects, spineObjects: [value], inject: nil, save: false, completion: { (inner: () throws -> [BaseModel]) -> Void in
+                        do {
+                            cdObjects = try inner()
+                        } catch let error {
+                            fatalError("\(error)")
+                        }
+                    } )
+                    self.setValue(cdObjects![0], forKey: field.name)
                 } else if let value = value as? Resource {
                     self.setValue(value, forKey: field.name)
                 }
@@ -63,8 +74,15 @@ extension BaseModel {
                 if let value = value as? ResourceCollection {
                     let spineObjects = value.resources as! [BaseModelSpine]
                     let relatedObjects = self.value(forKey: field.name) as? [BaseModel] ?? []
-                    let cdObjects = try SpineModelHelper.syncObjects(relatedObjects, spineObjects: spineObjects, inject: nil, save: false)
-                    self.setValue(NSSet(array: cdObjects), forKey: field.name)
+                    var cdObjects: [BaseModel]?
+                    CoreDataHelper.persistentContainer.performBackgroundSyncAndWait(relatedObjects, spineObjects: spineObjects, inject: nil, save: false, completion: { (inner: () throws -> [BaseModel]) -> Void in
+                        do {
+                            cdObjects = try inner()
+                        } catch let error {
+                            fatalError("\(error)")
+                        }
+                    } )
+                    self.setValue(NSSet(array: cdObjects!), forKey: field.name)
                 }
             } else {
                 self.setValue(value, forKey: field.name)

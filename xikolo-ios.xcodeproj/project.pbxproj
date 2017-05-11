@@ -1069,11 +1069,11 @@
 		ABE060AC1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE060A31DF8C24600FC186D /* Brand+tvOS.swift */; };
 		ABE060AD1DF8C27100FC186D /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABE060A41DF8C24600FC186D /* xikolo-tvos.entitlements */; };
 		ABE060AF1DF8C29500FC186D /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE060A21DF8C24600FC186D /* assets-tvos-brand.xcassets */; };
+		ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */; };
+		ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */; };
 		ABF26F971E9637F000763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		ABF26FA41E963A0200763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F9C1E96383800763A39 /* LaunchScreen.storyboard */; };
 		ABF26FA61E963A1200763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26FA01E96384A00763A39 /* LaunchScreen.storyboard */; };
-		ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */; };
-		ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */; };
 		ABFEE0021D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABFEE0031D8807F5007D49FB /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABFFA85C1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFFA85B1EAB6F4700544AB3 /* CourseCertificatesHash.swift */; };
@@ -1279,6 +1279,7 @@
 		24E3DD1C1D5E219E00297118 /* ItemQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemQuizViewController.swift; sourceTree = "<group>"; };
 		24E3DD1F1D6211A100297118 /* QuestionIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionIndicatorView.swift; sourceTree = "<group>"; };
 		286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		3D0AC3E41EC4763C00F3EDE9 /* openWHO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = openWHO.entitlements; sourceTree = "<group>"; };
 		3EFE4C53E4D0BE59A3B7D3DC /* Pods-openHPI-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -1333,8 +1334,8 @@
 		AB2802D51D2AD18F008C8BAE /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		AB2802D71D2AD571008C8BAE /* NewsArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsArticleViewController.swift; sourceTree = "<group>"; };
 		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+VersionInfo.swift"; path = "Categories/UIApplication+VersionInfo.swift"; sourceTree = "<group>"; };
 		AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openSAP/xikolo-ios.entitlements"; sourceTree = "<group>"; };
+		AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+VersionInfo.swift"; path = "Categories/UIApplication+VersionInfo.swift"; sourceTree = "<group>"; };
 		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCertificates.swift; sourceTree = "<group>"; };
 		AB48B4351DF8BB2A00523062 /* openWHO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openWHO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1843,6 +1844,7 @@
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
+				3D0AC3E41EC4763C00F3EDE9 /* openWHO.entitlements */,
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
@@ -2553,7 +2555,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
-				ABA0F02D1DF8CCE10001D88D /* LaunchScreen.storyboard in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Localizable.strings in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
 				ABA0F0131DF8CC2F0001D88D /* TabProfile.storyboard in Resources */,
@@ -4469,8 +4470,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENHPI";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
-				PROVISIONING_PROFILE = "ce066a91-3361-4575-9618-adc36f1b6145";
-				PROVISIONING_PROFILE_SPECIFIER = "openHPI-Dist";
+				PROVISIONING_PROFILE = "c39831e9-8820-42f7-b66d-9371be9f9705";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-iOS-dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -4492,8 +4493,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENHPI";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
 				PRODUCT_NAME = openHPI;
-				PROVISIONING_PROFILE = "ce066a91-3361-4575-9618-adc36f1b6145";
-				PROVISIONING_PROFILE_SPECIFIER = "openHPI-Dist";
+				PROVISIONING_PROFILE = "c39831e9-8820-42f7-b66d-9371be9f9705";
+				PROVISIONING_PROFILE_SPECIFIER = "openHPI-iOS-dist";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -4505,7 +4506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
+				CODE_SIGN_ENTITLEMENTS = openWHO.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4559,7 +4560,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENWHO";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
 				PRODUCT_NAME = openWHO;
-				PROVISIONING_PROFILE = "c6ce2ab7-d928-4e00-8ce7-696a26d828c1";
+				PROVISIONING_PROFILE = "1f92abdc-7825-4a6c-88c4-4d6070c284a6";
 				PROVISIONING_PROFILE_SPECIFIER = "openWHO-iOS-dev";
 				SWIFT_VERSION = 3.0;
 			};
@@ -4571,7 +4572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
+				CODE_SIGN_ENTITLEMENTS = openWHO.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				FRAMEWORK_SEARCH_PATHS = (

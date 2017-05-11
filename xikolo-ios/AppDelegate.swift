@@ -40,11 +40,11 @@ class AppDelegate : AbstractAppDelegate {
                 let token = url.query!.replacingOccurrences(of: "token=", with: "")
                 UserProfileHelper.saveToken(token)
                 return true
+                //TODO: Go to dashbaord
             } else {
                 // Answer from web has changed, maybe a new app version is neccessary?
             }
         }
-
         // we can't handle the url, open it with a browser
         let webpageUrl = url
         application.openURL(webpageUrl)

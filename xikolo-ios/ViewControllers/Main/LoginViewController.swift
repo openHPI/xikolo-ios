@@ -21,11 +21,11 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         super.viewDidLoad()
         loginButton.backgroundColor = Brand.TintColor
         emailField.becomeFirstResponder()
-        #if OPENSAP
+        #if OPENHPI // move to brand config
+            singleSignOnView.isHidden = true
+        #else
             singleSignOnView.isHidden = false
             singleSignOnButton.backgroundColor = Brand.TintColor
-        #else
-            singleSignOnView.isHidden = true
         #endif
     }
 
@@ -40,14 +40,14 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
     @IBAction func singleSignIn(_ sender: UIButton) {
         performSegue(withIdentifier: "ShowSSOWebView", sender: self)
-        /*let url = URL(string: Routes.SSO_URL)!
-        let request = URLRequest(url: url)
-        let wkViewController = CustomHeaderWebView(frame: .zero)
-        wkViewController.header = ["X-User-Platform" : "iOS"]
-        wkViewController.uiDelegate = self
-        wkViewController.
-        view = wkViewController
-        wkViewController.load(request)*/
+//        let url = URL(string: Routes.SSO_URL)!
+//        let request = URLRequest(url: url)
+//        let wkViewController = CustomHeaderWebView(frame: .zero)
+//        wkViewController.header = ["X-User-Platform" : "iOS"]
+//        wkViewController.uiDelegate = self
+//       
+//        view = wkViewController
+//        wkViewController.load(request)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

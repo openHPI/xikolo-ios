@@ -18,6 +18,7 @@ extension Enrollment {
     @NSManaged var visits: EnrollmentVisits?
     @NSManaged var points: EnrollmentPoints?
     @NSManaged var certificates: EnrollmentCertificates?
+    @NSManaged var proctored_int: NSNumber?
     @NSManaged var completed_int: NSNumber?
     @NSManaged var reactivated_int: NSNumber?
     @NSManaged var course: Course?

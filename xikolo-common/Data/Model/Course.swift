@@ -103,6 +103,7 @@ class CourseSpine : BaseModelSpine {
     var slug: String?
     var abstract: String?
     var course_description: String?
+    var certificates: CourseCertificates?
     var image_url: URL?
     var teachers: String?
     var language: String?
@@ -139,6 +140,7 @@ class CourseSpine : BaseModelSpine {
             "abstract": Attribute(),
             "accessible_int": BooleanAttribute().serializeAs("accessible"),
             "course_description": Attribute().serializeAs("description"),
+            "certificates": EmbeddedObjectAttribute(CourseCertificates.self),
             "image_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "teachers": Attribute(),
             "language": Attribute(),

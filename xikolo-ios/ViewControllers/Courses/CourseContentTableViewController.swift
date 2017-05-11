@@ -79,6 +79,17 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
+    func showProctoringDialog(onComplete completionBlock: @escaping () -> Void) {
+        let title = NSLocalizedString("This item needs to be proctored", comment: "Shown in proctoring dialog")
+        let message = NSLocalizedString("In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.", comment: "Shown in proctoring dialog")
+        let confirm = NSLocalizedString("Ok", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+
+        alert.addAction(UIAlertAction(title: confirm, style: .default, handler: nil))
+
+        present(alert, animated: true, completion: completionBlock )
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let courseItem = sender as? CourseItem
         switch segue.identifier! {
@@ -110,7 +121,13 @@ extension CourseContentTableViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = resultsController.object(at: indexPath) as! CourseItem
-        showItem(item)
+        if item.proctored && (course.enrollment?.proctored ?? false) {
+            showProctoringDialog(onComplete: {
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            })
+        } else {
+            showItem(item)
+        }
     }
 
 }

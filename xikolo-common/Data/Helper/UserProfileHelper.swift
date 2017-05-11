@@ -90,6 +90,13 @@ open class UserProfileHelper {
         prefs.set(token, forKey: preferenceToken)
         NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
         prefs.synchronize()
+        refreshUserDependentData()
+    }
+
+    static func refreshUserDependentData() {
+        CourseHelper.refreshCourses()
+        CourseDateHelper.syncCourseDates()
+        NewsArticleHelper.syncNewsArticles()
     }
 
 }

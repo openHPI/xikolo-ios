@@ -12,7 +12,7 @@ import DZNEmptyDataSet
 
 class CourseContentTableViewController: UITableViewController {
 
-    var cdCourse: Course!
+    var course: Course!
 
     var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
@@ -25,9 +25,9 @@ class CourseContentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = cdCourse.title
+        navigationItem.title = course.title
 
-        let request = CourseItemHelper.getItemRequest(cdCourse)
+        let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "CourseItemCell")
@@ -41,7 +41,7 @@ class CourseContentTableViewController: UITableViewController {
             // TODO: Error handling.
         }
         NetworkIndicator.start()
-        CourseSectionHelper.syncCourseSections(cdCourse).flatMap { sections in
+        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
             sections.map { section in
                 CourseItemHelper.syncCourseItems(section)
             }.sequence().onComplete { _ in
@@ -99,7 +99,7 @@ class CourseContentTableViewController: UITableViewController {
             break
         case "ShowQuiz":
             let webView = segue.destination as! WebViewController
-            if let courseID = courseItem!.section?.cdCourse?.id {
+            if let courseID = courseItem!.section?.course?.id {
                 let courseURL = Routes.COURSES_URL + courseID
                 let quizpathURL = "/items/" + courseItem!.id
                 let url = courseURL + quizpathURL

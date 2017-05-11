@@ -724,7 +724,7 @@
                 <navigationController storyboardIdentifier="CoursesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="krt-FK-dfi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Courses" image="TabBarIconCourses" selectedImage="TabBarIconCoursesSelected" id="fhC-LU-HI2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aYN-LP-p0K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aYN-LP-p0K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -963,7 +963,7 @@
             <objects>
                 <navigationController storyboardIdentifier="DropdownNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="GPj-xG-ltL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UuA-ye-7ZP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UuA-ye-7ZP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

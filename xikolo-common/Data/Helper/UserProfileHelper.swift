@@ -36,7 +36,6 @@ open class UserProfileHelper {
             if let json = response.result.value as? [String: Any] {
                 if let token = json["token"] as? String {
                     UserProfileHelper.saveToken(token)
-                    NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
                     return promise.success(token)
                 }
                 return promise.failure(XikoloError.authenticationError)
@@ -89,7 +88,15 @@ open class UserProfileHelper {
 
     static func saveToken(_ token: String) {
         prefs.set(token, forKey: preferenceToken)
+        NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
         prefs.synchronize()
+        refreshUserDependentData()
+    }
+
+    static func refreshUserDependentData() {
+        CourseHelper.refreshCourses()
+        CourseDateHelper.syncCourseDates()
+        NewsArticleHelper.syncNewsArticles()
     }
 
 }

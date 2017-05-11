@@ -34,7 +34,7 @@ class AppDelegate : AbstractAppDelegate {
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
 
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-            let url = userActivity.webpageURL else { return false }
+        let url = userActivity.webpageURL else { return false }
         if url.path == "/auth/app" {
             if url.query?.hasPrefix("token=") ?? false {
                 let token = url.query!.replacingOccurrences(of: "token=", with: "")

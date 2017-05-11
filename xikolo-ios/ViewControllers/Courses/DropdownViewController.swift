@@ -10,13 +10,13 @@ import UIKit
 
 class DropdownViewController: UIViewController {
 
-    var cdCourse: Course!
+    var course: Course!
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "EmbedCourseContentChoice"?:
             let vc = segue.destination as! DropdownTableViewController
-            vc.cdCourse = cdCourse
+            vc.course = course
         default:
             break
         }

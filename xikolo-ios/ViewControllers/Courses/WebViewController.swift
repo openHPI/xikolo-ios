@@ -34,28 +34,27 @@ extension WebViewController : UIWebViewDelegate {
     }
 
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        //print("Test#")
-        //print(request.debugDescription)
         
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
            let urlComponents = URLComponents.init(url: documentURL, resolvingAgainstBaseURL: false)
-            guard let queryItems = urlComponents?.queryItems else { return false}
+            guard let queryItems = urlComponents?.queryItems else { return false }
             queryItems.forEach({ (queryItem) in
                 if queryItem.name == "token" {
-                    guard let tokenVal = queryItem.value  else { return }
-                    UserProfileHelper.saveToken(tokenVal)
+                    guard let token = queryItem.value  else { return }
+                    UserProfileHelper.saveToken(token)
                     navigationController?.dismiss(animated: true, completion: nil)
                 }
             })
         }
-        
-        if let dict = request.allHTTPHeaderFields {
-            for entry in dict { print(entry.key + " : " + entry.value) }
-        }
-        if let body = request.httpBody {
-            //print(body)
-        }
-        return true
+        #if DEBUG
+            if let dict = request.allHTTPHeaderFields {
+                for entry in dict { print(entry.key + " : " + entry.value) }
+            }
+            if let body = request.httpBody {
+                print(body)
+            }
+        #endif
 
+        return true
     }
 }

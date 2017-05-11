@@ -35,16 +35,7 @@ class AppDelegate : AbstractAppDelegate {
 
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
         let url = userActivity.webpageURL else { return false }
-        if url.path == "/auth/app" {
-            if url.query?.hasPrefix("token=") ?? false {
-                let token = url.query!.replacingOccurrences(of: "token=", with: "")
-                UserProfileHelper.saveToken(token)
-                return true
-                //TODO: Go to dashbaord
-            } else {
-                // Answer from web has changed, maybe a new app version is neccessary?
-            }
-        }
+        
         // we can't handle the url, open it with a browser
         let webpageUrl = url
         application.openURL(webpageUrl)

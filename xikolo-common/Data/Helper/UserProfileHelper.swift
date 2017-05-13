@@ -12,8 +12,11 @@ import Foundation
 
 open class UserProfileHelper {
 
-    static let preferenceUser = "user"
-    static let preferenceToken = "user_token"
+    enum Keys : String {
+        case user = "user"
+        case token = "user_token"
+        case welcome = "show_welcome_screen"
+    }
 
     static fileprivate let prefs = UserDefaults.standard
 
@@ -66,14 +69,14 @@ open class UserProfileHelper {
     }
 
     static fileprivate func loadUser() -> UserProfile? {
-        if let data = prefs.object(forKey: preferenceUser) as? Data {
+        if let data = prefs.object(forKey: Keys.user.rawValue) as? Data {
             return NSKeyedUnarchiver.unarchiveObject(with: data) as? UserProfile
         }
         return nil
     }
 
     static func saveUser(_ user: UserProfile) {
-        prefs.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: preferenceUser)
+        prefs.set(NSKeyedArchiver.archivedData(withRootObject: user), forKey: Keys.user.rawValue)
         prefs.synchronize()
     }
 
@@ -82,12 +85,20 @@ open class UserProfileHelper {
     }
 
     static func getToken() -> String {
-        let token = prefs.string(forKey: preferenceToken) ?? ""
-        return token
+        return get(.token) ?? ""
+    }
+
+    static func save(_ key: Keys, withValue value: String) {
+        prefs.set(value, forKey: key.rawValue)
+        prefs.synchronize()
+    }
+
+    static func get(_ key: Keys) -> String? {
+        return prefs.string(forKey: key.rawValue)
     }
 
     static func saveToken(_ token: String) {
-        prefs.set(token, forKey: preferenceToken)
+        save(.token, withValue: token)
         NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
         prefs.synchronize()
         refreshUserDependentData()

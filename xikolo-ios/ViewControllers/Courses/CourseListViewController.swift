@@ -57,6 +57,7 @@ class CourseListViewController : AbstractCourseListViewController {
             courseDisplayMode = .all
         }
         super.viewDidLoad()
+        presentWelcomeScreenIfNecessary()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -73,6 +74,22 @@ class CourseListViewController : AbstractCourseListViewController {
             // Force redraw
             self.collectionView!.performBatchUpdates(nil, completion: nil)
         }, completion: nil)
+    }
+
+    func presentWelcomeScreenIfNecessary() {
+        #if OPENWHO
+        if UserProfileHelper.get(UserProfileHelper.Keys.welcome) == nil {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyyMMdd"
+            guard let start = formatter.date(from: "20170510"), let end = formatter.date(from: "20170530") else { return }
+            let healthConference = DateInterval.init(start: start, end: end)
+            let now = Date.init(timeIntervalSinceNow: 0)
+            if (healthConference.contains(now)) {
+                performSegue(withIdentifier: "ShowWelcome", sender: nil)
+                UserProfileHelper.save(UserProfileHelper.Keys.welcome, withValue: "showed")
+            }
+        }
+        #endif
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

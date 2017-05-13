@@ -33,8 +33,21 @@ class AppDelegate : AbstractAppDelegate {
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
 
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-        let url = userActivity.webpageURL else { return false }
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else { return false }
+        guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
+            print("UITabBarController could not be found")
+            return false
+        }
+        switch url.lastPathComponent {
+        case "courses":
+            rootViewController.selectedIndex = 1
+        case "dashboard":
+            rootViewController.selectedIndex = 0
+        case "news":
+            rootViewController.selectedIndex = 2
+        default:
+            break
+        }
         
         // we can't handle the url, open it with a browser
         let webpageUrl = url

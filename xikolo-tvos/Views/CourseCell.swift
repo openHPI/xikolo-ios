@@ -15,9 +15,7 @@ class CourseCell : UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 
     func configure(_ course: Course) {
-        course.loadImage().onSuccess { image in
-            self.backgroundImage.image = image
-        }
+        backgroundImage.sd_setImage(with: course.image_url)
         nameLabel.text = course.title
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ItemQuizIntroductionController : UIViewController {
 
@@ -34,9 +35,7 @@ class ItemQuizIntroductionController : UIViewController {
 
         if let course = quiz.item?.section?.course {
             backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
-            course.loadImage().onSuccess { image in
-                self.backgroundImageHelper.imageView.image = image
-            }
+            backgroundImageHelper.imageView.sd_setImage(with: course.image_url)
         }
 
         loadingHelper = ViewControllerLoadingHelper(self, rootView: view)

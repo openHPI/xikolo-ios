@@ -20,7 +20,6 @@ extension Course {
     @NSManaged var certificates: CourseCertificates?
     @NSManaged var end_at: Date?
     @NSManaged var id: String
-    @NSManaged var image: UIImage?
     @NSManaged var image_url: URL?
     @NSManaged var language: String?
     @NSManaged var slug: String?

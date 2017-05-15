@@ -108,7 +108,6 @@
                     <connections>
                         <outlet property="courseActivityContainerHeight" destination="PRS-ng-4lB" id="1Ax-VW-LHV"/>
                         <outlet property="courseDeadlinesContainerHeight" destination="Stc-t5-rS1" id="806-rR-ekL"/>
-                        <outlet property="courseStartsContainerHeight" destination="5mz-Ks-YhX" id="ddU-2H-PNj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -398,80 +397,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7t-LS-PuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1612" y="270"/>
-        </scene>
-        <!--Course Starts Table View Controller-->
-        <scene sceneID="tnp-II-1hT">
-            <objects>
-                <tableViewController id="ij4-0b-6VB" customClass="CourseStartsTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eE4-Fq-xNq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="9oz-6F-CJd">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Course Starts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOA-Rh-nQH">
-                                    <rect key="frame" x="15" y="4" width="196.5" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.97360508887707631" green="0.97324171678405302" blue="0.97199459725946846" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WOA-Rh-nQH" secondAttribute="trailing" constant="20" symbolic="YES" id="KAw-FP-tmx"/>
-                                <constraint firstItem="WOA-Rh-nQH" firstAttribute="centerY" secondItem="9oz-6F-CJd" secondAttribute="centerY" id="eTI-z4-ZHF"/>
-                                <constraint firstItem="WOA-Rh-nQH" firstAttribute="leading" secondItem="9oz-6F-CJd" secondAttribute="leading" constant="15" id="k3K-yN-5eA"/>
-                            </constraints>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseStartCell" id="jRG-hG-lfD" customClass="CourseDateCell" customModule="openHPI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="jRG-hG-lfD" id="fwA-mQ-PRe">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGt-lg-1Ha">
-                                            <rect key="frame" x="318" y="12" width="42" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="Qvj-rE-TAl"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.5552210807800293" green="0.55892366170883179" blue="0.57647639513015747" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8I-gh-Kc4">
-                                            <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="KGt-lg-1Ha" firstAttribute="baseline" secondItem="u8I-gh-Kc4" secondAttribute="baseline" id="4H7-7h-auy"/>
-                                        <constraint firstItem="u8I-gh-Kc4" firstAttribute="centerY" secondItem="fwA-mQ-PRe" secondAttribute="centerY" id="OhA-pO-iiW"/>
-                                        <constraint firstItem="KGt-lg-1Ha" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="u8I-gh-Kc4" secondAttribute="trailing" constant="8" symbolic="YES" id="Orj-bw-1mU"/>
-                                        <constraint firstItem="u8I-gh-Kc4" firstAttribute="leading" secondItem="fwA-mQ-PRe" secondAttribute="leadingMargin" id="e8G-4W-5Ts"/>
-                                        <constraint firstItem="KGt-lg-1Ha" firstAttribute="trailing" secondItem="fwA-mQ-PRe" secondAttribute="trailingMargin" id="ui8-cf-TKX"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="detailView" destination="KGt-lg-1Ha" id="EEm-20-p0D"/>
-                                    <outlet property="titleView" destination="u8I-gh-Kc4" id="8Uz-y6-zby"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ij4-0b-6VB" id="DVA-eS-0c0"/>
-                            <outlet property="delegate" destination="ij4-0b-6VB" id="iQp-kK-8wF"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bPk-zQ-YHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1612" y="485"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="TWB-cd-P4n">

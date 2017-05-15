@@ -505,8 +505,6 @@
 		4E2B821B1DDB00C900559217 /* CourseDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82191DDB00C900559217 /* CourseDateHelper.swift */; };
 		4E2B821D1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */; };
 		4E2B821E1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */; };
-		4E2B82201DDB452300559217 /* CourseStartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */; };
-		4E2B82211DDB452300559217 /* CourseStartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */; };
 		4E2B82231DDC9DB200559217 /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
 		4E2B82241DDC9DB200559217 /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
 		4E2B82261DDC9F4600559217 /* CourseActivityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82251DDC9F4600559217 /* CourseActivityRow.swift */; };
@@ -586,7 +584,6 @@
 		AB17C5751DFCAD8E0013BBCD /* CourseDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82191DDB00C900559217 /* CourseDateHelper.swift */; };
 		AB17C5761DFCAE010013BBCD /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82161DD9E9A400559217 /* DashboardViewController.swift */; };
 		AB17C5771DFCAE040013BBCD /* CourseDeadlinesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */; };
-		AB17C5781DFCAE060013BBCD /* CourseStartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */; };
 		AB17C5791DFCAE090013BBCD /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
 		AB17C57A1DFCAE1E0013BBCD /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
 		AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */; };
@@ -1291,7 +1288,6 @@
 		4E2B82161DD9E9A400559217 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		4E2B82191DDB00C900559217 /* CourseDateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHelper.swift; sourceTree = "<group>"; };
 		4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDeadlinesTableViewController.swift; sourceTree = "<group>"; };
-		4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseStartsTableViewController.swift; sourceTree = "<group>"; };
 		4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseActivityViewController.swift; sourceTree = "<group>"; };
 		4E2B82251DDC9F4600559217 /* CourseActivityRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseActivityRow.swift; sourceTree = "<group>"; };
 		4E6AB1F01DD36AB500B048DB /* CourseDate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseDate+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1932,7 +1928,6 @@
 			children = (
 				4E2B82161DD9E9A400559217 /* DashboardViewController.swift */,
 				4E2B821C1DDB0EE200559217 /* CourseDeadlinesTableViewController.swift */,
-				4E2B821F1DDB452300559217 /* CourseStartsTableViewController.swift */,
 				4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */,
 			);
 			path = Dashboard;
@@ -3175,7 +3170,6 @@
 				24BA40911D3F9A9900E38C2C /* CourseItem.swift in Sources */,
 				ABA0BB431E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
 				24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */,
-				4E2B82211DDB452300559217 /* CourseStartsTableViewController.swift in Sources */,
 				243CE4A21D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24BA409A1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
 				AB4A01A71E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
@@ -3656,7 +3650,6 @@
 				24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				F89473C21B3C46FD00553882 /* LoginViewController.swift in Sources */,
 				ABA0BB421E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
-				4E2B82201DDB452300559217 /* CourseStartsTableViewController.swift in Sources */,
 				24A16D8D1CFF2F4300CAD9FE /* VideoHelper.swift in Sources */,
 				243CE4A01D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24A16D6F1CFC938700CAD9FE /* Video+CoreDataProperties.swift in Sources */,
@@ -3677,7 +3670,6 @@
 				AB17C5751DFCAD8E0013BBCD /* CourseDateHelper.swift in Sources */,
 				ABA0F03E1DF8CD240001D88D /* BaseModelSpine.swift in Sources */,
 				ABA0F0591DF8CD900001D88D /* CourseSection+CoreDataProperties.swift in Sources */,
-				AB17C5781DFCAE060013BBCD /* CourseStartsTableViewController.swift in Sources */,
 				ABA0F0561DF8CD8C0001D88D /* CourseItem.swift in Sources */,
 				AB17C58F1DFCC5D10013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				ABA0F09F1DF8CDF60001D88D /* TrackingEventResource.swift in Sources */,

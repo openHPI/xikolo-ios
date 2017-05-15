@@ -12,7 +12,6 @@ import PinpointKit
 class DashboardViewController : AbstractTabContentViewController {
 
     @IBOutlet var courseDeadlinesContainerHeight: NSLayoutConstraint!
-    @IBOutlet var courseStartsContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
 
     override func viewDidLoad() {
@@ -28,8 +27,6 @@ class DashboardViewController : AbstractTabContentViewController {
         case "EmbedCourseDeadlines"?:
             let vc = segue.destination as! CourseDeadlinesTableViewController
             vc.delegate = self
-        case "EmbedCourseStarts"?:
-            let vc = segue.destination as! CourseStartsTableViewController
             vc.delegate = self
         case "EmbedCourseActivity"?:
             let vc = segue.destination as! CourseActivityViewController

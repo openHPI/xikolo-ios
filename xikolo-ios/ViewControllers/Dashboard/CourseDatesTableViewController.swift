@@ -41,23 +41,13 @@ class CourseDatesTableViewController : UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionTitle: String? = self.tableView(tableView, titleForHeaderInSection: section)
-        if sectionTitle == nil || sectionTitle == "" {
-            return nil
-        }
+        
+        let header = tableView.dequeueReusableCell(withIdentifier: "CourseDateHeader") as! CourseDateHeader
+        header.titleBackgroundView.backgroundColor = Brand.TintColorSecond
 
-        let title: UILabel = UILabel()
-        title.text = sectionTitle
-        return UILabel()
-    }
-
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let view = view as? UITableViewHeaderFooterView {
-            view.backgroundView?.backgroundColor = UIColor.clear
-            view.textLabel!.backgroundColor = UIColor.clear
-            view.textLabel!.textColor = Brand.TintColor
-            view.textLabel!.font = UIFont.systemFont(ofSize: 15)
-        }
+        let sectionTitle = resultsController.sections?[section].name
+        header.titleView.text = sectionTitle
+        return header
     }
 
     func tableViewHeight() -> CGFloat {

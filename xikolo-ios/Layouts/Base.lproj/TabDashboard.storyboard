@@ -27,21 +27,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KR-9t-YfO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0c-Nm-2Vw">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="324"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="350" id="PRS-ng-4lB"/>
+                                                    <constraint firstAttribute="height" constant="324" id="PRS-ng-4lB"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="Hvd-im-s3l" kind="embed" identifier="EmbedCourseActivity" id="PAA-y1-gGY"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6i-PS-Rko">
-                                                <rect key="frame" x="0.0" y="358" width="375" height="150"/>
+                                                <rect key="frame" x="0.0" y="332" width="375" height="170"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="Stc-t5-rS1"/>
+                                                    <constraint firstAttribute="height" constant="170" id="Stc-t5-rS1"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="aO7-g3-Nd9" kind="embed" identifier="EmbedCourseDates" id="o4Z-qU-ouD"/>
@@ -55,7 +55,7 @@
                                             <constraint firstItem="n0c-Nm-2Vw" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="URP-9I-aIM"/>
                                             <constraint firstAttribute="trailing" secondItem="n0c-Nm-2Vw" secondAttribute="trailing" id="gpt-cZ-v7b"/>
                                             <constraint firstItem="F6i-PS-Rko" firstAttribute="top" secondItem="n0c-Nm-2Vw" secondAttribute="bottom" constant="8" symbolic="YES" id="jjF-ya-jnc"/>
-                                            <constraint firstAttribute="bottom" secondItem="F6i-PS-Rko" secondAttribute="bottom" constant="20" symbolic="YES" id="kLe-Nt-g86"/>
+                                            <constraint firstAttribute="bottom" secondItem="F6i-PS-Rko" secondAttribute="bottom" id="kLe-Nt-g86"/>
                                             <constraint firstItem="n0c-Nm-2Vw" firstAttribute="top" secondItem="5KR-9t-YfO" secondAttribute="top" id="oik-0f-xGQ"/>
                                             <constraint firstItem="F6i-PS-Rko" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="v4r-ku-KNT"/>
                                         </constraints>
@@ -100,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="247"/>
+            <point key="canvasLocation" x="812" y="246.9265367316342"/>
         </scene>
         <!--LoginNavigationController-->
         <scene sceneID="14a-YJ-IRd">
@@ -115,7 +115,7 @@
             <objects>
                 <tableViewController id="Hvd-im-s3l" customClass="CourseActivityViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="256" sectionHeaderHeight="28" sectionFooterHeight="28" id="HJk-SA-Zw4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="324"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="TGw-a9-6oj">
@@ -316,10 +316,11 @@
         <scene sceneID="039-7M-lEO">
             <objects>
                 <tableViewController id="aO7-g3-Nd9" customClass="CourseDatesTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gBF-tI-pG4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="40" sectionFooterHeight="28" id="gBF-tI-pG4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="0Oj-Gm-DcB">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -340,10 +341,10 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseDateCell" id="IOZ-OY-fFM" customClass="CourseDateCell" customModule="openHPI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="IOZ-OY-fFM" id="djX-Kh-Jcy">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty9-Ou-Ahu">
@@ -393,6 +394,49 @@
                                     <outlet property="titleView" destination="Ty9-Ou-Ahu" id="6J4-q2-3j8"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseDateHeader" rowHeight="50" id="x8o-mj-3fe" customClass="CourseDateHeader" customModule="openHPI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="112" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="x8o-mj-3fe" id="jD2-Zy-GDe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lbx-1B-dQX">
+                                            <rect key="frame" x="15" y="17" width="47.5" height="22"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsu-Sc-qpZ">
+                                                    <rect key="frame" x="8" y="2" width="31.5" height="18.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="rsu-Sc-qpZ" firstAttribute="leading" secondItem="Lbx-1B-dQX" secondAttribute="leading" constant="8" id="8w7-Mj-JaQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="rsu-Sc-qpZ" secondAttribute="bottom" constant="2" id="b7l-TD-Aac"/>
+                                                <constraint firstItem="rsu-Sc-qpZ" firstAttribute="top" secondItem="Lbx-1B-dQX" secondAttribute="top" constant="2" id="bFg-nF-Vbn"/>
+                                                <constraint firstAttribute="trailing" secondItem="rsu-Sc-qpZ" secondAttribute="trailing" constant="8" id="f5A-It-Q4D"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Lbx-1B-dQX" firstAttribute="leading" secondItem="jD2-Zy-GDe" secondAttribute="leadingMargin" id="1vs-Tv-ygK"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Lbx-1B-dQX" secondAttribute="trailing" id="8NT-To-JxO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Lbx-1B-dQX" secondAttribute="bottom" id="QcB-bx-Vof"/>
+                                        <constraint firstItem="Lbx-1B-dQX" firstAttribute="top" secondItem="jD2-Zy-GDe" secondAttribute="topMargin" constant="6" id="Zxu-fn-wxD"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleBackgroundView" destination="Lbx-1B-dQX" id="2xI-QL-47r"/>
+                                    <outlet property="titleView" destination="rsu-Sc-qpZ" id="6aA-0N-DEf"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="aO7-g3-Nd9" id="M9e-yW-5CN"/>
@@ -402,7 +446,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7t-LS-PuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1612" y="270"/>
+            <point key="canvasLocation" x="1612" y="269.86506746626691"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="TWB-cd-P4n">

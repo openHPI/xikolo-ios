@@ -50,6 +50,10 @@ class CourseDatesTableViewController : UITableViewController {
         return header
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+
     func tableViewHeight() -> CGFloat {
         tableView.layoutIfNeeded()
         return tableView.contentSize.height

@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
+class StandardTableviewTitle: UIView {
+
+    override func didMoveToSuperview() {
+        backgroundColor = Brand.TintColor
+    }
+
+}

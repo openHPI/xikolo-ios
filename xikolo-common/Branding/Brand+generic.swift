@@ -18,4 +18,7 @@ extension Brand {
     static let IncorrectAnswerColor = UIColor(red: 214 / 255, green: 0 / 255, blue: 26 / 255, alpha: 1)
     static let WrongAnswerColor = UIColor(red: 187 / 255, green: 188 / 255, blue: 190 / 255, alpha: 1)
 
+    static let APP_IMPRINT_URL = IMPRINT_URL + "?in_app=true"
+    static let APP_PRIVACY_URL = PRIVACY_URL + "?in_app=true"
+
 }

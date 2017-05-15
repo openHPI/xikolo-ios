@@ -20,15 +20,6 @@ class Video : Content {
         return "video"
     }
 
-    func loadPoster() -> Future<Void, XikoloError> {
-        if let posterUrl = single_stream_poster_url, let url = URL(string: posterUrl) {
-            return ImageProvider.loadImage(url).onSuccess { image in
-                self.poster = image
-            }.asVoid()
-        }
-        return Future.init(value: ())
-    }
-
     func metadata() -> [AVMetadataItem] {
         var items: [AVMetadataItem] = []
         if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {

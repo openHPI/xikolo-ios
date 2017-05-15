@@ -73,20 +73,6 @@ class Course : BaseModel {
         return nil
     }
 
-    func loadImage() -> Future<UIImage, XikoloError> {
-        if let image = image {
-            return Future.init(value: image)
-        }
-        if let imageUrl = image_url {
-            return ImageProvider.loadImage(imageUrl).onSuccess { image in
-                self.image = image
-                //CoreDataHelper.saveContext() // TODO: store pictures somewhere else
-            }
-        } else {
-            return Future.init(error: XikoloError.modelIncomplete)
-        }
-    }
-
 }
 
 extension Course : DynamicSort {

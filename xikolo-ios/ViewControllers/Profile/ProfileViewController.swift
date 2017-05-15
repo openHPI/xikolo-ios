@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileViewController: AbstractTabContentViewController {
 
@@ -42,9 +43,7 @@ class ProfileViewController: AbstractTabContentViewController {
             UserProfileHelper.getUser().onSuccess { user in
                 self.nameView.text = user.firstName + " " + user.lastName
                 self.emailView.text = user.email
-                if let url = NSURL(string: user.visual) {
-                    ImageHelper.loadImageFromURL(url as URL, toImageView: self.profileImage)
-                }
+                self.profileImage.sd_setImage(with: URL(string: user.visual))
             }
         } else {
             nameView.isHidden = true

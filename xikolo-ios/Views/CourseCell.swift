@@ -8,6 +8,7 @@
 
 import UIKit
 import Hero
+import SDWebImage
 
 class CourseCell : UICollectionViewCell {
 
@@ -22,9 +23,7 @@ class CourseCell : UICollectionViewCell {
     func configure(_ course: Course) {
         backgroundImage.image = nil
         backgroundImage.backgroundColor = UIColor.gray
-        course.loadImage().onSuccess { image in
-            self.backgroundImage.image = image
-        }
+        backgroundImage.sd_setImage(with: course.image_url)
 
         nameLabel.text = course.title
         nameLabel.heroID = "course_title_" + course.id

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CourseDetailsViewController : UIViewController {
 
@@ -53,10 +54,8 @@ class CourseDetailsViewController : UIViewController {
 
     func configureViews() {
         titleView.text = course.title
-        course.loadImage().onSuccess { image in
-            self.courseImageView.image = image
-            self.backgroundImageHelper.imageView.image = image
-        }
+        courseImageView.sd_setImage(with: course.image_url)
+        backgroundImageHelper.imageView.sd_setImage(with: course.image_url)
         abstractView.text = course.abstract
 
         let dateFormatter = DateFormatter()

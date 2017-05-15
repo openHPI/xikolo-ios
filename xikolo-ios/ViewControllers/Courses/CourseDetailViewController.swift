@@ -8,6 +8,7 @@
 
 import UIKit
 import Hero
+import SDWebImage
 
 class CourseDetailViewController: UIViewController {
 
@@ -32,10 +33,7 @@ class CourseDetailViewController: UIViewController {
         imageView.heroID = "course_image_" + course.id
         
         dateView.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
-
-        course.loadImage().onSuccess { image in
-            self.imageView.image = image
-        }
+        imageView.sd_setImage(with: course.image_url)
 
         if let description = course.abstract {//TODO: change back to course_description when API works
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling

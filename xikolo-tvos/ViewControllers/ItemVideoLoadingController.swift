@@ -8,6 +8,7 @@
 
 import AVKit
 import UIKit
+import SDWebImage
 
 class ItemVideoLoadingController : UIViewController {
 
@@ -16,9 +17,7 @@ class ItemVideoLoadingController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        VideoHelper.syncVideo(video).flatMap { video in
-            video.loadPoster()
-        }.onSuccess {
+        VideoHelper.syncVideo(video).onSuccess { _ in
             self.performSegue(withIdentifier: "ShowCourseItemVideoSegue", sender: self.video)
         }
     }

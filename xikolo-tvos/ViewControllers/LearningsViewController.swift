@@ -8,6 +8,7 @@
 
 import CoreData
 import UIKit
+import SDWebImage
 
 class LearningsViewController : UIViewController {
 
@@ -34,9 +35,7 @@ class LearningsViewController : UIViewController {
         courseTitleView.text = course.title
 
         backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
-        course.loadImage().onSuccess { image in
-            self.backgroundImageHelper.imageView.image = image
-        }
+        backgroundImageHelper.imageView.sd_setImage(with: course.image_url)
 
         let request = CourseSectionHelper.getSectionRequest(course)
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)

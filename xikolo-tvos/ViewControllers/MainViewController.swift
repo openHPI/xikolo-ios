@@ -26,9 +26,7 @@ class MainViewController : UIViewController {
             UserProfileHelper.getUser().onSuccess { user in
                 self.displayNameView.text = user.firstName + " " + user.lastName
                 if user.visual != "" {
-                    if let url = URL(string: user.visual) {
-                        ImageHelper.loadImageFromURL(url, toImageView: self.profileImageView)
-                    }
+                    self.profileImageView.sd_setImage(with: URL(string: user.visual))
                 }
                 self.profileImageView.isHidden = false
                 self.displayNameView.isHidden = false

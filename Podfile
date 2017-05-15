@@ -9,6 +9,7 @@ def common_pods
     pod 'Down', '0.3.2'
     pod 'Result', '3.1.0'
     pod 'Spine', :git => 'https://github.com/invliD/Spine.git', :commit => '1171b90'
+    pod 'SDWebImage/Core', '4.0.0'
 end
 
 def ios_pods

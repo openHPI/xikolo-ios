@@ -94,7 +94,7 @@ class AppDelegate : AbstractAppDelegate {
         super.applicationWillTerminate(application)
     }
 
-    func goToCourse(_ course: Course, content: CourseDecisionViewController.CourseContent = .learnings) {
+    func goToCourse(_ course: Course) {
         guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
             print("UITabBarController could not be found")
             return
@@ -114,7 +114,7 @@ class AppDelegate : AbstractAppDelegate {
         }
 
         courseDecisionViewController.course = course
-        courseDecisionViewController.content = content
+        courseDecisionViewController.content = course.accessible ? .learnings : .courseDetails
         courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
 
         rootViewController.selectedIndex = 1

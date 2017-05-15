@@ -22,7 +22,7 @@ class CourseDeadlinesTableViewController : UITableViewController {
         let request = CourseDateHelper.getCourseDeadlinesRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "CourseDeadlineCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseDateCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -68,15 +68,17 @@ class CourseDeadlinesTableViewController : UITableViewController {
 
 extension CourseDeadlinesTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
-        let courseDate = resultsController.object(at: indexPath) as! CourseDate
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
+        
+        let courseDate = controller.object(at: indexPath) as! CourseDate
         let cell = cell as! CourseDateCell
         cell.configure(courseDate)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let courseDate = resultsController.object(at: indexPath) as! CourseDate
-        if let course = courseDate.course {
+        let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        let courseDate = controller.object(at: dataIndexPath) as! CourseDate
+        if let course = try! CourseHelper.getByID(courseDate.course!.id) {
             AppDelegate.instance().goToCourse(course)
         }
         tableView.deselectRow(at: indexPath, animated: true)

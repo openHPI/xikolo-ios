@@ -26,7 +26,7 @@ class NewsTableViewController : UITableViewController {
         let request = NewsArticleHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "NewsArticleCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "NewsArticleCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -67,11 +67,10 @@ extension NewsTableViewController { // TableViewDelegate
 }
 
 extension NewsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
-
-    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! NewsArticleCell
 
-        let article = resultsController.object(at: indexPath) as! NewsArticle
+        let article = controller.object(at: indexPath) as! NewsArticle
         cell.configure(article)
     }
 

@@ -26,7 +26,7 @@ class PlatformEventsTableViewController: UITableViewController {
         let request = PlatformEventHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: resultsController, cellReuseIdentifier: "PlatformEventCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "PlatformEventCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -52,11 +52,10 @@ class PlatformEventsTableViewController: UITableViewController {
 }
 
 extension PlatformEventsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
-
-    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! PlatformEventCell
 
-        let event = resultsController.object(at: indexPath) as! PlatformEvent
+        let event = controller.object(at: indexPath) as! PlatformEvent
         cell.configure(event)
     }
 

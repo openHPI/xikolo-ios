@@ -529,6 +529,9 @@
 		4E6AB2021DD60EBD00B048DB /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
 		4E6AB2031DD60EBD00B048DB /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
 		4E6AB2041DD60EBD00B048DB /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
+		7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
+		7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
+		7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
 		70A8309A1EC7807E0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
 		70A8309B1EC7807F0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
@@ -1297,6 +1300,7 @@
 		4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
+		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
 		70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
@@ -1838,6 +1842,7 @@
 				2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
+				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3160,6 +3165,7 @@
 				24BA40DC1D3F9AFE00E38C2C /* Error.swift in Sources */,
 				24BA40951D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
 				AB34C9BC1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
+				7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
 				ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				24BA41141D3F9B8600E38C2C /* ProfileTableViewController.swift in Sources */,
@@ -3642,6 +3648,7 @@
 				2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				AB34C9BB1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
+				7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				F85225451B4D2B3D00C9BF56 /* UserProfile.swift in Sources */,
@@ -3783,6 +3790,7 @@
 				ABA0F0C41DF8CE320001D88D /* NetworkHelper.swift in Sources */,
 				AB17C5761DFCAE010013BBCD /* DashboardViewController.swift in Sources */,
 				AB34C9BD1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
+				7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
 				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,

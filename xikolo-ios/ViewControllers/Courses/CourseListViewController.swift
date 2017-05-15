@@ -81,7 +81,7 @@ class CourseListViewController : AbstractCourseListViewController {
         if UserProfileHelper.get(UserProfileHelper.Keys.welcome) == nil {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyyMMdd"
-            guard let start = formatter.date(from: "20170510"), let end = formatter.date(from: "20170530") else { return }
+            guard let start = formatter.date(from: "20170521"), let end = formatter.date(from: "20170530") else { return }
             let healthConference = DateInterval.init(start: start, end: end)
             let now = Date.init(timeIntervalSinceNow: 0)
             if (healthConference.contains(now)) {

@@ -13,8 +13,9 @@ class CourseDateHelper {
 
     static func getCourseDatesRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseDate")
+        let courseSort = NSSortDescriptor(key: "course.title", ascending: true)
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
-        request.sortDescriptors = [dateSort]
+        request.sortDescriptors = [courseSort, dateSort]
         return request
     }
 

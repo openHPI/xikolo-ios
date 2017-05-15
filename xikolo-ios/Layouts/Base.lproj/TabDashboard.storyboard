@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KR-9t-YfO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0c-Nm-2Vw">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
@@ -44,31 +44,19 @@
                                                     <constraint firstAttribute="height" constant="150" id="Stc-t5-rS1"/>
                                                 </constraints>
                                                 <connections>
-                                                    <segue destination="aO7-g3-Nd9" kind="embed" identifier="EmbedCourseDeadlines" id="o4Z-qU-ouD"/>
-                                                </connections>
-                                            </containerView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOA-Gx-qHo">
-                                                <rect key="frame" x="0.0" y="516" width="375" height="150"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="5mz-Ks-YhX"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="ij4-0b-6VB" kind="embed" identifier="EmbedCourseStarts" id="t6E-mb-MbF"/>
+                                                    <segue destination="aO7-g3-Nd9" kind="embed" identifier="EmbedCourseDates" id="o4Z-qU-ouD"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="OOA-Gx-qHo" firstAttribute="top" secondItem="F6i-PS-Rko" secondAttribute="bottom" constant="8" symbolic="YES" id="458-ld-Vgu"/>
                                             <constraint firstAttribute="trailing" secondItem="F6i-PS-Rko" secondAttribute="trailing" id="6vw-cp-vTO"/>
                                             <constraint firstItem="n0c-Nm-2Vw" firstAttribute="top" secondItem="5KR-9t-YfO" secondAttribute="top" id="9bU-qG-CDi"/>
-                                            <constraint firstAttribute="bottom" secondItem="OOA-Gx-qHo" secondAttribute="bottom" id="H5D-Tg-7Tr"/>
-                                            <constraint firstItem="OOA-Gx-qHo" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="Ned-k0-fM4"/>
                                             <constraint firstItem="n0c-Nm-2Vw" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="URP-9I-aIM"/>
                                             <constraint firstAttribute="trailing" secondItem="n0c-Nm-2Vw" secondAttribute="trailing" id="gpt-cZ-v7b"/>
                                             <constraint firstItem="F6i-PS-Rko" firstAttribute="top" secondItem="n0c-Nm-2Vw" secondAttribute="bottom" constant="8" symbolic="YES" id="jjF-ya-jnc"/>
+                                            <constraint firstAttribute="bottom" secondItem="F6i-PS-Rko" secondAttribute="bottom" constant="20" symbolic="YES" id="kLe-Nt-g86"/>
                                             <constraint firstItem="n0c-Nm-2Vw" firstAttribute="top" secondItem="5KR-9t-YfO" secondAttribute="top" id="oik-0f-xGQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="OOA-Gx-qHo" secondAttribute="trailing" id="qEE-SV-7zz"/>
                                             <constraint firstItem="F6i-PS-Rko" firstAttribute="leading" secondItem="5KR-9t-YfO" secondAttribute="leading" id="v4r-ku-KNT"/>
                                         </constraints>
                                         <variation key="default">
@@ -107,7 +95,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="courseActivityContainerHeight" destination="PRS-ng-4lB" id="1Ax-VW-LHV"/>
-                        <outlet property="courseDeadlinesContainerHeight" destination="Stc-t5-rS1" id="806-rR-ekL"/>
+                        <outlet property="courseDatesContainerHeight" destination="Stc-t5-rS1" id="fkP-Z8-WcC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -324,10 +312,10 @@
             </objects>
             <point key="canvasLocation" x="1612" y="-44"/>
         </scene>
-        <!--Course Deadlines Table View Controller-->
+        <!--Course Dates Table View Controller-->
         <scene sceneID="039-7M-lEO">
             <objects>
-                <tableViewController id="aO7-g3-Nd9" customClass="CourseDeadlinesTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="aO7-g3-Nd9" customClass="CourseDatesTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gBF-tI-pG4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -351,7 +339,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseDeadlineCell" id="IOZ-OY-fFM" customClass="CourseDateCell" customModule="openHPI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseDateCell" id="IOZ-OY-fFM" customClass="CourseDateCell" customModule="openHPI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="IOZ-OY-fFM" id="djX-Kh-Jcy">

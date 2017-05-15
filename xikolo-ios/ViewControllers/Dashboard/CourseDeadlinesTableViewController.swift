@@ -9,17 +9,18 @@
 import UIKit
 import CoreData
 
-class CourseDeadlinesTableViewController : UITableViewController {
+class CourseDatesTableViewController : UITableViewController {
 
     var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
 
-    weak var delegate: CourseDeadlinesTableViewControllerDelegate?
+    weak var delegate: CourseDatesTableViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let request = CourseDateHelper.getCourseDeadlinesRequest()
+        let request = CourseDateHelper.getCourseDatesRequest()
+
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseDateCell")
@@ -36,7 +37,7 @@ class CourseDeadlinesTableViewController : UITableViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        delegate?.changedCourseDeadlinesTableViewHeight(tableViewHeight())
+        delegate?.changedCourseDatesTableViewHeight(tableViewHeight())
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -66,7 +67,7 @@ class CourseDeadlinesTableViewController : UITableViewController {
 
 }
 
-extension CourseDeadlinesTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
+extension CourseDatesTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         
@@ -86,8 +87,8 @@ extension CourseDeadlinesTableViewController : TableViewResultsControllerDelegat
     
 }
 
-protocol CourseDeadlinesTableViewControllerDelegate: class {
+protocol CourseDatesTableViewControllerDelegate: class {
 
-    func changedCourseDeadlinesTableViewHeight(_ height: CGFloat)
+    func changedCourseDatesTableViewHeight(_ height: CGFloat)
 
 }

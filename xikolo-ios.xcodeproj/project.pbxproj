@@ -544,6 +544,9 @@
 		70A830AE1EC781010029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
 		70A830AF1EC781020029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
 		70A830B01EC781020029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
+		70EA7EB31EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
+		70EA7EB41EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
+		70EA7EB51EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		7D190E0D6B4AA51BAE68D0CB /* Pods_openSAP_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA9A0A8ACDB3778D29842F1 /* Pods_openSAP_tvOS.framework */; };
 		7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
@@ -1295,6 +1298,7 @@
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
+		70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7E1FBE4324F13EDB067EDEA6 /* Pods-openSAP-tvOS-TopShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2051,6 +2055,7 @@
 			isa = PBXGroup;
 			children = (
 				F89473C11B3C46FD00553882 /* LoginViewController.swift */,
+				70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3070,6 +3075,7 @@
 				24BA40D01D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
 				ABCE24311E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				24BA41151D3F9B8800E38C2C /* ProfileViewController.swift in Sources */,
+				70EA7EB41EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
 				24BA40AA1D3F9AC100E38C2C /* NewsArticle+CoreDataProperties.swift in Sources */,
@@ -3551,6 +3557,7 @@
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
 				ABCE24301E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				243CE4961D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
+				70EA7EB31EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
 				AB2802D81D2AD571008C8BAE /* NewsArticleViewController.swift in Sources */,
 				2448BE261D7DCF1E008466CC /* QuizSubmission.swift in Sources */,
@@ -3691,6 +3698,7 @@
 				ABA0F0D51DF8CE5F0001D88D /* QuizHelper.swift in Sources */,
 				ABCE24321E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				ABA0F0501DF8CD850001D88D /* Enrollment.swift in Sources */,
+				70EA7EB51EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				ABA0F0201DF8CCB40001D88D /* NewsViewController.swift in Sources */,
 				AB17C56F1DFCAD460013BBCD /* CourseDate.swift in Sources */,
 				ABA0F0E71DF8CE7E0001D88D /* xikolo.xcdatamodeld in Sources */,

@@ -40,7 +40,7 @@ class LearningsViewController : UIViewController {
         let request = CourseSectionHelper.getSectionRequest(course)
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: sectionResultsController, cellReuseIdentifier: "CourseSectionCell")
+        sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: [sectionResultsController], cellReuseIdentifier: "CourseSectionCell")
         sectionResultsControllerDelegateImplementation.delegate = self
         sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
         sectionTableView.dataSource = sectionResultsControllerDelegateImplementation
@@ -121,10 +121,10 @@ class LearningsViewController : UIViewController {
 
 extension LearningsViewController : TableViewResultsControllerDelegateImplementationDelegate {
 
-    func configureTableCell(_ cell: UITableViewCell, indexPath: IndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
         let cell = cell as! CourseSectionCell
 
-        let section = sectionResultsController.object(at: indexPath) as! CourseSection
+        let section = controller.object(at: indexPath) as! CourseSection
         cell.configure(section)
     }
 

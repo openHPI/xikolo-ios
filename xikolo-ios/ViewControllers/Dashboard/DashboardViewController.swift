@@ -11,8 +11,7 @@ import PinpointKit
 
 class DashboardViewController : AbstractTabContentViewController {
 
-    @IBOutlet var courseDeadlinesContainerHeight: NSLayoutConstraint!
-    @IBOutlet var courseStartsContainerHeight: NSLayoutConstraint!
+    @IBOutlet var courseDatesContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
 
     override func viewDidLoad() {
@@ -25,11 +24,8 @@ class DashboardViewController : AbstractTabContentViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "EmbedCourseDeadlines"?:
-            let vc = segue.destination as! CourseDeadlinesTableViewController
-            vc.delegate = self
-        case "EmbedCourseStarts"?:
-            let vc = segue.destination as! CourseStartsTableViewController
+        case "EmbedCourseDates"?:
+            let vc = segue.destination as! CourseDatesTableViewController
             vc.delegate = self
         case "EmbedCourseActivity"?:
             let vc = segue.destination as! CourseActivityViewController
@@ -41,21 +37,11 @@ class DashboardViewController : AbstractTabContentViewController {
 
 }
 
-extension DashboardViewController : CourseDeadlinesTableViewControllerDelegate {
+extension DashboardViewController : CourseDatesTableViewControllerDelegate {
 
-    func changedCourseDeadlinesTableViewHeight(_ height: CGFloat) {
+    func changedCourseDatesTableViewHeight(_ height: CGFloat) {
         DispatchQueue.main.async {
-            self.courseDeadlinesContainerHeight.constant = height
-        }
-    }
-
-}
-
-extension DashboardViewController : CourseStartsTableViewControllerDelegate {
-
-    func changedCourseStartsTableViewHeight(_ height: CGFloat) {
-        DispatchQueue.main.async {
-            self.courseStartsContainerHeight.constant = height
+            self.courseDatesContainerHeight.constant = height
         }
     }
 

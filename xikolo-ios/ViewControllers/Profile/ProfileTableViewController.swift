@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ProfileTableViewController: UITableViewController {
 
@@ -15,12 +16,16 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
-            if let url = URL(string: Brand.IMPRINT_URL) {
-                UIApplication.shared.openURL(url)
+            if let url = URL(string: Brand.APP_IMPRINT_URL) {
+                let safariVC = SFSafariViewController(url: url)
+                present(safariVC, animated: true, completion: nil)
+                safariVC.preferredControlTintColor = Brand.TintColor
             }
         case 1:
-            if let url = URL(string: Brand.PRIVACY_URL) {
-                UIApplication.shared.openURL(url)
+            if let url = URL(string: Brand.APP_PRIVACY_URL) {
+                let safariVC = SFSafariViewController(url: url)
+                present(safariVC, animated: true, completion: nil)
+                safariVC.preferredControlTintColor = Brand.TintColor
             }
         default:
             break

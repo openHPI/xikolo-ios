@@ -55,8 +55,9 @@ extension CourseActivityRow : CollectionViewResultsControllerDelegateImplementat
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let course = resultsController.object(at: indexPath) as! Course
-        AppDelegate.instance().goToCourse(course)
+        let visualCourse = resultsController.object(at: indexPath) as! Course
+        let course = try! CourseHelper.getByID(visualCourse.id)
+        AppDelegate.instance().goToCourse(course!)
     }
     
 }

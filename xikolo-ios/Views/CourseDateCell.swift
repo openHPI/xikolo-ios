@@ -13,9 +13,20 @@ class CourseDateCell : UITableViewCell {
 
     @IBOutlet var titleView: UILabel!
     @IBOutlet var detailView: UILabel!
+    @IBOutlet var dateHighlightView: UIView!
 
     func configure(_ courseDate: CourseDate) {
         titleView.text = courseDate.title
+        switch courseDate.type {
+        case "item_submission_deadline"?:
+            dateHighlightView.backgroundColor = Brand.TintColorThird
+            detailView.textColor = UIColor.white
+        case "course_start"?:
+            titleView.text = NSLocalizedString("Course Start", comment: "")
+        default:
+            dateHighlightView.backgroundColor = UIColor.white
+            detailView.textColor = UIColor.darkGray
+        }
 
         if let date = courseDate.date {
             let dateFormatter = DateFormatter()

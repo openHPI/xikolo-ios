@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import SafariServices
 
 class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
@@ -34,8 +35,9 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
     }
 
     @IBAction func registerButton(_ sender: AnyObject) {
-        let url = URL(string: Routes.REGISTER_URL)
-        UIApplication.shared.openURL(url!)
+        guard let url = URL(string: Routes.REGISTER_URL) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
     }
 
     @IBAction func singleSignIn(_ sender: UIButton) {

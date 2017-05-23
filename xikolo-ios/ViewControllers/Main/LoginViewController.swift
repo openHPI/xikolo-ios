@@ -15,18 +15,19 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var singleSignOnView: UIView!
-    @IBOutlet weak var singleSignOnButton: UIView!
+    @IBOutlet weak var singleSignOnButton: UIButton!
     @IBOutlet var parentView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.backgroundColor = Brand.TintColor
         emailField.becomeFirstResponder()
-        #if OPENHPI // move to brand config
-            singleSignOnView.isHidden = true
-        #else
+        
+        singleSignOnView.isHidden = true
+        #if OPENSAP || OPENWHO
             singleSignOnView.isHidden = false
             singleSignOnButton.backgroundColor = Brand.TintColor
+            singleSignOnButton.setTitle(Brand.ButtonLabelSSO, for: .normal)
         #endif
     }
 

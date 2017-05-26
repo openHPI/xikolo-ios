@@ -21,5 +21,7 @@ struct Brand {
 
     static let IMPRINT_URL = "http://www.sap.com/corporate/en/legal/impressum.html"
     static let PRIVACY_URL = "http://www.sap.com/corporate/en/legal/privacy.html"
+    
+    static let ButtonLabelSSO = "Single Sign On"
 
 }

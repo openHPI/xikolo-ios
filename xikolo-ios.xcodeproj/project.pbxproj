@@ -551,6 +551,9 @@
 		70A830AE1EC781010029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
 		70A830AF1EC781020029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
 		70A830B01EC781020029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
+		70DABFEE1ED833110095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFED1ED833110095E551 /* Info.plist */; };
+		70DABFF31ED833AD0095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFEF1ED8331F0095E551 /* Info.plist */; };
+		70DABFF41ED833B10095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFF11ED8332A0095E551 /* Info.plist */; };
 		70EA7EB31EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		70EA7EB41EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		70EA7EB51EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
@@ -1306,6 +1309,9 @@
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
+		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openHPI/Info.plist; sourceTree = "<group>"; };
+		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openSAP/Info.plist; sourceTree = "<group>"; };
+		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openWHO/Info.plist; sourceTree = "<group>"; };
 		70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1326,7 +1332,6 @@
 		A90587BB1B3BFC130095DB89 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
-		A90587CA1B3BFC130095DB89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicSort.swift; sourceTree = "<group>"; };
 		AB1357C41D996722004407AA /* PlatformEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventCell.swift; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
@@ -1892,7 +1897,6 @@
 				AB91831F1D6B091300018C1D /* Branding */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
-				A90587CA1B3BFC130095DB89 /* Info.plist */,
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
@@ -1967,6 +1971,7 @@
 		AB9183201D6B091E00018C1D /* openSAP */ = {
 			isa = PBXGroup;
 			children = (
+				70DABFEF1ED8331F0095E551 /* Info.plist */,
 				ABF26F9C1E96383800763A39 /* LaunchScreen.storyboard */,
 				AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */,
 				AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */,
@@ -1977,6 +1982,7 @@
 		AB9183211D6B092400018C1D /* openHPI */ = {
 			isa = PBXGroup;
 			children = (
+				70DABFED1ED833110095E551 /* Info.plist */,
 				ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */,
 				ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */,
 				AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */,
@@ -2005,6 +2011,7 @@
 		ABE0609B1DF8C1B300FC186D /* openWHO */ = {
 			isa = PBXGroup;
 			children = (
+				70DABFF11ED8332A0095E551 /* Info.plist */,
 				ABF26FA01E96384A00763A39 /* LaunchScreen.storyboard */,
 				ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */,
 				ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */,
@@ -2479,6 +2486,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70DABFF31ED833AD0095E551 /* Info.plist in Resources */,
 				ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */,
 				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
 				24BA41081D3F9B5E00E38C2C /* TabNews.storyboard in Resources */,
@@ -2542,6 +2550,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70DABFEE1ED833110095E551 /* Info.plist in Resources */,
 				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
@@ -2564,6 +2573,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70DABFF41ED833B10095E551 /* Info.plist in Resources */,
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Localizable.strings in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
@@ -4218,7 +4228,7 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openSAP/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				INFOPLIST_FILE = "xikolo-ios/Branding/openSAP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENSAP";
@@ -4239,7 +4249,7 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openSAP/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				INFOPLIST_FILE = "xikolo-ios/Branding/openSAP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENSAP";
@@ -4491,7 +4501,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
-				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				INFOPLIST_FILE = "xikolo-ios/Branding/openHPI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENHPI";
@@ -4514,7 +4524,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
-				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				INFOPLIST_FILE = "xikolo-ios/Branding/openHPI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENHPI";
@@ -4547,7 +4557,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS\"",
 				);
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
-				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				INFOPLIST_FILE = "xikolo-ios/Branding/openWHO/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
@@ -4613,7 +4623,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS\"",
 				);
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
-				INFOPLIST_FILE = "xikolo-ios/Info.plist";
+				INFOPLIST_FILE = "xikolo-ios/Branding/openWHO/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (

@@ -22,4 +22,6 @@ struct Brand {
     static let IMPRINT_URL = Brand.BaseURL + "/pages/about"
     static let PRIVACY_URL = Brand.BaseURL + "/pages/terms_of_use"
 
+    static let ButtonLabelSSO = "WHO Identity (WIMS)"
+    
 }

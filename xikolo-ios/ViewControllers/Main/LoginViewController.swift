@@ -23,11 +23,12 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         loginButton.backgroundColor = Brand.TintColor
         emailField.becomeFirstResponder()
         
-        singleSignOnView.isHidden = true
         #if OPENSAP || OPENWHO
             singleSignOnView.isHidden = false
             singleSignOnButton.backgroundColor = Brand.TintColor
             singleSignOnButton.setTitle(Brand.ButtonLabelSSO, for: .normal)
+        #else
+            singleSignOnView.isHidden = true
         #endif
     }
 

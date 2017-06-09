@@ -6100,7 +6100,7 @@
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */;
+			currentVersion = 70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

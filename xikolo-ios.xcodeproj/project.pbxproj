@@ -536,6 +536,15 @@
 		7057FFDC1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		7057FFDD1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		7057FFDE1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
+		709C93401EF099A900F8F045 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
+		709C93471EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		709C93531EF09BB500F8F045 /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93511EF09BB500F8F045 /* assets-brand.xcassets */; };
+		709C93541EF09BB500F8F045 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
+		709C935A1EF09C2C00F8F045 /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */; };
+		709C935C1EF09C2C00F8F045 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 709C93581EF09C2C00F8F045 /* Info.plist */; };
+		709C935F1EF09C4700F8F045 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */; };
+		709C93641EF09C8A00F8F045 /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93611EF09C8A00F8F045 /* assets-tvos-brand.xcassets */; };
+		709C93651EF09C8A00F8F045 /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93621EF09C8A00F8F045 /* Brand+tvOS.swift */; };
 		70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
 		70A8309A1EC7807E0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
 		70A8309B1EC7807F0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
@@ -1126,6 +1135,13 @@
 			remoteGlobalIDString = 24BA40631D3F98FE00E38C2C;
 			remoteInfo = TopShelf;
 		};
+		709C93451EF099A900F8F045 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 709C933E1EF099A900F8F045;
+			remoteInfo = "moocHOUSE-tvOS-TopShelf";
+		};
 		ABE0608A1DF8BFE100FC186D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -1154,6 +1170,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				24BA406C1D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C934B1EF099A900F8F045 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				709C93471EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1308,6 +1335,18 @@
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
+		709C93031EF0952500F8F045 /* moocHOUSE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moocHOUSE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		709C932C1EF0996C00F8F045 /* moocHOUSE-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moocHOUSE-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		709C93511EF09BB500F8F045 /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-brand.xcassets"; path = "moocHOUSE/assets-brand.xcassets"; sourceTree = "<group>"; };
+		709C93521EF09BB500F8F045 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = moocHOUSE/Brand.swift; sourceTree = "<group>"; };
+		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/moocHOUSE/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
+		709C93581EF09C2C00F8F045 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/moocHOUSE/Info.plist; sourceTree = "<group>"; };
+		709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/moocHOUSE/xikolo-ios.entitlements"; sourceTree = "<group>"; };
+		709C935E1EF09C4700F8F045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Branding/moocHOUSE/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		709C93611EF09C8A00F8F045 /* assets-tvos-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-tvos-brand.xcassets"; path = "moocHOUSE/assets-tvos-brand.xcassets"; sourceTree = "<group>"; };
+		709C93621EF09C8A00F8F045 /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brand+tvOS.swift"; path = "moocHOUSE/Brand+tvOS.swift"; sourceTree = "<group>"; };
+		709C93631EF09C8A00F8F045 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-tvos.entitlements"; path = "moocHOUSE/xikolo-tvos.entitlements"; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
 		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openHPI/Info.plist; sourceTree = "<group>"; };
 		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openSAP/Info.plist; sourceTree = "<group>"; };
@@ -1483,6 +1522,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F9BAA3514FE7C9C3F37B2BC /* Pods_openHPI_tvOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C93001EF0952500F8F045 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C93291EF0996C00F8F045 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C933C1EF099A900F8F045 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				709C93401EF099A900F8F045 /* TVServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1672,6 +1733,7 @@
 				249C01AE1D3F724700B54AAC /* openHPI */,
 				249C01AF1D3F724D00B54AAC /* openSAP */,
 				ABE060901DF8C17800FC186D /* openWHO */,
+				709C93501EF09B9E00F8F045 /* moocHOUSE */,
 				AB77C2961DF956EE00B30619 /* Brand+generic.swift */,
 			);
 			path = Branding;
@@ -1740,6 +1802,7 @@
 				24BA41361D3FA4C500E38C2C /* openHPI */,
 				24BA41371D3FA4C900E38C2C /* openSAP */,
 				ABE060A11DF8C22100FC186D /* openWHO */,
+				709C93601EF09C6F00F8F045 /* moocHOUSE */,
 			);
 			path = Branding;
 			sourceTree = "<group>";
@@ -1858,6 +1921,36 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		709C93501EF09B9E00F8F045 /* moocHOUSE */ = {
+			isa = PBXGroup;
+			children = (
+				709C93511EF09BB500F8F045 /* assets-brand.xcassets */,
+				709C93521EF09BB500F8F045 /* Brand.swift */,
+			);
+			name = moocHOUSE;
+			sourceTree = "<group>";
+		};
+		709C93551EF09BFA00F8F045 /* moocHOUSE */ = {
+			isa = PBXGroup;
+			children = (
+				709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */,
+				709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */,
+				709C93581EF09C2C00F8F045 /* Info.plist */,
+				709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */,
+			);
+			name = moocHOUSE;
+			sourceTree = "<group>";
+		};
+		709C93601EF09C6F00F8F045 /* moocHOUSE */ = {
+			isa = PBXGroup;
+			children = (
+				709C93611EF09C8A00F8F045 /* assets-tvos-brand.xcassets */,
+				709C93621EF09C8A00F8F045 /* Brand+tvOS.swift */,
+				709C93631EF09C8A00F8F045 /* xikolo-tvos.entitlements */,
+			);
+			name = moocHOUSE;
+			sourceTree = "<group>";
+		};
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
@@ -1882,6 +1975,9 @@
 				AB48B4351DF8BB2A00523062 /* openWHO.app */,
 				ABE0605E1DF8BDDE00FC186D /* openWHO-tvOS.app */,
 				ABE060841DF8BFE100FC186D /* openWHO-tvOS-TopShelf.appex */,
+				709C93031EF0952500F8F045 /* moocHOUSE-iOS.app */,
+				709C932C1EF0996C00F8F045 /* moocHOUSE-tvOS.app */,
+				709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1964,6 +2060,7 @@
 				AB9183211D6B092400018C1D /* openHPI */,
 				AB9183201D6B091E00018C1D /* openSAP */,
 				ABE0609B1DF8C1B300FC186D /* openWHO */,
+				709C93551EF09BFA00F8F045 /* moocHOUSE */,
 			);
 			name = Branding;
 			sourceTree = "<group>";
@@ -2244,6 +2341,59 @@
 			productReference = 24CB7E341CC678A000960269 /* openHPI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		709C93021EF0952500F8F045 /* moocHOUSE-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 709C93121EF0952500F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-iOS" */;
+			buildPhases = (
+				709C92FF1EF0952500F8F045 /* Sources */,
+				709C93001EF0952500F8F045 /* Frameworks */,
+				709C93011EF0952500F8F045 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "moocHOUSE-iOS";
+			productName = "moocHOUSE-iOS";
+			productReference = 709C93031EF0952500F8F045 /* moocHOUSE-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		709C932B1EF0996C00F8F045 /* moocHOUSE-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 709C93381EF0996C00F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS" */;
+			buildPhases = (
+				709C93281EF0996C00F8F045 /* Sources */,
+				709C93291EF0996C00F8F045 /* Frameworks */,
+				709C932A1EF0996C00F8F045 /* Resources */,
+				709C934B1EF099A900F8F045 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				709C93461EF099A900F8F045 /* PBXTargetDependency */,
+			);
+			name = "moocHOUSE-tvOS";
+			productName = "moocHOUSE-tvOS";
+			productReference = 709C932C1EF0996C00F8F045 /* moocHOUSE-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		709C933E1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 709C93481EF099A900F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS-TopShelf" */;
+			buildPhases = (
+				709C933B1EF099A900F8F045 /* Sources */,
+				709C933C1EF099A900F8F045 /* Frameworks */,
+				709C933D1EF099A900F8F045 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "moocHOUSE-tvOS-TopShelf";
+			productName = "moocHOUSE-tvOS-TopShelf";
+			productReference = 709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */;
+			productType = "com.apple.product-type.tv-app-extension";
+		};
 		A90587BA1B3BFC130095DB89 /* openHPI-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "openHPI-iOS" */;
@@ -2331,7 +2481,7 @@
 		A90587B31B3BFC130095DB89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
@@ -2392,6 +2542,31 @@
 								enabled = 1;
 							};
 						};
+					};
+					709C93021EF0952500F8F045 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WP53SSE8S6;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
+					};
+					709C932B1EF0996C00F8F045 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WP53SSE8S6;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					709C933E1EF099A900F8F045 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WP53SSE8S6;
+						ProvisioningStyle = Automatic;
 					};
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
@@ -2468,6 +2643,9 @@
 				AB48B4341DF8BB2A00523062 /* openWHO-iOS */,
 				ABE0605D1DF8BDDE00FC186D /* openWHO-tvOS */,
 				ABE060831DF8BFE100FC186D /* openWHO-tvOS-TopShelf */,
+				709C93021EF0952500F8F045 /* moocHOUSE-iOS */,
+				709C932B1EF0996C00F8F045 /* moocHOUSE-tvOS */,
+				709C933E1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf */,
 			);
 		};
 /* End PBXProject section */
@@ -2546,6 +2724,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		709C93011EF0952500F8F045 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C932A1EF0996C00F8F045 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C933D1EF099A900F8F045 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A90587B91B3BFC130095DB89 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2554,12 +2753,17 @@
 				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
+				709C93531EF09BB500F8F045 /* assets-brand.xcassets in Resources */,
 				AB9AF2DA1CF72EF100ED3EB0 /* TabProfile.storyboard in Resources */,
+				709C93641EF09C8A00F8F045 /* assets-tvos-brand.xcassets in Resources */,
 				AB9AF2D21CF72D9D00ED3EB0 /* TabCourses.storyboard in Resources */,
 				2490C4D31D1D6F7100F42949 /* Localizable.strings in Resources */,
+				709C935C1EF09C2C00F8F045 /* Info.plist in Resources */,
+				709C935A1EF09C2C00F8F045 /* assets-ios-brand.xcassets in Resources */,
 				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
 				AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */,
 				249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */,
+				709C935F1EF09C4700F8F045 /* LaunchScreen.storyboard in Resources */,
 				24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
 				249348131D9550FD006D4F2C /* Localizable.stringsdict in Resources */,
@@ -3544,6 +3748,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		709C92FF1EF0952500F8F045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C93281EF0996C00F8F045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		709C933B1EF099A900F8F045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A90587B71B3BFC130095DB89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3561,7 +3786,9 @@
 				24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */,
 				2448A9DE1CDCD9F3009A1AEA /* SpineModelHelper.swift in Sources */,
 				243CE4831D709999007C59B6 /* Enrollment.swift in Sources */,
+				709C93651EF09C8A00F8F045 /* Brand+tvOS.swift in Sources */,
 				24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */,
+				709C93541EF09BB500F8F045 /* Brand.swift in Sources */,
 				AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */,
 				AB4A019A1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
@@ -4052,6 +4279,11 @@
 			target = 24BA40631D3F98FE00E38C2C /* openSAP-tvOS-TopShelf */;
 			targetProxy = 24BA406A1D3F98FE00E38C2C /* PBXContainerItemProxy */;
 		};
+		709C93461EF099A900F8F045 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 709C933E1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf */;
+			targetProxy = 709C93451EF099A900F8F045 /* PBXContainerItemProxy */;
+		};
 		ABE0608B1DF8BFE100FC186D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABE060831DF8BFE100FC186D /* openWHO-tvOS-TopShelf */;
@@ -4101,6 +4333,14 @@
 				24A17A051CD189390056A8EE /* de */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				709C935E1EF09C4700F8F045 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		A90587C21B3BFC130095DB89 /* Main.storyboard */ = {
@@ -4391,6 +4631,125 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
+		709C93131EF0952500F8F045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/moocHOUSE/xikolo-ios.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				INFOPLIST_FILE = "xikolo-ios/Branding/moocHOUSE/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		709C93141EF0952500F8F045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/moocHOUSE/xikolo-ios.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				INFOPLIST_FILE = "xikolo-ios/Branding/moocHOUSE/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		709C93391EF0996C00F8F045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				INFOPLIST_FILE = "moocHOUSE-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		709C933A1EF0996C00F8F045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				INFOPLIST_FILE = "moocHOUSE-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
+		709C93491EF099A900F8F045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse.TopShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		709C934A1EF099A900F8F045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = WP53SSE8S6;
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse.TopShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Release;
@@ -4804,6 +5163,30 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		709C93121EF0952500F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				709C93131EF0952500F8F045 /* Debug */,
+				709C93141EF0952500F8F045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		709C93381EF0996C00F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				709C93391EF0996C00F8F045 /* Debug */,
+				709C933A1EF0996C00F8F045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		709C93481EF099A900F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS-TopShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				709C93491EF099A900F8F045 /* Debug */,
+				709C934A1EF099A900F8F045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		A90587B61B3BFC130095DB89 /* Build configuration list for PBXProject "xikolo-ios" */ = {
 			isa = XCConfigurationList;

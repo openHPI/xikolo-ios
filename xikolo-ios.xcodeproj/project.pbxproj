@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		178CC5747A6C082540103879 /* Pods_moocHOUSE_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60734E4CB18E8E57B2C07B4 /* Pods_moocHOUSE_tvOS_TopShelf.framework */; };
 		20C39CEE3C55E5509133E661 /* Pods_openWHO_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE107D8AFEB5E6A8E4842F2B /* Pods_openWHO_tvOS.framework */; };
+		237AA51F776E9BC804A29104 /* Pods_moocHOUSE_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E231BE46F54D847BE197B01F /* Pods_moocHOUSE_tvOS.framework */; };
 		240CAA131D649E980072F96D /* AbstractQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */; };
 		240CAA141D649E980072F96D /* AbstractQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */; };
 		240CAA171D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240CAA161D64BCEE0072F96D /* ChoiceQuestionViewController.swift */; };
@@ -560,6 +562,7 @@
 		70A830AE1EC781010029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
 		70A830AF1EC781020029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
 		70A830B01EC781020029235D /* NewsArticleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* NewsArticleProvider.swift */; };
+		70D1E9E71EF0AA030088C0FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		70DABFEE1ED833110095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFED1ED833110095E551 /* Info.plist */; };
 		70DABFF31ED833AD0095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFEF1ED8331F0095E551 /* Info.plist */; };
 		70DABFF41ED833B10095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFF11ED8332A0095E551 /* Info.plist */; };
@@ -1106,6 +1109,7 @@
 		ABFFA8611EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFFA85B1EAB6F4700544AB3 /* CourseCertificatesHash.swift */; };
 		BBCD1F7365EF38979197C0CE /* Pods_openHPI_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A37D28B951796642F9337FBF /* Pods_openHPI_tvOS_TopShelf.framework */; };
 		C54B7CEC830A7EF4E3FAFE7A /* Pods_openWHO_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD778D5FE73AD184EE6A4CA /* Pods_openWHO_tvOS_TopShelf.framework */; };
+		CC1502505A8C1787CA4CAA7A /* Pods_moocHOUSE_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B3FC2085F14C2082D45F36 /* Pods_moocHOUSE_iOS.framework */; };
 		E6EDDBD1946C11E27237DCE5 /* Pods_openHPI_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */; };
 		E99E83DA77DC34EFE6E0032E /* Pods_openSAP_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */; };
 		F80D67931B98683400E27520 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* NewsViewController.swift */; };
@@ -1202,6 +1206,7 @@
 		0363807390E0CD6A7F3DFE25 /* Pods-openHPI-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		0BB2EE40302E6F69C25A0E68 /* Pods-openHPI-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		152FD6BB5B8566F1CBA7D628 /* Pods_openWHO_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openWHO_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19B3FC2085F14C2082D45F36 /* Pods_moocHOUSE_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moocHOUSE_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD778D5FE73AD184EE6A4CA /* Pods_openWHO_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openWHO_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240CAA121D649E980072F96D /* AbstractQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractQuestionViewController.swift; sourceTree = "<group>"; };
 		240CAA161D64BCEE0072F96D /* ChoiceQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceQuestionViewController.swift; sourceTree = "<group>"; };
@@ -1330,13 +1335,15 @@
 		4E6AB1F11DD36AB500B048DB /* CourseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDate.swift; sourceTree = "<group>"; };
 		4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateProvider.swift; sourceTree = "<group>"; };
 		4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
+		6E388554E08BE40160B5B382 /* Pods-moocHOUSE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
-		709C93031EF0952500F8F045 /* moocHOUSE-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moocHOUSE-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		709C932C1EF0996C00F8F045 /* moocHOUSE-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moocHOUSE-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		709C93031EF0952500F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		709C932C1EF0996C00F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C93511EF09BB500F8F045 /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-brand.xcassets"; path = "moocHOUSE/assets-brand.xcassets"; sourceTree = "<group>"; };
 		709C93521EF09BB500F8F045 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = moocHOUSE/Brand.swift; sourceTree = "<group>"; };
@@ -1365,6 +1372,7 @@
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		89EBB281C9BB3737C016302D /* Pods-openSAP-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		8A4E4916A744A5EF9D6A85B7 /* Pods-openWHO-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		93EC40843691F3CA1EE7988F /* Pods-moocHOUSE-tvOS-TopShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS-TopShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS-TopShelf/Pods-moocHOUSE-tvOS-TopShelf.debug.xcconfig"; sourceTree = "<group>"; };
 		9A2AED23167DE48580641297 /* Pods-openWHO-tvOS-TopShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.debug.xcconfig"; sourceTree = "<group>"; };
 		9F427CBBBED778ACDBF30978 /* Pods-openHPI-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A37D28B951796642F9337FBF /* Pods_openHPI_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1452,11 +1460,16 @@
 		ABF26FA11E96384A00763A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Branding/openWHO/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownTableViewController.swift; sourceTree = "<group>"; };
 		ABFFA85B1EAB6F4700544AB3 /* CourseCertificatesHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCertificatesHash.swift; sourceTree = "<group>"; };
+		AD83FF0891F99C8516BAD882 /* Pods-moocHOUSE-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E711C93FE9752419B308E0 /* Pods-openSAP-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BDA9A0A8ACDB3778D29842F1 /* Pods_openSAP_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C314EF68CBCFA95F65C2ED /* Pods-moocHOUSE-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		D15110EB96ECE11681BC5CF3 /* Pods-openWHO-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS/Pods-openWHO-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		DC22580FF58B98BA63742298 /* Pods-openHPI-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E231BE46F54D847BE197B01F /* Pods_moocHOUSE_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moocHOUSE_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E60734E4CB18E8E57B2C07B4 /* Pods_moocHOUSE_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moocHOUSE_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E71780A972981FE6838E38BE /* Pods-moocHOUSE-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS-TopShelf/Pods-moocHOUSE-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		E9CDFF1CD5FD8B31230182C3 /* Pods-openHPI-tvOS-TopShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-tvOS-TopShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf.debug.xcconfig"; sourceTree = "<group>"; };
 		EE107D8AFEB5E6A8E4842F2B /* Pods_openWHO_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openWHO_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2759B4D40DAEA905228FAB9 /* Pods-openWHO-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1529,6 +1542,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC1502505A8C1787CA4CAA7A /* Pods_moocHOUSE_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1536,6 +1550,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				237AA51F776E9BC804A29104 /* Pods_moocHOUSE_tvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1544,6 +1559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				709C93401EF099A900F8F045 /* TVServices.framework in Frameworks */,
+				178CC5747A6C082540103879 /* Pods_moocHOUSE_tvOS_TopShelf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,8 +1991,8 @@
 				AB48B4351DF8BB2A00523062 /* openWHO.app */,
 				ABE0605E1DF8BDDE00FC186D /* openWHO-tvOS.app */,
 				ABE060841DF8BFE100FC186D /* openWHO-tvOS-TopShelf.appex */,
-				709C93031EF0952500F8F045 /* moocHOUSE-iOS.app */,
-				709C932C1EF0996C00F8F045 /* moocHOUSE-tvOS.app */,
+				709C93031EF0952500F8F045 /* moocHOUSE.app */,
+				709C932C1EF0996C00F8F045 /* moocHOUSE.app */,
 				709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */,
 			);
 			name = Products;
@@ -2147,6 +2163,12 @@
 				F7B99AF2E5DCA957B05D2312 /* Pods-openWHO-tvOS.release.xcconfig */,
 				9A2AED23167DE48580641297 /* Pods-openWHO-tvOS-TopShelf.debug.xcconfig */,
 				663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */,
+				6E388554E08BE40160B5B382 /* Pods-moocHOUSE-iOS.debug.xcconfig */,
+				AD83FF0891F99C8516BAD882 /* Pods-moocHOUSE-iOS.release.xcconfig */,
+				5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */,
+				C5C314EF68CBCFA95F65C2ED /* Pods-moocHOUSE-tvOS.release.xcconfig */,
+				93EC40843691F3CA1EE7988F /* Pods-moocHOUSE-tvOS-TopShelf.debug.xcconfig */,
+				E71780A972981FE6838E38BE /* Pods-moocHOUSE-tvOS-TopShelf.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2232,6 +2254,9 @@
 				152FD6BB5B8566F1CBA7D628 /* Pods_openWHO_iOS.framework */,
 				EE107D8AFEB5E6A8E4842F2B /* Pods_openWHO_tvOS.framework */,
 				1FD778D5FE73AD184EE6A4CA /* Pods_openWHO_tvOS_TopShelf.framework */,
+				19B3FC2085F14C2082D45F36 /* Pods_moocHOUSE_iOS.framework */,
+				E231BE46F54D847BE197B01F /* Pods_moocHOUSE_tvOS.framework */,
+				E60734E4CB18E8E57B2C07B4 /* Pods_moocHOUSE_tvOS_TopShelf.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2345,9 +2370,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 709C93121EF0952500F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-iOS" */;
 			buildPhases = (
+				0089F3364BA801A526B4D83B /* [CP] Check Pods Manifest.lock */,
 				709C92FF1EF0952500F8F045 /* Sources */,
 				709C93001EF0952500F8F045 /* Frameworks */,
 				709C93011EF0952500F8F045 /* Resources */,
+				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
+				1F57239A56A003CFD9A17C49 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2355,17 +2383,20 @@
 			);
 			name = "moocHOUSE-iOS";
 			productName = "moocHOUSE-iOS";
-			productReference = 709C93031EF0952500F8F045 /* moocHOUSE-iOS.app */;
+			productReference = 709C93031EF0952500F8F045 /* moocHOUSE.app */;
 			productType = "com.apple.product-type.application";
 		};
 		709C932B1EF0996C00F8F045 /* moocHOUSE-tvOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 709C93381EF0996C00F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS" */;
 			buildPhases = (
+				FB3D5910F8651D97CBDBD3DC /* [CP] Check Pods Manifest.lock */,
 				709C93281EF0996C00F8F045 /* Sources */,
 				709C93291EF0996C00F8F045 /* Frameworks */,
 				709C932A1EF0996C00F8F045 /* Resources */,
 				709C934B1EF099A900F8F045 /* Embed App Extensions */,
+				A9007FC0184C2CC7C2528286 /* [CP] Embed Pods Frameworks */,
+				142CD1BC9843A812039AD06B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2374,16 +2405,18 @@
 			);
 			name = "moocHOUSE-tvOS";
 			productName = "moocHOUSE-tvOS";
-			productReference = 709C932C1EF0996C00F8F045 /* moocHOUSE-tvOS.app */;
+			productReference = 709C932C1EF0996C00F8F045 /* moocHOUSE.app */;
 			productType = "com.apple.product-type.application";
 		};
 		709C933E1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 709C93481EF099A900F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS-TopShelf" */;
 			buildPhases = (
+				C7666C2C40BD7FB90748BC9E /* [CP] Check Pods Manifest.lock */,
 				709C933B1EF099A900F8F045 /* Sources */,
 				709C933C1EF099A900F8F045 /* Frameworks */,
 				709C933D1EF099A900F8F045 /* Resources */,
+				57CD7946E155D5BFDF1EE5AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2824,6 +2857,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0089F3364BA801A526B4D83B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		00C7F73CE49898765A7641A6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2837,6 +2885,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		142CD1BC9843A812039AD06B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		18D20680A8EE76C6C0069167 /* [CP] Embed Pods Frameworks */ = {
@@ -2884,6 +2947,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		1F57239A56A003CFD9A17C49 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		25042D2EFBE1EAF5532E6113 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2929,6 +3007,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		57CD7946E155D5BFDF1EE5AC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-tvOS-TopShelf/Pods-moocHOUSE-tvOS-TopShelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		58118927B0F15975FBA50627 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2957,6 +3050,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */ = {
@@ -3109,6 +3217,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A9007FC0184C2CC7C2528286 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3154,6 +3277,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C7666C2C40BD7FB90748BC9E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C7F19E54C715B47DA251D1DA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3170,6 +3308,21 @@
 			showEnvVarsInLog = 0;
 		};
 		E4366C3C332640BAB19B0552 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB3D5910F8651D97CBDBD3DC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3752,6 +3905,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70D1E9E71EF0AA030088C0FF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4637,6 +4791,7 @@
 		};
 		709C93131EF0952500F8F045 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E388554E08BE40160B5B382 /* Pods-moocHOUSE-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4649,7 +4804,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moocHOUSE;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
@@ -4657,6 +4812,7 @@
 		};
 		709C93141EF0952500F8F045 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD83FF0891F99C8516BAD882 /* Pods-moocHOUSE-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4669,13 +4825,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moocHOUSE;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		709C93391EF0996C00F8F045 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4687,7 +4844,7 @@
 				INFOPLIST_FILE = "moocHOUSE-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moocHOUSE;
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
@@ -4698,6 +4855,7 @@
 		};
 		709C933A1EF0996C00F8F045 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5C314EF68CBCFA95F65C2ED /* Pods-moocHOUSE-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4709,7 +4867,7 @@
 				INFOPLIST_FILE = "moocHOUSE-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = moocHOUSE;
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -4719,6 +4877,7 @@
 		};
 		709C93491EF099A900F8F045 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93EC40843691F3CA1EE7988F /* Pods-moocHOUSE-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -4738,6 +4897,7 @@
 		};
 		709C934A1EF099A900F8F045 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E71780A972981FE6838E38BE /* Pods-moocHOUSE-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -5171,6 +5331,7 @@
 				709C93141EF0952500F8F045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		709C93381EF0996C00F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -5179,6 +5340,7 @@
 				709C933A1EF0996C00F8F045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		709C93481EF099A900F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-tvOS-TopShelf" */ = {
 			isa = XCConfigurationList;
@@ -5187,6 +5349,7 @@
 				709C934A1EF099A900F8F045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A90587B61B3BFC130095DB89 /* Build configuration list for PBXProject "xikolo-ios" */ = {
 			isa = XCConfigurationList;

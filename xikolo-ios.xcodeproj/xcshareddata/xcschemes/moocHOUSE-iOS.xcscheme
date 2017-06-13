@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "709C93021EF0952500F8F045"
-               BuildableName = "moocHOUSE-iOS.app"
+               BuildableName = "moocHOUSE.app"
                BlueprintName = "moocHOUSE-iOS"
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "709C93021EF0952500F8F045"
-            BuildableName = "moocHOUSE-iOS.app"
+            BuildableName = "moocHOUSE.app"
             BlueprintName = "moocHOUSE-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "709C93021EF0952500F8F045"
-            BuildableName = "moocHOUSE-iOS.app"
+            BuildableName = "moocHOUSE.app"
             BlueprintName = "moocHOUSE-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "709C93021EF0952500F8F045"
-            BuildableName = "moocHOUSE-iOS.app"
+            BuildableName = "moocHOUSE.app"
             BlueprintName = "moocHOUSE-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>

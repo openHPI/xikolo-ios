@@ -97,7 +97,7 @@ open class UserProfileHelper {
         UserHelper.syncMe()
         CourseHelper.refreshCourses()
         CourseDateHelper.syncCourseDates()
-        NewsArticleHelper.syncNewsArticles()
+        AnnouncementHelper.syncAnnouncements()
     }
 
     static func saveId(_ id: String) {

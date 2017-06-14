@@ -23,7 +23,7 @@ class AppDelegate : AbstractAppDelegate {
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
-        updateNews()
+        updateAnnouncements()
         EnrollmentHelper.syncEnrollments()
        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -55,14 +55,14 @@ class AppDelegate : AbstractAppDelegate {
         return false
     }
 
-    func updateNews() {
-        NewsArticleHelper.syncNewsArticles().onSuccess { (newsArticles) in // sync news and show badge on news tab with number of unread articles
+    func updateAnnouncements() {
+        AnnouncementHelper.syncAnnouncements().onSuccess { (announcements) in // sync announcements and show badge on news tab with number of unread articles
             if let rootViewController = self.window?.rootViewController as? UITabBarController {
                 if let tabArray = rootViewController.tabBar.items {
                     let tabItem = tabArray[2]
-                    let unreadNewsArticles = newsArticles.filter({ !($0.visited ?? true ) }) // we get nil if the user is not logged in. In this case we don't want to show the badge
-                    if unreadNewsArticles.count > 0 {
-                        tabItem.badgeValue = String(unreadNewsArticles.count)
+                    let unreadAnnouncements = announcements.filter({ !($0.visited ?? true ) }) // we get nil if the user is not logged in. In this case we don't want to show the badge
+                    if unreadAnnouncements.count > 0 {
+                        tabItem.badgeValue = String(unreadAnnouncements.count)
                     } else {
                         tabItem.badgeValue = nil
                     }

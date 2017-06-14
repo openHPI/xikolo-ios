@@ -1,5 +1,5 @@
 //
-//  NewsArticleCell.swift
+//  AnnouncementCell.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 04.07.16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsArticleCell : UITableViewCell {
+class AnnouncementCell : UITableViewCell {
 
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var readStateView: UIView!
@@ -17,31 +17,31 @@ class NewsArticleCell : UITableViewCell {
     @IBOutlet weak var courseView: UILabel!
     @IBOutlet weak var roundedTagBackgroundView: UIView!
 
-    func configure(_ newsArticle: NewsArticle) {
+    func configure(_ announcement: Announcement) {
         readStateView.backgroundColor = Brand.TintColor
 
         descriptionView.isScrollEnabled = false
         descriptionView.textContainer.maximumNumberOfLines = 4
         descriptionView.textContainer.lineBreakMode = .byTruncatingTail
 
-        if let date = newsArticle.published_at {
+        if let date = announcement.published_at {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
             dateView.text = dateFormatter.string(from: date)
         }
 
-        titleView.text = newsArticle.title
-        titleView.heroID = "news_headline_" + newsArticle.id
+        titleView.text = announcement.title
+        titleView.heroID = "news_headline_" + announcement.id
 
-        if let newsText = newsArticle.text {
+        if let newsText = announcement.text {
             let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
             self.descriptionView.attributedText = markDown
         }
-        readStateView.isHidden = newsArticle.visited ?? true
+        readStateView.isHidden = announcement.visited ?? true
 
-        roundedTagBackgroundView.isHidden = newsArticle.course == nil
-        courseView.text = newsArticle.course?.title
+        roundedTagBackgroundView.isHidden = announcement.course == nil
+        courseView.text = announcement.course?.title
     }
 
 }

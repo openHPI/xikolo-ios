@@ -13,12 +13,12 @@ class NewsViewController : AbstractTabContentViewController {
     @IBOutlet weak var containerView: UIView!
 
     enum TabContent : Int {
-        case newsArticles = 0
+        case announcements = 0
         case platformEvents = 1
     }
-    
+
     var containerContentViewController: UIViewController?
-    
+
     @IBAction func switchViewControllers(_ sender: UISegmentedControl) {
         if let position = TabContent(rawValue: sender.selectedSegmentIndex) {
             updateContainerView(position)
@@ -26,7 +26,7 @@ class NewsViewController : AbstractTabContentViewController {
     }
 
     override func viewDidLoad() {
-        updateContainerView(.newsArticles)
+        updateContainerView(.announcements)
         syncContent()
     }
 
@@ -36,7 +36,7 @@ class NewsViewController : AbstractTabContentViewController {
     }
 
     func syncContent() {
-        NewsArticleHelper.syncNewsArticles()
+        AnnouncementHelper.syncAnnouncements()
         PlatformEventHelper.syncPlatformEvents()
     }
 
@@ -51,8 +51,8 @@ class NewsViewController : AbstractTabContentViewController {
 
         let storyboard = UIStoryboard(name: "TabNews", bundle: nil)
         switch position {
-        case .newsArticles:
-            let vc = storyboard.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
+        case .announcements:
+            let vc = storyboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController") as! AnnouncementsTableViewController
             changeToViewController(vc)
         case .platformEvents:
             let vc = storyboard.instantiateViewController(withIdentifier: "PlatformEventsTableViewController") as! PlatformEventsTableViewController

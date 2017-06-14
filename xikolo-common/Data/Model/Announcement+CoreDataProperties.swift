@@ -1,5 +1,5 @@
 //
-//  NewsArticle+CoreDataProperties.swift
+//  Announcement+CoreDataProperties.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 04.07.16.
@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension NewsArticle {
+extension Announcement {
 
     @NSManaged var id: String
     @NSManaged var title: String?

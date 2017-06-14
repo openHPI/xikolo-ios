@@ -1,5 +1,5 @@
 //
-//  NewsTableViewController.swift
+//  AnnouncementTableViewController.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 04.07.16.
@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 import DZNEmptyDataSet
 
-class NewsTableViewController : UITableViewController {
+class AnnouncementsTableViewController : UITableViewController {
 
     var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
@@ -23,10 +23,10 @@ class NewsTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let request = NewsArticleHelper.getRequest()
+        let request = AnnouncementHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "NewsArticleCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
         resultsControllerDelegateImplementation.delegate = self
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -36,7 +36,7 @@ class NewsTableViewController : UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-        NewsArticleHelper.syncNewsArticles().onComplete { _ in
+        AnnouncementHelper.syncAnnouncements().onComplete { _ in
             self.tableView.reloadEmptyDataSet()
         }
         setupEmptyState()
@@ -50,33 +50,33 @@ class NewsTableViewController : UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let newsVC = segue.destination as! NewsArticleViewController
-        let newsArticle = sender as! NewsArticle
-        newsVC.newsArticle = newsArticle
+        let newsVC = segue.destination as! AnnouncementViewController
+        let announcement = sender as! Announcement
+        newsVC.announcement = announcement
     }
 
 }
 
-extension NewsTableViewController { // TableViewDelegate
+extension AnnouncementsTableViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newsArticle = resultsController.object(at: indexPath) as! NewsArticle
-        performSegue(withIdentifier: "ShowNewsArticle", sender: newsArticle)
+        let announcement = resultsController.object(at: indexPath) as! Announcement
+        performSegue(withIdentifier: "ShowAnnouncement", sender: announcement)
     }
 
 }
 
-extension NewsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
+extension AnnouncementsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
-        let cell = cell as! NewsArticleCell
+        let cell = cell as! AnnouncementCell
 
-        let article = controller.object(at: indexPath) as! NewsArticle
+        let article = controller.object(at: indexPath) as! Announcement
         cell.configure(article)
     }
 
 }
 
-extension NewsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if NetworkIndicator.counter > 0 {

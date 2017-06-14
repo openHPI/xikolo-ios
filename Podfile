@@ -74,3 +74,22 @@ target 'openWHO-tvOS-TopShelf' do
     common_pods
 
 end
+
+target 'moocHOUSE-iOS' do
+    platform :ios, '9.0'
+    common_pods
+    ios_pods
+
+end
+
+target 'moocHOUSE-tvOS' do
+    platform :tvos, '9.0'
+    common_pods
+
+end
+
+target 'moocHOUSE-tvOS-TopShelf' do
+    platform :tvos, '9.0'
+    common_pods
+
+end

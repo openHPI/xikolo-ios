@@ -911,6 +911,8 @@
 		70D1EB5E1EF134800088C0FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		70D1EB5F1EF134820088C0FF /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
 		70D1EB601EF134870088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
+		70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
+		70D1EB621EF134FD0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
 		70DABFEE1ED833110095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFED1ED833110095E551 /* Info.plist */; };
 		70DABFF31ED833AD0095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFEF1ED8331F0095E551 /* Info.plist */; };
 		70DABFF41ED833B10095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFF11ED8332A0095E551 /* Info.plist */; };
@@ -4519,6 +4521,7 @@
 				70D1EAB01EF0ABF90088C0FF /* CourseHelper.swift in Sources */,
 				70D1EADD1EF0AC330088C0FF /* xikolo.xcdatamodeld in Sources */,
 				70D1E9F21EF0AA8B0088C0FF /* CollectionType+dict.swift in Sources */,
+				70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */,
 				70D1EA351EF0AAF70088C0FF /* EnrollmentCertificates.swift in Sources */,
 				70D1EB5C1EF1345D0088C0FF /* Brand+tvOS.swift in Sources */,
 				70D1EA9C1EF0AB7E0088C0FF /* PeerAssessmentProvider.swift in Sources */,
@@ -4552,6 +4555,7 @@
 				70D1EA521EF0AB1B0088C0FF /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				70D1EA001EF0AAB00088C0FF /* BaseModel.swift in Sources */,
 				70D1EA431EF0AB0A0088C0FF /* LTIExercise.swift in Sources */,
+				70D1EB621EF134FD0088C0FF /* Brand.swift in Sources */,
 				70D1EAB81EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
 				70D1EA361EF0AAF70088C0FF /* EnrollmentCertificates.swift in Sources */,
 				70D1EA3C1EF0AB000088C0FF /* EnrollmentVisits.swift in Sources */,
@@ -5530,7 +5534,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				INFOPLIST_FILE = "moocHOUSE-tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
 				PRODUCT_NAME = moocHOUSE;
@@ -5554,7 +5558,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				INFOPLIST_FILE = "moocHOUSE-tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
 				PRODUCT_NAME = moocHOUSE;

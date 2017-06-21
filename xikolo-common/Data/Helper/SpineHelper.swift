@@ -26,7 +26,6 @@ class SpineHelper {
         spine.registerValueFormatter(EmbeddedObjectsFormatter())
         spine.registerValueFormatter(EmbeddedDictFormatter())
         spine.registerValueFormatter(VideoStreamFormatter())
-        spine.registerValueFormatter(DualStreamFormatter())
 
         spine.registerResource(ChannelSpine.self)
         spine.registerResource(CourseSpine.self)

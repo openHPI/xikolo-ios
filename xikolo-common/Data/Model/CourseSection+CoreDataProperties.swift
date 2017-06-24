@@ -20,5 +20,8 @@ extension CourseSection {
     @NSManaged var position: NSNumber?
     @NSManaged var course: Course?
     @NSManaged var items: NSSet?
+    @NSManaged var accessible_int: NSNumber?
+    @NSManaged var start_at: Date?
+    @NSManaged var end_at: Date?
 
 }

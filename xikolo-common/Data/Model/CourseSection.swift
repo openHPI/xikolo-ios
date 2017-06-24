@@ -25,6 +25,15 @@ class CourseSection : BaseModel {
         } as! [CourseItem]
     }
 
+    var accessible: Bool {
+        get {
+            return accessible_int?.boolValue ?? false
+        }
+        set(new_is_accessible) {
+            accessible_int = new_is_accessible as NSNumber?
+        }
+    }
+
     var sectionName: String? {
         return self.title
     }
@@ -50,6 +59,9 @@ class CourseSectionSpine : BaseModelSpine {
             "title": Attribute(),
             "section_description": Attribute().serializeAs("description"),
             "position": Attribute(),
+            "start_at": DateAttribute(),
+            "end_at": DateAttribute(),
+            "accessible_int": BooleanAttribute().serializeAs("accessible"),
         ])
     }
 

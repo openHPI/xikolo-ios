@@ -13,8 +13,6 @@ import Foundation
 import Spine
 
 class Video : Content {
-
-    var poster: UIImage?
     
     override func iconName() -> String {
         return "video"
@@ -28,9 +26,6 @@ class Video : Content {
         if let item = AVMetadataItem.item(AVMetadataCommonIdentifierDescription, value: summary) {
             items.append(item)
         }
-        if let poster = poster, let item = AVMetadataItem.artworkItem(poster) {
-            items.append(item)
-        }
         return items
     }
 
@@ -41,12 +36,18 @@ class VideoSpine : ContentSpine {
     var summary: String?
     var duration: NSNumber?
 
+    var slides_url: URL?
+    var audio_url: URL?
     var transcript_url: URL?
     var thumbnail_url: URL?
-    var slides_url: URL?
+
+    var slides_size: NSNumber?
+    var audio_size: NSNumber?
+    var transcript_size: NSNumber?
 
     var single_stream: VideoStreamSpine?
-    var dual_stream: DualStreamSpine?
+    var lecturer_stream: VideoStreamSpine?
+    var slides_stream: VideoStreamSpine?
 
     override class var cdType: BaseModel.Type {
         return Video.self
@@ -60,11 +61,16 @@ class VideoSpine : ContentSpine {
         return fieldsFromDictionary([
             "summary": Attribute(),
             "duration": Attribute(),
-            "transcript_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
-            "thumbnail_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "slides_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
+            "slides_size": Attribute(),
+            "audio_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
+            "audio_size": Attribute(),
+            "transcript_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
+            "transcript_size": Attribute(),
+            "thumbnail_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "single_stream": VideoStreamAttribute(),
-            "dual_stream": DualStreamAttribute(),
+            "lecturer_stream": VideoStreamAttribute(),
+            "slides_stream": VideoStreamAttribute(),
         ])
     }
 
@@ -73,12 +79,12 @@ class VideoSpine : ContentSpine {
 class VideoStreamSpine : CompoundValue {
 
     var hls_url: String?
-    var poster_url: String?
+    var thumbnail_url: String?
 
     init(_ dict: [String: AnyObject]?) {
         if let dict = dict {
             self.hls_url = dict["hls_url"] as? String
-            self.poster_url = dict["poster_image_url"] as? String
+            self.thumbnail_url = dict["thumbnail_url"] as? String
         }
     }
 
@@ -89,7 +95,7 @@ class VideoStreamSpine : CompoundValue {
     func saveToCoreData(_ model: BaseModel, withPrefix prefix: String) {
         let p = prefix + "_"
         model.setValue(hls_url, forKey: p + "hls_url")
-        model.setValue(poster_url, forKey: p + "poster_url")
+        model.setValue(thumbnail_url, forKey: p + "thumbnail_url")
     }
 
 }
@@ -104,49 +110,6 @@ struct VideoStreamFormatter : ValueFormatter {
 
     func unformatValue(_ value: FormattedType, forAttribute: AttributeType) -> UnformattedType {
         return VideoStreamSpine(value)
-    }
-
-    func formatValue(_ value: UnformattedType, forAttribute: AttributeType) -> FormattedType {
-        // Implement in case we need it.
-        return [:]
-    }
-
-}
-
-class DualStreamSpine : CompoundValue {
-
-    let attribute = VideoStreamAttribute()
-    let formatter = VideoStreamFormatter()
-
-    var stream_a: VideoStreamSpine?
-    var stream_b: VideoStreamSpine?
-
-    init(_ dict: [String: AnyObject]) {
-        if let value = dict["stream_a"] as? [String: AnyObject] {
-            self.stream_a = formatter.unformatValue(value, forAttribute: attribute)
-        }
-        if let value = dict["stream_b"] as? [String: AnyObject] {
-            self.stream_b = formatter.unformatValue(value, forAttribute: attribute)
-        }
-    }
-
-    override func saveToCoreData(model: BaseModel) {
-        self.stream_a?.saveToCoreData(model, withPrefix: "stream_a")
-        self.stream_b?.saveToCoreData(model, withPrefix: "stream_b")
-    }
-
-}
-
-class DualStreamAttribute : CompoundAttribute {
-}
-
-struct DualStreamFormatter : ValueFormatter {
-    typealias FormattedType = [String: AnyObject]
-    typealias UnformattedType = DualStreamSpine
-    typealias AttributeType = DualStreamAttribute
-
-    func unformatValue(_ value: FormattedType, forAttribute: AttributeType) -> UnformattedType {
-        return DualStreamSpine(value)
     }
 
     func formatValue(_ value: UnformattedType, forAttribute: AttributeType) -> FormattedType {

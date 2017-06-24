@@ -43,6 +43,15 @@ class CourseItem : BaseModel {
         }
     }
 
+    var accessible: Bool {
+        get {
+            return accessible_int?.boolValue ?? false
+        }
+        set(new_is_accessible) {
+            accessible_int = new_is_accessible as NSNumber?
+        }
+    }
+
     var visited: Bool? {
         get {
             return visited_int?.boolValue
@@ -98,6 +107,9 @@ class CourseItemSpine : BaseModelSpine {
             "visited_int": BooleanAttribute().serializeAs("visited"),
             "proctored_int": BooleanAttribute().serializeAs("proctored"),
             "position": Attribute(),
+            "start_at": DateAttribute(),
+            "end_at": DateAttribute(),
+            "accessible_int": BooleanAttribute().serializeAs("accessible"),
         ])
     }
 

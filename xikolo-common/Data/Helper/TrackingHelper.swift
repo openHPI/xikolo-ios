@@ -71,13 +71,11 @@ class TrackingHelper {
         trackingEvent.timestamp = Date()
         trackingEvent.context = trackingContext as [String : AnyObject]?
 
-        return UserProfileHelper.getUser().map { user in
-            let trackingUser = TrackingEventUser()
-            trackingUser.uuid = user.id
-            trackingEvent.user = trackingUser
+        let trackingUser = TrackingEventUser()
+        trackingUser.uuid = UserProfileHelper.getUserId()
+        trackingEvent.user = trackingUser
 
-            return trackingEvent
-        }
+        return Future.init(value: trackingEvent)
     }
 
     class func sendEvent(_ verb: String, resource: BaseModel, context: [String: String] = [:]) -> Future<Void, XikoloError> {

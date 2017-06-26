@@ -23,11 +23,10 @@ class MainViewController : UIViewController {
 
     func configureViews() {
         if UserProfileHelper.isLoggedIn() {
-            UserProfileHelper.getUser().onSuccess { user in
-                self.displayNameView.text = user.firstName + " " + user.lastName
-                if user.visual != "" {
-                    self.profileImageView.sd_setImage(with: URL(string: user.visual))
-                }
+
+            UserHelper.syncMe().onSuccess { user in
+                self.displayNameView.text = (user.profile!.first_name ?? "") + " " + (user.profile!.last_name ?? "")
+                self.profileImageView.sd_setImage(with: user.avatar_url)
                 self.profileImageView.isHidden = false
                 self.displayNameView.isHidden = false
                 self.settingsButton.isHidden = false

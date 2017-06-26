@@ -7,12 +7,14 @@
 //
 
 import BrightFutures
+import Foundation
 import Spine
 
-class UserProfileProvider {
+class UserProvider {
 
-    class func getUserProfile() -> Future<UserProfileSpine, XikoloError> {
-        let query = Query(resourceType: UserProfileSpine.self)
+    class func getMe() -> Future<UserSpine, XikoloError> {
+        var query = Query(resourceType: UserSpine.self, path: "/api/v2/users/me")
+        query.include("profile")
         return SpineHelper.findOne(query)
     }
 

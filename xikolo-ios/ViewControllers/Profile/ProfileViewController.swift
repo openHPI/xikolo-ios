@@ -39,18 +39,21 @@ class ProfileViewController: AbstractTabContentViewController {
             nameView.isHidden = false
             emailView.isHidden = false
             logoutButton.isHidden = false
-
-            UserProfileHelper.getUser().onSuccess { user in
-                self.nameView.text = user.firstName + " " + user.lastName
-                self.emailView.text = user.email
-                self.profileImage.sd_setImage(with: URL(string: user.visual))
-            }
+            UserHelper.syncMe().onSuccess(callback: { _ in self.updateProfileInfo() })
+            updateProfileInfo()
         } else {
             nameView.isHidden = true
             emailView.isHidden = true
             logoutButton.isHidden = true
-            profileImage.image = UIImage(named: "avatar")
         }
+    }
+
+    func updateProfileInfo() {
+        guard let user = try! UserHelper.getMe() else { return }
+        let userProfile = user.profile!
+        self.emailView.text = userProfile.email
+        self.nameView.text = (userProfile.first_name ?? "") + " " + (userProfile.last_name ?? "")
+        self.profileImage.sd_setImage(with: user.avatar_url)
     }
 
 }

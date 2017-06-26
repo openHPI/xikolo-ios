@@ -45,7 +45,10 @@ class CourseSectionSpine : BaseModelSpine {
     var title: String?
     var section_description: String?
     var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
-    
+    var start_at: Date?
+    var end_at: Date?
+    var accessible_int: NSNumber?
+
     override class var cdType: BaseModel.Type {
         return CourseSection.self
     }

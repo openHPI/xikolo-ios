@@ -14,9 +14,11 @@ class CourseSectionHelper {
 
     static func getSectionRequest(_ course: Course) -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseSection")
-        request.predicate = NSPredicate(format: "course = %@", course)
-        let titleSort = NSSortDescriptor(key: "position", ascending: true)
-        request.sortDescriptors = [titleSort]
+        let coursePredicate = NSPredicate(format: "course = %@", course)
+        let accessiblePredicate = NSPredicate(format: "accessible_int == true")
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [coursePredicate, accessiblePredicate])
+        let positionSort = NSSortDescriptor(key: "position", ascending: true)
+        request.sortDescriptors = [positionSort]
         return request
     }
 

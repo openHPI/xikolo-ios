@@ -1,5 +1,5 @@
 //
-//  NewsArticleProvider.swift
+//  AnnouncementProvider.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 04.07.16.
@@ -10,10 +10,10 @@ import BrightFutures
 import Foundation
 import Spine
 
-class NewsArticleProvider {
+class AnnouncementProvider {
 
-    class func getNewsArticles() -> Future<[NewsArticleSpine], XikoloError> {
-        var query = Query(resourceType: NewsArticleSpine.self)
+    class func getAnnouncements() -> Future<[AnnouncementSpine], XikoloError> {
+        var query = Query(resourceType: AnnouncementSpine.self)
         query.addPredicateWithKey("global", value: "true", type: .equalTo)
 
         return SpineHelper.find(query)

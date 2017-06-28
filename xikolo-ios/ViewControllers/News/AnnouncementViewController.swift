@@ -1,5 +1,5 @@
 //
-//  NewsArticleViewController.swift
+//  AnnouncementViewController.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 04.07.16.
@@ -10,40 +10,40 @@ import UIKit
 import Down
 import SafariServices
 
-class NewsArticleViewController : UIViewController {
+class AnnouncementViewController : UIViewController {
 
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var dateView: UILabel!
 
-    var newsArticle: NewsArticle!
+    var announcement: Announcement!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let date = newsArticle.published_at {
+        if let date = announcement.published_at {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
             dateView.text = dateFormatter.string(from: date)
         }
 
-        titleView.text = newsArticle.title
-        titleView.heroID = "news_headline_" + newsArticle.id
+        titleView.text = announcement.title
+        titleView.heroID = "news_headline_" + announcement.id
 
         textView.delegate = self
-        if let newsText = newsArticle.text {
+        if let newsText = announcement.text {
             let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
             self.textView.attributedText = markDown
         }
         //save read state to server
-        newsArticle.visited = true
-        SpineHelper.save(NewsArticleSpine.init(newsItem: newsArticle))
+        announcement.visited = true
+        SpineHelper.save(AnnouncementSpine.init(announcementItem: announcement))
     }
 
 }
 
-extension NewsArticleViewController: UITextViewDelegate {
+extension AnnouncementViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         var url = URL
@@ -66,5 +66,5 @@ extension NewsArticleViewController: UITextViewDelegate {
     func getURL(forString string: String) -> URL? {
         return URL(string: string) // necessary because someone clever put the argument in CAPS in the function above
     }
-    
+
 }

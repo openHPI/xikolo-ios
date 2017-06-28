@@ -1,5 +1,5 @@
 //
-//  NewsArticle.swift
+//  Announcement.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 04.07.16.
@@ -10,7 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
-class NewsArticle : BaseModel {
+class Announcement : BaseModel {
 
     var visited: Bool? {
         get {
@@ -24,7 +24,7 @@ class NewsArticle : BaseModel {
 
 }
 
-class NewsArticleSpine : BaseModelSpine {
+class AnnouncementSpine : BaseModelSpine {
 
     var title: String?
     var text: String?
@@ -34,18 +34,18 @@ class NewsArticleSpine : BaseModelSpine {
     var course: CourseSpine?
 
     //used for PATCH
-    convenience init(newsItem: NewsArticle){
+    convenience init(announcementItem: Announcement){
         self.init()
-        self.id = newsItem.id
-        self.visited_int = newsItem.visited_int
+        self.id = announcementItem.id
+        self.visited_int = announcementItem.visited_int
     }
-    
+
     override class var cdType: BaseModel.Type {
-        return NewsArticle.self
+        return Announcement.self
     }
 
     override class var resourceType: ResourceType {
-        return "news-articles"
+        return "announcements"
     }
 
     override class var fields: [Field] {
@@ -57,5 +57,5 @@ class NewsArticleSpine : BaseModelSpine {
             "course": ToOneRelationship(CourseSpine.self).readOnly(),
         ])
     }
-    
+
 }

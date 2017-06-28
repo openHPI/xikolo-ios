@@ -1,0 +1,31 @@
+//
+//  AnnouncementHelper.swift
+//  xikolo-ios
+//
+//  Created by Bjarne Sievers on 04.07.16.
+//  Copyright © 2016 HPI. All rights reserved.
+//
+
+import BrightFutures
+import CoreData
+import Result
+
+class AnnouncementHelper {
+
+    static func getRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Announcement")
+        let dateSort = NSSortDescriptor(key: "published_at", ascending: false)
+        request.sortDescriptors = [dateSort]
+        return request
+    }
+
+    static func syncAnnouncements() -> Future<[Announcement], XikoloError> {
+        return AnnouncementProvider.getAnnouncements().flatMap { spineAnnouncements -> Future<[BaseModel], XikoloError> in
+            let request = getRequest()
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineAnnouncements, inject: nil, save: true)
+        }.map { cdAnnouncements in
+            return cdAnnouncements as! [Announcement]
+        }
+    }
+
+}

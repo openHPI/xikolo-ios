@@ -23,6 +23,8 @@ class CourseCell : UICollectionViewCell {
     func configure(_ course: Course) {
         backgroundImage.image = nil
         backgroundImage.backgroundColor = UIColor.gray
+        backgroundImage.sd_setShowActivityIndicatorView(true)
+        backgroundImage.sd_setIndicatorStyle(.gray)
         backgroundImage.sd_setImage(with: course.image_url)
 
         nameLabel.text = course.title

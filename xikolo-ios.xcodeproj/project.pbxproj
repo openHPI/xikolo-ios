@@ -3007,7 +3007,7 @@
 					709C93021EF0952500F8F045 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = WP53SSE8S6;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -5642,13 +5642,15 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/moocHOUSE/xikolo-ios.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Branding/moocHOUSE/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
 				PRODUCT_NAME = moocHOUSE;
+				PROVISIONING_PROFILE = "7ca93649-9f7f-4990-afde-5f60ad938d4f";
+				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
@@ -5670,6 +5672,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
 				PRODUCT_NAME = moocHOUSE;
+				PROVISIONING_PROFILE = "7ca93649-9f7f-4990-afde-5f60ad938d4f";
+				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

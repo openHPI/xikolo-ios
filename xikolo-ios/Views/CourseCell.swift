@@ -30,6 +30,7 @@ class CourseCell : UICollectionViewCell {
         nameLabel.text = course.title
         nameLabel.heroID = "course_title_" + course.id
         teacherLabel.text = course.teachers
+        teacherLabel.textColor = Brand.TintColorSecond
         teacherLabel.heroID = "course_teacher_" + course.id
         languageLabel.text = course.language_translated
         languageLabel.heroID = "course_language_" + course.id

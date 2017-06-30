@@ -29,6 +29,7 @@ class CourseDetailViewController: UIViewController {
         languageView.text = course.language_translated
         languageView.heroID = "course_language_" + course.id
         teacherView.text = course.teachers
+        teacherView.textColor = Brand.TintColorSecond
         teacherView.heroID = "course_teacher_" + course.id
         imageView.heroID = "course_image_" + course.id
         

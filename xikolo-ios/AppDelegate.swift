@@ -9,6 +9,7 @@
 import CoreData
 import UIKit
 import PinpointKit
+import SDWebImage
 
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
@@ -25,7 +26,17 @@ class AppDelegate : AbstractAppDelegate {
         window?.tintColor = Brand.TintColor
         updateAnnouncements()
         EnrollmentHelper.syncEnrollments()
-       
+
+        #if OPENSAP
+            // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.
+            // By setting 'username' and 'password', a dummy certificate is created that allows the request
+            // of SDWebImage to pass.
+            // See 'SDWebImageDownloaderOperation.urlSession(_:task:didReceive:completionHandler:)'
+            // SDWebImage (ver. 4.0.0) -> SDWebImageDownloaderOperation -> Line 408
+            SDWebImageDownloader.shared().username = "open"
+            SDWebImageDownloader.shared().password = "SAP"
+        #endif
+
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

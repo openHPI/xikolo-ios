@@ -5,14 +5,14 @@
 /* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "ctU-fN-Oxt"; */
 "ctU-fN-Oxt.normalTitle" = "Ausloggen";
 
-/* Class = "UINavigationItem"; title = "Profile"; ObjectID = "jbm-65-XMz"; */
-"jbm-65-XMz.title" = "Profil";
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "jbm-65-XMz"; */
+"jbm-65-XMz.title" = "Einstellungen";
 
 /* Class = "UILabel"; text = "Imprint"; ObjectID = "lUL-sh-oXa"; */
 "lUL-sh-oXa.text" = "Impressum";
 
-/* Class = "UITabBarItem"; title = "Profile"; ObjectID = "r8t-cE-qA4"; */
-"r8t-cE-qA4.title" = "Profil";
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "r8t-cE-qA4"; */
+"r8t-cE-qA4.title" = "Einstellungen";
 
 /* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "xUb-k5-964"; */
 "xUb-k5-964.text" = "Datenschutzerklärung";

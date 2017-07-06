@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OO5-iD-7Qh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OO5-iD-7Qh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="wo9-Tx-TCQ">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgN-Oc-elr" customClass="ProfileViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgN-Oc-elr" customClass="SettingsViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L3X-f4-S5k"/>
                         <viewControllerLayoutGuide type="bottom" id="W5H-YG-xfX"/>
@@ -180,7 +180,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="jbm-65-XMz">
+                    <navigationItem key="navigationItem" title="Settings" id="jbm-65-XMz">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="Mnf-wa-pbl">
                             <connections>
                                 <action selector="loginBarButton:" destination="BgN-Oc-elr" id="X9u-hu-cPI"/>
@@ -210,12 +210,12 @@
                 <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Main" referencedIdentifier="LoginNavigationController" id="O8W-IG-m3E" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oIA-ic-Kqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1312.5" y="0.0"/>
+            <point key="canvasLocation" x="1481" y="76"/>
         </scene>
-        <!--Profile Table View Controller-->
+        <!--Settings Table View Controller-->
         <scene sceneID="p6v-zt-3Vp">
             <objects>
-                <tableViewController storyboardIdentifier="ProfileStaticTableView" id="MmR-Ub-Xo1" customClass="ProfileTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsStaticTableView" id="MmR-Ub-Xo1" customClass="SettingsTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fXa-23-Zlb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,7 +223,7 @@
                         <sections>
                             <tableViewSection id="IG9-cs-8yz">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileImprintCell" textLabel="lUL-sh-oXa" style="IBUITableViewCellStyleDefault" id="72A-fr-n2X">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsImprintCell" textLabel="lUL-sh-oXa" style="IBUITableViewCellStyleDefault" id="72A-fr-n2X">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="72A-fr-n2X" id="luK-V9-UuK">
@@ -240,7 +240,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileDataPrivacyCell" textLabel="xUb-k5-964" style="IBUITableViewCellStyleDefault" id="UJa-qb-H8T">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDataPrivacyCell" textLabel="xUb-k5-964" style="IBUITableViewCellStyleDefault" id="UJa-qb-H8T">
                                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJa-qb-H8T" id="HHV-Fy-oJG">
@@ -268,13 +268,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gx7-eb-Rf6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628" y="264"/>
+            <point key="canvasLocation" x="1628" y="285"/>
         </scene>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="DLf-bN-3Fj">
             <objects>
-                <navigationController storyboardIdentifier="ProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="OO5-iD-7Qh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="TabBarIconUser" selectedImage="TabBarIconUserSelected" id="r8t-cE-qA4"/>
+                <navigationController storyboardIdentifier="SettingsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="OO5-iD-7Qh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="TabBarIconSettings" selectedImage="TabBarIconSettingsSelected" id="r8t-cE-qA4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KYe-EY-bH9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -291,8 +291,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TabBarIconUser" width="25" height="25"/>
-        <image name="TabBarIconUserSelected" width="25" height="25"/>
+        <image name="TabBarIconSettings" width="25" height="25"/>
+        <image name="TabBarIconSettingsSelected" width="25" height="25"/>
         <image name="avatar" width="500" height="500"/>
         <image name="profile-header-placeholder" width="1734" height="808"/>
     </resources>

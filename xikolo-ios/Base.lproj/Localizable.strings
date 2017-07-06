@@ -18,7 +18,7 @@
 "tab_my_courses" = "My Courses";
 "tab_courses" = "Courses";
 "tab_news" = "News";
-"tab_profile" = "Profile";
+"tab_settings" = "Settings";
 
 // Login
 "login" = "Login";
@@ -27,6 +27,6 @@
 "password" = "Password";
 "register" = "Register";
 
-// Profile
+// Settings
 "enrollments" = "Enrollments";
 "logout" = "Logout";

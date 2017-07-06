@@ -405,7 +405,7 @@
 		24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		24BA41041D3F9B4200E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
-		24BA41061D3F9B5500E38C2C /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */; };
+		24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
 		24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		24BA41081D3F9B5E00E38C2C /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
 		24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
@@ -415,8 +415,8 @@
 		24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
 		24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		24BA41111D3F9B7D00E38C2C /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
-		24BA41141D3F9B8600E38C2C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
-		24BA41151D3F9B8800E38C2C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
+		24BA41141D3F9B8600E38C2C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* SettingsTableViewController.swift */; };
+		24BA41151D3F9B8800E38C2C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
 		24BA41171D3F9B8C00E38C2C /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -712,9 +712,9 @@
 		70D1EA7A1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
 		70D1EA7B1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
 		70D1EA7C1EF0AB4F0088C0FF /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
-		70D1EA7D1EF0AB500088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
-		70D1EA7E1EF0AB510088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
-		70D1EA7F1EF0AB510088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		70D1EA7D1EF0AB500088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		70D1EA7E1EF0AB510088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		70D1EA7F1EF0AB510088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		70D1EA801EF0AB530088C0FF /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */; };
 		70D1EA811EF0AB530088C0FF /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */; };
 		70D1EA821EF0AB540088C0FF /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6E1CFC938700CAD9FE /* Video+CoreDataProperties.swift */; };
@@ -815,8 +815,8 @@
 		70D1EAE41EF0AC710088C0FF /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		70D1EAE51EF0AC720088C0FF /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		70D1EAE61EF0AC790088C0FF /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
-		70D1EAE71EF0AC7D0088C0FF /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */; };
-		70D1EAE81EF0AC7E0088C0FF /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */; };
+		70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
+		70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
 		70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
 		70D1EAEA1EF0AC930088C0FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		70D1EAEB1EF0AC980088C0FF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82161DD9E9A400559217 /* DashboardViewController.swift */; };
@@ -832,11 +832,11 @@
 		70D1EAF51EF0ACB40088C0FF /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */; };
 		70D1EAF61EF0ACB60088C0FF /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
 		70D1EAF71EF0ACBA0088C0FF /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
-		70D1EAF81EF0ACBC0088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
-		70D1EAF91EF0ACBF0088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		70D1EAF81EF0ACBC0088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		70D1EAF91EF0ACBF0088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		70D1EAFA1EF0ACC10088C0FF /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22701D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift */; };
-		70D1EAFB1EF0ACC50088C0FF /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
-		70D1EAFC1EF0ACC80088C0FF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
+		70D1EAFB1EF0ACC50088C0FF /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* SettingsTableViewController.swift */; };
+		70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
 		70D1EAFD1EF0ACCA0088C0FF /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		70D1EAFE1EF0ACCD0088C0FF /* CustomHeaderWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */; };
 		70D1EAFF1EF0ACD60088C0FF /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1357C41D996722004407AA /* PlatformEventCell.swift */; };
@@ -1118,7 +1118,7 @@
 		AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
 		AB77C29B1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
 		AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
+		AB8C5B971CDB30FC007547DE /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* SettingsTableViewController.swift */; };
 		AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
 		AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */; };
 		AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -1151,7 +1151,7 @@
 		ABA0BB441E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */; };
 		ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
-		ABA0F0131DF8CC2F0001D88D /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */; };
+		ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
 		ABA0F0141DF8CC360001D88D /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		ABA0F0151DF8CC3B0001D88D /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
 		ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
@@ -1164,8 +1164,8 @@
 		ABA0F01E1DF8CCAF0001D88D /* CourseDecisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */; };
 		ABA0F01F1DF8CCB10001D88D /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABA0F0201DF8CCB40001D88D /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
-		ABA0F0231DF8CCBC0001D88D /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */; };
-		ABA0F0241DF8CCBF0001D88D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
+		ABA0F0231DF8CCBC0001D88D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C5B961CDB30FC007547DE /* SettingsTableViewController.swift */; };
+		ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
 		ABA0F0261DF8CCC50001D88D /* AbstractTabContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */; };
 		ABA0F0271DF8CCCA0001D88D /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		ABA0F0281DF8CCCC0001D88D /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -1533,7 +1533,7 @@
 		F80D67981B98751700E27520 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
 		F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */; };
-		F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* ProfileViewController.swift */; };
+		F852253A1B4D27D700C9BF56 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
 		F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
@@ -1806,7 +1806,7 @@
 		AB1C03521D92C1C40053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		AB1C03541D92CCED0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabNews.strings; sourceTree = "<group>"; };
 		AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownHelper.swift; sourceTree = "<group>"; };
-		AB2193961E07043C00E79DB5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabProfile.strings; sourceTree = "<group>"; };
+		AB2193961E07043C00E79DB5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
 		AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractTabContentViewController.swift; sourceTree = "<group>"; };
 		AB2802C71D2A8ABB008C8BAE /* Announcement+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Announcement+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB2802C81D2A8ABB008C8BAE /* Announcement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
@@ -1832,7 +1832,7 @@
 		AB4F228B1D80BC2200ED0BF1 /* PlatformEventProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventProvider.swift; sourceTree = "<group>"; };
 		AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		AB77C2961DF956EE00B30619 /* Brand+generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+generic.swift"; sourceTree = "<group>"; };
-		AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		AB8C5B961CDB30FC007547DE /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openHPI/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewController.swift; sourceTree = "<group>"; };
@@ -1846,7 +1846,7 @@
 		AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		AB9AF2D11CF72D9D00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabCourses.storyboard; sourceTree = "<group>"; };
 		AB9AF2D61CF72E8E00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabDashboard.storyboard; sourceTree = "<group>"; };
-		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabProfile.storyboard; sourceTree = "<group>"; };
+		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabSettings.storyboard; sourceTree = "<group>"; };
 		ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLabelHelper.swift; sourceTree = "<group>"; };
 		ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHPI4.ttf; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
@@ -1903,7 +1903,7 @@
 		F80D679B1B9875BA00E27520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F81523921B67AC9F009803B1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		F81DFF8F1B8C785600A80D27 /* UserProfileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileProvider.swift; sourceTree = "<group>"; };
-		F85225371B4D27D700C9BF56 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F85225371B4D27D700C9BF56 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileHelper.swift; sourceTree = "<group>"; };
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -2451,12 +2451,13 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
-		AB6AE0C41CF7D69200708654 /* Profile */ = {
+		AB6AE0C41CF7D69200708654 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				AB8C5B961CDB30FC007547DE /* ProfileTableViewController.swift */,
-				F85225371B4D27D700C9BF56 /* ProfileViewController.swift */,
+				AB8C5B961CDB30FC007547DE /* SettingsTableViewController.swift */,
+				F85225371B4D27D700C9BF56 /* SettingsViewController.swift */,
 			);
+			name = Settings;
 			path = Profile;
 			sourceTree = "<group>";
 		};
@@ -2607,7 +2608,7 @@
 				AB6AE0C61CF7D6B000708654 /* Dashboard */,
 				AB6AE0C51CF7D6A700708654 /* Courses */,
 				AB6AE0C71CF7D6CC00708654 /* News */,
-				AB6AE0C41CF7D69200708654 /* Profile */,
+				AB6AE0C41CF7D69200708654 /* Settings */,
 				AB2802C21D29D4D2008C8BAE /* AbstractTabContentViewController.swift */,
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
 			);
@@ -2656,7 +2657,7 @@
 				AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */,
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
-				AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */,
+				AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */,
 			);
 			name = Storyboards;
 			path = Layouts;
@@ -3134,7 +3135,7 @@
 				24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */,
 				AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
-				24BA41061D3F9B5500E38C2C /* TabProfile.storyboard in Resources */,
+				24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Localizable.stringsdict in Resources */,
 				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
 				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
@@ -3204,7 +3205,7 @@
 				70D1EB0A1EF0AD000088C0FF /* LaunchScreen.storyboard in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
 				70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */,
-				70D1EAE81EF0AC7E0088C0FF /* TabProfile.storyboard in Resources */,
+				70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3241,7 +3242,7 @@
 				70DABFEE1ED833110095E551 /* Info.plist in Resources */,
 				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
-				70D1EAE71EF0AC7D0088C0FF /* TabProfile.storyboard in Resources */,
+				70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				2490C4D31D1D6F7100F42949 /* Localizable.strings in Resources */,
 				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
@@ -3264,7 +3265,7 @@
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Localizable.strings in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
-				ABA0F0131DF8CC2F0001D88D /* TabProfile.storyboard in Resources */,
+				ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */,
 				ABA0F02C1DF8CCDD0001D88D /* assets-ios.xcassets in Resources */,
 				ABA0F0151DF8CC3B0001D88D /* TabNews.storyboard in Resources */,
 				AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */,
@@ -3905,7 +3906,7 @@
 				ABC8A1711D689ED80059CEF2 /* PeerAssessment.swift in Sources */,
 				24BA40D01D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
 				ABCE24311E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
-				24BA41151D3F9B8800E38C2C /* ProfileViewController.swift in Sources */,
+				24BA41151D3F9B8800E38C2C /* SettingsViewController.swift in Sources */,
 				70EA7EB41EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
@@ -3999,7 +4000,7 @@
 				7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
 				ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
-				24BA41141D3F9B8600E38C2C /* ProfileTableViewController.swift in Sources */,
+				24BA41141D3F9B8600E38C2C /* SettingsTableViewController.swift in Sources */,
 				70F4564D1F0139B400A2C6B7 /* NewsViewController.swift in Sources */,
 				24BA40931D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */,
 				24BA40C01D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
@@ -4412,13 +4413,13 @@
 				70D1EB3C1EF12E2A0088C0FF /* XikoloURL.swift in Sources */,
 				70D1E9F11EF0AA8A0088C0FF /* CollectionType+dict.swift in Sources */,
 				70D1EA2B1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
-				70D1EA7D1EF0AB500088C0FF /* (null) in Sources */,
+				70D1EA7D1EF0AB500088C0FF /* BuildFile in Sources */,
 				70D1EAE01EF0AC460088C0FF /* UIApplication+VersionInfo.swift in Sources */,
 				70D1EAEF1EF0ACA50088C0FF /* CourseDecisionViewController.swift in Sources */,
 				70D1EA4D1EF0AB160088C0FF /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				70D1EA041EF0AAB70088C0FF /* Channel+CoreDataProperties.swift in Sources */,
 				70F456301F0128E000A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */,
-				70D1EAF91EF0ACBF0088C0FF /* (null) in Sources */,
+				70D1EAF91EF0ACBF0088C0FF /* BuildFile in Sources */,
 				70D1EB071EF0ACE90088C0FF /* CourseDateHeader.swift in Sources */,
 				70D1EAEB1EF0AC980088C0FF /* DashboardViewController.swift in Sources */,
 				70D1EB051EF0ACE40088C0FF /* CourseDateCell.swift in Sources */,
@@ -4471,10 +4472,10 @@
 				70D1E9F71EF0AA980088C0FF /* UIView+shake.swift in Sources */,
 				70D1E9FE1EF0AAAF0088C0FF /* BaseModel.swift in Sources */,
 				70D1EA221EF0AAE10088C0FF /* CourseItem+CoreDataProperties.swift in Sources */,
-				70D1EAFC1EF0ACC80088C0FF /* ProfileViewController.swift in Sources */,
+				70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */,
 				70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */,
 				70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */,
-				70D1EAFB1EF0ACC50088C0FF /* ProfileTableViewController.swift in Sources */,
+				70D1EAFB1EF0ACC50088C0FF /* SettingsTableViewController.swift in Sources */,
 				70D1EA981EF0AB7B0088C0FF /* AnnouncementProvider.swift in Sources */,
 				70D1EA5F1EF0AB310088C0FF /* QuizQuestion.swift in Sources */,
 				70D1EA651EF0AB370088C0FF /* QuizSubmission.swift in Sources */,
@@ -4487,7 +4488,7 @@
 				70D1EB281EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */,
 				70D1EB111EF12DF00088C0FF /* Brand+generic.swift in Sources */,
 				70D1EAF21EF0ACAD0088C0FF /* DropdownViewController.swift in Sources */,
-				70D1EAF81EF0ACBC0088C0FF /* (null) in Sources */,
+				70D1EAF81EF0ACBC0088C0FF /* BuildFile in Sources */,
 				70D1EA011EF0AAB30088C0FF /* BaseModelSpine.swift in Sources */,
 				70D1EA1C1EF0AADB0088C0FF /* CourseDate+CoreDataProperties.swift in Sources */,
 				70D1E9F51EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
@@ -4662,7 +4663,7 @@
 				70D1EB411EF133FA0088C0FF /* ServiceProvider.swift in Sources */,
 				70D1EB121EF12DF00088C0FF /* Brand+generic.swift in Sources */,
 				70D1EA271EF0AAE60088C0FF /* CourseItem.swift in Sources */,
-				70D1EA7E1EF0AB510088C0FF /* (null) in Sources */,
+				70D1EA7E1EF0AB510088C0FF /* BuildFile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4696,7 +4697,7 @@
 				70D1EA061EF0AAB90088C0FF /* Channel+CoreDataProperties.swift in Sources */,
 				70D1EA331EF0AAF40088C0FF /* Enrollment.swift in Sources */,
 				70D1EADB1EF0AC2D0088C0FF /* Routes.swift in Sources */,
-				70D1EA7F1EF0AB510088C0FF /* (null) in Sources */,
+				70D1EA7F1EF0AB510088C0FF /* BuildFile in Sources */,
 				70D1EA0F1EF0AACB0088C0FF /* Content.swift in Sources */,
 				70D1EA4C1EF0AB140088C0FF /* PlatformEvent.swift in Sources */,
 				70D1EA491EF0AB100088C0FF /* Announcement.swift in Sources */,
@@ -4766,7 +4767,7 @@
 				2448A9DE1CDCD9F3009A1AEA /* SpineModelHelper.swift in Sources */,
 				243CE4831D709999007C59B6 /* Enrollment.swift in Sources */,
 				24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */,
-				AB8C5B971CDB30FC007547DE /* ProfileTableViewController.swift in Sources */,
+				AB8C5B971CDB30FC007547DE /* SettingsTableViewController.swift in Sources */,
 				AB4A019A1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				2433A5A61CE635E80060DD98 /* CourseItemProvider.swift in Sources */,
@@ -4869,7 +4870,7 @@
 				AB1357C51D996722004407AA /* PlatformEventCell.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */,
 				AB4F22711D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift in Sources */,
-				F852253A1B4D27D700C9BF56 /* ProfileViewController.swift in Sources */,
+				F852253A1B4D27D700C9BF56 /* SettingsViewController.swift in Sources */,
 				2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				AB34C9BB1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
@@ -4953,7 +4954,7 @@
 				AB17C5771DFCAE040013BBCD /* CourseDatesTableViewController.swift in Sources */,
 				ABA0F0991DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				AB17C5871DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
-				ABA0F0241DF8CCBF0001D88D /* ProfileViewController.swift in Sources */,
+				ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */,
 				ABA0F0B11DF8CE160001D88D /* RichTextProvider.swift in Sources */,
 				ABA0F0F61DF8CEAB0001D88D /* Settings.swift in Sources */,
 				ABA0F0B31DF8CE190001D88D /* VideoProvider.swift in Sources */,
@@ -4964,7 +4965,7 @@
 				ABC1BF1B1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
 				ABA0F0261DF8CCC50001D88D /* AbstractTabContentViewController.swift in Sources */,
 				703005B61EFEFC0300CCDCC9 /* UserProvider.swift in Sources */,
-				ABA0F0231DF8CCBC0001D88D /* ProfileTableViewController.swift in Sources */,
+				ABA0F0231DF8CCBC0001D88D /* SettingsTableViewController.swift in Sources */,
 				ABA0F0781DF8CDC00001D88D /* PeerAssessment.swift in Sources */,
 				ABA0F0DD1DF8CE6B0001D88D /* AnnouncementHelper.swift in Sources */,
 				ABA0F0D91DF8CE650001D88D /* VideoHelper.swift in Sources */,
@@ -5368,13 +5369,13 @@
 			name = TabDashboard.storyboard;
 			sourceTree = "<group>";
 		};
-		AB9AF2D81CF72EF100ED3EB0 /* TabProfile.storyboard */ = {
+		AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D91CF72EF100ED3EB0 /* Base */,
 				AB2193961E07043C00E79DB5 /* de */,
 			);
-			name = TabProfile.storyboard;
+			name = TabSettings.storyboard;
 			sourceTree = "<group>";
 		};
 		ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */ = {

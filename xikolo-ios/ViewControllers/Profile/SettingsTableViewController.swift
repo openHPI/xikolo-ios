@@ -1,5 +1,5 @@
 //
-//  ProfileTableViewController.swift
+//  SettingsTableViewController.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 05.05.16.
@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class ProfileTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController {
 
     var user: UserProfile?
 

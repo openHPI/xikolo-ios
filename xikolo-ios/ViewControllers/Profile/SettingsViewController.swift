@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  SettingsViewController.swift
 //  xikolo-ios
 //
 //  Created by Jonas Müller on 08.07.15.
@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class ProfileViewController: AbstractTabContentViewController {
+class SettingsViewController: AbstractTabContentViewController {
 
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!

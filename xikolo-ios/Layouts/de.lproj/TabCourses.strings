@@ -8,6 +8,9 @@
 /* Class = "UIButton"; normalTitle = "open slides"; ObjectID = "e3P-4C-sVC"; */
 "e3P-4C-sVC.normalTitle" = "Folien anschauen";
 
+/* Class = "UIButton"; normalTitle = "Start Quiz"; ObjectID = "AU9-y4-ggR"; */
+"AU9-y4-ggR.normalTitle" = "Quiz starten";
+
 /* Class = "UITabBarItem"; title = "Courses"; ObjectID = "fhC-LU-HI2"; */
 "fhC-LU-HI2.title" = "Kurse";
 

@@ -80,8 +80,10 @@ class CourseContentTableViewController: UITableViewController {
         switch item.content {
             case is Video:
                 performSegue(withIdentifier: "ShowVideo", sender: item)
-            case is LTIExercise, is Quiz, is PeerAssessment:
+            case is Quiz:
                 performSegue(withIdentifier: "ShowQuiz", sender: item)
+            case is LTIExercise, is PeerAssessment:
+                performSegue(withIdentifier: "ShowWebview", sender: item)
             case is RichText:
                 performSegue(withIdentifier: "ShowRichtext", sender: item)
             default:
@@ -120,6 +122,10 @@ class CourseContentTableViewController: UITableViewController {
             videoView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
             break
         case "ShowQuiz":
+            let quizView = segue.destination as! QuizViewController
+            quizView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
+            break
+        case "ShowWebview":
             let webView = segue.destination as! WebViewController
             if let courseID = courseItem!.section?.course?.id {
                 let courseURL = Routes.COURSES_URL + courseID

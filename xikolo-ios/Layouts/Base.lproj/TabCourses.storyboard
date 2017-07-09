@@ -502,8 +502,9 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="5Hh-M9-wy1" kind="show" identifier="ShowVideo" id="0UY-Iy-ApH"/>
-                        <segue destination="qTX-IX-O1x" kind="show" identifier="ShowQuiz" id="kqR-eJ-mfT"/>
                         <segue destination="xJm-gx-LIF" kind="show" identifier="ShowRichtext" id="Gdn-oc-21n"/>
+                        <segue destination="FbY-0Y-s1K" kind="show" identifier="ShowQuiz" id="KC3-Bq-egM"/>
+                        <segue destination="qTX-IX-O1x" kind="show" identifier="ShowWebview" id="Slv-yG-Hf1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rj-3l-8gO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -647,7 +648,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iTA-nh-Qzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3137" y="-164"/>
+            <point key="canvasLocation" x="3833" y="-345"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="Zbn-mr-shH">
@@ -737,6 +738,112 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOY-fk-G0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3136.8000000000002" y="589.65517241379314"/>
+        </scene>
+        <!--Quiz View Controller-->
+        <scene sceneID="FBS-hO-6p2">
+            <objects>
+                <viewController id="FbY-0Y-s1K" customClass="QuizViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uma-vq-8Oc"/>
+                        <viewControllerLayoutGuide type="bottom" id="vBE-Jw-Anm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="18o-RD-wnG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Bw-SN-j5W">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Owt-pV-TNO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ua-mp-JHO">
+                                                <rect key="frame" x="20" y="20" width="43.5" height="21"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3c0-5D-vzw">
+                                                <rect key="frame" x="20" y="75" width="335" height="33"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="Hu7-Yd-OWf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="Hu7-Yd-OWf"/>
+                                                    </mask>
+                                                </variation>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AU9-y4-ggR">
+                                                <rect key="frame" x="153" y="116" width="69" height="30"/>
+                                                <state key="normal" title="Start Quiz"/>
+                                                <connections>
+                                                    <action selector="startQuiz:" destination="FbY-0Y-s1K" eventType="touchUpInside" id="c0j-GF-15g"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pga-OW-9D8">
+                                                <rect key="frame" x="20" y="49" width="37.5" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pga-OW-9D8" secondAttribute="trailing" constant="20" symbolic="YES" id="4PV-4W-PPU"/>
+                                            <constraint firstItem="8Ua-mp-JHO" firstAttribute="leading" secondItem="Owt-pV-TNO" secondAttribute="leading" constant="20" symbolic="YES" id="4yw-Mi-dEL"/>
+                                            <constraint firstItem="pga-OW-9D8" firstAttribute="top" secondItem="8Ua-mp-JHO" secondAttribute="bottom" constant="8" symbolic="YES" id="6qc-Ms-Gbp"/>
+                                            <constraint firstItem="3c0-5D-vzw" firstAttribute="top" secondItem="pga-OW-9D8" secondAttribute="bottom" constant="8" symbolic="YES" id="98C-QY-0cS"/>
+                                            <constraint firstItem="AU9-y4-ggR" firstAttribute="top" secondItem="3c0-5D-vzw" secondAttribute="bottom" constant="8" symbolic="YES" id="9vu-Y6-ieZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="3c0-5D-vzw" secondAttribute="trailing" constant="20" symbolic="YES" id="Edo-Xc-2cX"/>
+                                            <constraint firstItem="8Ua-mp-JHO" firstAttribute="top" secondItem="Owt-pV-TNO" secondAttribute="top" constant="20" symbolic="YES" id="EmB-Se-QH9"/>
+                                            <constraint firstItem="3c0-5D-vzw" firstAttribute="leading" secondItem="Owt-pV-TNO" secondAttribute="leading" constant="20" symbolic="YES" id="Pdp-oE-3W4"/>
+                                            <constraint firstItem="AU9-y4-ggR" firstAttribute="centerX" secondItem="Owt-pV-TNO" secondAttribute="centerX" id="REm-5w-7Ek"/>
+                                            <constraint firstAttribute="bottom" secondItem="AU9-y4-ggR" secondAttribute="bottom" constant="20" symbolic="YES" id="hDa-yI-g4g"/>
+                                            <constraint firstItem="pga-OW-9D8" firstAttribute="leading" secondItem="Owt-pV-TNO" secondAttribute="leading" constant="20" symbolic="YES" id="ws4-ip-LrF"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Ua-mp-JHO" secondAttribute="trailing" constant="20" symbolic="YES" id="y0W-E8-dqp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Owt-pV-TNO" secondAttribute="trailing" id="4W3-6v-j7L"/>
+                                    <constraint firstItem="Owt-pV-TNO" firstAttribute="leading" secondItem="6Bw-SN-j5W" secondAttribute="leading" id="AoK-v0-ZV3"/>
+                                    <constraint firstItem="Owt-pV-TNO" firstAttribute="top" secondItem="6Bw-SN-j5W" secondAttribute="top" id="kSp-bS-vXL"/>
+                                    <constraint firstAttribute="bottom" secondItem="Owt-pV-TNO" secondAttribute="bottom" id="kvr-uh-H2G"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Bw-SN-j5W" firstAttribute="leading" secondItem="18o-RD-wnG" secondAttribute="leading" id="JoQ-7b-Ujo"/>
+                            <constraint firstItem="6Bw-SN-j5W" firstAttribute="width" secondItem="18o-RD-wnG" secondAttribute="width" id="NYs-z3-OR6"/>
+                            <constraint firstItem="6Bw-SN-j5W" firstAttribute="height" secondItem="18o-RD-wnG" secondAttribute="height" id="TKY-5f-6BI"/>
+                            <constraint firstItem="6Bw-SN-j5W" firstAttribute="centerY" secondItem="18o-RD-wnG" secondAttribute="centerY" id="Yvh-wq-i0u"/>
+                            <constraint firstAttribute="trailing" secondItem="6Bw-SN-j5W" secondAttribute="trailing" id="ZBg-H8-mJ8"/>
+                            <constraint firstItem="Owt-pV-TNO" firstAttribute="width" secondItem="18o-RD-wnG" secondAttribute="width" id="cHW-gu-5E3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="explanationView" destination="3c0-5D-vzw" id="Gy4-ju-hx0"/>
+                        <outlet property="startQuizButton" destination="AU9-y4-ggR" id="L6i-Ml-IXb"/>
+                        <outlet property="titleView" destination="8Ua-mp-JHO" id="hSs-cl-uAz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ncZ-yV-VGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3136.8000000000002" y="-0.44977511244377816"/>
+        </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="Tl3-1b-ctw">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="li8-SI-LT1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6bD-81-FHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3888" y="464"/>
         </scene>
         <!--WebViewController-->
         <scene sceneID="uqh-vq-i1I">

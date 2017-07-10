@@ -18,6 +18,13 @@ class Video : Content {
         return "video"
     }
 
+    var hlsURL: URL? {
+        guard let urlString = self.single_stream_hls_url else {
+            return nil
+        }
+        return URL(string: urlString)
+    }
+
     func metadata() -> [AVMetadataItem] {
         var items: [AVMetadataItem] = []
         if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {
@@ -28,6 +35,7 @@ class Video : Content {
         }
         return items
     }
+
 
 }
 

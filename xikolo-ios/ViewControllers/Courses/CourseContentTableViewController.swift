@@ -25,7 +25,9 @@ class CourseContentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = course.title
+        self.setupEmptyState()
+
+        self.navigationItem.title = self.course.title
 
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
@@ -43,14 +45,15 @@ class CourseContentTableViewController: UITableViewController {
         NetworkIndicator.start()
         CourseSectionHelper.syncCourseSections(course).flatMap { sections in
             sections.map { section in
-                CourseItemHelper.syncCourseItems(section)
+                CourseItemHelper.syncCourseItems(section).map { courseItems in
+                    self.prefetcCourseContent(for: courseItems)
+                }
             }.sequence().onComplete { _ in
                 self.tableView.reloadEmptyDataSet()
             }
-        }.onSuccess { _ in
+        }.onComplete { _ in
             NetworkIndicator.end()
         }
-        setupEmptyState()
     }
 
     func setupEmptyState() {
@@ -77,6 +80,20 @@ class CourseContentTableViewController: UITableViewController {
                 // TODO: show error: unsupported type
                 break
         }
+    }
+
+    func prefetcCourseContent(for items: [CourseItem]) {
+        // prefetch rich text
+        let richTexts = items.flatMap {
+            return $0.content as? RichText
+        }
+        RichTextHelper.refresh(richTexts: richTexts)
+
+        // prefetch video info
+        let videos = items.flatMap {
+            return $0.content as? Video
+        }
+        VideoHelper.sync(videos: videos)
     }
 
     func showProctoringDialog(onComplete completionBlock: @escaping () -> Void) {

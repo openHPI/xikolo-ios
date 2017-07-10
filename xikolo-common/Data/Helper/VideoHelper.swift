@@ -12,11 +12,20 @@ import Result
 
 class VideoHelper {
 
-    static func syncVideo(_ video: Video) -> Future<Video, XikoloError> {
+    @discardableResult static func sync(video: Video) -> Future<Video, XikoloError> {
         return VideoProvider.getVideo(video.id).flatMap { spineVideo -> Future<[BaseModel], XikoloError> in
             return SpineModelHelper.syncObjectsFuture([video], spineObjects: [spineVideo], inject: nil, save: true)
         }.map { cdVideos in
             return cdVideos[0] as! Video
+        }
+    }
+
+    @discardableResult static func sync(videos: [Video]) -> Future<[Video], XikoloError> {
+        let videoIds = videos.map { $0.id }
+        return VideoProvider.getVideos(videoIds).flatMap { spineVideos -> Future<[BaseModel], XikoloError> in
+            return SpineModelHelper.syncObjectsFuture(videos, spineObjects: spineVideos, inject: nil, save: true)
+        }.map { cdVideos in
+            return cdVideos as! [Video]
         }
     }
 

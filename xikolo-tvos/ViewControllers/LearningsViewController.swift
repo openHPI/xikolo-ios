@@ -21,10 +21,10 @@ class LearningsViewController : UIViewController {
     var courseTabBarController: CourseTabBarController!
     var course: Course!
 
-    var sectionResultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    var sectionResultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
-    var itemResultsController: NSFetchedResultsController<NSFetchRequestResult>?
-    var itemResultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
+    var sectionResultsController: NSFetchedResultsController<CourseSection>!
+    var sectionResultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseSection>!
+    var itemResultsController: NSFetchedResultsController<CourseItem>?
+    var itemResultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<CourseItem>!
 
     var backgroundImageHelper: ViewControllerBlurredBackgroundHelper!
 
@@ -41,7 +41,7 @@ class LearningsViewController : UIViewController {
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: [sectionResultsController], cellReuseIdentifier: "CourseSectionCell")
-        let configuration = CollectionViewResultsControllerConfigurationWrapper(LearningsViewControllerSectionConfiguration())
+        let configuration = TableViewResultsControllerConfigurationWrapper(LearningsViewControllerSectionConfiguration())
         sectionResultsControllerDelegateImplementation.configuration = configuration
         sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
         sectionTableView.dataSource = sectionResultsControllerDelegateImplementation

@@ -19,8 +19,8 @@ class UserHelper {
     static func syncMe() -> Future<User, XikoloError> {
         return UserProvider.getMe().flatMap { spineUser -> Future<User, XikoloError> in
             let request = getUsersRequest()
-            return SpineModelHelper.syncObjectsFuture(request, spineObjects: [spineUser], inject: nil, save: true).map({ (basemodels) -> User in
-                return basemodels[0]
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: [spineUser], inject: nil, save: true).map({ (cdUsers) -> User in
+                return cdUsers[0]
             })
         }
     }

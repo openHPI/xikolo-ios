@@ -23,61 +23,61 @@ class CourseHelper {
     static fileprivate let completedPredicate = NSPredicate(format: "enrollment.completed_int == 1")
     static fileprivate let notcompletedPredicate = NSPredicate(format: "enrollment.completed_int == 0")
 
-    static func getGenericCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
+    static func getGenericCoursesRequest() -> NSFetchRequest<Course> {
+        let request: NSFetchRequest<Course> = Course.fetchRequest()
         let customOrderSort = NSSortDescriptor(key: "order", ascending: true)
         request.sortDescriptors = [customOrderSort]
         request.predicate = genericPredicate
         return request
     }
 
-    static func getAllCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getAllCoursesRequest() -> NSFetchRequest<Course> {
         return getGenericCoursesRequest()
     }
 
-    static func getUnenrolledCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getUnenrolledCoursesRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         request.predicate = unenrolledPredicate
         return request
     }
 
-    static func getEnrolledCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getEnrolledCoursesRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         request.predicate = enrolledPredicate
         return request
     }
 
-    static func getInterestingCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getInterestingCoursesRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [unenrolledPredicate, interestingPredicate])
         return request
     }
 
-    static func getPastCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getPastCoursesRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [unenrolledPredicate, selfpacedPredicate])
         return request
     }
 
-    static func getEnrolledAccessibleCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getEnrolledAccessibleCoursesRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, accessiblePredicate, notcompletedPredicate])
         return request
     }
 
-    static func getEnrolledUpcomingCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getEnrolledUpcomingCoursesRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, announcedPredicate, notcompletedPredicate])
         return request
     }
 
-    static func getCompletedCoursesRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getCompletedCoursesRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, completedPredicate])
         return request
     }
 
-    static func getSectionedRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    static func getSectionedRequest() -> NSFetchRequest<Course> {
         let request = getGenericCoursesRequest()
         let enrolledSort = NSSortDescriptor(key: "enrollment", ascending: false)
         let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
@@ -92,22 +92,17 @@ class CourseHelper {
     }
 
     static func getByID(_ id: String) throws -> Course? {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Course")
+        let request: NSFetchRequest<Course> = Course.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         request.fetchLimit = 1
-        let courses = try CoreDataHelper.executeFetchRequest(request) as! [Course]
-        if courses.isEmpty {
-            return nil
-        }
-        return courses[0]
+        let courses = try CoreDataHelper.executeFetchRequest(request)
+        return courses.first
     }
 
     static func refreshCourses() -> Future<[Course], XikoloError> {
-        return CourseProvider.getCourses().flatMap { spineCourses -> Future<[BaseModel], XikoloError> in
+        return CourseProvider.getCourses().flatMap { spineCourses -> Future<[Course], XikoloError> in
             let request = getGenericCoursesRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourses, inject: nil, save: true)
-        }.map { cdCourses in
-            return cdCourses as! [Course]
         }
     }
 

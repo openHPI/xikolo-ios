@@ -11,8 +11,8 @@ import CoreData
 
 class UserHelper {
 
-    static func getUsersRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+    static func getUsersRequest() -> NSFetchRequest<User> {
+        let request: NSFetchRequest<User> = User.fetchRequest()
         return request
     }
 
@@ -20,20 +20,17 @@ class UserHelper {
         return UserProvider.getMe().flatMap { spineUser -> Future<User, XikoloError> in
             let request = getUsersRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: [spineUser], inject: nil, save: true).map({ (basemodels) -> User in
-                return basemodels[0] as! User
+                return basemodels[0]
             })
         }
     }
 
     static func getByID(_ id: String) throws -> User? {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         request.fetchLimit = 1
-        let users = try CoreDataHelper.executeFetchRequest(request) as! [User]
-        if users.isEmpty {
-            return nil
-        }
-        return users[0]
+        let users = try CoreDataHelper.executeFetchRequest(request)
+        return users.first
     }
 
     static func getMe() throws -> User? {

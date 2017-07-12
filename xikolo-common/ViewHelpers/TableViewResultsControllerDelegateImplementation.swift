@@ -9,15 +9,17 @@
 import CoreData
 import UIKit
 
-class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
+class TableViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
     weak var tableView: UITableView!
-    var resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>]
+    var resultsControllers: [NSFetchedResultsController<T>]
     var cellReuseIdentifier: String
 
-    weak var delegate: TableViewResultsControllerDelegateImplementationDelegate?
+    var configuration: TableViewResultsControllerConfigurationWrapper<T>?
 
-    required init(_ tableView: UITableView, resultsController: [NSFetchedResultsController<NSFetchRequestResult>], cellReuseIdentifier: String) {
+    required init(_ tableView: UITableView,
+                  resultsController: [NSFetchedResultsController<T>],
+                  cellReuseIdentifier: String) {
         self.tableView = tableView
         self.resultsControllers = resultsController
         self.cellReuseIdentifier = cellReuseIdentifier
@@ -50,15 +52,14 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
         case .delete:
             tableView.deleteRows(at: [convertedIndexPath!], with: .fade)
         case .update:
-            if let cell = tableView.cellForRow(at: convertedIndexPath!) {
-                self.delegate?.configureTableCell(cell, for: controller, indexPath: indexPath!)
-            } else {
-                #if os(tvOS)
-                // Undocumented by Apple:
-                // Need to create rows that don't exist here to prevent assertion errors (tvOS only).
-                tableView.insertRows(at: [convertedIndexPath!], with: .fade)
-                #endif
-            }
+            #if os(tvOS)
+            // Undocumented by Apple:
+            // Need to create rows that don't exist here to prevent assertion errors (tvOS only).
+            tableView.insertRows(at: [convertedIndexPath!], with: .fade)
+            #else
+            tableView.reloadRows(at: [convertedIndexPath!], with: .fade)
+            #endif
+
         case .move:
             tableView.deleteRows(at: [convertedIndexPath!], with: .fade)
             tableView.insertRows(at: [convertedNewIndexPath!], with: .fade)
@@ -69,9 +70,7 @@ class TableViewResultsControllerDelegateImplementation : NSObject, NSFetchedResu
         tableView.endUpdates()
     }
 
-}
-
-extension TableViewResultsControllerDelegateImplementation : UITableViewDataSource {
+    // MARK: UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return resultsControllers.reduce(0, { (partialCount, controller) -> Int in
@@ -95,7 +94,7 @@ extension TableViewResultsControllerDelegateImplementation : UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
         let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
-        self.delegate?.configureTableCell(cell, for: controller, indexPath: newIndexPath)
+        self.configuration?.configureTableCell(cell, for: controller, indexPath: newIndexPath)
         return cell
     }
 
@@ -140,7 +139,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
     }
 
     // find data controller and its sectionIndex for a given "visual" sectionIndex (visual->data)
-    func controllerAndImplementationSection(forSection section: Int) -> (NSFetchedResultsController<NSFetchRequestResult>, Int)? {
+    func controllerAndImplementationSection(forSection section: Int) -> (NSFetchedResultsController<T>, Int)? {
         var passedSections = 0
         for contr in resultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > section {
@@ -154,7 +153,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
     }
 
     // find data controller and its indexPath for a given "visual" indexPath (visual->data)
-    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
+    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<T>, IndexPath)? {
         var passedSections = 0
         for contr in resultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
@@ -169,8 +168,24 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
     
 }
 
-protocol TableViewResultsControllerDelegateImplementationDelegate : class {
+protocol TableViewResultsControllerConfiguration {
 
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath)
+    associatedtype Content: BaseModel
 
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
+
+}
+
+// This is a wrapper for type erasure allowing the generic TableViewResultsControllerDelegateImplementation to be
+// configured with a concrete type (via a configuration struct).
+class TableViewResultsControllerConfigurationWrapper<T: BaseModel>: TableViewResultsControllerConfiguration {
+    private let configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
+
+    required init<U: TableViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
+        self.configureTableCell = configuration.configureTableCell
+    }
+
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
+        self.configureTableCell(cell, controller, indexPath)
+    }
 }

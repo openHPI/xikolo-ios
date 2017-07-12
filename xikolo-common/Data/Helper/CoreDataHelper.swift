@@ -55,21 +55,21 @@ class CoreDataHelper {
         }
     }
 
-    static func createResultsController(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>, sectionNameKeyPath: String?) -> NSFetchedResultsController<NSFetchRequestResult> {
+    static func createResultsController<T: BaseModel>(_ fetchRequest: NSFetchRequest<T>, sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
         // TODO: Add cache name
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+        return NSFetchedResultsController<T>(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     }
 
-    static func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [BaseModel] {
-        var baseModels: [BaseModel]?
-        CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [BaseModel]) -> Void in
+    static func executeFetchRequest<T: BaseModel>(_ request: NSFetchRequest<T>) throws -> [T] {
+        var baseModels: [T]?
+        CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [T]) -> Void in
             do {
                 baseModels = try inner()
             } catch let error {
                 fatalError("\(error)")
             }
         } )
-        return baseModels!;
+        return baseModels!
 
     }
 
@@ -110,10 +110,10 @@ extension NSPersistentContainer {
         }
     }
 
-    func performBackgroundFetchAndWait(_ request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+    func performBackgroundFetchAndWait<T: BaseModel>(_ request: NSFetchRequest<T>, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
-                let results = try CoreDataHelper.backgroundContext.fetch(request) as! [BaseModel]
+                let results = try CoreDataHelper.backgroundContext.fetch(request)
                 completion({_ in return results})
             } catch let error as NSError {
                 completion({_ in throw XikoloError.coreData(error)})
@@ -121,7 +121,7 @@ extension NSPersistentContainer {
         }
     }
 
-    func performBackgroundSyncAndWait(_ objectsToUpdateRequest: NSFetchRequest<NSFetchRequestResult>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+    func performBackgroundSyncAndWait<T: BaseModel>(_ objectsToUpdateRequest: NSFetchRequest<T>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
                 let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
@@ -133,7 +133,7 @@ extension NSPersistentContainer {
         }
     }
 
-    func performBackgroundSyncAndWait(_ objectsToUpdate: [BaseModel], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [BaseModel]) -> Void) {
+    func performBackgroundSyncAndWait<T: BaseModel>(_ objectsToUpdate: [T], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
                 let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)

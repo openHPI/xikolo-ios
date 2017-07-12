@@ -41,7 +41,8 @@ class LearningsViewController : UIViewController {
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: [sectionResultsController], cellReuseIdentifier: "CourseSectionCell")
-        sectionResultsControllerDelegateImplementation.delegate = self
+        let configuration = CollectionViewResultsControllerConfigurationWrapper(LearningsViewControllerSectionConfiguration())
+        sectionResultsControllerDelegateImplementation.configuration = configuration
         sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
         sectionTableView.dataSource = sectionResultsControllerDelegateImplementation
     }
@@ -103,7 +104,8 @@ class LearningsViewController : UIViewController {
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView, resultsControllers: [itemResultsController!], cellReuseIdentifier: "CourseItemCell")
-        itemResultsControllerDelegateImplementation.delegate = self
+        let configuration = CollectionViewResultsControllerConfigurationWrapper(LearningsViewControllerItemConfiguration())
+        itemResultsControllerDelegateImplementation.configuration = configuration
         itemCollectionView.dataSource = itemResultsControllerDelegateImplementation
         itemResultsController!.delegate = itemResultsControllerDelegateImplementation
         itemResultsControllerDelegateImplementation.resultsControllers = [itemResultsController!]
@@ -119,17 +121,6 @@ class LearningsViewController : UIViewController {
 
 }
 
-extension LearningsViewController : TableViewResultsControllerDelegateImplementationDelegate {
-
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
-        let cell = cell as! CourseSectionCell
-
-        let section = controller.object(at: indexPath) as! CourseSection
-        cell.configure(section)
-    }
-
-}
-
 extension LearningsViewController : UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -140,12 +131,21 @@ extension LearningsViewController : UITableViewDelegate {
 
 }
 
-extension LearningsViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
+struct LearningsViewControllerSectionConfiguration : TableViewResultsControllerConfiguration {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseSection>, indexPath: IndexPath) {
+        let cell = cell as! CourseSectionCell
+        let section = controller.object(at: indexPath)
+        cell.configure(section)
+    }
+
+}
+
+struct LearningsViewControllerItemConfiguration : CollectionViewResultsControllerConfiguration {
+
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
-
-        let item = controller.object(at: indexPath) as! CourseItem
+        let item = controller.object(at: indexPath)
         cell.configure(item)
     }
 

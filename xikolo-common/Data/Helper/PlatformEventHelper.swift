@@ -12,19 +12,17 @@ import Result
 
 class PlatformEventHelper {
 
-    static func getRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PlatformEvent")
+    static func getRequest() -> NSFetchRequest<PlatformEvent> {
+        let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()
         let dateSort = NSSortDescriptor(key: "created_at", ascending: false)
         request.sortDescriptors = [dateSort]
         return request
     }
 
     static func syncPlatformEvents() -> Future<[PlatformEvent], XikoloError> {
-        return PlatformEventProvider.getPlatformEvents().flatMap { spinePlatformEvents -> Future<[BaseModel], XikoloError> in
+        return PlatformEventProvider.getPlatformEvents().flatMap { spinePlatformEvents -> Future<[PlatformEvent], XikoloError> in
             let request = getRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spinePlatformEvents, inject: nil, save: true)
-        }.map { cdPlatformEvents in
-                return cdPlatformEvents as! [PlatformEvent]
         }
     }
     

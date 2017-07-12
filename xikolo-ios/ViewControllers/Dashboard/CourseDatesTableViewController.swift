@@ -12,8 +12,8 @@ import DZNEmptyDataSet
 
 class CourseDatesTableViewController : UITableViewController {
 
-    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
+    var resultsController: NSFetchedResultsController<CourseDate>!
+    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseDate>!
 
     weak var delegate: CourseDatesTableViewControllerDelegate?
 
@@ -30,7 +30,8 @@ class CourseDatesTableViewController : UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseDateCell")
-        resultsControllerDelegateImplementation.delegate = self
+        let configuration = TableViewResultsControllerConfigurationWrapper(CourseDatesTableViewConfiguration())
+        resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -79,24 +80,27 @@ class CourseDatesTableViewController : UITableViewController {
 
 }
 
-extension CourseDatesTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
-
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
-        
-        let courseDate = controller.object(at: indexPath) as! CourseDate
-        let cell = cell as! CourseDateCell
-        cell.configure(courseDate)
-    }
+extension CourseDatesTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
-        let courseDate = controller.object(at: dataIndexPath) as! CourseDate
+        let courseDate = controller.object(at: dataIndexPath)
         if let course = try! CourseHelper.getByID(courseDate.course!.id) {
             AppDelegate.instance().goToCourse(course)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+}
+
+struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfiguration {
+
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseDate>, indexPath: IndexPath) {
+        let cell = cell as! CourseDateCell
+        let courseDate = controller.object(at: indexPath)
+        cell.configure(courseDate)
+    }
+
 }
 
 extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {

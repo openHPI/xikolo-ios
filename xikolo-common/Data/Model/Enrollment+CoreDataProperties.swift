@@ -23,4 +23,8 @@ extension Enrollment {
     @NSManaged var reactivated_int: NSNumber?
     @NSManaged var course: Course?
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
+        return NSFetchRequest<Enrollment>(entityName: "Enrollment");
+    }
+
 }

@@ -52,7 +52,7 @@ class VideoViewController : UIViewController {
         }
 
         // configure video player
-        if !self.videoPlayerConfigured {
+        if !self.videoPlayerConfigured && video.hlsURL != nil {
             self.videoPlayerConfigured = true
             self.performSegue(withIdentifier: "EmbedAVPlayer", sender: nil)
         }

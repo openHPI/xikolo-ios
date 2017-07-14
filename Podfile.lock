@@ -14,6 +14,7 @@ PODS:
   - PinpointKit/Core (0.9)
   - Result (3.1.0)
   - SDWebImage/Core (4.0.0)
+  - Shimmer (1.0.2)
   - Spine (0.3):
     - BrightFutures (~> 5.0)
     - SwiftyJSON (~> 3.1.4)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
   - Result (= 3.1.0)
   - SDWebImage/Core (= 4.0.0)
+  - Shimmer (= 1.0.2)
   - Spine (from `https://github.com/invliD/Spine.git`, commit `1171b90`)
 
 EXTERNAL SOURCES:
@@ -59,9 +61,10 @@ SPEC CHECKSUMS:
   PinpointKit: 6d19d08afddfad2753aee95e2a6160f2d8d30764
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 230287587d5d20f6e7ec77b0f0bacc3e544d0c23
+PODFILE CHECKSUM: 31129412039d67b664920af8bb975da90ec53cd1
 
 COCOAPODS: 1.2.0

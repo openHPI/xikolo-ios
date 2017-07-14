@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Shimmer
 
 class CourseItemCell : UITableViewCell {
 
@@ -14,6 +15,8 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var detailContainer: UIView!
+    @IBOutlet weak var shimmerContainer: FBShimmeringView!
+    @IBOutlet weak var loadingBox: UIView!
     @IBOutlet weak var detailLabel: UILabel!
 
     func configure(_ courseItem: CourseItem) {
@@ -27,8 +30,14 @@ class CourseItemCell : UITableViewCell {
         self.readStateView.backgroundColor = wasVisitedBefore ? UIColor.clear : Brand.TintColor
 
         if courseItem.content is Video || courseItem.content is RichText {
-            self.detailLabel.isHidden = true
+            self.detailLabel.isHidden = false
+
+            self.shimmerContainer.contentView = self.loadingBox
+            self.shimmerContainer.isShimmering = true
+
             self.detailContainer.isHidden = false
+
+            // load detail info here
         } else {
             self.detailContainer.isHidden = true
         }

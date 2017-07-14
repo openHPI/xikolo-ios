@@ -42,6 +42,7 @@
 "Beginning" = "Ab";
 "Suggested" = "Vorgeschlagen";
 "Enrolled" = "Eingeschrieben";
+"you_are_enrolled" = "Bereits eingeschrieben";
 "Current" = "Aktuell";
 "Upcoming" = "Zukünftig";
 "Completed" = "Abgeschlossen";

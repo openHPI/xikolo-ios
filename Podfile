@@ -16,6 +16,7 @@ def ios_pods
     pod 'PinpointKit', :git => 'https://github.com/Lickability/PinpointKit', :commit => 'dd5731c'
     pod 'DZNEmptyDataSet', '1.8.1'
     pod 'Hero'
+    pod 'SimpleRoundedButton'
 end
 
 target 'openHPI-iOS' do

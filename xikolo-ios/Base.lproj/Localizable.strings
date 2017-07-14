@@ -26,7 +26,7 @@
 "email" = "Email";
 "password" = "Password";
 "register" = "Register";
-
+"you_are_enrolled" = "You are enrolled";
 // Settings
 "enrollments" = "Enrollments";
 "logout" = "Logout";

@@ -35,7 +35,7 @@ class CourseDetailViewController: UIViewController {
 
         titleView.text = course.title
  
-        enrollmentButton.setTitle(NSLocalizedString("you_are_enrolled", comment: ""), for: [UIControlState.disabled])
+        enrollmentButton.setTitle(NSLocalizedString("You are enrolled", comment: ""), for: [UIControlState.disabled])
         enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: [UIControlState.normal])
         if course.enrollment != nil {
             enrollmentButton.isEnabled = false

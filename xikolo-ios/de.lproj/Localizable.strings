@@ -26,6 +26,7 @@
 "email" = "Email";
 "password" = "Passwort";
 "register" = "Registrieren";
+"You are enrolled" = "Bereits eingeschrieben";
 
 //Courses
 "active" = "Läuft";
@@ -42,7 +43,6 @@
 "Beginning" = "Ab";
 "Suggested" = "Vorgeschlagen";
 "Enrolled" = "Eingeschrieben";
-"you_are_enrolled" = "Bereits eingeschrieben";
 "Current" = "Aktuell";
 "Upcoming" = "Zukünftig";
 "Completed" = "Abgeschlossen";

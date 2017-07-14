@@ -74,9 +74,9 @@ class CourseDetailViewController: UIViewController {
             EnrollmentHelper.createEnrollment(for: self.course)
                 .flatMap { CourseHelper.refreshCourses() }
                 .onSuccess { _ in
-                   //TODO: je anch Kurszustand auf dieser Seite bleiben (neuladen wegen anzeige) oder in Learning
-                
-                    
+                    if let parent = self.parent as? CourseDecisionViewController {
+                        parent.decideContent()
+                    }
             }
         }))
         

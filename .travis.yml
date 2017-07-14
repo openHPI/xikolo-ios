@@ -9,6 +9,16 @@ env:
   - SCHEME="openSAP-iOS" SDK="iphonesimulator"
   - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
   - SCHEME="openWHO-iOS" SDK="iphonesimulator"
+  - SCHEME="openWHO-tvOS" SDK="appletvsimulator"
+  - SCHEME="moocHOUSE-iOS" SDK="iphonesimulator"
+  - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
+
+matrix:
+  allow_failures:
+    - env: SCHEME="openHPI-tvOS" SDK="appletvsimulator"
+    - env: SCHEME="openSAP-tvOS" SDK="appletvsimulator"
+    - env: SCHEME="openWHO-tvOS" SDK="appletvsimulator"
+    - env: SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
 before_install:
   - gem install xcpretty

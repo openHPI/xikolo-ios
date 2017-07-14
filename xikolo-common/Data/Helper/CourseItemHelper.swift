@@ -12,16 +12,16 @@ import Result
 
 class CourseItemHelper {
 
-    static func getItemRequest(_ section: CourseSection) -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
+    static func getItemRequest(_ section: CourseSection) -> NSFetchRequest<CourseItem> {
+        let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
         request.predicate = NSPredicate(format: "section = %@", section)
         let titleSort = NSSortDescriptor(key: "position", ascending: true)
         request.sortDescriptors = [titleSort]
         return request
     }
     
-    static func getItemRequest(_ course: Course) -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
+    static func getItemRequest(_ course: Course) -> NSFetchRequest<CourseItem> {
+        let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
         request.predicate = NSPredicate(format: "section.course = %@", course)
         let sectionSort = NSSortDescriptor(key: "section.position", ascending: true)
         let positionSort = NSSortDescriptor(key: "position", ascending: true)
@@ -30,22 +30,17 @@ class CourseItemHelper {
     }
 
     static func getByID(_ id: String) throws -> CourseItem? {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseItem")
+        let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         request.fetchLimit = 1
-        let courseItems = try CoreDataHelper.executeFetchRequest(request) as! [CourseItem]
-        if courseItems.isEmpty {
-            return nil
-        }
-        return courseItems[0]
+        let courseItems = try CoreDataHelper.executeFetchRequest(request)
+        return courseItems.first
     }
 
     static func syncCourseItems(_ section: CourseSection) -> Future<[CourseItem], XikoloError> {
-        return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems -> Future<[BaseModel], XikoloError> in
+        return CourseItemProvider.getCourseItems(section.id).flatMap { spineItems -> Future<[CourseItem], XikoloError> in
             let request = getItemRequest(section)
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineItems, inject: ["section": section], save: true)
-        }.map { cdItems in
-            return cdItems as! [CourseItem]
         }
     }
 

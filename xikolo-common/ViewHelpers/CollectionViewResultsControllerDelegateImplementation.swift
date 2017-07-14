@@ -9,17 +9,17 @@
 import CoreData
 import UIKit
 
-class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetchedResultsControllerDelegate {
+class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
     weak var collectionView: UICollectionView!
-    var resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>] // 2Think: Do we create a memory loop here?
+    var resultsControllers: [NSFetchedResultsController<T>] // 2Think: Do we create a memory loop here?
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
-    weak var delegate: CollectionViewResultsControllerDelegateImplementationDelegate?
+    var configuration: CollectionViewResultsControllerConfigurationWrapper<T>?
     fileprivate var contentChangeOperations: [ContentChangeOperation] = []
 
-    required init(_ collectionView: UICollectionView, resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>], cellReuseIdentifier: String) {
+    required init(_ collectionView: UICollectionView, resultsControllers: [NSFetchedResultsController<T>], cellReuseIdentifier: String) {
         self.collectionView = collectionView
         self.resultsControllers = resultsControllers
         self.cellReuseIdentifier = cellReuseIdentifier
@@ -64,10 +64,7 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
                     case .delete:
                         collectionView.deleteItems(at: [convertedIndexPath!])
                     case .update:
-                        // No need to update a cell that has not been loaded.
-                        if let cell = collectionView.cellForItem(at: convertedIndexPath!) {
-                            self.delegate?.configureCollectionCell(cell, for: controller, indexPath: change.indexPath!)
-                        }
+                        collectionView.reloadItems(at: [convertedIndexPath!])
                     case .move:
                         collectionView.deleteItems(at: [convertedIndexPath!])
                         collectionView.insertItems(at: [convertedNewIndexPath!])
@@ -77,9 +74,7 @@ class CollectionViewResultsControllerDelegateImplementation : NSObject, NSFetche
         }, completion: nil)
     }
 
-}
-
-extension CollectionViewResultsControllerDelegateImplementation : UICollectionViewDataSource {
+    // MARK: UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return resultsControllers.reduce(0, { (partialCount, controller) -> Int in
@@ -103,7 +98,7 @@ extension CollectionViewResultsControllerDelegateImplementation : UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
         let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)! // TODO nil-handling or logging
-        self.delegate?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
+        self.configuration?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
         return cell
     }
 
@@ -112,7 +107,7 @@ extension CollectionViewResultsControllerDelegateImplementation : UICollectionVi
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
             let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
             if let section = controller.sections?[newIndexPath.section] {
-                delegate?.configureCollectionHeaderView?(view, section: section)
+                self.configuration?.configureCollectionHeaderView(view, section: section)
             }
             return view
         } else {
@@ -159,7 +154,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
     }
 
     // find data controller and its indexPath for a given "visual" indexPath (visual->data)
-    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<NSFetchRequestResult>, IndexPath)? {
+    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<T>, IndexPath)? {
         var passedSections = 0
         for contr in resultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
@@ -174,11 +169,40 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
 
 }
 
-@objc protocol CollectionViewResultsControllerDelegateImplementationDelegate : class {
+protocol CollectionViewResultsControllerConfiguration {
+    associatedtype Content : BaseModel
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath)
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
 
-    @objc optional func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
+    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
+
+}
+
+extension CollectionViewResultsControllerConfiguration {
+
+    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {}
+
+}
+
+// This is a wrapper for type erasure allowing the generic CollectionViewResultsControllerDelegateImplementation to be
+// configured with a concrete type (via a configuration struct).
+class CollectionViewResultsControllerConfigurationWrapper<T: BaseModel>: CollectionViewResultsControllerConfiguration {
+
+    private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
+    private let configureCollectionHeaderView: (UICollectionReusableView, NSFetchedResultsSectionInfo) -> Void
+
+    required init<U: CollectionViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
+        self.configureCollectionCell = configuration.configureCollectionCell
+        self.configureCollectionHeaderView = configuration.configureCollectionHeaderView
+    }
+
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
+        self.configureCollectionCell(cell, controller, indexPath)
+    }
+
+    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
+        self.configureCollectionHeaderView(view, section)
+    }
 
 }
 

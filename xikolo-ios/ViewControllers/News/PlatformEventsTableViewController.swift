@@ -12,8 +12,8 @@ import DZNEmptyDataSet
 
 class PlatformEventsTableViewController: UITableViewController {
 
-    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
+    var resultsController: NSFetchedResultsController<PlatformEvent>!
+    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<PlatformEvent>!
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -27,7 +27,8 @@ class PlatformEventsTableViewController: UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "PlatformEventCell")
-        resultsControllerDelegateImplementation.delegate = self
+        let configuration = TableViewResultsControllerConfigurationWrapper(PlatformEventsTableViewConfiguration())
+        resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -51,11 +52,11 @@ class PlatformEventsTableViewController: UITableViewController {
 
 }
 
-extension PlatformEventsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
-        let cell = cell as! PlatformEventCell
+struct PlatformEventsTableViewConfiguration : TableViewResultsControllerConfiguration {
 
-        let event = controller.object(at: indexPath) as! PlatformEvent
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<PlatformEvent>, indexPath: IndexPath) {
+        let cell = cell as! PlatformEventCell
+        let event = controller.object(at: indexPath)
         cell.configure(event)
     }
 

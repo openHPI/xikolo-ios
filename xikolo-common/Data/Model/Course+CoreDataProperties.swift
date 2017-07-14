@@ -5,9 +5,6 @@
 //  Created by Sebastian Brückner on 26.08.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
-//
 
 import CoreData
 import UIKit
@@ -35,5 +32,9 @@ extension Course {
     @NSManaged var news: NSSet?
     @NSManaged var enrollment: Enrollment?
     @NSManaged var dates: NSSet?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
+        return NSFetchRequest<Course>(entityName: "Course");
+    }
 
 }

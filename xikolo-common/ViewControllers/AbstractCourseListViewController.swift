@@ -18,8 +18,8 @@ class AbstractCourseListViewController : UICollectionViewController {
         case bothSectioned
     }
 
-    var resultsControllers: [NSFetchedResultsController<NSFetchRequestResult>]!
-    var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation!
+    var resultsControllers: [NSFetchedResultsController<Course>]!
+    var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
     var contentChangeOperations: [[AnyObject?]] = []
 
     var courseDisplayMode: CourseDisplayMode = .enrolledOnly
@@ -35,7 +35,7 @@ class AbstractCourseListViewController : UICollectionViewController {
     }
 
     func updateView() {
-        var request: NSFetchRequest<NSFetchRequestResult>
+        var request: NSFetchRequest<Course>
         switch courseDisplayMode {
         case .enrolledOnly:
             let enrolledRequest = CourseHelper.getEnrolledAccessibleCoursesRequest()
@@ -55,7 +55,8 @@ class AbstractCourseListViewController : UICollectionViewController {
         }
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!, resultsControllers: resultsControllers, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
-        resultsControllerDelegateImplementation.delegate = self
+        let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseListViewConfiguration())
+        resultsControllerDelegateImplementation.configuration = configuration
         for rC in resultsControllers { rC.delegate = resultsControllerDelegateImplementation }
         collectionView!.dataSource = resultsControllerDelegateImplementation
 
@@ -68,12 +69,11 @@ class AbstractCourseListViewController : UICollectionViewController {
 
 }
 
-extension AbstractCourseListViewController : CollectionViewResultsControllerDelegateImplementationDelegate {
+struct CourseListViewConfiguration : CollectionViewResultsControllerConfiguration {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
         let cell = cell as! CourseCell
-
-        let course = controller.object(at: indexPath) as! Course
+        let course = controller.object(at: indexPath)
         cell.configure(course)
     }
 

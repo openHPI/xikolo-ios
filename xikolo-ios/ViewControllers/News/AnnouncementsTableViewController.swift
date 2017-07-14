@@ -12,8 +12,8 @@ import DZNEmptyDataSet
 
 class AnnouncementsTableViewController : UITableViewController {
 
-    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
+    var resultsController: NSFetchedResultsController<Announcement>!
+    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<Announcement>!
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -27,7 +27,8 @@ class AnnouncementsTableViewController : UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
-        resultsControllerDelegateImplementation.delegate = self
+        let configuration = TableViewResultsControllerConfigurationWrapper(AnnouncementsTableViewConfiguration())
+        resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -60,18 +61,18 @@ class AnnouncementsTableViewController : UITableViewController {
 extension AnnouncementsTableViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let announcement = resultsController.object(at: indexPath) as! Announcement
+        let announcement = resultsController.object(at: indexPath)
         performSegue(withIdentifier: "ShowAnnouncement", sender: announcement)
     }
 
 }
 
-extension AnnouncementsTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
-        let cell = cell as! AnnouncementCell
+struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfiguration {
 
-        let article = controller.object(at: indexPath) as! Announcement
-        cell.configure(article)
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Announcement>, indexPath: IndexPath) {
+        let cell = cell as! AnnouncementCell
+        let announcement = controller.object(at: indexPath)
+        cell.configure(announcement)
     }
 
 }

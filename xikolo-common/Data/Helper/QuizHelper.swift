@@ -13,10 +13,10 @@ import Result
 class QuizHelper {
 
     static func refreshQuiz(_ quiz: Quiz) -> Future<Quiz, XikoloError> {
-        return QuizProvider.getQuiz(quiz.id).flatMap { spineQuiz -> Future<[BaseModel], XikoloError> in
+        return QuizProvider.getQuiz(quiz.id).flatMap { spineQuiz -> Future<[Quiz], XikoloError> in
             return SpineModelHelper.syncObjectsFuture([quiz], spineObjects: [spineQuiz], inject: nil, save: true)
         }.map { cdQuizzes in
-            return cdQuizzes[0] as! Quiz
+            return cdQuizzes[0]
         }.onSuccess { quiz in
             if let questions = quiz.questions, let submissions = quiz.submission?.answers {
                 for question in questions {

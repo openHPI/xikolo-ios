@@ -13,10 +13,10 @@ import Result
 class LTIExerciseHelper {
 
     static func refreshLTIExercise(_ ltiExercise: LTIExercise) -> Future<LTIExercise, XikoloError> {
-        return LTIExerciseProvider.getLTIExercise(ltiExercise.id).flatMap { spineLTIExercise -> Future<[BaseModel], XikoloError> in
+        return LTIExerciseProvider.getLTIExercise(ltiExercise.id).flatMap { spineLTIExercise -> Future<[LTIExercise], XikoloError> in
             return SpineModelHelper.syncObjectsFuture([ltiExercise], spineObjects: [spineLTIExercise], inject: nil, save: true)
-        }.map { cdLTIExercises in
-            return cdLTIExercises[0] as! LTIExercise
+        }.map{ cdLTIExercises in
+            return cdLTIExercises[0]
         }
     }
     

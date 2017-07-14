@@ -11,16 +11,16 @@ import CoreData
 
 class CourseDateHelper {
 
-    static func getCourseDatesRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseDate")
+    static func getCourseDatesRequest() -> NSFetchRequest<CourseDate> {
+        let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
         let courseSort = NSSortDescriptor(key: "course.title", ascending: true)
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         request.sortDescriptors = [courseSort, dateSort]
         return request
     }
 
-    static func getCourseDeadlinesRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseDate")
+    static func getCourseDeadlinesRequest() -> NSFetchRequest<CourseDate> {
+        let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
         let courseSort = NSSortDescriptor(key: "course.title", ascending: true)
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         let predicate = NSPredicate(format: "type != 'course_start'")
@@ -29,8 +29,8 @@ class CourseDateHelper {
         return request
     }
 
-    static func getCourseStartsRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseDate")
+    static func getCourseStartsRequest() -> NSFetchRequest<CourseDate> {
+        let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         let predicate = NSPredicate(format: "type = 'course_start'")
         request.predicate = predicate
@@ -39,11 +39,9 @@ class CourseDateHelper {
     }
 
     static func syncCourseDates() -> Future<[CourseDate], XikoloError> {
-        return CourseDateProvider.getCourseDates().flatMap { spineCourseDates -> Future<[BaseModel], XikoloError> in
+        return CourseDateProvider.getCourseDates().flatMap { spineCourseDates -> Future<[CourseDate], XikoloError> in
             let request = getCourseDatesRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourseDates, inject: nil, save: true)
-            }.map { cdCourseDates in
-                return cdCourseDates as! [CourseDate]
         }
     }
 

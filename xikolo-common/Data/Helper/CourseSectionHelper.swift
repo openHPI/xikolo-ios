@@ -12,8 +12,8 @@ import Result
 
 class CourseSectionHelper {
 
-    static func getSectionRequest(_ course: Course) -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CourseSection")
+    static func getSectionRequest(_ course: Course) -> NSFetchRequest<CourseSection> {
+        let request: NSFetchRequest<CourseSection> = CourseSection.fetchRequest()
         let coursePredicate = NSPredicate(format: "course = %@", course)
         let accessiblePredicate = NSPredicate(format: "accessible_int == true")
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [coursePredicate, accessiblePredicate])
@@ -23,11 +23,9 @@ class CourseSectionHelper {
     }
 
     static func syncCourseSections(_ course: Course) -> Future<[CourseSection], XikoloError> {
-        return CourseSectionProvider.getCourseSections(course.id).flatMap { spineSections -> Future<[BaseModel], XikoloError> in
+        return CourseSectionProvider.getCourseSections(course.id).flatMap { spineSections -> Future<[CourseSection], XikoloError> in
             let request = getSectionRequest(course)
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineSections, inject: ["course": course], save: true)
-        }.map { cdSections in
-            return cdSections as! [CourseSection]
         }
     }
 

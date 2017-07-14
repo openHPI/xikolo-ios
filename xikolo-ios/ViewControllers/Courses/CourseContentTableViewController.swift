@@ -11,11 +11,12 @@ import UIKit
 import DZNEmptyDataSet
 
 class CourseContentTableViewController: UITableViewController {
+    typealias Resource = CourseItem
 
     var course: Course!
 
-    var resultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation!
+    var resultsController: NSFetchedResultsController<CourseItem>!
+    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -31,7 +32,8 @@ class CourseContentTableViewController: UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
-        resultsControllerDelegateImplementation.delegate = self
+        let configuration = TableViewResultsControllerConfigurationWrapper(CourseContentTableViewConfiguration())
+        resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -120,7 +122,7 @@ class CourseContentTableViewController: UITableViewController {
 extension CourseContentTableViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = resultsController.object(at: indexPath) as! CourseItem
+        let item = resultsController.object(at: indexPath)
         if item.proctored && (course.enrollment?.proctored ?? false) {
             showProctoringDialog(onComplete: {
                 self.tableView.deselectRow(at: indexPath, animated: true)
@@ -132,11 +134,11 @@ extension CourseContentTableViewController { // TableViewDelegate
 
 }
 
-extension CourseContentTableViewController : TableViewResultsControllerDelegateImplementationDelegate {
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<NSFetchRequestResult>, indexPath: IndexPath) {
-        let cell = cell as! CourseItemCell
+struct CourseContentTableViewConfiguration : TableViewResultsControllerConfiguration {
 
-        let item = controller.object(at: indexPath) as! CourseItem
+    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
+        let cell = cell as! CourseItemCell
+        let item = controller.object(at: indexPath)
         cell.configure(item)
     }
 

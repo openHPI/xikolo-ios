@@ -12,19 +12,17 @@ import Result
 
 class AnnouncementHelper {
 
-    static func getRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Announcement")
+    static func getRequest() -> NSFetchRequest<Announcement> {
+        let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
         let dateSort = NSSortDescriptor(key: "published_at", ascending: false)
         request.sortDescriptors = [dateSort]
         return request
     }
 
     static func syncAnnouncements() -> Future<[Announcement], XikoloError> {
-        return AnnouncementProvider.getAnnouncements().flatMap { spineAnnouncements -> Future<[BaseModel], XikoloError> in
+        return AnnouncementProvider.getAnnouncements().flatMap { spineAnnouncements -> Future<[Announcement], XikoloError> in
             let request = getRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineAnnouncements, inject: nil, save: true)
-        }.map { cdAnnouncements in
-            return cdAnnouncements as! [Announcement]
         }
     }
 

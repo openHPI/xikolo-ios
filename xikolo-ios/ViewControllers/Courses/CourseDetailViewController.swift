@@ -9,7 +9,7 @@
 import UIKit
 import Hero
 import SDWebImage
-import SimpleRoundedButton
+
 
 class CourseDetailViewController: UIViewController {
 
@@ -19,9 +19,9 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet weak var dateView: UILabel!
     @IBOutlet weak var teacherView: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
-    @IBOutlet weak var enrollmentButton: SimpleRoundedButton!
+    @IBOutlet weak var enrollmentButton: UIButton!
     
-    @IBAction func enrollmentButtonClick(_ sender: SimpleRoundedButton) {
+    @IBAction func enrollmentButtonClick(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {
             showEnrollmentDialog()
         } else {

@@ -21,7 +21,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var enrollmentButton: UIButton!
     
-    @IBAction func enrollmentButtonClick(_ sender: UIButton) {
+    @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {
             showEnrollmentDialog()
         } else {

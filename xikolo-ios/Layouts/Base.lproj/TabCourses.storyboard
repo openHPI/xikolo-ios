@@ -1042,7 +1042,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="enrollmentButtonClick:" destination="y4i-iY-cnq" eventType="touchUpInside" id="gvh-Hg-ErJ"/>
+                                                    <action selector="enroll:" destination="y4i-iY-cnq" eventType="touchUpInside" id="GOd-jh-NUR"/>
                                                 </connections>
                                             </button>
                                         </subviews>

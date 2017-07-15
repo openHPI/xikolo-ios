@@ -26,6 +26,7 @@
 "email" = "Email";
 "password" = "Passwort";
 "register" = "Registrieren";
+"You are enrolled" = "Bereits eingeschrieben";
 
 //Courses
 "active" = "Läuft";

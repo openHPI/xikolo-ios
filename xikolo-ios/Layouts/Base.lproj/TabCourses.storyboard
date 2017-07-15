@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16B2548a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -15,7 +14,7 @@
         <!--Course List View Controller-->
         <scene sceneID="aYm-tI-rNT">
             <objects>
-                <collectionViewController id="uLl-5G-DMn" customClass="CourseListViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="uLl-5G-DMn" customClass="CourseListViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="MA3-VX-yBw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +26,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CourseCell" reuseIdentifier="CourseCell" id="JrV-Po-3CS" customClass="CourseCell" customModule="openHPI" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CourseCell" reuseIdentifier="CourseCell" id="JrV-Po-3CS" customClass="CourseCell" customModule="moocHOUSE" customModuleProvider="target">
                                 <rect key="frame" x="-12.5" y="48" width="400" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -167,7 +166,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseHeaderView" id="q0D-sD-ZcF" customClass="CourseHeaderView" customModule="openHPI" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseHeaderView" id="q0D-sD-ZcF" customClass="CourseHeaderView" customModule="moocHOUSE" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -262,7 +261,7 @@
         <!--Course Decision View Controller-->
         <scene sceneID="sLk-sR-rsh">
             <objects>
-                <viewController storyboardIdentifier="CourseDecisionViewController" id="YF6-pE-sa6" customClass="CourseDecisionViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseDecisionViewController" id="YF6-pE-sa6" customClass="CourseDecisionViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ef2-op-QKg"/>
                         <viewControllerLayoutGuide type="bottom" id="gKX-nf-Z6U"/>
@@ -346,15 +345,9 @@
                                 <constraint firstItem="uVy-qU-9HS" firstAttribute="height" secondItem="1M6-B2-JWD" secondAttribute="height" id="gbx-yP-OCj"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Enroll" id="VYw-23-AH5">
-                            <connections>
-                                <action selector="enroll:" destination="YF6-pE-sa6" id="i4U-ze-F9V"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="uCB-9t-OiH" id="946-ep-hBb"/>
-                        <outlet property="enrollButton" destination="VYw-23-AH5" id="vsC-Vb-KdI"/>
                         <outlet property="titleView" destination="I0c-UK-HJw" id="D9R-JR-hUO"/>
                         <segue destination="rOJ-H4-9Ye" kind="presentation" identifier="ShowLogin" id="afV-O8-WaT"/>
                     </connections>
@@ -366,13 +359,13 @@
         <!--Course Content Table View Controller-->
         <scene sceneID="XFj-pH-TxF">
             <objects>
-                <tableViewController storyboardIdentifier="CourseContentTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="CK9-1h-i1I" customClass="CourseContentTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CourseContentTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="CK9-1h-i1I" customClass="CourseContentTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="vFe-DM-VEd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" id="4DL-lh-q2e" customClass="CourseItemCell" customModule="openHPI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" id="4DL-lh-q2e" customClass="CourseItemCell" customModule="moocHOUSE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4DL-lh-q2e" id="Utk-yk-LoN">
@@ -463,7 +456,7 @@
         <!--Richtext View Controller-->
         <scene sceneID="M4d-6f-bqM">
             <objects>
-                <viewController id="xJm-gx-LIF" customClass="RichtextViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xJm-gx-LIF" customClass="RichtextViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Gm-t5-gub"/>
                         <viewControllerLayoutGuide type="bottom" id="Z3M-dR-NHC"/>
@@ -552,7 +545,7 @@
         <!--Web View Controller-->
         <scene sceneID="m7r-16-ntP">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" id="qTX-IX-O1x" customClass="WebViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" id="qTX-IX-O1x" customClass="WebViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NZW-dL-rfb"/>
                         <viewControllerLayoutGuide type="bottom" id="1e2-yo-2eV"/>
@@ -602,7 +595,7 @@
         <!--Video View Controller-->
         <scene sceneID="Zbn-mr-shH">
             <objects>
-                <viewController storyboardIdentifier="VideoViewController" id="5Hh-M9-wy1" customClass="VideoViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoViewController" id="5Hh-M9-wy1" customClass="VideoViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ztS-j3-2Jk"/>
                         <viewControllerLayoutGuide type="bottom" id="eoR-na-C9E"/>
@@ -753,7 +746,7 @@
         <!--Dropdown View Controller-->
         <scene sceneID="gSp-qo-Qqh">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="HIU-IN-RiG" customClass="DropdownViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="HIU-IN-RiG" customClass="DropdownViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xwv-vq-r1M"/>
                         <viewControllerLayoutGuide type="bottom" id="UKi-FC-7gn"/>
@@ -813,7 +806,7 @@
         <!--Dropdown Table View Controller-->
         <scene sceneID="qMg-Og-BRL">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="t4D-DJ-cpt" customClass="DropdownTableViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="t4D-DJ-cpt" customClass="DropdownTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Idi-N3-cXP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -989,7 +982,7 @@
         <!--Course Detail View Controller-->
         <scene sceneID="BRe-rl-f0G">
             <objects>
-                <viewController storyboardIdentifier="CourseDetailsViewController" id="y4i-iY-cnq" customClass="CourseDetailViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseDetailsViewController" id="y4i-iY-cnq" customClass="CourseDetailViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kKZ-Rb-yQr"/>
                         <viewControllerLayoutGuide type="bottom" id="IR0-Zx-Amd"/>
@@ -1002,7 +995,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdR-rr-7UF">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="316.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="370.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vCa-iu-UZL">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
@@ -1028,30 +1021,43 @@
                                                 <color key="textColor" red="0.87058823529999996" green="0.38431372549999998" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text=" " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knX-ev-5z0">
-                                                <rect key="frame" x="20" y="219.5" width="335" height="33"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75R-lh-61z">
                                                 <rect key="frame" x="20" y="136" width="46" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text=" " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knX-ev-5z0">
+                                                <rect key="frame" x="20" y="273.5" width="335" height="33"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaE-6v-6n9">
+                                                <rect key="frame" x="20" y="227" width="335" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="enroll:" destination="y4i-iY-cnq" eventType="touchUpInside" id="GOd-jh-NUR"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="knX-ev-5z0" firstAttribute="top" secondItem="bw8-ZQ-Ywu" secondAttribute="bottom" constant="8" symbolic="YES" id="7UK-Zw-stw"/>
                                             <constraint firstAttribute="trailing" secondItem="fFZ-uF-E3Y" secondAttribute="trailing" constant="20" symbolic="YES" id="8Dp-hV-DBR"/>
                                             <constraint firstItem="vCa-iu-UZL" firstAttribute="leading" secondItem="3ik-Wp-GDz" secondAttribute="leading" id="8mD-Pd-nuU"/>
                                             <constraint firstItem="bw8-ZQ-Ywu" firstAttribute="leading" secondItem="tdR-rr-7UF" secondAttribute="leading" constant="20" symbolic="YES" id="9Hr-LH-de1"/>
                                             <constraint firstItem="bw8-ZQ-Ywu" firstAttribute="top" secondItem="3ik-Wp-GDz" secondAttribute="bottom" constant="8" symbolic="YES" id="9L4-kS-bO4"/>
                                             <constraint firstAttribute="bottom" secondItem="knX-ev-5z0" secondAttribute="bottom" constant="64" id="9Nn-P4-FBL"/>
+                                            <constraint firstItem="FaE-6v-6n9" firstAttribute="leading" secondItem="tdR-rr-7UF" secondAttribute="leading" constant="20" symbolic="YES" id="AFc-mb-KxP"/>
                                             <constraint firstItem="75R-lh-61z" firstAttribute="leading" secondItem="tdR-rr-7UF" secondAttribute="leading" constant="20" symbolic="YES" id="Bti-77-ofW"/>
                                             <constraint firstItem="3ik-Wp-GDz" firstAttribute="top" secondItem="75R-lh-61z" secondAttribute="bottom" constant="8" symbolic="YES" id="INW-wK-geK"/>
                                             <constraint firstItem="3ik-Wp-GDz" firstAttribute="top" secondItem="vCa-iu-UZL" secondAttribute="bottom" constant="8" symbolic="YES" id="MQR-0v-3eG"/>
+                                            <constraint firstAttribute="trailing" secondItem="FaE-6v-6n9" secondAttribute="trailing" constant="20" symbolic="YES" id="NPq-wg-hBU"/>
                                             <constraint firstItem="75R-lh-61z" firstAttribute="top" secondItem="vCa-iu-UZL" secondAttribute="bottom" constant="8" symbolic="YES" id="Ngx-uz-3qr"/>
                                             <constraint firstItem="knX-ev-5z0" firstAttribute="leading" secondItem="tdR-rr-7UF" secondAttribute="leading" constant="20" symbolic="YES" id="Nq1-QK-g8O"/>
                                             <constraint firstItem="fFZ-uF-E3Y" firstAttribute="baseline" secondItem="3ik-Wp-GDz" secondAttribute="baseline" id="Sz5-hP-RUu"/>
@@ -1063,8 +1069,10 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="75R-lh-61z" secondAttribute="trailing" constant="20" symbolic="YES" id="hEc-mr-byt"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bw8-ZQ-Ywu" secondAttribute="trailing" constant="20" symbolic="YES" id="hgc-4i-JdL"/>
                                             <constraint firstItem="vCa-iu-UZL" firstAttribute="centerX" secondItem="tdR-rr-7UF" secondAttribute="centerX" id="lea-I1-oWn"/>
+                                            <constraint firstItem="knX-ev-5z0" firstAttribute="top" secondItem="FaE-6v-6n9" secondAttribute="bottom" constant="16" id="pK3-ft-8gs"/>
                                             <constraint firstItem="3ik-Wp-GDz" firstAttribute="leading" secondItem="tdR-rr-7UF" secondAttribute="leading" constant="20" symbolic="YES" id="rHw-CZ-iLz"/>
                                             <constraint firstItem="fFZ-uF-E3Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3ik-Wp-GDz" secondAttribute="trailing" constant="8" symbolic="YES" id="vVU-Lg-0gc"/>
+                                            <constraint firstItem="FaE-6v-6n9" firstAttribute="top" secondItem="bw8-ZQ-Ywu" secondAttribute="bottom" constant="16" id="yWY-YT-Phj"/>
                                             <constraint firstItem="knX-ev-5z0" firstAttribute="leading" secondItem="vCa-iu-UZL" secondAttribute="trailing" id="zm6-UI-SH2"/>
                                         </constraints>
                                         <variation key="default">
@@ -1112,10 +1120,12 @@
                     <connections>
                         <outlet property="dateView" destination="fFZ-uF-E3Y" id="gEW-HU-kCq"/>
                         <outlet property="descriptionView" destination="knX-ev-5z0" id="jeH-9p-7Sc"/>
+                        <outlet property="enrollmentButton" destination="FaE-6v-6n9" id="ifI-id-MwL"/>
                         <outlet property="imageView" destination="vCa-iu-UZL" id="h6s-fD-Asj"/>
                         <outlet property="languageView" destination="3ik-Wp-GDz" id="nnN-oW-XYk"/>
                         <outlet property="teacherView" destination="bw8-ZQ-Ywu" id="dGG-Mc-SZe"/>
                         <outlet property="titleView" destination="75R-lh-61z" id="Hqc-LH-TwW"/>
+                        <segue destination="bqb-dp-zic" kind="show" identifier="ShowLogin" id="XJt-ib-7AF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dac-fx-jD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1133,5 +1143,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="u7s-tl-wgY"/>
+        <segue reference="XJt-ib-7AF"/>
     </inferredMetricsTieBreakers>
 </document>

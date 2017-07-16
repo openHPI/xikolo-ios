@@ -54,6 +54,10 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 //        wkViewController.load(request)
     }
 
+    override func didSuccessfullyLogin() {
+        super.didSuccessfullyLogin()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSSOWebView" {
             let vc = segue.destination as! WebViewController

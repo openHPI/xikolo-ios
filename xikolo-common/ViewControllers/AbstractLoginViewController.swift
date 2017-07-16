@@ -20,7 +20,6 @@ class AbstractLoginViewController : UIViewController {
         let password = passwordField.text!
 
         UserProfileHelper.login(email, password: password).onSuccess { token in
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
             self.didSuccessfullyLogin()
         }.onFailure { error in
             if case XikoloError.authenticationError = error {

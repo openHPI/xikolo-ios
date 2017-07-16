@@ -31,6 +31,12 @@ class CourseHelper {
         return request
     }
 
+    static func getSpecificCourseRequest(_ course: Course) -> NSFetchRequest<Course> {
+        let request: NSFetchRequest<Course> = Course.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", course.id)
+        return request
+    }
+
     static func getAllCoursesRequest() -> NSFetchRequest<Course> {
         return getGenericCoursesRequest()
     }
@@ -102,6 +108,13 @@ class CourseHelper {
     static func refreshCourses() -> Future<[Course], XikoloError> {
         return CourseProvider.getCourses().flatMap { spineCourses -> Future<[Course], XikoloError> in
             let request = getGenericCoursesRequest()
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourses, inject: nil, save: true)
+        }
+    }
+
+    static func refreshCourse(_ course: Course) -> Future<[Course], XikoloError> {
+        return CourseProvider.getCourses().flatMap { spineCourses -> Future<[Course], XikoloError> in
+            let request = getSpecificCourseRequest(course)
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourses, inject: nil, save: true)
         }
     }

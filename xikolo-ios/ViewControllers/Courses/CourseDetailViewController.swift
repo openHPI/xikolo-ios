@@ -23,7 +23,11 @@ class CourseDetailViewController: UIViewController {
     
     @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {
-            showEnrollmentDialog()
+            if course.enrollment == nil {
+                showEnrollmentDialog()
+            } else {
+                showEnrollmentOptions()
+            }
         } else {
             performSegue(withIdentifier: "ShowLogin", sender: nil)
         }
@@ -34,15 +38,13 @@ class CourseDetailViewController: UIViewController {
         super.viewDidLoad()
 
         titleView.text = course.title
- 
-        enrollmentButton.setTitle(NSLocalizedString("You are enrolled", comment: ""), for: [UIControlState.disabled])
-        enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: [UIControlState.normal])
+
         if course.enrollment != nil {
-            enrollmentButton.isEnabled = false
+            enrollmentButton.setTitle(NSLocalizedString("Enrollment Options", comment: ""), for: UIControlState.normal)
             enrollmentButton.backgroundColor = UIColor.white
             enrollmentButton.tintColor = Brand.TintColor
-        }else{
-            enrollmentButton.isEnabled = true
+        } else {
+            enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: UIControlState.normal)
             enrollmentButton.backgroundColor = Brand.TintColor
             enrollmentButton.tintColor = UIColor.white
         }
@@ -57,7 +59,7 @@ class CourseDetailViewController: UIViewController {
         dateView.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
         imageView.sd_setImage(with: course.image_url)
 
-        if let description = course.abstract {//TODO: change back to course_description when API works
+        if let description = course.abstract {
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
             descriptionView.attributedText = markDown
         }
@@ -83,6 +85,26 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(UIAlertAction(title: decline, style: .cancel, handler: nil))
         
         present(alert, animated: true, completion: nil)
+    }
+
+    func showEnrollmentOptions() {
+        let alert = UIAlertController(title: "Enrollment Options", message: "This is an action sheet.", preferredStyle: .actionSheet) // 1
+        let completedAction = UIAlertAction(title: "mark as completed", style: .default) { _ in
+            EnrollmentHelper.markAsCompleted(self.course).onSuccess(callback: { _ in
+                CourseHelper.refreshCourse(self.course)
+            })
+        }
+
+        let unenrollAction = UIAlertAction(title: "unenroll", style: .destructive) { _ in
+            EnrollmentHelper.deleteEnrollment(for: self.course)
+        }
+
+        let cancelAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+
+        alert.addAction(completedAction)
+        alert.addAction(unenrollAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion:nil)
     }
     
 

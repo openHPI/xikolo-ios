@@ -89,9 +89,9 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func preloadCourseContent() {
-        let richTextFuture = CourseItemHelper.syncRichTextsFor(course: course)
-        let videoFuture = CourseItemHelper.syncVideosFor(course: course)
-        [richTextFuture, videoFuture].sequence().onComplete { _ in
+        self.contentToBePreloaded.map { contentType in
+            return contentType.preloadContentFor(course: self.course)
+        }.sequence().onComplete { _ in
             self.isPreloading = false
             self.tableView.reloadData()
         }

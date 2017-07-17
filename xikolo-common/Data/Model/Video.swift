@@ -139,4 +139,8 @@ extension Video: DetailedContent {
         return formatter.string(from: timeInterval)
     }
 
+    static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
+        return CourseItemHelper.syncVideosFor(course: course)
+    }
+
 }

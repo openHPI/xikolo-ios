@@ -6,6 +6,7 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
 import Foundation
 import Spine
@@ -43,6 +44,10 @@ extension RichText: DetailedContent {
 
     var detailedInformation: String? {
         return nil
+    }
+
+    static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
+        return CourseItemHelper.syncRichTextsFor(course: course)
     }
 
 }

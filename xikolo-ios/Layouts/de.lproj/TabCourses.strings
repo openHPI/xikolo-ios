@@ -1,16 +1,72 @@
 
+/* Class = "UILabel"; text = "English"; ObjectID = "3ik-Wp-GDz"; */
+"3ik-Wp-GDz.text" = "English";
+
+/* Class = "UILabel"; text = "Course Details"; ObjectID = "4pA-is-ZLH"; */
+"4pA-is-ZLH.text" = "Course Details";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "75R-lh-61z"; */
+"75R-lh-61z.text" = "Label";
+
+/* Class = "UILabel"; text = "Learnings"; ObjectID = "7O7-F1-Kii"; */
+"7O7-F1-Kii.text" = "Kursinhalte";
+
+/* Class = "UILabel"; text = "[item title]"; ObjectID = "8Lb-me-JVK"; */
+"8Lb-me-JVK.text" = "[item title]";
+
 /* Class = "UISegmentedControl"; CXl-G3-ErQ.segmentTitles[0] = "My Courses"; ObjectID = "CXl-G3-ErQ"; */
 "CXl-G3-ErQ.segmentTitles[0]" = "Meine Kurse";
 
 /* Class = "UISegmentedControl"; CXl-G3-ErQ.segmentTitles[1] = "Find Courses"; ObjectID = "CXl-G3-ErQ"; */
 "CXl-G3-ErQ.segmentTitles[1]" = "Kurse finden";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FaE-6v-6n9"; */
+"FaE-6v-6n9.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "CourseContent"; ObjectID = "I0c-UK-HJw"; */
+"I0c-UK-HJw.text" = "Kursinhalte";
+
+/* Class = "UITextView"; text = " "; ObjectID = "R67-QI-Tmy"; */
+"R67-QI-Tmy.text" = " ";
+
+/* Class = "UILabel"; text = "language label"; ObjectID = "TFD-9C-1SW"; */
+"TFD-9C-1SW.text" = "language label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UlH-iG-QnR"; */
+"UlH-iG-QnR.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Xms-E7-0kp"; */
+"Xms-E7-0kp.text" = "Titel";
+
+/* Class = "UILabel"; text = "date label"; ObjectID = "a3v-pI-ix2"; */
+"a3v-pI-ix2.text" = "date label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bw8-ZQ-Ywu"; */
+"bw8-ZQ-Ywu.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cDO-oK-db9"; */
+"cDO-oK-db9.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "open slides"; ObjectID = "e3P-4C-sVC"; */
 "e3P-4C-sVC.normalTitle" = "Folien anschauen";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eS5-Ki-7jx"; */
+"eS5-Ki-7jx.text" = "Label";
+
+/* Class = "UILabel"; text = "Discussions"; ObjectID = "etf-qu-OLk"; */
+"etf-qu-OLk.text" = "Kursforum";
+
+/* Class = "UILabel"; text = "10.03.1989 - 23.05.2004"; ObjectID = "fFZ-uF-E3Y"; */
+"fFZ-uF-E3Y.text" = "10.03.1989 - 23.05.2004";
 
 /* Class = "UITabBarItem"; title = "Courses"; ObjectID = "fhC-LU-HI2"; */
 "fhC-LU-HI2.title" = "Kurse";
 
-/* Class = "UIBarButtonItem"; title = "Enroll"; ObjectID = "VYw-23-AH5"; */
-"VYw-23-AH5.title" = "Einschreiben";
+/* Class = "UITextView"; text = " "; ObjectID = "knX-ev-5z0"; */
+"knX-ev-5z0.text" = " ";
 
+/* Class = "UILabel"; text = "SectionTitle"; ObjectID = "ntR-bY-hxe"; */
+"ntR-bY-hxe.text" = "SectionTitle";
+
+/* Class = "UILabel"; text = "teacher label"; ObjectID = "yHD-1N-ZdC"; */
+"yHD-1N-ZdC.text" = "teacher label";

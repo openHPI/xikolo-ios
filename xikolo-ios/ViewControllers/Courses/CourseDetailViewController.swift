@@ -40,7 +40,7 @@ class CourseDetailViewController: UIViewController {
         titleView.text = course.title
 
         if course.enrollment != nil {
-            enrollmentButton.setTitle(NSLocalizedString("Enrollment Options", comment: ""), for: UIControlState.normal)
+            enrollmentButton.setTitle(NSLocalizedString("Enrollment options", comment: ""), for: UIControlState.normal)
             enrollmentButton.backgroundColor = UIColor.white
             enrollmentButton.tintColor = Brand.TintColor
         } else {
@@ -88,18 +88,17 @@ class CourseDetailViewController: UIViewController {
     }
 
     func showEnrollmentOptions() {
-        let alert = UIAlertController(title: "Enrollment Options", message: "This is an action sheet.", preferredStyle: .actionSheet) // 1
-        let completedAction = UIAlertAction(title: "mark as completed", style: .default) { _ in
-            EnrollmentHelper.markAsCompleted(self.course).onSuccess(callback: { _ in
+        let alert = UIAlertController(title: NSLocalizedString("Finished learning?", comment:""), message:  NSLocalizedString("You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.", comment: ""), preferredStyle: .actionSheet) // 1
+        let completedAction = UIAlertAction(title: NSLocalizedString("Mark as completed", comment: ""), style: .default) { _ in
+            EnrollmentHelper.markAsCompleted(self.course).onSuccess { _ in
                 CourseHelper.refreshCourse(self.course)
-            })
+            }
         }
-
-        let unenrollAction = UIAlertAction(title: "unenroll", style: .destructive) { _ in
+        let unenrollAction = UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive) { _ in
             EnrollmentHelper.deleteEnrollment(for: self.course)
         }
 
-        let cancelAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
 
         alert.addAction(completedAction)
         alert.addAction(unenrollAction)

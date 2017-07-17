@@ -46,6 +46,10 @@
 "Current" = "Aktuell";
 "Upcoming" = "Zukünftig";
 "Completed" = "Abgeschlossen";
+"Mark as completed" = "Als abgeschlossen markieren";
+"Cancel" = "Abbrechen";
+"Unenroll" = "Ausschreiben";
+"Enrollment options" = "Eingeschrieben";
 
 //Dialogs
 "Enroll" = "Einschreiben";
@@ -54,7 +58,8 @@
 "You can always un-enroll." = "Du kannst dich jederzeit wieder austragen.";
 "This item needs to be proctored" = "Online-Aufsicht erforderlich";
 "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
-
+"Finished learning?" = "Fertig gelernt?";
+"You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored." = "Du kannst Kurse als abgeschlossen markieren, wenn Du nicht mehr in diesem Kurs lernen möchtest. Du kannst dich auch abmelden. Dann kannst Du nicht mehr auf diesen Kurs zugreifen.";
 //Dashboard
 "Course Start" = "Kursstart";
 

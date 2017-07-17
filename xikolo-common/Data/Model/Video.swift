@@ -126,3 +126,17 @@ struct VideoStreamFormatter : ValueFormatter {
     }
 
 }
+
+
+extension Video: DetailedContent {
+
+    var detailedInformation: String? {
+        guard let timeInterval = self.duration?.doubleValue, timeInterval > 0 else { return nil }
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+        return formatter.string(from: timeInterval)
+    }
+
+}

@@ -37,3 +37,12 @@ class RichTextSpine : ContentSpine {
     }
 
 }
+
+
+extension RichText: DetailedContent {
+
+    var detailedInformation: String? {
+        return nil
+    }
+
+}

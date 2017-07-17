@@ -16,9 +16,4 @@ class VideoProvider {
         return SpineHelper.findOne(videoId, ofType: VideoSpine.self)
     }
 
-    class func getVideos(_ videoIds: [String]) -> Future<[VideoSpine], XikoloError> {
-        let query = Query(resourceType: VideoSpine.self, resourceIDs: videoIds)
-        return SpineHelper.find(query)
-    }
-
 }

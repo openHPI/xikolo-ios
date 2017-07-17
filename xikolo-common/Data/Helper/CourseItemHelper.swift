@@ -44,4 +44,40 @@ class CourseItemHelper {
         }
     }
 
+    static func syncRichTextsFor(course: Course) -> Future<[CourseItem], XikoloError> {
+        return CourseItemProvider.getRichTextsFor(course: course).flatMap { spineItems -> Future<[CourseItem], XikoloError> in
+            let richTextRequest: NSFetchRequest<RichText> = RichText.fetchRequest()
+            richTextRequest.predicate = NSPredicate(format: "item.section.course == %@", course)
+            do {
+                let richTexts = try richTextRequest.execute()
+                let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                    NSPredicate(format: "section.course == %@", course),
+                    NSPredicate(format: "content", richTexts)
+                    ])
+                return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineItems, inject: nil, save: true)
+            } catch let error as NSError {
+                return Future(error: XikoloError.coreData(error))
+            }
+        }
+    }
+
+    static func syncVideosFor(course: Course) -> Future<[CourseItem], XikoloError> {
+        return CourseItemProvider.getRichTextsFor(course: course).flatMap { spineItems -> Future<[CourseItem], XikoloError> in
+            let videoRequest: NSFetchRequest<Video> = Video.fetchRequest()
+            videoRequest.predicate = NSPredicate(format: "item.section.course == %@", course)
+            do {
+                let videos = try videoRequest.execute()
+                let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                    NSPredicate(format: "section.course == %@", course),
+                    NSPredicate(format: "content", videos)
+                    ])
+                return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineItems, inject: nil, save: true)
+            } catch let error as NSError {
+                return Future(error: XikoloError.coreData(error))
+            }
+        }
+    }
+
 }

@@ -16,9 +16,4 @@ class RichTextProvider {
         return SpineHelper.findOne(richTextId, ofType: RichTextSpine.self)
     }
 
-    class func getRichTexts(_ richTextIds: [String]) -> Future<[RichTextSpine], XikoloError> {
-        let query = Query(resourceType: RichTextSpine.self, resourceIDs: richTextIds)
-        return SpineHelper.find(query)
-    }
-
 }

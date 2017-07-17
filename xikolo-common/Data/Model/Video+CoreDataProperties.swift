@@ -5,9 +5,6 @@
 //  Created by Bjarne Sievers on 21.08.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
-//
 
 import Foundation
 import CoreData
@@ -29,5 +26,9 @@ extension Video {
     @NSManaged var slides_stream_hls_url: String?
     @NSManaged var slides_stream_thumbnail_url: String?
     @NSManaged var summary: String?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Video> {
+        return NSFetchRequest<Video>(entityName: "Video");
+    }
 
 }

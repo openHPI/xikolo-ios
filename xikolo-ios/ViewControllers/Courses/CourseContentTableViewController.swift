@@ -18,6 +18,9 @@ class CourseContentTableViewController: UITableViewController {
     var resultsController: NSFetchedResultsController<CourseItem>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
 
+    var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
+    var isPreloading = true
+
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
@@ -30,11 +33,13 @@ class CourseContentTableViewController: UITableViewController {
 
         self.navigationItem.title = self.course.title
 
+        self.isPreloading = !self.contentToBePreloaded.isEmpty
+
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(CourseContentTableViewConfiguration())
+        let configuration = TableViewResultsControllerConfigurationWrapper(self)
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -47,11 +52,10 @@ class CourseContentTableViewController: UITableViewController {
         NetworkIndicator.start()
         CourseSectionHelper.syncCourseSections(course).flatMap { sections in
             sections.map { section in
-                CourseItemHelper.syncCourseItems(section).map { courseItems in
-                    self.prefetcCourseContent(for: courseItems)
-                }
+                CourseItemHelper.syncCourseItems(section)
             }.sequence().onComplete { _ in
                 self.tableView.reloadEmptyDataSet()
+                self.preloadCourseContent()
             }
         }.onComplete { _ in
             NetworkIndicator.end()
@@ -84,18 +88,13 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
-    func prefetcCourseContent(for items: [CourseItem]) {
-        // prefetch rich text
-        let richTexts = items.flatMap {
-            return $0.content as? RichText
+    func preloadCourseContent() {
+        let richTextFuture = CourseItemHelper.syncRichTextsFor(course: course)
+        let videoFuture = CourseItemHelper.syncVideosFor(course: course)
+        [richTextFuture, videoFuture].sequence().onComplete { _ in
+            self.isPreloading = false
+            self.tableView.reloadData()
         }
-        RichTextHelper.refresh(richTexts: richTexts)
-
-        // prefetch video info
-        let videos = items.flatMap {
-            return $0.content as? Video
-        }
-        VideoHelper.sync(videos: videos)
     }
 
     func showProctoringDialog(onComplete completionBlock: @escaping () -> Void) {
@@ -151,15 +150,17 @@ extension CourseContentTableViewController { // TableViewDelegate
 
 }
 
-struct CourseContentTableViewConfiguration : TableViewResultsControllerConfiguration {
+
+extension CourseContentTableViewController : TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
-        cell.configure(item)
+        cell.configure(item, forPreloading: self.isPreloading)
     }
 
 }
+
 
 extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
@@ -180,5 +181,5 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         let attributedString = NSAttributedString(string: description)
         return attributedString
     }
-    
+
 }

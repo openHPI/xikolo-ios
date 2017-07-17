@@ -19,7 +19,7 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var loadingBox: UIView!
     @IBOutlet weak var detailLabel: UILabel!
 
-    func configure(_ courseItem: CourseItem) {
+    func configure(_ courseItem: CourseItem, forPreloading isPreloading: Bool = false) {
         self.titleView.text = courseItem.title
 
         if let iconName = courseItem.iconName {
@@ -29,15 +29,24 @@ class CourseItemCell : UITableViewCell {
         let wasVisitedBefore = courseItem.visited ?? true
         self.readStateView.backgroundColor = wasVisitedBefore ? UIColor.clear : Brand.TintColor
 
-        if courseItem.content is Video || courseItem.content is RichText {
-            self.detailLabel.isHidden = false
+        guard let detailedContent = courseItem.content as? DetailedContent else {
+            // only detailed content items show additional information
+            self.detailContainer.isHidden = true
+            return
+        }
 
+        if let detailedInfo = detailedContent.detailedInformation {
+            self.shimmerContainer.isShimmering = false
+            self.detailLabel.text = detailedInfo
+            self.detailLabel.isHidden = false
+            self.shimmerContainer.isHidden = true
+            self.detailContainer.isHidden = false
+        } else if isPreloading {
             self.shimmerContainer.contentView = self.loadingBox
             self.shimmerContainer.isShimmering = true
-
+            self.detailLabel.isHidden = true
+            self.shimmerContainer.isHidden = false
             self.detailContainer.isHidden = false
-
-            // load detail info here
         } else {
             self.detailContainer.isHidden = true
         }

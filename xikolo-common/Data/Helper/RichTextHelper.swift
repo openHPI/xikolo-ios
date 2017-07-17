@@ -8,7 +8,6 @@
 
 import BrightFutures
 import Foundation
-import Result
 
 class RichTextHelper {
 
@@ -17,13 +16,6 @@ class RichTextHelper {
             return SpineModelHelper.syncObjectsFuture([richText], spineObjects: [spineRichText], inject: nil, save: true)
         }.map { cdRichTexts in
             return cdRichTexts[0]
-        }
-    }
-
-    @discardableResult static func refresh(richTexts: [RichText]) -> Future<[RichText], XikoloError> {
-        let richTextIds = richTexts.map { $0.id }
-        return RichTextProvider.getRichTexts(richTextIds).flatMap { spineRichTexts -> Future<[RichText], XikoloError> in
-            return SpineModelHelper.syncObjectsFuture(richTexts, spineObjects: spineRichTexts, inject: nil, save: true)
         }
     }
 

@@ -131,12 +131,31 @@ struct VideoStreamFormatter : ValueFormatter {
 extension Video: DetailedContent {
 
     var detailedInformation: String? {
-        guard let timeInterval = self.duration?.doubleValue, timeInterval > 0 else { return nil }
+        let textComponents = [self.durationText, self.slidesText].flatMap { $0 }
+        guard !textComponents.isEmpty else {
+            return nil
+        }
+
+        return textComponents.joined(separator: " \u{B7} ")
+    }
+
+    private var durationText: String? {
+        guard let timeInterval = self.duration?.doubleValue, timeInterval > 0 else {
+            return nil
+        }
+
+        var calendar = Calendar.current
+        calendar.locale = Locale.current
         let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .positional
+        formatter.calendar = calendar
+        formatter.unitsStyle = .abbreviated
         formatter.allowedUnits = [.minute, .second]
         formatter.zeroFormattingBehavior = [.pad]
         return formatter.string(from: timeInterval)
+    }
+
+    private var slidesText: String? {
+        return self.slides_url != nil ? "Slides" : nil
     }
 
     static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {

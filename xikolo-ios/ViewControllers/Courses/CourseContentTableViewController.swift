@@ -89,11 +89,17 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func preloadCourseContent() {
-        self.contentToBePreloaded.map { contentType in
+        self.contentToBePreloaded.traverse { contentType in
             return contentType.preloadContentFor(course: self.course)
-        }.sequence().onComplete { _ in
+        }.onSuccess { contentItems in
             self.isPreloading = false
-            self.tableView.reloadData()
+            for items in contentItems {
+                for item in items {
+                    item.didChangeValue(forKey: "content")
+                }
+            }
+        }.onFailure { error in
+            print("error \(error)")
         }
     }
 

@@ -37,6 +37,14 @@ class QuizViewController: UIViewController {
     }
 
     @IBAction func startQuiz(_ sender: Any) {
+        performSegue(withIdentifier: "StartQuiz", sender: quiz)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "StartQuiz" {
+            let vc = segue.destination as! QuizQuestionViewController
+            vc.quiz = quiz
+        }
     }
 
 }

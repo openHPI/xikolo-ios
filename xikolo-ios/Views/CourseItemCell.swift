@@ -19,7 +19,9 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var loadingBox: UIView!
     @IBOutlet weak var detailLabel: UILabel!
 
-    func configure(_ courseItem: CourseItem, forPreloading isPreloading: Bool = false) {
+    func configure(_ courseItem: CourseItem,
+                   forContentTypes contentTypes: [DetailedContent.Type],
+                   forPreloading isPreloading: Bool = false) {
         self.titleView.text = courseItem.title
 
         if let iconName = courseItem.iconName {
@@ -35,6 +37,14 @@ class CourseItemCell : UITableViewCell {
             return
         }
 
+        let contentType = type(of: detailedContent)
+        guard contentTypes.contains(where: { String(describing: contentType.self) == String(describing: $0) }) else {
+            // only certain content items will show additional information
+            self.detailContainer.isHidden = true
+            return
+        }
+
+        self.detailLabel.text = nil
         if let detailedInfo = detailedContent.detailedInformation {
             self.shimmerContainer.isShimmering = false
             self.detailLabel.text = detailedInfo
@@ -48,6 +58,12 @@ class CourseItemCell : UITableViewCell {
             self.shimmerContainer.isHidden = false
             self.detailContainer.isHidden = false
         } else {
+            self.detailContainer.isHidden = true
+        }
+    }
+
+    func removeLoadingState() {
+        if self.detailLabel.text?.isEmpty ?? true {
             self.detailContainer.isHidden = true
         }
     }

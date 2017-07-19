@@ -95,7 +95,9 @@ class CourseContentTableViewController: UITableViewController {
             return contentType.preloadContentFor(course: self.course)
         }.onComplete { _ in
             self.isPreloading = false
-            self.tableView.reloadRows(at: self.tableView.indexPathsForVisibleRows ?? [], with: .none)
+            for case let cell as CourseItemCell in self.tableView.visibleCells {
+                cell.removeLoadingState()
+            }
         }
     }
 
@@ -163,7 +165,9 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
-        cell.configure(item, forPreloading: self.tableViewController?.isPreloading ?? false)
+        cell.configure(item,
+                       forContentTypes: self.tableViewController?.contentToBePreloaded ?? [],
+                       forPreloading: self.tableViewController?.isPreloading ?? false)
     }
 
 }

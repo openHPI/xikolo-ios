@@ -19,7 +19,7 @@ class CourseContentTableViewController: UITableViewController {
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
 
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
-    var isPreloading = true
+    var isPreloading = false
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -39,8 +39,10 @@ class CourseContentTableViewController: UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(self)
-        resultsControllerDelegateImplementation.configuration = configuration
+
+        let configuration = CourseContentTableViewConfiguration(tableViewController: self)
+        let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
+        resultsControllerDelegateImplementation.configuration = configurationWrapper
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -91,15 +93,9 @@ class CourseContentTableViewController: UITableViewController {
     func preloadCourseContent() {
         self.contentToBePreloaded.traverse { contentType in
             return contentType.preloadContentFor(course: self.course)
-        }.onSuccess { contentItems in
+        }.onComplete { _ in
             self.isPreloading = false
-            for items in contentItems {
-                for item in items {
-                    item.didChangeValue(forKey: "content")
-                }
-            }
-        }.onFailure { error in
-            print("error \(error)")
+            self.tableView.reloadRows(at: self.tableView.indexPathsForVisibleRows ?? [], with: .none)
         }
     }
 
@@ -157,12 +153,17 @@ extension CourseContentTableViewController { // TableViewDelegate
 }
 
 
-extension CourseContentTableViewController : TableViewResultsControllerConfiguration {
+class CourseContentTableViewConfiguration : TableViewResultsControllerConfiguration {
+    weak var tableViewController: CourseContentTableViewController?
+
+    init(tableViewController: CourseContentTableViewController) {
+        self.tableViewController = tableViewController
+    }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
-        cell.configure(item, forPreloading: self.isPreloading)
+        cell.configure(item, forPreloading: self.tableViewController?.isPreloading ?? false)
     }
 
 }

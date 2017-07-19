@@ -17,39 +17,46 @@ class QuizQuestionViewController: UIViewController {
     var containerContentViewController: UIViewController?
 
     var quiz: Quiz!
+    var questions: [QuizQuestion]!
     var currentIndex = 0
 
-    @IBOutlet weak var previous: UIButton!
-    @IBOutlet weak var next: UIButton!
-    override func viewDidLoad() {
+    @IBOutlet weak var previousQuestion: UIButton!
+    @IBOutlet weak var nextQuestion: UIButton!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let questionsSet = quiz.questions {
+            self.questions = Array(questionsSet)
+        }
     }
 
     func viewControllerAtIndex(_ index: Int, storyboard: UIStoryboard) -> QuizOptionSelectTableViewController? {
         // Return the data view controller for the given index.
-        if (self.quiz.questions?.count ?? 0 == 0) || (index >= self.quiz.questions?.count) {
+        if (self.questions.count == 0) || (index >= self.questions.count) {
             return nil
         }
 
         // Create a new view controller and pass suitable data.
         let questionViewController = storyboard.instantiateViewController(withIdentifier: "QuizOptionSelectTableViewController") as! QuizOptionSelectTableViewController
-        questionViewController.question = quiz.questions?[index]
+        questionViewController.question = questions[index]
         questionViewController.questionIndex = index
         return questionViewController
     }
 
     @IBAction func previousQuestion(_ sender: Any) {
         if currentIndex > 0 {
-            updateQuestion(quiz.questions?[--currentIndex]!);
+            currentIndex -= 1
+            updateQuestion(questions[currentIndex]);
         }
-        previous.isEnabled = currentIndex >= 0
+        previousQuestion.isEnabled = currentIndex >= 0
     }
 
     @IBAction func nextQuestion(_ sender: Any) {
-        if currentIndex < quiz.questions?.count ?? 0 {
-            updateQuestion(quiz.questions?[++currentIndex]!);
+        if currentIndex < questions.count {
+            currentIndex += 1
+            updateQuestion(questions[currentIndex]);
         }
-        previous.isEnabled = currentIndex < (quiz.questions?.count ?? 0)
+        nextQuestion.isEnabled = currentIndex < questions.count
     }
 
     func indexOfViewController(_ viewController: QuizOptionSelectTableViewController) -> Int {
@@ -79,6 +86,8 @@ class QuizQuestionViewController: UIViewController {
             explanationView.isHidden = true
         case "free_text"?:
             // TODO: implement
+            break
+        default:
             break
         }
         navigationController?.view.setNeedsLayout()

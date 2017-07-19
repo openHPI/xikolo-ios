@@ -14,7 +14,9 @@ class QuizViewController: UIViewController {
     var quiz: Quiz!
 
     @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var explanationView: UITextView!
+    @IBOutlet weak var pointsView: UILabel!
+    @IBOutlet weak var instructionView: UITextView!
+    @IBOutlet weak var timelimitView: UILabel!
     @IBOutlet weak var startQuizButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +31,31 @@ class QuizViewController: UIViewController {
         titleView.text = courseItem.title
         if let instructions = quiz.instructions {
             let markdown = try? MarkdownHelper.parse(instructions)
-            explanationView.attributedText = markdown
+            instructionView.attributedText = markdown
         }
-        /*if quiz.allowed_attempts >= quiz {
-            startQuizButton.isHidden = true
-        }*/
+        if let points = quiz.max_points {
+            pointsView.text = points.description(withLocale: Locale.current) + " " + NSLocalizedString("achievable points", comment: "")
+        } else {
+            pointsView.isHidden = true
+        }
+        if var timelimit = quiz.time_limit as? Int, timelimit != 0 {
+            timelimit = timelimit / 60 // given in seconds, displayed in minutes
+            timelimitView.text = NSLocalizedString("max. ", comment: "") + timelimit.description + " " + NSLocalizedString("minutes", comment: "")
+        } else {
+            timelimitView.isHidden = true
+            timelimitView.text = ""
+        }
+        var buttonTitle = NSLocalizedString("Start Quiz", comment: "")
+        if let attempts = quiz.allowed_attempts as? Int, attempts > 0 { // TODO: user attempt handling
+            buttonTitle += " (" + attempts.description
+            if attempts == 1 {
+                buttonTitle += NSLocalizedString(" attempt", comment: "")
+            } else {
+                buttonTitle += NSLocalizedString(" attempts", comment: "")
+            }
+            buttonTitle += ")"
+        }
+        startQuizButton.setTitle(buttonTitle, for: .normal)
     }
 
     @IBAction func startQuiz(_ sender: Any) {

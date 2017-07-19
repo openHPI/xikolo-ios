@@ -36,7 +36,6 @@ class Video : Content {
         return items
     }
 
-
 }
 
 class VideoSpine : ContentSpine {

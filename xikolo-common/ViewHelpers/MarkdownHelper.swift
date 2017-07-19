@@ -36,9 +36,10 @@ public extension DownAttributedStringRenderable {
     public func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, fontSize: Int, color: String) throws -> NSAttributedString {
         let htmlResponse = try self.toHTML(options)
         let html = "<span style=\"font-family: \(font); font-size: \(fontSize); color: \(color);\">\(htmlResponse)</span>"
-        return try NSAttributedString(data: html.data(using: .utf8)!, options: [
+        let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8)!, options: [
             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
             NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue,
         ], documentAttributes: nil)
+        return mutableString.trimmedAttributedString(set: .whitespacesAndNewlines)
     }
 }

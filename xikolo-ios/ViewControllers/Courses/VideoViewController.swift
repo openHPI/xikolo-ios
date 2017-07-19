@@ -16,6 +16,7 @@ class VideoViewController : UIViewController {
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
+    @IBOutlet var descriptionViewHeightConstraint: NSLayoutConstraint!
 
     var courseItem: CourseItem!
     var video: Video?
@@ -30,6 +31,14 @@ class VideoViewController : UIViewController {
             if let summary = videoComplete.summary {
                 let markDown = try? MarkdownHelper.parse(summary) // TODO: Error handling
                 self.descriptionView.attributedText = markDown
+                self.descriptionView.isHidden = markDown?.string.isEmpty ?? true
+
+                // update size of description view
+                self.descriptionView.textContainerInset = UIEdgeInsets.zero
+                let maxSize = CGSize(width: self.descriptionView.bounds.size.width, height: CGFloat.greatestFiniteMagnitude)
+                let fittingSize = self.descriptionView.sizeThatFits(maxSize)
+                self.descriptionViewHeightConstraint.constant = fittingSize.height //- insets.top - insets.bottom
+                self.descriptionView.needsUpdateConstraints()
             }
             self.performSegue(withIdentifier: "EmbedAVPlayer", sender: self.video)
             self.openSlidesButton.isHidden = self.video?.slides_url == nil

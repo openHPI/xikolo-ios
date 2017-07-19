@@ -8,6 +8,7 @@
 
 import BrightFutures
 import Foundation
+import Spine
 
 class RichTextProvider {
 

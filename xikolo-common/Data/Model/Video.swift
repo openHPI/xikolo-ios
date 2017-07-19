@@ -18,6 +18,13 @@ class Video : Content {
         return "video"
     }
 
+    var hlsURL: URL? {
+        guard let urlString = self.single_stream_hls_url else {
+            return nil
+        }
+        return URL(string: urlString)
+    }
+
     func metadata() -> [AVMetadataItem] {
         var items: [AVMetadataItem] = []
         if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {
@@ -115,6 +122,43 @@ struct VideoStreamFormatter : ValueFormatter {
     func formatValue(_ value: UnformattedType, forAttribute: AttributeType) -> FormattedType {
         // Implement in case we need it.
         return [:]
+    }
+
+}
+
+
+extension Video: DetailedContent {
+
+    var detailedInformation: String? {
+        let textComponents = [self.durationText, self.slidesText].flatMap { $0 }
+        guard !textComponents.isEmpty else {
+            return nil
+        }
+
+        return textComponents.joined(separator: " \u{B7} ")
+    }
+
+    private var durationText: String? {
+        guard let timeInterval = self.duration?.doubleValue, timeInterval > 0 else {
+            return nil
+        }
+
+        var calendar = Calendar.current
+        calendar.locale = Locale.current
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .abbreviated
+        formatter.allowedUnits = [.minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+        return formatter.string(from: timeInterval)
+    }
+
+    private var slidesText: String? {
+        return self.slides_url != nil ? "Slides" : nil
+    }
+
+    static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
+        return CourseItemHelper.syncVideosFor(course: course)
     }
 
 }

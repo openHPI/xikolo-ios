@@ -5,9 +5,6 @@
 //  Created by Sebastian Brückner on 19.08.16.
 //  Copyright © 2016 HPI. All rights reserved.
 //
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
-//
 
 import Foundation
 import CoreData
@@ -15,5 +12,9 @@ import CoreData
 extension RichText {
 
     @NSManaged var text: String?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<RichText> {
+        return NSFetchRequest<RichText>(entityName: "RichText");
+    }
 
 }

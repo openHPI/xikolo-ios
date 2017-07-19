@@ -17,43 +17,62 @@ class VideoViewController : UIViewController {
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
 
-    var courseItem: CourseItem!
+    var courseItem: CourseItem?
     var video: Video?
+    var videoPlayerConfigured = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleView.text = courseItem.title
-        let videoIncomplete = courseItem.content as! Video
-        VideoHelper.syncVideo(videoIncomplete).onSuccess { videoComplete in
-            self.video = videoComplete
-            if let summary = videoComplete.summary {
-                let markDown = try? MarkdownHelper.parse(summary) // TODO: Error handling
-                self.descriptionView.attributedText = markDown
-            }
-            self.performSegue(withIdentifier: "EmbedAVPlayer", sender: self.video)
-            self.openSlidesButton.isHidden = self.video?.slides_url == nil
+        self.titleView.text = self.courseItem?.title
+
+        guard let video = self.courseItem?.content as? Video else {
+            return
+        }
+
+        // display local data
+        self.show(video: video)
+
+        // refresh data
+        VideoHelper.sync(video: video).onSuccess { videoComplete in
+            self.show(video: videoComplete)
+        }
+    }
+
+    func show(video: Video) {
+        self.video = video
+
+        // show slides button
+        self.openSlidesButton.isHidden = (video.slides_url == nil)
+
+        // show description
+        if let summary = video.summary {
+            let markDown = try? MarkdownHelper.parse(summary) // TODO: Error handling
+            self.descriptionView.attributedText = markDown
+        }
+
+        // configure video player
+        if !self.videoPlayerConfigured && video.hlsURL != nil {
+            self.videoPlayerConfigured = true
+            self.performSegue(withIdentifier: "EmbedAVPlayer", sender: nil)
         }
     }
 
     @IBAction func openSlides(_ sender: UIButton) {
-        performSegue(withIdentifier: "ShowSlides", sender: video)
+        performSegue(withIdentifier: "ShowSlides", sender: self.video)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            case "EmbedAVPlayer"?:
-                let destination = segue.destination as! AVPlayerViewController
-                let video = sender as! Video
-                if let urlString = video.single_stream_hls_url {
-                    try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                    let url = URL(string: urlString)
-                    destination.player = AVPlayer(url: url!)
-                }
-            case "ShowSlides"?:
-                let vc = segue.destination as! WebViewController
-                let video = sender as! Video
-                vc.url = video.slides_url?.absoluteString
+        case "EmbedAVPlayer"?:
+            if let destination = segue.destination as? AVPlayerViewController, let url = self.video?.hlsURL {
+                try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                destination.player = AVPlayer(url: url)
+            }
+        case "ShowSlides"?:
+            if let vc = segue.destination as? WebViewController {
+                vc.url = self.video?.slides_url?.absoluteString
+            }
         default:
             super.prepare(for: segue, sender: sender)
         }
@@ -62,7 +81,9 @@ class VideoViewController : UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
             case "EmbedAVPlayer":
-                return video != nil
+                return self.video?.hlsURL != nil && !self.videoPlayerConfigured
+            case "ShowSlides":
+                return self.video?.slides_url?.absoluteString != nil
             default:
                 return true
         }

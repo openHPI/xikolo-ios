@@ -18,6 +18,9 @@ class CourseContentTableViewController: UITableViewController {
     var resultsController: NSFetchedResultsController<CourseItem>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
 
+    var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
+    var isPreloading = false
+
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
@@ -26,14 +29,20 @@ class CourseContentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = course.title
+        self.setupEmptyState()
+
+        self.navigationItem.title = self.course.title
+
+        self.isPreloading = !self.contentToBePreloaded.isEmpty
 
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(CourseContentTableViewConfiguration())
-        resultsControllerDelegateImplementation.configuration = configuration
+
+        let configuration = CourseContentTableViewConfiguration(tableViewController: self)
+        let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
+        resultsControllerDelegateImplementation.configuration = configurationWrapper
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -48,11 +57,11 @@ class CourseContentTableViewController: UITableViewController {
                 CourseItemHelper.syncCourseItems(section)
             }.sequence().onComplete { _ in
                 self.tableView.reloadEmptyDataSet()
+                self.preloadCourseContent()
             }
-        }.onSuccess { _ in
+        }.onComplete { _ in
             NetworkIndicator.end()
         }
-        setupEmptyState()
     }
 
     func setupEmptyState() {
@@ -78,6 +87,17 @@ class CourseContentTableViewController: UITableViewController {
             default:
                 // TODO: show error: unsupported type
                 break
+        }
+    }
+
+    func preloadCourseContent() {
+        self.contentToBePreloaded.traverse { contentType in
+            return contentType.preloadContentFor(course: self.course)
+        }.onComplete { _ in
+            self.isPreloading = false
+            for case let cell as CourseItemCell in self.tableView.visibleCells {
+                cell.removeLoadingState()
+            }
         }
     }
 
@@ -134,15 +154,24 @@ extension CourseContentTableViewController { // TableViewDelegate
 
 }
 
-struct CourseContentTableViewConfiguration : TableViewResultsControllerConfiguration {
+
+class CourseContentTableViewConfiguration : TableViewResultsControllerConfiguration {
+    weak var tableViewController: CourseContentTableViewController?
+
+    init(tableViewController: CourseContentTableViewController) {
+        self.tableViewController = tableViewController
+    }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
-        cell.configure(item)
+        cell.configure(item,
+                       forContentTypes: self.tableViewController?.contentToBePreloaded ?? [],
+                       forPreloading: self.tableViewController?.isPreloading ?? false)
     }
 
 }
+
 
 extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
@@ -163,5 +192,5 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         let attributedString = NSAttributedString(string: description)
         return attributedString
     }
-    
+
 }

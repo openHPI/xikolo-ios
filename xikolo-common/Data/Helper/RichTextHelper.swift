@@ -8,11 +8,10 @@
 
 import BrightFutures
 import Foundation
-import Result
 
 class RichTextHelper {
 
-    static func refreshRichText(_ richText: RichText) -> Future<RichText, XikoloError> {
+    @discardableResult static func refresh(richText: RichText) -> Future<RichText, XikoloError> {
         return RichTextProvider.getRichText(richText.id).flatMap { (spineRichText: RichTextSpine) -> Future<[RichText], XikoloError> in
             return SpineModelHelper.syncObjectsFuture([richText], spineObjects: [spineRichText], inject: nil, save: true)
         }.map { cdRichTexts in

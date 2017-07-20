@@ -18,19 +18,37 @@ class AbstractItemRichtextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        RichTextHelper.refreshRichText(courseItem.content as! RichText).onSuccess { richText in
-            if let markdown = richText.text {
-                let markDown = try? MarkdownHelper.parse(markdown) // TODO: Error handling
-                self.textView.attributedText = markDown
+        self.titleView.text = self.courseItem.title
+        self.loadRichText()
+    }
 
-                self.richTextLoaded()
-            }
+    func loadRichText() {
+        guard let richText = courseItem.content as? RichText else {
+            // Content item is no rich text
+            return
         }
 
-        titleView.text = courseItem.title
+        // Load local version if existing
+        if let markdown = richText.text {
+            self.display(markdown: markdown)
+        }
+
+        // Refresh rich text
+        RichTextHelper.refresh(richText: courseItem.content as! RichText).onSuccess { richText in
+            if let markdown = richText.text {
+                self.display(markdown: markdown)
+            }
+        }
+    }
+
+    func display(markdown: String) {
+        let markDown = try? MarkdownHelper.parse(markdown) // TODO: Error handling
+        self.textView.attributedText = markDown
+        self.richTextLoaded()
     }
 
     func richTextLoaded() {
+        // Do nothing. Subclasses can customize this method.
     }
 
 }

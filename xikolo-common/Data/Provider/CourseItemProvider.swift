@@ -19,4 +19,20 @@ class CourseItemProvider {
         return SpineHelper.find(query)
     }
 
+    class func getVideosFor(course: Course) -> Future<[CourseItemSpine], XikoloError> {
+        var query = Query(resourceType: CourseItemSpine.self)
+        query.addPredicateWithKey("course", value: course.id, type: .equalTo)
+        query.addPredicateWithKey("content_type", value: "video", type: .equalTo)
+        query.include("content")
+        return SpineHelper.find(query)
+    }
+
+    class func getRichTextsFor(course: Course) -> Future<[CourseItemSpine], XikoloError> {
+        var query = Query(resourceType: CourseItemSpine.self)
+        query.addPredicateWithKey("course", value: course.id, type: .equalTo)
+        query.addPredicateWithKey("content_type", value: "rich_text", type: .equalTo)
+        query.include("content")
+        return SpineHelper.find(query)
+    }
+
 }

@@ -526,6 +526,9 @@
 		4E6AB2021DD60EBD00B048DB /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
 		4E6AB2031DD60EBD00B048DB /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
 		4E6AB2041DD60EBD00B048DB /* CourseDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */; };
+		5019A75C1F20AAE1008C8138 /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */; };
+		5019A75D1F20AAE3008C8138 /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */; };
+		5019A75E1F20AAE4008C8138 /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */; };
 		5019A7631F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */; };
 		5019A7641F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */; };
 		5019A7651F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */; };
@@ -538,6 +541,9 @@
 		5060A5251F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A5281F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A52B1F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
+		5060A52C1F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
+		5060A52D1F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
+		506B0A8A1F1FC60800353ABE /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */; };
 		703005B31EFEFC0000CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B41EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B51EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
@@ -1764,6 +1770,7 @@
 		4E6AB1F11DD36AB500B048DB /* CourseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDate.swift; sourceTree = "<group>"; };
 		4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateProvider.swift; sourceTree = "<group>"; };
 		4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
 		5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+DetailedContent.swift"; path = "Data/Model/Video+DetailedContent.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RichText+DetailedContent.swift"; path = "Data/Model/RichText+DetailedContent.swift"; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedContent.swift; path = Data/Model/Protocol/DetailedContent.swift; sourceTree = "<group>"; };
@@ -2370,6 +2377,7 @@
 				249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */,
 				243CE4721D660F1F007C59B6 /* CollectionType+shuffle.swift */,
 				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
+				506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */,
 				2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
@@ -4058,6 +4066,7 @@
 				243CE4A21D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				24BA409A1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
 				AB4A01A71E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
+				5019A75C1F20AAE1008C8138 /* NSMutableAttributedString+trim.swift in Sources */,
 				AB4A01B11E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				4E2B82271DDC9F4600559217 /* CourseActivityRow.swift in Sources */,
@@ -4512,6 +4521,7 @@
 				70D1EA831EF0AB560088C0FF /* Video.swift in Sources */,
 				70D1EAD61EF0AC290088C0FF /* Error.swift in Sources */,
 				70D1EA251EF0AAE50088C0FF /* CourseItem.swift in Sources */,
+				5019A75E1F20AAE4008C8138 /* NSMutableAttributedString+trim.swift in Sources */,
 				70D1EAF61EF0ACB60088C0FF /* WebViewController.swift in Sources */,
 				70D1EA4A1EF0AB130088C0FF /* PlatformEvent.swift in Sources */,
 				70D1EB061EF0ACE60088C0FF /* CenterCellCollectionViewFlowLayout.swift in Sources */,
@@ -4868,6 +4878,7 @@
 				4E2B82231DDC9DB200559217 /* CourseActivityViewController.swift in Sources */,
 				24A16D8A1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				24A16D811CFDE6E400CAD9FE /* Quiz.swift in Sources */,
+				506B0A8A1F1FC60800353ABE /* NSMutableAttributedString+trim.swift in Sources */,
 				249C01AB1D3D139400B54AAC /* CollectionType+dict.swift in Sources */,
 				2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
@@ -5091,6 +5102,7 @@
 				ABA0F0D71DF8CE630001D88D /* RichTextHelper.swift in Sources */,
 				AB4A01AA1E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
 				AB4A01B41E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
+				5019A75D1F20AAE3008C8138 /* NSMutableAttributedString+trim.swift in Sources */,
 				ABA0F0EC1DF8CE980001D88D /* AbstractLoginViewController.swift in Sources */,
 				ABA0F0A51DF8CE020001D88D /* CourseItemProvider.swift in Sources */,
 				ABA0F0E11DF8CE750001D88D /* Error.swift in Sources */,

@@ -58,6 +58,8 @@ class VideoViewController : UIViewController {
             let fittingSize = self.descriptionView.sizeThatFits(maxSize)
             self.descriptionViewHeightConstraint.constant = fittingSize.height
             self.descriptionView.needsUpdateConstraints()
+        } else {
+            self.descriptionView.isHidden = true
         }
 
         // configure video player

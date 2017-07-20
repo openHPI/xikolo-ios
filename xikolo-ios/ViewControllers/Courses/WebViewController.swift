@@ -17,7 +17,6 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.delegate = self
-
         webView.loadRequest(NetworkHelper.getRequestForURL(url) as URLRequest)
     }
 
@@ -34,7 +33,7 @@ extension WebViewController : UIWebViewDelegate {
     }
 
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
+
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
            let urlComponents = URLComponents.init(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
@@ -45,15 +44,21 @@ extension WebViewController : UIWebViewDelegate {
                     navigationController?.dismiss(animated: true, completion: nil)
                 }
             })
+            return true
         }
-        #if DEBUG
-            if let dict = request.allHTTPHeaderFields {
-                for entry in dict { print(entry.key + " : " + entry.value) }
+
+        let userIsLoggedIn = UserProfileHelper.isLoggedIn()
+        let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.HTTP_AUTH_HEADER) ?? false
+
+        if let url = request.url?.absoluteString, userIsLoggedIn && !headerIsPresent {
+            DispatchQueue.global().async {
+                DispatchQueue.main.async {
+                    let newRequest = NetworkHelper.getRequestForURL(url)
+                    self.webView.loadRequest(newRequest as URLRequest)
+                }
             }
-            if let body = request.httpBody {
-                print(body)
-            }
-        #endif
+            return false
+        }
 
         return true
     }

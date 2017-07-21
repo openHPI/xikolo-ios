@@ -661,21 +661,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQq-V5-oXY">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgg-rD-71V">
                                 <rect key="frame" x="0.0" y="64" width="375" height="211"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="APL-U1-dlz"/>
-                                    <constraint firstAttribute="width" secondItem="HQq-V5-oXY" secondAttribute="height" multiplier="16:9" id="Psh-wG-7G9"/>
+                                    <constraint firstAttribute="width" secondItem="Vgg-rD-71V" secondAttribute="height" multiplier="16:9" id="qDg-it-Rcu"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="APL-U1-dlz"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <segue destination="li8-SI-LT1" kind="embed" identifier="EmbedAVPlayer" id="eUX-Zj-aUz"/>
-                                </connections>
-                            </containerView>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM7-vF-jzK">
                                 <rect key="frame" x="0.0" y="275" width="375" height="392"/>
                                 <subviews>
@@ -721,24 +713,24 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="HQq-V5-oXY" firstAttribute="leading" secondItem="djE-Up-Vyg" secondAttribute="leading" id="Qei-fO-p8X"/>
+                            <constraint firstItem="CM7-vF-jzK" firstAttribute="top" secondItem="Vgg-rD-71V" secondAttribute="bottom" id="2y1-LB-dc2"/>
+                            <constraint firstItem="Vgg-rD-71V" firstAttribute="top" secondItem="ztS-j3-2Jk" secondAttribute="bottom" id="BWn-U3-NtH"/>
+                            <constraint firstItem="Vgg-rD-71V" firstAttribute="centerX" secondItem="djE-Up-Vyg" secondAttribute="centerX" id="DEI-fR-LkU"/>
+                            <constraint firstItem="Vgg-rD-71V" firstAttribute="width" secondItem="djE-Up-Vyg" secondAttribute="width" id="Gpj-pH-cc4"/>
                             <constraint firstItem="CM7-vF-jzK" firstAttribute="width" secondItem="djE-Up-Vyg" secondAttribute="width" id="WHF-Lv-qJH"/>
                             <constraint firstAttribute="bottom" secondItem="CM7-vF-jzK" secondAttribute="bottom" id="jpi-7V-VMb"/>
                             <constraint firstAttribute="trailing" secondItem="CM7-vF-jzK" secondAttribute="trailing" id="rpU-kj-Bzl"/>
-                            <constraint firstItem="HQq-V5-oXY" firstAttribute="top" secondItem="ztS-j3-2Jk" secondAttribute="bottom" id="syH-eE-sbz"/>
                             <constraint firstItem="CM7-vF-jzK" firstAttribute="leading" secondItem="djE-Up-Vyg" secondAttribute="leading" id="vIF-yM-MLW"/>
-                            <constraint firstAttribute="trailing" secondItem="HQq-V5-oXY" secondAttribute="trailing" id="wn3-KS-1Nx"/>
-                            <constraint firstItem="CM7-vF-jzK" firstAttribute="top" secondItem="HQq-V5-oXY" secondAttribute="bottom" id="zlx-tn-Qjs"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="containerVideoView" destination="HQq-V5-oXY" id="Prq-yw-825"/>
                         <outlet property="descriptionView" destination="sTP-0O-gWC" id="Ze6-3B-mDh"/>
                         <outlet property="descriptionViewHeightConstraint" destination="e1U-10-aDQ" id="Rt9-ma-Huv"/>
                         <outlet property="openSlidesButton" destination="e3P-4C-sVC" id="sRQ-1b-aSe"/>
                         <outlet property="titleView" destination="Xms-E7-0kp" id="saQ-Se-Rhh"/>
+                        <outlet property="videoContainer" destination="Vgg-rD-71V" id="XHs-zO-iRA"/>
                         <segue destination="EZt-rR-Ceh" kind="show" identifier="ShowSlides" id="lP2-l3-t0e"/>
                     </connections>
                 </viewController>
@@ -746,21 +738,13 @@
             </objects>
             <point key="canvasLocation" x="3136.8000000000002" y="589.65517241379314"/>
         </scene>
-        <!--AV Player View Controller-->
-        <scene sceneID="Tl3-1b-ctw">
-            <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="li8-SI-LT1" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6bD-81-FHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3888" y="464"/>
-        </scene>
         <!--WebViewController-->
         <scene sceneID="uqh-vq-i1I">
             <objects>
                 <viewControllerPlaceholder referencedIdentifier="WebViewController" id="EZt-rR-Ceh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHB-9h-2iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3662" y="817"/>
+            <point key="canvasLocation" x="3747" y="589"/>
         </scene>
         <!--Courses-->
         <scene sceneID="O7e-6a-qIC">
@@ -1183,7 +1167,7 @@
         <image name="titlebar-dropdown-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u7s-tl-wgY"/>
+        <segue reference="gMU-OF-QEH"/>
         <segue reference="XJt-ib-7AF"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -109,31 +109,10 @@ class VideoViewController : UIViewController {
         }
     }
 
-    func setTabBarHidden(_ hidden: Bool, animated: Bool) {
-        guard let tabBarController = self.tabBarController else {
-            return
-        }
-
-        let isTabBarHidden = tabBarController.tabBar.frame.origin.y >= self.view.frame.maxY
-        if isTabBarHidden == hidden {
-            return
-        }
-
-        let frame = tabBarController.tabBar.frame
-        let height = frame.size.height
-        let offsetY = isTabBarHidden ? -height : height
-
-        let duration = animated ? 0.3 : 0.0
-
-        UIView.animate(withDuration: duration) {
-            self.tabBarController?.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
-        }
-    }
-
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let hiddenBars = UIDevice.current.orientation.isLandscape
         self.navigationController?.setNavigationBarHidden(hiddenBars, animated: true)
-        self.setTabBarHidden(hiddenBars, animated: true)
+        self.tabBarController?.tabBar.isHidden = hiddenBars
     }
 
 }

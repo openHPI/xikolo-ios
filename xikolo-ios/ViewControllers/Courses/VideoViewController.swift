@@ -25,6 +25,7 @@ class VideoViewController : UIViewController {
     var videoPlayerConfigured = false
 
     var player: BMPlayer?
+    let playerControlView = VideoPlayerControlView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,8 @@ class VideoViewController : UIViewController {
         BMPlayerConf.topBarShowInCase = .horizantalOnly
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
 
-        let player = BMPlayer(customControlView: VideoPlayerControlView())
+        let player = BMPlayer(customControlView: self.playerControlView)
+        player.delegate = self
         self.videoContainer.addSubview(player)
         player.snp.makeConstraints { (make) in
             make.top.equalTo(self.videoContainer.snp.top)
@@ -114,5 +116,21 @@ class VideoViewController : UIViewController {
         self.navigationController?.setNavigationBarHidden(hiddenBars, animated: true)
         self.tabBarController?.tabBar.isHidden = hiddenBars
     }
+
+}
+
+extension VideoViewController: BMPlayerDelegate {
+
+    func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
+        if state == .bufferFinished {
+            player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+        }
+    }
+
+    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {}
+
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {}
+
+    func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {}
 
 }

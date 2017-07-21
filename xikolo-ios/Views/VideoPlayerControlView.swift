@@ -12,14 +12,17 @@ import UIKit
 
 class VideoPlayerControlView: BMPlayerControlView {
 
+    private static let playbackRateKey = "de.xikolo.ios.video.playbackRate"
+
     private var playbackRateButton = UIButton(type: .custom)
-    private var playRate: Float = 1.0
+    private(set) var playRate: Float = UserDefaults.standard.float(forKey: VideoPlayerControlView.playbackRateKey)
 
     override func customizeUIComponents() {
         self.chooseDefitionView.removeFromSuperview()
 
         self.bottomMaskView.addSubview(self.playbackRateButton)
 
+        self.playRate = self.playRate == 0 ? 1.0 : self.playRate  // playback rate can be 0 on the first time
         self.playbackRateButton.layer.cornerRadius = 2
         self.playbackRateButton.layer.borderWidth = 1
         self.playbackRateButton.layer.borderColor = UIColor(white: 1.0, alpha: 0.8).cgColor
@@ -63,6 +66,9 @@ class VideoPlayerControlView: BMPlayerControlView {
         default:
             self.playRate = 1.0
         }
+
+        UserDefaults.standard.set(self.playRate, forKey: VideoPlayerControlView.playbackRateKey)
+        UserDefaults.standard.synchronize()
 
         self.updatePlaybackRateButton()
         self.delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: self.playRate)

@@ -81,6 +81,8 @@ class CourseContentTableViewController: UITableViewController {
             case is Video:
                 performSegue(withIdentifier: "ShowVideo", sender: item)
             case is Quiz:
+                let quiz = item.content!
+                quiz.load
                 performSegue(withIdentifier: "ShowQuiz", sender: item)
             case is LTIExercise, is PeerAssessment:
                 performSegue(withIdentifier: "ShowWebview", sender: item)

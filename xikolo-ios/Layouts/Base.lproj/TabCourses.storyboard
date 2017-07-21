@@ -503,8 +503,9 @@
                     <connections>
                         <segue destination="5Hh-M9-wy1" kind="show" identifier="ShowVideo" id="0UY-Iy-ApH"/>
                         <segue destination="xJm-gx-LIF" kind="show" identifier="ShowRichtext" id="Gdn-oc-21n"/>
-                        <segue destination="FbY-0Y-s1K" kind="show" identifier="ShowQuiz" id="KC3-Bq-egM"/>
+                        <segue destination="FbY-0Y-s1K" kind="show" identifier="ShowQuizIntroduction" id="KC3-Bq-egM"/>
                         <segue destination="qTX-IX-O1x" kind="show" identifier="ShowWebview" id="Slv-yG-Hf1"/>
+                        <segue destination="Jvx-ly-VGx" kind="show" identifier="StartQuiz" id="zfE-Zz-kjO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rj-3l-8gO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1447,6 +1448,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gMU-OF-QEH"/>
+        <segue reference="u7s-tl-wgY"/>
+        <segue reference="zfE-Zz-kjO"/>
         <segue reference="XJt-ib-7AF"/>
     </inferredMetricsTieBreakers>
 </document>

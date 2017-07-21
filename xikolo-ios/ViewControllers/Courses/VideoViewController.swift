@@ -131,6 +131,10 @@ extension VideoViewController: BMPlayerDelegate {
 
     func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {}
 
-    func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {}
+    func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {
+        if playing {
+            player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+        }
+    }
 
 }

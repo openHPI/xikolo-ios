@@ -17,7 +17,7 @@ extension Video: DetailedContent {
             return nil
         }
 
-        return textComponents.joined(separator: " \u{B7} ")
+        return textComponents.joined(separator: " \u{B7} ")  // Unicode 00B7 is ·
     }
 
     private var durationText: String? {

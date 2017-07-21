@@ -9,10 +9,12 @@
 import UIKit
 import AVKit
 import AVFoundation
+import BMPlayer
+import NVActivityIndicatorView
 
 class VideoViewController : UIViewController {
 
-    @IBOutlet weak var containerVideoView: UIView!
+    @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
@@ -22,8 +24,13 @@ class VideoViewController : UIViewController {
     var video: Video?
     var videoPlayerConfigured = false
 
+    var player: BMPlayer?
+    let playerControlView = VideoPlayerControlView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.setupPlayer()
 
         self.titleView.text = self.courseItem?.title
 
@@ -38,6 +45,24 @@ class VideoViewController : UIViewController {
         VideoHelper.sync(video: video).onSuccess { videoComplete in
             self.show(video: videoComplete)
         }
+    }
+
+    func setupPlayer() {
+        BMPlayerConf.topBarShowInCase = .horizantalOnly
+        BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
+
+        let player = BMPlayer(customControlView: self.playerControlView)
+        player.delegate = self
+        self.videoContainer.addSubview(player)
+        player.snp.makeConstraints { (make) in
+            make.top.equalTo(self.videoContainer.snp.top)
+            make.left.equalTo(self.videoContainer.snp.left)
+            make.right.equalTo(self.videoContainer.snp.right)
+            make.height.equalTo(self.videoContainer.snp.width).multipliedBy(9.0/16.0)
+        }
+
+        self.player = player
+        self.videoContainer.layoutIfNeeded()
     }
 
     func show(video: Video) {
@@ -63,9 +88,11 @@ class VideoViewController : UIViewController {
         }
 
         // configure video player
-        if !self.videoPlayerConfigured && video.hlsURL != nil {
+        if let videoURL = video.hlsURL, !self.videoPlayerConfigured {
             self.videoPlayerConfigured = true
-            self.performSegue(withIdentifier: "EmbedAVPlayer", sender: nil)
+            let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
+            self.player?.setVideo(resource: asset)
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }
     }
 
@@ -75,11 +102,6 @@ class VideoViewController : UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "EmbedAVPlayer"?:
-            if let destination = segue.destination as? AVPlayerViewController, let url = self.video?.hlsURL {
-                try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                destination.player = AVPlayer(url: url)
-            }
         case "ShowSlides"?:
             if let vc = segue.destination as? WebViewController {
                 vc.url = self.video?.slides_url?.absoluteString
@@ -89,14 +111,29 @@ class VideoViewController : UIViewController {
         }
     }
 
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        switch identifier {
-            case "EmbedAVPlayer":
-                return self.video?.hlsURL != nil && !self.videoPlayerConfigured
-            case "ShowSlides":
-                return self.video?.slides_url?.absoluteString != nil
-            default:
-                return true
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let hiddenBars = UIDevice.current.orientation.isLandscape
+        self.navigationController?.setNavigationBarHidden(hiddenBars, animated: true)
+        self.tabBarController?.tabBar.isHidden = hiddenBars
+    }
+
+}
+
+extension VideoViewController: BMPlayerDelegate {
+
+    func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
+        if state == .bufferFinished {
+            player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+        }
+    }
+
+    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {}
+
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {}
+
+    func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {
+        if playing {
+            player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
         }
     }
 

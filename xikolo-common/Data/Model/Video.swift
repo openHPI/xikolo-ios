@@ -75,9 +75,10 @@ class VideoSpine : ContentSpine {
             "transcript_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "transcript_size": Attribute(),
             "thumbnail_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
-            "single_stream": VideoStreamAttribute(),
-            "lecturer_stream": VideoStreamAttribute(),
-            "slides_stream": VideoStreamAttribute(),
+            "single_stream": VideoStreamAttribute(prefix: "single_stream")
+// if the following attributes are processed this will lead to single stream url is overwritten due to the hardcoded single_stream prefix in saveToCoreData. As they are not used deactivate them for now.
+//          "lecturer_stream": VideoStreamAttribute(prefix: "lecturer_stream"),
+//          "slides_stream": VideoStreamAttribute(prefix: "slides_stream"),
         ])
     }
 
@@ -108,6 +109,11 @@ class VideoStreamSpine : CompoundValue {
 }
 
 class VideoStreamAttribute : CompoundAttribute {
+    let prefix: String?
+
+    public init(prefix: String? = nil) {
+        self.prefix = prefix
+    }
 }
 
 struct VideoStreamFormatter : ValueFormatter {

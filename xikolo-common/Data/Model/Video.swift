@@ -75,10 +75,9 @@ class VideoSpine : ContentSpine {
             "transcript_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "transcript_size": Attribute(),
             "thumbnail_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
-            "single_stream": VideoStreamAttribute(prefix: "single_stream")
-// if the following attributes are processed this will lead to single stream url is overwritten due to the hardcoded single_stream prefix in saveToCoreData. As they are not used deactivate them for now.
-//          "lecturer_stream": VideoStreamAttribute(prefix: "lecturer_stream"),
-//          "slides_stream": VideoStreamAttribute(prefix: "slides_stream"),
+            "single_stream": VideoStreamAttribute(prefix: "single_stream"),
+            "lecturer_stream": VideoStreamAttribute(prefix: "lecturer_stream"),
+            "slides_stream": VideoStreamAttribute(prefix: "slides_stream"),
         ])
     }
 
@@ -86,10 +85,12 @@ class VideoSpine : ContentSpine {
 
 class VideoStreamSpine : CompoundValue {
 
+    let prefix: String
     var hls_url: String?
     var thumbnail_url: String?
 
-    init(_ dict: [String: AnyObject]?) {
+    init(_ dict: [String: AnyObject]?, withPrefix prefix: String) {
+        self.prefix = prefix
         if let dict = dict {
             self.hls_url = dict["hls_url"] as? String
             self.thumbnail_url = dict["thumbnail_url"] as? String
@@ -97,10 +98,6 @@ class VideoStreamSpine : CompoundValue {
     }
 
     override func saveToCoreData(model: BaseModel) {
-        self.saveToCoreData(model, withPrefix: "single_stream")
-    }
-
-    func saveToCoreData(_ model: BaseModel, withPrefix prefix: String) {
         let p = prefix + "_"
         model.setValue(hls_url, forKey: p + "hls_url")
         model.setValue(thumbnail_url, forKey: p + "thumbnail_url")
@@ -109,11 +106,13 @@ class VideoStreamSpine : CompoundValue {
 }
 
 class VideoStreamAttribute : CompoundAttribute {
-    let prefix: String?
 
-    public init(prefix: String? = nil) {
+    let prefix: String
+
+    public init(prefix: String) {
         self.prefix = prefix
     }
+
 }
 
 struct VideoStreamFormatter : ValueFormatter {
@@ -122,7 +121,7 @@ struct VideoStreamFormatter : ValueFormatter {
     typealias AttributeType = VideoStreamAttribute
 
     func unformatValue(_ value: FormattedType, forAttribute: AttributeType) -> UnformattedType {
-        return VideoStreamSpine(value)
+        return VideoStreamSpine(value, withPrefix: forAttribute.prefix)
     }
 
     func formatValue(_ value: UnformattedType, forAttribute: AttributeType) -> FormattedType {

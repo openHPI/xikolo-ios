@@ -37,17 +37,10 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleView.text = course.title
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NotificationKeys.loginSuccessfulKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NotificationKeys.logoutSuccessfulKey, object: nil)
 
-        if course.enrollment != nil {
-            enrollmentButton.setTitle(NSLocalizedString("Enrollment options", comment: ""), for: UIControlState.normal)
-            enrollmentButton.backgroundColor = UIColor.white
-            enrollmentButton.tintColor = Brand.TintColor
-        } else {
-            enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: UIControlState.normal)
-            enrollmentButton.backgroundColor = Brand.TintColor
-            enrollmentButton.tintColor = UIColor.white
-        }
+        titleView.text = course.title
         titleView.heroID = "course_title_" + course.id
         languageView.text = course.language_translated
         languageView.heroID = "course_language_" + course.id
@@ -62,6 +55,18 @@ class CourseDetailViewController: UIViewController {
         if let description = course.abstract {
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
             descriptionView.attributedText = markDown
+        }
+    }
+
+    func updateUI() {
+        if course.enrollment != nil {
+            enrollmentButton.setTitle(NSLocalizedString("Enrollment options", comment: ""), for: UIControlState.normal)
+            enrollmentButton.backgroundColor = UIColor.white
+            enrollmentButton.tintColor = Brand.TintColor
+        } else {
+            enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: UIControlState.normal)
+            enrollmentButton.backgroundColor = Brand.TintColor
+            enrollmentButton.tintColor = UIColor.white
         }
     }
     

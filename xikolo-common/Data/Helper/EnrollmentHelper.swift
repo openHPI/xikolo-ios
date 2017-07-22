@@ -36,15 +36,12 @@ class EnrollmentHelper {
         return promise.future
     }
 
-    static func deleteEnrollment(for course: Course) -> Future<Void, XikoloError> {
+    static func delete(_ enrollment: Enrollment) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        let courseSpine = CourseSpine(course: course)
-        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
+        let enrollmentSpine = EnrollmentSpine(from: enrollment)
         SpineHelper.delete(enrollmentSpine).onSuccess { _ in
-            if let enrollment = course.enrollment {
-                CoreDataHelper.delete(enrollment)
-            }
+            CoreDataHelper.delete(enrollment)
             return promise.success()
         }.onFailure { xikoloError in
             return promise.failure(xikoloError)

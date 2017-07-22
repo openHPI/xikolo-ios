@@ -95,7 +95,7 @@ class CourseDetailViewController: UIViewController {
             }
         }
         let unenrollAction = UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive) { _ in
-            EnrollmentHelper.deleteEnrollment(for: self.course)
+            EnrollmentHelper.delete(self.course.enrollment!)
         }
 
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)

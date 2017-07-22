@@ -37,8 +37,8 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NotificationKeys.loginSuccessfulKey, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NotificationKeys.logoutSuccessfulKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setEnrolledState), name: NotificationKeys.createdEnrollmentKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setUnenrolledState), name: NotificationKeys.deletedEnrollmentKey, object: nil)
 
         titleView.text = course.title
         titleView.heroID = "course_title_" + course.id
@@ -56,18 +56,24 @@ class CourseDetailViewController: UIViewController {
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
             descriptionView.attributedText = markDown
         }
+
+        if course.enrollment != nil {
+            setEnrolledState()
+        } else {
+            setUnenrolledState()
+        }
     }
 
-    func updateUI() {
-        if course.enrollment != nil {
-            enrollmentButton.setTitle(NSLocalizedString("Enrollment options", comment: ""), for: UIControlState.normal)
-            enrollmentButton.backgroundColor = UIColor.white
-            enrollmentButton.tintColor = Brand.TintColor
-        } else {
-            enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: UIControlState.normal)
-            enrollmentButton.backgroundColor = Brand.TintColor
-            enrollmentButton.tintColor = UIColor.white
-        }
+    func setEnrolledState() {
+        enrollmentButton.setTitle(NSLocalizedString("Enrollment options", comment: ""), for: UIControlState.normal)
+        enrollmentButton.backgroundColor = UIColor.white
+        enrollmentButton.tintColor = Brand.TintColor
+    }
+
+    func setUnenrolledState() {
+        enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: UIControlState.normal)
+        enrollmentButton.backgroundColor = Brand.TintColor
+        enrollmentButton.tintColor = UIColor.white
     }
     
     func showEnrollmentDialog() {

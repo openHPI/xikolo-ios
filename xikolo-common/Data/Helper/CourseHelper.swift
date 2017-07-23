@@ -112,10 +112,10 @@ class CourseHelper {
         }
     }
 
-    static func refreshCourse(_ course: Course) -> Future<[Course], XikoloError> {
-        return CourseProvider.getCourses().flatMap { spineCourses -> Future<[Course], XikoloError> in
+    static func refreshCourse(_ course: Course) -> Future<[Course], XikoloError> { // TODO: Refactor to not return array
+        return CourseProvider.getCourse(course.id).flatMap { spineCourse -> Future<[Course], XikoloError> in
             let request = getSpecificCourseRequest(course)
-            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourses, inject: nil, save: true)
+            return SpineModelHelper.syncObjectsFuture(request, spineObjects: [spineCourse], inject: nil, save: true)
         }
     }
 

@@ -17,6 +17,9 @@ extension CourseItem {
     @NSManaged var proctored_int: NSNumber?
     @NSManaged var position: NSNumber?
     @NSManaged var accessible_int: NSNumber?
+    @NSManaged var icon: String?
+    @NSManaged var exercise_type: String?
+    @NSManaged var deadline: Date?
     @NSManaged var content: Content?
     @NSManaged var section: CourseSection?
 

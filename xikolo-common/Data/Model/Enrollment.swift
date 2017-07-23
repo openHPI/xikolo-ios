@@ -71,7 +71,7 @@ class EnrollmentSpine : BaseModelSpine {
         let course = CourseSpine(course: enrollment.course!)
         self.course = course
         self.id = enrollment.id
-        //TODO: What about content
+        self.completed_int = enrollment.completed_int
     }
 
     override class var cdType: BaseModel.Type {

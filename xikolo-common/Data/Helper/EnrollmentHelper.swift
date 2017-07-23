@@ -52,10 +52,8 @@ class EnrollmentHelper {
     }
 
     static func markAsCompleted(_ course: Course) -> Future<EnrollmentSpine, XikoloError> {
-        let courseSpine = CourseSpine(course: course)
-        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
-        enrollmentSpine.completed_int = true as NSNumber?
-        return SpineHelper.save(enrollmentSpine)
+        course.enrollment?.completed = true
+        return SpineHelper.save(EnrollmentSpine(from: course.enrollment!))
     }
 
 }

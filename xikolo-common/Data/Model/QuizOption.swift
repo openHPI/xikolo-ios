@@ -14,12 +14,14 @@ class QuizOption : NSObject, NSCoding, EmbeddedObject {
     var text: String?
     var position: NSNumber?
     var correct: Bool?
+    var explanation: String?
 
     required init(_ dict: [String : AnyObject]) {
         id = dict["id"] as? String
         text = dict["text"] as? String
         position = dict["position"] as? NSNumber
         correct = dict["correct"] as? Bool
+        explanation = dict["explanation"] as? String
     }
 
     required init(coder decoder: NSCoder) {
@@ -27,6 +29,7 @@ class QuizOption : NSObject, NSCoding, EmbeddedObject {
         text = decoder.decodeObject(forKey: "text") as? String
         position = decoder.decodeObject(forKey: "position") as? NSNumber
         correct = decoder.decodeObject(forKey: "correct") as? Bool
+        explanation = decoder.decodeObject(forKey: "explanation") as? String
     }
 
     func encode(with coder: NSCoder) {
@@ -34,6 +37,8 @@ class QuizOption : NSObject, NSCoding, EmbeddedObject {
         coder.encode(text, forKey: "text")
         coder.encode(position, forKey: "position")
         coder.encode(correct, forKey: "correct")
+        coder.encode(explanation, forKey: "explanation")
+
     }
 
 }

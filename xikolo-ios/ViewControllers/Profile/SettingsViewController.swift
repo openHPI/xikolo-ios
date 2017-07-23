@@ -56,4 +56,6 @@ class SettingsViewController: AbstractTabContentViewController {
         self.profileImage.sd_setImage(with: user.avatar_url)
     }
 
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) { }
+
 }

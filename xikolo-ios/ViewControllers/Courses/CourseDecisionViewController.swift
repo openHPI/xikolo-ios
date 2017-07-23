@@ -116,6 +116,8 @@ class CourseDecisionViewController: UIViewController {
         }
     }
 
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) { }
+
 }
 
 extension CourseDecisionViewController : UIPopoverPresentationControllerDelegate {

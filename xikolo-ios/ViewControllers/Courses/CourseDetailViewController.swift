@@ -84,6 +84,8 @@ class CourseDetailViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
+
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) {
+    }
 
 }

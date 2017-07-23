@@ -35,6 +35,8 @@ class DashboardViewController : AbstractTabContentViewController {
         }
     }
 
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) { }
+
 }
 
 extension DashboardViewController : CourseDatesTableViewControllerDelegate {

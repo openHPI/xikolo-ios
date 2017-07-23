@@ -56,6 +56,7 @@ class EnrollmentSpine : BaseModelSpine {
     var proctored_int: NSNumber?
     var completed_int: NSNumber?
     var reactivated_int: NSNumber?
+    var created_at: Date?
 
     var course: CourseSpine?
 
@@ -82,6 +83,7 @@ class EnrollmentSpine : BaseModelSpine {
             "proctored_int": BooleanAttribute().serializeAs("proctored"),
             "completed_int": BooleanAttribute().serializeAs("completed"),
             "reactivated_int": BooleanAttribute().serializeAs("reactivated"),
+            "created_at": DateAttribute(),
             "course": ToOneRelationship(CourseSpine.self)
         ])
     }

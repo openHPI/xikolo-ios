@@ -21,6 +21,7 @@ extension Enrollment {
     @NSManaged var proctored_int: NSNumber?
     @NSManaged var completed_int: NSNumber?
     @NSManaged var reactivated_int: NSNumber?
+    @NSManaged var created_at: Date?
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {

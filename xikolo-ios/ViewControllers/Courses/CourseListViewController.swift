@@ -22,6 +22,11 @@ class CourseListViewController : AbstractCourseListViewController {
         case bothSectioned
     }
 
+    enum Views : Int {
+        case myCourses = 0
+        case exploreCourses = 1
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -32,19 +37,11 @@ class CourseListViewController : AbstractCourseListViewController {
     }
 
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            if UserProfileHelper.isLoggedIn() {
-                courseDisplayMode = .enrolledOnly
-            } else {
-                sender.selectedSegmentIndex = 1
-                performSegue(withIdentifier: "ShowLogin", sender: sender)
-            }
-        case 1:
-            courseDisplayMode = UserProfileHelper.isLoggedIn() ? .explore : .all
-        default:
-            break
-        }
+        changeDisplayModeTo(sender.selectedSegmentIndex)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        checkLoginState()
         updateView()
     }
 
@@ -52,12 +49,32 @@ class CourseListViewController : AbstractCourseListViewController {
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.sectionHeadersPinToVisibleBounds = true
         }
+        checkLoginState()
+        super.viewDidLoad()
+        presentWelcomeScreenIfNecessary()
+    }
+
+    func checkLoginState() {
         if !UserProfileHelper.isLoggedIn() {
             segmentedControl.selectedSegmentIndex = 1
             courseDisplayMode = .all
         }
-        super.viewDidLoad()
-        presentWelcomeScreenIfNecessary()
+    }
+
+    func changeDisplayModeTo(_ selectedIndex: Int) {
+        switch selectedIndex {
+        case 0:
+            if UserProfileHelper.isLoggedIn() {
+                courseDisplayMode = .enrolledOnly
+            } else {
+                performSegue(withIdentifier: "ShowLogin", sender: self)
+            }
+        case 1:
+            courseDisplayMode = UserProfileHelper.isLoggedIn() ? .explore : .all
+        default:
+            break
+        }
+        updateView()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -103,6 +120,15 @@ class CourseListViewController : AbstractCourseListViewController {
                 vc.course = try! CourseHelper.getByID(course.id) // TODO:
             default:
                 break
+        }
+    }
+
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) {
+        if !UserProfileHelper.isLoggedIn() {
+            segmentedControl.selectedSegmentIndex = 1
+            changeDisplayModeTo(Views.exploreCourses.rawValue)
+        } else {
+            changeDisplayModeTo(Views.myCourses.rawValue)
         }
     }
 

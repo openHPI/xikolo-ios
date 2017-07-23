@@ -10,9 +10,11 @@ import UIKit
 import DZNEmptyDataSet
 import CoreData
 
+
 class CourseListViewController : AbstractCourseListViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     var numberOfItemsPerRow = 1
 
     enum CourseDisplayMode {
@@ -31,6 +33,27 @@ class CourseListViewController : AbstractCourseListViewController {
         self.collectionView?.emptyDataSetDelegate = nil
     }
 
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(CourseListViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        return refreshControl
+    }()
+    
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        if UserProfileHelper.isLoggedIn() {
+            EnrollmentHelper.syncEnrollments()
+        }else{
+            CourseHelper.refreshCourses()
+        }
+        endRefreshing()
+    }
+    
+    func endRefreshing() {
+        refreshControl.endRefreshing()
+    }
+    
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -56,6 +79,7 @@ class CourseListViewController : AbstractCourseListViewController {
             segmentedControl.selectedSegmentIndex = 1
             courseDisplayMode = .all
         }
+        self.collectionView?.addSubview(self.refreshControl)
         super.viewDidLoad()
         presentWelcomeScreenIfNecessary()
     }

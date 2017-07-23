@@ -58,7 +58,7 @@ open class UserProfileHelper {
         prefs.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         NotificationCenter.default.post(name: NotificationKeys.logoutSuccessfulKey, object: nil)
         prefs.synchronize()
-        CoreDataHelper.clearCoreDataStorage()
+        CoreDataHelper.removeUserSpecificEntities()
     }
 
     static func isLoggedIn() -> Bool {

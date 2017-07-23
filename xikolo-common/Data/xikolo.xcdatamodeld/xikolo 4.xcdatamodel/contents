@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Announcement" representedClassName=".Announcement" elementID="NewsArticle" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image_url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="published_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -159,7 +160,7 @@
         <attribute name="transcript_url" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Announcement" positionX="304" positionY="146" width="128" height="133"/>
+        <element name="Announcement" positionX="304" positionY="146" width="128" height="148"/>
         <element name="Channel" positionX="27" positionY="450" width="128" height="118"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="75"/>
         <element name="Course" positionX="45" positionY="-18" width="128" height="390"/>

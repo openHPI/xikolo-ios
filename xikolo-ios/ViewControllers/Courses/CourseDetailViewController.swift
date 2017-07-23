@@ -86,6 +86,10 @@ class CourseDetailViewController: UIViewController {
     }
 
     @IBAction func unwindLogin(_ segue: UIStoryboardSegue) {
+        segue.perform()
+        if UserProfileHelper.isLoggedIn() {
+            showEnrollmentDialog()
+        }
     }
 
 }

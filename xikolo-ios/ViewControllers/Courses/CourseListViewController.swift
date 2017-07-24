@@ -49,7 +49,6 @@ class CourseListViewController : AbstractCourseListViewController {
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.sectionHeadersPinToVisibleBounds = true
         }
-        checkLoginState()
         super.viewDidLoad()
         presentWelcomeScreenIfNecessary()
     }

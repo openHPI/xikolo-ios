@@ -84,6 +84,12 @@ class CoreDataHelper {
         }
     }
 
+    static func removeUserSpecificEntities() {
+        managedObjectModel.entitiesByName.keys.filter { ($0 != "Course" && $0 != "Channel") }.forEach { (entityName) in
+            clearCoreDataEntity(entityName)
+        }
+    }
+
     static func clearCoreDataEntity(_ entityName: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)

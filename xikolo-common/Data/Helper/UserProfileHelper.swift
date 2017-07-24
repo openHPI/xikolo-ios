@@ -41,7 +41,7 @@ open class UserProfileHelper {
                 if let token = json["token"] as? String, let id = json["user_id"] as? String {
                     UserProfileHelper.saveToken(token)
                     UserProfileHelper.saveId(id)
-                    NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
+                    NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
                     return promise.success(token)
                 }
                 return promise.failure(XikoloError.authenticationError)
@@ -56,8 +56,8 @@ open class UserProfileHelper {
 
     static func logout() {
         prefs.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        NotificationCenter.default.post(name: NotificationKeys.logoutSuccessfulKey, object: nil)
         prefs.synchronize()
+        NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
         CoreDataHelper.clearCoreDataStorage()
     }
 
@@ -88,8 +88,6 @@ open class UserProfileHelper {
 
     static func saveToken(_ token: String) {
         save(.token, withValue: token)
-        NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
-        prefs.synchronize()
         refreshUserDependentData()
     }
 

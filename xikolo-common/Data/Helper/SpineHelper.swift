@@ -47,9 +47,7 @@ class SpineHelper {
         spine.registerResource(UserSpine.self)
         spine.registerResource(UserProfileSpine.self)
 
-        let nsCenter = NotificationCenter.default
-        nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.loginSuccessfulKey, object: nil)
-        nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.logoutSuccessfulKey, object: nil)
+        NotificationCenter.default.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.loginStateChangedKey, object: nil)
 
         return spine
     }()

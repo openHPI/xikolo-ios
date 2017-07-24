@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController : UIViewController, LoginButtonViewController {
+class NewsViewController : UIViewController {
 
     @IBOutlet weak var containerView: UIView!
 

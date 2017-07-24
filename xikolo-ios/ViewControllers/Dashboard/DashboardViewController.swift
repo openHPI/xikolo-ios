@@ -9,7 +9,7 @@
 import UIKit
 import PinpointKit
 
-class DashboardViewController : UIViewController, LoginButtonViewController {
+class DashboardViewController : UIViewController {
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
@@ -18,7 +18,10 @@ class DashboardViewController : UIViewController, LoginButtonViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addLoginObserver(with: #selector(DashboardViewController.updateAfterLogin))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(DashboardViewController.updateAfterLogin),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -26,7 +29,7 @@ class DashboardViewController : UIViewController, LoginButtonViewController {
     }
 
     func updateAfterLogin() {
-        self.updateLoginButton()
+        self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,7 +46,7 @@ class DashboardViewController : UIViewController, LoginButtonViewController {
     }
 
     deinit {
-        self.removeLoginObserver()
+        NotificationCenter.default.removeObserver(self)
     }
 
 }

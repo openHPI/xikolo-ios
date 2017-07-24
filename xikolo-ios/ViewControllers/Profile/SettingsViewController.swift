@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class SettingsViewController: UITableViewController, LoginButtonViewController {
+class SettingsViewController: UITableViewController {
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
@@ -33,19 +33,22 @@ class SettingsViewController: UITableViewController, LoginButtonViewController {
         versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
         buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
 
-        self.addLoginObserver(with: #selector(SettingsViewController.updateUIAfterLoginLogoutAction))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(SettingsViewController.updateUIAfterLoginLogoutAction),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     func updateUIAfterLoginLogoutAction() {
-        self.updateLoginButton()
-
         if UserProfileHelper.isLoggedIn() {
+            self.navigationItem.rightBarButtonItem =  nil
             nameView.isHidden = false
             emailView.isHidden = false
             logoutButton.isHidden = false
             UserHelper.syncMe().onSuccess(callback: { _ in self.updateProfileInfo() })
             updateProfileInfo()
         } else {
+            self.navigationItem.rightBarButtonItem = self.loginButton
             nameView.isHidden = true
             emailView.isHidden = true
             logoutButton.isHidden = true
@@ -61,7 +64,7 @@ class SettingsViewController: UITableViewController, LoginButtonViewController {
     }
 
     deinit {
-        self.removeLoginObserver()
+        NotificationCenter.default.removeObserver(self)
     }
 
 }

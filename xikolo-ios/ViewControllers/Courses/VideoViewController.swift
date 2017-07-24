@@ -133,7 +133,7 @@ extension VideoViewController: BMPlayerDelegate {
     func getTrackingContext() -> [String: String?]{
         var context = ["section_id": self.video?.item?.section?.id];
         context["course_id"] = self.video?.item?.section?.course?.id
-        //context["currentTime"] = self.player?.avPlayer?.currentTime()
+        context["currentTime"] = String(describing: Int((self.player?.avPlayer?.currentTime().seconds)!))
         return context
     }
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
@@ -143,6 +143,7 @@ extension VideoViewController: BMPlayerDelegate {
         if state == .playedToTheEnd {
             TrackingHelper.sendEvent("video_end", resource: self.video, context: getTrackingContext())
         }
+
     }
 
     func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {

@@ -23,7 +23,11 @@ class CourseDetailViewController: UIViewController {
     
     @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {
-            showEnrollmentDialog()
+            if course.enrollment == nil {
+                showEnrollmentDialog()
+            } else {
+                showEnrollmentOptions()
+            }
         } else {
             performSegue(withIdentifier: "ShowLogin", sender: nil)
         }
@@ -33,19 +37,10 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(setEnrolledState), name: NotificationKeys.createdEnrollmentKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setUnenrolledState), name: NotificationKeys.deletedEnrollmentKey, object: nil)
+
         titleView.text = course.title
- 
-        enrollmentButton.setTitle(NSLocalizedString("You are enrolled", comment: ""), for: [UIControlState.disabled])
-        enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: [UIControlState.normal])
-        if course.enrollment != nil {
-            enrollmentButton.isEnabled = false
-            enrollmentButton.backgroundColor = UIColor.white
-            enrollmentButton.tintColor = Brand.TintColor
-        }else{
-            enrollmentButton.isEnabled = true
-            enrollmentButton.backgroundColor = Brand.TintColor
-            enrollmentButton.tintColor = UIColor.white
-        }
         titleView.heroID = "course_title_" + course.id
         languageView.text = course.language_translated
         languageView.heroID = "course_language_" + course.id
@@ -57,10 +52,28 @@ class CourseDetailViewController: UIViewController {
         dateView.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
         imageView.sd_setImage(with: course.image_url)
 
-        if let description = course.abstract {//TODO: change back to course_description when API works
+        if let description = course.abstract {
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
             descriptionView.attributedText = markDown
         }
+
+        if course.enrollment != nil {
+            setEnrolledState()
+        } else {
+            setUnenrolledState()
+        }
+    }
+
+    func setEnrolledState() {
+        enrollmentButton.setTitle(NSLocalizedString("Enrollment options", comment: ""), for: UIControlState.normal)
+        enrollmentButton.backgroundColor = UIColor.white
+        enrollmentButton.tintColor = Brand.TintColor
+    }
+
+    func setUnenrolledState() {
+        enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: UIControlState.normal)
+        enrollmentButton.backgroundColor = Brand.TintColor
+        enrollmentButton.tintColor = UIColor.white
     }
     
     func showEnrollmentDialog() {
@@ -90,6 +103,25 @@ class CourseDetailViewController: UIViewController {
         if UserProfileHelper.isLoggedIn() {
             showEnrollmentDialog()
         }
+    }
+
+    func showEnrollmentOptions() {
+        let alert = UIAlertController(title: NSLocalizedString("Finished learning?", comment:""), message:  NSLocalizedString("You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.", comment: ""), preferredStyle: .actionSheet) // 1
+        let completedAction = UIAlertAction(title: NSLocalizedString("Mark as completed", comment: ""), style: .default) { _ in
+            EnrollmentHelper.markAsCompleted(self.course).onSuccess { _ in
+                CourseHelper.refreshCourse(self.course)
+            }
+        }
+        let unenrollAction = UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive) { _ in
+            EnrollmentHelper.delete(self.course.enrollment!)
+        }
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+
+        alert.addAction(completedAction)
+        alert.addAction(unenrollAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion:nil)
     }
 
 }

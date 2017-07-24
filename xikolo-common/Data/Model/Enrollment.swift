@@ -66,6 +66,14 @@ class EnrollmentSpine : BaseModelSpine {
         //TODO: What about content
     }
 
+    convenience init(from enrollment: Enrollment){
+        self.init()
+        let course = CourseSpine(course: enrollment.course!)
+        self.course = course
+        self.id = enrollment.id
+        self.completed_int = enrollment.completed_int
+    }
+
     override class var cdType: BaseModel.Type {
         return Enrollment.self
     }

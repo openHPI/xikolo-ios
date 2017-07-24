@@ -29,6 +29,8 @@ class TrackingEventResource : NSObject, EmbeddedObject {
                 type = "item"
             case is Announcement:
                  type = "announcement"
+            case is Video:
+                type = "video"
             default:
                 fatalError("Tracking event for unsupported resource: \(resource)")
         }

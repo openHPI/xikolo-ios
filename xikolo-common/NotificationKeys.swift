@@ -8,10 +8,8 @@
 
 import Foundation
 
-class NotificationKeys: NSObject {
+struct NotificationKeys {
 
-//    static let loginSuccessfulKey = Notification.Name("de.hpi.open.loginsuccessful")
-//    static let logoutSuccessfulKey = Notification.Name("de.hpi.open.logoutsuccessful")
     static let loginStateChangedKey = Notification.Name("de.hpi.open.loginStateChanged")
 
     static let createdEnrollmentKey = Notification.Name("de.hpi.open.createdEnrollment")

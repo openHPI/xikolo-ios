@@ -28,7 +28,8 @@ class EnrollmentHelper {
 
         let courseSpine = CourseSpine(course: course)
         let enrollmentSpine = EnrollmentSpine(course: courseSpine)
-        SpineHelper.save(enrollmentSpine).onSuccess { _ in
+        SpineHelper.save(enrollmentSpine).onSuccess { enrollmentSpine in
+            NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
             return promise.success()
         }.onFailure { xikoloError in
             return promise.failure(xikoloError)
@@ -36,20 +37,23 @@ class EnrollmentHelper {
         return promise.future
     }
 
-    static func deleteEnrollment(for course: Course) -> Future<Void, XikoloError> {
+    static func delete(_ enrollment: Enrollment) -> Future<Void, XikoloError> {
         let promise = Promise<Void, XikoloError>()
 
-        let courseSpine = CourseSpine(course: course)
-        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
+        let enrollmentSpine = EnrollmentSpine(from: enrollment)
         SpineHelper.delete(enrollmentSpine).onSuccess { _ in
-            if let enrollment = course.enrollment {
-                CoreDataHelper.delete(enrollment)
-            }
+            CoreDataHelper.delete(enrollment)
+            NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
             return promise.success()
         }.onFailure { xikoloError in
             return promise.failure(xikoloError)
         }
         return promise.future
+    }
+
+    static func markAsCompleted(_ course: Course) -> Future<EnrollmentSpine, XikoloError> {
+        course.enrollment?.completed = true
+        return SpineHelper.save(EnrollmentSpine(from: course.enrollment!))
     }
 
 }

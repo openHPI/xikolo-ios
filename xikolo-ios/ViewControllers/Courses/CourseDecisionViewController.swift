@@ -25,10 +25,6 @@ class CourseDecisionViewController: UIViewController {
     var course: Course!
     var content = CourseContent.learnings
 
-    deinit {
-        NotificationCenter.default.removeObserver(self);
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         decideContent()

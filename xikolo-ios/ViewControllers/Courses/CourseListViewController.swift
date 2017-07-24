@@ -124,7 +124,7 @@ class CourseListViewController : AbstractCourseListViewController {
 
     @IBAction func unwindLogin(_ segue: UIStoryboardSegue) {
         if !UserProfileHelper.isLoggedIn() {
-            segmentedControl.selectedSegmentIndex = 1
+            segmentedControl.selectedSegmentIndex = Views.exploreCourses.rawValue
             changeDisplayModeTo(Views.exploreCourses.rawValue)
         } else {
             changeDisplayModeTo(Views.myCourses.rawValue)

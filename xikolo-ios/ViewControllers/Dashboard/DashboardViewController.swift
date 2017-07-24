@@ -18,6 +18,7 @@ class DashboardViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateAfterLogin()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(DashboardViewController.updateAfterLogin),
                                                name: NotificationKeys.loginStateChangedKey,

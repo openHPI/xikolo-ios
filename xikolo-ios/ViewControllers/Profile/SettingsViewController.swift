@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UIViewController {
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
@@ -33,15 +33,16 @@ class SettingsViewController: UITableViewController {
         versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
         buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
 
+        self.updateUIAfterLoginStateChanged()
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(SettingsViewController.updateUIAfterLoginLogoutAction),
+                                               selector: #selector(SettingsViewController.updateUIAfterLoginStateChanged),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
     }
 
-    func updateUIAfterLoginLogoutAction() {
+    func updateUIAfterLoginStateChanged() {
         if UserProfileHelper.isLoggedIn() {
-            self.navigationItem.rightBarButtonItem =  nil
+            self.navigationItem.rightBarButtonItem = nil
             nameView.isHidden = false
             emailView.isHidden = false
             logoutButton.isHidden = false

@@ -18,10 +18,17 @@ class TrackingEventResource : NSObject, EmbeddedObject {
         uuid = dict["uuid"] as? String
     }
 
+    init?(type: String, uuid: String? = "00000000-0000-0000-0000-000000000000"){
+        self.uuid = uuid
+        self.type = type
+    }
+    
     init?(resource: BaseModel) {
         switch (resource) {
             case is CourseItem:
                 type = "item"
+            case is Announcement:
+                 type = "announcement"
             default:
                 fatalError("Tracking event for unsupported resource: \(resource)")
         }

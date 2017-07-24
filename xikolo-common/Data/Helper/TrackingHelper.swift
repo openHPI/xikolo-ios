@@ -52,14 +52,14 @@ class TrackingHelper {
         ]
     }
 
-    fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String]) -> Future<TrackingEvent, XikoloError> {
+    fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?]) -> Future<TrackingEvent, XikoloError> {
 
         let trackingVerb = TrackingEventVerb()
         trackingVerb.type = verb
 
         var trackingContext = defaultContext()
         for (k, v) in context {
-            trackingContext.updateValue(v, forKey: k)
+            trackingContext.updateValue(v!, forKey: k)
         }
         let trackingEvent = TrackingEvent()
         let trackingUser = TrackingEventUser()
@@ -77,7 +77,7 @@ class TrackingHelper {
         return Future.init(value: trackingEvent)
     }
 
-    class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String] = [:]) -> Future<Void, XikoloError> {
+    class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
             SpineHelper.save(event).asVoid()
         }

@@ -28,6 +28,7 @@ class SettingsViewController: AbstractTabContentViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        TrackingHelper.sendEvent("VISITED_PROFILE", resource: nil)
         versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
         buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
     }

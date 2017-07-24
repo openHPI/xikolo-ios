@@ -15,6 +15,7 @@ class DashboardViewController : AbstractTabContentViewController {
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
 
     override func viewDidLoad() {
+        TrackingHelper.sendEvent("VISITED_DASHBOARD", resource: nil)
         super.viewDidLoad()
     }
 

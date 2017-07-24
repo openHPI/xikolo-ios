@@ -56,20 +56,20 @@ class CourseListViewController : AbstractCourseListViewController {
 
     func checkLoginState() {
         if !UserProfileHelper.isLoggedIn() {
-            segmentedControl.selectedSegmentIndex = 1
+            segmentedControl.selectedSegmentIndex = Views.exploreCourses.rawValue
             courseDisplayMode = .all
         }
     }
 
     func changeDisplayModeTo(_ selectedIndex: Int) {
         switch selectedIndex {
-        case 0:
+        case Views.myCourses.rawValue:
             if UserProfileHelper.isLoggedIn() {
                 courseDisplayMode = .enrolledOnly
             } else {
                 performSegue(withIdentifier: "ShowLogin", sender: self)
             }
-        case 1:
+        case Views.exploreCourses.rawValue:
             courseDisplayMode = UserProfileHelper.isLoggedIn() ? .explore : .all
         default:
             break

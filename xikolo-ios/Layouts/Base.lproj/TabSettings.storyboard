@@ -194,6 +194,7 @@
                         <outlet property="buildView" destination="FU2-ij-p2N" id="I0Y-i0-lEV"/>
                         <outlet property="emailView" destination="RBV-SP-3Os" id="Dww-mk-Zc4"/>
                         <outlet property="headerImage" destination="x8a-wj-cUm" id="X2A-1f-QvI"/>
+                        <outlet property="loginButton" destination="Mnf-wa-pbl" id="vLJ-qV-DBn"/>
                         <outlet property="logoutButton" destination="ctU-fN-Oxt" id="rUX-Wh-9co"/>
                         <outlet property="nameView" destination="VMm-vb-VdP" id="oCQ-9z-out"/>
                         <outlet property="profileImage" destination="O68-Sz-3fn" id="BwG-dm-MwI"/>

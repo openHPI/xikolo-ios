@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController : AbstractTabContentViewController {
+class NewsViewController : UIViewController, LoginButtonViewController {
 
     @IBOutlet weak var containerView: UIView!
 
@@ -27,11 +27,6 @@ class NewsViewController : AbstractTabContentViewController {
 
     override func viewDidLoad() {
         updateContainerView(.announcements)
-        syncContent()
-    }
-
-    override func updateUIAfterLoginLogoutAction() {
-        super.updateUIAfterLoginLogoutAction()
         syncContent()
     }
 

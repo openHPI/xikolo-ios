@@ -9,7 +9,9 @@
 import UIKit
 import SDWebImage
 
-class SettingsViewController: AbstractTabContentViewController {
+class SettingsViewController: UITableViewController, LoginButtonViewController {
+
+    @IBOutlet var loginButton: UIBarButtonItem!
 
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -30,10 +32,12 @@ class SettingsViewController: AbstractTabContentViewController {
         super.viewDidLoad()
         versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
         buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
+
+        self.addLoginObserver(with: #selector(SettingsViewController.updateUIAfterLoginLogoutAction))
     }
 
-    override func updateUIAfterLoginLogoutAction() {
-        super.updateUIAfterLoginLogoutAction()
+    func updateUIAfterLoginLogoutAction() {
+        self.updateLoginButton()
 
         if UserProfileHelper.isLoggedIn() {
             nameView.isHidden = false
@@ -54,6 +58,10 @@ class SettingsViewController: AbstractTabContentViewController {
         self.emailView.text = userProfile.email
         self.nameView.text = (userProfile.first_name ?? "") + " " + (userProfile.last_name ?? "")
         self.profileImage.sd_setImage(with: user.avatar_url)
+    }
+
+    deinit {
+        self.removeLoginObserver()
     }
 
 }

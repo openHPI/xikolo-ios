@@ -9,17 +9,24 @@
 import UIKit
 import PinpointKit
 
-class DashboardViewController : AbstractTabContentViewController {
+class DashboardViewController : UIViewController, LoginButtonViewController {
+
+    @IBOutlet var loginButton: UIBarButtonItem!
 
     @IBOutlet var courseDatesContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addLoginObserver(with: #selector(DashboardViewController.updateAfterLogin))
     }
 
     override func viewWillAppear(_ animated: Bool) {
         CourseDateHelper.syncCourseDates()
+    }
+
+    func updateAfterLogin() {
+        self.updateLoginButton()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,6 +40,10 @@ class DashboardViewController : AbstractTabContentViewController {
         default:
             break
         }
+    }
+
+    deinit {
+        self.removeLoginObserver()
     }
 
 }

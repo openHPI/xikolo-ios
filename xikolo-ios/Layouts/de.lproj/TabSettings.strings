@@ -1,18 +1,30 @@
 
-/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "Mnf-wa-pbl"; */
-"Mnf-wa-pbl.title" = "Einloggen";
+/* Class = "UILabel"; text = "[build]"; ObjectID = "BYP-h5-ZvT"; */
+"BYP-h5-ZvT.text" = "[build]";
 
-/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "ctU-fN-Oxt"; */
-"ctU-fN-Oxt.normalTitle" = "Ausloggen";
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "KhH-tO-TnH"; */
+"KhH-tO-TnH.title" = "Einstellungen";
 
-/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "jbm-65-XMz"; */
-"jbm-65-XMz.title" = "Einstellungen";
+/* Class = "UILabel"; text = "[email]"; ObjectID = "PoF-ih-nyj"; */
+"PoF-ih-nyj.text" = " ";
 
-/* Class = "UILabel"; text = "Imprint"; ObjectID = "lUL-sh-oXa"; */
-"lUL-sh-oXa.text" = "Impressum";
+/* Class = "UILabel"; text = "[name]"; ObjectID = "RdQ-ps-pvk"; */
+"RdQ-ps-pvk.text" = " ";
 
-/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "r8t-cE-qA4"; */
-"r8t-cE-qA4.title" = "Einstellungen";
+/* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "csD-D9-eda"; */
+"csD-D9-eda.text" = "Datenschutzerklärung";
 
-/* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "xUb-k5-964"; */
-"xUb-k5-964.text" = "Datenschutzerklärung";
+/* Class = "UILabel"; text = "Logout"; ObjectID = "eBT-Ez-EZN"; */
+"eBT-Ez-EZN.text" = "Ausloggen";
+
+/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "tyU-B6-h3N"; */
+"tyU-B6-h3N.title" = "Einloggen";
+
+/* Class = "UILabel"; text = "[version]"; ObjectID = "vaA-TB-qLC"; */
+"vaA-TB-qLC.text" = "[version]";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "wNE-fd-aKh"; */
+"wNE-fd-aKh.title" = "Einstellungen";
+
+/* Class = "UILabel"; text = "Imprint"; ObjectID = "yNe-zB-n9b"; */
+"yNe-zB-n9b.text" = "Impressum";

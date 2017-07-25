@@ -64,8 +64,4 @@ class SettingsViewController: UIViewController {
         self.profileImage.sd_setImage(with: user.avatar_url)
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
 }

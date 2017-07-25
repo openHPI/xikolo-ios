@@ -70,8 +70,4 @@ class NewsViewController : UIViewController {
         containerContentViewController = viewController
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
 }

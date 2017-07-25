@@ -46,10 +46,6 @@ class DashboardViewController : UIViewController {
         }
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
 }
 
 extension DashboardViewController : CourseDatesTableViewControllerDelegate {

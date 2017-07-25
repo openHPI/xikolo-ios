@@ -183,7 +183,6 @@
                     <navigationItem key="navigationItem" title="Settings" id="jbm-65-XMz">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="Mnf-wa-pbl">
                             <connections>
-                                <action selector="loginBarButton:" destination="BgN-Oc-elr" id="X9u-hu-cPI"/>
                                 <segue destination="O8W-IG-m3E" kind="presentation" identifier="ShowLogin" id="C1B-wi-v8Q"/>
                             </connections>
                         </barButtonItem>
@@ -194,6 +193,7 @@
                         <outlet property="buildView" destination="FU2-ij-p2N" id="I0Y-i0-lEV"/>
                         <outlet property="emailView" destination="RBV-SP-3Os" id="Dww-mk-Zc4"/>
                         <outlet property="headerImage" destination="x8a-wj-cUm" id="X2A-1f-QvI"/>
+                        <outlet property="loginButton" destination="Mnf-wa-pbl" id="vLJ-qV-DBn"/>
                         <outlet property="logoutButton" destination="ctU-fN-Oxt" id="rUX-Wh-9co"/>
                         <outlet property="nameView" destination="VMm-vb-VdP" id="oCQ-9z-out"/>
                         <outlet property="profileImage" destination="O68-Sz-3fn" id="BwG-dm-MwI"/>

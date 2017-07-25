@@ -9,7 +9,9 @@
 import UIKit
 import SDWebImage
 
-class SettingsViewController: AbstractTabContentViewController {
+class SettingsViewController: UIViewController {
+
+    @IBOutlet var loginButton: UIBarButtonItem!
 
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -30,18 +32,24 @@ class SettingsViewController: AbstractTabContentViewController {
         super.viewDidLoad()
         versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
         buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
+
+        self.updateUIAfterLoginStateChanged()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(SettingsViewController.updateUIAfterLoginStateChanged),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
-    override func updateUIAfterLoginLogoutAction() {
-        super.updateUIAfterLoginLogoutAction()
-
+    func updateUIAfterLoginStateChanged() {
         if UserProfileHelper.isLoggedIn() {
+            self.navigationItem.rightBarButtonItem = nil
             nameView.isHidden = false
             emailView.isHidden = false
             logoutButton.isHidden = false
             UserHelper.syncMe().onSuccess(callback: { _ in self.updateProfileInfo() })
             updateProfileInfo()
         } else {
+            self.navigationItem.rightBarButtonItem = self.loginButton
             nameView.isHidden = true
             emailView.isHidden = true
             logoutButton.isHidden = true

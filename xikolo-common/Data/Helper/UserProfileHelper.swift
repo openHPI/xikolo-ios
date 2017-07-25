@@ -41,7 +41,7 @@ open class UserProfileHelper {
                 if let token = json["token"] as? String, let id = json["user_id"] as? String {
                     UserProfileHelper.saveToken(token)
                     UserProfileHelper.saveId(id)
-                    NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+                    self.postLoginStateChange()
                     return promise.success(token)
                 }
                 return promise.failure(XikoloError.authenticationError)
@@ -57,8 +57,8 @@ open class UserProfileHelper {
     static func logout() {
         prefs.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         prefs.synchronize()
-        NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
         CoreDataHelper.clearCoreDataStorage()
+        self.postLoginStateChange()
     }
 
     static func isLoggedIn() -> Bool {
@@ -100,6 +100,11 @@ open class UserProfileHelper {
 
     static func saveId(_ id: String) {
         save(.user, withValue: id)
+    }
+
+    private static func postLoginStateChange() {
+        SpineHelper.updateHttpHeaders()
+        NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
     }
 
 }

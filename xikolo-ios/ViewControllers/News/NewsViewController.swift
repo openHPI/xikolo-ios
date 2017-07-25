@@ -28,6 +28,10 @@ class NewsViewController : UIViewController {
     override func viewDidLoad() {
         updateContainerView(.announcements)
         syncContent()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(NewsViewController.syncContent),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     func syncContent() {
@@ -64,6 +68,10 @@ class NewsViewController : UIViewController {
         addChildViewController(viewController)
         viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }

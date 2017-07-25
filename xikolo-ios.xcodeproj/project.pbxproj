@@ -1764,6 +1764,7 @@
 		4E6AB1F11DD36AB500B048DB /* CourseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDate.swift; sourceTree = "<group>"; };
 		4E6AB1FE1DD60EBD00B048DB /* CourseDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateProvider.swift; sourceTree = "<group>"; };
 		4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		500486FF1F277F8500DC8A53 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
 		5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+DetailedContent.swift"; path = "Data/Model/Video+DetailedContent.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RichText+DetailedContent.swift"; path = "Data/Model/RichText+DetailedContent.swift"; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedContent.swift; path = Data/Model/Protocol/DetailedContent.swift; sourceTree = "<group>"; };
@@ -1823,7 +1824,6 @@
 		AB1C03521D92C1C40053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		AB1C03541D92CCED0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabNews.strings; sourceTree = "<group>"; };
 		AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownHelper.swift; sourceTree = "<group>"; };
-		AB2193961E07043C00E79DB5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
 		AB2802C71D2A8ABB008C8BAE /* Announcement+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Announcement+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB2802C81D2A8ABB008C8BAE /* Announcement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		AB2802CD1D2AAEC9008C8BAE /* AnnouncementProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementProvider.swift; sourceTree = "<group>"; };
@@ -5427,7 +5427,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D91CF72EF100ED3EB0 /* Base */,
-				AB2193961E07043C00E79DB5 /* de */,
+				500486FF1F277F8500DC8A53 /* de */,
 			);
 			name = TabSettings.storyboard;
 			sourceTree = "<group>";

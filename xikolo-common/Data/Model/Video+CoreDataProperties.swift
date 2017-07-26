@@ -26,6 +26,8 @@ extension Video {
     @NSManaged var slides_stream_hls_url: String?
     @NSManaged var slides_stream_thumbnail_url: String?
     @NSManaged var summary: String?
+    @NSManaged var download_progress: NSDecimalNumber?
+    @NSManaged var local_file: URL?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Video> {
         return NSFetchRequest<Video>(entityName: "Video");

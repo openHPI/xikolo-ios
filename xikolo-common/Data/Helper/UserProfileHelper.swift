@@ -13,12 +13,6 @@ import CoreData
 
 open class UserProfileHelper {
 
-    enum Keys : String {
-        case user = "user"
-        case token = "user_token"
-        case welcome = "show_welcome_screen"
-    }
-
     static fileprivate let prefs = UserDefaults.standard
 
     static func login(_ email: String, password: String) -> Future<String, XikoloError> {
@@ -69,12 +63,12 @@ open class UserProfileHelper {
         return get(.token) ?? ""
     }
 
-    static func save(_ key: Keys, withValue value: String) {
+    static func save(_ key: UserDefaultsKeys.UserProfileKey, withValue value: String) {
         prefs.set(value, forKey: key.rawValue)
         prefs.synchronize()
     }
 
-    static func get(_ key: Keys) -> String? {
+    static func get(_ key: UserDefaultsKeys.UserProfileKey) -> String? {
         return prefs.string(forKey: key.rawValue)
     }
 

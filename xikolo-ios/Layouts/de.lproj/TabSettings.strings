@@ -18,3 +18,6 @@
 
 /* Class = "UILabel"; text = "Imprint"; ObjectID = "yNe-zB-n9b"; */
 "yNe-zB-n9b.text" = "Impressum";
+
+/* Class = "UITableViewSection"; footerTitle = "Small-sized course material will be downloaded in advance for enrolled courses."; ObjectID = "k6k-z7-cxe"; */
+"k6k-z7-cxe.footerTitle" = "Für eingeschriebene Kurse werden kleine Materialen im Voraus geladen.";

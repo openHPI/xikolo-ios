@@ -9,6 +9,7 @@
 import CoreData
 import Foundation
 import Spine
+import CoreSpotlight
 
 class CourseItem : BaseModel {
 

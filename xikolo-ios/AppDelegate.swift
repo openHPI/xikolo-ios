@@ -10,6 +10,7 @@ import CoreData
 import UIKit
 import PinpointKit
 import SDWebImage
+import CoreSpotlight
 
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
@@ -43,27 +44,41 @@ class AppDelegate : AbstractAppDelegate {
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        let url:URL
+        if userActivity.activityType == CSSearchableItemActionType {
+            // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
+            // Note that the unique identifier of the Core Spotlight item is set in the activity’s userInfo property for the key CSSearchableItemActivityIdentifier.
+            let uniqueIdentifier = userActivity.userInfo? [CSSearchableItemActivityIdentifier]
+            url = URL.init(string: uniqueIdentifier as! String)!
+            // this contains the courses uuid
+            // Next, find and open the item specified by uniqueIdentifer.
 
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else { return false }
+        }else{
+             url = userActivity.webpageURL!
+        }
+        
+
         guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
             print("UITabBarController could not be found")
             return false
         }
         switch url.lastPathComponent {
-        case "courses":
-            rootViewController.selectedIndex = 1
-        case "dashboard":
-            rootViewController.selectedIndex = 0
-        case "news":
-            rootViewController.selectedIndex = 2
-        default:
-            break
+            case "courses":
+                rootViewController.selectedIndex = 1
+            case "dashboard":
+                rootViewController.selectedIndex = 0
+            case "news":
+                rootViewController.selectedIndex = 2
+            default:
+                break
         }
-        
+
         // we can't handle the url, open it with a browser
         let webpageUrl = url
         application.openURL(webpageUrl)
         return false
+
+
     }
 
     func updateAnnouncements() {

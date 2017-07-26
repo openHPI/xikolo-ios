@@ -62,6 +62,9 @@ class AppDelegate : AbstractAppDelegate {
             print("UITabBarController could not be found")
             return false
         }
+        //Todo:
+        //support /courses/slug -> course detail page or learning
+
         switch url.lastPathComponent {
             case "courses":
                 rootViewController.selectedIndex = 1

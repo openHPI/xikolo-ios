@@ -105,6 +105,14 @@ class CourseHelper {
         return courses.first
     }
 
+    static func getBySlug(_ slug: String) throws -> Course? {
+        let request: NSFetchRequest<Course> = Course.fetchRequest()
+        request.predicate = NSPredicate(format: "slug == %@", slug)
+        request.fetchLimit = 1
+        let courses = try CoreDataHelper.executeFetchRequest(request)
+        return courses.first
+    }
+
     static func refreshCourses() -> Future<[Course], XikoloError> {
         return CourseProvider.getCourses().flatMap { spineCourses -> Future<[Course], XikoloError> in
             let request = getGenericCoursesRequest()

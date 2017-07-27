@@ -63,11 +63,32 @@ class AppDelegate : AbstractAppDelegate {
             return false
         }
         //Todo:
-        //support /courses/slug -> course detail page or learning
 
-        switch url.lastPathComponent {
+
+        //if url.lastPathComponent == "courses" and {
+        //}
+        switch url.pathComponents[1] {
             case "courses":
-                rootViewController.selectedIndex = 1
+                if url.pathComponents.count > 2{
+                    //support /courses/slug -> course detail page or learning
+                    let slug = url.pathComponents[2]
+                    //get course by slug
+                    //todo the course might not be synced yet, than we could try to fetch from the API by slug
+                    var course: Course?
+                    do {
+                        course = try CourseHelper.getBySlug(slug)
+                    } catch {
+                        course = nil
+                    }
+                    if (course != nil){
+                        self.goToCourse(course!)
+                        return true
+                    }
+
+                }else{
+                    rootViewController.selectedIndex = 1
+                }
+
             case "dashboard":
                 rootViewController.selectedIndex = 0
             case "news":

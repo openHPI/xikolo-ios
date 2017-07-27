@@ -23,6 +23,7 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var downloadButton: PKDownloadButton!
 
     var item: CourseItem?
+    var delegate: VideoCourseItemCellDelegate?
 
     func configure(_ courseItem: CourseItem,
                    forContentTypes contentTypes: [DetailedContent.Type],
@@ -128,11 +129,29 @@ class CourseItemCell : UITableViewCell {
 
 }
 
+protocol VideoCourseItemCellDelegate {
+
+    func showAlertForDownloading(video: Video, inCell cell: CourseItemCell)
+    func showAlertForCancellingDownload(ofVideo video: Video, inCell cell: CourseItemCell)
+    func showAlertForDeletingDownload(ofVideo video: Video, inCell cell: CourseItemCell)
+
+}
+
 
 extension CourseItemCell: PKDownloadButtonDelegate {
 
     func downloadButtonTapped(_ downloadButton: PKDownloadButton!, currentState state: PKDownloadButtonState) {
         print("\(downloadButton) -- \(state)")
+        guard let video = self.item?.content as? Video else { return }
+
+        switch state {
+        case .startDownload:
+            self.delegate?.showAlertForDownloading(video: video, inCell: self)
+        case .downloaded:
+            self.delegate?.showAlertForDeletingDownload(ofVideo: video, inCell: self)
+        default:  // pending + downloading
+            self.delegate?.showAlertForCancellingDownload(ofVideo: video, inCell: self)
+        }
     }
 
 }

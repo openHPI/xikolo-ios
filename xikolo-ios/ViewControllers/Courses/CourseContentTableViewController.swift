@@ -168,6 +168,7 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
+        cell.delegate = self.tableViewController
         cell.configure(item,
                        forContentTypes: self.tableViewController?.contentToBePreloaded ?? [],
                        forPreloading: self.tableViewController?.isPreloading ?? false)
@@ -194,6 +195,53 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         let description = NSLocalizedString("Please check you internet connection", comment: "")
         let attributedString = NSAttributedString(string: description)
         return attributedString
+    }
+
+}
+
+extension CourseContentTableViewController: VideoCourseItemCellDelegate {
+
+    func showAlertForDownloading(video: Video, inCell cell: CourseItemCell) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let downloadAction = UIAlertAction(title: "Download video", style: .default) { action in
+            print("start download")
+            cell.downloadButton.state = .pending
+            VideoPersistenceManager.shared.downloadStream(for: video)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alert.addAction(downloadAction)
+        alert.addAction(cancelAction)
+
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func showAlertForCancellingDownload(ofVideo video: Video, inCell cell: CourseItemCell) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let abortAction = UIAlertAction(title: "Abort Download", style: .default) { action in
+            print("abort download")
+            VideoPersistenceManager.shared.cancelDownload(forVideo: video)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alert.addAction(abortAction)
+        alert.addAction(cancelAction)
+
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func showAlertForDeletingDownload(ofVideo video: Video, inCell cell: CourseItemCell) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete video", style: .default) { action in
+            print("delete download")
+            VideoPersistenceManager.shared.deleteAsset(forVideo: video)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

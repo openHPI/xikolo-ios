@@ -12,7 +12,7 @@ import SDWebImage
 
 class SettingsViewController: UITableViewController {
 
-    static let logoutIndexPath = IndexPath(row: 0, section: 1)
+    static let logoutIndexPath = IndexPath(row: 0, section: 2)
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
@@ -21,6 +21,8 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var nameView: UILabel!
     @IBOutlet weak var emailView: UILabel!
 
+    @IBOutlet weak var preloadContentSwitch: UISwitch!
+
     @IBOutlet weak var versionView: UILabel!
     @IBOutlet weak var buildView: UILabel!
 
@@ -28,6 +30,12 @@ class SettingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // set preload content settings
+        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
+        self.preloadContentSwitch.setOn(!contentPreloadDeactivated, animated: false)
+
+        // set app version info
         self.versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
         self.buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
 
@@ -82,7 +90,7 @@ class SettingsViewController: UITableViewController {
                 present(safariVC, animated: true, completion: nil)
                 safariVC.preferredControlTintColor = Brand.TintColor
             }
-        case (1, 0):
+        case (SettingsViewController.logoutIndexPath.section, SettingsViewController.logoutIndexPath.row):
             UserProfileHelper.logout()
         default:
             break
@@ -111,4 +119,9 @@ class SettingsViewController: UITableViewController {
         }
     }
 
+    @IBAction func preloadContentSettingChanged(_ sender: UISwitch) {
+        let contentPreloadDeactivated = !sender.isOn
+        UserDefaults.standard.set(contentPreloadDeactivated, forKey: UserDefaultsKeys.noContentPreloadKey)
+        UserDefaults.standard.synchronize()
+    }
 }

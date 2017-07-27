@@ -27,6 +27,7 @@ class CourseDecisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SearchHelper.setNSUserActivity(course: self.course)
         decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
     }

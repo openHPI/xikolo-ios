@@ -19,7 +19,7 @@ class SearchHelper{
         //attributeSet.thumbnailData = DocumentImage.jpg
         let url = String.init(Brand.BaseURL + "/courses/" + course.slug!)
         // Create an item with a unique identifier, a domain identifier, and the attribute set you created earlier.
-        let item = CSSearchableItem(uniqueIdentifier: url, domainIdentifier: Brand.AppID+".course", attributeSet: attributeSet)
+        let item = CSSearchableItem(uniqueIdentifier: url, domainIdentifier: self.getReverseDomain(appendix:"course"), attributeSet: attributeSet)
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if error != nil {
                 print(error!.localizedDescription)
@@ -29,6 +29,7 @@ class SearchHelper{
             }
         }
     }
+
     static func removeCourseFromIndex(course:Course){
         let url = String.init(Brand.BaseURL + "/courses/" + course.slug!)
         CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [url!]) { error in
@@ -39,6 +40,23 @@ class SearchHelper{
                 print("Item deleted.")
             }
         }
+    }
+    static func setNSUserActivity(course:Course){
+        let activity = NSUserActivity(activityType: self.getReverseDomain(appendix: "course.view"))
+        activity.title = "Viewing Course"
+        activity.requiredUserInfoKeys = ["course_id"]
+        activity.webpageURL = URL(string: Brand.BaseURL + "/courses/" + course.slug!)
+        activity.isEligibleForSearch = true
+        activity.isEligibleForHandoff = true
+        if (course.hidden == false){ // internal courses?
+            activity.isEligibleForPublicIndexing = true
+        }
+        activity.userInfo = ["course_id": course.id]
+        activity.becomeCurrent()
+    }
+
+    static func getReverseDomain(appendix:String)->String{
+        return Brand.AppID+"."+appendix
     }
 
 }

@@ -12,11 +12,13 @@ import UIKit
 class AbstractAppDelegate : UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SyncHelper.standard.startObserving()
         return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         CoreDataHelper.saveContext()
+        SyncHelper.standard.stopObserving()
     }
 
 }

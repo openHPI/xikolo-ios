@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import DownloadButton
 import Shimmer
+
 
 class CourseItemCell : UITableViewCell {
 
@@ -18,7 +20,7 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var shimmerContainer: FBShimmeringView!
     @IBOutlet weak var loadingBox: UIView!
     @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var downloadButton: PKDownloadButton!
 
     var item: CourseItem?
 
@@ -38,8 +40,53 @@ class CourseItemCell : UITableViewCell {
 
 
         // Video download
-        self.downloadButton.isHidden = !(courseItem.content is Video)
+        if let video = courseItem.content as? Video {
+            // customize download button
+            let radius: CGFloat = 10.0
+            self.downloadButton.tintColor = Brand.TintColor
 
+            self.downloadButton.startDownloadButton.cleanDefaultAppearance()
+            let downloadImage = UIImage(named: "cloud-download")?.withRenderingMode(.alwaysTemplate)
+            self.downloadButton.startDownloadButton.setTitle(nil, for: .normal)
+            self.downloadButton.startDownloadButton.setTitle(nil, for: .highlighted)
+            self.downloadButton.startDownloadButton.setImage(downloadImage, for: .normal)
+            self.downloadButton.startDownloadButton.setBackgroundImage(nil, for: .normal)
+            self.downloadButton.startDownloadButton.setBackgroundImage(nil, for: .highlighted)
+
+            self.downloadButton.pendingView.tintColor = Brand.TintColor
+            self.downloadButton.pendingView.radius = radius
+
+            self.downloadButton.stopDownloadButton.tintColor = Brand.TintColor
+            self.downloadButton.stopDownloadButton.progress = 0.66
+            self.downloadButton.stopDownloadButton.radius = radius
+            self.downloadButton.stopDownloadButton.filledLineWidth = radius
+            self.downloadButton.stopDownloadButton.stopButtonWidth = 0
+
+            self.downloadButton.downloadedButton.cleanDefaultAppearance()
+            let downloadedImage = UIImage(named: "device-iphone")?.withRenderingMode(.alwaysTemplate)
+            self.downloadButton.downloadedButton.setTitle(nil, for: .normal)
+            self.downloadButton.downloadedButton.setTitle(nil, for: .highlighted)
+            self.downloadButton.downloadedButton.setImage(downloadedImage, for: .normal)
+            self.downloadButton.downloadedButton.setBackgroundImage(nil, for: .normal)
+            self.downloadButton.downloadedButton.setBackgroundImage(nil, for: .highlighted)
+
+            self.downloadButton.delegate = self
+
+            // set state
+            switch VideoPersistenceManager.shared.downloadState(for: video) {
+            case .notDownloaded:
+                self.downloadButton.state = .startDownload
+            case .downloading:
+                self.downloadButton.state = .downloading
+                self.downloadButton.stopDownloadButton.progress = CGFloat(video.download_progress?.floatValue ?? 0)
+            case .downloaded:
+                self.downloadButton.state = .downloaded
+            }
+
+            self.downloadButton.isHidden = false
+        } else {
+            self.downloadButton.isHidden = true
+        }
 
         // Content preloading
         guard let detailedContent = courseItem.content as? DetailedContent else {
@@ -79,14 +126,13 @@ class CourseItemCell : UITableViewCell {
         }
     }
 
+}
 
-    @IBAction func handleVideoDownload() {
-        print("hello")
-        if let video = self.item?.content as? Video {
-            VideoPersistenceManager.shared.downloadStream(for: video)
-        }
 
+extension CourseItemCell: PKDownloadButtonDelegate {
+
+    func downloadButtonTapped(_ downloadButton: PKDownloadButton!, currentState state: PKDownloadButtonState) {
+        print("\(downloadButton) -- \(state)")
     }
-
 
 }

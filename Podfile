@@ -14,6 +14,7 @@ end
 
 def ios_pods
     pod 'BMPlayer', '0.8.7'
+    pod 'DownloadButton', '0.1.0'
     pod 'DZNEmptyDataSet', '1.8.1'
     pod 'Hero'
     pod 'PinpointKit', :git => 'https://github.com/Lickability/PinpointKit', :commit => 'dd5731c'

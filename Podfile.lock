@@ -13,6 +13,7 @@ PODS:
   - BrightFutures (5.1.0):
     - Result (~> 3.0)
   - Down (0.3.2)
+  - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
   - Hero (0.3.3)
   - NVActivityIndicatorView (3.7.0):
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - BMPlayer (= 0.8.7)
   - BrightFutures (= 5.1.0)
   - Down (= 0.3.2)
+  - DownloadButton (= 0.1.0)
   - DZNEmptyDataSet (= 1.8.1)
   - Hero
   - ObjectMapper (= 2.0)
@@ -68,6 +70,7 @@ SPEC CHECKSUMS:
   BMPlayer: 5ba9e3f3d61ccc5a24ebd9cdc24901dcf28c98bc
   BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
   Down: afcfa1a49381b19733b67074bf239789edfa8ad4
+  DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Hero: bee4e762e84185b16a902dd11335c119515bb912
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
@@ -80,6 +83,6 @@ SPEC CHECKSUMS:
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: d92695ba1ee4a3eef6061d5680ddfb999e2323d6
+PODFILE CHECKSUM: 0b194f7f4480da9f51de2f0e315fab83b9495562
 
 COCOAPODS: 1.2.1

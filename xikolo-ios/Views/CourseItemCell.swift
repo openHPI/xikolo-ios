@@ -18,10 +18,15 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var shimmerContainer: FBShimmeringView!
     @IBOutlet weak var loadingBox: UIView!
     @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var downloadButton: UIButton!
+
+    var item: CourseItem?
 
     func configure(_ courseItem: CourseItem,
                    forContentTypes contentTypes: [DetailedContent.Type],
                    forPreloading isPreloading: Bool = false) {
+        self.item = courseItem
+
         self.titleView.text = courseItem.title
 
         if let iconName = courseItem.iconName {
@@ -31,6 +36,12 @@ class CourseItemCell : UITableViewCell {
         let wasVisitedBefore = courseItem.visited ?? true
         self.readStateView.backgroundColor = wasVisitedBefore ? UIColor.clear : Brand.TintColor
 
+
+        // Video download
+        self.downloadButton.isHidden = !(courseItem.content is Video)
+
+
+        // Content preloading
         guard let detailedContent = courseItem.content as? DetailedContent else {
             // only detailed content items show additional information
             self.detailContainer.isHidden = true
@@ -67,5 +78,15 @@ class CourseItemCell : UITableViewCell {
             self.detailContainer.isHidden = true
         }
     }
+
+
+    @IBAction func handleVideoDownload() {
+        print("hello")
+        if let video = self.item?.content as? Video {
+            VideoPersistenceManager.shared.downloadStream(for: video)
+        }
+
+    }
+
 
 }

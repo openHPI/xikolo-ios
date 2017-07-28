@@ -13,12 +13,6 @@ import CoreData
 
 open class UserProfileHelper {
 
-    enum Keys : String {
-        case user = "user"
-        case token = "user_token"
-        case welcome = "show_welcome_screen"
-    }
-
     static fileprivate let prefs = UserDefaults.standard
 
     static func login(_ email: String, password: String) -> Future<String, XikoloError> {
@@ -41,7 +35,7 @@ open class UserProfileHelper {
                 if let token = json["token"] as? String, let id = json["user_id"] as? String {
                     UserProfileHelper.saveToken(token)
                     UserProfileHelper.saveId(id)
-                    NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
+                    self.postLoginStateChange()
                     return promise.success(token)
                 }
                 return promise.failure(XikoloError.authenticationError)
@@ -56,9 +50,9 @@ open class UserProfileHelper {
 
     static func logout() {
         prefs.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        NotificationCenter.default.post(name: NotificationKeys.logoutSuccessfulKey, object: nil)
         prefs.synchronize()
         CoreDataHelper.clearCoreDataStorage()
+        self.postLoginStateChange()
     }
 
     static func isLoggedIn() -> Bool {
@@ -69,12 +63,12 @@ open class UserProfileHelper {
         return get(.token) ?? ""
     }
 
-    static func save(_ key: Keys, withValue value: String) {
+    static func save(_ key: UserDefaultsKeys.UserProfileKey, withValue value: String) {
         prefs.set(value, forKey: key.rawValue)
         prefs.synchronize()
     }
 
-    static func get(_ key: Keys) -> String? {
+    static func get(_ key: UserDefaultsKeys.UserProfileKey) -> String? {
         return prefs.string(forKey: key.rawValue)
     }
 
@@ -88,8 +82,6 @@ open class UserProfileHelper {
 
     static func saveToken(_ token: String) {
         save(.token, withValue: token)
-        NotificationCenter.default.post(name: NotificationKeys.loginSuccessfulKey, object: nil)
-        prefs.synchronize()
         refreshUserDependentData()
     }
 
@@ -102,6 +94,11 @@ open class UserProfileHelper {
 
     static func saveId(_ id: String) {
         save(.user, withValue: id)
+    }
+
+    private static func postLoginStateChange() {
+        SpineHelper.updateHttpHeaders()
+        NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
     }
 
 }

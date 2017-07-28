@@ -96,6 +96,7 @@
                     <connections>
                         <outlet property="courseActivityContainerHeight" destination="PRS-ng-4lB" id="1Ax-VW-LHV"/>
                         <outlet property="courseDatesContainerHeight" destination="Stc-t5-rS1" id="fkP-Z8-WcC"/>
+                        <outlet property="loginButton" destination="cHU-8h-YGE" id="Ued-Zm-0fj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rg-YL-Fie" userLabel="First Responder" sceneMemberID="firstResponder"/>

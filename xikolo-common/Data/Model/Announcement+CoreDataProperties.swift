@@ -16,6 +16,7 @@ extension Announcement {
     @NSManaged var text: String?
     @NSManaged var published_at: Date?
     @NSManaged var visited_int: NSNumber?
+    @NSManaged var image_url: URL?
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Announcement> {

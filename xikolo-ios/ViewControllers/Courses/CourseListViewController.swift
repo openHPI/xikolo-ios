@@ -78,7 +78,7 @@ class CourseListViewController : AbstractCourseListViewController {
 
     func presentWelcomeScreenIfNecessary() {
         #if OPENWHO
-        if UserProfileHelper.get(UserProfileHelper.Keys.welcome) == nil {
+        if UserProfileHelper.get(.welcome) == nil {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyyMMdd"
             guard let start = formatter.date(from: "20170521"), let end = formatter.date(from: "20170530") else { return }
@@ -86,7 +86,7 @@ class CourseListViewController : AbstractCourseListViewController {
             let now = Date.init(timeIntervalSinceNow: 0)
             if (healthConference.contains(now)) {
                 performSegue(withIdentifier: "ShowWelcome", sender: nil)
-                UserProfileHelper.save(UserProfileHelper.Keys.welcome, withValue: "showed")
+                UserProfileHelper.save(.welcome, withValue: "showed")
             }
         }
         #endif

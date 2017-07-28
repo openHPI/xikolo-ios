@@ -33,7 +33,8 @@ class CourseContentTableViewController: UITableViewController {
 
         self.navigationItem.title = self.course.title
 
-        self.isPreloading = !self.contentToBePreloaded.isEmpty
+        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
+        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
 
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
@@ -57,7 +58,9 @@ class CourseContentTableViewController: UITableViewController {
                 CourseItemHelper.syncCourseItems(section)
             }.sequence().onComplete { _ in
                 self.tableView.reloadEmptyDataSet()
-                self.preloadCourseContent()
+                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                    self.preloadCourseContent()
+                }
             }
         }.onComplete { _ in
             NetworkIndicator.end()

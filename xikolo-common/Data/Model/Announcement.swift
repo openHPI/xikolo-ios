@@ -30,6 +30,7 @@ class AnnouncementSpine : BaseModelSpine {
     var text: String?
     var published_at: Date?
     var visited_int: NSNumber?
+    var image_url: URL?
 
     var course: CourseSpine?
 
@@ -54,6 +55,7 @@ class AnnouncementSpine : BaseModelSpine {
             "text": Attribute().readOnly(),
             "published_at": DateAttribute().readOnly(),
             "visited_int": BooleanAttribute().serializeAs("visited"),
+            "image_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
             "course": ToOneRelationship(CourseSpine.self).readOnly(),
         ])
     }

@@ -58,10 +58,9 @@ class CourseItemCell : UITableViewCell {
             self.downloadButton.pendingView.radius = radius
 
             self.downloadButton.stopDownloadButton.tintColor = Brand.TintColor
-            self.downloadButton.stopDownloadButton.progress = 0.66
             self.downloadButton.stopDownloadButton.radius = radius
             self.downloadButton.stopDownloadButton.filledLineWidth = radius
-            self.downloadButton.stopDownloadButton.stopButtonWidth = 0
+            self.downloadButton.stopDownloadButton.stopButton.isHidden = true
 
             self.downloadButton.downloadedButton.cleanDefaultAppearance()
             let downloadedImage = UIImage(named: "device-iphone")?.withRenderingMode(.alwaysTemplate)
@@ -82,6 +81,16 @@ class CourseItemCell : UITableViewCell {
             case .downloaded:
                 self.downloadButton.state = .downloaded
             }
+
+            let notificationCenter = NotificationCenter.default
+            notificationCenter.addObserver(self,
+                                           selector: #selector(CourseItemCell.handleAssetDownloadStateChangedNotification(_:)),
+                                           name: NotificationKeys.VideoDownloadStateChangedKey,
+                                           object: nil)
+            notificationCenter.addObserver(self,
+                                           selector: #selector(CourseItemCell.handleAssetDownloadProgressNotification(_:)),
+                                           name: NotificationKeys.VideoDownloadProgressKey,
+                                           object: nil)
 
             self.downloadButton.isHidden = false
         } else {
@@ -126,6 +135,46 @@ class CourseItemCell : UITableViewCell {
         }
     }
 
+    func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
+        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
+            let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
+            let downloadState = Video.DownloadState(rawValue: downloadStateRawValue),
+            let video = self.item?.content as? Video,
+            video.id == videoId else { return }
+
+        DispatchQueue.main.async {
+            switch downloadState {
+            case .downloaded:
+                self.downloadButton.state = .downloaded
+            case .downloading:
+                if self.downloadButton.state != .downloading { // don't go back to pending if already downloading
+                    self.downloadButton.state = .pending
+                }
+            case .notDownloaded:
+                self.downloadButton.state = .startDownload
+            }
+
+            // TODO call delegate which reloads cell?
+        }
+    }
+
+    func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
+        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
+            let progress = noticaition.userInfo?[Video.Keys.precentDownload] as? Double,
+            let video = self.item?.content as? Video,
+            video.id == videoId else { return }
+
+        DispatchQueue.main.async {
+            if self.downloadButton.state == .pending {
+                self.downloadButton.state = .downloading
+            }
+
+            self.downloadButton.stopDownloadButton.progress = CGFloat(progress)
+        }
+    }
+
+
+
 }
 
 protocol VideoCourseItemCellDelegate {
@@ -140,7 +189,7 @@ protocol VideoCourseItemCellDelegate {
 extension CourseItemCell: PKDownloadButtonDelegate {
 
     func downloadButtonTapped(_ downloadButton: PKDownloadButton!, currentState state: PKDownloadButtonState) {
-        print("\(downloadButton) -- \(state)")
+        //print("\(downloadButton) -- \(state)")
         guard let video = self.item?.content as? Video else { return }
 
         switch state {

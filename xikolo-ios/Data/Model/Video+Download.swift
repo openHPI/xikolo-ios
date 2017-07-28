@@ -21,4 +21,19 @@ extension Video {
         /// The asset is downloaded and saved on disk.
         case downloaded
     }
+
+}
+
+extension Video {
+
+    struct Keys {
+
+        static let id = "VideoIdKey"
+
+        static let downloadState = "VideoDownloadStateKey"
+
+        static let precentDownload = "VideoPrecentDownloadKey"
+
+    }
+
 }

@@ -53,7 +53,7 @@ class AppDelegate : AbstractAppDelegate {
             // this contains the courses uuid
             // Next, find and open the item specified by uniqueIdentifer.
 
-        }else{
+        } else {
              url = userActivity.webpageURL!
         }
         
@@ -75,20 +75,14 @@ class AppDelegate : AbstractAppDelegate {
                     //get course by slug
                     //todo the course might not be synced yet, than we could try to fetch from the API by slug
                     var course: Course?
-                    do {
-                        course = try CourseHelper.getBySlug(slug)
-                    } catch {
-                        course = nil
-                    }
-                    if (course != nil){
+                    course = try? CourseHelper.getBySlug(slug)
+                    if (course != nil) {
                         self.goToCourse(course!)
                         return true
                     }
-
-                }else{
+                } else {
                     rootViewController.selectedIndex = 1
                 }
-
             case "dashboard":
                 rootViewController.selectedIndex = 0
             case "news":
@@ -101,8 +95,6 @@ class AppDelegate : AbstractAppDelegate {
         let webpageUrl = url
         application.openURL(webpageUrl)
         return false
-
-
     }
 
     func updateAnnouncements() {

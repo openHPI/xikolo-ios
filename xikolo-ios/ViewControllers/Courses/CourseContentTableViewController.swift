@@ -209,6 +209,11 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
             VideoPersistenceManager.shared.downloadStream(for: video)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert.popoverPresentationController?.sourceView = cell.downloadButton
+            alert.popoverPresentationController?.sourceRect = cell.downloadButton.bounds.offsetBy(dx: -4, dy: 0)
+        }
 
         alert.addAction(downloadAction)
         alert.addAction(cancelAction)
@@ -223,6 +228,11 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
             VideoPersistenceManager.shared.cancelDownload(forVideo: video)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert.popoverPresentationController?.sourceView = cell.downloadButton
+            alert.popoverPresentationController?.sourceRect = cell.downloadButton.bounds.offsetBy(dx: -4, dy: 0)
+        }
 
         alert.addAction(abortAction)
         alert.addAction(cancelAction)
@@ -237,6 +247,11 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
             VideoPersistenceManager.shared.deleteAsset(forVideo: video)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert.popoverPresentationController?.sourceView = cell.downloadButton
+            alert.popoverPresentationController?.sourceRect = cell.downloadButton.bounds.offsetBy(dx: -4, dy: 0)
+        }
 
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)

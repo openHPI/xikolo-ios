@@ -66,10 +66,17 @@ class VideoPersistenceManager: NSObject {
         self.activeDownloadsMap[task] = video.id
 
         task.resume()
+
+        video.download_date = Date()
+        do {
+            try video.managedObjectContext?.save()
+        } catch {
+            print("Failed to update download progress")
+        }
     }
 
     func localAssetFor(video: Video) -> AVURLAsset? {
-        guard let localFileLocation = video.local_file_bookmark as? Data else { return nil }
+        guard let localFileLocation = video.local_file_bookmark as Data? else { return nil }
 
         var asset: AVURLAsset?
         var bookmarkDataIsStale = false
@@ -111,7 +118,7 @@ class VideoPersistenceManager: NSObject {
             do {
                 try FileManager.default.removeItem(at: localfileLocation)
 
-                video.download_progress = nil
+                video.download_date = nil
                 video.local_file_bookmark = nil
                 try video.managedObjectContext?.save()
             } catch {
@@ -141,7 +148,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let task = task as? AVAssetDownloadTask, let asset = self.activeDownloadsMap.removeValue(forKey: task) else { return }
 
-        if let error = error as? NSError {
+        if let error = error as NSError? {
             // TODO: delete local file if present
             print(error)
         } else {
@@ -190,13 +197,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
             percentComplete += CMTimeGetSeconds(loadedTimeRange.duration) / CMTimeGetSeconds(timeRangeExpectedToLoad.duration)
         }
 
-        video.download_progress = NSNumber(value: percentComplete)
-        print("video: \(video.id) progress: \(percentComplete)")
-        do {
-            try video.managedObjectContext?.save()
-        } catch {
-            print("Failed to update download progress")
-        }
+        // TODO update progress
     }
 
 }

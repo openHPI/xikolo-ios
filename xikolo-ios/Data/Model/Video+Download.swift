@@ -9,6 +9,7 @@
 import Foundation
 
 extension Video {
+
     enum DownloadState: String {
 
         /// The asset is not downloaded at all.

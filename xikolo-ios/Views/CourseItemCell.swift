@@ -78,8 +78,7 @@ class CourseItemCell : UITableViewCell {
             case .notDownloaded:
                 self.downloadButton.state = .startDownload
             case .downloading:
-                self.downloadButton.state = .downloading
-                self.downloadButton.stopDownloadButton.progress = CGFloat(video.download_progress?.floatValue ?? 0)
+                self.downloadButton.state = .pending
             case .downloaded:
                 self.downloadButton.state = .downloaded
             }

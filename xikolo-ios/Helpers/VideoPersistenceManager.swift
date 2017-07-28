@@ -48,8 +48,18 @@ class VideoPersistenceManager: NSObject {
         guard let url = video.hlsURL else {
             return
         }
-
-        guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url), assetTitle: "foo", assetArtworkData: nil, options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 265000]) else { return }
+        
+        let assertTitle = video.item?.title ?? "Untitled video"
+        
+        var posterImageData: Data?
+        if let urlString = video.single_stream_thumbnail_url, let posterImageURL = URL(string: urlString) {
+            do {
+                posterImageData = try Data(contentsOf: posterImageURL)
+            } catch {
+                print("Failed to load poster image")
+            }
+        }
+        guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url), assetTitle: assertTitle, assetArtworkData: posterImageData, options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 265000]) else { return }
 
         task.taskDescription = video.id
 

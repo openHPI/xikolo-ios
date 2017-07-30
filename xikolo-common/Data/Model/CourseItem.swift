@@ -82,6 +82,9 @@ class CourseItemSpine : BaseModelSpine {
     var proctored_int: NSNumber?
     var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
     var accessible_int: NSNumber?
+    var icon: String?
+    var exercise_type: String?
+    var deadline: Date?
 
     var content: BaseModelSpine?
 
@@ -109,6 +112,9 @@ class CourseItemSpine : BaseModelSpine {
             "proctored_int": BooleanAttribute().serializeAs("proctored"),
             "position": Attribute(),
             "accessible_int": BooleanAttribute().serializeAs("accessible"),
+            "icon": Attribute(),
+            "exercise_type": Attribute(),
+            "deadline": DateAttribute(),
         ])
     }
 

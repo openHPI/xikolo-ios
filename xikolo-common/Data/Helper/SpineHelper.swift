@@ -47,22 +47,18 @@ class SpineHelper {
         spine.registerResource(UserSpine.self)
         spine.registerResource(UserProfileSpine.self)
 
-        let nsCenter = NotificationCenter.default
-        nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.loginSuccessfulKey, object: nil)
-        nsCenter.addObserver(SpineHelper.self, selector: #selector(SpineHelper.updateAfterLoginLogout), name: NotificationKeys.logoutSuccessfulKey, object: nil)
-
         return spine
     }()
 
-    @objc fileprivate static func updateAfterLoginLogout() {
-        updateHttpHeaders(client)
-    }
-
-    fileprivate static func updateHttpHeaders(_ spine: Spine) {
+    private static func updateHttpHeaders(_ spine: Spine) {
         let httpClient = spine.networkClient as! HTTPClient
         NetworkHelper.getRequestHeaders().forEach { key, value in
             httpClient.setHeader(key, to: value)
         }
+    }
+
+    static func updateHttpHeaders() {
+        self.updateHttpHeaders(client)
     }
 
     static func findAll<T: Resource>(_ type: T.Type) -> Future<[T], XikoloError> {

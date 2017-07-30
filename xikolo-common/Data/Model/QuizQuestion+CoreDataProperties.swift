@@ -20,6 +20,7 @@ extension QuizQuestion {
     @NSManaged var shuffle_options_int: NSNumber?
     @NSManaged var text: String?
     @NSManaged var type: String?
+    @NSManaged var position: NSNumber?
     @NSManaged var options: [QuizOption]?
     @NSManaged var quiz: Quiz?
 

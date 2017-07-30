@@ -12,10 +12,8 @@ import UIKit
 
 class VideoPlayerControlView: BMPlayerControlView {
 
-    private static let playbackRateKey = "de.xikolo.ios.video.playbackRate"
-
     private var playbackRateButton = UIButton(type: .custom)
-    private(set) var playRate: Float = UserDefaults.standard.float(forKey: VideoPlayerControlView.playbackRateKey)
+    private(set) var playRate: Float = UserDefaults.standard.float(forKey: UserDefaultsKeys.playbackRateKey)
 
     override func customizeUIComponents() {
         self.chooseDefitionView.removeFromSuperview()
@@ -67,7 +65,7 @@ class VideoPlayerControlView: BMPlayerControlView {
             self.playRate = 1.0
         }
 
-        UserDefaults.standard.set(self.playRate, forKey: VideoPlayerControlView.playbackRateKey)
+        UserDefaults.standard.set(self.playRate, forKey: UserDefaultsKeys.playbackRateKey)
         UserDefaults.standard.synchronize()
 
         self.updatePlaybackRateButton()

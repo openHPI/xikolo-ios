@@ -46,6 +46,7 @@ class QuizQuestionSpine : BaseModelSpine {
     var type: String?
     var max_points: NSDecimalNumber?
     var shuffle_options_int: NSNumber?
+    var position: NSNumber?
     var options: [QuizOption]?
 
     override class var cdType: BaseModel.Type {
@@ -63,6 +64,7 @@ class QuizQuestionSpine : BaseModelSpine {
             "type": Attribute(),
             "max_points": Attribute(),
             "shuffle_options_int": BooleanAttribute().serializeAs("shuffle_options"),
+            "position": Attribute(),
             "options": EmbeddedObjectsAttribute(QuizOption.self),
         ])
     }

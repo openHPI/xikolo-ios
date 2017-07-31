@@ -201,13 +201,12 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
 
 extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
-    func showAlertForDownloading(video: Video, inCell cell: CourseItemCell) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
         let downloadAction = UIAlertAction(title: "Download video", style: .default) { action in
             cell.downloadButton.state = .pending
             if video.hlsURL != nil {
                 VideoPersistenceManager.shared.downloadStream(for: video)
-            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {
+            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context 
                 VideoHelper.sync(video: backgroundVideo).onComplete { result in
                     if result.value?.hlsURL != nil {
                         VideoPersistenceManager.shared.downloadStream(for: video)
@@ -219,49 +218,37 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            alert.popoverPresentationController?.sourceView = cell.downloadButton
-            alert.popoverPresentationController?.sourceRect = cell.downloadButton.bounds.offsetBy(dx: -4, dy: 0)
-        }
-
-        alert.addAction(downloadAction)
-        alert.addAction(cancelAction)
-
-        self.present(alert, animated: true, completion: nil)
+        self.showAlert(withActions: [downloadAction, cancelAction], onView: cell.downloadButton)
     }
 
-    func showAlertForCancellingDownload(ofVideo video: Video, inCell cell: CourseItemCell) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
         let abortAction = UIAlertAction(title: "Abort Download", style: .default) { action in
             VideoPersistenceManager.shared.cancelDownload(forVideo: video)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            alert.popoverPresentationController?.sourceView = cell.downloadButton
-            alert.popoverPresentationController?.sourceRect = cell.downloadButton.bounds.offsetBy(dx: -4, dy: 0)
-        }
-
-        alert.addAction(abortAction)
-        alert.addAction(cancelAction)
-
-        self.present(alert, animated: true, completion: nil)
+        self.showAlert(withActions: [abortAction, cancelAction], onView: cell.downloadButton)
     }
 
-    func showAlertForDeletingDownload(ofVideo video: Video, inCell cell: CourseItemCell) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
         let deleteAction = UIAlertAction(title: "Delete video", style: .default) { action in
             VideoPersistenceManager.shared.deleteAsset(forVideo: video)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            alert.popoverPresentationController?.sourceView = cell.downloadButton
-            alert.popoverPresentationController?.sourceRect = cell.downloadButton.bounds.offsetBy(dx: -4, dy: 0)
+        self.showAlert(withActions: [deleteAction, cancelAction], onView: cell.downloadButton)
+    }
+
+    private func showAlert(withActions actions: [UIAlertAction], onView view: UIView) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for action in actions {
+            alert.addAction(action)
         }
 
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert.popoverPresentationController?.sourceView = view
+            alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
+        }
 
         self.present(alert, animated: true, completion: nil)
     }

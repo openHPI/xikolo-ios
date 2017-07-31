@@ -175,9 +175,9 @@ class CourseItemCell : UITableViewCell {
 
 protocol VideoCourseItemCellDelegate {
 
-    func showAlertForDownloading(video: Video, inCell cell: CourseItemCell)
-    func showAlertForCancellingDownload(ofVideo video: Video, inCell cell: CourseItemCell)
-    func showAlertForDeletingDownload(ofVideo video: Video, inCell cell: CourseItemCell)
+    func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell)
+    func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell)
+    func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell)
 
 }
 
@@ -190,11 +190,11 @@ extension CourseItemCell: PKDownloadButtonDelegate {
 
         switch state {
         case .startDownload:
-            self.delegate?.showAlertForDownloading(video: video, inCell: self)
+            self.delegate?.showAlertForDownloading(of: video, forCell: self)
         case .downloaded:
-            self.delegate?.showAlertForDeletingDownload(ofVideo: video, inCell: self)
+            self.delegate?.showAlertForDeletingDownload(of: video, forCell: self)
         default:  // pending + downloading
-            self.delegate?.showAlertForCancellingDownload(ofVideo: video, inCell: self)
+            self.delegate?.showAlertForCancellingDownload(of: video, forCell: self)
         }
     }
 

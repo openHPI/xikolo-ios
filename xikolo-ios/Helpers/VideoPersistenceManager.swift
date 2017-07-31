@@ -19,7 +19,7 @@ class VideoPersistenceManager: NSObject {
 
     private var assetDownloadURLSession: AVAssetDownloadURLSession!
 
-    fileprivate var activeDownloadsMap: [AVAssetDownloadTask: String] = [:]
+    fileprivate var activeDownloadsMap: [AVAssetDownloadTask: Video] = [:]
 
     override private init() {
         super.init()
@@ -37,9 +37,17 @@ class VideoPersistenceManager: NSObject {
 
         self.assetDownloadURLSession.getAllTasks { tasks in
             for task in tasks {
-                guard let assetDownloadTask = task as? AVAssetDownloadTask, let assetId = task.taskDescription else { break }
+                guard let assetDownloadTask = task as? AVAssetDownloadTask, let videoId = task.taskDescription else { break }
 
-                self.activeDownloadsMap[assetDownloadTask] = assetId
+                let request: NSFetchRequest<Video> = Video.fetchRequest()
+                request.predicate = NSPredicate(format: "id == %@", videoId)
+                request.fetchLimit = 1
+                do {
+                    let video = try CoreDataHelper.executeFetchRequest(request).first
+                    self.activeDownloadsMap[assetDownloadTask] = video
+                } catch {
+                    print("Failed to restore download for video \(videoId)")
+                }
             }
         }
     }
@@ -63,12 +71,16 @@ class VideoPersistenceManager: NSObject {
 
         task.taskDescription = video.id
 
-        self.activeDownloadsMap[task] = video.id
+        self.activeDownloadsMap[task] = video
 
         task.resume()
 
         video.download_date = Date()
-        CoreDataHelper.saveContext()
+        do {
+            try video.managedObjectContext?.save()
+        } catch {
+            print("failed to save video (start)")
+        }
 
         var userInfo: [String: Any] = [:]
         userInfo[Video.Keys.id] = video.id
@@ -107,7 +119,7 @@ class VideoPersistenceManager: NSObject {
         }
 
         for (_, assetIdentifier) in self.activeDownloadsMap {
-            if video.id == assetIdentifier {
+            if video == assetIdentifier {
                 return .downloading
             }
         }
@@ -122,7 +134,11 @@ class VideoPersistenceManager: NSObject {
 
                 video.download_date = nil
                 video.local_file_bookmark = nil
-                CoreDataHelper.saveContext()
+                do {
+                    try video.managedObjectContext?.save()
+                } catch {
+                    print("Failed to save video (delete)")
+                }
 
                 var userInfo: [String: Any] = [:]
                 userInfo[Video.Keys.id] = video.id
@@ -139,7 +155,7 @@ class VideoPersistenceManager: NSObject {
         var task: AVAssetDownloadTask?
 
         for (taskKey, assetVal) in activeDownloadsMap {
-            if video.id == assetVal  {
+            if video == assetVal  {
                 task = taskKey
                 break
             }
@@ -153,10 +169,10 @@ class VideoPersistenceManager: NSObject {
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        guard let task = task as? AVAssetDownloadTask, let videoId = self.activeDownloadsMap.removeValue(forKey: task) else { return }
+        guard let task = task as? AVAssetDownloadTask, let video = self.activeDownloadsMap.removeValue(forKey: task) else { return }
 
         var userInfo: [String: Any] = [:]
-        userInfo[Video.Keys.id] = videoId
+        userInfo[Video.Keys.id] = video.id
 
 
         if let error = error as NSError? {
@@ -165,14 +181,18 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
             switch (error.domain, error.code) {
             case (NSURLErrorDomain, NSURLErrorCancelled):
 
-                guard let video = self.fetchVideo(withIdentifier: videoId), let localFileLocation = self.localAssetFor(video: video)?.url else { return }
+                guard let localFileLocation = self.localAssetFor(video: video)?.url else { return }
 
                 do {
                     try FileManager.default.removeItem(at: localFileLocation)
 
                     video.download_date = nil
                     video.local_file_bookmark = nil
-                    CoreDataHelper.saveContext()
+                    do {
+                        try video.managedObjectContext?.save()
+                    } catch {
+                        print("Failed to save video (error)")
+                    }
                 } catch {
                     print("An error occured deleting the file: \(error)")
                 }
@@ -186,38 +206,18 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
             }
         } else {
-            // TODO: set asset as download state
-//            print(asset)
             userInfo[Video.Keys.downloadState] = Video.DownloadState.downloaded.rawValue
         }
 
         NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
-    private func fetchVideo(withIdentifier videoId: String) -> Video? {
-        let request: NSFetchRequest<Video> = Video.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", videoId)
-        request.fetchLimit = 1
-        do {
-            return try CoreDataHelper.executeFetchRequest(request).first
-        } catch {
-            return nil
-        }
-    }
-
-    private func videoFor(assetDownloadTask task: AVAssetDownloadTask) -> Video? {
-        if let videoId = self.activeDownloadsMap[task], let video = self.fetchVideo(withIdentifier: videoId) {
-            return video
-        }
-        return nil
-    }
-
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
-        if let video = self.videoFor(assetDownloadTask: assetDownloadTask) {
+        if let video  = self.activeDownloadsMap[assetDownloadTask]  {
             do {
                 let bookmark = try location.bookmarkData()
                 video.local_file_bookmark = NSData(data: bookmark)
-                CoreDataHelper.saveContext()
+                try video.managedObjectContext?.save()
             } catch {
                 // Failed to create bookmark for location
                 self.deleteAsset(forVideo: video)
@@ -226,7 +226,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
     }
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didLoad timeRange: CMTimeRange, totalTimeRangesLoaded loadedTimeRanges: [NSValue], timeRangeExpectedToLoad: CMTimeRange) {
-        guard let video = self.videoFor(assetDownloadTask: assetDownloadTask) else { return }
+        guard let video = self.activeDownloadsMap[assetDownloadTask] else { return }
 
         var percentComplete = 0.0
         for value in loadedTimeRanges {

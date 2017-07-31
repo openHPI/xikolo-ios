@@ -204,9 +204,18 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
     func showAlertForDownloading(video: Video, inCell cell: CourseItemCell) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let downloadAction = UIAlertAction(title: "Download video", style: .default) { action in
-            print("start download")
             cell.downloadButton.state = .pending
-            VideoPersistenceManager.shared.downloadStream(for: video)
+            if video.hlsURL != nil {
+                VideoPersistenceManager.shared.downloadStream(for: video)
+            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {
+                VideoHelper.sync(video: backgroundVideo).onComplete { result in
+                    if result.value?.hlsURL != nil {
+                        VideoPersistenceManager.shared.downloadStream(for: video)
+                    } else {
+                        cell.downloadButton.state = .startDownload
+                    }
+                }
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -224,7 +233,6 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
     func showAlertForCancellingDownload(ofVideo video: Video, inCell cell: CourseItemCell) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let abortAction = UIAlertAction(title: "Abort Download", style: .default) { action in
-            print("abort download")
             VideoPersistenceManager.shared.cancelDownload(forVideo: video)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -243,7 +251,6 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
     func showAlertForDeletingDownload(ofVideo video: Video, inCell cell: CourseItemCell) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete video", style: .default) { action in
-            print("delete download")
             VideoPersistenceManager.shared.deleteAsset(forVideo: video)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

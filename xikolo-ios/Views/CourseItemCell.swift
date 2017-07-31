@@ -153,8 +153,6 @@ class CourseItemCell : UITableViewCell {
             case .notDownloaded:
                 self.downloadButton.state = .startDownload
             }
-
-            // TODO call delegate which reloads cell?
         }
     }
 
@@ -172,8 +170,6 @@ class CourseItemCell : UITableViewCell {
             self.downloadButton.stopDownloadButton.progress = CGFloat(progress)
         }
     }
-
-
 
 }
 

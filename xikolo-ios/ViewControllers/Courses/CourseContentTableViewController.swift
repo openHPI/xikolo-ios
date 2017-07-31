@@ -9,6 +9,7 @@
 import CoreData
 import UIKit
 import DZNEmptyDataSet
+import ReachabilitySwift
 
 class CourseContentTableViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -21,6 +22,9 @@ class CourseContentTableViewController: UITableViewController {
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
 
+    var isOffline = false
+    var reachability: Reachability?
+
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
@@ -28,7 +32,8 @@ class CourseContentTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupReachability("google.com")//use brand host here
+        startNotifier()
         self.setupEmptyState()
 
         self.navigationItem.title = self.course.title
@@ -49,21 +54,22 @@ class CourseContentTableViewController: UITableViewController {
 
         do {
             try resultsController.performFetch()
-        } catch {
-            // TODO: Error handling.
-        }
-        NetworkIndicator.start()
-        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
-            sections.map { section in
-                CourseItemHelper.syncCourseItems(section)
-            }.sequence().onComplete { _ in
-                self.tableView.reloadEmptyDataSet()
-                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
-                    self.preloadCourseContent()
+            NetworkIndicator.start()
+            CourseSectionHelper.syncCourseSections(course).flatMap { sections in
+                sections.map { section in
+                    CourseItemHelper.syncCourseItems(section)
+                    }.sequence().onComplete { _ in
+                        self.tableView.reloadEmptyDataSet()
+                        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                            self.preloadCourseContent()
+                        }
                 }
+                }.onComplete { _ in
+                    NetworkIndicator.end()
             }
-        }.onComplete { _ in
-            NetworkIndicator.end()
+        } catch {
+            self.isOffline = true
+            // TODO: Error handling.
         }
     }
 
@@ -72,6 +78,29 @@ class CourseContentTableViewController: UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
+    }
+    func setupReachability(_ hostName: String?) {
+        let reachability = hostName == nil ? Reachability() : Reachability(hostname: hostName!)
+        self.reachability = reachability
+
+        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: reachability)
+
+    }
+
+    func startNotifier() {
+        print("--- start notifier")
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            return
+        }
+    }
+
+    func stopNotifier() {
+        print("--- stop notifier")
+        reachability?.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+        reachability = nil
     }
 
     func showItem(_ item: CourseItem) {
@@ -90,6 +119,19 @@ class CourseContentTableViewController: UITableViewController {
             default:
                 // TODO: show error: unsupported type
                 break
+        }
+    }
+
+    func reachabilityChanged(_ note: Notification) {
+        let reachability = note.object as! Reachability
+        let oldOfflinesState = self.isOffline
+        if reachability.isReachable {
+            self.isOffline = false
+        } else {
+            self.isOffline = true
+        }
+        if oldOfflinesState !== self.isOffline {
+            self.tableView.reloadData()
         }
     }
 
@@ -172,6 +214,18 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
         cell.configure(item,
                        forContentTypes: self.tableViewController?.contentToBePreloaded ?? [],
                        forPreloading: self.tableViewController?.isPreloading ?? false)
+        // todo: helper in item isAvailablefflie
+        if self.tableViewController!.isOffline && !(item.content?.isAvailableOffline())! {
+            cell.titleView?.alpha = 0.5
+            cell.downloadButton?.alpha = 0.5
+            cell.isUserInteractionEnabled = false
+        } else {
+            cell.titleView?.alpha = 1
+            cell.downloadButton?.alpha = 1
+            cell.isUserInteractionEnabled = true
+
+        }
+
     }
 
 }

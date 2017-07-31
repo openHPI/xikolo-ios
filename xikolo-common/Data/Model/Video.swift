@@ -47,6 +47,15 @@ class Video : Content {
         return items
     }
 
+    override func isAvailableOffline() -> Bool {
+        if self.value(forKey: "download_date") != nil {
+            //todo: check if bookmark still works
+            return true
+        } else {
+            return false
+        }
+    }
+
 }
 
 class VideoSpine : ContentSpine {

@@ -23,6 +23,7 @@ PODS:
   - PinpointKit (0.9):
     - PinpointKit/Core (= 0.9)
   - PinpointKit/Core (0.9)
+  - ReachabilitySwift (3)
   - Result (3.1.0)
   - SDWebImage/Core (4.0.0)
   - Shimmer (1.0.2)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - Hero
   - ObjectMapper (= 2.0)
   - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
+  - ReachabilitySwift (~> 3)
   - Result (= 3.1.0)
   - SDWebImage/Core (= 4.0.0)
   - Shimmer (= 1.0.2)
@@ -76,6 +78,7 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   PinpointKit: 6d19d08afddfad2753aee95e2a6160f2d8d30764
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
@@ -83,6 +86,6 @@ SPEC CHECKSUMS:
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 0b194f7f4480da9f51de2f0e315fab83b9495562
+PODFILE CHECKSUM: fe58d77b8914f1ca8edb419c8a3a933ccc6fa3a5
 
 COCOAPODS: 1.2.1

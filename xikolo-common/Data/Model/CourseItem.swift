@@ -61,6 +61,14 @@ class CourseItem : BaseModel {
         }
     }
 
+    func isAvailableOffline() -> Bool {
+        if self.content != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+
     fileprivate func neighbor(_ direction: Int) -> CourseItem? {
         let items = section?.itemsSorted ?? []
         if var index = items.index(of: self) {

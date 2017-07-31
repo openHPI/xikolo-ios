@@ -17,6 +17,10 @@ class Content : BaseModel {
         return "homework"
     }
 
+    func isAvailableOffline() -> Bool {
+        return false
+    }
+
 }
 
 class ContentSpine : BaseModelSpine {
@@ -28,5 +32,7 @@ class ContentSpine : BaseModelSpine {
     override class var resourceType: ResourceType {
         return "unsupported-content"
     }
+    
+
 
 }

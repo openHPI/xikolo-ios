@@ -29,7 +29,6 @@ class CourseItemCell : UITableViewCell {
                    forContentTypes contentTypes: [DetailedContent.Type],
                    forPreloading isPreloading: Bool = false) {
         self.item = courseItem
-
         self.titleView.text = courseItem.title
 
         if let iconName = courseItem.iconName {

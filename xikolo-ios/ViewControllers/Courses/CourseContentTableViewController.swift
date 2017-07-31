@@ -203,18 +203,25 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
         let downloadAction = UIAlertAction(title: "Download video", style: .default) { action in
-            cell.downloadButton.state = .pending
-            if video.hlsURL != nil {
-                VideoPersistenceManager.shared.downloadStream(for: video)
-            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context 
-                VideoHelper.sync(video: backgroundVideo).onComplete { result in
-                    if result.value?.hlsURL != nil {
+            DispatchQueue.main.async {
+                cell.downloadButton.state = .pending
+                DispatchQueue.global(qos: .background).async {
+                    if video.hlsURL != nil {
                         VideoPersistenceManager.shared.downloadStream(for: video)
-                    } else {
-                        cell.downloadButton.state = .startDownload
-                    }
-                }
+                    } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context
+                        VideoHelper.sync(video: backgroundVideo).onComplete { result in
+                            if let syncedVideo = result.value, syncedVideo.hlsURL != nil {
+                                VideoPersistenceManager.shared.downloadStream(for: video)
+                            } else {
+                                DispatchQueue.main.async {
+                                    cell.downloadButton.state = .startDownload
+                                }
+                            }
+                        }
+                    }                }
             }
+
+
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -223,7 +230,9 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
         let abortAction = UIAlertAction(title: "Abort Download", style: .default) { action in
-            VideoPersistenceManager.shared.cancelDownload(forVideo: video)
+            DispatchQueue.global(qos: .background).async {
+                VideoPersistenceManager.shared.cancelDownload(forVideo: video)
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -232,7 +241,9 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
     func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
         let deleteAction = UIAlertAction(title: "Delete video", style: .default) { action in
-            VideoPersistenceManager.shared.deleteAsset(forVideo: video)
+            DispatchQueue.global(qos: .background).async {
+                VideoPersistenceManager.shared.deleteAsset(forVideo: video)
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         

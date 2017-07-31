@@ -75,13 +75,20 @@ class CourseItemCell : UITableViewCell {
             // set state
             switch VideoPersistenceManager.shared.downloadState(for: video) {
             case .notDownloaded:
-                self.downloadButton.state = .startDownload
+                DispatchQueue.main.async {
+                    self.downloadButton.state = .startDownload
+                }
             case .downloading:
-                self.downloadButton.state = .pending
+                DispatchQueue.main.async {
+                    self.downloadButton.state = .pending
+                }
             case .downloaded:
-                self.downloadButton.state = .downloaded
+                DispatchQueue.main.async {
+                    self.downloadButton.state = .downloaded
+                }
             }
 
+            // register notification observer
             let notificationCenter = NotificationCenter.default
             notificationCenter.addObserver(self,
                                            selector: #selector(CourseItemCell.handleAssetDownloadStateChangedNotification(_:)),

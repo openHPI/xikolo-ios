@@ -25,6 +25,17 @@ class Video : Content {
         return URL(string: urlString)
     }
 
+    var posterImageData: Data? {
+        if let urlString = self.single_stream_thumbnail_url, let posterImageURL = URL(string: urlString) {
+            do {
+                return try Data(contentsOf: posterImageURL)
+            } catch {
+                print("Failed to load poster image")
+            }
+        }
+        return nil
+    }
+
     func metadata() -> [AVMetadataItem] {
         var items: [AVMetadataItem] = []
         if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {

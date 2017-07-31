@@ -56,18 +56,15 @@ class VideoPersistenceManager: NSObject {
         guard let url = video.hlsURL else {
             return
         }
-        
-        let assertTitle = video.item?.title ?? "Untitled video"
-        
-        var posterImageData: Data?
-        if let urlString = video.single_stream_thumbnail_url, let posterImageURL = URL(string: urlString) {
-            do {
-                posterImageData = try Data(contentsOf: posterImageURL)
-            } catch {
-                print("Failed to load poster image")
-            }
-        }
-        guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url), assetTitle: assertTitle, assetArtworkData: posterImageData, options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 265000]) else { return }
+
+        let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
+        let assetTitleItem = video.item?.title ?? "Untitled video"
+        let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))"
+
+        guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url),
+                                                                            assetTitle: assetTitle,
+                                                                            assetArtworkData: video.posterImageData,
+                                                                            options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 265000]) else { return }
 
         task.taskDescription = video.id
 
@@ -134,11 +131,7 @@ class VideoPersistenceManager: NSObject {
 
                 video.download_date = nil
                 video.local_file_bookmark = nil
-                do {
-                    try video.managedObjectContext?.save()
-                } catch {
-                    print("Failed to save video (delete)")
-                }
+                try video.managedObjectContext?.save()
 
                 var userInfo: [String: Any] = [:]
                 userInfo[Video.Keys.id] = video.id
@@ -174,10 +167,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
         var userInfo: [String: Any] = [:]
         userInfo[Video.Keys.id] = video.id
 
-
         if let error = error as NSError? {
-            // TODO: delete local file if present
-            print(error)
             switch (error.domain, error.code) {
             case (NSURLErrorDomain, NSURLErrorCancelled):
 
@@ -188,11 +178,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
                     video.download_date = nil
                     video.local_file_bookmark = nil
-                    do {
-                        try video.managedObjectContext?.save()
-                    } catch {
-                        print("Failed to save video (error)")
-                    }
+                    try video.managedObjectContext?.save()
                 } catch {
                     print("An error occured deleting the file: \(error)")
                 }
@@ -213,7 +199,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
     }
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
-        if let video  = self.activeDownloadsMap[assetDownloadTask]  {
+        if let video = self.activeDownloadsMap[assetDownloadTask]  {
             do {
                 let bookmark = try location.bookmarkData()
                 video.local_file_bookmark = NSData(data: bookmark)

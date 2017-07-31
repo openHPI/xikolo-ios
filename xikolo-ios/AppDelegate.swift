@@ -74,10 +74,8 @@ class AppDelegate : AbstractAppDelegate {
                     let slug = url.pathComponents[2]
                     //get course by slug
                     //todo the course might not be synced yet, than we could try to fetch from the API by slug
-                    var course: Course?
-                    course = try? CourseHelper.getBySlug(slug)
-                    if (course != nil) {
-                        self.goToCourse(course!)
+                    if let course = CourseHelper.getBySlug(slug) {
+                        self.goToCourse(course)
                         return true
                     }
                 } else {

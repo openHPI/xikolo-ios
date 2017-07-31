@@ -15,7 +15,7 @@ class SearchHelper{
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: "Course")
         // Add metadata that supplies details about the item.
         attributeSet.title = course.title
-        attributeSet.contentDescription = course.abstract + " " + course.teachers
+        attributeSet.contentDescription = (course.abstract ?? "") + " " + (course.teachers ?? "")
         //attributeSet.thumbnailData = DocumentImage.jpg
         let url = String.init(Brand.BaseURL + "/courses/" + course.slug!)
         // Create an item with a unique identifier, a domain identifier, and the attribute set you created earlier.

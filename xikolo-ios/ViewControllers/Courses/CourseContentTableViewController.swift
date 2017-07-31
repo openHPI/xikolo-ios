@@ -130,7 +130,7 @@ class CourseContentTableViewController: UITableViewController {
         } else {
             self.isOffline = true
         }
-        if oldOfflinesState !== self.isOffline {
+        if oldOfflinesState != self.isOffline {
             self.tableView.reloadData()
         }
     }

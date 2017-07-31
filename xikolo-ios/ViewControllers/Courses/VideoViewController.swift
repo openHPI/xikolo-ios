@@ -120,27 +120,18 @@ class VideoViewController : UIViewController {
 }
 
 extension VideoViewController: BMPlayerDelegate {
-    // This is whta added in android/
-//    .putContext(CONTEXT_COURSE_ID, courseId)
-//    .putContext(CONTEXT_SECTION_ID, sectionId)
-//    .putContext(CONTEXT_CURRENT_TIME, formatTime(currentTime))
-//    .putContext(CONTEXT_OLD_SPEED, oldSpeed.toString())
-//    .putContext(CONTEXT_NEW_SPEED, newSpeed.toString())
-//    .putContext(CONTEXT_CURRENT_ORIENTATION,
-//    currentOrientation == Configuration.ORIENTATION_PORTRAIT ? CONTEXT_PORTRAIT : CONTEXT_LANDSCAPE)
-//    .putContext(CONTEXT_QUALITY, quality)
-//    .putContext(CONTEXT_SOURCE, source)
+
     func getTrackingContext() -> [String: String?]{
-        var context = ["section_id": self.video?.item?.section?.id];
+        var context = ["section_id": self.video?.item?.section?.id]
         context["course_id"] = self.video?.item?.section?.course?.id
-        context["currentTime"] = String(describing: Int((self.player?.avPlayer?.currentTime().seconds)!))
+        context["currentTime"] = String(describing: self.player?.avPlayer?.currentTime().seconds ?? 0.0)
         return context
     }
+
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .bufferFinished {
             player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
-        }
-        if state == .playedToTheEnd {
+        } else if state == .playedToTheEnd {
             TrackingHelper.sendEvent("video_end", resource: self.video, context: getTrackingContext())
         }
 

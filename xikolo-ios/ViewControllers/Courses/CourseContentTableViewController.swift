@@ -28,6 +28,7 @@ class CourseContentTableViewController: UITableViewController {
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
+        self.stopNotifier()
     }
     
     override func viewDidLoad() {
@@ -68,7 +69,7 @@ class CourseContentTableViewController: UITableViewController {
                     NetworkIndicator.end()
             }
         } catch {
-            self.isOffline = true
+            // self.isOffline = true
             // TODO: Error handling.
         }
     }
@@ -88,7 +89,6 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func startNotifier() {
-        print("--- start notifier")
         do {
             try reachability?.startNotifier()
         } catch {
@@ -97,7 +97,6 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func stopNotifier() {
-        print("--- stop notifier")
         reachability?.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
         reachability = nil

@@ -33,7 +33,7 @@ class CourseContentTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupReachability("google.com")//use brand host here
+        setupReachability(Brand.getHost())
         startNotifier()
         self.setupEmptyState()
 

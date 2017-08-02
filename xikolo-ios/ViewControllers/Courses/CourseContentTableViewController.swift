@@ -254,27 +254,32 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
 
 extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
+    func videoCourseItemCell(_ cell: CourseItemCell, downloadStateDidChange newState: Video.DownloadState) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
+
+        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+
+
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
         let downloadAction = UIAlertAction(title: "Download video", style: .default) { action in
-            DispatchQueue.main.async {
-                cell.downloadButton.state = .pending
-                DispatchQueue.global(qos: .background).async {
-                    if video.hlsURL != nil {
-                        VideoPersistenceManager.shared.downloadStream(for: video)
-                    } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context
-                        VideoHelper.sync(video: backgroundVideo).onComplete { result in
-                            if let syncedVideo = result.value, syncedVideo.hlsURL != nil {
-                                VideoPersistenceManager.shared.downloadStream(for: video)
-                            } else {
-                                DispatchQueue.main.async {
-                                    cell.downloadButton.state = .startDownload
-                                }
-                            }
+            DispatchQueue.global(qos: .background).async {
+                if video.hlsURL != nil {
+                    VideoPersistenceManager.shared.downloadStream(for: video)
+                } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context
+                    DispatchQueue.main.async {
+                        cell.singleReloadInProgress = true
+                    }
+                    VideoHelper.sync(video: backgroundVideo).onComplete { result in
+                        DispatchQueue.main.async {
+                            cell.singleReloadInProgress = false
                         }
-                    }                }
+                        if let syncedVideo = result.value, syncedVideo.hlsURL != nil {
+                            VideoPersistenceManager.shared.downloadStream(for: video)
+                        }
+                    }
+                }
             }
-
-
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
@@ -282,7 +287,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
     }
 
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let abortAction = UIAlertAction(title: "Abort Download", style: .default) { action in
+        let abortAction = UIAlertAction(title: "Stop Download", style: .default) { action in
             DispatchQueue.global(qos: .background).async {
                 VideoPersistenceManager.shared.cancelDownload(forVideo: video)
             }

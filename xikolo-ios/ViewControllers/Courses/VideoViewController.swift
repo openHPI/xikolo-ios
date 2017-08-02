@@ -88,12 +88,21 @@ class VideoViewController : UIViewController {
         }
 
         // configure video player
-        if let videoURL = video.hlsURL, !self.videoPlayerConfigured {
+        var videoURL: URL?
+        if !self.videoPlayerConfigured, let local_video = VideoPersistenceManager.shared.localAssetFor(video: self.video!) {
+            videoURL = local_video.url
+        }else if !self.videoPlayerConfigured {
+            videoURL = video.hlsURL
+        }
+        if let url = videoURL, !self.videoPlayerConfigured {
             self.videoPlayerConfigured = true
-            let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
+ 
+            let asset = BMPlayerResource(url: url, name: self.courseItem?.title ?? "")
             self.player?.setVideo(resource: asset)
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }
+       
+        
     }
 
     @IBAction func openSlides(_ sender: UIButton) {
@@ -138,3 +147,5 @@ extension VideoViewController: BMPlayerDelegate {
     }
 
 }
+
+

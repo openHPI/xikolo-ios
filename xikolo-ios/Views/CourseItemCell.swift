@@ -25,12 +25,10 @@ class CourseItemCell : UITableViewCell {
     var item: CourseItem?
     var delegate: VideoCourseItemCellDelegate?
 
-    var downloadProgress: Double?
     var singleReloadInProgress = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.downloadProgress = nil
         self.configureDownloadButton()
 
         // register notification observer
@@ -46,7 +44,6 @@ class CourseItemCell : UITableViewCell {
     }
 
     private func configureDownloadButton() {
-        print("configure download button")
         let radius: CGFloat = 10.0
         self.downloadButton.tintColor = Brand.TintColor
 
@@ -94,15 +91,8 @@ class CourseItemCell : UITableViewCell {
         // Video download
         if let video = courseItem.content as? Video {
             // set state
-            var newButtonState: PKDownloadButtonState
-            switch VideoPersistenceManager.shared.downloadState(for: video) {
-            case .notDownloaded:
-                newButtonState = .startDownload
-            case .downloading:
-                newButtonState = self.downloadProgress != nil ? .downloading : .pending
-            case .downloaded:
-                newButtonState = .downloaded
-            }
+            let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
+            var newButtonState = self.downloadButtonState(for: videoDownloadState)
 
             if newButtonState == .startDownload && self.singleReloadInProgress {
                 newButtonState = .pending
@@ -112,6 +102,8 @@ class CourseItemCell : UITableViewCell {
                 self.downloadButton.state = newButtonState
                 if newButtonState == .pending {
                     self.downloadButton.pendingView.startSpin()
+                } else if newButtonState == .downloading, let progress = VideoPersistenceManager.shared.progress(for: video) {
+                    self.downloadButton.stopDownloadButton.progress = CGFloat(progress)
                 }
             }
 
@@ -168,9 +160,8 @@ class CourseItemCell : UITableViewCell {
             video.id == videoId else { return }
 
         DispatchQueue.main.async {
-            if downloadState == .notDownloaded {
-                self.downloadProgress = nil
-            }
+            // Update UI
+            self.downloadButton.state = self.downloadButtonState(for: downloadState)
 
             self.delegate?.videoCourseItemCell(self, downloadStateDidChange: downloadState)
         }
@@ -184,12 +175,25 @@ class CourseItemCell : UITableViewCell {
 
         DispatchQueue.main.async {
             self.downloadButton.state = .downloading
-            self.downloadProgress = progress
             self.downloadButton.stopDownloadButton.progress = CGFloat(progress)
         }
     }
 
+    private func downloadButtonState(for videoDownloadState: Video.DownloadState) -> PKDownloadButtonState {
+        switch videoDownloadState {
+        case .notDownloaded:
+            return .startDownload
+        case .pending:
+            return .pending
+        case .downloading:
+            return .downloading
+        case .downloaded:
+            return .downloaded
+        }
+    }
+
 }
+
 
 protocol VideoCourseItemCellDelegate {
 

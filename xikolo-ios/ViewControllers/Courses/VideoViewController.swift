@@ -89,9 +89,9 @@ class VideoViewController : UIViewController {
 
         // configure video player
         var videoURL: URL?
-        if !self.videoPlayerConfigured, let local_video = VideoPersistenceManager.shared.localAssetFor(video: self.video!) {
+        if !self.videoPlayerConfigured, let local_video = VideoPersistenceManager.shared.localAssetFor(video: video) {
             videoURL = local_video.url
-        }else if !self.videoPlayerConfigured {
+        } else if !self.videoPlayerConfigured {
             videoURL = video.hlsURL
         }
         if let url = videoURL, !self.videoPlayerConfigured {
@@ -101,8 +101,6 @@ class VideoViewController : UIViewController {
             self.player?.setVideo(resource: asset)
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }
-       
-        
     }
 
     @IBAction func openSlides(_ sender: UIButton) {

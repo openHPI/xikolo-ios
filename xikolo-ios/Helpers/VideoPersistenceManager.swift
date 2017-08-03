@@ -20,6 +20,7 @@ class VideoPersistenceManager: NSObject {
     private var assetDownloadURLSession: AVAssetDownloadURLSession!
 
     fileprivate var activeDownloadsMap: [AVAssetDownloadTask: Video] = [:]
+    fileprivate var progressMap: [String: Double] = [:]
 
     override private init() {
         super.init()
@@ -28,6 +29,11 @@ class VideoPersistenceManager: NSObject {
         self.assetDownloadURLSession = AVAssetDownloadURLSession(configuration: backgroundConfiguration,
                                                                  assetDownloadDelegate: self,
                                                                  delegateQueue: OperationQueue.main)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(VideoPersistenceManager.handleAssetDownloadProgressNotification(_:)),
+                                               name: NotificationKeys.VideoDownloadStateChangedKey,
+                                               object: nil)
     }
 
     func restorePersistenceManager() {
@@ -117,11 +123,18 @@ class VideoPersistenceManager: NSObject {
 
         for (_, assetIdentifier) in self.activeDownloadsMap {
             if video == assetIdentifier {
-                return .downloading
+                if self.progressMap[video.id] != nil {
+                    return .downloading
+                }
+                return .pending
             }
         }
 
         return .notDownloaded
+    }
+
+    func progress(for video: Video) -> Double? {
+        return self.progressMap[video.id]
     }
 
     func deleteAsset(forVideo video: Video) {
@@ -157,12 +170,21 @@ class VideoPersistenceManager: NSObject {
         task?.cancel()
     }
 
+    func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
+        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
+            let progress = noticaition.userInfo?[Video.Keys.precentDownload] as? Double else { return }
+
+        self.progressMap[videoId] = progress
+    }
+
 }
 
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let task = task as? AVAssetDownloadTask, let video = self.activeDownloadsMap.removeValue(forKey: task) else { return }
+
+        self.progressMap.removeValue(forKey: video.id)
 
         var userInfo: [String: Any] = [:]
         userInfo[Video.Keys.id] = video.id

@@ -12,13 +12,16 @@ extension Video {
 
     enum DownloadState: String {
 
-        /// The asset is not downloaded at all.
+        // The asset is not downloaded at all.
         case notDownloaded
 
-        /// The asset has a download in progress.
+        // The asset is waiting to be downloaded.
+        case pending
+
+        // The asset has a download in progress.
         case downloading
 
-        /// The asset is downloaded and saved on disk.
+        // The asset is downloaded and saved on disk.
         case downloaded
     }
 

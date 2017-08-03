@@ -48,12 +48,7 @@ class Video : Content {
     }
 
     override func isAvailableOffline() -> Bool {
-        if self.value(forKey: "download_date") != nil {
-            //todo: check if bookmark still works
-            return true
-        } else {
-            return false
-        }
+        return true // return self.local_file_bookmark != nil
     }
 
 }

@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import BrightFutures
 
 class NetworkHelper {
 
-    class func getRequestHeaders() -> [String: String]{
+    class func getRequestHeaders() -> [String: String] {
         var headers = [
             Routes.HTTP_ACCEPT_HEADER: Routes.HTTP_ACCEPT_HEADER_VALUE,
         ]
@@ -28,4 +29,23 @@ class NetworkHelper {
         request.allHTTPHeaderFields = getRequestHeaders()
         return request
     }
+
+    class func resolvedRedirectURL(for url: URL) -> Future<URL, XikoloError> {
+        let promise = Promise<URL, XikoloError>()
+
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let redirectURL = response?.url {
+                promise.success(redirectURL)
+            } else if let error = error {
+                promise.failure(XikoloError.network(error))
+            } else {
+                promise.failure(XikoloError.totallyUnknownError)
+            }
+        }
+
+        task.resume()
+
+        return promise.future
+    }
+
 }

@@ -60,8 +60,8 @@ class CourseItemCell : UITableViewCell {
 
         self.downloadButton.stopDownloadButton.tintColor = Brand.TintColor
         self.downloadButton.stopDownloadButton.radius = radius
-        self.downloadButton.stopDownloadButton.filledLineWidth = radius
-        self.downloadButton.stopDownloadButton.stopButton.isHidden = true
+        self.downloadButton.stopDownloadButton.filledLineWidth = radius - 0.5  // so there will be no dot in the center of the progress
+        self.downloadButton.stopDownloadButton.stopButtonWidth = 0
 
         self.downloadButton.downloadedButton.cleanDefaultAppearance()
         self.downloadButton.downloadedButton.setTitle(nil, for: .normal)

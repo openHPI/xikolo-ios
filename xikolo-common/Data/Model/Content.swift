@@ -17,7 +17,7 @@ class Content : BaseModel {
         return "homework"
     }
 
-    func isAvailableOffline() -> Bool {
+    var isAvailableOffline: Bool {
         return false
     }
 

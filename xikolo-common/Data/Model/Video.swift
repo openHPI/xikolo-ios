@@ -47,8 +47,8 @@ class Video : Content {
         return items
     }
 
-    override func isAvailableOffline() -> Bool {
-        return true // return self.local_file_bookmark != nil
+    override var isAvailableOffline: Bool {
+        return self.local_file_bookmark != nil
     }
 
 }

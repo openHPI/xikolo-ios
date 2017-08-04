@@ -210,21 +210,11 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
         cell.delegate = self.tableViewController
-        cell.configure(item,
-                       forContentTypes: self.tableViewController?.contentToBePreloaded ?? [],
-                       forPreloading: self.tableViewController?.isPreloading ?? false)
-        // todo: helper in item isAvailablefflie
-        if self.tableViewController!.isOffline && !(item.content?.isAvailableOffline())! {
-            cell.titleView?.alpha = 0.5
-            cell.downloadButton?.alpha = 0.5
-            cell.isUserInteractionEnabled = false
-        } else {
-            cell.titleView?.alpha = 1
-            cell.downloadButton?.alpha = 1
-            cell.isUserInteractionEnabled = true
 
-        }
-
+        let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
+                                                        isPreloading: self.tableViewController?.isPreloading ?? false,
+                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
+        cell.configure(for: item, with: configuration)
     }
 
 }

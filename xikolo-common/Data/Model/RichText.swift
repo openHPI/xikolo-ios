@@ -16,14 +16,10 @@ class RichText : Content {
     override func iconName() -> String {
         return "rich_text"
     }
-    override func isAvailableOffline() -> Bool {
-        if self.value(forKey: "text") != nil {
-            return true
-        } else {
-            return false
-        }
-    }
 
+    override var isAvailableOffline: Bool {
+        return self.text != nil
+    }
 
 }
 
@@ -44,6 +40,5 @@ class RichTextSpine : ContentSpine {
             "text": Attribute(),
         ])
     }
-
 
 }

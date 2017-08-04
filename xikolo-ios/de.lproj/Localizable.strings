@@ -66,3 +66,9 @@
 // Settings
 "enrollments" = "Kurseinschreibungen";
 "logout" = "Ausloggen";
+
+// Video Downloads
+"Download Video" = "Video herunterladen";
+"Stop Download" = "Download stoppen";
+"Delete Video" = "Video löschen";
+"Cancel" = "Abbrechen";

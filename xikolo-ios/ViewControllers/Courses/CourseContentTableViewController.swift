@@ -80,12 +80,12 @@ class CourseContentTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
     }
+
     func setupReachability(_ hostName: String?) {
         let reachability = hostName == nil ? Reachability() : Reachability(hostname: hostName!)
         self.reachability = reachability
 
         NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: reachability)
-
     }
 
     func startNotifier() {
@@ -252,10 +252,10 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
 
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
-        let downloadAction = UIAlertAction(title: "Download video", style: .default) { action in
+        let downloadAction = UIAlertAction(title: NSLocalizedString("Download Video", comment: ""), style: .default) { action in
             if video.hlsURL != nil {
                 VideoPersistenceManager.shared.downloadStream(for: video)
-            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context
+            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context to sync via spine
                 DispatchQueue.main.async {
                     cell.singleReloadInProgress = true
                 }
@@ -269,25 +269,25 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
                 }
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         
         self.showAlert(withActions: [downloadAction, cancelAction], onView: cell.downloadButton)
     }
 
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let abortAction = UIAlertAction(title: "Stop Download", style: .default) { action in
+        let abortAction = UIAlertAction(title: NSLocalizedString("Stop Download", comment: ""), style: .default) { action in
             VideoPersistenceManager.shared.cancelDownload(forVideo: video)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         
         self.showAlert(withActions: [abortAction, cancelAction], onView: cell.downloadButton)
     }
 
     func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let deleteAction = UIAlertAction(title: "Delete video", style: .default) { action in
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete video", comment: ""), style: .default) { action in
             VideoPersistenceManager.shared.deleteAsset(forVideo: video)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         
         self.showAlert(withActions: [deleteAction, cancelAction], onView: cell.downloadButton)
     }

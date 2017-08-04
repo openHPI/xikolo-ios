@@ -29,3 +29,9 @@
 // Settings
 "enrollments" = "Enrollments";
 "logout" = "Logout";
+
+// Video Downloads
+"Download Video" = "Download Video";
+"Stop Download" = "Stop Download";
+"Delete Video" = "Delete Video";
+"Cancel" = "Cancel";

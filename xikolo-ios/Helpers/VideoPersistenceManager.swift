@@ -138,7 +138,7 @@ class VideoPersistenceManager: NSObject {
         }
 
         for (_, assetIdentifier) in self.activeDownloadsMap {
-            if video == assetIdentifier {
+            if video.id == assetIdentifier.id {
                 if self.progressMap[video.id] != nil {
                     return .downloading
                 }

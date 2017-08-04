@@ -90,14 +90,18 @@ class VideoViewController : UIViewController {
         // configure video player
         guard !self.videoPlayerConfigured else { return }
 
-        var videoURL: URL?
+        // pull latest change for video content item
         video.managedObjectContext?.refresh(video, mergeChanges: true)
-        if !self.videoPlayerConfigured, let local_video = VideoPersistenceManager.shared.localAssetFor(video: video) {
-            videoURL = local_video.url
-        } else if !self.videoPlayerConfigured {
+
+        // determine video url (local file, currently downloading or remote)
+        var videoURL: URL?
+        if let localAsset = VideoPersistenceManager.shared.localAssetFor(video: video) {
+            videoURL = localAsset.url
+        } else {
             videoURL = video.hlsURL
         }
-        if let url = videoURL, !self.videoPlayerConfigured {
+
+        if let url = videoURL {  // video.hlsURL can be nil
             self.videoPlayerConfigured = true
  
             let asset = BMPlayerResource(url: url, name: self.courseItem?.title ?? "")

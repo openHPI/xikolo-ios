@@ -66,7 +66,7 @@ class CourseItemCell : UITableViewCell {
         self.downloadButton.downloadedButton.cleanDefaultAppearance()
         self.downloadButton.downloadedButton.setTitle(nil, for: .normal)
         self.downloadButton.downloadedButton.setTitle(nil, for: .highlighted)
-        let downloadedImage = UIImage(named: "device-iphone")?.withRenderingMode(.alwaysTemplate)
+        let downloadedImage = UIImage(named: "device")?.withRenderingMode(.alwaysTemplate)
         self.downloadButton.downloadedButton.setImage(downloadedImage, for: .normal)
         self.downloadButton.downloadedButton.setBackgroundImage(nil, for: .normal)
         self.downloadButton.downloadedButton.setBackgroundImage(nil, for: .highlighted)

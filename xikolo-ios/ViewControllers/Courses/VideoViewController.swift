@@ -42,8 +42,8 @@ class VideoViewController : UIViewController {
         self.show(video: video)
 
         // refresh data
-        VideoHelper.sync(video: video).onSuccess { videoComplete in
-            self.show(video: videoComplete)
+        VideoHelper.sync(video: video).onSuccess { updatedVideo in
+            self.show(video: updatedVideo)
         }
     }
 
@@ -88,7 +88,10 @@ class VideoViewController : UIViewController {
         }
 
         // configure video player
+        guard !self.videoPlayerConfigured else { return }
+
         var videoURL: URL?
+        video.managedObjectContext?.refresh(video, mergeChanges: true)
         if !self.videoPlayerConfigured, let local_video = VideoPersistenceManager.shared.localAssetFor(video: video) {
             videoURL = local_video.url
         } else if !self.videoPlayerConfigured {

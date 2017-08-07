@@ -20,9 +20,6 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
   - ObjectMapper (2.0.0)
-  - PinpointKit (0.9):
-    - PinpointKit/Core (= 0.9)
-  - PinpointKit/Core (0.9)
   - ReachabilitySwift (3)
   - Result (3.1.0)
   - SDWebImage/Core (4.0.0)
@@ -43,7 +40,6 @@ DEPENDENCIES:
   - DZNEmptyDataSet (= 1.8.1)
   - Hero
   - ObjectMapper (= 2.0)
-  - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
   - ReachabilitySwift (= 3)
   - Result (= 3.1.0)
   - SDWebImage/Core (= 4.0.0)
@@ -51,11 +47,9 @@ DEPENDENCIES:
   - Spine (from `https://github.com/invliD/Spine.git`, commit `1171b90`)
 
 EXTERNAL SOURCES:
+
   BMPlayer:
     :git: https://github.com/openHPI/BMPlayer
-  PinpointKit:
-    :commit: dd5731c
-    :git: https://github.com/Lickability/PinpointKit
   Spine:
     :commit: 1171b90
     :git: https://github.com/invliD/Spine.git
@@ -64,9 +58,6 @@ CHECKOUT OPTIONS:
   BMPlayer:
     :commit: e991e0500803d913cae6fab6dcb57ddff82c2cae
     :git: https://github.com/openHPI/BMPlayer
-  PinpointKit:
-    :commit: dd5731c
-    :git: https://github.com/Lickability/PinpointKit
   Spine:
     :commit: 1171b90
     :git: https://github.com/invliD/Spine.git
@@ -82,7 +73,6 @@ SPEC CHECKSUMS:
   Hero: bee4e762e84185b16a902dd11335c119515bb912
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
-  PinpointKit: 6d19d08afddfad2753aee95e2a6160f2d8d30764
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
@@ -90,6 +80,7 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
 
 PODFILE CHECKSUM: e4d30547657c2cf8a6ea761cbf7518aebb4253d6
 

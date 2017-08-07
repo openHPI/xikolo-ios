@@ -73,6 +73,13 @@ class Course : BaseModel {
         return nil
     }
 
+    var url: URL? {
+        if let slug = self.slug {
+            return URL(fileURLWithPath: "\(Brand.BaseURL)/courses/\(slug)")
+        }
+        return nil
+    }
+
 }
 
 extension Course : DynamicSort {

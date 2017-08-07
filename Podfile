@@ -17,7 +17,6 @@ def ios_pods
     pod 'DownloadButton', '0.1.0'
     pod 'DZNEmptyDataSet', '1.8.1'
     pod 'Hero'
-    pod 'PinpointKit', :git => 'https://github.com/Lickability/PinpointKit', :commit => 'dd5731c'
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
 end

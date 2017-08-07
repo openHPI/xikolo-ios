@@ -31,20 +31,30 @@ class CourseContentTableViewController: UITableViewController {
         self.stopReachabilityNotifier()
     }
     
+    lazy var myRefreshControl: UIRefreshControl = {
+        let myRefreshControl = UIRefreshControl()
+        myRefreshControl.addTarget(self,
+                                   action: #selector(CourseContentTableViewController.handleRefresh(_:)),
+                                   for: UIControlEvents.valueChanged)
+        return myRefreshControl
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupReachability(Brand.host)
         self.startReachabilityNotifier()
+        self.tableView.refreshControl = myRefreshControl
         self.setupEmptyState()
-
         self.navigationItem.title = self.course.title
-
+        self.loadData()
+    }
+    
+    func loadData() {
         let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
         self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
 
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
-
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
         let configuration = CourseContentTableViewConfiguration(tableViewController: self)
@@ -103,6 +113,10 @@ class CourseContentTableViewController: UITableViewController {
         self.reachability?.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
         self.reachability = nil
+
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.loadData()
+        refreshControl.endRefreshing()
     }
 
     func showItem(_ item: CourseItem) {

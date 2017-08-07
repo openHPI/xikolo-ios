@@ -8,15 +8,12 @@
 
 import CoreData
 import UIKit
-import PinpointKit
 import SDWebImage
 
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
 
-    private static let pinpointKit = PinpointKit(feedbackRecipients: ["openhpi-info@hpi.de"])
-    var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
-
+    var window: UIWindow?
 
     class func instance() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate

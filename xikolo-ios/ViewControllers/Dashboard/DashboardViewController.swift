@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PinpointKit
 
 class DashboardViewController : UIViewController {
 

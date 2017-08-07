@@ -13,7 +13,7 @@ def common_pods
 end
 
 def ios_pods
-    pod 'BMPlayer', '0.8.7'
+    pod 'BMPlayer', :git => 'https://github.com/openHPI/BMPlayer'
     pod 'DownloadButton', '0.1.0'
     pod 'DZNEmptyDataSet', '1.8.1'
     pod 'Hero'

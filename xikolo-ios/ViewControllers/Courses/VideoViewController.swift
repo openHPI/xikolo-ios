@@ -50,7 +50,10 @@ class VideoViewController : UIViewController {
     func setupPlayer() {
         BMPlayerConf.topBarShowInCase = .horizantalOnly
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
-
+        BMPlayerConf.enableVolumeGestures = false
+        BMPlayerConf.enableBrightnessGestures = false
+        BMPlayerConf.enablePlaytimeGestures = true
+        
         let player = BMPlayer(customControlView: self.playerControlView)
         player.delegate = self
         self.videoContainer.addSubview(player)

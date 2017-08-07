@@ -108,7 +108,7 @@ class VideoPersistenceManager: NSObject {
         NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
-    func localAssetFor(video: Video) -> AVURLAsset? {
+    func localAsset(for video: Video) -> AVURLAsset? {
         guard let localFileLocation = video.local_file_bookmark as Data? else { return nil }
 
         var asset: AVURLAsset?
@@ -131,7 +131,7 @@ class VideoPersistenceManager: NSObject {
     }
 
     func downloadState(for video: Video) -> Video.DownloadState {
-        if let localFileLocation = self.localAssetFor(video: video)?.url {
+        if let localFileLocation = self.localAsset(for: video)?.url {
             if FileManager.default.fileExists(atPath: localFileLocation.path) {
                 return .downloaded
             }
@@ -153,8 +153,8 @@ class VideoPersistenceManager: NSObject {
         return self.progressMap[video.id]
     }
 
-    func deleteAsset(forVideo video: Video) {
-        if let localFileLocation = self.localAssetFor(video: video)?.url {
+    func deleteAsset(for video: Video) {
+        if let localFileLocation = self.localAsset(for: video)?.url {
             do {
                 try FileManager.default.removeItem(at: localFileLocation)
 
@@ -173,7 +173,7 @@ class VideoPersistenceManager: NSObject {
         }
     }
 
-    func cancelDownload(forVideo video: Video) {
+    func cancelDownload(for video: Video) {
         var task: AVAssetDownloadTask?
 
         for (taskKey, assetVal) in activeDownloadsMap {
@@ -209,7 +209,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
             switch (error.domain, error.code) {
             case (NSURLErrorDomain, NSURLErrorCancelled):
 
-                guard let localFileLocation = self.localAssetFor(video: video)?.url else { return }
+                guard let localFileLocation = self.localAsset(for: video)?.url else { return }
 
                 do {
                     try FileManager.default.removeItem(at: localFileLocation)
@@ -244,7 +244,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 try video.managedObjectContext?.save()
             } catch {
                 // Failed to create bookmark for location
-                self.deleteAsset(forVideo: video)
+                self.deleteAsset(for: video)
             }
         }
     }

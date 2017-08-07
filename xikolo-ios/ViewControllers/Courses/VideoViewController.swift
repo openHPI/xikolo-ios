@@ -95,7 +95,7 @@ class VideoViewController : UIViewController {
 
         // determine video url (local file, currently downloading or remote)
         var videoURL: URL?
-        if let localAsset = VideoPersistenceManager.shared.localAssetFor(video: video) {
+        if let localAsset = VideoPersistenceManager.shared.localAsset(for: video) {
             videoURL = localAsset.url
         } else {
             videoURL = video.hlsURL
@@ -152,5 +152,3 @@ extension VideoViewController: BMPlayerDelegate {
     }
 
 }
-
-

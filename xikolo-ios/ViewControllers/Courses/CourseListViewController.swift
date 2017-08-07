@@ -49,7 +49,6 @@ class CourseListViewController : AbstractCourseListViewController {
     }
 
     override func viewDidLoad() {
-      
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.sectionHeadersPinToVisibleBounds = true
         }
@@ -59,7 +58,6 @@ class CourseListViewController : AbstractCourseListViewController {
         }
         super.viewDidLoad()
         presentWelcomeScreenIfNecessary()
-
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

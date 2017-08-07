@@ -28,13 +28,13 @@ class CourseContentTableViewController: UITableViewController {
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
-        self.stopNotifier()
+        self.stopReachabilityNotifier()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupReachability(Brand.getHost())
-        startNotifier()
+        self.setupReachability(Brand.host)
+        self.startReachabilityNotifier()
         self.setupEmptyState()
 
         self.navigationItem.title = self.course.title
@@ -55,22 +55,22 @@ class CourseContentTableViewController: UITableViewController {
 
         do {
             try resultsController.performFetch()
-            NetworkIndicator.start()
-            CourseSectionHelper.syncCourseSections(course).flatMap { sections in
-                sections.map { section in
-                    CourseItemHelper.syncCourseItems(section)
-                    }.sequence().onComplete { _ in
-                        self.tableView.reloadEmptyDataSet()
-                        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
-                            self.preloadCourseContent()
-                        }
-                }
-                }.onComplete { _ in
-                    NetworkIndicator.end()
-            }
         } catch {
-            // self.isOffline = true
             // TODO: Error handling.
+        }
+
+        NetworkIndicator.start()
+        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
+            sections.map { section in
+                CourseItemHelper.syncCourseItems(section)
+            }.sequence().onComplete { _ in
+                self.tableView.reloadEmptyDataSet()
+                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                    self.preloadCourseContent()
+                }
+            }
+        }.onComplete { _ in
+            NetworkIndicator.end()
         }
     }
 
@@ -81,25 +81,28 @@ class CourseContentTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func setupReachability(_ hostName: String?) {
-        let reachability = hostName == nil ? Reachability() : Reachability(hostname: hostName!)
-        self.reachability = reachability
+    func setupReachability(_ host: String?) {
+        if let hostName = host {
+            self.reachability = Reachability(hostname: hostName)
+        } else {
+            self.reachability = Reachability()
+        }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
     }
 
-    func startNotifier() {
+    private func startReachabilityNotifier() {
         do {
-            try reachability?.startNotifier()
+            try self.reachability?.startNotifier()
         } catch {
-            return
+            print("Failed to start reachability notificaition")
         }
     }
 
-    func stopNotifier() {
-        reachability?.stopNotifier()
+    private func stopReachabilityNotifier() {
+        self.reachability?.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        reachability = nil
+        self.reachability = nil
     }
 
     func showItem(_ item: CourseItem) {
@@ -122,13 +125,11 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func reachabilityChanged(_ note: Notification) {
-        let reachability = note.object as! Reachability
+        guard let reachability = note.object as? Reachability else { return }
+
         let oldOfflinesState = self.isOffline
-        if reachability.isReachable {
-            self.isOffline = false
-        } else {
-            self.isOffline = true
-        }
+        self.isOffline = !reachability.isReachable
+
         if oldOfflinesState != self.isOffline {
             self.tableView.reloadData()
         }
@@ -276,7 +277,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
         let abortAction = UIAlertAction(title: NSLocalizedString("Stop Download", comment: ""), style: .default) { action in
-            VideoPersistenceManager.shared.cancelDownload(forVideo: video)
+            VideoPersistenceManager.shared.cancelDownload(for: video)
         }
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         
@@ -285,7 +286,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
     func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
         let deleteAction = UIAlertAction(title: NSLocalizedString("Delete video", comment: ""), style: .default) { action in
-            VideoPersistenceManager.shared.deleteAsset(forVideo: video)
+            VideoPersistenceManager.shared.deleteAsset(for: video)
         }
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         

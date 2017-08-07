@@ -32,7 +32,5 @@ class ContentSpine : BaseModelSpine {
     override class var resourceType: ResourceType {
         return "unsupported-content"
     }
-    
-
 
 }

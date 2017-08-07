@@ -1,18 +1,23 @@
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "KhH-tO-TnH"; */
+"KhH-tO-TnH.title" = "Einstellungen";
 
-/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "Mnf-wa-pbl"; */
-"Mnf-wa-pbl.title" = "Einloggen";
+/* Class = "UILabel"; text = "Preload Content"; ObjectID = "Lvj-Rt-mif"; */
+"Lvj-Rt-mif.text" = "Inhalte vorladen";
 
-/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "ctU-fN-Oxt"; */
-"ctU-fN-Oxt.normalTitle" = "Ausloggen";
+/* Class = "UILabel"; text = "Logout"; ObjectID = "OrC-xr-VQK"; */
+"OrC-xr-VQK.text" = "Ausloggen";
 
-/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "jbm-65-XMz"; */
-"jbm-65-XMz.title" = "Einstellungen";
+/* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "csD-D9-eda"; */
+"csD-D9-eda.text" = "Datenschutzerklärung";
 
-/* Class = "UILabel"; text = "Imprint"; ObjectID = "lUL-sh-oXa"; */
-"lUL-sh-oXa.text" = "Impressum";
+/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "tyU-B6-h3N"; */
+"tyU-B6-h3N.title" = "Einloggen";
 
-/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "r8t-cE-qA4"; */
-"r8t-cE-qA4.title" = "Einstellungen";
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "wNE-fd-aKh"; */
+"wNE-fd-aKh.title" = "Einstellungen";
 
-/* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "xUb-k5-964"; */
-"xUb-k5-964.text" = "Datenschutzerklärung";
+/* Class = "UILabel"; text = "Imprint"; ObjectID = "yNe-zB-n9b"; */
+"yNe-zB-n9b.text" = "Impressum";
+
+/* Class = "UITableViewSection"; footerTitle = "Small-sized course material will be downloaded in advance for enrolled courses."; ObjectID = "k6k-z7-cxe"; */
+"k6k-z7-cxe.footerTitle" = "Für eingeschriebene Kurse werden kleine Materialen im Voraus geladen.";

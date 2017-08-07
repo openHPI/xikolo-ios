@@ -9,17 +9,28 @@
 import UIKit
 import PinpointKit
 
-class DashboardViewController : AbstractTabContentViewController {
+class DashboardViewController : UIViewController {
+
+    @IBOutlet var loginButton: UIBarButtonItem!
 
     @IBOutlet var courseDatesContainerHeight: NSLayoutConstraint!
     @IBOutlet var courseActivityContainerHeight: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateAfterLogin()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(DashboardViewController.updateAfterLogin),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         CourseDateHelper.syncCourseDates()
+    }
+
+    func updateAfterLogin() {
+        self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

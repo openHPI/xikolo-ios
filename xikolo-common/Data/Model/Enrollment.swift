@@ -56,6 +56,7 @@ class EnrollmentSpine : BaseModelSpine {
     var proctored_int: NSNumber?
     var completed_int: NSNumber?
     var reactivated_int: NSNumber?
+    var created_at: Date?
 
     var course: CourseSpine?
 
@@ -64,6 +65,14 @@ class EnrollmentSpine : BaseModelSpine {
         self.init()
         self.course = course
         //TODO: What about content
+    }
+
+    convenience init(from enrollment: Enrollment){
+        self.init()
+        let course = CourseSpine(course: enrollment.course!)
+        self.course = course
+        self.id = enrollment.id
+        self.completed_int = enrollment.completed_int
     }
 
     override class var cdType: BaseModel.Type {
@@ -82,6 +91,7 @@ class EnrollmentSpine : BaseModelSpine {
             "proctored_int": BooleanAttribute().serializeAs("proctored"),
             "completed_int": BooleanAttribute().serializeAs("completed"),
             "reactivated_int": BooleanAttribute().serializeAs("reactivated"),
+            "created_at": DateAttribute(),
             "course": ToOneRelationship(CourseSpine.self)
         ])
     }

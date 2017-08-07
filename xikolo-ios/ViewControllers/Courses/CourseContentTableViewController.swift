@@ -40,8 +40,9 @@ class CourseContentTableViewController: UITableViewController {
     }
     
     func loadData() {
-        self.isPreloading = !self.contentToBePreloaded.isEmpty
-        
+        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
+        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
+
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
         
@@ -63,9 +64,17 @@ class CourseContentTableViewController: UITableViewController {
         CourseSectionHelper.syncCourseSections(course).flatMap { sections in
             sections.map { section in
                 CourseItemHelper.syncCourseItems(section)
+<<<<<<< HEAD
                 }.sequence().onComplete { _ in
                     self.tableView.reloadEmptyDataSet()
                     self.preloadCourseContent()
+=======
+            }.sequence().onComplete { _ in
+                self.tableView.reloadEmptyDataSet()
+                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                    self.preloadCourseContent()
+                }
+>>>>>>> master
             }
             }.onComplete { _ in
                 NetworkIndicator.end()

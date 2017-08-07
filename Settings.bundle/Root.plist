@@ -30,14 +30,6 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>File</key>
-			<string>PinpointKit</string>
-			<key>Title</key>
-			<string>PinpointKit</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>File</key>
 			<string>DZNEmptyDataSet</string>
 			<key>Title</key>
 			<string>DZNEmptyDataSet</string>
@@ -82,33 +74,34 @@
 			<key>Title</key>
 			<string>Result</string>
 		</dict>
-        <dict>
-            <key>Type</key>
-            <string>PSGroupSpecifier</string>
-            <key>Title</key>
-            <string>Font Licenses</string>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>FontAwesome</string>
-            <key>Title</key>
-            <string>FontAwesome 3.0</string>
-        </dict><dict>
-            <key>Type</key>
-            <string>PSGroupSpecifier</string>
-            <key>Title</key>
-            <string>Icon Licenses</string>
-        </dict>
-        <dict>
-            <key>Type</key>
-            <string>PSChildPaneSpecifier</string>
-            <key>File</key>
-            <string>Icon8</string>
-            <key>Title</key>
-            <string>Icon8</string>
-        </dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Font Licenses</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>FontAwesome</string>
+			<key>Title</key>
+			<string>FontAwesome 3.0</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Icon Licenses</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>Icon8</string>
+			<key>Title</key>
+			<string>Icon8</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

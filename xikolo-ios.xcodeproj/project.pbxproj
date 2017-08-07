@@ -557,6 +557,8 @@
 		50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA51F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50F668971F3849C300ACC26A /* SyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* SyncHelper.swift */; };
+		50F668981F3857B800ACC26A /* SearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12EC1F2914BD00D5DFE8 /* SearchHelper.swift */; };
+		50F668991F3857B900ACC26A /* SearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12EC1F2914BD00D5DFE8 /* SearchHelper.swift */; };
 		703005B31EFEFC0000CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B41EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B51EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
@@ -4483,6 +4485,7 @@
 				70D1E9F11EF0AA8A0088C0FF /* CollectionType+dict.swift in Sources */,
 				70D1EA2B1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
 				70D1EA7D1EF0AB500088C0FF /* (null) in Sources */,
+				50F668981F3857B800ACC26A /* SearchHelper.swift in Sources */,
 				70D1EAE01EF0AC460088C0FF /* UIApplication+VersionInfo.swift in Sources */,
 				70D1EAEF1EF0ACA50088C0FF /* CourseDecisionViewController.swift in Sources */,
 				70D1EA4D1EF0AB160088C0FF /* PlatformEvent+CoreDataProperties.swift in Sources */,
@@ -4736,6 +4739,7 @@
 				70D1EB121EF12DF00088C0FF /* Brand+generic.swift in Sources */,
 				70D1EA271EF0AAE60088C0FF /* CourseItem.swift in Sources */,
 				70D1EA7E1EF0AB510088C0FF /* (null) in Sources */,
+				50F668991F3857B900ACC26A /* SearchHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

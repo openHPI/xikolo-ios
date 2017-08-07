@@ -14,9 +14,11 @@ class SpineHelper {
 
     fileprivate static var client: Spine = {
         #if DEBUG
-            Spine.setLogLevel(.debug, forDomain: .networking)
-            Spine.setLogLevel(.debug, forDomain: .serializing)
-            Spine.setLogLevel(.debug, forDomain: .spine)
+            if ProcessInfo.processInfo.environment["SPINE_LOGGING"] == "enable" {
+                Spine.setLogLevel(.debug, forDomain: .networking)
+                Spine.setLogLevel(.debug, forDomain: .serializing)
+                Spine.setLogLevel(.debug, forDomain: .spine)
+            }
         #endif
 
         let spine = Spine(baseURL: URL(string: Routes.API_V2_URL)!)

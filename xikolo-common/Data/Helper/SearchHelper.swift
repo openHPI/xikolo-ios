@@ -10,54 +10,65 @@ import Foundation
 import CoreSpotlight
 
 class SearchHelper{
-    static func addCourseToIndex(course:Course){
+
+    static func addSearchIndex(for course: Course) {
+        guard let url = course.url else {
+            print("Failed to add search index for course (\(course.title ?? "")): no course url")
+            return
+        }
+
         // Create an attribute set to describe an item.
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: "Course")
         // Add metadata that supplies details about the item.
         attributeSet.title = course.title
         attributeSet.contentDescription = (course.abstract ?? "") + " " + (course.teachers ?? "")
         //attributeSet.thumbnailData = DocumentImage.jpg
-        let url = String.init(Brand.BaseURL + "/courses/" + course.slug!)
+
         // Create an item with a unique identifier, a domain identifier, and the attribute set you created earlier.
-        let item = CSSearchableItem(uniqueIdentifier: url, domainIdentifier: self.getReverseDomain(appendix:"course"), attributeSet: attributeSet)
+        let item = CSSearchableItem(uniqueIdentifier: url.absoluteString, domainIdentifier: self.getReverseDomain(appendix:"course"), attributeSet: attributeSet)
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-            else {
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
                 print("Item indexed.")
             }
         }
     }
 
-    static func removeCourseFromIndex(course:Course){
-        let url = String.init(Brand.BaseURL + "/courses/" + course.slug!)
-        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [url!]) { error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-            else {
+    static func removeSearchIndex(for course: Course) {
+        guard let url = course.url else {
+            print("Failed to remove search index for course (\(course.title ?? "")): no course url")
+            return
+        }
+
+        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [url.absoluteString]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
                 print("Item deleted.")
             }
         }
     }
-    static func setNSUserActivity(course:Course){
+
+    static func setUserActivity(for course: Course) {
+        guard let url = course.url else {
+            print("Failed to set search user activity for course (\(course.title ?? "")): no course url")
+            return
+        }
+
         let activity = NSUserActivity(activityType: self.getReverseDomain(appendix: "course.view"))
         activity.title = "Viewing Course"
         activity.requiredUserInfoKeys = ["course_id"]
-        activity.webpageURL = URL(string: Brand.BaseURL + "/courses/" + course.slug!)
+        activity.webpageURL = url
         activity.isEligibleForSearch = true
         activity.isEligibleForHandoff = true
-        if (course.hidden == false){ // internal courses?
-            activity.isEligibleForPublicIndexing = true
-        }
+        activity.isEligibleForPublicIndexing = !(course.hidden ?? true)
         activity.userInfo = ["course_id": course.id]
         activity.becomeCurrent()
     }
 
-    static func getReverseDomain(appendix:String)->String{
-        return Brand.AppID+"."+appendix
+    static func getReverseDomain(appendix: String) -> String {
+        return "\(Brand.AppID).\(appendix)"
     }
 
 }
-

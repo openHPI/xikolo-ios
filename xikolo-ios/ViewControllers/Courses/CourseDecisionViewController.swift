@@ -27,16 +27,15 @@ class CourseDecisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SearchHelper.setNSUserActivity(course: self.course)
-        decideContent()
+        SearchHelper.setUserActivity(for: self.course)
+        self.decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
     }
-
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
 
     func decideContent() {
-        if(course.enrollment != nil) {
+        if (course.enrollment != nil) {
             updateContainerView(course.accessible ? .learnings : .courseDetails)
         } else {
             updateContainerView(.courseDetails)

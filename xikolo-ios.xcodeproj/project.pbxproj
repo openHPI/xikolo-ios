@@ -556,6 +556,7 @@
 		50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA51F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
+		50F668971F3849C300ACC26A /* SyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* SyncHelper.swift */; };
 		703005B31EFEFC0000CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B41EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B51EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
@@ -4460,6 +4461,7 @@
 				70D1EAEA1EF0AC930088C0FF /* WelcomeViewController.swift in Sources */,
 				70D1EA311EF0AAF30088C0FF /* Enrollment.swift in Sources */,
 				70D1EA711EF0AB430088C0FF /* TrackingEvent.swift in Sources */,
+				50F668971F3849C300ACC26A /* SyncHelper.swift in Sources */,
 				70D1EB041EF0ACE20088C0FF /* CourseActivityRow.swift in Sources */,
 				70D1EAF41EF0ACB20088C0FF /* VideoViewController.swift in Sources */,
 				70D1EA951EF0AB760088C0FF /* LTIExerciseProvider.swift in Sources */,

@@ -67,7 +67,7 @@ class SearchHelper{
         activity.becomeCurrent()
     }
 
-    static func getReverseDomain(appendix: String) -> String {
+    private static func getReverseDomain(appendix: String) -> String {
         return "\(Brand.AppID).\(appendix)"
     }
 

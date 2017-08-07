@@ -44,29 +44,35 @@ class AppDelegate : AbstractAppDelegate {
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        let url:URL
+        var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
             // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
             // Note that the unique identifier of the Core Spotlight item is set in the activity’s userInfo property for the key CSSearchableItemActivityIdentifier.
-            let uniqueIdentifier = userActivity.userInfo? [CSSearchableItemActivityIdentifier]
-            url = URL.init(string: uniqueIdentifier as! String)!
+            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+                activityURL = URL(string: uniqueIdentifier)
+            }
             // this contains the courses uuid
             // Next, find and open the item specified by uniqueIdentifer.
 
         } else {
-             url = userActivity.webpageURL!
+             activityURL = userActivity.webpageURL
         }
-        
+
+        guard let url = activityURL else {
+            print("Failed to load url for user activity")
+            return false
+        }
 
         guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
             print("UITabBarController could not be found")
             return false
         }
-        //Todo:
 
+        guard url.pathComponents.count > 1 else {
+            print("Invalid url for user activity")
+            return false
+        }
 
-        //if url.lastPathComponent == "courses" and {
-        //}
         switch url.pathComponents[1] {
             case "courses":
                 if url.pathComponents.count > 2{

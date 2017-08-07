@@ -17,6 +17,10 @@ class RichText : Content {
         return "rich_text"
     }
 
+    override var isAvailableOffline: Bool {
+        return self.text != nil
+    }
+
 }
 
 class RichTextSpine : ContentSpine {

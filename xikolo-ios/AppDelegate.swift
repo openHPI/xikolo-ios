@@ -25,6 +25,8 @@ class AppDelegate : AbstractAppDelegate {
         updateAnnouncements()
         EnrollmentHelper.syncEnrollments()
 
+        VideoPersistenceManager.shared.restorePersistenceManager()
+
         #if OPENSAP
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.
             // By setting 'username' and 'password', a dummy certificate is created that allows the request

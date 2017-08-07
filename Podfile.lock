@@ -13,12 +13,14 @@ PODS:
   - BrightFutures (5.1.0):
     - Result (~> 3.0)
   - Down (0.3.2)
+  - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
   - Hero (0.3.3)
   - NVActivityIndicatorView (3.7.0):
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
   - ObjectMapper (2.0.0)
+  - ReachabilitySwift (3)
   - Result (3.1.0)
   - SDWebImage/Core (4.0.0)
   - Shimmer (1.0.2)
@@ -31,23 +33,31 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.3.0)
   - AlamofireObjectMapper (= 4.0.1)
-  - BMPlayer (= 0.8.7)
+  - BMPlayer (from `https://github.com/BrikerMan/BMPlayer`, commit `ec9297e`)
   - BrightFutures (= 5.1.0)
   - Down (= 0.3.2)
+  - DownloadButton (= 0.1.0)
   - DZNEmptyDataSet (= 1.8.1)
   - Hero
   - ObjectMapper (= 2.0)
+  - ReachabilitySwift (= 3)
   - Result (= 3.1.0)
   - SDWebImage/Core (= 4.0.0)
   - Shimmer (= 1.0.2)
   - Spine (from `https://github.com/invliD/Spine.git`, commit `1171b90`)
 
 EXTERNAL SOURCES:
+  BMPlayer:
+    :commit: ec9297e
+    :git: https://github.com/BrikerMan/BMPlayer
   Spine:
     :commit: 1171b90
     :git: https://github.com/invliD/Spine.git
 
 CHECKOUT OPTIONS:
+  BMPlayer:
+    :commit: ec9297e
+    :git: https://github.com/BrikerMan/BMPlayer
   Spine:
     :commit: 1171b90
     :git: https://github.com/invliD/Spine.git
@@ -55,13 +65,15 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
-  BMPlayer: 5ba9e3f3d61ccc5a24ebd9cdc24901dcf28c98bc
+  BMPlayer: fef9e15635fe0e45e3398c0de0110638e1035b5e
   BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
   Down: afcfa1a49381b19733b67074bf239789edfa8ad4
+  DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Hero: bee4e762e84185b16a902dd11335c119515bb912
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
@@ -69,6 +81,6 @@ SPEC CHECKSUMS:
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: e2c431e7e75a7fee4361d268273d7756a1c30fd2
+PODFILE CHECKSUM: f8906fe9dcc363ba636cbb672b61bcdec1afaf7e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.2.0

@@ -9,6 +9,7 @@
 import CoreData
 import UIKit
 import DZNEmptyDataSet
+import ReachabilitySwift
 
 class CourseContentTableViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -21,9 +22,13 @@ class CourseContentTableViewController: UITableViewController {
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
 
+    var isOffline = false
+    var reachability: Reachability?
+
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
+        self.stopReachabilityNotifier()
     }
     
     lazy var myRefreshControl: UIRefreshControl = {
@@ -36,8 +41,9 @@ class CourseContentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupReachability(Brand.host)
+        self.startReachabilityNotifier()
         self.tableView.refreshControl = myRefreshControl
-
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
         self.loadData()
@@ -85,6 +91,30 @@ class CourseContentTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
+    func setupReachability(_ host: String?) {
+        if let hostName = host {
+            self.reachability = Reachability(hostname: hostName)
+        } else {
+            self.reachability = Reachability()
+        }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
+    }
+
+    private func startReachabilityNotifier() {
+        do {
+            try self.reachability?.startNotifier()
+        } catch {
+            print("Failed to start reachability notificaition")
+        }
+    }
+
+    private func stopReachabilityNotifier() {
+        self.reachability?.stopNotifier()
+        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
+        self.reachability = nil
+    }
+    
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.loadData()
         refreshControl.endRefreshing()
@@ -106,6 +136,17 @@ class CourseContentTableViewController: UITableViewController {
             default:
                 // TODO: show error: unsupported type
                 break
+        }
+    }
+
+    func reachabilityChanged(_ note: Notification) {
+        guard let reachability = note.object as? Reachability else { return }
+
+        let oldOfflinesState = self.isOffline
+        self.isOffline = !reachability.isReachable
+
+        if oldOfflinesState != self.isOffline {
+            self.tableView.reloadData()
         }
     }
 
@@ -184,9 +225,12 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
-        cell.configure(item,
-                       forContentTypes: self.tableViewController?.contentToBePreloaded ?? [],
-                       forPreloading: self.tableViewController?.isPreloading ?? false)
+        cell.delegate = self.tableViewController
+
+        let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
+                                                        isPreloading: self.tableViewController?.isPreloading ?? false,
+                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
+        cell.configure(for: item, with: configuration)
     }
 
 }
@@ -210,6 +254,72 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         let description = NSLocalizedString("Please check you internet connection", comment: "")
         let attributedString = NSAttributedString(string: description)
         return attributedString
+    }
+
+}
+
+extension CourseContentTableViewController: VideoCourseItemCellDelegate {
+
+    func videoCourseItemCell(_ cell: CourseItemCell, downloadStateDidChange newState: Video.DownloadState) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
+
+        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+
+
+    func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
+        let downloadAction = UIAlertAction(title: NSLocalizedString("Download Video", comment: ""), style: .default) { action in
+            if video.hlsURL != nil {
+                VideoPersistenceManager.shared.downloadStream(for: video)
+            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context to sync via spine
+                DispatchQueue.main.async {
+                    cell.singleReloadInProgress = true
+                }
+                VideoHelper.sync(video: backgroundVideo).onComplete { result in
+                    DispatchQueue.main.async {
+                        cell.singleReloadInProgress = false
+                    }
+                    if let syncedVideo = result.value, syncedVideo.hlsURL != nil {
+                        VideoPersistenceManager.shared.downloadStream(for: video)
+                    }
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        
+        self.showAlert(withActions: [downloadAction, cancelAction], onView: cell.downloadButton)
+    }
+
+    func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
+        let abortAction = UIAlertAction(title: NSLocalizedString("Stop Download", comment: ""), style: .default) { action in
+            VideoPersistenceManager.shared.cancelDownload(for: video)
+        }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        
+        self.showAlert(withActions: [abortAction, cancelAction], onView: cell.downloadButton)
+    }
+
+    func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete video", comment: ""), style: .default) { action in
+            VideoPersistenceManager.shared.deleteAsset(for: video)
+        }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        
+        self.showAlert(withActions: [deleteAction, cancelAction], onView: cell.downloadButton)
+    }
+
+    private func showAlert(withActions actions: [UIAlertAction], onView view: UIView) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for action in actions {
+            alert.addAction(action)
+        }
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert.popoverPresentationController?.sourceView = view
+            alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
+        }
+
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

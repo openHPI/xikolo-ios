@@ -17,6 +17,10 @@ class Content : BaseModel {
         return "homework"
     }
 
+    var isAvailableOffline: Bool {
+        return false
+    }
+
 }
 
 class ContentSpine : BaseModelSpine {

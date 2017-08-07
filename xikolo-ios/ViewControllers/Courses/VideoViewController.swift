@@ -42,15 +42,18 @@ class VideoViewController : UIViewController {
         self.show(video: video)
 
         // refresh data
-        VideoHelper.sync(video: video).onSuccess { videoComplete in
-            self.show(video: videoComplete)
+        VideoHelper.sync(video: video).onSuccess { updatedVideo in
+            self.show(video: updatedVideo)
         }
     }
 
     func setupPlayer() {
         BMPlayerConf.topBarShowInCase = .horizantalOnly
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
-
+        BMPlayerConf.enableVolumeGestures = false
+        BMPlayerConf.enableBrightnessGestures = false
+        BMPlayerConf.enablePlaytimeGestures = true
+        
         let player = BMPlayer(customControlView: self.playerControlView)
         player.delegate = self
         self.videoContainer.addSubview(player)
@@ -88,9 +91,23 @@ class VideoViewController : UIViewController {
         }
 
         // configure video player
-        if let videoURL = video.hlsURL, !self.videoPlayerConfigured {
+        guard !self.videoPlayerConfigured else { return }
+
+        // pull latest change for video content item
+        video.managedObjectContext?.refresh(video, mergeChanges: true)
+
+        // determine video url (local file, currently downloading or remote)
+        var videoURL: URL?
+        if let localAsset = VideoPersistenceManager.shared.localAsset(for: video) {
+            videoURL = localAsset.url
+        } else {
+            videoURL = video.hlsURL
+        }
+
+        if let url = videoURL {  // video.hlsURL can be nil
             self.videoPlayerConfigured = true
-            let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
+ 
+            let asset = BMPlayerResource(url: url, name: self.courseItem?.title ?? "")
             self.player?.setVideo(resource: asset)
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }

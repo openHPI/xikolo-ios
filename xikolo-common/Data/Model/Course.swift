@@ -75,7 +75,7 @@ class Course : BaseModel {
 
     var url: URL? {
         if let slug = self.slug {
-            return URL(fileURLWithPath: "\(Brand.BaseURL)/courses/\(slug)")
+            return URL(string: "\(Brand.BaseURL)/courses/\(slug)")
         }
         return nil
     }

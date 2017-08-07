@@ -19,7 +19,7 @@ def ios_pods
     pod 'Hero'
     pod 'PinpointKit', :git => 'https://github.com/Lickability/PinpointKit', :commit => 'dd5731c'
     pod 'Shimmer', '1.0.2'
-    pod 'ReachabilitySwift', '~> 3'
+    pod 'ReachabilitySwift', '3'
 end
 
 target 'openHPI-iOS' do

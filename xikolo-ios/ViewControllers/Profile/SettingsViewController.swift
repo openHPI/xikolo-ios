@@ -78,7 +78,8 @@ class SettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (indexPath.section, indexPath.item) {
+        let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
+        switch (newIndexPath.section, newIndexPath.item) {
         case (0, 0):
             if let url = URL(string: Brand.APP_IMPRINT_URL) {
                 let safariVC = SFSafariViewController(url: url)
@@ -115,17 +116,7 @@ class SettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var newIndexPath = indexPath
-
-        if !MFMailComposeViewController.canSendMail(), indexPath.section >= SettingsViewController.feedbackIndexPath.section {
-            newIndexPath.section += 1
-        }
-
-        if !UserProfileHelper.isLoggedIn(), indexPath.section >= SettingsViewController.logoutIndexPath.section {
-            newIndexPath.section += 1
-        }
-
-        return super.tableView(tableView, cellForRowAt: newIndexPath)
+        return super.tableView(tableView, cellForRowAt: self.indexPathIncludingHiddenCells(for: indexPath))
     }
 
     override func viewDidLayoutSubviews() {
@@ -149,6 +140,20 @@ class SettingsViewController: UITableViewController {
         let contentPreloadDeactivated = !sender.isOn
         UserDefaults.standard.set(contentPreloadDeactivated, forKey: UserDefaultsKeys.noContentPreloadKey)
         UserDefaults.standard.synchronize()
+    }
+
+    private func indexPathIncludingHiddenCells(for indexPath: IndexPath) -> IndexPath {
+        var newIndexPath = indexPath
+
+        if !MFMailComposeViewController.canSendMail(), indexPath.section >= SettingsViewController.feedbackIndexPath.section {
+            newIndexPath.section += 1
+        }
+
+        if !UserProfileHelper.isLoggedIn(), indexPath.section >= SettingsViewController.logoutIndexPath.section {
+            newIndexPath.section += 1
+        }
+
+        return newIndexPath
     }
 
     private func sendFeedbackMail() {

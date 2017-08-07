@@ -20,7 +20,7 @@ class CourseContentTableViewController: UITableViewController {
 
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
-    
+
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
@@ -28,60 +28,12 @@ class CourseContentTableViewController: UITableViewController {
     
     lazy var myRefreshControl: UIRefreshControl = {
         let myRefreshControl = UIRefreshControl()
-        myRefreshControl.addTarget(self, action:
-            #selector(CourseContentTableViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+        myRefreshControl.addTarget(self,
+                                   action: #selector(CourseContentTableViewController.handleRefresh(_:)),
+                                   for: UIControlEvents.valueChanged)
         return myRefreshControl
     }()
-    
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.loadData(refreshControl.endRefreshing())
-        
-    }
-    
-    func loadData() {
-        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
-        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
 
-        let request = CourseItemHelper.getItemRequest(course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
-        
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
-        
-        let configuration = CourseContentTableViewConfiguration(tableViewController: self)
-        let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
-        resultsControllerDelegateImplementation.configuration = configurationWrapper
-        resultsController.delegate = resultsControllerDelegateImplementation
-        tableView.dataSource = resultsControllerDelegateImplementation
-        
-        
-        do {
-            try resultsController.performFetch()
-        } catch {
-            // TODO: Error handling.
-        }
-        NetworkIndicator.start()
-        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
-            sections.map { section in
-                CourseItemHelper.syncCourseItems(section)
-<<<<<<< HEAD
-                }.sequence().onComplete { _ in
-                    self.tableView.reloadEmptyDataSet()
-                    self.preloadCourseContent()
-=======
-            }.sequence().onComplete { _ in
-                self.tableView.reloadEmptyDataSet()
-                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
-                    self.preloadCourseContent()
-                }
->>>>>>> master
-            }
-            }.onComplete { _ in
-                NetworkIndicator.end()
-        }
-
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.refreshControl = myRefreshControl
@@ -90,6 +42,41 @@ class CourseContentTableViewController: UITableViewController {
         self.navigationItem.title = self.course.title
         self.loadData()
     }
+    
+    func loadData() {
+        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
+        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
+
+        let request = CourseItemHelper.getItemRequest(course)
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
+
+        let configuration = CourseContentTableViewConfiguration(tableViewController: self)
+        let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
+        resultsControllerDelegateImplementation.configuration = configurationWrapper
+        resultsController.delegate = resultsControllerDelegateImplementation
+        tableView.dataSource = resultsControllerDelegateImplementation
+
+        do {
+            try resultsController.performFetch()
+        } catch {
+            // TODO: Error handling.
+        }
+
+        NetworkIndicator.start()
+        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
+            sections.map { section in
+                CourseItemHelper.syncCourseItems(section)
+            }.sequence().onComplete { _ in
+                self.tableView.reloadEmptyDataSet()
+                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                    self.preloadCourseContent()
+                }
+            }
+        }.onComplete { _ in
+            NetworkIndicator.end()
+        }
+    }
 
     func setupEmptyState() {
         tableView.emptyDataSetSource = self
@@ -97,7 +84,12 @@ class CourseContentTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
     }
-    
+
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.loadData()
+        refreshControl.endRefreshing()
+    }
+
     func showItem(_ item: CourseItem) {
         TrackingHelper.sendEvent("VISITED_ITEM", resource: item)
         //save read state to server

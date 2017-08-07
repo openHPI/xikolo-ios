@@ -28,13 +28,13 @@ class CourseContentTableViewController: UITableViewController {
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
-        self.stopNotifier()
+        self.stopReachabilityNotifier()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupReachability(Brand.getHost())
-        startNotifier()
+        self.setupReachability(Brand.host)
+        self.startReachabilityNotifier()
         self.setupEmptyState()
 
         self.navigationItem.title = self.course.title
@@ -55,22 +55,22 @@ class CourseContentTableViewController: UITableViewController {
 
         do {
             try resultsController.performFetch()
-            NetworkIndicator.start()
-            CourseSectionHelper.syncCourseSections(course).flatMap { sections in
-                sections.map { section in
-                    CourseItemHelper.syncCourseItems(section)
-                    }.sequence().onComplete { _ in
-                        self.tableView.reloadEmptyDataSet()
-                        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
-                            self.preloadCourseContent()
-                        }
-                }
-                }.onComplete { _ in
-                    NetworkIndicator.end()
-            }
         } catch {
-            // self.isOffline = true
             // TODO: Error handling.
+        }
+
+        NetworkIndicator.start()
+        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
+            sections.map { section in
+                CourseItemHelper.syncCourseItems(section)
+            }.sequence().onComplete { _ in
+                self.tableView.reloadEmptyDataSet()
+                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                    self.preloadCourseContent()
+                }
+            }
+        }.onComplete { _ in
+            NetworkIndicator.end()
         }
     }
 
@@ -80,26 +80,29 @@ class CourseContentTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
     }
-    func setupReachability(_ hostName: String?) {
-        let reachability = hostName == nil ? Reachability() : Reachability(hostname: hostName!)
-        self.reachability = reachability
 
-        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: reachability)
+    func setupReachability(_ host: String?) {
+        if let hostName = host {
+            self.reachability = Reachability(hostname: hostName)
+        } else {
+            self.reachability = Reachability()
+        }
 
+        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
     }
 
-    func startNotifier() {
+    private func startReachabilityNotifier() {
         do {
-            try reachability?.startNotifier()
+            try self.reachability?.startNotifier()
         } catch {
-            return
+            print("Failed to start reachability notificaition")
         }
     }
 
-    func stopNotifier() {
-        reachability?.stopNotifier()
+    private func stopReachabilityNotifier() {
+        self.reachability?.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        reachability = nil
+        self.reachability = nil
     }
 
     func showItem(_ item: CourseItem) {
@@ -122,13 +125,11 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func reachabilityChanged(_ note: Notification) {
-        let reachability = note.object as! Reachability
+        guard let reachability = note.object as? Reachability else { return }
+
         let oldOfflinesState = self.isOffline
-        if reachability.isReachable {
-            self.isOffline = false
-        } else {
-            self.isOffline = true
-        }
+        self.isOffline = !reachability.isReachable
+
         if oldOfflinesState != self.isOffline {
             self.tableView.reloadData()
         }
@@ -210,21 +211,11 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
         let cell = cell as! CourseItemCell
         let item = controller.object(at: indexPath)
         cell.delegate = self.tableViewController
-        cell.configure(item,
-                       forContentTypes: self.tableViewController?.contentToBePreloaded ?? [],
-                       forPreloading: self.tableViewController?.isPreloading ?? false)
-        // todo: helper in item isAvailablefflie
-        if self.tableViewController!.isOffline && !(item.content?.isAvailableOffline())! {
-            cell.titleView?.alpha = 0.5
-            cell.downloadButton?.alpha = 0.5
-            cell.isUserInteractionEnabled = false
-        } else {
-            cell.titleView?.alpha = 1
-            cell.downloadButton?.alpha = 1
-            cell.isUserInteractionEnabled = true
 
-        }
-
+        let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
+                                                        isPreloading: self.tableViewController?.isPreloading ?? false,
+                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
+        cell.configure(for: item, with: configuration)
     }
 
 }
@@ -262,10 +253,10 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
 
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
-        let downloadAction = UIAlertAction(title: "Download video", style: .default) { action in
+        let downloadAction = UIAlertAction(title: NSLocalizedString("Download Video", comment: ""), style: .default) { action in
             if video.hlsURL != nil {
                 VideoPersistenceManager.shared.downloadStream(for: video)
-            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context
+            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context to sync via spine
                 DispatchQueue.main.async {
                     cell.singleReloadInProgress = true
                 }
@@ -279,25 +270,25 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
                 }
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         
         self.showAlert(withActions: [downloadAction, cancelAction], onView: cell.downloadButton)
     }
 
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let abortAction = UIAlertAction(title: "Stop Download", style: .default) { action in
-            VideoPersistenceManager.shared.cancelDownload(forVideo: video)
+        let abortAction = UIAlertAction(title: NSLocalizedString("Stop Download", comment: ""), style: .default) { action in
+            VideoPersistenceManager.shared.cancelDownload(for: video)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         
         self.showAlert(withActions: [abortAction, cancelAction], onView: cell.downloadButton)
     }
 
     func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let deleteAction = UIAlertAction(title: "Delete video", style: .default) { action in
-            VideoPersistenceManager.shared.deleteAsset(forVideo: video)
+        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete video", comment: ""), style: .default) { action in
+            VideoPersistenceManager.shared.deleteAsset(for: video)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
         
         self.showAlert(withActions: [deleteAction, cancelAction], onView: cell.downloadButton)
     }

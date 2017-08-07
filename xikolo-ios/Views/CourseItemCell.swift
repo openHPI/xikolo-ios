@@ -29,7 +29,7 @@ class CourseItemCell : UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.configureDownloadButton()
+        self.setupDownloadButton()
 
         // register notification observer
         let notificationCenter = NotificationCenter.default
@@ -43,7 +43,7 @@ class CourseItemCell : UITableViewCell {
                                        object: nil)
     }
 
-    private func configureDownloadButton() {
+    private func setupDownloadButton() {
         let radius: CGFloat = 10.0
         self.downloadButton.tintColor = Brand.TintColor
 
@@ -60,13 +60,13 @@ class CourseItemCell : UITableViewCell {
 
         self.downloadButton.stopDownloadButton.tintColor = Brand.TintColor
         self.downloadButton.stopDownloadButton.radius = radius
-        self.downloadButton.stopDownloadButton.filledLineWidth = radius
-        self.downloadButton.stopDownloadButton.stopButton.isHidden = true
+        self.downloadButton.stopDownloadButton.filledLineWidth = radius - 0.5  // so there will be no dot in the center of the progress
+        self.downloadButton.stopDownloadButton.stopButtonWidth = 0
 
         self.downloadButton.downloadedButton.cleanDefaultAppearance()
         self.downloadButton.downloadedButton.setTitle(nil, for: .normal)
         self.downloadButton.downloadedButton.setTitle(nil, for: .highlighted)
-        let downloadedImage = UIImage(named: "device-iphone")?.withRenderingMode(.alwaysTemplate)
+        let downloadedImage = UIImage(named: "device")?.withRenderingMode(.alwaysTemplate)
         self.downloadButton.downloadedButton.setImage(downloadedImage, for: .normal)
         self.downloadButton.downloadedButton.setBackgroundImage(nil, for: .normal)
         self.downloadButton.downloadedButton.setBackgroundImage(nil, for: .highlighted)
@@ -74,11 +74,10 @@ class CourseItemCell : UITableViewCell {
         self.downloadButton.delegate = self
     }
 
-    func configure(_ courseItem: CourseItem,
-                   forContentTypes contentTypes: [DetailedContent.Type],
-                   forPreloading isPreloading: Bool = false) {
+    func configure(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
         self.item = courseItem
         self.titleView.text = courseItem.title
+        self.titleView.alpha = (configuration.inOfflineMode && !(courseItem.content?.isAvailableOffline ?? false)) ? 0.5 : 1.0
 
         if let iconName = courseItem.iconName {
             self.iconView.image = UIImage(named: "item-\(iconName)-28")
@@ -87,10 +86,12 @@ class CourseItemCell : UITableViewCell {
         let wasVisitedBefore = courseItem.visited ?? true
         self.readStateView.backgroundColor = wasVisitedBefore ? UIColor.clear : Brand.TintColor
 
+        self.configureDownloadButton(for: courseItem, with: configuration)
+        self.configureDetailContent(for: courseItem, with: configuration)
+    }
 
-        // Video download
+    private func configureDownloadButton(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
         if let video = courseItem.content as? Video {
-            // set state
             let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
             var newButtonState = self.downloadButtonState(for: videoDownloadState)
 
@@ -107,14 +108,29 @@ class CourseItemCell : UITableViewCell {
                 }
             }
 
-            if self.downloadButton.isHidden {
+            if configuration.inOfflineMode && !video.isAvailableOffline {
+                if newButtonState == .startDownload {
+                    self.downloadButton.isHidden = true
+                } else if newButtonState == .pending || newButtonState == .pending {
+                    self.downloadButton.alpha = 0.5
+                    self.downloadButton.isHidden = false
+                } else {
+                    // should never, but just in case if 'isAvailableOffline' is modified
+                    self.downloadButton.alpha = 1.0
+                    self.downloadButton.isHidden = false
+                }
+            } else {
+                self.downloadButton.alpha = 1.0
                 self.downloadButton.isHidden = false
             }
+
+
         } else {
             self.downloadButton.isHidden = true
         }
+    }
 
-        // Content preloading
+    private func configureDetailContent(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
         guard let detailedContent = courseItem.content as? DetailedContent else {
             // only detailed content items show additional information
             self.detailContainer.isHidden = true
@@ -122,7 +138,7 @@ class CourseItemCell : UITableViewCell {
         }
 
         let contentType = type(of: detailedContent)
-        guard contentTypes.contains(where: { String(describing: contentType.self) == String(describing: $0) }) else {
+        guard configuration.contentTypes.contains(where: { String(describing: contentType.self) == String(describing: $0) }) else {
             // only certain content items will show additional information
             self.detailContainer.isHidden = true
             return
@@ -135,12 +151,12 @@ class CourseItemCell : UITableViewCell {
             self.detailLabel.isHidden = false
             self.shimmerContainer.isHidden = true
             self.detailContainer.isHidden = false
-        } else if isPreloading {
+        } else if configuration.isPreloading {
             self.shimmerContainer.contentView = self.loadingBox
             self.shimmerContainer.isShimmering = true
             self.detailLabel.isHidden = true
             self.shimmerContainer.isHidden = false
-            self.detailContainer.isHidden = false
+            self.detailContainer.isHidden = configuration.inOfflineMode
         } else {
             self.detailContainer.isHidden = true
         }
@@ -220,5 +236,13 @@ extension CourseItemCell: PKDownloadButtonDelegate {
             self.delegate?.showAlertForCancellingDownload(of: video, forCell: self)
         }
     }
+
+}
+
+struct CourseItemCellConfiguration {
+
+    let contentTypes: [DetailedContent.Type]
+    let isPreloading: Bool
+    let inOfflineMode: Bool
 
 }

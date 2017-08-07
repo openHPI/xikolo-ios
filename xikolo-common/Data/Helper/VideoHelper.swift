@@ -22,7 +22,6 @@ class VideoHelper {
         } catch {
             return nil
         }
-
     }
 
     @discardableResult static func sync(video: Video) -> Future<Video, XikoloError> {

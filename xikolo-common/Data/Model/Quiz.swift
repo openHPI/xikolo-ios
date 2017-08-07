@@ -49,9 +49,6 @@ class Quiz : Content {
         }
     }
 
-    override func isAvailableOffline()->Bool {
-        return false
-    }
     override func iconName() -> String {
         return "quiz"
     }

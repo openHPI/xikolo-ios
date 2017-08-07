@@ -113,7 +113,8 @@ class CourseContentTableViewController: UITableViewController {
         self.reachability?.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
         self.reachability = nil
-
+    }
+    
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.loadData()
         refreshControl.endRefreshing()

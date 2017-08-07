@@ -13,7 +13,7 @@ def common_pods
 end
 
 def ios_pods
-    pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer', :commit: => 'ec9297e'
+    pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer', :commit => 'ec9297e'
     pod 'DownloadButton', '0.1.0'
     pod 'DZNEmptyDataSet', '1.8.1'
     pod 'Hero'

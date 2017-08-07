@@ -33,7 +33,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.3.0)
   - AlamofireObjectMapper (= 4.0.1)
-  - BMPlayer (from `https://github.com/openHPI/BMPlayer`)
+  - BMPlayer (from `https://github.com/BrikerMan/BMPlayer`, commit `ec9297e`)
   - BrightFutures (= 5.1.0)
   - Down (= 0.3.2)
   - DownloadButton (= 0.1.0)
@@ -47,17 +47,17 @@ DEPENDENCIES:
   - Spine (from `https://github.com/invliD/Spine.git`, commit `1171b90`)
 
 EXTERNAL SOURCES:
-
   BMPlayer:
-    :git: https://github.com/openHPI/BMPlayer
+    :commit: ec9297e
+    :git: https://github.com/BrikerMan/BMPlayer
   Spine:
     :commit: 1171b90
     :git: https://github.com/invliD/Spine.git
 
 CHECKOUT OPTIONS:
   BMPlayer:
-    :commit: e991e0500803d913cae6fab6dcb57ddff82c2cae
-    :git: https://github.com/openHPI/BMPlayer
+    :commit: ec9297e
+    :git: https://github.com/BrikerMan/BMPlayer
   Spine:
     :commit: 1171b90
     :git: https://github.com/invliD/Spine.git
@@ -81,7 +81,6 @@ SPEC CHECKSUMS:
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
+PODFILE CHECKSUM: f8906fe9dcc363ba636cbb672b61bcdec1afaf7e
 
-PODFILE CHECKSUM: e4d30547657c2cf8a6ea761cbf7518aebb4253d6
-
-COCOAPODS: 1.2.1
+COCOAPODS: 1.2.0

@@ -121,15 +121,26 @@ class VideoViewController : UIViewController {
 
 extension VideoViewController: BMPlayerDelegate {
 
+    private var newTrackingContext: [String: String?] {
+        var context = ["section_id": self.video?.item?.section?.id]
+        context["course_id"] = self.video?.item?.section?.course?.id
+        context["currentTime"] = String(describing: self.player?.avPlayer?.currentTime().seconds ?? 0.0)
+        return context
+    }
+
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .bufferFinished {
             player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+        } else if state == .playedToTheEnd {
+            TrackingHelper.sendEvent("VIDEO_END", resource: self.video, context: self.newTrackingContext)
         }
     }
 
-    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {}
+    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
+    }
 
-    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {}
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {
+    }
 
     func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {
         if playing {

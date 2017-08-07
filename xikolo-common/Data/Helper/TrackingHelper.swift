@@ -52,33 +52,36 @@ class TrackingHelper {
         ]
     }
 
-    fileprivate class func createEvent(_ verb: String, resource: BaseModel, context: [String: String]) -> Future<TrackingEvent, XikoloError> {
-        guard let trackingResource = TrackingEventResource(resource: resource) else {
-            return Future.init(error: XikoloError.modelIncomplete)
-        }
+    fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
 
         let trackingVerb = TrackingEventVerb()
         trackingVerb.type = verb
 
         var trackingContext = defaultContext()
+
         for (k, v) in context {
-            trackingContext.updateValue(v, forKey: k)
+            if let v = v {
+                trackingContext.updateValue(v, forKey: k)
+            }
         }
 
         let trackingEvent = TrackingEvent()
-        trackingEvent.verb = trackingVerb
-        trackingEvent.resource = trackingResource
-        trackingEvent.timestamp = Date()
-        trackingEvent.context = trackingContext as [String : AnyObject]?
-
         let trackingUser = TrackingEventUser()
         trackingUser.uuid = UserProfileHelper.getUserId()
         trackingEvent.user = trackingUser
-
+        trackingEvent.verb = trackingVerb
+        if let resource = resource {
+            trackingEvent.resource = TrackingEventResource(resource: resource)
+        } else {
+            //this is a fallback required by the tracking API where ressource cant be empty
+            trackingEvent.resource = TrackingEventResource(type: "None")
+        }
+        trackingEvent.timestamp = Date()
+        trackingEvent.context = trackingContext as [String : AnyObject]?
         return Future.init(value: trackingEvent)
     }
 
-    class func sendEvent(_ verb: String, resource: BaseModel, context: [String: String] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
             SpineHelper.save(event).asVoid()
         }

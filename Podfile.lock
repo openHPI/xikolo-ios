@@ -36,7 +36,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.3.0)
   - AlamofireObjectMapper (= 4.0.1)
-  - BMPlayer (= 0.8.7)
+  - BMPlayer (from `https://github.com/openHPI/BMPlayer`)
   - BrightFutures (= 5.1.0)
   - Down (= 0.3.2)
   - DownloadButton (= 0.1.0)
@@ -44,13 +44,15 @@ DEPENDENCIES:
   - Hero
   - ObjectMapper (= 2.0)
   - PinpointKit (from `https://github.com/Lickability/PinpointKit`, commit `dd5731c`)
-  - ReachabilitySwift (~> 3)
+  - ReachabilitySwift (= 3)
   - Result (= 3.1.0)
   - SDWebImage/Core (= 4.0.0)
   - Shimmer (= 1.0.2)
   - Spine (from `https://github.com/invliD/Spine.git`, commit `1171b90`)
 
 EXTERNAL SOURCES:
+  BMPlayer:
+    :git: https://github.com/openHPI/BMPlayer
   PinpointKit:
     :commit: dd5731c
     :git: https://github.com/Lickability/PinpointKit
@@ -59,6 +61,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/invliD/Spine.git
 
 CHECKOUT OPTIONS:
+  BMPlayer:
+    :commit: e991e0500803d913cae6fab6dcb57ddff82c2cae
+    :git: https://github.com/openHPI/BMPlayer
   PinpointKit:
     :commit: dd5731c
     :git: https://github.com/Lickability/PinpointKit
@@ -69,7 +74,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
-  BMPlayer: 5ba9e3f3d61ccc5a24ebd9cdc24901dcf28c98bc
+  BMPlayer: fef9e15635fe0e45e3398c0de0110638e1035b5e
   BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
   Down: afcfa1a49381b19733b67074bf239789edfa8ad4
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
@@ -86,6 +91,6 @@ SPEC CHECKSUMS:
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: fe58d77b8914f1ca8edb419c8a3a933ccc6fa3a5
+PODFILE CHECKSUM: e4d30547657c2cf8a6ea761cbf7518aebb4253d6
 
 COCOAPODS: 1.2.1

@@ -9,10 +9,12 @@
 import UIKit
 import SafariServices
 import SDWebImage
+import MessageUI
 
 class SettingsViewController: UITableViewController {
 
-    static let logoutIndexPath = IndexPath(row: 0, section: 2)
+    static let feedbackIndexPath = IndexPath(row: 0, section: 2)
+    static let logoutIndexPath = IndexPath(row: 0, section: 3)
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
@@ -64,7 +66,6 @@ class SettingsViewController: UITableViewController {
             self.emailView.isHidden = true
         }
 
-
         self.tableView.reloadData()
     }
 
@@ -90,6 +91,8 @@ class SettingsViewController: UITableViewController {
                 present(safariVC, animated: true, completion: nil)
                 safariVC.preferredControlTintColor = Brand.TintColor
             }
+        case (SettingsViewController.feedbackIndexPath.section, SettingsViewController.feedbackIndexPath.row):
+            self.sendFeedbackMail()
         case (SettingsViewController.logoutIndexPath.section, SettingsViewController.logoutIndexPath.row):
             UserProfileHelper.logout()
         default:
@@ -98,8 +101,31 @@ class SettingsViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let numberOfSections = super.numberOfSections(in: tableView)
-        return UserProfileHelper.isLoggedIn() ? numberOfSections : numberOfSections - 1
+        var numberOfSections = super.numberOfSections(in: tableView)
+
+        if !MFMailComposeViewController.canSendMail() {
+            numberOfSections -= 1
+        }
+
+        if !UserProfileHelper.isLoggedIn() {
+            numberOfSections -= 1
+        }
+
+        return numberOfSections
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var newIndexPath = indexPath
+
+        if !MFMailComposeViewController.canSendMail(), indexPath.section >= SettingsViewController.feedbackIndexPath.section {
+            newIndexPath.section += 1
+        }
+
+        if !UserProfileHelper.isLoggedIn(), indexPath.section >= SettingsViewController.logoutIndexPath.section {
+            newIndexPath.section += 1
+        }
+
+        return super.tableView(tableView, cellForRowAt: newIndexPath)
     }
 
     override func viewDidLayoutSubviews() {
@@ -124,4 +150,20 @@ class SettingsViewController: UITableViewController {
         UserDefaults.standard.set(contentPreloadDeactivated, forKey: UserDefaultsKeys.noContentPreloadKey)
         UserDefaults.standard.synchronize()
     }
+
+    private func sendFeedbackMail() {
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        composeVC.setToRecipients(Brand.FeedbackRecipients)
+        composeVC.setSubject(Brand.FeedbackSubject)
+        self.present(composeVC, animated: true, completion: nil)
+    }
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
 }

@@ -24,4 +24,7 @@ struct Brand {
     
     static let ButtonLabelSSO = "Single Sign On"
 
+    static let FeedbackRecipients = ["info@openhpi.de"]
+    static let FeedbackSubject = "openSAP | App Feedback"
+
 }

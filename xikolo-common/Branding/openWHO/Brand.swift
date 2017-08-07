@@ -23,5 +23,8 @@ struct Brand {
     static let PRIVACY_URL = Brand.BaseURL + "/pages/terms_of_use"
 
     static let ButtonLabelSSO = "WHO Identity (WIMS)"
+
+    static let FeedbackRecipients = ["info@openhpi.de"]
+    static let FeedbackSubject = "OpenWHO | App Feedback"
     
 }

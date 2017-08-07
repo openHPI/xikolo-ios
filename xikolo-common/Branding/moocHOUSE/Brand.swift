@@ -23,4 +23,7 @@ struct Brand {
     static let IMPRINT_URL = Brand.BaseURL + "/pages/imprint"
     static let PRIVACY_URL = Brand.BaseURL + "/pages/privacy"
 
+    static let FeedbackRecipients = ["info@openhpi.de"]
+    static let FeedbackSubject = "mooc.house | App Feedback"
+
 }

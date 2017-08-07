@@ -232,9 +232,11 @@
                         <outlet property="singleSignOnButton" destination="wFF-sx-KDY" id="zJ1-Ld-6o0"/>
                         <outlet property="singleSignOnView" destination="fpe-D4-IWc" id="T4f-9K-ZOb"/>
                         <segue destination="kmn-6n-Hdu" kind="show" identifier="ShowSSOWebView" id="hHI-Wd-uXh"/>
+                        <segue destination="3Em-OX-WUz" kind="unwind" identifier="unwindLogin" unwindAction="unwindLogin:" id="EF7-tN-L6n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiP-zR-m0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3Em-OX-WUz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="812" y="0.0"/>
         </scene>

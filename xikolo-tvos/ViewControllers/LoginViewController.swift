@@ -10,4 +10,9 @@ import UIKit
 
 class LoginViewController : AbstractLoginViewController {
 
+    override func didSuccessfullyLogin() {
+        super.didSuccessfullyLogin()
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+
 }

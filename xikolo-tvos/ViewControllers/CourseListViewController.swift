@@ -13,6 +13,7 @@ class CourseListViewController : AbstractCourseListViewController {
 
     override func viewDidLoad() {
         self.courseDisplayMode = .bothSectioned
+        updateView()
 
         super.viewDidLoad()
     }

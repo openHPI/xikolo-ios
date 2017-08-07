@@ -87,7 +87,7 @@ open class UserProfileHelper {
 
     static func refreshUserDependentData() {
         UserHelper.syncMe()
-        CourseHelper.refreshCourses()
+        EnrollmentHelper.syncEnrollments()
         CourseDateHelper.syncCourseDates()
         AnnouncementHelper.syncAnnouncements()
     }

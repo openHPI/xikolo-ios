@@ -98,6 +98,13 @@ class CourseDetailViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) {
+        segue.perform()
+        if UserProfileHelper.isLoggedIn() {
+            showEnrollmentDialog()
+        }
+    }
+
     func showEnrollmentOptions() {
         let alert = UIAlertController(title: NSLocalizedString("Finished learning?", comment:""), message:  NSLocalizedString("You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.", comment: ""), preferredStyle: .actionSheet) // 1
         let completedAction = UIAlertAction(title: NSLocalizedString("Mark as completed", comment: ""), style: .default) { _ in
@@ -116,6 +123,5 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion:nil)
     }
-    
 
 }

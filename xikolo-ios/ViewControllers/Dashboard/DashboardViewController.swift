@@ -45,6 +45,8 @@ class DashboardViewController : UIViewController {
         }
     }
 
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) { }
+
 }
 
 extension DashboardViewController : CourseDatesTableViewControllerDelegate {

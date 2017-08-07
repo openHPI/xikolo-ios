@@ -33,7 +33,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
     }
 
     @IBAction func dismissAction(_ sender: UIBarButtonItem) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "unwindLogin", sender: self)
     }
 
     @IBAction func registerButton(_ sender: AnyObject) {
@@ -52,6 +52,11 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 //       
 //        view = wkViewController
 //        wkViewController.load(request)
+    }
+
+    override func didSuccessfullyLogin() {
+        super.didSuccessfullyLogin()
+        performSegue(withIdentifier: "unwindLogin", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

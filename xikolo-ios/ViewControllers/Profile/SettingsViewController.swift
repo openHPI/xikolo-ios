@@ -76,6 +76,8 @@ class SettingsViewController: UITableViewController {
         self.profileImage.sd_setImage(with: user.avatar_url)
     }
 
+    @IBAction func unwindLogin(_ segue: UIStoryboardSegue) { }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.item) {
         case (0, 0):
@@ -124,4 +126,5 @@ class SettingsViewController: UITableViewController {
         UserDefaults.standard.set(contentPreloadDeactivated, forKey: UserDefaultsKeys.noContentPreloadKey)
         UserDefaults.standard.synchronize()
     }
+
 }

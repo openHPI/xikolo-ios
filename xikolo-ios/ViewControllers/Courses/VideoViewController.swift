@@ -129,7 +129,7 @@ class VideoViewController : UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let hiddenBars = UIDevice.current.orientation.isLandscape
+        let hiddenBars = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
         self.navigationController?.setNavigationBarHidden(hiddenBars, animated: true)
         self.tabBarController?.tabBar.isHidden = hiddenBars
     }

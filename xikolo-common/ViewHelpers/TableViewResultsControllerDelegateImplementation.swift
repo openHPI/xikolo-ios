@@ -99,8 +99,12 @@ class TableViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject,
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let configuration = self.configuration, !configuration.shouldShowHeader() {
+            return nil
+        }
+
         let (controller, newSection) = controllerAndImplementationSection(forSection: section)!
-            return controller.sections?[newSection].name
+        return controller.sections?[newSection].name
     }
 
 }
@@ -174,18 +178,35 @@ protocol TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
 
+    func shouldShowHeader() -> Bool
+
+}
+
+extension TableViewResultsControllerConfiguration {
+
+    func shouldShowHeader() -> Bool {
+        return true
+    }
+
 }
 
 // This is a wrapper for type erasure allowing the generic TableViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
 class TableViewResultsControllerConfigurationWrapper<T: BaseModel>: TableViewResultsControllerConfiguration {
-    private let configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
+
+    private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
+    private let _shouldShowHeader: () -> Bool
 
     required init<U: TableViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
-        self.configureTableCell = configuration.configureTableCell
+        self._configureTableCell = configuration.configureTableCell
+        self._shouldShowHeader = configuration.shouldShowHeader
     }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
-        self.configureTableCell(cell, controller, indexPath)
+        self._configureTableCell(cell, controller, indexPath)
+    }
+
+    func shouldShowHeader() -> Bool {
+        return self._shouldShowHeader()
     }
 }

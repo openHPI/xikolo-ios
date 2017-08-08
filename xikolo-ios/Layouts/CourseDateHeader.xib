@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CourseDateHeader" customModule="moocHOUSE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbR-ee-Lb1">
+                    <rect key="frame" x="20" y="13.5" width="47.5" height="23"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlB-dT-6ct">
+                            <rect key="frame" x="8" y="2" width="31.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="SlB-dT-6ct" secondAttribute="trailing" constant="8" id="9LW-bp-YJY"/>
+                        <constraint firstItem="SlB-dT-6ct" firstAttribute="leading" secondItem="CbR-ee-Lb1" secondAttribute="leading" constant="8" id="DH8-wa-Vq0"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="aos-z5-Q5f"/>
+                        <constraint firstAttribute="bottom" secondItem="SlB-dT-6ct" secondAttribute="bottom" constant="2" id="deJ-qL-TNV"/>
+                        <constraint firstItem="SlB-dT-6ct" firstAttribute="top" secondItem="CbR-ee-Lb1" secondAttribute="top" constant="2" id="egs-Bz-KAS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CbR-ee-Lb1" secondAttribute="trailing" constant="8" id="5dt-9Z-0VA"/>
+                <constraint firstItem="CbR-ee-Lb1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6K7-gp-rvV"/>
+                <constraint firstItem="CbR-ee-Lb1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Mqb-Ei-Ped"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="leadingConstraint" destination="Mqb-Ei-Ped" id="Qdl-Ib-4wr"/>
+                <outlet property="titleBackgroundView" destination="CbR-ee-Lb1" id="FXs-dm-eS1"/>
+                <outlet property="titleView" destination="SlB-dT-6ct" id="Rca-Iu-LdE"/>
+                <outlet property="trailingConstraint" destination="5dt-9Z-0VA" id="QFv-hI-tf8"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </view>
+    </objects>
+</document>

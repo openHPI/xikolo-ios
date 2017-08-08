@@ -8,39 +8,82 @@
 
 import Foundation
 import UIKit
+import CoreData
+import DZNEmptyDataSet
 
-class CourseActivityViewController : UITableViewController {
 
-    weak var delegate: CourseActivityViewControllerDelegate?
+class CourseActivityViewController: UICollectionViewController {
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        delegate?.changedCourseActivityTableViewHeight(tableViewHeight())
+    var resultsController: NSFetchedResultsController<Course>!
+    var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // TODO: proper API call and cell UI
+        let request: NSFetchRequest<Course>
+        if UserProfileHelper.isLoggedIn() {
+            request = CourseHelper.getEnrolledAccessibleCoursesRequest()
+        } else {
+            request = CourseHelper.getInterestingCoursesRequest()
+        }
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView!, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
+        let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseActivityViewConfiguration())
+        resultsControllerDelegateImplementation.configuration = configuration
+        resultsController.delegate = resultsControllerDelegateImplementation
+        collectionView!.dataSource = resultsControllerDelegateImplementation
+
+        do {
+            try resultsController.performFetch()
+        } catch {
+            // TODO: Error handling.
+        }
+
+        CourseHelper.refreshCourses()
+    }
+}
+
+extension CourseActivityViewController {
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let visualCourse = resultsController.object(at: indexPath)
+        let course = try! CourseHelper.getByID(visualCourse.id)
+        AppDelegate.instance().goToCourse(course!)
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+}
+
+extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 300, height: 240)
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let padding: CGFloat = 10.0
+        let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath(item: 0, section: section))
+        let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
+        let viewWidth = self.collectionView?.frame.size.width ?? 0
+        let horizontalPadding = max(0, (viewWidth - 2*padding - numberOfCellsInSection * cellSize.width) / 2)
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CourseActivityCell") as! CourseActivityRow
-        return cell
-    }
-
-    func tableViewHeight() -> CGFloat {
-        tableView.layoutIfNeeded()
-        return tableView.contentSize.height
+        return UIEdgeInsets(top: 0, left: padding + horizontalPadding, bottom: 0, right: padding + horizontalPadding)
     }
 
 }
 
 
-protocol CourseActivityViewControllerDelegate: class {
+struct CourseActivityViewConfiguration : CollectionViewResultsControllerConfiguration {
 
-    func changedCourseActivityTableViewHeight(_ height: CGFloat)
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
+        let cell = cell as! CourseCell
+        let course = controller.object(at: indexPath)
+        cell.configure(course)
+    }
 
 }

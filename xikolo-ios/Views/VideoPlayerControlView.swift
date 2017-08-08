@@ -56,7 +56,6 @@ class VideoPlayerControlView: BMPlayerControlView {
                 make.right.equalTo(self.bottomMaskView.snp.right)
             }
         }
-
     }
 
     @objc private func onPlaybackRateButtonPressed() {

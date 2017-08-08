@@ -24,7 +24,7 @@ struct Brand {
 
     static let ButtonLabelSSO = "WHO Identity (WIMS)"
 
-    static let FeedbackRecipients = ["info@openhpi.de"]
+    static let FeedbackRecipients = ["mobile-feedback@hpi.de"]
     static let FeedbackSubject = "OpenWHO | App Feedback"
     
 }

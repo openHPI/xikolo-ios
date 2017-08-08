@@ -48,7 +48,7 @@ class VideoViewController : UIViewController {
     }
 
     func setupPlayer() {
-        BMPlayerConf.topBarShowInCase = .horizantalOnly
+        BMPlayerConf.topBarShowInCase = UIDevice.current.userInterfaceIdiom == .pad ? .none : .horizantalOnly
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.enableBrightnessGestures = false

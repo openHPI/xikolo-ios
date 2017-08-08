@@ -29,21 +29,34 @@ class VideoPlayerControlView: BMPlayerControlView {
         self.playbackRateButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         self.updatePlaybackRateButton()
 
-        self.playbackRateButton.snp.makeConstraints { make in
-            make.width.equalTo(40)
-            make.height.equalTo(20)
-            make.centerY.equalTo(self.currentTimeLabel)
-            make.left.equalTo(self.totalTimeLabel.snp.right).offset(5)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            self.playbackRateButton.snp.makeConstraints { make in
+                make.width.equalTo(40)
+                make.height.equalTo(20)
+                make.centerY.equalTo(self.currentTimeLabel)
+                make.left.equalTo(self.totalTimeLabel.snp.right).offset(5)
+                make.right.equalTo(self.bottomMaskView.snp.right).offset(-10)
+            }
+
+            self.fullscreenButton.removeFromSuperview()
+        } else {
+            self.playbackRateButton.snp.makeConstraints { make in
+                make.width.equalTo(40)
+                make.height.equalTo(20)
+                make.centerY.equalTo(self.currentTimeLabel)
+                make.left.equalTo(self.totalTimeLabel.snp.right).offset(5)
+            }
+
+            self.fullscreenButton.snp.removeConstraints()
+            self.fullscreenButton.snp.makeConstraints { make in
+                make.width.equalTo(50)
+                make.height.equalTo(50)
+                make.centerY.equalTo(self.currentTimeLabel)
+                make.left.equalTo(self.playbackRateButton.snp.right).offset(5)
+                make.right.equalTo(self.bottomMaskView.snp.right)
+            }
         }
 
-        self.fullscreenButton.snp.removeConstraints()
-        self.fullscreenButton.snp.makeConstraints { make in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.centerY.equalTo(self.currentTimeLabel)
-            make.left.equalTo(self.playbackRateButton.snp.right).offset(5)
-            make.right.equalTo(self.bottomMaskView.snp.right)
-        }
     }
 
     @objc private func onPlaybackRateButtonPressed() {

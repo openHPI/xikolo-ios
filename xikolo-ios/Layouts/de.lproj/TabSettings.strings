@@ -21,3 +21,6 @@
 
 /* Class = "UITableViewSection"; footerTitle = "Small-sized course material will be downloaded in advance for enrolled courses."; ObjectID = "k6k-z7-cxe"; */
 "k6k-z7-cxe.footerTitle" = "Für eingeschriebene Kurse werden kleine Materialen im Voraus geladen.";
+
+/* Class = "UILabel"; text = "Send Feedback"; ObjectID = "KWX-En-m9x"; */
+"KWX-En-m9x.text" = "Feedback senden";

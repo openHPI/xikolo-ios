@@ -86,7 +86,7 @@ class VideoPersistenceManager: NSObject {
         guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url),
                                                                             assetTitle: assetTitle,
                                                                             assetArtworkData: video.posterImageData,
-                                                                            options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 750000]) else { return }
+                                                                            options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 500000]) else { return }
 
         task.taskDescription = video.id
 

@@ -81,7 +81,7 @@ class VideoPersistenceManager: NSObject {
     private func startDownload(of video: Video, withURL url: URL) {
         let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = video.item?.title ?? "Untitled video"
-        let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))"
+        let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
 
         guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url),
                                                                             assetTitle: assetTitle,

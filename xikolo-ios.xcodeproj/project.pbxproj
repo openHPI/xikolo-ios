@@ -543,6 +543,14 @@
 		5019A7691F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */; };
 		5019A76A1F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */; };
 		5019A76B1F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */; };
+		503585051F3AF6AA002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		503585061F3B06D8002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		503585071F3B06DD002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		503585081F3B06E0002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		503585091F3B06E5002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		5035850A1F3B06E5002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		5035850C1F3B06E7002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		5060A5221F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A5251F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A5281F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
@@ -1797,6 +1805,7 @@
 		4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_tvOS_TopShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+DetailedContent.swift"; path = "Data/Model/Video+DetailedContent.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RichText+DetailedContent.swift"; path = "Data/Model/RichText+DetailedContent.swift"; sourceTree = "<group>"; };
+		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedContent.swift; path = Data/Model/Protocol/DetailedContent.swift; sourceTree = "<group>"; };
 		506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
 		508451681F39BB2700520D87 /* CourseDateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDateHeader.xib; sourceTree = "<group>"; };
@@ -2413,6 +2422,7 @@
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
+				503585041F3AF6AA002A666C /* String+ascii.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3972,6 +3982,7 @@
 				509A7CDA1F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
 				24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */,
 				24BA40A21D3F9AB500E38C2C /* RichText+CoreDataProperties.swift in Sources */,
+				503585061F3B06D8002A666C /* String+ascii.swift in Sources */,
 				24BA40D41D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
 				24BA40BC1D3F9AD800E38C2C /* VideoProvider.swift in Sources */,
 				24BA408C1D3F9A9300E38C2C /* Course.swift in Sources */,
@@ -4232,6 +4243,7 @@
 				ABFCF7781E81EEC40043C7B7 /* UserProfile+CoreDataProperties.swift in Sources */,
 				243CE4771D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
 				24BA40961D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
+				503585081F3B06E0002A666C /* String+ascii.swift in Sources */,
 				4E6AB1F61DD36AB500B048DB /* CourseDate+CoreDataProperties.swift in Sources */,
 				24E3DD211D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				24BA40C41D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
@@ -4455,6 +4467,7 @@
 				ABFCF7761E81EEC40043C7B7 /* UserProfile+CoreDataProperties.swift in Sources */,
 				243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
 				2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
+				503585071F3B06DD002A666C /* String+ascii.swift in Sources */,
 				4E6AB1F31DD36AB500B048DB /* CourseDate+CoreDataProperties.swift in Sources */,
 				24E3DD201D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				2490C4C91D1C486100F42949 /* CourseHeaderView.swift in Sources */,
@@ -4566,6 +4579,7 @@
 				70D1EA3A1EF0AAFF0088C0FF /* EnrollmentVisits.swift in Sources */,
 				70D1EAB61EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
 				70D1EA831EF0AB560088C0FF /* Video.swift in Sources */,
+				5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */,
 				70D1EAD61EF0AC290088C0FF /* Error.swift in Sources */,
 				70D1EA251EF0AAE50088C0FF /* CourseItem.swift in Sources */,
 				509A7CE01F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
@@ -4690,6 +4704,7 @@
 				70D1EB4E1EF1342B0088C0FF /* ItemRichTextController.swift in Sources */,
 				70D1EA0B1EF0AAC00088C0FF /* Content+CoreDataProperties.swift in Sources */,
 				70D1EA201EF0AADF0088C0FF /* CourseDate.swift in Sources */,
+				5035850C1F3B06E7002A666C /* String+ascii.swift in Sources */,
 				70D1EA4B1EF0AB130088C0FF /* PlatformEvent.swift in Sources */,
 				70D1EA5D1EF0AB2D0088C0FF /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				70D1EAC61EF0AC130088C0FF /* QuizHelper.swift in Sources */,
@@ -4870,6 +4885,7 @@
 				509A7CD71F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
 				240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A16D921CFFA72100CAD9FE /* CoreDataHelper.swift in Sources */,
+				503585051F3AF6AA002A666C /* String+ascii.swift in Sources */,
 				ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */,
 				F80D67931B98683400E27520 /* AnnouncementViewController.swift in Sources */,
 				243CE48C1D786422007C59B6 /* TrackingEvent.swift in Sources */,
@@ -5024,6 +5040,7 @@
 				509A7CDD1F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
 				ABA0F09F1DF8CDF60001D88D /* TrackingEventResource.swift in Sources */,
 				ABA0F0441DF8CD2C0001D88D /* Channel.swift in Sources */,
+				503585091F3B06E5002A666C /* String+ascii.swift in Sources */,
 				ABA0F05C1DF8CD940001D88D /* CourseSection.swift in Sources */,
 				ABA0F06E1DF8CDAE0001D88D /* Announcement+CoreDataProperties.swift in Sources */,
 				ABA0F01A1DF8CCA40001D88D /* CourseContentTableViewController.swift in Sources */,
@@ -5284,6 +5301,7 @@
 				ABA0F03A1DF8CD190001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				ABB49A8F1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */,
 				ABA0F0421DF8CD280001D88D /* Channel+CoreDataProperties.swift in Sources */,
+				5035850A1F3B06E5002A666C /* String+ascii.swift in Sources */,
 				ABA0F0701DF8CDB00001D88D /* Announcement+CoreDataProperties.swift in Sources */,
 				ABA0F0821DF8CDCE0001D88D /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				ABA0F1151DF8CF6D0001D88D /* UnsupportedQuestionViewController.swift in Sources */,

@@ -12,10 +12,10 @@ import DZNEmptyDataSet
 
 class CourseDatesTableViewController : UITableViewController {
 
+    @IBOutlet var loginButton: UIBarButtonItem!
+
     var resultsController: NSFetchedResultsController<CourseDate>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseDate>!
-
-    weak var delegate: CourseDatesTableViewControllerDelegate?
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -25,10 +25,18 @@ class CourseDatesTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
+        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
+
+        TrackingHelper.sendEvent("VISITED_DASHBOARD", resource: nil)
+        self.updateAfterLogin()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(CourseDatesTableViewController.updateAfterLogin),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
+
         let request = CourseDateHelper.getCourseDatesRequest()
-
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
-
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseDateCell")
         let configuration = TableViewResultsControllerConfigurationWrapper(CourseDatesTableViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
@@ -50,32 +58,29 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        delegate?.changedCourseDatesTableViewHeight(tableViewHeight())
+    override func viewWillAppear(_ animated: Bool) {
+        CourseDateHelper.syncCourseDates()
+    }
+
+    func updateAfterLogin() {
+        self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
+        CourseDateHelper.syncCourseDates()
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let header = tableView.dequeueReusableCell(withIdentifier: "CourseDateHeader") as! CourseDateHeader
-        header.titleBackgroundView.backgroundColor = Brand.TintColorSecond
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDateHeader")
+        let header = cell as! CourseDateHeader
 
-        let sectionTitle = resultsController.sections?[section].name
-        header.titleView.text = sectionTitle
+        let minPadding = self.tableView.separatorInset.left
+        header.leadingConstraint.constant = minPadding
+        header.trailingConstraint.constant = minPadding
+        header.titleBackgroundView.backgroundColor = Brand.TintColorSecond
+        header.titleView.text = self.resultsController.sections?[section].name
         return header
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
-    }
-
-    func tableViewHeight() -> CGFloat {
-        tableView.layoutIfNeeded()
-        if tableView.contentSize.height == 0.0 {
-            return 280
-        } else {
-            return tableView.contentSize.height
-        }
     }
 
 }
@@ -99,6 +104,10 @@ struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfigurati
         let cell = cell as! CourseDateCell
         let courseDate = controller.object(at: indexPath)
         cell.configure(courseDate)
+    }
+
+    func shouldShowHeader() -> Bool {
+        return false
     }
 
 }
@@ -133,10 +142,4 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
         return attributedString
     }
     
-}
-
-protocol CourseDatesTableViewControllerDelegate: class {
-
-    func changedCourseDatesTableViewHeight(_ height: CGFloat)
-
 }

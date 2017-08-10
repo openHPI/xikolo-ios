@@ -42,7 +42,7 @@ class CoreDataHelper {
     
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
+        return NSManagedObjectModel(contentsOf: modelURL)
     }()
 
     static func saveContext () {

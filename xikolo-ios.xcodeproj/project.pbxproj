@@ -630,6 +630,10 @@
 		703005C01EFEFC1600CCDCC9 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35C9321E89DAA4009832A5 /* UserHelper.swift */; };
 		70388C631EF1566A0093F186 /* AnnouncementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C611EF1566A0093F186 /* AnnouncementsTableViewController.swift */; };
 		70388C641EF1566A0093F186 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C621EF1566A0093F186 /* NewsViewController.swift */; };
+		70495A601F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
+		70495A611F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
+		70495A621F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
+		70495A631F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
 		7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
@@ -1851,6 +1855,7 @@
 		6E388554E08BE40160B5B382 /* Pods-moocHOUSE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsTableViewController.swift; sourceTree = "<group>"; };
 		70388C621EF1566A0093F186 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		70495A5F1F3DD04700960B49 /* RetryHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RetryHelper.swift; path = Helper/RetryHelper.swift; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
@@ -2395,6 +2400,7 @@
 				24CB7E511CC6813A00960269 /* Resources */,
 				241D4AEA1CC9918600E35B1F /* ViewControllers */,
 				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
+				70495A5E1F3DCF4C00960B49 /* Helpers */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Localizable.strings */,
 				2493481A1D9550FD006D4F2C /* Localizable.stringsdict */,
@@ -2485,6 +2491,14 @@
 				5060A5211F177304007896FF /* DetailedContent.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		70495A5E1F3DCF4C00960B49 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				70495A5F1F3DD04700960B49 /* RetryHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		709C93501EF09B9E00F8F045 /* moocHOUSE */ = {
@@ -4393,6 +4407,7 @@
 				AB34C9BC1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
+				70495A611F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				70F4564D1F0139B400A2C6B7 /* NewsViewController.swift in Sources */,
 				24BA40931D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */,
@@ -4815,6 +4830,7 @@
 				70D1EA8C1EF0AB6A0088C0FF /* CourseProvider.swift in Sources */,
 				70D1EA191EF0AAD70088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA9D1EF0AB800088C0FF /* PlatformEventProvider.swift in Sources */,
+				70495A631F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				70D1EA1F1EF0AADF0088C0FF /* CourseDate.swift in Sources */,
 				70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */,
 				70D1EAC91EF0AC180088C0FF /* SpineHelper.swift in Sources */,
@@ -5312,6 +5328,7 @@
 				AB34C9BB1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
 				7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */,
+				70495A601F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
@@ -5470,6 +5487,7 @@
 				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
 				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
+				70495A621F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				ABA0F0391DF8CD180001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				70F4564E1F0139B500A2C6B7 /* NewsViewController.swift in Sources */,
 				ABA0F08D1DF8CDDF0001D88D /* RichText.swift in Sources */,

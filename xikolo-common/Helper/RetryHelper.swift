@@ -19,7 +19,7 @@ class RetryHelper {
         case ui
     }
 
-    class func start( block: Promise -> Void, max maxRetries: Int, timesWithDelayOf delay: Int) {
+    /*class func start( block: Promise -> Void, max maxRetries: Int, timesWithDelayOf delay: Int) {
         //let promise
         //recoverWi
         block.future.onSuccess {
@@ -29,21 +29,21 @@ class RetryHelper {
             start(block(), max: --maxRetries, timesWithDelayOf: min(MaxDelay, delay))
         }
         //DispatchQueue.global().asyncAf
+    }*/
+
+    class func retry(times: Int, block: @escaping () -> Future<[Enrollment], XikoloError>) -> Future<[Enrollment], XikoloError> {
+        return self.retry(times: times, cooldown: 30, block: block)
     }
 
-    func retry<T, E>(times: Int, block: @escaping () -> Future<T, E>) -> Future<T, E> {
-        return retry(times: times, cooldown: 0, block: block)
-    }
-
-    func retry<T, E>(times: Int, cooldown: TimeInterval, block: @escaping () -> Future<T, E>, cooldownRate: @escaping (TimeInterval) -> TimeInterval = { rate in return rate }) -> Future<T, E> {
+    class func retry(times: Int, cooldown: TimeInterval, block: @escaping () -> Future<[Enrollment], XikoloError>, cooldownRate: @escaping (TimeInterval) -> TimeInterval = { rate in return rate }) -> Future<[Enrollment], XikoloError> {
         let future = block()
 
-        if times > 0 {
+        if times-1 > 0 {
             return future.recoverWith { error in
                 let nextCooldown = cooldownRate(cooldown)
-                return after(interval: cooldown).flatMap { _ -> Future<T, E> in
+                return self.after(interval: cooldown).flatMap { _ -> Future<[Enrollment], XikoloError> in
                     let ablock = block
-                    return retry(times: times-1, cooldown: nextCooldown, block: ablock, cooldownRate: cooldownRate)
+                    return self.retry(times: times-1, cooldown: nextCooldown, block: ablock, cooldownRate: cooldownRate)
                 }
             }
         }
@@ -51,7 +51,7 @@ class RetryHelper {
         return future
     }
 
-    func after(interval: TimeInterval) -> Future<Void, NoError> {
+    class func after(interval: TimeInterval) -> Future<Void, XikoloError > {
         return Future { complete in
             let when = DispatchTime.now() + interval
             DispatchQueue.global().asyncAfter(deadline: when) {

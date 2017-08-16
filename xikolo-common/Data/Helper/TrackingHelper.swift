@@ -8,8 +8,34 @@
 
 import BrightFutures
 import UIKit
+import ReachabilitySwift
 
 class TrackingHelper {
+
+    #if os(tvOS)
+    fileprivate static let platform = "tvOS"
+    #else
+    fileprivate static let platform = "iOS"
+    #endif
+
+    var reachability: Reachability 
+
+    fileprivate static let osVersion: String = {
+        let version = ProcessInfo().operatingSystemVersion
+        return version.toString()
+    }()
+
+    fileprivate static let device: String = {
+        var sysinfo = utsname()
+        uname(&sysinfo)
+        var name = withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
+            String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
+        }
+        if ["i386", "x86_64"].contains(name) {
+            name = "Simulator"
+        }
+        return name
+    }()
 
     fileprivate class func defaultContext() -> [String: String] {
         let bundleInfo = Bundle.main.infoDictionary!
@@ -29,6 +55,7 @@ class TrackingHelper {
             "free_space": String(describing: self.systemFreeSize),
             "total_space": String(describing: self.systemSize),
             // TODO: set offline context
+            "network": ReachabilityHelper.state.rawValue
         ]
     }
 
@@ -53,10 +80,10 @@ class TrackingHelper {
         if let resource = resource {
             trackingEvent.resource = TrackingEventResource(resource: resource)
         } else {
-            //this is a fallback required by the tracking API where ressource cant be empty
+            //this is a fallback required by the tracking API where resource cant be empty
             trackingEvent.resource = TrackingEventResource(type: "None")
         }
-        trackingEvent.timestamp = Date()
+        trackingEvent.timestamp = NSDate()
         trackingEvent.context = trackingContext as [String : AnyObject]?
         return Future.init(value: trackingEvent)
     }

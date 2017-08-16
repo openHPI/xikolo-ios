@@ -661,6 +661,10 @@
 		7064B7CD1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
 		7064B7CE1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
 		7064B7CF1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7D11F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
+		7064B7D21F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
+		7064B7D31F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
+		7064B7D41F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
 		709C93401EF099A900F8F045 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
 		709C93471EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
@@ -1872,6 +1876,7 @@
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
 		7064B7B61F4484590035DB35 /* TrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
 		7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		709C93031EF0952500F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C932C1EF0996C00F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2344,6 +2349,7 @@
 			children = (
 				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 				50F720271F28D72D00779995 /* VideoPersistenceManager.swift */,
+				7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4353,6 +4359,7 @@
 				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
 				249E3AA11D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				4E2B80AC1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
+				7064B7D21F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				ABC8A1691D689ED80059CEF2 /* LTIExercise.swift in Sources */,
 				24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
 				50E16CF31F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
@@ -4909,6 +4916,7 @@
 				70D1EAA91EF0AB950088C0FF /* CoreDataHelper.swift in Sources */,
 				70D1EA3A1EF0AAFF0088C0FF /* EnrollmentVisits.swift in Sources */,
 				70D1EAB61EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
+				7064B7D41F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				70D1EA831EF0AB560088C0FF /* Video.swift in Sources */,
 				5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */,
 				70D1EAD61EF0AC290088C0FF /* Error.swift in Sources */,
@@ -5281,6 +5289,7 @@
 				249E3A9F1D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* AnnouncementCell.swift in Sources */,
 				ABC8A1671D689ED80059CEF2 /* LTIExercise.swift in Sources */,
+				7064B7D11F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				50E16CF21F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
@@ -5441,6 +5450,7 @@
 				ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */,
 				ABA0F0B11DF8CE160001D88D /* RichTextProvider.swift in Sources */,
 				ABA0F0F61DF8CEAB0001D88D /* Settings.swift in Sources */,
+				7064B7D31F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				ABA0F0B31DF8CE190001D88D /* VideoProvider.swift in Sources */,
 				ABA0F0531DF8CD880001D88D /* CourseItem+CoreDataProperties.swift in Sources */,
 				AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */,

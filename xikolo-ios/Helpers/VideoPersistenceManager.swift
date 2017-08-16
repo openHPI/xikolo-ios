@@ -59,26 +59,8 @@ class VideoPersistenceManager: NSObject {
     }
 
     func downloadStream(for video: Video) {
-        guard let url = video.hlsURL else {
-            return
-        }
+        guard let url = video.hlsURL else { return }
 
-        if url.host == "player.vimeo.com" {
-            // !!! Important !!!
-            // When trying to download HLS videos, vimeo redirects to one of its CDN servers. The AVURLAssetDownload
-            // can not handle such a redirect, which will result in a local video file that is not offline playable.
-            // Therefore, we need to retrieve the redirect url before starting the video download.
-            NetworkHelper.resolvedRedirectURL(for: url).onSuccess { redirectUrl in
-                self.startDownload(of: video, withURL: redirectUrl)
-            }.onFailure { _ in
-                print("Failed to resolve redirect url")
-            }
-        } else {
-            self.startDownload(of: video, withURL: url)
-        }
-    }
-
-    private func startDownload(of video: Video, withURL url: URL) {
         let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = video.item?.title ?? "Untitled video"
         let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"

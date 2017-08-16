@@ -2,6 +2,7 @@ language: objective-c
 osx_image: xcode9
 xcode_workspace: xikolo-ios.xcworkspace
 xcode_scheme: xikolo-ios
+cache: cocoapods
 
 env:
   - SCHEME="openHPI-iOS" SDK="iphonesimulator"
@@ -20,9 +21,9 @@ env:
 #     - env: SCHEME="openWHO-tvOS" SDK="appletvsimulator"
 #     - env: SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
-# before_install:
+before_install:
 #   - gem install xcpretty
-#   - pod repo update > /dev/null
+  - pod repo update > /dev/null
 
 script:
   - set -o pipefail

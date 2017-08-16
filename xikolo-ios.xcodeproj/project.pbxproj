@@ -637,6 +637,30 @@
 		7057FFDC1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		7057FFDD1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		7057FFDE1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
+		7064B7B81F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7B91F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BA1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BB1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BC1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BD1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BE1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BF1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C01F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C11F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C21F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C31F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C41F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C51F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C61F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C81F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C91F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CA1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CB1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CC1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CD1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CE1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CF1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
 		709C93401EF099A900F8F045 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
 		709C93471EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
@@ -1846,6 +1870,8 @@
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
+		7064B7B61F4484590035DB35 /* TrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
+		7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		709C93031EF0952500F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C932C1EF0996C00F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2184,6 +2210,8 @@
 				243CE4781D6B40C6007C59B6 /* QuizQuestionSubmission.swift */,
 				24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */,
 				24A16D771CFDD27200CAD9FE /* RichText.swift */,
+				7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */,
+				7064B7B61F4484590035DB35 /* TrackingEvent.swift */,
 				243CE4901D786717007C59B6 /* TrackingEventUser.swift */,
 				243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */,
 				243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */,
@@ -4203,6 +4231,8 @@
 				243CE4871D709A1B007C59B6 /* Enrollment.swift in Sources */,
 				2490C4F11D216D4500F42949 /* Routes.swift in Sources */,
 				70A830AF1EC781020029235D /* AnnouncementProvider.swift in Sources */,
+				7064B7BA1F4484590035DB35 /* TrackingEvent.swift in Sources */,
+				7064B7C61F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				2490C4F41D216D6500F42949 /* Error.swift in Sources */,
 				AB17C5831DFCC5C90013BBCD /* PlatformEvent.swift in Sources */,
 				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
@@ -4267,6 +4297,7 @@
 				24BA40BE1D3F9ADB00E38C2C /* AnnouncementProvider.swift in Sources */,
 				2448BE231D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				509A7CDA1F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
+				7064B7C71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */,
 				24BA40A21D3F9AB500E38C2C /* RichText+CoreDataProperties.swift in Sources */,
 				503585061F3B06D8002A666C /* String+ascii.swift in Sources */,
@@ -4285,6 +4316,7 @@
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
 				AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				7064B7BB1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */,
 				24BA40C61D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
 				3D6F12EF1F2914BD00D5DFE8 /* SearchHelper.swift in Sources */,
@@ -4420,6 +4452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */,
+				7064B7C81F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24BA40BF1D3F9ADB00E38C2C /* AnnouncementProvider.swift in Sources */,
 				AB3B82201EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				24BA40A31D3F9AB600E38C2C /* RichText+CoreDataProperties.swift in Sources */,
@@ -4444,6 +4477,7 @@
 				AB1C033D1D8E0C9B0053B4E3 /* PeerAssessmentProvider.swift in Sources */,
 				24BA409D1D3F9AAE00E38C2C /* Content.swift in Sources */,
 				AB17C5851DFCC5CA0013BBCD /* PlatformEvent.swift in Sources */,
+				7064B7BC1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				24BA412D1D3F9D1300E38C2C /* CourseHeaderView.swift in Sources */,
 				240CAA1B1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24BA40D11D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
@@ -4587,6 +4621,8 @@
 				24BA41011D3F9B3F00E38C2C /* NotificationKeys.swift in Sources */,
 				70A830AE1EC781010029235D /* AnnouncementProvider.swift in Sources */,
 				24BA40C81D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
+				7064B7BD1F4484590035DB35 /* TrackingEvent.swift in Sources */,
+				7064B7C91F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				AB17C5861DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
 				24BA40B01D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
 				AB4A01B31E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
@@ -4646,6 +4682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */,
+				7064B7C51F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24A16D8B1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				AB3B821E1EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
@@ -4670,6 +4707,7 @@
 				AB2802CA1D2A8ABB008C8BAE /* Announcement+CoreDataProperties.swift in Sources */,
 				AB1C033B1D8E0C9A0053B4E3 /* PeerAssessmentProvider.swift in Sources */,
 				AB17C5821DFCC5C80013BBCD /* PlatformEvent.swift in Sources */,
+				7064B7B91F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				24D48E291CCA92CB00E8051E /* CourseProvider.swift in Sources */,
 				240CAA1A1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24128FAD1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
@@ -4888,6 +4926,7 @@
 				70D1EA221EF0AAE10088C0FF /* CourseItem+CoreDataProperties.swift in Sources */,
 				70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */,
 				70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */,
+				7064B7CD1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				5060A52B1F177304007896FF /* DetailedContent.swift in Sources */,
 				50E16D001F47014000D67632 /* CustomUserDefaults.swift in Sources */,
 				70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */,
@@ -4940,6 +4979,7 @@
 				70D1EAF31EF0ACB00088C0FF /* RichtextViewController.swift in Sources */,
 				70D1EB2A1EF12E110088C0FF /* Settings.swift in Sources */,
 				703005BC1EFEFC0A00CCDCC9 /* UserProvider.swift in Sources */,
+				7064B7C11F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				70D1EA5C1EF0AB2C0088C0FF /* QuizQuestion+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4963,6 +5003,7 @@
 				70F456341F0128E500A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EA7B1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */,
 				70D1EB451EF134150088C0FF /* CourseListViewController.swift in Sources */,
+				7064B7C21F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				70D1EA2C1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
 				70D1EB401EF133F10088C0FF /* UIViewController+ErrorHelper.swift in Sources */,
 				70D1EAC21EF0AC0C0088C0FF /* PeerAssessmentHelper.swift in Sources */,
@@ -4990,6 +5031,7 @@
 				70D1EA1D1EF0AADB0088C0FF /* CourseDate+CoreDataProperties.swift in Sources */,
 				70D1EB461EF134170088C0FF /* CourseTabBarController.swift in Sources */,
 				70D1EB5E1EF134800088C0FF /* AppDelegate.swift in Sources */,
+				7064B7CE1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				70D1EA6F1EF0AB410088C0FF /* RichText.swift in Sources */,
 				70D1EB481EF1341B0088C0FF /* LearningsViewController.swift in Sources */,
 				70D1EB491EF1341E0088C0FF /* ItemQuizIntroductionController.swift in Sources */,
@@ -5118,6 +5160,8 @@
 				70D1EA151EF0AAD10088C0FF /* Course.swift in Sources */,
 				70D1EA061EF0AAB90088C0FF /* Channel+CoreDataProperties.swift in Sources */,
 				70D1EA331EF0AAF40088C0FF /* Enrollment.swift in Sources */,
+				7064B7C31F4484590035DB35 /* TrackingEvent.swift in Sources */,
+				7064B7CF1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				70D1EADB1EF0AC2D0088C0FF /* Routes.swift in Sources */,
 				70D1EA7F1EF0AB510088C0FF /* (null) in Sources */,
 				70D1EA0F1EF0AACB0088C0FF /* Content.swift in Sources */,
@@ -5181,6 +5225,7 @@
 				24D48E191CCA4FC100E8051E /* Course.swift in Sources */,
 				2448BE211D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				509A7CD71F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
+				7064B7C41F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A16D921CFFA72100CAD9FE /* CoreDataHelper.swift in Sources */,
 				503585051F3AF6AA002A666C /* String+ascii.swift in Sources */,
@@ -5199,6 +5244,7 @@
 				AB4F22871D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */,
 				AB77C2971DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				7064B7B81F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				AB2802CB1D2A8ABB008C8BAE /* Announcement.swift in Sources */,
 				2433A5A31CE634A00060DD98 /* CourseItem.swift in Sources */,
 				3D6F12ED1F2914BD00D5DFE8 /* SearchHelper.swift in Sources */,
@@ -5339,6 +5385,7 @@
 				ABA0F0561DF8CD8C0001D88D /* CourseItem.swift in Sources */,
 				AB17C58F1DFCC5D10013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				509A7CDD1F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
+				7064B7CA1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				ABA0F09F1DF8CDF60001D88D /* TrackingEventResource.swift in Sources */,
 				ABA0F0441DF8CD2C0001D88D /* Channel.swift in Sources */,
 				503585091F3B06E5002A666C /* String+ascii.swift in Sources */,
@@ -5358,6 +5405,7 @@
 				ABA0F0291DF8CCCF0001D88D /* AnnouncementCell.swift in Sources */,
 				ABA0F0AF1DF8CE120001D88D /* QuizProvider.swift in Sources */,
 				ABA0F01C1DF8CCA90001D88D /* RichtextViewController.swift in Sources */,
+				7064B7BE1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				ABA0F0361DF8CD0D0001D88D /* CollectionType+dict.swift in Sources */,
 				ABA0F0281DF8CCCC0001D88D /* CourseItemCell.swift in Sources */,
 				3D6F12F11F2914BD00D5DFE8 /* SearchHelper.swift in Sources */,
@@ -5492,6 +5540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA0F0B81DF8CE1F0001D88D /* PeerAssessmentProvider.swift in Sources */,
+				7064B7CB1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				ABA0F0881DF8CDD50001D88D /* QuizOption.swift in Sources */,
 				AB3B82221EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				ABA0F0B01DF8CE120001D88D /* QuizProvider.swift in Sources */,
@@ -5516,6 +5565,7 @@
 				ABA0F0EF1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */,
 				ABA0F0DE1DF8CE6C0001D88D /* AnnouncementHelper.swift in Sources */,
 				ABA0F0A31DF8CDFE0001D88D /* CourseProvider.swift in Sources */,
+				7064B7BF1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				ABA0F10F1DF8CF5B0001D88D /* CourseDetailsViewController.swift in Sources */,
 				24C4EF8D1E3594C200200144 /* QuizQuestionSubmission.swift in Sources */,
 				ABA0F0851DF8CDD10001D88D /* QuizQuestion.swift in Sources */,
@@ -5652,6 +5702,7 @@
 				ABA0F0A41DF8CDFF0001D88D /* CourseProvider.swift in Sources */,
 				ABA0F0951DF8CDE80001D88D /* Video.swift in Sources */,
 				ABA0F1061DF8CEC20001D88D /* XikoloURL.swift in Sources */,
+				7064B7C01F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				70F4563F1F01296700A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */,
 				ABA0F0581DF8CD8D0001D88D /* CourseItem.swift in Sources */,
 				ABA0F0831DF8CDCE0001D88D /* QuizQuestion+CoreDataProperties.swift in Sources */,
@@ -5686,6 +5737,7 @@
 				ABA0F0891DF8CDD50001D88D /* QuizOption.swift in Sources */,
 				ABA0F1081DF8CF120001D88D /* ServiceProvider.swift in Sources */,
 				AB17C56E1DFCAD430013BBCD /* CourseDate+CoreDataProperties.swift in Sources */,
+				7064B7CC1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				ABA0F0641DF8CD9D0001D88D /* Content+CoreDataProperties.swift in Sources */,
 				ABA0F0801DF8CDCA0001D88D /* Quiz.swift in Sources */,
 				ABA0F0E31DF8CE750001D88D /* Error.swift in Sources */,

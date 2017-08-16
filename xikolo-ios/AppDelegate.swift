@@ -23,12 +23,7 @@ class AppDelegate : AbstractAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
         updateAnnouncements()
-        let block = { EnrollmentHelper.syncEnrollments() }
-        //RetryHelper.retry(times: 3, cooldown: TimeInterval.init(30.0), block: block, cooldownRate: { rate in return rate })
-        RetryHelper.retry(times: 5) {
-            print("## block value before execution")
-            return EnrollmentHelper.syncEnrollments()
-        }
+        EnrollmentHelper.syncEnrollments()
 
         VideoPersistenceManager.shared.restorePersistenceManager()
 

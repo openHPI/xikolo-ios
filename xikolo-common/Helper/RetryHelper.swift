@@ -31,17 +31,17 @@ class RetryHelper {
         //DispatchQueue.global().asyncAf
     }*/
 
-    class func retry(times: Int, block: @escaping () -> Future<[Enrollment], XikoloError>) -> Future<[Enrollment], XikoloError> {
+    class func retry<T>(times: Int, block: @escaping () -> Future<T, XikoloError>) -> Future<T, XikoloError> {
         return self.retry(times: times, cooldown: 30, block: block)
     }
 
-    class func retry(times: Int, cooldown: TimeInterval, block: @escaping () -> Future<[Enrollment], XikoloError>, cooldownRate: @escaping (TimeInterval) -> TimeInterval = { rate in return rate }) -> Future<[Enrollment], XikoloError> {
+    class func retry<T>(times: Int, cooldown: TimeInterval, block: @escaping () -> Future<T, XikoloError>, cooldownRate: @escaping (TimeInterval) -> TimeInterval = { rate in return rate }) -> Future<T, XikoloError> {
         let future = block()
 
         if times-1 > 0 {
             return future.recoverWith { error in
                 let nextCooldown = cooldownRate(cooldown)
-                return self.after(interval: cooldown).flatMap { _ -> Future<[Enrollment], XikoloError> in
+                return self.after(interval: cooldown).flatMap { _ -> Future<T, XikoloError> in
                     let ablock = block
                     return self.retry(times: times-1, cooldown: nextCooldown, block: ablock, cooldownRate: cooldownRate)
                 }

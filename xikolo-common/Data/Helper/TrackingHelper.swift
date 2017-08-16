@@ -28,6 +28,7 @@ class TrackingHelper {
             "screen_height": String(Int(screenSize.height)),
             "free_space": String(describing: self.systemFreeSize),
             "total_space": String(describing: self.systemSize),
+            // TODO: set offline context
         ]
     }
 

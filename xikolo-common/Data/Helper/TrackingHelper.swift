@@ -49,7 +49,33 @@ class TrackingHelper {
             "build_number": bundleInfo["CFBundleVersion"] as! String,
             "screen_width": String(Int(screenSize.width)),
             "screen_height": String(Int(screenSize.height)),
+            "free_space": String(describing: getFreeSize()),
+            "total_space": String(describing: getTotalSize()),
         ]
+    }
+
+    fileprivate class func getFreeSize() -> Int64{
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
+            if let freeSize = dictionary[FileAttributeKey.systemFreeSize] as? NSNumber {
+                return freeSize.int64Value
+            }
+        }else{
+            print("Error Obtaining System Memory Info:")
+        }
+        return 0
+    }
+
+    fileprivate class func getTotalSize() -> Int64{
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
+            if let freeSize = dictionary[FileAttributeKey.systemSize] as? NSNumber {
+                return freeSize.int64Value
+            }
+        }else{
+            print("Error Obtaining System Memory Info:")
+        }
+        return 0
     }
 
     fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {

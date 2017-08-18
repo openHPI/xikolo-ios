@@ -69,7 +69,7 @@ class VideoPersistenceManager: NSObject {
                                                                             assetTitle: assetTitle,
                                                                             assetArtworkData: video.posterImageData,
                                                                             options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 500000]) else { return }
-
+        TrackingHelper.sendEvent("VIDEO_DOWNLOAD_START", resource: video)
         task.taskDescription = video.id
 
         self.activeDownloadsMap[task] = video
@@ -115,6 +115,7 @@ class VideoPersistenceManager: NSObject {
     func downloadState(for video: Video) -> Video.DownloadState {
         if let localFileLocation = self.localAsset(for: video)?.url {
             if FileManager.default.fileExists(atPath: localFileLocation.path) {
+                TrackingHelper.sendEvent("VIDEO_DOWNLOAD_ENDED", resource: video)
                 return .downloaded
             }
         }

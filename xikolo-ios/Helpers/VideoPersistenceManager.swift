@@ -11,10 +11,10 @@ import AVFoundation
 import CoreData
 
 enum VideoPersistenceQuality: Int, CustomStringConvertible {
-    case low = 400000
-    case medium = 900000
-    case high = 1500000
-    case best = 2500000
+    case low = 200000
+    case medium = 400000
+    case high = 5000000
+    case best = 10000000
 
     static var orderedValues: [VideoPersistenceQuality] {
         return [.low, .medium, .high, .best]
@@ -88,7 +88,7 @@ class VideoPersistenceManager: NSObject {
         let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = video.item?.title ?? "Untitled video"
         let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
-        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoPersistenceQuality]
+        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoPersistenceQuality.rawValue]
 
         guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url),
                                                                             assetTitle: assetTitle,

@@ -10,6 +10,30 @@ import Foundation
 import AVFoundation
 import CoreData
 
+enum VideoPersistenceQuality: Int, CustomStringConvertible {
+    case low = 400000
+    case medium = 900000
+    case high = 1500000
+    case best = 2500000
+
+    static var orderedValues: [VideoPersistenceQuality] {
+        return [.low, .medium, .high, .best]
+    }
+
+    var description: String {
+        switch self {
+        case .low:
+            return NSLocalizedString("Low", comment: "video download quality")
+        case .medium:
+            return NSLocalizedString("Medium", comment: "video download quality")
+        case .high:
+            return NSLocalizedString("High", comment: "video download quality")
+        case .best:
+            return NSLocalizedString("Best", comment: "video download quality")
+        }
+    }
+
+}
 
 class VideoPersistenceManager: NSObject {
 
@@ -64,11 +88,12 @@ class VideoPersistenceManager: NSObject {
         let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = video.item?.title ?? "Untitled video"
         let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
+        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoPersistenceQuality]
 
         guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url),
                                                                             assetTitle: assetTitle,
                                                                             assetArtworkData: video.posterImageData,
-                                                                            options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 500000]) else { return }
+                                                                            options: options) else { return }
 
         task.taskDescription = video.id
 

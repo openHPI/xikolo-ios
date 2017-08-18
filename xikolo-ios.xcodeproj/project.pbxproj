@@ -1829,7 +1829,7 @@
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoQualityViewController.swift; sourceTree = "<group>"; };
 		50E16CF61F47014000D67632 /* CustomUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDefaults.swift; sourceTree = "<group>"; };
-		50F71FFD1F28BADA00779995 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
+		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
 		50F720271F28D72D00779995 /* VideoPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPersistenceManager.swift; sourceTree = "<group>"; };
 		50F7202C1F28E29B00779995 /* Video+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+Download.swift"; path = "Data/Model/Video+Download.swift"; sourceTree = "<group>"; };
 		5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -5552,7 +5552,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D91CF72EF100ED3EB0 /* Base */,
-				50F71FFD1F28BADA00779995 /* de */,
+				50E16D041F47070A00D67632 /* de */,
 			);
 			name = TabSettings.storyboard;
 			sourceTree = "<group>";

@@ -346,6 +346,6 @@
         <image name="TabBarIconSettings" width="25" height="25"/>
         <image name="TabBarIconSettingsSelected" width="25" height="25"/>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile-header-placeholder" width="1000" height="659"/>
+        <image name="profile-header-placeholder" width="1734" height="808"/>
     </resources>
 </document>

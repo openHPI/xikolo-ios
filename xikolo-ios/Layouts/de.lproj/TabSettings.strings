@@ -1,3 +1,4 @@
+
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "KhH-tO-TnH"; */
 "KhH-tO-TnH.title" = "Einstellungen";
 
@@ -24,3 +25,12 @@
 
 /* Class = "UILabel"; text = "Send Feedback"; ObjectID = "KWX-En-m9x"; */
 "KWX-En-m9x.text" = "Feedback senden";
+
+/* Class = "UILabel"; text = "Video Quality"; ObjectID = "TFS-M6-7DR"; */
+"TFS-M6-7DR.text" = "Video-Qualität";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "UOY-X6-cgU"; */
+"UOY-X6-cgU.text" = "Ausloggen";
+
+/* Class = "UINavigationItem"; title = "Video Quality"; ObjectID = "Xwk-nE-GTG"; */
+"Xwk-nE-GTG.title" = "Video-Qualität";

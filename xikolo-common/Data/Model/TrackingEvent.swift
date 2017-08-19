@@ -9,7 +9,7 @@
 
 import Foundation
 import CoreData
-
+import Spine
 
 public class TrackingEvent: NSManagedObject {
 

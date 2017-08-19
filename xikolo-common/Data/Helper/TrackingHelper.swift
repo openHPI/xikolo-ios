@@ -9,6 +9,7 @@
 import BrightFutures
 import UIKit
 import ReachabilitySwift
+import CoreData
 
 class TrackingHelper {
 
@@ -17,8 +18,6 @@ class TrackingHelper {
     #else
     fileprivate static let platform = "iOS"
     #endif
-
-    var reachability: Reachability 
 
     fileprivate static let osVersion: String = {
         let version = ProcessInfo().operatingSystemVersion
@@ -61,6 +60,7 @@ class TrackingHelper {
 
     fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
 
+
         let trackingVerb = TrackingEventVerb()
         trackingVerb.type = verb
 
@@ -72,7 +72,7 @@ class TrackingHelper {
             }
         }
 
-        let trackingEvent = TrackingEvent()
+        let trackingEvent = NSEntityDescription.insertNewObject(forEntityName: "TrackingEvent", into: CoreDataHelper.backgroundContext) as! TrackingEvent
         let trackingUser = TrackingEventUser()
         trackingUser.uuid = UserProfileHelper.getUserId()
         trackingEvent.user = trackingUser
@@ -84,7 +84,7 @@ class TrackingHelper {
             trackingEvent.resource = TrackingEventResource(type: "None")
         }
         trackingEvent.timestamp = NSDate()
-        trackingEvent.context = trackingContext as [String : AnyObject]?
+        trackingEvent.context = trackingContext
         return Future.init(value: trackingEvent)
     }
 

@@ -16,12 +16,12 @@ class ReachabilityHelper {
     //          connect to tableview again
 
     static var reachability: Reachability = {
-        return Reachability(hostname: Brand.Host)
-    }
+        return Reachability(hostname: Brand.Host)!
+    }()
 
-    var state: State = .offline
+    static var state: State = .offline
 
-    enum State {
+    enum State : String {
         case wifi = "wifi"
         case mobile = "mobile"
         case offline = "offline"

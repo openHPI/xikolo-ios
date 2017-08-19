@@ -22,7 +22,7 @@ extension TrackingEvent {
     @NSManaged var verb: TrackingEventVerb?
     @NSManaged var resource: TrackingEventResource?
     @NSManaged var result: NSObject?
-    @NSManaged var context: NSObject?
+    @NSManaged var context: [String : String]?
     @NSManaged var timestamp: NSDate?
 
 }

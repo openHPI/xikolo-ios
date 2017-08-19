@@ -73,5 +73,12 @@
 "Delete Video" = "Video löschen";
 "Cancel" = "Abbrechen";
 
+// Video Download Quality
+"Download Quality" = "Download-Qualität";
+"Low" = "Niedrig";
+"Medium" = "Mittel";
+"High" = "Hoch";
+"Best" = "Beste";
+
 // Course Content List
 "Slides" = "Folien";

@@ -49,33 +49,9 @@ class TrackingHelper {
             "build_number": bundleInfo["CFBundleVersion"] as! String,
             "screen_width": String(Int(screenSize.width)),
             "screen_height": String(Int(screenSize.height)),
-            "free_space": String(describing: getFreeSize()),
-            "total_space": String(describing: getTotalSize()),
+            "free_space": String(describing: self.systemFreeSize),
+            "total_space": String(describing: self.systemSize),
         ]
-    }
-
-    fileprivate class func getFreeSize() -> Int64{
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
-            if let freeSize = dictionary[FileAttributeKey.systemFreeSize] as? NSNumber {
-                return freeSize.int64Value
-            }
-        }else{
-            print("Error Obtaining System Memory Info:")
-        }
-        return 0
-    }
-
-    fileprivate class func getTotalSize() -> Int64{
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
-            if let freeSize = dictionary[FileAttributeKey.systemSize] as? NSNumber {
-                return freeSize.int64Value
-            }
-        }else{
-            print("Error Obtaining System Memory Info:")
-        }
-        return 0
     }
 
     fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
@@ -111,6 +87,34 @@ class TrackingHelper {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
             SpineHelper.save(event).asVoid()
         }
+    }
+
+}
+
+extension TrackingHelper {
+
+    fileprivate static var systemFreeSize: UInt64 {
+        return self.deviceData(for: .systemFreeSize) ?? 0
+    }
+
+    fileprivate static var systemSize: UInt64 {
+        return self.deviceData(for: .systemSize) ?? 0
+    }
+
+    private static func deviceData(for key: FileAttributeKey) -> UInt64? {
+        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else {
+            return nil
+        }
+
+        guard let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: path) else {
+            return nil
+        }
+
+        guard let value = dictionary[key] as? NSNumber else {
+            return nil
+        }
+
+        return value.uint64Value
     }
 
 }

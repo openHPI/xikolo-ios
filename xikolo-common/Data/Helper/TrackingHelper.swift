@@ -106,11 +106,11 @@ extension TrackingHelper {
             return nil
         }
 
-        guard let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: path) else {
+        guard let deviceData = try? FileManager.default.attributesOfFileSystem(forPath: path) else {
             return nil
         }
 
-        guard let value = dictionary[key] as? NSNumber else {
+        guard let value = deviceData[key] as? NSNumber else {
             return nil
         }
 

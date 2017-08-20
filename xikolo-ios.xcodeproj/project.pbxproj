@@ -813,7 +813,6 @@
 		70D1EA931EF0AB720088C0FF /* EnrollmentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC1BF141E7ABDFD00DEAF0E /* EnrollmentProvider.swift */; };
 		70D1EA951EF0AB760088C0FF /* LTIExerciseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */; };
 		70D1EA961EF0AB760088C0FF /* LTIExerciseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4D93C71D884E1F00987A0C /* LTIExerciseProvider.swift */; };
-		70D1EA971EF0AB7A0088C0FF /* AnnouncementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* AnnouncementProvider.swift */; };
 		70D1EA981EF0AB7B0088C0FF /* AnnouncementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* AnnouncementProvider.swift */; };
 		70D1EA991EF0AB7B0088C0FF /* AnnouncementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* AnnouncementProvider.swift */; };
 		70D1EA9A1EF0AB7C0088C0FF /* AnnouncementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* AnnouncementProvider.swift */; };
@@ -925,7 +924,6 @@
 		70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		70D1EB0A1EF0AD000088C0FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */; };
 		70D1EB0B1EF0AD050088C0FF /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */; };
-		70D1EB0C1EF0AD090088C0FF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 709C93581EF09C2C00F8F045 /* Info.plist */; };
 		70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93511EF09BB500F8F045 /* assets-brand.xcassets */; };
@@ -999,9 +997,6 @@
 		70D1EB601EF134870088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
 		70D1EB621EF134FD0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
-		70DABFEE1ED833110095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFED1ED833110095E551 /* Info.plist */; };
-		70DABFF31ED833AD0095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFEF1ED8331F0095E551 /* Info.plist */; };
-		70DABFF41ED833B10095E551 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DABFF11ED8332A0095E551 /* Info.plist */; };
 		70EA7EB31EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		70EA7EB41EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		70EA7EB51EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
@@ -3056,7 +3051,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
 					2490C4DA1D1D92F200F42949 = {
@@ -3145,7 +3140,7 @@
 					A90587BA1B3BFC130095DB89 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = WP53SSE8S6;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -3238,7 +3233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70DABFF31ED833AD0095E551 /* Info.plist in Resources */,
 				ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */,
 				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
 				24BA41081D3F9B5E00E38C2C /* TabNews.storyboard in Resources */,
@@ -3303,7 +3297,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70D1EB0C1EF0AD090088C0FF /* Info.plist in Resources */,
 				70D1EAE51EF0AC720088C0FF /* TabCourses.storyboard in Resources */,
 				70D1EB0B1EF0AD050088C0FF /* assets-ios-brand.xcassets in Resources */,
 				3DD110B11F06351D00C1060A /* logo_moochaus.png in Resources */,
@@ -3353,7 +3346,6 @@
 			files = (
 				70D1EAE41EF0AC710088C0FF /* TabCourses.storyboard in Resources */,
 				70D1EAE11EF0AC530088C0FF /* Main.storyboard in Resources */,
-				70DABFEE1ED833110095E551 /* Info.plist in Resources */,
 				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				508451691F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
@@ -3376,7 +3368,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70DABFF41ED833B10095E551 /* Info.plist in Resources */,
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Localizable.strings in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
@@ -5390,7 +5381,6 @@
 				70A830B01EC781020029235D /* AnnouncementProvider.swift in Sources */,
 				ABA0F0671DF8CDA00001D88D /* Content.swift in Sources */,
 				ABA0F0921DF8CDE40001D88D /* Video+CoreDataProperties.swift in Sources */,
-				70D1EA971EF0AB7A0088C0FF /* AnnouncementProvider.swift in Sources */,
 				ABA0F0AE1DF8CE0F0001D88D /* UserProfileProvider.swift in Sources */,
 				AB4A01B61E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				ABA0F06A1DF8CDA30001D88D /* LTIExercise+CoreDataProperties.swift in Sources */,
@@ -5597,11 +5587,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9CDFF1CD5FD8B31230182C3 /* Pods-openHPI-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
@@ -5619,11 +5609,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0BB2EE40302E6F69C25A0E68 /* Pods-openHPI-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.TopShelf;
@@ -5728,10 +5718,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E1FBE4324F13EDB067EDEA6 /* Pods-openSAP-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
@@ -5749,11 +5739,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.TopShelf;
@@ -5953,14 +5943,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -6004,14 +6000,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -6267,10 +6269,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A2AED23167DE48580641297 /* Pods-openWHO-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho.TopShelf;
@@ -6288,11 +6290,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/xikolo-tvos/TopShelf/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho.TopShelf;

@@ -39,8 +39,7 @@ class SettingsViewController: UITableViewController {
 
         // set text for github link
         let localizedGithubText = NSLocalizedString("%@ iOS app on GitHub", comment: "text for link to GitHub repo incl. app name")
-        let appName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String ?? "App"
-        self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, appName)
+        self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
 
         // set preload content settings
         let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)

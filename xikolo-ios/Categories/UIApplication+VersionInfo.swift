@@ -11,6 +11,10 @@ import UIKit
 
 extension UIApplication {
 
+    static var appName: String {
+        return Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+    }
+
     class func appVersion() -> String {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }

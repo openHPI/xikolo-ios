@@ -2502,10 +2502,10 @@
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
-				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				24CB7E351CC678A000960269 /* xikolo-tvos */,
+				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				D7D6B56CF669E978F1E7A6E0 /* Pods */,
 			);

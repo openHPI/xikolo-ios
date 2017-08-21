@@ -5839,7 +5839,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9CDFF1CD5FD8B31230182C3 /* Pods-openHPI-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
@@ -5861,7 +5861,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0BB2EE40302E6F69C25A0E68 /* Pods-openHPI-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openHPI/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
@@ -5970,7 +5970,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E1FBE4324F13EDB067EDEA6 /* Pods-openSAP-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
@@ -5991,7 +5991,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openSAP/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
@@ -6104,7 +6104,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6128,7 +6128,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C5C314EF68CBCFA95F65C2ED /* Pods-moocHOUSE-tvOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -6151,6 +6151,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93EC40843691F3CA1EE7988F /* Pods-moocHOUSE-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -6171,6 +6172,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E71780A972981FE6838E38BE /* Pods-moocHOUSE-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -6521,7 +6523,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A2AED23167DE48580641297 /* Pods-openWHO-tvOS-TopShelf.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
@@ -6542,7 +6544,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "xikolo-tvos/Branding/openWHO/xikolo-tvos.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";

@@ -16,6 +16,10 @@ class SettingsViewController: UITableViewController {
     static let feedbackIndexPath = IndexPath(row: 0, section: 2)
     static let logoutIndexPath = IndexPath(row: 0, section: 3)
 
+    @IBOutlet weak var imprintCell: UITableViewCell!
+    @IBOutlet weak var dataPrivacyCell: UITableViewCell!
+    @IBOutlet weak var githubCell: UITableViewCell!
+
     @IBOutlet var loginButton: UIBarButtonItem!
 
     @IBOutlet weak var headerImage: UIImageView!
@@ -32,6 +36,11 @@ class SettingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // set text for github link
+        let localizedGithubText = NSLocalizedString("%@ iOS app on GitHub", comment: "text for link to GitHub repo incl. app name")
+        let appName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String ?? "App"
+        self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, appName)
 
         // set preload content settings
         let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
@@ -79,22 +88,16 @@ class SettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
-        switch (newIndexPath.section, newIndexPath.item) {
-        case (0, 0):
-            if let url = URL(string: Brand.APP_IMPRINT_URL) {
-                let safariVC = SFSafariViewController(url: url)
-                present(safariVC, animated: true, completion: nil)
-                safariVC.preferredControlTintColor = Brand.TintColor
-            }
-        case (0, 1):
-            if let url = URL(string: Brand.APP_PRIVACY_URL) {
-                let safariVC = SFSafariViewController(url: url)
-                present(safariVC, animated: true, completion: nil)
-                safariVC.preferredControlTintColor = Brand.TintColor
-            }
-        case (SettingsViewController.feedbackIndexPath.section, SettingsViewController.feedbackIndexPath.row):
+        switch newIndexPath {
+        case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
+            self.open(url: URL(string: Brand.APP_IMPRINT_URL))
+        case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):
+            self.open(url: URL(string: Brand.APP_PRIVACY_URL))
+        case let githubIndexPath where githubIndexPath == tableView.indexPath(for: self.githubCell):
+            self.open(url: URL(string: Brand.APP_GITHUB_URL))
+        case SettingsViewController.feedbackIndexPath:
             self.sendFeedbackMail()
-        case (SettingsViewController.logoutIndexPath.section, SettingsViewController.logoutIndexPath.row):
+        case SettingsViewController.logoutIndexPath:
             UserProfileHelper.logout()
         default:
             break
@@ -154,6 +157,14 @@ class SettingsViewController: UITableViewController {
         }
 
         return newIndexPath
+    }
+
+    private func open(url: URL?) {
+        guard let urlToOpen = url else { return }
+
+        let safariVC = SFSafariViewController(url: urlToOpen)
+        safariVC.preferredControlTintColor = Brand.TintColor
+        self.present(safariVC, animated: true, completion: nil)
     }
 
     private func sendFeedbackMail() {

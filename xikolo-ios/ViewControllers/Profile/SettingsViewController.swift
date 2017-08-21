@@ -171,7 +171,27 @@ class SettingsViewController: UITableViewController {
         composeVC.mailComposeDelegate = self
         composeVC.setToRecipients(Brand.FeedbackRecipients)
         composeVC.setSubject(Brand.FeedbackSubject)
+        composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: false)
+        composeVC.navigationBar.tintColor = Brand.TintColor
         self.present(composeVC, animated: true, completion: nil)
+    }
+
+    private var feedbackMailSystemInfo: String {
+        let components = [
+            "",
+            "",
+            "---------------------",
+            "System info",
+            "---------------------",
+            "platform: \(UIApplication.platform)",
+            "os version: \(UIApplication.osVersion)",
+            "device: \(UIApplication.device)",
+            "app name: \(UIApplication.appName)",
+            "app version: \(UIApplication.appVersion())",
+            "app build: \(UIApplication.appBuild())",
+
+        ]
+        return components.joined(separator: "\n")
     }
 }
 

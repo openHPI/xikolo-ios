@@ -66,6 +66,7 @@
 // Settings
 "enrollments" = "Kurseinschreibungen";
 "logout" = "Ausloggen";
+"%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
 
 // Video Downloads
 "Download Video" = "Video herunterladen";

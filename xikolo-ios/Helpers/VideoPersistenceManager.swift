@@ -200,10 +200,8 @@ class VideoPersistenceManager: NSObject {
 
         self.progressMap[videoId] = progress
     }
-    
+
 }
-
-
 
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
@@ -252,7 +250,9 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 let bookmark = try location.bookmarkData()
                 video.local_file_bookmark = NSData(data: bookmark)
                 try video.managedObjectContext?.save()
-                TrackingHelper.sendEvent("VIDEO_DOWNLOAD_ENDED", resource: video, context: ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)])
+
+                let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
+                TrackingHelper.sendEvent("VIDEO_DOWNLOAD_ENDED", resource: video, context: context)
             } catch {
                 // Failed to create bookmark for location
                 self.deleteAsset(for: video)

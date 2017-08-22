@@ -36,8 +36,8 @@ class VideoPlayerControlView: BMPlayerControlView {
             self.offlineLabel.snp.makeConstraints { make in
                 make.width.equalTo(50)
                 make.height.equalTo(20)
-                make.top.equalTo(self.topMaskView.snp.top).offset(5)
-                make.right.equalTo(self.topMaskView.snp.right).offset(-20)
+                make.top.equalTo(self.topMaskView.snp.top).offset(15)
+                make.right.equalTo(self.topMaskView.snp.right).offset(-12)
             }
         } else {
             self.offlineLabel.snp.makeConstraints { make in

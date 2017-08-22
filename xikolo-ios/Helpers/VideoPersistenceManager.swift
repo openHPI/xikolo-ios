@@ -161,6 +161,7 @@ class VideoPersistenceManager: NSObject {
 
         for (taskKey, assetVal) in activeDownloadsMap {
             if video == assetVal  {
+                TrackingHelper.sendEvent("VIDEO_DOWNLOAD_CANCELED", resource: video)
                 task = taskKey
                 break
             }

@@ -13,7 +13,7 @@ iOS application for openHPI, openSAP, mooc.house and OpenWHO
 - clone this repository
 - run `pod install`
 - open xikolo-ios.xcworkspace in Xcode
-- start one of the defined target
+- start one of the defined targets
 
 ### Contributing
 If you would like to contribute by adding a feature or fixing a bug, feel free to do so. You can have a look at the open issues to get some inspiration and create a pull request as soon as you are ready to go.

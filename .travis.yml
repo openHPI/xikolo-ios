@@ -1,27 +1,20 @@
 language: objective-c
-osx_image: xcode8.2
+osx_image: xcode9
 xcode_workspace: xikolo-ios.xcworkspace
 xcode_scheme: xikolo-ios
+cache: cocoapods
 
 env:
   - SCHEME="openHPI-iOS" SDK="iphonesimulator"
-  - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
   - SCHEME="openSAP-iOS" SDK="iphonesimulator"
-  - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
   - SCHEME="openWHO-iOS" SDK="iphonesimulator"
-  - SCHEME="openWHO-tvOS" SDK="appletvsimulator"
   - SCHEME="moocHOUSE-iOS" SDK="iphonesimulator"
-  - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
-
-matrix:
-  allow_failures:
-    - env: SCHEME="openHPI-tvOS" SDK="appletvsimulator"
-    - env: SCHEME="openSAP-tvOS" SDK="appletvsimulator"
-    - env: SCHEME="openWHO-tvOS" SDK="appletvsimulator"
-    - env: SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
+  # - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
+  # - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
+  # - SCHEME="openWHO-tvOS" SDK="appletvsimulator"
+  # - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
 before_install:
-  - gem install xcpretty
   - pod repo update > /dev/null
 
 script:

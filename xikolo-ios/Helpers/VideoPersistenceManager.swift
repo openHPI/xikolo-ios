@@ -10,6 +10,30 @@ import Foundation
 import AVFoundation
 import CoreData
 
+enum VideoPersistenceQuality: Int, CustomStringConvertible {
+    case low = 200000
+    case medium = 400000
+    case high = 5000000
+    case best = 10000000
+
+    static var orderedValues: [VideoPersistenceQuality] {
+        return [.low, .medium, .high, .best]
+    }
+
+    var description: String {
+        switch self {
+        case .low:
+            return NSLocalizedString("Low", comment: "video download quality")
+        case .medium:
+            return NSLocalizedString("Medium", comment: "video download quality")
+        case .high:
+            return NSLocalizedString("High", comment: "video download quality")
+        case .best:
+            return NSLocalizedString("Best", comment: "video download quality")
+        }
+    }
+
+}
 
 class VideoPersistenceManager: NSObject {
 
@@ -64,11 +88,12 @@ class VideoPersistenceManager: NSObject {
         let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = video.item?.title ?? "Untitled video"
         let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
+        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoPersistenceQuality.rawValue]
 
         guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url),
                                                                             assetTitle: assetTitle,
                                                                             assetArtworkData: video.posterImageData,
-                                                                            options: [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 500000]) else { return }
+                                                                            options: options) else { return }
         TrackingHelper.sendEvent("VIDEO_DOWNLOAD_START", resource: video)
         task.taskDescription = video.id
 
@@ -115,7 +140,6 @@ class VideoPersistenceManager: NSObject {
     func downloadState(for video: Video) -> Video.DownloadState {
         if let localFileLocation = self.localAsset(for: video)?.url {
             if FileManager.default.fileExists(atPath: localFileLocation.path) {
-                TrackingHelper.sendEvent("VIDEO_DOWNLOAD_ENDED", resource: video)
                 return .downloaded
             }
         }
@@ -170,14 +194,16 @@ class VideoPersistenceManager: NSObject {
         task?.cancel()
     }
 
-    func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
-            let progress = noticaition.userInfo?[Video.Keys.precentDownload] as? Double else { return }
+    func handleAssetDownloadProgressNotification(_ notification: Notification) {
+        guard let videoId = notification.userInfo?[Video.Keys.id] as? String,
+            let progress = notification.userInfo?[Video.Keys.precentDownload] as? Double else { return }
 
         self.progressMap[videoId] = progress
     }
-
+    
 }
+
+
 
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
@@ -226,6 +252,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 let bookmark = try location.bookmarkData()
                 video.local_file_bookmark = NSData(data: bookmark)
                 try video.managedObjectContext?.save()
+                TrackingHelper.sendEvent("VIDEO_DOWNLOAD_ENDED", resource: video, context: ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)])
             } catch {
                 // Failed to create bookmark for location
                 self.deleteAsset(for: video)

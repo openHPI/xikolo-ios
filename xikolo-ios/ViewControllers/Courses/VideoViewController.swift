@@ -111,7 +111,7 @@ class VideoViewController : UIViewController {
             videoURL = video.hlsURL
             self.playerControlView.setOffline(false)
         }
-q
+
         if let url = videoURL {  // video.hlsURL can be nil
             self.videoPlayerConfigured = true
  

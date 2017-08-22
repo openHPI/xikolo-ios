@@ -47,13 +47,19 @@ class VideoViewController : UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.toggleControlBars(animated)
+    }
+
     func setupPlayer() {
-        BMPlayerConf.topBarShowInCase = UIDevice.current.userInterfaceIdiom == .pad ? .none : .horizantalOnly
+        BMPlayerConf.topBarShowInCase = .always
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enablePlaytimeGestures = true
-        
+
+        self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
         let player = BMPlayer(customControlView: self.playerControlView)
         player.delegate = self
         self.videoContainer.addSubview(player)
@@ -100,8 +106,10 @@ class VideoViewController : UIViewController {
         var videoURL: URL?
         if let localAsset = VideoPersistenceManager.shared.localAsset(for: video) {
             videoURL = localAsset.url
+            self.playerControlView.setOffline(true)
         } else {
             videoURL = video.hlsURL
+            self.playerControlView.setOffline(false)
         }
 
         if let url = videoURL {  // video.hlsURL can be nil
@@ -129,9 +137,15 @@ class VideoViewController : UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.toggleControlBars(true)
+        self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
+    }
+
+    @discardableResult private func toggleControlBars(_ animated: Bool) -> Bool {
         let hiddenBars = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
-        self.navigationController?.setNavigationBarHidden(hiddenBars, animated: true)
+        self.navigationController?.setNavigationBarHidden(hiddenBars, animated: animated)
         self.tabBarController?.tabBar.isHidden = hiddenBars
+        return hiddenBars
     }
 
 }

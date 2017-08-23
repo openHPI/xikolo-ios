@@ -7,11 +7,11 @@ iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
 - Xcode 9.0 beta 5
-- [cocoapods](https://cocoapods.org/) 1.3.1
+- [CocoaPods](https://cocoapods.org/) 1.3.1
 
 ### How to get started
 - clone this repository
-- run `pod install`
+- run `pod repo update` and `pod install`
 - open xikolo-ios.xcworkspace in Xcode
 - start one of the defined targets
 

@@ -6,7 +6,7 @@
 iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
-- Xcode 9.0 beta 5
+- Xcode 9.0 beta 6
 - [CocoaPods](https://cocoapods.org/) 1.3.1
 
 ### How to get started

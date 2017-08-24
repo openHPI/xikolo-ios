@@ -19,7 +19,7 @@ class ReachabilityHelper {
         return Reachability(hostname: Brand.Host)!
     }()
 
-    static var state: State = .offline
+    static var reachabilityState: State? = .offline
 
     enum State : String {
         case wifi = "wifi"
@@ -31,32 +31,32 @@ class ReachabilityHelper {
 
 
 
-    class func setupReachability(_ host: String?) {
-        NotificationCenter.default.addObserver(self, selector: #selector(Reachability.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.state)
+    class func setupReachability(_ host: String? = Brand.Host) {
+        NotificationCenter.default.addObserver(self, selector: #selector(ReachabilityHelper.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachabilityState)
     }
 
     private class func startReachabilityNotifier() {
         do {
-            try self.state.startNotifier()
+            try self.reachability.startNotifier()
         } catch {
             print("Failed to start reachability notification")
         }
     }
 
     private class func stopReachabilityNotifier() {
-        self.state.stopNotifier()
+        self.reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        self.state = nil
+        self.reachabilityState = nil
     }
 
     @objc class func reachabilityChanged(_ note: Notification) {
         guard let reachability = note.object as? Reachability else { return }
 
-        let oldOfflinesState = self.isOffline
-        self.isOffline = !state.isReachable
+        let oldOfflineState = self.isOffline
+        self.isOffline = !reachability.isReachable
 
-        if oldOfflinesState != self.isOffline {
-            self.tableView.reloadData()
+        if oldOfflineState != self.isOffline {
+            //self.tableView.reloadData()
         }
     }
 

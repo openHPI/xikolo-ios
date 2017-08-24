@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 import Spine
 
-public class TrackingEvent: NSManagedObject {
+class TrackingEvent: NSManagedObject {
 
 
 }
@@ -21,9 +21,20 @@ class TrackingEventSpine : Resource {
     var user: TrackingEventUser?
     var verb: TrackingEventVerb?
     var resource: TrackingEventResource?
-    var timestamp: Date?
+    var timestamp: NSDate?
     var result: [String: AnyObject]?
-    var context: [String: AnyObject]?
+    var context: [String: String]?
+
+    //used for PUT
+    convenience init(_ event: TrackingEvent){
+        self.init()
+        self.id = event.id
+        self.user = event.user
+        self.verb = event.verb
+        self.resource = event.resource
+        self.timestamp = event.timestamp
+        self.context = event.context
+    }
 
     override class var resourceType: ResourceType {
         return "tracking-events"

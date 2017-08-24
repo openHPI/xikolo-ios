@@ -90,7 +90,7 @@ class TrackingHelper {
 
     @discardableResult class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
-            SpineHelper.save(event).asVoid()
+            SpineHelper.save(TrackingEventSpine(event)).asVoid()
         }
     }
 

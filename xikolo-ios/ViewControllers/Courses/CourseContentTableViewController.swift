@@ -9,7 +9,6 @@
 import CoreData
 import UIKit
 import DZNEmptyDataSet
-import ReachabilitySwift
 
 class CourseContentTableViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -23,7 +22,6 @@ class CourseContentTableViewController: UITableViewController {
     var isPreloading = false
 
     var isOffline = false
-    var reachability: Reachability?
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -41,7 +39,7 @@ class CourseContentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupReachability(Brand.host)
+        //self.setupReachability()
         self.startReachabilityNotifier()
         self.tableView.refreshControl = myRefreshControl
         self.setupEmptyState()
@@ -89,16 +87,6 @@ class CourseContentTableViewController: UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
-    }
-
-    func setupReachability(_ host: String?) {
-        if let hostName = host {
-            self.reachability = Reachability(hostname: hostName)
-        } else {
-            self.reachability = Reachability()
-        }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
     }
 
     private func startReachabilityNotifier() {

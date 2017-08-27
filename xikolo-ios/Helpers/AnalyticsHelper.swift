@@ -40,6 +40,7 @@ class AnalyticsHelper {
         } catch {
             print("Failed to fetch tracking events: \(error)")
         }
+        RetryHelper.after(interval: 60.0).onSuccess { check() }
     }
 
 }

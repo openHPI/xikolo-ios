@@ -21,12 +21,9 @@ class CourseContentTableViewController: UITableViewController {
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
 
-    var isOffline = false
-
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
-        self.stopReachabilityNotifier()
     }
     
     lazy var myRefreshControl: UIRefreshControl = {
@@ -39,8 +36,7 @@ class CourseContentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.setupReachability()
-        self.startReachabilityNotifier()
+        self.setupReachability()
         self.tableView.refreshControl = myRefreshControl
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
@@ -89,18 +85,8 @@ class CourseContentTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    private func startReachabilityNotifier() {
-        do {
-            try self.reachability?.startNotifier()
-        } catch {
-            print("Failed to start reachability notificaition")
-        }
-    }
-
-    private func stopReachabilityNotifier() {
-        self.reachability?.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        self.reachability = nil
+    func setupReachability() {
+        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged), name: NotificationKeys.reachabilityChanged, object: nil)
     }
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -127,15 +113,8 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
-    func reachabilityChanged(_ note: Notification) {
-        guard let reachability = note.object as? Reachability else { return }
-
-        let oldOfflinesState = self.isOffline
-        self.isOffline = !reachability.isReachable
-
-        if oldOfflinesState != self.isOffline {
-            self.tableView.reloadData()
-        }
+    func reachabilityChanged() {
+        self.tableView.reloadData()
     }
 
     func preloadCourseContent() {
@@ -217,7 +196,7 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
 
         let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
                                                         isPreloading: self.tableViewController?.isPreloading ?? false,
-                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
+                                                        inOfflineMode: ReachabilityHelper.isOffline ?? false)
         cell.configure(for: item, with: configuration)
     }
 

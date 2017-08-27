@@ -15,10 +15,6 @@ class ReachabilityHelper {
         return Reachability(hostname: Brand.Host)!
     }()
 
-    static var reachabilityState: Reachability.NetworkStatus = {
-        reachability.currentReachabilityStatus
-    }()
-
     static var isOffline = false
 
     class func setupReachability(_ host: String? = Brand.Host) {
@@ -31,14 +27,8 @@ class ReachabilityHelper {
     }
 
     @objc class func reachabilityChanged() {
-        let oldState = reachabilityState
-        reachabilityState = reachability.currentReachabilityStatus
-
-        if oldState != self.reachabilityState {
-            NotificationCenter.default.post(name: NotificationKeys.reachabilityChanged, object: reachability)
-        }
-
         self.isOffline = !reachability.isReachable
+        NotificationCenter.default.post(name: NotificationKeys.reachabilityChanged, object: reachability)
     }
 
 }

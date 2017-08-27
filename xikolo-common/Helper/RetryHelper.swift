@@ -13,24 +13,6 @@ class RetryHelper {
 
     static let MaxDelay = 300
 
-    enum Priority {
-        case background
-        case normal
-        case ui
-    }
-
-    /*class func start( block: Promise -> Void, max maxRetries: Int, timesWithDelayOf delay: Int) {
-        //let promise
-        //recoverWi
-        block.future.onSuccess {
-            return promise.success()
-        }.onFailure { error in
-            guard maxRetries > 0 else { return promise.failure() }
-            start(block(), max: --maxRetries, timesWithDelayOf: min(MaxDelay, delay))
-        }
-        //DispatchQueue.global().asyncAf
-    }*/
-
     class func retry<T>(times: Int, block: @escaping () -> Future<T, XikoloError>) -> Future<T, XikoloError> {
         return self.retry(times: times, cooldown: 30, block: block)
     }
@@ -47,7 +29,6 @@ class RetryHelper {
                 }
             }
         }
-
         return future
     }
 

@@ -68,7 +68,7 @@ class TrackingHelper {
         ]
     }
 
-    @discardableResult fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> TrackingEvent {
+    @discardableResult class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> TrackingEvent {
 
 
         let trackingVerb = TrackingEventVerb()

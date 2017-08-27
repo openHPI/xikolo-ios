@@ -28,7 +28,7 @@ class CourseDatesTableViewController : UITableViewController {
         let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
         self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
 
-        TrackingHelper.sendEvent("VISITED_DASHBOARD", resource: nil)
+        TrackingHelper.createEvent("VISITED_DASHBOARD", resource: nil)
         self.updateAfterLogin()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(CourseDatesTableViewController.updateAfterLogin),

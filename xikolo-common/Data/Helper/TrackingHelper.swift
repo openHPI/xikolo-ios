@@ -68,7 +68,7 @@ class TrackingHelper {
         ]
     }
 
-    fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
+    @discardableResult fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> TrackingEvent {
 
 
         let trackingVerb = TrackingEventVerb()
@@ -82,7 +82,7 @@ class TrackingHelper {
             }
         }
 
-        let trackingEvent = NSEntityDescription.insertNewObject(forEntityName: "TrackingEvent", into: CoreDataHelper.backgroundContext) as! TrackingEvent
+        let trackingEvent = TrackingEvent(context: CoreDataHelper.backgroundContext)
         let trackingUser = TrackingEventUser()
         trackingUser.uuid = UserProfileHelper.getUserId()
         trackingEvent.user = trackingUser
@@ -95,13 +95,13 @@ class TrackingHelper {
         }
         trackingEvent.timestamp = NSDate()
         trackingEvent.context = trackingContext
-        return Future.init(value: trackingEvent)
+        return trackingEvent
     }
 
-    @discardableResult class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
-        return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
-            SpineHelper.save(TrackingEventSpine(event)).asVoid()
-        }
+    static func getTrackingEventRequest() -> NSFetchRequest<TrackingEvent> {
+        let request: NSFetchRequest<TrackingEvent> = TrackingEvent.fetchRequest()
+        request.fetchLimit = 10
+        return request
     }
 
 }

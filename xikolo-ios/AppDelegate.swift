@@ -25,6 +25,9 @@ class AppDelegate : AbstractAppDelegate {
         updateAnnouncements()
         EnrollmentHelper.syncEnrollments()
 
+        ReachabilityHelper.setupReachability()
+        AnalyticsHelper.setup()
+
         VideoPersistenceManager.shared.restorePersistenceManager()
 
         #if OPENSAP
@@ -132,7 +135,6 @@ class AppDelegate : AbstractAppDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        ReachabilityHelper.setupReachability()
     }
 
     override func applicationWillTerminate(_ application: UIApplication) {

@@ -17,7 +17,7 @@ struct NotificationKeys {
     static let deletedEnrollmentKey = Notification.Name("de.hpi.open.deletedEnrollment")
 
     static let dropdownCourseContentKey = Notification.Name("de.hpi.open.dropdown.courseContent")
-    static let reachabilityChanged = Notification.Name("de.hpi.open.reachability.changed")
+    static let reachabilityChanged = ReachabilityChangedNotification
 
 
     // Video Download

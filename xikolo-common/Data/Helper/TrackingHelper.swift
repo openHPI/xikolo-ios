@@ -36,6 +36,17 @@ class TrackingHelper {
         return name
     }()
 
+    fileprivate class func getNetworkState() -> String {
+        switch ReachabilityHelper.reachability.currentReachabilityStatus {
+        case .reachableViaWiFi:
+            return "wifi"
+        case .reachableViaWWAN:
+            return "mobile"
+        case .notReachable:
+            return "offline"
+        }
+    }
+
     fileprivate class func defaultContext() -> [String: String] {
         let bundleInfo = Bundle.main.infoDictionary!
 
@@ -53,7 +64,7 @@ class TrackingHelper {
             "screen_height": String(Int(screenSize.height)),
             "free_space": String(describing: self.systemFreeSize),
             "total_space": String(describing: self.systemSize),
-            "network": ReachabilityHelper.reachabilityState?.rawValue ?? "unknown"
+            "network": getNetworkState()
         ]
     }
 

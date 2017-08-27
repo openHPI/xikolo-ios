@@ -15,17 +15,7 @@ class ReachabilityHelper {
         return Reachability(hostname: Brand.Host)!
     }()
 
-    static var reachabilityState: State? = .offline
-
-    enum State : String {
-        case wifi = "wifi"
-        case mobile = "mobile"
-        case offline = "offline"
-    }
-
     static var isOffline = false
-
-
 
     class func setupReachability(_ host: String? = Brand.Host) {
         NotificationCenter.default.addObserver(self, selector: #selector(ReachabilityHelper.reachabilityChanged), name: ReachabilityChangedNotification, object: self.reachability)

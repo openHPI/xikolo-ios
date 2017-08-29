@@ -1,8 +1,8 @@
 # Your Apple email address
-apple_id "develper@apple.com"
+apple_id "mail@your-apple-id"
 
 # iTunes Connect Account (only required if different from apple_id)
-# itunes_connect_id "itunesconnect@apple.com"
+# itunes_connect_id "mail@your-itunes-connect-id"
 
 # Developer Portal Team ID (do not change)
 team_id "WP53SSE8S6"

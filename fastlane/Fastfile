@@ -18,32 +18,40 @@ default_platform :ios
 platform :ios do
   desc "Increments the build number for all targets"
   lane :increment_build do
-    increment_build_number
-    commit_version_bump
+    new_build_number = increment_build_number
+    commit_version_bump(
+      message: "Bump build number to #{new_build_number}."
+    )
   end
 
   desc "Increments the version number for a new patch version"
   lane :increment_version_patch do
-    increment_version_number(
+    new_version_number = increment_version_number(
       bump_type: "patch",
     )
-    commit_version_bump
+    commit_version_bump(
+      message: "New patch version #{new_version_number}."
+    )
   end
 
   desc "Increments the version number for a new minor version"
   lane :increment_version_minor do
-    increment_version_number(
+    new_version_number = increment_version_number(
       bump_type: "minor",
     )
-    commit_version_bump
+    commit_version_bump(
+      message: "New minor version #{new_version_number}."
+    )
   end
 
   desc "Increments the version number for a new major version"
   lane :increment_version_major do
-    increment_version_number(
+    new_version_number = increment_version_number(
       bump_type: "major",
     )
-    commit_version_bump
+    commit_version_bump(
+      message: "New major version #{new_version_number}."
+    )
   end
 
   desc "Checks application for potential App Store violations"

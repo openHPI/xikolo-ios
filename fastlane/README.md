@@ -35,6 +35,26 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
+### ios increment_build
+```
+fastlane ios increment_build
+```
+
+### ios increment_version_patch
+```
+fastlane ios increment_version_patch
+```
+
+### ios increment_version_minor
+```
+fastlane ios increment_version_minor
+```
+
+### ios increment_version_major
+```
+fastlane ios increment_version_major
+```
+
 
 ----
 

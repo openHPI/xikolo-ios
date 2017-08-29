@@ -55,6 +55,7 @@ platform :ios do
   end
 
   desc "Checks application for potential App Store violations"
+  desc "- requires app environment via '--env'"
   lane :precheck_app do
     precheck(
       app_identifier: ENV["BUNDLE_ID"],

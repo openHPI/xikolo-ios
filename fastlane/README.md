@@ -56,6 +56,8 @@ fastlane ios precheck_app
 ```
 Checks application for potential App Store violations
 
+- requires app environment via '--env'
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [fastlane](https://fastlane.tools) is run.

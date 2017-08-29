@@ -29,11 +29,13 @@ platform :ios do
     )
   end
 
+  desc "Increments the build number for all targets"
   lane :increment_build do
     increment_build_number
     commit_version_bump
   end
 
+  desc "Increments the version number for a new patch version"
   lane :increment_version_patch do
     increment_version_number(
       bump_type: "patch"
@@ -41,6 +43,7 @@ platform :ios do
     commit_version_bump
   end
 
+  desc "Increments the version number for a new minor version"
   lane :increment_version_minor do
     increment_version_number(
       bump_type: "minor"
@@ -48,6 +51,7 @@ platform :ios do
     commit_version_bump
   end
 
+  desc "Increments the version number for a new major version"
   lane :increment_version_major do
     increment_version_number(
       bump_type: "major"

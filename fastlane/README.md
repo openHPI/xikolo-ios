@@ -30,31 +30,31 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios test
-```
-fastlane ios test
-```
-Runs all the tests
 ### ios increment_build
 ```
 fastlane ios increment_build
 ```
-
+Increments the build number for all targets
 ### ios increment_version_patch
 ```
 fastlane ios increment_version_patch
 ```
-
+Increments the version number for a new patch version
 ### ios increment_version_minor
 ```
 fastlane ios increment_version_minor
 ```
-
+Increments the version number for a new minor version
 ### ios increment_version_major
 ```
 fastlane ios increment_version_major
 ```
-
+Increments the version number for a new major version
+### ios precheck_app
+```
+fastlane ios precheck_app
+```
+Checks application for potential App Store violations
 
 ----
 

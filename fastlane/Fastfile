@@ -16,19 +16,6 @@ fastlane_version "2.54.3"
 default_platform :ios
 
 platform :ios do
-  before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    # cocoapods
-  end
-
-  desc "Runs all the tests"
-  lane :test do
-    scan(
-      workspace: ENV["WORKSPACE"],
-      scheme: ENV["SCHEME"],
-    )
-  end
-
   desc "Increments the build number for all targets"
   lane :increment_build do
     increment_build_number
@@ -38,7 +25,7 @@ platform :ios do
   desc "Increments the version number for a new patch version"
   lane :increment_version_patch do
     increment_version_number(
-      bump_type: "patch"
+      bump_type: "patch",
     )
     commit_version_bump
   end
@@ -46,7 +33,7 @@ platform :ios do
   desc "Increments the version number for a new minor version"
   lane :increment_version_minor do
     increment_version_number(
-      bump_type: "minor"
+      bump_type: "minor",
     )
     commit_version_bump
   end
@@ -54,46 +41,16 @@ platform :ios do
   desc "Increments the version number for a new major version"
   lane :increment_version_major do
     increment_version_number(
-      bump_type: "major"
+      bump_type: "major",
     )
     commit_version_bump
   end
 
-  # desc "Submit a new Beta Build to Apple TestFlight"
-  # desc "This will also make sure the profile is up to date"
-  # lane :beta do
-  #   # match(type: "appstore") # more information: https://codesigning.guide
-  #   gym(scheme: ENV["SCHEME"]) # Build your app - more options available
-  #   pilot
-
-  #   # sh "your_script.sh"
-  #   # You can also use other beta testing services here (run `fastlane actions`)
-  # end
-
-  # desc "Deploy a new version to the App Store"
-  # lane :release do
-  #   # match(type: "appstore")
-  #   # snapshot
-  #   gym(scheme: ENV["SCHEME"]) # Build your app - more options available
-  #   deliver(force: true)
-  #   # frameit
-  # end
-
-  # You can define as many lanes as you want
-
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
-  end
-
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+  desc "Checks application for potential App Store violations"
+  lane :precheck_app do
+    precheck(
+      app_identifier: ENV["BUNDLE_ID"],
+    )
   end
 end
 

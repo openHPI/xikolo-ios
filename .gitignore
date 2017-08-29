@@ -52,3 +52,5 @@ fastlane/Preview.html
 fastlane/screenshots
 # scan temporary files
 fastlane/test_output
+# Appfilewith sensitive values
+fastlane/Appfile

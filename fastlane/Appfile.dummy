@@ -1,0 +1,11 @@
+# Your Apple email address
+apple_id "[[XXX]]"
+
+# iTunes Connect Account (uncomment if different from apple_id)
+# itunes_connect_id "[[XXX]]"
+
+# Developer Portal Team ID
+team_id "WP53SSE8S6"
+
+# you can even provide different app identifiers, Apple IDs and team names per lane:
+# More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md

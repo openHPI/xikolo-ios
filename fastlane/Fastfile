@@ -29,8 +29,9 @@ platform :ios do
     new_version_number = increment_version_number(
       bump_type: "patch",
     )
+    revert_tvOS_changes()
     commit_version_bump(
-      message: "New patch version #{new_version_number}."
+      message: "New version #{new_version_number} (patch)."
     )
   end
 
@@ -39,8 +40,9 @@ platform :ios do
     new_version_number = increment_version_number(
       bump_type: "minor",
     )
+    revert_tvOS_changes()
     commit_version_bump(
-      message: "New minor version #{new_version_number}."
+      message: "New version #{new_version_number} (minor)."
     )
   end
 
@@ -49,8 +51,9 @@ platform :ios do
     new_version_number = increment_version_number(
       bump_type: "major",
     )
+    revert_tvOS_changes()
     commit_version_bump(
-      message: "New major version #{new_version_number}."
+      message: "New version #{new_version_number} (major)."
     )
   end
 
@@ -60,6 +63,10 @@ platform :ios do
     precheck(
       app_identifier: ENV["BUNDLE_ID"],
     )
+  end
+
+  private_lane :revert_tvOS_changes do
+    sh "git checkout head -- ../xikolo-tvos/Info.plist"
   end
 end
 

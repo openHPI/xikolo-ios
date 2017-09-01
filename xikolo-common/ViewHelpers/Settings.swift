@@ -11,9 +11,10 @@ import UIKit
 class Settings {
 
     class func open() {
-        if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.shared.openURL(appSettings)
-        }
+        guard let appSettings = URL(string: UIApplicationOpenSettingsURLString) else { return }
+        guard UIApplication.shared.canOpenURL(appSettings) else { return }
+        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+        // TODO: write test for this
     }
 
 }

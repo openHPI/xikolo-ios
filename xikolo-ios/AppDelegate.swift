@@ -96,7 +96,7 @@ class AppDelegate : AbstractAppDelegate {
 
         // we can't handle the url, open it with a browser
         let webpageUrl = url
-        application.openURL(webpageUrl)
+        application.open(webpageUrl)
         return false
     }
 

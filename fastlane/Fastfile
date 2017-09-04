@@ -1,0 +1,78 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.54.3"
+
+default_platform :ios
+
+platform :ios do
+  desc "Increments the build number for all targets"
+  lane :increment_build do
+    new_build_number = increment_build_number
+    commit_version_bump(
+      message: "Bump build number to #{new_build_number}."
+    )
+  end
+
+  desc "Increments the version number for a new patch version"
+  lane :increment_version_patch do
+    new_version_number = increment_version_number(
+      bump_type: "patch",
+    )
+    revert_tvOS_changes()
+    commit_version_bump(
+      message: "New version #{new_version_number} (patch)."
+    )
+  end
+
+  desc "Increments the version number for a new minor version"
+  lane :increment_version_minor do
+    new_version_number = increment_version_number(
+      bump_type: "minor",
+    )
+    revert_tvOS_changes()
+    commit_version_bump(
+      message: "New version #{new_version_number} (minor)."
+    )
+  end
+
+  desc "Increments the version number for a new major version"
+  lane :increment_version_major do
+    new_version_number = increment_version_number(
+      bump_type: "major",
+    )
+    revert_tvOS_changes()
+    commit_version_bump(
+      message: "New version #{new_version_number} (major)."
+    )
+  end
+
+  desc "Checks application for potential App Store violations"
+  desc "- requires app environment via '--env'"
+  lane :precheck_app do
+    precheck(
+      app_identifier: ENV["BUNDLE_ID"],
+    )
+  end
+
+  private_lane :revert_tvOS_changes do
+    sh "git checkout head -- ../xikolo-tvos/Info.plist"
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used. No personal data is recorded.
+# Learn more at https://github.com/fastlane/fastlane#metrics

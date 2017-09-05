@@ -6,8 +6,9 @@ iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
 - Xcode 8.3
-- [CocoaPods](https://cocoapods.org/) 1.3.1
-- [fastlane](https://fastlane.tools/) >= 2.54.3
+- [CocoaPods](https://cocoapods.org/) (version 1.3.1): ```sudo gem install cocoapods -v 1.3.1```
+- [fastlane](https://fastlane.tools/) (version >= 2.54.3): ```brew cask install fastlane```
+- [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) (version 3.8.1): ```brew install bartycrouch```
 
 ### How to get started
 - clone this repository

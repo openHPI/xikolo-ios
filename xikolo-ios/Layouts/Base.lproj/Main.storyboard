@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vmi-wr-Zk6">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vmi-wr-Zk6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -94,7 +95,7 @@
                                                             <constraint firstAttribute="height" constant="44" id="be5-1b-Ri5"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <state key="normal" title="Single Sign On">
+                                                        <state key="normal" title="Single Sign-On">
                                                             <color key="titleColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
@@ -253,8 +254,6 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="3Jw-lr-cPl"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="9UR-Uy-VEB">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -299,7 +298,16 @@
         <scene sceneID="yCL-cx-d71">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="CoursesNavigationController" storyboardName="TabCourses" referencedIdentifier="CoursesNavigationController" id="FSh-io-GSz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="QnH-9R-uNS"/>
+                    <tabBarItem key="tabBarItem" title="Courses" id="QnH-9R-uNS">
+                        <attributedString key="userComments">
+                            <fragment content="#bc-ignore!">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAB-Wq-oPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -309,7 +317,16 @@
         <scene sceneID="ybp-Ei-DDc">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="NewsNavigationController" storyboardName="TabNews" referencedIdentifier="NewsNavigationController" id="XcO-jX-Il5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="k4P-wb-7dX"/>
+                    <tabBarItem key="tabBarItem" title="News" id="k4P-wb-7dX">
+                        <attributedString key="userComments">
+                            <fragment content="#bc-ignore!">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mY7-MI-Wek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -319,7 +336,16 @@
         <scene sceneID="wQX-9l-R5D">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="DashboardNavigationController" storyboardName="TabDashboard" referencedIdentifier="DashboardNavigationController" id="4IQ-dc-5NS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Dep-Da-lvB"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" id="Dep-Da-lvB">
+                        <attributedString key="userComments">
+                            <fragment content="#bc-ignore!">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7jy-pZ-fyz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -329,7 +355,16 @@
         <scene sceneID="w9f-ev-CqT">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="SettingsNavigationController" storyboardName="TabSettings" referencedIdentifier="SettingsNavigationController" id="qPo-RG-mu4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="HAW-UO-Q11"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="HAW-UO-Q11">
+                        <attributedString key="userComments">
+                            <fragment content="#bc-ignore!">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDU-l6-XvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -358,10 +393,26 @@ OpenWHO seeks to provide direct access to action-oriented technical and operatio
 Check out this app, come back regularly, and get engaged in the OpenWHO community.</string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <attributedString key="userComments">
+                                    <fragment content="#bc-ignore!">
+                                        <attributes>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0J-TZ-l95">
                                 <rect key="frame" x="138" y="508" width="98" height="30"/>
                                 <state key="normal" title="Start Learning"/>
+                                <attributedString key="userComments">
+                                    <fragment content="#bc-ignore!">
+                                        <attributes>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <connections>
                                     <action selector="dismissAction:" destination="kKj-4j-GcK" eventType="touchUpInside" id="HpB-dG-oDz"/>
                                     <segue destination="cue-4x-uln" kind="unwind" unwindAction="unwindToMainViewController:" id="KxL-9y-uXO"/>
@@ -388,7 +439,16 @@ Check out this app, come back regularly, and get engaged in the OpenWHO communit
                             <constraint firstItem="S0J-TZ-l95" firstAttribute="centerX" secondItem="c8K-lD-xx5" secondAttribute="centerX" id="wrz-eb-OXO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome" id="KHJ-nE-buR"/>
+                    <navigationItem key="navigationItem" title="Welcome" id="KHJ-nE-buR">
+                        <attributedString key="userComments">
+                            <fragment content="#bc-ignore!">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGU-lP-L1R" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cue-4x-uln" userLabel="Exit" sceneMemberID="exit"/>
@@ -401,7 +461,7 @@ Check out this app, come back regularly, and get engaged in the OpenWHO communit
                 <navigationController storyboardIdentifier="WelcomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="4Ku-Sm-3si" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WQE-8V-VTk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WQE-8V-VTk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

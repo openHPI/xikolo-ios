@@ -5,6 +5,12 @@
 /* No comment provided by engineer. */
 "Course Start" = "Kursstart";
 
+/* message for proctoring alert */
+"course-item.proctoring.alert.message" = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
+
+/* title for proctoring alert */
+"course-item.proctoring.alert.title" = "Für dieses Element ist eine Online-Aufsicht erforderlich";
+
 /* delete video item */
 "course-item.video.delete-item.delete video" = "Video löschen";
 
@@ -83,9 +89,6 @@
 /* title to confirm alert */
 "global.alert.ok" = "OK";
 
-/* Shown in proctoring dialog */
-"In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
-
 /* No comment provided by engineer. */
 "Learnings" = "Lernmaterial";
 
@@ -115,9 +118,6 @@
 
 /* Shown in course content list */
 "Slides" = "Folien";
-
-/* Shown in proctoring dialog */
-"This item needs to be proctored" = "Für dieses Element ist eine Online-Aufsicht erforderlich";
 
 /* course-status */
 "running" = "";

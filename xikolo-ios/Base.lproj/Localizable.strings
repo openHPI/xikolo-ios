@@ -1,4 +1,10 @@
 
+/* message for proctoring alert */
+"course-item.proctoring.alert.message" = "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.";
+
+/* title for proctoring alert */
+"course-item.proctoring.alert.title" = "This item needs to be proctored";
+
 /* delete video item */
 "course-item.video.delete-item.delete video" = "Delete video";
 
@@ -110,14 +116,8 @@
 /* No comment provided by engineer. */
 "Discussions" = "";
 
-/* Shown in proctoring dialog */
-"In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." = "";
-
 /* No comment provided by engineer. */
 "Learnings" = "";
 
 /* course-status */
 "running" = "";
-
-/* Shown in proctoring dialog */
-"This item needs to be proctored" = "";

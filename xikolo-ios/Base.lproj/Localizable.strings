@@ -8,6 +8,39 @@
 /* stop download of video item */
 "course-item.video.stop-download.stop download" = "Stop download";
 
+/* title for empty announcement list */
+"empty-view.announcements.title" = "There are no news at the moment";
+
+/* description for empty course content list */
+"empty-view.course-content.description" = "Please check you internet connection";
+
+/* title for empty course content list */
+"empty-view.course-content.title" = "Error loading course items";
+
+/* description for empty course dates list if logged in */
+"empty-view.course-dates.no-dates.description" = "Notifications about deadlines or new courses will appear here";
+
+/* title for empty course dates list if logged in */
+"empty-view.course-dates.no-dates.title" = "There are no important course dates yet";
+
+/* description for empty course dates list if not logged in */
+"empty-view.course-dates.not-logged-in.description" = "Course dates and deadlines are specific to your courses so we need to know what you're enrolled in";
+
+/* title for empty course dates list if not logged in */
+"empty-view.course-dates.not-logged-in.title" = "Please log in to see your personal deadlines";
+
+/* description for empty platform event list if logged in */
+"empty-view.platform-events.no-activities.description" = "Notifications about course material and discussions of enrolled courses will appear here";
+
+/* title for empty platform event list if logged in */
+"empty-view.platform-events.no-activities.title" = "There have been no course activities yet";
+
+/* description for empty announcement list if not logged in */
+"empty-view.platform-events.not-logged-in.description" = "Course activity is specific to your courses so we need to know what you're enrolled in";
+
+/* title for empty announcement list if not logged in */
+"empty-view.platform-events.not-logged-in.title" = "Please log in to see course activity";
+
 /* title to cancel alert */
 "global.alert.cancel" = "Cancel";
 
@@ -20,7 +53,7 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
-/* title for link to GitHub repo (including application name) */
+/* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS app on GitHub";
 
 /* best video persistence quality */
@@ -42,12 +75,6 @@
 "Slides" = "Slides";
 
 /* No comment provided by engineer. */
-"Course activity is specific to your courses so we need to now what you're enrolled in" = "";
-
-/* No comment provided by engineer. */
-"Course dates and deadlines are specific to your courses so we need to now what you're enrolled in" = "";
-
-/* No comment provided by engineer. */
 "Course Details" = "";
 
 /* No comment provided by engineer. */
@@ -66,9 +93,6 @@
 "Enrollment options" = "";
 
 /* No comment provided by engineer. */
-"Error loading course items" = "";
-
-/* No comment provided by engineer. */
 "Finished learning?" = "";
 
 /* Shown in proctoring dialog */
@@ -80,35 +104,8 @@
 /* No comment provided by engineer. */
 "Mark as completed" = "";
 
-/* No comment provided by engineer. */
-"News can be published in courses or globally to announce new content or changes to the platform itself" = "";
-
-/* No comment provided by engineer. */
-"Notifications about course material or discussions of enrolled courses will appear here" = "";
-
-/* No comment provided by engineer. */
-"Notifications about deadlines or new courses will appear here" = "";
-
-/* No comment provided by engineer. */
-"Please check you internet connection" = "";
-
-/* No comment provided by engineer. */
-"Please log in to see course activity" = "";
-
-/* No comment provided by engineer. */
-"Please log in to see your personal deadlines" = "";
-
 /* course-status */
 "running" = "";
-
-/* No comment provided by engineer. */
-"There are no important course dates yet" = "";
-
-/* No comment provided by engineer. */
-"There are no news at the moment" = "";
-
-/* No comment provided by engineer. */
-"There has been no course activity yet" = "";
 
 /* Shown in proctoring dialog */
 "This item needs to be proctored" = "";

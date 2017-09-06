@@ -83,7 +83,7 @@ extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }
-        let title = NSLocalizedString("There are no news at the moment", comment: "")
+        let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
         let attributedString = NSAttributedString(string: title)
         return attributedString
     }
@@ -92,9 +92,7 @@ extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }
-        let description = NSLocalizedString("News can be published in courses or globally to announce new content or changes to the platform itself", comment: "")
-        let attributedString = NSAttributedString(string: description)
-        return attributedString
+        return NSAttributedString(string: "")
     }
 
 }

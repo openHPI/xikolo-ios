@@ -242,7 +242,7 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }
-        let title = NSLocalizedString("Error loading course items", comment: "")
+        let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
         let attributedString = NSAttributedString(string: title)
         return attributedString
     }
@@ -251,7 +251,8 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         if NetworkIndicator.counter > 0 {
             return nil // blank screen for loading
         }
-        let description = NSLocalizedString("Please check you internet connection", comment: "")
+        let description = NSLocalizedString("empty-view.course-content.description",
+                                            comment: "description for empty course content list")
         let attributedString = NSAttributedString(string: description)
         return attributedString
     }

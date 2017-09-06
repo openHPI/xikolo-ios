@@ -17,6 +17,39 @@
 /* No comment provided by engineer. */
 "Discussions" = "Diskussionen";
 
+/* title for empty announcement list */
+"empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";
+
+/* description for empty course content list */
+"empty-view.course-content.description" = "Bitte überprüfe die Internetverbindung";
+
+/* title for empty course content list */
+"empty-view.course-content.title" = "Fehler beim Laden der Krusinhalte";
+
+/* description for empty course dates list if logged in */
+"empty-view.course-dates.no-dates.description" = "Hier erscheinen Benachrichtigungen zu Fristen und neuen Kursen";
+
+/* title for empty course dates list if logged in */
+"empty-view.course-dates.no-dates.title" = "Es gibt keine wichtigen Kursdaten";
+
+/* description for empty course dates list if not logged in */
+"empty-view.course-dates.not-logged-in.description" = "Kursdaten und Fristen beziehen sich auf eingeschriebene Kurse";
+
+/* title for empty course dates list if not logged in */
+"empty-view.course-dates.not-logged-in.title" = "Bitte logge dich ein um deine Fristen zu sehen";
+
+/* description for empty platform event list if logged in */
+"empty-view.platform-events.no-activities.description" = "Hier erscheinen Benachrichtigungen über Kursmaterialien und Diskussionen aus eingeschriebenen Kursen";
+
+/* title for empty platform event list if logged in */
+"empty-view.platform-events.no-activities.title" = "Es gibt noch keine Kursaktivitäten";
+
+/* description for empty announcement list if not logged in */
+"empty-view.platform-events.not-logged-in.description" = "Kursaktivitäten beziehen sich auf eingeschriebene Kurse";
+
+/* title for empty announcement list if not logged in */
+"empty-view.platform-events.not-logged-in.title" = "Bitte logge dich ein um die Kursactivitäten zu sehen";
+
 /* No comment provided by engineer. */
 "Enroll" = "Einschreiben";
 
@@ -50,7 +83,7 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
-/* title for link to GitHub repo (including application name) */
+/* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
 
 /* best video persistence quality */
@@ -72,7 +105,7 @@
 "Slides" = "Folien";
 
 /* Shown in proctoring dialog */
-"This item needs to be proctored" = "Online-Aufsicht erforderlich";
+"This item needs to be proctored" = "Für dieses Element ist eine Online-Aufsicht erforderlich";
 
 /* No comment provided by engineer. */
 "Unenroll" = "Ausschreiben";
@@ -83,41 +116,5 @@
 /* No comment provided by engineer. */
 "You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored." = "Du kannst Kurse als abgeschlossen markieren, wenn Du nicht mehr in diesem Kurs lernen möchtest. Du kannst dich auch abmelden. Dann kannst Du nicht mehr auf diesen Kurs zugreifen.";
 
-/* No comment provided by engineer. */
-"Course activity is specific to your courses so we need to now what you're enrolled in" = "";
-
-/* No comment provided by engineer. */
-"Course dates and deadlines are specific to your courses so we need to now what you're enrolled in" = "";
-
-/* No comment provided by engineer. */
-"Error loading course items" = "";
-
-/* No comment provided by engineer. */
-"News can be published in courses or globally to announce new content or changes to the platform itself" = "";
-
-/* No comment provided by engineer. */
-"Notifications about course material or discussions of enrolled courses will appear here" = "";
-
-/* No comment provided by engineer. */
-"Notifications about deadlines or new courses will appear here" = "";
-
-/* No comment provided by engineer. */
-"Please check you internet connection" = "";
-
-/* No comment provided by engineer. */
-"Please log in to see course activity" = "";
-
-/* No comment provided by engineer. */
-"Please log in to see your personal deadlines" = "";
-
 /* course-status */
 "running" = "";
-
-/* No comment provided by engineer. */
-"There are no important course dates yet" = "";
-
-/* No comment provided by engineer. */
-"There are no news at the moment" = "";
-
-/* No comment provided by engineer. */
-"There has been no course activity yet" = "";

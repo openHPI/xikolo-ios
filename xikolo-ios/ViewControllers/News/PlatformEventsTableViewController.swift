@@ -70,9 +70,11 @@ extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDat
         }
         let title: String
         if UserProfileHelper.isLoggedIn() {
-            title = NSLocalizedString("There has been no course activity yet", comment: "")
+            title = NSLocalizedString("empty-view.platform-events.no-activities.title",
+                                      comment: "title for empty platform event list if logged in")
         } else {
-            title = NSLocalizedString("Please log in to see course activity", comment: "")
+            title = NSLocalizedString("empty-view.platform-events.not-logged-in.title",
+                                      comment: "title for empty announcement list if not logged in")
         }
         let attributedString = NSAttributedString(string: title)
         return attributedString
@@ -84,9 +86,11 @@ extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDat
         }
         let description: String
         if UserProfileHelper.isLoggedIn() {
-            description = NSLocalizedString("Notifications about course material or discussions of enrolled courses will appear here", comment: "")
+            description = NSLocalizedString("empty-view.platform-events.no-activities.description",
+                                            comment: "description for empty platform event list if logged in")
         } else {
-            description = NSLocalizedString("Course activity is specific to your courses so we need to now what you're enrolled in", comment: "")
+            description = NSLocalizedString("empty-view.platform-events.not-logged-in.description",
+                                            comment: "description for empty announcement list if not logged in")
         }
         let attributedString = NSAttributedString(string: description)
         return attributedString

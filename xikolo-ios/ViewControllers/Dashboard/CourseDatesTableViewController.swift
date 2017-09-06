@@ -120,9 +120,11 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
         }
         let title: String
         if UserProfileHelper.isLoggedIn() {
-            title = NSLocalizedString("course-dates.empty-view.no-dates.title", comment: "") // There are no important course dates yet
+            title = NSLocalizedString("empty-view.course-dates.no-dates.title",
+                                      comment: "title for empty course dates list if logged in")
         } else {
-            title = NSLocalizedString("course-dates.empty-view.not-logged-in.title", comment: "") // Please log in to see your personal deadlines
+            title = NSLocalizedString("empty-view.course-dates.not-logged-in.title",
+                                      comment: "title for empty course dates list if not logged in")
         }
         let attributedString = NSAttributedString(string: title)
         return attributedString
@@ -134,9 +136,11 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
         }
         let description: String
         if UserProfileHelper.isLoggedIn() {
-            description = NSLocalizedString("course-dates.empty-view.no-dates.description", comment: "") // Notifications about deadlines or new courses will appear here
+            description = NSLocalizedString("empty-view.course-dates.no-dates.description",
+                                            comment: "description for empty course dates list if logged in")
         } else {
-            description = NSLocalizedString("course-dates.empty-view.not-logged-in.description", comment: "")  // Course dates and deadlines are specific to your courses so we need to now what you're enrolled in
+            description = NSLocalizedString("empty-view.course-dates.not-logged-in.description",
+                                            comment: "description for empty course dates list if not logged in")
         }
         let attributedString = NSAttributedString(string: description)
         return attributedString

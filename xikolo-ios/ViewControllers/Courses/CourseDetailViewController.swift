@@ -105,7 +105,8 @@ class CourseDetailViewController: UIViewController {
                 CourseHelper.refreshCourse(self.course)
             }
         }
-        let unenrollAction = UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive) { _ in
+        let unenrollActionTitle = NSLocalizedString("Unenroll", comment: "")
+        let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in
             EnrollmentHelper.delete(self.course.enrollment!)
         }
 

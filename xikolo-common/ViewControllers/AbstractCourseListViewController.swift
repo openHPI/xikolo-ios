@@ -53,11 +53,14 @@ class AbstractCourseListViewController : UICollectionViewController {
             request = CourseHelper.getSectionedRequest()
             resultsControllers = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")]
         }
+
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!, resultsControllers: resultsControllers, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
         let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseListViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
-        for rC in resultsControllers { rC.delegate = resultsControllerDelegateImplementation }
+        for rC in resultsControllers {
+            rC.delegate = resultsControllerDelegateImplementation
+        }
         collectionView!.dataSource = resultsControllerDelegateImplementation
 
         do {

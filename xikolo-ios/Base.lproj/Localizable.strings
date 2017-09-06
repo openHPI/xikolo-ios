@@ -1,4 +1,19 @@
 
+/* status 'running' of a course */
+"course-cell.status.running" = "Running";
+
+/* title of course details view of course view */
+"course-content.view.course-details.title" = "Course Details";
+
+/* title of discussions view of course view */
+"course-content.view.discussions.title" = "Discussions";
+
+/* title of learnings view of course view */
+"course-content.view.learnings.title" = "Learnings";
+
+/* specfic title for course start in a course date cell */
+"course-date-cell.course-start.title" = "Course Start";
+
 /* message for proctoring alert */
 "course-item.proctoring.alert.message" = "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.";
 
@@ -7,6 +22,9 @@
 
 /* delete video item */
 "course-item.video.delete-item.delete video" = "Delete video";
+
+/* Shown in course content list */
+"course-item.video.slides.label" = "Slides";
 
 /* start download of video item */
 "course-item.video.start-download.download video" = "Download video";
@@ -103,21 +121,3 @@
 
 /* section title for download quality */
 "settings.video-persistence-quality.section-title.download quality" = "Download Quality";
-
-/* Shown in course content list */
-"Slides" = "Slides";
-
-/* No comment provided by engineer. */
-"Course Details" = "";
-
-/* No comment provided by engineer. */
-"Course Start" = "";
-
-/* No comment provided by engineer. */
-"Discussions" = "";
-
-/* No comment provided by engineer. */
-"Learnings" = "";
-
-/* course-status */
-"running" = "";

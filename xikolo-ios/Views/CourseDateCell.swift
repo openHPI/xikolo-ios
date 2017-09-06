@@ -22,7 +22,8 @@ class CourseDateCell : UITableViewCell {
             dateHighlightView.backgroundColor = Brand.TintColorThird
             detailView.textColor = UIColor.white
         case "course_start"?:
-            titleView.text = NSLocalizedString("Course Start", comment: "")
+            titleView.text = NSLocalizedString("course-date-cell.course-start.title",
+                                               comment: "specfic title for course start in a course date cell")
         default:
             dateHighlightView.backgroundColor = UIColor.white
             detailView.textColor = UIColor.darkGray

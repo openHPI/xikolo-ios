@@ -43,7 +43,7 @@ class CourseCell : UICollectionViewCell {
         switch course.status {
         case "active"?:
             statusView.isHidden = false
-            statusLabel.text = NSLocalizedString("running", comment: "course-status")
+            statusLabel.text = NSLocalizedString("course-cell.status.running", comment: "status 'running' of a course")
             statusView.backgroundColor = Brand.TintColorThird
         default:
             statusView.isHidden = true

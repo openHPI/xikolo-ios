@@ -1,9 +1,18 @@
 
-/* No comment provided by engineer. */
-"Course Details" = "Kursdetails";
+/* status 'running' of a course */
+"course-cell.status.running" = "Läuft";
 
-/* No comment provided by engineer. */
-"Course Start" = "Kursstart";
+/* title of course details view of course view */
+"course-content.view.course-details.title" = "Kursdetails";
+
+/* title of discussions view of course view */
+"course-content.view.discussions.title" = "Diskussionen";
+
+/* title of learnings view of course view */
+"course-content.view.learnings.title" = "Lernmaterial";
+
+/* specfic title for course start in a course date cell */
+"course-date-cell.course-start.title" = "Kursstart";
 
 /* message for proctoring alert */
 "course-item.proctoring.alert.message" = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
@@ -14,14 +23,14 @@
 /* delete video item */
 "course-item.video.delete-item.delete video" = "Video löschen";
 
+/* Shown in course content list */
+"course-item.video.slides.label" = "Folien";
+
 /* start download of video item */
 "course-item.video.start-download.download video" = "Video herunterladen";
 
 /* stop download of video item */
 "course-item.video.stop-download.stop download" = "Download stoppen";
-
-/* No comment provided by engineer. */
-"Discussions" = "Diskussionen";
 
 /* title for empty announcement list */
 "empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";
@@ -89,9 +98,6 @@
 /* title to confirm alert */
 "global.alert.ok" = "OK";
 
-/* No comment provided by engineer. */
-"Learnings" = "Lernmaterial";
-
 /* label for app build */
 "settings.app.build.label" = "Build";
 
@@ -115,9 +121,3 @@
 
 /* section title for download quality */
 "settings.video-persistence-quality.section-title.download quality" = "Download-Qualität";
-
-/* Shown in course content list */
-"Slides" = "Folien";
-
-/* course-status */
-"running" = "";

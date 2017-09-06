@@ -756,72 +756,81 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM7-vF-jzK">
                                 <rect key="frame" x="0.0" y="275" width="375" height="392"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-qs-AJu">
-                                        <rect key="frame" x="20" y="20" width="335" height="96.5"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVf-ea-pkL">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="136.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xms-E7-0kp">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <attributedString key="userComments">
-                                                    <fragment content="#bc-ignore!">
-                                                        <attributes>
-                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTP-0O-gWC">
-                                                <rect key="frame" x="0.0" y="28.5" width="335" height="30"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                </accessibility>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="e1U-10-aDQ"/>
-                                                </constraints>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Item Description">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="Helvetica"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <attributedString key="userComments">
-                                                    <fragment content="#bc-ignore!">
-                                                        <attributes>
-                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </textView>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3P-4C-sVC">
-                                                <rect key="frame" x="0.0" y="66.5" width="335" height="30"/>
-                                                <state key="normal" title="open slides"/>
-                                                <connections>
-                                                    <action selector="openSlides:" destination="5Hh-M9-wy1" eventType="touchUpInside" id="p4R-LU-3EZ"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wd9-qs-AJu">
+                                                <rect key="frame" x="20" y="20" width="335" height="96.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xms-E7-0kp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTP-0O-gWC">
+                                                        <rect key="frame" x="0.0" y="28.5" width="335" height="30"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                        </accessibility>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="Item Description">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="12" name="Helvetica"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </textView>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3P-4C-sVC">
+                                                        <rect key="frame" x="0.0" y="66.5" width="335" height="30"/>
+                                                        <state key="normal" title="open slides"/>
+                                                        <connections>
+                                                            <action selector="openSlides:" destination="5Hh-M9-wy1" eventType="touchUpInside" id="p4R-LU-3EZ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="wd9-qs-AJu" firstAttribute="top" secondItem="fVf-ea-pkL" secondAttribute="top" constant="20" symbolic="YES" id="0RN-UJ-RAR"/>
+                                            <constraint firstAttribute="bottom" secondItem="wd9-qs-AJu" secondAttribute="bottom" constant="20" symbolic="YES" id="JVV-ek-q6x"/>
+                                            <constraint firstItem="wd9-qs-AJu" firstAttribute="leading" secondItem="fVf-ea-pkL" secondAttribute="leading" constant="20" symbolic="YES" id="hTK-Os-LWc"/>
+                                            <constraint firstAttribute="trailing" secondItem="wd9-qs-AJu" secondAttribute="trailing" constant="20" symbolic="YES" id="nIn-Dg-xAw"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="wd9-qs-AJu" firstAttribute="width" secondItem="CM7-vF-jzK" secondAttribute="width" constant="-40" id="Cuf-NC-SYJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="wd9-qs-AJu" secondAttribute="bottom" constant="20" symbolic="YES" id="GWs-kj-pGN"/>
-                                    <constraint firstItem="wd9-qs-AJu" firstAttribute="top" secondItem="CM7-vF-jzK" secondAttribute="top" constant="20" symbolic="YES" id="TNM-ai-rCn"/>
-                                    <constraint firstAttribute="trailing" secondItem="wd9-qs-AJu" secondAttribute="trailing" constant="20" symbolic="YES" id="cyS-4J-u3X"/>
-                                    <constraint firstItem="wd9-qs-AJu" firstAttribute="leading" secondItem="CM7-vF-jzK" secondAttribute="leading" constant="20" symbolic="YES" id="gjY-tP-CLi"/>
+                                    <constraint firstAttribute="trailing" secondItem="fVf-ea-pkL" secondAttribute="trailing" id="3LZ-22-SzX"/>
+                                    <constraint firstItem="fVf-ea-pkL" firstAttribute="leading" secondItem="CM7-vF-jzK" secondAttribute="leading" id="Bzy-Le-3mT"/>
+                                    <constraint firstItem="fVf-ea-pkL" firstAttribute="top" secondItem="CM7-vF-jzK" secondAttribute="top" id="H4Q-8C-5Gc"/>
+                                    <constraint firstAttribute="bottom" secondItem="fVf-ea-pkL" secondAttribute="bottom" id="gQw-8I-t0z"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="CM7-vF-jzK" firstAttribute="top" secondItem="Vgg-rD-71V" secondAttribute="bottom" id="2y1-LB-dc2"/>
+                            <constraint firstItem="fVf-ea-pkL" firstAttribute="width" secondItem="djE-Up-Vyg" secondAttribute="width" id="5sr-Pu-gNE"/>
                             <constraint firstItem="Vgg-rD-71V" firstAttribute="top" secondItem="ztS-j3-2Jk" secondAttribute="bottom" id="BWn-U3-NtH"/>
                             <constraint firstItem="Vgg-rD-71V" firstAttribute="centerX" secondItem="djE-Up-Vyg" secondAttribute="centerX" id="DEI-fR-LkU"/>
                             <constraint firstItem="Vgg-rD-71V" firstAttribute="width" secondItem="djE-Up-Vyg" secondAttribute="width" id="Gpj-pH-cc4"/>
@@ -835,7 +844,6 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="descriptionView" destination="sTP-0O-gWC" id="Ze6-3B-mDh"/>
-                        <outlet property="descriptionViewHeightConstraint" destination="e1U-10-aDQ" id="Rt9-ma-Huv"/>
                         <outlet property="openSlidesButton" destination="e3P-4C-sVC" id="sRQ-1b-aSe"/>
                         <outlet property="titleView" destination="Xms-E7-0kp" id="saQ-Se-Rhh"/>
                         <outlet property="videoContainer" destination="Vgg-rD-71V" id="XHs-zO-iRA"/>

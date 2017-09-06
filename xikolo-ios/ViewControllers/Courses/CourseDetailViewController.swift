@@ -65,32 +65,38 @@ class CourseDetailViewController: UIViewController {
     }
 
     func setEnrolledState() {
-        enrollmentButton.setTitle(NSLocalizedString("Enrollment options", comment: ""), for: UIControlState.normal)
-        enrollmentButton.backgroundColor = UIColor.white
-        enrollmentButton.tintColor = Brand.TintColor
+        let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
+                                            comment: "title of course enrollment button")
+        self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
+        self.enrollmentButton.backgroundColor = UIColor.white
+        self.enrollmentButton.tintColor = Brand.TintColor
     }
 
     func setUnenrolledState() {
-        enrollmentButton.setTitle(NSLocalizedString("Enroll", comment: ""), for: UIControlState.normal)
-        enrollmentButton.backgroundColor = Brand.TintColor
-        enrollmentButton.tintColor = UIColor.white
+        let buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title",
+                                            comment: "title of Course enrollment options button")
+        self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
+        self.enrollmentButton.backgroundColor = Brand.TintColor
+        self.enrollmentButton.tintColor = UIColor.white
     }
     
     func showEnrollmentDialog() {
-        let title = NSLocalizedString("Enroll in course?", comment: "Shown in confirmation dialog")
-        let message = NSLocalizedString("You can always un-enroll.", comment: "Shown in confirmation dialog")
-        let confirm = NSLocalizedString("Enroll", comment: "")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
-        alert.addAction(UIAlertAction(title: confirm, style: .default, handler: { (action: UIAlertAction!) in
-            EnrollmentHelper.createEnrollment(for: self.course)
-                .flatMap { CourseHelper.refreshCourses() }
-                .onSuccess { _ in
-                    if let parent = self.parent as? CourseDecisionViewController {
-                        parent.decideContent()
-                    }
+        let alertTitle = NSLocalizedString("enrollment.alert.title", comment: "title of enrollment alert")
+        let alertMessage = NSLocalizedString("enrollment.alert.message", comment: "message of enrollment alert")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+
+        let enrollActionTitle = NSLocalizedString("enrollment.alert.enroll-action.title",
+                                                  comment: "title of enroll action of enrollment alert")
+        let enrollAction = UIAlertAction(title: enrollActionTitle, style: .default) { _ in
+            EnrollmentHelper.createEnrollment(for: self.course).flatMap {
+                CourseHelper.refreshCourses()
+            }.onSuccess { _ in
+                if let parent = self.parent as? CourseDecisionViewController {
+                    parent.decideContent()
+                }
             }
-        }))
+        }
+        alert.addAction(enrollAction)
 
         let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
         alert.addAction(UIAlertAction(title: cancelActionTitle, style: .cancel))
@@ -99,13 +105,19 @@ class CourseDetailViewController: UIViewController {
     }
 
     func showEnrollmentOptions() {
-        let alert = UIAlertController(title: NSLocalizedString("Finished learning?", comment:""), message:  NSLocalizedString("You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.", comment: ""), preferredStyle: .actionSheet) // 1
-        let completedAction = UIAlertAction(title: NSLocalizedString("Mark as completed", comment: ""), style: .default) { _ in
+        let alertTitle = NSLocalizedString("enrollment.options-alert.title", comment:"title of enrollment options alert")
+        let alertMessage = NSLocalizedString("enrollment.options-alert.message", comment: "message of enrollment alert")
+        let alert = UIAlertController(title: alertTitle, message:  alertMessage, preferredStyle: .actionSheet)
+
+        let completedActionTitle = NSLocalizedString("enrollment.options-alert.mask-as-completed-action.title",
+                                                     comment: "title for 'mask as completed' action")
+        let completedAction = UIAlertAction(title: completedActionTitle, style: .default) { _ in
             EnrollmentHelper.markAsCompleted(self.course).onSuccess { _ in
                 CourseHelper.refreshCourse(self.course)
             }
         }
-        let unenrollActionTitle = NSLocalizedString("Unenroll", comment: "")
+        let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",
+                                                    comment: "title for unenroll action")
         let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in
             EnrollmentHelper.delete(self.course.enrollment!)
         }

@@ -50,17 +50,32 @@
 /* title for empty announcement list if not logged in */
 "empty-view.platform-events.not-logged-in.title" = "Bitte logge dich ein um die Kursactivitäten zu sehen";
 
-/* No comment provided by engineer. */
-"Enroll" = "Einschreiben";
+/* title of enroll action of enrollment alert */
+"enrollment.alert.enroll-action.title" = "Einschreiben";
 
-/* Shown in confirmation dialog */
-"Enroll in course?" = "In Kurs einschreiben?";
+/* message of enrollment alert */
+"enrollment.alert.message" = "Du kannst dich jederzeit wieder austragen.";
 
-/* No comment provided by engineer. */
-"Enrollment options" = "Eingeschrieben";
+/* title of enrollment alert */
+"enrollment.alert.title" = "In diesen Kurs einschreiben?";
 
-/* No comment provided by engineer. */
-"Finished learning?" = "Fertig gelernt?";
+/* title of course enrollment button */
+"enrollment.button.enrolled.title" = "Eingeschrieben";
+
+/* title of Course enrollment options button */
+"enrollment.button.not-enrolled.title" = "Einschreiben";
+
+/* title for 'mask as completed' action */
+"enrollment.options-alert.mask-as-completed-action.title" = "Als abgeschlossen markieren";
+
+/* message of enrollment alert */
+"enrollment.options-alert.message" = "Du kannst Kurse als abgeschlossen markieren, wenn Du nicht mehr in diesem Kurs lernen möchtest. Du kannst dich auch abmelden. Dann kannst Du nicht mehr auf diesen Kurs zugreifen.";
+
+/* title of enrollment options alert */
+"enrollment.options-alert.title" = "Fertig gelernt?";
+
+/* title for unenroll action */
+"enrollment.options-alert.unenroll-action.title" = "Ausschreiben";
 
 /* title to cancel alert */
 "global.alert.cancel" = "Abbrechen";
@@ -73,9 +88,6 @@
 
 /* No comment provided by engineer. */
 "Learnings" = "Lernmaterial";
-
-/* No comment provided by engineer. */
-"Mark as completed" = "Als abgeschlossen markieren";
 
 /* label for app build */
 "settings.app.build.label" = "Build";
@@ -106,15 +118,6 @@
 
 /* Shown in proctoring dialog */
 "This item needs to be proctored" = "Für dieses Element ist eine Online-Aufsicht erforderlich";
-
-/* No comment provided by engineer. */
-"Unenroll" = "Ausschreiben";
-
-/* Shown in confirmation dialog */
-"You can always un-enroll." = "Du kannst dich jederzeit wieder austragen.";
-
-/* No comment provided by engineer. */
-"You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored." = "Du kannst Kurse als abgeschlossen markieren, wenn Du nicht mehr in diesem Kurs lernen möchtest. Du kannst dich auch abmelden. Dann kannst Du nicht mehr auf diesen Kurs zugreifen.";
 
 /* course-status */
 "running" = "";

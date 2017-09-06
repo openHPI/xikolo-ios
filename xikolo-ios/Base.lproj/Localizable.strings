@@ -41,6 +41,33 @@
 /* title for empty announcement list if not logged in */
 "empty-view.platform-events.not-logged-in.title" = "Please log in to see course activity";
 
+/* title of enroll action of enrollment alert */
+"enrollment.alert.enroll-action.title" = "Enroll";
+
+/* message of enrollment alert */
+"enrollment.alert.message" = "You can always un-enroll.";
+
+/* title of enrollment alert */
+"enrollment.alert.title" = "Enroll in course?";
+
+/* title of course enrollment button */
+"enrollment.button.enrolled.title" = "Enrollment options";
+
+/* title of Course enrollment options button */
+"enrollment.button.not-enrolled.title" = "Enroll";
+
+/* title for 'mask as completed' action */
+"enrollment.options-alert.mask-as-completed-action.title" = "Mark as completed";
+
+/* message of enrollment alert */
+"enrollment.options-alert.message" = "You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
+
+/* title of enrollment options alert */
+"enrollment.options-alert.title" = "Finished learning?";
+
+/* title for unenroll action */
+"enrollment.options-alert.unenroll-action.title" = "Unenroll";
+
 /* title to cancel alert */
 "global.alert.cancel" = "Cancel";
 
@@ -83,38 +110,14 @@
 /* No comment provided by engineer. */
 "Discussions" = "";
 
-/* No comment provided by engineer. */
-"Enroll" = "";
-
-/* Shown in confirmation dialog */
-"Enroll in course?" = "";
-
-/* No comment provided by engineer. */
-"Enrollment options" = "";
-
-/* No comment provided by engineer. */
-"Finished learning?" = "";
-
 /* Shown in proctoring dialog */
 "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." = "";
 
 /* No comment provided by engineer. */
 "Learnings" = "";
 
-/* No comment provided by engineer. */
-"Mark as completed" = "";
-
 /* course-status */
 "running" = "";
 
 /* Shown in proctoring dialog */
 "This item needs to be proctored" = "";
-
-/* No comment provided by engineer. */
-"Unenroll" = "";
-
-/* Shown in confirmation dialog */
-"You can always un-enroll." = "";
-
-/* No comment provided by engineer. */
-"You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored." = "";

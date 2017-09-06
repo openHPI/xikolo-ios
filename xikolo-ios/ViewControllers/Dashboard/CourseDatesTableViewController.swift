@@ -120,9 +120,9 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
         }
         let title: String
         if UserProfileHelper.isLoggedIn() {
-            title = NSLocalizedString("There are no important course dates yet", comment: "")
+            title = NSLocalizedString("course-dates.empty-view.no-dates.title", comment: "") // There are no important course dates yet
         } else {
-            title = NSLocalizedString("Please log in to see your personal deadlines", comment: "")
+            title = NSLocalizedString("course-dates.empty-view.not-logged-in.title", comment: "") // Please log in to see your personal deadlines
         }
         let attributedString = NSAttributedString(string: title)
         return attributedString
@@ -134,9 +134,9 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
         }
         let description: String
         if UserProfileHelper.isLoggedIn() {
-            description = NSLocalizedString("Notifications about deadlines or new courses will appear here", comment: "")
+            description = NSLocalizedString("course-dates.empty-view.no-dates.description", comment: "") // Notifications about deadlines or new courses will appear here
         } else {
-            description = NSLocalizedString("Course dates and deadlines are specific to your courses so we need to now what you're enrolled in", comment: "")
+            description = NSLocalizedString("course-dates.empty-view.not-logged-in.description", comment: "")  // Course dates and deadlines are specific to your courses so we need to now what you're enrolled in
         }
         let attributedString = NSAttributedString(string: description)
         return attributedString

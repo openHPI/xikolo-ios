@@ -1,85 +1,123 @@
-/*
-  Localizable.strings
-  xikolo-ios
 
-  Created by Jonas Müller on 03.09.15.
-  Copyright © 2015 HPI. All rights reserved.
-*/
-
-// Onboarding
-"page_title_learn_anywhere" = "Lerne überall. Auf jedem Gerät.";
-"page_title_learn_anytime" = "Lerne wann immer du willst.";
-"page_title_be_social" = "Sei sozial.";
-"page_title_find_courses" = "Finde jetzt Kurse für Anfänger und Fortgeschrittene.";
-
-// Tab Bar
-"tab_dashboard" = "Dashboard";
-"tab_all_courses" = "Alle Kurse";
-"tab_my_courses" = "Meine Kurses";
-"tab_courses" = "Kurse";
-"tab_news" = "Neuigkeiten";
-"tab_settings" = "Einstellungen";
-
-// Login
-"login" = "Einloggen";
-"logout" = "Ausloggen";
-"email" = "Email";
-"password" = "Passwort";
-"register" = "Registrieren";
-"You are enrolled" = "Bereits eingeschrieben";
-
-//Courses
-"active" = "Läuft";
-"self-paced" = "Selbststudium";
-"upcoming" = "Zukünftig";
-
-"Learnings" = "Lernmaterial";
-"Discussions" = "Diskussionen";
+/* No comment provided by engineer. */
 "Course Details" = "Kursdetails";
 
-"Since" = "Seit";
-"Coming soon" = "Bald verfügbar";
-"Self-paced" = "Selbststudium";
-"Beginning" = "Ab";
-"Suggested" = "Vorgeschlagen";
-"Enrolled" = "Eingeschrieben";
-"Current" = "Aktuell";
-"Upcoming" = "Zukünftig";
-"Completed" = "Abgeschlossen";
-"Mark as completed" = "Als abgeschlossen markieren";
-"Cancel" = "Abbrechen";
-"Unenroll" = "Ausschreiben";
-"Enrollment options" = "Eingeschrieben";
-
-//Dialogs
-"Enroll" = "Einschreiben";
-"Cancel" = "Abbrechen";
-"Enroll in course?" = "In Kurs einschreiben?";
-"You can always un-enroll." = "Du kannst dich jederzeit wieder austragen.";
-"This item needs to be proctored" = "Online-Aufsicht erforderlich";
-"In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
-"Finished learning?" = "Fertig gelernt?";
-"You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored." = "Du kannst Kurse als abgeschlossen markieren, wenn Du nicht mehr in diesem Kurs lernen möchtest. Du kannst dich auch abmelden. Dann kannst Du nicht mehr auf diesen Kurs zugreifen.";
-//Dashboard
+/* No comment provided by engineer. */
 "Course Start" = "Kursstart";
 
-// Settings
-"enrollments" = "Kurseinschreibungen";
-"logout" = "Ausloggen";
-"%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
+/* delete video item */
+"course-item.video.delete-item.delete video" = "Video löschen";
 
-// Video Downloads
-"Download Video" = "Video herunterladen";
-"Stop Download" = "Download stoppen";
-"Delete Video" = "Video löschen";
-"Cancel" = "Abbrechen";
+/* start download of video item */
+"course-item.video.start-download.download video" = "Video herunterladen";
 
-// Video Download Quality
-"Download Quality" = "Download-Qualität";
-"Low" = "Niedrig";
-"Medium" = "Mittel";
-"High" = "Hoch";
-"Best" = "Beste";
+/* stop download of video item */
+"course-item.video.stop-download.stop download" = "Download stoppen";
 
-// Course Content List
+/* No comment provided by engineer. */
+"Discussions" = "Diskussionen";
+
+/* No comment provided by engineer. */
+"Enroll" = "Einschreiben";
+
+/* Shown in confirmation dialog */
+"Enroll in course?" = "In Kurs einschreiben?";
+
+/* No comment provided by engineer. */
+"Enrollment options" = "Eingeschrieben";
+
+/* No comment provided by engineer. */
+"Finished learning?" = "Fertig gelernt?";
+
+/* title to cancel alert */
+"global.alert.cancel" = "Abbrechen";
+
+/* title to confirm alert */
+"global.alert.ok" = "OK";
+
+/* Shown in proctoring dialog */
+"In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
+
+/* No comment provided by engineer. */
+"Learnings" = "Lernmaterial";
+
+/* No comment provided by engineer. */
+"Mark as completed" = "Als abgeschlossen markieren";
+
+/* label for app build */
+"settings.app.build.label" = "Build";
+
+/* label for app version */
+"settings.app.version.label" = "Version";
+
+/* title for link to GitHub repo (including application name) */
+"settings.github-link.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
+
+/* best video persistence quality */
+"settings.video-persistence-quality.best" = "Beste";
+
+/* high video persistence quality */
+"settings.video-persistence-quality.high" = "Hoch";
+
+/* low video persistence quality */
+"settings.video-persistence-quality.low" = "Niedrig";
+
+/* medium video persistence quality */
+"settings.video-persistence-quality.medium" = "Mittel";
+
+/* section title for download quality */
+"settings.video-persistence-quality.section-title.download quality" = "Download-Qualität";
+
+/* Shown in course content list */
 "Slides" = "Folien";
+
+/* Shown in proctoring dialog */
+"This item needs to be proctored" = "Online-Aufsicht erforderlich";
+
+/* No comment provided by engineer. */
+"Unenroll" = "Ausschreiben";
+
+/* Shown in confirmation dialog */
+"You can always un-enroll." = "Du kannst dich jederzeit wieder austragen.";
+
+/* No comment provided by engineer. */
+"You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored." = "Du kannst Kurse als abgeschlossen markieren, wenn Du nicht mehr in diesem Kurs lernen möchtest. Du kannst dich auch abmelden. Dann kannst Du nicht mehr auf diesen Kurs zugreifen.";
+
+/* No comment provided by engineer. */
+"Course activity is specific to your courses so we need to now what you're enrolled in" = "";
+
+/* No comment provided by engineer. */
+"Course dates and deadlines are specific to your courses so we need to now what you're enrolled in" = "";
+
+/* No comment provided by engineer. */
+"Error loading course items" = "";
+
+/* No comment provided by engineer. */
+"News can be published in courses or globally to announce new content or changes to the platform itself" = "";
+
+/* No comment provided by engineer. */
+"Notifications about course material or discussions of enrolled courses will appear here" = "";
+
+/* No comment provided by engineer. */
+"Notifications about deadlines or new courses will appear here" = "";
+
+/* No comment provided by engineer. */
+"Please check you internet connection" = "";
+
+/* No comment provided by engineer. */
+"Please log in to see course activity" = "";
+
+/* No comment provided by engineer. */
+"Please log in to see your personal deadlines" = "";
+
+/* course-status */
+"running" = "";
+
+/* No comment provided by engineer. */
+"There are no important course dates yet" = "";
+
+/* No comment provided by engineer. */
+"There are no news at the moment" = "";
+
+/* No comment provided by engineer. */
+"There has been no course activity yet" = "";

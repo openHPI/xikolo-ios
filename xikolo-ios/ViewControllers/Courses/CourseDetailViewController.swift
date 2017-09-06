@@ -80,7 +80,6 @@ class CourseDetailViewController: UIViewController {
         let title = NSLocalizedString("Enroll in course?", comment: "Shown in confirmation dialog")
         let message = NSLocalizedString("You can always un-enroll.", comment: "Shown in confirmation dialog")
         let confirm = NSLocalizedString("Enroll", comment: "")
-        let decline = NSLocalizedString("Cancel", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: confirm, style: .default, handler: { (action: UIAlertAction!) in
@@ -92,8 +91,9 @@ class CourseDetailViewController: UIViewController {
                     }
             }
         }))
-        
-        alert.addAction(UIAlertAction(title: decline, style: .cancel, handler: nil))
+
+        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
+        alert.addAction(UIAlertAction(title: cancelActionTitle, style: .cancel))
         
         present(alert, animated: true, completion: nil)
     }
@@ -109,7 +109,8 @@ class CourseDetailViewController: UIViewController {
             EnrollmentHelper.delete(self.course.enrollment!)
         }
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
 
         alert.addAction(completedAction)
         alert.addAction(unenrollAction)

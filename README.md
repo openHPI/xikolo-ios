@@ -42,6 +42,16 @@ Add `#bc-ignore!` to 'Comment For Localizer' box in the utilities pane instead o
 	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/IB-Comment-Exclusion-Example2.png" width="272px" height="195px">
 </div>
 
+#### Use name-spaced keys for NSLocalizedString
+To add more context to single localized strings, we use name-spaced keys instead of the english text. The english text is stored in `Localizable.strings (Base)`. In this way we also avoid unneccesary long localization keys. So, we write:
+```swift
+NSLocalizedString("course.section-title.my courses", comment: ...)
+```
+instead of
+```swift
+NSLocalizedString("My Courses", comment: ...)
+```
+
 #### Support of stringsdict files
 Add `#bc-ignore!` to the user comment of `NSLocalizedString`
 ```

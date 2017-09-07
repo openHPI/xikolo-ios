@@ -17,9 +17,9 @@ env:
 
 before_install:
   - pod repo update > /dev/null
-  - if [ "$CHECK_LOCALIZATION" == 1 ] brew install bartycrouch; fi
+  - if [ "$CHECK_LOCALIZATION" == 1 ]; then brew install bartycrouch; fi
 
 script:
   - set -o pipefail
-  - if [ "$CHECK_LOCALIZATION" != 1 ] xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty; fi
-  - if [ "$CHECK_LOCALIZATION" == 1 ] fastlane check_localization; fi
+  - if [ "$CHECK_LOCALIZATION" != 1 ]; then xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty; fi
+  - if [ "$CHECK_LOCALIZATION" == 1 ]; then fastlane check_localization; fi

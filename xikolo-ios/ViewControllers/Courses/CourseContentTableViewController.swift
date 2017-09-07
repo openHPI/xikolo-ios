@@ -269,7 +269,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
 
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
-        let downloadActionTitle = NSLocalizedString("course-item.video.start-download.download video",
+        let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
                                                     comment: "start download of video item")
         let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
             if video.hlsURL != nil {
@@ -296,7 +296,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
     }
 
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let abortActionTitle = NSLocalizedString("course-item.video.stop-download.stop download",
+        let abortActionTitle = NSLocalizedString("course-item.video-download-alert.stop-download-action.title",
                                                  comment: "stop download of video item")
         let abortAction = UIAlertAction(title: abortActionTitle, style: .default) { action in
             VideoPersistenceManager.shared.cancelDownload(for: video)
@@ -309,7 +309,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
     }
 
     func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let deleteActionTitle = NSLocalizedString("course-item.video.delete-item.delete video",
+        let deleteActionTitle = NSLocalizedString("course-item.video-download-alert.delete-item-action.title",
                                                   comment: "delete video item")
         let deleteAction = UIAlertAction(title: deleteActionTitle, style: .default) { action in
             VideoPersistenceManager.shared.deleteAsset(for: video)

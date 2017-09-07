@@ -21,16 +21,16 @@
 "course-item.proctoring.alert.title" = "This item needs to be proctored";
 
 /* delete video item */
-"course-item.video.delete-item.delete video" = "Delete video";
+"course-item.video-download-alert.delete-item-action.title" = "Delete video";
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
 
 /* start download of video item */
-"course-item.video.start-download.download video" = "Download video";
+"course-item.video-download-alert.start-download-action.title" = "Download video";
 
 /* stop download of video item */
-"course-item.video.stop-download.stop download" = "Stop download";
+"course-item.video-download-alert.stop-download-action.title" = "Stop download";
 
 /* title for empty announcement list */
 "empty-view.announcements.title" = "There are no news at the moment";

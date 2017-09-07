@@ -78,6 +78,16 @@ platform :ios do
     sh "bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/"
     sh "bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/"
   end
+
+  #
+  # Travis commands
+  #
+
+  desc "Test for complete application localization"
+  lane :test_localization do
+    translate
+    ensure_git_status_clean
+  end
 end
 
 

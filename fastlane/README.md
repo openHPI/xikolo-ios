@@ -66,6 +66,11 @@ Translates the application incrementally
 - uses bartycrouch
 
 - translates storyboard files and NSLocalizedString usages
+### ios test_localization
+```
+fastlane ios test_localization
+```
+Test for complete application localization
 
 ----
 

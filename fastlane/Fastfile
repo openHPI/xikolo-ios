@@ -69,14 +69,14 @@ platform :ios do
     sh "git checkout head -- ../xikolo-tvos/Info.plist"
   end
 
-  desc "Translates the application incrementally"
+  desc "Adds localizations for the application incrementally"
   desc "- uses bartycrouch"
   desc "- translates storyboard files and NSLocalizedString usages"
-  lane :translate do
+  lane :localize do
     ensure_git_status_clean
     sh "bartycrouch interfaces -p ../xikolo-ios/"
-    sh "bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/"
-    sh "bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/"
+    sh "bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c"
+    sh "bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c"
   end
 
   #
@@ -85,7 +85,7 @@ platform :ios do
 
   desc "Check for complete application localization"
   lane :check_localization do
-    translate
+    localize
     ensure_git_status_clean
   end
 end

@@ -31,3 +31,19 @@ If you would like to contribute by adding a feature or fixing a bug, feel free t
 In order to have a consistent code formatting, we would like you to set some settings:
 - for less unneccessary whitespace changes please set both checkboxes in Xcode->Preferences->Text Editing regarding whitespaces
 - use Unix-style line endings (LF)
+
+### Localization
+We use [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) to ensure a complete localization of the applications. Simple run `fastlane localize` to add entries for missing localizations in storyboard files and `NSLocalizedString` usages. Here are some tips to promote a consistent usage:
+
+#### Exlusion of storyboard elements
+Add `#bc-ignore!` to 'Comment For Localizer' box in the utilities pane instead of adding `#bc-ignore!` to the elements value. 
+<div>
+	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/IB-Comment-Exclusion-Example1.png" width="275px" height="491px">
+	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/IB-Comment-Exclusion-Example2.png" width="272px" height="195px">
+</div>
+
+#### Support of stringsdict files
+Add `#bc-ignore!` to the user comment of `NSLocalizedString`
+```
+let format = NSLocalizedString("%d hours", comment: "<number> of hours #bc-ignore!")
+```

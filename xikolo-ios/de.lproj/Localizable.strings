@@ -23,14 +23,14 @@
 /* delete video item */
 "course-item.video-download-alert.delete-item-action.title" = "Video löschen";
 
-/* Shown in course content list */
-"course-item.video.slides.label" = "Folien";
-
 /* start download of video item */
 "course-item.video-download-alert.start-download-action.title" = "Video herunterladen";
 
 /* stop download of video item */
 "course-item.video-download-alert.stop-download-action.title" = "Download stoppen";
+
+/* Shown in course content list */
+"course-item.video.slides.label" = "Folien";
 
 /* title for empty announcement list */
 "empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";

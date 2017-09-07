@@ -11,11 +11,17 @@
 /* course start at specfic date in the past */
 "course-date-formatting.started.since %@" = "Since %@";
 
+/* section title for all courses */
+"course.section-title.all courses" = "All Courses";
+
 /* section title for completed courses */
 "course.section-title.completed" = "Completed";
 
 /* section title for current courses */
 "course.section-title.current" = "Current";
+
+/* section title for enrolled courses */
+"course.section-title.my courses" = "My Courses";
 
 /* section title for selfpaced courses */
 "course.section-title.self-paced" = "Self-paced";
@@ -25,9 +31,3 @@
 
 /* section title for upcoming courses */
 "course.section-title.upcoming" = "Upcoming";
-
-/* section title for all courses */
-"course.section-title.all courses" = "All Courses";
-
-/* section title for enrolled courses */
-"course.section-title.my courses" = "My Courses";

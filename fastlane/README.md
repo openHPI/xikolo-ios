@@ -66,11 +66,6 @@ Adds localizations for the application incrementally
 - uses bartycrouch
 
 - translates storyboard files and NSLocalizedString usages
-### ios check_localization
-```
-fastlane ios check_localization
-```
-Check for complete application localization
 
 ----
 

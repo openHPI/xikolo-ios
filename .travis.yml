@@ -5,6 +5,7 @@ xcode_scheme: xikolo-ios
 cache: cocoapods
 
 env:
+  - CHECK_LOCALIZATION=1
   - SCHEME="openHPI-iOS" SDK="iphonesimulator"
   - SCHEME="openSAP-iOS" SDK="iphonesimulator"
   - SCHEME="openWHO-iOS" SDK="iphonesimulator"
@@ -14,9 +15,11 @@ env:
   # - SCHEME="openWHO-tvOS" SDK="appletvsimulator"
   # - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
-before_install:
-  - pod repo update > /dev/null
+before_script:
+  - if [ "$CHECK_LOCALIZATION" != 1 ] pod repo update > /dev/null; fi
+  - if [ "$CHECK_LOCALIZATION" == 1 ] brew install bartycrouch; fi
 
 script:
   - set -o pipefail
-  - xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty
+  - if [ "$CHECK_LOCALIZATION" != 1 ] xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty; fi
+  - if [ "$CHECK_LOCALIZATION" == 1 ] fastlane check_localization; fi

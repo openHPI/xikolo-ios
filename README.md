@@ -6,13 +6,19 @@ iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
 - Xcode 8.3
-- [CocoaPods](https://cocoapods.org/) (version 1.3.1): ```sudo gem install cocoapods -v 1.3.1```
-- [fastlane](https://fastlane.tools/) (version >= 2.54.3): ```brew cask install fastlane```
-- [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) (version 3.8.1): ```brew install bartycrouch```
+- bundler: `gem install bundler`
+
+The following tools will be install via bundler:
+- [CocoaPods](https://cocoapods.org/)
+- [fastlane](https://fastlane.tools/)
+
+The following tools will be install via cocoapods:
+- [BartyCrouch](https://github.com/Flinesoft/BartyCrouch)
 
 ### How to get started
 - clone this repository
-- run `pod repo update` and `pod install`
+- run `bundle install`
+- run `bundle exec pod repo update` and `bundle exec pod install`
 - open xikolo-ios.xcworkspace in Xcode
 - start one of the defined targets
 
@@ -33,7 +39,7 @@ In order to have a consistent code formatting, we would like you to set some set
 - use Unix-style line endings (LF)
 
 ### Localization
-We use [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) to ensure a complete localization of the applications. Simple run `fastlane localize` to add entries for missing localizations in storyboard files and `NSLocalizedString` usages. Here are some tips to promote a consistent usage:
+We use [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) to ensure a complete localization of the applications. Simple run `bundle exec fastlane localize` to add entries for missing localizations in storyboard files and `NSLocalizedString` usages. Here are some tips to promote a consistent usage:
 
 #### Exlusion of storyboard elements
 Add `#bc-ignore!` to 'Comment For Localizer' box in the utilities pane instead of adding `#bc-ignore!` to the elements value. 

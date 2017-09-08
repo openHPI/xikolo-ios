@@ -65,7 +65,7 @@ class CourseDetailViewController: UIViewController {
     }
 
     func setEnrolledState() {
-        let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
+        let buttonTitle = NSLocalizedString("enrollment.button.enrolled.titl",
                                             comment: "title of course enrollment button")
         self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
         self.enrollmentButton.backgroundColor = UIColor.white

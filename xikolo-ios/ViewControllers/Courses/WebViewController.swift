@@ -50,11 +50,12 @@ extension WebViewController : UIWebViewDelegate {
         let userIsLoggedIn = UserProfileHelper.isLoggedIn()
         let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.HTTP_AUTH_HEADER) ?? false
 
-        if let url = request.url?.absoluteString, userIsLoggedIn && !headerIsPresent {
+        if userIsLoggedIn && !headerIsPresent {
             DispatchQueue.global().async {
                 DispatchQueue.main.async {
-                    let newRequest = NetworkHelper.getRequestForURL(url)
-                    self.webView.loadRequest(newRequest as URLRequest)
+                    var newRequest = request
+                    newRequest.allHTTPHeaderFields = NetworkHelper.getRequestHeaders()
+                    self.webView.loadRequest(newRequest)
                 }
             }
             return false

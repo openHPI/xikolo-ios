@@ -11,8 +11,6 @@ import BrightFutures
 
 class RetryHelper {
 
-    static let MaxDelay = 300
-
     class func retry<T>(times: Int, block: @escaping () -> Future<T, XikoloError>) -> Future<T, XikoloError> {
         return self.retry(times: times, cooldown: 30, block: block)
     }

@@ -13,7 +13,6 @@ import Spine
 
 class TrackingEvent: NSManagedObject {
 
-
 }
 
 class TrackingEventSpine : Resource {
@@ -48,7 +47,7 @@ class TrackingEventSpine : Resource {
             "timestamp": DateAttribute(),
             "result": Attribute(),
             "context": Attribute(),
-            ])
+        ])
     }
 
 }

@@ -13,30 +13,7 @@ import CoreData
 
 class TrackingHelper {
 
-    #if os(tvOS)
-    fileprivate static let platform = "tvOS"
-    #else
-    fileprivate static let platform = "iOS"
-    #endif
-
-    fileprivate static let osVersion: String = {
-        let version = ProcessInfo().operatingSystemVersion
-        return version.toString()
-    }()
-
-    fileprivate static let device: String = {
-        var sysinfo = utsname()
-        uname(&sysinfo)
-        var name = withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
-            String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
-        }
-        if ["i386", "x86_64"].contains(name) {
-            name = "Simulator"
-        }
-        return name
-    }()
-
-    fileprivate class func getNetworkState() -> String {
+    private class var networkState: String {
         switch ReachabilityHelper.reachability.currentReachabilityStatus {
         case .reachableViaWiFi:
             return "wifi"
@@ -47,9 +24,7 @@ class TrackingHelper {
         }
     }
 
-    fileprivate class func defaultContext() -> [String: String] {
-        let bundleInfo = Bundle.main.infoDictionary!
-
+    private class func defaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
 
         return [
@@ -58,19 +33,17 @@ class TrackingHelper {
             "runtime": UIApplication.platform,
             "runtime_version": UIApplication.osVersion,
             "device": UIApplication.device,
-            "build_version_name": bundleInfo["CFBundleShortVersionString"] as! String,
-            "build_number": bundleInfo["CFBundleVersion"] as! String,
+            "build_version_name": UIApplication.appVersion(),
+            "build_number": UIApplication.appBuild(),
             "screen_width": String(Int(screenSize.width)),
             "screen_height": String(Int(screenSize.height)),
             "free_space": String(describing: self.systemFreeSize),
             "total_space": String(describing: self.systemSize),
-            "network": getNetworkState()
+            "network": self.networkState,
         ]
     }
 
     @discardableResult class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> TrackingEvent {
-
-
         let trackingVerb = TrackingEventVerb()
         trackingVerb.type = verb
 

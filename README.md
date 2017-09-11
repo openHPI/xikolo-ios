@@ -8,11 +8,11 @@ iOS application for openHPI, openSAP, mooc.house and OpenWHO
 - Xcode 8.3
 - bundler: `gem install bundler`
 
-The following tools will be install via bundler:
+The following tools will be installed via bundler:
 - [CocoaPods](https://cocoapods.org/)
 - [fastlane](https://fastlane.tools/)
 
-The following tools will be install via cocoapods:
+The following tools will be installed via cocoapods:
 - [BartyCrouch](https://github.com/Flinesoft/BartyCrouch)
 
 ### How to get started

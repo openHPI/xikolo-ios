@@ -7,19 +7,25 @@
 //
 
 import Foundation
+import BrightFutures
+import Result
 
 class AnalyticsHelper {
 
+    private static let queue = DispatchQueue(label: "de.xikolo.analytics-queue")
+
     class func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(AnalyticsHelper.check), name: NotificationKeys.reachabilityChanged, object: nil)
-        check()
+        self.check()
     }
 
     @objc class func check() {
         do {
             let eventCount = try CoreDataHelper.backgroundContext.count(for: TrackingHelper.getTrackingEventRequest())
             if eventCount > 0 {
-                self.uploadTrackingEvents()
+                self.queue.async {
+                    self.uploadTrackingEvents()
+                }
             }
         } catch {
             print("\(error)")
@@ -27,20 +33,29 @@ class AnalyticsHelper {
     }
 
     class func uploadTrackingEvents() {
-        guard ReachabilityHelper.reachability.currentReachabilityStatus == .reachableViaWiFi else { return }
-        var events: [TrackingEvent]
+//        guard ReachabilityHelper.reachability.currentReachabilityStatus == .reachableViaWiFi else { return }
+        let events: [TrackingEvent]
         do {
             events = try CoreDataHelper.backgroundContext.fetch(TrackingHelper.getTrackingEventRequest())
             guard events.count > 0 else { return }
-            for event in events {
-                SpineHelper.save(TrackingEventSpine(event)).onSuccess(callback: { (_) in
+            events.traverse { event in
+                return SpineHelper.save(TrackingEventSpine(event)).map { _ -> Future<Void, NoError> in
                     CoreDataHelper.backgroundContext.delete(event)
-                })
+                    return Future { complete in complete(.success()) }
+                }.onFailure { error in
+                    print("error")
+                }
+            }.onComplete { _ in
+                DispatchQueue.main.sync {
+                    CoreDataHelper.saveContext()
+                }
+                self.queue.async {
+                    self.uploadTrackingEvents()
+                }
             }
         } catch {
             print("Failed to fetch tracking events: \(error)")
         }
-        RetryHelper.after(interval: 60.0).onSuccess { check() }
     }
 
 }

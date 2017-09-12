@@ -28,7 +28,10 @@ class ReachabilityHelper {
 
     @objc class func reachabilityChanged() {
         self.isOffline = !reachability.isReachable
-        NotificationCenter.default.post(name: NotificationKeys.reachabilityChanged, object: reachability)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NotificationKeys.reachabilityChanged, object: nil)
+        }
+
     }
 
 }

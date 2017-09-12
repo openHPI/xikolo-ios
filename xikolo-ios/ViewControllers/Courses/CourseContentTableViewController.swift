@@ -20,7 +20,13 @@ class CourseContentTableViewController: UITableViewController {
 
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
-    var isOffline = false
+    var isOffline = false {
+        didSet {
+            if oldValue != self.isOffline {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -115,11 +121,7 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func reachabilityChanged() {
-        let oldOfflineState = self.isOffline
         self.isOffline = ReachabilityHelper.isOffline
-        if oldOfflineState != self.isOffline {
-            self.tableView.reloadData()
-        }
     }
 
     func preloadCourseContent() {
@@ -201,7 +203,7 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
 
         let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
                                                         isPreloading: self.tableViewController?.isPreloading ?? false,
-                                                        inOfflineMode: ReachabilityHelper.isOffline ?? false)
+                                                        inOfflineMode: ReachabilityHelper.isOffline)
         cell.configure(for: item, with: configuration)
     }
 

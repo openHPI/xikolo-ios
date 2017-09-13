@@ -5,7 +5,7 @@
 iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
-- Xcode 8.3
+- Xcode 9.0 GM
 - [CocoaPods](https://cocoapods.org/) 1.3.1
 - [fastlane](https://fastlane.tools/) >= 2.54.3
 

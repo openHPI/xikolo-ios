@@ -25,22 +25,28 @@ class PlatformEventsTableViewController: UITableViewController {
 
         let request = PlatformEventHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "PlatformEventCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "PlatformEventCell")
         let configuration = TableViewResultsControllerConfigurationWrapper(PlatformEventsTableViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
+
+        self.updateAfterLoginStateChange()
 
         do {
             try resultsController.performFetch()
         } catch {
             // TODO: Error handling.
         }
-        PlatformEventHelper.syncPlatformEvents().onComplete { _ in
-                self.tableView.reloadEmptyDataSet()
-        }
-        setupEmptyState()
+        self.tableView.reloadData()
+        self.setupEmptyState()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(PlatformEventsTableViewController.updateAfterLoginStateChange),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     func setupEmptyState() {
@@ -48,6 +54,20 @@ class PlatformEventsTableViewController: UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
+    }
+
+    func updateAfterLoginStateChange() {
+        self.tableView.reloadEmptyDataSet()
+        if UserProfileHelper.isLoggedIn() {
+            PlatformEventHelper.syncPlatformEvents()
+        }
+
+        // FIXME: This call dhould not be made here. However without this call the table view does not refresh after a logout.
+        do {
+            try resultsController.performFetch()
+        } catch {
+            // TODO: Error handling.
+        }
     }
 
 }
@@ -65,31 +85,23 @@ struct PlatformEventsTableViewConfiguration : TableViewResultsControllerConfigur
 extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
         let title: String
         if UserProfileHelper.isLoggedIn() {
             title = NSLocalizedString("There has been no course activity yet", comment: "")
         } else {
             title = NSLocalizedString("Please log in to see course activity", comment: "")
         }
-        let attributedString = NSAttributedString(string: title)
-        return attributedString
+        return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
         let description: String
         if UserProfileHelper.isLoggedIn() {
             description = NSLocalizedString("Notifications about course material or discussions of enrolled courses will appear here", comment: "")
         } else {
             description = NSLocalizedString("Course activity is specific to your courses so we need to now what you're enrolled in", comment: "")
         }
-        let attributedString = NSAttributedString(string: description)
-        return attributedString
+        return NSAttributedString(string: description)
     }
 
 }

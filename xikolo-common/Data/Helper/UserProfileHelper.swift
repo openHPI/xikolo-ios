@@ -82,14 +82,6 @@ open class UserProfileHelper {
 
     static func saveToken(_ token: String) {
         save(.token, withValue: token)
-        refreshUserDependentData()
-    }
-
-    static func refreshUserDependentData() {
-        UserHelper.syncMe()
-        CourseHelper.refreshCourses()
-        CourseDateHelper.syncCourseDates()
-        AnnouncementHelper.syncAnnouncements()
     }
 
     static func saveId(_ id: String) {

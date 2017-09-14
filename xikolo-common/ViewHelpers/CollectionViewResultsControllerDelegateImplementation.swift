@@ -11,7 +11,7 @@ import UIKit
 
 class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
-    weak var collectionView: UICollectionView!
+    weak var collectionView: UICollectionView?
     var resultsControllers: [NSFetchedResultsController<T>] // 2Think: Do we create a memory loop here?
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
@@ -39,7 +39,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSOb
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        collectionView!.performBatchUpdates({
+        collectionView?.performBatchUpdates({
             let collectionView = self.collectionView!
             for change in self.contentChangeOperations {
                 switch change.context {

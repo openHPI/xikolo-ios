@@ -20,6 +20,18 @@ class CourseActivityViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(CourseActivityViewController.updateAfterLoginStateChange),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
+        self.updateFetchedResultController()
+    }
+
+    func updateAfterLoginStateChange() {
+        self.updateFetchedResultController()
+    }
+
+    private func updateFetchedResultController() {
         // TODO: proper API call and cell UI
         let request: NSFetchRequest<Course>
         if UserProfileHelper.isLoggedIn() {

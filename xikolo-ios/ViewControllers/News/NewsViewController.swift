@@ -27,16 +27,6 @@ class NewsViewController : UIViewController {
 
     override func viewDidLoad() {
         updateContainerView(.announcements)
-        syncContent()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(NewsViewController.syncContent),
-                                               name: NotificationKeys.loginStateChangedKey,
-                                               object: nil)
-    }
-
-    func syncContent() {
-        AnnouncementHelper.syncAnnouncements()
-        PlatformEventHelper.syncPlatformEvents()
     }
 
     func updateContainerView(_ position: TabContent) {
@@ -63,9 +53,9 @@ class NewsViewController : UIViewController {
     }
 
     func changeToViewController(_ viewController: UIViewController) {
-        containerView.addSubview(viewController.view)
+        self.addChildViewController(viewController)
         viewController.view.frame = containerView.bounds
-        addChildViewController(viewController)
+        self.containerView.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
     }

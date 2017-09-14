@@ -37,13 +37,18 @@ extension WebViewController : UIWebViewDelegate {
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
            let urlComponents = URLComponents.init(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
-            queryItems.forEach({ (queryItem) in
-                if queryItem.name == "token" {
-                    guard let token = queryItem.value  else { return }
-                    UserProfileHelper.saveToken(token)
-                    navigationController?.dismiss(animated: true, completion: nil)
+
+            if let tokenItem = queryItems.first(where: { $0.name == "token"}) {
+                guard let token = tokenItem.value else { return false }
+
+                UserProfileHelper.saveToken(token)
+                UserProfileHelper.postLoginStateChange()
+                self.navigationController?.dismiss(animated: true) {
+                    NetworkIndicator.end()
                 }
-            })
+                return false
+            }
+
             return true
         }
 

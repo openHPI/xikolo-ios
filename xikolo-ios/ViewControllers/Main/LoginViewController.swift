@@ -51,15 +51,11 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
             let vc = segue.destination as! WebViewController
             vc.url = Routes.SSO_URL
 
-            #if OPENSAP
+            // Delete all cookies since cookies are not shared among applications in iOS.
             let cookieStorage = HTTPCookieStorage.shared
-            let cookies = cookieStorage.cookies?.filter({ cookie in
-                return cookie.domain.contains("sap")
-            })
-            for cookie in cookies ?? [] {
+            for cookie in cookieStorage.cookies ?? [] {
                 cookieStorage.deleteCookie(cookie)
             }
-            #endif
         }
     }
 

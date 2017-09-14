@@ -32,6 +32,9 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
 
+/* description for empty announcement list */
+"empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
+
 /* title for empty announcement list */
 "empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";
 

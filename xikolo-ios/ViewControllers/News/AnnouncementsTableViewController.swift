@@ -103,7 +103,7 @@ extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyData
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.announcements.title", comment: "description for empty announcement list")
+        let description = NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
         return NSAttributedString(string: description)
     }
 

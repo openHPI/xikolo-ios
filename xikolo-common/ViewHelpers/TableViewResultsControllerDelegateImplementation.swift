@@ -11,7 +11,7 @@ import UIKit
 
 class TableViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
-    weak var tableView: UITableView!
+    weak var tableView: UITableView?
     var resultsControllers: [NSFetchedResultsController<T>]
     var cellReuseIdentifier: String
 
@@ -26,16 +26,16 @@ class TableViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject,
     }
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+        self.tableView?.beginUpdates()
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex)
         switch type {
         case .insert:
-            tableView.insertSections(convertedIndexSet!, with: .fade)
+            self.tableView?.insertSections(convertedIndexSet!, with: .fade)
         case .delete:
-            tableView.deleteSections(convertedIndexSet!, with: .fade)
+            self.tableView?.deleteSections(convertedIndexSet!, with: .fade)
         case .move:
             break
         case .update:
@@ -48,26 +48,26 @@ class TableViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject,
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
         switch type {
         case .insert:
-            tableView.insertRows(at: [convertedNewIndexPath!], with: .fade)
+            self.tableView?.insertRows(at: [convertedNewIndexPath!], with: .fade)
         case .delete:
-            tableView.deleteRows(at: [convertedIndexPath!], with: .fade)
+            self.tableView?.deleteRows(at: [convertedIndexPath!], with: .fade)
         case .update:
             #if os(tvOS)
             // Undocumented by Apple:
             // Need to create rows that don't exist here to prevent assertion errors (tvOS only).
-            tableView.insertRows(at: [convertedIndexPath!], with: .fade)
+            self.tableView?.insertRows(at: [convertedIndexPath!], with: .fade)
             #else
-            tableView.reloadRows(at: [convertedIndexPath!], with: .fade)
+            self.tableView?.reloadRows(at: [convertedIndexPath!], with: .fade)
             #endif
 
         case .move:
-            tableView.deleteRows(at: [convertedIndexPath!], with: .fade)
-            tableView.insertRows(at: [convertedNewIndexPath!], with: .fade)
+            self.tableView?.deleteRows(at: [convertedIndexPath!], with: .fade)
+            self.tableView?.insertRows(at: [convertedNewIndexPath!], with: .fade)
         }
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+        self.tableView?.endUpdates()
     }
 
     // MARK: UITableViewDataSource

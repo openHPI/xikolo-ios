@@ -12,7 +12,7 @@ import Spine
 
 class SpineHelper {
 
-    fileprivate static var client: Spine = {
+    private static var client: Spine = {
         #if DEBUG
             if ProcessInfo.processInfo.environment["SPINE_LOGGING"] == "enable" {
                 Spine.setLogLevel(.debug, forDomain: .networking)
@@ -53,8 +53,9 @@ class SpineHelper {
     }()
 
     private static func updateHttpHeaders(_ spine: Spine) {
-        let httpClient = spine.networkClient as! HTTPClient
-        NetworkHelper.getRequestHeaders().forEach { key, value in
+        guard let httpClient = spine.networkClient as? HTTPClient else { return }
+        httpClient.removeHeader(Routes.HTTP_AUTH_HEADER)
+        for (key, value) in NetworkHelper.getRequestHeaders() {
             httpClient.setHeader(key, to: value)
         }
     }

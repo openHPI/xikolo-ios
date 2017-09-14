@@ -61,10 +61,13 @@ class AbstractCourseListViewController : UICollectionViewController {
         collectionView!.dataSource = resultsControllerDelegateImplementation
 
         do {
-            for rC in resultsControllers { try rC.performFetch() }
+            for rC in resultsControllers {
+                try rC.performFetch()
+            }
         } catch {
             // TODO: Error handling.
         }
+        self.collectionView?.reloadData()
     }
 
 }

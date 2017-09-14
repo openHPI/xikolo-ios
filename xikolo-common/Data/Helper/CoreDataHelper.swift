@@ -55,9 +55,13 @@ class CoreDataHelper {
         }
     }
 
-    static func createResultsController<T: BaseModel>(_ fetchRequest: NSFetchRequest<T>, sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
+    static func createResultsController<T: BaseModel>(_ fetchRequest: NSFetchRequest<T>,
+                                                      sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
         // TODO: Add cache name
-        return NSFetchedResultsController<T>(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+        return NSFetchedResultsController<T>(fetchRequest: fetchRequest,
+                                             managedObjectContext: persistentContainer.viewContext,
+                                             sectionNameKeyPath: sectionNameKeyPath,
+                                             cacheName: nil)
     }
 
     static func executeFetchRequest<T: BaseModel>(_ request: NSFetchRequest<T>) throws -> [T] {
@@ -79,19 +83,27 @@ class CoreDataHelper {
     }
 
     static func clearCoreDataStorage() {
-        managedObjectModel.entitiesByName.keys.forEach { (entityName) in
-            clearCoreDataEntity(entityName)
+        for entityName in managedObjectModel.entitiesByName.keys {
+            self.clearCoreDataEntity(entityName)
         }
     }
 
     static func clearCoreDataEntity(_ entityName: String) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        self.persistentContainer.performBackgroundTask { privateManagedObjectContext in
+            privateManagedObjectContext.shouldDeleteInaccessibleFaults = true
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            deleteRequest.resultType = .resultTypeObjectIDs
 
-        do {
-            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: backgroundContext)
-        } catch {
-            // TODO: handle the error
+            do {
+                let result = try privateManagedObjectContext.execute(deleteRequest) as? NSBatchDeleteResult
+                guard let objectIDArray = result?.result as? [NSManagedObjectID] else { return }
+                let changes = [NSDeletedObjectsKey : objectIDArray]
+                print("delete all of \(entityName): \(objectIDArray.count) elements")
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
+            } catch {
+                // TODO: handle the error
+            }
         }
     }
 

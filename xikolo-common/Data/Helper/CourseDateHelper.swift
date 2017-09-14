@@ -40,7 +40,7 @@ class CourseDateHelper {
 
     static func syncCourseDates() -> Future<[CourseDate], XikoloError> {
         return CourseDateProvider.getCourseDates().flatMap { spineCourseDates -> Future<[CourseDate], XikoloError> in
-            let request = getCourseDatesRequest()
+            let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineCourseDates, inject: nil, save: true)
         }
     }

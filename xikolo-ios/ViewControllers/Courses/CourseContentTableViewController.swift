@@ -239,21 +239,13 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
 extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
         let title = NSLocalizedString("Error loading course items", comment: "")
-        let attributedString = NSAttributedString(string: title)
-        return attributedString
+        return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
         let description = NSLocalizedString("Please check you internet connection", comment: "")
-        let attributedString = NSAttributedString(string: description)
-        return attributedString
+        return NSAttributedString(string: description)
     }
 
 }

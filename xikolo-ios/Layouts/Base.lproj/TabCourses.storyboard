@@ -334,9 +334,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="4x6-UC-eoD">
                         <nil key="title"/>
-<<<<<<< HEAD
                         <view key="titleView" contentMode="scaleToFill" id="x06-4t-OCP">
-                            <rect key="frame" x="111.5" y="5.5" width="152" height="33"/>
+                            <rect key="frame" x="111.5" y="7.5" width="152" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="CourseContent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOo-HA-xNK">
@@ -344,55 +343,23 @@
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
+                                    <attributedString key="userComments">
+                                        <fragment content="#bc-ignore!">
+                                            <attributes>
+                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO" />
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titlebar-dropdown-30" translatesAutoresizingMaskIntoConstraints="NO" id="Nwv-ue-3hY">
                                     <rect key="frame" x="122" y="0.0" width="30" height="33"/>
-=======
-                        <view key="titleView" contentMode="scaleToFill" id="1M6-B2-JWD">
-                            <rect key="frame" x="100" y="7.5" width="175" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVy-qU-9HS">
-                                    <rect key="frame" x="-8.5" y="0.0" width="192" height="33"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="CourseContent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0c-UK-HJw">
-                                            <rect key="frame" x="20" y="6" width="122" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titlebar-dropdown-30" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-7A-qKb">
-                                            <rect key="frame" x="142" y="1.5" width="30" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="3uz-gH-7VT"/>
-                                                <constraint firstAttribute="width" constant="30" id="XUc-RX-DST"/>
-                                            </constraints>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeC-bu-kRR">
-                                            <rect key="frame" x="20" y="-0.5" width="152" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="YBB-FO-qa2"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="YBB-FO-qa2"/>
-                                                </mask>
-                                            </variation>
-                                            <connections>
-                                                <segue destination="HIU-IN-RiG" kind="popoverPresentation" identifier="ShowContentChoice" popoverAnchorView="BeC-bu-kRR" id="u7s-tl-wgY">
-                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                </segue>
-                                            </connections>
-                                        </button>
-                                    </subviews>
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="d73-Cf-2RU"/>
                                         <constraint firstAttribute="height" constant="30" id="da7-1R-yOe"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="Nwv-ue-3hY" secondAttribute="bottom" id="2k9-Mo-H1y"/>
                                 <constraint firstAttribute="bottom" secondItem="cOo-HA-xNK" secondAttribute="bottom" id="Fob-BD-6I9"/>
@@ -917,7 +884,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVE-YK-VxL">
-                                <rect key="frame" x="0.0" y="68" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="I95-Lh-Mgw"/>
                                 </constraints>

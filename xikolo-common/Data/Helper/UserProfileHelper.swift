@@ -96,7 +96,7 @@ open class UserProfileHelper {
         save(.user, withValue: id)
     }
 
-    private static func postLoginStateChange() {
+    static func postLoginStateChange() {
         SpineHelper.updateHttpHeaders()
         NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
     }

@@ -22,3 +22,6 @@
 
 /* Class = "UITabBarItem"; title = "Courses"; ObjectID = "fhC-LU-HI2"; */
 "fhC-LU-HI2.title" = "Kurse";
+
+/* Class = "UIBarButtonItem"; title = "Courses"; ObjectID = "yii-3n-v5c"; */
+"yii-3n-v5c.title" = "Kurse";

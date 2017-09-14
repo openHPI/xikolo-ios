@@ -25,22 +25,28 @@ class PlatformEventsTableViewController: UITableViewController {
 
         let request = PlatformEventHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "PlatformEventCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "PlatformEventCell")
         let configuration = TableViewResultsControllerConfigurationWrapper(PlatformEventsTableViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
+
+        self.updateAfterLoginStateChange()
 
         do {
             try resultsController.performFetch()
         } catch {
             // TODO: Error handling.
         }
-        PlatformEventHelper.syncPlatformEvents().onComplete { _ in
-                self.tableView.reloadEmptyDataSet()
-        }
-        setupEmptyState()
+        self.tableView.reloadData()
+        self.setupEmptyState()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(PlatformEventsTableViewController.updateAfterLoginStateChange),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     func setupEmptyState() {
@@ -48,6 +54,20 @@ class PlatformEventsTableViewController: UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
+    }
+
+    func updateAfterLoginStateChange() {
+        self.tableView.reloadEmptyDataSet()
+        if UserProfileHelper.isLoggedIn() {
+            PlatformEventHelper.syncPlatformEvents()
+        }
+
+        // FIXME: This call dhould not be made here. However without this call the table view does not refresh after a logout.
+        do {
+            try resultsController.performFetch()
+        } catch {
+            // TODO: Error handling.
+        }
     }
 
 }
@@ -65,9 +85,6 @@ struct PlatformEventsTableViewConfiguration : TableViewResultsControllerConfigur
 extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
         let title: String
         if UserProfileHelper.isLoggedIn() {
             title = NSLocalizedString("empty-view.platform-events.no-activities.title",
@@ -76,14 +93,10 @@ extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDat
             title = NSLocalizedString("empty-view.platform-events.not-logged-in.title",
                                       comment: "title for empty announcement list if not logged in")
         }
-        let attributedString = NSAttributedString(string: title)
-        return attributedString
+        return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
         let description: String
         if UserProfileHelper.isLoggedIn() {
             description = NSLocalizedString("empty-view.platform-events.no-activities.description",
@@ -92,8 +105,7 @@ extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDat
             description = NSLocalizedString("empty-view.platform-events.not-logged-in.description",
                                             comment: "description for empty announcement list if not logged in")
         }
-        let attributedString = NSAttributedString(string: description)
-        return attributedString
+        return NSAttributedString(string: description)
     }
 
 }

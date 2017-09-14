@@ -29,15 +29,17 @@ class CourseDatesTableViewController : UITableViewController {
         self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
 
         TrackingHelper.sendEvent("VISITED_DASHBOARD", resource: nil)
-        self.updateAfterLogin()
+        self.updateAfterLoginStateChange()
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(CourseDatesTableViewController.updateAfterLogin),
+                                               selector: #selector(CourseDatesTableViewController.updateAfterLoginStateChange),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
 
         let request = CourseDateHelper.getCourseDatesRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseDateCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "CourseDateCell")
         let configuration = TableViewResultsControllerConfigurationWrapper(CourseDatesTableViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
@@ -48,7 +50,8 @@ class CourseDatesTableViewController : UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-        setupEmptyState()
+        self.tableView.reloadData()
+        self.setupEmptyState()
     }
 
     func setupEmptyState() {
@@ -58,13 +61,13 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        CourseDateHelper.syncCourseDates()
-    }
-
-    func updateAfterLogin() {
+    func updateAfterLoginStateChange() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
-        CourseDateHelper.syncCourseDates()
+
+        self.tableView.reloadEmptyDataSet()
+        if UserProfileHelper.isLoggedIn() {
+            CourseDateHelper.syncCourseDates()
+        }
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -114,10 +117,16 @@ struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfigurati
 
 extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        guard let tableHeaderView = self.tableView.tableHeaderView else {
+            return 0
         }
+        // DZNEmptyDataSet has some undefined behavior for the verticalOffset when using a custom tableView header.
+        // Dividing it again by 2 will do the trick.
+        return tableHeaderView.frame.height/2/2
+    }
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title: String
         if UserProfileHelper.isLoggedIn() {
             title = NSLocalizedString("empty-view.course-dates.no-dates.title",
@@ -126,14 +135,10 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
             title = NSLocalizedString("empty-view.course-dates.not-logged-in.title",
                                       comment: "title for empty course dates list if not logged in")
         }
-        let attributedString = NSAttributedString(string: title)
-        return attributedString
+        return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
         let description: String
         if UserProfileHelper.isLoggedIn() {
             description = NSLocalizedString("empty-view.course-dates.no-dates.description",
@@ -142,8 +147,7 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
             description = NSLocalizedString("empty-view.course-dates.not-logged-in.description",
                                             comment: "description for empty course dates list if not logged in")
         }
-        let attributedString = NSAttributedString(string: description)
-        return attributedString
+        return NSAttributedString(string: description)
     }
     
 }

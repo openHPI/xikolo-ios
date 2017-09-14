@@ -1,4 +1,5 @@
 use_frameworks!
+inhibit_all_warnings!
 
 def common_pods
     pod 'Alamofire', '4.3.0'

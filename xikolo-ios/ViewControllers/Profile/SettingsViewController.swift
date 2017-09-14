@@ -66,7 +66,9 @@ class SettingsViewController: UITableViewController {
             self.nameView.isHidden = false
             self.emailView.isHidden = false
 
-            UserHelper.syncMe().onSuccess(callback: { _ in self.updateProfileInfo() })
+            UserHelper.syncMe().onSuccess { _ in
+                self.updateProfileInfo()
+            }
         } else {
             self.navigationItem.rightBarButtonItem = self.loginButton
 

@@ -11,19 +11,24 @@ import Spine
 
 class NetworkIndicator {
 
-    static var counter = 0
+    private static let queue = DispatchQueue(label: "de.xikolo.queue.network-indicator")
+    private (set) static var counter = 0
 
     class func start() {
-        counter += 1
-        update()
+        self.queue.sync {
+            self.counter += 1
+            self.update()
+        }
     }
 
     class func end() {
-        counter -= 1
-        update()
+        self.queue.sync {
+            self.counter = max(self.counter - 1, 0)
+            self.update()
+        }
     }
 
-    fileprivate class func update() {
+    private class func update() {
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = counter > 0
         }

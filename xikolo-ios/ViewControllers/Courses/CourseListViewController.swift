@@ -82,6 +82,11 @@ class CourseListViewController : AbstractCourseListViewController {
         self.collectionView?.addSubview(self.refreshControl)
         super.viewDidLoad()
         presentWelcomeScreenIfNecessary()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(CourseListViewController.updateAfterLoginStateChange),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -114,6 +119,20 @@ class CourseListViewController : AbstractCourseListViewController {
             }
         }
         #endif
+    }
+
+    func updateAfterLoginStateChange() {
+        self.collectionView?.reloadEmptyDataSet()
+        CourseHelper.refreshCourses()
+
+        if UserProfileHelper.isLoggedIn() {
+            self.segmentedControl.selectedSegmentIndex = 0
+            self.courseDisplayMode = .enrolledOnly
+        } else {
+            self.segmentedControl.selectedSegmentIndex = 1
+            self.courseDisplayMode = .all
+        }
+        self.updateView()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

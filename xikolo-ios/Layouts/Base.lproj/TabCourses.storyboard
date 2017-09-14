@@ -334,75 +334,61 @@
                     </view>
                     <navigationItem key="navigationItem" id="4x6-UC-eoD">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="1M6-B2-JWD">
-                            <rect key="frame" x="100" y="7.5" width="175" height="33"/>
+                        <view key="titleView" contentMode="scaleToFill" id="x06-4t-OCP">
+                            <rect key="frame" x="111.5" y="7.5" width="152" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVy-qU-9HS">
-                                    <rect key="frame" x="-8.5" y="0.0" width="192" height="33"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="CourseContent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0c-UK-HJw">
-                                            <rect key="frame" x="20" y="6" width="122" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titlebar-dropdown-30" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-7A-qKb">
-                                            <rect key="frame" x="142" y="1.5" width="30" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="3uz-gH-7VT"/>
-                                                <constraint firstAttribute="width" constant="30" id="XUc-RX-DST"/>
-                                            </constraints>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeC-bu-kRR">
-                                            <rect key="frame" x="20" y="-0.5" width="152" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="YBB-FO-qa2"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="YBB-FO-qa2"/>
-                                                </mask>
-                                            </variation>
-                                            <connections>
-                                                <segue destination="HIU-IN-RiG" kind="popoverPresentation" identifier="ShowContentChoice" popoverAnchorView="BeC-bu-kRR" id="u7s-tl-wgY">
-                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                </segue>
-                                            </connections>
-                                        </button>
-                                    </subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="CourseContent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOo-HA-xNK">
+                                    <rect key="frame" x="0.0" y="0.0" width="122" height="33"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <attributedString key="userComments">
+                                        <fragment content="#bc-ignore!">
+                                            <attributes>
+                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO" />
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titlebar-dropdown-30" translatesAutoresizingMaskIntoConstraints="NO" id="Nwv-ue-3hY">
+                                    <rect key="frame" x="122" y="0.0" width="30" height="33"/>
                                     <constraints>
-                                        <constraint firstItem="BeC-bu-kRR" firstAttribute="leading" secondItem="I0c-UK-HJw" secondAttribute="leading" id="3Vj-IK-evH"/>
-                                        <constraint firstItem="BeC-bu-kRR" firstAttribute="centerY" secondItem="uVy-qU-9HS" secondAttribute="centerY" id="Jc9-VS-1Va"/>
-                                        <constraint firstItem="I0c-UK-HJw" firstAttribute="centerY" secondItem="uVy-qU-9HS" secondAttribute="centerY" id="Rou-NE-adb"/>
-                                        <constraint firstAttribute="trailing" secondItem="BeC-bu-kRR" secondAttribute="trailing" constant="20" symbolic="YES" id="Tq4-IM-zia"/>
-                                        <constraint firstItem="d9H-7A-qKb" firstAttribute="leading" secondItem="I0c-UK-HJw" secondAttribute="trailing" id="cX3-YB-nUZ"/>
-                                        <constraint firstItem="I0c-UK-HJw" firstAttribute="leading" secondItem="uVy-qU-9HS" secondAttribute="leading" constant="20" symbolic="YES" id="h8v-1j-9vm"/>
-                                        <constraint firstItem="d9H-7A-qKb" firstAttribute="centerY" secondItem="uVy-qU-9HS" secondAttribute="centerY" id="qGE-kl-x4n"/>
-                                        <constraint firstAttribute="trailing" secondItem="d9H-7A-qKb" secondAttribute="trailing" constant="20" symbolic="YES" id="u0b-I6-dJo"/>
-                                        <constraint firstItem="BeC-bu-kRR" firstAttribute="trailing" secondItem="d9H-7A-qKb" secondAttribute="trailing" id="wQy-O5-Bn9"/>
+                                        <constraint firstAttribute="width" constant="30" id="d73-Cf-2RU"/>
+                                        <constraint firstAttribute="height" constant="30" id="da7-1R-yOe"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="Tq4-IM-zia"/>
-                                        </mask>
-                                    </variation>
-                                </view>
+                                </imageView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="uVy-qU-9HS" firstAttribute="centerX" secondItem="1M6-B2-JWD" secondAttribute="centerX" id="4T2-1O-Fyd"/>
-                                <constraint firstItem="uVy-qU-9HS" firstAttribute="centerY" secondItem="1M6-B2-JWD" secondAttribute="centerY" id="fPR-jG-bDX"/>
-                                <constraint firstItem="uVy-qU-9HS" firstAttribute="height" secondItem="1M6-B2-JWD" secondAttribute="height" id="gbx-yP-OCj"/>
+                                <constraint firstAttribute="bottom" secondItem="Nwv-ue-3hY" secondAttribute="bottom" id="2k9-Mo-H1y"/>
+                                <constraint firstAttribute="bottom" secondItem="cOo-HA-xNK" secondAttribute="bottom" id="Fob-BD-6I9"/>
+                                <constraint firstItem="cOo-HA-xNK" firstAttribute="leading" secondItem="x06-4t-OCP" secondAttribute="leading" id="X0p-Hv-WQx"/>
+                                <constraint firstItem="cOo-HA-xNK" firstAttribute="top" secondItem="x06-4t-OCP" secondAttribute="top" id="Zwa-3Q-Kn6"/>
+                                <constraint firstItem="Nwv-ue-3hY" firstAttribute="top" secondItem="x06-4t-OCP" secondAttribute="top" id="b38-5S-tUW"/>
+                                <constraint firstItem="Nwv-ue-3hY" firstAttribute="leading" secondItem="cOo-HA-xNK" secondAttribute="trailing" id="cvy-e0-kLM"/>
+                                <constraint firstAttribute="trailing" secondItem="Nwv-ue-3hY" secondAttribute="trailing" id="eYw-rx-7VD"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="6gp-rI-YQa" appends="YES" id="a7a-Mt-5bB"/>
+                            </connections>
                         </view>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="uCB-9t-OiH" id="946-ep-hBb"/>
-                        <outlet property="titleView" destination="I0c-UK-HJw" id="D9R-JR-hUO"/>
+                        <outlet property="titleView" destination="cOo-HA-xNK" id="AKK-at-hBr"/>
                         <segue destination="rOJ-H4-9Ye" kind="presentation" identifier="ShowLogin" id="afV-O8-WaT"/>
+                        <segue destination="HIU-IN-RiG" kind="popoverPresentation" identifier="ShowContentChoice" popoverAnchorView="x06-4t-OCP" id="tbf-f6-wJw">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GvU-Vi-WtZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6gp-rI-YQa">
+                    <connections>
+                        <action selector="tapped:" destination="YF6-pE-sa6" id="rWO-3i-tjE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1540" y="0.0"/>
         </scene>
@@ -898,7 +884,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVE-YK-VxL">
-                                <rect key="frame" x="0.0" y="68" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="I95-Lh-Mgw"/>
                                 </constraints>
@@ -1333,6 +1319,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xR8-E6-ooy"/>
-        <segue reference="gMU-OF-QEH"/>
+        <segue reference="tbf-f6-wJw"/>
     </inferredMetricsTieBreakers>
 </document>

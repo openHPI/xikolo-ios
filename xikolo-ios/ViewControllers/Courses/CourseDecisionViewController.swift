@@ -34,6 +34,10 @@ class CourseDecisionViewController: UIViewController {
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
 
+    @IBAction func tapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "ShowContentChoice", sender: sender)
+    }
+
     func decideContent() {
         if (course.enrollment != nil) {
             updateContainerView(course.accessible ? .learnings : .courseDetails)
@@ -91,7 +95,6 @@ class CourseDecisionViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
     }
-
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

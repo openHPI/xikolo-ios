@@ -129,9 +129,11 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title: String
         if UserProfileHelper.isLoggedIn() {
-            title = NSLocalizedString("There are no important course dates yet", comment: "")
+            title = NSLocalizedString("empty-view.course-dates.no-dates.title",
+                                      comment: "title for empty course dates list if logged in")
         } else {
-            title = NSLocalizedString("Please log in to see your personal deadlines", comment: "")
+            title = NSLocalizedString("empty-view.course-dates.not-logged-in.title",
+                                      comment: "title for empty course dates list if not logged in")
         }
         return NSAttributedString(string: title)
     }
@@ -139,9 +141,11 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let description: String
         if UserProfileHelper.isLoggedIn() {
-            description = NSLocalizedString("Notifications about deadlines or new courses will appear here", comment: "")
+            description = NSLocalizedString("empty-view.course-dates.no-dates.description",
+                                            comment: "description for empty course dates list if logged in")
         } else {
-            description = NSLocalizedString("Course dates and deadlines are specific to your courses so we need to now what you're enrolled in", comment: "")
+            description = NSLocalizedString("empty-view.course-dates.not-logged-in.description",
+                                            comment: "description for empty course dates list if not logged in")
         }
         return NSAttributedString(string: description)
     }

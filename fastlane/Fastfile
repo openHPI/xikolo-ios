@@ -11,7 +11,7 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "2.54.3"
+fastlane_version "2.55.0"
 
 default_platform :ios
 
@@ -67,6 +67,15 @@ platform :ios do
 
   private_lane :revert_tvOS_changes do
     sh "git checkout head -- ../xikolo-tvos/Info.plist"
+  end
+
+  desc "Adds localizations for the application incrementally"
+  desc "- uses bartycrouch"
+  desc "- translates storyboard files and NSLocalizedString usages"
+  lane :localize do
+    sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../xikolo-ios/"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c"
   end
 end
 

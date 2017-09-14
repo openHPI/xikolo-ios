@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (4.0.1):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
+  - BartyCrouch (3.8.1)
   - BMPlayer (0.8.7):
     - BMPlayer/Full (= 0.8.7)
   - BMPlayer/Core (0.8.7)
@@ -33,6 +34,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.3.0)
   - AlamofireObjectMapper (= 4.0.1)
+  - BartyCrouch (~> 3.8)
   - BMPlayer (from `https://github.com/BrikerMan/BMPlayer`, commit `ec9297e`)
   - BrightFutures (= 5.1.0)
   - Down (= 0.3.2)
@@ -65,6 +67,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
+  BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
   BMPlayer: fef9e15635fe0e45e3398c0de0110638e1035b5e
   BrightFutures: 62aafb1a63520eda91c9286bf4be33e58e043938
   Down: afcfa1a49381b19733b67074bf239789edfa8ad4
@@ -81,6 +84,6 @@ SPEC CHECKSUMS:
   Spine: 9a5076f732897dc67c0303b4b3d871cfee903efa
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 825600d717c6ea5b5b3a1881ca2c5ab9a9d95fcd
+PODFILE CHECKSUM: 768216386779daa8f589ed0e885562252b855a09
 
 COCOAPODS: 1.3.1

@@ -14,23 +14,33 @@ class DateLabelHelper {
         if let start = startdate {
             if let end = enddate {
                 // start & enddate
-                return format(date: start) + " - " + format(date: end)
+                return self.format(date: start) + " - " + format(date: end)
             } else {
                 if start.timeIntervalSinceNow > 0 {
                     // startdate in the future
-                    return NSLocalizedString("Beginning", comment: "") + " " + format(date: start)
+                    let format = NSLocalizedString("course-date-formatting.not-started.beginning %@",
+                                                   tableName: "Common",
+                                                   comment: "course start at specific date in the future")
+                    return String.localizedStringWithFormat(format, self.format(date: start))
                 } else {
                     // startdate in the past
                     #if OPENWHO
-                        return NSLocalizedString("Self-paced", comment: "")
+                        let format = NSLocalizedString("course-date-formatting.started.since %@",
+                                                       tableName: "Common",
+                                                       comment: "course start at specfic date in the past")
+                        return String.localizedStringWithFormat(format, self.format(date: start))
                     #else
-                        return NSLocalizedString("Since", comment: "") + " " + format(date: start)
+                        return NSLocalizedString("course-date-formatting.self-paced",
+                                                 tableName: "Common",
+                                                 comment: "Self-paced course")
                     #endif
                 }
             }
         } else {
             // neither start nor enddate
-            return NSLocalizedString("Coming soon", comment: "")
+            return NSLocalizedString("course-date-formatting.not-started.coming soon",
+                                     tableName: "Common",
+                                     comment: "course start at unknown date")
         }
     }
 

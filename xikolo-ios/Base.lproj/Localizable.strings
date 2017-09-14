@@ -1,40 +1,126 @@
-/* 
-  Localizable.strings
-  xikolo-ios
 
-  Created by Jonas Müller on 03.09.15.
-  Copyright © 2015 HPI. All rights reserved.
-*/
+/* status 'running' of a course */
+"course-cell.status.running" = "Running";
 
-// Onboarding
-"page_title_learn_anywhere" = "Learn everywhere. On any device.";
-"page_title_learn_anytime" = "Learn anytime.";
-"page_title_be_social" = "Be social.";
-"page_title_find_courses" = "Find courses now. For beginners and professionals.";
+/* title of course details view of course view */
+"course-content.view.course-details.title" = "Course Details";
 
-// Tab Bar
-"tab_dashboard" = "Dashboard";
-"tab_all_courses" = "All Courses";
-"tab_my_courses" = "My Courses";
-"tab_courses" = "Courses";
-"tab_news" = "News";
-"tab_settings" = "Settings";
+/* title of discussions view of course view */
+"course-content.view.discussions.title" = "Discussions";
 
-// Login
-"login" = "Login";
-"logout" = "Logout";
-"email" = "Email";
-"password" = "Password";
-"register" = "Register";
-// Settings
-"enrollments" = "Enrollments";
-"logout" = "Logout";
+/* title of learnings view of course view */
+"course-content.view.learnings.title" = "Learnings";
 
-// Video Downloads
-"Download Video" = "Download Video";
-"Stop Download" = "Stop Download";
-"Delete Video" = "Delete Video";
-"Cancel" = "Cancel";
+/* specfic title for course start in a course date cell */
+"course-date-cell.course-start.title" = "Course Start";
 
-// Course Content List
-"Slides" = "Slides";
+/* message for proctoring alert */
+"course-item.proctoring.alert.message" = "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.";
+
+/* title for proctoring alert */
+"course-item.proctoring.alert.title" = "This item needs to be proctored";
+
+/* delete video item */
+"course-item.video-download-alert.delete-item-action.title" = "Delete video";
+
+/* start download of video item */
+"course-item.video-download-alert.start-download-action.title" = "Download video";
+
+/* stop download of video item */
+"course-item.video-download-alert.stop-download-action.title" = "Stop download";
+
+/* Shown in course content list */
+"course-item.video.slides.label" = "Slides";
+
+/* description for empty announcement list */
+"empty-view.announcements.description" = "There might be more news later on.";
+
+/* title for empty announcement list */
+"empty-view.announcements.title" = "There are no news at the moment";
+
+/* description for empty course content list */
+"empty-view.course-content.description" = "Please check you internet connection";
+
+/* title for empty course content list */
+"empty-view.course-content.title" = "Error loading course items";
+
+/* description for empty course dates list if logged in */
+"empty-view.course-dates.no-dates.description" = "Notifications about deadlines or new courses will appear here";
+
+/* title for empty course dates list if logged in */
+"empty-view.course-dates.no-dates.title" = "There are no important course dates yet";
+
+/* description for empty course dates list if not logged in */
+"empty-view.course-dates.not-logged-in.description" = "Course dates and deadlines are specific to your courses so we need to know what you're enrolled in";
+
+/* title for empty course dates list if not logged in */
+"empty-view.course-dates.not-logged-in.title" = "Please log in to see your personal deadlines";
+
+/* description for empty platform event list if logged in */
+"empty-view.platform-events.no-activities.description" = "Notifications about course material and discussions of enrolled courses will appear here";
+
+/* title for empty platform event list if logged in */
+"empty-view.platform-events.no-activities.title" = "There have been no course activities yet";
+
+/* description for empty announcement list if not logged in */
+"empty-view.platform-events.not-logged-in.description" = "Course activity is specific to your courses so we need to know what you're enrolled in";
+
+/* title for empty announcement list if not logged in */
+"empty-view.platform-events.not-logged-in.title" = "Please log in to see course activity";
+
+/* title of enroll action of enrollment alert */
+"enrollment.alert.enroll-action.title" = "Enroll";
+
+/* message of enrollment alert */
+"enrollment.alert.message" = "You can always un-enroll.";
+
+/* title of enrollment alert */
+"enrollment.alert.title" = "Enroll in course?";
+
+/* title of course enrollment button */
+"enrollment.button.enrolled.title" = "Enrollment options";
+
+/* title of Course enrollment options button */
+"enrollment.button.not-enrolled.title" = "Enroll";
+
+/* title for 'mask as completed' action */
+"enrollment.options-alert.mask-as-completed-action.title" = "Mark as completed";
+
+/* message of enrollment alert */
+"enrollment.options-alert.message" = "You can mark a course as completed once you dont want to learn anymore in this course. This will clean up your dashboard. You may also unenroll from this course. This will make the course unaccessible for you. You can re-enroll later, then your progress will be restored.";
+
+/* title of enrollment options alert */
+"enrollment.options-alert.title" = "Finished learning?";
+
+/* title for unenroll action */
+"enrollment.options-alert.unenroll-action.title" = "Unenroll";
+
+/* title to cancel alert */
+"global.alert.cancel" = "Cancel";
+
+/* title to confirm alert */
+"global.alert.ok" = "OK";
+
+/* label for app build */
+"settings.app.build.label" = "Build";
+
+/* label for app version */
+"settings.app.version.label" = "Version";
+
+/* title for link to GitHub repo (includes application name) */
+"settings.github-link.%@ iOS app on GitHub" = "%@ iOS app on GitHub";
+
+/* best video persistence quality */
+"settings.video-persistence-quality.best" = "Best";
+
+/* high video persistence quality */
+"settings.video-persistence-quality.high" = "High";
+
+/* low video persistence quality */
+"settings.video-persistence-quality.low" = "Low";
+
+/* medium video persistence quality */
+"settings.video-persistence-quality.medium" = "Medium";
+
+/* section title for download quality */
+"settings.video-persistence-quality.section-title.download quality" = "Download Quality";

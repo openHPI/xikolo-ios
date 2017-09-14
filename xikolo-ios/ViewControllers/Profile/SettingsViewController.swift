@@ -38,7 +38,8 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
 
         // set text for github link
-        let localizedGithubText = NSLocalizedString("%@ iOS app on GitHub", comment: "text for link to GitHub repo incl. app name")
+        let localizedGithubText = NSLocalizedString("settings.github-link.%@ iOS app on GitHub",
+                                                    comment: "title for link to GitHub repo (includes application name)")
         self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
 
         // set preload content settings
@@ -46,8 +47,8 @@ class SettingsViewController: UITableViewController {
         self.preloadContentSwitch.setOn(!contentPreloadDeactivated, animated: false)
 
         // set app version info
-        self.versionView.text = NSLocalizedString("Version", comment: "app version") + ": " + UIApplication.appVersion()
-        self.buildView.text = NSLocalizedString("Build", comment: "app version") + ": " + UIApplication.appBuild()
+        self.versionView.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion()
+        self.buildView.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild()
 
         self.updateUIAfterLoginStateChanged()
         NotificationCenter.default.addObserver(self,

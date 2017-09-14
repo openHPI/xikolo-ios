@@ -19,22 +19,27 @@ class DateLabelHelper {
                 if start.timeIntervalSinceNow > 0 {
                     // startdate in the future
                     let format = NSLocalizedString("course-date-formatting.not-started.beginning %@",
+                                                   tableName: "Common",
                                                    comment: "course start at specific date in the future")
                     return String.localizedStringWithFormat(format, self.format(date: start))
                 } else {
                     // startdate in the past
                     #if OPENWHO
                         let format = NSLocalizedString("course-date-formatting.started.since %@",
+                                                       tableName: "Common",
                                                        comment: "course start at specfic date in the past")
                         return String.localizedStringWithFormat(format, self.format(date: start))
                     #else
-                        return NSLocalizedString("course-date-formatting.self-paced", comment: "Self-paced course")
+                        return NSLocalizedString("course-date-formatting.self-paced",
+                                                 tableName: "Common",
+                                                 comment: "Self-paced course")
                     #endif
                 }
             }
         } else {
             // neither start nor enddate
             return NSLocalizedString("course-date-formatting.not-started.coming soon",
+                                     tableName: "Common",
                                      comment: "course start at unknown date")
         }
     }

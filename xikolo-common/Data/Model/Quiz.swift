@@ -25,15 +25,15 @@ class Quiz : Content {
 
         var strings = [String]()
         if hours > 0 {
-            let format = NSLocalizedString("%d hours", comment: "<number> of hours #bc-ignore!")
+            let format = NSLocalizedString("%d hours", tableName: "Common", comment: "<number> of hours #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, hours))
         }
         if minutes > 0 {
-            let format = NSLocalizedString("%d minutes", comment: "<number> of minutes #bc-ignore!")
+            let format = NSLocalizedString("%d minutes", tableName: "Common", comment: "<number> of minutes #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, minutes))
         }
         if seconds > 0 {
-            let format = NSLocalizedString("%d seconds", comment: "<number> of seconds #bc-ignore!")
+            let format = NSLocalizedString("%d seconds", tableName: "Common", comment: "<number> of seconds #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, seconds))
         }
 

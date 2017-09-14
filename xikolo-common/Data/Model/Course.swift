@@ -59,11 +59,11 @@ class Course : BaseModel {
         }
     }
 
-    var interesting_section = NSLocalizedString("course.section-title.suggested", comment: "section title for collapsed upcoming & active courses")
-    var selfpaced_section = NSLocalizedString("course.section-title.self-paced", comment: "section title for selfpaced courses")
-    var current_section = NSLocalizedString("course.section-title.current", comment: "section title for current courses")
-    var upcoming_section = NSLocalizedString("course.section-title.upcoming", comment: "section title for upcoming courses")
-    var completed_section = NSLocalizedString("course.section-title.completed", comment: "section title for completed courses")
+    var interesting_section = NSLocalizedString("course.section-title.suggested", tableName: "Common", comment: "section title for collapsed upcoming & active courses")
+    var selfpaced_section = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
+    var current_section = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
+    var upcoming_section = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
+    var completed_section = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
 
     var language_translated: String? {
         if let language = language {

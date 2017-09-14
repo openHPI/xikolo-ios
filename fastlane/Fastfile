@@ -73,7 +73,6 @@ platform :ios do
   desc "- uses bartycrouch"
   desc "- translates storyboard files and NSLocalizedString usages"
   lane :localize do
-    ensure_git_status_clean
     sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../xikolo-ios/"
     sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c"
     sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c"

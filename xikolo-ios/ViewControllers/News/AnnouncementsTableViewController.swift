@@ -98,12 +98,12 @@ struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfigura
 extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("There are no news at the moment", comment: "")
+        let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
         return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("News can be published in courses or globally to announce new content or changes to the platform itself", comment: "")
+        let description = NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
         return NSAttributedString(string: description)
     }
 

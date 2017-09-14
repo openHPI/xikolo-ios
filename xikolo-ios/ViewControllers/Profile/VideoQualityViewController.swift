@@ -24,7 +24,8 @@ class VideoQualityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return NSLocalizedString("Download Quality", comment: "as table view header")
+        return NSLocalizedString("settings.video-persistence-quality.section-title.download quality",
+                                 comment: "section title for download quality")
     }
 
     // delegate

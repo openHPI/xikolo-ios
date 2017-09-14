@@ -57,6 +57,15 @@ fastlane ios precheck_app
 Checks application for potential App Store violations
 
 - requires app environment via '--env'
+### ios localize
+```
+fastlane ios localize
+```
+Adds localizations for the application incrementally
+
+- uses bartycrouch
+
+- translates storyboard files and NSLocalizedString usages
 
 ----
 

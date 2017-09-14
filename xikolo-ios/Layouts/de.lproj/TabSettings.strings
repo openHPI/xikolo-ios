@@ -5,9 +5,6 @@
 /* Class = "UILabel"; text = "Preload Content"; ObjectID = "W0A-Ki-Fhq"; */
 "W0A-Ki-Fhq.text" = "Inhalte vorladen";
 
-/* Class = "UILabel"; text = "Logout"; ObjectID = "OrC-xr-VQK"; */
-"OrC-xr-VQK.text" = "Ausloggen";
-
 /* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "csD-D9-eda"; */
 "csD-D9-eda.text" = "Datenschutzerklärung";
 

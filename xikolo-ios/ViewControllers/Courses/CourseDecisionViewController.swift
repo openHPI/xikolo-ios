@@ -67,19 +67,22 @@ class CourseDecisionViewController: UIViewController {
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseContentTableViewController") as! CourseContentTableViewController
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("Learnings", comment: "")
+            titleView.text = NSLocalizedString("course-content.view.learnings.title",
+                                               comment: "title of learnings view of course view")
         case .discussions:
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("Discussions", comment: "")
+            titleView.text = NSLocalizedString("course-content.view.discussions.title",
+                                               comment: "title of discussions view of course view")
         case .courseDetails:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController") as! CourseDetailViewController
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("Course Details", comment: "")
+            titleView.text = NSLocalizedString("course-content.view.course-details.title",
+                                               comment: "title of course details view of course view")
         }
         self.content = content
         navigationController?.view.setNeedsLayout()

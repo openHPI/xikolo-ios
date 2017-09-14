@@ -36,7 +36,7 @@ extension Video: DetailedContent {
     }
 
     private var slidesText: String? {
-        return self.slides_url != nil ? NSLocalizedString("Slides", comment: "Shown in course content list") : nil
+        return self.slides_url != nil ? NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list") : nil
     }
 
     static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {

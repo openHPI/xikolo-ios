@@ -22,78 +22,82 @@ def ios_pods
     pod 'ReachabilitySwift', '3'
 end
 
+def util_pods
+    pod 'BartyCrouch', '~> 3.8'
+end
+
 target 'openHPI-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-
+    util_pods
 end
 
 target 'openHPI-tvOS' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end
 
 target 'openHPI-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end
 
 target 'openSAP-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-
+    util_pods
 end
 
 target 'openSAP-tvOS' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end
 
 target 'openSAP-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end
 
 target 'openWHO-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-
+    util_pods
 end
 
 target 'openWHO-tvOS' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end
 
 target 'openWHO-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end
 
 target 'moocHOUSE-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-
+    util_pods
 end
 
 target 'moocHOUSE-tvOS' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end
 
 target 'moocHOUSE-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-
+    util_pods
 end

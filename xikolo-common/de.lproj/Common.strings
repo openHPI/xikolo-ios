@@ -1,0 +1,33 @@
+
+/* course start at specific date in the future */
+"course-date-formatting.not-started.beginning %@" = "Startet am %@";
+
+/* course start at unknown date */
+"course-date-formatting.not-started.coming soon" = "Bald verfügbar";
+
+/* Self-paced course */
+"course-date-formatting.self-paced" = "Selbststudium";
+
+/* course start at specfic date in the past */
+"course-date-formatting.started.since %@" = "Seit %@";
+
+/* section title for all courses */
+"course.section-title.all courses" = "Alle Kurse";
+
+/* section title for completed courses */
+"course.section-title.completed" = "Abgeschlossen";
+
+/* section title for current courses */
+"course.section-title.current" = "Aktuell";
+
+/* section title for enrolled courses */
+"course.section-title.my courses" = "Meine Kurse";
+
+/* section title for selfpaced courses */
+"course.section-title.self-paced" = "Selbststudium";
+
+/* section title for collapsed upcoming & active courses */
+"course.section-title.suggested" = "Empfohlen";
+
+/* section title for upcoming courses */
+"course.section-title.upcoming" = "Zukünftig";

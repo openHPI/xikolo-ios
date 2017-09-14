@@ -2,9 +2,6 @@
 /* Class = "UITabBarItem"; title = "News"; ObjectID = "Iok-ZF-Mpk"; */
 "Iok-ZF-Mpk.title" = "Neuigkeiten";
 
-/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "uB0-1p-Kgk"; */
-"uB0-1p-Kgk.title" = "Einloggen";
-
 /* Class = "UISegmentedControl"; ytp-SX-B4p.segmentTitles[0] = "News"; ObjectID = "ytp-SX-B4p"; */
 "ytp-SX-B4p.segmentTitles[0]" = "Neuigkeiten";
 

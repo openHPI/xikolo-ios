@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>%d hour(s)</key>
+	<key>%d hours</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@hours@</string>
@@ -18,7 +18,7 @@
 			<string>%d hours</string>
 		</dict>
 	</dict>
-	<key>%d minute(s)</key>
+	<key>%d minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@minutes@</string>
@@ -34,7 +34,7 @@
 			<string>%d minutes</string>
 		</dict>
 	</dict>
-	<key>%d second(s)</key>
+	<key>%d seconds</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@seconds@</string>

@@ -21,7 +21,7 @@ class AbstractCourseListViewController : UICollectionViewController {
     var resultsControllers: [NSFetchedResultsController<Course>]!
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
     var contentChangeOperations: [[AnyObject?]] = []
-
+    var sectionCount: Int = 0
     var courseDisplayMode: CourseDisplayMode = .enrolledOnly
 
     required init?(coder aDecoder: NSCoder) {
@@ -72,6 +72,7 @@ class AbstractCourseListViewController : UICollectionViewController {
         } catch {
             // TODO: Error handling.
         }
+        self.sectionCount = resultsControllers.count
         self.collectionView?.reloadData()
     }
 

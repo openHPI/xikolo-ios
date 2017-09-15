@@ -20,6 +20,7 @@ class CourseDecisionViewController: UIViewController {
   
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var dropdownIcon: UIImageView!
 
     var containerContentViewController: UIViewController?
     var course: Course!
@@ -27,6 +28,7 @@ class CourseDecisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         SearchHelper.setUserActivity(for: self.course)
         self.decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
@@ -85,7 +87,15 @@ class CourseDecisionViewController: UIViewController {
                                                comment: "title of course details view of course view")
         }
         self.content = content
-        navigationController?.view.setNeedsLayout()
+
+        // set width for new title view
+        if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
+            let titleWidth = NSString(string: text).size(attributes: [NSFontAttributeName : self.titleView.font]).width
+            var frame = titleView.frame
+            frame.size.width = titleWidth + self.dropdownIcon.frame.width + 2
+            titleView.frame = frame
+            titleView.setNeedsLayout()
+        }
     }
 
     func changeToViewController(_ viewController: UIViewController) {

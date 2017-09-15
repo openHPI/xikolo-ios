@@ -266,7 +266,7 @@
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Courses" id="yii-3n-v5c"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="CXl-G3-ErQ">
-                            <rect key="frame" x="67.5" y="9" width="240" height="30"/>
+                            <rect key="frame" x="67.5" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="My Courses"/>
@@ -335,11 +335,11 @@
                     <navigationItem key="navigationItem" id="4x6-UC-eoD">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="x06-4t-OCP">
-                            <rect key="frame" x="111.5" y="7.5" width="152" height="33"/>
+                            <rect key="frame" x="111.5" y="5.5" width="152" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="CourseContent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOo-HA-xNK">
-                                    <rect key="frame" x="0.0" y="0.0" width="122" height="33"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="CourseContent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOo-HA-xNK">
+                                    <rect key="frame" x="0.0" y="0.0" width="132" height="33"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -347,35 +347,37 @@
                                         <fragment content="#bc-ignore!">
                                             <attributes>
                                                 <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO" />
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titlebar-dropdown-30" translatesAutoresizingMaskIntoConstraints="NO" id="Nwv-ue-3hY">
-                                    <rect key="frame" x="122" y="0.0" width="30" height="33"/>
+                                    <rect key="frame" x="132" y="7.5" width="20" height="20"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="d73-Cf-2RU"/>
-                                        <constraint firstAttribute="height" constant="30" id="da7-1R-yOe"/>
+                                        <constraint firstAttribute="width" secondItem="Nwv-ue-3hY" secondAttribute="height" multiplier="1:1" id="QND-DM-WJi"/>
+                                        <constraint firstAttribute="width" constant="20" id="d73-Cf-2RU"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
+                            <gestureRecognizers/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="Nwv-ue-3hY" secondAttribute="bottom" id="2k9-Mo-H1y"/>
-                                <constraint firstAttribute="bottom" secondItem="cOo-HA-xNK" secondAttribute="bottom" id="Fob-BD-6I9"/>
                                 <constraint firstItem="cOo-HA-xNK" firstAttribute="leading" secondItem="x06-4t-OCP" secondAttribute="leading" id="X0p-Hv-WQx"/>
-                                <constraint firstItem="cOo-HA-xNK" firstAttribute="top" secondItem="x06-4t-OCP" secondAttribute="top" id="Zwa-3Q-Kn6"/>
-                                <constraint firstItem="Nwv-ue-3hY" firstAttribute="top" secondItem="x06-4t-OCP" secondAttribute="top" id="b38-5S-tUW"/>
+                                <constraint firstAttribute="bottom" secondItem="cOo-HA-xNK" secondAttribute="bottom" id="ZeK-Lw-Myq"/>
+                                <constraint firstItem="cOo-HA-xNK" firstAttribute="centerY" secondItem="x06-4t-OCP" secondAttribute="centerY" id="bAY-2T-0vs"/>
                                 <constraint firstItem="Nwv-ue-3hY" firstAttribute="leading" secondItem="cOo-HA-xNK" secondAttribute="trailing" id="cvy-e0-kLM"/>
                                 <constraint firstAttribute="trailing" secondItem="Nwv-ue-3hY" secondAttribute="trailing" id="eYw-rx-7VD"/>
+                                <constraint firstItem="cOo-HA-xNK" firstAttribute="top" secondItem="x06-4t-OCP" secondAttribute="top" id="oV5-WL-SdO"/>
+                                <constraint firstItem="Nwv-ue-3hY" firstAttribute="centerY" secondItem="x06-4t-OCP" secondAttribute="centerY" constant="1" id="pZL-bg-shn"/>
                             </constraints>
                             <connections>
-                                <outletCollection property="gestureRecognizers" destination="6gp-rI-YQa" appends="YES" id="a7a-Mt-5bB"/>
+                                <outletCollection property="gestureRecognizers" destination="MwT-Do-2cw" appends="YES" id="Muk-jJ-ZKN"/>
                             </connections>
                         </view>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="uCB-9t-OiH" id="946-ep-hBb"/>
+                        <outlet property="dropdownIcon" destination="Nwv-ue-3hY" id="sh8-hC-DV9"/>
                         <outlet property="titleView" destination="cOo-HA-xNK" id="AKK-at-hBr"/>
                         <segue destination="rOJ-H4-9Ye" kind="presentation" identifier="ShowLogin" id="afV-O8-WaT"/>
                         <segue destination="HIU-IN-RiG" kind="popoverPresentation" identifier="ShowContentChoice" popoverAnchorView="x06-4t-OCP" id="tbf-f6-wJw">
@@ -384,9 +386,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GvU-Vi-WtZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="6gp-rI-YQa">
+                <tapGestureRecognizer id="MwT-Do-2cw">
                     <connections>
-                        <action selector="tapped:" destination="YF6-pE-sa6" id="rWO-3i-tjE"/>
+                        <action selector="tapped:" destination="YF6-pE-sa6" id="T1X-Mx-g3S"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -734,14 +736,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgg-rD-71V">
-                                <rect key="frame" x="0.0" y="68" width="375" height="211"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Vgg-rD-71V" secondAttribute="height" multiplier="16:9" id="qDg-it-Rcu"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM7-vF-jzK">
-                                <rect key="frame" x="0.0" y="279" width="375" height="388"/>
+                                <rect key="frame" x="0.0" y="275" width="375" height="392"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVf-ea-pkL">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="98.5"/>
@@ -856,7 +858,7 @@
                     <tabBarItem key="tabBarItem" title="Courses" image="TabBarIconCourses" selectedImage="TabBarIconCoursesSelected" id="fhC-LU-HI2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aYN-LP-p0K">
-                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1095,7 +1097,7 @@
                 <navigationController storyboardIdentifier="DropdownNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="GPj-xG-ltL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UuA-ye-7ZP">
-                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

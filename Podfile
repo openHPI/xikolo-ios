@@ -1,6 +1,8 @@
 use_frameworks!
 inhibit_all_warnings!
 
+pod 'BartyCrouch', :git => 'https://github.com/mathebox/BartyCrouch.git', :commit => '5fd6efe'
+
 def common_pods
     pod 'Alamofire', '4.3.0'
     pod 'AlamofireObjectMapper', '4.0.1'
@@ -22,82 +24,71 @@ def ios_pods
     pod 'ReachabilitySwift', '3'
 end
 
-def util_pods
-    pod 'BartyCrouch', '~> 3.8'
-end
-
 target 'openHPI-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-    util_pods
 end
 
 target 'openHPI-tvOS' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
 end
 
 target 'openHPI-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
 end
 
 target 'openSAP-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-    util_pods
 end
 
 target 'openSAP-tvOS' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
 end
 
 target 'openSAP-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
 end
 
 target 'openWHO-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-    util_pods
 end
 
 target 'openWHO-tvOS' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
 end
 
 target 'openWHO-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
 end
 
 target 'moocHOUSE-iOS' do
     platform :ios, '9.0'
     common_pods
     ios_pods
-    util_pods
 end
 
 target 'moocHOUSE-tvOS' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
 end
 
 target 'moocHOUSE-tvOS-TopShelf' do
     platform :tvos, '9.0'
     common_pods
-    util_pods
+end
+
+post_install do |installer|
+    system("make installables -C ./Pods/BartyCrouch")
+    system("cp -f /tmp/BartyCrouch.dst/usr/local/bin/bartycrouch ./Pods/BartyCrouch/bartycrouch")
 end

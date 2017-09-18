@@ -121,7 +121,7 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func showItem(_ item: CourseItem) {
-        TrackingHelper.sendEvent("VISITED_ITEM", resource: item)
+        TrackingHelper.sendEvent(AnalyticsKeys.visitedItem, resource: item)
         //save read state to server
         item.visited = true
         SpineHelper.save(CourseItemSpine.init(courseItem: item))

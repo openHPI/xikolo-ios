@@ -72,7 +72,6 @@ class AbstractCourseListViewController : UICollectionViewController {
         } catch {
             // TODO: Error handling.
         }
-        self.sectionCount = resultsControllers.count
         self.collectionView?.reloadData()
     }
 

@@ -1,7 +1,7 @@
 use_frameworks!
 inhibit_all_warnings!
 
-pod 'BartyCrouch', :git => 'https://github.com/mathebox/BartyCrouch.git', :commit => '5fd6efe'
+pod 'BartyCrouch', :git => 'https://github.com/mathebox/BartyCrouch.git', :commit => 'cf75991'
 
 def common_pods
     pod 'Alamofire', '4.3.0'

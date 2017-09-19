@@ -285,20 +285,11 @@
                     <connections>
                         <outlet property="segmentedControl" destination="CXl-G3-ErQ" id="Sm6-kM-zLF"/>
                         <segue destination="bqb-dp-zic" kind="presentation" identifier="ShowLogin" id="xR8-E6-ooy"/>
-                        <segue destination="u69-5d-Zqc" kind="presentation" identifier="ShowWelcome" id="tgt-12-Cap"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9p-Zg-3vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812" y="-0.44977511244377816"/>
-        </scene>
-        <!--WelcomeNavigationController-->
-        <scene sceneID="Ebi-dj-1kw">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="WelcomeNavigationController" id="u69-5d-Zqc" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pbn-n1-FbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="812" y="439"/>
         </scene>
         <!--LoginNavigationController-->
         <scene sceneID="qTz-oe-drl">

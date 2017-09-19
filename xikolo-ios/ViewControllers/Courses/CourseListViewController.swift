@@ -81,7 +81,6 @@ class CourseListViewController : AbstractCourseListViewController {
 
         self.collectionView?.addSubview(self.refreshControl)
         super.viewDidLoad()
-        presentWelcomeScreenIfNecessary()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(CourseListViewController.updateAfterLoginStateChange),
@@ -107,22 +106,6 @@ class CourseListViewController : AbstractCourseListViewController {
             // Force redraw
             self.collectionView!.performBatchUpdates(nil, completion: nil)
         }, completion: nil)
-    }
-
-    func presentWelcomeScreenIfNecessary() {
-        #if OPENWHO
-        if UserProfileHelper.get(.welcome) == nil {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyyMMdd"
-            guard let start = formatter.date(from: "20170521"), let end = formatter.date(from: "20170530") else { return }
-            let healthConference = DateInterval.init(start: start, end: end)
-            let now = Date.init(timeIntervalSinceNow: 0)
-            if (healthConference.contains(now)) {
-                performSegue(withIdentifier: "ShowWelcome", sender: nil)
-                UserProfileHelper.save(.welcome, withValue: "showed")
-            }
-        }
-        #endif
     }
 
     func updateAfterLoginStateChange() {

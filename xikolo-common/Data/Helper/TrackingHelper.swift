@@ -11,6 +11,16 @@ import UIKit
 
 class TrackingHelper {
 
+    enum AnalyticsKeys : String {
+        case visitedDashboard = "VISITED_DASHBOARD"
+        case visitedAnnouncement = "VISITED_ANNOUNCEMENT"
+        case visitedItem = "VISITED_ITEM"
+        case videoEnd = "VIDEO_PLAYBACK_END"
+        case videoDownloadStart = "VIDEO_DOWNLOAD_START"
+        case videoDownloadEnded = "VIDEO_DOWNLOAD_ENDED"
+        case videoDownloadCanceled = "VIDEO_DOWNLOAD_CANCELED"
+    }
+
     fileprivate class func defaultContext() -> [String: String] {
         let bundleInfo = Bundle.main.infoDictionary!
 
@@ -31,10 +41,10 @@ class TrackingHelper {
         ]
     }
 
-    fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
+    fileprivate class func createEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
 
         let trackingVerb = TrackingEventVerb()
-        trackingVerb.type = verb
+        trackingVerb.type = verb.rawValue
 
         var trackingContext = defaultContext()
 
@@ -60,7 +70,7 @@ class TrackingHelper {
         return Future.init(value: trackingEvent)
     }
 
-    @discardableResult class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
             SpineHelper.save(event).asVoid()
         }

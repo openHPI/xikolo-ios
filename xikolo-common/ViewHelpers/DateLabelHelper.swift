@@ -10,6 +10,16 @@ import Foundation
 
 class DateLabelHelper {
 
+    fileprivate static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
+        dateFormatter.calendar = Calendar.current
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }()
+
     class func labelFor(startdate: Date?, enddate: Date?) -> String {
         if let start = startdate {
             if let end = enddate {
@@ -45,9 +55,6 @@ class DateLabelHelper {
     }
 
     private class func format(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
         return dateFormatter.string(from: date)
     }
 

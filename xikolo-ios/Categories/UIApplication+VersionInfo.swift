@@ -11,20 +11,15 @@ import UIKit
 
 extension UIApplication {
 
-    static var appName: String {
+    static let appName = {
         return Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
-    }
+    }()
 
-    class func appVersion() -> String {
+    static let appVersion = {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-    }
+    }()
 
-    class func appBuild() -> String {
+    static let appBuild = {
         return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-    }
-
-    class func versionBuild() -> String {
-        let version = appVersion(), build = appBuild()
-        return version == build ? "v\(version)" : "v\(version)(\(build))"
-    }
+    }()
 }

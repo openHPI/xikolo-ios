@@ -547,6 +547,20 @@
 		5035850A1F3B06E5002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		5035850C1F3B06E7002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
+		5053988A1F72A9F500A87DC8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520901F71A1D4003E0F80 /* NotificationKeys.swift */; };
+		5053988B1F72A9F900A87DC8 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */; };
+		5053988C1F72A9FB00A87DC8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520901F71A1D4003E0F80 /* NotificationKeys.swift */; };
+		5053988D1F72A9FB00A87DC8 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */; };
+		5053988E1F72A9FC00A87DC8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520901F71A1D4003E0F80 /* NotificationKeys.swift */; };
+		5053988F1F72A9FC00A87DC8 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */; };
+		505398901F72A9FD00A87DC8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520901F71A1D4003E0F80 /* NotificationKeys.swift */; };
+		505398911F72A9FD00A87DC8 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */; };
+		505398921F72A9FE00A87DC8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520901F71A1D4003E0F80 /* NotificationKeys.swift */; };
+		505398931F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */; };
+		505398941F72A9FE00A87DC8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520901F71A1D4003E0F80 /* NotificationKeys.swift */; };
+		505398951F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */; };
+		505398961F72A9FF00A87DC8 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520901F71A1D4003E0F80 /* NotificationKeys.swift */; };
+		505398971F72A9FF00A87DC8 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */; };
 		5060A5221F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A5251F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A5281F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
@@ -4238,6 +4252,7 @@
 				AB35C9351E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				24BA40861D3F9A8D00E38C2C /* BaseModelSpine.swift in Sources */,
 				AB4A019D1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
+				5053988D1F72A9FB00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */,
 				4E2B821E1DDB0EE200559217 /* CourseDatesTableViewController.swift in Sources */,
@@ -4257,6 +4272,7 @@
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
 				24BA40AA1D3F9AC100E38C2C /* Announcement+CoreDataProperties.swift in Sources */,
+				5053988C1F72A9FB00A87DC8 /* NotificationKeys.swift in Sources */,
 				2448BE281D7DCF1E008466CC /* QuizSubmission.swift in Sources */,
 				24BA40831D3F9A8A00E38C2C /* BaseModel.swift in Sources */,
 				4E6AB1FB1DD36AB500B048DB /* CourseDate.swift in Sources */,
@@ -4403,6 +4419,7 @@
 				24BA409D1D3F9AAE00E38C2C /* Content.swift in Sources */,
 				AB17C5851DFCC5CA0013BBCD /* PlatformEvent.swift in Sources */,
 				24BA412D1D3F9D1300E38C2C /* CourseHeaderView.swift in Sources */,
+				5053988E1F72A9FC00A87DC8 /* NotificationKeys.swift in Sources */,
 				240CAA1B1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24BA40D11D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
 				24BA41241D3F9CFD00E38C2C /* MainViewController.swift in Sources */,
@@ -4488,6 +4505,7 @@
 				24BA40DD1D3F9AFF00E38C2C /* Error.swift in Sources */,
 				ABFCF7781E81EEC40043C7B7 /* UserProfile+CoreDataProperties.swift in Sources */,
 				243CE4771D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
+				5053988F1F72A9FC00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				24BA40961D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
 				50ED3C531F4AE7FE00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				503585081F3B06E0002A666C /* String+ascii.swift in Sources */,
@@ -4625,6 +4643,7 @@
 				AB1C033B1D8E0C9A0053B4E3 /* PeerAssessmentProvider.swift in Sources */,
 				AB17C5821DFCC5C80013BBCD /* PlatformEvent.swift in Sources */,
 				24D48E291CCA92CB00E8051E /* CourseProvider.swift in Sources */,
+				5053988A1F72A9F500A87DC8 /* NotificationKeys.swift in Sources */,
 				240CAA1A1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24128FAD1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
 				24A16D7D1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,
@@ -4710,6 +4729,7 @@
 				2447CE201D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				ABFCF7761E81EEC40043C7B7 /* UserProfile+CoreDataProperties.swift in Sources */,
 				243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
+				5053988B1F72A9F900A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				2448A9D71CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				50ED3C501F4AE7FC00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				503585071F3B06DD002A666C /* String+ascii.swift in Sources */,
@@ -4887,8 +4907,10 @@
 				70F4564F1F0139B600A2C6B7 /* NewsViewController.swift in Sources */,
 				70D1EA741EF0AB460088C0FF /* TrackingEventUser.swift in Sources */,
 				70D1EA8A1EF0AB670088C0FF /* CourseItemProvider.swift in Sources */,
+				505398951F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				70D1EAF31EF0ACB00088C0FF /* RichtextViewController.swift in Sources */,
 				70D1EB2A1EF12E110088C0FF /* Settings.swift in Sources */,
+				505398941F72A9FE00A87DC8 /* NotificationKeys.swift in Sources */,
 				703005BC1EFEFC0A00CCDCC9 /* UserProvider.swift in Sources */,
 				70D1EA5C1EF0AB2C0088C0FF /* QuizQuestion+CoreDataProperties.swift in Sources */,
 			);
@@ -4902,6 +4924,7 @@
 				70D1EAA81EF0AB8F0088C0FF /* VideoProvider.swift in Sources */,
 				70D1EAB71EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
 				70D1EAC81EF0AC160088C0FF /* RichTextHelper.swift in Sources */,
+				505398971F72A9FF00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				70D1EA021EF0AAB40088C0FF /* BaseModelSpine.swift in Sources */,
 				70D1EA111EF0AACE0088C0FF /* Course+CoreDataProperties.swift in Sources */,
 				70D1EA571EF0AB220088C0FF /* Quiz+CoreDataProperties.swift in Sources */,
@@ -4994,6 +5017,7 @@
 				70D1EA0E1EF0AACA0088C0FF /* Content.swift in Sources */,
 				70D1EA961EF0AB760088C0FF /* LTIExerciseProvider.swift in Sources */,
 				70D1EA841EF0AB560088C0FF /* Video.swift in Sources */,
+				505398961F72A9FF00A87DC8 /* NotificationKeys.swift in Sources */,
 				70D1EADA1EF0AC2C0088C0FF /* Routes.swift in Sources */,
 				70D1EB4F1EF1342E0088C0FF /* ItemVideoLoadingController.swift in Sources */,
 				70D1E9F61EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
@@ -5296,6 +5320,7 @@
 				AB35C9371E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				ABA0F0651DF8CD9F0001D88D /* Content.swift in Sources */,
 				AB4A01A01E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
+				505398911F72A9FD00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				ABA0F0BB1DF8CE270001D88D /* CoreDataHelper.swift in Sources */,
 				AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */,
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
@@ -5315,6 +5340,7 @@
 				70EA7EB51EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				ABA0F0201DF8CCB40001D88D /* AnnouncementViewController.swift in Sources */,
 				AB17C56F1DFCAD460013BBCD /* CourseDate.swift in Sources */,
+				505398901F72A9FD00A87DC8 /* NotificationKeys.swift in Sources */,
 				ABA0F0E71DF8CE7E0001D88D /* xikolo.xcdatamodeld in Sources */,
 				ABA0F0721DF8CDB80001D88D /* Announcement.swift in Sources */,
 				ABA0F0811DF8CDCD0001D88D /* QuizQuestion+CoreDataProperties.swift in Sources */,
@@ -5461,6 +5487,7 @@
 				ABA0F0DE1DF8CE6C0001D88D /* AnnouncementHelper.swift in Sources */,
 				ABA0F0A31DF8CDFE0001D88D /* CourseProvider.swift in Sources */,
 				ABA0F10F1DF8CF5B0001D88D /* CourseDetailsViewController.swift in Sources */,
+				505398921F72A9FE00A87DC8 /* NotificationKeys.swift in Sources */,
 				24C4EF8D1E3594C200200144 /* QuizQuestionSubmission.swift in Sources */,
 				ABA0F0851DF8CDD10001D88D /* QuizQuestion.swift in Sources */,
 				ABA0F0511DF8CD850001D88D /* Enrollment.swift in Sources */,
@@ -5546,6 +5573,7 @@
 				ABFCF77A1E81EEC40043C7B7 /* UserProfile+CoreDataProperties.swift in Sources */,
 				ABA0F03A1DF8CD190001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				ABB49A8F1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */,
+				505398931F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				ABA0F0421DF8CD280001D88D /* Channel+CoreDataProperties.swift in Sources */,
 				50ED3C561F4AE7FF00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				5035850A1F3B06E5002A666C /* String+ascii.swift in Sources */,

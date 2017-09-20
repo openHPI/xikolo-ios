@@ -22,7 +22,7 @@ class AnnouncementsTableViewController : UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        TrackingHelper.sendEvent(AnalyticsKeys.visitedAnnouncement, resource: nil)
+        TrackingHelper.sendEvent(.visitedAnnouncements, resource: nil)
         let request = AnnouncementHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 

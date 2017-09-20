@@ -38,7 +38,7 @@ class AnnouncementViewController : UIViewController {
         }
         //save read state to server
         announcement.visited = true
-        TrackingHelper.sendEvent(AnalyticsKeys.visitedAnnouncement, resource: announcement)
+        TrackingHelper.sendEvent(.visitedAnnouncement, resource: announcement)
         SpineHelper.save(AnnouncementSpine.init(announcementItem: announcement))
     }
 

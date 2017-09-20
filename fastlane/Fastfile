@@ -74,8 +74,8 @@ platform :ios do
   desc "- translates storyboard files and NSLocalizedString usages"
   lane :localize do
     sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../xikolo-ios/"
-    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c"
-    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c -e"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c -e"
   end
 end
 

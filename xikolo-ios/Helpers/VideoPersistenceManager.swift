@@ -252,7 +252,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 try video.managedObjectContext?.save()
 
                 let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
-                TrackingHelper.sendEvent(.videoDownloadEnded, resource: video, context: context)
+                TrackingHelper.sendEvent(.videoDownloadFinished, resource: video, context: context)
             } catch {
                 // Failed to create bookmark for location
                 self.deleteAsset(for: video)

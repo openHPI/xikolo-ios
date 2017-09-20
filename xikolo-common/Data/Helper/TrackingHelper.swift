@@ -12,13 +12,29 @@ import UIKit
 class TrackingHelper {
 
     enum AnalyticsKeys : String {
+        // tabs
         case visitedDashboard = "VISITED_DASHBOARD"
-        case visitedAnnouncement = "VISITED_ANNOUNCEMENT"
+        case visitedAnnouncementList = "VISITED_ANNOUNCEMENTS"
+        case visitedActivityStream = "VISITED_ACTIVITY_STREAM"
+        case visitedProfile = "VISITED_PROFILE"
+
+        // subpages
         case visitedItem = "VISITED_ITEM"
-        case videoEnd = "VIDEO_PLAYBACK_END"
-        case videoDownloadStart = "VIDEO_DOWNLOAD_START"
-        case videoDownloadEnded = "VIDEO_DOWNLOAD_ENDED"
-        case videoDownloadCanceled = "VIDEO_DOWNLOAD_CANCELED"
+        case visitedAnnouncement = "VISITED_ANNOUNCEMENT_DETAIL"
+
+        // video playback
+        case videoPlaybackPlay = "VIDEO_PLAY"
+        case videoPlaybackPause = "VIDEO_PAUSE"
+        case videoPlaybackSeek = "VIDEO_SEEK"
+        case videoPlaybackEnd = "VIDEO_END"
+        case videoPlaybackDeviceOrientationPortrait = "VIDEO_PORTRAIT"
+        case videoPlaybackDeviceOrientationLandscape = "VIDEO_LANDSCAPE"
+        case videoPlaybackChangeSpeed = "VIDEO_CHANGE_SPEED"
+
+        // video download
+        case videoDownloadStart = "DOWNLOADED_HLS_VIDEO"
+        case videoDownloadFinished = "DOWNLOADED_HLS_VIDEO_FINISHED"
+        case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
     }
 
     fileprivate class func defaultContext() -> [String: String] {

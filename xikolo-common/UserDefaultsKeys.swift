@@ -19,7 +19,6 @@ struct UserDefaultsKeys {
     enum UserProfileKey : String {
         case user = "user"
         case token = "user_token"
-        case welcome = "show_welcome_screen"
     }
 
 }

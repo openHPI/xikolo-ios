@@ -10,12 +10,12 @@ import Foundation
 
 struct NotificationKeys {
 
-    static let loginStateChangedKey = Notification.Name("de.hpi.open.loginStateChanged")
+    static let loginStateChangedKey = Notification.Name("de.xikolo.ios.loginStateChanged")
 
-    static let createdEnrollmentKey = Notification.Name("de.hpi.open.createdEnrollment")
-    static let deletedEnrollmentKey = Notification.Name("de.hpi.open.deletedEnrollment")
+    static let createdEnrollmentKey = Notification.Name("de.xikolo.ios.createdEnrollment")
+    static let deletedEnrollmentKey = Notification.Name("de.xikolo.ios.deletedEnrollment")
 
-    static let dropdownCourseContentKey = Notification.Name("de.hpi.open.dropdown.courseContent")
+    static let dropdownCourseContentKey = Notification.Name("de.xikolo.ios.dropdown.courseContent")
 
 
     // Video Download

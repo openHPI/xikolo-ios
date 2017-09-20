@@ -66,7 +66,6 @@ class CourseListViewController : AbstractCourseListViewController {
         default:
             break
         }
-        updateView()
     }
 
     override func viewDidLoad() {
@@ -106,7 +105,6 @@ class CourseListViewController : AbstractCourseListViewController {
 
     func updateAfterLoginStateChange() {
         self.collectionView?.reloadEmptyDataSet()
-        CourseHelper.refreshCourses()
 
         if UserProfileHelper.isLoggedIn() {
             self.segmentedControl.selectedSegmentIndex = 0
@@ -115,7 +113,8 @@ class CourseListViewController : AbstractCourseListViewController {
             self.segmentedControl.selectedSegmentIndex = 1
             self.courseDisplayMode = .all
         }
-        self.updateView()
+
+        CourseHelper.refreshCourses()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

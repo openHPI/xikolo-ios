@@ -5,7 +5,7 @@
 iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
-- Xcode 9.0 GM
+- Xcode 9.0
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:
@@ -42,7 +42,7 @@ In order to have a consistent code formatting, we would like you to set some set
 We use [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) to ensure a complete localization of the applications. Simple run `bundle exec fastlane localize` to add entries for missing localizations in storyboard files and `NSLocalizedString` usages. Here are some tips to promote a consistent usage:
 
 #### Exlusion of storyboard elements
-Add `#bc-ignore!` to 'Comment For Localizer' box in the utilities pane instead of adding `#bc-ignore!` to the elements value. 
+Add `#bc-ignore!` to 'Comment For Localizer' box in the utilities pane instead of adding `#bc-ignore!` to the elements value.
 <div>
 	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/IB-Comment-Exclusion-Example1.png" width="275px" height="491px">
 	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/IB-Comment-Exclusion-Example2.png" width="272px" height="195px">

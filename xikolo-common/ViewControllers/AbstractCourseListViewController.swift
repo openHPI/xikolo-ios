@@ -35,7 +35,8 @@ class AbstractCourseListViewController : UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.updateView()
         CourseHelper.refreshCourses()
     }
 

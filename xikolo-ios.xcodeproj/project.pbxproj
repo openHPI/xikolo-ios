@@ -615,6 +615,14 @@
 		50F7202E1F28E29B00779995 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
 		50F7202F1F28E29B00779995 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
 		50F720301F28E29B00779995 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
+		50F97AB81F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
+		50F97AB91F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
+		50F97ABA1F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
+		50F97ABB1F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
+		50F97ABC1F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
+		50F97ABD1F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
+		50F97ABE1F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
+		50F97ABF1F75175D00606177 /* Int+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTime.swift */; };
 		703005B31EFEFC0000CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B41EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B51EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
@@ -1841,6 +1849,7 @@
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50F720271F28D72D00779995 /* VideoPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPersistenceManager.swift; sourceTree = "<group>"; };
 		50F7202C1F28E29B00779995 /* Video+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+Download.swift"; path = "Data/Model/Video+Download.swift"; sourceTree = "<group>"; };
+		50F97AB71F75175D00606177 /* Int+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DispatchTime.swift"; sourceTree = "<group>"; };
 		5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
@@ -2452,6 +2461,7 @@
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
+				50F97AB71F75175D00606177 /* Int+DispatchTime.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -4347,6 +4357,7 @@
 				24BA40AC1D3F9AC300E38C2C /* Announcement.swift in Sources */,
 				AB95897D1DC4A42800586137 /* UITableViewCell+enable.swift in Sources */,
 				24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */,
+				50F97ABA1F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				5060A5251F177304007896FF /* DetailedContent.swift in Sources */,
 				AB1C03401D8E0CA60053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				AB07C3731E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -4414,6 +4425,7 @@
 			files = (
 				249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24BA40BF1D3F9ADB00E38C2C /* AnnouncementProvider.swift in Sources */,
+				50F97ABB1F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				AB3B82201EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				24BA40A31D3F9AB600E38C2C /* RichText+CoreDataProperties.swift in Sources */,
 				24BA41271D3F9D0400E38C2C /* CourseDetailsViewController.swift in Sources */,
@@ -4642,6 +4654,7 @@
 			files = (
 				249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24A16D8B1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
+				50F97AB91F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				AB3B821E1EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
 				2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
@@ -4853,6 +4866,7 @@
 				70D1EAA41EF0AB8B0088C0FF /* UserProfileProvider.swift in Sources */,
 				70D1EA9F1EF0AB840088C0FF /* QuizProvider.swift in Sources */,
 				70D1EAA21EF0AB890088C0FF /* RichTextProvider.swift in Sources */,
+				50F97ABE1F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				70D1EAB31EF0ABFC0088C0FF /* CourseItemHelper.swift in Sources */,
 				70D1EACC1EF0AC1B0088C0FF /* SpineModelHelper.swift in Sources */,
 				5019A7661F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
@@ -5065,6 +5079,7 @@
 				70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */,
 				70D1EA351EF0AAF70088C0FF /* EnrollmentCertificates.swift in Sources */,
 				70D1EB5C1EF1345D0088C0FF /* Brand+tvOS.swift in Sources */,
+				50F97ABF1F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				70D1EA9C1EF0AB7E0088C0FF /* PeerAssessmentProvider.swift in Sources */,
 				70D1EABC1EF0AC060088C0FF /* NetworkHelper.swift in Sources */,
 				70D1EA5A1EF0AB270088C0FF /* Quiz.swift in Sources */,
@@ -5266,6 +5281,7 @@
 				2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				243CE4911D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */,
+				50F97AB81F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				AB95897C1DC4A42700586137 /* UITableViewCell+enable.swift in Sources */,
 				5060A5221F177304007896FF /* DetailedContent.swift in Sources */,
 				50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
@@ -5424,6 +5440,7 @@
 				ABA0F0311DF8CD050001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				ABA0F0191DF8CCA10001D88D /* CourseListViewController.swift in Sources */,
 				AB17C57A1DFCAE1E0013BBCD /* CourseDateCell.swift in Sources */,
+				50F97ABC1F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				5060A5281F177304007896FF /* DetailedContent.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
 				AB07C3761E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -5491,6 +5508,7 @@
 			files = (
 				ABA0F0B81DF8CE1F0001D88D /* PeerAssessmentProvider.swift in Sources */,
 				ABA0F0881DF8CDD50001D88D /* QuizOption.swift in Sources */,
+				50F97ABD1F75175D00606177 /* Int+DispatchTime.swift in Sources */,
 				AB3B82221EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				ABA0F0B01DF8CE120001D88D /* QuizProvider.swift in Sources */,
 				ABA0F03F1DF8CD250001D88D /* BaseModelSpine.swift in Sources */,

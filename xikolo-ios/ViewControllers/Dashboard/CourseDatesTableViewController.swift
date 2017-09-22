@@ -14,6 +14,8 @@ class CourseDatesTableViewController : UITableViewController {
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
+    var courseActivityViewController: CourseActivityViewController?
+
     var resultsController: NSFetchedResultsController<CourseDate>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseDate>!
 
@@ -82,6 +84,7 @@ class CourseDatesTableViewController : UITableViewController {
             }
         }
 
+        self.courseActivityViewController?.refresh()
         if UserProfileHelper.isLoggedIn() {
             CourseDateHelper.syncCourseDates().onComplete { _ in
                 endSpinning()
@@ -105,6 +108,15 @@ class CourseDatesTableViewController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "embedCourseActivity"?:
+            self.courseActivityViewController = segue.destination as? CourseActivityViewController
+        default:
+            super.prepare(for: segue, sender: sender)
+        }
     }
 
 }

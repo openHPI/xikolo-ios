@@ -13,6 +13,11 @@ import MessageUI
 
 class SettingsViewController: UITableViewController {
 
+    enum HeaderHeight: CGFloat {
+        case noContent = 190
+        case userProfile = 260
+    }
+
     static let feedbackIndexPath = IndexPath(row: 0, section: 2)
     static let logoutIndexPath = IndexPath(row: 0, section: 3)
 
@@ -32,10 +37,19 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var versionView: UILabel!
     @IBOutlet weak var buildView: UILabel!
 
-    var user: UserProfile?
+    var headerHeight: HeaderHeight = .noContent
+    var user: User? {
+        didSet {
+            if self.user != oldValue {
+                self.updateProfileInfo()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.updateUIAfterLoginStateChanged()
 
         // set text for github link
         let localizedGithubText = NSLocalizedString("settings.github-link.%@ iOS app on GitHub",
@@ -50,7 +64,6 @@ class SettingsViewController: UITableViewController {
         self.versionView.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion()
         self.buildView.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild()
 
-        self.updateUIAfterLoginStateChanged()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SettingsViewController.updateUIAfterLoginStateChanged),
                                                name: NotificationKeys.loginStateChangedKey,
@@ -60,32 +73,57 @@ class SettingsViewController: UITableViewController {
     func updateUIAfterLoginStateChanged() {
         if UserProfileHelper.isLoggedIn() {
             self.navigationItem.rightBarButtonItem = nil
-            self.updateProfileInfo()
+            self.user = UserHelper.getMe()
 
-            self.profileImage.isHidden = false
-            self.nameView.isHidden = false
-            self.emailView.isHidden = false
-
-            UserHelper.syncMe().onSuccess { _ in
-                self.updateProfileInfo()
+            UserHelper.syncMe().onSuccess { user in
+                self.user = user
             }
         } else {
             self.navigationItem.rightBarButtonItem = self.loginButton
-
-            self.profileImage.isHidden = true
-            self.nameView.isHidden = true
-            self.emailView.isHidden = true
+            self.user = nil
         }
 
+        self.tableView.setContentOffset(CGPoint.zero, animated: true)
         self.tableView.reloadData()
     }
 
     func updateProfileInfo() {
-        guard let user = try! UserHelper.getMe() else { return }
-        let userProfile = user.profile!
-        self.emailView.text = userProfile.email
-        self.nameView.text = (userProfile.first_name ?? "") + " " + (userProfile.last_name ?? "")
-        self.profileImage.sd_setImage(with: user.avatar_url)
+        let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
+
+        if let userProfile = self.user?.profile {
+            self.profileImage.sd_setImage(with: self.user?.avatar_url, placeholderImage: UIImage(named: "avatar"))
+            self.nameView.text = userProfile.fullName
+            self.emailView.text = userProfile.email
+
+            for view in profileViews {
+                view.alpha = 0
+                view.isHidden = false
+            }
+            UIView.animate(withDuration: 0.25, animations: {
+                self.headerHeight = .userProfile
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.25) {
+                    for view in profileViews {
+                        view.alpha = 1
+                    }
+                }
+            })
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {
+                for view in profileViews {
+                    view.alpha = 0
+                }
+            }, completion: { _ in
+                for view in profileViews {
+                    view.isHidden = true
+                }
+                UIView.animate(withDuration: 0.25) {
+                    self.headerHeight = .noContent
+                    self.view.layoutIfNeeded()
+                }
+            })
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -129,7 +167,7 @@ class SettingsViewController: UITableViewController {
 
         // Dynamic sizing for the header view
         if let headerView = self.tableView.tableHeaderView {
-            let height: CGFloat = UserProfileHelper.isLoggedIn() ? 260 : 190
+            let height = self.headerHeight.rawValue
             var headerFrame = headerView.frame
 
             // Don't set the same height again to prevent a infinte loop hang.

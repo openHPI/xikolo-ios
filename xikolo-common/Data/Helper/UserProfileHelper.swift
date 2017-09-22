@@ -73,11 +73,7 @@ open class UserProfileHelper {
     }
 
     static func getUserId() -> String? {
-        if let id = get(.user) {
-            return id
-        } else {
-            return nil
-        }
+        return self.get(.user)
     }
 
     static func saveToken(_ token: String) {

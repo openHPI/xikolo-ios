@@ -15,9 +15,12 @@ class AbstractLoginViewController : UIViewController {
 
     var delegate : AbstractLoginViewControllerDelegate?
 
-    @IBAction func login(_ button: UIButton) {
-        let email = emailField.text!
-        let password = passwordField.text!
+    @IBAction func login() {
+        guard let email = emailField.text, let password = passwordField.text else {
+            self.emailField.shake()
+            self.passwordField.shake()
+            return
+        }
 
         UserProfileHelper.login(email, password: password).onSuccess { token in
             self.presentingViewController?.dismiss(animated: true, completion: nil)

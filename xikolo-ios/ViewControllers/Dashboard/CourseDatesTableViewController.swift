@@ -78,7 +78,7 @@ class CourseDatesTableViewController : UITableViewController {
     func refresh() {
         self.tableView.reloadEmptyDataSet()
         let deadline = 750.milliseconds.fromNow
-        let endSpinning = {
+        let stopRefreshControl = {
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 self.tableView.refreshControl?.endRefreshing()
             }
@@ -87,10 +87,10 @@ class CourseDatesTableViewController : UITableViewController {
         self.courseActivityViewController?.refresh()
         if UserProfileHelper.isLoggedIn() {
             CourseDateHelper.syncCourseDates().onComplete { _ in
-                endSpinning()
+                stopRefreshControl()
             }
         } else {
-           endSpinning()
+           stopRefreshControl()
         }
     }
 

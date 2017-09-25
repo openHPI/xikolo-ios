@@ -1,5 +1,5 @@
 //
-//  Int+DispatchTime.swift
+//  Int+DispatchTimeInterval.swift
 //  xikolo-ios
 //
 //  Created by Max Bothe on 22.09.17.
@@ -26,10 +26,4 @@ public extension Int {
         return milliseconds
     }
 
-}
-
-public extension DispatchTimeInterval {
-    public var fromNow: DispatchTime {
-        return DispatchTime.now() + self
-    }
 }

@@ -74,7 +74,7 @@ class AnnouncementsTableViewController : UITableViewController {
 
     func refresh() {
         self.tableView.reloadEmptyDataSet()
-        let deadline = 750.milliseconds.fromNow
+        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 self.tableView.refreshControl?.endRefreshing()

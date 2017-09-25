@@ -98,7 +98,7 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func refresh() {
-        let deadline = 750.milliseconds.fromNow
+        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 self.tableView.refreshControl?.endRefreshing()

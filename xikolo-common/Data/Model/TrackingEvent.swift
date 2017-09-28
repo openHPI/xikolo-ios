@@ -32,7 +32,7 @@ class TrackingEventSpine : Resource {
         self.verb = event.verb
         self.resource = event.resource
         self.timestamp = event.timestamp
-        self.result = event.result
+        self.result = event.result as? [String: AnyObject]
         self.context = event.context
     }
 

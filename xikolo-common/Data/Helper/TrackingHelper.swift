@@ -53,10 +53,8 @@ class TrackingHelper {
 
         var trackingContext = defaultContext()
 
-        for (k, v) in context {
-            if let v = v {
-                trackingContext.updateValue(v, forKey: k)
-            }
+        for case let (k, v?) in context {
+            trackingContext.updateValue(v, forKey: k)
         }
 
         let trackingEvent = TrackingEvent(context: CoreDataHelper.backgroundContext)

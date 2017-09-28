@@ -136,14 +136,14 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func showProctoringDialog(onComplete completionBlock: @escaping () -> Void) {
-        let title = NSLocalizedString("This item needs to be proctored", comment: "Shown in proctoring dialog")
-        let message = NSLocalizedString("In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.", comment: "Shown in proctoring dialog")
-        let confirm = NSLocalizedString("Ok", comment: "")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertTitle = NSLocalizedString("course-item.proctoring.alert.title", comment: "title for proctoring alert")
+        let alertMessage = NSLocalizedString("course-item.proctoring.alert.message", comment: "message for proctoring alert")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: confirm, style: .default, handler: nil))
+        let confirmTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
+        alert.addAction(UIAlertAction(title: confirmTitle, style: .default))
 
-        present(alert, animated: true, completion: completionBlock )
+        self.present(alert, animated: true, completion: completionBlock)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -213,21 +213,14 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
 extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
-        let title = NSLocalizedString("Error loading course items", comment: "")
-        let attributedString = NSAttributedString(string: title)
-        return attributedString
+        let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
+        return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
-        let description = NSLocalizedString("Please check you internet connection", comment: "")
-        let attributedString = NSAttributedString(string: description)
-        return attributedString
+        let description = NSLocalizedString("empty-view.course-content.description",
+                                            comment: "description for empty course content list")
+        return NSAttributedString(string: description)
     }
 
 }
@@ -242,7 +235,9 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
 
 
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
-        let downloadAction = UIAlertAction(title: NSLocalizedString("Download Video", comment: ""), style: .default) { action in
+        let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
+                                                    comment: "start download of video item")
+        let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
             if video.hlsURL != nil {
                 VideoPersistenceManager.shared.downloadStream(for: video)
             } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context to sync via spine
@@ -259,25 +254,35 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
                 }
             }
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+
+        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
         
         self.showAlert(withActions: [downloadAction, cancelAction], onView: cell.downloadButton)
     }
 
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let abortAction = UIAlertAction(title: NSLocalizedString("Stop Download", comment: ""), style: .default) { action in
+        let abortActionTitle = NSLocalizedString("course-item.video-download-alert.stop-download-action.title",
+                                                 comment: "stop download of video item")
+        let abortAction = UIAlertAction(title: abortActionTitle, style: .default) { action in
             VideoPersistenceManager.shared.cancelDownload(for: video)
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+
+        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
         
         self.showAlert(withActions: [abortAction, cancelAction], onView: cell.downloadButton)
     }
 
     func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let deleteAction = UIAlertAction(title: NSLocalizedString("Delete video", comment: ""), style: .default) { action in
+        let deleteActionTitle = NSLocalizedString("course-item.video-download-alert.delete-item-action.title",
+                                                  comment: "delete video item")
+        let deleteAction = UIAlertAction(title: deleteActionTitle, style: .default) { action in
             VideoPersistenceManager.shared.deleteAsset(for: video)
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+
+        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
         
         self.showAlert(withActions: [deleteAction, cancelAction], onView: cell.downloadButton)
     }
@@ -293,7 +298,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
             alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
         }
 
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true)
     }
 
 }

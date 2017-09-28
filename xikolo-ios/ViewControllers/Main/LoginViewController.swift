@@ -20,9 +20,9 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.backgroundColor = Brand.TintColor
-        emailField.becomeFirstResponder()
-        
+        self.loginButton.backgroundColor = Brand.TintColor
+        self.registerButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+
         #if OPENSAP || OPENWHO
             singleSignOnView.isHidden = false
             singleSignOnButton.backgroundColor = Brand.TintColor
@@ -32,32 +32,31 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         #endif
     }
 
-    @IBAction func dismissAction(_ sender: UIBarButtonItem) {
+    @IBAction func dismiss() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func registerButton(_ sender: AnyObject) {
+    @IBAction func register() {
         guard let url = URL(string: Routes.REGISTER_URL) else { return }
         let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true, completion: nil)
+        safariVC.preferredControlTintColor = Brand.TintColor
+        self.present(safariVC, animated: true)
     }
 
-    @IBAction func singleSignIn(_ sender: UIButton) {
-        performSegue(withIdentifier: "ShowSSOWebView", sender: self)
-//        let url = URL(string: Routes.SSO_URL)!
-//        let request = URLRequest(url: url)
-//        let wkViewController = CustomHeaderWebView(frame: .zero)
-//        wkViewController.header = ["X-User-Platform" : "iOS"]
-//        wkViewController.uiDelegate = self
-//       
-//        view = wkViewController
-//        wkViewController.load(request)
+    @IBAction func singleSignOn() {
+        self.performSegue(withIdentifier: "ShowSSOWebView", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSSOWebView" {
             let vc = segue.destination as! WebViewController
             vc.url = Routes.SSO_URL
+
+            // Delete all cookies since cookies are not shared among applications in iOS.
+            let cookieStorage = HTTPCookieStorage.shared
+            for cookie in cookieStorage.cookies ?? [] {
+                cookieStorage.deleteCookie(cookie)
+            }
         }
     }
 
@@ -66,7 +65,12 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 extension LoginViewController : UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == self.emailField {
+            self.passwordField.becomeFirstResponder()
+        } else if textField === self.passwordField {
+            self.login()
+            textField.resignFirstResponder()
+        }
         return true
     }
 

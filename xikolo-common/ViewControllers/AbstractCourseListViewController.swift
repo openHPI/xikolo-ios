@@ -18,53 +18,74 @@ class AbstractCourseListViewController : UICollectionViewController {
         case bothSectioned
     }
 
-    var resultsControllers: [NSFetchedResultsController<Course>]!
+    var resultsControllers: [NSFetchedResultsController<Course>] = []
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
     var contentChangeOperations: [[AnyObject?]] = []
-
-    var courseDisplayMode: CourseDisplayMode = .enrolledOnly
+    var courseDisplayMode: CourseDisplayMode = .enrolledOnly {
+        didSet {
+            if self.courseDisplayMode != oldValue {
+                self.updateView()
+            }
+        }
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
-        updateView()
-
+        super.viewDidLoad()
+        
+        self.updateView()
         CourseHelper.refreshCourses()
     }
 
-    func updateView() {
-        var request: NSFetchRequest<Course>
+    func updateView(){
         switch courseDisplayMode {
         case .enrolledOnly:
-            let enrolledRequest = CourseHelper.getEnrolledAccessibleCoursesRequest()
+            let currentRequest = CourseHelper.getEnrolledCurrentCoursesRequest()
+            let selfPacedRequest = CourseHelper.getEnrolledSelfPacedCoursesRequest()
             let upcomingRequest = CourseHelper.getEnrolledUpcomingCoursesRequest()
             let completedRequest = CourseHelper.getCompletedCoursesRequest()
-            resultsControllers = [CoreDataHelper.createResultsController(enrolledRequest, sectionNameKeyPath: "current_section"),
-                                    CoreDataHelper.createResultsController(upcomingRequest, sectionNameKeyPath: "upcoming_section"),
-                                    CoreDataHelper.createResultsController(completedRequest, sectionNameKeyPath: "completed_section")]
+            resultsControllers = [CoreDataHelper.createResultsController(currentRequest, sectionNameKeyPath: "current_section"),
+
+                                  CoreDataHelper.createResultsController(upcomingRequest, sectionNameKeyPath: "upcoming_section"),
+                                  CoreDataHelper.createResultsController(selfPacedRequest, sectionNameKeyPath: "selfpaced_section"),
+                                  CoreDataHelper.createResultsController(completedRequest, sectionNameKeyPath: "completed_section")]
         case .explore, .all:
             let upcomingRunningRequest = CourseHelper.getInterestingCoursesRequest()
-            let selfpacedRequest = CourseHelper.getPastCoursesRequest()
+            let pastSelfPacedRequest = CourseHelper.getPastCoursesRequest()
             resultsControllers = [CoreDataHelper.createResultsController(upcomingRunningRequest, sectionNameKeyPath: "interesting_section"),
-                                  CoreDataHelper.createResultsController(selfpacedRequest, sectionNameKeyPath: "selfpaced_section")]
+                                  CoreDataHelper.createResultsController(pastSelfPacedRequest, sectionNameKeyPath: "selfpaced_section")]
         case .bothSectioned:
-            request = CourseHelper.getSectionedRequest()
+            let request = CourseHelper.getSectionedRequest()
             resultsControllers = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")]
         }
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView!, resultsControllers: resultsControllers, cellReuseIdentifier: "CourseCell")
+
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsControllers: resultsControllers, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
         let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseListViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
-        for rC in resultsControllers { rC.delegate = resultsControllerDelegateImplementation }
+
+        // This is required to prevent a Core Data error when logging in via the Dashboard or the Settings tab
+        if self.collectionView?.numberOfSections == 1, self.collectionView?.numberOfItems(inSection: 0) == 0 {
+            resultsControllerDelegateImplementation.setShouldReload()
+        }
+
+        for rC in resultsControllers {
+            rC.delegate = resultsControllerDelegateImplementation
+        }
         collectionView!.dataSource = resultsControllerDelegateImplementation
 
         do {
-            for rC in resultsControllers { try rC.performFetch() }
+            for rC in resultsControllers {
+                try rC.performFetch()
+            }
         } catch {
             // TODO: Error handling.
         }
+
+        self.collectionView?.reloadData()
     }
 
 }

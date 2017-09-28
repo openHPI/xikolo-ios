@@ -26,6 +26,7 @@ class TrackingHelper {
 
     private class func defaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
+        let windowSize = (UIApplication.shared.delegate as? AppDelegate)?.window?.frame.size
 
         return [
             "platform": UIApplication.platform,
@@ -34,9 +35,12 @@ class TrackingHelper {
             "runtime_version": UIApplication.osVersion,
             "device": UIApplication.device,
             "build_version_name": UIApplication.appVersion(),
-            "build_number": UIApplication.appBuild(),
+            "build_version": UIApplication.appBuild(),
             "screen_width": String(Int(screenSize.width)),
             "screen_height": String(Int(screenSize.height)),
+            "window_width": String(Int(windowSize?.width ?? 0)),
+            "window_height": String(Int(windowSize?.height ?? 0)),
+            "client_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
             "free_space": String(describing: self.systemFreeSize),
             "total_space": String(describing: self.systemSize),
             "network": self.networkState,

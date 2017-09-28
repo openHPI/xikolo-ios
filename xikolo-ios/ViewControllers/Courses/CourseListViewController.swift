@@ -66,7 +66,6 @@ class CourseListViewController : AbstractCourseListViewController {
         default:
             break
         }
-        updateView()
     }
 
     override func viewDidLoad() {
@@ -81,7 +80,11 @@ class CourseListViewController : AbstractCourseListViewController {
 
         self.collectionView?.addSubview(self.refreshControl)
         super.viewDidLoad()
-        presentWelcomeScreenIfNecessary()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(CourseListViewController.updateAfterLoginStateChange),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -100,20 +103,18 @@ class CourseListViewController : AbstractCourseListViewController {
         }, completion: nil)
     }
 
-    func presentWelcomeScreenIfNecessary() {
-        #if OPENWHO
-        if UserProfileHelper.get(.welcome) == nil {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyyMMdd"
-            guard let start = formatter.date(from: "20170521"), let end = formatter.date(from: "20170530") else { return }
-            let healthConference = DateInterval.init(start: start, end: end)
-            let now = Date.init(timeIntervalSinceNow: 0)
-            if (healthConference.contains(now)) {
-                performSegue(withIdentifier: "ShowWelcome", sender: nil)
-                UserProfileHelper.save(.welcome, withValue: "showed")
-            }
+    func updateAfterLoginStateChange() {
+        self.collectionView?.reloadEmptyDataSet()
+
+        if UserProfileHelper.isLoggedIn() {
+            self.segmentedControl.selectedSegmentIndex = 0
+            self.courseDisplayMode = .enrolledOnly
+        } else {
+            self.segmentedControl.selectedSegmentIndex = 1
+            self.courseDisplayMode = .all
         }
-        #endif
+
+        CourseHelper.refreshCourses()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -20,6 +20,7 @@ class CourseDecisionViewController: UIViewController {
   
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var dropdownIcon: UIImageView!
 
     var containerContentViewController: UIViewController?
     var course: Course!
@@ -27,12 +28,17 @@ class CourseDecisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         SearchHelper.setUserActivity(for: self.course)
         self.decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
     }
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
+
+    @IBAction func tapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "ShowContentChoice", sender: sender)
+    }
 
     func decideContent() {
         if (course.enrollment != nil) {
@@ -63,22 +69,33 @@ class CourseDecisionViewController: UIViewController {
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseContentTableViewController") as! CourseContentTableViewController
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("Learnings", comment: "")
+            titleView.text = NSLocalizedString("course-content.view.learnings.title",
+                                               comment: "title of learnings view of course view")
         case .discussions:
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("Discussions", comment: "")
+            titleView.text = NSLocalizedString("course-content.view.discussions.title",
+                                               comment: "title of discussions view of course view")
         case .courseDetails:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController") as! CourseDetailViewController
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("Course Details", comment: "")
+            titleView.text = NSLocalizedString("course-content.view.course-details.title",
+                                               comment: "title of course details view of course view")
         }
         self.content = content
-        navigationController?.view.setNeedsLayout()
+
+        // set width for new title view
+        if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
+            let titleWidth = NSString(string: text).size(attributes: [NSFontAttributeName : self.titleView.font]).width
+            var frame = titleView.frame
+            frame.size.width = titleWidth + self.dropdownIcon.frame.width + 2
+            titleView.frame = frame
+            titleView.setNeedsLayout()
+        }
     }
 
     func changeToViewController(_ viewController: UIViewController) {
@@ -88,7 +105,6 @@ class CourseDecisionViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
     }
-
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

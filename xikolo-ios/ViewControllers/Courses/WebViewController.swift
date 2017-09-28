@@ -37,24 +37,30 @@ extension WebViewController : UIWebViewDelegate {
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
            let urlComponents = URLComponents.init(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
-            queryItems.forEach({ (queryItem) in
-                if queryItem.name == "token" {
-                    guard let token = queryItem.value  else { return }
-                    UserProfileHelper.saveToken(token)
-                    navigationController?.dismiss(animated: true, completion: nil)
+
+            if let tokenItem = queryItems.first(where: { $0.name == "token"}) {
+                guard let token = tokenItem.value else { return false }
+
+                UserProfileHelper.saveToken(token)
+                UserProfileHelper.postLoginStateChange()
+                self.navigationController?.dismiss(animated: true) {
+                    NetworkIndicator.end()
                 }
-            })
+                return false
+            }
+
             return true
         }
 
         let userIsLoggedIn = UserProfileHelper.isLoggedIn()
         let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.HTTP_AUTH_HEADER) ?? false
 
-        if let url = request.url?.absoluteString, userIsLoggedIn && !headerIsPresent {
+        if userIsLoggedIn && !headerIsPresent {
             DispatchQueue.global().async {
                 DispatchQueue.main.async {
-                    let newRequest = NetworkHelper.getRequestForURL(url)
-                    self.webView.loadRequest(newRequest as URLRequest)
+                    var newRequest = request
+                    newRequest.allHTTPHeaderFields = NetworkHelper.getRequestHeaders()
+                    self.webView.loadRequest(newRequest)
                 }
             }
             return false

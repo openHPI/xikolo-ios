@@ -1,22 +1,26 @@
 language: objective-c
-osx_image: xcode8.3
+osx_image: xcode9
 xcode_workspace: xikolo-ios.xcworkspace
 xcode_scheme: xikolo-ios
 cache: cocoapods
 
 env:
-  - SCHEME="openHPI-iOS" SDK="iphonesimulator"
-  - SCHEME="openSAP-iOS" SDK="iphonesimulator"
-  - SCHEME="openWHO-iOS" SDK="iphonesimulator"
-  - SCHEME="moocHOUSE-iOS" SDK="iphonesimulator"
+  - CHECK_LOCALIZATION=1
+  - BUILD=1 SCHEME="openHPI-iOS" SDK="iphonesimulator"
+  - BUILD=1 SCHEME="openSAP-iOS" SDK="iphonesimulator"
+  - BUILD=1 SCHEME="openWHO-iOS" SDK="iphonesimulator"
+  - BUILD=1 SCHEME="moocHOUSE-iOS" SDK="iphonesimulator"
   # - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
   # - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
   # - SCHEME="openWHO-tvOS" SDK="appletvsimulator"
   # - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
-before_install:
-  - pod repo update > /dev/null
+install:
+  - bundle install
+  - bundle exec pod repo update > /dev/null
+  - bundle exec pod install
 
 script:
   - set -o pipefail
-  - xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty
+  - if [ "$BUILD" == 1 ]; then xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty; fi
+  - if [ "$CHECK_LOCALIZATION" == 1 ]; then bundle exec fastlane localize; git status --porcelain; git diff --quiet head xikolo-common xikolo-ios || travis_terminate 1; fi

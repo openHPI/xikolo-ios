@@ -73,30 +73,18 @@ open class UserProfileHelper {
     }
 
     static func getUserId() -> String? {
-        if let id = get(.user) {
-            return id
-        } else {
-            return nil
-        }
+        return self.get(.user)
     }
 
     static func saveToken(_ token: String) {
         save(.token, withValue: token)
-        refreshUserDependentData()
-    }
-
-    static func refreshUserDependentData() {
-        UserHelper.syncMe()
-        CourseHelper.refreshCourses()
-        CourseDateHelper.syncCourseDates()
-        AnnouncementHelper.syncAnnouncements()
     }
 
     static func saveId(_ id: String) {
         save(.user, withValue: id)
     }
 
-    private static func postLoginStateChange() {
+    static func postLoginStateChange() {
         SpineHelper.updateHttpHeaders()
         NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
     }

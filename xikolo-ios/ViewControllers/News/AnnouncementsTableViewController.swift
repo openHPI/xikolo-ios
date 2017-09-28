@@ -32,15 +32,19 @@ class AnnouncementsTableViewController : UITableViewController {
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
+        self.updateAfterLoginStateChange()
+
         do {
             try resultsController.performFetch()
         } catch {
             // TODO: Error handling.
         }
-        AnnouncementHelper.syncAnnouncements().onComplete { _ in
-            self.tableView.reloadEmptyDataSet()
-        }
         setupEmptyState()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(AnnouncementsTableViewController.updateAfterLoginStateChange),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
     }
 
     func setupEmptyState() {
@@ -48,6 +52,20 @@ class AnnouncementsTableViewController : UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
+    }
+
+    func updateAfterLoginStateChange() {
+        self.tableView.reloadEmptyDataSet()
+        if UserProfileHelper.isLoggedIn() {
+            AnnouncementHelper.syncAnnouncements()
+        }
+
+        // FIXME: This call dhould not be made here. However without this call the table view does not refresh after a logout.
+        do {
+            try resultsController.performFetch()
+        } catch {
+            // TODO: Error handling.
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,21 +98,13 @@ struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfigura
 extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
-        let title = NSLocalizedString("There are no news at the moment", comment: "")
-        let attributedString = NSAttributedString(string: title)
-        return attributedString
+        let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
+        return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        if NetworkIndicator.counter > 0 {
-            return nil // blank screen for loading
-        }
-        let description = NSLocalizedString("News can be published in courses or globally to announce new content or changes to the platform itself", comment: "")
-        let attributedString = NSAttributedString(string: description)
-        return attributedString
+        let description = NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
+        return NSAttributedString(string: description)
     }
 
 }

@@ -1,3 +1,4 @@
+
 /* Class = "UILabel"; text = "Course Details"; ObjectID = "4pA-is-ZLH"; */
 "4pA-is-ZLH.text" = "Kursdetails";
 
@@ -10,9 +11,6 @@
 /* Class = "UISegmentedControl"; CXl-G3-ErQ.segmentTitles[1] = "Find Courses"; ObjectID = "CXl-G3-ErQ"; */
 "CXl-G3-ErQ.segmentTitles[1]" = "Kurse finden";
 
-/* Class = "UILabel"; text = "CourseContent"; ObjectID = "I0c-UK-HJw"; */
-"I0c-UK-HJw.text" = "Kursinhalte";
-
 /* Class = "UIButton"; normalTitle = "open slides"; ObjectID = "e3P-4C-sVC"; */
 "e3P-4C-sVC.normalTitle" = "Folien anschauen";
 
@@ -21,3 +19,6 @@
 
 /* Class = "UITabBarItem"; title = "Courses"; ObjectID = "fhC-LU-HI2"; */
 "fhC-LU-HI2.title" = "Kurse";
+
+/* Class = "UIBarButtonItem"; title = "Courses"; ObjectID = "yii-3n-v5c"; */
+"yii-3n-v5c.title" = "Kurse";

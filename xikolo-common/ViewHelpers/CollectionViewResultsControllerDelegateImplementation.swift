@@ -11,75 +11,94 @@ import UIKit
 
 class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
-    weak var collectionView: UICollectionView!
-    var resultsControllers: [NSFetchedResultsController<T>] // 2Think: Do we create a memory loop here?
+    weak var collectionView: UICollectionView?
+    var resultsControllers: [NSFetchedResultsController<T>] = [] // 2Think: Do we create a memory loop here?
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
     var configuration: CollectionViewResultsControllerConfigurationWrapper<T>?
-    fileprivate var contentChangeOperations: [ContentChangeOperation] = []
+    private var contentChangeOperations: [BlockOperation] = []
+    private var shouldReload = false
 
-    required init(_ collectionView: UICollectionView, resultsControllers: [NSFetchedResultsController<T>], cellReuseIdentifier: String) {
+    required init(_ collectionView: UICollectionView?, resultsControllers: [NSFetchedResultsController<T>], cellReuseIdentifier: String) {
         self.collectionView = collectionView
         self.resultsControllers = resultsControllers
         self.cellReuseIdentifier = cellReuseIdentifier
     }
 
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        contentChangeOperations.removeAll()
-    }
-
-    // TODO: Still need to do this one?
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        contentChangeOperations.append(ContentChangeOperation(type: type, indexSet: IndexSet(integer: sectionIndex)))
+        let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex))!
+        switch type {
+        case .insert:
+            self.contentChangeOperations.append(BlockOperation(block: {
+                self.collectionView?.insertSections(convertedIndexSet)
+            }))
+        case .delete:
+            self.contentChangeOperations.append(BlockOperation(block: {
+                self.collectionView?.deleteSections(convertedIndexSet)
+            }))
+        case .move, .update:
+            break
+        }
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        contentChangeOperations.append(ContentChangeOperation(type: type, indexPath: indexPath, newIndexPath: newIndexPath))
+        let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
+        let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
+        switch type {
+        case .insert:
+            self.contentChangeOperations.append(BlockOperation(block: {
+                self.collectionView?.insertItems(at: [convertedNewIndexPath!])
+            }))
+        case .delete:
+            self.contentChangeOperations.append(BlockOperation(block: {
+                self.collectionView?.deleteItems(at: [convertedIndexPath!])
+            }))
+        case .update:
+            self.contentChangeOperations.append(BlockOperation(block: {
+                self.collectionView?.reloadItems(at: [convertedIndexPath!])
+            }))
+        case .move:
+            self.contentChangeOperations.append(BlockOperation(block: {
+                self.collectionView?.deleteItems(at: [convertedIndexPath!])
+                self.collectionView?.insertItems(at: [convertedNewIndexPath!])
+            }))
+        }
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        collectionView!.performBatchUpdates({
-            let collectionView = self.collectionView!
-            for change in self.contentChangeOperations {
-                switch change.context {
-                case .section:
-                    let convertedIndexSet = self.indexSet(for: controller, with: change.indexSet)
-                    switch change.type {
-                    case .insert:
-                        collectionView.insertSections(convertedIndexSet!)
-                    case .delete:
-                        collectionView.deleteSections(convertedIndexSet!)
-                    case .move:
-                        break
-                    case .update:
-                        break
-                    }
-                case .object:
-                    let convertedIndexPath = self.indexPath(for: controller, with: change.indexPath)
-                    let convertedNewIndexPath = self.indexPath(for: controller, with: change.newIndexPath)
-                    switch change.type {
-                    case .insert:
-                        collectionView.insertItems(at: [convertedNewIndexPath!]) // TODO: nilhandling
-                    case .delete:
-                        collectionView.deleteItems(at: [convertedIndexPath!])
-                    case .update:
-                        collectionView.reloadItems(at: [convertedIndexPath!])
-                    case .move:
-                        collectionView.deleteItems(at: [convertedIndexPath!])
-                        collectionView.insertItems(at: [convertedNewIndexPath!])
-                    }
+        if self.shouldReload {
+            self.collectionView?.reloadData()
+            self.contentChangeOperations.removeAll(keepingCapacity: false)
+        } else {
+            self.collectionView?.performBatchUpdates({
+                for operation in self.contentChangeOperations {
+                    operation.start()
                 }
-            }
-        }, completion: nil)
+            }, completion: { _ in
+                self.contentChangeOperations.removeAll(keepingCapacity: false)
+            })
+        }
+    }
+
+    func setShouldReload() {
+        self.shouldReload = true
+    }
+
+    deinit {
+        for operation in self.contentChangeOperations {
+            operation.cancel()
+        }
+        self.contentChangeOperations.removeAll(keepingCapacity: false)
+        self.configuration = nil
+        self.resultsControllers.removeAll(keepingCapacity: false)
+        self.collectionView = nil
     }
 
     // MARK: UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return resultsControllers.reduce(0, { (partialCount, controller) -> Int in
-            return (controller.sections?.count ?? 0) + partialCount
-        })
+        return self.resultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -142,7 +161,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
         var passedSections = 0
         for contr in resultsControllers {
             if contr == controller {
-                newIndexSet.forEach { (i) in
+                for i in newIndexSet {
                     convertedIndexSet.insert(i + passedSections)
                 }
                 break
@@ -204,32 +223,4 @@ class CollectionViewResultsControllerConfigurationWrapper<T: BaseModel>: Collect
         self.configureCollectionHeaderView(view, section)
     }
 
-}
-
-private struct ContentChangeOperation {
-
-    var context: FetchedResultsChangeContext
-    var type: NSFetchedResultsChangeType
-    var indexSet: IndexSet?
-    var indexPath: IndexPath?
-    var newIndexPath: IndexPath?
-
-    init(type: NSFetchedResultsChangeType, indexSet: IndexSet) {
-        self.context = .section
-        self.type = type
-        self.indexSet = indexSet
-    }
-
-    init(type: NSFetchedResultsChangeType, indexPath: IndexPath?, newIndexPath: IndexPath?) {
-        self.context = .object
-        self.type = type
-        self.indexPath = indexPath
-        self.newIndexPath = newIndexPath
-    }
-
-}
-
-private enum FetchedResultsChangeContext {
-    case section
-    case object
 }

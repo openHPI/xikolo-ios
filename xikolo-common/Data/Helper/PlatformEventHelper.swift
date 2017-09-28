@@ -21,7 +21,7 @@ class PlatformEventHelper {
 
     static func syncPlatformEvents() -> Future<[PlatformEvent], XikoloError> {
         return PlatformEventProvider.getPlatformEvents().flatMap { spinePlatformEvents -> Future<[PlatformEvent], XikoloError> in
-            let request = getRequest()
+            let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()
             return SpineModelHelper.syncObjectsFuture(request, spineObjects: spinePlatformEvents, inject: nil, save: true)
         }
     }

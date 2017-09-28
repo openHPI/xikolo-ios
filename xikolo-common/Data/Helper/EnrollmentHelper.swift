@@ -30,7 +30,7 @@ class EnrollmentHelper {
         let enrollmentSpine = EnrollmentSpine(course: courseSpine)
         SpineHelper.save(enrollmentSpine).onSuccess { enrollmentSpine in
             NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
-            return promise.success()
+            return promise.success(())
         }.onFailure { xikoloError in
             return promise.failure(xikoloError)
         }
@@ -44,7 +44,7 @@ class EnrollmentHelper {
         SpineHelper.delete(enrollmentSpine).onSuccess { _ in
             CoreDataHelper.delete(enrollment)
             NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
-            return promise.success()
+            return promise.success(())
         }.onFailure { xikoloError in
             return promise.failure(xikoloError)
         }

@@ -56,7 +56,7 @@ class PlatformEventsTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.tableView.reloadEmptyDataSet()
         if UserProfileHelper.isLoggedIn() {
             PlatformEventHelper.syncPlatformEvents()

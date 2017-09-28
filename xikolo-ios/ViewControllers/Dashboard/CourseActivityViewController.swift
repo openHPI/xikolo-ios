@@ -27,7 +27,7 @@ class CourseActivityViewController: UICollectionViewController {
         self.updateFetchedResultController()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.updateFetchedResultController()
     }
 

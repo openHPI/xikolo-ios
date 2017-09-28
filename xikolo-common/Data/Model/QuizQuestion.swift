@@ -12,7 +12,7 @@ import Spine
 
 class QuizQuestion : BaseModel {
 
-    dynamic var submission: QuizQuestionSubmission?
+    @objc dynamic var submission: QuizQuestionSubmission?
 
     var shuffle_answers: Bool {
         get {

@@ -115,7 +115,7 @@ class CourseContentTableViewController: UITableViewController {
         self.reachability = nil
     }
     
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.loadData()
         refreshControl.endRefreshing()
     }
@@ -139,7 +139,7 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
-    func reachabilityChanged(_ note: Notification) {
+    @objc func reachabilityChanged(_ note: Notification) {
         guard let reachability = note.object as? Reachability else { return }
 
         let oldOfflinesState = self.isOffline

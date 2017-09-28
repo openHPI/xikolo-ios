@@ -38,10 +38,10 @@ class Video : Content {
 
     func metadata() -> [AVMetadataItem] {
         var items: [AVMetadataItem] = []
-        if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataCommonIdentifierTitle, value: course_item.title) {
+        if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierTitle.rawValue, value: course_item.title) {
             items.append(item)
         }
-        if let item = AVMetadataItem.item(AVMetadataCommonIdentifierDescription, value: summary) {
+        if let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierDescription.rawValue, value: summary) {
             items.append(item)
         }
         return items

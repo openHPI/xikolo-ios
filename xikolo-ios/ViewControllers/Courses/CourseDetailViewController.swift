@@ -64,7 +64,7 @@ class CourseDetailViewController: UIViewController {
         }
     }
 
-    func setEnrolledState() {
+    @objc func setEnrolledState() {
         let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
                                             comment: "title of course enrollment button")
         self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
@@ -72,7 +72,7 @@ class CourseDetailViewController: UIViewController {
         self.enrollmentButton.tintColor = Brand.TintColor
     }
 
-    func setUnenrolledState() {
+    @objc func setUnenrolledState() {
         let buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title",
                                             comment: "title of Course enrollment options button")
         self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)

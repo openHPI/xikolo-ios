@@ -40,7 +40,7 @@ class CourseListViewController : AbstractCourseListViewController {
         return refreshControl
     }()
     
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         if UserProfileHelper.isLoggedIn() {
             EnrollmentHelper.syncEnrollments().onComplete { _ in
                 refreshControl.endRefreshing()
@@ -103,7 +103,7 @@ class CourseListViewController : AbstractCourseListViewController {
         }, completion: nil)
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.collectionView?.reloadEmptyDataSet()
 
         if UserProfileHelper.isLoggedIn() {

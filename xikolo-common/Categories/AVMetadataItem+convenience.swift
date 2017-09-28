@@ -16,13 +16,13 @@ extension AVMetadataItem {
             return nil
         }
         // HACKHACK: Fix description to prevent visual bug in metadata display.
-        if identifier == AVMetadataCommonIdentifierDescription && str.characters.count < 212 {
+        if identifier == AVMetadataIdentifier.commonIdentifierDescription.rawValue && str.characters.count < 212 {
             str = str + "                                                                                                                                  \n\n\n                                                                                                                                                                                     "
         }
 
         let item = AVMutableMetadataItem()
         item.value = str as NSString
-        item.identifier = identifier
+        item.identifier = AVMetadataIdentifier(rawValue: identifier)
         item.extendedLanguageTag = "und" // Undefined language
         return item.copy() as? AVMetadataItem
     }
@@ -31,7 +31,7 @@ extension AVMetadataItem {
         let item = AVMutableMetadataItem()
         item.value = UIImagePNGRepresentation(image) as (NSCopying & NSObjectProtocol)?
         item.dataType = kCMMetadataBaseDataType_PNG as String
-        item.identifier = AVMetadataCommonIdentifierArtwork
+        item.identifier = AVMetadataIdentifier.commonIdentifierArtwork
         item.extendedLanguageTag = "und" // Undefined language
         return item.copy() as? AVMetadataItem
     }

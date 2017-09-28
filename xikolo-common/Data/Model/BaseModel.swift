@@ -110,7 +110,7 @@ extension BaseModel {
         self.deletedHandler = deletedHandler
     }
 
-    func dataModelDidChange(_ notification: Notification) {
+    @objc func dataModelDidChange(_ notification: Notification) {
         let updatedObjects = notification.userInfo![NSUpdatedObjectsKey]
         let deletedObjects = notification.userInfo![NSDeletedObjectsKey]
 

@@ -61,7 +61,7 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
 
         self.tableView.reloadEmptyDataSet()

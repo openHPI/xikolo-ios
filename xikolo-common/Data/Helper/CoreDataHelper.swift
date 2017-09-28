@@ -117,7 +117,7 @@ extension NSPersistentContainer {
                 try cdObject.loadFromSpine(spineObject)
                 completion({})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }
@@ -126,9 +126,9 @@ extension NSPersistentContainer {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataHelper.backgroundContext.fetch(request)
-                completion({_ in return results})
+                completion({ return results})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }
@@ -138,9 +138,9 @@ extension NSPersistentContainer {
             do {
                 let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
                 let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-                completion({_ in return results})
+                completion({ return results})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }
@@ -149,9 +149,9 @@ extension NSPersistentContainer {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
                 let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-                completion({_ in return results})
+                completion({ return results})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }

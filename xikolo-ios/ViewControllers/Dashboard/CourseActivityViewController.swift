@@ -53,6 +53,10 @@ class CourseActivityViewController: UICollectionViewController {
             // TODO: Error handling.
         }
 
+        self.refresh()
+    }
+
+    func refresh() {
         CourseHelper.refreshCourses()
     }
 }

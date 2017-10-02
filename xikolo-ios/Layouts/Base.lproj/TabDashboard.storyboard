@@ -23,7 +23,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <connections>
-                                <segue destination="siC-S8-0pE" kind="embed" id="eNU-MD-LIo"/>
+                                <segue destination="siC-S8-0pE" kind="embed" identifier="embedCourseActivity" id="eNU-MD-LIo"/>
                             </connections>
                         </containerView>
                         <prototypes>

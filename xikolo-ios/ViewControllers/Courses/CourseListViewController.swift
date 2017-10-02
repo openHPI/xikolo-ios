@@ -101,7 +101,7 @@ class CourseListViewController : AbstractCourseListViewController {
         self.refresh()
     }
 
-    func refresh() {
+    @objc func refresh() {
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {
             DispatchQueue.main.asyncAfter(deadline: deadline) {

@@ -9,6 +9,7 @@
 import Foundation
 import Spine
 
+@objcMembers
 class BaseModelSpine : Resource {
     
     class var cdType: BaseModel.Type {
@@ -17,9 +18,11 @@ class BaseModelSpine : Resource {
 
 }
 
+@objcMembers
 class CompoundAttribute : Attribute {
 }
 
+@objcMembers
 class CompoundValue : NSObject {
 
     func saveToCoreData(model: BaseModel) {
@@ -36,6 +39,7 @@ class CompoundValue : NSObject {
 
 }
 
+@objcMembers
 class EmbeddedObjectAttribute : Attribute {
 
     let linkedType: EmbeddedObject.Type
@@ -105,6 +109,7 @@ struct EmbeddedObjectsFormatter : ValueFormatter {
 
 }
 
+@objcMembers
 class EmbeddedDictAttribute : Attribute {
 
     let linkedType: EmbeddedDictObject.Type

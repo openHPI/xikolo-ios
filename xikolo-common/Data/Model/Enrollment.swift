@@ -10,6 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class Enrollment : BaseModel {
 
     func compare(_ object: Enrollment) -> ComparisonResult {
@@ -48,6 +49,7 @@ class Enrollment : BaseModel {
 
 }
 
+@objcMembers
 class EnrollmentSpine : BaseModelSpine {
 
     var visits: EnrollmentVisits?

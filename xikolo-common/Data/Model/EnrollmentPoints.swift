@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class EnrollmentPoints : NSObject, NSCoding, EmbeddedObject {
 
     var achieved: NSNumber?

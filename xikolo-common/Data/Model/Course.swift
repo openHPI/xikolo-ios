@@ -11,6 +11,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class Course : BaseModel {
 
     var hidden: Bool? {
@@ -90,6 +91,7 @@ extension Course : DynamicSort {
 
 }
 
+@objcMembers
 class CourseSpine : BaseModelSpine {
 
     var title: String?

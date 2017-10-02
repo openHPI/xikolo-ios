@@ -75,7 +75,7 @@ class CourseDatesTableViewController : UITableViewController {
         self.refresh()
     }
 
-    func refresh() {
+    @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {

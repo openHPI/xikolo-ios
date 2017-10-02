@@ -11,6 +11,7 @@ import Foundation
 import CoreData
 import Spine
 
+@objcMembers
 class UserProfile: BaseModel {
 
 
@@ -25,6 +26,7 @@ extension UserProfile {
 
 }
 
+@objcMembers
 class UserProfileSpine : BaseModelSpine {
 
     var display_name: String?

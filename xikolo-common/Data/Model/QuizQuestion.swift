@@ -10,6 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class QuizQuestion : BaseModel {
 
     @objc dynamic var submission: QuizQuestionSubmission?
@@ -39,6 +40,7 @@ class QuizQuestion : BaseModel {
 
 }
 
+@objcMembers
 class QuizQuestionSpine : BaseModelSpine {
 
     var text: String?

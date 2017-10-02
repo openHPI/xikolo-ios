@@ -73,7 +73,7 @@ class PlatformEventsTableViewController: UITableViewController {
         }
     }
 
-    func refresh() {
+    @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {

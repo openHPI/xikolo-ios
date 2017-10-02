@@ -10,11 +10,12 @@ import Foundation
 import CoreData
 import Spine
 
-
+@objcMembers
 class CourseDate : BaseModel {
 
 }
 
+@objcMembers
 class CourseDateSpine : BaseModelSpine {
 
     var type: String?

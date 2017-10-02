@@ -11,10 +11,12 @@ import CoreData
 import Spine
 import UIKit
 
+@objcMembers
 class Channel: BaseModel {
 
 }
 
+@objcMembers
 class ChannelSpine : BaseModelSpine {
 
     var name: String?

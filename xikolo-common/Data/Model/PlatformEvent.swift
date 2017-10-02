@@ -10,11 +10,12 @@ import Foundation
 import CoreData
 import Spine
 
-
+@objcMembers
 class PlatformEvent : BaseModel {
 
 }
 
+@objcMembers
 class PlatformEventSpine : BaseModelSpine {
 
     var created_at: Date?

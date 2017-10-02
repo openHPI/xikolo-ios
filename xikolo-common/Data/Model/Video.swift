@@ -12,6 +12,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class Video : Content {
     
     override func iconName() -> String {
@@ -53,6 +54,7 @@ class Video : Content {
 
 }
 
+@objcMembers
 class VideoSpine : ContentSpine {
 
     var summary: String?

@@ -18,6 +18,7 @@ class LTIExercise : Content {
 
 }
 
+@objcMembers
 class LTIExerciseSpine : ContentSpine {
 
     var instructions: String?

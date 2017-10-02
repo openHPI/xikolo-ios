@@ -10,6 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class CourseSection : BaseModel {
 
     var itemsSorted: [CourseItem] {
@@ -40,6 +41,7 @@ class CourseSection : BaseModel {
 
 }
 
+@objcMembers
 class CourseSectionSpine : BaseModelSpine {
 
     var title: String?

@@ -11,6 +11,7 @@ import Spine
 import UIKit
 import BrightFutures
 
+@objcMembers
 class BaseModel : NSManagedObject {
 
     var baseModelObservers: Dictionary<UIViewController, BaseModelObserver>!

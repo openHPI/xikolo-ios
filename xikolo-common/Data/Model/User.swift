@@ -12,11 +12,13 @@ import CoreData
 import BrightFutures
 import Spine
 
+@objcMembers
 class User: BaseModel {
     
 
 }
 
+@objcMembers
 class UserSpine : BaseModelSpine {
 
     var name: String?

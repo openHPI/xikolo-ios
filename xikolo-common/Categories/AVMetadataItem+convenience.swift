@@ -16,7 +16,7 @@ extension AVMetadataItem {
             return nil
         }
         // HACKHACK: Fix description to prevent visual bug in metadata display.
-        if identifier == .commonIdentifierDescription && str.characters.count < 212 {
+        if identifier == AVMetadataIdentifier.commonIdentifierDescription && str.characters.count < 212 {
             str = str + "                                                                                                                                  \n\n\n                                                                                                                                                                                     "
         }
 

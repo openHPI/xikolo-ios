@@ -25,12 +25,12 @@ class CoreDataHelper {
 
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
-        container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             // TODO: check for space etc
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+            container.viewContext.automaticallyMergesChangesFromParent = true
         })
         return container
     }()

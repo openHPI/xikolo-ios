@@ -14,16 +14,17 @@ import Spine
 class CourseSection : BaseModel {
 
     var itemsSorted: [CourseItem] {
-        if items == nil {
+        guard let courseItems = self.items?.allObjects as? [CourseItem] else {
             return []
         }
-        return items!.sorted { a, b in
-            let a = a as! CourseItem, b = b as! CourseItem
-            if a.position == nil || b.position == nil {
+
+        return courseItems.sorted {
+            guard let firstPosition = $0.position, let secondPosition = $1.position else {
                 return false
             }
-            return UInt(a.position!) < UInt(b.position!)
-        } as! [CourseItem]
+
+            return firstPosition.uintValue < secondPosition.uintValue
+        }
     }
 
     var accessible: Bool {

@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
 
     var available: Bool?

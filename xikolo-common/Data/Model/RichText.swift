@@ -23,6 +23,7 @@ class RichText : Content {
 
 }
 
+@objcMembers
 class RichTextSpine : ContentSpine {
 
     var text: String?

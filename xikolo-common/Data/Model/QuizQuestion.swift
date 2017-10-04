@@ -10,9 +10,10 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class QuizQuestion : BaseModel {
 
-    dynamic var submission: QuizQuestionSubmission?
+    @objc dynamic var submission: QuizQuestionSubmission?
 
     var shuffle_answers: Bool {
         get {
@@ -39,6 +40,7 @@ class QuizQuestion : BaseModel {
 
 }
 
+@objcMembers
 class QuizQuestionSpine : BaseModelSpine {
 
     var text: String?

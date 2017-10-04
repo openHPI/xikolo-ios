@@ -70,7 +70,7 @@ class SettingsViewController: UITableViewController {
                                                object: nil)
     }
 
-    func updateUIAfterLoginStateChanged() {
+    @objc func updateUIAfterLoginStateChanged() {
         if UserProfileHelper.isLoggedIn() {
             self.navigationItem.rightBarButtonItem = nil
             self.user = UserHelper.getMe()

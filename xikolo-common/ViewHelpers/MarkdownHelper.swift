@@ -37,8 +37,8 @@ public extension DownAttributedStringRenderable {
         let htmlResponse = try self.toHTML(options)
         let html = "<span style=\"font-family: \(font); font-size: \(fontSize); color: \(color);\">\(htmlResponse)</span>"
         let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8)!, options: [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-            NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue,
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue,
         ], documentAttributes: nil)
         return mutableString.trimmedAttributedString(set: .whitespacesAndNewlines)
     }

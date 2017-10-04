@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class QuizOption : NSObject, NSCoding, EmbeddedObject {
 
     var id: String?

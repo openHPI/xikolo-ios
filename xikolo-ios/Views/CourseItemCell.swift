@@ -168,7 +168,7 @@ class CourseItemCell : UITableViewCell {
         }
     }
 
-    func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
+    @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
         guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
             let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
             let downloadState = Video.DownloadState(rawValue: downloadStateRawValue),
@@ -183,7 +183,7 @@ class CourseItemCell : UITableViewCell {
         }
     }
 
-    func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
+    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
         guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
             let progress = noticaition.userInfo?[Video.Keys.precentDownload] as? Double,
             let video = self.item?.content as? Video,

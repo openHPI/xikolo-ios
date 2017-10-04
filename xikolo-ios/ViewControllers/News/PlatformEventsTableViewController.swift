@@ -62,7 +62,7 @@ class PlatformEventsTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.refresh()
 
         // FIXME: This call should not be made here. However without this call the table view does not refresh after a logout.
@@ -73,7 +73,7 @@ class PlatformEventsTableViewController: UITableViewController {
         }
     }
 
-    func refresh() {
+    @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {

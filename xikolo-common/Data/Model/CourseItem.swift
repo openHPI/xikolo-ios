@@ -10,6 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class CourseItem : BaseModel {
 
     var iconName: String? {
@@ -75,6 +76,7 @@ class CourseItem : BaseModel {
 
 }
 
+@objcMembers
 class CourseItemSpine : BaseModelSpine {
 
     var title: String?

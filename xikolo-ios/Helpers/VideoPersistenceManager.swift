@@ -194,7 +194,7 @@ class VideoPersistenceManager: NSObject {
         task?.cancel()
     }
 
-    func handleAssetDownloadProgressNotification(_ notification: Notification) {
+    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
         guard let videoId = notification.userInfo?[Video.Keys.id] as? String,
             let progress = notification.userInfo?[Video.Keys.precentDownload] as? Double else { return }
 

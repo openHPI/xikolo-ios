@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class TrackingEventUser : NSObject, EmbeddedObject {
 
     var uuid: String?

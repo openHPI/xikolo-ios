@@ -62,8 +62,6 @@ class CourseContentTableViewController: UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-
-        self.refresh()
     }
 
     func setupEmptyState() {
@@ -97,7 +95,7 @@ class CourseContentTableViewController: UITableViewController {
         self.reachability = nil
     }
 
-    func refresh() {
+    @objc func refresh() {
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {
             DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -144,7 +142,7 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
-    func reachabilityChanged(_ note: Notification) {
+    @objc func reachabilityChanged(_ note: Notification) {
         guard let reachability = note.object as? Reachability else { return }
 
         let oldOfflinesState = self.isOffline

@@ -138,13 +138,28 @@ class CourseListViewController : AbstractCourseListViewController {
 
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return UIEdgeInsets.zero
+        }
+
+        return UIEdgeInsets(
+            top: flowLayout.sectionInset.top,
+            left: max(flowLayout.sectionInset.left, self.collectionView?.layoutMargins.left ?? 0),
+            bottom: flowLayout.sectionInset.bottom,
+            right: max(flowLayout.sectionInset.right, self.collectionView?.layoutMargins.right ?? 0)
+        )
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-            let blankSpace = flowLayout.sectionInset.left
-                + flowLayout.sectionInset.right
-                + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfItemsPerRow - 1))
-            let width = (collectionView.bounds.width - blankSpace) / CGFloat(numberOfItemsPerRow)
-            return CGSize(width: width, height: width * 0.6)
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return CGSize.zero
+        }
+
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+        let blankSpace = sectionInsets.left + sectionInsets.right + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfItemsPerRow - 1))
+        let width = (collectionView.bounds.width - blankSpace) / CGFloat(numberOfItemsPerRow)
+        return CGSize(width: width, height: width * 0.6)
     }
 
 }

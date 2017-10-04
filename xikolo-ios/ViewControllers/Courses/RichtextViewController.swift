@@ -13,7 +13,9 @@ class RichtextViewController : AbstractItemRichtextViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.delegate = self
+        self.textView.delegate = self
+        self.textView.textContainerInset = UIEdgeInsets.zero
+        self.textView.textContainer.lineFragmentPadding = 0
     }
 
 }

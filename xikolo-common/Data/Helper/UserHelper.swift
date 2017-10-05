@@ -38,7 +38,7 @@ class UserHelper {
     }
 
     static func getMe() -> User? {
-        guard let id = UserProfileHelper.getUserId() else { return nil }
+        guard let id = UserProfileHelper.userId else { return nil }
         return self.getUser(byId: id)
     }
 

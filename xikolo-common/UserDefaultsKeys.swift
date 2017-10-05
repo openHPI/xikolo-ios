@@ -16,9 +16,4 @@ struct UserDefaultsKeys {
 
     static let playbackRateKey = "de.xikolo.ios.video.playbackRate"
 
-    enum UserProfileKey : String {
-        case user = "user"
-        case token = "user_token"
-    }
-
 }

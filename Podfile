@@ -10,6 +10,7 @@ def common_pods
 
     pod 'BrightFutures', '~> 6.0'
     pod 'Down', :git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'KeychainAccess', '~> 3.1'
     pod 'Result', '~> 3.2'
     pod 'Spine', :git => 'https://github.com/mathebox/Spine.git', :commit => 'ce6a53f'
     pod 'SDWebImage/Core', '4.0.0'

@@ -27,7 +27,7 @@ class CourseActivityViewController: UICollectionViewController {
         self.updateFetchedResultController()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.updateFetchedResultController()
     }
 
@@ -53,6 +53,10 @@ class CourseActivityViewController: UICollectionViewController {
             // TODO: Error handling.
         }
 
+        self.refresh()
+    }
+
+    func refresh() {
         CourseHelper.refreshCourses()
     }
 }

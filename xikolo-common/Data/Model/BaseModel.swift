@@ -11,6 +11,7 @@ import Spine
 import UIKit
 import BrightFutures
 
+@objcMembers
 class BaseModel : NSManagedObject {
 
     var baseModelObservers: Dictionary<UIViewController, BaseModelObserver>!
@@ -110,7 +111,7 @@ extension BaseModel {
         self.deletedHandler = deletedHandler
     }
 
-    func dataModelDidChange(_ notification: Notification) {
+    @objc func dataModelDidChange(_ notification: Notification) {
         let updatedObjects = notification.userInfo![NSUpdatedObjectsKey]
         let deletedObjects = notification.userInfo![NSDeletedObjectsKey]
 

@@ -14,6 +14,8 @@ class CourseDatesTableViewController : UITableViewController {
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
+    var courseActivityViewController: CourseActivityViewController?
+
     var resultsController: NSFetchedResultsController<CourseDate>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseDate>!
 
@@ -25,9 +27,16 @@ class CourseDatesTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // register custom section header view
         let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
         self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
 
+        // setup pull to refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+
+        // setup table view data
         TrackingHelper.createEvent("VISITED_DASHBOARD", resource: nil)
         self.updateAfterLoginStateChange()
         NotificationCenter.default.addObserver(self,
@@ -61,12 +70,27 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
+        self.refresh()
+    }
 
+    @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
+        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
+        let stopRefreshControl = {
+            DispatchQueue.main.asyncAfter(deadline: deadline) {
+                self.tableView.refreshControl?.endRefreshing()
+            }
+        }
+
+        self.courseActivityViewController?.refresh()
         if UserProfileHelper.isLoggedIn() {
-            CourseDateHelper.syncCourseDates()
+            CourseDateHelper.syncCourseDates().onComplete { _ in
+                stopRefreshControl()
+            }
+        } else {
+           stopRefreshControl()
         }
     }
 
@@ -84,6 +108,15 @@ class CourseDatesTableViewController : UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "embedCourseActivity"?:
+            self.courseActivityViewController = segue.destination as? CourseActivityViewController
+        default:
+            super.prepare(for: segue, sender: sender)
+        }
     }
 
 }

@@ -32,26 +32,6 @@ class CourseListViewController : AbstractCourseListViewController {
         self.collectionView?.emptyDataSetDelegate = nil
     }
 
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self,
-                                 action: #selector(CourseListViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
-        return refreshControl
-    }()
-    
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
-        if UserProfileHelper.isLoggedIn() {
-            EnrollmentHelper.syncEnrollments().onComplete { _ in
-                refreshControl.endRefreshing()
-            }
-        } else {
-            CourseHelper.refreshCourses().onComplete { _ in
-                refreshControl.endRefreshing()
-            }
-        }
-    }
-    
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -78,8 +58,12 @@ class CourseListViewController : AbstractCourseListViewController {
             courseDisplayMode = .all
         }
 
-        self.collectionView?.addSubview(self.refreshControl)
         super.viewDidLoad()
+
+        // setup pull to refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        self.collectionView?.refreshControl = refreshControl
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(CourseListViewController.updateAfterLoginStateChange),
@@ -103,7 +87,7 @@ class CourseListViewController : AbstractCourseListViewController {
         }, completion: nil)
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.collectionView?.reloadEmptyDataSet()
 
         if UserProfileHelper.isLoggedIn() {
@@ -114,7 +98,26 @@ class CourseListViewController : AbstractCourseListViewController {
             self.courseDisplayMode = .all
         }
 
-        CourseHelper.refreshCourses()
+        self.refresh()
+    }
+
+    @objc func refresh() {
+        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
+        let stopRefreshControl = {
+            DispatchQueue.main.asyncAfter(deadline: deadline) {
+                self.collectionView?.refreshControl?.endRefreshing()
+            }
+        }
+
+        if UserProfileHelper.isLoggedIn() {
+            CourseDateHelper.syncCourseDates().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
+                stopRefreshControl()
+            }
+        } else {
+            CourseDateHelper.syncCourseDates().onComplete { _ in
+                stopRefreshControl()
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -135,13 +138,28 @@ class CourseListViewController : AbstractCourseListViewController {
 
 extension CourseListViewController : UICollectionViewDelegateFlowLayout {
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return UIEdgeInsets.zero
+        }
+
+        return UIEdgeInsets(
+            top: flowLayout.sectionInset.top,
+            left: max(flowLayout.sectionInset.left, self.collectionView?.layoutMargins.left ?? 0),
+            bottom: flowLayout.sectionInset.bottom,
+            right: max(flowLayout.sectionInset.right, self.collectionView?.layoutMargins.right ?? 0)
+        )
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-            let blankSpace = flowLayout.sectionInset.left
-                + flowLayout.sectionInset.right
-                + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfItemsPerRow - 1))
-            let width = (collectionView.bounds.width - blankSpace) / CGFloat(numberOfItemsPerRow)
-            return CGSize(width: width, height: width * 0.6)
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return CGSize.zero
+        }
+
+        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+        let blankSpace = sectionInsets.left + sectionInsets.right + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfItemsPerRow - 1))
+        let width = (collectionView.bounds.width - blankSpace) / CGFloat(numberOfItemsPerRow)
+        return CGSize(width: width, height: width * 0.6)
     }
 
 }

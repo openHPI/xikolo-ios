@@ -8,83 +8,83 @@ def common_pods
     pod 'AlamofireObjectMapper', '4.0.1'
     pod 'ObjectMapper', '2.0'
 
-    pod 'BrightFutures', '5.1.0'
-    pod 'Down', '0.3.2'
-    pod 'Result', '3.1.0'
-    pod 'Spine', :git => 'https://github.com/invliD/Spine.git', :commit => '1171b90'
+    pod 'BrightFutures', '~> 6.0'
+    pod 'Down', :git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'Result', '~> 3.2'
+    pod 'Spine', :git => 'https://github.com/mathebox/Spine.git', :commit => 'ce6a53f'
     pod 'SDWebImage/Core', '4.0.0'
 end
 
 def ios_pods
-    pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer', :commit => 'ec9297e'
+    pod 'BMPlayer', '~> 1.0'
     pod 'DownloadButton', '0.1.0'
     pod 'DZNEmptyDataSet', '1.8.1'
-    pod 'Hero'
+    pod 'Hero', :git => 'https://github.com/lkzhao/Hero', :commit => 'd961f16'
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
 end
 
 target 'openHPI-iOS' do
-    platform :ios, '9.0'
+    platform :ios, '10.0'
     common_pods
     ios_pods
 end
 
 target 'openHPI-tvOS' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 
 target 'openHPI-tvOS-TopShelf' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 
 target 'openSAP-iOS' do
-    platform :ios, '9.0'
+    platform :ios, '10.0'
     common_pods
     ios_pods
 end
 
 target 'openSAP-tvOS' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 
 target 'openSAP-tvOS-TopShelf' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 
 target 'openWHO-iOS' do
-    platform :ios, '9.0'
+    platform :ios, '10.0'
     common_pods
     ios_pods
 end
 
 target 'openWHO-tvOS' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 
 target 'openWHO-tvOS-TopShelf' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 
 target 'moocHOUSE-iOS' do
-    platform :ios, '9.0'
+    platform :ios, '10.0'
     common_pods
     ios_pods
 end
 
 target 'moocHOUSE-tvOS' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 
 target 'moocHOUSE-tvOS-TopShelf' do
-    platform :tvos, '9.0'
+    platform :tvos, '10.0'
     common_pods
 end
 

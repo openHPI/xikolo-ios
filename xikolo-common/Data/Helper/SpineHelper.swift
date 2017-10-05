@@ -70,7 +70,7 @@ class SpineHelper {
         }.mapError(mapXikoloError)
     }
 
-    static func find<T: Resource>(_ query: Query<T>) -> Future<[T], XikoloError> {
+    static func find<T>(_ query: Query<T>) -> Future<[T], XikoloError> {
         return client.find(query).map { resources, _, _ in
             return resources.map { $0 as! T }
         }.mapError(mapXikoloError)
@@ -82,7 +82,7 @@ class SpineHelper {
         }.mapError(mapXikoloError)
     }
 
-    static func findOne<T: Resource>(_ query: Query<T>) -> Future<T, XikoloError> {
+    static func findOne<T>(_ query: Query<T>) -> Future<T, XikoloError> {
         return client.findOne(query).map { resource, _, _ in
             return resource
         }.mapError(mapXikoloError)

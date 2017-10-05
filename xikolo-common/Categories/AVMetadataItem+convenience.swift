@@ -11,12 +11,12 @@ import UIKit
 
 extension AVMetadataItem {
 
-    class func item(_ identifier: String, value: String?) -> AVMetadataItem? {
+    class func item(_ identifier: AVMetadataIdentifier, value: String?) -> AVMetadataItem? {
         guard var str = value else {
             return nil
         }
         // HACKHACK: Fix description to prevent visual bug in metadata display.
-        if identifier == AVMetadataCommonIdentifierDescription && str.characters.count < 212 {
+        if identifier == AVMetadataIdentifier.commonIdentifierDescription && str.count < 212 {
             str = str + "                                                                                                                                  \n\n\n                                                                                                                                                                                     "
         }
 
@@ -31,7 +31,7 @@ extension AVMetadataItem {
         let item = AVMutableMetadataItem()
         item.value = UIImagePNGRepresentation(image) as (NSCopying & NSObjectProtocol)?
         item.dataType = kCMMetadataBaseDataType_PNG as String
-        item.identifier = AVMetadataCommonIdentifierArtwork
+        item.identifier = AVMetadataIdentifier.commonIdentifierArtwork
         item.extendedLanguageTag = "und" // Undefined language
         return item.copy() as? AVMetadataItem
     }

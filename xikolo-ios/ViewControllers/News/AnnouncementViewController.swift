@@ -21,6 +21,9 @@ class AnnouncementViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.textView.textContainerInset = UIEdgeInsets.zero
+        self.textView.textContainer.lineFragmentPadding = 0
+
         if let date = announcement.published_at {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium

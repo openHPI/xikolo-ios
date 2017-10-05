@@ -10,6 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class Content : BaseModel {
 
     func iconName() -> String {
@@ -23,6 +24,7 @@ class Content : BaseModel {
 
 }
 
+@objcMembers
 class ContentSpine : BaseModelSpine {
 
     override class var cdType: BaseModel.Type {

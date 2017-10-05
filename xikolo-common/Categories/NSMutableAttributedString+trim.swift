@@ -19,9 +19,8 @@ extension NSMutableAttributedString {
         var range = (string as NSString).rangeOfCharacter(from: invertedSet)
         let loc = range.length > 0 ? range.location : 0
 
-        range = (string as NSString).rangeOfCharacter(
-            from: invertedSet, options: .backwards)
-        let len = (range.length > 0 ? NSMaxRange(range) : string.characters.count) - loc
+        range = (string as NSString).rangeOfCharacter(from: invertedSet, options: .backwards)
+        let len = (range.length > 0 ? NSMaxRange(range) : string.count) - loc
 
         let r = self.attributedSubstring(from: NSMakeRange(loc, len))
         return NSMutableAttributedString(attributedString: r)

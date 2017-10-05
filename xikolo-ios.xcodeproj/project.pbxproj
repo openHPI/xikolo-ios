@@ -570,6 +570,22 @@
 		50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA51F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
+		50D9B16A1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B16B1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B16C1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B16D1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B16E1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B16F1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B1701F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B1711F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
+		50D9B1731F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50D9B1741F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50D9B1751F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50D9B1761F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50D9B1771F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50D9B1781F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50D9B1791F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50D9B17A1F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
 		50E16CF21F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
 		50E16CF31F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
 		50E16CF41F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
@@ -613,6 +629,14 @@
 		702E58E31F53754D00260B5E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E58E11F53754D00260B5E /* AnalyticsHelper.swift */; };
 		702E58E41F53754D00260B5E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E58E11F53754D00260B5E /* AnalyticsHelper.swift */; };
 		702E58E51F53754D00260B5E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E58E11F53754D00260B5E /* AnalyticsHelper.swift */; };
+		50F97AB81F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50F97AB91F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50F97ABA1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50F97ABB1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50F97ABC1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50F97ABE1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50F97ABF1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		703005B31EFEFC0000CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B41EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
 		703005B51EFEFC0100CCDCC9 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDF154F1E8261EE0071ADE6 /* UserProvider.swift */; };
@@ -1858,12 +1882,15 @@
 		509A7CD61F2879A600B2791F /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
+		50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
+		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoQualityViewController.swift; sourceTree = "<group>"; };
 		50E16CF61F47014000D67632 /* CustomUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserDefaults.swift; sourceTree = "<group>"; };
 		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50F720271F28D72D00779995 /* VideoPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPersistenceManager.swift; sourceTree = "<group>"; };
 		50F7202C1F28E29B00779995 /* Video+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+Download.swift"; path = "Data/Model/Video+Download.swift"; sourceTree = "<group>"; };
+		50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DispatchTimeInterval.swift"; sourceTree = "<group>"; };
 		5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
@@ -2484,6 +2511,9 @@
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
+				50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */,
+				50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */,
+				50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3170,6 +3200,7 @@
 					709C93021EF0952500F8F045 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
@@ -4373,6 +4404,7 @@
 				ABDD84C61D8E056000C7D193 /* PeerAssessmentHelper.swift in Sources */,
 				24BA40FD1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */,
 				ABDD84CB1D8E063100C7D193 /* LTIExerciseHelper.swift in Sources */,
+				50D9B1751F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				AB9589771DC2049400586137 /* Channel.swift in Sources */,
 				4E2B821B1DDB00C900559217 /* CourseDateHelper.swift in Sources */,
 				AB4A01C11E809C82005CD595 /* CourseHeaderView.swift in Sources */,
@@ -4390,6 +4422,7 @@
 				24BA40AC1D3F9AC300E38C2C /* Announcement.swift in Sources */,
 				AB95897D1DC4A42800586137 /* UITableViewCell+enable.swift in Sources */,
 				24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */,
+				50F97ABA1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				5060A5251F177304007896FF /* DetailedContent.swift in Sources */,
 				AB1C03401D8E0CA60053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				AB07C3731E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -4418,6 +4451,7 @@
 				243CE4811D709999007C59B6 /* Enrollment+CoreDataProperties.swift in Sources */,
 				AB1357C61D996722004407AA /* PlatformEventCell.swift in Sources */,
 				24BA40B71D3F9AD300E38C2C /* UserProfileProvider.swift in Sources */,
+				50D9B16C1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				5019A7641F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
 				AB4F22721D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift in Sources */,
 				24BA408F1D3F9A9600E38C2C /* CourseItem+CoreDataProperties.swift in Sources */,
@@ -4460,6 +4494,7 @@
 				249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				7064B7C81F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24BA40BF1D3F9ADB00E38C2C /* AnnouncementProvider.swift in Sources */,
+				50F97ABB1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				AB3B82201EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				24BA40A31D3F9AB600E38C2C /* RichText+CoreDataProperties.swift in Sources */,
 				24BA41271D3F9D0400E38C2C /* CourseDetailsViewController.swift in Sources */,
@@ -4475,6 +4510,7 @@
 				24BA40B21D3F9ACB00E38C2C /* CourseItemProvider.swift in Sources */,
 				AB9589781DC2049400586137 /* Channel.swift in Sources */,
 				249E3AB41D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
+				50D9B1761F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				24BA40871D3F9A8E00E38C2C /* BaseModelSpine.swift in Sources */,
 				24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				703005B81EFEFC0500CCDCC9 /* UserProvider.swift in Sources */,
@@ -4529,6 +4565,7 @@
 				24BA40FE1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */,
 				24BA40E31D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */,
 				ABFFA85F1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
+				50D9B16D1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				AB07C3741E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
 				24BA40B41D3F9ACE00E38C2C /* CourseSectionProvider.swift in Sources */,
@@ -4690,6 +4727,7 @@
 				249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				7064B7C51F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24A16D8B1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
+				50F97AB91F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				AB3B821E1EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				24A17A0E1CD2330B0056A8EE /* BaseModel.swift in Sources */,
 				2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
@@ -4705,6 +4743,7 @@
 				AB9589751DC2049400586137 /* Channel.swift in Sources */,
 				249E3AB31D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
 				24A16D861CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */,
+				50D9B1741F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				24D48E2D1CCA934500E8051E /* CourseHelper.swift in Sources */,
 				24A179F11CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				703005B31EFEFC0000CCDCC9 /* UserProvider.swift in Sources */,
@@ -4759,6 +4798,7 @@
 				249C01A91D3D034700B54AAC /* ReplaceSegue.swift in Sources */,
 				24D48E271CCA92C500E8051E /* Course.swift in Sources */,
 				ABFFA85D1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
+				50D9B16B1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				AB07C3711E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24A16D881CFDE9F100CAD9FE /* Quiz+CoreDataProperties.swift in Sources */,
 				24A16D821CFDE6E400CAD9FE /* Quiz.swift in Sources */,
@@ -4836,6 +4876,7 @@
 				70F456351F01290B00A2C6B7 /* User.swift in Sources */,
 				70D1EA561EF0AB220088C0FF /* Quiz+CoreDataProperties.swift in Sources */,
 				70D1EAD11EF0AC200088C0FF /* UserProfileHelper.swift in Sources */,
+				50D9B1701F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				70D1E9EC1EF0AA830088C0FF /* AVMetadataItem+convenience.swift in Sources */,
 				70F456521F0139BC00A2C6B7 /* AnnouncementsTableViewController.swift in Sources */,
 				70D1EB101EF12DEC0088C0FF /* Brand.swift in Sources */,
@@ -4901,6 +4942,7 @@
 				70D1EAA41EF0AB8B0088C0FF /* UserProfileProvider.swift in Sources */,
 				70D1EA9F1EF0AB840088C0FF /* QuizProvider.swift in Sources */,
 				70D1EAA21EF0AB890088C0FF /* RichTextProvider.swift in Sources */,
+				50F97ABE1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				70D1EAB31EF0ABFC0088C0FF /* CourseItemHelper.swift in Sources */,
 				70D1EACC1EF0AC1B0088C0FF /* SpineModelHelper.swift in Sources */,
 				5019A7661F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
@@ -4983,6 +5025,7 @@
 				70D1EB021EF0ACDC0088C0FF /* CourseItemCell.swift in Sources */,
 				70F4564F1F0139B600A2C6B7 /* NewsViewController.swift in Sources */,
 				70D1EA741EF0AB460088C0FF /* TrackingEventUser.swift in Sources */,
+				50D9B1791F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				70D1EA8A1EF0AB670088C0FF /* CourseItemProvider.swift in Sources */,
 				70D1EAF31EF0ACB00088C0FF /* RichtextViewController.swift in Sources */,
 				70D1EB2A1EF12E110088C0FF /* Settings.swift in Sources */,
@@ -5074,6 +5117,7 @@
 				70D1EA541EF0AB1E0088C0FF /* PeerAssessment.swift in Sources */,
 				70D1EAD01EF0AC1E0088C0FF /* TrackingHelper.swift in Sources */,
 				70D1EA9E1EF0AB810088C0FF /* PlatformEventProvider.swift in Sources */,
+				50D9B1711F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				70D1EAB51EF0ABFF0088C0FF /* CourseSectionHelper.swift in Sources */,
 				70D1EA321EF0AAF40088C0FF /* Enrollment.swift in Sources */,
 				70D1EAA31EF0AB890088C0FF /* RichTextProvider.swift in Sources */,
@@ -5100,6 +5144,7 @@
 				70D1EB4F1EF1342E0088C0FF /* ItemVideoLoadingController.swift in Sources */,
 				70D1E9F61EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
 				70D1EA761EF0AB480088C0FF /* TrackingEventUser.swift in Sources */,
+				50D9B17A1F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				70D1EB591EF1344B0088C0FF /* ViewControllerLoadingHelper.swift in Sources */,
 				70D1EB211EF12E010088C0FF /* AbstractCourseListViewController.swift in Sources */,
 				70D1EB511EF134340088C0FF /* CourseCell.swift in Sources */,
@@ -5118,6 +5163,7 @@
 				70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */,
 				70D1EA351EF0AAF70088C0FF /* EnrollmentCertificates.swift in Sources */,
 				70D1EB5C1EF1345D0088C0FF /* Brand+tvOS.swift in Sources */,
+				50F97ABF1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				70D1EA9C1EF0AB7E0088C0FF /* PeerAssessmentProvider.swift in Sources */,
 				70D1EABC1EF0AC060088C0FF /* NetworkHelper.swift in Sources */,
 				70D1EA5A1EF0AB270088C0FF /* Quiz.swift in Sources */,
@@ -5305,6 +5351,7 @@
 				F81523931B67AC9F009803B1 /* Routes.swift in Sources */,
 				ABDD84C41D8E056000C7D193 /* PeerAssessmentHelper.swift in Sources */,
 				24A16D7C1CFDE60200CAD9FE /* Content+CoreDataProperties.swift in Sources */,
+				50D9B1731F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				AB9589741DC2049400586137 /* Channel.swift in Sources */,
 				ABDD84C91D8E063100C7D193 /* LTIExerciseHelper.swift in Sources */,
 				4E2B821A1DDB00C900559217 /* CourseDateHelper.swift in Sources */,
@@ -5322,6 +5369,7 @@
 				2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				243CE4911D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */,
+				50F97AB81F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				AB95897C1DC4A42700586137 /* UITableViewCell+enable.swift in Sources */,
 				5060A5221F177304007896FF /* DetailedContent.swift in Sources */,
 				50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
@@ -5350,6 +5398,7 @@
 				243CE47F1D709999007C59B6 /* Enrollment+CoreDataProperties.swift in Sources */,
 				ABC8A16B1D689ED80059CEF2 /* LTIExercise+CoreDataProperties.swift in Sources */,
 				AB1357C51D996722004407AA /* PlatformEventCell.swift in Sources */,
+				50D9B16A1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				5019A7631F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
 				F81DFF901B8C785600A80D27 /* UserProfileProvider.swift in Sources */,
 				AB4F22711D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift in Sources */,
@@ -5468,6 +5517,7 @@
 				ABA0F0B91DF8CE210001D88D /* LTIExerciseProvider.swift in Sources */,
 				ABA0F08A1DF8CDD90001D88D /* RichText+CoreDataProperties.swift in Sources */,
 				ABA0F0411DF8CD280001D88D /* Channel+CoreDataProperties.swift in Sources */,
+				50D9B1771F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				ABA0F01B1DF8CCA70001D88D /* VideoViewController.swift in Sources */,
 				AB4A01C21E809C83005CD595 /* CourseHeaderView.swift in Sources */,
 				AB17C56C1DFCAD420013BBCD /* CourseDate+CoreDataProperties.swift in Sources */,
@@ -5485,6 +5535,7 @@
 				ABA0F0311DF8CD050001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				ABA0F0191DF8CCA10001D88D /* CourseListViewController.swift in Sources */,
 				AB17C57A1DFCAE1E0013BBCD /* CourseDateCell.swift in Sources */,
+				50F97ABC1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				5060A5281F177304007896FF /* DetailedContent.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
 				AB07C3761E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -5512,6 +5563,7 @@
 				AB17C5791DFCAE090013BBCD /* CourseActivityViewController.swift in Sources */,
 				ABA0F0C71DF8CE370001D88D /* UserProfileHelper.swift in Sources */,
 				ABA0F07E1DF8CDC90001D88D /* Quiz.swift in Sources */,
+				50D9B16E1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				5019A7651F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
 				ABA0F0C11DF8CE2E0001D88D /* SpineModelHelper.swift in Sources */,
 				ABA0F0C41DF8CE320001D88D /* NetworkHelper.swift in Sources */,
@@ -5554,6 +5606,7 @@
 				ABA0F0B81DF8CE1F0001D88D /* PeerAssessmentProvider.swift in Sources */,
 				7064B7CB1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				ABA0F0881DF8CDD50001D88D /* QuizOption.swift in Sources */,
+				50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				AB3B82221EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				ABA0F0B01DF8CE120001D88D /* QuizProvider.swift in Sources */,
 				ABA0F03F1DF8CD250001D88D /* BaseModelSpine.swift in Sources */,
@@ -5569,6 +5622,7 @@
 				ABA0F1181DF8CF760001D88D /* LoginViewController.swift in Sources */,
 				ABA0F1211DF8CF970001D88D /* ViewControllerLoadingHelper.swift in Sources */,
 				ABA0F10D1DF8CF2F0001D88D /* CourseListViewController.swift in Sources */,
+				50D9B1781F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				ABA0F0761DF8CDBC0001D88D /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				ABA0F09A1DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				703005B71EFEFC0400CCDCC9 /* UserProvider.swift in Sources */,
@@ -5623,6 +5677,7 @@
 				AB17C5731DFCAD770013BBCD /* CourseDateProvider.swift in Sources */,
 				ABA0F0A81DF8CE060001D88D /* CourseSectionProvider.swift in Sources */,
 				ABFFA8611EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
+				50D9B16F1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				AB07C3771E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				ABA0F0321DF8CD060001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				AB4F6CFD1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
@@ -5945,7 +6000,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Debug;
@@ -5968,7 +6024,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Release;
@@ -5991,7 +6048,8 @@
 				PRODUCT_NAME = openSAP;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -6013,7 +6071,8 @@
 				PRODUCT_NAME = openSAP;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -6035,7 +6094,8 @@
 				PROVISIONING_PROFILE = "79e3f140-8905-4197-85b7-46205ff72ad2";
 				PROVISIONING_PROFILE_SPECIFIER = "openSAP-tvOS-dist";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6059,7 +6119,8 @@
 				PROVISIONING_PROFILE = "79e3f140-8905-4197-85b7-46205ff72ad2";
 				PROVISIONING_PROFILE_SPECIFIER = "openSAP-tvOS-dist";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6083,7 +6144,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Debug;
@@ -6106,7 +6168,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Release;
@@ -6129,7 +6192,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6153,7 +6217,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6180,7 +6245,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -6204,7 +6270,8 @@
 				PRODUCT_NAME = moocHOUSE;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -6226,7 +6293,8 @@
 				PRODUCT_NAME = moocHOUSE;
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6249,7 +6317,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
 				PRODUCT_NAME = moocHOUSE;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6271,7 +6340,8 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Debug;
@@ -6291,7 +6361,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Release;
@@ -6347,6 +6418,8 @@
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -6397,6 +6470,8 @@
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALIDATE_PRODUCT = YES;
@@ -6414,7 +6489,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
+				);
 				INFOPLIST_FILE = "xikolo-ios/Branding/openHPI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6424,7 +6503,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -6438,7 +6518,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
+				);
 				INFOPLIST_FILE = "xikolo-ios/Branding/openHPI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6448,7 +6532,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -6472,7 +6557,11 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Spine-iOS\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS\"",
 				);
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
+				);
 				INFOPLIST_FILE = "xikolo-ios/Branding/openWHO/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6515,7 +6604,8 @@
 				PRODUCT_NAME = openWHO;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -6539,7 +6629,11 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Spine-iOS\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON-iOS\"",
 				);
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
+				);
 				INFOPLIST_FILE = "xikolo-ios/Branding/openWHO/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6582,7 +6676,8 @@
 				PRODUCT_NAME = openWHO;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -6604,7 +6699,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6628,7 +6724,8 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
@@ -6652,7 +6749,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Debug;
@@ -6675,7 +6773,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Release;

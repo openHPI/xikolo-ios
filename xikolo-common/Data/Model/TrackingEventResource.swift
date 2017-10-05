@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class TrackingEventResource : NSObject, NSCoding, EmbeddedObject {
 
     var type: String?

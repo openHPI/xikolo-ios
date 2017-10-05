@@ -11,10 +11,12 @@ import Foundation
 import CoreData
 import Spine
 
+objcMembers
 class TrackingEvent: NSManagedObject {
 
 }
 
+objcMembers
 class TrackingEventSpine : Resource {
 
     var user: TrackingEventUser?

@@ -109,12 +109,16 @@ class CourseHelper {
         return courses.count
     }
 
-    static func getByID(_ id: String) throws -> Course? {
+    static func getByID(_ id: String) -> Course? {
         let request: NSFetchRequest<Course> = Course.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         request.fetchLimit = 1
-        let courses = try CoreDataHelper.executeFetchRequest(request)
-        return courses.first
+        do {
+            let courses = try CoreDataHelper.executeFetchRequest(request)
+            return courses.first
+        } catch {
+            return nil
+        }
     }
 
     static func getBySlug(_ slug: String) -> Course? {

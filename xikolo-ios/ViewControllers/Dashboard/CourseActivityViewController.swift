@@ -65,7 +65,7 @@ extension CourseActivityViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let visualCourse = resultsController.object(at: indexPath)
-        let course = try! CourseHelper.getByID(visualCourse.id)
+        let course = CourseHelper.getByID(visualCourse.id)
         AppDelegate.instance().goToCourse(course!)
     }
 

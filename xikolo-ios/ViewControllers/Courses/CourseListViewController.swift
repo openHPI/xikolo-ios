@@ -110,11 +110,11 @@ class CourseListViewController : AbstractCourseListViewController {
         }
 
         if UserProfileHelper.isLoggedIn() {
-            CourseDateHelper.syncCourseDates().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
+            CourseHelper.refreshCourses().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
                 stopRefreshControl()
             }
         } else {
-            CourseDateHelper.syncCourseDates().onComplete { _ in
+            CourseHelper.refreshCourses().onComplete { _ in
                 stopRefreshControl()
             }
         }
@@ -127,8 +127,7 @@ class CourseListViewController : AbstractCourseListViewController {
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)
                 let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath!)!
-                let course = controller.object(at: dataIndexPath)
-                vc.course = try! CourseHelper.getByID(course.id) // TODO:
+                vc.course = controller.object(at: dataIndexPath)
             default:
                 break
         }

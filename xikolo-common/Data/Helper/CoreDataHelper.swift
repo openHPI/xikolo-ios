@@ -99,10 +99,11 @@ class CoreDataHelper {
                 let result = try privateManagedObjectContext.execute(deleteRequest) as? NSBatchDeleteResult
                 guard let objectIDArray = result?.result as? [NSManagedObjectID] else { return }
                 let changes = [NSDeletedObjectsKey : objectIDArray]
-                print("delete all of \(entityName): \(objectIDArray.count) elements")
+                print("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
+                try privateManagedObjectContext.save()
             } catch {
-                // TODO: handle the error
+                print("Failed to bulk delete all enities of \(entityName) - \(error)")
             }
         }
     }

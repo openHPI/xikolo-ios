@@ -126,7 +126,7 @@ extension CourseDatesTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
-        if let course = try! CourseHelper.getByID(courseDate.course!.id) {
+        if let courseForCourseDate = courseDate.course, let course = CourseHelper.getByID(courseForCourseDate.id) {
             AppDelegate.instance().goToCourse(course)
         }
         tableView.deselectRow(at: indexPath, animated: true)

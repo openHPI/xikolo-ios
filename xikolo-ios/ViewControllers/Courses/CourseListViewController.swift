@@ -127,8 +127,7 @@ class CourseListViewController : AbstractCourseListViewController {
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)
                 let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath!)!
-                let course = controller.object(at: dataIndexPath)
-                vc.course = try! CourseHelper.getByID(course.id) // TODO:
+                vc.course = controller.object(at: dataIndexPath)
             default:
                 break
         }

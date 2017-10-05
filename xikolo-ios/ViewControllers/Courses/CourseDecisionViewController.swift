@@ -32,6 +32,11 @@ class CourseDecisionViewController: UIViewController {
         SearchHelper.setUserActivity(for: self.course)
         self.decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
+
+        self.course.notifyOnChange(self, updatedHandler: { _ in }) {
+            let isVisible = self.isViewLoaded && self.view.window != nil
+            self.navigationController?.popToRootViewController(animated: isVisible)
+        }
     }
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }

@@ -46,13 +46,7 @@ class AppDelegate : AbstractAppDelegate {
         if let target = XikoloURL.parseURL(url) {
             switch target.type {
                 case .course:
-                    var course: Course?
-                    do {
-                        course = try CourseHelper.getByID(target.targetId)
-                    } catch {
-                        course = nil
-                    }
-                    if let course = course {
+                    if let course = CourseHelper.getByID(target.targetId) {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailTabBarController") as! CourseTabBarController
                         vc.course = course

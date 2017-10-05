@@ -31,7 +31,6 @@ class CourseContentTableViewController: UITableViewController {
         self.stopReachabilityNotifier()
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupReachability(Brand.host)
@@ -106,7 +105,8 @@ class CourseContentTableViewController: UITableViewController {
         let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
         self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
 
-        if UserProfileHelper.isLoggedIn() {
+        // FIXME: Due to the incorrect handling of the NSManagedObjectContext spine sync logic, we have to refetch the course for the background context
+        if UserProfileHelper.isLoggedIn(), let course = CourseHelper.getByID(self.course.id) {
             CourseSectionHelper.syncCourseSections(course).flatMap { sections in
                 sections.map { section in
                     CourseItemHelper.syncCourseItems(section)

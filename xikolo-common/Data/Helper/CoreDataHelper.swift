@@ -101,6 +101,7 @@ class CoreDataHelper {
                 let changes = [NSDeletedObjectsKey : objectIDArray]
                 print("delete all of \(entityName): \(objectIDArray.count) elements")
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
+                try privateManagedObjectContext.save()
             } catch {
                 // TODO: handle the error
             }

@@ -63,30 +63,16 @@ class AnnouncementsTableViewController : UITableViewController {
 
     @objc func updateAfterLoginStateChange() {
         self.refresh()
-
-        // FIXME: This call should not be made here. However without this call the table view does not refresh after a logout.
-        do {
-            try resultsController.performFetch()
-        } catch {
-            // TODO: Error handling.
-        }
     }
 
     @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
+
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
+        AnnouncementHelper.syncAnnouncements().onComplete { _ in
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 self.tableView.refreshControl?.endRefreshing()
             }
-        }
-
-        if UserProfileHelper.isLoggedIn() {
-            AnnouncementHelper.syncAnnouncements().onComplete { _ in
-                stopRefreshControl()
-            }
-        } else {
-            stopRefreshControl()
         }
     }
 

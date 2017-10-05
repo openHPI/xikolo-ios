@@ -8,10 +8,23 @@
 
 import BrightFutures
 import UIKit
+import ReachabilitySwift
+import CoreData
 
 class TrackingHelper {
 
-    fileprivate class func defaultContext() -> [String: String] {
+    private class var networkState: String {
+        switch ReachabilityHelper.reachability.currentReachabilityStatus {
+        case .reachableViaWiFi:
+            return "wifi"
+        case .reachableViaWWAN:
+            return "mobile"
+        case .notReachable:
+            return "offline"
+        }
+    }
+
+    private class func defaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
         let windowSize = (UIApplication.shared.delegate as? AppDelegate)?.window?.frame.size
 
@@ -30,23 +43,21 @@ class TrackingHelper {
             "client_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
             "free_space": String(describing: self.systemFreeSize),
             "total_space": String(describing: self.systemSize),
+            "network": self.networkState,
         ]
     }
 
-    fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
-
+    @discardableResult class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> TrackingEvent {
         let trackingVerb = TrackingEventVerb()
         trackingVerb.type = verb
 
         var trackingContext = defaultContext()
 
-        for (k, v) in context {
-            if let v = v {
-                trackingContext.updateValue(v, forKey: k)
-            }
+        for case let (k, v?) in context {
+            trackingContext.updateValue(v, forKey: k)
         }
 
-        let trackingEvent = TrackingEvent()
+        let trackingEvent = TrackingEvent(context: CoreDataHelper.backgroundContext)
         let trackingUser = TrackingEventUser()
         trackingUser.uuid = UserProfileHelper.getUserId()
         trackingEvent.user = trackingUser
@@ -54,18 +65,18 @@ class TrackingHelper {
         if let resource = resource {
             trackingEvent.resource = TrackingEventResource(resource: resource)
         } else {
-            //this is a fallback required by the tracking API where ressource cant be empty
+            //this is a fallback required by the tracking API where resource cant be empty
             trackingEvent.resource = TrackingEventResource(type: "None")
         }
-        trackingEvent.timestamp = Date()
-        trackingEvent.context = trackingContext as [String : AnyObject]?
-        return Future.init(value: trackingEvent)
+        trackingEvent.timestamp = NSDate()
+        trackingEvent.context = trackingContext
+        return trackingEvent
     }
 
-    @discardableResult class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
-        return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
-            SpineHelper.save(event).asVoid()
-        }
+    static func getTrackingEventRequest() -> NSFetchRequest<TrackingEvent> {
+        let request: NSFetchRequest<TrackingEvent> = TrackingEvent.fetchRequest()
+        request.fetchLimit = 10
+        return request
     }
 
 }

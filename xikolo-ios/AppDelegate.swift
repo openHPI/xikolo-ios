@@ -25,6 +25,9 @@ class AppDelegate : AbstractAppDelegate {
         updateAnnouncements()
         EnrollmentHelper.syncEnrollments()
 
+        ReachabilityHelper.setupReachability()
+        AnalyticsHelper.setup()
+
         VideoPersistenceManager.shared.restorePersistenceManager()
 
         #if OPENSAP

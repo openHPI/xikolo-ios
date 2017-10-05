@@ -9,7 +9,7 @@
 import Foundation
 
 @objcMembers
-class TrackingEventUser : NSObject, EmbeddedObject {
+class TrackingEventUser : NSObject, NSCoding, EmbeddedObject {
 
     var uuid: String?
 
@@ -19,8 +19,7 @@ class TrackingEventUser : NSObject, EmbeddedObject {
         }
     }
 
-    override init() {
-    }
+    override init() {}
 
     func toDict() -> [String : AnyObject] {
         var dict = [String: AnyObject]()
@@ -28,6 +27,14 @@ class TrackingEventUser : NSObject, EmbeddedObject {
             dict["uuid"] = uuid as AnyObject?
         }
         return dict
+    }
+
+    required init(coder decoder: NSCoder) {
+        self.uuid = decoder.decodeObject(forKey: "uuid") as? String
+    }
+
+    func encode(with coder: NSCoder) {
+        coder.encode(self.uuid, forKey: "uuid")
     }
 
 }

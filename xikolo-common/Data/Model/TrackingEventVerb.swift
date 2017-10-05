@@ -9,7 +9,7 @@
 import Foundation
 
 @objcMembers
-class TrackingEventVerb : NSObject, EmbeddedObject {
+class TrackingEventVerb : NSObject, NSCoding, EmbeddedObject {
 
     var type: String?
 
@@ -28,6 +28,14 @@ class TrackingEventVerb : NSObject, EmbeddedObject {
             dict["type"] = type as AnyObject?
         }
         return dict
+    }
+
+    required init(coder decoder: NSCoder) {
+        self.type = decoder.decodeObject(forKey: "type") as? String
+    }
+
+    func encode(with coder: NSCoder) {
+        coder.encode(self.type, forKey: "type")
     }
 
 }

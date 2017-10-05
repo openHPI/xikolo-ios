@@ -9,7 +9,6 @@
 import CoreData
 import UIKit
 import DZNEmptyDataSet
-import ReachabilitySwift
 
 class CourseContentTableViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -21,21 +20,24 @@ class CourseContentTableViewController: UITableViewController {
 
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
-
-    var isOffline = false
-    var reachability: Reachability?
+    var isOffline = false {
+        didSet {
+            if oldValue != self.isOffline {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
-        self.stopReachabilityNotifier()
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupReachability(Brand.host)
-        self.startReachabilityNotifier()
+
+        self.setupReachability()
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
 
@@ -71,28 +73,8 @@ class CourseContentTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func setupReachability(_ host: String?) {
-        if let hostName = host {
-            self.reachability = Reachability(hostname: hostName)
-        } else {
-            self.reachability = Reachability()
-        }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
-    }
-
-    private func startReachabilityNotifier() {
-        do {
-            try self.reachability?.startNotifier()
-        } catch {
-            print("Failed to start reachability notificaition")
-        }
-    }
-
-    private func stopReachabilityNotifier() {
-        self.reachability?.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        self.reachability = nil
+    func setupReachability() {
+        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged), name: NotificationKeys.reachabilityChanged, object: nil)
     }
 
     @objc func refresh() {
@@ -124,7 +106,7 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func showItem(_ item: CourseItem) {
-        TrackingHelper.sendEvent("VISITED_ITEM", resource: item)
+        TrackingHelper.createEvent("VISITED_ITEM", resource: item)
         //save read state to server
         item.visited = true
         SpineHelper.save(CourseItemSpine.init(courseItem: item))
@@ -142,11 +124,9 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
-    @objc func reachabilityChanged(_ note: Notification) {
-        guard let reachability = note.object as? Reachability else { return }
-
+    @objc func reachabilityChanged() {
         let oldOfflinesState = self.isOffline
-        self.isOffline = !reachability.isReachable
+        self.isOffline = ReachabilityHelper.isOffline
 
         if oldOfflinesState != self.isOffline {
             self.tableView.reloadData()
@@ -232,7 +212,7 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
 
         let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
                                                         isPreloading: self.tableViewController?.isPreloading ?? false,
-                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
+                                                        inOfflineMode: ReachabilityHelper.isOffline)
         cell.configure(for: item, with: configuration)
     }
 

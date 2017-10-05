@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13221.4" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Announcement" representedClassName=".Announcement" elementID="NewsArticle" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image_url" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -128,6 +128,15 @@
     <entity name="RichText" representedClassName=".RichText" parentEntity="Content" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="TrackingEvent" representedClassName=".TrackingEvent" syncable="YES">
+        <attribute name="context" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resource" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="result" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="verb" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="avatar_url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -178,6 +187,7 @@
         <element name="RichText" positionX="783" positionY="66" width="128" height="60"/>
         <element name="User" positionX="187" positionY="498" width="128" height="105"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="135"/>
-        <element name="Video" positionX="621" positionY="-99" width="128" height="300"/>
+        <element name="Video" positionX="603" positionY="-135" width="128" height="300"/>
+        <element name="TrackingEvent" positionX="565" positionY="470" width="128" height="148"/>
     </elements>
 </model>

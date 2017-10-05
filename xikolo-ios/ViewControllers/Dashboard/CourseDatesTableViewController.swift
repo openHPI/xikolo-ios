@@ -37,7 +37,7 @@ class CourseDatesTableViewController : UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        TrackingHelper.sendEvent("VISITED_DASHBOARD", resource: nil)
+        TrackingHelper.createEvent("VISITED_DASHBOARD", resource: nil)
         self.updateAfterLoginStateChange()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(CourseDatesTableViewController.updateAfterLoginStateChange),

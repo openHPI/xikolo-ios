@@ -11,7 +11,8 @@ import UIKit
 
 struct Brand {
 
-    static let BaseURL = "https://mooc.house"
+    static let Host = "mooc.house"
+    static let BaseURL = "https://" + Brand.Host
 
     //TODO: Change colors
     static let TintColor = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)

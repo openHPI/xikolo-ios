@@ -55,10 +55,6 @@
 		243CE4881D709A1C007C59B6 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE47E1D709999007C59B6 /* Enrollment.swift */; };
 		243CE4891D709A1E007C59B6 /* Enrollment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE47D1D709999007C59B6 /* Enrollment+CoreDataProperties.swift */; };
 		243CE48A1D709A1F007C59B6 /* Enrollment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE47D1D709999007C59B6 /* Enrollment+CoreDataProperties.swift */; };
-		243CE48C1D786422007C59B6 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		243CE48D1D786422007C59B6 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		243CE48E1D786422007C59B6 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		243CE48F1D786422007C59B6 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
 		243CE4911D786717007C59B6 /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		243CE4921D786717007C59B6 /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		243CE4931D786717007C59B6 /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
@@ -138,8 +134,6 @@
 		2474C8811D86FE28009BDB94 /* Announcement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* Announcement+CoreDataProperties.swift */; };
 		2474C8821D86FE2B009BDB94 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* Announcement.swift */; };
 		2474C8831D86FE2B009BDB94 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* Announcement.swift */; };
-		2474C8841D86FE2E009BDB94 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		2474C8851D86FE2E009BDB94 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
 		2474C8861D86FE30009BDB94 /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		2474C8871D86FE31009BDB94 /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		2474C8881D86FE33009BDB94 /* TrackingEventVerb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */; };
@@ -631,6 +625,10 @@
 		50F7202E1F28E29B00779995 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
 		50F7202F1F28E29B00779995 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
 		50F720301F28E29B00779995 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
+		702E58E21F53754D00260B5E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E58E11F53754D00260B5E /* AnalyticsHelper.swift */; };
+		702E58E31F53754D00260B5E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E58E11F53754D00260B5E /* AnalyticsHelper.swift */; };
+		702E58E41F53754D00260B5E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E58E11F53754D00260B5E /* AnalyticsHelper.swift */; };
+		702E58E51F53754D00260B5E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702E58E11F53754D00260B5E /* AnalyticsHelper.swift */; };
 		50F97AB81F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97AB91F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97ABA1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
@@ -654,6 +652,10 @@
 		703005C01EFEFC1600CCDCC9 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35C9321E89DAA4009832A5 /* UserHelper.swift */; };
 		70388C631EF1566A0093F186 /* AnnouncementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C611EF1566A0093F186 /* AnnouncementsTableViewController.swift */; };
 		70388C641EF1566A0093F186 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C621EF1566A0093F186 /* NewsViewController.swift */; };
+		70495A601F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
+		70495A611F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
+		70495A621F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
+		70495A631F3DD04700960B49 /* RetryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70495A5F1F3DD04700960B49 /* RetryHelper.swift */; };
 		7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
@@ -663,6 +665,34 @@
 		7057FFDC1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		7057FFDD1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		7057FFDE1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
+		7064B7B81F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7B91F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BA1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BB1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BC1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BD1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BE1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7BF1F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C01F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C11F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C21F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C31F4484590035DB35 /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B61F4484590035DB35 /* TrackingEvent.swift */; };
+		7064B7C41F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C51F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C61F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C81F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7C91F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CA1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CB1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CC1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CD1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CE1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7CF1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */; };
+		7064B7D11F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
+		7064B7D21F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
+		7064B7D31F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
+		7064B7D41F4497290035DB35 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */; };
 		709C93401EF099A900F8F045 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
 		709C93471EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
@@ -813,9 +843,6 @@
 		70D1EA6E1EF0AB400088C0FF /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D771CFDD27200CAD9FE /* RichText.swift */; };
 		70D1EA6F1EF0AB410088C0FF /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D771CFDD27200CAD9FE /* RichText.swift */; };
 		70D1EA701EF0AB410088C0FF /* RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D771CFDD27200CAD9FE /* RichText.swift */; };
-		70D1EA711EF0AB430088C0FF /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		70D1EA721EF0AB440088C0FF /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		70D1EA731EF0AB440088C0FF /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
 		70D1EA741EF0AB460088C0FF /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		70D1EA751EF0AB470088C0FF /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		70D1EA761EF0AB480088C0FF /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
@@ -1370,9 +1397,6 @@
 		ABA0F0931DF8CDE70001D88D /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		ABA0F0941DF8CDE70001D88D /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		ABA0F0951DF8CDE80001D88D /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
-		ABA0F0961DF8CDEB0001D88D /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		ABA0F0971DF8CDEB0001D88D /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
-		ABA0F0981DF8CDEC0001D88D /* TrackingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE48B1D786421007C59B6 /* TrackingEvent.swift */; };
 		ABA0F0991DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		ABA0F09A1DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
 		ABA0F09B1DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
@@ -1741,7 +1765,6 @@
 		243CE4781D6B40C6007C59B6 /* QuizQuestionSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestionSubmission.swift; sourceTree = "<group>"; };
 		243CE47D1D709999007C59B6 /* Enrollment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enrollment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		243CE47E1D709999007C59B6 /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
-		243CE48B1D786421007C59B6 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
 		243CE4901D786717007C59B6 /* TrackingEventUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventUser.swift; sourceTree = "<group>"; };
 		243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventResource.swift; sourceTree = "<group>"; };
 		243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHelper.swift; sourceTree = "<group>"; };
@@ -1872,11 +1895,16 @@
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		6E388554E08BE40160B5B382 /* Pods-moocHOUSE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		702E58E11F53754D00260B5E /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsTableViewController.swift; sourceTree = "<group>"; };
 		70388C621EF1566A0093F186 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		70495A5F1F3DD04700960B49 /* RetryHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RetryHelper.swift; path = Helper/RetryHelper.swift; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
+		7064B7B61F4484590035DB35 /* TrackingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
+		7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackingEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		709C93031EF0952500F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C932C1EF0996C00F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2215,7 +2243,8 @@
 				243CE4781D6B40C6007C59B6 /* QuizQuestionSubmission.swift */,
 				24A16D831CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift */,
 				24A16D771CFDD27200CAD9FE /* RichText.swift */,
-				243CE48B1D786421007C59B6 /* TrackingEvent.swift */,
+				7064B7B71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift */,
+				7064B7B61F4484590035DB35 /* TrackingEvent.swift */,
 				243CE4901D786717007C59B6 /* TrackingEventUser.swift */,
 				243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */,
 				243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */,
@@ -2348,6 +2377,8 @@
 			children = (
 				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 				50F720271F28D72D00779995 /* VideoPersistenceManager.swift */,
+				7064B7D01F4497290035DB35 /* ReachabilityHelper.swift */,
+				702E58E11F53754D00260B5E /* AnalyticsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2418,6 +2449,7 @@
 				24CB7E511CC6813A00960269 /* Resources */,
 				241D4AEA1CC9918600E35B1F /* ViewControllers */,
 				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
+				70495A5E1F3DCF4C00960B49 /* Helpers */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Common.strings */,
 				2493481A1D9550FD006D4F2C /* Common.stringsdict */,
@@ -2511,6 +2543,14 @@
 				5060A5211F177304007896FF /* DetailedContent.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		70495A5E1F3DCF4C00960B49 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				70495A5F1F3DD04700960B49 /* RetryHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		709C93501EF09B9E00F8F045 /* moocHOUSE */ = {
@@ -4217,7 +4257,6 @@
 				2490C4F51D216D6900F42949 /* NotificationKeys.swift in Sources */,
 				2490C4EF1D216D2E00F42949 /* BaseModelSpine.swift in Sources */,
 				AB77C2991DF956EE00B30619 /* Brand+generic.swift in Sources */,
-				2474C8841D86FE2E009BDB94 /* TrackingEvent.swift in Sources */,
 				509A7CD91F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
 				2474C88C1D86FE63009BDB94 /* AVMetadataItem+convenience.swift in Sources */,
 				70F4563D1F01296500A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */,
@@ -4227,6 +4266,8 @@
 				243CE4871D709A1B007C59B6 /* Enrollment.swift in Sources */,
 				2490C4F11D216D4500F42949 /* Routes.swift in Sources */,
 				70A830AF1EC781020029235D /* AnnouncementProvider.swift in Sources */,
+				7064B7BA1F4484590035DB35 /* TrackingEvent.swift in Sources */,
+				7064B7C61F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				2490C4F41D216D6500F42949 /* Error.swift in Sources */,
 				AB17C5831DFCC5C90013BBCD /* PlatformEvent.swift in Sources */,
 				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
@@ -4291,13 +4332,13 @@
 				24BA40BE1D3F9ADB00E38C2C /* AnnouncementProvider.swift in Sources */,
 				2448BE231D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				509A7CDA1F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
+				7064B7C71F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */,
 				24BA40A21D3F9AB500E38C2C /* RichText+CoreDataProperties.swift in Sources */,
 				503585061F3B06D8002A666C /* String+ascii.swift in Sources */,
 				24BA40D41D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
 				24BA40BC1D3F9AD800E38C2C /* VideoProvider.swift in Sources */,
 				24BA408C1D3F9A9300E38C2C /* Course.swift in Sources */,
-				243CE48E1D786422007C59B6 /* TrackingEvent.swift in Sources */,
 				24BA40B11D3F9ACB00E38C2C /* CourseItemProvider.swift in Sources */,
 				243CE4851D709999007C59B6 /* Enrollment.swift in Sources */,
 				AB35C9351E89DAA4009832A5 /* UserHelper.swift in Sources */,
@@ -4310,6 +4351,7 @@
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
 				AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				7064B7BB1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */,
 				24BA40C61D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
 				3D6F12EF1F2914BD00D5DFE8 /* SearchHelper.swift in Sources */,
@@ -4346,6 +4388,7 @@
 				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
 				249E3AA11D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				4E2B80AC1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
+				7064B7D21F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				ABC8A1691D689ED80059CEF2 /* LTIExercise.swift in Sources */,
 				24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
 				50E16CF31F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
@@ -4419,6 +4462,7 @@
 				AB34C9BC1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
+				70495A611F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				70F4564D1F0139B400A2C6B7 /* NewsViewController.swift in Sources */,
 				24BA40931D3F9A9C00E38C2C /* CourseSection+CoreDataProperties.swift in Sources */,
@@ -4434,6 +4478,7 @@
 				24BA409A1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
 				AB4A01A71E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
 				5019A75C1F20AAE1008C8138 /* NSMutableAttributedString+trim.swift in Sources */,
+				702E58E31F53754D00260B5E /* AnalyticsHelper.swift in Sources */,
 				50F720291F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
 				AB4A01B11E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
@@ -4447,6 +4492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */,
+				7064B7C81F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24BA40BF1D3F9ADB00E38C2C /* AnnouncementProvider.swift in Sources */,
 				50F97ABB1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				AB3B82201EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
@@ -4473,6 +4519,7 @@
 				AB1C033D1D8E0C9B0053B4E3 /* PeerAssessmentProvider.swift in Sources */,
 				24BA409D1D3F9AAE00E38C2C /* Content.swift in Sources */,
 				AB17C5851DFCC5CA0013BBCD /* PlatformEvent.swift in Sources */,
+				7064B7BC1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				24BA412D1D3F9D1300E38C2C /* CourseHeaderView.swift in Sources */,
 				240CAA1B1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24BA40D11D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
@@ -4578,7 +4625,6 @@
 				ABC8A1721D689ED80059CEF2 /* PeerAssessment.swift in Sources */,
 				24BA40921D3F9A9900E38C2C /* CourseItem.swift in Sources */,
 				24BA409B1D3F9AAB00E38C2C /* Content+CoreDataProperties.swift in Sources */,
-				243CE48F1D786422007C59B6 /* TrackingEvent.swift in Sources */,
 				24BA413B1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24F833EF1E628A9600590E90 /* MarkdownHelper.swift in Sources */,
 				AB9589721DC2049400586137 /* Channel+CoreDataProperties.swift in Sources */,
@@ -4609,7 +4655,6 @@
 				24BA40851D3F9A8B00E38C2C /* BaseModel.swift in Sources */,
 				24BA40CB1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
 				AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */,
-				2474C8851D86FE2E009BDB94 /* TrackingEvent.swift in Sources */,
 				509A7CDC1F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
 				2474C88D1D86FE64009BDB94 /* AVMetadataItem+convenience.swift in Sources */,
 				70F4563E1F01296600A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */,
@@ -4619,6 +4664,8 @@
 				24BA41011D3F9B3F00E38C2C /* NotificationKeys.swift in Sources */,
 				70A830AE1EC781010029235D /* AnnouncementProvider.swift in Sources */,
 				24BA40C81D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
+				7064B7BD1F4484590035DB35 /* TrackingEvent.swift in Sources */,
+				7064B7C91F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				AB17C5861DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
 				24BA40B01D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
 				AB4A01B31E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
@@ -4678,6 +4725,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */,
+				7064B7C51F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				24A16D8B1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				50F97AB91F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				AB3B821E1EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
@@ -4704,6 +4752,7 @@
 				AB2802CA1D2A8ABB008C8BAE /* Announcement+CoreDataProperties.swift in Sources */,
 				AB1C033B1D8E0C9A0053B4E3 /* PeerAssessmentProvider.swift in Sources */,
 				AB17C5821DFCC5C80013BBCD /* PlatformEvent.swift in Sources */,
+				7064B7B91F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				24D48E291CCA92CB00E8051E /* CourseProvider.swift in Sources */,
 				240CAA1A1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24128FAD1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
@@ -4808,7 +4857,6 @@
 				ABC8A1701D689ED80059CEF2 /* PeerAssessment.swift in Sources */,
 				2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */,
 				240E03461CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
-				243CE48D1D786422007C59B6 /* TrackingEvent.swift in Sources */,
 				24BA413E1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */,
 				24F833ED1E628A9500590E90 /* MarkdownHelper.swift in Sources */,
 				AB95896F1DC2049400586137 /* Channel+CoreDataProperties.swift in Sources */,
@@ -4835,7 +4883,6 @@
 				5019A76B1F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */,
 				70D1EAEA1EF0AC930088C0FF /* WelcomeViewController.swift in Sources */,
 				70D1EA311EF0AAF30088C0FF /* Enrollment.swift in Sources */,
-				70D1EA711EF0AB430088C0FF /* TrackingEvent.swift in Sources */,
 				50F668971F3849C300ACC26A /* SyncHelper.swift in Sources */,
 				70D1EAF41EF0ACB20088C0FF /* VideoViewController.swift in Sources */,
 				70D1EA951EF0AB760088C0FF /* LTIExerciseProvider.swift in Sources */,
@@ -4848,6 +4895,7 @@
 				70D1EA8C1EF0AB6A0088C0FF /* CourseProvider.swift in Sources */,
 				70D1EA191EF0AAD70088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA9D1EF0AB800088C0FF /* PlatformEventProvider.swift in Sources */,
+				70495A631F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				70D1EA1F1EF0AADF0088C0FF /* CourseDate.swift in Sources */,
 				70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */,
 				70D1EAC91EF0AC180088C0FF /* SpineHelper.swift in Sources */,
@@ -4905,10 +4953,12 @@
 				70D1EA281EF0AAE80088C0FF /* CourseSection+CoreDataProperties.swift in Sources */,
 				70F456321F0128E400A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EAC71EF0AC150088C0FF /* RichTextHelper.swift in Sources */,
+				702E58E51F53754D00260B5E /* AnalyticsHelper.swift in Sources */,
 				70D1EAFA1EF0ACC10088C0FF /* PlatformEventsTableViewController.swift in Sources */,
 				70D1EAA91EF0AB950088C0FF /* CoreDataHelper.swift in Sources */,
 				70D1EA3A1EF0AAFF0088C0FF /* EnrollmentVisits.swift in Sources */,
 				70D1EAB61EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
+				7064B7D41F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				70D1EA831EF0AB560088C0FF /* Video.swift in Sources */,
 				5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */,
 				70D1EAD61EF0AC290088C0FF /* Error.swift in Sources */,
@@ -4926,6 +4976,7 @@
 				70D1EA221EF0AAE10088C0FF /* CourseItem+CoreDataProperties.swift in Sources */,
 				70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */,
 				70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */,
+				7064B7CD1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				5060A52B1F177304007896FF /* DetailedContent.swift in Sources */,
 				50E16D001F47014000D67632 /* CustomUserDefaults.swift in Sources */,
 				70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */,
@@ -4979,6 +5030,7 @@
 				70D1EAF31EF0ACB00088C0FF /* RichtextViewController.swift in Sources */,
 				70D1EB2A1EF12E110088C0FF /* Settings.swift in Sources */,
 				703005BC1EFEFC0A00CCDCC9 /* UserProvider.swift in Sources */,
+				7064B7C11F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				70D1EA5C1EF0AB2C0088C0FF /* QuizQuestion+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5002,6 +5054,7 @@
 				70F456341F0128E500A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EA7B1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */,
 				70D1EB451EF134150088C0FF /* CourseListViewController.swift in Sources */,
+				7064B7C21F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				70D1EA2C1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
 				70D1EB401EF133F10088C0FF /* UIViewController+ErrorHelper.swift in Sources */,
 				70D1EAC21EF0AC0C0088C0FF /* PeerAssessmentHelper.swift in Sources */,
@@ -5029,6 +5082,7 @@
 				70D1EA1D1EF0AADB0088C0FF /* CourseDate+CoreDataProperties.swift in Sources */,
 				70D1EB461EF134170088C0FF /* CourseTabBarController.swift in Sources */,
 				70D1EB5E1EF134800088C0FF /* AppDelegate.swift in Sources */,
+				7064B7CE1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				70D1EA6F1EF0AB410088C0FF /* RichText.swift in Sources */,
 				70D1EB481EF1341B0088C0FF /* LearningsViewController.swift in Sources */,
 				70D1EB491EF1341E0088C0FF /* ItemQuizIntroductionController.swift in Sources */,
@@ -5046,7 +5100,6 @@
 				70D1EAC61EF0AC130088C0FF /* QuizHelper.swift in Sources */,
 				70D1EA141EF0AAD10088C0FF /* Course.swift in Sources */,
 				70D1EB571EF134430088C0FF /* ChoiceAnswerCell.swift in Sources */,
-				70D1EA721EF0AB440088C0FF /* TrackingEvent.swift in Sources */,
 				70D1EB271EF12E0C0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				70D1EB2D1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				70D1EA3B1EF0AAFF0088C0FF /* EnrollmentVisits.swift in Sources */,
@@ -5161,6 +5214,8 @@
 				70D1EA151EF0AAD10088C0FF /* Course.swift in Sources */,
 				70D1EA061EF0AAB90088C0FF /* Channel+CoreDataProperties.swift in Sources */,
 				70D1EA331EF0AAF40088C0FF /* Enrollment.swift in Sources */,
+				7064B7C31F4484590035DB35 /* TrackingEvent.swift in Sources */,
+				7064B7CF1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				70D1EADB1EF0AC2D0088C0FF /* Routes.swift in Sources */,
 				70D1EA7F1EF0AB510088C0FF /* BuildFile in Sources */,
 				70D1EA0F1EF0AACB0088C0FF /* Content.swift in Sources */,
@@ -5192,7 +5247,6 @@
 				70D1EA401EF0AB050088C0FF /* LTIExercise+CoreDataProperties.swift in Sources */,
 				70D1EA1B1EF0AAD90088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA1E1EF0AADC0088C0FF /* CourseDate+CoreDataProperties.swift in Sources */,
-				70D1EA731EF0AB440088C0FF /* TrackingEvent.swift in Sources */,
 				70D1EA581EF0AB230088C0FF /* Quiz+CoreDataProperties.swift in Sources */,
 				70D1EAAE1EF0ABF60088C0FF /* CourseDateHelper.swift in Sources */,
 				70F456481F01297100A2C6B7 /* User+CoreDataProperties.swift in Sources */,
@@ -5225,12 +5279,12 @@
 				24D48E191CCA4FC100E8051E /* Course.swift in Sources */,
 				2448BE211D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				509A7CD71F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
+				7064B7C41F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A16D921CFFA72100CAD9FE /* CoreDataHelper.swift in Sources */,
 				503585051F3AF6AA002A666C /* String+ascii.swift in Sources */,
 				ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */,
 				F80D67931B98683400E27520 /* AnnouncementViewController.swift in Sources */,
-				243CE48C1D786422007C59B6 /* TrackingEvent.swift in Sources */,
 				24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */,
 				2448A9DE1CDCD9F3009A1AEA /* SpineModelHelper.swift in Sources */,
 				243CE4831D709999007C59B6 /* Enrollment.swift in Sources */,
@@ -5244,6 +5298,7 @@
 				AB4F22871D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */,
 				AB77C2971DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				7064B7B81F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				AB2802CB1D2A8ABB008C8BAE /* Announcement.swift in Sources */,
 				2433A5A31CE634A00060DD98 /* CourseItem.swift in Sources */,
 				3D6F12ED1F2914BD00D5DFE8 /* SearchHelper.swift in Sources */,
@@ -5280,6 +5335,7 @@
 				249E3A9F1D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* AnnouncementCell.swift in Sources */,
 				ABC8A1671D689ED80059CEF2 /* LTIExercise.swift in Sources */,
+				7064B7D11F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				50E16CF21F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
@@ -5353,6 +5409,7 @@
 				AB34C9BB1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
 				7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */,
+				70495A601F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
@@ -5368,6 +5425,7 @@
 				AB4A01A41E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
 				AB4A01AE1E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				2490C4CF1D1C5F3600F42949 /* Settings.swift in Sources */,
+				702E58E21F53754D00260B5E /* AnalyticsHelper.swift in Sources */,
 				50F720281F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
 				24A16D851CFDE9F100CAD9FE /* RichText+CoreDataProperties.swift in Sources */,
 				ABDF15501E8261EF0071ADE6 /* UserProvider.swift in Sources */,
@@ -5386,6 +5444,7 @@
 				ABA0F0561DF8CD8C0001D88D /* CourseItem.swift in Sources */,
 				AB17C58F1DFCC5D10013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				509A7CDD1F2879A600B2791F /* UserDefaultsKeys.swift in Sources */,
+				7064B7CA1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				ABA0F09F1DF8CDF60001D88D /* TrackingEventResource.swift in Sources */,
 				ABA0F0441DF8CD2C0001D88D /* Channel.swift in Sources */,
 				503585091F3B06E5002A666C /* String+ascii.swift in Sources */,
@@ -5405,6 +5464,7 @@
 				ABA0F0291DF8CCCF0001D88D /* AnnouncementCell.swift in Sources */,
 				ABA0F0AF1DF8CE120001D88D /* QuizProvider.swift in Sources */,
 				ABA0F01C1DF8CCA90001D88D /* RichtextViewController.swift in Sources */,
+				7064B7BE1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				ABA0F0361DF8CD0D0001D88D /* CollectionType+dict.swift in Sources */,
 				ABA0F0281DF8CCCC0001D88D /* CourseItemCell.swift in Sources */,
 				3D6F12F11F2914BD00D5DFE8 /* SearchHelper.swift in Sources */,
@@ -5440,6 +5500,7 @@
 				ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */,
 				ABA0F0B11DF8CE160001D88D /* RichTextProvider.swift in Sources */,
 				ABA0F0F61DF8CEAB0001D88D /* Settings.swift in Sources */,
+				7064B7D31F4497290035DB35 /* ReachabilityHelper.swift in Sources */,
 				ABA0F0B31DF8CE190001D88D /* VideoProvider.swift in Sources */,
 				ABA0F0531DF8CD880001D88D /* CourseItem+CoreDataProperties.swift in Sources */,
 				AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */,
@@ -5486,7 +5547,6 @@
 				ABA0F1011DF8CEBD0001D88D /* NotificationKeys.swift in Sources */,
 				ABA0F0471DF8CD300001D88D /* Course+CoreDataProperties.swift in Sources */,
 				ABA0F0A71DF8CE060001D88D /* CourseSectionProvider.swift in Sources */,
-				ABA0F0961DF8CDEB0001D88D /* TrackingEvent.swift in Sources */,
 				ABFCF7671E81EEC40043C7B7 /* User.swift in Sources */,
 				3D6F12F81F2A0E3F00D5DFE8 /* SyncHelper.swift in Sources */,
 				ABB49A921DF8D70B004C59B6 /* PlatformEventCell.swift in Sources */,
@@ -5514,6 +5574,7 @@
 				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
 				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
+				70495A621F3DD04700960B49 /* RetryHelper.swift in Sources */,
 				ABA0F0391DF8CD180001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				70F4564E1F0139B500A2C6B7 /* NewsViewController.swift in Sources */,
 				ABA0F08D1DF8CDDF0001D88D /* RichText.swift in Sources */,
@@ -5529,6 +5590,7 @@
 				AB4A01B41E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				5019A75D1F20AAE3008C8138 /* NSMutableAttributedString+trim.swift in Sources */,
 				50F7202A1F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
+				702E58E41F53754D00260B5E /* AnalyticsHelper.swift in Sources */,
 				ABA0F0EC1DF8CE980001D88D /* AbstractLoginViewController.swift in Sources */,
 				ABA0F0A51DF8CE020001D88D /* CourseItemProvider.swift in Sources */,
 				ABA0F0E11DF8CE750001D88D /* Error.swift in Sources */,
@@ -5542,6 +5604,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA0F0B81DF8CE1F0001D88D /* PeerAssessmentProvider.swift in Sources */,
+				7064B7CB1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				ABA0F0881DF8CDD50001D88D /* QuizOption.swift in Sources */,
 				50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				AB3B82221EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
@@ -5568,6 +5631,7 @@
 				ABA0F0EF1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */,
 				ABA0F0DE1DF8CE6C0001D88D /* AnnouncementHelper.swift in Sources */,
 				ABA0F0A31DF8CDFE0001D88D /* CourseProvider.swift in Sources */,
+				7064B7BF1F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				ABA0F10F1DF8CF5B0001D88D /* CourseDetailsViewController.swift in Sources */,
 				24C4EF8D1E3594C200200144 /* QuizQuestionSubmission.swift in Sources */,
 				ABA0F0851DF8CDD10001D88D /* QuizQuestion.swift in Sources */,
@@ -5620,7 +5684,6 @@
 				ABFCF7681E81EEC40043C7B7 /* User.swift in Sources */,
 				ABA0F1131DF8CF680001D88D /* AbstractQuestionViewController.swift in Sources */,
 				ABA0F0731DF8CDB80001D88D /* Announcement.swift in Sources */,
-				ABA0F0971DF8CDEB0001D88D /* TrackingEvent.swift in Sources */,
 				AB17C5701DFCAD460013BBCD /* CourseDate.swift in Sources */,
 				ABA0F0BF1DF8CE2B0001D88D /* SpineHelper.swift in Sources */,
 				ABA0F0301DF8CD010001D88D /* UIView+shake.swift in Sources */,
@@ -5706,6 +5769,7 @@
 				ABA0F0A41DF8CDFF0001D88D /* CourseProvider.swift in Sources */,
 				ABA0F0951DF8CDE80001D88D /* Video.swift in Sources */,
 				ABA0F1061DF8CEC20001D88D /* XikoloURL.swift in Sources */,
+				7064B7C01F4484590035DB35 /* TrackingEvent.swift in Sources */,
 				70F4563F1F01296700A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */,
 				ABA0F0581DF8CD8D0001D88D /* CourseItem.swift in Sources */,
 				ABA0F0831DF8CDCE0001D88D /* QuizQuestion+CoreDataProperties.swift in Sources */,
@@ -5734,12 +5798,12 @@
 				ABA0F07D1DF8CDC50001D88D /* Quiz+CoreDataProperties.swift in Sources */,
 				ABA0F06D1DF8CDAB0001D88D /* LTIExercise.swift in Sources */,
 				ABA0F0551DF8CD890001D88D /* CourseItem+CoreDataProperties.swift in Sources */,
-				ABA0F0981DF8CDEC0001D88D /* TrackingEvent.swift in Sources */,
 				ABC1BF271E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				ABA0F09B1DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				ABA0F0891DF8CDD50001D88D /* QuizOption.swift in Sources */,
 				ABA0F1081DF8CF120001D88D /* ServiceProvider.swift in Sources */,
 				AB17C56E1DFCAD430013BBCD /* CourseDate+CoreDataProperties.swift in Sources */,
+				7064B7CC1F4484590035DB35 /* TrackingEvent+CoreDataProperties.swift in Sources */,
 				ABA0F0641DF8CD9D0001D88D /* Content+CoreDataProperties.swift in Sources */,
 				ABA0F0801DF8CDCA0001D88D /* Quiz.swift in Sources */,
 				ABA0F0E31DF8CE750001D88D /* Error.swift in Sources */,

@@ -45,7 +45,7 @@ class SpineHelper {
         spine.registerResource(RichTextSpine.self)
         spine.registerResource(VideoSpine.self)
         spine.registerResource(AnnouncementSpine.self)
-        spine.registerResource(TrackingEvent.self)
+        spine.registerResource(TrackingEventSpine.self)
         spine.registerResource(UserSpine.self)
         spine.registerResource(UserProfileSpine.self)
 

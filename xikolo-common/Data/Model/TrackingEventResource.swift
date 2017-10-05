@@ -9,7 +9,7 @@
 import Foundation
 
 @objcMembers
-class TrackingEventResource : NSObject, EmbeddedObject {
+class TrackingEventResource : NSObject, NSCoding, EmbeddedObject {
 
     var type: String?
     var uuid: String?
@@ -50,6 +50,16 @@ class TrackingEventResource : NSObject, EmbeddedObject {
             dict["uuid"] = uuid as AnyObject?
         }
         return dict
+    }
+
+    required init(coder decoder: NSCoder) {
+        self.type = decoder.decodeObject(forKey: "type") as? String
+        self.uuid = decoder.decodeObject(forKey: "uuid") as? String
+    }
+
+    func encode(with coder: NSCoder) {
+        coder.encode(self.type, forKey: "type")
+        coder.encode(self.uuid, forKey: "uuid")
     }
 
 }

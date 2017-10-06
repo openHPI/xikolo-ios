@@ -99,11 +99,20 @@ extension UserProfileHelper {
     }
 
     static func migrateLegacyKeychain() {
-        if let legacyUserId = UserDefaults.standard.string(forKey: "user"), !legacyUserId.isEmpty {
+        let defaults = UserDefaults.standard
+
+        let legacyUserIdKey = "user"
+        if let legacyUserId = defaults.string(forKey: legacyUserIdKey), !legacyUserId.isEmpty {
             self.userId = legacyUserId
+            defaults.removeObject(forKey: legacyUserIdKey)
         }
-        if let legacyUserToken = UserDefaults.standard.string(forKey: "user_token"), !legacyUserToken.isEmpty {
+
+        let legacyUserTokenKey = "user_token"
+        if let legacyUserToken = defaults.string(forKey: legacyUserTokenKey), !legacyUserToken.isEmpty {
             self.userToken = legacyUserToken
+            defaults.removeObject(forKey: legacyUserTokenKey)
         }
+
+        defaults.synchronize()
     }
 }

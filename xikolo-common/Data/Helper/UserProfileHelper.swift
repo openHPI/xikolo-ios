@@ -10,10 +10,9 @@ import Alamofire
 import BrightFutures
 import Foundation
 import CoreData
+import KeychainAccess
 
 open class UserProfileHelper {
-
-    static fileprivate let prefs = UserDefaults.standard
 
     static func login(_ email: String, password: String) -> Future<String, XikoloError> {
         let promise = Promise<String, XikoloError>()
@@ -33,8 +32,8 @@ open class UserProfileHelper {
 
             if let json = response.result.value as? [String: Any] {
                 if let token = json["token"] as? String, let id = json["user_id"] as? String {
-                    UserProfileHelper.saveToken(token)
-                    UserProfileHelper.saveId(id)
+                    UserProfileHelper.userToken = token
+                    UserProfileHelper.userId = id
                     self.postLoginStateChange()
                     return promise.success(token)
                 }
@@ -49,39 +48,13 @@ open class UserProfileHelper {
     }
 
     static func logout() {
-        prefs.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        prefs.synchronize()
+        UserProfileHelper.clearKeychain()
         CoreDataHelper.clearCoreDataStorage()
         self.postLoginStateChange()
     }
 
     static func isLoggedIn() -> Bool {
-        return !getToken().isEmpty
-    }
-
-    static func getToken() -> String {
-        return get(.token) ?? ""
-    }
-
-    static func save(_ key: UserDefaultsKeys.UserProfileKey, withValue value: String) {
-        prefs.set(value, forKey: key.rawValue)
-        prefs.synchronize()
-    }
-
-    static func get(_ key: UserDefaultsKeys.UserProfileKey) -> String? {
-        return prefs.string(forKey: key.rawValue)
-    }
-
-    static func getUserId() -> String? {
-        return self.get(.user)
-    }
-
-    static func saveToken(_ token: String) {
-        save(.token, withValue: token)
-    }
-
-    static func saveId(_ id: String) {
-        save(.user, withValue: id)
+        return !self.userToken.isEmpty
     }
 
     static func postLoginStateChange() {
@@ -89,4 +62,57 @@ open class UserProfileHelper {
         NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
     }
 
+}
+
+extension UserProfileHelper {
+
+    private static let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
+    private enum KeychainKey : String {
+        case userId = "de.xikolo.ios.user-id"
+        case userToken = "de.xikolo.ios.user-token"
+    }
+
+    static var userId: String? {
+        get {
+            return self.keychain[KeychainKey.userId.rawValue]
+        }
+        set {
+            self.keychain[KeychainKey.userId.rawValue] = newValue
+        }
+    }
+
+    static var userToken: String {
+        get {
+            return self.keychain[KeychainKey.userToken.rawValue] ?? ""
+        }
+        set {
+            self.keychain[KeychainKey.userToken.rawValue] = newValue
+        }
+    }
+
+    static func clearKeychain() {
+        do {
+            try self.keychain.removeAll()
+        } catch {
+            print("Failed to clear keychain - \(error)")
+        }
+    }
+
+    static func migrateLegacyKeychain() {
+        let defaults = UserDefaults.standard
+
+        let legacyUserIdKey = "user"
+        if let legacyUserId = defaults.string(forKey: legacyUserIdKey), !legacyUserId.isEmpty {
+            self.userId = legacyUserId
+            defaults.removeObject(forKey: legacyUserIdKey)
+        }
+
+        let legacyUserTokenKey = "user_token"
+        if let legacyUserToken = defaults.string(forKey: legacyUserTokenKey), !legacyUserToken.isEmpty {
+            self.userToken = legacyUserToken
+            defaults.removeObject(forKey: legacyUserTokenKey)
+        }
+
+        defaults.synchronize()
+    }
 }

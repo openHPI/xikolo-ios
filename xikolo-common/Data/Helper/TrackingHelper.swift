@@ -48,7 +48,7 @@ class TrackingHelper {
 
         let trackingEvent = TrackingEvent()
         let trackingUser = TrackingEventUser()
-        trackingUser.uuid = UserProfileHelper.getUserId()
+        trackingUser.uuid = UserProfileHelper.userId
         trackingEvent.user = trackingUser
         trackingEvent.verb = trackingVerb
         if let resource = resource {

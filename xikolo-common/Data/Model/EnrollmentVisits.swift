@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class EnrollmentVisits : NSObject, NSCoding, EmbeddedObject {
 
     var visited: NSNumber?

@@ -19,8 +19,9 @@ platform :ios do
   desc "Increments the build number for all targets"
   lane :increment_build do
     new_build_number = increment_build_number
+    version_number = get_version_number
     commit_version_bump(
-      message: "Bump build number to #{new_build_number}."
+      message: "Bump build number to #{new_build_number} (version #{version_number})."
     )
   end
 
@@ -74,8 +75,8 @@ platform :ios do
   desc "- translates storyboard files and NSLocalizedString usages"
   lane :localize do
     sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../xikolo-ios/"
-    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c"
-    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c -e"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c -e"
   end
 end
 

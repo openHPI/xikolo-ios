@@ -10,6 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class Announcement : BaseModel {
 
     var visited: Bool? {
@@ -24,6 +25,7 @@ class Announcement : BaseModel {
 
 }
 
+@objcMembers
 class AnnouncementSpine : BaseModelSpine {
 
     var title: String?

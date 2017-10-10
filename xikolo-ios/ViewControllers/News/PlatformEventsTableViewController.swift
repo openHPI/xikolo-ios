@@ -23,6 +23,12 @@ class PlatformEventsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // setup pull to refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+
+        // setup table view data
         let request = PlatformEventHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
@@ -56,17 +62,26 @@ class PlatformEventsTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
+        self.refresh()
+    }
+
+    @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
-        if UserProfileHelper.isLoggedIn() {
-            PlatformEventHelper.syncPlatformEvents()
+
+        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
+        let stopRefreshControl = {
+            DispatchQueue.main.asyncAfter(deadline: deadline) {
+                self.tableView.refreshControl?.endRefreshing()
+            }
         }
 
-        // FIXME: This call dhould not be made here. However without this call the table view does not refresh after a logout.
-        do {
-            try resultsController.performFetch()
-        } catch {
-            // TODO: Error handling.
+        if UserProfileHelper.isLoggedIn() {
+            PlatformEventHelper.syncPlatformEvents().onComplete { _ in
+                stopRefreshControl()
+            }
+        } else {
+            stopRefreshControl()
         }
     }
 

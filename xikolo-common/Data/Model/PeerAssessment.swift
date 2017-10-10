@@ -18,6 +18,7 @@ class PeerAssessment : Content {
 
 }
 
+@objcMembers
 class PeerAssessmentSpine : ContentSpine {
 
     var title: String?

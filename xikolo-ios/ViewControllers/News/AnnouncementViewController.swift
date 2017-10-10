@@ -21,20 +21,42 @@ class AnnouncementViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let date = announcement.published_at {
+        self.titleView.heroID = "news_headline_" + announcement.id
+
+        self.textView.delegate = self
+        self.textView.textContainerInset = UIEdgeInsets.zero
+        self.textView.textContainer.lineFragmentPadding = 0
+
+        //save read state to server
+        self.announcement.visited = true
+        TrackingHelper.sendEvent("VISITED_ANNOUNCEMENT", resource: self.announcement)
+        SpineHelper.save(AnnouncementSpine.init(announcementItem: self.announcement))
+
+        self.announcement.notifyOnChange(self, updatedHandler: { _ in
+            self.updateView()
+        }) {
+            let isVisible = self.isViewLoaded && self.view.window != nil
+            self.navigationController?.popViewController(animated: isVisible)
+        }
+    }
+
+    private func updateView() {
+        self.titleView.text = self.announcement.title
+
+        if let date = self.announcement.published_at {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
-            dateView.text = dateFormatter.string(from: date)
+            self.dateView.text = dateFormatter.string(from: date)
+            self.dateView.isHidden = false
+        } else {
+            self.dateView.isHidden = true
         }
 
-        titleView.text = announcement.title
-        titleView.heroID = "news_headline_" + announcement.id
-
-        textView.delegate = self
-        if let newsText = announcement.text {
-            let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
+        if let newsText = self.announcement.text, let markDown = try? MarkdownHelper.parse(newsText) {
             self.textView.attributedText = markDown
+        } else {
+            self.textView.text = "[...]"
         }
         //save read state to server
         announcement.visited = true

@@ -27,7 +27,7 @@ class CourseActivityViewController: UICollectionViewController {
         self.updateFetchedResultController()
     }
 
-    func updateAfterLoginStateChange() {
+    @objc func updateAfterLoginStateChange() {
         self.updateFetchedResultController()
     }
 
@@ -53,6 +53,10 @@ class CourseActivityViewController: UICollectionViewController {
             // TODO: Error handling.
         }
 
+        self.refresh()
+    }
+
+    func refresh() {
         CourseHelper.refreshCourses()
     }
 }
@@ -61,7 +65,7 @@ extension CourseActivityViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let visualCourse = resultsController.object(at: indexPath)
-        let course = try! CourseHelper.getByID(visualCourse.id)
+        let course = CourseHelper.getByID(visualCourse.id)
         AppDelegate.instance().goToCourse(course!)
     }
 

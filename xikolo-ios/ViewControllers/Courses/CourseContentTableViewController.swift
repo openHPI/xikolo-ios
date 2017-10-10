@@ -30,29 +30,20 @@ class CourseContentTableViewController: UITableViewController {
         self.tableView?.emptyDataSetDelegate = nil
         self.stopReachabilityNotifier()
     }
-    
-    lazy var myRefreshControl: UIRefreshControl = {
-        let myRefreshControl = UIRefreshControl()
-        myRefreshControl.addTarget(self,
-                                   action: #selector(CourseContentTableViewController.handleRefresh(_:)),
-                                   for: UIControlEvents.valueChanged)
-        return myRefreshControl
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupReachability(Brand.host)
         self.startReachabilityNotifier()
-        self.tableView.refreshControl = myRefreshControl
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
-        self.loadData()
-    }
-    
-    func loadData() {
-        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
-        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
 
+        // setup pull to refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+
+        // setup table view data
         let request = CourseItemHelper.getItemRequest(course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
@@ -63,24 +54,12 @@ class CourseContentTableViewController: UITableViewController {
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
+        self.refresh()
+
         do {
             try resultsController.performFetch()
         } catch {
             // TODO: Error handling.
-        }
-
-        NetworkIndicator.start()
-        CourseSectionHelper.syncCourseSections(course).flatMap { sections in
-            sections.map { section in
-                CourseItemHelper.syncCourseItems(section)
-            }.sequence().onComplete { _ in
-                self.tableView.reloadEmptyDataSet()
-                if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
-                    self.preloadCourseContent()
-                }
-            }
-        }.onComplete { _ in
-            NetworkIndicator.end()
         }
     }
 
@@ -114,10 +93,34 @@ class CourseContentTableViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
         self.reachability = nil
     }
-    
-    func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.loadData()
-        refreshControl.endRefreshing()
+
+    @objc func refresh() {
+        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
+        let stopRefreshControl = {
+            DispatchQueue.main.asyncAfter(deadline: deadline) {
+                self.tableView.refreshControl?.endRefreshing()
+            }
+        }
+
+        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
+        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
+
+        // FIXME: Due to the incorrect handling of the NSManagedObjectContext spine sync logic, we have to refetch the course for the background context
+        if UserProfileHelper.isLoggedIn(), let course = CourseHelper.getByID(self.course.id) {
+            CourseSectionHelper.syncCourseSections(course).flatMap { sections in
+                sections.map { section in
+                    CourseItemHelper.syncCourseItems(section)
+                }.sequence().onComplete { _ in
+                    if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                        self.preloadCourseContent()
+                    }
+                }
+            }.onComplete { _ in
+                stopRefreshControl()
+            }
+        } else {
+            stopRefreshControl()
+        }
     }
 
     func showItem(_ item: CourseItem) {
@@ -139,7 +142,7 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
-    func reachabilityChanged(_ note: Notification) {
+    @objc func reachabilityChanged(_ note: Notification) {
         guard let reachability = note.object as? Reachability else { return }
 
         let oldOfflinesState = self.isOffline

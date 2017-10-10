@@ -16,7 +16,7 @@ class NetworkHelper {
             Routes.HTTP_ACCEPT_HEADER: Routes.HTTP_ACCEPT_HEADER_VALUE,
         ]
         if UserProfileHelper.isLoggedIn() {
-            headers[Routes.HTTP_AUTH_HEADER] = Routes.HTTP_AUTH_HEADER_VALUE_PREFIX + UserProfileHelper.getToken()
+            headers[Routes.HTTP_AUTH_HEADER] = Routes.HTTP_AUTH_HEADER_VALUE_PREFIX + UserProfileHelper.userToken
         }
         headers[Routes.HEADER_USER_PLATFORM] = Routes.HEADER_USER_PLATFORM_VALUE
         return headers

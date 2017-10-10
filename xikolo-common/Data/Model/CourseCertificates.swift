@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
 
     var confirmationOfParticipation: CourseCertificatesHash?

@@ -25,12 +25,12 @@ class CoreDataHelper {
 
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
-        container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             // TODO: check for space etc
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+            container.viewContext.automaticallyMergesChangesFromParent = true
         })
         return container
     }()
@@ -99,10 +99,11 @@ class CoreDataHelper {
                 let result = try privateManagedObjectContext.execute(deleteRequest) as? NSBatchDeleteResult
                 guard let objectIDArray = result?.result as? [NSManagedObjectID] else { return }
                 let changes = [NSDeletedObjectsKey : objectIDArray]
-                print("delete all of \(entityName): \(objectIDArray.count) elements")
+                print("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
+                try privateManagedObjectContext.save()
             } catch {
-                // TODO: handle the error
+                print("Failed to bulk delete all enities of \(entityName) - \(error)")
             }
         }
     }
@@ -117,7 +118,7 @@ extension NSPersistentContainer {
                 try cdObject.loadFromSpine(spineObject)
                 completion({})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }
@@ -126,9 +127,9 @@ extension NSPersistentContainer {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataHelper.backgroundContext.fetch(request)
-                completion({_ in return results})
+                completion({ return results})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }
@@ -138,9 +139,9 @@ extension NSPersistentContainer {
             do {
                 let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
                 let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-                completion({_ in return results})
+                completion({ return results})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }
@@ -149,9 +150,9 @@ extension NSPersistentContainer {
         CoreDataHelper.backgroundContext.performAndWait {
             do {
                 let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-                completion({_ in return results})
+                completion({ return results})
             } catch let error as NSError {
-                completion({_ in throw XikoloError.coreData(error)})
+                completion({ throw XikoloError.coreData(error)})
             }
         }
     }

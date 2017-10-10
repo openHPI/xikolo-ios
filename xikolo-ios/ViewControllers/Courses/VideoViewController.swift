@@ -51,6 +51,12 @@ class VideoViewController : UIViewController {
         self.toggleControlBars(animated)
     }
 
+    override func prefersHomeIndicatorAutoHidden() -> Bool {
+        let orientation = UIDevice.current.orientation
+        let isInLandscapeOrientation = orientation == .landscapeRight || orientation == .landscapeLeft
+        return UIDevice.current.userInterfaceIdiom == .phone && isInLandscapeOrientation
+    }
+
     func setupPlayer() {
         BMPlayerConf.topBarShowInCase = .always
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
@@ -131,6 +137,9 @@ class VideoViewController : UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.toggleControlBars(true)
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
+        if #available(iOS 11.0, *) {
+            self.setNeedsUpdateOfHomeIndicatorAutoHidden()
+        }
     }
 
     @discardableResult private func toggleControlBars(_ animated: Bool) -> Bool {

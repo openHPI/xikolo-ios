@@ -32,6 +32,11 @@ class CourseDecisionViewController: UIViewController {
         SearchHelper.setUserActivity(for: self.course)
         self.decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
+
+        self.course.notifyOnChange(self, updatedHandler: { _ in }) {
+            let isVisible = self.isViewLoaded && self.view.window != nil
+            self.navigationController?.popToRootViewController(animated: isVisible)
+        }
     }
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
@@ -48,7 +53,7 @@ class CourseDecisionViewController: UIViewController {
         }
     }
 
-    func switchViewController(_ notification: Notification) {
+    @objc func switchViewController(_ notification: Notification) {
         if let position = notification.userInfo?[NotificationKeys.dropdownCourseContentKey] as? Int, let content = CourseContent(rawValue: position) {
             updateContainerView(content)
         }
@@ -90,7 +95,7 @@ class CourseDecisionViewController: UIViewController {
 
         // set width for new title view
         if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let titleWidth = NSString(string: text).size(attributes: [NSFontAttributeName : self.titleView.font]).width
+            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font : self.titleView.font]).width
             var frame = titleView.frame
             frame.size.width = titleWidth + self.dropdownIcon.frame.width + 2
             titleView.frame = frame

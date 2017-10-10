@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class EnrollmentCertificates : NSObject, NSCoding, EmbeddedObject {
 
     var confirmationOfParticipation: Bool?

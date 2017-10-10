@@ -11,11 +11,22 @@ import Foundation
 import CoreData
 import Spine
 
+@objcMembers
 class UserProfile: BaseModel {
 
 
 }
 
+extension UserProfile {
+
+    var fullName: String? {
+        let components = [self.first_name, self.last_name].flatMap{ $0 }
+        return components.count > 0 ? components.joined(separator: " ") : nil
+    }
+
+}
+
+@objcMembers
 class UserProfileSpine : BaseModelSpine {
 
     var display_name: String?

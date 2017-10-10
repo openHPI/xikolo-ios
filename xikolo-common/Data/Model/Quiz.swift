@@ -55,6 +55,7 @@ class Quiz : Content {
 
 }
 
+@objcMembers
 class QuizSpine : ContentSpine {
 
     var instructions: String?

@@ -25,17 +25,21 @@ class UserHelper {
         }
     }
 
-    static func getByID(_ id: String) throws -> User? {
+    static func getUser(byId id: String) -> User? {
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         request.fetchLimit = 1
-        let users = try CoreDataHelper.executeFetchRequest(request)
-        return users.first
+        do {
+            let users = try CoreDataHelper.executeFetchRequest(request)
+            return users.first
+        } catch {
+            return nil
+        }
     }
 
-    static func getMe() throws -> User? {
-        guard let id = UserProfileHelper.getUserId() else { return nil }
-        return try getByID(id) 
+    static func getMe() -> User? {
+        guard let id = UserProfileHelper.userId else { return nil }
+        return self.getUser(byId: id)
     }
 
 }

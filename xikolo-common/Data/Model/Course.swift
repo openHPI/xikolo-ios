@@ -11,6 +11,7 @@ import CoreData
 import Foundation
 import Spine
 
+@objcMembers
 class Course : BaseModel {
 
     var hidden: Bool? {
@@ -52,9 +53,9 @@ class Course : BaseModel {
     var is_enrolled_section: String {
         get {
             if enrollment != nil {
-                return NSLocalizedString("course.section-title.my courses", comment: "section title for enrolled courses")
+                return NSLocalizedString("course.section-title.my courses", tableName: "Common", comment: "section title for enrolled courses")
             } else {
-                return NSLocalizedString("course.section-title.all courses", comment: "section title for all courses")
+                return NSLocalizedString("course.section-title.all courses", tableName: "Common", comment: "section title for all courses")
             }
         }
     }
@@ -90,6 +91,7 @@ extension Course : DynamicSort {
 
 }
 
+@objcMembers
 class CourseSpine : BaseModelSpine {
 
     var title: String?

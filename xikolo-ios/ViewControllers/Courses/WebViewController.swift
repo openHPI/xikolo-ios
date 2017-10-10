@@ -41,7 +41,7 @@ extension WebViewController : UIWebViewDelegate {
             if let tokenItem = queryItems.first(where: { $0.name == "token"}) {
                 guard let token = tokenItem.value else { return false }
 
-                UserProfileHelper.saveToken(token)
+                UserProfileHelper.userToken = token
                 UserProfileHelper.postLoginStateChange()
                 self.navigationController?.dismiss(animated: true) {
                     NetworkIndicator.end()

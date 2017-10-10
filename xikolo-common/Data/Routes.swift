@@ -22,7 +22,7 @@ struct Routes {
     static let DASHBOARD_URL = Brand.BaseURL + "/dashboard"
     static let PROFILE_URL = DASHBOARD_URL + "/profile"
     static let NEWS_URL = Brand.BaseURL + "/news"
-    static let REGISTER_URL = Brand.BaseURL + "/account/new"
+    static let REGISTER_URL = Brand.BaseURL + "/account/new?in_app=true"
     static let SSO_URL = Brand.BaseURL + "?in_app=true&redirect_to=/auth/" + Brand.PlatformTitle
 
     static let HEADER_USER_PLATFORM = "User-Platform"

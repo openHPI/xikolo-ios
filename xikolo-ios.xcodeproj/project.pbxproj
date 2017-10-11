@@ -572,6 +572,18 @@
 		509A7CE01F2879A600B2791F /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509A7CD61F2879A600B2791F /* UserDefaultsKeys.swift */; };
 		509A7CE11F2879A600B2791F /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509A7CD61F2879A600B2791F /* UserDefaultsKeys.swift */; };
 		509A7CE21F2879A600B2791F /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509A7CD61F2879A600B2791F /* UserDefaultsKeys.swift */; };
+		50D6432F1F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643301F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643311F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643321F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643331F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643341F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643351F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643361F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643371F8E587000A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643381F8E587100A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D643391F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D6433A1F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
@@ -920,7 +932,6 @@
 		70D1EADD1EF0AC330088C0FF /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		70D1EADE1EF0AC330088C0FF /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		70D1EADF1EF0AC430088C0FF /* UITableViewCell+enable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */; };
-		70D1EAE01EF0AC460088C0FF /* UIApplication+VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */; };
 		70D1EAE11EF0AC530088C0FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		70D1EAE21EF0AC540088C0FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
@@ -1147,9 +1158,6 @@
 		AB2802DA1D2D756E008C8BAE /* AnnouncementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802CD1D2AAEC9008C8BAE /* AnnouncementProvider.swift */; };
 		AB2802DB1D2D7582008C8BAE /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C81D2A8ABB008C8BAE /* Announcement.swift */; };
 		AB2802DC1D2D7586008C8BAE /* Announcement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802C71D2A8ABB008C8BAE /* Announcement+CoreDataProperties.swift */; };
-		AB34C9BB1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */; };
-		AB34C9BC1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */; };
-		AB34C9BD1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */; };
 		AB35B8701CDF1ABE00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
 		AB35B8711CE21F2F00810819 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */; };
 		AB35C9331E89DAA4009832A5 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35C9321E89DAA4009832A5 /* UserHelper.swift */; };
@@ -1858,6 +1866,7 @@
 		508451681F39BB2700520D87 /* CourseDateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDateHeader.xib; sourceTree = "<group>"; };
 		509A7CD61F2879A600B2791F /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
+		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-ios/Categories/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
@@ -1930,7 +1939,6 @@
 		AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
 		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openSAP/xikolo-ios.entitlements"; sourceTree = "<group>"; };
-		AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication+VersionInfo.swift"; path = "Categories/UIApplication+VersionInfo.swift"; sourceTree = "<group>"; };
 		AB35B86F1CDF1ABE00810819 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		AB35C9321E89DAA4009832A5 /* UserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
 		AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCertificates.swift; sourceTree = "<group>"; };
@@ -2479,6 +2487,7 @@
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
+				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
 				50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */,
 				50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */,
 				50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */,
@@ -2685,7 +2694,6 @@
 			isa = PBXGroup;
 			children = (
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
-				AB34C9BA1E919D9800CAD703 /* UIApplication+VersionInfo.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -4275,6 +4283,7 @@
 				2474C8621D86FDFE009BDB94 /* CourseItem.swift in Sources */,
 				ABDD84BF1D8E010900C7D193 /* LTIExercise.swift in Sources */,
 				249C01C51D3F78E100B54AAC /* Brand.swift in Sources */,
+				50D643321F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				2490C4F31D216D5A00F42949 /* UserProfileHelper.swift in Sources */,
 				2474C8721D86FE15009BDB94 /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				70F456451F01296F00A2C6B7 /* User+CoreDataProperties.swift in Sources */,
@@ -4399,6 +4408,7 @@
 				5060A5251F177304007896FF /* DetailedContent.swift in Sources */,
 				AB1C03401D8E0CA60053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				AB07C3731E77E18F00DA0011 /* DynamicSort.swift in Sources */,
+				50D643331F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
 				24BA40A01D3F9AB200E38C2C /* Quiz.swift in Sources */,
 				70F456501F0139BA00A2C6B7 /* AnnouncementsTableViewController.swift in Sources */,
@@ -4432,7 +4442,6 @@
 				24BA40DC1D3F9AFE00E38C2C /* Error.swift in Sources */,
 				50F7202E1F28E29B00779995 /* Video+Download.swift in Sources */,
 				24BA40951D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
-				AB34C9BC1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
 				ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
@@ -4462,6 +4471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D6432F1F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24BA40BF1D3F9ADB00E38C2C /* AnnouncementProvider.swift in Sources */,
 				50F97ABB1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
@@ -4667,6 +4677,7 @@
 				ABDD84C01D8E010A00C7D193 /* LTIExercise.swift in Sources */,
 				24BA413C1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24BA40CE1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
+				50D643341F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				2474C8731D86FE15009BDB94 /* QuizQuestion+CoreDataProperties.swift in Sources */,
 				24BA40C21D3F9AE000E38C2C /* CoreDataHelper.swift in Sources */,
 				70F456461F01297000A2C6B7 /* User+CoreDataProperties.swift in Sources */,
@@ -4693,6 +4704,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D643311F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24A16D8B1CFEF9F800CAD9FE /* VideoProvider.swift in Sources */,
 				50F97AB91F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
@@ -4854,6 +4866,7 @@
 				70D1EA711EF0AB430088C0FF /* TrackingEvent.swift in Sources */,
 				50F668971F3849C300ACC26A /* SyncHelper.swift in Sources */,
 				70D1EAF41EF0ACB20088C0FF /* VideoViewController.swift in Sources */,
+				50D643381F8E587100A89331 /* UIApplication+AppInfo.swift in Sources */,
 				70D1EA951EF0AB760088C0FF /* LTIExerciseProvider.swift in Sources */,
 				70D1EB361EF12E240088C0FF /* AbstractAppDelegate.swift in Sources */,
 				70D1EA771EF0AB4A0088C0FF /* TrackingEventVerb.swift in Sources */,
@@ -4875,7 +4888,6 @@
 				70D1EA2B1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
 				70D1EA7D1EF0AB500088C0FF /* BuildFile in Sources */,
 				50F668981F3857B800ACC26A /* SearchHelper.swift in Sources */,
-				70D1EAE01EF0AC460088C0FF /* UIApplication+VersionInfo.swift in Sources */,
 				70D1EAEF1EF0ACA50088C0FF /* CourseDecisionViewController.swift in Sources */,
 				70D1EA4D1EF0AB160088C0FF /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				70D1EA041EF0AAB70088C0FF /* Channel+CoreDataProperties.swift in Sources */,
@@ -5029,6 +5041,7 @@
 				70D1EA781EF0AB4B0088C0FF /* TrackingEventVerb.swift in Sources */,
 				70D1EA081EF0AABC0088C0FF /* Channel.swift in Sources */,
 				70D1EA3F1EF0AB040088C0FF /* LTIExercise+CoreDataProperties.swift in Sources */,
+				50D643391F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */,
 				70D1EA811EF0AB530088C0FF /* Video+CoreDataProperties.swift in Sources */,
 				70D1E9FF1EF0AAB00088C0FF /* BaseModel.swift in Sources */,
 				70D1EB441EF134130088C0FF /* MainViewController.swift in Sources */,
@@ -5209,6 +5222,7 @@
 				70D1EA1B1EF0AAD90088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA1E1EF0AADC0088C0FF /* CourseDate+CoreDataProperties.swift in Sources */,
 				70D1EA731EF0AB440088C0FF /* TrackingEvent.swift in Sources */,
+				50D6433A1F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */,
 				70D1EA581EF0AB230088C0FF /* Quiz+CoreDataProperties.swift in Sources */,
 				70D1EAAE1EF0ABF60088C0FF /* CourseDateHelper.swift in Sources */,
 				70F456481F01297100A2C6B7 /* User+CoreDataProperties.swift in Sources */,
@@ -5333,6 +5347,7 @@
 				AB95897C1DC4A42700586137 /* UITableViewCell+enable.swift in Sources */,
 				5060A5221F177304007896FF /* DetailedContent.swift in Sources */,
 				50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
+				50D643301F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */,
 				24A16D901CFFA3E500CAD9FE /* Error.swift in Sources */,
 				AB07C3701E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -5366,7 +5381,6 @@
 				F852253A1B4D27D700C9BF56 /* SettingsViewController.swift in Sources */,
 				2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				50ED3C4F1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
-				AB34C9BB1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
 				7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
@@ -5494,6 +5508,7 @@
 				5060A5281F177304007896FF /* DetailedContent.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
 				AB07C3761E77E18F00DA0011 /* DynamicSort.swift in Sources */,
+				50D643351F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
 				ABB49A8C1DF8D6D1004C59B6 /* PlatformEventProvider.swift in Sources */,
 				70F456511F0139BB00A2C6B7 /* AnnouncementsTableViewController.swift in Sources */,
@@ -5525,7 +5540,6 @@
 				ABA0F0C41DF8CE320001D88D /* NetworkHelper.swift in Sources */,
 				50ED3C551F4AE7FF00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				50F7202F1F28E29B00779995 /* Video+Download.swift in Sources */,
-				AB34C9BD1E919D9800CAD703 /* UIApplication+VersionInfo.swift in Sources */,
 				7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
 				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
@@ -5557,6 +5571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D643361F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				ABA0F0B81DF8CE1F0001D88D /* PeerAssessmentProvider.swift in Sources */,
 				ABA0F0881DF8CDD50001D88D /* QuizOption.swift in Sources */,
 				50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
@@ -5762,6 +5777,7 @@
 				ABA0F0CC1DF8CE450001D88D /* CourseHelper.swift in Sources */,
 				ABA0F0C31DF8CE2F0001D88D /* SpineModelHelper.swift in Sources */,
 				ABA0F04F1DF8CD800001D88D /* Enrollment+CoreDataProperties.swift in Sources */,
+				50D643371F8E587000A89331 /* UIApplication+AppInfo.swift in Sources */,
 				70D1EB381EF12E270088C0FF /* NotificationKeys.swift in Sources */,
 				70F456471F01297100A2C6B7 /* User+CoreDataProperties.swift in Sources */,
 				50ED3C571F4AE80000CD8466 /* UIApplication+DeviceInfo.swift in Sources */,

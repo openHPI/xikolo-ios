@@ -1,5 +1,5 @@
 //
-//  UIApplication+VersionInfo.swift
+//  UIApplication+AppInfo.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 02.04.17.
@@ -22,4 +22,5 @@ extension UIApplication {
     static let appBuild = {
         return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }()
+
 }

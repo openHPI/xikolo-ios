@@ -61,8 +61,8 @@ class SettingsViewController: UITableViewController {
         self.preloadContentSwitch.setOn(!contentPreloadDeactivated, animated: false)
 
         // set app version info
-        self.versionView.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion()
-        self.buildView.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild()
+        self.versionView.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion
+        self.buildView.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SettingsViewController.updateUIAfterLoginStateChanged),
@@ -228,8 +228,8 @@ class SettingsViewController: UITableViewController {
             "os version: \(UIApplication.osVersion)",
             "device: \(UIApplication.device)",
             "app name: \(UIApplication.appName)",
-            "app version: \(UIApplication.appVersion())",
-            "app build: \(UIApplication.appBuild())",
+            "app version: \(UIApplication.appVersion)",
+            "app build: \(UIApplication.appBuild)",
 
         ]
         return components.joined(separator: "\n")

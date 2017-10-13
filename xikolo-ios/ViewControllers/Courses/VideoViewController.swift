@@ -164,7 +164,7 @@ extension VideoViewController: BMPlayerDelegate {
         if state == .bufferFinished {
             player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
         } else if state == .playedToTheEnd {
-            TrackingHelper.sendEvent("VIDEO_END", resource: self.video, context: self.newTrackingContext)
+            TrackingHelper.sendEvent(.videoPlaybackEnd, resource: self.video, context: self.newTrackingContext)
         }
     }
 

@@ -29,7 +29,7 @@ class AnnouncementViewController : UIViewController {
 
         //save read state to server
         self.announcement.visited = true
-        TrackingHelper.sendEvent("VISITED_ANNOUNCEMENT", resource: self.announcement)
+        TrackingHelper.sendEvent(.visitedAnnouncement, resource: self.announcement)
         SpineHelper.save(AnnouncementSpine.init(announcementItem: self.announcement))
 
         self.announcement.notifyOnChange(self, updatedHandler: { _ in
@@ -58,6 +58,10 @@ class AnnouncementViewController : UIViewController {
         } else {
             self.textView.text = "[...]"
         }
+        //save read state to server
+        announcement.visited = true
+        TrackingHelper.sendEvent(.visitedAnnouncement, resource: announcement)
+        SpineHelper.save(AnnouncementSpine.init(announcementItem: announcement))
     }
 
 }

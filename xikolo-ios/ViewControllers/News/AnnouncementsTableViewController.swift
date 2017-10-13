@@ -29,7 +29,7 @@ class AnnouncementsTableViewController : UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        TrackingHelper.sendEvent("VISITED_ANNOUNCEMENTS", resource: nil)
+        TrackingHelper.sendEvent(.visitedAnnouncementList, resource: nil)
         let request = AnnouncementHelper.getRequest()
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 

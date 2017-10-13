@@ -11,6 +11,32 @@ import UIKit
 
 class TrackingHelper {
 
+    enum AnalyticsKeys : String {
+        // tabs
+        case visitedDashboard = "VISITED_DASHBOARD"
+        case visitedAnnouncementList = "VISITED_ANNOUNCEMENTS"
+        case visitedActivityStream = "VISITED_ACTIVITY_STREAM"
+        case visitedProfile = "VISITED_PROFILE"
+
+        // subpages
+        case visitedItem = "VISITED_ITEM"
+        case visitedAnnouncement = "VISITED_ANNOUNCEMENT_DETAIL"
+
+        // video playback
+        case videoPlaybackPlay = "VIDEO_PLAY"
+        case videoPlaybackPause = "VIDEO_PAUSE"
+        case videoPlaybackSeek = "VIDEO_SEEK"
+        case videoPlaybackEnd = "VIDEO_END"
+        case videoPlaybackDeviceOrientationPortrait = "VIDEO_PORTRAIT"
+        case videoPlaybackDeviceOrientationLandscape = "VIDEO_LANDSCAPE"
+        case videoPlaybackChangeSpeed = "VIDEO_CHANGE_SPEED"
+
+        // video download
+        case videoDownloadStart = "DOWNLOADED_HLS_VIDEO"
+        case videoDownloadFinished = "DOWNLOADED_HLS_VIDEO_FINISHED"
+        case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
+    }
+
     fileprivate class func defaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
         let windowSize = (UIApplication.shared.delegate as? AppDelegate)?.window?.frame.size
@@ -33,10 +59,10 @@ class TrackingHelper {
         ]
     }
 
-    fileprivate class func createEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
+    fileprivate class func createEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
 
         let trackingVerb = TrackingEventVerb()
-        trackingVerb.type = verb
+        trackingVerb.type = verb.rawValue
 
         var trackingContext = defaultContext()
 
@@ -62,7 +88,7 @@ class TrackingHelper {
         return Future.init(value: trackingEvent)
     }
 
-    @discardableResult class func sendEvent(_ verb: String, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
             SpineHelper.save(event).asVoid()
         }

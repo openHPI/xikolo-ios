@@ -637,8 +637,8 @@
                         <viewLayoutGuide key="safeArea" id="WKr-Pr-jcK"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="tAx-LO-1UX"/>
                                 <exclude reference="Q8n-3U-LPd"/>
+                                <exclude reference="tAx-LO-1UX"/>
                             </mask>
                         </variation>
                     </view>
@@ -1239,8 +1239,8 @@
                         <viewLayoutGuide key="safeArea" id="aUm-4H-4dW"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="1ES-dv-8h7"/>
                                 <exclude reference="a2L-r1-Jko"/>
+                                <exclude reference="1ES-dv-8h7"/>
                             </mask>
                         </variation>
                     </view>

@@ -10,6 +10,7 @@ import BrightFutures
 import CoreData
 import Foundation
 import Spine
+import Marshal
 
 @objcMembers
 class Course : BaseModel {
@@ -90,6 +91,52 @@ extension Course : DynamicSort {
     }
 
 }
+
+extension Course: Pullable {
+
+    func populate(fromObject object: MarshaledObject, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSONObject
+        self.title = try attributes.value(for: "title")
+        self.slug = try attributes.value(for: "slug")
+        self.abstract = try attributes.value(for: "abstract")
+        self.accessible = try attributes.value(for: "accessible")
+        self.course_description = try attributes.value(for: "description")
+        self.certificates = try attributes.value(for: "certificates")
+        self.image_url = try attributes.value(for: "image_url")
+        self.teachers = try attributes.value(for: "teachers")
+        self.language = try attributes.value(for: "language")
+        self.start_at = try attributes.value(for: "start_at")
+        self.end_at = try attributes.value(for: "end_at")
+        self.status = try attributes.value(for: "status")
+        self.hidden = try attributes.value(for: "hidden")
+        self.enrollable = try attributes.value(for: "enrollable")
+        self.external = try attributes.value(for: "external")
+
+        let relationships = try object.value(for: "relationships") as JSONObject
+
+        let channel = try relationships.value(for: "channel.data") as ResourceDescription
+        let enrollment = try relationships.value(for: "user_enrollment.data") as ResourceDescription
+
+        // TODO:
+        // create or update channelidentifier and enrollmentidentifier / channeldescription and enrollemntdescription in core data
+        // search for included data
+        // try to create real objects if included
+        let marObj: MarshaledObject = [:]
+        if let enrollment = self.enrollment {
+            // update enrollement
+
+            try enrollment.update(object: marObj, inContext: context)
+        } else {
+            // create enrollemnt
+            try Enrollment.value(from: marObj, inContext: context)
+
+        }
+
+    }
+
+}
+
+
 
 @objcMembers
 class CourseSpine : BaseModelSpine {

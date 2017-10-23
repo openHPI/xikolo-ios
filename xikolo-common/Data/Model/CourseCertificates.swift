@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Marshal
 
 @objcMembers
 class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
@@ -33,4 +34,14 @@ class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
         coder.encode(certificate, forKey: "qualified_certificate")
     }
     
+}
+
+extension CourseCertificates: Unmarshaling {
+
+    required init(object: MarshaledObject) throws {
+        self.confirmationOfParticipation = try object.value(for: "confirmation_of_participation")
+        self.recordOfAchievement = try object.value(for: "record_of_achievement")
+        self.certificate = try object.value(for: "qualified_certificate")
+    }
+
 }

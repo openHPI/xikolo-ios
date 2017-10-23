@@ -9,7 +9,6 @@
 import BrightFutures
 import CoreData
 import Foundation
-import Result
 import Spine
 
 class SpineModelHelper {

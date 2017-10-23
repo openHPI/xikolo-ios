@@ -9,6 +9,7 @@
 import CoreData
 import Foundation
 import Spine
+import Marshal
 
 @objcMembers
 class Enrollment : BaseModel {
@@ -45,6 +46,23 @@ class Enrollment : BaseModel {
         set(new_is_reactivated) {
             reactivated_int = new_is_reactivated as NSNumber?
         }
+    }
+
+}
+
+extension Enrollment: Pullable {
+
+    func populate(fromObject object: MarshaledObject, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSONObject
+
+        //        "visits": EmbeddedObjectAttribute(EnrollmentVisits.self), // TODO: don't use this
+        //        "points": EmbeddedObjectAttribute(EnrollmentPoints.self), // TODO: don't use this
+//        "certificates": EmbeddedObjectAttribute(EnrollmentCertificates.self),
+        self.proctored = try attributes.value(for: "proctored")
+        self.completed = try attributes.value(for: "completed")
+        self.reactivated = try attributes.value(for: "reactivated")
+        self.created_at = try attributes.value(for: "created_at")
+//        "course": ToOneRelationship(CourseSpine.self)
     }
 
 }

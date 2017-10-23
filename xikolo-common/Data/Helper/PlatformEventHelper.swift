@@ -8,7 +8,6 @@
 
 import BrightFutures
 import CoreData
-import Result
 
 class PlatformEventHelper {
 

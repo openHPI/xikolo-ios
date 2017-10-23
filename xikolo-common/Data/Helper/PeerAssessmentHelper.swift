@@ -8,7 +8,6 @@
 
 import BrightFutures
 import Foundation
-import Result
 
 class PeerAssessmentHelper {
 

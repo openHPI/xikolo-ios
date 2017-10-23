@@ -18,6 +18,7 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - Hero (1.0.0)
   - KeychainAccess (3.1.0)
+  - Marshal (1.2.4)
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
   - NVActivityIndicatorView/Presenter (4.0.0)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet (= 1.8.1)
   - Hero (from `https://github.com/lkzhao/Hero`, commit `d961f16`)
   - KeychainAccess (~> 3.1)
+  - Marshal (~> 1.2)
   - ObjectMapper (= 2.0)
   - ReachabilitySwift (= 3)
   - Result (~> 3.2)
@@ -89,6 +91,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Hero: a0481f995d78951544614a8e828f7eb374e73c06
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
@@ -99,6 +102,6 @@ SPEC CHECKSUMS:
   Spine: 89406e28c0c98dd994f3100afb31ba92fa26d66e
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 407b931a6842c199ddca27ef6a3a7047ea670f1b
+PODFILE CHECKSUM: 73b3540105b0cce82d4211b3430b66a02c7fcba1
 
 COCOAPODS: 1.3.1

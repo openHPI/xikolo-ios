@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import Marshal
 
 @objcMembers
 class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
 
-    var available: Bool?
-    var threshold: NSNumber?
+    var available: Bool? // TODO: should be Bool
+    var threshold: NSNumber? // TODO: should be Int32?
 
     required init(_ dict: [String : AnyObject]) {
         available = dict["available"] as? Bool
@@ -30,3 +31,33 @@ class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
     }
     
 }
+
+//extension CourseCertificatesHash: ValueType {
+//
+//    init(available: Bool?, threshold: NSNumber?) {
+//        self.available = available
+//        self.threshold = threshold
+//    }
+//
+//    public static func value(from object: Any) throws -> CourseCertificates {
+//        guard let dict = object as? JSONObject else {
+//            throw MarshalError.typeMismatch(expected: JSONObject.self, actual: type(of: object))
+//        }
+//
+//        let available = try object.value(forKey: "available") as Bool?
+//        let threshold = try object.value(forKey: "available") as NSNumner?
+//
+//        return CourseCertificatesHash(available: available, threshold: threshold)
+//    }
+//
+//}
+
+extension CourseCertificatesHash: Unmarshaling {
+
+    required init(object: MarshaledObject) throws {
+        self.available = try object.value(for: "available")
+//        self.threshold = try object.value(for: "threshold")
+    }
+
+}
+

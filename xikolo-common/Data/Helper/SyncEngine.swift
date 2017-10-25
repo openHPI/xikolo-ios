@@ -39,9 +39,7 @@ struct SyncEngine {
     }
 
     private static func fetchCoreDataObjects() -> Future<[Course], XikoloError> { // TODO: accept fetchrequest and context
-        return Future { complete in
-            complete(.success([]))
-        }
+        return Future(value: [])
     }
 
     private static func doNetworkRequest(_ request: URLRequest) -> Future<MarshaledObject, XikoloError> {
@@ -50,33 +48,29 @@ struct SyncEngine {
     }
 
     private static func merge<Resource>(object: MarshaledObject, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
-        var existingObjects = objects
-
         do {
+            var existingObjects = objects
             let data = try object.value(for: "data") as [MarshaledObject]
+            let includes = try? object.value(for: "included") as [MarshaledObject]
 
             for d in data {
                 let id = try d.value(for: "id") as String
                 if let existingObject = existingObjects.first(where: { $0.id == id }) {
-                    try existingObject.update(object: d, inContext: context)
+                    try existingObject.update(object: d, including: includes, inContext: context)
                     if let index = existingObjects.index(of: existingObject) {
                         existingObjects.remove(at: index)
                     }
                 } else {
-                    // TODO: do not forget to create resource description' model
-                    try Resource.value(from: d, inContext: context)
+                    // TODO: do not forget to create 'resource description' model
+                    let newObject = try Resource.value(from: d, including: includes, inContext: context)
                 }
             }
-            //
 
+            // TODO: delete rest of existing objects + resource identifier (cascade)
 
+            return Future(value: existingObjects)
         } catch {
-            return Future<[Resource], XikoloError>(error: XikoloError.totallyUnknownError) // TODO: better error
-        }
-
-
-        return Future { complete in
-            complete(.success(existingObjects))
+            return Future(error: XikoloError.totallyUnknownError) // TODO: better error
         }
     }
 
@@ -93,14 +87,14 @@ struct SyncEngine {
             coreDataFetch.zip(networkRequest).flatMap { courses, json in
                 self.merge(object: json, withExistingObjects: courses, inContext: context)
             }.onSuccess { _ in
-                // save core data context
+                // TODO: save core data context
             }.onComplete { result in
                 promise.complete(result)
             }
         }
 
         return promise.future.onComplete { _ in
-            // check for api deprecation and maintance
+            // TODO: check for api deprecation and maintance
         }
     }
 }
@@ -142,31 +136,112 @@ struct ResourceDescription: Unmarshaling {
 
 }
 
-protocol Pullable: UnmarshalingWithContext, UnmarshalUpdatingWithContext {
+protocol Pullable {
 
     var id: String { get set }
 
-    func populate(fromObject object: MarshaledObject, inContext context: NSManagedObjectContext) throws
+    static func value(from object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws -> Self
+
+    func update(object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws
+    func populate(fromObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws
 
 }
 
 extension Pullable where Self: NSManagedObject {
 
-    @discardableResult static func value(from object: MarshaledObject, inContext context: NSManagedObjectContext) throws -> Self {
+    static func value(from object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws -> Self {
         // TODO: add assert for resource type
         var managedObject = self.init(entity: self.entity(), insertInto: context)
         try managedObject.id = object.value(for: "id")
-        try managedObject.populate(fromObject: object, inContext: context)
+        try managedObject.populate(fromObject: object, including: includes, inContext: context)
         return managedObject
     }
 
-    func update(object: MarshaledObject, inContext context: NSManagedObjectContext) throws {
-        try self.populate(fromObject: object, inContext: context)
+
+    func update(object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws {
+        try self.populate(fromObject: object, including: includes, inContext: context)
+    }
+
+
+    private func findIncludedObject(for objectIdentifier: ResourceIdentifier, in includes: [MarshaledObject]?) -> MarshaledObject? {
+        guard let includedData = includes else {
+            return nil
+        }
+
+        return includedData.first { item in
+            guard let identifier = try? ResourceIdentifier(object: item) else {
+                return false
+            }
+            return objectIdentifier.id == identifier.id && objectIdentifier.type == identifier.type
+        }
+    }
+
+
+    func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A>,
+                               forKey key: KeyType,
+                               fromObject object: MarshaledObject,
+                               including includes: [MarshaledObject]?,
+                               inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
+        let resourceIdentifier = try object.value(for: "\(key).data") as ResourceIdentifier
+
+
+        // update resource
+        if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
+            let existingObject = self[keyPath: keyPath]
+            try existingObject.populate(fromObject: includedObject, including: includes, inContext: context)
+        } else {
+            // in this case we should throw an error. the resource should be included
+
+            // TODO: create newObject
+            // TODO: reset relationship for keyPath
+            // TODO: create PendingRelationship object
+            // objectId: self.objectID, relname: , desctinationObject (className: newObject.entity.managedObjectClassName, id: newObject.id)
+            let rels = self.entity.relationships(forDestination: A.entity())
+
+            guard let rel = rels.first else {
+                // TODO: error: no relationship defined
+            }
+
+            guard rels.count == 1 else {
+                // TODO: error too many relatiosnhips defined
+            }
+
+            let relname = rel.name
+        }
+    }
+
+    func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
+                               forKey key: KeyType,
+                               fromObject object: MarshaledObject,
+                               including includes: [MarshaledObject]?,
+                               inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
+//        if let existingObject = existingObjects.first(where: { $0.id == id }) {
+//            try existingObject.update(object: d, including: includes, inContext: context)
+//            if let index = existingObjects.index(of: existingObject) {
+//                existingObjects.remove(at: index)
+//            }
+//        } else {
+//            // TODO: do not forget to create 'resource description' model
+//            let newObject = try Resource.value(from: d, including: includes, inContext: context)
+//        }
+    }
+
+    func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, Set<A>>,
+                               forKey key: KeyType,
+                               fromObject object: MarshaledObject,
+                               including includes: [MarshaledObject]?,
+                               inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
+
     }
 
 }
 
-protocol Pushable: Marshaling {
+struct ResourceIdentifier: Unmarshaling {
+    let type: String
+    let id: String
 
+    init(object: MarshaledObject) throws {
+        self.type = try object.value(for: "type")
+        self.id = try object.value(for: "id")
+    }
 }
-

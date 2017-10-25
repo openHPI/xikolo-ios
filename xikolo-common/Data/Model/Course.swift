@@ -13,7 +13,7 @@ import Spine
 import Marshal
 
 @objcMembers
-class Course : BaseModel {
+final class Course : BaseModel {
 
     var hidden: Bool? {
         get {
@@ -94,7 +94,7 @@ extension Course : DynamicSort {
 
 extension Course: Pullable {
 
-    func populate(fromObject object: MarshaledObject, inContext context: NSManagedObjectContext) throws {
+    func populate(fromObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws {
         let attributes = try object.value(for: "attributes") as JSONObject
         self.title = try attributes.value(for: "title")
         self.slug = try attributes.value(for: "slug")
@@ -113,25 +113,13 @@ extension Course: Pullable {
         self.external = try attributes.value(for: "external")
 
         let relationships = try object.value(for: "relationships") as JSONObject
-
-        let channel = try relationships.value(for: "channel.data") as ResourceDescription
-        let enrollment = try relationships.value(for: "user_enrollment.data") as ResourceDescription
-
-        // TODO:
-        // create or update channelidentifier and enrollmentidentifier / channeldescription and enrollemntdescription in core data
-        // search for included data
-        // try to create real objects if included
-        let marObj: MarshaledObject = [:]
-        if let enrollment = self.enrollment {
-            // update enrollement
-
-            try enrollment.update(object: marObj, inContext: context)
-        } else {
-            // create enrollemnt
-            try Enrollment.value(from: marObj, inContext: context)
-
-        }
-
+        try self.updateRelationship(forKeyPath: \Course.enrollment, forKey: "user_enrollment", fromObject: relationships, including: includes, inContext: context)
+//        self.enrollment = try relationships.value(forRelationship: "user_enrollment.data", including: includes, inContext: context)
+//        self.identifier.enrollment = try relationships.value(forRelationship: "user_enrollment", including: includes, inContext: context)
+//        or: self.identifier.enrollment = try relationships.value(forRelationship: "user_enrollment", existingObject: self.identifier.enrollemtn, including: includes, inContext: context)
+//        - key includes context currentObject
+//        self.updateRelationship(withKeyPath: \Course.identifier.enrollment, fromObject: relationships, forKey: "user_enrollment", including: includes, inContext: context)
+//        - object keyPath key includes context
     }
 
 }

@@ -190,11 +190,25 @@ extension Pullable where Self: NSManagedObject {
             let existingObject = self[keyPath: keyPath]
             try existingObject.populate(fromObject: includedObject, including: includes, inContext: context)
         } else {
-            // in this case we should throw an error. the resource should be included
+            // TODO: throw custom error: object should be included (+ try to fetch first)?
+        }
+    }
 
-            // TODO: create newObject
-            // TODO: reset relationship for keyPath
-            // TODO: create PendingRelationship object
+    func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
+                               forKey key: KeyType,
+                               fromObject object: MarshaledObject,
+                               including includes: [MarshaledObject]?,
+                               inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
+        let resourceIdentifier = try object.value(for: "\(key).data") as ResourceIdentifier
+
+        if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
+            if let existingObject = self[keyPath: keyPath] {
+                try existingObject.update(withObject: includedObject, including: includes, inContext: context)
+            } else {
+                self[keyPath: keyPath] = try A.value(from: includedObject, including: includes, inContext: context)
+            }
+        } else {
+            // TODO: create PendingRelationship object (+ try to fetch first)
             // objectId: self.objectID, relname: , desctinationObject (className: newObject.entity.managedObjectClassName, id: newObject.id)
             let rels = self.entity.relationships(forDestination: A.entity())
 
@@ -207,23 +221,10 @@ extension Pullable where Self: NSManagedObject {
             }
 
             let relname = rel.name
-        }
-    }
 
-    func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
-                               forKey key: KeyType,
-                               fromObject object: MarshaledObject,
-                               including includes: [MarshaledObject]?,
-                               inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
-//        if let existingObject = existingObjects.first(where: { $0.id == id }) {
-//            try existingObject.update(object: d, including: includes, inContext: context)
-//            if let index = existingObjects.index(of: existingObject) {
-//                existingObjects.remove(at: index)
-//            }
-//        } else {
-//            // TODO: do not forget to create 'resource description' model
-//            let newObject = try Resource.value(from: d, including: includes, inContext: context)
-//        }
+            // reset current relationship
+            self[keyPath: keyPath] = nil
+        }
     }
 
     func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, Set<A>>,
@@ -231,7 +232,31 @@ extension Pullable where Self: NSManagedObject {
                                fromObject object: MarshaledObject,
                                including includes: [MarshaledObject]?,
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
+        let resourceIdentifiers = try object.value(for: "\(key).data") as [ResourceIdentifier]
+        var currentObjects = Set(self[keyPath: keyPath])
 
+        for resourceIdentifier in resourceIdentifiers {
+            if let currentObject = currentObjects.first(where: { $0.id == resourceIdentifier.id }) {
+                if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
+                    try currentObject.update(withObject: includedObject, including: includes, inContext: context)
+                }
+
+                if let index = currentObjects.index(where: { $0 == currentObject }) {
+                    currentObjects.remove(at: index)
+                }
+            } else {
+                if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
+                    let newObject = try A.value(from: includedObject, including: includes, inContext: context)
+                    self[keyPath: keyPath].insert(newObject)
+                } else {
+                    // TODO: create pending relationship (+ try to fetch first)
+                }
+            }
+        }
+
+        for currentObject in currentObjects {
+            context.delete(currentObject)
+        }
     }
 
 }

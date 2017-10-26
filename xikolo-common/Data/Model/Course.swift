@@ -94,7 +94,11 @@ extension Course : DynamicSort {
 
 extension Course: Pullable {
 
-    func populate(fromObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws {
+    static var type: String {
+        return "courses"
+    }
+
+    func update(withObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws {
         let attributes = try object.value(for: "attributes") as JSONObject
         self.title = try attributes.value(for: "title")
         self.slug = try attributes.value(for: "slug")

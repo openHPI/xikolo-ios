@@ -14,18 +14,17 @@ import CoreData
 struct SyncEngine {
 
     // TODO: maybe move those
-    private static func buildRequest() -> Future<URLRequest, XikoloError> { // TODO: accept query? (or enums
+    private static func buildRequest<Resource>(forQuery query: Query<Resource>) -> Future<URLRequest, XikoloError> {
         return Future { complete in
             guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
                 complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
                 return
             }
 
-            guard let url = URL(string: "courses", relativeTo: baseURL) else { // TODO: dynamic query building
+            guard let url = URL(string: query.resourceType.type, relativeTo: baseURL) else { // TODO: dynamic query building
                 complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
                 return
             }
-
 
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
@@ -33,54 +32,64 @@ struct SyncEngine {
             // TODO: set headers
             // TODO: set body
 
-
             complete(.success(request))
         }
     }
 
-    private static func fetchCoreDataObjects() -> Future<[Course], XikoloError> { // TODO: accept fetchrequest and context
-        return Future(value: [])
+    private static func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
+        do {
+            let objects = try context.fetch(fetchRequest)
+            return Future(value: objects)
+        } catch {
+            return Future(error: XikoloError.totallyUnknownError) // TODO: better error
+        }
     }
 
     private static func doNetworkRequest(_ request: URLRequest) -> Future<MarshaledObject, XikoloError> {
         let promise = Promise<MarshaledObject, XikoloError>()
+
+        // TODO: do network request
+
         return promise.future
     }
 
     private static func merge<Resource>(object: MarshaledObject, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             var existingObjects = objects
+            var newObjects: [Resource] = []
             let data = try object.value(for: "data") as [MarshaledObject]
             let includes = try? object.value(for: "included") as [MarshaledObject]
 
             for d in data {
                 let id = try d.value(for: "id") as String
                 if let existingObject = existingObjects.first(where: { $0.id == id }) {
-                    try existingObject.update(object: d, including: includes, inContext: context)
+                    try existingObject.update(withObject: d, including: includes, inContext: context)
                     if let index = existingObjects.index(of: existingObject) {
                         existingObjects.remove(at: index)
                     }
+                    newObjects.append(existingObject)
                 } else {
-                    // TODO: do not forget to create 'resource description' model
                     let newObject = try Resource.value(from: d, including: includes, inContext: context)
+                    newObjects.append(newObject)
                 }
             }
 
-            // TODO: delete rest of existing objects + resource identifier (cascade)
+            for existingObject in existingObjects {
+                context.delete(existingObject)
+            }
 
-            return Future(value: existingObjects)
+            return Future(value: newObjects)
         } catch {
-            return Future(error: XikoloError.totallyUnknownError) // TODO: better error
+            return Future(error: XikoloError.totallyUnknownError) // TODO: better errors for different trys
         }
     }
 
-    // TODO: generic sync method for (fetchrequest, query)?
-    static func syncCourses() -> Future<[Course], XikoloError> {
-        let promise = Promise<[Course], XikoloError>()
+    private static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: Query<Resource>) -> Future<[Resource], XikoloError> {
+        let promise = Promise<[Resource], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let coreDataFetch = self.fetchCoreDataObjects()
-            let networkRequest = self.buildRequest().flatMap { request in
+            let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
+            let networkRequest = self.buildRequest(forQuery: query).flatMap { request in
                 self.doNetworkRequest(request)
             }
 
@@ -96,6 +105,12 @@ struct SyncEngine {
         return promise.future.onComplete { _ in
             // TODO: check for api deprecation and maintance
         }
+    }
+
+    static func syncCourses() -> Future<[Course], XikoloError> {
+        let fetchRequest = CourseHelper.getAllCoursesRequest()
+        let query = Query(type: Course.self)
+        return self.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 }
 
@@ -139,11 +154,11 @@ struct ResourceDescription: Unmarshaling {
 protocol Pullable {
 
     var id: String { get set }
+    static var type: String { get }
 
     static func value(from object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws -> Self
 
-    func update(object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws
-    func populate(fromObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws
+    func update(withObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws
 
 }
 
@@ -153,15 +168,9 @@ extension Pullable where Self: NSManagedObject {
         // TODO: add assert for resource type
         var managedObject = self.init(entity: self.entity(), insertInto: context)
         try managedObject.id = object.value(for: "id")
-        try managedObject.populate(fromObject: object, including: includes, inContext: context)
+        try managedObject.update(withObject: object, including: includes, inContext: context)
         return managedObject
     }
-
-
-    func update(object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws {
-        try self.populate(fromObject: object, including: includes, inContext: context)
-    }
-
 
     private func findIncludedObject(for objectIdentifier: ResourceIdentifier, in includes: [MarshaledObject]?) -> MarshaledObject? {
         guard let includedData = includes else {
@@ -184,11 +193,9 @@ extension Pullable where Self: NSManagedObject {
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
         let resourceIdentifier = try object.value(for: "\(key).data") as ResourceIdentifier
 
-
-        // update resource
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
             let existingObject = self[keyPath: keyPath]
-            try existingObject.populate(fromObject: includedObject, including: includes, inContext: context)
+            try existingObject.update(withObject: includedObject, including: includes, inContext: context)
         } else {
             // TODO: throw custom error: object should be included (+ try to fetch first)?
         }
@@ -262,6 +269,7 @@ extension Pullable where Self: NSManagedObject {
 }
 
 struct ResourceIdentifier: Unmarshaling {
+
     let type: String
     let id: String
 
@@ -269,4 +277,15 @@ struct ResourceIdentifier: Unmarshaling {
         self.type = try object.value(for: "type")
         self.id = try object.value(for: "id")
     }
+
+}
+
+struct Query<Resource> where Resource: NSManagedObject & Pullable {
+
+    let resourceType: Resource.Type
+
+    init(type: Resource.Type) {
+        self.resourceType = type
+    }
+
 }

@@ -23,6 +23,7 @@ def ios_pods
     pod 'Hero', :git => 'https://github.com/lkzhao/Hero', :commit => 'd961f16'
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
+    pod 'SimpleRoundedButton'
 end
 
 target 'openHPI-iOS' do

@@ -9,10 +9,11 @@
 import UIKit
 import WebKit
 import SafariServices
+import SimpleRoundedButton
 
 class LoginViewController : AbstractLoginViewController, WKUIDelegate {
-
-    @IBOutlet weak var loginButton: UIButton!
+    
+    @IBOutlet weak var loginButton: SimpleRoundedButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var singleSignOnView: UIView!
     @IBOutlet weak var singleSignOnButton: UIButton!

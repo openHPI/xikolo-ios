@@ -86,10 +86,10 @@ class CourseDetailViewController: UIViewController {
     func createEnrollment() {
         EnrollmentHelper.createEnrollment(for: self.course).flatMap {
             CourseHelper.refreshCourses()
-            }.onSuccess { _ in
-                if let parent = self.parent as? CourseDecisionViewController {
-                    parent.decideContent()
-                }
+        }.onSuccess { _ in
+            if let parent = self.parent as? CourseDecisionViewController {
+                parent.decideContent()
+            }
         }
     }
 

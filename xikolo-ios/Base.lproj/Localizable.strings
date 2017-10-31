@@ -68,15 +68,6 @@
 /* title for empty announcement list if not logged in */
 "empty-view.platform-events.not-logged-in.title" = "Please log in to see course activity";
 
-/* title of enroll action of enrollment alert */
-"enrollment.alert.enroll-action.title" = "Enroll";
-
-/* message of enrollment alert */
-"enrollment.alert.message" = "You can always un-enroll.";
-
-/* title of enrollment alert */
-"enrollment.alert.title" = "Enroll in course?";
-
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Enrollment options";
 

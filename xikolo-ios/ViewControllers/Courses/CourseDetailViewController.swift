@@ -24,7 +24,7 @@ class CourseDetailViewController: UIViewController {
     @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {
             if course.enrollment == nil {
-                showEnrollmentDialog()
+                createEnrollment()
             } else {
                 showEnrollmentOptions()
             }
@@ -83,28 +83,14 @@ class CourseDetailViewController: UIViewController {
         self.enrollmentButton.tintColor = UIColor.white
     }
     
-    func showEnrollmentDialog() {
-        let alertTitle = NSLocalizedString("enrollment.alert.title", comment: "title of enrollment alert")
-        let alertMessage = NSLocalizedString("enrollment.alert.message", comment: "message of enrollment alert")
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-
-        let enrollActionTitle = NSLocalizedString("enrollment.alert.enroll-action.title",
-                                                  comment: "title of enroll action of enrollment alert")
-        let enrollAction = UIAlertAction(title: enrollActionTitle, style: .default) { _ in
-            EnrollmentHelper.createEnrollment(for: self.course).flatMap {
-                CourseHelper.refreshCourses()
-            }.onSuccess { _ in
-                if let parent = self.parent as? CourseDecisionViewController {
-                    parent.decideContent()
-                }
+    func createEnrollment() {
+        EnrollmentHelper.createEnrollment(for: self.course).flatMap {
+            CourseHelper.refreshCourses()
+        }.onSuccess { _ in
+            if let parent = self.parent as? CourseDecisionViewController {
+                parent.decideContent()
             }
         }
-        alert.addAction(enrollAction)
-
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        alert.addAction(UIAlertAction(title: cancelActionTitle, style: .cancel))
-        
-        present(alert, animated: true, completion: nil)
     }
 
     func showEnrollmentOptions() {

@@ -75,16 +75,23 @@ class CourseItemCell : UITableViewCell {
     }
 
     func configure(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
+        let isAvailable = !configuration.inOfflineMode || (courseItem.content?.isAvailableOffline ?? false)
+
+        self.isUserInteractionEnabled = isAvailable
+
         self.item = courseItem
         self.titleView.text = courseItem.title
-        self.titleView.alpha = (configuration.inOfflineMode && !(courseItem.content?.isAvailableOffline ?? false)) ? 0.5 : 1.0
+        self.titleView.textColor = isAvailable ? UIColor.black : UIColor.lightGray
+        self.detailLabel.textColor = isAvailable ? UIColor.darkText : UIColor.lightGray
 
+        self.iconView.tintColor = isAvailable ? UIColor.black : UIColor.lightGray
         if let iconName = courseItem.iconName {
-            self.iconView.image = UIImage(named: "item-\(iconName)-28")
+            self.iconView.image = UIImage(named: "item-\(iconName)-28")?.withRenderingMode(.alwaysTemplate)
         }
 
         let wasVisitedBefore = courseItem.visited ?? true
-        self.readStateView.backgroundColor = wasVisitedBefore ? UIColor.clear : Brand.TintColor
+        self.readStateView.alpha = wasVisitedBefore ? 0.0 : 1.0
+        self.readStateView.backgroundColor = isAvailable ? Brand.TintColor : UIColor.lightGray
 
         self.configureDownloadButton(for: courseItem, with: configuration)
         self.configureDetailContent(for: courseItem, with: configuration)
@@ -123,8 +130,6 @@ class CourseItemCell : UITableViewCell {
                 self.downloadButton.alpha = 1.0
                 self.downloadButton.isHidden = false
             }
-
-
         } else {
             self.downloadButton.isHidden = true
         }

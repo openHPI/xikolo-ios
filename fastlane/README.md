@@ -14,7 +14,7 @@ xcode-select --install
 <tr>
 <th width="33%"><a href="http://brew.sh">Homebrew</a></td>
 <th width="33%">Installer Script</td>
-<th width="33%">Rubygems</td>
+<th width="33%">RubyGems</td>
 </tr>
 <tr>
 <td width="33%" align="center">macOS</td>
@@ -50,6 +50,11 @@ Increments the version number for a new minor version
 fastlane ios increment_version_major
 ```
 Increments the version number for a new major version
+### ios lint
+```
+fastlane ios lint
+```
+Lint swift code with swiftline
 ### ios precheck_app
 ```
 fastlane ios precheck_app

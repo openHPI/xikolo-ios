@@ -67,19 +67,15 @@ class CourseDetailViewController: UIViewController {
         }
     }
 
-
-
     @objc func setEnrolledState() {
         let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
-                                               comment: "title of course enrollment button")
+                                            comment: "title of course enrollment button")
         self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
         self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
         self.enrollmentButton.tintColor = UIColor.darkGray
     }
 
     @objc func setUnenrolledState() {
-
-
         let buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title",
                                             comment: "title of Course enrollment options button")
         self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
@@ -88,12 +84,12 @@ class CourseDetailViewController: UIViewController {
     }
     
     func createEnrollment() {
-        EnrollmentHelper.createEnrollment(for: self.course  ).flatMap {
+        EnrollmentHelper.createEnrollment(for: self.course).flatMap {
             CourseHelper.refreshCourses()
-            }.onSuccess { _ in
-                if let parent = self.parent as? CourseDecisionViewController {
-                    parent.decideContent()
-                }
+        }.onSuccess { _ in
+            if let parent = self.parent as? CourseDecisionViewController {
+                parent.decideContent()
+            }
         }
     }
 

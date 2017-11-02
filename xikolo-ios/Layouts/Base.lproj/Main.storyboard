@@ -80,7 +80,7 @@
                                                     <action selector="register" destination="3kq-NS-dJI" eventType="touchUpInside" id="iNz-mg-9Mk"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9h-TM-uGV">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9h-TM-uGV" customClass="SimpleRoundedButton" customModule="SimpleRoundedButton">
                                                 <rect key="frame" x="0.0" y="179" width="338" height="44"/>
                                                 <color key="backgroundColor" red="0.83022880554199219" green="0.29916566610336304" blue="0.065744034945964813" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>

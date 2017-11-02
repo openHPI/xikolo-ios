@@ -26,6 +26,7 @@ PODS:
   - Result (3.2.4)
   - SDWebImage/Core (4.0.0)
   - Shimmer (1.0.2)
+  - SimpleRoundedButton (1.0)
   - SnapKit (4.0.0)
   - Spine (0.3):
     - BrightFutures (~> 6.0)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - Result (~> 3.2)
   - SDWebImage/Core (= 4.0.0)
   - Shimmer (= 1.0.2)
+  - SimpleRoundedButton (~> 1.0)
   - Spine (from `https://github.com/mathebox/Spine.git`, commit `ce6a53f`)
   - SwiftLint (~> 0.22)
 
@@ -97,11 +99,12 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  SimpleRoundedButton: d7f2be107afb25c56149f4c0df541169ca6af48c
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Spine: 89406e28c0c98dd994f3100afb31ba92fa26d66e
   SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 9d0fbd3b2b626e716091209b5eecf258622dace2
+PODFILE CHECKSUM: 65b04fefa13446298b5cad105308d493c9113fe6
 
 COCOAPODS: 1.3.1

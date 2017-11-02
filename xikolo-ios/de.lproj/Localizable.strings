@@ -68,15 +68,6 @@
 /* title for empty announcement list if not logged in */
 "empty-view.platform-events.not-logged-in.title" = "Bitte logge dich ein um die Kursactivitäten zu sehen";
 
-/* title of enroll action of enrollment alert */
-"enrollment.alert.enroll-action.title" = "Einschreiben";
-
-/* message of enrollment alert */
-"enrollment.alert.message" = "Du kannst dich jederzeit wieder austragen.";
-
-/* title of enrollment alert */
-"enrollment.alert.title" = "In diesen Kurs einschreiben?";
-
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";
 

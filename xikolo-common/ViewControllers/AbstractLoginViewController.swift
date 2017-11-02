@@ -22,19 +22,27 @@ class AbstractLoginViewController : UIViewController {
             return
         }
 
-        UserProfileHelper.login(email, password: password).onSuccess { token in
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
-            self.didSuccessfullyLogin()
-        }.onFailure { error in
-            if case XikoloError.authenticationError = error {
-                self.emailField.shake()
-                self.passwordField.shake()
-            } else {
-                #if os(tvOS)
+        UserProfileHelper.login(email, password: password).onSuccess { [weak self] token in
+            self?.handleLoginSuccess(with: token)
+        }.onFailure { [weak self] error in
+            self?.handleLoginFailure(with: error)
+        }
+    }
+    
+    func handleLoginSuccess(with token: String) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.didSuccessfullyLogin()
+    }
+    
+    func handleLoginFailure(with error: Error) {
+        if case XikoloError.authenticationError = error {
+            self.emailField.shake()
+            self.passwordField.shake()
+        } else {
+            #if os(tvOS)
                 self.handleError(error)
-                #endif
-                // TODO (iOS): Error handling
-            }
+            #endif
+            // TODO (iOS): Error handling
         }
     }
 

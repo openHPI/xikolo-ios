@@ -30,11 +30,6 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios increment_build
-```
-fastlane ios increment_build
-```
-Increments the build number for all targets
 ### ios increment_version_patch
 ```
 fastlane ios increment_version_patch
@@ -50,13 +45,6 @@ Increments the version number for a new minor version
 fastlane ios increment_version_major
 ```
 Increments the version number for a new major version
-### ios precheck_app
-```
-fastlane ios precheck_app
-```
-Checks application for potential App Store violations
-
-- requires app environment via '--env'
 ### ios determine_commit
 ```
 fastlane ios determine_commit
@@ -64,6 +52,13 @@ fastlane ios determine_commit
 Determines the commit for a given build number
 
 - pass build number via 'build_number:xxx'
+### ios precheck_app
+```
+fastlane ios precheck_app
+```
+Checks application for potential App Store violations
+
+- requires app environment via '--env'
 ### ios localize
 ```
 fastlane ios localize

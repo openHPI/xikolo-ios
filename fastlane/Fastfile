@@ -16,15 +16,6 @@ fastlane_version "2.55.0"
 default_platform :ios
 
 platform :ios do
-  desc "Increments the build number for all targets"
-  lane :increment_build do
-    new_build_number = increment_build_number
-    version_number = get_version_number
-    commit_version_bump(
-      message: "Bump build number to #{new_build_number} (version #{version_number})."
-    )
-  end
-
   desc "Increments the version number for a new patch version"
   lane :increment_version_patch do
     new_version_number = increment_version_number(
@@ -32,7 +23,7 @@ platform :ios do
     )
     revert_tvOS_changes()
     commit_version_bump(
-      message: "New version #{new_version_number} (patch)."
+      message: "New version #{new_version_number}"
     )
   end
 
@@ -43,7 +34,7 @@ platform :ios do
     )
     revert_tvOS_changes()
     commit_version_bump(
-      message: "New version #{new_version_number} (minor)."
+      message: "New version #{new_version_number}"
     )
   end
 
@@ -54,7 +45,7 @@ platform :ios do
     )
     revert_tvOS_changes()
     commit_version_bump(
-      message: "New version #{new_version_number} (major)."
+      message: "New version #{new_version_number}"
     )
   end
 

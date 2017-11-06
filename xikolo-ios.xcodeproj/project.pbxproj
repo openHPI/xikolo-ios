@@ -2860,12 +2860,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24BA40431D3F976800E38C2C /* Build configuration list for PBXNativeTarget "openSAP-iOS" */;
 			buildPhases = (
+				50429D9A1FB07288000C1D5E /* Set Build Number */,
 				7919434A264A33D8AF707163 /* [CP] Check Pods Manifest.lock */,
 				24BA40301D3F976700E38C2C /* Sources */,
 				24BA40311D3F976700E38C2C /* Frameworks */,
 				24BA40321D3F976700E38C2C /* Resources */,
 				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				747AA6185FE4F61F6B113EC5 /* [CP] Copy Pods Resources */,
+				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -2943,12 +2945,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 709C93121EF0952500F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-iOS" */;
 			buildPhases = (
+				50429D9E1FB072D3000C1D5E /* Set Build Number */,
 				0089F3364BA801A526B4D83B /* [CP] Check Pods Manifest.lock */,
 				709C92FF1EF0952500F8F045 /* Sources */,
 				709C93001EF0952500F8F045 /* Frameworks */,
 				709C93011EF0952500F8F045 /* Resources */,
 				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
 				1F57239A56A003CFD9A17C49 /* [CP] Copy Pods Resources */,
+				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3004,12 +3008,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "openHPI-iOS" */;
 			buildPhases = (
+				50429D981FB070E4000C1D5E /* Set Build Number */,
 				675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */,
 				A90587B71B3BFC130095DB89 /* Sources */,
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */,
+				50429D991FB07149000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3024,12 +3030,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB48B4461DF8BB2A00523062 /* Build configuration list for PBXNativeTarget "openWHO-iOS" */;
 			buildPhases = (
+				50429D9C1FB072AD000C1D5E /* Set Build Number */,
 				E4366C3C332640BAB19B0552 /* [CP] Check Pods Manifest.lock */,
 				AB48B4311DF8BB2A00523062 /* Sources */,
 				AB48B4321DF8BB2A00523062 /* Frameworks */,
 				AB48B4331DF8BB2A00523062 /* Resources */,
 				ACB757C47A664C44D01683E8 /* [CP] Embed Pods Frameworks */,
 				99A701B933A853760C844333 /* [CP] Copy Pods Resources */,
+				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3692,6 +3700,118 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		50429D981FB070E4000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D991FB07149000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50429D9A1FB07288000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D9B1FB0728C000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50429D9C1FB072AD000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D9D1FB072AE000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50429D9E1FB072D3000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D9F1FB072D5000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
 		};
 		57CD7946E155D5BFDF1EE5AC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

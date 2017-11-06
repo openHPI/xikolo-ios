@@ -22,10 +22,6 @@ opt_in_rules:
 - unneeded_parentheses_in_closure_argument
 - vertical_parameter_alignment_on_call
 
-disabled_rules:
-- todo
-- cyclomatic_complexity
-
 included:
 - xikolo-common
 - xikolo-ios
@@ -87,18 +83,12 @@ custom_rules:
     name: "Unnecessary Case Break"
     message: "Don't use break in switch cases – Swift breaks by default."
     severity: warning
-  # unnecessary_nil_assignment:
-  #   included: ".*.swift"
-  #   regex: 'var \S+\s*:\s*[^\s]+\?\s*=\s*nil'
-  #   name: "Unnecessary Nil Assignment"
-  #   message: "Don't assign nil as a value when defining an optional type – it's nil by default."
-  #   severity: warning
-  # vertical_whitespace_between_cases:
-  #   included: ".*.swift"
-  #   regex: '[^\n{][ \t]*\n[ \t]*(?:case[^\n]+|default):[ \t]*\n'
-  #   name: "Vertical Whitespace Between Cases"
-  #   message: "Include a vertical whitespace (empty line) between cases in switch statements."
-  #   severity: warning
+  unnecessary_nil_assignment:
+    included: ".*.swift"
+    regex: 'var \S+\s*:\s*[^\s]+\?\s*=\s*nil'
+    name: "Unnecessary Nil Assignment"
+    message: "Don't assign nil as a value when defining an optional type – it's nil by default."
+    severity: warning
   vertical_whitespaces_around_mark:
     included: ".*.swift"
     regex: '\/\/\s*MARK:[^\n]*(\n\n)|(\n\n\n)[ \t]*\/\/\s*MARK:|[^\s{]\n[^\n\/]*\/\/\s*MARK:'

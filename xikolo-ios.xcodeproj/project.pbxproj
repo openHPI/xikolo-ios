@@ -3713,7 +3713,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_prefix=\"\"\nif [ \"$branch_name\" == \"dev\" ]; then\n  build_prefix=\"0.\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_prefix=\"1.\"\n  fi\nfi\nbuild_number=\"$build_prefix$git_count\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
 		};
 		50429D991FB07149000C1D5E /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3741,7 +3741,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_prefix=\"\"\nif [ \"$branch_name\" == \"dev\" ]; then\n  build_prefix=\"0.\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_prefix=\"1.\"\n  fi\nfi\nbuild_number=\"$build_prefix$git_count\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
 		};
 		50429D9B1FB0728C000C1D5E /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3769,7 +3769,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_prefix=\"\"\nif [ \"$branch_name\" == \"dev\" ]; then\n  build_prefix=\"0.\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_prefix=\"1.\"\n  fi\nfi\nbuild_number=\"$build_prefix$git_count\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
 		};
 		50429D9D1FB072AE000C1D5E /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3797,7 +3797,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_suffix=\"\"\nif [ \"$branch_name\" == \"develop\" ]; then\n  build_suffix=\".0\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_suffix=\".1\"\n  fi\nfi\nbuild_number=\"$git_count$build_suffix\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+			shellScript = "git=`sh /etc/profile; which git`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ngit_count=`$git rev-list $branch_name | wc -l | sed 's/^ *//;s/ *$//'`\n\nbuild_prefix=\"\"\nif [ \"$branch_name\" == \"dev\" ]; then\n  build_prefix=\"0.\"\nelse\n  if [ \"$branch_name\" != \"master\" ]; then\n    build_prefix=\"1.\"\n  fi\nfi\nbuild_number=\"$build_prefix$git_count\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
 		};
 		50429D9F1FB072D5000C1D5E /* Clear Build Number */ = {
 			isa = PBXShellScriptBuildPhase;

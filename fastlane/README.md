@@ -57,6 +57,13 @@ fastlane ios precheck_app
 Checks application for potential App Store violations
 
 - requires app environment via '--env'
+### ios determine_commit
+```
+fastlane ios determine_commit
+```
+Determines the commit for a given build number
+
+- pass build number via 'build_number:xxx'
 ### ios localize
 ```
 fastlane ios localize

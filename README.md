@@ -13,7 +13,8 @@ The following tools will be installed via bundler:
 - [CocoaPods](https://cocoapods.org/)
 - [fastlane](https://fastlane.tools/)
 
-The following tools will be installed via cocoapods:
+The following tools will be installed via CocoaPods:
+- [SwiftLint](https://github.com/realm/SwiftLint)
 - [BartyCrouch](https://github.com/Flinesoft/BartyCrouch)
 
 ### How to get started

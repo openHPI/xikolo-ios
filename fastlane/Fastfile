@@ -58,12 +58,12 @@ platform :ios do
         commit_count = build_components[0].to_i
         branch_name = "master"
       elsif build_components.length == 2
-        commit_count = build_components[1].to_i
-        if build_components[0] == "0"
-          branch_name = "dev"
-        else
-          UI.user_error! "Detected feature branch build. Only builds from `master` or `dev` are supported."
-        end
+        commit_count_master = build_components[0].to_i
+        commit_count_dev_diff = build_components[1].to_i
+        commit_count = commit_count_master + commit_count_dev_diff
+        branch_name = "dev"
+      elsif build_components.length == 3
+        UI.user_error! "Detected feature branch build. Only builds from `master` or `dev` are supported."
       else
         UI.user_error! "Supplied malformed build number"
       end

@@ -58,6 +58,12 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         self.present(safariVC, animated: true)
     }
 
+    @IBAction func forgotPassword() {
+        let safariVC = SFSafariViewController(url: Routes.localizedForgotPasswordURL)
+        safariVC.preferredControlTintColor = Brand.TintColor
+        self.present(safariVC, animated: true)
+    }
+
     @IBAction func singleSignOn() {
         self.performSegue(withIdentifier: "ShowSSOWebView", sender: self)
     }

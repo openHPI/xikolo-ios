@@ -37,4 +37,19 @@ struct Routes {
     static let HTTP_PARAM_PASSWORD = "password"
     static let HTTP_PARAM_COURSE_ID = "course_id"
 
+    static var localizedForgotPasswordURL: URL {
+        var urlComponents = URLComponents(string: Brand.BaseURL + "/account/reset/new")
+        var queryItems = [URLQueryItem(name: "in_app", value: "true")]
+        if let locale = NSLocale.preferredLanguages.first {
+            queryItems.append(URLQueryItem(name: "locale", value: locale))
+        }
+        urlComponents?.queryItems = queryItems
+
+        guard let url = urlComponents?.url else {
+            fatalError("Failed to create url for password reset")
+        }
+
+        return url
+    }
+
 }

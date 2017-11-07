@@ -11,6 +11,7 @@ import CoreData
 import Foundation
 import Spine
 
+
 class RichText : Content {
 
     override func iconName() -> String {
@@ -23,23 +24,37 @@ class RichText : Content {
 
 }
 
-@objcMembers
-class RichTextSpine : ContentSpine {
+extension RichText : Pullable {
 
-    var text: String?
-
-    override class var cdType: BaseModel.Type {
-        return RichText.self
-    }
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "rich-texts"
     }
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "text": Attribute(),
-        ])
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.text = try attributes.value(for: "text")
     }
 
 }
+//
+//@objcMembers
+//class RichTextSpine : ContentSpine {
+//
+//    var text: String?
+//
+//    override class var cdType: BaseModel.Type {
+//        return RichText.self
+//    }
+//
+//    override class var resourceType: ResourceType {
+//        return "rich-texts"
+//    }
+//
+//    override class var fields: [Field] {
+//        return fieldsFromDictionary([
+//            "text": Attribute(),
+//        ])
+//    }
+//
+//}
+

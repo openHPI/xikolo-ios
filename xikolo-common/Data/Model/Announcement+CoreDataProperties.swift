@@ -1,26 +1,28 @@
 //
 //  Announcement+CoreDataProperties.swift
-//  xikolo-ios
+//  
 //
-//  Created by Bjarne Sievers on 04.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created by Max Bothe on 26.10.17.
+//
 //
 
 import Foundation
 import CoreData
 
-extension Announcement {
 
-    @NSManaged var id: String
-    @NSManaged var title: String?
-    @NSManaged var text: String?
-    @NSManaged var published_at: Date?
-    @NSManaged var visited_int: NSNumber?
-    @NSManaged var image_url: URL?
-    @NSManaged var course: Course?
+//extension Announcement {
+//
+//    @nonobjc public class func fetchRequest() -> NSFetchRequest<Announcement> {
+//        return NSFetchRequest<Announcement>(entityName: "Announcement")
+//    }
+//
+//    @NSManaged public var id: String?
+//    @NSManaged public var image_url: NSObject?
+//    @NSManaged public var published_at: NSDate?
+//    @NSManaged public var text: String?
+//    @NSManaged public var title: String?
+//    @NSManaged public var visited_int: Bool
+//    @NSManaged public var course: Course?
+//
+//}
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Announcement> {
-        return NSFetchRequest<Announcement>(entityName: "Announcement");
-    }
-
-}

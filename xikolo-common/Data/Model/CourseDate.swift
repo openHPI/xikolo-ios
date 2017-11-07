@@ -11,34 +11,63 @@ import CoreData
 import Spine
 
 @objcMembers
-class CourseDate : BaseModel {
+final class CourseDate : BaseModel {
+
+    @NSManaged var id: String
+    @NSManaged var title: String
+    @NSManaged var type: String
+    @NSManaged var date: Date
+    @NSManaged var course: Course
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseDate> {
+        return NSFetchRequest<CourseDate>(entityName: "CourseDate");
+    }
 
 }
 
-@objcMembers
-class CourseDateSpine : BaseModelSpine {
+extension CourseDate : Pullable {
 
-    var type: String?
-    var title: String?
-    var date: Date?
-
-    var course: CourseSpine?
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "course-dates"
     }
 
-    override class var cdType: BaseModel.Type {
-        return CourseDate.self
-    }
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.title = try attributes.value(for: "title")
+        self.type = try attributes.value(for: "type")
+        self.date = try attributes.value(for: "date")
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "type": Attribute(),
-            "title": Attribute(),
-            "date": DateAttribute(),
-            "course": ToOneRelationship(CourseSpine.self)
-        ])
+        let relationships = try object.value(for: "relationships") as JSON
+        try self.updateRelationship(forKeyPath: \CourseDate.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
     }
 
 }
+
+//@objcMembers
+//class CourseDateSpine : BaseModelSpine {
+//
+//    var type: String?
+//    var title: String?
+//    var date: Date?
+//
+//    var course: CourseSpine?
+//
+//    override class var resourceType: ResourceType {
+//        return "course-dates"
+//    }
+//
+//    override class var cdType: BaseModel.Type {
+//        return CourseDate.self
+//    }
+//
+//    override class var fields: [Field] {
+//        return fieldsFromDictionary([
+//            "type": Attribute(),
+//            "title": Attribute(),
+//            "date": DateAttribute(),
+//            "course": ToOneRelationship(CourseSpine.self)
+//        ])
+//    }
+//
+//}
+

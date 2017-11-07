@@ -12,7 +12,7 @@ import Spine
 import Marshal
 
 @objcMembers
-class Enrollment : BaseModel {
+final class Enrollment : BaseModel {
 
     func compare(_ object: Enrollment) -> ComparisonResult {
         // This method is required, because we're using an NSSortDescriptor to sort courses based on enrollment.
@@ -52,8 +52,12 @@ class Enrollment : BaseModel {
 
 extension Enrollment: Pullable {
 
-    func populate(fromObject object: MarshaledObject, inContext context: NSManagedObjectContext) throws {
-        let attributes = try object.value(for: "attributes") as JSONObject
+    static var type: String {
+        return "enrollments"
+    }
+
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
 
         //        "visits": EmbeddedObjectAttribute(EnrollmentVisits.self), // TODO: don't use this
         //        "points": EmbeddedObjectAttribute(EnrollmentPoints.self), // TODO: don't use this
@@ -67,54 +71,55 @@ extension Enrollment: Pullable {
 
 }
 
-@objcMembers
-class EnrollmentSpine : BaseModelSpine {
+//@objcMembers
+//class EnrollmentSpine : BaseModelSpine {
+//
+//    var visits: EnrollmentVisits?
+//    var points: EnrollmentPoints?
+//    var certificates: EnrollmentCertificates?
+//    var proctored_int: NSNumber?
+//    var completed_int: NSNumber?
+//    var reactivated_int: NSNumber?
+//    var created_at: Date?
+//
+//    var course: CourseSpine?
+//
+//    //used for PATCH
+//    convenience init(course: CourseSpine){
+//        self.init()
+//        self.course = course
+//        self.completed_int = 0
+//        //TODO: What about content
+//    }
+//
+//    convenience init(from enrollment: Enrollment){
+//        self.init()
+//        let course = CourseSpine(course: enrollment.course!)
+//        self.course = course
+//        self.id = enrollment.id
+//        self.completed_int = enrollment.completed_int
+//    }
+//
+//    override class var cdType: BaseModel.Type {
+//        return Enrollment.self
+//    }
+//
+//    override class var resourceType: ResourceType {
+//        return "enrollments"
+//    }
+//
+//    override class var fields: [Field] {
+//        return fieldsFromDictionary([
+//            "visits": EmbeddedObjectAttribute(EnrollmentVisits.self),
+//            "points": EmbeddedObjectAttribute(EnrollmentPoints.self),
+//            "certificates": EmbeddedObjectAttribute(EnrollmentCertificates.self),
+//            "proctored_int": BooleanAttribute().serializeAs("proctored"),
+//            "completed_int": BooleanAttribute().serializeAs("completed"),
+//            "reactivated_int": BooleanAttribute().serializeAs("reactivated"),
+//            "created_at": DateAttribute(),
+//            "course": ToOneRelationship(CourseSpine.self)
+//        ])
+//    }
+//
+//}
 
-    var visits: EnrollmentVisits?
-    var points: EnrollmentPoints?
-    var certificates: EnrollmentCertificates?
-    var proctored_int: NSNumber?
-    var completed_int: NSNumber?
-    var reactivated_int: NSNumber?
-    var created_at: Date?
-
-    var course: CourseSpine?
-
-    //used for PATCH
-    convenience init(course: CourseSpine){
-        self.init()
-        self.course = course
-        self.completed_int = 0
-        //TODO: What about content
-    }
-
-    convenience init(from enrollment: Enrollment){
-        self.init()
-        let course = CourseSpine(course: enrollment.course!)
-        self.course = course
-        self.id = enrollment.id
-        self.completed_int = enrollment.completed_int
-    }
-
-    override class var cdType: BaseModel.Type {
-        return Enrollment.self
-    }
-
-    override class var resourceType: ResourceType {
-        return "enrollments"
-    }
-
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "visits": EmbeddedObjectAttribute(EnrollmentVisits.self),
-            "points": EmbeddedObjectAttribute(EnrollmentPoints.self),
-            "certificates": EmbeddedObjectAttribute(EnrollmentCertificates.self),
-            "proctored_int": BooleanAttribute().serializeAs("proctored"),
-            "completed_int": BooleanAttribute().serializeAs("completed"),
-            "reactivated_int": BooleanAttribute().serializeAs("reactivated"),
-            "created_at": DateAttribute(),
-            "course": ToOneRelationship(CourseSpine.self)
-        ])
-    }
-
-}

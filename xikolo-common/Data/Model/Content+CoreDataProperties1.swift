@@ -9,12 +9,13 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
-import CoreData
+//import Foundation
+//import CoreData
+//
+//extension Content {
+//
+//    @NSManaged var id: String
+//    @NSManaged var item: CourseItem?
+//
+//}
 
-extension Content {
-
-    @NSManaged var id: String
-    @NSManaged var item: CourseItem?
-
-}

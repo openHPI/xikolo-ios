@@ -10,19 +10,25 @@ import Foundation
 import Marshal
 
 @objcMembers
-class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
+final class CourseCertificatesHash :  NSCoding, Unmarshaling {
+//class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
 
-    var available: Bool? // TODO: should be Bool
-    var threshold: NSNumber? // TODO: should be Int32?
+    var available: Bool // TODO: should be Bool
+    var threshold: Int32? // TODO: should be Int32?
 
-    required init(_ dict: [String : AnyObject]) {
-        available = dict["available"] as? Bool
-        threshold = dict["threshold"] as? NSNumber
+//    required init(_ dict: [String : AnyObject]) {
+//        available = dict["available"] as? Bool
+//        threshold = dict["threshold"] as? NSNumber
+//    }
+
+    required init(object: MarshaledObject) throws {
+        self.available = try object.value(for: "available")
+        self.threshold = try object.value(for: "threshold")
     }
 
     required init(coder decoder: NSCoder) {
-        available = decoder.decodeObject(forKey: "available") as? Bool
-        threshold = decoder.decodeObject(forKey: "threshold") as? NSNumber
+        available = decoder.decodeObject(forKey: "available") as! Bool // TODO: force cast
+        threshold = decoder.decodeObject(forKey: "threshold") as? Int32
     }
 
     func encode(with coder: NSCoder) {
@@ -52,12 +58,12 @@ class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
 //
 //}
 
-extension CourseCertificatesHash: Unmarshaling {
-
-    required init(object: MarshaledObject) throws {
-        self.available = try object.value(for: "available")
-//        self.threshold = try object.value(for: "threshold")
-    }
-
-}
+//extension CourseCertificatesHash: Unmarshaling {
+//
+//    required init(object: MarshaledObject) throws {
+//        self.available = try object.value(for: "available")
+////        self.threshold = try object.value(for: "threshold")
+//    }
+//
+//}
 

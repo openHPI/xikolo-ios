@@ -9,15 +9,16 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
-import CoreData
+//import Foundation
+//import CoreData
+//
+//extension Channel {
+//
+//    @NSManaged var name: String?
+//    @NSManaged var slug: String?
+//    @NSManaged var color_string: String?
+//    @NSManaged var id: String
+//    @NSManaged var courses: NSSet?
+//
+//}
 
-extension Channel {
-
-    @NSManaged var name: String?
-    @NSManaged var slug: String?
-    @NSManaged var color_string: String?
-    @NSManaged var id: String
-    @NSManaged var courses: NSSet?
-
-}

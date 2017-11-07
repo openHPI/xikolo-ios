@@ -45,20 +45,20 @@ struct SyncEngine {
         }
     }
 
-    private static func doNetworkRequest(_ request: URLRequest) -> Future<MarshaledObject, XikoloError> {
-        let promise = Promise<MarshaledObject, XikoloError>()
+    private static func doNetworkRequest(_ request: URLRequest) -> Future<ResourceData, XikoloError> {
+        let promise = Promise<ResourceData, XikoloError>()
 
         // TODO: do network request
 
         return promise.future
     }
 
-    private static func merge<Resource>(object: MarshaledObject, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
+    private static func merge<Resource>(object: ResourceData, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             var existingObjects = objects
             var newObjects: [Resource] = []
-            let data = try object.value(for: "data") as [MarshaledObject]
-            let includes = try? object.value(for: "included") as [MarshaledObject]
+            let data = try object.value(for: "data") as [ResourceData]
+            let includes = try? object.value(for: "included") as [ResourceData]
 
             for d in data {
                 let id = try d.value(for: "id") as String
@@ -144,27 +144,31 @@ struct ResourceDescription: Unmarshaling {
     let type: String
     let id: String
 
-    init(object: MarshaledObject) throws {
+    init(object: ResourceData) throws {
         self.type = try object.value(for: "type")
         self.id = try object.value(for: "id")
     }
 
 }
 
+typealias ResourceData = MarshaledObject
+typealias JSON = JSONObject
+typealias EmbeddedObj = Unmarshaling
+
 protocol Pullable {
 
     var id: String { get set }
     static var type: String { get }
 
-    static func value(from object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws -> Self
+    static func value(from object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws -> Self
 
-    func update(withObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws
 
 }
 
 extension Pullable where Self: NSManagedObject {
 
-    static func value(from object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws -> Self {
+    static func value(from object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws -> Self {
         // TODO: add assert for resource type
         var managedObject = self.init(entity: self.entity(), insertInto: context)
         try managedObject.id = object.value(for: "id")
@@ -172,7 +176,7 @@ extension Pullable where Self: NSManagedObject {
         return managedObject
     }
 
-    private func findIncludedObject(for objectIdentifier: ResourceIdentifier, in includes: [MarshaledObject]?) -> MarshaledObject? {
+    private func findIncludedObject(for objectIdentifier: ResourceIdentifier, in includes: [ResourceData]?) -> ResourceData? {
         guard let includedData = includes else {
             return nil
         }
@@ -188,8 +192,8 @@ extension Pullable where Self: NSManagedObject {
 
     func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A>,
                                forKey key: KeyType,
-                               fromObject object: MarshaledObject,
-                               including includes: [MarshaledObject]?,
+                               fromObject object: ResourceData,
+                               including includes: [ResourceData]?,
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
         let resourceIdentifier = try object.value(for: "\(key).data") as ResourceIdentifier
 
@@ -203,8 +207,8 @@ extension Pullable where Self: NSManagedObject {
 
     func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
                                forKey key: KeyType,
-                               fromObject object: MarshaledObject,
-                               including includes: [MarshaledObject]?,
+                               fromObject object: ResourceData,
+                               including includes: [ResourceData]?,
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
         let resourceIdentifier = try object.value(for: "\(key).data") as ResourceIdentifier
 
@@ -236,8 +240,8 @@ extension Pullable where Self: NSManagedObject {
 
     func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, Set<A>>,
                                forKey key: KeyType,
-                               fromObject object: MarshaledObject,
-                               including includes: [MarshaledObject]?,
+                               fromObject object: ResourceData,
+                               including includes: [ResourceData]?,
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
         let resourceIdentifiers = try object.value(for: "\(key).data") as [ResourceIdentifier]
         var currentObjects = Set(self[keyPath: keyPath])
@@ -266,6 +270,77 @@ extension Pullable where Self: NSManagedObject {
         }
     }
 
+
+    func updateAbstractRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
+                                       forKey key: KeyType,
+                                       fromObject object: ResourceData,
+                                       including includes: [ResourceData]?,
+                                       inContext context: NSManagedObjectContext,
+                                       updatingBlock block: (AbstractPullableContainer<Self, A>) -> Void) throws {
+        let container = AbstractPullableContainer<Self, A>(onResource: self, withKeyPath: keyPath, forKey: key, fromObject: object, including: includes, inContext: context)
+        block(container)
+
+        guard container.wasUpdated else {
+            // TODO: throw error
+        }
+    }
+
+
+    func updateAbstractRelationship<A, B>(withContainer container: AbstractPullableContainer<Self, A>,
+                                          withType: B.Type) throws where B: NSManagedObject & Pullable {
+        let resourceIdentifier = try container.object.value(for: "\(container.key).data") as ResourceIdentifier
+
+        if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: container.includes) {
+            // TODO: check is type is matching
+//            B.type == includedType
+            guard let existingObject = self[keyPath: container.keyPath] as? B else {
+                // TODO: throw
+            }
+
+            try existingObject.update(withObject: includedObject, including: container.includes, inContext: container.context)
+            container.markAsUpdated()
+        } else {
+            // TODO: throw custom error: object should be included (+ try to fetch first)?
+        }
+    }
+
+}
+
+class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: AbstractPullable {
+    let resource: A
+    let keyPath: ReferenceWritableKeyPath<A, B?>
+    let key: KeyType
+    let object: ResourceData
+    let includes: [ResourceData]?
+    let context: NSManagedObjectContext
+    private (set) var wasUpdated = false
+
+    init(onResource resource: A,
+         withKeyPath keyPath: ReferenceWritableKeyPath<A, B?>,
+         forKey key: KeyType,
+         fromObject object: ResourceData,
+         including includes: [ResourceData]?,
+         inContext context: NSManagedObjectContext) {
+        self.resource = resource
+        self.keyPath = keyPath
+        self.key = key
+        self.object = object
+        self.includes = includes
+        self.context = context
+    }
+
+    func update<C>(forType type : C.Type) throws where C : NSManagedObject & Pullable {
+        // TODO: check if C can be set?
+        try self.resource.updateAbstractRelationship(withContainer: self, withType: type) // TODO: catch not matching type
+    }
+
+    func markAsUpdated() {
+        self.wasUpdated = true
+    }
+}
+
+protocol AbstractPullable {
+
 }
 
 struct ResourceIdentifier: Unmarshaling {
@@ -273,7 +348,7 @@ struct ResourceIdentifier: Unmarshaling {
     let type: String
     let id: String
 
-    init(object: MarshaledObject) throws {
+    init(object: ResourceData) throws {
         self.type = try object.value(for: "type")
         self.id = try object.value(for: "id")
     }
@@ -289,3 +364,4 @@ struct Query<Resource> where Resource: NSManagedObject & Pullable {
     }
 
 }
+

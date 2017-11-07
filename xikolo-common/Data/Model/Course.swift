@@ -10,46 +10,72 @@ import BrightFutures
 import CoreData
 import Foundation
 import Spine
-import Marshal
+//import Marshal
 
 @objcMembers
-final class Course : BaseModel {
+final class Course : NSManagedObject {
 
-    var hidden: Bool? {
-        get {
-            return hidden_int?.boolValue
-        }
-        set(new_is_hidden) {
-            hidden_int = new_is_hidden as NSNumber?
-        }
+    @NSManaged var id: String
+    @NSManaged var abstract: String?
+    @NSManaged var accessible: Bool
+    @NSManaged var course_description: String?
+    @NSManaged var certificates: CourseCertificates?
+    @NSManaged var startsAt: Date?
+    @NSManaged var endsAt: Date?
+    @NSManaged var image_url: URL?
+    @NSManaged var language: String?
+    @NSManaged var slug: String?
+    @NSManaged var teachers: String?
+    @NSManaged var title: String?
+    @NSManaged var order: NSNumber?
+    @NSManaged var status: String?
+    @NSManaged var hidden: Bool
+    @NSManaged var enrollable: Bool
+    @NSManaged var external: Bool
+
+    @NSManaged var sections: Set<CourseSection>
+    @NSManaged var enrollment: Enrollment?
+    @NSManaged var dates: Set<CourseDate>
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
+        return NSFetchRequest<Course>(entityName: "Course");
     }
 
-    var accessible: Bool {
-        get {
-            return accessible_int?.boolValue ?? false
-        }
-        set(new_is_accessible) {
-            accessible_int = new_is_accessible as NSNumber?
-        }
-    }
-
-    var enrollable: Bool? {
-        get {
-            return enrollable_int?.boolValue
-        }
-        set(new_is_enrollable) {
-            enrollable_int = new_is_enrollable as NSNumber?
-        }
-    }
-
-    var external: Bool? {
-        get {
-            return external_int?.boolValue
-        }
-        set(new_is_external) {
-            external_int = new_is_external as NSNumber?
-        }
-    }
+//    var hidden: Bool? {
+//        get {
+//            return hidden_int?.boolValue
+//        }
+//        set(new_is_hidden) {
+//            hidden_int = new_is_hidden as NSNumber?
+//        }
+//    }
+//
+//    var accessible: Bool {
+//        get {
+//            return accessible_int?.boolValue ?? false
+//        }
+//        set(new_is_accessible) {
+//            accessible_int = new_is_accessible as NSNumber?
+//        }
+//    }
+//
+//    var enrollable: Bool? {
+//        get {
+//            return enrollable_int?.boolValue
+//        }
+//        set(new_is_enrollable) {
+//            enrollable_int = new_is_enrollable as NSNumber?
+//        }
+//    }
+//
+//    var external: Bool? {
+//        get {
+//            return external_int?.boolValue
+//        }
+//        set(new_is_external) {
+//            external_int = new_is_external as NSNumber?
+//        }
+//    }
 
     var is_enrolled_section: String {
         get {
@@ -87,19 +113,19 @@ final class Course : BaseModel {
 extension Course : DynamicSort {
 
     func computeOrder() {
-        self.order = NSNumber(value: abs(start_at?.timeIntervalSinceNow ?? TimeInterval.infinity))
+        self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
     }
 
 }
 
-extension Course: Pullable {
+extension Course : Pullable {
 
     static var type: String {
         return "courses"
     }
 
-    func update(withObject object: MarshaledObject, including includes: [MarshaledObject]?, inContext context: NSManagedObjectContext) throws {
-        let attributes = try object.value(for: "attributes") as JSONObject
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.slug = try attributes.value(for: "slug")
         self.abstract = try attributes.value(for: "abstract")
@@ -109,15 +135,17 @@ extension Course: Pullable {
         self.image_url = try attributes.value(for: "image_url")
         self.teachers = try attributes.value(for: "teachers")
         self.language = try attributes.value(for: "language")
-        self.start_at = try attributes.value(for: "start_at")
-        self.end_at = try attributes.value(for: "end_at")
+        self.startsAt = try attributes.value(for: "start_at")
+        self.endsAt = try attributes.value(for: "end_at")
         self.status = try attributes.value(for: "status")
         self.hidden = try attributes.value(for: "hidden")
         self.enrollable = try attributes.value(for: "enrollable")
         self.external = try attributes.value(for: "external")
 
-        let relationships = try object.value(for: "relationships") as JSONObject
+        let relationships = try object.value(for: "relationships") as JSON
         try self.updateRelationship(forKeyPath: \Course.enrollment, forKey: "user_enrollment", fromObject: relationships, including: includes, inContext: context)
+        // TODO: progess, channel
+
 //        self.enrollment = try relationships.value(forRelationship: "user_enrollment.data", including: includes, inContext: context)
 //        self.identifier.enrollment = try relationships.value(forRelationship: "user_enrollment", including: includes, inContext: context)
 //        or: self.identifier.enrollment = try relationships.value(forRelationship: "user_enrollment", existingObject: self.identifier.enrollemtn, including: includes, inContext: context)
@@ -130,63 +158,64 @@ extension Course: Pullable {
 
 
 
-@objcMembers
-class CourseSpine : BaseModelSpine {
+//@objcMembers
+//class CourseSpine : BaseModelSpine {
+//
+//    var title: String?
+//    var slug: String?
+//    var abstract: String?
+//    var course_description: String?
+//    var certificates: CourseCertificates?
+//    var image_url: URL?
+//    var teachers: String?
+//    var language: String?
+//    var start_at: Date?
+//    var end_at: Date?
+//    var status: String?
+//    var hidden_int: NSNumber?
+//    var enrollable_int: NSNumber?
+//    var accessible_int: NSNumber?
+//    var external_int: NSNumber?
+//
+//    var enrollment: EnrollmentSpine?
+//    var channel: ChannelSpine?
+//
+//    //used for PATCH
+//    convenience init(course: Course){
+//        self.init()
+//        self.id = course.id
+//        //TODO: What about content
+//    }
+//
+//    override class var cdType: BaseModel.Type {
+//        return Course.self
+//    }
+//
+//    override class var resourceType: ResourceType {
+//        return "courses"
+//    }
+//
+//    override class var fields: [Field] {
+//        return fieldsFromDictionary([
+//            "title": Attribute(),
+//            "slug": Attribute(),
+//            "abstract": Attribute(),
+//            "accessible_int": BooleanAttribute().serializeAs("accessible"),
+//            "course_description": Attribute().serializeAs("description"),
+//            "certificates": EmbeddedObjectAttribute(CourseCertificates.self),
+//            "image_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
+//            "teachers": Attribute(),
+//            "language": Attribute(),
+//            "start_at": DateAttribute(),
+//            "end_at": DateAttribute(),
+//            "status": Attribute(),
+//            "hidden_int": BooleanAttribute().serializeAs("hidden"),
+//            "enrollable_int": BooleanAttribute().serializeAs("enrollable"),
+//            "external_int": BooleanAttribute().serializeAs("external"),
+//            "enrollment": ToOneRelationship(EnrollmentSpine.self).serializeAs("user_enrollment"),
+//            "channel": ToOneRelationship(ChannelSpine.self),
+//        ])
+//    }
+//
+//}
 
-    var title: String?
-    var slug: String?
-    var abstract: String?
-    var course_description: String?
-    var certificates: CourseCertificates?
-    var image_url: URL?
-    var teachers: String?
-    var language: String?
-    var start_at: Date?
-    var end_at: Date?
-    var status: String?
-    var hidden_int: NSNumber?
-    var enrollable_int: NSNumber?
-    var accessible_int: NSNumber?
-    var external_int: NSNumber?
-
-    var enrollment: EnrollmentSpine?
-    var channel: ChannelSpine?
-
-    //used for PATCH
-    convenience init(course: Course){
-        self.init()
-        self.id = course.id
-        //TODO: What about content
-    }
-
-    override class var cdType: BaseModel.Type {
-        return Course.self
-    }
-
-    override class var resourceType: ResourceType {
-        return "courses"
-    }
-
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "title": Attribute(),
-            "slug": Attribute(),
-            "abstract": Attribute(),
-            "accessible_int": BooleanAttribute().serializeAs("accessible"),
-            "course_description": Attribute().serializeAs("description"),
-            "certificates": EmbeddedObjectAttribute(CourseCertificates.self),
-            "image_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
-            "teachers": Attribute(),
-            "language": Attribute(),
-            "start_at": DateAttribute(),
-            "end_at": DateAttribute(),
-            "status": Attribute(),
-            "hidden_int": BooleanAttribute().serializeAs("hidden"),
-            "enrollable_int": BooleanAttribute().serializeAs("enrollable"),
-            "external_int": BooleanAttribute().serializeAs("external"),
-            "enrollment": ToOneRelationship(EnrollmentSpine.self).serializeAs("user_enrollment"),
-            "channel": ToOneRelationship(ChannelSpine.self),
-        ])
-    }
-
-}

@@ -55,53 +55,54 @@ class Quiz : Content {
 
 }
 
-@objcMembers
-class QuizSpine : ContentSpine {
+//@objcMembers
+//class QuizSpine : ContentSpine {
+//
+//    var instructions: String?
+//    var lock_submissions_at: Date?
+//    var publish_results_at: Date?
+//    var time_limit: NSNumber?
+//    var allowed_attempts: NSNumber?
+//    var max_points: NSDecimalNumber?
+//    var show_welcome_page_int: NSNumber?
+//
+//    var questions: ResourceCollection?
+//    var submission: QuizSubmission?
+//
+//    required init() {
+//        super.init()
+//    }
+//
+//    required init(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
+//
+//    init(id: String) {
+//        super.init()
+//        self.id = id
+//    }
+//
+//    override class var cdType: BaseModel.Type {
+//        return Quiz.self
+//    }
+//
+//    override class var resourceType: ResourceType {
+//        return "quizzes"
+//    }
+//
+//    override class var fields: [Field] {
+//        return fieldsFromDictionary([
+//            "instructions": Attribute(),
+//            "lock_submissions_at": DateAttribute(),
+//            "publish_results_at": DateAttribute(),
+//            "time_limit": Attribute(),
+//            "allowed_attempts": Attribute(),
+//            "max_points": Attribute(),
+//            "show_welcome_page_int": BooleanAttribute().serializeAs("show_welcome_page"),
+//            "questions": ToManyRelationship(QuizQuestionSpine.self),
+//            "submission": ToOneRelationship(QuizSubmission.self).serializeAs("newest_user_submission"),
+//        ])
+//    }
+//
+//}
 
-    var instructions: String?
-    var lock_submissions_at: Date?
-    var publish_results_at: Date?
-    var time_limit: NSNumber?
-    var allowed_attempts: NSNumber?
-    var max_points: NSDecimalNumber?
-    var show_welcome_page_int: NSNumber?
-
-    var questions: ResourceCollection?
-    var submission: QuizSubmission?
-
-    required init() {
-        super.init()
-    }
-
-    required init(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
-    init(id: String) {
-        super.init()
-        self.id = id
-    }
-
-    override class var cdType: BaseModel.Type {
-        return Quiz.self
-    }
-
-    override class var resourceType: ResourceType {
-        return "quizzes"
-    }
-
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "instructions": Attribute(),
-            "lock_submissions_at": DateAttribute(),
-            "publish_results_at": DateAttribute(),
-            "time_limit": Attribute(),
-            "allowed_attempts": Attribute(),
-            "max_points": Attribute(),
-            "show_welcome_page_int": BooleanAttribute().serializeAs("show_welcome_page"),
-            "questions": ToManyRelationship(QuizQuestionSpine.self),
-            "submission": ToOneRelationship(QuizSubmission.self).serializeAs("newest_user_submission"),
-        ])
-    }
-
-}

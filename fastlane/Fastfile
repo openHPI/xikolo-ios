@@ -83,10 +83,10 @@ platform :ios do
       puts "Commit count difference: #{commit_count_diff}"
 
       if commit_count_diff < 0
-        UI.user_error! "Supplied refers to a commit which is to far ahead"
+        UI.user_error! "The supplied build number refers to a commit which is to far ahead. Have you pulled the latest changes for the branch `#{branch_name}`?"
       end
 
-      commit_id = sh("git rev-parse --short head~#{commit_count_diff}").strip!
+      commit_id = sh("git rev-parse --short #{branch_name}~#{commit_count_diff}").strip!
       commit_title = sh("git log #{commit_id} --pretty=format:'%s' --max-count=1")
       commit_author = sh("git log #{commit_id} --pretty=format:'%an' --max-count=1")
 

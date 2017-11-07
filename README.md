@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=master)](https://travis-ci.org/openHPI/xikolo-ios)
+[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev)](https://travis-ci.org/openHPI/xikolo-ios)
 [![codebeat badge](https://codebeat.co/badges/918bd1cb-d966-4ab7-a42e-f7a2b092378d)](https://codebeat.co/projects/github-com-openhpi-xikolo-ios-master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 

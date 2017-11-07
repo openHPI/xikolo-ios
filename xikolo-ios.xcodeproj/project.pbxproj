@@ -933,7 +933,6 @@
 		70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
 		70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
 		70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
-		70D1EAEA1EF0AC930088C0FF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		70D1EAEC1EF0AC9A0088C0FF /* CourseDatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDatesTableViewController.swift */; };
 		70D1EAED1EF0AC9D0088C0FF /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
 		70D1EAEE1EF0ACA30088C0FF /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
@@ -1032,9 +1031,6 @@
 		70D1EB601EF134870088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
 		70D1EB621EF134FD0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
-		70EA7EB31EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
-		70EA7EB41EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
-		70EA7EB51EC72602007C25C3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */; };
 		70F456301F0128E000A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF7621E81EEC40043C7B7 /* UserProfile+CoreDataProperties.swift */; };
 		70F456311F0128E100A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF7621E81EEC40043C7B7 /* UserProfile+CoreDataProperties.swift */; };
 		70F456321F0128E400A2C6B7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */; };
@@ -1887,7 +1883,6 @@
 		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openHPI/Info.plist; sourceTree = "<group>"; };
 		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openSAP/Info.plist; sourceTree = "<group>"; };
 		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openWHO/Info.plist; sourceTree = "<group>"; };
-		70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2760,7 +2755,6 @@
 			isa = PBXGroup;
 			children = (
 				F89473C11B3C46FD00553882 /* LoginViewController.swift */,
-				70EA7EB21EC72602007C25C3 /* WelcomeViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2861,11 +2855,13 @@
 			buildConfigurationList = 24BA40431D3F976800E38C2C /* Build configuration list for PBXNativeTarget "openSAP-iOS" */;
 			buildPhases = (
 				7919434A264A33D8AF707163 /* [CP] Check Pods Manifest.lock */,
+				50429D9A1FB07288000C1D5E /* Set Build Number */,
 				24BA40301D3F976700E38C2C /* Sources */,
 				24BA40311D3F976700E38C2C /* Frameworks */,
 				24BA40321D3F976700E38C2C /* Resources */,
 				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				747AA6185FE4F61F6B113EC5 /* [CP] Copy Pods Resources */,
+				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -2944,11 +2940,13 @@
 			buildConfigurationList = 709C93121EF0952500F8F045 /* Build configuration list for PBXNativeTarget "moocHOUSE-iOS" */;
 			buildPhases = (
 				0089F3364BA801A526B4D83B /* [CP] Check Pods Manifest.lock */,
+				50429D9E1FB072D3000C1D5E /* Set Build Number */,
 				709C92FF1EF0952500F8F045 /* Sources */,
 				709C93001EF0952500F8F045 /* Frameworks */,
 				709C93011EF0952500F8F045 /* Resources */,
 				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
 				1F57239A56A003CFD9A17C49 /* [CP] Copy Pods Resources */,
+				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3005,11 +3003,13 @@
 			buildConfigurationList = A90587E31B3BFC130095DB89 /* Build configuration list for PBXNativeTarget "openHPI-iOS" */;
 			buildPhases = (
 				675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */,
+				50429D981FB070E4000C1D5E /* Set Build Number */,
 				A90587B71B3BFC130095DB89 /* Sources */,
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */,
+				50429D991FB07149000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3025,11 +3025,13 @@
 			buildConfigurationList = AB48B4461DF8BB2A00523062 /* Build configuration list for PBXNativeTarget "openWHO-iOS" */;
 			buildPhases = (
 				E4366C3C332640BAB19B0552 /* [CP] Check Pods Manifest.lock */,
+				50429D9C1FB072AD000C1D5E /* Set Build Number */,
 				AB48B4311DF8BB2A00523062 /* Sources */,
 				AB48B4321DF8BB2A00523062 /* Frameworks */,
 				AB48B4331DF8BB2A00523062 /* Resources */,
 				ACB757C47A664C44D01683E8 /* [CP] Embed Pods Frameworks */,
 				99A701B933A853760C844333 /* [CP] Copy Pods Resources */,
+				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3693,6 +3695,118 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		50429D981FB070E4000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nmerge_base=`$git merge-base master HEAD`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ncommit_count_merge_base=`$git rev-list --count $merge_base`\ncommit_count_diff_head=`$git rev-list --count $merge_base..HEAD`\n\nbuild_number=$commit_count_merge_base\nif [ \"$branch_name\" != \"master\" ]; then\n  build_number=\"$build_number.$commit_count_diff_head\"\n  if [ \"$branch_name\" != \"dev\" ]; then\n    build_number=\"$build_number.0\"\n  fi\nfi\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D991FB07149000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50429D9A1FB07288000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nmerge_base=`$git merge-base master HEAD`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ncommit_count_merge_base=`$git rev-list --count $merge_base`\ncommit_count_diff_head=`$git rev-list --count $merge_base..HEAD`\n\nbuild_number=$commit_count_merge_base\nif [ \"$branch_name\" != \"master\" ]; then\n  build_number=\"$build_number.$commit_count_diff_head\"\n  if [ \"$branch_name\" != \"dev\" ]; then\n    build_number=\"$build_number.0\"\n  fi\nfi\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D9B1FB0728C000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50429D9C1FB072AD000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nmerge_base=`$git merge-base master HEAD`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ncommit_count_merge_base=`$git rev-list --count $merge_base`\ncommit_count_diff_head=`$git rev-list --count $merge_base..HEAD`\n\nbuild_number=$commit_count_merge_base\nif [ \"$branch_name\" != \"master\" ]; then\n  build_number=\"$build_number.$commit_count_diff_head\"\n  if [ \"$branch_name\" != \"dev\" ]; then\n    build_number=\"$build_number.0\"\n  fi\nfi\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D9D1FB072AE000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50429D9E1FB072D3000C1D5E /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nmerge_base=`$git merge-base master HEAD`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ncommit_count_merge_base=`$git rev-list --count $merge_base`\ncommit_count_diff_head=`$git rev-list --count $merge_base..HEAD`\n\nbuild_number=$commit_count_merge_base\nif [ \"$branch_name\" != \"master\" ]; then\n  build_number=\"$build_number.$commit_count_diff_head\"\n  if [ \"$branch_name\" != \"dev\" ]; then\n    build_number=\"$build_number.0\"\n  fi\nfi\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+		};
+		50429D9F1FB072D5000C1D5E /* Clear Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clear Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
 		57CD7946E155D5BFDF1EE5AC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4332,7 +4446,6 @@
 				24BA40D01D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
 				ABCE24311E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				24BA41151D3F9B8800E38C2C /* SettingsViewController.swift in Sources */,
-				70EA7EB41EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
 				24BA40AA1D3F9AC100E38C2C /* Announcement+CoreDataProperties.swift in Sources */,
@@ -4845,7 +4958,6 @@
 				70F456521F0139BC00A2C6B7 /* AnnouncementsTableViewController.swift in Sources */,
 				70D1EB101EF12DEC0088C0FF /* Brand.swift in Sources */,
 				5019A76B1F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */,
-				70D1EAEA1EF0AC930088C0FF /* WelcomeViewController.swift in Sources */,
 				70D1EA311EF0AAF30088C0FF /* Enrollment.swift in Sources */,
 				70D1EA711EF0AB430088C0FF /* TrackingEvent.swift in Sources */,
 				50F668971F3849C300ACC26A /* SyncHelper.swift in Sources */,
@@ -5261,7 +5373,6 @@
 				F875A5171B5697640030F38C /* AppDelegate.swift in Sources */,
 				ABCE24301E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				243CE4961D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
-				70EA7EB31EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
 				2448BE261D7DCF1E008466CC /* QuizSubmission.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
@@ -5424,7 +5535,6 @@
 				ABA0F0D51DF8CE5F0001D88D /* QuizHelper.swift in Sources */,
 				ABCE24321E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				ABA0F0501DF8CD850001D88D /* Enrollment.swift in Sources */,
-				70EA7EB51EC72602007C25C3 /* WelcomeViewController.swift in Sources */,
 				ABA0F0201DF8CCB40001D88D /* AnnouncementViewController.swift in Sources */,
 				AB17C56F1DFCAD460013BBCD /* CourseDate.swift in Sources */,
 				505398901F72A9FD00A87DC8 /* NotificationKeys.swift in Sources */,
@@ -6338,7 +6448,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -6397,7 +6507,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

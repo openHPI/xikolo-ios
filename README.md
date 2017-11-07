@@ -6,7 +6,7 @@
 iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
-- Xcode 9.0
+- Xcode 9.1
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

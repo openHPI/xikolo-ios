@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=master)](https://travis-ci.org/openHPI/xikolo-ios)
+[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev)](https://travis-ci.org/openHPI/xikolo-ios)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # xikolo-ios

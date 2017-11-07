@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=master)](https://travis-ci.org/openHPI/xikolo-ios)
+[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev)](https://travis-ci.org/openHPI/xikolo-ios)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # xikolo-ios
 iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
-- Xcode 9.0
+- Xcode 9.1
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

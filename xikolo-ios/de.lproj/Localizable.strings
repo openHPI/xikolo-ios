@@ -42,7 +42,7 @@
 "empty-view.course-content.description" = "Bitte überprüfe die Internetverbindung";
 
 /* title for empty course content list */
-"empty-view.course-content.title" = "Fehler beim Laden der Krusinhalte";
+"empty-view.course-content.title" = "Fehler beim Laden der Kursinhalte";
 
 /* description for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.description" = "Hier erscheinen Benachrichtigungen zu Fristen und neuen Kursen";
@@ -67,15 +67,6 @@
 
 /* title for empty announcement list if not logged in */
 "empty-view.platform-events.not-logged-in.title" = "Bitte logge dich ein um die Kursactivitäten zu sehen";
-
-/* title of enroll action of enrollment alert */
-"enrollment.alert.enroll-action.title" = "Einschreiben";
-
-/* message of enrollment alert */
-"enrollment.alert.message" = "Du kannst dich jederzeit wieder austragen.";
-
-/* title of enrollment alert */
-"enrollment.alert.title" = "In diesen Kurs einschreiben?";
 
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";

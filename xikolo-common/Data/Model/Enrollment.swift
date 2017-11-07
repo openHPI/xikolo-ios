@@ -84,6 +84,7 @@ class EnrollmentSpine : BaseModelSpine {
     convenience init(course: CourseSpine){
         self.init()
         self.course = course
+        self.completed_int = 0
         //TODO: What about content
     }
 

@@ -8,25 +8,38 @@
 
 import Foundation
 
-class TrackingEventUser : NSObject, EmbeddedObject {
+class TrackingEventUser : NSObject, NSCoding {
 
-    var uuid: String?
+    var uuid: String
 
-    required init(_ dict: [String : AnyObject]) {
-        if let uuid = dict["uuid"] as? String {
-            self.uuid = uuid
+    required init?(coder decoder: NSCoder) {
+        guard let uuid = decoder.decodeObject(forKey: "uuid") as? String else {
+            return nil
         }
+
+        self.uuid = uuid
     }
 
-    override init() {
+    func encode(with coder: NSCoder) {
+        coder.encode(self.uuid, forKey: "uuid")
     }
 
-    func toDict() -> [String : AnyObject] {
-        var dict = [String: AnyObject]()
-        if let uuid = uuid {
-            dict["uuid"] = uuid as AnyObject?
-        }
-        return dict
-    }
+
+//    required init(_ dict: [String : AnyObject]) {
+//        if let uuid = dict["uuid"] as? String {
+//            self.uuid = uuid
+//        }
+//    }
+//
+//    override init() {
+//    }
+//
+//    func toDict() -> [String : AnyObject] {
+//        var dict = [String: AnyObject]()
+//        if let uuid = uuid {
+//            dict["uuid"] = uuid as AnyObject?
+//        }
+//        return dict
+//    }
 
 }

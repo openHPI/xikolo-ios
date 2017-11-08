@@ -8,25 +8,37 @@
 
 import Foundation
 
-class TrackingEventVerb : NSObject, EmbeddedObject {
+class TrackingEventVerb : NSObject, NSCoding {
 
-    var type: String?
+    var type: String
 
-    required init(_ dict: [String : AnyObject]) {
-        if let type = dict["type"] as? String {
-            self.type = type
+    required init?(coder decoder: NSCoder) {
+        guard let type = decoder.decodeObject(forKey: "type") as? String else {
+            return nil
         }
+
+        self.type = type
     }
 
-    override init() {
+    func encode(with coder: NSCoder) {
+        coder.encode(self.type, forKey: "type")
     }
 
-    func toDict() -> [String : AnyObject] {
-        var dict = [String: AnyObject]()
-        if let type = type {
-            dict["type"] = type as AnyObject?
-        }
-        return dict
-    }
+//    required init(_ dict: [String : AnyObject]) {
+//        if let type = dict["type"] as? String {
+//            self.type = type
+//        }
+//    }
+//
+//    override init() {
+//    }
+//
+//    func toDict() -> [String : AnyObject] {
+//        var dict = [String: AnyObject]()
+//        if let type = type {
+//            dict["type"] = type as AnyObject?
+//        }
+//        return dict
+//    }
 
 }

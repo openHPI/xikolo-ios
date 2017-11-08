@@ -9,18 +9,19 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
-import CoreData
+//import Foundation
+//import CoreData
+//
+//extension Quiz {
+//
+//    @NSManaged var instructions: String?
+//    @NSManaged var lock_submissions_at: Date?
+//    @NSManaged var publish_results_at: Date?
+//    @NSManaged var show_welcome_page_int: NSNumber?
+//    @NSManaged var time_limit: NSNumber?
+//    @NSManaged var allowed_attempts: NSNumber?
+//    @NSManaged var max_points: NSDecimalNumber?
+//    @NSManaged var questions: Set<QuizQuestion>?
+//
+//}
 
-extension Quiz {
-
-    @NSManaged var instructions: String?
-    @NSManaged var lock_submissions_at: Date?
-    @NSManaged var publish_results_at: Date?
-    @NSManaged var show_welcome_page_int: NSNumber?
-    @NSManaged var time_limit: NSNumber?
-    @NSManaged var allowed_attempts: NSNumber?
-    @NSManaged var max_points: NSDecimalNumber?
-    @NSManaged var questions: Set<QuizQuestion>?
-
-}

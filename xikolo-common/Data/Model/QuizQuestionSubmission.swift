@@ -6,6 +6,7 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+/*
 import Foundation
 
 @objcMembers
@@ -31,24 +32,23 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
         }
         switch (question.questionType) {
             case .singleAnswer, .multipleAnswer:
-                guard let questionOptions = question.options else {
-                    return nil
-                }
+//                guard let questionOptions = question.options else {
+//                    return nil
+//                }
 
                 var baseScore = 0
-                questionOptions.forEach { answer in
-                    let correct = answer.correct ?? false
-                    let answerSelected = answers.contains(answer.id!)
-                    if answerSelected && correct {
+                question.options.forEach { answer in
+                    let answerSelected = answers.contains(answer.id)
+                    if answerSelected && answer.correct {
                         baseScore += 1
-                    } else if answerSelected && !correct {
+                    } else if answerSelected && !answer.correct {
                         baseScore -= 1
                     }
                 }
                 if baseScore < 0 {
                     baseScore = 0
                 }
-                return Float(baseScore) / Float(questionOptions.filter({ $0.correct ?? false }).count)
+                return Float(baseScore) / Float(question.options.filter({ $0.correct }).count)
             case .unsupported:
                 return nil
         }
@@ -106,3 +106,5 @@ class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
     }
 
 }
+
+ */

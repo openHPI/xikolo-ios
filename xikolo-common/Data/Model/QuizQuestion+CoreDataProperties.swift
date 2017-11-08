@@ -9,19 +9,20 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
-import CoreData
+//import Foundation
+//import CoreData
+//
+//extension QuizQuestion {
+//
+//    @NSManaged var explanation: String?
+//    @NSManaged var id: String
+//    @NSManaged var max_points: NSDecimalNumber?
+//    @NSManaged var shuffle_options_int: NSNumber?
+//    @NSManaged var text: String?
+//    @NSManaged var type: String?
+//    @NSManaged var position: NSNumber?
+//    @NSManaged var options: [QuizOption]?
+//    @NSManaged var quiz: Quiz?
+//
+//}
 
-extension QuizQuestion {
-
-    @NSManaged var explanation: String?
-    @NSManaged var id: String
-    @NSManaged var max_points: NSDecimalNumber?
-    @NSManaged var shuffle_options_int: NSNumber?
-    @NSManaged var text: String?
-    @NSManaged var type: String?
-    @NSManaged var position: NSNumber?
-    @NSManaged var options: [QuizOption]?
-    @NSManaged var quiz: Quiz?
-
-}

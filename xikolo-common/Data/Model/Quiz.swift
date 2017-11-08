@@ -12,16 +12,39 @@ import Spine
 
 class Quiz : Content {
 
+    @NSManaged var id: String
+    @NSManaged var instructions: String?
+    @NSManaged var lockSubmissionsAt: Date?
+    @NSManaged var publishResultsAt: Date?
+    @NSManaged var showWelcomePage: Bool
+    @NSManaged var timeLimit: Int32
+    @NSManaged var allowedAttempts: Int32
+    @NSManaged private var maxPointsValue: NSDecimalNumber?
+    @NSManaged var questions: Set<QuizQuestion>?
+
     var submission: QuizSubmission?
 
-    var time_limit_formatted: [String] {
-        guard let time_limit = time_limit?.intValue else {
-            return []
+    var maxPoints: Double? {
+        get {
+            return self.maxPointsValue?.doubleValue
         }
+        set {
+            if let value = newValue {
+                self.maxPointsValue = NSDecimalNumber(value: value)
+            } else {
+                self.maxPointsValue = nil
+            }
+        }
+    }
 
-        let hours = time_limit / 3600
-        let minutes = (time_limit % 3600) / 60
-        let seconds = time_limit % 60
+    var time_limit_formatted: [String] {
+//        guard let time_limit = self.timeLimit?.intValue else {
+//            return []
+//        }
+
+        let hours = self.timeLimit / 3600
+        let minutes = (self.timeLimit % 3600) / 60
+        let seconds = self.timeLimit % 60
 
         var strings = [String]()
         if hours > 0 {
@@ -40,17 +63,40 @@ class Quiz : Content {
         return strings
     }
 
-    var show_welcome_page: Bool {
-        get {
-            return show_welcome_page_int?.boolValue ?? false
-        }
-        set(new_show_welcome_page) {
-            show_welcome_page_int = new_show_welcome_page as NSNumber?
-        }
-    }
+//    var show_welcome_page: Bool {
+//        get {
+//            return show_welcome_page_int?.boolValue ?? false
+//        }
+//        set(new_show_welcome_page) {
+//            show_welcome_page_int = new_show_welcome_page as NSNumber?
+//        }
+//    }
 
     override func iconName() -> String {
         return "quiz"
+    }
+
+}
+
+extension Quiz : Pullable {
+
+    static var type: String {
+        return "quizzes"
+    }
+
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.instructions = try attributes.value(for: "instructions")
+        self.lockSubmissionsAt = try attributes.value(for: "lock_submissions_at")
+        self.publishResultsAt = try attributes.value(for: "publish_results_at")
+        self.timeLimit = try attributes.value(for: "time_limit")
+        self.allowedAttempts = try attributes.value(for: "allowed_attempts")
+        self.maxPoints = try attributes.value(for: "max_points")
+        self.showWelcomePage = try attributes.value(for: "show_welcome_page")
+
+        let relationships = try object.value(for: "relationships") as JSON
+        try self.updateRelationship(forKeyPath: \Quiz.questions, forKey: "questions", fromObject: relationships, including: includes, inContext: context)
+        // TODO: submission
     }
 
 }

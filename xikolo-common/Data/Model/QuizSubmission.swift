@@ -8,7 +8,7 @@
 
 import Foundation
 import Spine
-
+/*
 @objcMembers
 class QuizSubmission : Resource {
 
@@ -40,3 +40,4 @@ class QuizSubmission : Resource {
     }
 
 }
+*/

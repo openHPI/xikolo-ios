@@ -7,39 +7,47 @@
 //
 
 import Foundation
+import Marshal
 
 @objcMembers
-class QuizOption : NSObject, NSCoding, EmbeddedObject {
+class QuizOption : NSObject, NSCoding, Unmarshaling {
 
-    var id: String?
+    var id: String
     var text: String?
-    var position: NSNumber?
-    var correct: Bool?
+    var position: Int32
+    var correct: Bool
     var explanation: String?
 
-    required init(_ dict: [String : AnyObject]) {
-        id = dict["id"] as? String
-        text = dict["text"] as? String
-        position = dict["position"] as? NSNumber
-        correct = dict["correct"] as? Bool
-        explanation = dict["explanation"] as? String
+//    required init(_ dict: [String : AnyObject]) {
+//        id = dict["id"] as? String
+//        text = dict["text"] as? String
+//        position = dict["position"] as? NSNumber
+//        correct = dict["correct"] as? Bool
+//        explanation = dict["explanation"] as? String
+//    }
+
+    required init(object: ResourceData) throws {
+        self.id = try object.value(for: "id")
+        self.text = try object.value(for: "text")
+        self.position = try object.value(for: "position")
+        self.correct = try object.value(for: "correct")
+        self.explanation = try object.value(for: "explanation")
     }
 
     required init(coder decoder: NSCoder) {
-        id = decoder.decodeObject(forKey: "id") as? String
-        text = decoder.decodeObject(forKey: "text") as? String
-        position = decoder.decodeObject(forKey: "position") as? NSNumber
-        correct = decoder.decodeObject(forKey: "correct") as? Bool
-        explanation = decoder.decodeObject(forKey: "explanation") as? String
+        self.id = decoder.decodeObject(forKey: "id") as! String // TODO: force cast
+        self.text = decoder.decodeObject(forKey: "text") as? String
+        self.position = decoder.decodeObject(forKey: "position") as! Int32  // TODO: force cast
+        self.correct = decoder.decodeObject(forKey: "correct") as! Bool  // TODO: force cast
+        self.explanation = decoder.decodeObject(forKey: "explanation") as? String
     }
 
     func encode(with coder: NSCoder) {
-        coder.encode(id, forKey: "id")
-        coder.encode(text, forKey: "text")
-        coder.encode(position, forKey: "position")
-        coder.encode(correct, forKey: "correct")
-        coder.encode(explanation, forKey: "explanation")
-
+        coder.encode(self.id, forKey: "id")
+        coder.encode(self.text, forKey: "text")
+        coder.encode(self.position, forKey: "position")
+        coder.encode(self.correct, forKey: "correct")
+        coder.encode(self.explanation, forKey: "explanation")
     }
 
 }

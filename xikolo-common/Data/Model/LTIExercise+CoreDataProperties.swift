@@ -9,14 +9,15 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
-import CoreData
+//import Foundation
+//import CoreData
+//
+//extension LTIExercise {
+//
+//    @NSManaged var instructions: String?
+//    @NSManaged var weight: NSNumber?
+//    @NSManaged var allowed_attempts: NSNumber?
+//    @NSManaged var lock_submissions_at: Date?
+//
+//}
 
-extension LTIExercise {
-
-    @NSManaged var instructions: String?
-    @NSManaged var weight: NSNumber?
-    @NSManaged var allowed_attempts: NSNumber?
-    @NSManaged var lock_submissions_at: Date?
-
-}

@@ -8,9 +8,12 @@
 
 import CoreData
 import Foundation
-import Spine
+//import Spine
 
 class PeerAssessment : Content {
+
+    @NSManaged var id: String
+    @NSManaged var title: String?
 
     override func iconName() -> String {
         return "peer_assessment"
@@ -18,23 +21,37 @@ class PeerAssessment : Content {
 
 }
 
-@objcMembers
-class PeerAssessmentSpine : ContentSpine {
+extension PeerAssessment : Pullable {
 
-    var title: String?
-
-    override class var cdType: BaseModel.Type {
-        return PeerAssessment.self
-    }
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "peer-assessments"
     }
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "title": Attribute()
-        ])
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.title = try attributes.value(for: "title")
     }
-    
+
 }
+
+//@objcMembers
+//class PeerAssessmentSpine : ContentSpine {
+//
+//    var title: String?
+//
+//    override class var cdType: BaseModel.Type {
+//        return PeerAssessment.self
+//    }
+//
+//    override class var resourceType: ResourceType {
+//        return "peer-assessments"
+//    }
+//
+//    override class var fields: [Field] {
+//        return fieldsFromDictionary([
+//            "title": Attribute()
+//        ])
+//    }
+//
+//}
+

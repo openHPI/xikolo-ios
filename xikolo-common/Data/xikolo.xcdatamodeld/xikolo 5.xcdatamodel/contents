@@ -77,10 +77,10 @@
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollment" inverseEntity="Course" syncable="YES"/>
     </entity>
     <entity name="LTIExercise" representedClassName=".LTIExercise" parentEntity="Content" syncable="YES">
-        <attribute name="allowed_attempts" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="allowedAttempts" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lock_submissions_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockSubmissionsAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="PeerAssessment" representedClassName=".PeerAssessment" parentEntity="Content" syncable="YES">
@@ -88,7 +88,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PlatformEvent" representedClassName=".PlatformEvent" syncable="YES">
-        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="preview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -165,7 +165,7 @@
         <element name="Enrollment" positionX="52" positionY="-216" width="128" height="150"/>
         <element name="LTIExercise" positionX="772" positionY="342" width="128" height="120"/>
         <element name="PeerAssessment" positionX="610" positionY="311" width="128" height="75"/>
-        <element name="PlatformEvent" positionX="252" positionY="-16" width="128" height="133"/>
+        <element name="PlatformEvent" positionX="252" positionY="-16" width="128" height="135"/>
         <element name="Quiz" positionX="828" positionY="162" width="128" height="180"/>
         <element name="QuizQuestion" positionX="999" positionY="162" width="128" height="178"/>
         <element name="RichText" positionX="783" positionY="66" width="128" height="75"/>

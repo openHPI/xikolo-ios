@@ -64,7 +64,7 @@ final class Enrollment : NSManagedObject {
 
 }
 
-extension Enrollment: Pullable {
+extension Enrollment : Pullable {
 
     static var type: String {
         return "enrollments"
@@ -80,7 +80,6 @@ extension Enrollment: Pullable {
         self.completed = try attributes.value(for: "completed")
         self.reactivated = try attributes.value(for: "reactivated")
         self.createdAt = try attributes.value(for: "created_at")
-//        "course": ToOneRelationship(CourseSpine.self)
     }
 
 }

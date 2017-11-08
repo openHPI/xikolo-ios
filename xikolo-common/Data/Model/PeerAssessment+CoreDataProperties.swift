@@ -9,11 +9,12 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
-import CoreData
+//import Foundation
+//import CoreData
+//
+//extension PeerAssessment {
+//
+//    @NSManaged var title: String?
+//
+//}
 
-extension PeerAssessment {
-
-    @NSManaged var title: String?
-
-}

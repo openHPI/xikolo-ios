@@ -11,7 +11,6 @@ import Foundation
 import CoreData
 import Spine
 
-@objcMembers
 final class UserProfile: NSManagedObject {
 
     @NSManaged var id: String

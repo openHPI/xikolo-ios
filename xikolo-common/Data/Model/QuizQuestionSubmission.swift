@@ -9,7 +9,6 @@
 /*
 import Foundation
 
-@objcMembers
 class QuizQuestionSubmission : NSObject, EmbeddedDictObject {
 
     var key: String? {

@@ -12,7 +12,6 @@ import CoreData
 import BrightFutures
 import Spine
 
-@objcMembers
 final class User: NSManagedObject {
 
     @NSManaged var id: String

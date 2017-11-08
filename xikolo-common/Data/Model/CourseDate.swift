@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import Spine
 
-@objcMembers
 final class CourseDate : BaseModel {
 
     @NSManaged var id: String

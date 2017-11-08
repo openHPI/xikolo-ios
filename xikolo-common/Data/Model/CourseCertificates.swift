@@ -9,7 +9,6 @@
 import Foundation
 import Marshal
 
-@objc
 final class CourseCertificates : NSObject, NSCoding, Unmarshaling {
 //class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
 

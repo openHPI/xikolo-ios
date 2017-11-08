@@ -9,7 +9,6 @@
 import Foundation
 import Spine
 /*
-@objcMembers
 class QuizSubmission : Resource {
 
     var submitted: Bool {

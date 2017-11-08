@@ -9,7 +9,6 @@
 import Foundation
 import Spine
 
-@objcMembers
 class TrackingEvent : Resource {
 
     var user: TrackingEventUser?

@@ -46,7 +46,6 @@ import CoreData
 //
 //extension Content: ContentProtocol { }
 
-@objcMembers
 class Content : NSManagedObject {
 
     func iconName() -> String {

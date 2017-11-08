@@ -10,7 +10,6 @@ import CoreData
 import Foundation
 //import Spine
 
-@objcMembers
 final class Announcement: NSManagedObject {
 
     @NSManaged var id: String

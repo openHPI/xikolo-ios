@@ -9,9 +9,6 @@
 import Foundation
 import Marshal
 
-
-//class EnrollmentCertificates : NSObject, NSCoding, EmbeddedObject {
-@objc
 final class EnrollmentCertificates : NSObject, NSCoding, Unmarshaling {
 
     var confirmationOfParticipation: Bool

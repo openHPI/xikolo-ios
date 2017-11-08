@@ -12,7 +12,6 @@ import CoreData
 import Foundation
 import Spine
 
-@objcMembers
 final class Video : Content {
 
     @NSManaged var id: String

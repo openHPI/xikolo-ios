@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import Spine
 
-@objcMembers
 final class PlatformEvent : NSManagedObject {
 
     @NSManaged var id: String

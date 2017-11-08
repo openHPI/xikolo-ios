@@ -43,7 +43,7 @@ class AnnouncementViewController : UIViewController {
     private func updateView() {
         self.titleView.text = self.announcement.title
 
-        if let date = self.announcement.published_at {
+        if let date = self.announcement.publishedAt {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none

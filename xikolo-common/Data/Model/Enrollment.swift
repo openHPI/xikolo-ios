@@ -11,7 +11,6 @@ import Foundation
 import Spine
 import Marshal
 
-@objc
 final class Enrollment : NSManagedObject {
 
     @NSManaged var id: String

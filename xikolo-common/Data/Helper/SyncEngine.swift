@@ -48,8 +48,46 @@ struct SyncEngine {
     private static func doNetworkRequest(_ request: URLRequest) -> Future<ResourceData, XikoloError> {
         let promise = Promise<ResourceData, XikoloError>()
 
-        // TODO: do network request
+        let session = URLSession.shared // TODO: use custom session with configuration?
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let err = error {
+                promise.failure(.network(err))
+                return
+            }
 
+            guard let responseData = data else {
+                promise.failure(.api(.noData))
+                return
+            }
+
+            do {
+                guard let resourceData = try JSONSerialization.jsonObject(with: responseData, options: []) as? MarshalDictionary else {
+                    promise.failure(.api(.serializationError(.invalidDocumentStructure)))
+                    return
+                }
+
+                let hasData = resourceData["data"] != nil
+                let hasErrors = resourceData["errors"] != nil
+                let hasMeta = resourceData["meta"] != nil
+
+                guard hasData || hasErrors || hasMeta else {
+                    promise.failure(.api(.serializationError(.topLevelEntryMissing)))
+                    return
+                }
+
+                guard hasErrors && !hasData || !hasErrors && hasData else {
+                    promise.failure(.api(.serializationError(.topLevelDataAndErrorsCoexist)))
+                    return
+                }
+
+                promise.success(resourceData)
+            } catch {
+                promise.failure(.api(.serializationError(.jsonSerializationError(error))))
+                return
+            }
+        }
+
+        task.resume()
         return promise.future
     }
 
@@ -79,8 +117,10 @@ struct SyncEngine {
             }
 
             return Future(value: newObjects)
-        } catch {
-            return Future(error: XikoloError.totallyUnknownError) // TODO: better errors for different trys
+        } catch let error as MarshalError {
+            return Future(error: .api(.serializationError(.modelDeserializationError(error))))
+        } catch { // TODO more catches!!!
+            return Future(error: .unknownError(error))
         }
     }
 

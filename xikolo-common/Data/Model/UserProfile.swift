@@ -12,45 +12,64 @@ import CoreData
 import Spine
 
 @objcMembers
-class UserProfile: BaseModel {
+class UserProfile: NSManagedObject {
 
-
-}
-
-extension UserProfile {
+    @NSManaged var id: String
+    @NSManaged var displayName: String?
+    @NSManaged var firstName: String?
+    @NSManaged var lastName: String?
+    @NSManaged var email: String?
+    @NSManaged var user: User?
 
     var fullName: String? {
-        let components = [self.first_name, self.last_name].flatMap{ $0 }
+        let components = [self.firstName, self.lastName].flatMap{ $0 }
         return components.count > 0 ? components.joined(separator: " ") : nil
     }
 
 }
 
-@objcMembers
-class UserProfileSpine : BaseModelSpine {
+extension UserProfile : Pullable {
 
-    var display_name: String?
-    var first_name: String?
-    var last_name: String?
-    var email: String?
-    var user: User?
-
-    override class var cdType: BaseModel.Type {
-        return UserProfile.self
-    }
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "user-profile"
     }
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "display_name": Attribute(),
-            "first_name": Attribute(),
-            "last_name": Attribute(),
-            "email": Attribute(),
-            "user": ToOneRelationship(UserSpine.self),
-        ])
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.displayName = try attributes.value(for: "display_name")
+        self.firstName = try attributes.value(for: "first_name")
+        self.lastName = try attributes.value(for: "last_name")
+        self.email = try attributes.value(for: "email")
     }
-    
+
 }
+
+//@objcMembers
+//class UserProfileSpine : BaseModelSpine {
+//
+//    var display_name: String?
+//    var first_name: String?
+//    var last_name: String?
+//    var email: String?
+//    var user: User?
+//
+//    override class var cdType: BaseModel.Type {
+//        return UserProfile.self
+//    }
+//
+//    override class var resourceType: ResourceType {
+//        return "user-profile"
+//    }
+//
+//    override class var fields: [Field] {
+//        return fieldsFromDictionary([
+//            "display_name": Attribute(),
+//            "first_name": Attribute(),
+//            "last_name": Attribute(),
+//            "email": Attribute(),
+//            "user": ToOneRelationship(UserSpine.self),
+//        ])
+//    }
+//
+//}
+

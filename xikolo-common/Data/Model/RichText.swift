@@ -14,6 +14,13 @@ import Spine
 
 class RichText : Content {
 
+    @NSManaged var id: String
+    @NSManaged var text: String?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<RichText> {
+        return NSFetchRequest<RichText>(entityName: "RichText");
+    }
+
     override func iconName() -> String {
         return "rich_text"
     }
@@ -36,6 +43,7 @@ extension RichText : Pullable {
     }
 
 }
+
 //
 //@objcMembers
 //class RichTextSpine : ContentSpine {

@@ -18,18 +18,18 @@ final class Announcement: NSManagedObject {
     @NSManaged var text: String?
     @NSManaged var publishedAt: Date?
     @NSManaged var visited: Bool
-    @NSManaged var imageURLString: String?
+    @NSManaged var imageURL: URL?
     @NSManaged var course: Course?
 
-    var imageURL: URL? {
-        get {
-            guard let value = self.imageURLString else { return nil }
-            return URL(string: value)
-        }
-        set {
-            self.imageURLString = newValue?.absoluteString
-        }
-    }
+//    var imageURL: URL? {
+//        get {
+//            guard let value = self.imageURLString else { return nil }
+//            return URL(string: value)
+//        }
+//        set {
+//            self.imageURLString = newValue?.absoluteString
+//        }
+//    }
 
 //    var visited: Bool? {
 //        get {
@@ -57,7 +57,7 @@ extension Announcement: Pullable {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.text = try attributes.value(for: "text")
-        self.imageURLString = try attributes.value(for: "image_url")
+        self.imageURL = try attributes.value(for: "image_url")
         self.publishedAt = try attributes.value(for: "published_at")
         self.visited = try attributes.value(for: "visited")
 

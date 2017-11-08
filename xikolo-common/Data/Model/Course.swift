@@ -18,11 +18,11 @@ final class Course : NSManagedObject {
     @NSManaged var id: String
     @NSManaged var abstract: String?
     @NSManaged var accessible: Bool
-    @NSManaged var course_description: String?
+    @NSManaged var courseDescription: String?
     @NSManaged var certificates: CourseCertificates?
     @NSManaged var startsAt: Date?
     @NSManaged var endsAt: Date?
-    @NSManaged var image_url: URL?
+    @NSManaged var imageURL: URL?
     @NSManaged var language: String?
     @NSManaged var slug: String?
     @NSManaged var teachers: String?
@@ -130,9 +130,9 @@ extension Course : Pullable {
         self.slug = try attributes.value(for: "slug")
         self.abstract = try attributes.value(for: "abstract")
         self.accessible = try attributes.value(for: "accessible")
-        self.course_description = try attributes.value(for: "description")
+        self.courseDescription = try attributes.value(for: "description")
         self.certificates = try attributes.value(for: "certificates")
-        self.image_url = try attributes.value(for: "image_url")
+        self.imageURL = try attributes.value(for: "image_url")
         self.teachers = try attributes.value(for: "teachers")
         self.language = try attributes.value(for: "language")
         self.startsAt = try attributes.value(for: "start_at")

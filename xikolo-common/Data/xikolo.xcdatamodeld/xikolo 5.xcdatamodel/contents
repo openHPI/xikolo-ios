@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Announcement" representedClassName=".Announcement" elementID="NewsArticle" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageURLString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="publishedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,13 +16,13 @@
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="accessible" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="certificates" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="course_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="courseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endsAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="enrollable" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="external" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hidden" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="image_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
@@ -122,7 +122,7 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
-        <attribute name="avatarURLString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserProfile" inverseName="user" inverseEntity="UserProfile" syncable="YES"/>
@@ -155,7 +155,7 @@
     <elements>
         <element name="Announcement" positionX="304" positionY="146" width="128" height="150"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="58"/>
-        <element name="Course" positionX="45" positionY="-18" width="128" height="373"/>
+        <element name="Course" positionX="45" positionY="-18" width="128" height="375"/>
         <element name="CourseDate" positionX="214" positionY="-180" width="128" height="118"/>
         <element name="CourseItem" positionX="468" positionY="165" width="128" height="208"/>
         <element name="CourseSection" positionX="286" positionY="306" width="128" height="178"/>

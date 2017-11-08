@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class TableViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
+class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
     weak var tableView: UITableView?
     var resultsControllers: [NSFetchedResultsController<T>]
@@ -174,7 +174,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
 
 protocol TableViewResultsControllerConfiguration {
 
-    associatedtype Content: BaseModel
+    associatedtype Content: NSManagedObject
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
 
@@ -192,7 +192,7 @@ extension TableViewResultsControllerConfiguration {
 
 // This is a wrapper for type erasure allowing the generic TableViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
-class TableViewResultsControllerConfigurationWrapper<T: BaseModel>: TableViewResultsControllerConfiguration {
+class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableViewResultsControllerConfiguration {
 
     private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let _shouldShowHeader: () -> Bool

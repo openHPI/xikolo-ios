@@ -7,30 +7,40 @@
 //
 
 import Foundation
+import Marshal
 
-@objcMembers
-class EnrollmentCertificates : NSObject, NSCoding, EmbeddedObject {
 
-    var confirmationOfParticipation: Bool?
-    var recordOfAchievement: Bool?
-    var certificate: Bool?
+//class EnrollmentCertificates : NSObject, NSCoding, EmbeddedObject {
+@objc
+final class EnrollmentCertificates : NSObject, NSCoding, Unmarshaling {
 
-    required init(_ dict: [String : AnyObject]) {
-        confirmationOfParticipation = dict["confirmation_of_participation"] as? Bool
-        recordOfAchievement = dict["record_of_achievement"] as? Bool
-        certificate = dict["qualified_certificate"] as? Bool
+    var confirmationOfParticipation: Bool
+    var recordOfAchievement: Bool
+    var certificate: Bool
+
+//    required init(_ dict: [String : AnyObject]) {
+//        confirmationOfParticipation = dict["confirmation_of_participation"] as? Bool
+//        recordOfAchievement = dict["record_of_achievement"] as? Bool
+//        certificate = dict["qualified_certificate"] as? Bool
+//    }
+
+    required init(object: ResourceData) throws {
+        self.confirmationOfParticipation = try object.value(for: "confirmation_of_participation")
+        self.recordOfAchievement = try object.value(for: "record_of_achievement")
+        self.certificate = try object.value(for: "qualified_certificate")
     }
 
     required init(coder decoder: NSCoder) {
-        confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as? Bool
-        recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as? Bool
-        certificate = decoder.decodeObject(forKey: "qualified_certificate") as? Bool
+        // TODO: force cast
+        self.confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as! Bool
+        self.recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as! Bool
+        self.certificate = decoder.decodeObject(forKey: "qualified_certificate") as! Bool
     }
 
     func encode(with coder: NSCoder) {
-        coder.encode(confirmationOfParticipation, forKey: "confirmation_of_participation")
-        coder.encode(recordOfAchievement, forKey: "record_of_achievement")
-        coder.encode(certificate, forKey: "qualified_certificate")
+        coder.encode(self.confirmationOfParticipation, forKey: "confirmation_of_participation")
+        coder.encode(self.recordOfAchievement, forKey: "record_of_achievement")
+        coder.encode(self.certificate, forKey: "qualified_certificate")
     }
     
 }

@@ -12,7 +12,7 @@ import Foundation
 import Spine
 //import Marshal
 
-@objcMembers
+@objc
 final class Course : NSManagedObject {
 
     @NSManaged var id: String

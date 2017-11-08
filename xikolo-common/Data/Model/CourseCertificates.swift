@@ -9,8 +9,8 @@
 import Foundation
 import Marshal
 
-@objcMembers
-final class CourseCertificates : NSCoding, Unmarshaling {
+@objc
+final class CourseCertificates : NSObject, NSCoding, Unmarshaling {
 //class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
 
     var confirmationOfParticipation: CourseCertificatesHash?

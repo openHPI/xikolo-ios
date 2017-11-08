@@ -9,23 +9,24 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-import Foundation
-import CoreData
+//import Foundation
+//import CoreData
+//
+//extension Enrollment {
+//
+//    @NSManaged var id: String
+//    @NSManaged var visits: EnrollmentVisits?
+//    @NSManaged var points: EnrollmentPoints?
+//    @NSManaged var certificates: EnrollmentCertificates?
+//    @NSManaged var proctored_int: NSNumber?
+//    @NSManaged var completed_int: NSNumber?
+//    @NSManaged var reactivated_int: NSNumber?
+//    @NSManaged var created_at: Date?
+//    @NSManaged var course: Course?
+//
+//    @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
+//        return NSFetchRequest<Enrollment>(entityName: "Enrollment");
+//    }
+//
+//}
 
-extension Enrollment {
-
-    @NSManaged var id: String
-    @NSManaged var visits: EnrollmentVisits?
-    @NSManaged var points: EnrollmentPoints?
-    @NSManaged var certificates: EnrollmentCertificates?
-    @NSManaged var proctored_int: NSNumber?
-    @NSManaged var completed_int: NSNumber?
-    @NSManaged var reactivated_int: NSNumber?
-    @NSManaged var created_at: Date?
-    @NSManaged var course: Course?
-
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
-        return NSFetchRequest<Enrollment>(entityName: "Enrollment");
-    }
-
-}

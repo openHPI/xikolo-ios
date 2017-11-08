@@ -11,8 +11,22 @@ import Foundation
 import Spine
 import Marshal
 
-@objcMembers
-final class Enrollment : BaseModel {
+@objc
+final class Enrollment : NSManagedObject {
+
+    @NSManaged var id: String
+//    @NSManaged var visits: EnrollmentVisits?
+//    @NSManaged var points: EnrollmentPoints?
+    @NSManaged var certificates: EnrollmentCertificates?
+    @NSManaged var proctored: Bool
+    @NSManaged var completed: Bool
+    @NSManaged var reactivated: Bool
+    @NSManaged var createdAt: Date?
+    @NSManaged var course: Course?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
+        return NSFetchRequest<Enrollment>(entityName: "Enrollment");
+    }
 
     func compare(_ object: Enrollment) -> ComparisonResult {
         // This method is required, because we're using an NSSortDescriptor to sort courses based on enrollment.
@@ -21,32 +35,32 @@ final class Enrollment : BaseModel {
         return .orderedSame
     }
 
-    var proctored: Bool {
-        get {
-            return proctored_int?.boolValue ?? false
-        }
-        set(new_is_proctored) {
-            proctored_int = new_is_proctored as NSNumber?
-        }
-    }
-
-    var completed: Bool {
-        get {
-            return completed_int?.boolValue ?? false
-        }
-        set(new_is_completed) {
-            completed_int = new_is_completed as NSNumber?
-        }
-    }
-
-    var reactivated: Bool? {
-        get {
-            return reactivated_int?.boolValue
-        }
-        set(new_is_reactivated) {
-            reactivated_int = new_is_reactivated as NSNumber?
-        }
-    }
+//    var proctored: Bool {
+//        get {
+//            return proctored_int?.boolValue ?? false
+//        }
+//        set(new_is_proctored) {
+//            proctored_int = new_is_proctored as NSNumber?
+//        }
+//    }
+//
+//    var completed: Bool {
+//        get {
+//            return completed_int?.boolValue ?? false
+//        }
+//        set(new_is_completed) {
+//            completed_int = new_is_completed as NSNumber?
+//        }
+//    }
+//
+//    var reactivated: Bool? {
+//        get {
+//            return reactivated_int?.boolValue
+//        }
+//        set(new_is_reactivated) {
+//            reactivated_int = new_is_reactivated as NSNumber?
+//        }
+//    }
 
 }
 
@@ -65,7 +79,7 @@ extension Enrollment: Pullable {
         self.proctored = try attributes.value(for: "proctored")
         self.completed = try attributes.value(for: "completed")
         self.reactivated = try attributes.value(for: "reactivated")
-        self.created_at = try attributes.value(for: "created_at")
+        self.createdAt = try attributes.value(for: "created_at")
 //        "course": ToOneRelationship(CourseSpine.self)
     }
 

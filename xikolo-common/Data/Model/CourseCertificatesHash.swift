@@ -9,8 +9,8 @@
 import Foundation
 import Marshal
 
-@objcMembers
-final class CourseCertificatesHash :  NSCoding, Unmarshaling {
+@objc
+final class CourseCertificatesHash : NSObject, NSCoding, Unmarshaling {
 //class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
 
     var available: Bool // TODO: should be Bool

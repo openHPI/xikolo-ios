@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Marshal
 
-final class QuizOption : NSObject, NSCoding, Unmarshaling {
+final class QuizOption : NSObject, NSCoding, IncludedPullable {
 
     var id: String
     var text: String?

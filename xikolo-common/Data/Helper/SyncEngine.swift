@@ -153,7 +153,7 @@ struct ResourceDescription: Unmarshaling {
 
 typealias ResourceData = MarshaledObject
 typealias JSON = JSONObject
-typealias EmbeddedObj = Unmarshaling
+typealias IncludedPullable = Unmarshaling
 
 protocol Pullable {
 

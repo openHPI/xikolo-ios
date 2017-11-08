@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Marshal
 
-final class CourseCertificatesHash : NSObject, NSCoding, Unmarshaling {
+final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
 //class CourseCertificatesHash : NSObject, NSCoding, EmbeddedObject {
 
     var available: Bool // TODO: should be Bool
@@ -20,7 +19,7 @@ final class CourseCertificatesHash : NSObject, NSCoding, Unmarshaling {
 //        threshold = dict["threshold"] as? NSNumber
 //    }
 
-    required init(object: MarshaledObject) throws {
+    required init(object: ResourceData) throws {
         self.available = try object.value(for: "available")
         self.threshold = try object.value(for: "threshold")
     }

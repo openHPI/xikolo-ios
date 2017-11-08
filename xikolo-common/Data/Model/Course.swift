@@ -10,7 +10,6 @@ import BrightFutures
 import CoreData
 import Foundation
 import Spine
-//import Marshal
 
 final class Course : NSManagedObject {
 

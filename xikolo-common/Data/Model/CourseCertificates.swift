@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Marshal
 
-final class CourseCertificates : NSObject, NSCoding, Unmarshaling {
+final class CourseCertificates : NSObject, NSCoding, IncludedPullable {
 //class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
 
     var confirmationOfParticipation: CourseCertificatesHash?

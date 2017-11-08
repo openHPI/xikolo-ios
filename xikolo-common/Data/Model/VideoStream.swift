@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import Marshal
 
-//@objc
-final class VideoStream: NSObject, NSCoding, Unmarshaling {
+final class VideoStream: NSObject, NSCoding, IncludedPullable {
 
     var hdURL: URL
     var sdURL: URL

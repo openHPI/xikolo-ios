@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Marshal
 
-final class EnrollmentCertificates : NSObject, NSCoding, Unmarshaling {
+final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
 
     var confirmationOfParticipation: Bool
     var recordOfAchievement: Bool

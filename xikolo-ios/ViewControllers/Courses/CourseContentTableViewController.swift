@@ -267,7 +267,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
         let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
                                                     comment: "start download of video item")
         let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
-            if video.hlsURL != nil {
+            if video.singleStream?.hlsURL != nil {
                 VideoPersistenceManager.shared.downloadStream(for: video)
             } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context to sync via spine
                 DispatchQueue.main.async {

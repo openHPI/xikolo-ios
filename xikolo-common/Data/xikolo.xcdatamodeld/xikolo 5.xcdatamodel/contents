@@ -136,24 +136,21 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="profile" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Video" representedClassName=".Video" parentEntity="Content" syncable="YES">
-        <attribute name="audio_size" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="audio_url" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="download_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="audioSize" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="audioURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="downloadDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="lecturer_stream_hls_url" optional="YES" attributeType="String" elementID="stream_a_hls_url" syncable="YES"/>
-        <attribute name="lecturer_stream_thumbnail_url" optional="YES" attributeType="String" elementID="stream_a_poster_url" syncable="YES"/>
-        <attribute name="local_file_bookmark" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="single_stream_hls_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="single_stream_thumbnail_url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="slides_size" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="slides_stream_hls_url" optional="YES" attributeType="String" elementID="stream_b_hls_url" syncable="YES"/>
-        <attribute name="slides_stream_thumbnail_url" optional="YES" attributeType="String" elementID="stream_b_poster_url" syncable="YES"/>
-        <attribute name="slides_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="lecturerStream" optional="YES" attributeType="Transformable" elementID="stream_a_hls_url" syncable="YES"/>
+        <attribute name="localFileBookmark" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="singleStream" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="slidesSize" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="slidesStream" optional="YES" attributeType="Transformable" elementID="stream_b_hls_url" syncable="YES"/>
+        <attribute name="slidesURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="thumbnail_url" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="transcript_size" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="transcript_url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="thumbnailURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="transcriptSize" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="transcriptURL" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
         <element name="Announcement" positionX="304" positionY="146" width="128" height="150"/>
@@ -171,6 +168,6 @@
         <element name="RichText" positionX="783" positionY="66" width="128" height="75"/>
         <element name="User" positionX="187" positionY="498" width="128" height="105"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="135"/>
-        <element name="Video" positionX="621" positionY="-99" width="128" height="315"/>
+        <element name="Video" positionX="621" positionY="-99" width="128" height="270"/>
     </elements>
 </model>

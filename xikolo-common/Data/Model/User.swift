@@ -33,6 +33,7 @@ class User: NSManagedObject {
             self.avatarURLString = newValue?.absoluteString
         }
     }
+
 }
 
 extension User : Pullable {

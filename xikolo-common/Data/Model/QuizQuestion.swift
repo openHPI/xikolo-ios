@@ -23,7 +23,7 @@ final class QuizQuestion : NSManagedObject {
     @NSManaged var options: [QuizOption]
     @NSManaged var quiz: Quiz?
 
-    @objc dynamic var submission: QuizQuestionSubmission?
+    //@objc dynamic var submission: QuizQuestionSubmission?
 
     var maxPoints: Double? {
         get {

@@ -22,7 +22,7 @@ final class Quiz : Content {
     @NSManaged private var maxPointsValue: NSDecimalNumber?
     @NSManaged var questions: Set<QuizQuestion>?
 
-    var submission: QuizSubmission?
+   // var submission: QuizSubmission?
 
     var maxPoints: Double? {
         get {

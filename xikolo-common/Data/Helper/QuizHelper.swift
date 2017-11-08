@@ -27,17 +27,17 @@ class QuizHelper {
         }
     }
 
-    static func saveSubmission(_ submission: QuizSubmission, questions: [QuizQuestion]? = nil) -> Future<QuizSubmission, XikoloError> {
-        if let questions = questions {
-            var answers = [String: QuizQuestionSubmission]()
-            for question in questions {
-                if let questionSubmission = question.submission {
-                    answers[question.id] = questionSubmission
-                }
-            }
-            submission.answers = answers
-        }
-        return SpineHelper.save(submission)
-    }
+//    static func saveSubmission(_ submission: QuizSubmission, questions: [QuizQuestion]? = nil) -> Future<QuizSubmission, XikoloError> {
+//        if let questions = questions {
+//            var answers = [String: QuizQuestionSubmission]()
+//            for question in questions {
+//                if let questionSubmission = question.submission {
+//                    answers[question.id] = questionSubmission
+//                }
+//            }
+//            submission.answers = answers
+//        }
+//        return SpineHelper.save(submission)
+//    }
 
 }

@@ -11,7 +11,7 @@ import Foundation
 import Spine
 
 @objcMembers
-class CourseItem : BaseModel {
+final class CourseItem : BaseModel {
 
     @NSManaged var id: String
     @NSManaged var title: String?

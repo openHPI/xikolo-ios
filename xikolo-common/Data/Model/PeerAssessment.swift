@@ -10,7 +10,7 @@ import CoreData
 import Foundation
 //import Spine
 
-class PeerAssessment : Content {
+final class PeerAssessment : Content {
 
     @NSManaged var id: String
     @NSManaged var title: String?

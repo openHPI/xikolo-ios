@@ -10,7 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
-class Quiz : Content {
+final class Quiz : Content {
 
     @NSManaged var id: String
     @NSManaged var instructions: String?

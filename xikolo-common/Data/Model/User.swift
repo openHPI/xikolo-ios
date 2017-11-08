@@ -13,7 +13,7 @@ import BrightFutures
 import Spine
 
 @objcMembers
-class User: NSManagedObject {
+final class User: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var name: String?

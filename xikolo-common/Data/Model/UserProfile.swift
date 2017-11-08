@@ -12,7 +12,7 @@ import CoreData
 import Spine
 
 @objcMembers
-class UserProfile: NSManagedObject {
+final class UserProfile: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var displayName: String?

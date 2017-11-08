@@ -12,7 +12,7 @@ import Foundation
 import Spine
 
 
-class RichText : Content {
+final class RichText : Content {
 
     @NSManaged var id: String
     @NSManaged var text: String?

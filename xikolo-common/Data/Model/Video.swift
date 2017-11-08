@@ -13,7 +13,7 @@ import Foundation
 import Spine
 
 @objcMembers
-class Video : Content {
+final class Video : Content {
 
     @NSManaged var id: String
     @NSManaged var audioSize: Int32

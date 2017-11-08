@@ -11,7 +11,7 @@ import CoreData
 import Spine
 
 @objcMembers
-class PlatformEvent : NSManagedObject {
+final class PlatformEvent : NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var createdAt: Date?

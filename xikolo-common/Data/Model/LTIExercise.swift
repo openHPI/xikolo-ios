@@ -10,7 +10,7 @@ import CoreData
 import Foundation
 import Spine
 
-class LTIExercise : Content {
+final class LTIExercise : Content {
 
     @NSManaged var id: String
     @NSManaged var instructions: String?

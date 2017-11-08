@@ -11,7 +11,7 @@ import Foundation
 import Spine
 
 @objcMembers
-class QuizQuestion : NSManagedObject {
+final class QuizQuestion : NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var explanation: String?

@@ -10,7 +10,7 @@ import Foundation
 import Marshal
 
 //@objc
-class VideoStream: NSObject, NSCoding, Unmarshaling {
+final class VideoStream: NSObject, NSCoding, Unmarshaling {
 
     var hdURL: URL
     var sdURL: URL

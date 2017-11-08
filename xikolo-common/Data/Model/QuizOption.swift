@@ -10,7 +10,7 @@ import Foundation
 import Marshal
 
 @objcMembers
-class QuizOption : NSObject, NSCoding, Unmarshaling {
+final class QuizOption : NSObject, NSCoding, Unmarshaling {
 
     var id: String
     var text: String?

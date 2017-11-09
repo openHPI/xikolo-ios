@@ -28,7 +28,40 @@ struct SyncEngine {
                 return
             }
 
-            guard let url = URL(string: query.resourceType.type, relativeTo: baseURL) else { // TODO: dynamic query building
+            guard let resourceUrl = URL(string: query.resourceType.type, relativeTo: baseURL) else { // TODO: dynamic query building
+                complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
+                return
+            }
+
+            guard var urlComponents = URLComponents(url: resourceUrl, resolvingAgainstBaseURL: true) else {
+                complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
+                return
+            }
+
+            var queryItems: [URLQueryItem] = []
+
+            // includes
+            if !query.includes.isEmpty {
+                queryItems.append(URLQueryItem(name: "include", value: query.includes.joined(separator: ",")))
+            }
+
+            // filters
+            for (key, value) in query.filters {
+                let stringValue: String
+                if let valueArray = value as? [Any] {
+                    stringValue = valueArray.map { String(describing: $0) }.joined(separator: ",")
+                } else if let value = value {
+                    stringValue = String(describing: value)
+                } else {
+                    stringValue = "null"
+                }
+                let queryItem = URLQueryItem(name: "filter[\(key)]", value: stringValue)
+                queryItems.append(queryItem)
+            }
+
+            urlComponents.queryItems = queryItems
+
+            guard let url = urlComponents.url else {
                 complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
                 return
             }
@@ -407,9 +440,19 @@ struct ResourceIdentifier: Unmarshaling {
 struct Query<Resource> where Resource: NSManagedObject & Pullable {
 
     let resourceType: Resource.Type
+    private(set) var filters: [String: Any?] = [:]
+    private(set) var includes: [String] = []
 
     init(type: Resource.Type) {
         self.resourceType = type
+    }
+
+    mutating func addFilter(forKey key: String, withValue value: Any?) {
+        self.filters[key] = value
+    }
+
+    mutating func addInclude(forKey key: String) {
+        self.includes.append(key)
     }
 
 }

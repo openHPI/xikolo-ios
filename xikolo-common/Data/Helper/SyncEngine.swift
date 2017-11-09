@@ -11,6 +11,13 @@ import BrightFutures
 import Marshal
 import CoreData
 
+enum SynchronizationError : Error {
+    case noRelationshipBetweenEnities(from: Any, to: Any)
+    case toManyRelationshipBetweenEnities(from: Any, to: Any)
+    case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
+    case missingIncludedResourse(from: Any, to: Any, withKey: KeyType)
+}
+
 struct SyncEngine {
 
     // TODO: maybe move those
@@ -119,7 +126,9 @@ struct SyncEngine {
             return Future(value: newObjects)
         } catch let error as MarshalError {
             return Future(error: .api(.serializationError(.modelDeserializationError(error))))
-        } catch { // TODO more catches!!!
+        } catch let error as SynchronizationError {
+            return Future(error: .synchronizationError(error))
+        } catch {
             return Future(error: .unknownError(error))
         }
     }
@@ -264,14 +273,15 @@ extension Pullable where Self: NSManagedObject {
             let rels = self.entity.relationships(forDestination: A.entity())
 
             guard let rel = rels.first else {
-                // TODO: error: no relationship defined
+                throw SynchronizationError.noRelationshipBetweenEnities(from: Self.self, to: A.self)
             }
 
             guard rels.count == 1 else {
-                // TODO: error too many relatiosnhips defined
+                throw SynchronizationError.toManyRelationshipBetweenEnities(from: Self.self, to: A.self)
             }
 
             let relname = rel.name
+            // TODO: create pendingRelationship
 
             // reset current relationship
             self[keyPath: keyPath] = nil
@@ -321,7 +331,7 @@ extension Pullable where Self: NSManagedObject {
         try block(container)
 
         guard container.wasUpdated else {
-            // TODO: throw error
+            throw SynchronizationError.abstractRelationshipNotUpdated(from: Self.self, to: A.self, withKey: key)
         }
     }
 
@@ -331,16 +341,15 @@ extension Pullable where Self: NSManagedObject {
         let resourceIdentifier = try container.object.value(for: "\(container.key).data") as ResourceIdentifier
 
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: container.includes) {
-            // TODO: check is type is matching
-//            B.type == includedType
             guard let existingObject = self[keyPath: container.keyPath] as? B else {
-                // TODO: throw
+                // TODO: type mismatch
+                return
             }
 
             try existingObject.update(withObject: includedObject, including: container.includes, inContext: container.context)
             container.markAsUpdated()
         } else {
-            // TODO: throw custom error: object should be included (+ try to fetch first)?
+            throw SynchronizationError.missingIncludedResourse(from: Self.self, to: A.self, withKey: container.key)
         }
     }
 

@@ -24,6 +24,8 @@ enum XikoloError : Error {
     case unknownError(Error)
     case totallyUnknownError
 
+    case synchronizationError(SynchronizationError)
+
 }
 
 enum APIError : Error {
@@ -57,3 +59,4 @@ enum SerializationError : Error {
 
     case modelDeserializationError(Error)
 }
+

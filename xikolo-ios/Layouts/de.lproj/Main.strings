@@ -19,3 +19,6 @@
 
 /* Class = "UIButton"; normalTitle = "Single Sign-On"; ObjectID = "wFF-sx-KDY"; */
 "wFF-sx-KDY.normalTitle" = "Single Sign-On";
+
+/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "CbR-GG-Pof"; */
+"CbR-GG-Pof.normalTitle" = "Passwort vergessen?";

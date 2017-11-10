@@ -175,10 +175,15 @@ struct SyncEngine {
                 self.doNetworkRequest(request)
             }
 
-            coreDataFetch.zip(networkRequest).flatMap { courses, json in
-                self.merge(object: json, withExistingObjects: courses, inContext: context)
-            }.onSuccess { _ in
-                // TODO: save core data context
+            coreDataFetch.zip(networkRequest).flatMap { objects, json in
+                self.merge(object: json, withExistingObjects: objects, inContext: context)
+            }.flatMap { objects in
+                switch CoreDataHelper.save(context) {
+                case .success(_):
+                    return Future(value: objects)
+                case .failure(let error):
+                    return Future(error: error)
+                }
             }.onComplete { result in
                 promise.complete(result)
             }

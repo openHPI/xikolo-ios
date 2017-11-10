@@ -7,7 +7,9 @@
 //
 
 import CoreData
-import UIKit
+//import UIKit
+import BrightFutures
+import Result
 
 class CoreDataHelper {
 
@@ -35,24 +37,22 @@ class CoreDataHelper {
         return container
     }()
 
-    static var viewContext = persistentContainer.viewContext
-    static var backgroundContext = {
-        return persistentContainer.newBackgroundContext()
-    }()
-    
+    static let viewContext = persistentContainer.viewContext
+
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    static func saveContext () {
-        if backgroundContext.hasChanges {
+    static func save(_ context: NSManagedObjectContext) -> Result<Void, XikoloError> {
+        if context.hasChanges {
             do {
-                try backgroundContext.save()
-            } catch let error as NSError {
-                NSLog("Cannot save managed object context: \(error), \(error.userInfo)")
+                try context.save()
+            } catch {
+                return .failure(.coreData(error))
             }
         }
+        return .success(())
     }
 
     static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
@@ -77,9 +77,13 @@ class CoreDataHelper {
 //
 //    }
 
-    static func delete(_ object: NSManagedObject) {
-        backgroundContext.delete(object)
-        saveContext()
+    static func delete(_ object: NSManagedObject) -> Future<Void, XikoloError> {
+        return Future { complete in
+            self.persistentContainer.performBackgroundTask { context in
+                context.delete(object)
+                complete(self.save(context))
+            }
+        }
     }
 
     static func clearCoreDataStorage() {

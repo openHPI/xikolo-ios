@@ -21,14 +21,14 @@ enum SynchronizationError : Error {
 struct SyncEngine {
 
     // TODO: maybe move those
-    private static func buildRequest<Resource>(forQuery query: Query<Resource>) -> Future<URLRequest, XikoloError> {
+    private static func buildRequest<Query>(forQuery query: Query) -> Future<URLRequest, XikoloError> where Query: ResourceQuery {
         return Future { complete in
             guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
                 complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
                 return
             }
 
-            guard let resourceUrl = URL(string: query.resourceType.type, relativeTo: baseURL) else { // TODO: dynamic query building
+            guard let resourceUrl = query.resourseURL(relativeTo: baseURL) else {
                 complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
                 return
             }
@@ -81,7 +81,16 @@ struct SyncEngine {
             let objects = try context.fetch(fetchRequest)
             return Future(value: objects)
         } catch {
-            return Future(error: XikoloError.totallyUnknownError) // TODO: better error
+            return Future(error: .coreData(error))
+        }
+    }
+
+    private static func fetchCoreDataObject<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<Resource?, XikoloError> where Resource: NSManagedObject & Pullable {
+        do {
+            let objects = try context.fetch(fetchRequest)
+            return Future(value: objects.first)
+        } catch {
+            return Future(error: .coreData(error))
         }
     }
 
@@ -131,7 +140,7 @@ struct SyncEngine {
         return promise.future
     }
 
-    private static func merge<Resource>(object: ResourceData, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
+    private static func mergeResources<Resource>(object: ResourceData, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             var existingObjects = objects
             var newObjects: [Resource] = []
@@ -166,18 +175,50 @@ struct SyncEngine {
         }
     }
 
-    private static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: Query<Resource>) -> Future<[Resource], XikoloError> {
+    private static func mergeResource<Resource>(object: ResourceData, withExistingObject existingObject: Resource?, inContext context: NSManagedObjectContext) -> Future<Resource, XikoloError> where Resource: NSManagedObject & Pullable {
+        do {
+            let newObject: Resource
+            let data = try object.value(for: "data") as ResourceData
+            let includes = try? object.value(for: "included") as [ResourceData]
+
+            guard let id = try? data.value(for: "id") as String else {
+                return Future(error: .api(.emptyResource))
+            }
+
+            if let existingObject = existingObject {
+                if existingObject.id == id {
+                    try existingObject.update(withObject: data, including: includes, inContext: context)
+                    newObject = existingObject
+                } else {
+                    context.delete(existingObject)
+                    newObject = try Resource.value(from: data, including: includes, inContext: context)
+                }
+            } else {
+                newObject = try Resource.value(from: data, including: includes, inContext: context)
+            }
+
+            return Future(value: newObject)
+        } catch let error as MarshalError {
+            return Future(error: .api(.serializationError(.modelDeserializationError(error))))
+        } catch let error as SynchronizationError {
+            return Future(error: .synchronizationError(error))
+        } catch {
+            return Future(error: .unknownError(error))
+        }
+    }
+
+    private static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<[Resource], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
             let networkRequest = self.buildRequest(forQuery: query).flatMap { request in
-                self.doNetworkRequest(request)
+                return self.doNetworkRequest(request)
             }
 
             coreDataFetch.zip(networkRequest).flatMap { objects, json in
-                self.merge(object: json, withExistingObjects: objects, inContext: context)
-            }.flatMap { objects in
+                return self.mergeResources(object: json, withExistingObjects: objects, inContext: context)
+            }.flatMap { objects -> Future<[Resource], XikoloError> in
                 switch CoreDataHelper.save(context) {
                 case .success(_):
                     return Future(value: objects)
@@ -194,10 +235,46 @@ struct SyncEngine {
         }
     }
 
+    private static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<Resource, XikoloError> where Resource: NSManagedObject & Pullable {
+        let promise = Promise<Resource, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
+            let networkRequest = self.buildRequest(forQuery: query).flatMap { request in
+                return self.doNetworkRequest(request)
+            }
+
+            coreDataFetch.zip(networkRequest).flatMap { object, json -> Future<Resource, XikoloError> in
+                return self.mergeResource(object: json, withExistingObject: object, inContext: context)
+            }.flatMap { object -> Future<Resource, XikoloError> in
+                switch CoreDataHelper.save(context) {
+                case .success(_):
+                    return Future(value: object)
+                case .failure(let error):
+                    return Future(error: error)
+                }
+            }.onComplete { result in
+                promise.complete(result)
+            }
+        }
+
+        return promise.future.onComplete { _ in
+            // TODO: check for api deprecation and maintance
+        }
+    }
+
     static func syncCourses() -> Future<[Course], XikoloError> {
         let fetchRequest = CourseHelper.getAllCoursesRequest()
-        let query = Query(type: Course.self)
+        let query = MultipleResourcesQuery(type: Course.self)
         return self.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+    }
+
+    static func syncCourse(withId id: String) -> Future<Course, XikoloError> {
+        let fetchRequest: NSFetchRequest<Course> = Course.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.fetchLimit = 1
+        let query = SingleResourceQuery(type: Course.self, id: id)
+        return self.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 }
 
@@ -242,10 +319,14 @@ typealias ResourceData = MarshaledObject
 typealias JSON = JSONObject
 typealias IncludedPullable = Unmarshaling
 
-protocol Pullable {
-
+protocol ResourceRepresentable {
     var id: String { get set }
     static var type: String { get }
+}
+
+// MARK: - Pullable
+
+protocol Pullable : ResourceRepresentable {
 
     static func value(from object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws -> Self
 
@@ -426,9 +507,9 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: Ab
     }
 }
 
-protocol AbstractPullable {
+protocol AbstractPullable {}
 
-}
+// MARK: - ResourceIdentifier
 
 struct ResourceIdentifier: Unmarshaling {
 
@@ -442,23 +523,67 @@ struct ResourceIdentifier: Unmarshaling {
 
 }
 
-struct Query<Resource> where Resource: NSManagedObject & Pullable {
+
+// MARK: - ResoruceQuery
+
+protocol ResourceQuery {
+    associatedtype Resource
+
+    var resourceType: Resource.Type { get }
+    var filters: [String: Any?] { get set }
+    var includes: [String] { get set }
+
+    mutating func addFilter(forKey key: String, withValue value: Any?)
+    mutating func include(_ key: String)
+
+    func resourseURL(relativeTo baseURL: URL) -> URL?
+}
+
+extension ResourceQuery {
+    mutating func addFilter(forKey key: String, withValue value: Any?) {
+        self.filters[key] = value
+    }
+
+    mutating func include(_ key: String) {
+        self.includes.append(key)
+    }
+}
+
+struct SingleResourceQuery<Resource> : ResourceQuery where Resource: ResourceRepresentable {
+
+    let id: String
+    let resourceType: Resource.Type
+    var filters: [String: Any?] = [:]
+    var includes: [String] = []
+
+    init(resource: Resource) {
+        self.id = resource.id
+        self.resourceType = Resource.self
+    }
+
+    init(type: Resource.Type, id: String) {
+        self.id = id
+        self.resourceType = type
+    }
+
+    func resourseURL(relativeTo baseURL: URL) -> URL? {
+        return baseURL.appendingPathComponent(self.resourceType.type).appendingPathComponent(self.id)
+    }
+
+}
+
+struct MultipleResourcesQuery<Resource> : ResourceQuery where Resource: ResourceRepresentable {
 
     let resourceType: Resource.Type
-    private(set) var filters: [String: Any?] = [:]
-    private(set) var includes: [String] = []
+    var filters: [String: Any?] = [:]
+    var includes: [String] = []
 
     init(type: Resource.Type) {
         self.resourceType = type
     }
 
-    mutating func addFilter(forKey key: String, withValue value: Any?) {
-        self.filters[key] = value
-    }
-
-    mutating func addInclude(forKey key: String) {
-        self.includes.append(key)
+    func resourseURL(relativeTo baseURL: URL) -> URL? {
+        return baseURL.appendingPathComponent(self.resourceType.type)
     }
 
 }
-

@@ -55,8 +55,8 @@ class CoreDataHelper {
         }
     }
 
-    static func createResultsController<T: BaseModel>(_ fetchRequest: NSFetchRequest<T>,
-                                                      sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
+    static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
+                                                            sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
         // TODO: Add cache name
         return NSFetchedResultsController<T>(fetchRequest: fetchRequest,
                                              managedObjectContext: persistentContainer.viewContext,
@@ -64,18 +64,18 @@ class CoreDataHelper {
                                              cacheName: nil)
     }
 
-    static func executeFetchRequest<T: BaseModel>(_ request: NSFetchRequest<T>) throws -> [T] {
-        var baseModels: [T]?
-        CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [T]) -> Void in
-            do {
-                baseModels = try inner()
-            } catch let error {
-                fatalError("\(error)")
-            }
-        } )
-        return baseModels!
-
-    }
+//    static func executeFetchRequest<T: NSManagedObject>(_ request: NSFetchRequest<T>) throws -> [T] {
+//        var baseModels: [T]?
+//        CoreDataHelper.persistentContainer.performBackgroundFetchAndWait(request, completion: { (inner: () throws -> [T]) -> Void in
+//            do {
+//                baseModels = try inner()
+//            } catch let error {
+//                fatalError("\(error)")
+//            }
+//        } )
+//        return baseModels!
+//
+//    }
 
     static func delete(_ object: NSManagedObject) {
         backgroundContext.delete(object)
@@ -110,50 +110,51 @@ class CoreDataHelper {
 
 }
 
-extension NSPersistentContainer {
+//extension NSPersistentContainer {
+//
+//    func performBackgroundLoadSpineAndWait(cdObject: BaseModel, spineObject: BaseModelSpine, completion: @escaping (_ inner: () throws -> Void) -> Void) {
+//        CoreDataHelper.backgroundContext.performAndWait {
+//            do {
+//                try cdObject.loadFromSpine(spineObject)
+//                completion({})
+//            } catch let error as NSError {
+//                completion({ throw XikoloError.coreData(error)})
+//            }
+//        }
+//    }
+//
+//    func performBackgroundFetchAndWait<T: BaseModel>(_ request: NSFetchRequest<T>, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
+//        CoreDataHelper.backgroundContext.performAndWait {
+//            do {
+//                let results = try CoreDataHelper.backgroundContext.fetch(request)
+//                completion({ return results})
+//            } catch let error as NSError {
+//                completion({ throw XikoloError.coreData(error)})
+//            }
+//        }
+//    }
+//
+//    func performBackgroundSyncAndWait<T: BaseModel>(_ objectsToUpdateRequest: NSFetchRequest<T>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
+//        CoreDataHelper.backgroundContext.performAndWait {
+//            do {
+//                let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
+//                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
+//                completion({ return results})
+//            } catch let error as NSError {
+//                completion({ throw XikoloError.coreData(error)})
+//            }
+//        }
+//    }
+//
+//    func performBackgroundSyncAndWait<T: BaseModel>(_ objectsToUpdate: [T], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
+//        CoreDataHelper.backgroundContext.performAndWait {
+//            do {
+//                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
+//                completion({ return results})
+//            } catch let error as NSError {
+//                completion({ throw XikoloError.coreData(error)})
+//            }
+//        }
+//    }
+//}
 
-    func performBackgroundLoadSpineAndWait(cdObject: BaseModel, spineObject: BaseModelSpine, completion: @escaping (_ inner: () throws -> Void) -> Void) {
-        CoreDataHelper.backgroundContext.performAndWait {
-            do {
-                try cdObject.loadFromSpine(spineObject)
-                completion({})
-            } catch let error as NSError {
-                completion({ throw XikoloError.coreData(error)})
-            }
-        }
-    }
-
-    func performBackgroundFetchAndWait<T: BaseModel>(_ request: NSFetchRequest<T>, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
-        CoreDataHelper.backgroundContext.performAndWait {
-            do {
-                let results = try CoreDataHelper.backgroundContext.fetch(request)
-                completion({ return results})
-            } catch let error as NSError {
-                completion({ throw XikoloError.coreData(error)})
-            }
-        }
-    }
-
-    func performBackgroundSyncAndWait<T: BaseModel>(_ objectsToUpdateRequest: NSFetchRequest<T>, spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
-        CoreDataHelper.backgroundContext.performAndWait {
-            do {
-                let objectsToUpdate = try CoreDataHelper.executeFetchRequest(objectsToUpdateRequest)
-                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-                completion({ return results})
-            } catch let error as NSError {
-                completion({ throw XikoloError.coreData(error)})
-            }
-        }
-    }
-
-    func performBackgroundSyncAndWait<T: BaseModel>(_ objectsToUpdate: [T], spineObjects: [BaseModelSpine], inject: [String: AnyObject?]?, save: Bool, completion: @escaping (_ inner: () throws -> [T]) -> Void) {
-        CoreDataHelper.backgroundContext.performAndWait {
-            do {
-                let results = try SpineModelHelper.syncObjects(objectsToUpdate, spineObjects: spineObjects, inject: inject, save: save)
-                completion({ return results})
-            } catch let error as NSError {
-                completion({ throw XikoloError.coreData(error)})
-            }
-        }
-    }
-}

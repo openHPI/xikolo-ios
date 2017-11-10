@@ -25,6 +25,7 @@ enum XikoloError : Error {
     case totallyUnknownError
 
     case synchronizationError(SynchronizationError)
+    case trackingForUnknownUser
 
 }
 

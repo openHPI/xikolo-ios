@@ -12,6 +12,10 @@ class TrackingEventVerb : NSObject, NSCoding {
 
     var type: String
 
+    required init(type: String) {
+        self.type
+    }
+
     required init?(coder decoder: NSCoder) {
         guard let type = decoder.decodeObject(forKey: "type") as? String else {
             return nil

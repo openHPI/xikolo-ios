@@ -12,6 +12,10 @@ class TrackingEventUser : NSObject, NSCoding {
 
     var uuid: String
 
+    init(uuid: String) {
+        self.uuid = uuid
+    }
+
     required init?(coder decoder: NSCoder) {
         guard let uuid = decoder.decodeObject(forKey: "uuid") as? String else {
             return nil

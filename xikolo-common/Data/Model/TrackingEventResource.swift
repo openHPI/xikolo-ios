@@ -13,6 +13,15 @@ class TrackingEventResource : NSObject, NSCoding {
     var resourceType: String
     var uuid: String
 
+    static func noneResource() -> TrackingEventResource {
+        return TrackingEventResource(resourceType: "None")
+    }
+
+    private init(resourceType: String) {
+        self.resourceType = resourceType
+        self.uuid = "00000000-0000-0000-0000-000000000000"
+    }
+
     init(resource: Pullable) {
         self.resourceType = type(of: resource).type
         self.uuid = resource.id

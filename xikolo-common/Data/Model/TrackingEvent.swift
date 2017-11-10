@@ -11,12 +11,21 @@ import CoreData
 
 class TrackingEvent : NSManagedObject {
 
-    @NSManaged var user: TrackingEventUser?
-    @NSManaged var verb: TrackingEventVerb?
-    @NSManaged var resource: TrackingEventResource?
-    @NSManaged var timestamp: Date?
+    @NSManaged var user: TrackingEventUser
+    @NSManaged var verb: TrackingEventVerb
+    @NSManaged var resource: TrackingEventResource
+    @NSManaged var timestamp: Date
     @NSManaged var result: [String: AnyObject]?
     @NSManaged var context: [String: AnyObject]?
+
+    init(user: TrackingEventUser, verb: TrackingEventVerb, resource: TrackingEventResource, result: [String: AnyObject]? = nil, context: [String: AnyObject]? = nil) {
+        self.user = user
+        self.verb = verb
+        self.resource = resource
+        self.timestamp = Date()
+        self.result = result
+        self.context = context
+    }
 
 //    override class var resourceType: ResourceType {
 //        return "tracking-events"

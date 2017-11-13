@@ -18,13 +18,14 @@ class TrackingEvent : NSManagedObject {
     @NSManaged var result: [String: AnyObject]?
     @NSManaged var context: [String: AnyObject]?
 
-    init(user: TrackingEventUser, verb: TrackingEventVerb, resource: TrackingEventResource, result: [String: AnyObject]? = nil, context: [String: AnyObject]? = nil) {
+    convenience init(user: TrackingEventUser, verb: TrackingEventVerb, resource: TrackingEventResource, result: [String: AnyObject]? = nil, trackingContext: [String: AnyObject]? = nil, inContext context: NSManagedObjectContext) {
+        self.init(context: context)
         self.user = user
         self.verb = verb
         self.resource = resource
         self.timestamp = Date()
         self.result = result
-        self.context = context
+        self.context = trackingContext
     }
 
 //    override class var resourceType: ResourceType {

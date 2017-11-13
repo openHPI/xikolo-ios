@@ -8,6 +8,7 @@
 
 import Foundation
 import BrightFutures
+import Result
 import Marshal
 import CoreData
 
@@ -20,61 +21,84 @@ enum SynchronizationError : Error {
 
 struct SyncEngine {
 
-    // TODO: maybe move those
-    private static func buildRequest<Query>(forQuery query: Query) -> Future<URLRequest, XikoloError> where Query: ResourceQuery {
-        return Future { complete in
-            guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
-                complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
-                return
-            }
+    // MARK: - build url request
 
-            guard let resourceUrl = query.resourseURL(relativeTo: baseURL) else {
-                complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
-                return
-            }
-
-            guard var urlComponents = URLComponents(url: resourceUrl, resolvingAgainstBaseURL: true) else {
-                complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
-                return
-            }
-
-            var queryItems: [URLQueryItem] = []
-
-            // includes
-            if !query.includes.isEmpty {
-                queryItems.append(URLQueryItem(name: "include", value: query.includes.joined(separator: ",")))
-            }
-
-            // filters
-            for (key, value) in query.filters {
-                let stringValue: String
-                if let valueArray = value as? [Any] {
-                    stringValue = valueArray.map { String(describing: $0) }.joined(separator: ",")
-                } else if let value = value {
-                    stringValue = String(describing: value)
-                } else {
-                    stringValue = "null"
-                }
-                let queryItem = URLQueryItem(name: "filter[\(key)]", value: stringValue)
-                queryItems.append(queryItem)
-            }
-
-            urlComponents.queryItems = queryItems
-
-            guard let url = urlComponents.url else {
-                complete(.failure(XikoloError.totallyUnknownError)) // TODO: better error
-                return
-            }
-
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-
-            // TODO: set headers
-            // TODO: set body
-
-            complete(.success(request))
+    private static func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
+        guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
         }
+
+        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        }
+
+        guard var urlComponents = URLComponents(url: resourceUrl, resolvingAgainstBaseURL: true) else {
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        }
+
+        var queryItems: [URLQueryItem] = []
+
+        // includes
+        if !query.includes.isEmpty {
+            queryItems.append(URLQueryItem(name: "include", value: query.includes.joined(separator: ",")))
+        }
+
+        // filters
+        for (key, value) in query.filters {
+            let stringValue: String
+            if let valueArray = value as? [Any] {
+                stringValue = valueArray.map { String(describing: $0) }.joined(separator: ",")
+            } else if let value = value {
+                stringValue = String(describing: value)
+            } else {
+                stringValue = "null"
+            }
+            let queryItem = URLQueryItem(name: "filter[\(key)]", value: stringValue)
+            queryItems.append(queryItem)
+        }
+
+        urlComponents.queryItems = queryItems
+
+        guard let url = urlComponents.url else {
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        for (header, value) in NetworkHelper.getRequestHeaders() {
+            request.setValue(value, forHTTPHeaderField: header)
+        }
+
+        return .success(request)
     }
+
+    enum SaveRequestMethod: String {
+        case post = "POST"
+        case patch = "PATCH"
+    }
+
+    private static func buildSaveRequest<Query>(forQuery query: Query, withHTTPMethod: SaveRequestMethod) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
+
+        guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        }
+
+        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        }
+
+        var request = URLRequest(url: resourceUrl)
+        request.httpMethod = "POST" // or PATCH
+
+        for (header, value) in NetworkHelper.getRequestHeaders() {
+            request.setValue(value, forHTTPHeaderField: header)
+        }
+
+        return .success(request)
+    }
+
+    // MARK: - core data operation
 
     private static func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
@@ -104,6 +128,16 @@ struct SyncEngine {
                 return
             }
 
+            guard let urlResponse = response as? HTTPURLResponse else {
+                promise.failure(.api(.invalidResponse))
+                return
+            }
+
+            guard 200 ... 299 ~= urlResponse.statusCode else {
+                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode)))
+                return
+            }
+
             guard let responseData = data else {
                 promise.failure(.api(.noData))
                 return
@@ -115,17 +149,27 @@ struct SyncEngine {
                     return
                 }
 
+                // JSON:API validation
                 let hasData = resourceData["data"] != nil
-                let hasErrors = resourceData["errors"] != nil
+                let hasError = resourceData["error"] != nil
                 let hasMeta = resourceData["meta"] != nil
 
-                guard hasData || hasErrors || hasMeta else {
+                guard hasData || hasError || hasMeta else {
                     promise.failure(.api(.serializationError(.topLevelEntryMissing)))
                     return
                 }
 
-                guard hasErrors && !hasData || !hasErrors && hasData else {
+                guard hasError && !hasData || !hasError && hasData else {
                     promise.failure(.api(.serializationError(.topLevelDataAndErrorsCoexist)))
+                    return
+                }
+
+                guard !hasError else {
+                    if let errorMessage = resourceData["error"] as? String {
+                        promise.failure(.api(.serverError(message: errorMessage)))
+                    } else {
+                        promise.failure(.api(.unknownServerError))
+                    }
                     return
                 }
 
@@ -139,6 +183,8 @@ struct SyncEngine {
         task.resume()
         return promise.future
     }
+
+    // MARK: - merge
 
     private static func mergeResources<Resource>(object: ResourceData, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
@@ -182,7 +228,7 @@ struct SyncEngine {
             let includes = try? object.value(for: "included") as [ResourceData]
 
             guard let id = try? data.value(for: "id") as String else {
-                return Future(error: .api(.emptyResource))
+                return Future(error: .api(.resourceNotFound))
             }
 
             if let existingObject = existingObject {
@@ -207,12 +253,14 @@ struct SyncEngine {
         }
     }
 
+    // MARK: - sync
+
     private static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<[Resource], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
-            let networkRequest = self.buildRequest(forQuery: query).flatMap { request in
+            let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
                 return self.doNetworkRequest(request)
             }
 
@@ -240,7 +288,7 @@ struct SyncEngine {
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
-            let networkRequest = self.buildRequest(forQuery: query).flatMap { request in
+            let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
                 return self.doNetworkRequest(request)
             }
 
@@ -263,6 +311,36 @@ struct SyncEngine {
         }
     }
 
+    // MARK: - saving
+
+    static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable {
+        let query = MultipleResourcesQuery(type: Resource.self)
+        let networkRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post).flatMap { request in
+            return self.doNetworkRequest(request)
+        }
+
+        return networkRequest.asVoid()
+    }
+
+    static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable & Pullable {
+        let urlRequest: Result<URLRequest, XikoloError>
+        if resource.isNewResource {
+            let query = MultipleResourcesQuery(type: Resource.self)
+            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .patch)
+        } else {
+            let query = SingleResourceQuery(resource: resource)
+            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post)
+        }
+
+        let networkRequest = urlRequest.flatMap { request in
+            return self.doNetworkRequest(request)
+        }
+
+        return networkRequest.asVoid()
+    }
+
+    // MARK: - domaine specific
+
     static func syncCourses() -> Future<[Course], XikoloError> {
         let fetchRequest = CourseHelper.getAllCoursesRequest()
         let query = MultipleResourcesQuery(type: Course.self)
@@ -276,7 +354,10 @@ struct SyncEngine {
         let query = SingleResourceQuery(type: Course.self, id: id)
         return self.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
+
 }
+
+// MARK: - ValueTypes
 
 extension Date: ValueType {
 
@@ -319,9 +400,12 @@ typealias ResourceData = MarshaledObject
 typealias JSON = JSONObject
 typealias IncludedPullable = Unmarshaling
 
-protocol ResourceRepresentable {
-    var id: String { get set }
+protocol ResourceTypeRepresentable {
     static var type: String { get }
+}
+
+protocol ResourceRepresentable: ResourceTypeRepresentable {
+    var id: String { get set }
 }
 
 // MARK: - Pullable
@@ -509,6 +593,21 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: Ab
 
 protocol AbstractPullable {}
 
+// MARK: - Pushable
+
+protocol Pushable : ResourceTypeRepresentable {
+    var isNewResource: Bool { get }
+
+    func resourceAttributes() -> [String: Any]
+    func resourceRelationships() -> [String: Any]?
+}
+
+extension Pushable {
+    func resourceRelationships() -> [String: Any]? {
+        return nil
+    }
+}
+
 // MARK: - ResourceIdentifier
 
 struct ResourceIdentifier: Unmarshaling {
@@ -523,8 +622,7 @@ struct ResourceIdentifier: Unmarshaling {
 
 }
 
-
-// MARK: - ResoruceQuery
+// MARK: - ResourceQuery
 
 protocol ResourceQuery {
     associatedtype Resource
@@ -536,7 +634,7 @@ protocol ResourceQuery {
     mutating func addFilter(forKey key: String, withValue value: Any?)
     mutating func include(_ key: String)
 
-    func resourseURL(relativeTo baseURL: URL) -> URL?
+    func resourceURL(relativeTo baseURL: URL) -> URL?
 }
 
 extension ResourceQuery {
@@ -566,13 +664,13 @@ struct SingleResourceQuery<Resource> : ResourceQuery where Resource: ResourceRep
         self.resourceType = type
     }
 
-    func resourseURL(relativeTo baseURL: URL) -> URL? {
+    func resourceURL(relativeTo baseURL: URL) -> URL? {
         return baseURL.appendingPathComponent(self.resourceType.type).appendingPathComponent(self.id)
     }
 
 }
 
-struct MultipleResourcesQuery<Resource> : ResourceQuery where Resource: ResourceRepresentable {
+struct MultipleResourcesQuery<Resource> : ResourceQuery where Resource: ResourceTypeRepresentable {
 
     let resourceType: Resource.Type
     var filters: [String: Any?] = [:]
@@ -582,7 +680,7 @@ struct MultipleResourcesQuery<Resource> : ResourceQuery where Resource: Resource
         self.resourceType = type
     }
 
-    func resourseURL(relativeTo baseURL: URL) -> URL? {
+    func resourceURL(relativeTo baseURL: URL) -> URL? {
         return baseURL.appendingPathComponent(self.resourceType.type)
     }
 

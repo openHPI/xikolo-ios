@@ -30,11 +30,13 @@ enum XikoloError : Error {
 }
 
 enum APIError : Error {
+    case invalidResponse
     case noData
-    case emptyResource
-    case resourceNotFound // TODO where to use this?
+    case responseError(statusCode: Int)
+    case unknownServerError
+    case serverError(message: String)
+    case resourceNotFound
     case serializationError(SerializationError)
-//    case serverError(statusCode: Int, apiErrors: [APIError]?)
 }
 
 enum SerializationError : Error {

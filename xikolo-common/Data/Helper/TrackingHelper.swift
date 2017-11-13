@@ -79,8 +79,17 @@ class TrackingHelper {
             trackingContext.updateValue(v, forKey: k)
         }
 
-        let trackingEvent = TrackingEvent(user: trackingUser, verb: trackingVerb, resource: trackingResource, context: context as [String: AnyObject])
-        return Future(value: trackingEvent)
+
+        let promise = Promise<TrackingEvent, XikoloError>()
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let trackingEvent = TrackingEvent(user: trackingUser,
+                                              verb: trackingVerb,
+                                              resource: trackingResource,
+                                              trackingContext: trackingContext as [String: AnyObject],
+                                              inContext: context)
+            promise.success(trackingEvent)
+        }
+        return promise.future
     }
 
     @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: AnyObject?] = [:]) -> Future<Void, XikoloError> {

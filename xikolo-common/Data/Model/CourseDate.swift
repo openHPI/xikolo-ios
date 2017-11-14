@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import Spine
 
-final class CourseDate : BaseModel {
+final class CourseDate : NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var title: String

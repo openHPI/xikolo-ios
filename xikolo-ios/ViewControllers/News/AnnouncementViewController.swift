@@ -32,7 +32,7 @@ class AnnouncementViewController : UIViewController {
         SyncEngine.saveResource(self.announcement)
         TrackingHelper.sendEvent(.visitedAnnouncement, resource: self.announcement)
 
-        self.announcement.notifyOnChange(self, updatedHandler: { _ in
+        self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
         }) {
             let isVisible = self.isViewLoaded && self.view.window != nil

@@ -47,3 +47,11 @@ class TrackingEventUser : NSObject, NSCoding {
 //    }
 
 }
+
+extension TrackingEventUser : IncludedPushable {
+
+    func resourceAttributes() -> [String : Any] {
+        return [ "uuid": self.uuid ]
+    }
+
+}

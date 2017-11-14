@@ -171,3 +171,15 @@ extension CourseItem : Pullable {
 //
 //}
 
+extension CourseItem : Pushable {
+
+    var isNewResource: Bool {
+        return false
+    }
+
+    func resourceAttributes() -> [String : Any] {
+        return [ "visited": self.visited ]
+    }
+
+}
+

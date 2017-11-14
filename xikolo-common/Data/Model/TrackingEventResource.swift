@@ -22,12 +22,12 @@ class TrackingEventResource : NSObject, NSCoding {
         self.uuid = "00000000-0000-0000-0000-000000000000"
     }
 
-    init(resource: Pullable) {
+    init(resource: ResourceRepresentable) {
         self.resourceType = type(of: resource).type
         self.uuid = resource.id
     }
 
-    init(resourceType: Pullable.Type) {
+    init(resourceType: ResourceRepresentable.Type) {
         self.resourceType = resourceType.type
         self.uuid = "00000000-0000-0000-0000-000000000000"
     }
@@ -84,5 +84,16 @@ class TrackingEventResource : NSObject, NSCoding {
 //        }
 //        return dict
 //    }
+
+}
+
+extension TrackingEventResource : IncludedPushable {
+
+    func resourceAttributes() -> [String : Any] {
+        return [
+            "type": self.resourceType,
+            "uuid": self.uuid,
+        ]
+    }
 
 }

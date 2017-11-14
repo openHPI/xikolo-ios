@@ -59,7 +59,7 @@ class TrackingHelper {
         ]
     }
 
-    private class func createEvent(_ verb: AnalyticsKeys, resource: Pullable?, context: [String: String] = [:]) -> Future<TrackingEvent, XikoloError> {
+    class func createEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String] = [:]) -> Future<TrackingEvent, XikoloError> {
         guard let userId = UserProfileHelper.userId else {
             return Future(error: .trackingForUnknownUser)
         }
@@ -92,9 +92,9 @@ class TrackingHelper {
         return promise.future
     }
 
-    @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: AnyObject?] = [:]) -> Future<Void, XikoloError> {
-        return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
-            SpineHelper.save(event).asVoid()
+    @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String] = [:]) -> Future<Void, XikoloError> {
+        return self.createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
+            SyncEngine.saveResource(event)
         }
     }
 

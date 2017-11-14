@@ -126,6 +126,7 @@
         <attribute name="resource" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="result" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="timeZoneIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="verb" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
@@ -174,9 +175,9 @@
         <element name="Quiz" positionX="828" positionY="162" width="128" height="180"/>
         <element name="QuizQuestion" positionX="999" positionY="162" width="128" height="180"/>
         <element name="RichText" positionX="783" positionY="66" width="128" height="75"/>
+        <element name="TrackingEvent" positionX="234" positionY="-63" width="128" height="150"/>
         <element name="User" positionX="187" positionY="498" width="128" height="105"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="135"/>
         <element name="Video" positionX="621" positionY="-99" width="128" height="270"/>
-        <element name="TrackingEvent" positionX="234" positionY="-63" width="128" height="135"/>
     </elements>
 </model>

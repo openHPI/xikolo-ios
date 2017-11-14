@@ -66,6 +66,18 @@ extension Announcement: Pullable {
 
 }
 
+extension Announcement : Pushable {
+
+    var isNewResource: Bool {
+        return false
+    }
+
+    func resourceAttributes() -> [String : Any] {
+        return [ "visited": self.visited ]
+    }
+
+}
+
 
 
 //@objcMembers

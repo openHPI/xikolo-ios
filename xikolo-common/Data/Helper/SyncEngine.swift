@@ -78,7 +78,9 @@ struct SyncEngine {
         case patch = "PATCH"
     }
 
-    private static func buildSaveRequest<Query>(forQuery query: Query, withHTTPMethod: SaveRequestMethod) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
+    private static func buildSaveRequest<Query>(forQuery query: Query,
+                                                withHTTPMethod httpMethod: SaveRequestMethod,
+                                                forResource resource: Pushable) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
 
         guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
             return .failure(XikoloError.totallyUnknownError) // TODO: better error
@@ -89,13 +91,16 @@ struct SyncEngine {
         }
 
         var request = URLRequest(url: resourceUrl)
-        request.httpMethod = "POST" // or PATCH
+        request.httpMethod = httpMethod.rawValue
 
         for (header, value) in NetworkHelper.getRequestHeaders() {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
-        return .success(request)
+        return resource.resourceData.map { data in
+            request.httpBody = data
+            return request
+        }
     }
 
     // MARK: - core data operation
@@ -315,28 +320,28 @@ struct SyncEngine {
 
     static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable {
         let query = MultipleResourcesQuery(type: Resource.self)
-        let networkRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post).flatMap { request in
+        let networkRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource).flatMap { request in
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid() // TODO: add logging
     }
 
-    static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable & Pullable {
+    @discardableResult static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable & Pullable {
         let urlRequest: Result<URLRequest, XikoloError>
         if resource.isNewResource {
             let query = MultipleResourcesQuery(type: Resource.self)
-            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .patch)
+            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .patch, forResource: resource)
         } else {
             let query = SingleResourceQuery(resource: resource)
-            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post)
+            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource)
         }
 
         let networkRequest = urlRequest.flatMap { request in
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid() // TODO: add logging
     }
 
     // MARK: - domaine specific
@@ -595,17 +600,43 @@ protocol AbstractPullable {}
 
 // MARK: - Pushable
 
-protocol Pushable : ResourceTypeRepresentable {
-    var isNewResource: Bool { get }
-
+protocol IncludedPushable {
     func resourceAttributes() -> [String: Any]
+}
+
+protocol Pushable : ResourceTypeRepresentable, IncludedPushable {
+    var isNewResource: Bool { get }
+    var resourceData: Result<Data, XikoloError> { get }
+
     func resourceRelationships() -> [String: Any]?
 }
 
 extension Pushable {
+
+    var resourceData: Result<Data, XikoloError> {
+        do {
+            var data: [String: Any] = [ "type": Self.type ]
+            if let newResource = self as? ResourceRepresentable, !self.isNewResource {
+                data["id"] = newResource.id
+            }
+
+            data["attributes"] = self.resourceAttributes()
+            if let resourceRelationships = self.resourceRelationships() {
+                data["relationships"] = resourceRelationships
+            }
+
+            let json = [ "data": data ]
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+            return .success(jsonData)
+        } catch {
+            return .failure(.api(.serializationError(.jsonSerializationError(error))))
+        }
+    }
+
     func resourceRelationships() -> [String: Any]? {
         return nil
     }
+
 }
 
 // MARK: - ResourceIdentifier

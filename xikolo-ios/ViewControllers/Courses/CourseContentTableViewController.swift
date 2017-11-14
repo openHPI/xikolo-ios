@@ -127,7 +127,7 @@ class CourseContentTableViewController: UITableViewController {
         TrackingHelper.sendEvent(.visitedItem, resource: item)
         //save read state to server
         item.visited = true
-        SpineHelper.save(CourseItemSpine.init(courseItem: item))
+        SyncEngine.saveResource(item)
         
         switch item.content {
             case is Video:

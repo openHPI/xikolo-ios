@@ -13,7 +13,7 @@ class TrackingEventVerb : NSObject, NSCoding {
     var type: String
 
     required init(type: String) {
-        self.type
+        self.type = type
     }
 
     required init?(coder decoder: NSCoder) {
@@ -44,5 +44,13 @@ class TrackingEventVerb : NSObject, NSCoding {
 //        }
 //        return dict
 //    }
+
+}
+
+extension TrackingEventVerb : IncludedPushable {
+
+    func resourceAttributes() -> [String : Any] {
+        return [ "type": self.type ]
+    }
 
 }

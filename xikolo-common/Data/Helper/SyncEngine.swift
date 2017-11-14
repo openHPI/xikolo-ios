@@ -103,6 +103,27 @@ struct SyncEngine {
         }
     }
 
+    private static func buildDeleteRequest<Resource>(forQuery query: SingleResourceQuery<Resource>) -> Result<URLRequest, XikoloError> {
+
+        guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        }
+
+        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        }
+
+        var request = URLRequest(url: resourceUrl)
+        request.httpMethod = "DELETE"
+
+        for (header, value) in NetworkHelper.getRequestHeaders() {
+            request.setValue(value, forHTTPHeaderField: header)
+        }
+
+        return .success(request)
+    }
+
+
     // MARK: - core data operation
 
     private static func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
@@ -318,7 +339,7 @@ struct SyncEngine {
 
     // MARK: - saving
 
-    static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable {
+    @discardableResult static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable {
         let query = MultipleResourcesQuery(type: Resource.self)
         let networkRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource).flatMap { request in
             return self.doNetworkRequest(request)
@@ -338,6 +359,17 @@ struct SyncEngine {
         }
 
         let networkRequest = urlRequest.flatMap { request in
+            return self.doNetworkRequest(request)
+        }
+
+        return networkRequest.asVoid() // TODO: add logging
+    }
+
+    // MARK: - deleting
+
+    @discardableResult static func deleteResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: ResourceRepresentable {
+        let query = SingleResourceQuery(resource: resource)
+        let networkRequest = self.buildDeleteRequest(forQuery: query).flatMap { request in
             return self.doNetworkRequest(request)
         }
 
@@ -411,6 +443,20 @@ protocol ResourceTypeRepresentable {
 
 protocol ResourceRepresentable: ResourceTypeRepresentable {
     var id: String { get set }
+
+    var identifier: [String: String] { get }
+}
+
+
+extension ResourceRepresentable {
+
+    var identifier: [String: String] {
+        return [
+            "type": Self.type,
+            "id": self.id,
+        ]
+    }
+
 }
 
 // MARK: - Pullable
@@ -622,7 +668,17 @@ extension Pushable {
 
             data["attributes"] = self.resourceAttributes()
             if let resourceRelationships = self.resourceRelationships() {
-                data["relationships"] = resourceRelationships
+                var relationships: [String: Any] = [:]
+                for (relationshipName, object) in resourceRelationships {
+                    if let resource = object as? ResourceRepresentable {
+                        relationships[relationshipName] = ["data": resource.identifier]
+                    } else if let resources = object as? [ResourceRepresentable] {
+                        relationships[relationshipName] = ["data": resources.map { $0.identifier }]
+                    }
+                }
+                if !relationships.isEmpty {
+                    data["relationships"] = relationships
+                }
             }
 
             let json = [ "data": data ]

@@ -59,9 +59,9 @@ class AnnouncementViewController : UIViewController {
             self.textView.text = "[...]"
         }
         //save read state to server
-        announcement.visited = true
+        self.announcement.visited = true
         TrackingHelper.sendEvent(.visitedAnnouncement, resource: announcement)
-        SpineHelper.save(AnnouncementSpine.init(announcementItem: announcement))
+        SyncEngine.saveResource(self.announcement)
     }
 
 }

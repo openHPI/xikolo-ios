@@ -26,6 +26,12 @@ final class Enrollment : NSManagedObject {
         return NSFetchRequest<Enrollment>(entityName: "Enrollment");
     }
 
+    convenience init(forCourse course: Course, inContext context: NSManagedObjectContext) {
+        self.init(context: context)
+        self.course = course
+        self.completed = false
+    }
+
     func compare(_ object: Enrollment) -> ComparisonResult {
         // This method is required, because we're using an NSSortDescriptor to sort courses based on enrollment.
         // Since we only rely on sorting enrolled vs. un-enrolled courses, this comparison method considers all enrollments equal,
@@ -73,11 +79,14 @@ extension Enrollment : Pullable {
 
         //        "visits": EmbeddedObjectAttribute(EnrollmentVisits.self), // TODO: don't use this
         //        "points": EmbeddedObjectAttribute(EnrollmentPoints.self), // TODO: don't use this
-//        "certificates": EmbeddedObjectAttribute(EnrollmentCertificates.self),
+        self.certificates = try attributes.value(for: "certificates")
         self.proctored = try attributes.value(for: "proctored")
         self.completed = try attributes.value(for: "completed")
         self.reactivated = try attributes.value(for: "reactivated")
         self.createdAt = try attributes.value(for: "created_at")
+
+        let relationships = try object.value(for: "relationships") as JSON
+        try self.updateRelationship(forKeyPath: \Enrollment.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
     }
 
 }
@@ -133,4 +142,20 @@ extension Enrollment : Pullable {
 //    }
 //
 //}
+
+extension Enrollment : Pushable {
+
+    var isNewResource: Bool {
+        return self.id == nil
+    }
+
+    func resourceAttributes() -> [String : Any] {
+        return [ "completed": self.completed ]
+    }
+
+    func resourceRelationships() -> [String : Any]? {
+        return [ "course": self.course as Any ]
+    }
+
+}
 

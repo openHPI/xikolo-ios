@@ -80,7 +80,7 @@ class CoreDataHelper {
     static func delete(_ object: NSManagedObject) -> Future<Void, XikoloError> {
         return Future { complete in
             self.persistentContainer.performBackgroundTask { context in
-                context.delete(object)
+                context.delete(context.object(with: object.objectID))
                 complete(self.save(context))
             }
         }

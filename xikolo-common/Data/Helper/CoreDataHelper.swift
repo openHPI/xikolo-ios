@@ -77,6 +77,21 @@ class CoreDataHelper {
 //
 //    }
 
+    static func execute<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource : NSManagedObject{
+        let promise = Promise<[Resource], XikoloError>()
+
+        context.perform {
+            do {
+                let objects = try context.fetch(request)
+                promise.success(objects)
+            } catch {
+                promise.failure(.coreData(error))
+            }
+        }
+
+        return promise.future
+    }
+
     static func delete(_ object: NSManagedObject) -> Future<Void, XikoloError> {
         return Future { complete in
             self.persistentContainer.performBackgroundTask { context in

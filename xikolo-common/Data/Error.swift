@@ -11,10 +11,11 @@ import Foundation
 
 enum XikoloError : Error {
 
-//    case api(SpineError)
     case api(APIError)
 
     case coreData(Error)
+    case coreDataObjectNotFound
+
     case invalidData
     case modelIncomplete
     case network(Error)

@@ -38,6 +38,9 @@ class CoreDataHelper {
     }()
 
     static let viewContext = persistentContainer.viewContext
+    static func newBackgroundContext() -> NSManagedObjectContext {
+        return self.persistentContainer.newBackgroundContext()
+    }
 
     static fileprivate var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
@@ -77,12 +80,27 @@ class CoreDataHelper {
 //
 //    }
 
-    static func execute<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource : NSManagedObject{
-        let promise = Promise<[Resource], XikoloError>()
+    enum FetchContext {
+        case viewContext
+        case newBackgroundContext
 
-        context.perform {
+        func managedObjectContext() -> NSManagedObjectContext {
+            switch self {
+            case .viewContext:
+                return CoreDataHelper.viewContext
+            case .newBackgroundContext:
+                return CoreDataHelper.newBackgroundContext()
+            }
+        }
+    }
+
+    static func fetchMultipleObjects<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Future<[Resource], XikoloError> where Resource : NSManagedObject{
+        let promise = Promise<[Resource], XikoloError>()
+        let managedObjectContext = context.managedObjectContext()
+
+        managedObjectContext.perform {
             do {
-                let objects = try context.fetch(request)
+                let objects = try managedObjectContext.fetch(request)
                 promise.success(objects)
             } catch {
                 promise.failure(.coreData(error))
@@ -91,6 +109,43 @@ class CoreDataHelper {
 
         return promise.future
     }
+
+    static func fetchSingleObject<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Future<Resource, XikoloError> where Resource : NSManagedObject{
+        return self.fetchMultipleObjects(fetchRequest: request, inContext: context).flatMap { objects -> Result<Resource, XikoloError> in
+            if let object = objects.first {
+                return .success(object)
+            } else {
+                return .failure(.coreDataObjectNotFound)
+            }
+        }
+    }
+
+    static func fetchMultipleObjectsAndWait<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Result<[Resource], XikoloError> where Resource : NSManagedObject{
+        var result: Result<[Resource], XikoloError>
+        let managedObjectContext = context.managedObjectContext()
+
+        managedObjectContext.performAndWait {
+            do {
+                let objects = try managedObjectContext.fetch(request)
+                result = .success(objects)
+            } catch {
+                result = .failure(.coreData(error))
+            }
+        }
+
+        return result
+    }
+
+    static func fetchSingleObjectAndWait<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Result<Resource, XikoloError> where Resource : NSManagedObject {
+        return self.fetchMultipleObjectsAndWait(fetchRequest: request, inContext: context).flatMap { objects -> Result<Resource, XikoloError> in
+            if let object = objects.first {
+                return .success(object)
+            } else {
+                return .failure(.coreDataObjectNotFound)
+            }
+        }
+    }
+
 
     static func delete(_ object: NSManagedObject) -> Future<Void, XikoloError> {
         return Future { complete in

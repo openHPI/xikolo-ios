@@ -6,17 +6,18 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
-import Foundation
-import Spine
+//import BrightFutures
+//import Foundation
+//import Spine
+//
+//class CourseSectionProvider {
+//
+//    class func getCourseSections(_ courseId: String) -> Future<[CourseSectionSpine], XikoloError> {
+//        var query: Query<CourseSectionSpine> = Query(resourceType: CourseSectionSpine.self)
+//        query.addPredicateWithKey("course", value: courseId, type: .equalTo)
+//
+//        return SpineHelper.find(query)
+//    }
+//
+//}
 
-class CourseSectionProvider {
-
-    class func getCourseSections(_ courseId: String) -> Future<[CourseSectionSpine], XikoloError> {
-        var query: Query<CourseSectionSpine> = Query(resourceType: CourseSectionSpine.self)
-        query.addPredicateWithKey("course", value: courseId, type: .equalTo)
-
-        return SpineHelper.find(query)
-    }
-
-}

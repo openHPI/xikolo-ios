@@ -110,11 +110,11 @@ class CourseListViewController : AbstractCourseListViewController {
         }
 
         if UserProfileHelper.isLoggedIn() {
-            CourseHelper.refreshCourses().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
+            Course.syncAllCourses().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
                 stopRefreshControl()
             }
         } else {
-            CourseHelper.refreshCourses().onComplete { _ in
+            Course.syncAllCourses().onComplete { _ in
                 stopRefreshControl()
             }
         }

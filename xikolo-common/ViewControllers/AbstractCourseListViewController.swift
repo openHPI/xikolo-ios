@@ -37,29 +37,21 @@ class AbstractCourseListViewController : UICollectionViewController {
         super.viewDidLoad()
         
         self.updateView()
-        CourseHelper.refreshCourses()
+        Course.syncAllCourses()
     }
 
     func updateView(){
         switch courseDisplayMode {
         case .enrolledOnly:
-            let currentRequest = CourseHelper.getEnrolledCurrentCoursesRequest()
-            let selfPacedRequest = CourseHelper.getEnrolledSelfPacedCoursesRequest()
-            let upcomingRequest = CourseHelper.getEnrolledUpcomingCoursesRequest()
-            let completedRequest = CourseHelper.getCompletedCoursesRequest()
-            resultsControllers = [CoreDataHelper.createResultsController(currentRequest, sectionNameKeyPath: "current_section"),
-
-                                  CoreDataHelper.createResultsController(upcomingRequest, sectionNameKeyPath: "upcoming_section"),
-                                  CoreDataHelper.createResultsController(selfPacedRequest, sectionNameKeyPath: "selfpaced_section"),
-                                  CoreDataHelper.createResultsController(completedRequest, sectionNameKeyPath: "completed_section")]
+            resultsControllers = [CoreDataHelper.createResultsController(Course.FetchRequest.enrolledCurrentCoursesRequest, sectionNameKeyPath: "current_section"),
+                                  CoreDataHelper.createResultsController(Course.FetchRequest.enrolledUpcomingCourses, sectionNameKeyPath: "upcoming_section"),
+                                  CoreDataHelper.createResultsController(Course.FetchRequest.enrolledSelfPacedCourses, sectionNameKeyPath: "selfpaced_section"),
+                                  CoreDataHelper.createResultsController(Course.FetchRequest.completedCourses, sectionNameKeyPath: "completed_section")]
         case .explore, .all:
-            let upcomingRunningRequest = CourseHelper.getInterestingCoursesRequest()
-            let pastSelfPacedRequest = CourseHelper.getPastCoursesRequest()
-            resultsControllers = [CoreDataHelper.createResultsController(upcomingRunningRequest, sectionNameKeyPath: "interesting_section"),
-                                  CoreDataHelper.createResultsController(pastSelfPacedRequest, sectionNameKeyPath: "selfpaced_section")]
+            resultsControllers = [CoreDataHelper.createResultsController(Course.FetchRequest.interestingCoursesRequest, sectionNameKeyPath: "interesting_section"),
+                                  CoreDataHelper.createResultsController(Course.FetchRequest.pastCourses, sectionNameKeyPath: "selfpaced_section")]
         case .bothSectioned:
-            let request = CourseHelper.getSectionedRequest()
-            resultsControllers = [CoreDataHelper.createResultsController(request, sectionNameKeyPath: "is_enrolled_section")]
+            resultsControllers = [CoreDataHelper.createResultsController(Course.FetchRequest.allCoursesSectioned, sectionNameKeyPath: "is_enrolled_section")]
         }
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsControllers: resultsControllers, cellReuseIdentifier: "CourseCell")

@@ -37,7 +37,7 @@ class LearningsViewController : UIViewController {
         backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
         backgroundImageHelper.imageView.sd_setImage(with: course.image_url)
 
-        let request = CourseSectionHelper.getSectionRequest(course)
+        let request = CourseSection.FetchRequest.courseSections(forCourse: self.course)
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: [sectionResultsController], cellReuseIdentifier: "CourseSectionCell")
@@ -95,11 +95,11 @@ class LearningsViewController : UIViewController {
             // TODO: Error handling.
         }
 
-        CourseSectionHelper.syncCourseSections(course)
+        CourseSection.syncCourseSections(forCourse: course)
     }
 
     func loadItemsForSection(_ section: CourseSection) {
-        let request = CourseItemHelper.getItemRequest(section)
+        let request = CourseItem.FetchRequest.courseItems(forSection: section)
         itemCollectionView.reloadData()
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
@@ -116,7 +116,7 @@ class LearningsViewController : UIViewController {
             // TODO: Error handling
         }
 
-        CourseItemHelper.syncCourseItems(section)
+        CourseItem.syncCourseItems(forSection: section)
     }
 
 }

@@ -85,7 +85,7 @@ class CourseDetailViewController: UIViewController {
     
     func createEnrollment() {
         EnrollmentHelper.createEnrollment(for: self.course).flatMap {
-            CourseHelper.refreshCourses()
+            Course.syncAllCourses()
         }.onSuccess { _ in
             if let parent = self.parent as? CourseDecisionViewController {
                 parent.decideContent()
@@ -102,7 +102,7 @@ class CourseDetailViewController: UIViewController {
                                                      comment: "title for 'mask as completed' action")
         let completedAction = UIAlertAction(title: completedActionTitle, style: .default) { _ in
             EnrollmentHelper.markAsCompleted(self.course).onSuccess { _ in
-                CourseHelper.refreshCourse(self.course)
+                Course.syncCourse(self.course)
             }
         }
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",

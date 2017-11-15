@@ -81,7 +81,8 @@ class AppDelegate : AbstractAppDelegate {
                     let slug = url.pathComponents[2]
                     //get course by slug
                     //todo the course might not be synced yet, than we could try to fetch from the API by slug
-                    if let course = CourseHelper.getBySlug(slug) {
+                    let fetchRequest = Course.FetchRequest.course(withSlug: slug)
+                    if case let .success(course) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
                         self.goToCourse(course)
                         return true
                     }

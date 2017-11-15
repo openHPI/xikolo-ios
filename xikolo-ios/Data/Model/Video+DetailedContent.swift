@@ -21,7 +21,8 @@ extension Video: DetailedContent {
     }
 
     private var durationText: String? {
-        guard let timeInterval = self.duration?.doubleValue, timeInterval > 0 else {
+        let timeInterval = TimeInterval(self.duration)
+        guard timeInterval > 0 else {
             return nil
         }
 
@@ -36,11 +37,12 @@ extension Video: DetailedContent {
     }
 
     private var slidesText: String? {
-        return self.slides_url != nil ? NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list") : nil
+        guard self.slidesURL != nil else { return nil }
+        return NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
     }
 
     static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
-        return CourseItemHelper.syncVideosFor(course: course)
+        return CourseItem.syncVideos(forCourse: course)
     }
 
 }

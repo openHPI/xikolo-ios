@@ -6,13 +6,14 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
-import Foundation
+//import BrightFutures
+//import Foundation
+//
+//class CourseDateProvider {
+//
+//    class func getCourseDates() -> Future<[CourseDateSpine], XikoloError> {
+//        return SpineHelper.findAll(CourseDateSpine.self)
+//    }
+//    
+//}
 
-class CourseDateProvider {
-
-    class func getCourseDates() -> Future<[CourseDateSpine], XikoloError> {
-        return SpineHelper.findAll(CourseDateSpine.self)
-    }
-    
-}

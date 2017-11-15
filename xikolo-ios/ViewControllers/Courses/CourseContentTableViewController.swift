@@ -44,7 +44,7 @@ class CourseContentTableViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        let request = CourseItemHelper.getItemRequest(course)
+        let request = CourseItem.FetchRequest.courseItems(forCourse: course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
@@ -105,21 +105,16 @@ class CourseContentTableViewController: UITableViewController {
         let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
         self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
 
-        // FIXME: Due to the incorrect handling of the NSManagedObjectContext spine sync logic, we have to refetch the course for the background context
-        if UserProfileHelper.isLoggedIn(), let course = CourseHelper.getByID(self.course.id) {
-            CourseSectionHelper.syncCourseSections(course).flatMap { sections in
-                sections.map { section in
-                    CourseItemHelper.syncCourseItems(section)
-                }.sequence().onComplete { _ in
-                    if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
-                        self.preloadCourseContent()
-                    }
-                }
-            }.onComplete { _ in
-                stopRefreshControl()
-            }
-        } else {
+        guard UserProfileHelper.isLoggedIn() else {
             stopRefreshControl()
+            return
+        }
+
+        CourseItem.syncCourseItems(forCourse: self.course).onComplete { _ in
+            stopRefreshControl()
+            if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+                self.preloadCourseContent()
+            }
         }
     }
 
@@ -176,25 +171,33 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let courseItem = sender as? CourseItem
-        switch segue.identifier! {
-        case "ShowVideo":
+        guard let courseItem = sender as? CourseItem else {
+            print("Sender is not a course item")
+            super.prepare(for: segue, sender: sender)
+            return
+        }
+
+        switch segue.identifier {
+        case "ShowVideo"?:
             let videoView = segue.destination as! VideoViewController
-            videoView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
-            break
-        case "ShowQuiz":
+            let fetchRequest = CourseItem.FetchRequest.courseItem(withId: courseItem.id)
+            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .view) {
+                videoView.courseItem = courseItem
+            }
+        case "ShowQuiz"?:
             let webView = segue.destination as! WebViewController
-            if let courseID = courseItem!.section?.course?.id {
+            if let courseID = courseItem.section?.course?.id {
                 let courseURL = Routes.COURSES_URL + courseID
-                let quizpathURL = "/items/" + courseItem!.id
+                let quizpathURL = "/items/" + courseItem.id
                 let url = courseURL + quizpathURL
                 webView.url = url
             }
-            break
-        case "ShowRichtext":
+        case "ShowRichtext"?:
             let richtextView = segue.destination as! RichtextViewController
-            richtextView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
-            break
+            let fetchRequest = CourseItem.FetchRequest.courseItem(withId: courseItem.id)
+            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .view) {
+                richtextView.courseItem = courseItem
+            }
         default:
             super.prepare(for: segue, sender: sender)
         }

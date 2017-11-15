@@ -281,7 +281,7 @@ struct SyncEngine {
 
     // MARK: - sync
 
-    private static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
+    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<[Resource], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -309,7 +309,7 @@ struct SyncEngine {
         }
     }
 
-    private static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<Resource, XikoloError> where Resource: NSManagedObject & Pullable {
+    static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<Resource, XikoloError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<Resource, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -379,9 +379,8 @@ struct SyncEngine {
     // MARK: - domaine specific
 
     static func syncCourses() -> Future<[Course], XikoloError> {
-        let fetchRequest = CourseHelper.getAllCoursesRequest()
         let query = MultipleResourcesQuery(type: Course.self)
-        return self.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return self.syncResources(withFetchRequest: Course.FetchRequest.allCourses, withQuery: query)
     }
 
     static func syncCourse(withId id: String) -> Future<Course, XikoloError> {

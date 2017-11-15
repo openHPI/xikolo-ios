@@ -6,27 +6,28 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
-import Foundation
-import Spine
+//import BrightFutures
+//import Foundation
+//import Spine
+//
+//class CourseProvider {
+//
+//    class func getCourses() -> Future<[CourseSpine], XikoloError> {
+//        var query = Query(resourceType: CourseSpine.self)
+//        query.include("channel")
+//        query.include("user_enrollment")
+//
+//        return SpineHelper.find(query)
+//    }
+//
+//
+//    class func getCourse(_ id: String) -> Future<CourseSpine, XikoloError> {
+//        var query = Query(resourceType: CourseSpine.self)
+//        query.include("channel")
+//        query.include("user_enrollment")
+//
+//        return SpineHelper.findOne(id, ofType: CourseSpine.self)
+//    }
+//
+//}
 
-class CourseProvider {
-
-    class func getCourses() -> Future<[CourseSpine], XikoloError> {
-        var query = Query(resourceType: CourseSpine.self)
-        query.include("channel")
-        query.include("user_enrollment")
-
-        return SpineHelper.find(query)
-    }
-
-
-    class func getCourse(_ id: String) -> Future<CourseSpine, XikoloError> {
-        var query = Query(resourceType: CourseSpine.self)
-        query.include("channel")
-        query.include("user_enrollment")
-
-        return SpineHelper.findOne(id, ofType: CourseSpine.self)
-    }
-
-}

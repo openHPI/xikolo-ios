@@ -44,8 +44,7 @@ class CourseDatesTableViewController : UITableViewController {
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
 
-        let request = CourseDateHelper.getCourseDatesRequest()
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
+        resultsController = CoreDataHelper.createResultsController(CourseDate.FetchRequest.allCourseDates, sectionNameKeyPath: "course.title")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "CourseDateCell")
@@ -86,7 +85,7 @@ class CourseDatesTableViewController : UITableViewController {
 
         self.courseActivityViewController?.refresh()
         if UserProfileHelper.isLoggedIn() {
-            CourseDateHelper.syncCourseDates().onComplete { _ in
+            CourseDate.syncAllCourseDates().onComplete { _ in
                 stopRefreshControl()
             }
         } else {
@@ -126,10 +125,13 @@ extension CourseDatesTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
-        if let courseForCourseDate = courseDate.course, let course = CourseHelper.getByID(courseForCourseDate.id) {
+
+        CoreDataHelper.execute(fetchRequest: Course.FetchRequest.course(withId: courseDate.course.id), inContext: CoreDataHelper.viewContext).map { courses in
+            return courses.first
+        }.onSuccess { course in
+            tableView.deselectRow(at: indexPath, animated: true)
             AppDelegate.instance().goToCourse(course)
         }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

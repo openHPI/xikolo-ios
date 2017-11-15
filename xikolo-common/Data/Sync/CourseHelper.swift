@@ -1,5 +1,5 @@
 //
-//  Course+Sync.swift
+//  CourseHelper.swift
 //  xikolo-ios
 //
 //  Created by Max Bothe on 15.11.17.
@@ -9,7 +9,7 @@
 import Foundation
 import BrightFutures
 
-extension Course {
+struct CourseHelper {
 
     static func syncAllCourses() -> Future<[Course], XikoloError> {
         var query = MultipleResourcesQuery(type: Course.self)

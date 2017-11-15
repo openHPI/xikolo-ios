@@ -42,7 +42,7 @@ extension Video: DetailedContent {
     }
 
     static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
-        return CourseItem.syncVideos(forCourse: course)
+        return CourseItemHelper.syncVideos(forCourse: course)
     }
 
 }

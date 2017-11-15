@@ -1,5 +1,5 @@
 //
-//  CourseSection+Sync.swift
+//  CourseSectionHelper.swift
 //  xikolo-ios
 //
 //  Created by Max Bothe on 15.11.17.
@@ -9,7 +9,7 @@
 import Foundation
 import BrightFutures
 
-extension CourseSection {
+struct CourseSectionHelper {
 
     static func syncCourseSections(forCourse course: Course) -> Future<[CourseSection], XikoloError> {
         let fetchRequest = CourseSection.FetchRequest.courseSections(forCourse: course)

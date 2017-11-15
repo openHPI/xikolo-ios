@@ -85,7 +85,7 @@ class CourseDatesTableViewController : UITableViewController {
 
         self.courseActivityViewController?.refresh()
         if UserProfileHelper.isLoggedIn() {
-            CourseDate.syncAllCourseDates().onComplete { _ in
+            CourseDateHelper.syncAllCourseDates().onComplete { _ in
                 stopRefreshControl()
             }
         } else {

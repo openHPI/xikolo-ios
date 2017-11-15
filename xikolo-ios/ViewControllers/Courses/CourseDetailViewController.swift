@@ -85,7 +85,7 @@ class CourseDetailViewController: UIViewController {
     
     func createEnrollment() {
         EnrollmentHelper.createEnrollment(for: self.course).flatMap {
-            Course.syncAllCourses()
+            CourseHelper.syncAllCourses()
         }.onSuccess { _ in
             if let parent = self.parent as? CourseDecisionViewController {
                 parent.decideContent()

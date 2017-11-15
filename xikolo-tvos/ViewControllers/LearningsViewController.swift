@@ -95,7 +95,7 @@ class LearningsViewController : UIViewController {
             // TODO: Error handling.
         }
 
-        CourseSection.syncCourseSections(forCourse: course)
+        CourseSectionHelper.syncCourseSections(forCourse: course)
     }
 
     func loadItemsForSection(_ section: CourseSection) {
@@ -116,7 +116,7 @@ class LearningsViewController : UIViewController {
             // TODO: Error handling
         }
 
-        CourseItem.syncCourseItems(forSection: section)
+        CourseItemHelper.syncCourseItems(forSection: section)
     }
 
 }

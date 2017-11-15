@@ -1,5 +1,5 @@
 //
-//  CourseItem+Sync.swift
+//  CourseItemHelper.swift
 //  xikolo-ios
 //
 //  Created by Max Bothe on 15.11.17.
@@ -9,7 +9,7 @@
 import Foundation
 import BrightFutures
 
-extension CourseItem {
+struct CourseItemHelper {
 
     static func syncCourseItems(forSection section: CourseSection) -> Future<[CourseItem], XikoloError> {
         let fetchRequest = CourseItem.FetchRequest.courseItems(forSection: section)
@@ -19,9 +19,9 @@ extension CourseItem {
     }
 
     static func syncCourseItems(forCourse course: Course) -> Future<[[CourseItem]], XikoloError> {
-        return CourseSection.syncCourseSections(forCourse: course).flatMap { sections in
+        return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sections in
             return sections.traverse { section in
-                CourseItem.syncCourseItems(forSection: section)
+                CourseItemHelper.syncCourseItems(forSection: section)
             }
         }
     }

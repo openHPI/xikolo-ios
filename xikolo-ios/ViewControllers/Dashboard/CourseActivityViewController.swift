@@ -52,7 +52,7 @@ class CourseActivityViewController: UICollectionViewController {
     }
 
     func refresh() {
-        Course.syncAllCourses()
+        CourseHelper.syncAllCourses()
     }
 }
 

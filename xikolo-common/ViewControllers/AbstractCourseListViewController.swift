@@ -37,7 +37,7 @@ class AbstractCourseListViewController : UICollectionViewController {
         super.viewDidLoad()
         
         self.updateView()
-        Course.syncAllCourses()
+        CourseHelper.syncAllCourses()
     }
 
     func updateView(){

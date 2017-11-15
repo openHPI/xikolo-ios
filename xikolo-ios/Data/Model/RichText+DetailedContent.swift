@@ -31,7 +31,7 @@ extension RichText: DetailedContent {
     }
 
     static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
-        return CourseItem.syncRichTexts(forCourse: course)
+        return CourseItemHelper.syncRichTexts(forCourse: course)
     }
 
 }

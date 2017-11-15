@@ -11,17 +11,17 @@ import CoreData
 
 class CourseHelper {
 
-    static fileprivate let genericPredicate = NSPredicate(format: "external_int != true")
-    static fileprivate let enrolledPredicate = NSPredicate(format: "external_int != true AND enrollment != null")
-    static fileprivate let unenrolledPredicate = NSPredicate(format: "external_int != true AND enrollment == null")
+    static fileprivate let genericPredicate = NSPredicate(format: "external != true")
+    static fileprivate let enrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, NSPredicate(format: "enrollment != null")])
+    static fileprivate let unenrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, NSPredicate(format: "enrollment == null")])
     static fileprivate let announcedPredicate = NSPredicate(format: "status = %@", "announced")
     static fileprivate let previewPredicate = NSPredicate(format: "status = %@", "preview")
     static fileprivate let activePredicate = NSPredicate(format: "status = %@", "active")
     static fileprivate let selfpacedPredicate = NSPredicate(format: "status = %@", "self-paced")
     static fileprivate let interestingPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [announcedPredicate,previewPredicate,activePredicate])
-    static fileprivate let accessiblePredicate = NSPredicate(format: "accessible_int == true")
-    static fileprivate let completedPredicate = NSPredicate(format: "enrollment.completed_int == 1")
-    static fileprivate let notcompletedPredicate = NSPredicate(format: "enrollment.completed_int == 0")
+    static fileprivate let accessiblePredicate = NSPredicate(format: "accessible == true")
+    static fileprivate let completedPredicate = NSPredicate(format: "enrollment.completed == true")
+    static fileprivate let notcompletedPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: completedPredicate)
 
     static func getGenericCoursesRequest() -> NSFetchRequest<Course> {
         let request: NSFetchRequest<Course> = Course.fetchRequest()

@@ -6,13 +6,14 @@
 //  Copyright © 2017 HPI. All rights reserved.
 //
 
-import BrightFutures
-import Foundation
+//import BrightFutures
+//import Foundation
+//
+//class EnrollmentProvider {
+//
+//    class func getEnrollments() -> Future<[EnrollmentSpine], XikoloError> {
+//        return SpineHelper.findAll(EnrollmentSpine.self)
+//    }
+//
+//}
 
-class EnrollmentProvider {
-
-    class func getEnrollments() -> Future<[EnrollmentSpine], XikoloError> {
-        return SpineHelper.findAll(EnrollmentSpine.self)
-    }
-
-}

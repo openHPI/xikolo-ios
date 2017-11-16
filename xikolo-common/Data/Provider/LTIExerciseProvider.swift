@@ -6,13 +6,14 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
-import Foundation
+//import BrightFutures
+//import Foundation
+//
+//class LTIExerciseProvider {
+//
+//    class func getLTIExercise(_ ltiExerciseId: String) -> Future<LTIExerciseSpine, XikoloError> {
+//        return SpineHelper.findOne(ltiExerciseId, ofType: LTIExerciseSpine.self)
+//    }
+//
+//}
 
-class LTIExerciseProvider {
-
-    class func getLTIExercise(_ ltiExerciseId: String) -> Future<LTIExerciseSpine, XikoloError> {
-        return SpineHelper.findOne(ltiExerciseId, ofType: LTIExerciseSpine.self)
-    }
-
-}

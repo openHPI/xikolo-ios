@@ -121,7 +121,7 @@ class CoreDataHelper {
     }
 
     static func fetchMultipleObjectsAndWait<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Result<[Resource], XikoloError> where Resource : NSManagedObject{
-        var result: Result<[Resource], XikoloError>
+        var result: Result<[Resource], XikoloError> = .failure(.totallyUnknownError)
         let managedObjectContext = context.managedObjectContext()
 
         managedObjectContext.performAndWait {

@@ -104,7 +104,7 @@ class AppDelegate : AbstractAppDelegate {
     }
 
     func updateAnnouncements() {
-        AnnouncementHelper.syncAnnouncements().onSuccess { (announcements) in // sync announcements and show badge on news tab with number of unread articles
+        AnnouncementHelper.syncAllAnnouncements().onSuccess { (announcements) in // sync announcements and show badge on news tab with number of unread articles
             if let rootViewController = self.window?.rootViewController as? UITabBarController {
                 if let tabArray = rootViewController.tabBar.items {
                     let tabItem = tabArray[2]

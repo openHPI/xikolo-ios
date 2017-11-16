@@ -33,7 +33,7 @@ class CourseDecisionViewController: UIViewController {
         self.decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
 
-        self.course.notifyOnChange(self, updatedHandler: { _ in }) {
+        self.course.notifyOnChange(self, updateHandler: {}) {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popToRootViewController(animated: isVisible)
         }

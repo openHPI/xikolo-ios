@@ -181,7 +181,7 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowVideo"?:
             let videoView = segue.destination as! VideoViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .view) {
+            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
                 videoView.courseItem = courseItem
             }
         case "ShowQuiz"?:
@@ -195,7 +195,7 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowRichtext"?:
             let richtextView = segue.destination as! RichtextViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .view) {
+            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
                 richtextView.courseItem = courseItem
             }
         default:

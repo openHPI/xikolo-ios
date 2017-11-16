@@ -59,7 +59,7 @@ class TrackingHelper {
         ]
     }
 
-    class func createEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String] = [:]) -> Future<TrackingEvent, XikoloError> {
+    class func createEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
         guard let userId = UserProfileHelper.userId else {
             return Future(error: .trackingForUnknownUser)
         }
@@ -76,7 +76,9 @@ class TrackingHelper {
 
         var trackingContext = self.defaultContext()
         for (k, v) in context {
-            trackingContext.updateValue(v, forKey: k)
+            if let value = v {
+                trackingContext.updateValue(value, forKey: k)
+            }
         }
 
 
@@ -92,7 +94,7 @@ class TrackingHelper {
         return promise.future
     }
 
-    @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return self.createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
             SyncEngine.saveResource(event)
         }

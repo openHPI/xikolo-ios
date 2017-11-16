@@ -76,7 +76,8 @@ class SettingsViewController: UITableViewController {
         if UserProfileHelper.isLoggedIn(), let userId = UserProfileHelper.userId {
             self.navigationItem.rightBarButtonItem = nil
 
-            CoreDataHelper.fetchSingleObject(fetchRequest: UserHelper.FetchRequest.user(withId: userId), inContext: .view).onSuccess { user in
+            let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+            CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .viewContext).onSuccess { user in
                 self.user = user
             }.onComplete{ _ in
                 UserHelper.syncMe().onSuccess { user in
@@ -96,7 +97,7 @@ class SettingsViewController: UITableViewController {
         let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
 
         if let userProfile = self.user?.profile {
-            self.profileImage.sd_setImage(with: self.user?.avatar_url, placeholderImage: UIImage(named: "avatar"))
+            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: UIImage(named: "avatar"))
             self.nameView.text = userProfile.fullName
             self.emailView.text = userProfile.email
 

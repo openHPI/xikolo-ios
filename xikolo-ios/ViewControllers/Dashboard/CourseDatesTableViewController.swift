@@ -126,9 +126,8 @@ extension CourseDatesTableViewController {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
 
-        CoreDataHelper.execute(fetchRequest: CourseHelper.FetchRequest.course(withId: courseDate.course.id), inContext: CoreDataHelper.viewContext).map { courses in
-            return courses.first
-        }.onSuccess { course in
+        let fetchRequest = CourseHelper.FetchRequest.course(withId: courseDate.course.id)
+        if case let .success(course) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
             tableView.deselectRow(at: indexPath, animated: true)
             AppDelegate.instance().goToCourse(course)
         }

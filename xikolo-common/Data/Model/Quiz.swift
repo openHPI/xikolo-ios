@@ -20,7 +20,7 @@ final class Quiz : Content {
     @NSManaged var timeLimit: Int32
     @NSManaged var allowedAttempts: Int32
     @NSManaged private var maxPointsValue: NSDecimalNumber?
-    @NSManaged var questions: Set<QuizQuestion>?
+    @NSManaged var questions: Set<QuizQuestion>
 
    // var submission: QuizSubmission?
 

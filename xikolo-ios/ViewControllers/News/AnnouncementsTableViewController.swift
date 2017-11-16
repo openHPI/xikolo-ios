@@ -30,7 +30,7 @@ class AnnouncementsTableViewController : UITableViewController {
 
         // setup table view data
         TrackingHelper.sendEvent(.visitedAnnouncementList, resource: nil)
-        let request = AnnouncementHelper.getRequest()
+        let request = AnnouncementHelper.FetchRequest.allAnnouncements
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
@@ -69,7 +69,7 @@ class AnnouncementsTableViewController : UITableViewController {
         self.tableView.reloadEmptyDataSet()
 
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        AnnouncementHelper.syncAnnouncements().onComplete { _ in
+        AnnouncementHelper.syncAllAnnouncements().onComplete { _ in
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 self.tableView.refreshControl?.endRefreshing()
             }

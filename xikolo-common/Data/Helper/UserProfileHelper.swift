@@ -34,7 +34,7 @@ open class UserProfileHelper {
                 if let token = json["token"] as? String, let id = json["user_id"] as? String {
                     UserProfileHelper.userToken = token
                     UserProfileHelper.userId = id
-                    NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+                    self.postLoginStateChange()
                     return promise.success(token)
                 }
                 return promise.failure(XikoloError.authenticationError)
@@ -50,11 +50,15 @@ open class UserProfileHelper {
     static func logout() {
         UserProfileHelper.clearKeychain()
         CoreDataHelper.clearCoreDataStorage()
-        NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+        self.postLoginStateChange()
     }
 
     static func isLoggedIn() -> Bool {
         return !self.userToken.isEmpty
+    }
+
+    static func postLoginStateChange() {
+        NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
     }
 
 }

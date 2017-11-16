@@ -37,7 +37,7 @@ class PlatformEventCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        if let date = platformEvent.created_at {
+        if let date = platformEvent.createdAt {
             dateView.text = dateFormatter.string(from: date)
         }
 

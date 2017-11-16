@@ -25,7 +25,7 @@ class CourseCell : UICollectionViewCell {
         backgroundImage.backgroundColor = UIColor.gray
         backgroundImage.sd_setShowActivityIndicatorView(true)
         backgroundImage.sd_setIndicatorStyle(.gray)
-        backgroundImage.sd_setImage(with: course.image_url)
+        backgroundImage.sd_setImage(with: course.imageURL)
 
         nameLabel.text = course.title
         nameLabel.heroID = "course_title_" + course.id
@@ -36,7 +36,7 @@ class CourseCell : UICollectionViewCell {
         languageLabel.heroID = "course_language_" + course.id
         languageLabel.text = course.language_translated
         backgroundImage.heroID = "course_image_" + course.id
-        dateLabel.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
+        dateLabel.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
 
         #if OPENWHO //view is hidden by default
         #else

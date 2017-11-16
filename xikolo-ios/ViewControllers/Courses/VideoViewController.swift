@@ -83,7 +83,7 @@ class VideoViewController : UIViewController {
         self.video = video
 
         // show slides button
-        self.openSlidesButton.isHidden = (video.slides_url == nil)
+        self.openSlidesButton.isHidden = (video.slidesURL == nil)
 
         // show description
         if let summary = video.summary {
@@ -106,7 +106,7 @@ class VideoViewController : UIViewController {
             videoURL = localAsset.url
             self.playerControlView.setOffline(true)
         } else {
-            videoURL = video.hlsURL
+            videoURL = video.singleStream?.hlsURL
             self.playerControlView.setOffline(false)
         }
 
@@ -127,7 +127,7 @@ class VideoViewController : UIViewController {
         switch segue.identifier {
         case "ShowSlides"?:
             if let vc = segue.destination as? WebViewController {
-                vc.url = self.video?.slides_url?.absoluteString
+                vc.url = self.video?.slidesURL?.absoluteString
             }
         default:
             super.prepare(for: segue, sender: sender)

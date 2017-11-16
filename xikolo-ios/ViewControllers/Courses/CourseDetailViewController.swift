@@ -52,8 +52,8 @@ class CourseDetailViewController: UIViewController {
         teacherView.heroID = "course_teacher_" + course.id
         imageView.heroID = "course_image_" + course.id
 
-        dateView.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
-        imageView.sd_setImage(with: course.image_url)
+        dateView.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
+        imageView.sd_setImage(with: course.imageURL)
 
         if let description = course.abstract {
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
@@ -102,7 +102,7 @@ class CourseDetailViewController: UIViewController {
                                                      comment: "title for 'mask as completed' action")
         let completedAction = UIAlertAction(title: completedActionTitle, style: .default) { _ in
             EnrollmentHelper.markAsCompleted(self.course).onSuccess { _ in
-                Course.syncCourse(self.course)
+                CourseHelper.syncCourse(self.course)
             }
         }
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",

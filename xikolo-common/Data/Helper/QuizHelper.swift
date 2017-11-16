@@ -13,7 +13,7 @@ struct QuizHelper {
 
     static func syncQuiz(_ quiz: Quiz) -> Future<Quiz, XikoloError> {
         let fetchRquest = QuizHelper.FetchRequest.quiz(withId: quiz.id)
-        let query = SingleResourceQuery(resource: quiz)
+        var query = SingleResourceQuery(resource: quiz)
         query.include("questions")
         query.include("submission")
         return SyncEngine.syncResource(withFetchRequest: fetchRquest, withQuery: query)

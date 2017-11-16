@@ -69,21 +69,18 @@ class VideoPersistenceManager: NSObject {
             for task in tasks {
                 guard let assetDownloadTask = task as? AVAssetDownloadTask, let videoId = task.taskDescription else { break }
 
-                let request: NSFetchRequest<Video> = Video.fetchRequest()
-                request.predicate = NSPredicate(format: "id == %@", videoId)
-                request.fetchLimit = 1
-                do {
-                    let video = try CoreDataHelper.executeFetchRequest(request).first
+                let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
+                CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .newBackgroundContext).onSuccess { (video) in
                     self.activeDownloadsMap[assetDownloadTask] = video
-                } catch {
-                    print("Failed to restore download for video \(videoId)")
+                }.onFailure{ error in
+                    print("Failed to restore download for video \(videoId) : \(error)")
                 }
             }
         }
     }
 
     func downloadStream(for video: Video) {
-        guard let url = video.hlsURL else { return }
+        guard let url = video.singleStream?.hlsURL else { return }
 
         let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = video.item?.title ?? "Untitled video"
@@ -101,7 +98,7 @@ class VideoPersistenceManager: NSObject {
 
         task.resume()
 
-        video.download_date = Date()
+        video.downloadDate = Date()
         do {
             try video.managedObjectContext?.save()
         } catch {
@@ -116,7 +113,7 @@ class VideoPersistenceManager: NSObject {
     }
 
     func localAsset(for video: Video) -> AVURLAsset? {
-        guard let localFileLocation = video.local_file_bookmark as Data? else { return nil }
+        guard let localFileLocation = video.localFileBookmark as Data? else { return nil }
 
         var asset: AVURLAsset?
         var bookmarkDataIsStale = false
@@ -165,8 +162,8 @@ class VideoPersistenceManager: NSObject {
             do {
                 try FileManager.default.removeItem(at: localFileLocation)
 
-                video.download_date = nil
-                video.local_file_bookmark = nil
+                video.downloadDate = nil
+                video.localFileBookmark = nil
                 try video.managedObjectContext?.save()
 
                 var userInfo: [String: Any] = [:]
@@ -222,8 +219,8 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 do {
                     try FileManager.default.removeItem(at: localFileLocation)
 
-                    video.download_date = nil
-                    video.local_file_bookmark = nil
+                    video.downloadDate = nil
+                    video.localFileBookmark = nil
                     try video.managedObjectContext?.save()
                 } catch {
                     print("An error occured deleting the file: \(error)")
@@ -248,7 +245,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
         if let video = self.activeDownloadsMap[assetDownloadTask]  {
             do {
                 let bookmark = try location.bookmarkData()
-                video.local_file_bookmark = NSData(data: bookmark)
+                video.localFileBookmark = NSData(data: bookmark)
                 try video.managedObjectContext?.save()
 
                 let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]

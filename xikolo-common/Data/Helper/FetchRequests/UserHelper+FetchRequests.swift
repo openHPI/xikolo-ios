@@ -16,7 +16,7 @@ extension UserHelper {
             let request: NSFetchRequest<User> = User.fetchRequest()
             request.predicate = NSPredicate(format: "id == %@", userId)
             request.fetchLimit = 1
-            return
+            return request
         }
     }
 }

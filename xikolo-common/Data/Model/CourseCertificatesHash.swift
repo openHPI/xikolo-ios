@@ -25,7 +25,7 @@ final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
     }
 
     required init(coder decoder: NSCoder) {
-        available = decoder.decodeObject(forKey: "available") as! Bool // TODO: force cast
+        available = decoder.decodeBool(forKey: "available")
         threshold = decoder.decodeObject(forKey: "threshold") as? Int32
     }
 

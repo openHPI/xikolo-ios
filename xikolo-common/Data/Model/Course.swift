@@ -75,7 +75,12 @@ final class Course : NSManagedObject {
 //        }
 //    }
 
-    var is_enrolled_section: String {
+    @objc var interesting_section = NSLocalizedString("course.section-title.suggested", tableName: "Common", comment: "section title for collapsed upcoming & active courses")
+    @objc var selfpaced_section = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
+    @objc var current_section = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
+    @objc var upcoming_section = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
+    @objc var completed_section = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
+    @objc var is_enrolled_section: String {
         get {
             if enrollment != nil {
                 return NSLocalizedString("course.section-title.my courses", tableName: "Common", comment: "section title for enrolled courses")
@@ -84,12 +89,6 @@ final class Course : NSManagedObject {
             }
         }
     }
-
-    var interesting_section = NSLocalizedString("course.section-title.suggested", tableName: "Common", comment: "section title for collapsed upcoming & active courses")
-    var selfpaced_section = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
-    var current_section = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
-    var upcoming_section = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
-    var completed_section = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
 
     var language_translated: String? {
         if let language = language {

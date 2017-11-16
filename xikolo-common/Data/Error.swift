@@ -63,6 +63,6 @@ enum SerializationError : Error {
     /// Error occurred in NSJSONSerialization
     case jsonSerializationError(Error)
 
-    case modelDeserializationError(Error)
+    case modelDeserializationError(Error, onType: String)
 }
 

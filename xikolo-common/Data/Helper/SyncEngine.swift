@@ -12,6 +12,49 @@ import Result
 import Marshal
 import CoreData
 
+
+//extension AsyncType where Value: ResultProtocol {
+//
+//    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), task: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
+//        let res = Future<Value.Value, Value.Error>()
+//
+////        self.onComplete(context) { result in
+////            switch result {
+////            case .success(let value):
+////
+////            case .failure(let error):
+////                promise.failure(error)
+////            }
+////        }
+//
+//        return res
+//    }
+//
+//}
+
+//extension Future {
+//
+//    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), f: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
+//        let res = Promise<Value.Value, Value.Error>()
+//
+//
+//        self.onComplete(context) { result in
+//            result.analysis(ifSuccess: { res.success($0) }, ifFailure: { res.failure($0) })
+//        }
+////        self.onComplete(context) { result in
+////            switch result {
+////            case .success(let value):
+////
+////            case .failure(let error):
+////                promise.failure(error)
+////            }
+////        }
+//
+//        return res
+//    }
+//
+//}
+
 enum SynchronizationError : Error {
     case noRelationshipBetweenEnities(from: Any, to: Any)
     case toManyRelationshipBetweenEnities(from: Any, to: Any)
@@ -239,7 +282,7 @@ struct SyncEngine {
 
             return Future(value: newObjects)
         } catch let error as MarshalError {
-            return Future(error: .api(.serializationError(.modelDeserializationError(error))))
+            return Future(error: .api(.serializationError(.modelDeserializationError(error, onType: Resource.type))))
         } catch let error as SynchronizationError {
             return Future(error: .synchronizationError(error))
         } catch {
@@ -271,7 +314,7 @@ struct SyncEngine {
 
             return Future(value: newObject)
         } catch let error as MarshalError {
-            return Future(error: .api(.serializationError(.modelDeserializationError(error))))
+            return Future(error: .api(.serializationError(.modelDeserializationError(error, onType: Resource.type))))
         } catch let error as SynchronizationError {
             return Future(error: .synchronizationError(error))
         } catch {
@@ -293,12 +336,18 @@ struct SyncEngine {
             coreDataFetch.zip(networkRequest).flatMap { objects, json in
                 return self.mergeResources(object: json, withExistingObjects: objects, inContext: context)
             }.flatMap { objects -> Future<[Resource], XikoloError> in
-                switch CoreDataHelper.save(context) {
-                case .success(_):
-                    return Future(value: objects)
-                case .failure(let error):
-                    return Future(error: error)
+                let enityName = fetchRequest.entityName
+
+
+                let promise = Promise<[Resource], XikoloError>()
+
+                CoreDataHelper.save(context).onSuccess {
+                    promise.success(objects)
+                }.onFailure { error in
+                    promise.failure(error)
                 }
+
+                return promise.future
             }.onComplete { result in
                 promise.complete(result)
             }
@@ -321,12 +370,13 @@ struct SyncEngine {
             coreDataFetch.zip(networkRequest).flatMap { object, json -> Future<Resource, XikoloError> in
                 return self.mergeResource(object: json, withExistingObject: object, inContext: context)
             }.flatMap { object -> Future<Resource, XikoloError> in
-                switch CoreDataHelper.save(context) {
-                case .success(_):
-                    return Future(value: object)
-                case .failure(let error):
-                    return Future(error: error)
+                let promise = Promise<Resource, XikoloError>()
+                CoreDataHelper.save(context).onSuccess {
+                    promise.success(object)
+                    }.onFailure { error in
+                        promise.failure(error)
                 }
+                return promise.future
             }.onComplete { result in
                 promise.complete(result)
             }
@@ -497,7 +547,10 @@ extension Pullable where Self: NSManagedObject {
                                fromObject object: ResourceData,
                                including includes: [ResourceData]?,
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
-        let resourceIdentifier = try object.value(for: "\(key).data") as ResourceIdentifier
+        guard let resourceIdentifier = try? object.value(for: "\(key).data") as ResourceIdentifier else {
+            self[keyPath: keyPath] = nil
+            return
+        }
 
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
             if let existingObject = self[keyPath: keyPath] {

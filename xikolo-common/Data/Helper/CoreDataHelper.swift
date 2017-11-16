@@ -47,15 +47,21 @@ class CoreDataHelper {
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    static func save(_ context: NSManagedObjectContext) -> Result<Void, XikoloError> {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                return .failure(.coreData(error))
+    static func save(_ context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        context.perform {
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    promise.failure(.coreData(error))
+                }
             }
+            promise.success(())
         }
-        return .success(())
+
+        return promise.future
     }
 
     static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
@@ -151,7 +157,7 @@ class CoreDataHelper {
         return Future { complete in
             self.persistentContainer.performBackgroundTask { context in
                 context.delete(context.object(with: object.objectID))
-                complete(self.save(context))
+                self.save(context).onComplete { complete($0) }
             }
         }
     }

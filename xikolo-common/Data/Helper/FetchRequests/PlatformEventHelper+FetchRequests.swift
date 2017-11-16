@@ -14,7 +14,7 @@ extension PlatformEventHelper {
 
         static var allPlatformEvents: NSFetchRequest<PlatformEvent> {
             let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "created_at", ascending: false)
+            let dateSort = NSSortDescriptor(key: "createdAt", ascending: false)
             request.sortDescriptors = [dateSort]
             return request
         }

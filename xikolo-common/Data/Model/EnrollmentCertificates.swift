@@ -14,12 +14,6 @@ final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
     var recordOfAchievement: Bool
     var certificate: Bool
 
-//    required init(_ dict: [String : AnyObject]) {
-//        confirmationOfParticipation = dict["confirmation_of_participation"] as? Bool
-//        recordOfAchievement = dict["record_of_achievement"] as? Bool
-//        certificate = dict["qualified_certificate"] as? Bool
-//    }
-
     required init(object: ResourceData) throws {
         self.confirmationOfParticipation = try object.value(for: "confirmation_of_participation")
         self.recordOfAchievement = try object.value(for: "record_of_achievement")
@@ -27,10 +21,9 @@ final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
     }
 
     required init(coder decoder: NSCoder) {
-        // TODO: force cast
-        self.confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as! Bool
-        self.recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as! Bool
-        self.certificate = decoder.decodeObject(forKey: "qualified_certificate") as! Bool
+        self.confirmationOfParticipation = decoder.decodeBool(forKey: "confirmation_of_participation")
+        self.recordOfAchievement = decoder.decodeBool(forKey: "record_of_achievement")
+        self.certificate = decoder.decodeBool(forKey: "qualified_certificate")
     }
 
     func encode(with coder: NSCoder) {

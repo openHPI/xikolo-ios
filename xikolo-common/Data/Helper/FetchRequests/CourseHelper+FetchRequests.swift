@@ -12,16 +12,16 @@ extension CourseHelper {
 
     struct FetchRequest {
 
-        private static let genericPredicate = NSPredicate(format: "external != true")
-        private static let enrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, NSPredicate(format: "enrollment != null")])
-        private static let unenrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, NSPredicate(format: "enrollment == null")])
+        private static let genericPredicate = NSPredicate(format: "external != %@", NSNumber(booleanLiteral: true))
+        private static let enrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, NSPredicate(format: "enrollment != nil")])
+        private static let unenrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, NSPredicate(format: "enrollment = nil")])
         private static let announcedPredicate = NSPredicate(format: "status = %@", "announced")
         private static let previewPredicate = NSPredicate(format: "status = %@", "preview")
         private static let activePredicate = NSPredicate(format: "status = %@", "active")
         private static let selfpacedPredicate = NSPredicate(format: "status = %@", "self-paced")
-        private static let interestingPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [announcedPredicate,previewPredicate,activePredicate])
-        private static let accessiblePredicate = NSPredicate(format: "accessible == true")
-        private static let completedPredicate = NSPredicate(format: "enrollment.completed == true")
+        private static let interestingPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [announcedPredicate, previewPredicate, activePredicate])
+        private static let accessiblePredicate = NSPredicate(format: "accessible = %@", NSNumber(booleanLiteral: true))
+        private static let completedPredicate = NSPredicate(format: "enrollment.completed = %@", NSNumber(booleanLiteral: true))
         private static let notcompletedPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: completedPredicate)
 
         private static var genericCoursesRequest: NSFetchRequest<Course> {
@@ -107,7 +107,7 @@ extension CourseHelper {
         static var allCoursesSectioned: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             let enrolledSort = NSSortDescriptor(key: "enrollment", ascending: false)
-            let startDateSort = NSSortDescriptor(key: "start_at", ascending: false)
+            let startDateSort = NSSortDescriptor(key: "startsAt", ascending: false)
             request.sortDescriptors = [enrolledSort, startDateSort]
             return request
         }

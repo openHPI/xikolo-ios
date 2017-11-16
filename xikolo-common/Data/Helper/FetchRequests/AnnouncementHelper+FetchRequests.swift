@@ -14,7 +14,7 @@ extension AnnouncementHelper {
 
         static var allAnnouncements: NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "published_at", ascending: false)
+            let dateSort = NSSortDescriptor(key: "publishedAt", ascending: false)
             request.sortDescriptors = [dateSort]
             return request
         }

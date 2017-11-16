@@ -6,6 +6,19 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import Foundation
+import BrightFutures
+
+struct CourseDateHelper {
+
+    static func syncAllCourseDates() -> Future<[CourseDate], XikoloError> {
+        let query = MultipleResourcesQuery(type: CourseDate.self)
+        return SyncEngine.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query)
+    }
+
+}
+
+
 //import BrightFutures
 //import CoreData
 //

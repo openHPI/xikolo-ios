@@ -6,6 +6,27 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
+import Foundation
+import BrightFutures
+
+struct CourseHelper {
+
+    static func syncAllCourses() -> Future<[Course], XikoloError> {
+        var query = MultipleResourcesQuery(type: Course.self)
+        query.include("channel")
+        query.include("user_enrollment")
+        return SyncEngine.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
+    }
+
+    static func syncCourse(_ course: Course) -> Future<Course, XikoloError> {
+        var query = SingleResourceQuery(resource: course)
+        query.include("channel")
+        query.include("user_enrollment")
+        return SyncEngine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
+    }
+
+}
+
 //import CoreData
 //import BrightFutures
 //import Result

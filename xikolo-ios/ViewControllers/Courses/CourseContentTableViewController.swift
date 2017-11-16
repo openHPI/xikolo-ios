@@ -44,7 +44,7 @@ class CourseContentTableViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        let request = CourseItem.FetchRequest.courseItems(forCourse: course)
+        let request = CourseItemHelper.FetchRequest.courseItems(forCourse: course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
@@ -180,7 +180,7 @@ class CourseContentTableViewController: UITableViewController {
         switch segue.identifier {
         case "ShowVideo"?:
             let videoView = segue.destination as! VideoViewController
-            let fetchRequest = CourseItem.FetchRequest.courseItem(withId: courseItem.id)
+            let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
             if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .view) {
                 videoView.courseItem = courseItem
             }
@@ -194,7 +194,7 @@ class CourseContentTableViewController: UITableViewController {
             }
         case "ShowRichtext"?:
             let richtextView = segue.destination as! RichtextViewController
-            let fetchRequest = CourseItem.FetchRequest.courseItem(withId: courseItem.id)
+            let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
             if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .view) {
                 richtextView.courseItem = courseItem
             }

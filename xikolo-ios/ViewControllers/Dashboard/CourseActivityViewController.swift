@@ -33,7 +33,7 @@ class CourseActivityViewController: UICollectionViewController {
 
     private func updateFetchedResultController() {
         // TODO: proper API call and cell UI
-        let request = UserProfileHelper.isLoggedIn() ? Course.FetchRequest.enrolledAccessibleCourses : Course.FetchRequest.interestingCoursesRequest
+        let request = UserProfileHelper.isLoggedIn() ? CourseHelper.FetchRequest.enrolledAccessibleCourses : CourseHelper.FetchRequest.interestingCoursesRequest
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView!, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
@@ -60,7 +60,7 @@ extension CourseActivityViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let visualCourse = resultsController.object(at: indexPath)
-        let fetchRequest = Course.FetchRequest.course(withId: visualCourse.id)
+        let fetchRequest = CourseHelper.FetchRequest.course(withId: visualCourse.id)
         if case let .success(course) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
             AppDelegate.instance().goToCourse(course)
         }

@@ -46,7 +46,7 @@ class AppDelegate : AbstractAppDelegate {
         if let target = XikoloURL.parseURL(url) {
             switch target.type {
                 case .course:
-                    let fetchRequest = Course.FetchRequest.course(withId: target.targetId)
+                    let fetchRequest = CourseHelper.FetchRequest.course(withId: target.targetId)
                     if case let .success(course) = CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .view) {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailTabBarController") as! CourseTabBarController

@@ -376,21 +376,6 @@ struct SyncEngine {
         return networkRequest.asVoid() // TODO: add logging
     }
 
-    // MARK: - domaine specific
-
-    static func syncCourses() -> Future<[Course], XikoloError> {
-        let query = MultipleResourcesQuery(type: Course.self)
-        return self.syncResources(withFetchRequest: Course.FetchRequest.allCourses, withQuery: query)
-    }
-
-    static func syncCourse(withId id: String) -> Future<Course, XikoloError> {
-        let fetchRequest: NSFetchRequest<Course> = Course.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        fetchRequest.fetchLimit = 1
-        let query = SingleResourceQuery(type: Course.self, id: id)
-        return self.syncResource(withFetchRequest: fetchRequest, withQuery: query)
-    }
-
 }
 
 // MARK: - ValueTypes

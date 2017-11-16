@@ -44,7 +44,7 @@ class CourseDatesTableViewController : UITableViewController {
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
 
-        resultsController = CoreDataHelper.createResultsController(CourseDate.FetchRequest.allCourseDates, sectionNameKeyPath: "course.title")
+        resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: "course.title")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "CourseDateCell")
@@ -126,7 +126,7 @@ extension CourseDatesTableViewController {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
 
-        CoreDataHelper.execute(fetchRequest: Course.FetchRequest.course(withId: courseDate.course.id), inContext: CoreDataHelper.viewContext).map { courses in
+        CoreDataHelper.execute(fetchRequest: CourseHelper.FetchRequest.course(withId: courseDate.course.id), inContext: CoreDataHelper.viewContext).map { courses in
             return courses.first
         }.onSuccess { course in
             tableView.deselectRow(at: indexPath, animated: true)

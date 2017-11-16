@@ -6,6 +6,20 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import Foundation
+import BrightFutures
+
+struct CourseSectionHelper {
+
+    static func syncCourseSections(forCourse course: Course) -> Future<[CourseSection], XikoloError> {
+        let fetchRequest = CourseSectionHelper.FetchRequest.courseSections(forCourse: course)
+        var query = MultipleResourcesQuery(type: CourseSection.self)
+        query.addFilter(forKey: "course", withValue: course.id)
+        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+    }
+
+}
+
 //import BrightFutures
 //import CoreData
 //

@@ -22,6 +22,10 @@ final class LTIExercise : Content {
         return "lti_exercise"
     }
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<LTIExercise> {
+        return NSFetchRequest<LTIExercise>(entityName: "LTIExercise");
+    }
+
 }
 
 extension LTIExercise : Pullable {

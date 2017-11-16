@@ -1,5 +1,5 @@
 //
-//  CourseDate+FetchRequests.swift
+//  CourseDateHelper+FetchRequests.swift
 //  xikolo-ios
 //
 //  Created by Max Bothe on 15.11.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension CourseDate {
+extension CourseDateHelper {
 
     struct FetchRequest {
 

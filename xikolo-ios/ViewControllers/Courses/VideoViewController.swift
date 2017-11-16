@@ -41,7 +41,7 @@ class VideoViewController : UIViewController {
         self.show(video: video)
 
         // refresh data
-        VideoHelper.sync(video: video).onSuccess { updatedVideo in
+        VideoHelper.syncVideo(video).onSuccess { updatedVideo in
             self.show(video: updatedVideo)
         }
     }

@@ -6,6 +6,9 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import Foundation
+import BrightFutures
+
 struct CourseItemHelper {
 
     static func syncCourseItems(forSection section: CourseSection) -> Future<[CourseItem], XikoloError> {

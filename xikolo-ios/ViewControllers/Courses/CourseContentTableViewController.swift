@@ -272,17 +272,17 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
         let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
             if video.singleStream?.hlsURL != nil {
                 VideoPersistenceManager.shared.downloadStream(for: video)
-            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context to sync via spine
+            } else {
                 DispatchQueue.main.async {
                     cell.singleReloadInProgress = true
                 }
-                VideoHelper.sync(video: backgroundVideo).onComplete { result in
+                VideoHelper.syncVideo(video).onComplete { result in
                     DispatchQueue.main.async {
                         cell.singleReloadInProgress = false
                     }
-                    if let syncedVideo = result.value, syncedVideo.hlsURL != nil {
+                    if let syncedVideo = result.value, syncedVideo.singleStream?.hlsURL != nil {
                         VideoPersistenceManager.shared.downloadStream(for: video)
-                    }
+                    } // TODO: add error message
                 }
             }
         }

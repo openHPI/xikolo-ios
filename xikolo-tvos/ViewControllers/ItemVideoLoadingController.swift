@@ -17,7 +17,7 @@ class ItemVideoLoadingController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        VideoHelper.sync(video: video).onSuccess { _ in
+        VideoHelper.syncVideo:(video).onSuccess { _ in
             self.performSegue(withIdentifier: "ShowCourseItemVideoSegue", sender: self.video)
         }
     }

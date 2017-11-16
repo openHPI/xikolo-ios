@@ -6,18 +6,19 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
-import Foundation
-import Spine
+//import BrightFutures
+//import Foundation
+//import Spine
+//
+//class QuizProvider {
+//
+//    class func getQuiz(_ quizId: String) -> Future<QuizSpine, XikoloError> {
+//        var query = Query(resourceType: QuizSpine.self, resourceIDs: [quizId])
+//        query.include("questions")
+//        query.include("submission")
+//
+//        return SpineHelper.findOne(query)
+//    }
+//
+//}
 
-class QuizProvider {
-
-    class func getQuiz(_ quizId: String) -> Future<QuizSpine, XikoloError> {
-        var query = Query(resourceType: QuizSpine.self, resourceIDs: [quizId])
-        query.include("questions")
-        query.include("submission")
-
-        return SpineHelper.findOne(query)
-    }
-
-}

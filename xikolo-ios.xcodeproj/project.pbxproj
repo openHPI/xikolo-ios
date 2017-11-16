@@ -702,6 +702,90 @@
 		50F57D9E1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */; };
 		50F57D9F1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */; };
 		50F57DA01FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */; };
+		50F57DA21FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DA31FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DA41FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DA51FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DA61FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DA71FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DA81FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DA91FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DAA1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DAB1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DAC1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DAD1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */; };
+		50F57DAF1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB01FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB11FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB21FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB31FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB41FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB51FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB61FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB71FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB81FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DB91FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DBA1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */; };
+		50F57DBC1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DBD1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DBE1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DBF1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC01FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC11FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC21FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC31FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC41FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC51FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC61FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC71FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */; };
+		50F57DC91FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DCA1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DCB1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DCC1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DCD1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DCE1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DCF1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DD01FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DD11FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DD21FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DD31FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DD41FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */; };
+		50F57DD61FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DD71FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DD81FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DD91FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DDA1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DDB1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DDC1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DDD1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DDE1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DDF1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DE01FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DE11FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */; };
+		50F57DE31FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DE41FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DE51FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DE61FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DE71FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DE81FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DE91FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DEA1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DEB1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DEC1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DED1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DEE1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */; };
+		50F57DF01FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF11FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF21FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF31FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF41FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF51FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF61FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF71FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF81FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DF91FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DFA1FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
+		50F57DFB1FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */; };
 		50F668971F3849C300ACC26A /* SyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* SyncHelper.swift */; };
 		50F668981F3857B800ACC26A /* SearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12EC1F2914BD00D5DFE8 /* SearchHelper.swift */; };
 		50F668991F3857B900ACC26A /* SearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12EC1F2914BD00D5DFE8 /* SearchHelper.swift */; };
@@ -1956,6 +2040,13 @@
 		50F57D391FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItemHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50F57D601FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnrollmentHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LTIExerciseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnouncementHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PeerAssessmentHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlatformEventHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuizHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RichTextHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserHelper+FetchRequests.swift"; sourceTree = "<group>"; };
+		50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50F6A5B51FB316A6007DBAFF /* VideoStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStream.swift; sourceTree = "<group>"; };
 		50F720271F28D72D00779995 /* VideoPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPersistenceManager.swift; sourceTree = "<group>"; };
 		50F7202C1F28E29B00779995 /* Video+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+Download.swift"; path = "Data/Model/Video+Download.swift"; sourceTree = "<group>"; };
@@ -2610,12 +2701,19 @@
 		50C92B5D1FBC4878001AFC08 /* FetchRequests */ = {
 			isa = PBXGroup;
 			children = (
+				50F57DA11FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift */,
 				50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */,
 				50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */,
 				50F57D391FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift */,
 				50F57D1F1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift */,
 				50F57D601FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift */,
 				50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */,
+				50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */,
+				50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */,
+				50F57DC81FBD852E00910950 /* QuizHelper+FetchRequests.swift */,
+				50F57DD51FBD86DC00910950 /* RichTextHelper+FetchRequests.swift */,
+				50F57DE21FBD889B00910950 /* UserHelper+FetchRequests.swift */,
+				50F57DEF1FBD8F3400910950 /* VideoHelper+FetchRequests.swift */,
 			);
 			path = FetchRequests;
 			sourceTree = "<group>";
@@ -2884,26 +2982,26 @@
 				50C92B5D1FBC4878001AFC08 /* FetchRequests */,
 				24A16D911CFFA72100CAD9FE /* CoreDataHelper.swift */,
 				24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */,
+				3D6F12F31F2A0E3F00D5DFE8 /* SyncHelper.swift */,
+				3D6F12EC1F2914BD00D5DFE8 /* SearchHelper.swift */,
+				504C5A6F1F99F8210021EB17 /* SyncEngine.swift */,
+				AB2802D01D2AAFDB008C8BAE /* AnnouncementHelper.swift */,
 				F801793D1BBBE3880091ECD1 /* CourseHelper.swift */,
 				4E2B82191DDB00C900559217 /* CourseDateHelper.swift */,
 				2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */,
 				240E03441CE38D590078A364 /* CourseSectionHelper.swift */,
 				ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */,
 				ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */,
-				AB2802D01D2AAFDB008C8BAE /* AnnouncementHelper.swift */,
 				ABDD84C31D8E056000C7D193 /* PeerAssessmentHelper.swift */,
 				AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */,
 				249E3AA31D43C0A100D7663F /* QuizHelper.swift */,
 				2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */,
-				2474C85B1D86FBFB009BDB94 /* SpineHelper.swift */,
-				2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */,
 				243CE49A1D7876F1007C59B6 /* TrackingHelper.swift */,
 				AB35C9321E89DAA4009832A5 /* UserHelper.swift */,
 				F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */,
 				24A16D8C1CFF2F4300CAD9FE /* VideoHelper.swift */,
-				3D6F12EC1F2914BD00D5DFE8 /* SearchHelper.swift */,
-				3D6F12F31F2A0E3F00D5DFE8 /* SyncHelper.swift */,
-				504C5A6F1F99F8210021EB17 /* SyncEngine.swift */,
+				2474C85B1D86FBFB009BDB94 /* SpineHelper.swift */,
+				2448A9DD1CDCD9F3009A1AEA /* SpineModelHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -4470,6 +4568,7 @@
 				243CE4891D709A1E007C59B6 /* Enrollment+CoreDataProperties.swift in Sources */,
 				504C5A721F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				2490C4FF1D2175BA00F42949 /* XikoloURL.swift in Sources */,
+				50F57DF21FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				2490C4F81D216D8C00F42949 /* UserProfileProvider.swift in Sources */,
 				AB17C58B1DFCC5CF0013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				2490C4F71D216D8500F42949 /* Course+CoreDataProperties.swift in Sources */,
@@ -4478,6 +4577,7 @@
 				ABDD84BB1D8E010200C7D193 /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				70A830A81EC780B70029235D /* CourseDateHelper.swift in Sources */,
 				ABC1BF171E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
+				50F57DCB1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				4E6AB2011DD60EBD00B048DB /* CourseDateProvider.swift in Sources */,
 				2474C8741D86FE17009BDB94 /* QuizQuestion.swift in Sources */,
 				AB07C3721E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -4494,10 +4594,12 @@
 				2490C4F11D216D4500F42949 /* Routes.swift in Sources */,
 				70A830AF1EC781020029235D /* AnnouncementProvider.swift in Sources */,
 				2490C4F41D216D6500F42949 /* Error.swift in Sources */,
+				50F57DA41FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				AB17C5831DFCC5C90013BBCD /* PlatformEvent.swift in Sources */,
 				2490C4EC1D216CA000F42949 /* CoreDataHelper.swift in Sources */,
 				AB4A01B01E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				2490C4EB1D216C9500F42949 /* CourseHelper.swift in Sources */,
+				50F57DBE1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				4E6AB1F41DD36AB500B048DB /* CourseDate+CoreDataProperties.swift in Sources */,
 				2474C8881D86FE33009BDB94 /* TrackingEventVerb.swift in Sources */,
 				50F57D971FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
@@ -4524,6 +4626,7 @@
 				50F57D631FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift in Sources */,
 				2474C86E1D86FE0F009BDB94 /* Quiz+CoreDataProperties.swift in Sources */,
 				ABDD84BD1D8E010500C7D193 /* PeerAssessment.swift in Sources */,
+				50F57DB11FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				AB9589701DC2049400586137 /* Channel+CoreDataProperties.swift in Sources */,
 				24BA413F1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */,
 				2474C8621D86FDFE009BDB94 /* CourseItem.swift in Sources */,
@@ -4536,6 +4639,8 @@
 				70F456491F01297C00A2C6B7 /* UserHelper.swift in Sources */,
 				50F57D3C1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				2490C4EE1D216CAF00F42949 /* Course.swift in Sources */,
+				50F57DE51FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
+				50F57DD81FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				2474C86C1D86FE0D009BDB94 /* Content.swift in Sources */,
 				50C92B881FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				AB4A019C1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
@@ -4583,6 +4688,7 @@
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
 				AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				50F57DA51FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				50F57D231FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */,
 				24BA40C61D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
@@ -4620,10 +4726,14 @@
 				24BA40E81D3F9B1100E38C2C /* Brand.swift in Sources */,
 				AB17C58C1DFCC5D00013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
+				50F57DD91FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
 				249E3AA11D43BF6F00D7663F /* QuizProvider.swift in Sources */,
+				50F57DF31FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				4E2B80AC1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
+				50F57DB21FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				ABC8A1691D689ED80059CEF2 /* LTIExercise.swift in Sources */,
+				50F57DE61FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				24BA40A61D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
 				50E16CF31F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
 				ABFCF7711E81EEC40043C7B7 /* UserProfile.swift in Sources */,
@@ -4638,6 +4748,7 @@
 				24BA40FD1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */,
 				ABDD84CB1D8E063100C7D193 /* LTIExerciseHelper.swift in Sources */,
 				50D9B1751F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
+				50F57DBF1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				AB9589771DC2049400586137 /* Channel.swift in Sources */,
 				4E2B821B1DDB00C900559217 /* CourseDateHelper.swift in Sources */,
 				AB4A01C11E809C82005CD595 /* CourseHeaderView.swift in Sources */,
@@ -4698,6 +4809,7 @@
 				50F7202E1F28E29B00779995 /* Video+Download.swift in Sources */,
 				24BA40951D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
 				7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */,
+				50F57DCC1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				24BA40C31D3F9AE200E38C2C /* SpineModelHelper.swift in Sources */,
 				ABC1BF221E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				70F4564D1F0139B400A2C6B7 /* NewsViewController.swift in Sources */,
@@ -4740,6 +4852,7 @@
 				24BA40BD1D3F9AD900E38C2C /* VideoProvider.swift in Sources */,
 				24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */,
 				249347FE1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */,
+				50F57DC01FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				24BA412A1D3F9D0B00E38C2C /* ItemVideoLoadingController.swift in Sources */,
 				AB1C03411D8E0CA70053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				243CE4861D709999007C59B6 /* Enrollment.swift in Sources */,
@@ -4771,6 +4884,7 @@
 				24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
 				AB4A01A81E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
 				24E3DD1E1D5E219E00297118 /* ItemQuizViewController.swift in Sources */,
+				50F57DE71FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				24BA40A91D3F9ABE00E38C2C /* Video.swift in Sources */,
 				24BA40AF1D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
 				249E3AA21D43BF6F00D7663F /* QuizProvider.swift in Sources */,
@@ -4786,7 +4900,9 @@
 				4E6AB1FC1DD36AB500B048DB /* CourseDate.swift in Sources */,
 				243CE49E1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				243CE4741D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */,
+				50F57DDA1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				24BA40A71D3F9ABB00E38C2C /* Video+CoreDataProperties.swift in Sources */,
+				50F57DB31FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				24BA40D31D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
 				ABDD84CC1D8E063100C7D193 /* LTIExerciseHelper.swift in Sources */,
 				2474C85F1D86FBFB009BDB94 /* SpineHelper.swift in Sources */,
@@ -4800,6 +4916,7 @@
 				24BA412C1D3F9D1100E38C2C /* CourseCell.swift in Sources */,
 				24BA412F1D3F9D1700E38C2C /* CourseItemCell.swift in Sources */,
 				24BA40FE1D3F9B3C00E38C2C /* AbstractAppDelegate.swift in Sources */,
+				50F57DCD1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				24BA40E31D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */,
 				50F57D3E1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				ABFFA85F1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
@@ -4811,9 +4928,11 @@
 				24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
 				24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
 				240CAA141D649E980072F96D /* AbstractQuestionViewController.swift in Sources */,
+				50F57DA61FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				AB4F228A1D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				243CE4941D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				249348011D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */,
+				50F57DF41FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */,
 				24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */,
 				AB4A019E1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
@@ -4883,6 +5002,7 @@
 				243CE48A1D709A1F007C59B6 /* Enrollment+CoreDataProperties.swift in Sources */,
 				504C5A751F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				24BA40EA1D3F9B1200E38C2C /* Brand.swift in Sources */,
+				50F57DF51FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				24BA40881D3F9A8E00E38C2C /* BaseModelSpine.swift in Sources */,
 				AB17C58E1DFCC5D10013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				24BA40E41D3F9B0600E38C2C /* xikolo.xcdatamodeld in Sources */,
@@ -4891,6 +5011,7 @@
 				ABDD84BC1D8E010200C7D193 /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				70A830A91EC780B90029235D /* CourseDateHelper.swift in Sources */,
 				ABC1BF1A1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
+				50F57DCE1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				4E6AB2041DD60EBD00B048DB /* CourseDateProvider.swift in Sources */,
 				2474C8751D86FE18009BDB94 /* QuizQuestion.swift in Sources */,
 				AB07C3751E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -4907,10 +5028,12 @@
 				70A830AE1EC781010029235D /* AnnouncementProvider.swift in Sources */,
 				24BA40C81D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
 				AB17C5861DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
+				50F57DA71FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				24BA40B01D3F9AC800E38C2C /* CourseProvider.swift in Sources */,
 				AB4A01B31E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				24BA40E11D3F9B0200E38C2C /* Routes.swift in Sources */,
 				4E6AB1F71DD36AB500B048DB /* CourseDate+CoreDataProperties.swift in Sources */,
+				50F57DC11FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				2474C8891D86FE33009BDB94 /* TrackingEventVerb.swift in Sources */,
 				2474C8691D86FE08009BDB94 /* CourseSection.swift in Sources */,
 				50F57D9A1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
@@ -4937,6 +5060,7 @@
 				50F57D661FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift in Sources */,
 				ABDD84BE1D8E010600C7D193 /* PeerAssessment.swift in Sources */,
 				AB9589731DC2049400586137 /* Channel+CoreDataProperties.swift in Sources */,
+				50F57DB41FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				249E3AB61D43D88800D7663F /* SpineModelHelper.swift in Sources */,
 				2474C8631D86FDFE009BDB94 /* CourseItem.swift in Sources */,
 				ABDD84C01D8E010A00C7D193 /* LTIExercise.swift in Sources */,
@@ -4949,6 +5073,8 @@
 				70F4564A1F01297D00A2C6B7 /* UserHelper.swift in Sources */,
 				50F57D3F1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				2474C86D1D86FE0E009BDB94 /* Content.swift in Sources */,
+				50F57DE81FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
+				50F57DDB1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				AB4A019F1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
 				50C92B8B1FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				2474C8611D86FD1F009BDB94 /* SpineHelper.swift in Sources */,
@@ -4985,6 +5111,7 @@
 				24A16D7F1CFDE60200CAD9FE /* Content.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
 				249347FD1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */,
+				50F57DBD1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				AB1C033F1D8E0CA50053B4E3 /* LTIExerciseProvider.swift in Sources */,
 				243CE4841D709999007C59B6 /* Enrollment.swift in Sources */,
 				24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */,
@@ -5016,6 +5143,7 @@
 				2448A9D91CDA445D009A1AEA /* CourseSection.swift in Sources */,
 				AB4A01A51E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
 				24A16D8E1CFF302900CAD9FE /* VideoHelper.swift in Sources */,
+				50F57DE41FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				24E3DD1D1D5E219E00297118 /* ItemQuizViewController.swift in Sources */,
 				24D48E2F1CCA934A00E8051E /* xikolo.xcdatamodeld in Sources */,
 				249E3AA01D43BF6F00D7663F /* QuizProvider.swift in Sources */,
@@ -5031,7 +5159,9 @@
 				243CE47A1D6B40C6007C59B6 /* QuizQuestionSubmission.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
 				243CE49C1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
+				50F57DD71FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				243CE4731D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */,
+				50F57DB01FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				249C01A71D3CFCE800B54AAC /* ItemVideoLoadingController.swift in Sources */,
 				ABDD84CA1D8E063100C7D193 /* LTIExerciseHelper.swift in Sources */,
 				2474C85D1D86FBFB009BDB94 /* SpineHelper.swift in Sources */,
@@ -5045,6 +5175,7 @@
 				ABC8A1741D689ED80059CEF2 /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				2448A9DC1CDA598B009A1AEA /* CourseSectionProvider.swift in Sources */,
 				249C01A91D3D034700B54AAC /* ReplaceSegue.swift in Sources */,
+				50F57DCA1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				24D48E271CCA92C500E8051E /* Course.swift in Sources */,
 				50F57D3B1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				ABFFA85D1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
@@ -5056,9 +5187,11 @@
 				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
 				24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */,
 				24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
+				50F57DA31FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				AB4F22881D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				240CAA131D649E980072F96D /* AbstractQuestionViewController.swift in Sources */,
 				249348001D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */,
+				50F57DF11FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				243CE4921D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				24D48E2C1CCA934300E8051E /* UserProfileHelper.swift in Sources */,
 				AB4A019B1E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
@@ -5131,6 +5264,7 @@
 				70D1EA561EF0AB220088C0FF /* Quiz+CoreDataProperties.swift in Sources */,
 				70D1EAD11EF0AC200088C0FF /* UserProfileHelper.swift in Sources */,
 				50D9B1701F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
+				50F57DB81FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				70D1E9EC1EF0AA830088C0FF /* AVMetadataItem+convenience.swift in Sources */,
 				70F456521F0139BC00A2C6B7 /* AnnouncementsTableViewController.swift in Sources */,
 				70D1EB101EF12DEC0088C0FF /* Brand.swift in Sources */,
@@ -5148,6 +5282,7 @@
 				50F7202B1F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
 				70D1EB081EF0ACEC0088C0FF /* StandardTableviewTitle.swift in Sources */,
 				70D1EA861EF0AB630088C0FF /* CourseDateProvider.swift in Sources */,
+				50F57DF91FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				70D1EA8C1EF0AB6A0088C0FF /* CourseProvider.swift in Sources */,
 				70D1EA191EF0AAD70088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA9D1EF0AB800088C0FF /* PlatformEventProvider.swift in Sources */,
@@ -5159,6 +5294,7 @@
 				70D1EA591EF0AB260088C0FF /* Quiz.swift in Sources */,
 				70D1EB3C1EF12E2A0088C0FF /* XikoloURL.swift in Sources */,
 				70D1E9F11EF0AA8A0088C0FF /* CollectionType+dict.swift in Sources */,
+				50F57DD21FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				70D1EA2B1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
 				70D1EA7D1EF0AB500088C0FF /* (null) in Sources */,
 				50F668981F3857B800ACC26A /* SearchHelper.swift in Sources */,
@@ -5186,6 +5322,7 @@
 				70D1EA411EF0AB090088C0FF /* LTIExercise.swift in Sources */,
 				70D1EADF1EF0AC430088C0FF /* UITableViewCell+enable.swift in Sources */,
 				70D1EA621EF0AB340088C0FF /* QuizOption.swift in Sources */,
+				50F57DEC1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				70D1EA501EF0AB1A0088C0FF /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				70D1EA101EF0AACE0088C0FF /* Course+CoreDataProperties.swift in Sources */,
 				70F456371F01290F00A2C6B7 /* User+CoreDataProperties.swift in Sources */,
@@ -5231,6 +5368,7 @@
 				70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */,
 				702520841F6FFFD7003E0F80 /* UserDefaults+customKeys.swift in Sources */,
 				70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */,
+				50F57DC51FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				50C92B681FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				5060A52B1F177304007896FF /* DetailedContent.swift in Sources */,
 				70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */,
@@ -5266,7 +5404,9 @@
 				70D1EA9B1EF0AB7E0088C0FF /* PeerAssessmentProvider.swift in Sources */,
 				70D1EABE1EF0AC090088C0FF /* AnnouncementHelper.swift in Sources */,
 				70D1EAEE1EF0ACA30088C0FF /* CourseContentTableViewController.swift in Sources */,
+				50F57DDF1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				70D1EABB1EF0AC060088C0FF /* NetworkHelper.swift in Sources */,
+				50F57DAB1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				70D1EAC11EF0AC0C0088C0FF /* PeerAssessmentHelper.swift in Sources */,
 				50F57D291FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				70D1EAA71EF0AB8F0088C0FF /* VideoProvider.swift in Sources */,
@@ -5319,10 +5459,12 @@
 				70D1EAC21EF0AC0C0088C0FF /* PeerAssessmentHelper.swift in Sources */,
 				70D1EA231EF0AAE20088C0FF /* CourseItem+CoreDataProperties.swift in Sources */,
 				70D1EB231EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */,
+				50F57DC61FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				70D1EB561EF134410088C0FF /* QuestionIndicatorListView.swift in Sources */,
 				70D1EAA11EF0AB850088C0FF /* QuizProvider.swift in Sources */,
 				50ED3C5A1F4AE80200CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				70D1EA781EF0AB4B0088C0FF /* TrackingEventVerb.swift in Sources */,
+				50F57DE01FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				70D1EA081EF0AABC0088C0FF /* Channel.swift in Sources */,
 				504C5A7A1F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				70D1EA3F1EF0AB040088C0FF /* LTIExercise+CoreDataProperties.swift in Sources */,
@@ -5338,6 +5480,7 @@
 				70D1EB251EF12E070088C0FF /* AbstractLoginViewController.swift in Sources */,
 				70D1EA451EF0AB0C0088C0FF /* Announcement+CoreDataProperties.swift in Sources */,
 				70D1EB4C1EF134260088C0FF /* ChoiceQuestionViewController.swift in Sources */,
+				50F57DD31FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				70D1EACD1EF0AC1B0088C0FF /* SpineModelHelper.swift in Sources */,
 				70D1EAAD1EF0ABF50088C0FF /* CourseDateHelper.swift in Sources */,
 				70D1EA1D1EF0AADB0088C0FF /* CourseDate+CoreDataProperties.swift in Sources */,
@@ -5368,6 +5511,7 @@
 				70F456381F01290F00A2C6B7 /* User+CoreDataProperties.swift in Sources */,
 				50F57D441FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				70D1EA2F1EF0AAF00088C0FF /* Enrollment+CoreDataProperties.swift in Sources */,
+				50F57DAC1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				70D1EA871EF0AB630088C0FF /* CourseDateProvider.swift in Sources */,
 				70D1EA421EF0AB090088C0FF /* LTIExercise.swift in Sources */,
 				70D1EAC31EF0AC0E0088C0FF /* PlatformEventHelper.swift in Sources */,
@@ -5427,6 +5571,7 @@
 				70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */,
 				70D1EA351EF0AAF70088C0FF /* EnrollmentCertificates.swift in Sources */,
 				70D1EB5C1EF1345D0088C0FF /* Brand+tvOS.swift in Sources */,
+				50F57DB91FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				50F97ABF1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				70D1EA9C1EF0AB7E0088C0FF /* PeerAssessmentProvider.swift in Sources */,
 				70D1EABC1EF0AC060088C0FF /* NetworkHelper.swift in Sources */,
@@ -5438,9 +5583,11 @@
 				70D1EB501EF134300088C0FF /* LoginViewController.swift in Sources */,
 				70D1EB541EF1343C0088C0FF /* CourseItemCell.swift in Sources */,
 				70F456311F0128E100A2C6B7 /* UserProfile+CoreDataProperties.swift in Sources */,
+				50F57DED1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				70D1EB4A1EF134200088C0FF /* ItemQuizViewController.swift in Sources */,
 				70D1EB411EF133FA0088C0FF /* ServiceProvider.swift in Sources */,
 				70D1EB121EF12DF00088C0FF /* Brand+generic.swift in Sources */,
+				50F57DFA1FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				70D1EA271EF0AAE60088C0FF /* CourseItem.swift in Sources */,
 				70D1EA7E1EF0AB510088C0FF /* (null) in Sources */,
 				50F668991F3857B900ACC26A /* SearchHelper.swift in Sources */,
@@ -5454,6 +5601,7 @@
 				70D1EA931EF0AB720088C0FF /* EnrollmentProvider.swift in Sources */,
 				504C5A7B1F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				70D1EADE1EF0AC330088C0FF /* xikolo.xcdatamodeld in Sources */,
+				50F57DFB1FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				70D1EA4F1EF0AB170088C0FF /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				70D1EA391EF0AAFB0088C0FF /* EnrollmentPoints.swift in Sources */,
 				70D1EA301EF0AAF10088C0FF /* Enrollment+CoreDataProperties.swift in Sources */,
@@ -5462,6 +5610,7 @@
 				70D1EA521EF0AB1B0088C0FF /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				70D1EA001EF0AAB00088C0FF /* BaseModel.swift in Sources */,
 				70D1EA431EF0AB0A0088C0FF /* LTIExercise.swift in Sources */,
+				50F57DD41FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				70D1EB621EF134FD0088C0FF /* Brand.swift in Sources */,
 				70D1EAB81EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
 				70D1EA361EF0AAF70088C0FF /* EnrollmentCertificates.swift in Sources */,
@@ -5478,10 +5627,12 @@
 				70D1EA151EF0AAD10088C0FF /* Course.swift in Sources */,
 				70D1EA061EF0AAB90088C0FF /* Channel+CoreDataProperties.swift in Sources */,
 				70D1EA331EF0AAF40088C0FF /* Enrollment.swift in Sources */,
+				50F57DAD1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				70D1EADB1EF0AC2D0088C0FF /* Routes.swift in Sources */,
 				70D1EA7F1EF0AB510088C0FF /* (null) in Sources */,
 				70D1EA0F1EF0AACB0088C0FF /* Content.swift in Sources */,
 				70D1EA4C1EF0AB140088C0FF /* PlatformEvent.swift in Sources */,
+				50F57DC71FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				70D1EA491EF0AB100088C0FF /* Announcement.swift in Sources */,
 				70D1EA121EF0AACF0088C0FF /* Course+CoreDataProperties.swift in Sources */,
 				50F57DA01FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
@@ -5508,6 +5659,7 @@
 				50F57D6C1FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift in Sources */,
 				70D1EA701EF0AB410088C0FF /* RichText.swift in Sources */,
 				70D1EAD31EF0AC210088C0FF /* UserProfileHelper.swift in Sources */,
+				50F57DBA1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				70D1EA551EF0AB1E0088C0FF /* PeerAssessment.swift in Sources */,
 				70D1EA851EF0AB570088C0FF /* Video.swift in Sources */,
 				70D1EA401EF0AB050088C0FF /* LTIExercise+CoreDataProperties.swift in Sources */,
@@ -5520,6 +5672,8 @@
 				70F456481F01297100A2C6B7 /* User+CoreDataProperties.swift in Sources */,
 				50F57D451FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				70F4564C1F01297E00A2C6B7 /* UserHelper.swift in Sources */,
+				50F57DEE1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
+				50F57DE11FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				70D1EA6A1EF0AB3B0088C0FF /* QuizQuestionSubmission.swift in Sources */,
 				50C92B911FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				70D1EB3E1EF12E2B0088C0FF /* XikoloURL.swift in Sources */,
@@ -5567,6 +5721,7 @@
 				24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */,
 				AB77C2971DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				AB2802CB1D2A8ABB008C8BAE /* Announcement.swift in Sources */,
+				50F57DA21FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				50F57D201FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				2433A5A31CE634A00060DD98 /* CourseItem.swift in Sources */,
 				3D6F12ED1F2914BD00D5DFE8 /* SearchHelper.swift in Sources */,
@@ -5604,10 +5759,14 @@
 				4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
 				249E3A9F1D43BF6F00D7663F /* QuizProvider.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* AnnouncementCell.swift in Sources */,
+				50F57DD61FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				ABC8A1671D689ED80059CEF2 /* LTIExercise.swift in Sources */,
 				24A17A0D1CD233050056A8EE /* BaseModel.swift in Sources */,
+				50F57DF01FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
+				50F57DAF1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				50E16CF21F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
+				50F57DE31FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				24D48E181CCA4FC100E8051E /* Course+CoreDataProperties.swift in Sources */,
 				ABFCF76F1E81EEC40043C7B7 /* UserProfile.swift in Sources */,
 				ABC1BF151E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
@@ -5622,6 +5781,7 @@
 				24A16D7C1CFDE60200CAD9FE /* Content+CoreDataProperties1.swift in Sources */,
 				50D9B1731F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				AB9589741DC2049400586137 /* Channel.swift in Sources */,
+				50F57DBC1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				ABDD84C91D8E063100C7D193 /* LTIExerciseHelper.swift in Sources */,
 				4E2B821A1DDB00C900559217 /* CourseDateHelper.swift in Sources */,
 				AB4A01C01E802CD7005CD595 /* CourseHeaderView.swift in Sources */,
@@ -5682,6 +5842,7 @@
 				50ED3C4F1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				24D48E1B1CCA551E00E8051E /* CourseProvider.swift in Sources */,
 				7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */,
+				50F57DC91FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				2448A9D61CDA445D009A1AEA /* CourseSection+CoreDataProperties.swift in Sources */,
 				24A16D751CFDB59F00CAD9FE /* BaseModelSpine.swift in Sources */,
@@ -5735,6 +5896,7 @@
 				ABA0F0291DF8CCCF0001D88D /* AnnouncementCell.swift in Sources */,
 				ABA0F0AF1DF8CE120001D88D /* QuizProvider.swift in Sources */,
 				ABA0F01C1DF8CCA90001D88D /* RichtextViewController.swift in Sources */,
+				50F57DA81FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				50F57D261FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				ABA0F0361DF8CD0D0001D88D /* CollectionType+dict.swift in Sources */,
 				ABA0F0281DF8CCCC0001D88D /* CourseItemCell.swift in Sources */,
@@ -5772,10 +5934,14 @@
 				ABA0F0991DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				AB17C5871DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
 				ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */,
+				50F57DDC1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				ABA0F0B11DF8CE160001D88D /* RichTextProvider.swift in Sources */,
 				ABA0F0F61DF8CEAB0001D88D /* Settings.swift in Sources */,
+				50F57DF61FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				ABA0F0B31DF8CE190001D88D /* VideoProvider.swift in Sources */,
+				50F57DB51FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				ABA0F0531DF8CD880001D88D /* CourseItem+CoreDataProperties.swift in Sources */,
+				50F57DE91FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				50E16CF41F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
 				ABA0F0A21DF8CDFE0001D88D /* CourseProvider.swift in Sources */,
@@ -5790,6 +5956,7 @@
 				ABA0F0B91DF8CE210001D88D /* LTIExerciseProvider.swift in Sources */,
 				ABA0F08A1DF8CDD90001D88D /* RichText+CoreDataProperties.swift in Sources */,
 				ABA0F0411DF8CD280001D88D /* Channel+CoreDataProperties.swift in Sources */,
+				50F57DC21FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				50D9B1771F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				ABA0F01B1DF8CCA70001D88D /* VideoViewController.swift in Sources */,
 				AB4A01C21E809C83005CD595 /* CourseHeaderView.swift in Sources */,
@@ -5850,6 +6017,7 @@
 				7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
 				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
+				50F57DCF1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F0391DF8CD180001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				70F4564E1F0139B500A2C6B7 /* NewsViewController.swift in Sources */,
@@ -5892,6 +6060,7 @@
 				ABA0F0F71DF8CEAB0001D88D /* Settings.swift in Sources */,
 				ABA0F0D41DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F0BC1DF8CE270001D88D /* CoreDataHelper.swift in Sources */,
+				50F57DC31FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				ABA0F11A1DF8CF820001D88D /* CourseHeaderView.swift in Sources */,
 				ABA0F1101DF8CF5E0001D88D /* LearningsViewController.swift in Sources */,
 				ABA0F0D21DF8CE580001D88D /* LTIExerciseHelper.swift in Sources */,
@@ -5923,6 +6092,7 @@
 				AB4A01AB1E7EA13E005CD595 /* EnrollmentPoints.swift in Sources */,
 				ABA0F0631DF8CD9C0001D88D /* Content+CoreDataProperties1.swift in Sources */,
 				ABA0F05A1DF8CD910001D88D /* CourseSection+CoreDataProperties.swift in Sources */,
+				50F57DEA1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				ABA0F05D1DF8CD940001D88D /* CourseSection.swift in Sources */,
 				ABA0F0661DF8CD9F0001D88D /* Content.swift in Sources */,
 				ABA0F0E01DF8CE6F0001D88D /* TrackingHelper.swift in Sources */,
@@ -5938,7 +6108,9 @@
 				ABA0F1001DF8CEBA0001D88D /* AbstractAppDelegate.swift in Sources */,
 				ABA0F1231DF8CFA40001D88D /* AppDelegate.swift in Sources */,
 				ABA0F11C1DF8CF880001D88D /* CourseItemCell.swift in Sources */,
+				50F57DDD1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				ABA0F0B41DF8CE190001D88D /* VideoProvider.swift in Sources */,
+				50F57DB61FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				ABA0F0ED1DF8CE990001D88D /* AbstractLoginViewController.swift in Sources */,
 				ABA0F1051DF8CEC20001D88D /* XikoloURL.swift in Sources */,
 				ABA0F1121DF8CF630001D88D /* ItemQuizViewController.swift in Sources */,
@@ -5952,6 +6124,7 @@
 				ABA0F0C51DF8CE330001D88D /* NetworkHelper.swift in Sources */,
 				ABA0F1171DF8CF730001D88D /* ItemVideoLoadingController.swift in Sources */,
 				AB17C5731DFCAD770013BBCD /* CourseDateProvider.swift in Sources */,
+				50F57DD01FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				ABA0F0A81DF8CE060001D88D /* CourseSectionProvider.swift in Sources */,
 				50F57D411FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				ABFFA8611EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
@@ -5963,9 +6136,11 @@
 				ABA0F1131DF8CF680001D88D /* AbstractQuestionViewController.swift in Sources */,
 				ABA0F0731DF8CDB80001D88D /* Announcement.swift in Sources */,
 				ABA0F0971DF8CDEB0001D88D /* TrackingEvent.swift in Sources */,
+				50F57DA91FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				AB17C5701DFCAD460013BBCD /* CourseDate.swift in Sources */,
 				ABA0F0BF1DF8CE2B0001D88D /* SpineHelper.swift in Sources */,
 				ABA0F0301DF8CD010001D88D /* UIView+shake.swift in Sources */,
+				50F57DF71FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				AB17C5881DFCC5CC0013BBCD /* PlatformEvent.swift in Sources */,
 				ABE060991DF8C1A500FC186D /* Brand.swift in Sources */,
 				AB4A01A11E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
@@ -6035,6 +6210,7 @@
 				ABA0F0711DF8CDB00001D88D /* Announcement+CoreDataProperties.swift in Sources */,
 				504C5A781F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				ABA0F04C1DF8CD7D0001D88D /* Course.swift in Sources */,
+				50F57DF81FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				ABA0F0861DF8CDD20001D88D /* QuizQuestion.swift in Sources */,
 				ABA0F0771DF8CDBD0001D88D /* PeerAssessment+CoreDataProperties.swift in Sources */,
 				ABA0F0C61DF8CE330001D88D /* NetworkHelper.swift in Sources */,
@@ -6043,6 +6219,7 @@
 				AB4F6CFE1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
 				70A830AA1EC780B90029235D /* CourseDateHelper.swift in Sources */,
 				ABC1BF1D1E7ABDFD00DEAF0E /* EnrollmentProvider.swift in Sources */,
+				50F57DD11FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				ABA0F0401DF8CD260001D88D /* BaseModelSpine.swift in Sources */,
 				AB17C5911DFCC5D20013BBCD /* PlatformEvent+CoreDataProperties.swift in Sources */,
 				AB07C3781E77E18F00DA0011 /* DynamicSort.swift in Sources */,
@@ -6059,10 +6236,12 @@
 				ABA0F0BD1DF8CE280001D88D /* CoreDataHelper.swift in Sources */,
 				70A830B01EC781020029235D /* AnnouncementProvider.swift in Sources */,
 				ABA0F0671DF8CDA00001D88D /* Content.swift in Sources */,
+				50F57DAA1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				ABA0F0921DF8CDE40001D88D /* Video+CoreDataProperties.swift in Sources */,
 				ABA0F0AE1DF8CE0F0001D88D /* UserProfileProvider.swift in Sources */,
 				AB4A01B61E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				ABA0F06A1DF8CDA30001D88D /* LTIExercise+CoreDataProperties.swift in Sources */,
+				50F57DC41FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				ABA0F07A1DF8CDC10001D88D /* PeerAssessment.swift in Sources */,
 				ABE0609A1DF8C1A600FC186D /* Brand.swift in Sources */,
 				50F57D9D1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
@@ -6089,6 +6268,7 @@
 				50F57D691FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift in Sources */,
 				ABA0F1081DF8CF120001D88D /* ServiceProvider.swift in Sources */,
 				AB17C56E1DFCAD430013BBCD /* CourseDate+CoreDataProperties.swift in Sources */,
+				50F57DB71FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				ABA0F0641DF8CD9D0001D88D /* Content+CoreDataProperties1.swift in Sources */,
 				ABA0F0801DF8CDCA0001D88D /* Quiz.swift in Sources */,
 				ABA0F0E31DF8CE750001D88D /* Error.swift in Sources */,
@@ -6101,6 +6281,8 @@
 				70F4564B1F01297E00A2C6B7 /* UserHelper.swift in Sources */,
 				50F57D421FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				24C4EF8B1E3594BD00200144 /* QuizSubmission.swift in Sources */,
+				50F57DEB1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
+				50F57DDE1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				AB4A01A21E7EA12C005CD595 /* EnrollmentVisits.swift in Sources */,
 				50C92B8E1FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				ABA0F08F1DF8CDDF0001D88D /* RichText.swift in Sources */,

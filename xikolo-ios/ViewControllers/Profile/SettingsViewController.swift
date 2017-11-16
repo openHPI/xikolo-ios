@@ -41,7 +41,9 @@ class SettingsViewController: UITableViewController {
     var user: User? {
         didSet {
             if self.user != oldValue {
-                self.updateProfileInfo()
+                DispatchQueue.main.async {
+                    self.updateProfileInfo()
+                }
             }
         }
     }
@@ -71,12 +73,15 @@ class SettingsViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn(), let userId = UserProfileHelper.userId {
             self.navigationItem.rightBarButtonItem = nil
-            self.user = UserHelper.getMe()
 
-            UserHelper.syncMe().onSuccess { user in
+            CoreDataHelper.fetchSingleObject(fetchRequest: UserHelper.FetchRequest.user(withId: userId), inContext: .view).onSuccess { user in
                 self.user = user
+            }.onComplete{ _ in
+                UserHelper.syncMe().onSuccess { user in
+                    self.user = user
+                }
             }
         } else {
             self.navigationItem.rightBarButtonItem = self.loginButton

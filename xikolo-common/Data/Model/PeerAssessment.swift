@@ -15,6 +15,10 @@ final class PeerAssessment : Content {
     @NSManaged var id: String
     @NSManaged var title: String?
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<PeerAssessment> {
+        return NSFetchRequest<PeerAssessment>(entityName: "PeerAssessment");
+    }
+
     override func iconName() -> String {
         return "peer_assessment"
     }

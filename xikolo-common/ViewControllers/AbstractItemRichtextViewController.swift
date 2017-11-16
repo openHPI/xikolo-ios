@@ -34,7 +34,7 @@ class AbstractItemRichtextViewController: UIViewController {
         }
 
         // Refresh rich text
-        RichTextHelper.refresh(richText: courseItem.content as! RichText).onSuccess { richText in
+        RichTextHelper.syncRichText(courseItem.content as! RichText).onSuccess { richText in
             if let markdown = richText.text {
                 self.display(markdown: markdown)
             }

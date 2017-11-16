@@ -6,13 +6,14 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
-import Foundation
+//import BrightFutures
+//import Foundation
+//
+//class PeerAssessmentProvider {
+//
+//    class func getPeerAssessment(_ peerAssessmentId: String) -> Future<PeerAssessmentSpine, XikoloError> {
+//        return SpineHelper.findOne(peerAssessmentId, ofType: PeerAssessmentSpine.self)
+//    }
+//    
+//}
 
-class PeerAssessmentProvider {
-
-    class func getPeerAssessment(_ peerAssessmentId: String) -> Future<PeerAssessmentSpine, XikoloError> {
-        return SpineHelper.findOne(peerAssessmentId, ofType: PeerAssessmentSpine.self)
-    }
-    
-}

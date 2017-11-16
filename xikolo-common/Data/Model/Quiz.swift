@@ -24,6 +24,10 @@ final class Quiz : Content {
 
    // var submission: QuizSubmission?
 
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Quiz> {
+        return NSFetchRequest<Quiz>(entityName: "Quiz");
+    }
+
     var maxPoints: Double? {
         get {
             return self.maxPointsValue?.doubleValue

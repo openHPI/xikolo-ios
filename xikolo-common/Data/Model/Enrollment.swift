@@ -85,7 +85,8 @@ extension Enrollment : Pullable {
         self.reactivated = try attributes.value(for: "reactivated")
         self.createdAt = try attributes.value(for: "created_at")
 
-        let relationships = try object.value(for: "relationships") as JSON
+        guard let relationships = try? object.value(for: "relationships") as JSON else { return }
+
         try self.updateRelationship(forKeyPath: \Enrollment.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
     }
 

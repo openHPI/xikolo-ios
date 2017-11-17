@@ -121,7 +121,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="TrackingEvent" representedClassName="TrackingEvent" syncable="YES">
+    <entity name="TrackingEvent" representedClassName=".TrackingEvent" syncable="YES">
         <attribute name="context" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="resource" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="result" optional="YES" attributeType="Transformable" syncable="YES"/>

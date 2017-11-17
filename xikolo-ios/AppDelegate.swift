@@ -24,10 +24,10 @@ class AppDelegate : AbstractAppDelegate {
         window?.tintColor = Brand.TintColor
 
         UserProfileHelper.migrateLegacyKeychain()
-//        updateAnnouncements()
-//        EnrollmentHelper.syncEnrollments()
+        updateAnnouncements()
+        EnrollmentHelper.syncEnrollments()
 
-//        VideoPersistenceManager.shared.restorePersistenceManager()
+        VideoPersistenceManager.shared.restorePersistenceManager()
 
         #if OPENSAP
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.

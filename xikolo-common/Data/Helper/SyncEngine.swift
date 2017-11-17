@@ -62,6 +62,10 @@ enum SynchronizationError : Error {
     case missingIncludedResourse(from: Any, to: Any, withKey: KeyType)
 }
 
+enum NestedMarshalError: Error {
+    case nestedMarshalError(Error, includeType: String, includeKey: KeyType)
+}
+
 struct SyncEngine {
 
     // MARK: - build url request
@@ -140,7 +144,7 @@ struct SyncEngine {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
-        return resource.resourceData.map { data in
+        return resource.resourceData().map { data in
             request.httpBody = data
             return request
         }
@@ -283,6 +287,8 @@ struct SyncEngine {
             return Future(value: newObjects)
         } catch let error as MarshalError {
             return Future(error: .api(.serializationError(.modelDeserializationError(error, onType: Resource.type))))
+        } catch let error as NestedMarshalError {
+            return Future(error: .api(.serializationError(.modelDeserializationError(error, onType: Resource.type))))
         } catch let error as SynchronizationError {
             return Future(error: .synchronizationError(error))
         } catch {
@@ -353,8 +359,10 @@ struct SyncEngine {
             }
         }
 
-        return promise.future.onComplete { _ in
-            // TODO: check for api deprecation and maintance
+        return promise.future.onSuccess { _ in
+            // TODO: log something cool
+        }.onFailure { error in
+            print("Failed to save resources: \(fetchRequest) ==> \(error)")
         }
     }
 
@@ -382,8 +390,10 @@ struct SyncEngine {
             }
         }
 
-        return promise.future.onComplete { _ in
-            // TODO: check for api deprecation and maintance
+        return promise.future.onSuccess { _ in
+            // TODO: log something cool
+        }.onFailure { error in
+            print("Failed to sync resource: \(fetchRequest) ==> \(error)")
         }
     }
 
@@ -395,7 +405,11 @@ struct SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid() // TODO: add logging
+        return networkRequest.onSuccess { _ in
+            // TODO: log something cool
+        }.onFailure { error in
+            print("Failed to save resource: \(resource) ==> \(error)")
+        }.asVoid()
     }
 
     @discardableResult static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable & Pullable {
@@ -412,7 +426,11 @@ struct SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid() // TODO: add logging
+        return networkRequest.onSuccess { _ in
+            // TODO: log something cool
+        }.onFailure { error in
+            print("Failed to save resource: \(resource) ==> \(error)")
+        }.asVoid()
     }
 
     // MARK: - deleting
@@ -423,7 +441,11 @@ struct SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid() // TODO: add logging
+        return networkRequest.onSuccess { _ in
+            // TODO: log something cool
+        }.onFailure { error in
+            print("Failed to delete resource: \(resource) ==> \(error)")
+        }.asVoid()
     }
 
 }
@@ -536,7 +558,11 @@ extension Pullable where Self: NSManagedObject {
 
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
             let existingObject = self[keyPath: keyPath]
-            try existingObject.update(withObject: includedObject, including: includes, inContext: context)
+            do {
+                try existingObject.update(withObject: includedObject, including: includes, inContext: context)
+            } catch let error as MarshalError {
+                throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
+            }
         } else {
             // TODO: throw custom error: object should be included (+ try to fetch first)?
         }
@@ -552,11 +578,16 @@ extension Pullable where Self: NSManagedObject {
             return
         }
 
+
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
-            if let existingObject = self[keyPath: keyPath] {
-                try existingObject.update(withObject: includedObject, including: includes, inContext: context)
-            } else {
-                self[keyPath: keyPath] = try A.value(from: includedObject, including: includes, inContext: context)
+            do {
+                if let existingObject = self[keyPath: keyPath] {
+                    try existingObject.update(withObject: includedObject, including: includes, inContext: context)
+                } else {
+                    self[keyPath: keyPath] = try A.value(from: includedObject, including: includes, inContext: context)
+                }
+            } catch let error as MarshalError {
+                throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
             }
         } else {
             // TODO: create PendingRelationship object (+ try to fetch first)
@@ -587,24 +618,29 @@ extension Pullable where Self: NSManagedObject {
         let resourceIdentifiers = try object.value(for: "\(key).data") as [ResourceIdentifier]
         var currentObjects = Set(self[keyPath: keyPath])
 
-        for resourceIdentifier in resourceIdentifiers {
-            if let currentObject = currentObjects.first(where: { $0.id == resourceIdentifier.id }) {
-                if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
-                    try currentObject.update(withObject: includedObject, including: includes, inContext: context)
-                }
+        do {
+            for resourceIdentifier in resourceIdentifiers {
+                if let currentObject = currentObjects.first(where: { $0.id == resourceIdentifier.id }) {
+                    if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
+                        try currentObject.update(withObject: includedObject, including: includes, inContext: context)
+                    }
 
-                if let index = currentObjects.index(where: { $0 == currentObject }) {
-                    currentObjects.remove(at: index)
-                }
-            } else {
-                if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
-                    let newObject = try A.value(from: includedObject, including: includes, inContext: context)
-                    self[keyPath: keyPath].insert(newObject)
+                    if let index = currentObjects.index(where: { $0 == currentObject }) {
+                        currentObjects.remove(at: index)
+                    }
                 } else {
-                    // TODO: create pending relationship (+ try to fetch first)
+                    if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
+                        let newObject = try A.value(from: includedObject, including: includes, inContext: context)
+                        self[keyPath: keyPath].insert(newObject)
+                    } else {
+                        // TODO: create pending relationship (+ try to fetch first)
+                    }
                 }
             }
+        } catch let error as MarshalError {
+            throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
         }
+
 
         for currentObject in currentObjects {
             context.delete(currentObject)
@@ -637,7 +673,12 @@ extension Pullable where Self: NSManagedObject {
                 return
             }
 
-            try existingObject.update(withObject: includedObject, including: container.includes, inContext: container.context)
+            do {
+                try existingObject.update(withObject: includedObject, including: container.includes, inContext: container.context)
+            } catch let error as MarshalError {
+                throw NestedMarshalError.nestedMarshalError(error, includeType: B.type, includeKey: container.key)
+            }
+
             container.markAsUpdated()
         } else {
             throw SynchronizationError.missingIncludedResourse(from: Self.self, to: A.self, withKey: container.key)
@@ -689,14 +730,14 @@ protocol IncludedPushable {
 
 protocol Pushable : ResourceTypeRepresentable, IncludedPushable {
     var isNewResource: Bool { get }
-    var resourceData: Result<Data, XikoloError> { get }
 
+    func resourceData() -> Result<Data, XikoloError>
     func resourceRelationships() -> [String: Any]?
 }
 
 extension Pushable {
 
-    var resourceData: Result<Data, XikoloError> {
+    func resourceData() -> Result<Data, XikoloError> {
         do {
             var data: [String: Any] = [ "type": Self.type ]
             if let newResource = self as? ResourceRepresentable, !self.isNewResource {

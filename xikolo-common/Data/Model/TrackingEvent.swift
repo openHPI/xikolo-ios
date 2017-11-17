@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class TrackingEvent : NSManagedObject {
+final class TrackingEvent : NSManagedObject {
 
     @NSManaged var user: TrackingEventUser
     @NSManaged var verb: TrackingEventVerb

@@ -14,6 +14,7 @@ class TrackingEventUser : NSObject, NSCoding {
 
     init(uuid: String) {
         self.uuid = uuid
+        super.init()
     }
 
     required init?(coder decoder: NSCoder) {

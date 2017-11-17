@@ -89,7 +89,11 @@ class TrackingHelper {
                                               resource: trackingResource,
                                               trackingContext: trackingContext as [String: AnyObject],
                                               inContext: context)
-            promise.success(trackingEvent)
+            CoreDataHelper.save(context).onSuccess {
+                promise.success(trackingEvent)
+            }.onFailure { error in
+                promise.failure(error)
+            }
         }
         return promise.future
     }

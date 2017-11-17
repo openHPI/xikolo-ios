@@ -64,5 +64,6 @@ enum SerializationError : Error {
     case jsonSerializationError(Error)
 
     case modelDeserializationError(Error, onType: String)
+    case includedModelDeserializationError(Error, onType: String, forIncludedType: String, forKey: String)
 }
 

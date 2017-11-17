@@ -184,9 +184,7 @@ struct SyncEngine {
 
     private static func fetchCoreDataObject<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<Resource?, XikoloError> where Resource: NSManagedObject & Pullable {
         do {
-            let rf = fetchRequest.copy()
-            rf.sortDescriptors = nil
-            let objects = try context.fetch(rf)
+            let objects = try context.fetch(fetchRequest)
             return Future(value: objects.first)
         } catch {
             return Future(error: .coreData(error))

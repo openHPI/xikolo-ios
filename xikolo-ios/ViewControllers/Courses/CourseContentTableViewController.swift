@@ -110,11 +110,12 @@ class CourseContentTableViewController: UITableViewController {
             return
         }
 
-        CourseItemHelper.syncCourseItems(forCourse: self.course).onComplete { _ in
-            stopRefreshControl()
-            if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
+        CourseItemHelper.syncCourseItems(forCourse: self.course).onSuccess { items in
+            if !contentPreloadDeactivated {
                 self.preloadCourseContent()
             }
+        }.onComplete { _ in
+            stopRefreshControl()
         }
     }
 

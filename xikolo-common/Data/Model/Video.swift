@@ -123,7 +123,7 @@ extension Video : Pullable {
         let attributes = try object.value(for: "attributes") as JSON
         self.audioSize = try attributes.value(for: "audio_size")
         self.audioURL = try attributes.value(for: "audio_url")
-        self.duration = try attributes.value(for: "duaration")
+        self.duration = try attributes.value(for: "duration")
         self.lecturerStream = try attributes.value(for: "lecturer_stream")
         self.singleStream = try attributes.value(for: "single_stream")
         self.slidesSize = try attributes.value(for: "slides_size")

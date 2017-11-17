@@ -342,9 +342,6 @@ struct SyncEngine {
             coreDataFetch.zip(networkRequest).flatMap { objects, json in
                 return self.mergeResources(object: json, withExistingObjects: objects, inContext: context)
             }.flatMap { objects -> Future<[Resource], XikoloError> in
-                let enityName = fetchRequest.entityName
-
-
                 let promise = Promise<[Resource], XikoloError>()
 
                 CoreDataHelper.save(context).onSuccess {
@@ -362,7 +359,7 @@ struct SyncEngine {
         return promise.future.onSuccess { _ in
             // TODO: log something cool
         }.onFailure { error in
-            print("Failed to save resources: \(fetchRequest) ==> \(error)")
+            print("Failed to save resources ==> \(error)")
         }
     }
 
@@ -393,7 +390,7 @@ struct SyncEngine {
         return promise.future.onSuccess { _ in
             // TODO: log something cool
         }.onFailure { error in
-            print("Failed to sync resource: \(fetchRequest) ==> \(error)")
+            print("Failed to sync resource ==> \(error)")
         }
     }
 
@@ -535,7 +532,7 @@ extension Pullable where Self: NSManagedObject {
         return managedObject
     }
 
-    private func findIncludedObject(for objectIdentifier: ResourceIdentifier, in includes: [ResourceData]?) -> ResourceData? {
+    fileprivate func findIncludedObject(for objectIdentifier: ResourceIdentifier, in includes: [ResourceData]?) -> ResourceData? {
         guard let includedData = includes else {
             return nil
         }
@@ -663,27 +660,27 @@ extension Pullable where Self: NSManagedObject {
     }
 
 
-    func updateAbstractRelationship<A, B>(withContainer container: AbstractPullableContainer<Self, A>,
-                                          withType: B.Type) throws where B: NSManagedObject & Pullable {
-        let resourceIdentifier = try container.object.value(for: "\(container.key).data") as ResourceIdentifier
-
-        if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: container.includes) {
-            guard let existingObject = self[keyPath: container.keyPath] as? B else {
-                // TODO: type mismatch
-                return
-            }
-
-            do {
-                try existingObject.update(withObject: includedObject, including: container.includes, inContext: container.context)
-            } catch let error as MarshalError {
-                throw NestedMarshalError.nestedMarshalError(error, includeType: B.type, includeKey: container.key)
-            }
-
-            container.markAsUpdated()
-        } else {
-            throw SynchronizationError.missingIncludedResourse(from: Self.self, to: A.self, withKey: container.key)
-        }
-    }
+//    func updateAbstractRelationship<A, B>(withContainer container: AbstractPullableContainer<Self, A>,
+//                                          withType: B.Type) throws where B: NSManagedObject & Pullable {
+//        let resourceIdentifier = try container.object.value(for: "\(container.key).data") as ResourceIdentifier
+//
+//        if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: container.includes) {
+//            guard let existingObject = self[keyPath: container.keyPath] as? B else {
+//                // TODO: type mismatch
+//                return
+//            }
+//
+//            do {
+//                try existingObject.update(withObject: includedObject, including: container.includes, inContext: container.context)
+//            } catch let error as MarshalError {
+//                throw NestedMarshalError.nestedMarshalError(error, includeType: B.type, includeKey: container.key)
+//            }
+//
+//            container.markAsUpdated()
+//        } else {
+//            throw SynchronizationError.missingIncludedResourse(from: Self.self, to: A.self, withKey: container.key)
+//        }
+//    }
 
 }
 
@@ -711,8 +708,35 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: Ab
     }
 
     func update<C>(forType type : C.Type) throws where C : NSManagedObject & Pullable {
-        // TODO: check if C can be set?
-        try self.resource.updateAbstractRelationship(withContainer: self, withType: type) // TODO: catch not matching type
+        let resourceIdentifier = try self.object.value(for: "\(self.key).data") as ResourceIdentifier
+
+        guard resourceIdentifier.type == C.type else { return }
+
+        if let includedObject = self.resource.findIncludedObject(for: resourceIdentifier, in: self.includes) {
+//            guard let existingObject = self.resource[keyPath: self.keyPath] as? C else {
+//                // TODO: type mismatch
+//                return
+//            }
+//
+//            do {
+//                try existingObject.update(withObject: includedObject, including: self.includes, inContext: self.context)
+//            } catch let error as MarshalError {
+//                throw NestedMarshalError.nestedMarshalError(error, includeType: C.type, includeKey: self.key)
+//            }
+            do {
+                if let existingObject = self.resource[keyPath: self.keyPath] as? C{
+                    try existingObject.update(withObject: includedObject, including: includes, inContext: context)
+                    self.markAsUpdated()
+                } else if let newObject = try C.value(from: includedObject, including: includes, inContext: context) as? B {
+                    self.resource[keyPath: self.keyPath] = newObject
+                    self.markAsUpdated()
+                }
+            } catch let error as MarshalError {
+                throw NestedMarshalError.nestedMarshalError(error, includeType: C.type, includeKey: key)
+            }
+        } else {
+            throw SynchronizationError.missingIncludedResourse(from: A.self, to: B.self, withKey: self.key)
+        }
     }
 
     func markAsUpdated() {

@@ -54,11 +54,13 @@ class CoreDataHelper {
             if context.hasChanges {
                 do {
                     try context.save()
+                    promise.success(())
                 } catch {
                     promise.failure(.coreData(error))
                 }
+            } else {
+                promise.success(())
             }
-            promise.success(())
         }
 
         return promise.future

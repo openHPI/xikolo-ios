@@ -119,7 +119,7 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func showItem(_ item: CourseItem) {
-        TrackingHelper.sendEvent(.visitedItem, resource: item)
+        TrackingHelper.createEvent(.visitedItem, resource: item)
         //save read state to server
         item.visited = true
         SyncEngine.saveResource(item)

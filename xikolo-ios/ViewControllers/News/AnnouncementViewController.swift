@@ -30,7 +30,7 @@ class AnnouncementViewController : UIViewController {
         //save read state to server
         self.announcement.visited = true
         SyncEngine.saveResource(self.announcement)
-        TrackingHelper.sendEvent(.visitedAnnouncement, resource: self.announcement)
+        TrackingHelper.createEvent(.visitedAnnouncement, resource: self.announcement)
 
         self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
@@ -60,7 +60,7 @@ class AnnouncementViewController : UIViewController {
         }
         //save read state to server
         self.announcement.visited = true
-        TrackingHelper.sendEvent(.visitedAnnouncement, resource: announcement)
+        TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
         SyncEngine.saveResource(self.announcement)
     }
 

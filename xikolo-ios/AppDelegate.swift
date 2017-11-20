@@ -82,9 +82,16 @@ class AppDelegate : AbstractAppDelegate {
                     //get course by slug
                     //todo the course might not be synced yet, than we could try to fetch from the API by slug
                     let fetchRequest = CourseHelper.FetchRequest.course(withSlug: slug)
-                    if case let .success(course) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
+
+                    let result = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) { course in
                         self.goToCourse(course)
+                    }
+
+                    switch result {
+                    case .success(_):
                         return true
+                    case .failure(let error):
+                        print("Warning: could not find course: \(error)")
                     }
                 } else {
                     rootViewController.selectedIndex = 1

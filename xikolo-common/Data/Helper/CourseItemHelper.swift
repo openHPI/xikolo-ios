@@ -20,9 +20,11 @@ struct CourseItemHelper {
 
     static func syncCourseItems(forCourse course: Course) -> Future<[[CourseItem]], XikoloError> {
         return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sections in
-            return sections.traverse { section in
-                CourseItemHelper.syncCourseItems(forSection: section)
-            }
+            return sections.flatMap { section -> Future<[CourseItem], XikoloError> in
+                return CoreDataHelper.backgroundObject(withId: section.objectID) { (section: CourseSection) in
+                    return CourseItemHelper.syncCourseItems(forSection: section)
+                }
+            }.sequence()
         }
     }
 

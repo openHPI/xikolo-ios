@@ -11,6 +11,9 @@ import UIKit
 import DZNEmptyDataSet
 import ReachabilitySwift
 
+import BrightFutures
+
+
 class CourseContentTableViewController: UITableViewController {
     typealias Resource = CourseItem
 
@@ -182,8 +185,12 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowVideo"?:
             let videoView = segue.destination as! VideoViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
+            let result = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) { courseItem in
                 videoView.courseItem = courseItem
+            }
+
+            if case let .failure(error) = result {
+                print("Error: Could not find course item: \(error)")
             }
         case "ShowQuiz"?:
             let webView = segue.destination as! WebViewController
@@ -196,8 +203,12 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowRichtext"?:
             let richtextView = segue.destination as! RichtextViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-            if case let .success(courseItem) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
+            let result = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) { courseItem in
                 richtextView.courseItem = courseItem
+            }
+
+            if case let .failure(error) = result {
+                print("Error: Could not find course item: \(error)")
             }
         default:
             super.prepare(for: segue, sender: sender)

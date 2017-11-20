@@ -55,6 +55,38 @@ import CoreData
 //
 //}
 
+
+extension Future {
+
+    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), f: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
+        let promise = Promise<Value.Value, Value.Error>()
+
+        self.onComplete(context) { result in
+            switch result {
+            case .success(let value):
+                f().onSuccess { _ in
+                    promise.success(value)
+                }.onFailure { error in
+                    promise.failure(error)
+                }
+            case .failure(let error):
+                promise.failure(error)
+            }
+        }
+
+        return promise.future
+    }
+}
+
+extension Sequence {
+
+    public func flatTraverse<U, E, A: AsyncType>(_ context: @escaping ExecutionContext = DispatchQueue.global().context, f: (Iterator.Element) -> A) -> Future<[U], E> where A.Value: ResultProtocol, A.Value.Value == U, A.Value.Error == E {
+        return flatMap(f).fold(context, zero: [U]()) { (list: [U], elem: U) -> [U] in
+            return list + [elem]
+        }
+    }
+}
+
 enum SynchronizationError : Error {
     case noRelationshipBetweenEnities(from: Any, to: Any)
     case toManyRelationshipBetweenEnities(from: Any, to: Any)
@@ -341,16 +373,8 @@ struct SyncEngine {
 
             coreDataFetch.zip(networkRequest).flatMap { objects, json in
                 return self.mergeResources(object: json, withExistingObjects: objects, inContext: context)
-            }.flatMap { objects -> Future<[Resource], XikoloError> in
-                let promise = Promise<[Resource], XikoloError>()
-
-                CoreDataHelper.save(context).onSuccess {
-                    promise.success(objects)
-                }.onFailure { error in
-                    promise.failure(error)
-                }
-
-                return promise.future
+            }.inject {
+                CoreDataHelper.save(context)
             }.onComplete { result in
                 promise.complete(result)
             }
@@ -374,14 +398,8 @@ struct SyncEngine {
 
             coreDataFetch.zip(networkRequest).flatMap { object, json -> Future<Resource, XikoloError> in
                 return self.mergeResource(object: json, withExistingObject: object, inContext: context)
-            }.flatMap { object -> Future<Resource, XikoloError> in
-                let promise = Promise<Resource, XikoloError>()
-                CoreDataHelper.save(context).onSuccess {
-                    promise.success(object)
-                    }.onFailure { error in
-                        promise.failure(error)
-                }
-                return promise.future
+            }.inject {
+                CoreDataHelper.save(context)
             }.onComplete { result in
                 promise.complete(result)
             }

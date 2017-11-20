@@ -125,12 +125,7 @@ extension CourseDatesTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
-
-        let fetchRequest = CourseHelper.FetchRequest.course(withId: courseDate.course.id)
-        if case let .success(course) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            AppDelegate.instance().goToCourse(course)
-        }
+        AppDelegate.instance().goToCourse(courseDate.course)
     }
     
 }

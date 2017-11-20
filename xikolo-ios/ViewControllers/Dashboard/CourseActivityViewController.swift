@@ -59,11 +59,8 @@ class CourseActivityViewController: UICollectionViewController {
 extension CourseActivityViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let visualCourse = resultsController.object(at: indexPath)
-        let fetchRequest = CourseHelper.FetchRequest.course(withId: visualCourse.id)
-        if case let .success(course) = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) {
-            AppDelegate.instance().goToCourse(course)
-        }
+        let course = resultsController.object(at: indexPath)
+        AppDelegate.instance().goToCourse(course)
     }
 
 }

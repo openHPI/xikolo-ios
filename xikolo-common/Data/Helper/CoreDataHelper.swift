@@ -102,14 +102,15 @@ class CoreDataHelper {
         }
     }
 
-    static func fetchMultipleObjects<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Future<[Resource], XikoloError> where Resource : NSManagedObject{
-        let promise = Promise<[Resource], XikoloError>()
+    static func fetchMultipleObjects<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext, task: @escaping ([Resource]) -> Void) -> Future<Void, XikoloError> where Resource : NSManagedObject{
+        let promise = Promise<Void, XikoloError>()
         let managedObjectContext = context.managedObjectContext()
 
         managedObjectContext.perform {
             do {
                 let objects = try managedObjectContext.fetch(request)
-                promise.success(objects)
+                task(objects)
+                promise.success(())
             } catch {
                 promise.failure(.coreData(error))
             }
@@ -118,24 +119,38 @@ class CoreDataHelper {
         return promise.future
     }
 
-    static func fetchSingleObject<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Future<Resource, XikoloError> where Resource : NSManagedObject{
-        return self.fetchMultipleObjects(fetchRequest: request, inContext: context).flatMap { objects -> Result<Resource, XikoloError> in
-            if let object = objects.first {
-                return .success(object)
-            } else {
-                return .failure(.coreDataObjectNotFound)
+    static func fetchSingleObject<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext, task: @escaping (Resource) -> Void) -> Future<Void, XikoloError> where Resource : NSManagedObject{
+        let promise = Promise<Void, XikoloError>()
+        let managedObjectContext = context.managedObjectContext()
+
+        managedObjectContext.perform {
+            do {
+                let objects = try managedObjectContext.fetch(request)
+
+                guard let object = objects.first else {
+                    promise.failure(.coreDataObjectNotFound)
+                    return
+                }
+
+                task(object)
+                promise.success(())
+            } catch {
+                promise.failure(.coreData(error))
             }
         }
+
+        return promise.future
     }
 
-    static func fetchMultipleObjectsAndWait<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Result<[Resource], XikoloError> where Resource : NSManagedObject{
-        var result: Result<[Resource], XikoloError> = .failure(.totallyUnknownError)
+    static func fetchMultipleObjectsAndWait<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext, task: @escaping ([Resource]) -> Void) -> Result<Void, XikoloError> where Resource : NSManagedObject{
+        var result: Result<Void, XikoloError> = .failure(.totallyUnknownError)
         let managedObjectContext = context.managedObjectContext()
 
         managedObjectContext.performAndWait {
             do {
                 let objects = try managedObjectContext.fetch(request)
-                result = .success(objects)
+                task(objects)
+                result = .success(())
             } catch {
                 result = .failure(.coreData(error))
             }
@@ -144,14 +159,59 @@ class CoreDataHelper {
         return result
     }
 
-    static func fetchSingleObjectAndWait<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext) -> Result<Resource, XikoloError> where Resource : NSManagedObject {
-        return self.fetchMultipleObjectsAndWait(fetchRequest: request, inContext: context).flatMap { objects -> Result<Resource, XikoloError> in
-            if let object = objects.first {
-                return .success(object)
-            } else {
-                return .failure(.coreDataObjectNotFound)
+    static func fetchSingleObjectAndWait<Resource>(fetchRequest request: NSFetchRequest<Resource>, inContext context: FetchContext, task: @escaping (Resource) -> Void) -> Result<Void, XikoloError> where Resource : NSManagedObject {
+        var result: Result<Void, XikoloError> = .failure(.totallyUnknownError)
+        let managedObjectContext = context.managedObjectContext()
+
+        managedObjectContext.performAndWait {
+            do {
+                let objects = try managedObjectContext.fetch(request)
+
+                guard let object = objects.first else {
+                    result = .failure(.coreDataObjectNotFound)
+                    return
+                }
+
+                task(object)
+                result = .success(())
+            } catch {
+                result = .failure(.coreData(error))
             }
         }
+
+        return result
+    }
+
+    static func backgroundObject<T, U>(withId managedObjectId: NSManagedObjectID, task: @escaping (T) -> U) -> Future<U, XikoloError> {
+        let promise = Promise<U, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let managedObject = context.object(with: managedObjectId)
+            guard let object = managedObject as? T else {
+                promise.failure(.coreDataTypeMismatch(expected: T.self, found: type(of: managedObject)))
+                return
+            }
+
+            promise.success(task(object))
+        }
+
+        return promise.future
+    }
+
+    static func backgroundObject<T, U>(withId managedObjectId: NSManagedObjectID, task: @escaping (T) -> Future<U, XikoloError>) -> Future<U, XikoloError> {
+        let promise = Promise<U, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let managedObject = context.object(with: managedObjectId)
+            guard let object = managedObject as? T else {
+                promise.failure(.coreDataTypeMismatch(expected: T.self, found: type(of: managedObject)))
+                return
+            }
+
+            promise.completeWith(task(object))
+        }
+
+        return promise.future
     }
 
 

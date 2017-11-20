@@ -77,10 +77,10 @@ class SettingsViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = nil
 
             let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
-            CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .viewContext).onSuccess { user in
+            CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .viewContext) { user in
                 self.user = user
-            }.onComplete{ _ in
-                UserHelper.syncMe().onSuccess { user in
+            }.onComplete { _ in
+                UserHelper.syncMe().onSuccess { user in // TODO: should be done via update notifier
                     self.user = user
                 }
             }

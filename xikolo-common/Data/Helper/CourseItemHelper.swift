@@ -7,28 +7,29 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct CourseItemHelper {
 
-    static func syncCourseItems(forSection section: CourseSection) -> Future<[CourseItem], XikoloError> {
+    static func syncCourseItems(forSection section: CourseSection) -> Future<[NSManagedObjectID], XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forSection: section)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-    static func syncCourseItems(forCourse course: Course) -> Future<[[CourseItem]], XikoloError> {
-        return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sections in
-            return sections.flatMap { section -> Future<[CourseItem], XikoloError> in
-                return CoreDataHelper.backgroundObject(withId: section.objectID) { (section: CourseSection) in
+    static func syncCourseItems(forCourse course: Course) -> Future<[[NSManagedObjectID]], XikoloError> {
+        return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sectionObjectIds in
+            return sectionObjectIds.flatMap { sectionObjectId in
+                return CoreDataHelper.backgroundObject(withId: sectionObjectId) { (section: CourseSection) in
                     return CourseItemHelper.syncCourseItems(forSection: section)
                 }
             }.sequence()
         }
     }
 
-    static func syncRichTexts(forCourse course: Course) -> Future<[CourseItem], XikoloError> {
+    static func syncRichTexts(forCourse course: Course) -> Future<[NSManagedObjectID], XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "rich_text")
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
@@ -37,7 +38,7 @@ struct CourseItemHelper {
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-    static func syncVideos(forCourse course: Course) -> Future<[CourseItem], XikoloError> {
+    static func syncVideos(forCourse course: Course) -> Future<[NSManagedObjectID], XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "video")
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)

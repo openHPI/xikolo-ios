@@ -78,13 +78,13 @@ extension Future {
     }
 }
 
-extension Sequence {
+extension Collection {
 
-    public func flatTraverse<U, E, A: AsyncType>(_ context: @escaping ExecutionContext = DispatchQueue.global().context, f: (Iterator.Element) -> A) -> Future<[U], E> where A.Value: ResultProtocol, A.Value.Value == U, A.Value.Error == E {
-        return flatMap(f).fold(context, zero: [U]()) { (list: [U], elem: U) -> [U] in
-            return list + [elem]
-        }
+    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
     }
+
 }
 
 enum SynchronizationError : Error {
@@ -362,8 +362,8 @@ struct SyncEngine {
 
     // MARK: - sync
 
-    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
-        let promise = Promise<[Resource], XikoloError>()
+    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>) -> Future<[NSManagedObjectID], XikoloError> where Resource: NSManagedObject & Pullable {
+        let promise = Promise<[NSManagedObjectID], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
@@ -375,6 +375,8 @@ struct SyncEngine {
                 return self.mergeResources(object: json, withExistingObjects: objects, inContext: context)
             }.inject {
                 CoreDataHelper.save(context)
+            }.map { objects in
+                return objects.map { $0.objectID }
             }.onComplete { result in
                 promise.complete(result)
             }
@@ -387,8 +389,8 @@ struct SyncEngine {
         }
     }
 
-    static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<Resource, XikoloError> where Resource: NSManagedObject & Pullable {
-        let promise = Promise<Resource, XikoloError>()
+    static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<NSManagedObjectID, XikoloError> where Resource: NSManagedObject & Pullable {
+        let promise = Promise<NSManagedObjectID, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
@@ -400,6 +402,8 @@ struct SyncEngine {
                 return self.mergeResource(object: json, withExistingObject: object, inContext: context)
             }.inject {
                 CoreDataHelper.save(context)
+            }.map { object in
+                return object.objectID
             }.onComplete { result in
                 promise.complete(result)
             }

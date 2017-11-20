@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct LTIExerciseHelper {
 
-    static func syncLTIExercise(_ ltiExercise: LTIExercise) -> Future<LTIExercise, XikoloError> {
+    static func syncLTIExercise(_ ltiExercise: LTIExercise) -> Future<NSManagedObjectID, XikoloError> {
         let fetchRequest = LTIExerciseHelper.FetchRequest.ltiExercise(withId: ltiExercise.id)
         let query = SingleResourceQuery(resource: ltiExercise)
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)

@@ -40,10 +40,14 @@ class VideoViewController : UIViewController {
         // display local data
         self.show(video: video)
 
+        self.courseItem?.content?.notifyOnChange(self, updateHandler: {
+            if let video = (self.courseItem?.content as? Video) {
+                self.show(video: video)
+            }
+        }, deleteHandler: {})
+
         // refresh data
-        VideoHelper.syncVideo(video).onSuccess { updatedVideo in
-            self.show(video: updatedVideo)
-        }
+        VideoHelper.syncVideo(video)
     }
 
     override func viewWillAppear(_ animated: Bool) {

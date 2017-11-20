@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct CourseDateHelper {
 
-    static func syncAllCourseDates() -> Future<[CourseDate], XikoloError> {
+    static func syncAllCourseDates() -> Future<[NSManagedObjectID], XikoloError> {
         let query = MultipleResourcesQuery(type: CourseDate.self)
         return SyncEngine.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query)
     }

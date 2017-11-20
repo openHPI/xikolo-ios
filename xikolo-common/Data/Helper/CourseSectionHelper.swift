@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct CourseSectionHelper {
 
-    static func syncCourseSections(forCourse course: Course) -> Future<[CourseSection], XikoloError> {
+    static func syncCourseSections(forCourse course: Course) -> Future<[NSManagedObjectID], XikoloError> {
         let fetchRequest = CourseSectionHelper.FetchRequest.courseSections(forCourse: course)
         var query = MultipleResourcesQuery(type: CourseSection.self)
         query.addFilter(forKey: "course", withValue: course.id)

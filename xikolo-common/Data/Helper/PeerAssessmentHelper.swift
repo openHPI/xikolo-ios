@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct PeerAssessmentHelper {
 
-    static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<PeerAssessment, XikoloError> {
+    static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<NSManagedObjectID, XikoloError> {
         let fetchRequest = PeerAssessmentHelper.FetchRequest.peerAssessment(withId: peerAssessment.id)
         let query = SingleResourceQuery(resource: peerAssessment)
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)

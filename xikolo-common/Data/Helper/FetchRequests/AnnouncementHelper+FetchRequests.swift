@@ -19,6 +19,12 @@ extension AnnouncementHelper {
             return request
         }
 
+        static var unreadAnnouncements: NSFetchRequest<Announcement> {
+            let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
+            request.predicate = NSPredicate(format: "visited = %@", NSNumber(booleanLiteral: false))
+            return request
+        }
+
     }
 
 }

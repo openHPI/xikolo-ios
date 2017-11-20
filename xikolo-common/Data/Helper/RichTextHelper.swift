@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct RichTextHelper {
 
-    static func syncRichText(_ richText: RichText) -> Future<RichText, XikoloError> {
+    static func syncRichText(_ richText: RichText) -> Future<NSManagedObjectID, XikoloError> {
         let fetchRequest = RichTextHelper.FetchRequest.richText(withId: richText.id)
         let query = SingleResourceQuery(resource: richText)
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)

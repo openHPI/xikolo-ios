@@ -24,7 +24,7 @@ class AppDelegate : AbstractAppDelegate {
         window?.tintColor = Brand.TintColor
 
         UserProfileHelper.migrateLegacyKeychain()
-        updateAnnouncements()
+        AnnouncementHelper.syncAllAnnouncements()
         EnrollmentHelper.syncEnrollments()
 
         VideoPersistenceManager.shared.restorePersistenceManager()
@@ -108,22 +108,6 @@ class AppDelegate : AbstractAppDelegate {
         let webpageUrl = url
         application.open(webpageUrl)
         return false
-    }
-
-    func updateAnnouncements() {
-        AnnouncementHelper.syncAllAnnouncements().onSuccess { (announcements) in // sync announcements and show badge on news tab with number of unread articles
-            if let rootViewController = self.window?.rootViewController as? UITabBarController {
-                if let tabArray = rootViewController.tabBar.items {
-                    let tabItem = tabArray[2]
-                    let unreadAnnouncements = announcements.filter({ !($0.visited ?? true ) }) // we get nil if the user is not logged in. In this case we don't want to show the badge
-                    if unreadAnnouncements.count > 0 {
-                        tabItem.badgeValue = String(unreadAnnouncements.count)
-                    } else {
-                        tabItem.badgeValue = nil
-                    }
-                }
-            }
-        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct EnrollmentHelper {
 
-    static func syncEnrollments() -> Future<[Enrollment], XikoloError> {
+    static func syncEnrollments() -> Future<[NSManagedObjectID], XikoloError> {
         let query = MultipleResourcesQuery(type: Enrollment.self)
         return SyncEngine.syncResources(withFetchRequest: EnrollmentHelper.FetchRequest.allEnrollements, withQuery: query)
     }

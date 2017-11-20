@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct CourseHelper {
 
-    static func syncAllCourses() -> Future<[Course], XikoloError> {
+    static func syncAllCourses() -> Future<[NSManagedObjectID], XikoloError> {
         var query = MultipleResourcesQuery(type: Course.self)
         query.include("channel")
         query.include("user_enrollment")
         return SyncEngine.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
     }
 
-    static func syncCourse(_ course: Course) -> Future<Course, XikoloError> {
+    static func syncCourse(_ course: Course) -> Future<NSManagedObjectID, XikoloError> {
         var query = SingleResourceQuery(resource: course)
         query.include("channel")
         query.include("user_enrollment")

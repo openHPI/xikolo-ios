@@ -292,9 +292,7 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
                     DispatchQueue.main.async {
                         cell.singleReloadInProgress = false
                     }
-                    if let syncedVideo = result.value, syncedVideo.singleStream?.hlsURL != nil {
-                        VideoPersistenceManager.shared.downloadStream(for: video)
-                    } // TODO: add error message
+                    VideoPersistenceManager.shared.downloadStream(for: video)
                 }
             }
         }

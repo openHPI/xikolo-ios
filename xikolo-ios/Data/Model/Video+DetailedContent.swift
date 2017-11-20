@@ -6,8 +6,9 @@
 //  Copyright © 2017 HPI. All rights reserved.
 //
 
-import BrightFutures
 import Foundation
+import CoreData
+import BrightFutures
 
 extension Video: DetailedContent {
 
@@ -41,7 +42,7 @@ extension Video: DetailedContent {
         return NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
     }
 
-    static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
+    static func preloadContentFor(course: Course) -> Future<[NSManagedObjectID], XikoloError> {
         return CourseItemHelper.syncVideos(forCourse: course)
     }
 

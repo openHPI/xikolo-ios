@@ -79,10 +79,14 @@ class SettingsViewController: UITableViewController {
             let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
             CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .viewContext) { user in
                 self.user = user
+
+                self.user?.notifyOnChange(self, updateHandler: {
+                    DispatchQueue.main.async {
+                        self.updateProfileInfo()
+                    }
+                }, deleteHandler: {})
             }.onComplete { _ in
-                UserHelper.syncMe().onSuccess { user in // TODO: should be done via update notifier
-                    self.user = user
-                }
+                UserHelper.syncMe()
             }
         } else {
             self.navigationItem.rightBarButtonItem = self.loginButton

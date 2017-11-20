@@ -58,10 +58,9 @@ class AnnouncementViewController : UIViewController {
         } else {
             self.textView.text = "[...]"
         }
-        //save read state to server
-        self.announcement.visited = true
+
+        AnnouncementHelper.markAsVisited(announcement: self.announcement)
         TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
-        SyncEngine.saveResource(self.announcement)
     }
 
 }

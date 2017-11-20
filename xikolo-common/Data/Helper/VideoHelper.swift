@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 import BrightFutures
 
 struct VideoHelper {
 
-    static func syncVideo(_ video: Video) -> Future<Video, XikoloError> {
+    static func syncVideo(_ video: Video) -> Future<NSManagedObjectID, XikoloError> {
         let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)
         let query = SingleResourceQuery(resource: video)
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)

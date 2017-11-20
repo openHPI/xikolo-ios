@@ -6,8 +6,9 @@
 //  Copyright © 2017 HPI. All rights reserved.
 //
 
-import BrightFutures
 import Foundation
+import CoreData
+import BrightFutures
 
 extension RichText: DetailedContent {
 
@@ -30,7 +31,7 @@ extension RichText: DetailedContent {
         return "~\(durationText)"
     }
 
-    static func preloadContentFor(course: Course) -> Future<[CourseItem], XikoloError> {
+    static func preloadContentFor(course: Course) -> Future<[NSManagedObjectID], XikoloError> {
         return CourseItemHelper.syncRichTexts(forCourse: course)
     }
 

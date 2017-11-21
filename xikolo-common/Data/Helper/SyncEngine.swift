@@ -91,7 +91,8 @@ enum SynchronizationError : Error {
     case noRelationshipBetweenEnities(from: Any, to: Any)
     case toManyRelationshipBetweenEnities(from: Any, to: Any)
     case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
-    case missingIncludedResourse(from: Any, to: Any, withKey: KeyType)
+    case missingIncludedResource(from: Any, to: Any, withKey: KeyType)
+    case missingEnityNameForResource(Any)
 }
 
 enum NestedMarshalError: Error {
@@ -281,7 +282,6 @@ struct SyncEngine {
                 promise.success(resourceData)
             } catch {
                 promise.failure(.api(.serializationError(.jsonSerializationError(error))))
-                return
             }
         }
 
@@ -583,7 +583,7 @@ extension Pullable where Self: NSManagedObject {
                 throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
             }
         } else {
-            // TODO: throw custom error: object should be included (+ try to fetch first)?
+            throw SynchronizationError.missingIncludedResource(from: Self.self, to: A.self, withKey: key)
         }
     }
 
@@ -594,6 +594,7 @@ extension Pullable where Self: NSManagedObject {
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
         guard let resourceIdentifier = try? object.value(for: "\(key).data") as ResourceIdentifier else {
             self[keyPath: keyPath] = nil
+            // TODO: logging
             return
         }
 
@@ -609,23 +610,8 @@ extension Pullable where Self: NSManagedObject {
                 throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
             }
         } else {
-            // TODO: create PendingRelationship object (+ try to fetch first)
-            // objectId: self.objectID, relname: , desctinationObject (className: newObject.entity.managedObjectClassName, id: newObject.id)
-            let rels = self.entity.relationships(forDestination: A.entity())
-
-            guard let rel = rels.first else {
-                throw SynchronizationError.noRelationshipBetweenEnities(from: Self.self, to: A.self)
-            }
-
-            guard rels.count == 1 else {
-                throw SynchronizationError.toManyRelationshipBetweenEnities(from: Self.self, to: A.self)
-            }
-
-            let relname = rel.name
-            // TODO: create pendingRelationship
-
-            // reset current relationship
-            self[keyPath: keyPath] = nil
+            try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: false, inContext: context)
+            self[keyPath: keyPath] = nil // reset current relationship
         }
     }
 
@@ -652,7 +638,7 @@ extension Pullable where Self: NSManagedObject {
                         let newObject = try A.value(from: includedObject, including: includes, inContext: context)
                         self[keyPath: keyPath].insert(newObject)
                     } else {
-                        // TODO: create pending relationship (+ try to fetch first)
+                        try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: true, inContext: context)
                     }
                 }
             }
@@ -665,7 +651,6 @@ extension Pullable where Self: NSManagedObject {
             context.delete(currentObject)
         }
     }
-
 
     func updateAbstractRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
                                        forKey key: KeyType,
@@ -757,7 +742,7 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: Ab
                 throw NestedMarshalError.nestedMarshalError(error, includeType: C.type, includeKey: key)
             }
         } else {
-            throw SynchronizationError.missingIncludedResourse(from: A.self, to: B.self, withKey: self.key)
+            throw SynchronizationError.missingIncludedResource(from: A.self, to: B.self, withKey: self.key)
         }
     }
 

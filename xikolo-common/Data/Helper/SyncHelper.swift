@@ -31,14 +31,33 @@ class SyncHelper {
         }
 
         if let deleted = note.userInfo?[NSDeletedObjectsKey] as? Set<NSManagedObject>, deleted.count > 0 {
-            for case let course as Course in deleted {
-                SearchHelper.removeSearchIndex(for: course)
+            for object in deleted {
+                // Spotlight
+                if let course = object as? Course {
+                    SearchHelper.removeSearchIndex(for: course)
+                }
+
+                // PendingRelationship
+                if let pullableResource = object as? (NSManagedObject & Pullable) {
+                    PendingRelationshipHelper.deletePendingRelationship(forOrigin: pullableResource)
+                }
             }
         }
 
         if let inserted = note.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, inserted.count > 0 {
-            for case let course as Course in inserted {
-                SearchHelper.addSearchIndex(for: course)
+            for object in inserted {
+                // Spotlight
+                if let course = object as? Course {
+                    SearchHelper.addSearchIndex(for: course)
+                }
+
+                // PendingRelationship
+                if let pullableResource = object as? (NSManagedObject & Pullable) {
+                    PendingRelationshipHelper.conntectResources(withObject: pullableResource)
+                } else if let pendingRelationship = object as? PendingRelationship {
+                    PendingRelationshipHelper.conntectResources(withRelationship: pendingRelationship)
+                }
+
             }
         }
     }

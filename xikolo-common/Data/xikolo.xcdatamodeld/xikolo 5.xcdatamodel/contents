@@ -87,6 +87,14 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PendingRelationship" representedClassName=".PendingRelationship" syncable="YES">
+        <attribute name="destinationEnityName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="destinationObjectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originEnityName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originObjectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="relationshipName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="toManyRelationship" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="PlatformEvent" representedClassName=".PlatformEvent" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -179,5 +187,6 @@
         <element name="User" positionX="187" positionY="498" width="128" height="105"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="135"/>
         <element name="Video" positionX="621" positionY="-99" width="128" height="270"/>
+        <element name="PendingRelationship" positionX="234" positionY="-63" width="128" height="135"/>
     </elements>
 </model>

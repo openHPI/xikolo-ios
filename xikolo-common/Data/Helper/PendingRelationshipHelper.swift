@@ -18,6 +18,8 @@ struct PendingRelationshipHelper {
         }
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
             let fetchRequest: NSFetchRequest<PendingRelationship> = PendingRelationship.fetchRequest()
             let typePredicate = NSPredicate(format: "destinationEnityName = %@", destinationEnityName)
             let idPredicate = NSPredicate(format: "destinationObjectId = %@", destination.id)
@@ -27,9 +29,7 @@ struct PendingRelationshipHelper {
                 for relationship in relationships {
                     try self.conntectResources(withRelationship: relationship, inContext: context)
                 }
-                CoreDataHelper.save(context).onFailure { error in
-                    print("Error: Failed to save resource connection: \(error)")
-                }
+                try context.save()
             } catch {
                 print("Error: Failed to conntect resources: \(error)")
             }
@@ -38,11 +38,12 @@ struct PendingRelationshipHelper {
 
     static func conntectResources(withRelationship relationship: PendingRelationship) {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
             do {
-                try self.conntectResources(withRelationship: relationship, inContext: context)
-                CoreDataHelper.save(context).onFailure { error in
-                    print("Error: Failed to save resource connection: \(error)")
-                }
+                let object = context.object(with: relationship.objectID) as! PendingRelationship
+                try self.conntectResources(withRelationship: object, inContext: context)
+                try context.save()
             } catch {
                 print("Error: Failed to conntect resources: \(error)")
             }
@@ -51,24 +52,24 @@ struct PendingRelationshipHelper {
 
     private static func conntectResources(withRelationship relationship: PendingRelationship, inContext context: NSManagedObjectContext) throws {
         guard let origin = try self.findResource(withEntityName: relationship.originEnityName, withId: relationship.originObjectId, inContext: context) else {
-            print("Verbose: No resource found for origin of relationship")
+            print("Verbose: No resource found for origin of relationship. (EnityName: \(relationship.originEnityName), id: \(relationship.originObjectId)")
             return
         }
 
         guard let destination = try self.findResource(withEntityName: relationship.destinationEnityName, withId: relationship.destinationObjectId, inContext: context) else {
-            print("Verbose: No resource found for destination of relationship")
+            print("Verbose: No resource found for destination of relationship. (EnityName: \(relationship.destinationEnityName), id: \(relationship.destinationObjectId) (\(relationship.originEnityName), \(relationship.originObjectId)")
             return
         }
 
-        if relationship.toManyRelationship {
-            var currentValue = origin.value(forKey: relationship.relationshipName) as? [NSManagedObject] ?? []
-            currentValue.append(destination)
-            origin.setValue(Set(currentValue), forKey: relationship.relationshipName)
-        } else {
-            origin.setValue(destination, forKey: relationship.relationshipName)
-        }
-
-        context.delete(relationship)
+//        if relationship.toManyRelationship {
+//            var currentValue = origin.value(forKey: relationship.relationshipName) as? [NSManagedObject] ?? []
+//            currentValue.append(destination)
+//            origin.setValue(Set(currentValue), forKey: relationship.relationshipName)
+//        } else {
+//            origin.setValue(destination, forKey: relationship.relationshipName)
+//        }
+//
+//        context.delete(relationship)
     }
 
     private static func findResource(withEntityName entityName: String, withId objectId: String, inContext context: NSManagedObjectContext) throws -> NSManagedObject? {
@@ -78,7 +79,7 @@ struct PendingRelationshipHelper {
         let objects = try context.fetch(fetchRequest)
 
         if objects.count > 1 {
-            print("Warning: Found multiple resources for pending relationship")
+            print("Warning: Found multiple resources for pending relationship (entity name: \(entityName), \(objectId))")
         }
 
         return objects.first
@@ -90,24 +91,22 @@ struct PendingRelationshipHelper {
             return
         }
 
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let fetchRequest: NSFetchRequest<PendingRelationship> = PendingRelationship.fetchRequest()
-            let typePredicate = NSPredicate(format: "originEnityName = %@", originEnityName)
-            let idPredicate = NSPredicate(format: "originObjectId = %@", origin.id)
-            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [typePredicate, idPredicate])
-
-            do {
-                let objects = try context.fetch(fetchRequest)
-                for object in objects {
-                    context.delete(object)
-                }
-                CoreDataHelper.save(context).onFailure { error in
-                    print("Error: Failed to save deletion of pending relationship: \(error)")
-                }
-            } catch {
-                print("Error: Failed to delete pending relationship: \(error)")
-            }
-        }
+//        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+//            let fetchRequest: NSFetchRequest<PendingRelationship> = PendingRelationship.fetchRequest()
+//            let typePredicate = NSPredicate(format: "originEnityName = %@", originEnityName)
+//            let idPredicate = NSPredicate(format: "originObjectId = %@", origin.id)
+//            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [typePredicate, idPredicate])
+//
+//            do {
+//                let objects = try context.fetch(fetchRequest)
+//                for object in objects {
+//                    context.delete(object)
+//                }
+//                try context.save()
+//            } catch {
+//                print("Error: Failed to delete pending relationship: \(error)")
+//            }
+//        }
     }
 
 }

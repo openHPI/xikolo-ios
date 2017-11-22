@@ -12,7 +12,7 @@ extension CourseItemHelper {
 
     struct FetchRequest {
 
-        static func courseItems(forSection section: CourseSection) -> NSFetchRequest<CourseItem> {
+        static func orderedCourseItems(forSection section: CourseSection) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSPredicate(format: "section = %@", section)
             let titleSort = NSSortDescriptor(key: "position", ascending: true)
@@ -20,7 +20,7 @@ extension CourseItemHelper {
             return request
         }
 
-        static func courseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
+        static func orderedCourseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSPredicate(format: "section.course = %@", course)
             let sectionSort = NSSortDescriptor(key: "section.position", ascending: true)

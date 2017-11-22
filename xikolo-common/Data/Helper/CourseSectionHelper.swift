@@ -13,7 +13,7 @@ import BrightFutures
 struct CourseSectionHelper {
 
     static func syncCourseSections(forCourse course: Course) -> Future<[NSManagedObjectID], XikoloError> {
-        let fetchRequest = CourseSectionHelper.FetchRequest.courseSections(forCourse: course)
+        let fetchRequest = CourseSectionHelper.FetchRequest.allCourseSections(forCourse: course)
         var query = MultipleResourcesQuery(type: CourseSection.self)
         query.addFilter(forKey: "course", withValue: course.id)
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)

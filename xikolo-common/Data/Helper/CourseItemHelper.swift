@@ -13,7 +13,7 @@ import BrightFutures
 struct CourseItemHelper {
 
     static func syncCourseItems(forSection section: CourseSection) -> Future<[NSManagedObjectID], XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forSection: section)
+        let fetchRequest = CourseItemHelper.FetchRequest.orderedCourseItems(forSection: section)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
@@ -23,7 +23,11 @@ struct CourseItemHelper {
         return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sectionObjectIds in
             return sectionObjectIds.flatMap { sectionObjectId in
                 return CoreDataHelper.backgroundObject(withId: sectionObjectId) { (section: CourseSection) in
-                    return CourseItemHelper.syncCourseItems(forSection: section)
+                    if section.accessible {
+                        return CourseItemHelper.syncCourseItems(forSection: section)
+                    } else {
+                        return Future(value: [])
+                    }
                 }
             }.sequence()
         }

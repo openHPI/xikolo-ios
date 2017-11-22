@@ -7,6 +7,7 @@
 //
 
 import BrightFutures
+import CoreData
 import UIKit
 
 class TrackingHelper {
@@ -59,7 +60,7 @@ class TrackingHelper {
         ]
     }
 
-    @discardableResult class func createEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
+    @discardableResult class func createEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String?] = [:]) -> Future<NSManagedObjectID, XikoloError> {
         guard let userId = UserProfileHelper.userId else {
             return Future(error: .trackingForUnknownUser)
         }
@@ -82,17 +83,18 @@ class TrackingHelper {
         }
 
 
-        let promise = Promise<TrackingEvent, XikoloError>()
+        let promise = Promise<NSManagedObjectID, XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let trackingEvent = TrackingEvent(user: trackingUser,
                                               verb: trackingVerb,
                                               resource: trackingResource,
                                               trackingContext: trackingContext as [String: AnyObject],
                                               inContext: context)
-            CoreDataHelper.save(context).onSuccess {
-                promise.success(trackingEvent)
-            }.onFailure { error in
-                promise.failure(error)
+            do {
+                try context.save()
+                promise.success(trackingEvent.objectID)
+            } catch {
+                promise.failure(.coreData(error))
             }
         }
         return promise.future

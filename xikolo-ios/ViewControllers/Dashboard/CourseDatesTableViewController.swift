@@ -44,7 +44,9 @@ class CourseDatesTableViewController : UITableViewController {
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
 
-        resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: "course.title")
+        let fetchRequest = CourseDateHelper.FetchRequest.allCourseDates
+        fetchRequest.predicate = NSPredicate(format: "course != nil")
+        resultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: "course.title")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "CourseDateCell")
@@ -125,7 +127,13 @@ extension CourseDatesTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
-        AppDelegate.instance().goToCourse(courseDate.course)
+
+        guard let course = courseDate.course else {
+            print("Error: Did not find coruse for coruse date")
+            return
+        }
+
+        AppDelegate.instance().goToCourse(course)
     }
     
 }

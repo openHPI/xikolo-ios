@@ -10,7 +10,7 @@
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="announcements" inverseEntity="Course" syncable="YES"/>
     </entity>
     <entity name="Content" representedClassName=".Content" isAbstract="YES" syncable="YES" codeGenerationType="category">
-        <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="CourseItem" inverseName="content" inverseEntity="CourseItem" syncable="YES"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseItem" inverseName="content" inverseEntity="CourseItem" syncable="YES"/>
     </entity>
     <entity name="Course" representedClassName=".Course" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
@@ -54,7 +54,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visited" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="item" inverseEntity="Content" syncable="YES"/>
-        <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection" syncable="YES"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="items" inverseEntity="CourseSection" syncable="YES"/>
     </entity>
     <entity name="CourseSection" representedClassName=".CourseSection" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
@@ -171,10 +171,10 @@
     </entity>
     <elements>
         <element name="Announcement" positionX="304" positionY="146" width="128" height="150"/>
-        <element name="Content" positionX="666" positionY="198" width="128" height="58"/>
+        <element name="Content" positionX="666" positionY="198" width="128" height="60"/>
         <element name="Course" positionX="45" positionY="-18" width="128" height="375"/>
         <element name="CourseDate" positionX="214" positionY="-180" width="128" height="118"/>
-        <element name="CourseItem" positionX="468" positionY="165" width="128" height="208"/>
+        <element name="CourseItem" positionX="468" positionY="165" width="128" height="210"/>
         <element name="CourseSection" positionX="286" positionY="306" width="128" height="180"/>
         <element name="Enrollment" positionX="52" positionY="-216" width="128" height="150"/>
         <element name="LTIExercise" positionX="772" positionY="342" width="128" height="120"/>

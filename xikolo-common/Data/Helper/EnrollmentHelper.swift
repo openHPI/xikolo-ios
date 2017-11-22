@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import BrightFutures
+import Result
 
 struct EnrollmentHelper {
 
@@ -22,12 +23,16 @@ struct EnrollmentHelper {
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let enrollment = Enrollment(forCourse: course, inContext: context)
-            CoreDataHelper.save(context).flatMap {
-                return SyncEngine.saveResource(enrollment)
-                }.onSuccess {
+
+            do {
+                try context.save()
+                SyncEngine.saveResource(enrollment).onSuccess {
                     NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
                 }.onComplete { result in
                     promise.complete(result)
+                }
+            } catch {
+                promise.failure(.coreData(error))
             }
         }
 

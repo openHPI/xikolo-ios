@@ -37,7 +37,7 @@ final class PendingRelationship: NSManagedObject {
             throw SynchronizationError.missingEnityNameForResource(A.self)
         }
 
-        guard let destinationEnityName = A.entity().name else {
+        guard let destinationEnityName = B.entity().name else {
             throw SynchronizationError.missingEnityNameForResource(B.self)
         }
 

@@ -47,8 +47,8 @@ class CourseContentTableViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        let request = CourseItemHelper.FetchRequest.courseItems(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
+        let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
         let configuration = CourseContentTableViewConfiguration(tableViewController: self)
@@ -113,7 +113,7 @@ class CourseContentTableViewController: UITableViewController {
             return
         }
 
-        CourseItemHelper.syncCourseItems(forCourse: self.course).onSuccess { items in
+        CourseItemHelper.syncCourseItems(forCourse: self.course).onSuccess { _ in
             if !contentPreloadDeactivated {
                 self.preloadCourseContent()
             }

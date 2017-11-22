@@ -49,9 +49,9 @@ final class CourseSection : NSManagedObject {
 //        }
 //    }
 
-    var sectionName: String? {
-        return self.title
-    }
+//    var sectionName: String? {
+//        return self.title
+//    }
 
 }
 

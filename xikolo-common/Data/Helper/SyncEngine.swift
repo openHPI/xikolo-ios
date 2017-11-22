@@ -366,6 +366,8 @@ struct SyncEngine {
         let promise = Promise<[NSManagedObjectID], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
             let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
             let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
                 return self.doNetworkRequest(request)
@@ -374,7 +376,12 @@ struct SyncEngine {
             coreDataFetch.zip(networkRequest).flatMap { objects, json in
                 return self.mergeResources(object: json, withExistingObjects: objects, inContext: context)
             }.inject {
-                CoreDataHelper.save(context)
+                do {
+                    try context.save()
+                    return Future(value: ())
+                } catch {
+                    return Future(error: .coreData(error))
+                }
             }.map { objects in
                 return objects.map { $0.objectID }
             }.onComplete { result in
@@ -393,6 +400,8 @@ struct SyncEngine {
         let promise = Promise<NSManagedObjectID, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
             let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
             let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
                 return self.doNetworkRequest(request)
@@ -401,7 +410,12 @@ struct SyncEngine {
             coreDataFetch.zip(networkRequest).flatMap { object, json -> Future<Resource, XikoloError> in
                 return self.mergeResource(object: json, withExistingObject: object, inContext: context)
             }.inject {
-                CoreDataHelper.save(context)
+                do {
+                    try context.save()
+                    return Future(value: ())
+                } catch {
+                    return Future(error: .coreData(error))
+                }
             }.map { object in
                 return object.objectID
             }.onComplete { result in
@@ -611,7 +625,6 @@ extension Pullable where Self: NSManagedObject {
             }
         } else {
             try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: false, inContext: context)
-            self[keyPath: keyPath] = nil // reset current relationship
         }
     }
 

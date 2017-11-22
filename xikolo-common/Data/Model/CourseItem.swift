@@ -109,7 +109,7 @@ extension CourseItem : Pullable {
         let relationships = try object.value(for: "relationships") as JSON
         try self.updateRelationship(forKeyPath: \CourseItem.section, forKey: "section", fromObject: relationships, including: includes, inContext: context)
 
-        try self.updateAbstractRelationship(forKeyPath: \CourseItem.content, forKey: "content", fromObject: relationships, including: includes, inContext: context) { container in
+        try? self.updateAbstractRelationship(forKeyPath: \CourseItem.content, forKey: "content", fromObject: relationships, including: includes, inContext: context) { container in
             try container.update(forType: Video.self)
             try container.update(forType: RichText.self)
             try container.update(forType: Quiz.self)

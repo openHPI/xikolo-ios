@@ -20,11 +20,20 @@ struct AnnouncementHelper {
         }
     }
 
-    static func markAsVisited(announcement: Announcement) -> Future<Void, XikoloError> {
-        announcement.visited = true
-        return SyncEngine.saveResource(announcement).onSuccess { _ in
-            self.updateUnreadAnnouncementsBadge()
+    static func markAsVisited(_ announcement: Announcement) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let announcement = context.object(with: announcement.objectID) as! Announcement
+            announcement.visited = true
+            try? context.save()
+            let saveFuture = SyncEngine.saveResource(announcement).onSuccess { _ in
+                self.updateUnreadAnnouncementsBadge()
+            }
+            promise.completeWith(saveFuture)
         }
+
+        return promise.future
     }
 
     private static func updateUnreadAnnouncementsBadge() {

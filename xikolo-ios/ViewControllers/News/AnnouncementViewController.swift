@@ -59,7 +59,7 @@ class AnnouncementViewController : UIViewController {
             self.textView.text = "[...]"
         }
 
-        AnnouncementHelper.markAsVisited(announcement: self.announcement)
+        AnnouncementHelper.markAsVisited(self.announcement)
         TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
     }
 

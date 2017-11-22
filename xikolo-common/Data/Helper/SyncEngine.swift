@@ -300,7 +300,7 @@ struct SyncEngine {
 
             for d in data {
                 let id = try d.value(for: "id") as String
-                if let existingObject = existingObjects.first(where: { $0.id == id }) {
+                if var existingObject = existingObjects.first(where: { $0.id == id }) {
                     try existingObject.update(withObject: d, including: includes, inContext: context)
                     if let index = existingObjects.index(of: existingObject) {
                         existingObjects.remove(at: index)
@@ -338,7 +338,7 @@ struct SyncEngine {
                 return Future(error: .api(.resourceNotFound))
             }
 
-            if let existingObject = existingObject {
+            if var existingObject = existingObject {
                 if existingObject.id == id {
                     try existingObject.update(withObject: data, including: includes, inContext: context)
                     newObject = existingObject
@@ -554,7 +554,7 @@ protocol Pullable : ResourceRepresentable {
 
     static func value(from object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws -> Self
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws
+    mutating func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws
 
 }
 
@@ -590,7 +590,7 @@ extension Pullable where Self: NSManagedObject {
         let resourceIdentifier = try object.value(for: "\(key).data") as ResourceIdentifier
 
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
-            let existingObject = self[keyPath: keyPath]
+            var existingObject = self[keyPath: keyPath]
             do {
                 try existingObject.update(withObject: includedObject, including: includes, inContext: context)
             } catch let error as MarshalError {
@@ -615,16 +615,26 @@ extension Pullable where Self: NSManagedObject {
 
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
             do {
-                if let existingObject = self[keyPath: keyPath] {
+                if var existingObject = self[keyPath: keyPath] {
                     try existingObject.update(withObject: includedObject, including: includes, inContext: context)
                 } else {
-                    self[keyPath: keyPath] = try A.value(from: includedObject, including: includes, inContext: context)
+                    if var fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                        try fetchedResource.update(withObject: includedObject, including: includes, inContext: context)
+                        self[keyPath: keyPath] = fetchedResource
+                    } else {
+                        self[keyPath: keyPath] = try A.value(from: includedObject, including: includes, inContext: context)
+                    }
                 }
             } catch let error as MarshalError {
                 throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
             }
         } else {
-            try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: false, inContext: context)
+            if let fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                self[keyPath: keyPath] = fetchedResource
+            } else {
+//                try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: false, inContext: context)
+                print("Create pending relationship")
+            }
         }
     }
 
@@ -638,7 +648,7 @@ extension Pullable where Self: NSManagedObject {
 
         do {
             for resourceIdentifier in resourceIdentifiers {
-                if let currentObject = currentObjects.first(where: { $0.id == resourceIdentifier.id }) {
+                if var currentObject = currentObjects.first(where: { $0.id == resourceIdentifier.id }) {
                     if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
                         try currentObject.update(withObject: includedObject, including: includes, inContext: context)
                     }
@@ -648,17 +658,26 @@ extension Pullable where Self: NSManagedObject {
                     }
                 } else {
                     if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
-                        let newObject = try A.value(from: includedObject, including: includes, inContext: context)
-                        self[keyPath: keyPath].insert(newObject)
+                        if var fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                            try fetchedResource.update(withObject: includedObject, including: includes, inContext: context)
+                            self[keyPath: keyPath].insert(fetchedResource)
+                        } else {
+                            let newObject = try A.value(from: includedObject, including: includes, inContext: context)
+                            self[keyPath: keyPath].insert(newObject)
+                        }
                     } else {
-                        try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: true, inContext: context)
+                        if let fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                            self[keyPath: keyPath].insert(fetchedResource)
+                        } else {
+//                            try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: true, inContext: context)
+                            print("Create pending relationship")
+                        }
                     }
                 }
             }
         } catch let error as MarshalError {
             throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
         }
-
 
         for currentObject in currentObjects {
             context.delete(currentObject)
@@ -677,6 +696,25 @@ extension Pullable where Self: NSManagedObject {
         guard container.wasUpdated else {
             throw SynchronizationError.abstractRelationshipNotUpdated(from: Self.self, to: A.self, withKey: key)
         }
+    }
+
+    private func findExistingResource<Resource>(withId objectId: String,
+                                                ofType type: Resource.Type,
+                                                inContext context: NSManagedObjectContext) throws -> Resource? where Resource: NSManagedObject & Pullable {
+        guard let entityName = Resource.entity().name else {
+            throw SynchronizationError.missingEnityNameForResource(Resource.self)
+        }
+
+        let fetchRequest: NSFetchRequest<Resource> = NSFetchRequest(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "id = %@", objectId)
+
+        let objects = try context.fetch(fetchRequest)
+
+        if objects.count > 1 {
+            print("Warning: Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))")
+        }
+
+        return objects.first
     }
 
 
@@ -744,7 +782,7 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: Ab
 //                throw NestedMarshalError.nestedMarshalError(error, includeType: C.type, includeKey: self.key)
 //            }
             do {
-                if let existingObject = self.resource[keyPath: self.keyPath] as? C{
+                if var existingObject = self.resource[keyPath: self.keyPath] as? C{
                     try existingObject.update(withObject: includedObject, including: includes, inContext: context)
                     self.markAsUpdated()
                 } else if let newObject = try C.value(from: includedObject, including: includes, inContext: context) as? B {

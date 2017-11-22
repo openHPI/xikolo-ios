@@ -123,11 +123,9 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     func showItem(_ item: CourseItem) {
+        CourseItemHelper.markAsVisited(item)
         TrackingHelper.createEvent(.visitedItem, resource: item)
-        //save read state to server
-        item.visited = true
-        SyncEngine.saveResource(item)
-        
+
         switch item.content {
             case is Video:
                 performSegue(withIdentifier: "ShowVideo", sender: item)

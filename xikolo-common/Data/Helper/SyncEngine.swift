@@ -285,8 +285,11 @@ struct SyncEngine {
             }
         }
 
+        NetworkIndicator.start()
         task.resume()
-        return promise.future
+        return promise.future.onComplete { _ in
+            NetworkIndicator.end()
+        }
     }
 
     // MARK: - merge

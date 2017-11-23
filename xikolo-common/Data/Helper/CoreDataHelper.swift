@@ -47,30 +47,30 @@ class CoreDataHelper {
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    static func save(_ context: NSManagedObjectContext) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
-
-        context.perform {
-            if context.hasChanges {
-                do {
-                    try context.save()
-                    promise.success(())
-                } catch {
-                    promise.failure(.coreData(error))
-                }
-            } else {
-                promise.success(())
-            }
-        }
-
-        return promise.future
-    }
+//    static func save(_ context: NSManagedObjectContext) -> Future<Void, XikoloError> {
+//        let promise = Promise<Void, XikoloError>()
+//
+//        context.perform {
+//            if context.hasChanges {
+//                do {
+//                    try context.save()
+//                    promise.success(())
+//                } catch {
+//                    promise.failure(.coreData(error))
+//                }
+//            } else {
+//                promise.success(())
+//            }
+//        }
+//
+//        return promise.future
+//    }
 
     static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
                                                             sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
         // TODO: Add cache name
         return NSFetchedResultsController<T>(fetchRequest: fetchRequest,
-                                             managedObjectContext: persistentContainer.viewContext,
+                                             managedObjectContext: self.persistentContainer.viewContext,
                                              sectionNameKeyPath: sectionNameKeyPath,
                                              cacheName: nil)
     }
@@ -182,47 +182,47 @@ class CoreDataHelper {
 //        return result
 //    }
 
-    static func backgroundObject<T, U>(withId managedObjectId: NSManagedObjectID, task: @escaping (T) -> U) -> Future<U, XikoloError> {
-        let promise = Promise<U, XikoloError>()
+//    static func backgroundObject<T, U>(withId managedObjectId: NSManagedObjectID, task: @escaping (T) -> U) -> Future<U, XikoloError> {
+//        let promise = Promise<U, XikoloError>()
+//
+//        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+//            let managedObject = context.object(with: managedObjectId)
+//            guard let object = managedObject as? T else {
+//                promise.failure(.coreDataTypeMismatch(expected: T.self, found: type(of: managedObject)))
+//                return
+//            }
+//
+//            promise.success(task(object))
+//        }
+//
+//        return promise.future
+//    }
+//
+//    static func backgroundObject<T, U>(withId managedObjectId: NSManagedObjectID, task: @escaping (T) -> Future<U, XikoloError>) -> Future<U, XikoloError> {
+//        let promise = Promise<U, XikoloError>()
+//
+//        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+//            let managedObject = context.object(with: managedObjectId)
+//            guard let object = managedObject as? T else {
+//                promise.failure(.coreDataTypeMismatch(expected: T.self, found: type(of: managedObject)))
+//                return
+//            }
+//
+//            promise.completeWith(task(object))
+//        }
+//
+//        return promise.future
+//    }
 
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let managedObject = context.object(with: managedObjectId)
-            guard let object = managedObject as? T else {
-                promise.failure(.coreDataTypeMismatch(expected: T.self, found: type(of: managedObject)))
-                return
-            }
 
-            promise.success(task(object))
-        }
-
-        return promise.future
-    }
-
-    static func backgroundObject<T, U>(withId managedObjectId: NSManagedObjectID, task: @escaping (T) -> Future<U, XikoloError>) -> Future<U, XikoloError> {
-        let promise = Promise<U, XikoloError>()
-
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let managedObject = context.object(with: managedObjectId)
-            guard let object = managedObject as? T else {
-                promise.failure(.coreDataTypeMismatch(expected: T.self, found: type(of: managedObject)))
-                return
-            }
-
-            promise.completeWith(task(object))
-        }
-
-        return promise.future
-    }
-
-
-    static func delete(_ object: NSManagedObject) -> Future<Void, XikoloError> {
-        return Future { complete in
-            self.persistentContainer.performBackgroundTask { context in
-                context.delete(context.object(with: object.objectID))
-                self.save(context).onComplete { complete($0) }
-            }
-        }
-    }
+//    static func delete(_ object: NSManagedObject) -> Future<Void, XikoloError> {
+//        return Future { complete in
+//            self.persistentContainer.performBackgroundTask { context in
+//                context.delete(context.object(with: object.objectID))
+//                self.save(context).onComplete { complete($0) }
+//            }
+//        }
+//    }
 
     static func clearCoreDataStorage() {
         for entityName in managedObjectModel.entitiesByName.keys {
@@ -230,7 +230,7 @@ class CoreDataHelper {
         }
     }
 
-    static func clearCoreDataEntity(_ entityName: String) {
+    private static func clearCoreDataEntity(_ entityName: String) {
         self.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             privateManagedObjectContext.shouldDeleteInaccessibleFaults = true
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
@@ -288,6 +288,17 @@ extension NSManagedObjectContext {
         }
 
         return object
+    }
+
+    func saveWithResult() -> Result<Void, XikoloError> {
+        do {
+            if self.hasChanges {
+                try self.save()
+            }
+            return .success(())
+        } catch {
+            return .failure(.coreData(error))
+        }
     }
 
 }

@@ -24,15 +24,12 @@ struct EnrollmentHelper {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let enrollment = Enrollment(forCourse: course, inContext: context)
 
-            do {
-                try context.save()
-                SyncEngine.saveResource(enrollment).onSuccess {
-                    NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
-                }.onComplete { result in
-                    promise.complete(result)
-                }
-            } catch {
-                promise.failure(.coreData(error))
+            context.saveWithResult().flatMap { _ in
+                SyncEngine.saveResource(enrollment)
+            }.onSuccess {
+                NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
+            }.onComplete { result in
+                promise.complete(result)
             }
         }
 
@@ -40,8 +37,15 @@ struct EnrollmentHelper {
     }
 
     static func delete(_ enrollment: Enrollment) -> Future<Void, XikoloError> {
+        // TODO: delete after pushed to server but keep deleted state in local database
         return SyncEngine.deleteResource(enrollment).onSuccess {
-            CoreDataHelper.delete(enrollment)
+            CoreDataHelper.persistentContainer.performBackgroundTask { context in
+                let enrollment = context.object(with: enrollment.objectID) as Enrollment
+                context.delete(enrollment)
+
+                try? context.save()
+            }
+
             NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
         }
     }
@@ -52,8 +56,32 @@ struct EnrollmentHelper {
             return Future(error: .totallyUnknownError) // TODO: better error
         }
 
-        enrollment.completed = true
-        return SyncEngine.saveResource(enrollment)
+//        enrollment.completed = true
+//        return SyncEngine.saveResource(enrollment)
+
+        let promise = Promise<Void, XikoloError>()
+
+//        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+//            let enrollment = context.object(with: enrollment.objectID) as Enrollment
+//            enrollment.completed = true
+//            try? context.save()
+//            let saveFuture = SyncEngine.saveResource(enrollment)
+//            promise.completeWith(saveFuture)
+//            Result.init(attempt: { return try? context.save() })
+//        }
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let enrollment = context.object(with: enrollment.objectID) as Enrollment
+            enrollment.completed = true
+
+            context.saveWithResult().flatMap { _ in
+                SyncEngine.saveResource(enrollment)
+            }.onComplete { result in
+                promise.complete(result)
+            }
+        }
+
+        return promise.future
     }
 }
 

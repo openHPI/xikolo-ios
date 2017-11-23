@@ -46,14 +46,32 @@ class AppDelegate : AbstractAppDelegate {
         if let target = XikoloURL.parseURL(url) {
             switch target.type {
                 case .course:
-                    let fetchRequest = CourseHelper.FetchRequest.course(withId: target.targetId)
-                    if case let .success(course) = CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .view) {
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailTabBarController") as! CourseTabBarController
-                        vc.course = course
-                        window?.rootViewController?.present(vc, animated: false, completion: nil)
+                    var couldfindCourse = false
+                    CoreDataHelper.viewContext.performAndWait {
+                        let fetchRequest = CourseHelper.FetchRequest.course(withId: target.targetId)
+                        switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                        case .success(let course):
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailTabBarController") as! CourseTabBarController
+                            vc.course = course
+                            window?.rootViewController?.present(vc, animated: false, completion: nil)
+                            couldfindCourse = true
+                        case .failure(let error):
+                            print("Warning: Could not find course")
+                        }
+                    }
+
+                    if couldFindCourse {
                         return true
                     }
+
+//                    if case let .success(course) = CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .view) {
+//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailTabBarController") as! CourseTabBarController
+//                        vc.course = course
+//                        window?.rootViewController?.present(vc, animated: false, completion: nil)
+//                        return true
+//                    }
             }
         }
         return false

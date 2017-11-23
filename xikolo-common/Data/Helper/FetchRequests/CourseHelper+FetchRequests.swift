@@ -47,7 +47,7 @@ extension CourseHelper {
         }
 
         static var allCourses: NSFetchRequest<Course> {
-            return self.genericCoursesRequest
+            return Course.fetchRequest() as NSFetchRequest<Course>
         }
 
         static var unenrolledCourses: NSFetchRequest<Course> {

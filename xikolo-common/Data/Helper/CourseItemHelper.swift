@@ -21,14 +21,23 @@ struct CourseItemHelper {
 
     static func syncCourseItems(forCourse course: Course) -> Future<[[NSManagedObjectID]], XikoloError> {
         return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sectionObjectIds in
-            return sectionObjectIds.flatMap { sectionObjectId in
-                return CoreDataHelper.backgroundObject(withId: sectionObjectId) { (section: CourseSection) in
-                    if section.accessible {
-                        return CourseItemHelper.syncCourseItems(forSection: section)
-                    } else {
-                        return Future(value: [])
-                    }
+            return sectionObjectIds.flatMap { sectionObjectId -> Future<[NSManagedObjectID], XikoloError> in
+                let promise = Promise<[NSManagedObjectID], XikoloError>()
+
+                CoreDataHelper.persistentContainer.performBackgroundTask { context in
+                    let courseSection = context.object(with: sectionObjectId) as! CourseSection
+                    let courseItemsFuture = CourseItemHelper.syncCourseItems(forSection: courseSection)
+                    promise.completeWith(courseItemsFuture)
                 }
+
+                return promise.future
+//                return CoreDataHelper.backgroundObject(withId: sectionObjectId) { (section: CourseSection) in
+//                    if section.accessible {
+//                        return CourseItemHelper.syncCourseItems(forSection: section)
+//                    } else {
+//                        return Future(value: [])
+//                    }
+//                }
             }.sequence()
         }
     }

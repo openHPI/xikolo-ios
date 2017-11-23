@@ -11,6 +11,8 @@ import SafariServices
 import SDWebImage
 import MessageUI
 
+import Result
+
 class SettingsViewController: UITableViewController {
 
     enum HeaderHeight: CGFloat {
@@ -45,6 +47,16 @@ class SettingsViewController: UITableViewController {
                     self.updateProfileInfo()
                 }
             }
+
+            if oldValue != nil {
+                oldValue?.removeNotifications(self)
+            }
+
+            self.user?.notifyOnChange(self, updateHandler: {
+                DispatchQueue.main.async {
+                    self.updateProfileInfo()
+                }
+            }, deleteHandler: {})
         }
     }
 
@@ -76,18 +88,34 @@ class SettingsViewController: UITableViewController {
         if UserProfileHelper.isLoggedIn(), let userId = UserProfileHelper.userId {
             self.navigationItem.rightBarButtonItem = nil
 
-            let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
-            CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .viewContext) { user in
-                self.user = user
+            CoreDataHelper.viewContext.perform {
+                let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+                if case .success(let user) = CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                    self.user = user
+                }
 
-                self.user?.notifyOnChange(self, updateHandler: {
-                    DispatchQueue.main.async {
-                        self.updateProfileInfo()
-                    }
-                }, deleteHandler: {})
-            }.onComplete { _ in
-                UserHelper.syncMe()
+                UserHelper.syncMe().onSuccess { managedObjectID in
+                    self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as! User
+                }
             }
+
+//            let users = try? CoreDataHelper.viewContext.fetch(fetchRequest)
+//
+//            if let user = users?.first {
+//                self.user = user
+//            }
+//
+//            UserHelper.syncMe().onSuccess { managedObjectID in
+//                self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as! User
+//            }
+
+//            CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .viewContext) { user in
+//                self.user = user
+//            }.onComplete { _ in
+//                UserHelper.syncMe().onSuccess { managedObjectID in
+//                    self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as! User
+//                }
+//            }
         } else {
             self.navigationItem.rightBarButtonItem = self.loginButton
             self.user = nil

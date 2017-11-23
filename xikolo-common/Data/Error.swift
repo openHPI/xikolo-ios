@@ -15,6 +15,7 @@ enum XikoloError : Error {
 
     case coreData(Error)
     case coreDataObjectNotFound
+    case coreDataMoreThanOneObjectFound
     case coreDataTypeMismatch(expected: Any, found: Any)
 
     case invalidData

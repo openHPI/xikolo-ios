@@ -80,18 +80,23 @@ class AppDelegate : AbstractAppDelegate {
                     //support /courses/slug -> course detail page or learning
                     let slug = url.pathComponents[2]
                     //get course by slug
-                    //todo the course might not be synced yet, than we could try to fetch from the API by slug
-                    let fetchRequest = CourseHelper.FetchRequest.course(withSlug: slug)
 
-                    let result = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) { course in
-                        self.goToCourse(course)
+                    //TODO: the course might not be synced yet, than we could try to fetch from the API by slug
+                    let fetchRequest = CourseHelper.FetchRequest.course(withSlug: slug)
+                    var couldFindCourse = false
+
+                    CoreDataHelper.viewContext.performAndWait {
+                        switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                        case .success(let course):
+                            couldFindCourse = true
+                            self.goToCourse(course)
+                        case .failure(let error):
+                            print("Warning: could not find course: \(error)")
+                        }
                     }
 
-                    switch result {
-                    case .success(_):
+                    if couldFindCourse {
                         return true
-                    case .failure(let error):
-                        print("Warning: could not find course: \(error)")
                     }
                 } else {
                     rootViewController.selectedIndex = 1

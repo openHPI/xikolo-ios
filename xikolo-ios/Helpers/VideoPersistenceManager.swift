@@ -69,12 +69,22 @@ class VideoPersistenceManager: NSObject {
             for task in tasks {
                 guard let assetDownloadTask = task as? AVAssetDownloadTask, let videoId = task.taskDescription else { break }
 
-                let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
-                CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .newBackgroundContext) { video in
-                    self.activeDownloadsMap[assetDownloadTask] = video
-                }.onFailure{ error in
-                    print("Failed to restore download for video \(videoId) : \(error)")
+                CoreDataHelper.persistentContainer.performBackgroundTask { context in
+                    let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
+                    switch context.fetchSingle(fetchRequest) {
+                    case .success(let video):
+                        self.activeDownloadsMap[assetDownloadTask] = video
+                    case .failure(let error):
+                        print("Failed to restore download for video \(videoId) : \(error)")
+                    }
                 }
+
+//                let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
+//                CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .newBackgroundContext) { video in
+//                    self.activeDownloadsMap[assetDownloadTask] = video
+//                }.onFailure{ error in
+//
+//                }
             }
         }
     }

@@ -183,12 +183,14 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowVideo"?:
             let videoView = segue.destination as! VideoViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-            let result = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) { courseItem in
-                videoView.courseItem = courseItem
-            }
 
-            if case let .failure(error) = result {
-                print("Error: Could not find course item: \(error)")
+            CoreDataHelper.viewContext.perform {
+                switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                case .success(let courseItem):
+                    videoView.courseItem = courseItem
+                case .failure(let error):
+                    print("Error: Could not find course item: \(error)")
+                }
             }
         case "ShowQuiz"?:
             let webView = segue.destination as! WebViewController
@@ -201,12 +203,14 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowRichtext"?:
             let richtextView = segue.destination as! RichtextViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-            let result = CoreDataHelper.fetchSingleObjectAndWait(fetchRequest: fetchRequest, inContext: .viewContext) { courseItem in
-                richtextView.courseItem = courseItem
-            }
 
-            if case let .failure(error) = result {
-                print("Error: Could not find course item: \(error)")
+            CoreDataHelper.viewContext.perform {
+                switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                case .success(let courseItem):
+                    richtextView.courseItem = courseItem
+                case .failure(let error):
+                    print("Error: Could not find course item: \(error)")
+                }
             }
         default:
             super.prepare(for: segue, sender: sender)

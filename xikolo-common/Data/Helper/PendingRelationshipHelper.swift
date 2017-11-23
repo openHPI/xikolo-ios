@@ -41,7 +41,7 @@ struct PendingRelationshipHelper {
             context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
             do {
-                let object = context.object(with: relationship.objectID) as! PendingRelationship
+                let object = context.object(with: relationship.objectID) as PendingRelationship
                 try self.conntectResources(withRelationship: object, inContext: context)
                 try context.save()
             } catch {

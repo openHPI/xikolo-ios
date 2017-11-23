@@ -24,7 +24,7 @@ struct AnnouncementHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let announcement = context.object(with: announcement.objectID) as! Announcement
+            let announcement = context.object(with: announcement.objectID) as Announcement
             announcement.visited = true
             try? context.save()
             let saveFuture = SyncEngine.saveResource(announcement).onSuccess { _ in

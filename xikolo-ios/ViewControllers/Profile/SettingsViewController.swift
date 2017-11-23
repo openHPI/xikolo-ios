@@ -95,7 +95,7 @@ class SettingsViewController: UITableViewController {
                 }
 
                 UserHelper.syncMe().onSuccess { managedObjectID in
-                    self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as! User
+                    self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as User
                 }
             }
 

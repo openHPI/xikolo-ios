@@ -281,6 +281,15 @@ extension NSManagedObjectContext {
         }
     }
 
+    func object<T>(with id: NSManagedObjectID) -> T where T: NSManagedObject {
+        let managedObject = self.object(with: id)
+        guard let object = managedObject as? T else {
+            fatalError("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
+        }
+
+        return object
+    }
+
 }
 
 //extension NSPersistentContainer {

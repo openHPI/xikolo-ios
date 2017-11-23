@@ -25,7 +25,7 @@ struct CourseItemHelper {
                 let promise = Promise<[NSManagedObjectID], XikoloError>()
 
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                    let courseSection = context.object(with: sectionObjectId) as! CourseSection
+                    let courseSection = context.object(with: sectionObjectId) as CourseSection
                     let courseItemsFuture = CourseItemHelper.syncCourseItems(forSection: courseSection)
                     promise.completeWith(courseItemsFuture)
                 }
@@ -64,7 +64,7 @@ struct CourseItemHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let courseItem = context.object(with: item.objectID) as! CourseItem
+            let courseItem = context.object(with: item.objectID) as CourseItem
             courseItem.visited = true
             try? context.save()
             let saveFuture = SyncEngine.saveResource(courseItem)

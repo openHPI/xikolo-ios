@@ -298,20 +298,25 @@ struct SyncEngine {
         do {
             var existingObjects = objects
             var newObjects: [Resource] = []
-            let data = try object.value(for: "data") as [ResourceData]
+            let dataArray = try object.value(for: "data") as [ResourceData]
             let includes = try? object.value(for: "included") as [ResourceData]
 
-            for d in data {
-                let id = try d.value(for: "id") as String
+            for data in dataArray {
+                let id = try data.value(for: "id") as String
                 if var existingObject = existingObjects.first(where: { $0.id == id }) {
-                    try existingObject.update(withObject: d, including: includes, inContext: context)
+                    try existingObject.update(withObject: data, including: includes, inContext: context)
                     if let index = existingObjects.index(of: existingObject) {
                         existingObjects.remove(at: index)
                     }
                     newObjects.append(existingObject)
                 } else {
-                    let newObject = try Resource.value(from: d, including: includes, inContext: context)
-                    newObjects.append(newObject)
+                    if var fetchedResource = try self.findExistingResource(withId: id, ofType: Resource.self, inContext: context) {
+                        try fetchedResource.update(withObject: data, including: includes, inContext: context)
+                        newObjects.append(fetchedResource)
+                    } else {
+                        let newObject = try Resource.value(from: data, including: includes, inContext: context)
+                        newObjects.append(newObject)
+                    }
                 }
             }
 
@@ -350,7 +355,12 @@ struct SyncEngine {
                     newObject = try Resource.value(from: data, including: includes, inContext: context)
                 }
             } else {
-                newObject = try Resource.value(from: data, including: includes, inContext: context)
+                if var fetchedResource = try self.findExistingResource(withId: id, ofType: Resource.self, inContext: context) {
+                    try fetchedResource.update(withObject: data, including: includes, inContext: context)
+                    newObject = fetchedResource
+                } else {
+                    newObject = try Resource.value(from: data, including: includes, inContext: context)
+                }
             }
 
             return Future(value: newObject)
@@ -482,6 +492,25 @@ struct SyncEngine {
         }.onFailure { error in
             print("Failed to delete resource: \(resource) ==> \(error)")
         }.asVoid()
+    }
+
+    static func findExistingResource<Resource>(withId objectId: String,
+                                               ofType type: Resource.Type,
+                                               inContext context: NSManagedObjectContext) throws -> Resource? where Resource: NSManagedObject & Pullable {
+        guard let entityName = Resource.entity().name else {
+            throw SynchronizationError.missingEnityNameForResource(Resource.self)
+        }
+
+        let fetchRequest: NSFetchRequest<Resource> = NSFetchRequest(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "id = %@", objectId)
+
+        let objects = try context.fetch(fetchRequest)
+
+        if objects.count > 1 {
+            print("Warning: Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))")
+        }
+
+        return objects.first
     }
 
 }
@@ -621,7 +650,7 @@ extension Pullable where Self: NSManagedObject {
                 if var existingObject = self[keyPath: keyPath] {
                     try existingObject.update(withObject: includedObject, including: includes, inContext: context)
                 } else {
-                    if var fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                    if var fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                         try fetchedResource.update(withObject: includedObject, including: includes, inContext: context)
                         self[keyPath: keyPath] = fetchedResource
                     } else {
@@ -632,7 +661,7 @@ extension Pullable where Self: NSManagedObject {
                 throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
             }
         } else {
-            if let fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+            if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                 self[keyPath: keyPath] = fetchedResource
             } else {
 //                try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: false, inContext: context)
@@ -661,7 +690,7 @@ extension Pullable where Self: NSManagedObject {
                     }
                 } else {
                     if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
-                        if var fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                        if var fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                             try fetchedResource.update(withObject: includedObject, including: includes, inContext: context)
                             self[keyPath: keyPath].insert(fetchedResource)
                         } else {
@@ -669,7 +698,7 @@ extension Pullable where Self: NSManagedObject {
                             self[keyPath: keyPath].insert(newObject)
                         }
                     } else {
-                        if let fetchedResource = try self.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                        if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                             self[keyPath: keyPath].insert(fetchedResource)
                         } else {
 //                            try PendingRelationship(origin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: true, inContext: context)
@@ -700,26 +729,6 @@ extension Pullable where Self: NSManagedObject {
             throw SynchronizationError.abstractRelationshipNotUpdated(from: Self.self, to: A.self, withKey: key)
         }
     }
-
-    private func findExistingResource<Resource>(withId objectId: String,
-                                                ofType type: Resource.Type,
-                                                inContext context: NSManagedObjectContext) throws -> Resource? where Resource: NSManagedObject & Pullable {
-        guard let entityName = Resource.entity().name else {
-            throw SynchronizationError.missingEnityNameForResource(Resource.self)
-        }
-
-        let fetchRequest: NSFetchRequest<Resource> = NSFetchRequest(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "id = %@", objectId)
-
-        let objects = try context.fetch(fetchRequest)
-
-        if objects.count > 1 {
-            print("Warning: Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))")
-        }
-
-        return objects.first
-    }
-
 
 //    func updateAbstractRelationship<A, B>(withContainer container: AbstractPullableContainer<Self, A>,
 //                                          withType: B.Type) throws where B: NSManagedObject & Pullable {

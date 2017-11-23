@@ -9,17 +9,10 @@
 import Foundation
 
 final class CourseCertificates : NSObject, NSCoding, IncludedPullable {
-//class CourseCertificates : NSObject, NSCoding, EmbeddedObject {
 
     var confirmationOfParticipation: CourseCertificatesHash?
     var recordOfAchievement: CourseCertificatesHash?
     var certificate: CourseCertificatesHash?
-
-//    required init(_ dict: [String : AnyObject]) {
-//        confirmationOfParticipation = dict["confirmation_of_participation"] as? CourseCertificatesHash
-//        recordOfAchievement = dict["record_of_achievement"] as? CourseCertificatesHash
-//        certificate = dict["qualified_certificate"] as? CourseCertificatesHash
-//    }
 
     required init(object: ResourceData) throws {
         self.confirmationOfParticipation = try object.value(for: "confirmation_of_participation")
@@ -40,14 +33,3 @@ final class CourseCertificates : NSObject, NSCoding, IncludedPullable {
     }
     
 }
-
-//extension CourseCertificates: Unmarshaling {
-//
-//    required init(object: MarshaledObject) throws {
-//        self.confirmationOfParticipation = try object.value(for: "confirmation_of_participation")
-//        self.recordOfAchievement = try object.value(for: "record_of_achievement")
-//        self.certificate = try object.value(for: "qualified_certificate")
-//    }
-//
-//}
-

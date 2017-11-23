@@ -18,12 +18,4 @@ struct RichTextHelper {
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-//    @discardableResult static func refresh(richText: RichText) -> Future<RichText, XikoloError> {
-//        return RichTextProvider.getRichText(richText.id).flatMap { (spineRichText: RichTextSpine) -> Future<[RichText], XikoloError> in
-//            return SpineModelHelper.syncObjectsFuture([richText], spineObjects: [spineRichText], inject: nil, save: true)
-//        }.map { cdRichTexts in
-//            return cdRichTexts[0]
-//        }
-//    }
-
 }

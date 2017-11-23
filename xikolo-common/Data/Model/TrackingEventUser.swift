@@ -29,24 +29,6 @@ class TrackingEventUser : NSObject, NSCoding {
         coder.encode(self.uuid, forKey: "uuid")
     }
 
-
-//    required init(_ dict: [String : AnyObject]) {
-//        if let uuid = dict["uuid"] as? String {
-//            self.uuid = uuid
-//        }
-//    }
-//
-//    override init() {
-//    }
-//
-//    func toDict() -> [String : AnyObject] {
-//        var dict = [String: AnyObject]()
-//        if let uuid = uuid {
-//            dict["uuid"] = uuid as AnyObject?
-//        }
-//        return dict
-//    }
-
 }
 
 extension TrackingEventUser : IncludedPushable {

@@ -8,7 +8,6 @@
 
 import CoreData
 import Foundation
-//import Spine
 
 final class PeerAssessment : Content {
 
@@ -37,25 +36,4 @@ extension PeerAssessment : Pullable {
     }
 
 }
-
-//@objcMembers
-//class PeerAssessmentSpine : ContentSpine {
-//
-//    var title: String?
-//
-//    override class var cdType: BaseModel.Type {
-//        return PeerAssessment.self
-//    }
-//
-//    override class var resourceType: ResourceType {
-//        return "peer-assessments"
-//    }
-//
-//    override class var fields: [Field] {
-//        return fieldsFromDictionary([
-//            "title": Attribute()
-//        ])
-//    }
-//
-//}
 

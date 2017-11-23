@@ -13,49 +13,6 @@ import Marshal
 import CoreData
 
 
-//extension AsyncType where Value: ResultProtocol {
-//
-//    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), task: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
-//        let res = Future<Value.Value, Value.Error>()
-//
-////        self.onComplete(context) { result in
-////            switch result {
-////            case .success(let value):
-////
-////            case .failure(let error):
-////                promise.failure(error)
-////            }
-////        }
-//
-//        return res
-//    }
-//
-//}
-
-//extension Future {
-//
-//    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), f: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
-//        let res = Promise<Value.Value, Value.Error>()
-//
-//
-//        self.onComplete(context) { result in
-//            result.analysis(ifSuccess: { res.success($0) }, ifFailure: { res.failure($0) })
-//        }
-////        self.onComplete(context) { result in
-////            switch result {
-////            case .success(let value):
-////
-////            case .failure(let error):
-////                promise.failure(error)
-////            }
-////        }
-//
-//        return res
-//    }
-//
-//}
-
-
 extension Future {
 
     func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), f: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
@@ -730,28 +687,6 @@ extension Pullable where Self: NSManagedObject {
         }
     }
 
-//    func updateAbstractRelationship<A, B>(withContainer container: AbstractPullableContainer<Self, A>,
-//                                          withType: B.Type) throws where B: NSManagedObject & Pullable {
-//        let resourceIdentifier = try container.object.value(for: "\(container.key).data") as ResourceIdentifier
-//
-//        if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: container.includes) {
-//            guard let existingObject = self[keyPath: container.keyPath] as? B else {
-//                // TODO: type mismatch
-//                return
-//            }
-//
-//            do {
-//                try existingObject.update(withObject: includedObject, including: container.includes, inContext: container.context)
-//            } catch let error as MarshalError {
-//                throw NestedMarshalError.nestedMarshalError(error, includeType: B.type, includeKey: container.key)
-//            }
-//
-//            container.markAsUpdated()
-//        } else {
-//            throw SynchronizationError.missingIncludedResourse(from: Self.self, to: A.self, withKey: container.key)
-//        }
-//    }
-
 }
 
 class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: AbstractPullable {
@@ -783,16 +718,6 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: Ab
         guard resourceIdentifier.type == C.type else { return }
 
         if let includedObject = self.resource.findIncludedObject(for: resourceIdentifier, in: self.includes) {
-//            guard let existingObject = self.resource[keyPath: self.keyPath] as? C else {
-//                // TODO: type mismatch
-//                return
-//            }
-//
-//            do {
-//                try existingObject.update(withObject: includedObject, including: self.includes, inContext: self.context)
-//            } catch let error as MarshalError {
-//                throw NestedMarshalError.nestedMarshalError(error, includeType: C.type, includeKey: self.key)
-//            }
             do {
                 if var existingObject = self.resource[keyPath: self.keyPath] as? C{
                     try existingObject.update(withObject: includedObject, including: includes, inContext: context)
@@ -944,17 +869,6 @@ struct MultipleResourcesQuery<Resource> : ResourceQuery where Resource: Resource
     }
 
 }
-
-
-//
-//protocol Observable {
-//
-//    typealias UpdateHandler = (_ model: Resource) -> ()
-//    typealias DeleteHandler = () -> ()
-//
-//    func notifyOnChange(_ observer: UIViewController, updatedHandler: @escaping (_ model: Self) -> (), deletedHandler: @escaping () -> ())
-//    func removeNotifications(_ observer: UIViewController)
-//}
 
 extension NSManagedObject {
 

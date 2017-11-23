@@ -28,23 +28,6 @@ class TrackingEventVerb : NSObject, NSCoding {
         coder.encode(self.type, forKey: "type")
     }
 
-//    required init(_ dict: [String : AnyObject]) {
-//        if let type = dict["type"] as? String {
-//            self.type = type
-//        }
-//    }
-//
-//    override init() {
-//    }
-//
-//    func toDict() -> [String : AnyObject] {
-//        var dict = [String: AnyObject]()
-//        if let type = type {
-//            dict["type"] = type as AnyObject?
-//        }
-//        return dict
-//    }
-
 }
 
 extension TrackingEventVerb : IncludedPushable {

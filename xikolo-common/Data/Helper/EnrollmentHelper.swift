@@ -56,19 +56,7 @@ struct EnrollmentHelper {
             return Future(error: .totallyUnknownError) // TODO: better error
         }
 
-//        enrollment.completed = true
-//        return SyncEngine.saveResource(enrollment)
-
         let promise = Promise<Void, XikoloError>()
-
-//        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//            let enrollment = context.object(with: enrollment.objectID) as Enrollment
-//            enrollment.completed = true
-//            try? context.save()
-//            let saveFuture = SyncEngine.saveResource(enrollment)
-//            promise.completeWith(saveFuture)
-//            Result.init(attempt: { return try? context.save() })
-//        }
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let enrollment = context.object(with: enrollment.objectID) as Enrollment
@@ -84,88 +72,3 @@ struct EnrollmentHelper {
         return promise.future
     }
 }
-
-//import BrightFutures
-//import CoreData
-//
-//class EnrollmentHelper {
-//
-//    static func getEnrollmentsRequest() -> NSFetchRequest<Enrollment> {
-//        let request: NSFetchRequest<Enrollment> = Enrollment.fetchRequest()
-//        return request
-//    }
-//
-//    static func syncEnrollments() -> Future<[Enrollment], XikoloError> {
-//        return EnrollmentProvider.getEnrollments().flatMap { spineEnrollments -> Future<[Enrollment], XikoloError> in
-//            let request = getEnrollmentsRequest()
-//            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spineEnrollments, inject: nil, save: true)
-//        }
-//    }
-//
-//    static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
-//        let promise = Promise<Void, XikoloError>()
-//
-////        let courseSpine = CourseSpine(course: course)
-//        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//            let enrollment = Enrollment(forCourse: course, inContext: context)
-//            CoreDataHelper.save(context).flatMap {
-//                return SyncEngine.saveResource(enrollment)
-//            }.onSuccess {
-//                NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
-//            }.onComplete { result in
-//                promise.complete(result)
-//            }
-//        }
-////        let enrollmentSpine = EnrollmentSpine(course: courseSpine)
-////        SpineHelper.save(enrollmentSpine).onSuccess { enrollmentSpine in
-////
-////            return promise.success(())
-////        }.onFailure { xikoloError in
-////            return promise.failure(xikoloError)
-////        }
-//        return promise.future
-//    }
-//
-//    static func delete(_ enrollment: Enrollment) -> Future<Void, XikoloError> {
-////        let promise = Promise<Void, XikoloError>()
-//
-////        let enrollmentSpine = EnrollmentSpine(from: enrollment)
-////        SpineHelper.delete(enrollmentSpine).onSuccess { _ in
-////            CoreDataHelper.delete(enrollment)
-////            NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
-////            return promise.success(())
-////        }.onFailure { xikoloError in
-////            return promise.failure(xikoloError)
-////        }
-//
-//        return SyncEngine.deleteResource(enrollment).onSuccess {
-//            CoreDataHelper.delete(enrollment)
-//            NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
-//        }
-//
-////        return promise.future
-//    }
-//
-//    static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
-//
-//        guard let enrollment = course.enrollment else {
-//            return Future(error: .totallyUnknownError) // TODO: better error
-//        }
-//
-//        enrollment.completed = true
-//        return SyncEngine.saveResource(enrollment)
-//
-////        let promise = Promise<Void, XikoloError>()
-//
-////        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//////            course.enrollment?.completed = true
-//////            return SpineHelper.save(EnrollmentSpine(from: course.enrollment!))
-////            enrollmen
-////        }
-//
-////        return promise.future
-//
-//    }
-//
-//}
-

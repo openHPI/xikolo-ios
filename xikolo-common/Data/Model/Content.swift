@@ -7,44 +7,6 @@
 //
 
 import CoreData
-//import Foundation
-//import Spine
-//
-//@objcMembers
-//class Content : BaseModel {
-//
-//    func iconName() -> String {
-//        // TODO: Add "unsupported" icon.
-//        return "homework"
-//    }
-//
-//    var isAvailableOffline: Bool {
-//        return false
-//    }
-//
-//}
-//
-//@objcMembers
-//class ContentSpine : BaseModelSpine {
-//
-//    override class var cdType: BaseModel.Type {
-//        return Content.self
-//    }
-//
-//    override class var resourceType: ResourceType {
-//        return "unsupported-content"
-//    }
-//
-//}
-
-//import Foundation
-//
-//protocol ContentProtocol {
-//    var iconName: String { get }
-//    var isAvailableOffline: Bool { get }
-//}
-//
-//extension Content: ContentProtocol { }
 
 class Content : NSManagedObject {
 
@@ -60,5 +22,3 @@ class Content : NSManagedObject {
 }
 
 extension Content : AbstractPullable {}
-
-

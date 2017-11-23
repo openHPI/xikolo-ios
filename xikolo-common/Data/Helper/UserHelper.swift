@@ -19,21 +19,4 @@ class UserHelper {
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-//    static func getMe() -> Future<User, XikoloError> {
-//        guard let userId = UserProfileHelper.userId else { return Future(error: .userNotLoggedIn) }
-//        return self.getUser(withId: userId)
-//    }
-//
-//    private static func getUser(withId id: String) -> Future<User, XikoloError> {
-//        let request: NSFetchRequest<User> = User.fetchRequest()
-//        request.predicate = NSPredicate(format: "id == %@", id)
-//        request.fetchLimit = 1
-//        do {
-//            let users = try CoreDataHelper.executeFetchRequest(request)
-//            return users.first
-//        } catch {
-//            return nil
-//        }
-//    }
-
 }

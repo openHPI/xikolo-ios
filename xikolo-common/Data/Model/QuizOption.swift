@@ -16,14 +16,6 @@ final class QuizOption : NSObject, NSCoding, IncludedPullable {
     var correct: Bool
     var explanation: String?
 
-//    required init(_ dict: [String : AnyObject]) {
-//        id = dict["id"] as? String
-//        text = dict["text"] as? String
-//        position = dict["position"] as? NSNumber
-//        correct = dict["correct"] as? Bool
-//        explanation = dict["explanation"] as? String
-//    }
-
     required init(object: ResourceData) throws {
         self.id = try object.value(for: "id")
         self.text = try object.value(for: "text")

@@ -8,7 +8,6 @@
 
 import CoreData
 import Foundation
-import Spine
 
 final class QuizQuestion : NSManagedObject {
 
@@ -22,8 +21,6 @@ final class QuizQuestion : NSManagedObject {
     @NSManaged var options: [QuizOption]
     @NSManaged var quiz: Quiz?
 
-    //@objc dynamic var submission: QuizQuestionSubmission?
-
     var maxPoints: Double? {
         get {
             return self.maxPointsValue?.doubleValue
@@ -36,15 +33,6 @@ final class QuizQuestion : NSManagedObject {
             }
         }
     }
-
-//    var shuffle_answers: Bool {
-//        get {
-//            return shuffle_options_int?.boolValue ?? false
-//        }
-//        set(new_shuffle_answers) {
-//            shuffle_options_int = new_shuffle_answers as NSNumber?
-//        }
-//    }
 
     var questionType: QuizQuestionType {
         guard let type = self.type else {
@@ -80,39 +68,6 @@ extension QuizQuestion : Pullable {
     }
 
 }
-
-//@objcMembers
-//class QuizQuestionSpine : BaseModelSpine {
-//
-//    var text: String?
-//    var explanation: String?
-//    var type: String?
-//    var max_points: NSDecimalNumber?
-//    var shuffle_options_int: NSNumber?
-//    var position: NSNumber?
-//    var options: [QuizOption]?
-//
-//    override class var cdType: BaseModel.Type {
-//        return QuizQuestion.self
-//    }
-//
-//    override class var resourceType: ResourceType {
-//        return "quiz-questions"
-//    }
-//
-//    override class var fields: [Field] {
-//        return fieldsFromDictionary([
-//            "text": Attribute(),
-//            "explanation": Attribute(),
-//            "type": Attribute(),
-//            "max_points": Attribute(),
-//            "shuffle_options_int": BooleanAttribute().serializeAs("shuffle_options"),
-//            "position": Attribute(),
-//            "options": EmbeddedObjectsAttribute(QuizOption.self),
-//        ])
-//    }
-//
-//}
 
 enum QuizQuestionType {
 

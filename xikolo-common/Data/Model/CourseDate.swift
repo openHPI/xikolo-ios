@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import Spine
 
 final class CourseDate : NSManagedObject {
 
@@ -41,32 +40,3 @@ extension CourseDate : Pullable {
     }
 
 }
-
-//@objcMembers
-//class CourseDateSpine : BaseModelSpine {
-//
-//    var type: String?
-//    var title: String?
-//    var date: Date?
-//
-//    var course: CourseSpine?
-//
-//    override class var resourceType: ResourceType {
-//        return "course-dates"
-//    }
-//
-//    override class var cdType: BaseModel.Type {
-//        return CourseDate.self
-//    }
-//
-//    override class var fields: [Field] {
-//        return fieldsFromDictionary([
-//            "type": Attribute(),
-//            "title": Attribute(),
-//            "date": DateAttribute(),
-//            "course": ToOneRelationship(CourseSpine.self)
-//        ])
-//    }
-//
-//}
-

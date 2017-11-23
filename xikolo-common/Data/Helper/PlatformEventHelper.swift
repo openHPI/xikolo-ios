@@ -17,19 +17,5 @@ struct PlatformEventHelper {
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
-
-//    static func getRequest() -> NSFetchRequest<PlatformEvent> {
-//        let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()
-//        let dateSort = NSSortDescriptor(key: "created_at", ascending: false)
-//        request.sortDescriptors = [dateSort]
-//        return request
-//    }
-
-//    static func syncPlatformEvents() -> Future<[PlatformEvent], XikoloError> {
-//        return PlatformEventProvider.getPlatformEvents().flatMap { spinePlatformEvents -> Future<[PlatformEvent], XikoloError> in
-//            let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()
-//            return SpineModelHelper.syncObjectsFuture(request, spineObjects: spinePlatformEvents, inject: nil, save: true)
-//        }
-//    }
     
 }

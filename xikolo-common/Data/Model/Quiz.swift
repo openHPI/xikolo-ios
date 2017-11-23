@@ -8,7 +8,6 @@
 
 import CoreData
 import Foundation
-import Spine
 
 final class Quiz : Content {
 
@@ -21,8 +20,6 @@ final class Quiz : Content {
     @NSManaged var allowedAttempts: Int32
     @NSManaged private var maxPointsValue: NSDecimalNumber?
     @NSManaged var questions: Set<QuizQuestion>
-
-   // var submission: QuizSubmission?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Quiz> {
         return NSFetchRequest<Quiz>(entityName: "Quiz");
@@ -42,10 +39,6 @@ final class Quiz : Content {
     }
 
     var time_limit_formatted: [String] {
-//        guard let time_limit = self.timeLimit?.intValue else {
-//            return []
-//        }
-
         let hours = self.timeLimit / 3600
         let minutes = (self.timeLimit % 3600) / 60
         let seconds = self.timeLimit % 60
@@ -66,15 +59,6 @@ final class Quiz : Content {
 
         return strings
     }
-
-//    var show_welcome_page: Bool {
-//        get {
-//            return show_welcome_page_int?.boolValue ?? false
-//        }
-//        set(new_show_welcome_page) {
-//            show_welcome_page_int = new_show_welcome_page as NSNumber?
-//        }
-//    }
 
     override func iconName() -> String {
         return "quiz"
@@ -100,59 +84,6 @@ extension Quiz : Pullable {
 
         let relationships = try object.value(for: "relationships") as JSON
         try self.updateRelationship(forKeyPath: \Quiz.questions, forKey: "questions", fromObject: relationships, including: includes, inContext: context)
-        // TODO: submission
     }
 
 }
-
-//@objcMembers
-//class QuizSpine : ContentSpine {
-//
-//    var instructions: String?
-//    var lock_submissions_at: Date?
-//    var publish_results_at: Date?
-//    var time_limit: NSNumber?
-//    var allowed_attempts: NSNumber?
-//    var max_points: NSDecimalNumber?
-//    var show_welcome_page_int: NSNumber?
-//
-//    var questions: ResourceCollection?
-//    var submission: QuizSubmission?
-//
-//    required init() {
-//        super.init()
-//    }
-//
-//    required init(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-//
-//    init(id: String) {
-//        super.init()
-//        self.id = id
-//    }
-//
-//    override class var cdType: BaseModel.Type {
-//        return Quiz.self
-//    }
-//
-//    override class var resourceType: ResourceType {
-//        return "quizzes"
-//    }
-//
-//    override class var fields: [Field] {
-//        return fieldsFromDictionary([
-//            "instructions": Attribute(),
-//            "lock_submissions_at": DateAttribute(),
-//            "publish_results_at": DateAttribute(),
-//            "time_limit": Attribute(),
-//            "allowed_attempts": Attribute(),
-//            "max_points": Attribute(),
-//            "show_welcome_page_int": BooleanAttribute().serializeAs("show_welcome_page"),
-//            "questions": ToManyRelationship(QuizQuestionSpine.self),
-//            "submission": ToOneRelationship(QuizSubmission.self).serializeAs("newest_user_submission"),
-//        ])
-//    }
-//
-//}
-

@@ -30,21 +30,6 @@ final class TrackingEvent : NSManagedObject {
         self.context = trackingContext
     }
 
-//    override class var resourceType: ResourceType {
-//        return "tracking-events"
-//    }
-//
-//    override class var fields: [Field] {
-//        return fieldsFromDictionary([
-//            "user": EmbeddedObjectAttribute(TrackingEventUser.self),
-//            "verb": EmbeddedObjectAttribute(TrackingEventVerb.self),
-//            "resource": EmbeddedObjectAttribute(TrackingEventResource.self),
-//            "timestamp": DateAttribute(),
-//            "result": Attribute(),
-//            "context": Attribute(),
-//        ])
-//    }
-
 }
 
 extension TrackingEvent : Pushable {

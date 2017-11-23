@@ -9,8 +9,6 @@
 import BrightFutures
 import CoreData
 import Foundation
-import Spine
-
 
 final class RichText : Content {
 
@@ -43,26 +41,3 @@ extension RichText : Pullable {
     }
 
 }
-
-//
-//@objcMembers
-//class RichTextSpine : ContentSpine {
-//
-//    var text: String?
-//
-//    override class var cdType: BaseModel.Type {
-//        return RichText.self
-//    }
-//
-//    override class var resourceType: ResourceType {
-//        return "rich-texts"
-//    }
-//
-//    override class var fields: [Field] {
-//        return fieldsFromDictionary([
-//            "text": Attribute(),
-//        ])
-//    }
-//
-//}
-

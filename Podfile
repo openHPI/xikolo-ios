@@ -4,13 +4,6 @@ inhibit_all_warnings!
 pod 'BartyCrouch', :git => 'https://github.com/mathebox/BartyCrouch.git', :commit => 'cf75991'
 
 def common_pods
-    # can be remove 
-    pod 'Alamofire', '4.3.0'
-    pod 'AlamofireObjectMapper', '4.0.1'
-    pod 'ObjectMapper', '2.0'
-    pod 'Result', '~> 3.2'
-    pod 'Spine', :git => 'https://github.com/mathebox/Spine.git', :commit => 'ce6a53f'
-
     pod 'BrightFutures', '~> 6.0'
     pod 'Down', :git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
     pod 'KeychainAccess', '~> 3.1'

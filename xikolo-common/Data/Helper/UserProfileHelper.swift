@@ -6,7 +6,6 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
-import Alamofire
 import BrightFutures
 import Foundation
 import CoreData
@@ -17,34 +16,69 @@ open class UserProfileHelper {
     static func login(_ email: String, password: String) -> Future<String, XikoloError> {
         let promise = Promise<String, XikoloError>()
 
-        let url = Routes.AUTHENTICATE_API_URL
-        Alamofire.request(url, method: .post, parameters:[
-                Routes.HTTP_PARAM_EMAIL: email,
-                Routes.HTTP_PARAM_PASSWORD: password,
-        ], headers: NetworkHelper.getRequestHeaders()).responseJSON { response in
-            // The API does not return valid JSON when returning a 401.
-            // TODO: Remove once the API does that.
-            if let response = response.response {
-                if response.statusCode == 401 {
-                    return promise.failure(XikoloError.authenticationError)
-                }
+        let parameters: String = [
+            Routes.HTTP_PARAM_EMAIL: email,
+            Routes.HTTP_PARAM_PASSWORD: password,
+        ].map { (key, value) in
+            return "\(key)=\(value)"
+        }.joined(separator: "&")
+
+        let url = URL(string: Routes.AUTHENTICATE_API_URL)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = parameters.data(using: .utf8)
+
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        for (header, value) in NetworkHelper.getRequestHeaders() {
+            request.setValue(value, forHTTPHeaderField: header)
+        }
+
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let err = error {
+                promise.failure(.network(err))
+                return
             }
 
-            if let json = response.result.value as? [String: Any] {
-                if let token = json["token"] as? String, let id = json["user_id"] as? String {
-                    UserProfileHelper.userToken = token
-                    UserProfileHelper.userId = id
-                    self.postLoginStateChange()
-                    return promise.success(token)
+            guard let urlResponse = response as? HTTPURLResponse else {
+                promise.failure(.api(.invalidResponse))
+                return
+            }
+
+            guard 200 ... 299 ~= urlResponse.statusCode else {
+                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode)))
+                return
+            }
+
+            guard let responseData = data else {
+                promise.failure(.api(.noData))
+                return
+            }
+
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
+                    promise.failure(.api(.serializationError(.invalidDocumentStructure)))
+                    return
                 }
-                return promise.failure(XikoloError.authenticationError)
+
+                guard let token = json["token"] as? String, let id = json["user_id"] as? String else {
+                    promise.failure(.authenticationError)
+                    return
+                }
+
+                UserProfileHelper.userToken = token
+                UserProfileHelper.userId = id
+                self.postLoginStateChange()
+                return promise.success(token)
+            } catch {
+                promise.failure(.api(.serializationError(.jsonSerializationError(error))))
             }
-            if let error = response.result.error {
-                return promise.failure(XikoloError.network(error))
-            }
-            return promise.failure(XikoloError.totallyUnknownError)
         }
-        return promise.future
+
+        NetworkIndicator.start()
+        task.resume()
+        return promise.future.onComplete { _ in
+            NetworkIndicator.end()
+        }
     }
 
     static func logout() {
@@ -58,7 +92,9 @@ open class UserProfileHelper {
     }
 
     static func postLoginStateChange() {
-        NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+        }
     }
 
 }

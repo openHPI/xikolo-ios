@@ -32,7 +32,7 @@ class AppDelegate : AbstractAppDelegate {
 
         UserProfileHelper.migrateLegacyKeychain()
         AnnouncementHelper.syncAllAnnouncements()
-//        EnrollmentHelper.syncEnrollments()
+        EnrollmentHelper.syncEnrollments()
 
         VideoPersistenceManager.shared.restorePersistenceManager()
 

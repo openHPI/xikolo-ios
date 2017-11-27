@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Marshal
 
 enum XikoloError : Error {
 
@@ -43,28 +44,26 @@ enum APIError : Error {
 }
 
 enum SerializationError : Error {
-    /// The given JSON is not a dictionary (hash).
     case invalidDocumentStructure
-
-    /// None of 'data', 'errors', or 'meta' is present in the top level.
     case topLevelEntryMissing
-
-    /// Top level 'data' and 'errors' coexist in the same document.
     case topLevelDataAndErrorsCoexist
-
-    /// The given JSON is not a dictionary (hash).
     case invalidResourceStructure
-
-    /// 'Type' field is missing from resource JSON.
     case resourceTypeMissing
-
-    /// 'ID' field is missing from resource JSON.
     case resourceIDMissing
-
-    /// Error occurred in NSJSONSerialization
     case jsonSerializationError(Error)
-
     case modelDeserializationError(Error, onType: String)
     case includedModelDeserializationError(Error, onType: String, forIncludedType: String, forKey: String)
+}
+
+enum SynchronizationError : Error {
+    case noRelationshipBetweenEnities(from: Any, to: Any)
+    case toManyRelationshipBetweenEnities(from: Any, to: Any)
+    case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
+    case missingIncludedResource(from: Any, to: Any, withKey: KeyType)
+    case missingEnityNameForResource(Any)
+}
+
+enum NestedMarshalError: Error {
+    case nestedMarshalError(Error, includeType: String, includeKey: KeyType)
 }
 

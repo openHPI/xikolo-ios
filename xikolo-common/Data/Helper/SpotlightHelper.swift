@@ -1,5 +1,5 @@
 //
-//  SearchHelper.swift
+//  SpotlightHelper.swift
 //  xikolo-ios
 //
 //  Created by Jan Renz on 26/07/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreSpotlight
 
-class SearchHelper{
+class SpotlightHelper {
 
     static func addSearchIndex(for course: Course) {
         guard let url = course.url else {

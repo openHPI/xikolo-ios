@@ -3,6 +3,7 @@
     <entity name="Announcement" representedClassName=".Announcement" elementID="NewsArticle" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="objectStateValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="publishedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,6 +50,7 @@
         <attribute name="exerciseType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="objectStateValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="proctored" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -71,7 +73,8 @@
         <attribute name="certificates" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="completed" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectStateValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="proctored" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="reactivated" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollment" inverseEntity="Course" syncable="YES"/>
@@ -131,12 +134,12 @@
     </entity>
     <entity name="TrackingEvent" representedClassName=".TrackingEvent" syncable="YES">
         <attribute name="context" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="resource" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="resource" attributeType="Transformable" syncable="YES"/>
         <attribute name="result" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="timeZoneIdentifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="user" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="verb" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Transformable" syncable="YES"/>
+        <attribute name="timeZoneIdentifier" attributeType="String" syncable="YES"/>
+        <attribute name="user" attributeType="Transformable" syncable="YES"/>
+        <attribute name="verb" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -170,15 +173,16 @@
         <attribute name="transcriptURL" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Announcement" positionX="304" positionY="146" width="128" height="150"/>
+        <element name="Announcement" positionX="304" positionY="146" width="128" height="165"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="60"/>
         <element name="Course" positionX="45" positionY="-18" width="128" height="375"/>
         <element name="CourseDate" positionX="214" positionY="-180" width="128" height="118"/>
-        <element name="CourseItem" positionX="468" positionY="165" width="128" height="210"/>
+        <element name="CourseItem" positionX="468" positionY="165" width="128" height="225"/>
         <element name="CourseSection" positionX="286" positionY="306" width="128" height="180"/>
-        <element name="Enrollment" positionX="52" positionY="-216" width="128" height="150"/>
+        <element name="Enrollment" positionX="52" positionY="-216" width="128" height="165"/>
         <element name="LTIExercise" positionX="772" positionY="342" width="128" height="120"/>
         <element name="PeerAssessment" positionX="610" positionY="311" width="128" height="75"/>
+        <element name="PendingRelationship" positionX="234" positionY="-63" width="128" height="135"/>
         <element name="PlatformEvent" positionX="252" positionY="-16" width="128" height="135"/>
         <element name="Quiz" positionX="828" positionY="162" width="128" height="180"/>
         <element name="QuizQuestion" positionX="999" positionY="162" width="128" height="180"/>
@@ -187,6 +191,5 @@
         <element name="User" positionX="187" positionY="498" width="128" height="105"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="135"/>
         <element name="Video" positionX="621" positionY="-99" width="128" height="270"/>
-        <element name="PendingRelationship" positionX="234" positionY="-63" width="128" height="135"/>
     </elements>
 </model>

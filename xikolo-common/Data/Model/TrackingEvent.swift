@@ -38,8 +38,16 @@ extension TrackingEvent : Pushable {
         return "tracking-events"
     }
 
-    var isNewResource: Bool {
+    var deleteAfterSync: Bool {
         return true
+    }
+
+    var objectState: ObjectState {
+        return .new
+    }
+
+    func markAsUnchanged() {
+        // No need to implement something here
     }
 
     func resourceAttributes() -> [String : Any] {

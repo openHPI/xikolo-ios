@@ -22,38 +22,47 @@ struct EnrollmentHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let enrollment = Enrollment(forCourse: course, inContext: context)
+            let _ = Enrollment(forCourse: course, inContext: context)
+            let saveResult = context.saveWithResult()
 
-            context.saveWithResult().flatMap { _ in
-                SyncEngine.saveResource(enrollment)
-            }.onSuccess {
+            if case .success(_) = saveResult {
                 NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
-            }.onComplete { result in
-                promise.complete(result)
             }
+
+            promise.complete(saveResult)
         }
 
         return promise.future
     }
 
     static func delete(_ enrollment: Enrollment) -> Future<Void, XikoloError> {
-        // TODO: delete after pushed to server but keep deleted state in local database
-        return SyncEngine.deleteResource(enrollment).onSuccess {
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                let enrollment = context.object(with: enrollment.objectID) as Enrollment
-                context.delete(enrollment)
+        let promise = Promise<Void, XikoloError>()
 
-                try? context.save()
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let enrollment = context.object(with: enrollment.objectID) as Enrollment
+            enrollment.completed = true
+            if enrollment.objectState != .new, enrollment.objectState != .deleted {
+                enrollment.objectState = .modified
+            }
+            let saveResult = context.saveWithResult()
+
+            if case .success(_) = saveResult {
+                NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
             }
 
-            NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
+            promise.complete(saveResult)
         }
+
+        return promise.future
     }
 
     static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
-
         guard let enrollment = course.enrollment else {
             return Future(error: .totallyUnknownError) // TODO: better error
+        }
+
+        guard !enrollment.completed else {
+            return Future(value: ())
         }
 
         let promise = Promise<Void, XikoloError>()
@@ -61,12 +70,10 @@ struct EnrollmentHelper {
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let enrollment = context.object(with: enrollment.objectID) as Enrollment
             enrollment.completed = true
-
-            context.saveWithResult().flatMap { _ in
-                SyncEngine.saveResource(enrollment)
-            }.onComplete { result in
-                promise.complete(result)
+            if enrollment.objectState != .new, enrollment.objectState != .deleted {
+                enrollment.objectState = .modified
             }
+            promise.complete(context.saveWithResult())
         }
 
         return promise.future

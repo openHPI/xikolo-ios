@@ -27,17 +27,18 @@ class AnnouncementViewController : UIViewController {
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
 
-        //save read state to server
-        self.announcement.visited = true
-        SyncEngine.saveResource(self.announcement)
-        TrackingHelper.createEvent(.visitedAnnouncement, resource: self.announcement)
-
+        self.updateView()
         self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
         }) {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popViewController(animated: isVisible)
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        AnnouncementHelper.markAsVisited(self.announcement)
+        TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
     }
 
     private func updateView() {
@@ -58,9 +59,6 @@ class AnnouncementViewController : UIViewController {
         } else {
             self.textView.text = "[...]"
         }
-
-        AnnouncementHelper.markAsVisited(self.announcement)
-        TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
     }
 
 }

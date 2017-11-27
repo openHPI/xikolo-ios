@@ -54,14 +54,17 @@ struct CourseItemHelper {
     }
 
     static func markAsVisited(_ item: CourseItem) -> Future<Void, XikoloError> {
+        guard !item.visited else {
+            return Future(value: ())
+        }
+
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let courseItem = context.object(with: item.objectID) as CourseItem
             courseItem.visited = true
-            try? context.save()
-            let saveFuture = SyncEngine.saveResource(courseItem)
-            promise.completeWith(saveFuture)
+            courseItem.objectState = .modified
+            promise.complete(context.saveWithResult())
         }
 
         return promise.future

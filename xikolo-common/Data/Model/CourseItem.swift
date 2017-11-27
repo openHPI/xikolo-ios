@@ -20,6 +20,7 @@ final class CourseItem : NSManagedObject {
     @NSManaged var icon: String?
     @NSManaged var exerciseType: String?
     @NSManaged var deadline: Date?
+    @NSManaged private var objectStateValue: Int16
 
     @NSManaged var content: Content?
     @NSManaged var section: CourseSection?
@@ -94,8 +95,17 @@ extension CourseItem : Pullable {
 
 extension CourseItem : Pushable {
 
-    var isNewResource: Bool {
-        return false
+    var objectState: ObjectState {
+        get {
+            return ObjectState(rawValue: self.objectStateValue)!
+        }
+        set {
+            self.objectStateValue = newValue.rawValue
+        }
+    }
+
+    func markAsUnchanged() {
+        self.objectState = .unchanged
     }
 
     func resourceAttributes() -> [String : Any] {

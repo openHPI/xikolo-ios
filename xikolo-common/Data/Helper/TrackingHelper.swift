@@ -82,7 +82,6 @@ class TrackingHelper {
             }
         }
 
-
         let promise = Promise<NSManagedObjectID, XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let trackingEvent = TrackingEvent(user: trackingUser,

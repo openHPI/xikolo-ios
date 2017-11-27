@@ -17,6 +17,8 @@ final class Enrollment : NSManagedObject {
     @NSManaged var completed: Bool
     @NSManaged var reactivated: Bool
     @NSManaged var createdAt: Date?
+    @NSManaged private var objectStateValue: Int16
+
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
@@ -27,6 +29,7 @@ final class Enrollment : NSManagedObject {
         self.init(context: context)
         self.course = course
         self.completed = false
+        self.objectState = .new
     }
 
     func compare(_ object: Enrollment) -> ComparisonResult {
@@ -46,7 +49,6 @@ extension Enrollment : Pullable {
 
     func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
-
         self.certificates = try attributes.value(for: "certificates")
         self.proctored = try attributes.value(for: "proctored")
         self.completed = try attributes.value(for: "completed")
@@ -62,8 +64,17 @@ extension Enrollment : Pullable {
 
 extension Enrollment : Pushable {
 
-    var isNewResource: Bool {
-        return self.id == nil
+    var objectState: ObjectState {
+        get {
+            return ObjectState(rawValue: self.objectStateValue)!
+        }
+        set {
+            self.objectStateValue = newValue.rawValue
+        }
+    }
+
+    func markAsUnchanged() {
+        self.objectState = .unchanged
     }
 
     func resourceAttributes() -> [String : Any] {

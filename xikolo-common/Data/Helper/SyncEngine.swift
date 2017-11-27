@@ -115,9 +115,9 @@ struct SyncEngine {
         case patch = "PATCH"
     }
 
-    private static func buildSaveRequest<Query>(forQuery query: Query,
-                                                withHTTPMethod httpMethod: SaveRequestMethod,
-                                                forResource resource: Pushable) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
+    private static func buildSaveRequest(forQuery query: ResourceURLRepresentable,
+                                         withHTTPMethod httpMethod: SaveRequestMethod,
+                                         forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
 
         guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
             return .failure(XikoloError.totallyUnknownError) // TODO: better error
@@ -130,6 +130,7 @@ struct SyncEngine {
         var request = URLRequest(url: resourceUrl)
         request.httpMethod = httpMethod.rawValue
 
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
         for (header, value) in NetworkHelper.getRequestHeaders() {
             request.setValue(value, forHTTPHeaderField: header)
         }
@@ -140,7 +141,7 @@ struct SyncEngine {
         }
     }
 
-    private static func buildDeleteRequest<Resource>(forQuery query: SingleResourceQuery<Resource>) -> Result<URLRequest, XikoloError> {
+    private static func buildDeleteRequest(forQuery query: RawSingleResourceQuery) -> Result<URLRequest, XikoloError> {
 
         guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
             return .failure(XikoloError.totallyUnknownError) // TODO: better error
@@ -308,7 +309,6 @@ struct SyncEngine {
                     try existingObject.update(withObject: data, including: includes, inContext: context)
                     newObject = existingObject
                 } else {
-                    context.delete(existingObject)
                     newObject = try Resource.value(from: data, including: includes, inContext: context)
                 }
             } else {
@@ -361,8 +361,9 @@ struct SyncEngine {
 
         return promise.future.onSuccess { _ in
             // TODO: log something cool
+            print("Verbose: Successfully merged resources of type: \(Resource.type)")
         }.onFailure { error in
-            print("Failed to save resources ==> \(error)")
+            print("Error: Failed to sync resources of type: \(Resource.type) ==> \(error)")
         }
     }
 
@@ -395,33 +396,37 @@ struct SyncEngine {
 
         return promise.future.onSuccess { _ in
             // TODO: log something cool
+            print("Verbose: Successfully merged resource of type: \(Resource.type)")
         }.onFailure { error in
-            print("Failed to sync resource ==> \(error)")
+            print("Error: Failed to sync resource of type: \(Resource.type) ==> \(error)")
         }
     }
 
     // MARK: - saving
 
-    @discardableResult static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable {
-        let query = MultipleResourcesQuery(type: Resource.self)
+    @discardableResult static func saveResource(_ resource: Pushable) -> Future<Void, XikoloError> {
+        let resourceType = type(of: resource).type
+        let query = RawMultipleResourcesQuery(type: resourceType)
         let networkRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource).flatMap { request in
             return self.doNetworkRequest(request)
         }
 
         return networkRequest.onSuccess { _ in
             // TODO: log something cool
+            print("Verbose: Successfully saved resource of type: \(resourceType)")
         }.onFailure { error in
-            print("Failed to save resource: \(resource) ==> \(error)")
+            print("Error: Failed to save resource of type: \(resourceType) ==> \(error)")
         }.asVoid()
     }
 
-    @discardableResult static func saveResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: Pushable & Pullable {
+    @discardableResult static func saveResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
+        let resourceType = type(of: resource).type
         let urlRequest: Result<URLRequest, XikoloError>
-        if resource.isNewResource {
-            let query = MultipleResourcesQuery(type: Resource.self)
+        if resource.objectState == .new {
+            let query = RawMultipleResourcesQuery(type: resourceType)
             urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .patch, forResource: resource)
         } else {
-            let query = SingleResourceQuery(resource: resource)
+            let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
             urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource)
         }
 
@@ -431,23 +436,26 @@ struct SyncEngine {
 
         return networkRequest.onSuccess { _ in
             // TODO: log something cool
+            print("Verbose: Successfully saved resource of type: \(resourceType)")
         }.onFailure { error in
-            print("Failed to save resource: \(resource) ==> \(error)")
+            print("Error: Failed to save resource of type: \(resourceType) ==> \(error)")
         }.asVoid()
     }
 
     // MARK: - deleting
 
-    @discardableResult static func deleteResource<Resource>(_ resource: Resource) -> Future<Void, XikoloError> where Resource: ResourceRepresentable {
-        let query = SingleResourceQuery(resource: resource)
+    @discardableResult static func deleteResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
+        let resourceType = type(of: resource).type
+        let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
         let networkRequest = self.buildDeleteRequest(forQuery: query).flatMap { request in
             return self.doNetworkRequest(request)
         }
 
         return networkRequest.onSuccess { _ in
             // TODO: log something cool
+            print("Verbose: Successfully deleted resource of type: \(resourceType)")
         }.onFailure { error in
-            print("Failed to delete resource: \(resource) ==> \(error)")
+            print("Error: Failed to delete resource: \(resource) ==> \(error)")
         }.asVoid()
     }
 
@@ -743,23 +751,36 @@ protocol AbstractPullable {}
 
 // MARK: - Pushable
 
+enum ObjectState: Int16 {
+    case unchanged = 0
+    case new
+    case modified
+    case deleted
+}
+
 protocol IncludedPushable {
     func resourceAttributes() -> [String: Any]
 }
 
-protocol Pushable : ResourceTypeRepresentable, IncludedPushable {
-    var isNewResource: Bool { get }
+protocol Pushable : ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult {
+    var objectState: ObjectState { get }
+    var deleteAfterSync: Bool { get }
 
     func resourceData() -> Result<Data, XikoloError>
     func resourceRelationships() -> [String: Any]?
+    func markAsUnchanged()
 }
 
 extension Pushable {
 
+    var deleteAfterSync: Bool {
+        return false
+    }
+
     func resourceData() -> Result<Data, XikoloError> {
         do {
             var data: [String: Any] = [ "type": Self.type ]
-            if let newResource = self as? ResourceRepresentable, !self.isNewResource {
+            if let newResource = self as? ResourceRepresentable, self.objectState != .new {
                 data["id"] = newResource.id
             }
 
@@ -808,7 +829,11 @@ struct ResourceIdentifier: Unmarshaling {
 
 // MARK: - ResourceQuery
 
-protocol ResourceQuery {
+protocol ResourceURLRepresentable {
+    func resourceURL(relativeTo baseURL: URL) -> URL?
+}
+
+protocol ResourceQuery: ResourceURLRepresentable {
     associatedtype Resource
 
     var resourceType: Resource.Type { get }
@@ -869,6 +894,24 @@ struct MultipleResourcesQuery<Resource> : ResourceQuery where Resource: Resource
     }
 
 }
+
+struct RawSingleResourceQuery: ResourceURLRepresentable {
+    let type: String
+    let id: String
+
+    func resourceURL(relativeTo baseURL: URL) -> URL? {
+        return baseURL.appendingPathComponent(self.type).appendingPathComponent(self.id)
+    }
+}
+
+struct RawMultipleResourcesQuery: ResourceURLRepresentable {
+    let type: String
+
+    func resourceURL(relativeTo baseURL: URL) -> URL? {
+        return baseURL.appendingPathComponent(self.type)
+    }
+}
+
 
 extension NSManagedObject {
 

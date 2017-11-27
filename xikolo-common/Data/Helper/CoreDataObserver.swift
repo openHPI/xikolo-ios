@@ -1,5 +1,5 @@
 //
-//  SyncHelper.swift
+//  CoreDataObserver.swift
 //  xikolo-ios
 //
 //  Created by Jan Renz and Max Bothe
@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 
-class SyncHelper {
-    static let standard = SyncHelper()
+class CoreDataObserver {
+    static let standard = CoreDataObserver()
 
     func startObserving() {
         NotificationCenter.default.addObserver(self, selector: #selector(coreDataChange(note:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
@@ -24,9 +24,19 @@ class SyncHelper {
     //support for videos should follow once they contain the seo texts
     
     @objc func coreDataChange(note: Notification) {
+        var shouldCheckForChangesToPush = false
+
         if let updated = note.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, updated.count > 0 {
-            for case let course as Course in updated {
-                SearchHelper.addSearchIndex(for: course)
+            for object in updated {
+                // Spotlight
+                if let course = object as? Course {
+                    SpotlightHelper.removeSearchIndex(for: course)
+                }
+
+                // Pushable
+                if let pushableResource = object as? Pushable {
+                    shouldCheckForChangesToPush = true
+                }
             }
         }
 
@@ -34,7 +44,7 @@ class SyncHelper {
             for object in deleted {
                 // Spotlight
                 if let course = object as? Course {
-                    SearchHelper.removeSearchIndex(for: course)
+                    SpotlightHelper.removeSearchIndex(for: course)
                 }
 
                 // PendingRelationship
@@ -48,7 +58,7 @@ class SyncHelper {
             for object in inserted {
                 // Spotlight
                 if let course = object as? Course {
-                    SearchHelper.addSearchIndex(for: course)
+                    SpotlightHelper.addSearchIndex(for: course)
                 }
 
                 // PendingRelationship
@@ -58,7 +68,15 @@ class SyncHelper {
                     PendingRelationshipHelper.conntectResources(withRelationship: pendingRelationship)
                 }
 
+                // Pushable
+                if let pushableResource = object as? Pushable {
+                    shouldCheckForChangesToPush = true
+                }
             }
+        }
+
+        if shouldCheckForChangesToPush {
+            SyncPushEngine.shared.check()
         }
     }
 }

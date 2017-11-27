@@ -23,6 +23,13 @@ class AppDelegate : AbstractAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
 
+        // register resource to be pushed automatically
+        SyncPushEngine.shared.register(Announcement.self)
+        SyncPushEngine.shared.register(CourseItem.self)
+        SyncPushEngine.shared.register(Enrollment.self)
+        SyncPushEngine.shared.register(TrackingEvent.self)
+        SyncPushEngine.shared.check()
+
         UserProfileHelper.migrateLegacyKeychain()
         AnnouncementHelper.syncAllAnnouncements()
 //        EnrollmentHelper.syncEnrollments()

@@ -29,7 +29,6 @@ class AnnouncementsTableViewController : UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        TrackingHelper.createEvent(.visitedAnnouncementList, resource: nil)
         let request = AnnouncementHelper.FetchRequest.allAnnouncements
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
@@ -52,6 +51,10 @@ class AnnouncementsTableViewController : UITableViewController {
                                                selector: #selector(AnnouncementsTableViewController.updateAfterLoginStateChange),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        TrackingHelper.createEvent(.visitedAnnouncementList, resource: nil)
     }
 
     func setupEmptyState() {

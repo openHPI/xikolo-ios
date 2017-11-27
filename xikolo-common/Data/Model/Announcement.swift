@@ -17,6 +17,8 @@ final class Announcement: NSManagedObject {
     @NSManaged var publishedAt: Date?
     @NSManaged var visited: Bool
     @NSManaged var imageURL: URL?
+    @NSManaged private var objectStateValue: Int16
+
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Announcement> {
@@ -49,8 +51,17 @@ extension Announcement: Pullable {
 
 extension Announcement : Pushable {
 
-    var isNewResource: Bool {
-        return false
+    var objectState: ObjectState {
+        get {
+            return ObjectState(rawValue: self.objectStateValue)!
+        }
+        set {
+            self.objectStateValue = newValue.rawValue
+        }
+    }
+
+    func markAsUnchanged() {
+        self.objectState = .unchanged
     }
 
     func resourceAttributes() -> [String : Any] {

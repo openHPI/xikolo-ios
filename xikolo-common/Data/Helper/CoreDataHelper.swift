@@ -12,39 +12,19 @@ import Result
 
 class CoreDataHelper {
 
-    static fileprivate var coreDataDirectory: URL = {
-        let fileManager = FileManager.default
-
-        #if os(tvOS)
-            let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Brand.AppGroupID)!
-            return groupURL.appendingPathComponent("Library/Caches")
-        #else
-            let urls = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
-            return urls[urls.count-1]
-        #endif
-    }()
-
     static var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer.init(name: "CoreData", managedObjectModel: managedObjectModel)
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        let container = NSPersistentContainer(name: "xikolo")
+        container.loadPersistentStores { (storeDescription, error) in
             // TODO: check for space etc
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
             container.viewContext.automaticallyMergesChangesFromParent = true
-        })
+        }
         return container
     }()
 
     static let viewContext = persistentContainer.viewContext
-    static func newBackgroundContext() -> NSManagedObjectContext {
-        return self.persistentContainer.newBackgroundContext()
-    }
-
-    static fileprivate var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = Bundle.main.url(forResource: "xikolo", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
-    }()
 
     static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
                                                             sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
@@ -56,7 +36,7 @@ class CoreDataHelper {
     }
 
     static func clearCoreDataStorage() {
-        for entityName in managedObjectModel.entitiesByName.keys {
+        for entityName in self.persistentContainer.managedObjectModel.entitiesByName.keys {
             self.clearCoreDataEntity(entityName)
         }
     }
@@ -82,6 +62,7 @@ class CoreDataHelper {
     }
 
 }
+
 
 extension NSManagedObjectContext {
 

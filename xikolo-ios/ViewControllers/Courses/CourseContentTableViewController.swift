@@ -184,7 +184,7 @@ class CourseContentTableViewController: UITableViewController {
             let videoView = segue.destination as! VideoViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
 
-            CoreDataHelper.viewContext.perform {
+            CoreDataHelper.viewContext.performAndWait {
                 switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
                 case .success(let courseItem):
                     videoView.courseItem = courseItem
@@ -204,7 +204,7 @@ class CourseContentTableViewController: UITableViewController {
             let richtextView = segue.destination as! RichtextViewController
             let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
 
-            CoreDataHelper.viewContext.perform {
+            CoreDataHelper.viewContext.performAndWait {
                 switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
                 case .success(let courseItem):
                     richtextView.courseItem = courseItem

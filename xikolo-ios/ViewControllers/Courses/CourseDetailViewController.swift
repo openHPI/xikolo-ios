@@ -68,19 +68,23 @@ class CourseDetailViewController: UIViewController {
     }
 
     @objc func setEnrolledState() {
-        let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
-                                            comment: "title of course enrollment button")
-        self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
-        self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
-        self.enrollmentButton.tintColor = UIColor.darkGray
+        DispatchQueue.main.async {
+            let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
+                                                comment: "title of course enrollment button")
+            self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
+            self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+            self.enrollmentButton.tintColor = UIColor.darkGray
+        }
     }
 
     @objc func setUnenrolledState() {
-        let buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title",
-                                            comment: "title of Course enrollment options button")
-        self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
-        self.enrollmentButton.backgroundColor = Brand.TintColor
-        self.enrollmentButton.tintColor = UIColor.white
+        DispatchQueue.main.async {
+            let buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title",
+                                                comment: "title of Course enrollment options button")
+            self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
+            self.enrollmentButton.backgroundColor = Brand.TintColor
+            self.enrollmentButton.tintColor = UIColor.white
+        }
     }
     
     func createEnrollment() {

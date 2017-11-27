@@ -22,6 +22,7 @@ struct EnrollmentHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let course = context.object(with: course.objectID) as Course
             let _ = Enrollment(forCourse: course, inContext: context)
             let saveResult = context.saveWithResult()
 

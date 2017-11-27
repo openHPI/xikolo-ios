@@ -61,15 +61,15 @@ struct PendingRelationshipHelper {
             return
         }
 
-//        if relationship.toManyRelationship {
-//            var currentValue = origin.value(forKey: relationship.relationshipName) as? [NSManagedObject] ?? []
-//            currentValue.append(destination)
-//            origin.setValue(Set(currentValue), forKey: relationship.relationshipName)
-//        } else {
-//            origin.setValue(destination, forKey: relationship.relationshipName)
-//        }
-//
-//        context.delete(relationship)
+        if relationship.toManyRelationship {
+            var currentValue = origin.value(forKey: relationship.relationshipName) as? [NSManagedObject] ?? []
+            currentValue.append(destination)
+            origin.setValue(Set(currentValue), forKey: relationship.relationshipName)
+        } else {
+            origin.setValue(destination, forKey: relationship.relationshipName)
+        }
+
+        context.delete(relationship)
     }
 
     private static func findResource(withEntityName entityName: String, withId objectId: String, inContext context: NSManagedObjectContext) throws -> NSManagedObject? {
@@ -91,22 +91,22 @@ struct PendingRelationshipHelper {
             return
         }
 
-//        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-//            let fetchRequest: NSFetchRequest<PendingRelationship> = PendingRelationship.fetchRequest()
-//            let typePredicate = NSPredicate(format: "originEnityName = %@", originEnityName)
-//            let idPredicate = NSPredicate(format: "originObjectId = %@", origin.id)
-//            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [typePredicate, idPredicate])
-//
-//            do {
-//                let objects = try context.fetch(fetchRequest)
-//                for object in objects {
-//                    context.delete(object)
-//                }
-//                try context.save()
-//            } catch {
-//                print("Error: Failed to delete pending relationship: \(error)")
-//            }
-//        }
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<PendingRelationship> = PendingRelationship.fetchRequest()
+            let typePredicate = NSPredicate(format: "originEnityName = %@", originEnityName)
+            let idPredicate = NSPredicate(format: "originObjectId = %@", origin.id)
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [typePredicate, idPredicate])
+
+            do {
+                let objects = try context.fetch(fetchRequest)
+                for object in objects {
+                    context.delete(object)
+                }
+                try context.save()
+            } catch {
+                print("Error: Failed to delete pending relationship: \(error)")
+            }
+        }
     }
 
 }

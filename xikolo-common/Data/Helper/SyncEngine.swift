@@ -424,10 +424,10 @@ struct SyncEngine {
         let urlRequest: Result<URLRequest, XikoloError>
         if resource.objectState == .new {
             let query = RawMultipleResourcesQuery(type: resourceType)
-            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .patch, forResource: resource)
+            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource)
         } else {
             let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
-            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource)
+            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .patch, forResource: resource)
         }
 
         let networkRequest = urlRequest.flatMap { request in
@@ -767,7 +767,7 @@ protocol Pushable : ResourceTypeRepresentable, IncludedPushable, NSFetchRequestR
     var deleteAfterSync: Bool { get }
 
     func resourceData() -> Result<Data, XikoloError>
-    func resourceRelationships() -> [String: Any]?
+    func resourceRelationships() -> [String: AnyObject]?
     func markAsUnchanged()
 }
 
@@ -807,7 +807,7 @@ extension Pushable {
         }
     }
 
-    func resourceRelationships() -> [String: Any]? {
+    func resourceRelationships() -> [String: AnyObject]? {
         return nil
     }
 

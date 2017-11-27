@@ -81,8 +81,8 @@ extension Enrollment : Pushable {
         return [ "completed": self.completed ]
     }
 
-    func resourceRelationships() -> [String : Any]? {
-        return [ "course": self.course as Any ]
+    func resourceRelationships() -> [String : AnyObject]? {
+        return [ "course": self.course as AnyObject ]
     }
 
 }

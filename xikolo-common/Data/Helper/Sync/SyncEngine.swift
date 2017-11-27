@@ -17,16 +17,16 @@ struct SyncEngine {
     // MARK: - build url request
 
     private static func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
-        guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        guard let baseURL = URL(string: Routes.API_V2_URL) else {
+            return .failure(.invalidURL(Routes.API_V2_URL))
         }
 
         guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+            return .failure(.invalidResourceURL)
         }
 
         guard var urlComponents = URLComponents(url: resourceUrl, resolvingAgainstBaseURL: true) else {
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+            return .failure(.invalidURLComponents(resourceUrl))
         }
 
         var queryItems: [URLQueryItem] = []
@@ -53,7 +53,7 @@ struct SyncEngine {
         urlComponents.queryItems = queryItems
 
         guard let url = urlComponents.url else {
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+            return .failure(.invalidURL(urlComponents.url?.absoluteString))
         }
 
         var request = URLRequest(url: url)
@@ -75,12 +75,12 @@ struct SyncEngine {
                                          withHTTPMethod httpMethod: SaveRequestMethod,
                                          forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
 
-        guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        guard let baseURL = URL(string: Routes.API_V2_URL) else {
+            return .failure(.invalidURL(Routes.API_V2_URL))
         }
 
         guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+            return .failure(.invalidResourceURL)
         }
 
         var request = URLRequest(url: resourceUrl)
@@ -99,12 +99,12 @@ struct SyncEngine {
 
     private static func buildDeleteRequest(forQuery query: RawSingleResourceQuery) -> Result<URLRequest, XikoloError> {
 
-        guard let baseURL = URL(string: Routes.API_V2_URL) else { // TODO: Routes.API_V2_URL should be a URL
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+        guard let baseURL = URL(string: Routes.API_V2_URL) else {
+            return .failure(.invalidURL(Routes.API_V2_URL))
         }
 
         guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
-            return .failure(XikoloError.totallyUnknownError) // TODO: better error
+            return .failure(.invalidResourceURL)
         }
 
         var request = URLRequest(url: resourceUrl)

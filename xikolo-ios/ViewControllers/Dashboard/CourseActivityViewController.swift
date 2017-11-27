@@ -32,7 +32,6 @@ class CourseActivityViewController: UICollectionViewController {
     }
 
     private func updateFetchedResultController() {
-        // TODO: proper API call and cell UI
         let request = UserProfileHelper.isLoggedIn() ? CourseHelper.FetchRequest.enrolledAccessibleCourses : CourseHelper.FetchRequest.interestingCoursesRequest
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 

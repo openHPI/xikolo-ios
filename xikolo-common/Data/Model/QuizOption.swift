@@ -24,8 +24,12 @@ final class QuizOption : NSObject, NSCoding, IncludedPullable {
         self.explanation = try object.value(for: "explanation")
     }
 
-    required init(coder decoder: NSCoder) {
-        self.id = decoder.decodeObject(forKey: "id") as! String // TODO: force cast
+    required init?(coder decoder: NSCoder) {
+        guard let id = decoder.decodeObject(forKey: "id") as? String else {
+            return nil
+        }
+
+        self.id = id
         self.text = decoder.decodeObject(forKey: "text") as? String
         self.position = decoder.decodeInt32(forKey: "position")
         self.correct = decoder.decodeBool(forKey: "correct")

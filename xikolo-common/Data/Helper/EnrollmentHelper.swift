@@ -59,7 +59,7 @@ struct EnrollmentHelper {
 
     static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
         guard let enrollment = course.enrollment else {
-            return Future(error: .totallyUnknownError) // TODO: better error
+            return Future(error: .missingEnrollemnt)
         }
 
         guard !enrollment.completed else {

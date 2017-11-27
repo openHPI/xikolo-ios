@@ -22,7 +22,10 @@ protocol Pullable : ResourceRepresentable {
 extension Pullable where Self: NSManagedObject {
 
     static func value(from object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws -> Self {
-        // TODO: add assert for resource type
+        let resourceType = try object.value(for: "type") as String
+        guard resourceType == Self.type else {
+            throw SerializationError.resourceTypeMismatch(expected: resourceType, found: Self.type)
+        }
         var managedObject = self.init(entity: self.entity(), insertInto: context)
         try managedObject.id = object.value(for: "id")
         try managedObject.update(withObject: object, including: includes, inContext: context)
@@ -68,11 +71,10 @@ extension Pullable where Self: NSManagedObject {
                                including includes: [ResourceData]?,
                                inContext context: NSManagedObjectContext) throws where A: NSManagedObject & Pullable {
         guard let resourceIdentifier = try? object.value(for: "\(key).data") as ResourceIdentifier else {
+            // relationship does not exist, so we reset delete the possible relationship
             self[keyPath: keyPath] = nil
-            // TODO: logging
             return
         }
-
 
         if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
             do {

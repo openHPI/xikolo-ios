@@ -10,7 +10,6 @@ import Foundation
 import Marshal
 
 enum XikoloError : Error {
-
     case api(APIError)
 
     case coreData(Error)
@@ -24,13 +23,17 @@ enum XikoloError : Error {
     case authenticationError
     case markdownError
 
+    case invalidURL(String?)
+    case invalidResourceURL
+    case invalidURLComponents(URL)
+
     case unknownError(Error)
     case totallyUnknownError
 
     case synchronizationError(SynchronizationError)
     case trackingForUnknownUser
     case userNotLoggedIn
-
+    case missingEnrollemnt
 }
 
 enum APIError : Error {
@@ -47,10 +50,8 @@ enum SerializationError : Error {
     case invalidDocumentStructure
     case topLevelEntryMissing
     case topLevelDataAndErrorsCoexist
-    case invalidResourceStructure
-    case resourceTypeMissing
-    case resourceIDMissing
     case jsonSerializationError(Error)
+    case resourceTypeMismatch(expected: String, found: String)
     case modelDeserializationError(Error, onType: String)
     case includedModelDeserializationError(Error, onType: String, forIncludedType: String, forKey: String)
 }

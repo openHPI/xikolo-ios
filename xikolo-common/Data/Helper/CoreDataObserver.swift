@@ -34,7 +34,7 @@ class CoreDataObserver {
                 }
 
                 // Pushable
-                if let pushableResource = object as? Pushable {
+                if object is Pushable {
                     shouldCheckForChangesToPush = true
                 }
             }
@@ -69,7 +69,7 @@ class CoreDataObserver {
                 }
 
                 // Pushable
-                if let pushableResource = object as? Pushable {
+                if object is Pushable {
                     shouldCheckForChangesToPush = true
                 }
             }

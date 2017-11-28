@@ -78,8 +78,8 @@ extension Quiz : Pullable {
         self.maxPoints = try attributes.value(for: "max_points")
         self.showWelcomePage = try attributes.value(for: "show_welcome_page")
 
-        let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \Quiz.questions, forKey: "questions", fromObject: relationships, including: includes, inContext: context)
+//        let relationships = try object.value(for: "relationships") as JSON
+//        try self.updateRelationship(forKeyPath: \Quiz.questions, forKey: "questions", fromObject: relationships, including: includes, inContext: context)
     }
 
 }

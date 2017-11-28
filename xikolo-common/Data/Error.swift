@@ -62,6 +62,7 @@ enum SynchronizationError : Error {
     case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
     case missingIncludedResource(from: Any, to: Any, withKey: KeyType)
     case missingEnityNameForResource(Any)
+    case noMatchAbstractType(resourceType: Any, abstractType: Any)
 }
 
 enum NestedMarshalError: Error {

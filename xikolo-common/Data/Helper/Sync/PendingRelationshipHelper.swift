@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import BrightFutures
 
 struct PendingRelationshipHelper {
 
@@ -107,6 +108,30 @@ struct PendingRelationshipHelper {
                 print("Error: Failed to delete pending relationship: \(error)")
             }
         }
+    }
+
+    static func findDestinationObjectIds(forResource origin: NSManagedObject & Pullable, forRelationshipName relationshipName: String) -> Future<[String], XikoloError> {
+        guard let originEnityName = type(of: origin).entity().name else {
+            return Future(error: XikoloError.totallyUnknownError)
+        }
+
+        let promise = Promise<[String], XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<PendingRelationship> = PendingRelationship.fetchRequest()
+            let typePredicate = NSPredicate(format: "originEnityName = %@", originEnityName)
+            let idPredicate = NSPredicate(format: "originObjectId = %@", origin.id)
+            let namePredicate = NSPredicate(format: "relationshipName = %@", relationshipName)
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [typePredicate, idPredicate, namePredicate])
+
+            let objectIds = context.fetchMultiple(fetchRequest).map { relationships in
+                return relationships.map { $0.destinationObjectId }
+            }
+
+            promise.complete(objectIds)
+        }
+
+        return promise.future
     }
 
 }

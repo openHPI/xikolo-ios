@@ -33,10 +33,6 @@ final class Video : Content {
         return NSFetchRequest<Video>(entityName: "Video");
     }
 
-    override func iconName() -> String {
-        return "video"
-    }
-
     var posterImageData: Data? {
         if let posterImageURL = self.singleStream?.thumbnailURL {
             do {

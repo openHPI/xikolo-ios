@@ -10,11 +10,6 @@ import CoreData
 
 class Content : NSManagedObject {
 
-    func iconName() -> String {
-        // TODO: Add "unsupported" icon.
-        return "homework"
-    }
-
     var isAvailableOffline: Bool {
         return false
     }

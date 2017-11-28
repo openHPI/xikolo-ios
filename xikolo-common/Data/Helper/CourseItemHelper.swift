@@ -53,6 +53,13 @@ struct CourseItemHelper {
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
+    static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<NSManagedObjectID, XikoloError> {
+        let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
+        var query = SingleResourceQuery(resource: courseItem)
+        query.include("content")
+        return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+    }
+
     static func markAsVisited(_ item: CourseItem) -> Future<Void, XikoloError> {
         guard !item.visited else {
             return Future(value: ())

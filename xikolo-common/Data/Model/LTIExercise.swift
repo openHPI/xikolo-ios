@@ -17,10 +17,6 @@ final class LTIExercise : Content {
     @NSManaged var allowedAttempts: Int32
     @NSManaged var lockSubmissionsAt: Date?
 
-    override func iconName() -> String {
-        return "lti_exercise"
-    }
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LTIExercise> {
         return NSFetchRequest<LTIExercise>(entityName: "LTIExercise");
     }

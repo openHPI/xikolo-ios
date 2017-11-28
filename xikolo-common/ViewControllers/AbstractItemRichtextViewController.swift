@@ -18,29 +18,25 @@ class AbstractItemRichtextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.titleView.text = self.courseItem.title
-        self.loadRichText()
+        self.updateView(for: self.courseItem)
+        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
+            CoreDataHelper.viewContext.perform {
+                self.courseItem = CoreDataHelper.viewContext.object(with: objectId) as CourseItem
+                DispatchQueue.main.async {
+                    self.updateView(for: self.courseItem)
+                }
+            }
+        }
     }
 
-    func loadRichText() {
-        guard let richText = courseItem.content as? RichText else {
-            // Content item is no rich text
-            return
-        }
+    private func updateView(for courseItem: CourseItem) {
+        self.titleView.text = self.courseItem.title
 
-        // Load local version if existing
+        guard let richText = courseItem.content as? RichText else { return }
+
         if let markdown = richText.text {
             self.display(markdown: markdown)
         }
-
-        self.courseItem.content?.notifyOnChange(self, updateHandler: {
-            if let markdown = (self.courseItem.content as? RichText)?.text {
-                self.display(markdown: markdown)
-            }
-        }, deleteHandler: {})
-
-        // Refresh rich text
-        RichTextHelper.syncRichText(courseItem.content as! RichText)
     }
 
     func display(markdown: String) {

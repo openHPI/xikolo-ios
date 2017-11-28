@@ -19,7 +19,7 @@ class VideoViewController : UIViewController {
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
 
-    var courseItem: CourseItem?
+    var courseItem: CourseItem!
     var video: Video?
     var videoPlayerConfigured = false
 
@@ -28,31 +28,26 @@ class VideoViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.layoutPlayer()
 
-        self.setupPlayer()
-
-        self.titleView.text = self.courseItem?.title
-
-        guard let video = self.courseItem?.content as? Video else {
-            return
-        }
-
-        // display local data
-        self.show(video: video)
-
-        self.courseItem?.content?.notifyOnChange(self, updateHandler: {
-            if let video = (self.courseItem?.content as? Video) {
-                self.show(video: video)
+        self.updateView(for: self.courseItem)
+        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
+            CoreDataHelper.viewContext.perform {
+                self.courseItem = CoreDataHelper.viewContext.object(with: objectId) as CourseItem
+                DispatchQueue.main.async {
+                    self.updateView(for: self.courseItem)
+                }
             }
-        }, deleteHandler: {})
-
-        // refresh data
-        VideoHelper.syncVideo(video)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.toggleControlBars(animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.player?.pause()
     }
 
     override func prefersHomeIndicatorAutoHidden() -> Bool {
@@ -61,7 +56,7 @@ class VideoViewController : UIViewController {
         return UIDevice.current.userInterfaceIdiom == .phone && isInLandscapeOrientation
     }
 
-    func setupPlayer() {
+    func layoutPlayer() {
         BMPlayerConf.topBarShowInCase = .always
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
@@ -83,7 +78,15 @@ class VideoViewController : UIViewController {
         self.videoContainer.layoutIfNeeded()
     }
 
-    func show(video: Video) {
+    private func updateView(for courseItem: CourseItem) {
+        self.titleView.text = courseItem.title
+
+        guard let video = courseItem.content as? Video else { return }
+
+        self.show(video: video)
+    }
+
+    private func show(video: Video) {
         self.video = video
 
         // show slides button

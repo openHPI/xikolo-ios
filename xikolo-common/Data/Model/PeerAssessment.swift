@@ -18,10 +18,6 @@ final class PeerAssessment : Content {
         return NSFetchRequest<PeerAssessment>(entityName: "PeerAssessment");
     }
 
-    override func iconName() -> String {
-        return "peer_assessment"
-    }
-
 }
 
 extension PeerAssessment : Pullable {

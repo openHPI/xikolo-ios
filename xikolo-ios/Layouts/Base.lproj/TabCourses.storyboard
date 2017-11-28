@@ -653,10 +653,10 @@
             </objects>
             <point key="canvasLocation" x="3136.8000000000002" y="-892.80359820089961"/>
         </scene>
-        <!--Web View Controller-->
+        <!--Quiz Web View Controller-->
         <scene sceneID="m7r-16-ntP">
             <objects>
-                <viewController storyboardIdentifier="WebViewController" id="qTX-IX-O1x" customClass="WebViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" id="qTX-IX-O1x" customClass="QuizWebViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4iW-V1-1Rf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

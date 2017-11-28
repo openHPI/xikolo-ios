@@ -60,10 +60,6 @@ final class Quiz : Content {
         return strings
     }
 
-    override func iconName() -> String {
-        return "quiz"
-    }
-
 }
 
 extension Quiz : Pullable {

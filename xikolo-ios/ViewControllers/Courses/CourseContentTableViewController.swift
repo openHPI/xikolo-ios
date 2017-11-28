@@ -123,16 +123,15 @@ class CourseContentTableViewController: UITableViewController {
         CourseItemHelper.markAsVisited(item)
         TrackingHelper.createEvent(.visitedItem, resource: item)
 
-        switch item.content {
-            case is Video:
-                performSegue(withIdentifier: "ShowVideo", sender: item)
-            case is LTIExercise, is Quiz, is PeerAssessment:
-                performSegue(withIdentifier: "ShowQuiz", sender: item)
-            case is RichText:
-                performSegue(withIdentifier: "ShowRichtext", sender: item)
-            default:
-                // TODO: show error: unsupported type
-                break
+        switch item.type {
+        case "video":
+            self.performSegue(withIdentifier: "ShowVideo", sender: item)
+        case "quiz", "lti-exercise", "peer-assessment":
+            self.performSegue(withIdentifier: "ShowQuiz", sender: item)
+        case "rich_text":
+            self.performSegue(withIdentifier: "ShowRichtext", sender: item)
+        default:
+            print("Error: Unhandle course item type (\(item.type))")
         }
     }
 
@@ -178,37 +177,14 @@ class CourseContentTableViewController: UITableViewController {
 
         switch segue.identifier {
         case "ShowVideo"?:
-            let videoView = segue.destination as! VideoViewController
-            let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-
-            CoreDataHelper.viewContext.performAndWait {
-                switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
-                case .success(let courseItem):
-                    videoView.courseItem = courseItem
-                case .failure(let error):
-                    print("Error: Could not find course item: \(error)")
-                }
-            }
+            let videoViewController = segue.destination as! VideoViewController
+            videoViewController.courseItem = courseItem
         case "ShowQuiz"?:
-            let webView = segue.destination as! WebViewController
-            if let courseID = courseItem.section?.course?.id {
-                let courseURL = Routes.COURSES_URL + courseID
-                let quizpathURL = "/items/" + courseItem.id
-                let url = courseURL + quizpathURL
-                webView.url = url
-            }
+            let webView = segue.destination as! QuizWebViewController
+            webView.courseItem = courseItem
         case "ShowRichtext"?:
-            let richtextView = segue.destination as! RichtextViewController
-            let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
-
-            CoreDataHelper.viewContext.performAndWait {
-                switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
-                case .success(let courseItem):
-                    richtextView.courseItem = courseItem
-                case .failure(let error):
-                    print("Error: Could not find course item: \(error)")
-                }
-            }
+            let richtextViewController = segue.destination as! RichtextViewController
+            richtextViewController.courseItem = courseItem
         default:
             super.prepare(for: segue, sender: sender)
         }
@@ -219,13 +195,14 @@ class CourseContentTableViewController: UITableViewController {
 extension CourseContentTableViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = resultsController.object(at: indexPath)
-        if item.proctored && (course.enrollment?.proctored ?? false) {
-            showProctoringDialog(onComplete: {
-                self.tableView.deselectRow(at: indexPath, animated: true)
+        let item = self.resultsController.object(at: indexPath)
+        if item.proctored && (self.course.enrollment?.proctored ?? false) {
+            self.showProctoringDialog(onComplete: {
+                tableView.deselectRow(at: indexPath, animated: true)
             })
         } else {
-            showItem(item)
+            self.showItem(item)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 

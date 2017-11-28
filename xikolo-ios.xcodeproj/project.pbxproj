@@ -816,6 +816,10 @@
 		50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97ABE1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97ABF1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50FE19381FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* QuizWebViewController.swift */; };
+		50FE19391FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* QuizWebViewController.swift */; };
+		50FE193A1FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* QuizWebViewController.swift */; };
+		50FE193B1FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* QuizWebViewController.swift */; };
 		702520811F6FFFD7003E0F80 /* UserDefaults+customKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+customKeys.swift */; };
 		702520821F6FFFD7003E0F80 /* UserDefaults+customKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+customKeys.swift */; };
 		702520831F6FFFD7003E0F80 /* UserDefaults+customKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+customKeys.swift */; };
@@ -1736,6 +1740,7 @@
 		50F720271F28D72D00779995 /* VideoPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPersistenceManager.swift; sourceTree = "<group>"; };
 		50F7202C1F28E29B00779995 /* Video+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+Download.swift"; path = "Data/Model/Video+Download.swift"; sourceTree = "<group>"; };
 		50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DispatchTimeInterval.swift"; sourceTree = "<group>"; };
+		50FE19371FCDB9B700F9D211 /* QuizWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWebViewController.swift; sourceTree = "<group>"; };
 		5EBD80F9E79B40545F1FD63D /* Pods-moocHOUSE-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
@@ -2470,6 +2475,7 @@
 				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
 				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
 				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
+				50FE19371FCDB9B700F9D211 /* QuizWebViewController.swift */,
 				AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */,
 			);
 			path = Courses;
@@ -4317,6 +4323,7 @@
 				50D9B16C1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				5019A7641F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
 				AB4F22721D7F0E4100ED0BF1 /* PlatformEventsTableViewController.swift in Sources */,
+				50FE19391FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */,
 				501212411FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				50ED3C521F4AE7FD00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				50F57D3D1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
@@ -4706,6 +4713,7 @@
 				70D1EB101EF12DEC0088C0FF /* Brand.swift in Sources */,
 				5019A76B1F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */,
 				70D1EA311EF0AAF30088C0FF /* Enrollment.swift in Sources */,
+				50FE193B1FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */,
 				70D1EA711EF0AB430088C0FF /* TrackingEvent.swift in Sources */,
 				50F668971F3849C300ACC26A /* CoreDataObserver.swift in Sources */,
 				5012122D1FCC669E0022A7AF /* Future+inject.swift in Sources */,
@@ -5170,6 +5178,7 @@
 				7057FFD81ECA5BC400FF759B /* CourseDateHeader.swift in Sources */,
 				504C5A701F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				AB1357C51D996722004407AA /* PlatformEventCell.swift in Sources */,
+				50FE19381FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */,
 				5012123E1FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				50D9B16A1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				5019A7631F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
@@ -5317,6 +5326,7 @@
 				ABA0F0C41DF8CE320001D88D /* NetworkHelper.swift in Sources */,
 				50ED3C551F4AE7FF00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				50F57D401FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
+				50FE193A1FCDB9B700F9D211 /* QuizWebViewController.swift in Sources */,
 				501212441FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				50F7202F1F28E29B00779995 /* Video+Download.swift in Sources */,
 				7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */,

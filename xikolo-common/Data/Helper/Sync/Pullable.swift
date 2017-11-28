@@ -95,8 +95,7 @@ extension Pullable where Self: NSManagedObject {
             if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                 self[keyPath: keyPath] = fetchedResource
             } else {
-//                try PendingRelationship.relationship(forOrigin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: false, inContext: context)
-                print("Info: Created pending relationship")
+                print("Info: relationship update saved (\(Self.type) --> \(A.type)?)")
             }
         }
     }
@@ -132,8 +131,7 @@ extension Pullable where Self: NSManagedObject {
                         if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                             self[keyPath: keyPath].insert(fetchedResource)
                         } else {
-//                            try PendingRelationship.relationship(forOrigin: self, destination: resourceIdentifier, destinationType: A.self, toManyRelationship: true, inContext: context)
-                            print("Info: Created pending relationship")
+                            print("Info: relationship update saved (\(Self.type) --> Set<\(A.type)>)")
                         }
                     }
                 }
@@ -155,10 +153,6 @@ extension Pullable where Self: NSManagedObject {
                                        updatingBlock block: (AbstractPullableContainer<Self, A>) throws -> Void) throws {
         let container = AbstractPullableContainer<Self, A>(onResource: self, withKeyPath: keyPath, forKey: key, fromObject: object, including: includes, inContext: context)
         try block(container)
-
-//        guard container.wasUpdated else {
-//            throw SynchronizationError.abstractRelationshipNotUpdated(from: Self.self, to: A.self, withKey: key)
-//        }
     }
 
 }
@@ -170,7 +164,6 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: NS
     let object: ResourceData
     let includes: [ResourceData]?
     let context: NSManagedObjectContext
-//    private (set) var wasUpdated = false
 
     init(onResource resource: A,
          withKeyPath keyPath: ReferenceWritableKeyPath<A, B?>,
@@ -195,23 +188,15 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: NS
             do {
                 if var existingObject = self.resource[keyPath: self.keyPath] as? C{
                     try existingObject.update(withObject: includedObject, including: includes, inContext: context)
-//                    self.markAsUpdated()
                 } else if let newObject = try C.value(from: includedObject, including: includes, inContext: context) as? B {
                     self.resource[keyPath: self.keyPath] = newObject
-//                    self.markAsUpdated()
                 }
             } catch let error as MarshalError {
                 throw NestedMarshalError.nestedMarshalError(error, includeType: C.type, includeKey: key)
             }
-        } else {
-//            try PendingRelationship.relationship(forOrigin: self.resource, destination: resourceIdentifier, destinationType: C.self, abstractType: B.self, toManyRelationship: false, inContext: context)
-//            print("Info: Created pending relationship")
         }
     }
 
-//    func markAsUpdated() {
-//        self.wasUpdated = true
-//    }
 }
 
 protocol AbstractPullable {}

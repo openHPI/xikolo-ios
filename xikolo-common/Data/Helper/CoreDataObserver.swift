@@ -46,11 +46,6 @@ class CoreDataObserver {
                 if let course = object as? Course {
                     SpotlightHelper.removeSearchIndex(for: course)
                 }
-
-                // PendingRelationship
-                if let pullableResource = object as? (NSManagedObject & Pullable) {
-                    PendingRelationshipHelper.deletePendingRelationship(forOrigin: pullableResource)
-                }
             }
         }
 
@@ -59,13 +54,6 @@ class CoreDataObserver {
                 // Spotlight
                 if let course = object as? Course {
                     SpotlightHelper.addSearchIndex(for: course)
-                }
-
-                // PendingRelationship
-                if let pullableResource = object as? (NSManagedObject & Pullable) {
-                    PendingRelationshipHelper.conntectResources(withObject: pullableResource)
-                } else if let pendingRelationship = object as? PendingRelationship {
-                    PendingRelationshipHelper.conntectResources(withRelationship: pendingRelationship)
                 }
 
                 // Pushable

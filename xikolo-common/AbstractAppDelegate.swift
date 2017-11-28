@@ -17,7 +17,6 @@ class AbstractAppDelegate : UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-//        CoreDataHelper.save(CoreDataHelper.viewContext)
         CoreDataObserver.standard.stopObserving()
     }
 

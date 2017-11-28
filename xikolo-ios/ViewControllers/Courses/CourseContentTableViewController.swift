@@ -11,9 +11,6 @@ import UIKit
 import DZNEmptyDataSet
 import ReachabilitySwift
 
-import BrightFutures
-
-
 class CourseContentTableViewController: UITableViewController {
     typealias Resource = CourseItem
 

@@ -64,14 +64,6 @@ class AppDelegate : AbstractAppDelegate {
                     if couldFindCourse {
                         return true
                     }
-
-//                    if case let .success(course) = CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .view) {
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailTabBarController") as! CourseTabBarController
-//                        vc.course = course
-//                        window?.rootViewController?.present(vc, animated: false, completion: nil)
-//                        return true
-//                    }
             }
         }
         return false

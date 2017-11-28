@@ -98,24 +98,6 @@ class SettingsViewController: UITableViewController {
                     self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as User
                 }
             }
-
-//            let users = try? CoreDataHelper.viewContext.fetch(fetchRequest)
-//
-//            if let user = users?.first {
-//                self.user = user
-//            }
-//
-//            UserHelper.syncMe().onSuccess { managedObjectID in
-//                self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as! User
-//            }
-
-//            CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .viewContext) { user in
-//                self.user = user
-//            }.onComplete { _ in
-//                UserHelper.syncMe().onSuccess { managedObjectID in
-//                    self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as! User
-//                }
-//            }
         } else {
             self.navigationItem.rightBarButtonItem = self.loginButton
             self.user = nil

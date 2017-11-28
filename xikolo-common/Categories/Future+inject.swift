@@ -18,8 +18,8 @@ extension Future {
             case .success(let value):
                 f().onSuccess { _ in
                     promise.success(value)
-                    }.onFailure { error in
-                        promise.failure(error)
+                }.onFailure { error in
+                    promise.failure(error)
                 }
             case .failure(let error):
                 promise.failure(error)

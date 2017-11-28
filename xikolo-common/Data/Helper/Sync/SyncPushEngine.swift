@@ -12,7 +12,7 @@ import BrightFutures
 
 class SyncPushEngine {
 
-    var types: [(NSManagedObject & Pushable).Type] = [] // or only entiyname?
+    var types: [(NSManagedObject & Pushable).Type] = []
 
     static let shared = SyncPushEngine()
     private let persistentContainerQueue: OperationQueue = {

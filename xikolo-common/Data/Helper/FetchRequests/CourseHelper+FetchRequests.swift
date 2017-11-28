@@ -15,7 +15,7 @@ extension CourseHelper {
         private static let genericPredicate = NSPredicate(format: "external != %@", NSNumber(booleanLiteral: true))
         private static let deletedEnrollmentPrecidate = NSPredicate(format: "enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)
         private static let notDeletedEnrollmentPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: deletedEnrollmentPrecidate)
-        private static let rawEnrolledPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [NSPredicate(format: "enrollment = nil"), notDeletedEnrollmentPredicate])
+        private static let rawEnrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "enrollment != nil"), notDeletedEnrollmentPredicate])
         private static let enrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, rawEnrolledPredicate])
         private static let rawUnenrolledPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [NSPredicate(format: "enrollment = nil"), deletedEnrollmentPrecidate])
         private static let unenrolledPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [genericPredicate, rawUnenrolledPredicate])

@@ -78,13 +78,6 @@ class VideoPersistenceManager: NSObject {
                         print("Failed to restore download for video \(videoId) : \(error)")
                     }
                 }
-
-//                let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
-//                CoreDataHelper.fetchSingleObject(fetchRequest: fetchRequest, inContext: .newBackgroundContext) { video in
-//                    self.activeDownloadsMap[assetDownloadTask] = video
-//                }.onFailure{ error in
-//
-//                }
             }
         }
     }

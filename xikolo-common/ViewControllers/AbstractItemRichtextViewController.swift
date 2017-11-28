@@ -13,7 +13,7 @@ class AbstractItemRichtextViewController: UIViewController {
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var textView: UITextView!
 
-    var courseItem: CourseItem! // TODO: should be RichText
+    var courseItem: CourseItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()

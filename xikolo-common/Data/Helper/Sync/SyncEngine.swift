@@ -14,6 +14,15 @@ import Marshal
 
 struct SyncEngine {
 
+    private static let session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForResource = 300
+        if #available(iOS 11, *) {
+            configuration.waitsForConnectivity = true
+        }
+        return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
+    }()
+
     // MARK: - build url request
 
     private static func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
@@ -141,8 +150,7 @@ struct SyncEngine {
     private static func doNetworkRequest(_ request: URLRequest) -> Future<ResourceData, XikoloError> {
         let promise = Promise<ResourceData, XikoloError>()
 
-        let session = URLSession.shared // TODO: use custom session with configuration?
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = self.session.dataTask(with: request) { (data, response, error) in
             if let err = error {
                 promise.failure(.network(err))
                 return

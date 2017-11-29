@@ -29,9 +29,7 @@ open class UserProfileHelper {
         request.httpBody = parameters.data(using: .utf8)
 
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        for (header, value) in NetworkHelper.getRequestHeaders() {
-            request.setValue(value, forHTTPHeaderField: header)
-        }
+        request.setValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let err = error {

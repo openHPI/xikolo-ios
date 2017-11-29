@@ -23,6 +23,7 @@ class AppDelegate : AbstractAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
 
+        self.selectStartTab()
         self.registerTabBarDelegate()
 
         // register resource to be pushed automatically
@@ -177,6 +178,15 @@ class AppDelegate : AbstractAppDelegate {
 }
 
 extension AppDelegate : UITabBarControllerDelegate {
+
+    func selectStartTab() {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            print("UITabBarController could not be found")
+            return
+        }
+
+        tabBarController.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
+    }
 
     func registerTabBarDelegate() {
         guard let tabBarController = self.window?.rootViewController as? UITabBarController else {

@@ -179,9 +179,6 @@
                     <navigationItem key="navigationItem" title="News" id="ZnP-5l-3Ix"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="eQp-3j-Pq9" kind="show" identifier="ShowAnnouncement" id="8QI-od-mYg"/>
                     </connections>
@@ -201,9 +198,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="vxq-Ct-km1" kind="relationship" relationship="rootViewController" id="U9P-3N-4yJ"/>
                     </connections>
@@ -304,9 +298,6 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="dateView" destination="M1R-Ej-QPw" id="Yqm-Tw-4pO"/>
                         <outlet property="textView" destination="rzo-V0-2VV" id="iRB-pg-K7D"/>

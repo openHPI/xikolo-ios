@@ -257,9 +257,6 @@
                                 <outlet property="titleView" destination="ntR-bY-hxe" id="NKY-hs-jrP"/>
                             </connections>
                         </collectionReusableView>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="cascade"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="delegate" destination="uLl-5G-DMn" id="r9b-Z8-ClD"/>
                         </connections>
@@ -281,9 +278,6 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="segmentedControl" destination="CXl-G3-ErQ" id="Sm6-kM-zLF"/>
                         <segue destination="bqb-dp-zic" kind="presentation" identifier="ShowLogin" id="xR8-E6-ooy"/>
@@ -836,9 +830,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="uLl-5G-DMn" kind="relationship" relationship="rootViewController" id="aFG-8h-93v"/>
                     </connections>
@@ -1246,9 +1237,6 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="dateView" destination="fFZ-uF-E3Y" id="gEW-HU-kCq"/>
                         <outlet property="descriptionView" destination="knX-ev-5z0" id="jeH-9p-7Sc"/>

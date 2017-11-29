@@ -12,9 +12,9 @@ import CoreData
 final class CourseDate : NSManagedObject {
 
     @NSManaged var id: String
-    @NSManaged var title: String
-    @NSManaged var type: String
-    @NSManaged var date: Date
+    @NSManaged var title: String?
+    @NSManaged var type: String?
+    @NSManaged var date: Date?
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseDate> {

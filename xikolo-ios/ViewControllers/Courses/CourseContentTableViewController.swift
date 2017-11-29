@@ -123,15 +123,15 @@ class CourseContentTableViewController: UITableViewController {
         CourseItemHelper.markAsVisited(item)
         TrackingHelper.createEvent(.visitedItem, resource: item)
 
-        switch item.type {
-        case "video":
+        switch item.contentType {
+        case "video"?:
             self.performSegue(withIdentifier: "ShowVideo", sender: item)
-        case "quiz", "lti-exercise", "peer-assessment":
+        case "quiz"?, "lti-exercise"?, "peer-assessment"?:
             self.performSegue(withIdentifier: "ShowQuiz", sender: item)
-        case "rich_text":
+        case "rich_text"?:
             self.performSegue(withIdentifier: "ShowRichtext", sender: item)
         default:
-            print("Error: Unhandle course item type (\(item.type))")
+            print("Error: Unhandle course item type (\(item.contentType ?? ""))")
         }
     }
 

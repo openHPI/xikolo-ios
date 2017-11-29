@@ -30,8 +30,8 @@ class AbstractLoginViewController : UIViewController {
     }
     
     func handleLoginSuccess(with token: String) {
+        self.delegate?.didSuccessfullyLogin()
         self.presentingViewController?.dismiss(animated: true, completion: nil)
-        self.didSuccessfullyLogin()
     }
     
     func handleLoginFailure(with error: Error) {
@@ -44,13 +44,6 @@ class AbstractLoginViewController : UIViewController {
             #endif
             // TODO (iOS): Error handling
         }
-    }
-
-    func didSuccessfullyLogin() {
-        CourseHelper.syncAllCourses()
-        EnrollmentHelper.syncEnrollments()
-
-        delegate?.didSuccessfullyLogin()
     }
 
 }

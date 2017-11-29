@@ -23,6 +23,8 @@ class AppDelegate : AbstractAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
 
+        self.registerTabBarDelegate()
+
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)
         SyncPushEngine.shared.register(CourseItem.self)
@@ -150,6 +152,7 @@ class AppDelegate : AbstractAppDelegate {
             print("UITabBarController could not be found")
             return
         }
+
         guard let courseNavigationController = rootViewController.viewControllers?[1] as? UINavigationController else {
             print("CourseNavigationController could not be found")
             return
@@ -171,4 +174,64 @@ class AppDelegate : AbstractAppDelegate {
         rootViewController.selectedIndex = 1
     }
 
+}
+
+extension AppDelegate : UITabBarControllerDelegate {
+
+    func registerTabBarDelegate() {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            print("UITabBarController could not be found")
+            return
+        }
+
+        tabBarController.delegate = self
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard !UserProfileHelper.isLoggedIn() else {
+            return true
+        }
+
+        guard let navigationController = viewController as? UINavigationController else {
+            print("Info: Navigation controller not found")
+            return true
+        }
+
+        guard navigationController.viewControllers.first is CourseDatesTableViewController else {
+            return true
+        }
+
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+
+        guard let loginNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            print("Error: Initial view controller of Login stroyboard in not of type UINavigationController")
+            return false
+        }
+
+        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
+            print("Error: Could not find LoginViewController")
+            return false
+        }
+
+        loginViewController.delegate = self
+
+        tabBarController.present(loginNavigationController, animated: true, completion: {
+            print("completion")
+        })
+
+        return false
+    }
+
+}
+
+extension AppDelegate : AbstractLoginViewControllerDelegate {
+
+    func didSuccessfullyLogin() {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            print("UITabBarController could not be found")
+            return
+        }
+
+        tabBarController.selectedIndex = 0
+    }
 }

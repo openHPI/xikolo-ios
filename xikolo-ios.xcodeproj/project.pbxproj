@@ -491,6 +491,10 @@
 		5012127B1FCC68830022A7AF /* ResourceRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212711FCC68830022A7AF /* ResourceRepresentable.swift */; };
 		5012127C1FCC68830022A7AF /* ResourceRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212711FCC68830022A7AF /* ResourceRepresentable.swift */; };
 		5012127D1FCC68830022A7AF /* ResourceRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212711FCC68830022A7AF /* ResourceRepresentable.swift */; };
+		5014E2F61FCEDFFA007255B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5014E2FB1FCEDFFA007255B5 /* Login.storyboard */; };
+		5014E2F71FCEDFFA007255B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5014E2FB1FCEDFFA007255B5 /* Login.storyboard */; };
+		5014E2F81FCEDFFA007255B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5014E2FB1FCEDFFA007255B5 /* Login.storyboard */; };
+		5014E2F91FCEDFFA007255B5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5014E2FB1FCEDFFA007255B5 /* Login.storyboard */; };
 		5019A75C1F20AAE1008C8138 /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */; };
 		5019A75D1F20AAE3008C8138 /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */; };
 		5019A75E1F20AAE4008C8138 /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */; };
@@ -1680,6 +1684,8 @@
 		501212571FCC679F0022A7AF /* Pushable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pushable.swift; sourceTree = "<group>"; };
 		501212641FCC685E0022A7AF /* ResourceIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceIdentifier.swift; sourceTree = "<group>"; };
 		501212711FCC68830022A7AF /* ResourceRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRepresentable.swift; sourceTree = "<group>"; };
+		5014E2FA1FCEDFFA007255B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		5014E2FD1FCEDFFF007255B5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Login.strings; sourceTree = "<group>"; };
 		5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+DetailedContent.swift"; path = "Data/Model/Video+DetailedContent.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RichText+DetailedContent.swift"; path = "Data/Model/RichText+DetailedContent.swift"; sourceTree = "<group>"; };
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
@@ -2578,7 +2584,7 @@
 		F80D678E1B9867D700E27520 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F80D678F1B9867F400E27520 /* Main */,
+				F80D678F1B9867F400E27520 /* Login */,
 				AB6AE0C61CF7D6B000708654 /* Dashboard */,
 				AB6AE0C51CF7D6A700708654 /* Courses */,
 				AB6AE0C71CF7D6CC00708654 /* News */,
@@ -2588,12 +2594,12 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		F80D678F1B9867F400E27520 /* Main */ = {
+		F80D678F1B9867F400E27520 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				F89473C11B3C46FD00553882 /* LoginViewController.swift */,
 			);
-			path = Main;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		F80D67DC1B9881FA00E27520 /* Helper */ = {
@@ -2628,6 +2634,7 @@
 			isa = PBXGroup;
 			children = (
 				A90587C21B3BFC130095DB89 /* Main.storyboard */,
+				5014E2FB1FCEDFFA007255B5 /* Login.storyboard */,
 				AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */,
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
@@ -3116,6 +3123,7 @@
 				24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */,
 				24BA40FB1D3F9B3900E38C2C /* Common.strings in Resources */,
 				24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */,
+				5014E2F71FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
 				5084516A1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
@@ -3180,6 +3188,7 @@
 				70D1EB311EF12E1E0088C0FF /* Common.strings in Resources */,
 				70D1EB2F1EF12E1B0088C0FF /* assets-common.xcassets in Resources */,
 				70D1EAE61EF0AC790088C0FF /* TabNews.storyboard in Resources */,
+				5014E2F91FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				70D1EAE21EF0AC540088C0FF /* Main.storyboard in Resources */,
 				70D1EB3F1EF12E460088C0FF /* Settings.bundle in Resources */,
 				5084516C1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
@@ -3232,6 +3241,7 @@
 				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
 				AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */,
 				249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */,
+				5014E2F61FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				24B651491D355B4A00624DBC /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
 				3DD110B01F06351D00C1060A /* logo_moochaus.png in Resources */,
@@ -3251,6 +3261,7 @@
 				ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */,
 				ABA0F02C1DF8CCDD0001D88D /* assets-ios.xcassets in Resources */,
 				ABA0F0151DF8CC3B0001D88D /* TabNews.storyboard in Resources */,
+				5014E2F81FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */,
 				ABA0F02E1DF8CCE80001D88D /* Localizable.strings in Resources */,
 				5084516B1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
@@ -5583,6 +5594,15 @@
 				24A17A051CD189390056A8EE /* de */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5014E2FB1FCEDFFA007255B5 /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5014E2FA1FCEDFFA007255B5 /* Base */,
+				5014E2FD1FCEDFFF007255B5 /* de */,
+			);
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */ = {

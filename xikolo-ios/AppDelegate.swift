@@ -23,6 +23,8 @@ class AppDelegate : AbstractAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
 
+        self.selectStartTab()
+
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)
         SyncPushEngine.shared.register(CourseItem.self)
@@ -169,6 +171,15 @@ class AppDelegate : AbstractAppDelegate {
         courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
 
         rootViewController.selectedIndex = 1
+    }
+
+    func selectStartTab() {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            print("UITabBarController could not be found")
+            return
+        }
+
+        tabBarController.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
     }
 
 }

@@ -43,6 +43,10 @@ extension WebViewController : UIWebViewDelegate {
         NetworkIndicator.end()
     }
 
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        NetworkIndicator.end()
+    }
+
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {

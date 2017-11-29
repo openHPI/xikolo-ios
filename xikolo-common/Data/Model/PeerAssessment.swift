@@ -8,33 +8,28 @@
 
 import CoreData
 import Foundation
-import Spine
 
-class PeerAssessment : Content {
+final class PeerAssessment : Content {
 
-    override func iconName() -> String {
-        return "peer_assessment"
+    @NSManaged var id: String
+    @NSManaged var title: String?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<PeerAssessment> {
+        return NSFetchRequest<PeerAssessment>(entityName: "PeerAssessment");
     }
 
 }
 
-@objcMembers
-class PeerAssessmentSpine : ContentSpine {
+extension PeerAssessment : Pullable {
 
-    var title: String?
-
-    override class var cdType: BaseModel.Type {
-        return PeerAssessment.self
-    }
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "peer-assessments"
     }
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "title": Attribute()
-        ])
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.title = try attributes.value(for: "title")
     }
-    
+
 }
+

@@ -47,7 +47,7 @@ class AbstractLoginViewController : UIViewController {
     }
 
     func didSuccessfullyLogin() {
-        CourseHelper.refreshCourses()
+        CourseHelper.syncAllCourses()
         EnrollmentHelper.syncEnrollments()
 
         delegate?.didSuccessfullyLogin()

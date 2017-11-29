@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: all urls should be of type URL to avoid checks when using these urls
 struct Routes {
 
     static let API_URL = Brand.BaseURL + "/api"

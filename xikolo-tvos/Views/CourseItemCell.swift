@@ -16,9 +16,7 @@ class CourseItemCell : UICollectionViewCell {
     func configure(_ item: CourseItem) {
         titleView.text = item.title
 
-        if let iconName = item.iconName {
-            iconView.image = UIImage(named: "item-\(iconName)-160")
-        }
+        iconView.image = UIImage(named: "item-\(item.icon)-160")
     }
 
 }

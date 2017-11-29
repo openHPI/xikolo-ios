@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
+class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
     weak var collectionView: UICollectionView?
     var resultsControllers: [NSFetchedResultsController<T>] = [] // 2Think: Do we create a memory loop here?
@@ -189,7 +189,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
 }
 
 protocol CollectionViewResultsControllerConfiguration {
-    associatedtype Content : BaseModel
+    associatedtype Content : NSManagedObject
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
 
@@ -205,7 +205,7 @@ extension CollectionViewResultsControllerConfiguration {
 
 // This is a wrapper for type erasure allowing the generic CollectionViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
-class CollectionViewResultsControllerConfigurationWrapper<T: BaseModel>: CollectionViewResultsControllerConfiguration {
+class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: CollectionViewResultsControllerConfiguration {
 
     private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let configureCollectionHeaderView: (UICollectionReusableView, NSFetchedResultsSectionInfo) -> Void

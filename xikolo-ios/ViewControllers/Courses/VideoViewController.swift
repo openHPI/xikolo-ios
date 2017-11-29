@@ -19,7 +19,7 @@ class VideoViewController : UIViewController {
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
 
-    var courseItem: CourseItem?
+    var courseItem: CourseItem!
     var video: Video?
     var videoPlayerConfigured = false
 
@@ -28,21 +28,16 @@ class VideoViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.layoutPlayer()
 
-        self.setupPlayer()
-
-        self.titleView.text = self.courseItem?.title
-
-        guard let video = self.courseItem?.content as? Video else {
-            return
-        }
-
-        // display local data
-        self.show(video: video)
-
-        // refresh data
-        VideoHelper.sync(video: video).onSuccess { updatedVideo in
-            self.show(video: updatedVideo)
+        self.updateView(for: self.courseItem)
+        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
+            CoreDataHelper.viewContext.perform {
+                self.courseItem = CoreDataHelper.viewContext.object(with: objectId) as CourseItem
+                DispatchQueue.main.async {
+                    self.updateView(for: self.courseItem)
+                }
+            }
         }
     }
 
@@ -51,13 +46,17 @@ class VideoViewController : UIViewController {
         self.toggleControlBars(animated)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        self.player?.pause()
+    }
+
     override func prefersHomeIndicatorAutoHidden() -> Bool {
         let orientation = UIDevice.current.orientation
         let isInLandscapeOrientation = orientation == .landscapeRight || orientation == .landscapeLeft
         return UIDevice.current.userInterfaceIdiom == .phone && isInLandscapeOrientation
     }
 
-    func setupPlayer() {
+    func layoutPlayer() {
         BMPlayerConf.topBarShowInCase = .always
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
@@ -79,11 +78,19 @@ class VideoViewController : UIViewController {
         self.videoContainer.layoutIfNeeded()
     }
 
-    func show(video: Video) {
+    private func updateView(for courseItem: CourseItem) {
+        self.titleView.text = courseItem.title
+
+        guard let video = courseItem.content as? Video else { return }
+
+        self.show(video: video)
+    }
+
+    private func show(video: Video) {
         self.video = video
 
         // show slides button
-        self.openSlidesButton.isHidden = (video.slides_url == nil)
+        self.openSlidesButton.isHidden = (video.slidesURL == nil)
 
         // show description
         if let summary = video.summary {
@@ -106,7 +113,7 @@ class VideoViewController : UIViewController {
             videoURL = localAsset.url
             self.playerControlView.setOffline(true)
         } else {
-            videoURL = video.hlsURL
+            videoURL = video.singleStream?.hlsURL
             self.playerControlView.setOffline(false)
         }
 
@@ -127,7 +134,7 @@ class VideoViewController : UIViewController {
         switch segue.identifier {
         case "ShowSlides"?:
             if let vc = segue.destination as? WebViewController {
-                vc.url = self.video?.slides_url?.absoluteString
+                vc.url = self.video?.slidesURL?.absoluteString
             }
         default:
             super.prepare(for: segue, sender: sender)
@@ -164,7 +171,7 @@ extension VideoViewController: BMPlayerDelegate {
         if state == .bufferFinished {
             player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
         } else if state == .playedToTheEnd {
-            TrackingHelper.sendEvent(.videoPlaybackEnd, resource: self.video, context: self.newTrackingContext)
+            TrackingHelper.createEvent(.videoPlaybackEnd, resource: self.video, context: self.newTrackingContext)
         }
     }
 

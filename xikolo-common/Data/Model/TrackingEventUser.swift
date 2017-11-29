@@ -8,26 +8,33 @@
 
 import Foundation
 
-@objcMembers
-class TrackingEventUser : NSObject, EmbeddedObject {
+class TrackingEventUser : NSObject, NSCoding {
 
-    var uuid: String?
+    var uuid: String
 
-    required init(_ dict: [String : AnyObject]) {
-        if let uuid = dict["uuid"] as? String {
-            self.uuid = uuid
-        }
+    init(uuid: String) {
+        self.uuid = uuid
+        super.init()
     }
 
-    override init() {
+    required init?(coder decoder: NSCoder) {
+        guard let uuid = decoder.decodeObject(forKey: "uuid") as? String else {
+            return nil
+        }
+
+        self.uuid = uuid
     }
 
-    func toDict() -> [String : AnyObject] {
-        var dict = [String: AnyObject]()
-        if let uuid = uuid {
-            dict["uuid"] = uuid as AnyObject?
-        }
-        return dict
+    func encode(with coder: NSCoder) {
+        coder.encode(self.uuid, forKey: "uuid")
+    }
+
+}
+
+extension TrackingEventUser : IncludedPushable {
+
+    func resourceAttributes() -> [String : Any] {
+        return [ "uuid": self.uuid ]
     }
 
 }

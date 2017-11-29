@@ -24,7 +24,7 @@ class AnnouncementCell : UITableViewCell {
         descriptionView.textContainer.maximumNumberOfLines = 4
         descriptionView.textContainer.lineBreakMode = .byTruncatingTail
 
-        if let date = announcement.published_at {
+        if let date = announcement.publishedAt {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none

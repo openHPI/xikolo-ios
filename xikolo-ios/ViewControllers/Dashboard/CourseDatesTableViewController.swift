@@ -37,15 +37,16 @@ class CourseDatesTableViewController : UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        TrackingHelper.sendEvent(.visitedDashboard, resource: nil)
+        TrackingHelper.createEvent(.visitedDashboard, resource: nil)
         self.updateAfterLoginStateChange()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(CourseDatesTableViewController.updateAfterLoginStateChange),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
 
-        let request = CourseDateHelper.getCourseDatesRequest()
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
+        let fetchRequest = CourseDateHelper.FetchRequest.allCourseDates
+        fetchRequest.predicate = NSPredicate(format: "course != nil")
+        resultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: "course.title")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "CourseDateCell")
@@ -86,7 +87,7 @@ class CourseDatesTableViewController : UITableViewController {
 
         self.courseActivityViewController?.refresh()
         if UserProfileHelper.isLoggedIn() {
-            CourseDateHelper.syncCourseDates().onComplete { _ in
+            CourseDateHelper.syncAllCourseDates().onComplete { _ in
                 stopRefreshControl()
             }
         } else {
@@ -126,10 +127,13 @@ extension CourseDatesTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
-        if let courseForCourseDate = courseDate.course, let course = CourseHelper.getByID(courseForCourseDate.id) {
-            AppDelegate.instance().goToCourse(course)
+
+        guard let course = courseDate.course else {
+            print("Error: Did not find coruse for coruse date")
+            return
         }
-        tableView.deselectRow(at: indexPath, animated: true)
+
+        AppDelegate.instance().goToCourse(course)
     }
     
 }

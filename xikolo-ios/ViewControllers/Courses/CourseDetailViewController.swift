@@ -52,8 +52,8 @@ class CourseDetailViewController: UIViewController {
         teacherView.heroID = "course_teacher_" + course.id
         imageView.heroID = "course_image_" + course.id
 
-        dateView.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
-        imageView.sd_setImage(with: course.image_url)
+        dateView.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
+        imageView.sd_setImage(with: course.imageURL)
 
         if let description = course.abstract {
             let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
@@ -68,24 +68,28 @@ class CourseDetailViewController: UIViewController {
     }
 
     @objc func setEnrolledState() {
-        let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
-                                            comment: "title of course enrollment button")
-        self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
-        self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
-        self.enrollmentButton.tintColor = UIColor.darkGray
+        DispatchQueue.main.async {
+            let buttonTitle = NSLocalizedString("enrollment.button.enrolled.title",
+                                                comment: "title of course enrollment button")
+            self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
+            self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+            self.enrollmentButton.tintColor = UIColor.darkGray
+        }
     }
 
     @objc func setUnenrolledState() {
-        let buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title",
-                                            comment: "title of Course enrollment options button")
-        self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
-        self.enrollmentButton.backgroundColor = Brand.TintColor
-        self.enrollmentButton.tintColor = UIColor.white
+        DispatchQueue.main.async {
+            let buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title",
+                                                comment: "title of Course enrollment options button")
+            self.enrollmentButton.setTitle(buttonTitle, for: UIControlState.normal)
+            self.enrollmentButton.backgroundColor = Brand.TintColor
+            self.enrollmentButton.tintColor = UIColor.white
+        }
     }
     
     func createEnrollment() {
         EnrollmentHelper.createEnrollment(for: self.course).flatMap {
-            CourseHelper.refreshCourses()
+            CourseHelper.syncAllCourses()
         }.onSuccess { _ in
             if let parent = self.parent as? CourseDecisionViewController {
                 parent.decideContent()
@@ -102,7 +106,7 @@ class CourseDetailViewController: UIViewController {
                                                      comment: "title for 'mask as completed' action")
         let completedAction = UIAlertAction(title: completedActionTitle, style: .default) { _ in
             EnrollmentHelper.markAsCompleted(self.course).onSuccess { _ in
-                CourseHelper.refreshCourse(self.course)
+                CourseHelper.syncCourse(self.course)
             }
         }
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",

@@ -23,8 +23,15 @@ class AppDelegate : AbstractAppDelegate {
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = Brand.TintColor
 
+        // register resource to be pushed automatically
+        SyncPushEngine.shared.register(Announcement.self)
+        SyncPushEngine.shared.register(CourseItem.self)
+        SyncPushEngine.shared.register(Enrollment.self)
+        SyncPushEngine.shared.register(TrackingEvent.self)
+        SyncPushEngine.shared.check()
+
         UserProfileHelper.migrateLegacyKeychain()
-        updateAnnouncements()
+        AnnouncementHelper.syncAllAnnouncements()
         EnrollmentHelper.syncEnrollments()
 
         VideoPersistenceManager.shared.restorePersistenceManager()
@@ -80,9 +87,22 @@ class AppDelegate : AbstractAppDelegate {
                     //support /courses/slug -> course detail page or learning
                     let slug = url.pathComponents[2]
                     //get course by slug
-                    //todo the course might not be synced yet, than we could try to fetch from the API by slug
-                    if let course = CourseHelper.getBySlug(slug) {
-                        self.goToCourse(course)
+
+                    //TODO: the course might not be synced yet, than we could try to fetch from the API by slug
+                    let fetchRequest = CourseHelper.FetchRequest.course(withSlug: slug)
+                    var couldFindCourse = false
+
+                    CoreDataHelper.viewContext.performAndWait {
+                        switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                        case .success(let course):
+                            couldFindCourse = true
+                            self.goToCourse(course)
+                        case .failure(let error):
+                            print("Warning: could not find course: \(error)")
+                        }
+                    }
+
+                    if couldFindCourse {
                         return true
                     }
                 } else {
@@ -100,22 +120,6 @@ class AppDelegate : AbstractAppDelegate {
         let webpageUrl = url
         application.open(webpageUrl)
         return false
-    }
-
-    func updateAnnouncements() {
-        AnnouncementHelper.syncAnnouncements().onSuccess { (announcements) in // sync announcements and show badge on news tab with number of unread articles
-            if let rootViewController = self.window?.rootViewController as? UITabBarController {
-                if let tabArray = rootViewController.tabBar.items {
-                    let tabItem = tabArray[2]
-                    let unreadAnnouncements = announcements.filter({ !($0.visited ?? true ) }) // we get nil if the user is not logged in. In this case we don't want to show the badge
-                    if unreadAnnouncements.count > 0 {
-                        tabItem.badgeValue = String(unreadAnnouncements.count)
-                    } else {
-                        tabItem.badgeValue = nil
-                    }
-                }
-            }
-        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -14,49 +14,9 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>File</key>
-			<string>Spine</string>
-			<key>Title</key>
-			<string>Spine</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>File</key>
-			<string>TSMarkdownParser</string>
-			<key>Title</key>
-			<string>TSMarkdownParser</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>File</key>
 			<string>DZNEmptyDataSet</string>
 			<key>Title</key>
 			<string>DZNEmptyDataSet</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>File</key>
-			<string>Alamofire</string>
-			<key>Title</key>
-			<string>Alamofire</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>File</key>
-			<string>AlamofireObjectMapper</string>
-			<key>Title</key>
-			<string>AlamofireObjectMapper</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>File</key>
-			<string>ObjectMapper</string>
-			<key>Title</key>
-			<string>ObjectMapper</string>
 		</dict>
 		<dict>
 			<key>Type</key>

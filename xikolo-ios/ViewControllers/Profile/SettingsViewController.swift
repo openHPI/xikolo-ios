@@ -11,6 +11,8 @@ import SafariServices
 import SDWebImage
 import MessageUI
 
+import Result
+
 class SettingsViewController: UITableViewController {
 
     enum HeaderHeight: CGFloat {
@@ -41,8 +43,20 @@ class SettingsViewController: UITableViewController {
     var user: User? {
         didSet {
             if self.user != oldValue {
-                self.updateProfileInfo()
+                DispatchQueue.main.async {
+                    self.updateProfileInfo()
+                }
             }
+
+            if oldValue != nil {
+                oldValue?.removeNotifications(self)
+            }
+
+            self.user?.notifyOnChange(self, updateHandler: {
+                DispatchQueue.main.async {
+                    self.updateProfileInfo()
+                }
+            }, deleteHandler: {})
         }
     }
 
@@ -71,12 +85,18 @@ class SettingsViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn(), let userId = UserProfileHelper.userId {
             self.navigationItem.rightBarButtonItem = nil
-            self.user = UserHelper.getMe()
 
-            UserHelper.syncMe().onSuccess { user in
-                self.user = user
+            CoreDataHelper.viewContext.perform {
+                let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+                if case .success(let user) = CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                    self.user = user
+                }
+
+                UserHelper.syncMe().onSuccess { managedObjectID in
+                    self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as User
+                }
             }
         } else {
             self.navigationItem.rightBarButtonItem = self.loginButton
@@ -91,7 +111,7 @@ class SettingsViewController: UITableViewController {
         let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
 
         if let userProfile = self.user?.profile {
-            self.profileImage.sd_setImage(with: self.user?.avatar_url, placeholderImage: UIImage(named: "avatar"))
+            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: UIImage(named: "avatar"))
             self.nameView.text = userProfile.fullName
             self.emailView.text = userProfile.email
 

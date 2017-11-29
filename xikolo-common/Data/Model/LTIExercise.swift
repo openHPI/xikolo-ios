@@ -8,39 +8,33 @@
 
 import CoreData
 import Foundation
-import Spine
 
-class LTIExercise : Content {
+final class LTIExercise : Content {
 
-    override func iconName() -> String {
-        return "lti_exercise"
+    @NSManaged var id: String
+    @NSManaged var instructions: String?
+    @NSManaged var weight: Int32
+    @NSManaged var allowedAttempts: Int32
+    @NSManaged var lockSubmissionsAt: Date?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<LTIExercise> {
+        return NSFetchRequest<LTIExercise>(entityName: "LTIExercise");
     }
 
 }
 
-@objcMembers
-class LTIExerciseSpine : ContentSpine {
+extension LTIExercise : Pullable {
 
-    var instructions: String?
-    var weight: NSNumber?
-    var allowed_attempts: NSNumber?
-    var lock_submissions_at: Date?
-
-    override class var cdType: BaseModel.Type {
-        return LTIExercise.self
-    }
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "lti-exercises"
     }
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "instructions": Attribute(),
-            "weight": Attribute(),
-            "allowed_attempts": Attribute(),
-            "lock_submissions_at": DateAttribute(),
-        ])
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.instructions = try attributes.value(for: "instructions")
+        self.weight = try attributes.value(for: "weight")
+        self.allowedAttempts = try attributes.value(for: "allowed_attempts")
+        self.lockSubmissionsAt = try attributes.value(for: "lock_submissions_at")
     }
-    
+
 }

@@ -37,7 +37,7 @@ class LearningsViewController : UIViewController {
         backgroundImageHelper = ViewControllerBlurredBackgroundHelper(rootView: view)
         backgroundImageHelper.imageView.sd_setImage(with: course.image_url)
 
-        let request = CourseSectionHelper.getSectionRequest(course)
+        let request = CourseSectionHelper.FetchRequest.orderedCourseSections(forCourse: self.course)
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: [sectionResultsController], cellReuseIdentifier: "CourseSectionCell")
@@ -95,11 +95,11 @@ class LearningsViewController : UIViewController {
             // TODO: Error handling.
         }
 
-        CourseSectionHelper.syncCourseSections(course)
+        CourseSectionHelper.syncCourseSections(forCourse: course)
     }
 
     func loadItemsForSection(_ section: CourseSection) {
-        let request = CourseItemHelper.getItemRequest(section)
+        let request = CourseItemHelper.FetchRequest.orderedCourseItems(forSection: section)
         itemCollectionView.reloadData()
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
@@ -116,7 +116,7 @@ class LearningsViewController : UIViewController {
             // TODO: Error handling
         }
 
-        CourseItemHelper.syncCourseItems(section)
+        CourseItemHelper.syncCourseItems(forSection: section)
     }
 
 }
@@ -159,7 +159,7 @@ extension LearningsViewController : UICollectionViewDelegate, ItemViewController
     }
 
     func showItem(_ item: CourseItem) {
-        TrackingHelper.sendEvent(.visitedItem, resource: item)
+        TrackingHelper.createEvent(.visitedItem, resource: item)
 
         switch item.content {
             case is Quiz:

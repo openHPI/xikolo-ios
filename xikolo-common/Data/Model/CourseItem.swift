@@ -8,62 +8,38 @@
 
 import CoreData
 import Foundation
-import Spine
 
-@objcMembers
-class CourseItem : BaseModel {
+final class CourseItem : NSManagedObject {
 
-    var iconName: String? {
-        get {
-            if let content = content {
-                return content.iconName()
-            }
-            // TODO: better default icon
-            return "homework"
-        }
+    @NSManaged var id: String
+    @NSManaged var title: String
+    @NSManaged var position: Int32
+    @NSManaged var visited: Bool
+    @NSManaged var proctored: Bool
+    @NSManaged var accessible: Bool
+    @NSManaged var type: String
+    @NSManaged var icon: String
+    @NSManaged var exerciseType: String
+    @NSManaged var deadline: Date?
+    @NSManaged private var objectStateValue: Int16
+
+    @NSManaged var content: Content?
+    @NSManaged var section: CourseSection?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseItem> {
+        return NSFetchRequest<CourseItem>(entityName: "CourseItem");
     }
 
     var next: CourseItem? {
-        get {
-            return neighbor(1)
-        }
+        return self.neighbor(1)
     }
 
     var previous: CourseItem? {
-        get {
-            return neighbor(-1)
-        }
+        return self.neighbor(-1)
     }
 
-    var proctored: Bool {
-        get {
-            return proctored_int?.boolValue ?? false
-        }
-        set(new_is_proctored) {
-            proctored_int = new_is_proctored as NSNumber?
-        }
-    }
-
-    var accessible: Bool {
-        get {
-            return accessible_int?.boolValue ?? false
-        }
-        set(new_is_accessible) {
-            accessible_int = new_is_accessible as NSNumber?
-        }
-    }
-
-    var visited: Bool? {
-        get {
-            return visited_int?.boolValue
-        }
-        set(new_has_visited) {
-            visited_int = new_has_visited as NSNumber?
-        }
-    }
-
-    fileprivate func neighbor(_ direction: Int) -> CourseItem? {
-        let items = section?.itemsSorted ?? []
+    private func neighbor(_ direction: Int) -> CourseItem? {
+        let items = self.section?.itemsSorted ?? []
         if var index = items.index(of: self) {
             index += direction
             if index < 0 || index >= items.count {
@@ -76,48 +52,55 @@ class CourseItem : BaseModel {
 
 }
 
-@objcMembers
-class CourseItemSpine : BaseModelSpine {
+extension CourseItem : Pullable {
 
-    var title: String?
-    var visited_int: NSNumber?
-    var proctored_int: NSNumber?
-    var position: NSNumber? // Must be NSNumber, because Int? is not KVC compliant.
-    var accessible_int: NSNumber?
-    var icon: String?
-    var exercise_type: String?
-    var deadline: Date?
-
-    var content: BaseModelSpine?
-
-    //used for PATCH
-    convenience init(courseItem: CourseItem){
-        self.init()
-        self.id = courseItem.id
-        self.visited_int = courseItem.visited_int
-        //TODO: What about content
-    }
-
-    override class var cdType: BaseModel.Type {
-        return CourseItem.self
-    }
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "course-items"
     }
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "title": Attribute(),
-            "content": ToOneRelationship(ContentSpine.self),
-            "visited_int": BooleanAttribute().serializeAs("visited"),
-            "proctored_int": BooleanAttribute().serializeAs("proctored"),
-            "position": Attribute(),
-            "accessible_int": BooleanAttribute().serializeAs("accessible"),
-            "icon": Attribute(),
-            "exercise_type": Attribute(),
-            "deadline": DateAttribute(),
-        ])
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.title = try attributes.value(for: "title")
+        self.position = try attributes.value(for: "position")
+        self.deadline = try attributes.value(for: "deadline")
+        self.icon = try attributes.value(for: "icon")
+        self.type = try attributes.value(for: "type")
+        self.exerciseType = try attributes.value(for: "exercise_type")
+        self.proctored = try attributes.value(for: "proctored")
+        self.accessible = try attributes.value(for: "accessible")
+        self.visited = try attributes.value(for: "visited")
+
+        let relationships = try object.value(for: "relationships") as JSON
+        try self.updateRelationship(forKeyPath: \CourseItem.section, forKey: "section", fromObject: relationships, including: includes, inContext: context)
+
+        try self.updateAbstractRelationship(forKeyPath: \CourseItem.content, forKey: "content", fromObject: relationships, including: includes, inContext: context) { container in
+            try container.update(forType: Video.self)
+            try container.update(forType: RichText.self)
+            try container.update(forType: Quiz.self)
+            try container.update(forType: LTIExercise.self)
+            try container.update(forType: PeerAssessment.self)
+        }
+    }
+
+}
+
+extension CourseItem : Pushable {
+
+    var objectState: ObjectState {
+        get {
+            return ObjectState(rawValue: self.objectStateValue)!
+        }
+        set {
+            self.objectStateValue = newValue.rawValue
+        }
+    }
+
+    func markAsUnchanged() {
+        self.objectState = .unchanged
+    }
+
+    func resourceAttributes() -> [String : Any] {
+        return [ "visited": self.visited ]
     }
 
 }

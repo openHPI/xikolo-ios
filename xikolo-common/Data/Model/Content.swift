@@ -7,16 +7,8 @@
 //
 
 import CoreData
-import Foundation
-import Spine
 
-@objcMembers
-class Content : BaseModel {
-
-    func iconName() -> String {
-        // TODO: Add "unsupported" icon.
-        return "homework"
-    }
+class Content : NSManagedObject {
 
     var isAvailableOffline: Bool {
         return false
@@ -24,15 +16,4 @@ class Content : BaseModel {
 
 }
 
-@objcMembers
-class ContentSpine : BaseModelSpine {
-
-    override class var cdType: BaseModel.Type {
-        return Content.self
-    }
-
-    override class var resourceType: ResourceType {
-        return "unsupported-content"
-    }
-
-}
+extension Content : AbstractPullable {}

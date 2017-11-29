@@ -29,7 +29,7 @@ class PlatformEventsTableViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        let request = PlatformEventHelper.getRequest()
+        let request = PlatformEventHelper.FetchRequest.allPlatformEvents
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
@@ -77,7 +77,7 @@ class PlatformEventsTableViewController: UITableViewController {
         }
 
         if UserProfileHelper.isLoggedIn() {
-            PlatformEventHelper.syncPlatformEvents().onComplete { _ in
+            PlatformEventHelper.syncAllPlatformEvents().onComplete { _ in
                 stopRefreshControl()
             }
         } else {

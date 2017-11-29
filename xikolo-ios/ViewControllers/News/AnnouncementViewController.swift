@@ -27,12 +27,8 @@ class AnnouncementViewController : UIViewController {
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
 
-        //save read state to server
-        self.announcement.visited = true
-        TrackingHelper.sendEvent(.visitedAnnouncement, resource: self.announcement)
-        SpineHelper.save(AnnouncementSpine.init(announcementItem: self.announcement))
-
-        self.announcement.notifyOnChange(self, updatedHandler: { _ in
+        self.updateView()
+        self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
         }) {
             let isVisible = self.isViewLoaded && self.view.window != nil
@@ -40,10 +36,15 @@ class AnnouncementViewController : UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        AnnouncementHelper.markAsVisited(self.announcement)
+        TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
+    }
+
     private func updateView() {
         self.titleView.text = self.announcement.title
 
-        if let date = self.announcement.published_at {
+        if let date = self.announcement.publishedAt {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
@@ -58,10 +59,6 @@ class AnnouncementViewController : UIViewController {
         } else {
             self.textView.text = "[...]"
         }
-        //save read state to server
-        announcement.visited = true
-        TrackingHelper.sendEvent(.visitedAnnouncement, resource: announcement)
-        SpineHelper.save(AnnouncementSpine.init(announcementItem: announcement))
     }
 
 }

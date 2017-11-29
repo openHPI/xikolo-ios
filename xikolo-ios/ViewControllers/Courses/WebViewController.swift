@@ -12,12 +12,23 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
 
-    var url: String!
+    var url: String? {
+        didSet {
+            if self.isViewLoaded {
+                self.loadURL()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.delegate = self
-        webView.loadRequest(NetworkHelper.getRequestForURL(url) as URLRequest)
+        self.webView.delegate = self
+        self.loadURL()
+    }
+
+    private func loadURL() {
+        guard let urlString = self.url else { return }
+        webView.loadRequest(NetworkHelper.getRequestForURL(urlString) as URLRequest)
     }
 
 }
@@ -29,6 +40,10 @@ extension WebViewController : UIWebViewDelegate {
     }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        NetworkIndicator.end()
+    }
+
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         NetworkIndicator.end()
     }
 

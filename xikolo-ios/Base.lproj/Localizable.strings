@@ -50,18 +50,6 @@
 /* title for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.title" = "There are no important course dates yet";
 
-/* description for empty platform event list if logged in */
-"empty-view.platform-events.no-activities.description" = "Notifications about course material and discussions of enrolled courses will appear here";
-
-/* title for empty platform event list if logged in */
-"empty-view.platform-events.no-activities.title" = "There have been no course activities yet";
-
-/* description for empty announcement list if not logged in */
-"empty-view.platform-events.not-logged-in.description" = "Course activity is specific to your courses so we need to know what you're enrolled in";
-
-/* title for empty announcement list if not logged in */
-"empty-view.platform-events.not-logged-in.title" = "Please log in to see course activity";
-
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Enrollment options";
 

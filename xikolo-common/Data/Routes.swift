@@ -11,13 +11,9 @@ import Foundation
 // TODO: all urls should be of type URL to avoid checks when using these urls
 struct Routes {
 
-    static let API_URL = Brand.BaseURL + "/api"
     static let API_V2_URL = Brand.BaseURL + "/api/v2/"
 
-    static let COURSES_API_URL = API_URL + "/courses/"
-    static let AUTHENTICATE_API_URL = API_V2_URL + "authenticate/"
-    static let MY_PROFILE_API_URL = API_URL + "/users/me"
-    static let ENROLLMENTS_API_URL = API_URL + "/users/me/enrollments/"
+    static let AUTHENTICATE_URL = API_V2_URL + "authenticate/"
 
     static let COURSES_URL = Brand.BaseURL + "/courses/"
     static let DASHBOARD_URL = Brand.BaseURL + "/dashboard"
@@ -30,13 +26,12 @@ struct Routes {
     static let HEADER_USER_PLATFORM_VALUE = "iOS"
 
     static let HTTP_ACCEPT_HEADER = "Accept"
-    static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.xikolo.v1, application/json"
+    static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.api+json; xikolo-version=2"
     static let HTTP_AUTH_HEADER = "Authorization"
     static let HTTP_AUTH_HEADER_VALUE_PREFIX = "Token token="
 
     static let HTTP_PARAM_EMAIL = "email"
     static let HTTP_PARAM_PASSWORD = "password"
-    static let HTTP_PARAM_COURSE_ID = "course_id"
 
     static var localizedForgotPasswordURL: URL {
         var urlComponents = URLComponents(string: Brand.BaseURL + "/account/reset/new")

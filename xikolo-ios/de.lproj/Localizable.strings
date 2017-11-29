@@ -56,18 +56,6 @@
 /* title for empty course dates list if not logged in */
 "empty-view.course-dates.not-logged-in.title" = "Bitte logge dich ein um deine Fristen zu sehen";
 
-/* description for empty platform event list if logged in */
-"empty-view.platform-events.no-activities.description" = "Hier erscheinen Benachrichtigungen über Kursmaterialien und Diskussionen aus eingeschriebenen Kursen";
-
-/* title for empty platform event list if logged in */
-"empty-view.platform-events.no-activities.title" = "Es gibt noch keine Kursaktivitäten";
-
-/* description for empty announcement list if not logged in */
-"empty-view.platform-events.not-logged-in.description" = "Kursaktivitäten beziehen sich auf eingeschriebene Kurse";
-
-/* title for empty announcement list if not logged in */
-"empty-view.platform-events.not-logged-in.title" = "Bitte logge dich ein um die Kursactivitäten zu sehen";
-
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";
 

@@ -50,12 +50,6 @@
 /* title for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.title" = "There are no important course dates yet";
 
-/* description for empty course dates list if not logged in */
-"empty-view.course-dates.not-logged-in.description" = "Course dates and deadlines are specific to your courses so we need to know what you're enrolled in";
-
-/* title for empty course dates list if not logged in */
-"empty-view.course-dates.not-logged-in.title" = "Please log in to see your personal deadlines";
-
 /* description for empty platform event list if logged in */
 "empty-view.platform-events.no-activities.description" = "Notifications about course material and discussions of enrolled courses will appear here";
 

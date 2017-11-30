@@ -23,15 +23,13 @@ open class UserProfileHelper {
             return "\(key)=\(value)"
         }.joined(separator: "&")
 
-        let url = URL(string: Routes.AUTHENTICATE_API_URL)!
+        let url = URL(string: Routes.AUTHENTICATE_URL)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = parameters.data(using: .utf8)
 
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        for (header, value) in NetworkHelper.getRequestHeaders() {
-            request.setValue(value, forHTTPHeaderField: header)
-        }
+        request.setValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let err = error {

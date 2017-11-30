@@ -1,24 +1,2 @@
 
-/* Class = "UITextField"; placeholder = "Password"; ObjectID = "ETa-cI-bg8"; */
-"ETa-cI-bg8.placeholder" = "Passwort";
 
-/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "H9h-TM-uGV"; */
-"H9h-TM-uGV.normalTitle" = "Einloggen";
-
-/* Class = "UINavigationItem"; title = "Login"; ObjectID = "Ti5-T4-EQu"; */
-"Ti5-T4-EQu.title" = "Einloggen";
-
-/* Class = "UITextField"; placeholder = "Email"; ObjectID = "bp2-MP-IBy"; */
-"bp2-MP-IBy.placeholder" = "Email";
-
-/* Class = "UIBarButtonItem"; title = "Dismiss"; ObjectID = "mt8-cH-YaA"; */
-"mt8-cH-YaA.title" = "Abbrechen";
-
-/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "rRI-Oq-dJK"; */
-"rRI-Oq-dJK.normalTitle" = "Registrieren";
-
-/* Class = "UIButton"; normalTitle = "Single Sign-On"; ObjectID = "wFF-sx-KDY"; */
-"wFF-sx-KDY.normalTitle" = "Single Sign-On";
-
-/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "CbR-GG-Pof"; */
-"CbR-GG-Pof.normalTitle" = "Passwort vergessen?";

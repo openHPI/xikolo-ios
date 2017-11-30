@@ -50,12 +50,6 @@
 /* title for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.title" = "Es gibt keine wichtigen Kursdaten";
 
-/* description for empty course dates list if not logged in */
-"empty-view.course-dates.not-logged-in.description" = "Kursdaten und Fristen beziehen sich auf eingeschriebene Kurse";
-
-/* title for empty course dates list if not logged in */
-"empty-view.course-dates.not-logged-in.title" = "Bitte logge dich ein um deine Fristen zu sehen";
-
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";
 

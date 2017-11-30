@@ -1,0 +1,24 @@
+
+/* Class = "UIBarButtonItem"; title = "Dismiss"; ObjectID = "2TP-h4-KKF"; */
+"2TP-h4-KKF.title" = "Abbrechen";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "SPE-Vp-pPL"; */
+"SPE-Vp-pPL.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "atu-fQ-cU3"; */
+"atu-fQ-cU3.normalTitle" = "Einloggen";
+
+/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "dxp-cD-HRD"; */
+"dxp-cD-HRD.normalTitle" = "Passwort vergessen?";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "k8P-v8-ptI"; */
+"k8P-v8-ptI.placeholder" = "Passwort";
+
+/* Class = "UINavigationItem"; title = "Login"; ObjectID = "oZE-ZS-166"; */
+"oZE-ZS-166.title" = "Einloggen";
+
+/* Class = "UIButton"; normalTitle = "Single Sign-On"; ObjectID = "uJw-Tr-IWa"; */
+"uJw-Tr-IWa.normalTitle" = "Single Sign-On";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "zJY-AK-fsU"; */
+"zJY-AK-fsU.normalTitle" = "Registrieren";

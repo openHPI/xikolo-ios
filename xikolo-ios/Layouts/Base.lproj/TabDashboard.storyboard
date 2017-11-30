@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ct-r5-KFX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ct-r5-KFX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -103,28 +103,11 @@
                             <outlet property="delegate" destination="TzN-ab-aeu" id="KOC-Ey-o3s"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Dashboard" id="T9X-VC-shp">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="u6M-fF-Hw6">
-                            <connections>
-                                <segue destination="uQr-ep-IsD" kind="presentation" identifier="ShowLogin" id="hYe-jA-9SX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="loginButton" destination="u6M-fF-Hw6" id="qoL-07-XbC"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Dashboard" id="T9X-VC-shp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0XJ-Ct-Y4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812" y="940"/>
-        </scene>
-        <!--LoginNavigationController-->
-        <scene sceneID="14a-YJ-IRd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="LoginNavigationController" id="uQr-ep-IsD" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RsD-Tu-mxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1430" y="761"/>
         </scene>
         <!--Course Activity View Controller-->
         <scene sceneID="2oD-bA-n2d">
@@ -141,7 +124,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CourseCell" reuseIdentifier="LastCourseCell" id="5FE-7Z-snW" customClass="CourseCell" customModule="moocHOUSE" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" restorationIdentifier="CourseCell" reuseIdentifier="LastCourseCell" id="5FE-7Z-snW" customClass="CourseCell" customModule="moocHOUSE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="8" width="300" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -149,10 +132,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yww-bv-zCw">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="0.0"/>
                                         </imageView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeT-xX-zrc">
-                                            <rect key="frame" x="0.0" y="166" width="300" height="74"/>
+                                            <rect key="frame" x="0.0" y="-74" width="300" height="74"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="c2D-6J-nTb">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="74"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,7 +237,7 @@
                                             <blurEffect style="extraLight"/>
                                         </visualEffectView>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIk-Sn-epD">
-                                            <rect key="frame" x="214.5" y="25" width="89.5" height="29"/>
+                                            <rect key="frame" x="214.5" y="-15" width="89.5" height="29"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCK-Dw-oc0">
                                                     <rect key="frame" x="20" y="4" width="49.5" height="21"/>
@@ -328,7 +311,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x76-zx-W2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1577" y="961"/>
+            <point key="canvasLocation" x="1562" y="939"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="f4y-KC-UVu">

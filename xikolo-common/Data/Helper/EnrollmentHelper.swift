@@ -14,6 +14,10 @@ import Result
 struct EnrollmentHelper {
 
     static func syncEnrollments() -> Future<[NSManagedObjectID], XikoloError> {
+        guard UserProfileHelper.isLoggedIn() else {
+            return Future(value: [])
+        }
+
         let query = MultipleResourcesQuery(type: Enrollment.self)
         return SyncEngine.syncResources(withFetchRequest: EnrollmentHelper.FetchRequest.allEnrollements, withQuery: query)
     }

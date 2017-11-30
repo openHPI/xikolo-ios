@@ -33,6 +33,11 @@ class CourseContentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .automatic
+        }
+
         self.setupReachability(Brand.host)
         self.startReachabilityNotifier()
         self.setupEmptyState()

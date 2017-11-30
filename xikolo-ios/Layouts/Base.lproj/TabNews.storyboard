@@ -297,6 +297,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hQx-mu-H9u"/>
                     </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Ly1-rw-i11"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

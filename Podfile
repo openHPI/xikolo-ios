@@ -15,7 +15,6 @@ def ios_pods
     pod 'BMPlayer', '~> 1.0'
     pod 'DownloadButton', '0.1.0'
     pod 'DZNEmptyDataSet', '1.8.1'
-    pod 'Hero', :git => 'https://github.com/lkzhao/Hero', :commit => 'd961f16'
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
     pod 'SimpleRoundedButton', '~> 1.0'

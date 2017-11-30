@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Hero
 import SDWebImage
 
 
@@ -44,13 +43,9 @@ class CourseDetailViewController: UIViewController {
         descriptionView.textContainer.lineFragmentPadding = 0
 
         titleView.text = course.title
-        titleView.heroID = "course_title_" + course.id
         languageView.text = course.language_translated
-        languageView.heroID = "course_language_" + course.id
         teacherView.text = course.teachers
         teacherView.textColor = Brand.TintColorSecond
-        teacherView.heroID = "course_teacher_" + course.id
-        imageView.heroID = "course_image_" + course.id
 
         dateView.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
         imageView.sd_setImage(with: course.imageURL)

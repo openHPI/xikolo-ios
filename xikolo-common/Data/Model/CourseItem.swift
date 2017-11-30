@@ -12,14 +12,14 @@ import Foundation
 final class CourseItem : NSManagedObject {
 
     @NSManaged var id: String
-    @NSManaged var title: String
+    @NSManaged var title: String?
     @NSManaged var position: Int32
     @NSManaged var visited: Bool
     @NSManaged var proctored: Bool
     @NSManaged var accessible: Bool
-    @NSManaged var type: String
-    @NSManaged var icon: String
-    @NSManaged var exerciseType: String
+    @NSManaged var contentType: String?
+    @NSManaged var icon: String?
+    @NSManaged var exerciseType: String?
     @NSManaged var deadline: Date?
     @NSManaged private var objectStateValue: Int16
 
@@ -64,7 +64,7 @@ extension CourseItem : Pullable {
         self.position = try attributes.value(for: "position")
         self.deadline = try attributes.value(for: "deadline")
         self.icon = try attributes.value(for: "icon")
-        self.type = try attributes.value(for: "type")
+        self.contentType = try attributes.value(for: "content_type")
         self.exerciseType = try attributes.value(for: "exercise_type")
         self.proctored = try attributes.value(for: "proctored")
         self.accessible = try attributes.value(for: "accessible")

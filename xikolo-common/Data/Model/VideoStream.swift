@@ -10,12 +10,12 @@ import Foundation
 
 final class VideoStream: NSObject, NSCoding, IncludedPullable {
 
-    var hdURL: URL
-    var sdURL: URL
-    var hlsURL: URL
-    var hdSize: Int32
-    var sdSize: Int32
-    var thumbnailURL: URL
+    var hdURL: URL?
+    var sdURL: URL?
+    var hlsURL: URL?
+    var hdSize: Int32?
+    var sdSize: Int32?
+    var thumbnailURL: URL?
 
     required init(object: ResourceData) throws {
         self.hdURL = try object.value(for: "hd_url")
@@ -26,21 +26,13 @@ final class VideoStream: NSObject, NSCoding, IncludedPullable {
         self.thumbnailURL = try object.value(for: "thumbnail_url")
     }
 
-    required init?(coder decoder: NSCoder) {
-        guard let hdURL = decoder.decodeObject(forKey: "hd_url") as? URL,
-            let sdURL = decoder.decodeObject(forKey: "sd_url") as? URL,
-            let hlsURL = decoder.decodeObject(forKey: "hls_url") as? URL,
-            let hdSize = decoder.decodeObject(forKey: "hd_size") as? Int32,
-            let sdSize = decoder.decodeObject(forKey: "sd_size") as? Int32,
-            let thumbnailURL = decoder.decodeObject(forKey: "thumbnail_url") as? URL else {
-                return nil
-        }
-        self.hdURL = hdURL
-        self.sdURL = sdURL
-        self.hlsURL = hlsURL
-        self.hdSize = hdSize
-        self.sdSize = sdSize
-        self.thumbnailURL = thumbnailURL
+    required init(coder decoder: NSCoder) {
+        self.hdURL = decoder.decodeObject(forKey: "hd_url") as? URL
+        self.sdURL = decoder.decodeObject(forKey: "sd_url") as? URL
+        self.hlsURL = decoder.decodeObject(forKey: "hls_url") as? URL
+        self.hdSize = decoder.decodeObject(forKey: "hd_size") as? Int32
+        self.sdSize = decoder.decodeObject(forKey: "sd_size") as? Int32
+        self.thumbnailURL = decoder.decodeObject(forKey: "thumbnail_url") as? URL
     }
 
     func encode(with coder: NSCoder) {

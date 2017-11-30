@@ -44,8 +44,8 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="gnF-Gj-6Wq"/>
                                                         <exclude reference="3dQ-ZL-4Q0"/>
+                                                        <exclude reference="gnF-Gj-6Wq"/>
                                                     </mask>
                                                 </variation>
                                             </imageView>
@@ -192,13 +192,13 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="egP-BO-wJG"/>
-                                                <exclude reference="Ph4-sl-zPk"/>
                                                 <exclude reference="Fkw-az-19i"/>
+                                                <exclude reference="Ph4-sl-zPk"/>
+                                                <exclude reference="egP-BO-wJG"/>
                                                 <exclude reference="2TF-dt-MRB"/>
-                                                <exclude reference="Goy-I1-Fmx"/>
-                                                <exclude reference="GU1-5h-tLR"/>
                                                 <exclude reference="Fgx-Qj-9Pz"/>
+                                                <exclude reference="GU1-5h-tLR"/>
+                                                <exclude reference="Goy-I1-Fmx"/>
                                                 <exclude reference="JCh-gG-DXl"/>
                                             </mask>
                                         </variation>
@@ -234,15 +234,15 @@
                         <viewLayoutGuide key="safeArea" id="k1U-9c-472"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="vQf-kn-FTK"/>
-                                <exclude reference="kjm-Dk-8Mx"/>
                                 <exclude reference="4jR-d1-JUb"/>
-                                <exclude reference="zSy-Rf-lbq"/>
+                                <exclude reference="kjm-Dk-8Mx"/>
                                 <exclude reference="nrD-wY-qcy"/>
+                                <exclude reference="vQf-kn-FTK"/>
+                                <exclude reference="zSy-Rf-lbq"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="oZE-ZS-166">
+                    <navigationItem key="navigationItem" title="Login" largeTitleDisplayMode="never" id="oZE-ZS-166">
                         <barButtonItem key="leftBarButtonItem" title="Dismiss" id="2TP-h4-KKF">
                             <connections>
                                 <action selector="dismiss" destination="Njp-vV-ZS8" id="4mH-u3-iHl"/>
@@ -284,6 +284,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8qq-z9-0uF">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

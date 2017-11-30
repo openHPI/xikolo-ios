@@ -237,7 +237,7 @@
                                             <blurEffect style="extraLight"/>
                                         </visualEffectView>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIk-Sn-epD">
-                                            <rect key="frame" x="214.5" y="-15" width="89.5" height="29"/>
+                                            <rect key="frame" x="214.5" y="-14.5" width="89.5" height="29"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCK-Dw-oc0">
                                                     <rect key="frame" x="20" y="4" width="49.5" height="21"/>

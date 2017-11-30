@@ -51,6 +51,11 @@ struct AnnouncementHelper {
                 return
             }
 
+            guard UserProfileHelper.isLoggedIn() else {
+                tabItem.badgeValue = nil
+                return
+            }
+
             CoreDataHelper.persistentContainer.performBackgroundTask { context in
                 let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
                 do {

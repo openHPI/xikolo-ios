@@ -20,20 +20,19 @@ struct AnnouncementHelper {
         }
     }
 
-    static func markAsVisited(_ announcement: Announcement) -> Future<Void, XikoloError> {
-        guard !announcement.visited else {
+    static func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
+        guard UserProfileHelper.isLoggedIn() && !item.visited else {
             return Future(value: ())
         }
 
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let announcement = context.object(with: announcement.objectID) as Announcement
+            let announcement = context.object(with: item.objectID) as Announcement
             announcement.visited = true
             announcement.objectState = .modified
-            let saveResult = context.saveWithResult()
+            promise.complete(context.saveWithResult())
             self.updateUnreadAnnouncementsBadge()
-            promise.complete(saveResult)
         }
 
         return promise.future

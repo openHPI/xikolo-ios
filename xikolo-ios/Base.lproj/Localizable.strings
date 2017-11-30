@@ -38,9 +38,6 @@
 /* title for empty announcement list */
 "empty-view.announcements.title" = "There are no news at the moment";
 
-/* description for empty course content list */
-"empty-view.course-content.description" = "";
-
 /* title for empty course content list */
 "empty-view.course-content.title" = "Loading course content ...";
 
@@ -97,3 +94,6 @@
 
 /* section title for download quality */
 "settings.video-persistence-quality.section-title.download quality" = "Download Quality";
+
+/* description for empty course content list */
+"empty-view.course-content.description" = "";

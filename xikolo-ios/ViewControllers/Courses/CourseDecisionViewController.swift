@@ -68,7 +68,8 @@ class CourseDecisionViewController: UIViewController {
             containerContentViewController = nil
         }
 
-        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
+
+        let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         switch content {
         case .learnings:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseContentTableViewController") as! CourseContentTableViewController

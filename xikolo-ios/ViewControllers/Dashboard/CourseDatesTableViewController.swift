@@ -59,6 +59,9 @@ class CourseDatesTableViewController : UITableViewController {
         } catch {
             // TODO: Error handling.
         }
+
+        self.refresh()
+
         self.tableView.reloadData()
         self.setupEmptyState()
     }
@@ -123,11 +126,14 @@ extension CourseDatesTableViewController {
         let courseDate = controller.object(at: dataIndexPath)
 
         guard let course = courseDate.course else {
-            print("Error: Did not find coruse for coruse date")
+            print("Error: Did not find course for course date")
             return
         }
 
-        AppDelegate.instance().goToCourse(course)
+        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController") as! CourseDecisionViewController
+        vc.course = course
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

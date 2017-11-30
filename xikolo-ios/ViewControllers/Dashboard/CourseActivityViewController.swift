@@ -59,7 +59,10 @@ extension CourseActivityViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = resultsController.object(at: indexPath)
-        AppDelegate.instance().goToCourse(course)
+        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController") as! CourseDecisionViewController
+        vc.course = course
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

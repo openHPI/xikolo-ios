@@ -270,7 +270,7 @@
         <!--WebViewController-->
         <scene sceneID="ZPS-YZ-TvW">
             <objects>
-                <viewControllerPlaceholder storyboardName="TabCourses" referencedIdentifier="WebViewController" id="y1m-I0-unW" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="CourseDecision" referencedIdentifier="WebViewController" id="y1m-I0-unW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVI-nW-oVQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1438" y="-1"/>

@@ -528,6 +528,10 @@
 		504C5A791F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
 		504C5A7A1F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
 		504C5A7B1F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
+		50502E281FD04E56000A8D35 /* CourseContent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */; };
+		50502E291FD04E56000A8D35 /* CourseContent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */; };
+		50502E2A1FD04E56000A8D35 /* CourseContent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */; };
+		50502E2B1FD04E56000A8D35 /* CourseContent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */; };
 		5051F80F1FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */; };
 		5051F8101FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */; };
 		5051F8111FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */; };
@@ -1690,6 +1694,8 @@
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		504C5A6F1F99F8210021EB17 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
+		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseContent.storyboard; sourceTree = "<group>"; };
+		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseContent.strings; sourceTree = "<group>"; };
 		5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedContent.swift; path = Data/Model/Protocol/DetailedContent.swift; sourceTree = "<group>"; };
 		506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
@@ -2634,6 +2640,7 @@
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */,
+				50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */,
 				508451681F39BB2700520D87 /* CourseDateHeader.xib */,
 			);
 			name = Storyboards;
@@ -3123,6 +3130,7 @@
 				5084516A1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
 				24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Common.stringsdict in Resources */,
+				50502E291FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
 				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
 				ABF26FA41E963A0200763A39 /* LaunchScreen.storyboard in Resources */,
@@ -3188,6 +3196,7 @@
 				5084516C1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
 				70D1EB331EF12E210088C0FF /* Common.stringsdict in Resources */,
 				70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */,
+				50502E2B1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */,
 				70D1EB0A1EF0AD000088C0FF /* LaunchScreen.storyboard in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
@@ -3228,6 +3237,7 @@
 				70D1EAE41EF0AC710088C0FF /* TabCourses.storyboard in Resources */,
 				70D1EAE11EF0AC530088C0FF /* Main.storyboard in Resources */,
 				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
+				50502E281FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				508451691F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
 				70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */,
@@ -3261,6 +3271,7 @@
 				5084516B1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
 				ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */,
 				ABA0F0FC1DF8CEB60001D88D /* Common.stringsdict in Resources */,
+				50502E2A1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */,
 				ABE0609E1DF8C21200FC186D /* assets-ios-brand.xcassets in Resources */,
 				ABF26FA61E963A1200763A39 /* LaunchScreen.storyboard in Resources */,
@@ -5589,6 +5600,15 @@
 				5014E2FD1FCEDFFF007255B5 /* de */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50502E2C1FD04E56000A8D35 /* Base */,
+				50502E2F1FD04E59000A8D35 /* de */,
+			);
+			name = CourseContent.storyboard;
 			sourceTree = "<group>";
 		};
 		709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */ = {

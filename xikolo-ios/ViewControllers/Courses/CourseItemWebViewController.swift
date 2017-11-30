@@ -1,5 +1,5 @@
 //
-//  QuizWebViewController.swift
+//  CourseItemWebViewController.swift
 //  xikolo-ios
 //
 //  Created by Max Bothe on 28.11.17.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-class QuizWebViewController: WebViewController {
+class CourseItemWebViewController: WebViewController {
 
     var courseItem: CourseItem! {
         didSet {

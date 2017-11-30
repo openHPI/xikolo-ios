@@ -131,12 +131,10 @@ class CourseContentTableViewController: UITableViewController {
         switch item.contentType {
         case "video"?:
             self.performSegue(withIdentifier: "ShowVideo", sender: item)
-        case "quiz"?, "lti-exercise"?, "peer-assessment"?:
-            self.performSegue(withIdentifier: "ShowQuiz", sender: item)
         case "rich_text"?:
             self.performSegue(withIdentifier: "ShowRichtext", sender: item)
         default:
-            print("Error: Unhandle course item type (\(item.contentType ?? ""))")
+            self.performSegue(withIdentifier: "ShowCourseItem", sender: item)
         }
     }
 
@@ -184,8 +182,8 @@ class CourseContentTableViewController: UITableViewController {
         case "ShowVideo"?:
             let videoViewController = segue.destination as! VideoViewController
             videoViewController.courseItem = courseItem
-        case "ShowQuiz"?:
-            let webView = segue.destination as! QuizWebViewController
+        case "ShowCourseItem"?:
+            let webView = segue.destination as! CourseItemWebViewController
             webView.courseItem = courseItem
         case "ShowRichtext"?:
             let richtextViewController = segue.destination as! RichtextViewController

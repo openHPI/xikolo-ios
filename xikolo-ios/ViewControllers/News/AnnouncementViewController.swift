@@ -21,8 +21,6 @@ class AnnouncementViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.titleView.heroID = "news_headline_" + announcement.id
-
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0

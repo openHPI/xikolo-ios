@@ -42,11 +42,6 @@ class CourseDatesTableViewController : UITableViewController {
 
         // setup table view data
         TrackingHelper.createEvent(.visitedDashboard, resource: nil)
-        self.updateAfterLoginStateChange()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(CourseDatesTableViewController.updateAfterLoginStateChange),
-                                               name: NotificationKeys.loginStateChangedKey,
-                                               object: nil)
 
         let fetchRequest = CourseDateHelper.FetchRequest.allCourseDates
         fetchRequest.predicate = NSPredicate(format: "course != nil")
@@ -73,11 +68,6 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
-    }
-
-    @objc func updateAfterLoginStateChange() {
-        self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
-        self.refresh()
     }
 
     @objc func refresh() {
@@ -168,26 +158,14 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
     }
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title: String
-        if UserProfileHelper.isLoggedIn() {
-            title = NSLocalizedString("empty-view.course-dates.no-dates.title",
+        let title = NSLocalizedString("empty-view.course-dates.no-dates.title",
                                       comment: "title for empty course dates list if logged in")
-        } else {
-            title = NSLocalizedString("empty-view.course-dates.not-logged-in.title",
-                                      comment: "title for empty course dates list if not logged in")
-        }
         return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description: String
-        if UserProfileHelper.isLoggedIn() {
-            description = NSLocalizedString("empty-view.course-dates.no-dates.description",
+        let description = NSLocalizedString("empty-view.course-dates.no-dates.description",
                                             comment: "description for empty course dates list if logged in")
-        } else {
-            description = NSLocalizedString("empty-view.course-dates.not-logged-in.description",
-                                            comment: "description for empty course dates list if not logged in")
-        }
         return NSAttributedString(string: description)
     }
     

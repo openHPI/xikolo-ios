@@ -32,7 +32,6 @@ class AnnouncementCell : UITableViewCell {
         }
 
         titleView.text = announcement.title
-        titleView.heroID = "news_headline_" + announcement.id
 
         if let newsText = announcement.text {
             let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling

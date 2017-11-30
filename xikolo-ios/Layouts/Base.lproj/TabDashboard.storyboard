@@ -103,28 +103,11 @@
                             <outlet property="delegate" destination="TzN-ab-aeu" id="KOC-Ey-o3s"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="never" id="T9X-VC-shp">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="u6M-fF-Hw6">
-                            <connections>
-                                <segue destination="uQr-ep-IsD" kind="presentation" identifier="ShowLogin" id="hYe-jA-9SX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="loginButton" destination="u6M-fF-Hw6" id="qoL-07-XbC"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="never" id="T9X-VC-shp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0XJ-Ct-Y4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812" y="940"/>
-        </scene>
-        <!--LoginNavigationController-->
-        <scene sceneID="14a-YJ-IRd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="LoginNavigationController" id="uQr-ep-IsD" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RsD-Tu-mxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1430" y="761"/>
         </scene>
         <!--Course Activity View Controller-->
         <scene sceneID="2oD-bA-n2d">
@@ -254,7 +237,7 @@
                                             <blurEffect style="extraLight"/>
                                         </visualEffectView>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIk-Sn-epD">
-                                            <rect key="frame" x="214.5" y="-14.5" width="89.5" height="29"/>
+                                            <rect key="frame" x="214.5" y="-15" width="89.5" height="29"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCK-Dw-oc0">
                                                     <rect key="frame" x="20" y="4" width="49.5" height="21"/>
@@ -328,7 +311,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x76-zx-W2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1577" y="961"/>
+            <point key="canvasLocation" x="1562" y="939"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="f4y-KC-UVu">

@@ -109,7 +109,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
     }
 
     func didSuccessfullyLogin() {
-        createEnrollment()
+        self.createEnrollment()
     }
 
     func createEnrollment() {

@@ -336,7 +336,7 @@
         <!--LoginNavigationController-->
         <scene sceneID="xrA-sn-gfI">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Main" referencedIdentifier="LoginNavigationController" id="O8W-IG-m3E" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Login" referencedIdentifier="LoginNavigationController" id="O8W-IG-m3E" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oIA-ic-Kqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="938" y="1410"/>

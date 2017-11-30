@@ -107,7 +107,6 @@ class SettingsViewController: UITableViewController {
             self.user = nil
         }
 
-        self.tableView.setContentOffset(CGPoint.zero, animated: true)
         self.tableView.reloadData()
     }
 

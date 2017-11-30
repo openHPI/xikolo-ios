@@ -45,10 +45,7 @@ struct EnrollmentHelper {
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let enrollment = context.object(with: enrollment.objectID) as Enrollment
-            enrollment.completed = true
-            if enrollment.objectState != .new, enrollment.objectState != .deleted {
-                enrollment.objectState = .modified
-            }
+            enrollment.objectState = .deleted
             let saveResult = context.saveWithResult()
 
             if case .success(_) = saveResult {

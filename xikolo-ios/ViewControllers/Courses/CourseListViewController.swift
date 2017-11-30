@@ -13,7 +13,6 @@ import CoreData
 
 class CourseListViewController : AbstractCourseListViewController {
 
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     var numberOfItemsPerRow = 1
 
     enum CourseDisplayMode {
@@ -32,31 +31,16 @@ class CourseListViewController : AbstractCourseListViewController {
         self.collectionView?.emptyDataSetDelegate = nil
     }
 
-    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            if UserProfileHelper.isLoggedIn() {
-                courseDisplayMode = .enrolledOnly
-            } else {
-                sender.selectedSegmentIndex = 1
-                performSegue(withIdentifier: "ShowLogin", sender: sender)
-            }
-        case 1:
-            courseDisplayMode = UserProfileHelper.isLoggedIn() ? .explore : .all
-        default:
-            break
-        }
-    }
-
     override func viewDidLoad() {
         if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.sectionHeadersPinToVisibleBounds = true
         }
 
-        if !UserProfileHelper.isLoggedIn() {
-            segmentedControl.selectedSegmentIndex = 1
-            courseDisplayMode = .all
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .automatic
         }
+
+        courseDisplayMode = .explore
 
         super.viewDidLoad()
 
@@ -89,15 +73,6 @@ class CourseListViewController : AbstractCourseListViewController {
 
     @objc func updateAfterLoginStateChange() {
         self.collectionView?.reloadEmptyDataSet()
-
-        if UserProfileHelper.isLoggedIn() {
-            self.segmentedControl.selectedSegmentIndex = 0
-            self.courseDisplayMode = .enrolledOnly
-        } else {
-            self.segmentedControl.selectedSegmentIndex = 1
-            self.courseDisplayMode = .all
-        }
-
         self.refresh()
     }
 

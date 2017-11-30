@@ -13,7 +13,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Course List View Controller-->
+        <!--Find courses-->
         <scene sceneID="aYm-tI-rNT">
             <objects>
                 <collectionViewController id="uLl-5G-DMn" customClass="CourseListViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
@@ -260,25 +260,10 @@
                             <outlet property="delegate" destination="uLl-5G-DMn" id="r9b-Z8-ClD"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="feQ-Xn-WIz">
-                        <nil key="title"/>
-                        <barButtonItem key="backBarButtonItem" title="Courses" id="yii-3n-v5c"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="CXl-G3-ErQ">
-                            <rect key="frame" x="67.5" y="7" width="240" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="My Courses"/>
-                                <segment title="Find Courses"/>
-                            </segments>
-                            <connections>
-                                <action selector="segmentedControlChanged:" destination="uLl-5G-DMn" eventType="valueChanged" id="2kC-ua-6Ft"/>
-                            </connections>
-                        </segmentedControl>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Find courses" largeTitleDisplayMode="never" id="feQ-Xn-WIz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="CXl-G3-ErQ" id="Sm6-kM-zLF"/>
                         <segue destination="Yk2-z5-k8r" kind="presentation" identifier="ShowLogin" id="Fvt-qD-Nql"/>
                     </connections>
                 </collectionViewController>
@@ -286,11 +271,11 @@
             </objects>
             <point key="canvasLocation" x="812" y="-0.44977511244377816"/>
         </scene>
-        <!--Courses-->
+        <!--Find Courses-->
         <scene sceneID="O7e-6a-qIC">
             <objects>
                 <navigationController storyboardIdentifier="CoursesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="krt-FK-dfi" customClass="XikoloNavigationController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="TabBarIconCourses" selectedImage="TabBarIconCoursesSelected" id="fhC-LU-HI2"/>
+                    <tabBarItem key="tabBarItem" title="Find Courses" image="TabBarIconCourses" selectedImage="TabBarIconCoursesSelected" id="fhC-LU-HI2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aYN-LP-p0K">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -425,10 +410,10 @@
                             <mask key="constraints">
                                 <exclude reference="LIs-oS-zUz"/>
                                 <exclude reference="U6f-JH-qPA"/>
-                                <exclude reference="IGe-me-dFO"/>
                                 <exclude reference="2zn-eY-qJC"/>
-                                <exclude reference="foN-W8-8nO"/>
                                 <exclude reference="HM9-iK-G4k"/>
+                                <exclude reference="IGe-me-dFO"/>
+                                <exclude reference="foN-W8-8nO"/>
                                 <exclude reference="vn7-yk-I8E"/>
                             </mask>
                         </variation>
@@ -633,7 +618,7 @@
         <image name="titlebar-dropdown-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ThX-Ci-ZbU"/>
+        <segue reference="Fvt-qD-Nql"/>
         <segue reference="5jb-EE-lFA"/>
     </inferredMetricsTieBreakers>
 </document>

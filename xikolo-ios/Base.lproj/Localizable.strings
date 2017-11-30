@@ -39,10 +39,10 @@
 "empty-view.announcements.title" = "There are no news at the moment";
 
 /* description for empty course content list */
-"empty-view.course-content.description" = "Please check you internet connection";
+"empty-view.course-content.description" = "";
 
 /* title for empty course content list */
-"empty-view.course-content.title" = "Error loading course items";
+"empty-view.course-content.title" = "Loading course content ...";
 
 /* description for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.description" = "Notifications about deadlines or new courses will appear here";

@@ -17,7 +17,7 @@ def ios_pods
     pod 'DZNEmptyDataSet', '1.8.1'
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
-    pod 'SimpleRoundedButton', '~> 1.0'
+    pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
 end
 
 target 'openHPI-iOS' do

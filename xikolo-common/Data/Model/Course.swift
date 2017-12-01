@@ -68,6 +68,10 @@ final class Course : NSManagedObject {
         return nil
     }
 
+    var hasEnrollment: Bool {
+        return self.enrollment != nil && self.enrollment?.objectState != .deleted
+    }
+
 }
 
 extension Course : DynamicSort {

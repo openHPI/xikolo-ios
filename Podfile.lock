@@ -36,7 +36,7 @@ DEPENDENCIES:
   - ReachabilitySwift (= 3)
   - SDWebImage/Core (= 4.0.0)
   - Shimmer (= 1.0.2)
-  - SimpleRoundedButton (~> 1.0)
+  - SimpleRoundedButton (from `https://github.com/mathebox/SimpleRoundedButton.git`, commit `91225d2`)
 
 EXTERNAL SOURCES:
   BartyCrouch:
@@ -45,6 +45,9 @@ EXTERNAL SOURCES:
   Down:
     :commit: 18eb466
     :git: https://github.com/iwasrobbed/Down
+  SimpleRoundedButton:
+    :commit: 91225d2
+    :git: https://github.com/mathebox/SimpleRoundedButton.git
 
 CHECKOUT OPTIONS:
   BartyCrouch:
@@ -53,6 +56,9 @@ CHECKOUT OPTIONS:
   Down:
     :commit: 18eb466
     :git: https://github.com/iwasrobbed/Down
+  SimpleRoundedButton:
+    :commit: 91225d2
+    :git: https://github.com/mathebox/SimpleRoundedButton.git
 
 SPEC CHECKSUMS:
   BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
@@ -68,9 +74,9 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
-  SimpleRoundedButton: d7f2be107afb25c56149f4c0df541169ca6af48c
+  SimpleRoundedButton: 4a04d0d3d79986973f74e34d543d0bc089fbc3e6
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 94c41f62b9d9d15bb0d722c0f33bfec7dc3ea2fc
+PODFILE CHECKSUM: 04f76720ed74d0a93508d716c14b830d320231bd
 
 COCOAPODS: 1.3.1

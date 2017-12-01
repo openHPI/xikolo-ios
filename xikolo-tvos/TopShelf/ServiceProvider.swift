@@ -45,7 +45,7 @@ class ServiceProvider: NSObject, TVTopShelfProvider {
                 let target = XikoloURL(type: .course, targetId: course.id)
                 item.displayURL = target.toURL()
 
-                if course.enrollment != nil {
+                if course.hasEnrollment {
                     myCoursesItems.append(item)
                 } else {
                     allCoursesItems.append(item)

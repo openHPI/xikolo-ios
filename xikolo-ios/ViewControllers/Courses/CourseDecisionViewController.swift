@@ -46,7 +46,7 @@ class CourseDecisionViewController: UIViewController {
     }
 
     func decideContent() {
-        if (course.enrollment != nil) {
+        if (course.hasEnrollment) {
             updateContainerView(course.accessible ? .learnings : .courseDetails)
         } else {
             updateContainerView(.courseDetails)

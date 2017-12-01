@@ -75,7 +75,7 @@ class CourseDetailsViewController : UIViewController {
         }
         teacherView.text = course.teachers
 
-        if course.enrollment != nil {
+        if course.hasEnrollment {
             if enrollButton == UIScreen.main.focusedView {
                 self.customPreferredFocusedView = unenrollButton
                 setNeedsFocusUpdate()

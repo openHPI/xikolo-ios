@@ -39,11 +39,11 @@ extension TrackingEvent : Pushable {
     }
 
     var deleteAfterSync: Bool {
-        return true
+        return false
     }
 
     var objectState: ObjectState {
-        return .new
+        return .unchanged
     }
 
     func markAsUnchanged() {

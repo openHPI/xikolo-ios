@@ -62,8 +62,6 @@ class SyncPushEngine {
                     return
                 }
 
-                context.refresh(resource, mergeChanges: true)
-
                 var pushFuture: Future<Void, XikoloError>?
                 if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
                     pushFuture = SyncEngine.saveResource(pullableResource)

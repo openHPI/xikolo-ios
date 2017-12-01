@@ -74,14 +74,6 @@ final class Course : NSManagedObject {
 
 }
 
-extension Course : DynamicSort {
-
-    func computeOrder() {
-        self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
-    }
-
-}
-
 extension Course : Pullable {
 
     static var type: String {
@@ -105,6 +97,8 @@ extension Course : Pullable {
         self.hidden = try attributes.value(for: "hidden")
         self.enrollable = try attributes.value(for: "enrollable")
         self.external = try attributes.value(for: "external")
+
+        self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
 
         let relationships = try object.value(for: "relationships") as JSON
         try self.updateRelationship(forKeyPath: \Course.enrollment, forKey: "user_enrollment", fromObject: relationships, including: includes, inContext: context)

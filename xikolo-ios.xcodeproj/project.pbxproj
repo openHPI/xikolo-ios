@@ -865,9 +865,6 @@
 		70D1E9F81EF0AA980088C0FF /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		70D1E9F91EF0AA9C0088C0FF /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
 		70D1E9FA1EF0AAA00088C0FF /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
-		70D1E9FB1EF0AAAB0088C0FF /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		70D1E9FC1EF0AAAB0088C0FF /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		70D1E9FD1EF0AAAC0088C0FF /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
 		70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
 		70D1EA0E1EF0AACA0088C0FF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
 		70D1EA0F1EF0AACB0088C0FF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
@@ -1121,15 +1118,6 @@
 		8049E4958756E55FA427BA60 /* Pods_openSAP_tvOS_TopShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0641AE8092A8A515A59269 /* Pods_openSAP_tvOS_TopShelf.framework */; };
 		8B4F35A36F1A3438354F4A22 /* Pods_openWHO_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152FD6BB5B8566F1CBA7D628 /* Pods_openWHO_iOS.framework */; };
 		A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
-		AB07C3701E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3711E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3721E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3731E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3741E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3751E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3761E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3771E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
-		AB07C3781E77E18F00DA0011 /* DynamicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */; };
 		AB17C56F1DFCAD460013BBCD /* CourseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1F11DD36AB500B048DB /* CourseDate.swift */; };
 		AB17C5701DFCAD460013BBCD /* CourseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1F11DD36AB500B048DB /* CourseDate.swift */; };
 		AB17C5711DFCAD470013BBCD /* CourseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AB1F11DD36AB500B048DB /* CourseDate.swift */; };
@@ -1775,7 +1763,6 @@
 		A90587BB1B3BFC130095DB89 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90587C31B3BFC130095DB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A90587C51B3BFC130095DB89 /* assets-ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios.xcassets"; sourceTree = "<group>"; };
-		AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicSort.swift; sourceTree = "<group>"; };
 		AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEvent.swift; sourceTree = "<group>"; };
 		AB1C03501D92BF3F0053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabCourses.strings; sourceTree = "<group>"; };
 		AB1C03521D92C1C40053B4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -2015,7 +2002,6 @@
 		24597D231CC6C87600FB5338 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AB07C36E1E77E12200DA0011 /* Protocols */,
 				AB2802C81D2A8ABB008C8BAE /* Announcement.swift */,
 				24A16D7B1CFDE60200CAD9FE /* Content.swift */,
 				24D48E171CCA4FC100E8051E /* Course.swift */,
@@ -2425,14 +2411,6 @@
 				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 			);
 			path = "xikolo-ios";
-			sourceTree = "<group>";
-		};
-		AB07C36E1E77E12200DA0011 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				AB07C36F1E77E18F00DA0011 /* DynamicSort.swift */,
-			);
-			name = Protocols;
 			sourceTree = "<group>";
 		};
 		AB6AE0C41CF7D69200708654 /* Settings */ = {
@@ -4121,7 +4099,6 @@
 				5012124D1FCC67510022A7AF /* Pullable.swift in Sources */,
 				50F57DCB1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				2474C8741D86FE17009BDB94 /* QuizQuestion.swift in Sources */,
-				AB07C3721E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				AB77C2991DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				2474C8841D86FE2E009BDB94 /* TrackingEvent.swift in Sources */,
 				2474C88C1D86FE63009BDB94 /* AVMetadataItem+convenience.swift in Sources */,
@@ -4278,7 +4255,6 @@
 				24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */,
 				50F97ABA1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				5060A5251F177304007896FF /* DetailedContent.swift in Sources */,
-				AB07C3731E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				50D643331F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
 				24BA40A01D3F9AB200E38C2C /* Quiz.swift in Sources */,
@@ -4405,7 +4381,6 @@
 				ABFFA85F1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				5012124F1FCC67510022A7AF /* Pullable.swift in Sources */,
 				50D9B16D1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
-				AB07C3741E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
 				ABFCF7661E81EEC40043C7B7 /* User.swift in Sources */,
 				24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
@@ -4475,7 +4450,6 @@
 				70A830A91EC780B90029235D /* CourseDateHelper.swift in Sources */,
 				50F57DCE1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				2474C8751D86FE18009BDB94 /* QuizQuestion.swift in Sources */,
-				AB07C3751E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24BA40CB1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
 				AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */,
 				5012121B1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
@@ -4614,7 +4588,6 @@
 				ABFFA85D1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				5012124C1FCC67510022A7AF /* Pullable.swift in Sources */,
 				50D9B16B1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
-				AB07C3711E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				24A16D821CFDE6E400CAD9FE /* Quiz.swift in Sources */,
 				ABFCF7641E81EEC40043C7B7 /* User.swift in Sources */,
 				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
@@ -4777,7 +4750,6 @@
 				70D1EAF11EF0ACAA0088C0FF /* DropdownTableViewController.swift in Sources */,
 				70D1EAFE1EF0ACCD0088C0FF /* CustomHeaderWebView.swift in Sources */,
 				70D1E9EF1EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */,
-				70D1E9FB1EF0AAAB0088C0FF /* DynamicSort.swift in Sources */,
 				70D1EAED1EF0AC9D0088C0FF /* CourseActivityViewController.swift in Sources */,
 				70D1EB281EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */,
 				50ED3C581F4AE80100CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
@@ -4851,7 +4823,6 @@
 				70D1EB4B1EF134240088C0FF /* AbstractQuestionViewController.swift in Sources */,
 				501212621FCC679F0022A7AF /* Pushable.swift in Sources */,
 				501212131FCC65B00022A7AF /* ModelObserver.swift in Sources */,
-				70D1E9FC1EF0AAAB0088C0FF /* DynamicSort.swift in Sources */,
 				70D1EB251EF12E070088C0FF /* AbstractLoginViewController.swift in Sources */,
 				70D1EB4C1EF134260088C0FF /* ChoiceQuestionViewController.swift in Sources */,
 				50F57DD31FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
@@ -5023,7 +4994,6 @@
 				70F4563A1F01296000A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EAC01EF0AC0A0088C0FF /* AnnouncementHelper.swift in Sources */,
 				70D1EA791EF0AB4B0088C0FF /* TrackingEventVerb.swift in Sources */,
-				70D1E9FD1EF0AAAC0088C0FF /* DynamicSort.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5123,7 +5093,6 @@
 				50D643301F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */,
 				24A16D901CFFA3E500CAD9FE /* Error.swift in Sources */,
-				AB07C3701E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				24E3DD181D5DFD5000297118 /* QuizOption.swift in Sources */,
 				ABC8A14D1D6895A00059CEF2 /* WebViewController.swift in Sources */,
@@ -5259,7 +5228,6 @@
 				50F97ABC1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				5060A5281F177304007896FF /* DetailedContent.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
-				AB07C3761E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				5012120F1FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				50D643351F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
@@ -5387,7 +5355,6 @@
 				50F57D411FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				ABFFA8611EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				50D9B16F1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
-				AB07C3771E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				ABA0F0321DF8CD060001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				501212521FCC67510022A7AF /* Pullable.swift in Sources */,
 				AB4F6CFD1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
@@ -5460,7 +5427,6 @@
 				501212531FCC67510022A7AF /* Pullable.swift in Sources */,
 				70A830AA1EC780B90029235D /* CourseDateHelper.swift in Sources */,
 				50F57DD11FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
-				AB07C3781E77E18F00DA0011 /* DynamicSort.swift in Sources */,
 				AB17C5711DFCAD470013BBCD /* CourseDate.swift in Sources */,
 				ABA0F0951DF8CDE80001D88D /* Video.swift in Sources */,
 				ABA0F1061DF8CEC20001D88D /* XikoloURL.swift in Sources */,

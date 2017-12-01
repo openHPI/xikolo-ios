@@ -40,7 +40,7 @@ class CourseListViewController : AbstractCourseListViewController {
             self.navigationItem.largeTitleDisplayMode = .automatic
         }
 
-        courseDisplayMode = .explore
+        courseDisplayMode = .all
 
         super.viewDidLoad()
 

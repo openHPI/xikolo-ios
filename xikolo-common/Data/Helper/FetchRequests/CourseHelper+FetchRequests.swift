@@ -72,6 +72,24 @@ extension CourseHelper {
             return request
         }
 
+        static var currentCourses: NSFetchRequest<Course> {
+            let request = self.genericCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [accessiblePredicate, notcompletedPredicate, activePredicate])
+            return request
+        }
+
+        static var upcomingCourses: NSFetchRequest<Course> {
+            let request = self.genericCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [announcedPredicate, notcompletedPredicate])
+            return request
+        }
+
+        static var selfpacedCourses: NSFetchRequest<Course> {
+            let request = self.genericCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [selfpacedPredicate])
+            return request
+        }
+
         static var pastCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [unenrolledPredicate, selfpacedPredicate])

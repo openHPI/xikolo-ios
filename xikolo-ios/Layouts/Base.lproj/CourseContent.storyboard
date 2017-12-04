@@ -345,7 +345,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpN-V6-WFJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PpN-V6-WFJ" secondAttribute="height" multiplier="16:9" id="ezy-kb-MKY"/>
@@ -358,7 +358,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="98.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nje-Pq-Ost">
-                                                <rect key="frame" x="20" y="20" width="375" height="58.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="375" height="58.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8K-vc-cFV">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
@@ -375,7 +375,7 @@
                                                         </attributedString>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXV-0t-btA">
-                                                        <rect key="frame" x="0.0" y="28.5" width="375" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -399,7 +399,7 @@
                                                         </attributedString>
                                                     </textView>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-I3-Gce">
-                                                        <rect key="frame" x="0.0" y="58.5" width="375" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="30" width="375" height="0.0"/>
                                                         <state key="normal" title="open slides"/>
                                                         <connections>
                                                             <action selector="openSlides:" destination="Sj1-Jn-P6O" eventType="touchUpInside" id="Alq-28-geK"/>
@@ -446,6 +446,7 @@
                         <outlet property="openSlidesButton" destination="a7h-I3-Gce" id="6vO-k4-xVa"/>
                         <outlet property="titleView" destination="x8K-vc-cFV" id="kvG-62-cER"/>
                         <outlet property="videoContainer" destination="PpN-V6-WFJ" id="Sgk-NC-wKM"/>
+                        <segue destination="l4X-lC-E4c" kind="show" identifier="ShowSlides" id="VfE-7L-NCp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SaR-95-Nfn" userLabel="First Responder" sceneMemberID="firstResponder"/>

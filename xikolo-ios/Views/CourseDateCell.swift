@@ -11,8 +11,10 @@ import UIKit
 
 class CourseDateCell : UITableViewCell {
 
-    @IBOutlet var titleView: UILabel!
-    @IBOutlet var detailView: UILabel!
+    @IBOutlet var courseLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
     @IBOutlet var dateHighlightView: UIView!
 
     static let dateFormatter: DateFormatter = {
@@ -22,24 +24,45 @@ class CourseDateCell : UITableViewCell {
         return dateFormatter
     }()
 
+    static let timeFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        return dateFormatter
+    }()
+
     func configure(_ courseDate: CourseDate) {
-        titleView.text = courseDate.title
+        self.courseLabel.textColor = Brand.TintColorSecond
+        if let courseName = courseDate.course?.title {
+            self.courseLabel.text = courseName
+            self.courseLabel.isHidden = false
+        } else {
+            self.courseLabel.isHidden = true
+        }
+
+        self.titleLabel.text = courseDate.title
+
         switch courseDate.type {
         case "item_submission_deadline"?:
-            dateHighlightView.backgroundColor = Brand.TintColorThird
-            detailView.textColor = UIColor.white
+            self.dateHighlightView.backgroundColor = Brand.TintColorThird
+            self.dateLabel.textColor = UIColor.white
+            self.timeLabel.textColor = UIColor.white
         case "course_start"?:
-            titleView.text = NSLocalizedString("course-date-cell.course-start.title",
+            self.titleLabel.text = NSLocalizedString("course-date-cell.course-start.title",
                                                comment: "specfic title for course start in a course date cell")
         default:
-            dateHighlightView.backgroundColor = UIColor.white
-            detailView.textColor = UIColor.darkGray
+            self.dateHighlightView.backgroundColor = nil
+            self.dateLabel.textColor = UIColor.darkGray
+            self.timeLabel.textColor = UIColor.darkGray
         }
 
         if let date = courseDate.date {
-            self.detailView.text = CourseDateCell.dateFormatter.string(from: date)
+            self.dateLabel.text = CourseDateCell.dateFormatter.string(from: date)
+            self.timeLabel.text = CourseDateCell.timeFormatter.string(from: date)
+            self.timeLabel.isHidden = false
         } else {
-            self.detailView.text = "Unknown"
+            self.dateLabel.text = "Unknown"
+            self.timeLabel.isHidden = true
         }
 
     }

@@ -574,10 +574,10 @@
 		5071BA271FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
 		5071BA281FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
 		5071BA291FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
-		508451691F39BB2700520D87 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508451681F39BB2700520D87 /* CourseDateHeader.xib */; };
-		5084516A1F39BB2700520D87 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508451681F39BB2700520D87 /* CourseDateHeader.xib */; };
-		5084516B1F39BB2700520D87 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508451681F39BB2700520D87 /* CourseDateHeader.xib */; };
-		5084516C1F39BB2700520D87 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508451681F39BB2700520D87 /* CourseDateHeader.xib */; };
+		508BD0AA1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
+		508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
+		508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
+		508BD0AD1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		50C92B5F1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B601FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B611FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
@@ -1688,7 +1688,8 @@
 		5060A5211F177304007896FF /* DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailedContent.swift; path = Data/Model/Protocol/DetailedContent.swift; sourceTree = "<group>"; };
 		506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
 		5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Layout.swift"; sourceTree = "<group>"; };
-		508451681F39BB2700520D87 /* CourseDateHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDateHeader.xib; sourceTree = "<group>"; };
+		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
+		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -2619,7 +2620,7 @@
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */,
 				50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */,
-				508451681F39BB2700520D87 /* CourseDateHeader.xib */,
+				508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */,
 			);
 			name = Storyboards;
 			path = Layouts;
@@ -3105,7 +3106,7 @@
 				5014E2F71FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
-				5084516A1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
+				508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Common.stringsdict in Resources */,
 				50502E291FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
@@ -3171,7 +3172,7 @@
 				5014E2F91FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				70D1EAE21EF0AC540088C0FF /* Main.storyboard in Resources */,
 				70D1EB3F1EF12E460088C0FF /* Settings.bundle in Resources */,
-				5084516C1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
+				508BD0AD1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				70D1EB331EF12E210088C0FF /* Common.stringsdict in Resources */,
 				70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */,
 				50502E2B1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
@@ -3217,7 +3218,7 @@
 				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
 				50502E281FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
-				508451691F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
+				508BD0AA1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				2490C4D31D1D6F7100F42949 /* Common.strings in Resources */,
@@ -3246,7 +3247,7 @@
 				5014E2F81FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */,
 				ABA0F02E1DF8CCE80001D88D /* Localizable.strings in Resources */,
-				5084516B1F39BB2700520D87 /* CourseDateHeader.xib in Resources */,
+				508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */,
 				ABA0F0FC1DF8CEB60001D88D /* Common.stringsdict in Resources */,
 				50502E2A1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
@@ -5575,6 +5576,15 @@
 				50502E2F1FD04E59000A8D35 /* de */,
 			);
 			name = CourseContent.storyboard;
+			sourceTree = "<group>";
+		};
+		508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				508BD0AE1FD6CCE100AF0167 /* Base */,
+				508BD0B11FD6CCE800AF0167 /* de */,
+			);
+			name = CourseDateHeader.xib;
 			sourceTree = "<group>";
 		};
 		709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */ = {

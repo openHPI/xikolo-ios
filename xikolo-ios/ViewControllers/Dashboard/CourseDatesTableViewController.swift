@@ -43,9 +43,7 @@ class CourseDatesTableViewController : UITableViewController {
         // setup table view data
         TrackingHelper.createEvent(.visitedDashboard, resource: nil)
 
-        let fetchRequest = CourseDateHelper.FetchRequest.allCourseDates
-        fetchRequest.predicate = NSPredicate(format: "course != nil")
-        resultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: "course.title")
+        resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "CourseDateCell")
@@ -93,15 +91,7 @@ class CourseDatesTableViewController : UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDateHeader")
-        let header = cell as! CourseDateHeader
-
-        let minPadding = self.tableView.separatorInset.left
-        header.leadingConstraint.constant = minPadding
-        header.trailingConstraint.constant = minPadding
-        header.titleBackgroundView.backgroundColor = Brand.TintColorSecond
-        header.titleView.text = self.resultsController.sections?[section].name
-        return header
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDateHeader")
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

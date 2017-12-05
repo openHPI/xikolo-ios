@@ -12,9 +12,5 @@ import UIKit
 class CourseDateHeader : UITableViewHeaderFooterView {
 
     @IBOutlet var titleView: UILabel!
-    @IBOutlet var titleBackgroundView: UIView!
-
-    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
 
 }

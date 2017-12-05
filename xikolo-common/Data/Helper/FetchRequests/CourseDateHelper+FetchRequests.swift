@@ -14,9 +14,10 @@ extension CourseDateHelper {
 
         static var allCourseDates: NSFetchRequest<CourseDate> {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
-            let courseSort = NSSortDescriptor(key: "course.title", ascending: true)
             let dateSort = NSSortDescriptor(key: "date", ascending: true)
-            request.sortDescriptors = [courseSort, dateSort]
+            let courseSort = NSSortDescriptor(key: "course.title", ascending: true)
+            let titleSort = NSSortDescriptor(key: "title", ascending: true)
+            request.sortDescriptors = [dateSort, courseSort, titleSort]
             return request
         }
 

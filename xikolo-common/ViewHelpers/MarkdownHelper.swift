@@ -16,13 +16,11 @@ class MarkdownHelper {
 
         #if os(tvOS)
             let color = "white"
-            let fontSize = 29
         #else
             let color = "black"
-            let fontSize = 14
         #endif
 
-        if let attributedString = try? parser.toAttributedStringWithFont(font: "-apple-system", fontSize: fontSize, color: color) {
+        if let attributedString = try? parser.toAttributedStringWithFont(font: "-apple-system-body", color: color) {
             let mutableString: NSMutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
             return mutableString
         } else {
@@ -33,9 +31,9 @@ class MarkdownHelper {
 }
 
 public extension DownAttributedStringRenderable {
-    public func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, fontSize: Int, color: String) throws -> NSAttributedString {
+    public func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, color: String) throws -> NSAttributedString {
         let htmlResponse = try self.toHTML(options)
-        let html = "<span style=\"font-family: \(font); font-size: \(fontSize); color: \(color);\">\(htmlResponse)</span>"
+        let html = "<span style=\"font: \(font); color: \(color);\">\(htmlResponse)</span>"
         let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8)!, options: [
             .documentType: NSAttributedString.DocumentType.html,
             .characterEncoding: String.Encoding.utf8.rawValue,

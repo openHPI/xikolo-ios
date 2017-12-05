@@ -355,10 +355,10 @@
                                 <rect key="frame" x="0.0" y="211" width="375" height="456"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-3n-vAy">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="98.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="136.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nje-Pq-Ost">
-                                                <rect key="frame" x="20" y="0.0" width="375" height="58.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="375" height="96.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8K-vc-cFV">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
@@ -398,8 +398,8 @@
                                                             </fragment>
                                                         </attributedString>
                                                     </textView>
-                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-I3-Gce">
-                                                        <rect key="frame" x="0.0" y="30" width="375" height="0.0"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-I3-Gce">
+                                                        <rect key="frame" x="0.0" y="30" width="375" height="30"/>
                                                         <state key="normal" title="open slides"/>
                                                         <connections>
                                                             <action selector="openSlides:" destination="Sj1-Jn-P6O" eventType="touchUpInside" id="Alq-28-geK"/>
@@ -446,12 +446,20 @@
                         <outlet property="openSlidesButton" destination="a7h-I3-Gce" id="6vO-k4-xVa"/>
                         <outlet property="titleView" destination="x8K-vc-cFV" id="kvG-62-cER"/>
                         <outlet property="videoContainer" destination="PpN-V6-WFJ" id="Sgk-NC-wKM"/>
-                        <segue destination="l4X-lC-E4c" kind="show" identifier="ShowSlides" id="VfE-7L-NCp"/>
+                        <segue destination="KeB-kN-D43" kind="show" identifier="ShowSlides" id="hyW-bz-juP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SaR-95-Nfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1014" y="591"/>
+        </scene>
+        <!--WebViewController-->
+        <scene sceneID="5qz-Dj-aIb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CourseContent" referencedIdentifier="WebViewController" id="KeB-kN-D43" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUn-7r-9gJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1008" y="1066"/>
         </scene>
         <!--LoginNavigationController-->
         <scene sceneID="p1Q-4V-wt9">
@@ -653,7 +661,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5J-D8-ri1">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.95927601809999996" green="0.95927601809999996" blue="0.95927601809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="l4X-lC-E4c" id="wil-U5-Ip1"/>
@@ -662,24 +670,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="b5J-D8-ri1" firstAttribute="width" secondItem="lNq-wQ-ILf" secondAttribute="width" id="1Ur-7M-DNw"/>
-                            <constraint firstItem="b5J-D8-ri1" firstAttribute="top" secondItem="UUh-Qv-AsH" secondAttribute="top" id="AEp-cH-w0O"/>
-                            <constraint firstItem="UUh-Qv-AsH" firstAttribute="trailing" secondItem="b5J-D8-ri1" secondAttribute="trailing" id="Aig-VO-xgG"/>
-                            <constraint firstItem="UUh-Qv-AsH" firstAttribute="bottom" secondItem="b5J-D8-ri1" secondAttribute="bottom" id="FLa-La-42I"/>
-                            <constraint firstItem="b5J-D8-ri1" firstAttribute="leading" secondItem="UUh-Qv-AsH" secondAttribute="leading" id="J46-1R-BPS"/>
-                            <constraint firstItem="b5J-D8-ri1" firstAttribute="centerY" secondItem="lNq-wQ-ILf" secondAttribute="centerY" id="Sw2-Es-Hji"/>
-                            <constraint firstItem="b5J-D8-ri1" firstAttribute="height" secondItem="lNq-wQ-ILf" secondAttribute="height" id="rT4-xk-F7K"/>
-                            <constraint firstItem="b5J-D8-ri1" firstAttribute="centerX" secondItem="UUh-Qv-AsH" secondAttribute="centerX" id="xL7-Hv-oxu"/>
+                            <constraint firstItem="UUh-Qv-AsH" firstAttribute="bottom" secondItem="b5J-D8-ri1" secondAttribute="bottom" id="HTg-A5-odB"/>
+                            <constraint firstItem="b5J-D8-ri1" firstAttribute="leading" secondItem="UUh-Qv-AsH" secondAttribute="leading" id="Qvx-j6-Nhl"/>
+                            <constraint firstItem="b5J-D8-ri1" firstAttribute="trailing" secondItem="UUh-Qv-AsH" secondAttribute="trailing" id="XEB-vb-9zX"/>
+                            <constraint firstItem="b5J-D8-ri1" firstAttribute="top" secondItem="UUh-Qv-AsH" secondAttribute="top" id="nOs-mc-K45"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UUh-Qv-AsH"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Aig-VO-xgG"/>
-                                <exclude reference="FLa-La-42I"/>
-                                <exclude reference="AEp-cH-w0O"/>
-                                <exclude reference="J46-1R-BPS"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

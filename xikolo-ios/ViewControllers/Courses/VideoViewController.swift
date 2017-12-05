@@ -30,6 +30,7 @@ class VideoViewController : UIViewController {
         super.viewDidLoad()
         self.layoutPlayer()
 
+        self.openSlidesButton.isHidden = true
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
             CoreDataHelper.viewContext.perform {

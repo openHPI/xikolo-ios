@@ -2,9 +2,6 @@
 /* status 'enrolled' of a course */
 "course-cell.status.enrolled" = "Eingeschrieben";
 
-/* status 'running' of a course */
-"course-cell.status.running" = "Läuft";
-
 /* status 'upcoming' of a course */
 "course-cell.status.upcoming" = "Zukünftig";
 

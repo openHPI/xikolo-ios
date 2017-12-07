@@ -87,7 +87,7 @@ struct CourseListViewConfiguration : CollectionViewResultsControllerConfiguratio
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
         let cell = cell as! CourseCell
         let course = controller.object(at: indexPath)
-        cell.configure(course)
+        cell.configure(course, forConfiguration: .courseList)
     }
 
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {

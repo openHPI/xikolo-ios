@@ -5,6 +5,9 @@
 /* status 'running' of a course */
 "course-cell.status.running" = "Running";
 
+/* status 'upcoming' of a course */
+"course-cell.status.upcoming" = "Upcoming";
+
 /* title of course details view of course view */
 "course-content.view.course-details.title" = "Course Details";
 

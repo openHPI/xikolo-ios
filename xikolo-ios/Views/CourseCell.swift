@@ -11,6 +11,11 @@ import SDWebImage
 
 class CourseCell : UICollectionViewCell {
 
+    enum Configuration {
+        case courseList
+        case courseActivity
+    }
+
     @IBOutlet weak var courseImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
@@ -43,7 +48,7 @@ class CourseCell : UICollectionViewCell {
         self.gradientView.layer.sublayers?.first?.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.width, height: self.gradientView.frame.size.height)
     }
 
-    func configure(_ course: Course) {
+    func configure(_ course: Course, forConfiguration configuration: Configuration) {
         courseImage.image = nil
         courseImage.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
         courseImage.sd_setShowActivityIndicatorView(true)
@@ -58,24 +63,20 @@ class CourseCell : UICollectionViewCell {
         dateLabel.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
 
         self.statusView.isHidden = true
-
-        if course.hasEnrollment {
-            self.statusView.isHidden = false
-            self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
-            self.statusView.backgroundColor = Brand.TintColorSecond
+        switch configuration {
+        case .courseList:
+            if course.hasEnrollment {
+                self.statusView.isHidden = false
+                self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
+                self.statusView.backgroundColor = Brand.TintColorSecond
+            }
+        case .courseActivity:
+            if course.status == "announced" {
+                self.statusView.isHidden = false
+                self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")
+                self.statusView.backgroundColor = Brand.TintColorSecond
+            }
         }
-//        #if OPENWHO //view is hidden by default
-//        #else
-//        switch course.status {
-//        case "active"?:
-//            statusView.isHidden = false
-//            statusLabel.text = NSLocalizedString("course-cell.status.running", comment: "status 'running' of a course")
-//            statusView.backgroundColor = Brand.TintColorThird
-//        default:
-//            break
-////            statusView.isHidden = true
-//        }
-//        #endif
     }
 
 }

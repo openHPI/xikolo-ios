@@ -63,11 +63,6 @@ class AbstractCourseListViewController : UICollectionViewController {
         let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseListViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
 
-        // This is required to prevent a Core Data error when logging in via the Dashboard or the Settings tab
-        if self.collectionView?.numberOfSections == 1, self.collectionView?.numberOfItems(inSection: 0) == 0 {
-            resultsControllerDelegateImplementation.setShouldReload()
-        }
-
         for rC in resultsControllers {
             rC.delegate = resultsControllerDelegateImplementation
         }

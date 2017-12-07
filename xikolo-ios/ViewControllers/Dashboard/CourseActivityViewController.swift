@@ -72,7 +72,9 @@ extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 240)
+        let width: CGFloat = 300
+        let height = width/2 + 70.5 // 6 + 42.5 + 4 + 18 (padding + text + padding + text)
+        return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView,

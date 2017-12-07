@@ -634,6 +634,14 @@
 		50D9B1781F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
 		50D9B1791F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
 		50D9B17A1F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
+		50DD35151FD83D5E002B40CC /* CourseListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CourseListLayout.swift */; };
+		50DD35161FD83D5E002B40CC /* CourseListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CourseListLayout.swift */; };
+		50DD35171FD83D5E002B40CC /* CourseListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CourseListLayout.swift */; };
+		50DD35181FD83D5E002B40CC /* CourseListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CourseListLayout.swift */; };
+		50DD352E1FD8983E002B40CC /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
+		50DD352F1FD8983E002B40CC /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
+		50DD35301FD8983E002B40CC /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
+		50DD35311FD8983E002B40CC /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
 		50E16CF21F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
 		50E16CF31F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
 		50E16CF41F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
@@ -1697,6 +1705,8 @@
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
+		50DD35141FD83D5E002B40CC /* CourseListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseListLayout.swift; path = "xikolo-ios/Layouts/CourseListLayout.swift"; sourceTree = SOURCE_ROOT; };
+		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoQualityViewController.swift; sourceTree = "<group>"; };
 		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
@@ -2332,6 +2342,14 @@
 			path = FetchRequests;
 			sourceTree = "<group>";
 		};
+		50DD35131FD83D24002B40CC /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				50DD35141FD83D5E002B40CC /* CourseListLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
 		709C93501EF09B9E00F8F045 /* moocHOUSE */ = {
 			isa = PBXGroup;
 			children = (
@@ -2400,6 +2418,7 @@
 				AB95897A1DC4A3C400586137 /* Categories */,
 				5019A75F1F20ABF3008C8138 /* Data */,
 				F8FABFBB1B580B5A0007F308 /* Storyboards */,
+				50DD35131FD83D24002B40CC /* Layouts */,
 				F80D678E1B9867D700E27520 /* ViewControllers */,
 				24B651471D3551C400624DBC /* Views */,
 				24B6514F1D35959C00624DBC /* Helpers */,
@@ -2621,9 +2640,9 @@
 				AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */,
 				50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */,
 				508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */,
+				50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */,
 			);
-			name = Storyboards;
-			path = Layouts;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
@@ -3101,6 +3120,7 @@
 				ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */,
 				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
 				24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */,
+				50DD352F1FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				24BA40FB1D3F9B3900E38C2C /* Common.strings in Resources */,
 				24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */,
 				5014E2F71FCEDFFA007255B5 /* Login.storyboard in Resources */,
@@ -3167,6 +3187,7 @@
 				70D1EAE51EF0AC720088C0FF /* TabCourses.storyboard in Resources */,
 				70D1EB0B1EF0AD050088C0FF /* assets-ios-brand.xcassets in Resources */,
 				3DD110B11F06351D00C1060A /* logo_moochaus.png in Resources */,
+				50DD35311FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				70D1EB311EF12E1E0088C0FF /* Common.strings in Resources */,
 				70D1EB2F1EF12E1B0088C0FF /* assets-common.xcassets in Resources */,
 				5014E2F91FCEDFFA007255B5 /* Login.storyboard in Resources */,
@@ -3231,6 +3252,7 @@
 				3DD110B01F06351D00C1060A /* logo_moochaus.png in Resources */,
 				249348131D9550FD006D4F2C /* Common.stringsdict in Resources */,
 				ABF26F971E9637F000763A39 /* LaunchScreen.storyboard in Resources */,
+				50DD352E1FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3242,6 +3264,7 @@
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Common.strings in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
+				50DD35301FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */,
 				ABA0F02C1DF8CCDD0001D88D /* assets-ios.xcassets in Resources */,
 				5014E2F81FCEDFFA007255B5 /* Login.storyboard in Resources */,
@@ -4201,6 +4224,7 @@
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
 				5053988C1F72A9FB00A87DC8 /* NotificationKeys.swift in Sources */,
+				50DD35161FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				4E6AB1FB1DD36AB500B048DB /* CourseDate.swift in Sources */,
 				24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
 				24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */,
@@ -4668,6 +4692,7 @@
 				50D643381F8E587100A89331 /* UIApplication+AppInfo.swift in Sources */,
 				70D1EB361EF12E240088C0FF /* AbstractAppDelegate.swift in Sources */,
 				70D1EA771EF0AB4A0088C0FF /* TrackingEventVerb.swift in Sources */,
+				50DD35181FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				50C92B8F1FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				50F7202B1F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
 				70D1EB081EF0ACEC0088C0FF /* StandardTableviewTitle.swift in Sources */,
@@ -5036,6 +5061,7 @@
 				243CE4961D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
+				50DD35151FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */,
 				4E6AB1F81DD36AB500B048DB /* CourseDate.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */,
@@ -5179,6 +5205,7 @@
 				ABA0F0E71DF8CE7E0001D88D /* xikolo.xcdatamodeld in Sources */,
 				ABA0F0721DF8CDB80001D88D /* Announcement.swift in Sources */,
 				ABA0F0DF1DF8CE6F0001D88D /* TrackingHelper.swift in Sources */,
+				50DD35171FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				ABA0F0EA1DF8CE940001D88D /* AbstractCourseListViewController.swift in Sources */,
 				ABB49A8E1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */,
 				ABA0F0841DF8CDD10001D88D /* QuizQuestion.swift in Sources */,

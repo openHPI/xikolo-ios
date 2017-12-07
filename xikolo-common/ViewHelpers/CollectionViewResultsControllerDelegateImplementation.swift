@@ -18,7 +18,6 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
 
     var configuration: CollectionViewResultsControllerConfigurationWrapper<T>?
     private var contentChangeOperations: [BlockOperation] = []
-    private var shouldReload = false
 
     required init(_ collectionView: UICollectionView?, resultsControllers: [NSFetchedResultsController<T>], cellReuseIdentifier: String) {
         self.collectionView = collectionView
@@ -67,22 +66,13 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if self.shouldReload {
-            self.collectionView?.reloadData()
+        self.collectionView?.performBatchUpdates({
+            for operation in self.contentChangeOperations {
+                operation.start()
+            }
+        }, completion: { _ in
             self.contentChangeOperations.removeAll(keepingCapacity: false)
-        } else {
-            self.collectionView?.performBatchUpdates({
-                for operation in self.contentChangeOperations {
-                    operation.start()
-                }
-            }, completion: { _ in
-                self.contentChangeOperations.removeAll(keepingCapacity: false)
-            })
-        }
-    }
-
-    func setShouldReload() {
-        self.shouldReload = true
+        })
     }
 
     deinit {
@@ -130,7 +120,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
             }
             return view
         } else {
-            fatalError("Unsupported supplementary view kind.")
+            return UICollectionReusableView()
         }
     }
 

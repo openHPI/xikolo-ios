@@ -1,4 +1,7 @@
 
+/* status 'enrolled' of a course */
+"course-cell.status.enrolled" = "Enrolled";
+
 /* status 'running' of a course */
 "course-cell.status.running" = "Running";
 

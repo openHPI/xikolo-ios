@@ -120,6 +120,12 @@ extension CourseHelper {
             return request
         }
 
+        static var enrolledNotCompletedCourses: NSFetchRequest<Course> {
+            let request = self.genericCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, notcompletedPredicate])
+            return request
+        }
+
         static var completedCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [enrolledPredicate, completedPredicate])

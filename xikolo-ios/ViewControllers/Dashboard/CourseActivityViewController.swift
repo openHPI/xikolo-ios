@@ -32,7 +32,7 @@ class CourseActivityViewController: UICollectionViewController {
     }
 
     private func updateFetchedResultController() {
-        let request = UserProfileHelper.isLoggedIn() ? CourseHelper.FetchRequest.enrolledAccessibleCourses : CourseHelper.FetchRequest.interestingCoursesRequest
+        let request = CourseHelper.FetchRequest.enrolledNotCompletedCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView!, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")

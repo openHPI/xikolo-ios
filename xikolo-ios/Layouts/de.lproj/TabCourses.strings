@@ -1,5 +1,5 @@
 
-/* Class = "UITabBarItem"; title = "Find Courses"; ObjectID = "fhC-LU-HI2"; */
+/* Class = "UITabBarItem"; title = "Courses"; ObjectID = "fhC-LU-HI2"; */
 "fhC-LU-HI2.title" = "Kurse";
 
 /* Class = "UILabel"; text = "Discussions"; ObjectID = "SOy-KB-LgV"; */
@@ -11,5 +11,5 @@
 /* Class = "UILabel"; text = "Course Details"; ObjectID = "w4C-3A-1GB"; */
 "w4C-3A-1GB.text" = "Kursdetails";
 
-/* Class = "UINavigationItem"; title = "Find courses"; ObjectID = "feQ-Xn-WIz"; */
+/* Class = "UINavigationItem"; title = "Courses"; ObjectID = "feQ-Xn-WIz"; */
 "feQ-Xn-WIz.title" = "Kurse";

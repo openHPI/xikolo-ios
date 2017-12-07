@@ -29,7 +29,7 @@ struct Routes {
     static let HEADER_USER_PLATFORM_VALUE = "iOS"
 
     static let HTTP_ACCEPT_HEADER = "Accept"
-    static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.xikolo.v1, application/json"
+    static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.api+json; xikolo-version=2"
     static let HTTP_AUTH_HEADER = "Authorization"
     static let HTTP_AUTH_HEADER_VALUE_PREFIX = "Token token="
 

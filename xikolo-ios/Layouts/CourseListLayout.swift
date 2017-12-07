@@ -20,7 +20,7 @@ class CourseListLayout: UICollectionViewLayout {
 
     private var cellPadding: CGFloat = 16
     private var linePadding: CGFloat = 24
-    private var headerHeight: CGFloat = 66
+    private var headerHeight: CGFloat = 50
 
     private var cache: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     private var sectionRange: [Int: (minimum: CGFloat, maximum: CGFloat)] = [:]

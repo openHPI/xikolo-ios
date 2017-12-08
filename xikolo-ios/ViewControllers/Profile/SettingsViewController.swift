@@ -89,13 +89,15 @@ class SettingsViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn(), let userId = UserProfileHelper.userId {
+        if UserProfileHelper.isLoggedIn(){
             self.navigationItem.rightBarButtonItem = nil
 
             CoreDataHelper.viewContext.perform {
-                let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
-                if case .success(let user) = CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
-                    self.user = user
+                if let userId = UserProfileHelper.userId {
+                    let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+                    if case .success(let user) = CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                        self.user = user
+                    }
                 }
 
                 UserHelper.syncMe().onSuccess { managedObjectID in

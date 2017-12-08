@@ -86,6 +86,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         if segue.identifier == "ShowSSOWebView" {
             let vc = segue.destination as! WebViewController
             vc.url = Routes.SSO_URL
+            vc.loginDelegate = self.delegate
 
             // Delete all cookies since cookies are not shared among applications in iOS.
             let cookieStorage = HTTPCookieStorage.shared

@@ -225,9 +225,7 @@ extension AppDelegate : UITabBarControllerDelegate {
 
         loginViewController.delegate = self
 
-        tabBarController.present(loginNavigationController, animated: true, completion: {
-            print("completion")
-        })
+        tabBarController.present(loginNavigationController, animated: true)
 
         return false
     }

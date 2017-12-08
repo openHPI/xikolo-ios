@@ -12,8 +12,7 @@ import CoreData
 class UserHelper {
 
     static func syncMe() -> Future<NSManagedObjectID, XikoloError> {
-        guard let userId = UserProfileHelper.userId else { return Future(error: .userNotLoggedIn) }
-        let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
+        let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)

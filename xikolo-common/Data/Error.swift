@@ -32,7 +32,6 @@ enum XikoloError : Error {
 
     case synchronizationError(SynchronizationError)
     case trackingForUnknownUser
-    case userNotLoggedIn
     case missingEnrollemnt
 }
 

@@ -12,6 +12,8 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
 
+    var loginDelegate : AbstractLoginViewControllerDelegate?
+
     var url: String? {
         didSet {
             if self.isViewLoaded {
@@ -58,9 +60,8 @@ extension WebViewController : UIWebViewDelegate {
 
                 UserProfileHelper.userToken = token
                 UserProfileHelper.postLoginStateChange()
-                self.navigationController?.dismiss(animated: true) {
-                    NetworkIndicator.end()
-                }
+                self.loginDelegate?.didSuccessfullyLogin()
+                self.navigationController?.dismiss(animated: true)
                 return false
             }
 

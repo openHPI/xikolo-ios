@@ -31,7 +31,7 @@ class AbstractLoginViewController : UIViewController {
     
     func handleLoginSuccess(with token: String) {
         self.delegate?.didSuccessfullyLogin()
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true)
     }
     
     func handleLoginFailure(with error: Error) {

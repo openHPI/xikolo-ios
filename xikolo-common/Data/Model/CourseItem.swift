@@ -68,7 +68,8 @@ extension CourseItem : Pullable {
         self.exerciseType = try attributes.value(for: "exercise_type")
         self.proctored = try attributes.value(for: "proctored")
         self.accessible = try attributes.value(for: "accessible")
-        self.visited = try attributes.value(for: "visited")
+        self.visited = try attributes.value(for: "visited") || self.visited  // course items can't be set to 'not visited'
+
 
         let relationships = try object.value(for: "relationships") as JSON
         try self.updateRelationship(forKeyPath: \CourseItem.section, forKey: "section", fromObject: relationships, including: includes, inContext: context)

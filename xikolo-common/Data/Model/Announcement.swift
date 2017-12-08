@@ -40,7 +40,7 @@ extension Announcement: Pullable {
         self.text = try attributes.value(for: "text")
         self.imageURL = try attributes.value(for: "image_url")
         self.publishedAt = try attributes.value(for: "published_at")
-        self.visited = try attributes.value(for: "visited")
+        self.visited = try attributes.value(for: "visited") || self.visited // announcements can't be set to 'not visited'
 
         if let relationships = try? object.value(for: "relationships") as JSON {
             try self.updateRelationship(forKeyPath: \Announcement.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)

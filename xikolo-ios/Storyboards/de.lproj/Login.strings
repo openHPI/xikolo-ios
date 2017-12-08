@@ -14,9 +14,6 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "k8P-v8-ptI"; */
 "k8P-v8-ptI.placeholder" = "Passwort";
 
-/* Class = "UINavigationItem"; title = "Login"; ObjectID = "oZE-ZS-166"; */
-"oZE-ZS-166.title" = "Einloggen";
-
 /* Class = "UIButton"; normalTitle = "Single Sign-On"; ObjectID = "uJw-Tr-IWa"; */
 "uJw-Tr-IWa.normalTitle" = "Single Sign-On";
 

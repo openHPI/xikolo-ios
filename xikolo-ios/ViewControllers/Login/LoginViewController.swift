@@ -16,12 +16,21 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var singleSignOnView: UIView!
     @IBOutlet weak var singleSignOnButton: UIButton!
-    @IBOutlet var parentView: UIView!
+    @IBOutlet weak var centerInputFieldsConstraints: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginButton.backgroundColor = Brand.TintColor
         self.registerButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.adjustViewForKeyboardShow(_:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.adjustViewForKeyboardHide(_:)),
+                                               name: NSNotification.Name.UIKeyboardWillHide,
+                                               object: nil)
 
         #if OPENSAP || OPENWHO
             singleSignOnView.isHidden = false
@@ -32,7 +41,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         #endif
     }
     
-    override  func login() {
+    override func login() {
         loginButton.startAnimating()
         super.login()
     }
@@ -68,6 +77,11 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         self.performSegue(withIdentifier: "ShowSSOWebView", sender: self)
     }
 
+    @IBAction func tappedBackground() {
+        self.emailField.resignFirstResponder()
+        self.passwordField.resignFirstResponder()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSSOWebView" {
             let vc = segue.destination as! WebViewController
@@ -78,6 +92,37 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
             for cookie in cookieStorage.cookies ?? [] {
                 cookieStorage.deleteCookie(cookie)
             }
+        }
+    }
+
+    @objc func adjustViewForKeyboardShow(_ notification: Notification) {
+        // On some devices, the keyboard can overlap with some UI elements. To prevent this, we move
+        // the `inputContainer` upwards. The other views will reposition accordingly.
+        let keyboardFrameValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+        let keyboardHeight = keyboardFrameValue?.cgRectValue.size.height ?? 0.0
+
+        let contentInset: CGFloat
+        if #available(iOS 11.0, *) {
+            contentInset = self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom
+        } else {
+            contentInset = self.topLayoutGuide.length + self.bottomLayoutGuide.length
+        }
+
+        let viewHeight = self.view.frame.size.height - contentInset
+
+        let overlappingOffset = 0.5*viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0
+        self.centerInputFieldsConstraints.constant = min(overlappingOffset, 0)  // we only want to move the container upwards
+
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func adjustViewForKeyboardHide(_ notification: Notification) {
+        self.centerInputFieldsConstraints.constant = 0
+
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
         }
     }
 

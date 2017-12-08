@@ -19,6 +19,8 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet weak var teacherView: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var enrollmentButton: SimpleRoundedButton!
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusLabel: UILabel!
     
     @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {
@@ -36,8 +38,12 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionView.textContainerInset = UIEdgeInsets.zero
-        descriptionView.textContainer.lineFragmentPadding = 0
+        self.descriptionView.textContainerInset = UIEdgeInsets.zero
+        self.descriptionView.textContainer.lineFragmentPadding = 0
+
+        self.statusView.layer.cornerRadius = 4.0
+        self.statusView.layer.masksToBounds = true
+        self.statusView.backgroundColor = Brand.TintColorSecond
 
         self.updateView()
     }
@@ -65,6 +71,13 @@ class CourseDetailViewController: UIViewController {
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
         self.enrollmentButton.backgroundColor = self.course.hasEnrollment ? Brand.TintColor.withAlphaComponent(0.2) : Brand.TintColor
         self.enrollmentButton.tintColor = self.course.hasEnrollment ? UIColor.darkGray : UIColor.white
+
+        if self.course.hasEnrollment {
+            self.statusView.isHidden = false
+            self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
+        } else {
+            self.statusView.isHidden = true
+        }
     }
 
     func createEnrollment() {

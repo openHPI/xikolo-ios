@@ -489,6 +489,32 @@
                                                     <constraint firstAttribute="height" constant="128" id="Ag5-rZ-c4K"/>
                                                 </constraints>
                                             </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmt-BU-Whh">
+                                                <rect key="frame" x="375" y="8" width="52" height="26"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUN-kR-qDm">
+                                                        <rect key="frame" x="0.0" y="4" width="44" height="18"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.54901960780000003" green="0.70196078429999997" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="dUN-kR-qDm" firstAttribute="leading" secondItem="qmt-BU-Whh" secondAttribute="leading" constant="4" id="FOa-DX-WLL"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dUN-kR-qDm" secondAttribute="bottom" constant="4" id="UCI-n3-hzD"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dUN-kR-qDm" secondAttribute="trailing" constant="4" id="VHq-pf-OSS"/>
+                                                    <constraint firstItem="dUN-kR-qDm" firstAttribute="top" secondItem="qmt-BU-Whh" secondAttribute="top" constant="4" id="fX4-Ze-U5X"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eYU-07-UIU">
                                                 <rect key="frame" x="20" y="136" width="375" height="170"/>
                                                 <subviews>
@@ -602,6 +628,7 @@
                                             <constraint firstItem="eYU-07-UIU" firstAttribute="leading" secondItem="jJL-eR-xcD" secondAttribute="leading" constant="20" symbolic="YES" id="Rav-OK-ysD"/>
                                             <constraint firstItem="CXk-Yb-gBp" firstAttribute="top" secondItem="jJL-eR-xcD" secondAttribute="top" id="Vw5-h1-62b"/>
                                             <constraint firstAttribute="trailing" secondItem="eYU-07-UIU" secondAttribute="trailing" constant="20" symbolic="YES" id="eiA-6a-R1h"/>
+                                            <constraint firstItem="qmt-BU-Whh" firstAttribute="top" secondItem="CXk-Yb-gBp" secondAttribute="top" constant="8" id="xPK-KE-8kG"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -620,6 +647,7 @@
                             <constraint firstItem="k7i-zj-8QJ" firstAttribute="leading" secondItem="yDh-HB-UEx" secondAttribute="leading" id="GbE-a7-FiS"/>
                             <constraint firstItem="CXk-Yb-gBp" firstAttribute="leading" secondItem="yDh-HB-UEx" secondAttribute="leading" id="SIf-Zz-EsJ"/>
                             <constraint firstItem="k7i-zj-8QJ" firstAttribute="trailing" secondItem="yDh-HB-UEx" secondAttribute="trailing" id="ezA-Jv-X9E"/>
+                            <constraint firstItem="yDh-HB-UEx" firstAttribute="trailing" secondItem="qmt-BU-Whh" secondAttribute="trailing" constant="8" id="ksX-VR-hW1"/>
                             <constraint firstItem="k7i-zj-8QJ" firstAttribute="top" secondItem="yDh-HB-UEx" secondAttribute="top" id="sw4-Jt-S7v"/>
                             <constraint firstItem="yDh-HB-UEx" firstAttribute="trailing" secondItem="CXk-Yb-gBp" secondAttribute="trailing" id="xwc-Q5-F2g"/>
                         </constraints>
@@ -633,6 +661,8 @@
                         <outlet property="enrollmentButton" destination="U5E-XZ-xUO" id="mWq-1C-eA4"/>
                         <outlet property="imageView" destination="CXk-Yb-gBp" id="ZQn-kG-GyU"/>
                         <outlet property="languageView" destination="qXI-Vq-Z7S" id="HbV-jv-2e1"/>
+                        <outlet property="statusLabel" destination="dUN-kR-qDm" id="zmq-yU-fKC"/>
+                        <outlet property="statusView" destination="qmt-BU-Whh" id="5lE-09-SEJ"/>
                         <outlet property="teacherView" destination="Mc8-oQ-Zqf" id="IqZ-tX-RnU"/>
                         <outlet property="titleView" destination="hlX-im-xYs" id="OLE-aP-7kh"/>
                         <segue destination="Vux-XO-H14" kind="show" identifier="ShowLogin" id="2I8-lQ-asU">

@@ -31,7 +31,15 @@ class CourseListLayout: UICollectionViewLayout {
             return 0
         }
 
-        return collectionView.bounds.width - (2 * cellPadding)
+        let layoutInsets = self.layoutInsets(for: collectionView)
+        return collectionView.bounds.width - layoutInsets.left - layoutInsets.right
+    }
+
+    private func layoutInsets(for collectionView: UICollectionView) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0,
+                            left: max(self.cellPadding, collectionView.layoutMargins.left),
+                            bottom: 0,
+                            right: max(self.cellPadding, collectionView.layoutMargins.right))
     }
 
     override var collectionViewContentSize: CGSize {
@@ -53,11 +61,12 @@ class CourseListLayout: UICollectionViewLayout {
         }
 
         let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * cellPadding) / CGFloat(numberOfColumns)
+        let layoutInsetLeft = self.layoutInsets(for: collectionView).left
 
         var xOffset = [CGFloat]()
         var yOffset = [CGFloat]()
         for columnIndex in 0 ..< numberOfColumns {
-            xOffset.append(self.cellPadding + CGFloat(columnIndex) * (columnWidth + self.cellPadding))
+            xOffset.append(layoutInsetLeft + CGFloat(columnIndex) * (columnWidth + self.cellPadding))
             yOffset.append(-self.linePadding)
         }
 

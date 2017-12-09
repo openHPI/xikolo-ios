@@ -117,23 +117,34 @@ extension CourseListViewController: CourseListLayoutDelegate {
         let imageHeight = boundingWidth / 2
 
         let boundingSize = CGSize(width: boundingWidth, height: CGFloat.infinity)
+        let titleText = course.title ?? ""
         let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
-        let titleSize = NSString(string: course.title ?? "").boundingRect(with: boundingSize,
+        let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
                                                                           options: .usesLineFragmentOrigin,
                                                                           attributes: titleAttributes,
                                                                           context: nil)
 
+        let teachersText = course.teachers ?? ""
         let teachersAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
-        let teachersSize = NSString(string: course.teachers ?? "").boundingRect(with: boundingSize,
+        let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
                                                                                 options: .usesLineFragmentOrigin,
                                                                                 attributes: teachersAttributes,
                                                                                 context: nil)
 
-        var padding: CGFloat = 6
-        if course.teachers != nil {
-            padding += 4
+        var height = imageHeight
+        if !titleText.isEmpty || !teachersText.isEmpty {
+            height += 6
+        }
+        if !titleText.isEmpty {
+            height += titleSize.height
+        }
+        if !titleText.isEmpty && !teachersText.isEmpty {
+            height += 4
+        }
+        if !teachersText.isEmpty {
+            height += teachersSize.height
         }
 
-        return imageHeight + titleSize.height + teachersSize.height + padding
+        return height
     }
 }

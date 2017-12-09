@@ -2706,6 +2706,7 @@
 				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				747AA6185FE4F61F6B113EC5 /* [CP] Copy Pods Resources */,
 				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
+				508DDBBB1FDAE8D400F2ACB9 /* Remove German localization */,
 			);
 			buildRules = (
 			);
@@ -3636,6 +3637,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		508DDBBB1FDAE8D400F2ACB9 /* Remove German localization */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Remove German localization";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -r \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/de.lproj\"";
 		};
 		57CD7946E155D5BFDF1EE5AC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

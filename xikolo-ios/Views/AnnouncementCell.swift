@@ -17,16 +17,22 @@ class AnnouncementCell : UITableViewCell {
         return dateFormatter
     }()
 
-    @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var readStateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 
     func configure(_ announcement: Announcement) {
-        self.readStateView.backgroundColor = Brand.TintColor
-        self.readStateView.isHidden = !UserProfileHelper.isLoggedIn()
-        self.readStateView.alpha = announcement.visited ? 0.0 : 1.0
+        if UserProfileHelper.isLoggedIn(), !announcement.visited {
+            self.readStateLabel.textColor = Brand.TintColorSecond
+            self.readStateLabel.isHidden = false
+            self.separatorView.isHidden = false
+        } else {
+            self.readStateLabel.isHidden = true
+            self.separatorView.isHidden = true
+        }
 
         self.courseLabel.textColor = Brand.TintColorSecond
         if let courseTitle = announcement.course?.title {
@@ -43,6 +49,7 @@ class AnnouncementCell : UITableViewCell {
             self.dateLabel.isHidden = false
         } else {
             self.dateLabel.isHidden = true
+            self.separatorView.isHidden = true
         }
 
         if let newsText = announcement.text, let markDown = try? MarkdownHelper.parse(newsText).string {

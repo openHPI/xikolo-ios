@@ -69,14 +69,6 @@ class AnnouncementsTableViewController : UITableViewController {
     }
 
     @objc func updateAfterLoginStateChange() {
-        var separatorInsetLeft: CGFloat = UserProfileHelper.isLoggedIn() ? 24.0 : 4.0
-        if #available(iOS 11.0, *) {
-            self.tableView.separatorInsetReference = .fromAutomaticInsets
-        } else {
-            separatorInsetLeft = separatorInsetLeft + 15.0
-        }
-        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
-
         self.refresh()
     }
 

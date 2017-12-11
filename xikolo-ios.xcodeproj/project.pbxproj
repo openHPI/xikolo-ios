@@ -1806,7 +1806,6 @@
 		AB9AF2D61CF72E8E00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabDashboard.storyboard; sourceTree = "<group>"; };
 		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabSettings.storyboard; sourceTree = "<group>"; };
 		ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLabelHelper.swift; sourceTree = "<group>"; };
-		ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = openHPI4.ttf; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
 		ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openWHO/xikolo-ios.entitlements"; sourceTree = "<group>"; };
@@ -2213,21 +2212,12 @@
 			path = "xikolo-tvos";
 			sourceTree = "<group>";
 		};
-		24CB7E511CC6813A00960269 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				ABA842CE1CA83C2700B485D9 /* openHPI4.ttf */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		24CB7E521CC6830000960269 /* xikolo-common */ = {
 			isa = PBXGroup;
 			children = (
 				24D48E1F1CCA740500E8051E /* Categories */,
 				24CB7E561CC6C61A00960269 /* Data */,
 				249C01AD1D3F721E00B54AAC /* Branding */,
-				24CB7E511CC6813A00960269 /* Resources */,
 				241D4AEA1CC9918600E35B1F /* ViewControllers */,
 				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,

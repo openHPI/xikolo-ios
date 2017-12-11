@@ -35,15 +35,14 @@ class AbstractLoginViewController : UIViewController {
     }
     
     func handleLoginFailure(with error: Error) {
-        if case XikoloError.authenticationError = error {
-            self.emailField.shake()
-            self.passwordField.shake()
-        } else {
-            #if os(tvOS)
-                self.handleError(error)
-            #endif
-            // TODO (iOS): Error handling
+        self.emailField.shake()
+        self.passwordField.shake()
+
+        #if os(tvOS)
+        if XikoloError.authenticationError != error {
+            self.handleError(error)
         }
+        #endif
     }
 
 }

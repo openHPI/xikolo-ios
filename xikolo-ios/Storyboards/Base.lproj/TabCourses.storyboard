@@ -42,7 +42,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHo-fM-LYs">
-                                                    <rect key="frame" x="252" y="16" width="52" height="26"/>
+                                                    <rect key="frame" x="8" y="16" width="52" height="26"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwX-Ls-VNc">
                                                             <rect key="frame" x="4" y="4" width="44" height="18"/>
@@ -69,48 +69,43 @@
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPr-4B-4WM" userLabel="Gradient View">
                                                     <rect key="frame" x="0.0" y="112" width="320" height="48"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="zY6-C8-fKZ">
-                                                            <rect key="frame" x="8" y="25.5" width="304" height="14.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy7-xG-5lX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="26.5" height="14.5"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                    <attributedString key="userComments">
-                                                                        <fragment content="#bc-ignore!">
-                                                                            <attributes>
-                                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                    </attributedString>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB3-i0-W6u">
-                                                                    <rect key="frame" x="248" y="0.0" width="56" height="14.5"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                    <attributedString key="userComments">
-                                                                        <fragment content="#bc-ignore!">
-                                                                            <attributes>
-                                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                    </attributedString>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="zY6-C8-fKZ" firstAttribute="leading" secondItem="oPr-4B-4WM" secondAttribute="leading" constant="8" id="DxX-eJ-n1a"/>
-                                                        <constraint firstAttribute="trailing" secondItem="zY6-C8-fKZ" secondAttribute="trailing" constant="8" id="N9G-LJ-pO2"/>
-                                                        <constraint firstAttribute="bottom" secondItem="zY6-C8-fKZ" secondAttribute="bottom" constant="8" id="a2s-GQ-dno"/>
                                                         <constraint firstAttribute="height" constant="48" id="o7A-Oz-LgX"/>
                                                     </constraints>
                                                 </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="zY6-C8-fKZ">
+                                                    <rect key="frame" x="7.5" y="137" width="304.5" height="14.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fy7-xG-5lX">
+                                                            <rect key="frame" x="0.0" y="0.0" width="26.5" height="14.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="#bc-ignore!">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB3-i0-W6u">
+                                                            <rect key="frame" x="248.5" y="0.0" width="56" height="14.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <attributedString key="userComments">
+                                                                <fragment content="#bc-ignore!">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Course Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzU-FG-IjK">
                                                     <rect key="frame" x="0.0" y="166" width="320" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -142,15 +137,18 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="GHo-fM-LYs" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leading" constant="8" id="4CH-vT-S8I"/>
                                                 <constraint firstItem="oPr-4B-4WM" firstAttribute="leading" secondItem="6Yq-cI-AlX" secondAttribute="leading" id="4Md-KK-2er"/>
                                                 <constraint firstItem="kzU-FG-IjK" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leading" id="CHa-RU-BeX"/>
                                                 <constraint firstItem="6Yq-cI-AlX" firstAttribute="bottom" secondItem="oPr-4B-4WM" secondAttribute="bottom" id="EYg-MP-1mm"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="GHo-fM-LYs" secondAttribute="trailing" constant="8" id="Hu5-XB-XGi"/>
                                                 <constraint firstAttribute="trailing" secondItem="kzU-FG-IjK" secondAttribute="trailing" id="IjC-mu-va4"/>
+                                                <constraint firstItem="6Yq-cI-AlX" firstAttribute="bottom" secondItem="zY6-C8-fKZ" secondAttribute="bottom" constant="8" id="LIH-SR-PDd"/>
+                                                <constraint firstItem="zY6-C8-fKZ" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leading" constant="8" id="MIG-rh-BFo"/>
                                                 <constraint firstItem="kzU-FG-IjK" firstAttribute="top" secondItem="6Yq-cI-AlX" secondAttribute="bottom" constant="6" id="NCu-4j-8zE"/>
                                                 <constraint firstAttribute="trailing" secondItem="6Yq-cI-AlX" secondAttribute="trailing" id="NHO-QY-5T4"/>
                                                 <constraint firstItem="GHo-fM-LYs" firstAttribute="top" secondItem="gYp-9N-k8A" secondAttribute="topMargin" constant="8" id="VBP-6c-Es3"/>
                                                 <constraint firstItem="6Yq-cI-AlX" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leading" id="W5x-lm-CSS"/>
+                                                <constraint firstAttribute="trailing" secondItem="zY6-C8-fKZ" secondAttribute="trailing" constant="8" id="Y31-Rv-eBC"/>
                                                 <constraint firstItem="EZ9-O4-Wg2" firstAttribute="top" secondItem="kzU-FG-IjK" secondAttribute="bottom" constant="4" id="fm0-ay-X63"/>
                                                 <constraint firstItem="6Yq-cI-AlX" firstAttribute="top" secondItem="gYp-9N-k8A" secondAttribute="top" id="kgU-OZ-6IN"/>
                                                 <constraint firstAttribute="trailing" secondItem="EZ9-O4-Wg2" secondAttribute="trailing" id="lGD-NS-uvw"/>

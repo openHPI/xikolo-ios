@@ -30,9 +30,13 @@ class CourseCell : UICollectionViewCell {
 
         self.courseImage.layer.cornerRadius = 4.0
         self.courseImage.layer.masksToBounds = true
+        self.courseImage.layer.borderColor = UIColor(white: 0.0, alpha: 0.15).cgColor
+        self.courseImage.layer.borderWidth = 0.5
+        self.courseImage.backgroundColor = Brand.TintColorSecond
 
         self.statusView.layer.cornerRadius = 4.0
         self.statusView.layer.masksToBounds = true
+        self.statusView.backgroundColor = Brand.TintColorSecond
 
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
@@ -41,6 +45,8 @@ class CourseCell : UICollectionViewCell {
         self.gradientView.layer.insertSublayer(gradient, at: 0)
         self.gradientView.layer.cornerRadius = 4.0
         self.gradientView.layer.masksToBounds = true
+
+        self.teacherLabel.textColor = Brand.TintColorSecond
     }
 
     override func layoutSubviews() {
@@ -49,18 +55,17 @@ class CourseCell : UICollectionViewCell {
     }
 
     func configure(_ course: Course, forConfiguration configuration: Configuration) {
-        courseImage.image = nil
-        courseImage.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
-        courseImage.sd_setShowActivityIndicatorView(true)
-        courseImage.sd_setIndicatorStyle(.gray)
-        courseImage.sd_setImage(with: course.imageURL)
+        self.courseImage.image = nil
+        self.gradientView.isHidden = true
+        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { (image, _, _, _) in
+            self.gradientView.isHidden = (image == nil)
+        }
 
-        titleLabel.text = course.title
-        teacherLabel.text = course.teachers
-        teacherLabel.textColor = Brand.TintColorSecond
-        languageLabel.text = course.language_translated
-        languageLabel.text = course.language_translated
-        dateLabel.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
+        self.titleLabel.text = course.title
+        self.teacherLabel.text = course.teachers
+        self.languageLabel.text = course.language_translated
+        self.languageLabel.text = course.language_translated
+        self.dateLabel.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
 
         self.statusView.isHidden = true
         switch configuration {
@@ -68,13 +73,11 @@ class CourseCell : UICollectionViewCell {
             if course.hasEnrollment {
                 self.statusView.isHidden = false
                 self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
-                self.statusView.backgroundColor = Brand.TintColorSecond
             }
         case .courseActivity:
             if course.status == "announced" {
                 self.statusView.isHidden = false
                 self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")
-                self.statusView.backgroundColor = Brand.TintColorSecond
             }
         }
     }

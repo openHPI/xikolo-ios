@@ -21,7 +21,11 @@ class AppDelegate : AbstractAppDelegate {
     }
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        window?.tintColor = Brand.TintColor
+        #if OPENSAP
+            self.window?.tintColor = Brand.TintColorSecond
+        #else
+            self.window?.tintColor = Brand.TintColor
+        #endif
 
         self.selectStartTab()
         self.registerTabBarDelegate()

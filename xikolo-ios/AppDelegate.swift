@@ -27,8 +27,11 @@ class AppDelegate : AbstractAppDelegate {
             self.window?.tintColor = Brand.TintColor
         #endif
 
-        self.selectStartTab()
-        self.registerTabBarDelegate()
+        // select start tab
+        self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
+
+        // register tab bar delegate
+        self.tabBarController?.delegate = self
 
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)
@@ -152,13 +155,17 @@ class AppDelegate : AbstractAppDelegate {
         super.applicationWillTerminate(application)
     }
 
-    func goToCourse(_ course: Course) {
-        guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
+    var tabBarController: UITabBarController? {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
             print("UITabBarController could not be found")
-            return
+            return nil
         }
 
-        guard let courseNavigationController = rootViewController.viewControllers?[1] as? UINavigationController else {
+        return tabBarController
+    }
+
+    func goToCourse(_ course: Course) {
+        guard let courseNavigationController = self.tabBarController?.viewControllers?[1] as? UINavigationController else {
             print("CourseNavigationController could not be found")
             return
         }
@@ -176,30 +183,12 @@ class AppDelegate : AbstractAppDelegate {
         courseDecisionViewController.content = course.accessible ? .learnings : .courseDetails
         courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
 
-        rootViewController.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 1
     }
 
 }
 
 extension AppDelegate : UITabBarControllerDelegate {
-
-    func selectStartTab() {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            print("UITabBarController could not be found")
-            return
-        }
-
-        tabBarController.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
-    }
-
-    func registerTabBarDelegate() {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            print("UITabBarController could not be found")
-            return
-        }
-
-        tabBarController.delegate = self
-    }
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         guard !UserProfileHelper.isLoggedIn() else {
@@ -239,11 +228,6 @@ extension AppDelegate : UITabBarControllerDelegate {
 extension AppDelegate : AbstractLoginViewControllerDelegate {
 
     func didSuccessfullyLogin() {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            print("UITabBarController could not be found")
-            return
-        }
-
-        tabBarController.selectedIndex = 0
+        self.tabBarController?.selectedIndex = 0
     }
 }

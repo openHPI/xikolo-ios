@@ -6,18 +6,16 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
 import Foundation
-import Result
+import CoreData
+import BrightFutures
 
-class PeerAssessmentHelper {
+struct PeerAssessmentHelper {
 
-    static func refreshPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<PeerAssessment, XikoloError> {
-        return PeerAssessmentProvider.getPeerAssessment(peerAssessment.id).flatMap { spinePeerAssessment -> Future<[PeerAssessment], XikoloError> in
-            return SpineModelHelper.syncObjectsFuture([peerAssessment], spineObjects: [spinePeerAssessment], inject: nil, save: true)
-        }.map { cdPeerAssessments in
-            return cdPeerAssessments[0]
-        }
+    static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<NSManagedObjectID, XikoloError> {
+        let fetchRequest = PeerAssessmentHelper.FetchRequest.peerAssessment(withId: peerAssessment.id)
+        let query = SingleResourceQuery(resource: peerAssessment)
+        return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
     
 }

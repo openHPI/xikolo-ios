@@ -33,6 +33,19 @@ class CourseContentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .automatic
+        }
+
+        var separatorInsetLeft: CGFloat = 20.0
+        if #available(iOS 11.0, *) {
+            self.tableView.separatorInsetReference = .fromAutomaticInsets
+        } else {
+            separatorInsetLeft = separatorInsetLeft + 15.0
+        }
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
+
         self.setupReachability(Brand.host)
         self.startReachabilityNotifier()
         self.setupEmptyState()
@@ -44,8 +57,8 @@ class CourseContentTableViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        let request = CourseItemHelper.getItemRequest(course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.sectionName")
+        let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
         let configuration = CourseContentTableViewConfiguration(tableViewController: self)
@@ -105,40 +118,31 @@ class CourseContentTableViewController: UITableViewController {
         let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
         self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
 
-        // FIXME: Due to the incorrect handling of the NSManagedObjectContext spine sync logic, we have to refetch the course for the background context
-        if UserProfileHelper.isLoggedIn(), let course = CourseHelper.getByID(self.course.id) {
-            CourseSectionHelper.syncCourseSections(course).flatMap { sections in
-                sections.map { section in
-                    CourseItemHelper.syncCourseItems(section)
-                }.sequence().onComplete { _ in
-                    if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey) {
-                        self.preloadCourseContent()
-                    }
-                }
-            }.onComplete { _ in
-                stopRefreshControl()
+        guard UserProfileHelper.isLoggedIn() else {
+            stopRefreshControl()
+            return
+        }
+
+        CourseItemHelper.syncCourseItems(forCourse: self.course).onSuccess { _ in
+            if !contentPreloadDeactivated {
+                self.preloadCourseContent()
             }
-        } else {
+        }.onComplete { _ in
             stopRefreshControl()
         }
     }
 
     func showItem(_ item: CourseItem) {
-        TrackingHelper.sendEvent(.visitedItem, resource: item)
-        //save read state to server
-        item.visited = true
-        SpineHelper.save(CourseItemSpine.init(courseItem: item))
-        
-        switch item.content {
-            case is Video:
-                performSegue(withIdentifier: "ShowVideo", sender: item)
-            case is LTIExercise, is Quiz, is PeerAssessment:
-                performSegue(withIdentifier: "ShowQuiz", sender: item)
-            case is RichText:
-                performSegue(withIdentifier: "ShowRichtext", sender: item)
-            default:
-                // TODO: show error: unsupported type
-                break
+        CourseItemHelper.markAsVisited(item)
+        TrackingHelper.createEvent(.visitedItem, resource: item)
+
+        switch item.contentType {
+        case "video"?:
+            self.performSegue(withIdentifier: "ShowVideo", sender: item)
+        case "rich_text"?:
+            self.performSegue(withIdentifier: "ShowRichtext", sender: item)
+        default:
+            self.performSegue(withIdentifier: "ShowCourseItem", sender: item)
         }
     }
 
@@ -176,25 +180,22 @@ class CourseContentTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let courseItem = sender as? CourseItem
-        switch segue.identifier! {
-        case "ShowVideo":
-            let videoView = segue.destination as! VideoViewController
-            videoView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
-            break
-        case "ShowQuiz":
-            let webView = segue.destination as! WebViewController
-            if let courseID = courseItem!.section?.course?.id {
-                let courseURL = Routes.COURSES_URL + courseID
-                let quizpathURL = "/items/" + courseItem!.id
-                let url = courseURL + quizpathURL
-                webView.url = url
-            }
-            break
-        case "ShowRichtext":
-            let richtextView = segue.destination as! RichtextViewController
-            richtextView.courseItem = try! CourseItemHelper.getByID(courseItem!.id)
-            break
+        guard let courseItem = sender as? CourseItem else {
+            print("Sender is not a course item")
+            super.prepare(for: segue, sender: sender)
+            return
+        }
+
+        switch segue.identifier {
+        case "ShowVideo"?:
+            let videoViewController = segue.destination as! VideoViewController
+            videoViewController.courseItem = courseItem
+        case "ShowCourseItem"?:
+            let webView = segue.destination as! CourseItemWebViewController
+            webView.courseItem = courseItem
+        case "ShowRichtext"?:
+            let richtextViewController = segue.destination as! RichtextViewController
+            richtextViewController.courseItem = courseItem
         default:
             super.prepare(for: segue, sender: sender)
         }
@@ -205,13 +206,14 @@ class CourseContentTableViewController: UITableViewController {
 extension CourseContentTableViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = resultsController.object(at: indexPath)
-        if item.proctored && (course.enrollment?.proctored ?? false) {
-            showProctoringDialog(onComplete: {
-                self.tableView.deselectRow(at: indexPath, animated: true)
+        let item = self.resultsController.object(at: indexPath)
+        if item.proctored && (self.course.enrollment?.proctored ?? false) {
+            self.showProctoringDialog(onComplete: {
+                tableView.deselectRow(at: indexPath, animated: true)
             })
         } else {
-            showItem(item)
+            self.showItem(item)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 
@@ -267,19 +269,17 @@ extension CourseContentTableViewController: VideoCourseItemCellDelegate {
         let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
                                                     comment: "start download of video item")
         let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
-            if video.hlsURL != nil {
+            if video.singleStream?.hlsURL != nil {
                 VideoPersistenceManager.shared.downloadStream(for: video)
-            } else if let backgroundVideo = VideoHelper.videoWith(id: video.id) {  // We need the video on a background context to sync via spine
+            } else {
                 DispatchQueue.main.async {
                     cell.singleReloadInProgress = true
                 }
-                VideoHelper.sync(video: backgroundVideo).onComplete { result in
+                VideoHelper.syncVideo(video).onComplete { result in
                     DispatchQueue.main.async {
                         cell.singleReloadInProgress = false
                     }
-                    if let syncedVideo = result.value, syncedVideo.hlsURL != nil {
-                        VideoPersistenceManager.shared.downloadStream(for: video)
-                    }
+                    VideoPersistenceManager.shared.downloadStream(for: video)
                 }
             }
         }

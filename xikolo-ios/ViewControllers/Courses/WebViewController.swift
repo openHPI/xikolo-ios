@@ -12,12 +12,25 @@ class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
 
-    var url: String!
+    var loginDelegate : AbstractLoginViewControllerDelegate?
+
+    var url: String? {
+        didSet {
+            if self.isViewLoaded {
+                self.loadURL()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.delegate = self
-        webView.loadRequest(NetworkHelper.getRequestForURL(url) as URLRequest)
+        self.webView.delegate = self
+        self.loadURL()
+    }
+
+    private func loadURL() {
+        guard let urlString = self.url else { return }
+        webView.loadRequest(NetworkHelper.getRequestForURL(urlString) as URLRequest)
     }
 
 }
@@ -32,10 +45,14 @@ extension WebViewController : UIWebViewDelegate {
         NetworkIndicator.end()
     }
 
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        NetworkIndicator.end()
+    }
+
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
-           let urlComponents = URLComponents.init(url: documentURL, resolvingAgainstBaseURL: false)
+            let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
 
             if let tokenItem = queryItems.first(where: { $0.name == "token"}) {
@@ -43,9 +60,8 @@ extension WebViewController : UIWebViewDelegate {
 
                 UserProfileHelper.userToken = token
                 UserProfileHelper.postLoginStateChange()
-                self.navigationController?.dismiss(animated: true) {
-                    NetworkIndicator.end()
-                }
+                self.loginDelegate?.didSuccessfullyLogin()
+                self.navigationController?.dismiss(animated: true)
                 return false
             }
 

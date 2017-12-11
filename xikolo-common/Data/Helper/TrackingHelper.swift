@@ -7,6 +7,7 @@
 //
 
 import BrightFutures
+import CoreData
 import UIKit
 
 class TrackingHelper {
@@ -37,7 +38,7 @@ class TrackingHelper {
         case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
     }
 
-    fileprivate class func defaultContext() -> [String: String] {
+    private class func defaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
         let windowSize = (UIApplication.shared.delegate as? AppDelegate)?.window?.frame.size
 
@@ -59,39 +60,38 @@ class TrackingHelper {
         ]
     }
 
-    fileprivate class func createEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: String?] = [:]) -> Future<TrackingEvent, XikoloError> {
+    @discardableResult class func createEvent(_ verb: AnalyticsKeys, resource: ResourceRepresentable?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+        guard let userId = UserProfileHelper.userId else {
+            return Future(error: .trackingForUnknownUser)
+        }
 
-        let trackingVerb = TrackingEventVerb()
-        trackingVerb.type = verb.rawValue
+        let trackingUser = TrackingEventUser(uuid: userId)
+        let trackingVerb = TrackingEventVerb(type: verb.rawValue)
 
-        var trackingContext = defaultContext()
+        let trackingResource: TrackingEventResource
+        if let resource = resource {
+            trackingResource = TrackingEventResource(resource: resource)
+        } else {
+            trackingResource = TrackingEventResource.noneResource()
+        }
 
+        var trackingContext = self.defaultContext()
         for (k, v) in context {
-            if let v = v {
-                trackingContext.updateValue(v, forKey: k)
+            if let value = v {
+                trackingContext.updateValue(value, forKey: k)
             }
         }
 
-        let trackingEvent = TrackingEvent()
-        let trackingUser = TrackingEventUser()
-        trackingUser.uuid = UserProfileHelper.userId
-        trackingEvent.user = trackingUser
-        trackingEvent.verb = trackingVerb
-        if let resource = resource {
-            trackingEvent.resource = TrackingEventResource(resource: resource)
-        } else {
-            //this is a fallback required by the tracking API where ressource cant be empty
-            trackingEvent.resource = TrackingEventResource(type: "None")
+        let promise = Promise<Void, XikoloError>()
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let _ = TrackingEvent(user: trackingUser,
+                                  verb: trackingVerb,
+                                  resource: trackingResource,
+                                  trackingContext: trackingContext as [String: AnyObject],
+                                  inContext: context)
+            promise.complete(context.saveWithResult())
         }
-        trackingEvent.timestamp = Date()
-        trackingEvent.context = trackingContext as [String : AnyObject]?
-        return Future.init(value: trackingEvent)
-    }
-
-    @discardableResult class func sendEvent(_ verb: AnalyticsKeys, resource: BaseModel?, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
-        return createEvent(verb, resource: resource, context: context).flatMap { event -> Future<Void, XikoloError> in
-            SpineHelper.save(event).asVoid()
-        }
+        return promise.future
     }
 
 }

@@ -6,17 +6,16 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import BrightFutures
 import Foundation
+import CoreData
+import BrightFutures
 
-class RichTextHelper {
+struct RichTextHelper {
 
-    @discardableResult static func refresh(richText: RichText) -> Future<RichText, XikoloError> {
-        return RichTextProvider.getRichText(richText.id).flatMap { (spineRichText: RichTextSpine) -> Future<[RichText], XikoloError> in
-            return SpineModelHelper.syncObjectsFuture([richText], spineObjects: [spineRichText], inject: nil, save: true)
-        }.map { cdRichTexts in
-            return cdRichTexts[0]
-        }
+    static func syncRichText(_ richText: RichText) -> Future<NSManagedObjectID, XikoloError> {
+        let fetchRequest = RichTextHelper.FetchRequest.richText(withId: richText.id)
+        let query = SingleResourceQuery(resource: richText)
+        return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

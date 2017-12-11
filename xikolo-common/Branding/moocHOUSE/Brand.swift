@@ -13,7 +13,6 @@ struct Brand {
 
     static let BaseURL = "https://mooc.house"
 
-    //TODO: Change colors
     static let TintColor = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
     static let TintColorSecond = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
     static let TintColorThird = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)

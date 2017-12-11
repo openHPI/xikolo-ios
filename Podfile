@@ -5,15 +5,10 @@ pod 'BartyCrouch', :git => 'https://github.com/mathebox/BartyCrouch.git', :commi
 pod 'SwiftLint', '~> 0.22'
 
 def common_pods
-    pod 'Alamofire', '4.3.0'
-    pod 'AlamofireObjectMapper', '4.0.1'
-    pod 'ObjectMapper', '2.0'
-
     pod 'BrightFutures', '~> 6.0'
     pod 'Down', :git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
     pod 'KeychainAccess', '~> 3.1'
-    pod 'Result', '~> 3.2'
-    pod 'Spine', :git => 'https://github.com/mathebox/Spine.git', :commit => 'ce6a53f'
+    pod 'Marshal', '~> 1.2'
     pod 'SDWebImage/Core', '4.0.0'
 end
 
@@ -21,10 +16,9 @@ def ios_pods
     pod 'BMPlayer', '~> 1.0'
     pod 'DownloadButton', '0.1.0'
     pod 'DZNEmptyDataSet', '1.8.1'
-    pod 'Hero', :git => 'https://github.com/lkzhao/Hero', :commit => 'd961f16'
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
-    pod 'SimpleRoundedButton', '~> 1.0'
+    pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
 end
 
 target 'openHPI-iOS' do

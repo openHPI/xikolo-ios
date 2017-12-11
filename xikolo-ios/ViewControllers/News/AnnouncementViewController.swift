@@ -12,27 +12,24 @@ import SafariServices
 
 class AnnouncementViewController : UIViewController {
 
-    @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var courseLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var dateView: UILabel!
 
     var announcement: Announcement!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.titleView.heroID = "news_headline_" + announcement.id
+        self.courseLabel.textColor = Brand.TintColorSecond
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
 
-        //save read state to server
-        self.announcement.visited = true
-        TrackingHelper.sendEvent(.visitedAnnouncement, resource: self.announcement)
-        SpineHelper.save(AnnouncementSpine.init(announcementItem: self.announcement))
-
-        self.announcement.notifyOnChange(self, updatedHandler: { _ in
+        self.updateView()
+        self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
         }) {
             let isVisible = self.isViewLoaded && self.view.window != nil
@@ -40,17 +37,29 @@ class AnnouncementViewController : UIViewController {
         }
     }
 
-    private func updateView() {
-        self.titleView.text = self.announcement.title
+    override func viewDidAppear(_ animated: Bool) {
+        AnnouncementHelper.markAsVisited(self.announcement)
+        TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
+    }
 
-        if let date = self.announcement.published_at {
+    private func updateView() {
+        if let courseTitle = announcement.course?.title {
+            self.courseLabel.text = courseTitle
+            self.courseLabel.isHidden = false
+        } else {
+            self.courseLabel.isHidden = true
+        }
+
+        self.titleLabel.text = self.announcement.title
+
+        if let date = self.announcement.publishedAt {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
-            self.dateView.text = dateFormatter.string(from: date)
-            self.dateView.isHidden = false
+            self.dateLabel.text = dateFormatter.string(from: date)
+            self.dateLabel.isHidden = false
         } else {
-            self.dateView.isHidden = true
+            self.dateLabel.isHidden = true
         }
 
         if let newsText = self.announcement.text, let markDown = try? MarkdownHelper.parse(newsText) {
@@ -58,10 +67,6 @@ class AnnouncementViewController : UIViewController {
         } else {
             self.textView.text = "[...]"
         }
-        //save read state to server
-        announcement.visited = true
-        TrackingHelper.sendEvent(.visitedAnnouncement, resource: announcement)
-        SpineHelper.save(AnnouncementSpine.init(announcementItem: announcement))
     }
 
 }

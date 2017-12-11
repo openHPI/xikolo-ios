@@ -1,45 +1,41 @@
 //
 //  User.swift
-//  
+//  xikolo-ios
 //
 //  Created by Bjarne Sievers on 22.03.17.
-//
-//  This file was automatically generated and should not be edited.
+//  Copyright © 2017 HPI. All rights reserved.
 //
 
 import Foundation
 import CoreData
 import BrightFutures
-import Spine
 
-@objcMembers
-class User: BaseModel {
-    
+final class User: NSManagedObject {
+
+    @NSManaged var id: String
+    @NSManaged var name: String?
+    @NSManaged var avatarURL: URL?
+    @NSManaged var profile: UserProfile?
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<User> {
+        return NSFetchRequest<User>(entityName: "User");
+    }
 
 }
 
-@objcMembers
-class UserSpine : BaseModelSpine {
+extension User : Pullable {
 
-    var name: String?
-    var avatar_url: URL?
-    
-    var profile: UserProfile?
-
-    override class var cdType: BaseModel.Type {
-        return User.self
-    }
-
-    override class var resourceType: ResourceType {
+    static var type: String {
         return "users"
     }
 
-    override class var fields: [Field] {
-        return fieldsFromDictionary([
-            "name": Attribute().readOnly(),
-            "avatar_url": URLAttribute(baseURL: URL(string: Brand.BaseURL)!),
-            "profile": ToOneRelationship(UserProfileSpine.self),
-        ])
+    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+        let attributes = try object.value(for: "attributes") as JSON
+        self.name = try attributes.value(for: "name")
+        self.avatarURL = try attributes.value(for: "avatar_url")
+
+        let relationships = try object.value(for: "relationships") as JSON
+        try self.updateRelationship(forKeyPath: \User.profile, forKey: "profile", fromObject: relationships, including: includes, inContext: context)
     }
-    
+
 }

@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
+class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
     weak var collectionView: UICollectionView?
     var resultsControllers: [NSFetchedResultsController<T>] = [] // 2Think: Do we create a memory loop here?
@@ -18,7 +18,6 @@ class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSOb
 
     var configuration: CollectionViewResultsControllerConfigurationWrapper<T>?
     private var contentChangeOperations: [BlockOperation] = []
-    private var shouldReload = false
 
     required init(_ collectionView: UICollectionView?, resultsControllers: [NSFetchedResultsController<T>], cellReuseIdentifier: String) {
         self.collectionView = collectionView
@@ -67,22 +66,13 @@ class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSOb
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if self.shouldReload {
-            self.collectionView?.reloadData()
+        self.collectionView?.performBatchUpdates({
+            for operation in self.contentChangeOperations {
+                operation.start()
+            }
+        }, completion: { _ in
             self.contentChangeOperations.removeAll(keepingCapacity: false)
-        } else {
-            self.collectionView?.performBatchUpdates({
-                for operation in self.contentChangeOperations {
-                    operation.start()
-                }
-            }, completion: { _ in
-                self.contentChangeOperations.removeAll(keepingCapacity: false)
-            })
-        }
-    }
-
-    func setShouldReload() {
-        self.shouldReload = true
+        })
     }
 
     deinit {
@@ -130,7 +120,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: BaseModel> : NSOb
             }
             return view
         } else {
-            fatalError("Unsupported supplementary view kind.")
+            return UICollectionReusableView()
         }
     }
 
@@ -189,7 +179,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
 }
 
 protocol CollectionViewResultsControllerConfiguration {
-    associatedtype Content : BaseModel
+    associatedtype Content : NSManagedObject
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
 
@@ -205,7 +195,7 @@ extension CollectionViewResultsControllerConfiguration {
 
 // This is a wrapper for type erasure allowing the generic CollectionViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
-class CollectionViewResultsControllerConfigurationWrapper<T: BaseModel>: CollectionViewResultsControllerConfiguration {
+class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: CollectionViewResultsControllerConfiguration {
 
     private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let configureCollectionHeaderView: (UICollectionReusableView, NSFetchedResultsSectionInfo) -> Void

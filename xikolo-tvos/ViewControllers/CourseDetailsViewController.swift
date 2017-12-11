@@ -75,7 +75,7 @@ class CourseDetailsViewController : UIViewController {
         }
         teacherView.text = course.teachers
 
-        if course.enrollment != nil {
+        if course.hasEnrollment {
             if enrollButton == UIScreen.main.focusedView {
                 self.customPreferredFocusedView = unenrollButton
                 setNeedsFocusUpdate()
@@ -109,12 +109,12 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
     }
 
     func didSuccessfullyLogin() {
-        createEnrollment()
+        self.createEnrollment()
     }
 
     func createEnrollment() {
         EnrollmentHelper.createEnrollment(for: course).onSuccess {
-            CourseHelper.refreshCourses()
+            CourseHelper.syncAllCourses()
         }
     }
 
@@ -122,7 +122,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
         // No need to check for login, cannot be enrolled without.
 
         EnrollmentHelper.deleteEnrollment(for: course).onSuccess {
-            CourseHelper.refreshCourses()
+            CourseHelper.syncAllCourses()
         }
     }
 

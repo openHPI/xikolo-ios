@@ -7,48 +7,79 @@
 //
 
 import UIKit
-import Hero
 import SDWebImage
 
 class CourseCell : UICollectionViewCell {
 
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    enum Configuration {
+        case courseList
+        case courseActivity
+    }
+
+    @IBOutlet weak var courseImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusView: UIView!
 
-    func configure(_ course: Course) {
-        backgroundImage.image = nil
-        backgroundImage.backgroundColor = UIColor.gray
-        backgroundImage.sd_setShowActivityIndicatorView(true)
-        backgroundImage.sd_setIndicatorStyle(.gray)
-        backgroundImage.sd_setImage(with: course.image_url)
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
-        nameLabel.text = course.title
-        nameLabel.heroID = "course_title_" + course.id
-        teacherLabel.text = course.teachers
-        teacherLabel.textColor = Brand.TintColorSecond
-        teacherLabel.heroID = "course_teacher_" + course.id
-        languageLabel.text = course.language_translated
-        languageLabel.heroID = "course_language_" + course.id
-        languageLabel.text = course.language_translated
-        backgroundImage.heroID = "course_image_" + course.id
-        dateLabel.text = DateLabelHelper.labelFor(startdate: course.start_at, enddate: course.end_at)
+        self.courseImage.layer.cornerRadius = 4.0
+        self.courseImage.layer.masksToBounds = true
+        self.courseImage.layer.borderColor = UIColor(white: 0.0, alpha: 0.15).cgColor
+        self.courseImage.layer.borderWidth = 0.5
+        self.courseImage.backgroundColor = Brand.TintColorSecond
 
-        #if OPENWHO //view is hidden by default
-        #else
-        switch course.status {
-        case "active"?:
-            statusView.isHidden = false
-            statusLabel.text = NSLocalizedString("course-cell.status.running", comment: "status 'running' of a course")
-            statusView.backgroundColor = Brand.TintColorThird
-        default:
-            statusView.isHidden = true
+        self.statusView.layer.cornerRadius = 4.0
+        self.statusView.layer.masksToBounds = true
+        self.statusView.backgroundColor = Brand.TintColorSecond
+
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
+        gradient.locations = [0.0 , 1.0]
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
+        self.gradientView.layer.insertSublayer(gradient, at: 0)
+        self.gradientView.layer.cornerRadius = 4.0
+        self.gradientView.layer.masksToBounds = true
+
+        self.teacherLabel.textColor = Brand.TintColorSecond
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.gradientView.layer.sublayers?.first?.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.width, height: self.gradientView.frame.size.height)
+    }
+
+    func configure(_ course: Course, forConfiguration configuration: Configuration) {
+        self.courseImage.image = nil
+        self.gradientView.isHidden = true
+        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { (image, _, _, _) in
+            self.gradientView.isHidden = (image == nil)
         }
-        #endif
+
+        self.titleLabel.text = course.title
+        self.teacherLabel.text = course.teachers
+        self.languageLabel.text = course.language_translated
+        self.languageLabel.text = course.language_translated
+        self.dateLabel.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
+
+        self.statusView.isHidden = true
+        switch configuration {
+        case .courseList:
+            if course.hasEnrollment {
+                self.statusView.isHidden = false
+                self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
+            }
+        case .courseActivity:
+            if course.status == "announced" {
+                self.statusView.isHidden = false
+                self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")
+            }
+        }
     }
 
 }

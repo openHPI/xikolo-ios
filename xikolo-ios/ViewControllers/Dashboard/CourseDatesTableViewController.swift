@@ -27,6 +27,10 @@ class CourseDatesTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .automatic
+        }
+
         // register custom section header view
         let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
         self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
@@ -37,15 +41,9 @@ class CourseDatesTableViewController : UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        TrackingHelper.sendEvent(.visitedDashboard, resource: nil)
-        self.updateAfterLoginStateChange()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(CourseDatesTableViewController.updateAfterLoginStateChange),
-                                               name: NotificationKeys.loginStateChangedKey,
-                                               object: nil)
+        TrackingHelper.createEvent(.visitedDashboard, resource: nil)
 
-        let request = CourseDateHelper.getCourseDatesRequest()
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "course.title")
+        resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "CourseDateCell")
@@ -59,6 +57,9 @@ class CourseDatesTableViewController : UITableViewController {
         } catch {
             // TODO: Error handling.
         }
+
+        self.refresh()
+
         self.tableView.reloadData()
         self.setupEmptyState()
     }
@@ -68,11 +69,6 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
-    }
-
-    @objc func updateAfterLoginStateChange() {
-        self.navigationItem.rightBarButtonItem = UserProfileHelper.isLoggedIn() ? nil : self.loginButton
-        self.refresh()
     }
 
     @objc func refresh() {
@@ -86,7 +82,7 @@ class CourseDatesTableViewController : UITableViewController {
 
         self.courseActivityViewController?.refresh()
         if UserProfileHelper.isLoggedIn() {
-            CourseDateHelper.syncCourseDates().onComplete { _ in
+            CourseDateHelper.syncAllCourseDates().onComplete { _ in
                 stopRefreshControl()
             }
         } else {
@@ -95,15 +91,7 @@ class CourseDatesTableViewController : UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDateHeader")
-        let header = cell as! CourseDateHeader
-
-        let minPadding = self.tableView.separatorInset.left
-        header.leadingConstraint.constant = minPadding
-        header.trailingConstraint.constant = minPadding
-        header.titleBackgroundView.backgroundColor = Brand.TintColorSecond
-        header.titleView.text = self.resultsController.sections?[section].name
-        return header
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDateHeader")
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -126,10 +114,16 @@ extension CourseDatesTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
         let courseDate = controller.object(at: dataIndexPath)
-        if let courseForCourseDate = courseDate.course, let course = CourseHelper.getByID(courseForCourseDate.id) {
-            AppDelegate.instance().goToCourse(course)
+
+        guard let course = courseDate.course else {
+            print("Error: Did not find course for course date")
+            return
         }
-        tableView.deselectRow(at: indexPath, animated: true)
+
+        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController") as! CourseDecisionViewController
+        vc.course = course
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -160,26 +154,14 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
     }
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title: String
-        if UserProfileHelper.isLoggedIn() {
-            title = NSLocalizedString("empty-view.course-dates.no-dates.title",
+        let title = NSLocalizedString("empty-view.course-dates.no-dates.title",
                                       comment: "title for empty course dates list if logged in")
-        } else {
-            title = NSLocalizedString("empty-view.course-dates.not-logged-in.title",
-                                      comment: "title for empty course dates list if not logged in")
-        }
         return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description: String
-        if UserProfileHelper.isLoggedIn() {
-            description = NSLocalizedString("empty-view.course-dates.no-dates.description",
+        let description = NSLocalizedString("empty-view.course-dates.no-dates.description",
                                             comment: "description for empty course dates list if logged in")
-        } else {
-            description = NSLocalizedString("empty-view.course-dates.not-logged-in.description",
-                                            comment: "description for empty course dates list if not logged in")
-        }
         return NSAttributedString(string: description)
     }
     

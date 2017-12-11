@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Spine
 
 class NetworkIndicator {
 
@@ -34,16 +33,4 @@ class NetworkIndicator {
         }
     }
 
-}
-
-struct XikoloClientDelegate: HTTPClientDelegate {
-
-    func httpClient(_ client: HTTPClient, willPerformRequestWithMethod method: String, url URL: Foundation.URL, payload: Data?) {
-        NetworkIndicator.start()
-    }
-
-    func httpClient(_ client: HTTPClient, didPerformRequestWithMethod method: String, url URL: Foundation.URL, success: Bool) {
-        NetworkIndicator.end()
-    }
-    
 }

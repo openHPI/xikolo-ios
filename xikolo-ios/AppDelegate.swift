@@ -21,10 +21,27 @@ class AppDelegate : AbstractAppDelegate {
     }
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        window?.tintColor = Brand.TintColor
+        #if OPENSAP
+            self.window?.tintColor = Brand.TintColorSecond
+        #else
+            self.window?.tintColor = Brand.TintColor
+        #endif
+
+        // select start tab
+        self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
+
+        // register tab bar delegate
+        self.tabBarController?.delegate = self
+
+        // register resource to be pushed automatically
+        SyncPushEngine.shared.register(Announcement.self)
+        SyncPushEngine.shared.register(CourseItem.self)
+        SyncPushEngine.shared.register(Enrollment.self)
+        SyncPushEngine.shared.register(TrackingEvent.self)
+        SyncPushEngine.shared.check()
 
         UserProfileHelper.migrateLegacyKeychain()
-        updateAnnouncements()
+        AnnouncementHelper.syncAllAnnouncements()
         EnrollmentHelper.syncEnrollments()
 
         VideoPersistenceManager.shared.restorePersistenceManager()
@@ -80,9 +97,22 @@ class AppDelegate : AbstractAppDelegate {
                     //support /courses/slug -> course detail page or learning
                     let slug = url.pathComponents[2]
                     //get course by slug
-                    //todo the course might not be synced yet, than we could try to fetch from the API by slug
-                    if let course = CourseHelper.getBySlug(slug) {
-                        self.goToCourse(course)
+
+                    //TODO: the course might not be synced yet, than we could try to fetch from the API by slug
+                    let fetchRequest = CourseHelper.FetchRequest.course(withSlug: slug)
+                    var couldFindCourse = false
+
+                    CoreDataHelper.viewContext.performAndWait {
+                        switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                        case .success(let course):
+                            couldFindCourse = true
+                            self.goToCourse(course)
+                        case .failure(let error):
+                            print("Warning: could not find course: \(error)")
+                        }
+                    }
+
+                    if couldFindCourse {
                         return true
                     }
                 } else {
@@ -100,22 +130,6 @@ class AppDelegate : AbstractAppDelegate {
         let webpageUrl = url
         application.open(webpageUrl)
         return false
-    }
-
-    func updateAnnouncements() {
-        AnnouncementHelper.syncAnnouncements().onSuccess { (announcements) in // sync announcements and show badge on news tab with number of unread articles
-            if let rootViewController = self.window?.rootViewController as? UITabBarController {
-                if let tabArray = rootViewController.tabBar.items {
-                    let tabItem = tabArray[2]
-                    let unreadAnnouncements = announcements.filter({ !($0.visited ?? true ) }) // we get nil if the user is not logged in. In this case we don't want to show the badge
-                    if unreadAnnouncements.count > 0 {
-                        tabItem.badgeValue = String(unreadAnnouncements.count)
-                    } else {
-                        tabItem.badgeValue = nil
-                    }
-                }
-            }
-        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -141,12 +155,17 @@ class AppDelegate : AbstractAppDelegate {
         super.applicationWillTerminate(application)
     }
 
-    func goToCourse(_ course: Course) {
-        guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
+    var tabBarController: UITabBarController? {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
             print("UITabBarController could not be found")
-            return
+            return nil
         }
-        guard let courseNavigationController = rootViewController.viewControllers?[1] as? UINavigationController else {
+
+        return tabBarController
+    }
+
+    func goToCourse(_ course: Course) {
+        guard let courseNavigationController = self.tabBarController?.viewControllers?[1] as? UINavigationController else {
             print("CourseNavigationController could not be found")
             return
         }
@@ -164,7 +183,51 @@ class AppDelegate : AbstractAppDelegate {
         courseDecisionViewController.content = course.accessible ? .learnings : .courseDetails
         courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
 
-        rootViewController.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 1
     }
 
+}
+
+extension AppDelegate : UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard !UserProfileHelper.isLoggedIn() else {
+            return true
+        }
+
+        guard let navigationController = viewController as? UINavigationController else {
+            print("Info: Navigation controller not found")
+            return true
+        }
+
+        guard navigationController.viewControllers.first is CourseDatesTableViewController else {
+            return true
+        }
+
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+
+        guard let loginNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            print("Error: Initial view controller of Login stroyboard in not of type UINavigationController")
+            return false
+        }
+
+        guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
+            print("Error: Could not find LoginViewController")
+            return false
+        }
+
+        loginViewController.delegate = self
+
+        tabBarController.present(loginNavigationController, animated: true)
+
+        return false
+    }
+
+}
+
+extension AppDelegate : AbstractLoginViewControllerDelegate {
+
+    func didSuccessfullyLogin() {
+        self.tabBarController?.selectedIndex = 0
+    }
 }

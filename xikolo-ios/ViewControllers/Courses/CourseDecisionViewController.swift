@@ -29,11 +29,11 @@ class CourseDecisionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        SearchHelper.setUserActivity(for: self.course)
+        SpotlightHelper.setUserActivity(for: self.course)
         self.decideContent()
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
 
-        self.course.notifyOnChange(self, updatedHandler: { _ in }) {
+        self.course.notifyOnChange(self, updateHandler: {}) {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popToRootViewController(animated: isVisible)
         }
@@ -46,7 +46,7 @@ class CourseDecisionViewController: UIViewController {
     }
 
     func decideContent() {
-        if (course.enrollment != nil) {
+        if (course.hasEnrollment) {
             updateContainerView(course.accessible ? .learnings : .courseDetails)
         } else {
             updateContainerView(.courseDetails)
@@ -68,7 +68,8 @@ class CourseDecisionViewController: UIViewController {
             containerContentViewController = nil
         }
 
-        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
+
+        let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         switch content {
         case .learnings:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseContentTableViewController") as! CourseContentTableViewController

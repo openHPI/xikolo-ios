@@ -32,13 +32,7 @@ class CourseActivityViewController: UICollectionViewController {
     }
 
     private func updateFetchedResultController() {
-        // TODO: proper API call and cell UI
-        let request: NSFetchRequest<Course>
-        if UserProfileHelper.isLoggedIn() {
-            request = CourseHelper.getEnrolledAccessibleCoursesRequest()
-        } else {
-            request = CourseHelper.getInterestingCoursesRequest()
-        }
+        let request = CourseHelper.FetchRequest.enrolledNotCompletedCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView!, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
@@ -57,16 +51,18 @@ class CourseActivityViewController: UICollectionViewController {
     }
 
     func refresh() {
-        CourseHelper.refreshCourses()
+        CourseHelper.syncAllCourses()
     }
 }
 
 extension CourseActivityViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let visualCourse = resultsController.object(at: indexPath)
-        let course = CourseHelper.getByID(visualCourse.id)
-        AppDelegate.instance().goToCourse(course!)
+        let course = resultsController.object(at: indexPath)
+        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController") as! CourseDecisionViewController
+        vc.course = course
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }
@@ -76,7 +72,9 @@ extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 240)
+        let width: CGFloat = 300
+        let height = width/2 + 70.5 // 6 + 42.5 + 4 + 18 (padding + text + padding + text)
+        return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -99,7 +97,7 @@ struct CourseActivityViewConfiguration : CollectionViewResultsControllerConfigur
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
         let cell = cell as! CourseCell
         let course = controller.object(at: indexPath)
-        cell.configure(course)
+        cell.configure(course, forConfiguration: .courseActivity)
     }
 
 }

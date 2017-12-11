@@ -10,38 +10,54 @@ import UIKit
 
 class AnnouncementCell : UITableViewCell {
 
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var readStateView: UIView!
-    @IBOutlet weak var descriptionView: UITextView!
-    @IBOutlet weak var dateView: UILabel!
-    @IBOutlet weak var courseView: UILabel!
-    @IBOutlet weak var roundedTagBackgroundView: UIView!
+    static var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }()
+
+    @IBOutlet weak var courseLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var readStateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
 
     func configure(_ announcement: Announcement) {
-        readStateView.backgroundColor = Brand.TintColor
-
-        descriptionView.isScrollEnabled = false
-        descriptionView.textContainer.maximumNumberOfLines = 4
-        descriptionView.textContainer.lineBreakMode = .byTruncatingTail
-
-        if let date = announcement.published_at {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-            dateView.text = dateFormatter.string(from: date)
+        if UserProfileHelper.isLoggedIn(), !announcement.visited {
+            self.readStateLabel.textColor = Brand.TintColorSecond
+            self.readStateLabel.isHidden = false
+            self.separatorView.isHidden = false
+        } else {
+            self.readStateLabel.isHidden = true
+            self.separatorView.isHidden = true
         }
 
-        titleView.text = announcement.title
-        titleView.heroID = "news_headline_" + announcement.id
-
-        if let newsText = announcement.text {
-            let markDown = try? MarkdownHelper.parse(newsText) // TODO: Error handling
-            self.descriptionView.attributedText = markDown
+        self.courseLabel.textColor = Brand.TintColorSecond
+        if let courseTitle = announcement.course?.title {
+            self.courseLabel.text = courseTitle
+            self.courseLabel.isHidden = false
+        } else {
+            self.courseLabel.isHidden = true
         }
-        readStateView.isHidden = announcement.visited ?? true
 
-        roundedTagBackgroundView.isHidden = announcement.course == nil
-        courseView.text = announcement.course?.title
+        self.titleLabel.text = announcement.title
+
+        if let date = announcement.publishedAt {
+            self.dateLabel.text = AnnouncementCell.dateFormatter.string(from: date)
+            self.dateLabel.isHidden = false
+        } else {
+            self.dateLabel.isHidden = true
+            self.separatorView.isHidden = true
+        }
+
+        if let newsText = announcement.text, let markDown = try? MarkdownHelper.parse(newsText).string {
+            self.descriptionLabel.text = markDown.replacingOccurrences(of: "\n", with: " ")
+            self.descriptionLabel.isHidden = false
+        } else {
+            self.descriptionLabel.isHidden = true
+        }
     }
 
 }

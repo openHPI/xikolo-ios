@@ -30,27 +30,19 @@ class AbstractLoginViewController : UIViewController {
     }
     
     func handleLoginSuccess(with token: String) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-        self.didSuccessfullyLogin()
+        self.delegate?.didSuccessfullyLogin()
+        self.presentingViewController?.dismiss(animated: true)
     }
     
     func handleLoginFailure(with error: Error) {
-        if case XikoloError.authenticationError = error {
-            self.emailField.shake()
-            self.passwordField.shake()
-        } else {
-            #if os(tvOS)
-                self.handleError(error)
-            #endif
-            // TODO (iOS): Error handling
+        self.emailField.shake()
+        self.passwordField.shake()
+
+        #if os(tvOS)
+        if XikoloError.authenticationError != error {
+            self.handleError(error)
         }
-    }
-
-    func didSuccessfullyLogin() {
-        CourseHelper.refreshCourses()
-        EnrollmentHelper.syncEnrollments()
-
-        delegate?.didSuccessfullyLogin()
+        #endif
     }
 
 }

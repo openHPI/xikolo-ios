@@ -11,13 +11,15 @@ import CoreData
 
 class CourseHeaderView : UICollectionReusableView {
 
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundView: UIVisualEffectView!
     @IBOutlet weak var titleView: UILabel!
 
     func configure(_ section: NSFetchedResultsSectionInfo) {
-        backgroundView.backgroundColor = Brand.TintColorSecond
-        backgroundView.isHidden = false
-        titleView.text = section.name
+        self.backgroundView.layer.masksToBounds = true
+        self.backgroundView.layer.cornerRadius = 17.0
+        self.backgroundView.backgroundColor = UIColor(white: 1.0, alpha: 0.9)
+        self.titleView.text = section.name
+        self.titleView.textColor = Brand.TintColorSecond
     }
 
 }

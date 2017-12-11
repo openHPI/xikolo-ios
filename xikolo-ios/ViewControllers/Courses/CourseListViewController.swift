@@ -10,11 +10,7 @@ import UIKit
 import DZNEmptyDataSet
 import CoreData
 
-
 class CourseListViewController : AbstractCourseListViewController {
-
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    var numberOfItemsPerRow = 1
 
     enum CourseDisplayMode {
         case enrolledOnly
@@ -32,31 +28,19 @@ class CourseListViewController : AbstractCourseListViewController {
         self.collectionView?.emptyDataSetDelegate = nil
     }
 
-    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            if UserProfileHelper.isLoggedIn() {
-                courseDisplayMode = .enrolledOnly
-            } else {
-                sender.selectedSegmentIndex = 1
-                performSegue(withIdentifier: "ShowLogin", sender: sender)
-            }
-        case 1:
-            courseDisplayMode = UserProfileHelper.isLoggedIn() ? .explore : .all
-        default:
-            break
-        }
-    }
-
     override func viewDidLoad() {
-        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionHeadersPinToVisibleBounds = true
+        let headerNib = UINib(nibName: "CourseHeaderView", bundle: nil)
+        self.collectionView?.register(headerNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CourseHeaderView")
+
+        if let courseListLayout = self.collectionView?.collectionViewLayout as? CourseListLayout {
+            courseListLayout.delegate = self
         }
 
-        if !UserProfileHelper.isLoggedIn() {
-            segmentedControl.selectedSegmentIndex = 1
-            courseDisplayMode = .all
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .automatic
         }
+
+        courseDisplayMode = .all
 
         super.viewDidLoad()
 
@@ -71,33 +55,17 @@ class CourseListViewController : AbstractCourseListViewController {
                                                object: nil)
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        switch traitCollection.horizontalSizeClass {
-        case .compact, .unspecified:
-            numberOfItemsPerRow = 1
-        case .regular:
-            numberOfItemsPerRow = 2
-        }
-    }
-
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.collectionView?.collectionViewLayout.invalidateLayout()
         coordinator.animate(alongsideTransition: { context in
             // Force redraw
-            self.collectionView!.performBatchUpdates(nil, completion: nil)
-        }, completion: nil)
+            self.collectionView?.performBatchUpdates(nil, completion: nil)
+        })
     }
 
     @objc func updateAfterLoginStateChange() {
         self.collectionView?.reloadEmptyDataSet()
-
-        if UserProfileHelper.isLoggedIn() {
-            self.segmentedControl.selectedSegmentIndex = 0
-            self.courseDisplayMode = .enrolledOnly
-        } else {
-            self.segmentedControl.selectedSegmentIndex = 1
-            self.courseDisplayMode = .all
-        }
-
         self.refresh()
     }
 
@@ -110,14 +78,19 @@ class CourseListViewController : AbstractCourseListViewController {
         }
 
         if UserProfileHelper.isLoggedIn() {
-            CourseHelper.refreshCourses().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
+            CourseHelper.syncAllCourses().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
                 stopRefreshControl()
             }
         } else {
-            CourseHelper.refreshCourses().onComplete { _ in
+            CourseHelper.syncAllCourses().onComplete { _ in
                 stopRefreshControl()
             }
         }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        self.performSegue(withIdentifier: "ShowCourseContent", sender: cell)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -135,30 +108,43 @@ class CourseListViewController : AbstractCourseListViewController {
 
 }
 
-extension CourseListViewController : UICollectionViewDelegateFlowLayout {
+extension CourseListViewController: CourseListLayoutDelegate {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
-            return UIEdgeInsets.zero
+    func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+        let (controller, dataIndexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        let course = controller.object(at: dataIndexPath)
+
+        let imageHeight = boundingWidth / 2
+
+        let boundingSize = CGSize(width: boundingWidth, height: CGFloat.infinity)
+        let titleText = course.title ?? ""
+        let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
+                                                                          options: .usesLineFragmentOrigin,
+                                                                          attributes: titleAttributes,
+                                                                          context: nil)
+
+        let teachersText = course.teachers ?? ""
+        let teachersAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+        let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
+                                                                                options: .usesLineFragmentOrigin,
+                                                                                attributes: teachersAttributes,
+                                                                                context: nil)
+
+        var height = imageHeight
+        if !titleText.isEmpty || !teachersText.isEmpty {
+            height += 6
+        }
+        if !titleText.isEmpty {
+            height += titleSize.height
+        }
+        if !titleText.isEmpty && !teachersText.isEmpty {
+            height += 4
+        }
+        if !teachersText.isEmpty {
+            height += teachersSize.height
         }
 
-        return UIEdgeInsets(
-            top: flowLayout.sectionInset.top,
-            left: max(flowLayout.sectionInset.left, self.collectionView?.layoutMargins.left ?? 0),
-            bottom: flowLayout.sectionInset.bottom,
-            right: max(flowLayout.sectionInset.right, self.collectionView?.layoutMargins.right ?? 0)
-        )
+        return height
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
-            return CGSize.zero
-        }
-
-        let sectionInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
-        let blankSpace = sectionInsets.left + sectionInsets.right + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfItemsPerRow - 1))
-        let width = (collectionView.bounds.width - blankSpace) / CGFloat(numberOfItemsPerRow)
-        return CGSize(width: width, height: width * 0.6)
-    }
-
 }

@@ -41,7 +41,7 @@ class ItemQuizIntroductionController : UIViewController {
         loadingHelper = ViewControllerLoadingHelper(self, rootView: view)
         loadingHelper.startLoading(quiz.item?.title ?? NSLocalizedString("Loading", comment: "Loading"))
 
-        QuizHelper.refreshQuiz(quiz).onSuccess { quiz in
+        QuizHelper.sync(quiz).onSuccess { quiz in
             if quiz.show_welcome_page {
                 self.loadingHelper.stopLoading()
                 self.configureUI()

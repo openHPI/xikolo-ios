@@ -32,7 +32,7 @@ enum XikoloError : Error {
 
     case synchronizationError(SynchronizationError)
     case trackingForUnknownUser
-    case missingEnrollemnt
+    case missingEnrollment
 }
 
 enum APIError : Error {

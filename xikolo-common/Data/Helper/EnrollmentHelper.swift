@@ -40,7 +40,11 @@ struct EnrollmentHelper {
         return promise.future
     }
 
-    static func delete(_ enrollment: Enrollment) -> Future<Void, XikoloError> {
+    static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {
+        guard let enrollment = enrollment else {
+            return Future(error: .missingEnrollment)
+        }
+
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -60,7 +64,7 @@ struct EnrollmentHelper {
 
     static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
         guard let enrollment = course.enrollment else {
-            return Future(error: .missingEnrollemnt)
+            return Future(error: .missingEnrollment)
         }
 
         guard !enrollment.completed else {

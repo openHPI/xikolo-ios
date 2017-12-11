@@ -119,7 +119,7 @@ class CourseDetailViewController: UIViewController {
                                                     comment: "title for unenroll action")
         let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in
             self.enrollmentButton.startAnimating()
-            EnrollmentHelper.delete(self.course.enrollment!).onComplete { _ in
+            EnrollmentHelper.delete(self.course.enrollment).onComplete { _ in
                 self.enrollmentButton.stopAnimating()
             }.onSuccess { _ in
                 DispatchQueue.main.async {

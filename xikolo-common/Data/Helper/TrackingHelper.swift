@@ -38,6 +38,17 @@ class TrackingHelper {
         case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
     }
 
+    private static var networkState: String {
+        switch ReachabilityHelper.reachabilityStatus {
+        case .reachableViaWiFi:
+            return "wifi"
+        case .reachableViaWWAN:
+            return "mobile"
+        case .notReachable:
+            return "offline"
+        }
+    }
+
     private class func defaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
         let windowSize = (UIApplication.shared.delegate as? AppDelegate)?.window?.frame.size
@@ -57,6 +68,7 @@ class TrackingHelper {
             "client_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
             "free_space": String(describing: self.systemFreeSize),
             "total_space": String(describing: self.systemSize),
+            "network": self.networkState,
         ]
     }
 

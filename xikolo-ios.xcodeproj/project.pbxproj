@@ -283,7 +283,7 @@
 		24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		24BA410A1D3F9B6900E38C2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
 		24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
-		24BA410D1D3F9B7300E38C2C /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
+		24BA410D1D3F9B7300E38C2C /* CourseItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */; };
 		24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
 		24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		24BA41111D3F9B7D00E38C2C /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -1001,7 +1001,7 @@
 		70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
 		70D1EAEC1EF0AC9A0088C0FF /* CourseDatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDatesTableViewController.swift */; };
 		70D1EAED1EF0AC9D0088C0FF /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
-		70D1EAEE1EF0ACA30088C0FF /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
+		70D1EAEE1EF0ACA30088C0FF /* CourseItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */; };
 		70D1EAEF1EF0ACA50088C0FF /* CourseDecisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */; };
 		70D1EAF01EF0ACA80088C0FF /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
 		70D1EAF11EF0ACAA0088C0FF /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
@@ -1177,7 +1177,7 @@
 		AB4A01C01E802CD7005CD595 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */; };
 		AB4A01C11E809C82005CD595 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */; };
 		AB4A01C21E809C83005CD595 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */; };
-		AB4F22661D7CB30300ED0BF1 /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
+		AB4F22661D7CB30300ED0BF1 /* CourseItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */; };
 		AB4F226E1D7CB95500ED0BF1 /* CourseDecisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */; };
 		AB4F226F1D7CB95500ED0BF1 /* CourseDecisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */; };
 		AB4F22871D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
@@ -1221,7 +1221,7 @@
 		ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		ABA0F0171DF8CC950001D88D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
 		ABA0F0191DF8CCA10001D88D /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
-		ABA0F01A1DF8CCA40001D88D /* CourseContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */; };
+		ABA0F01A1DF8CCA40001D88D /* CourseItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */; };
 		ABA0F01B1DF8CCA70001D88D /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
 		ABA0F01C1DF8CCA90001D88D /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
@@ -1795,7 +1795,7 @@
 		AB77C2961DF956EE00B30619 /* Brand+generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+generic.swift"; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openHPI/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
-		AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseContentTableViewController.swift; sourceTree = "<group>"; };
+		AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemListViewController.swift; sourceTree = "<group>"; };
 		AB91F9E41CED029B00007D06 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
 		AB947CE11E19E1EC009888B0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+enable.swift"; path = "Categories/UITableViewCell+enable.swift"; sourceTree = "<group>"; };
@@ -2436,11 +2436,11 @@
 		AB6AE0C51CF7D6A700708654 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				AB91F9DF1CECB1A300007D06 /* CourseContentTableViewController.swift */,
-				AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
+				AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */,
 				ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */,
 				AB95897E1DC4A53900586137 /* DropdownViewController.swift */,
+				AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */,
 				ABAC56061D142B4A008D30FB /* RichtextViewController.swift */,
 				AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */,
 				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
@@ -4267,7 +4267,7 @@
 				50F57DBF1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				4E2B821B1DDB00C900559217 /* CourseDateHelper.swift in Sources */,
 				AB4A01C11E809C82005CD595 /* CourseHeaderView.swift in Sources */,
-				24BA410D1D3F9B7300E38C2C /* CourseContentTableViewController.swift in Sources */,
+				24BA410D1D3F9B7300E38C2C /* CourseItemListViewController.swift in Sources */,
 				24BA40E21D3F9B0500E38C2C /* xikolo.xcdatamodeld in Sources */,
 				501212681FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				24BA41021D3F9B4100E38C2C /* XikoloURL.swift in Sources */,
@@ -4799,7 +4799,7 @@
 				70D1EB201EF12E010088C0FF /* AbstractCourseListViewController.swift in Sources */,
 				70D1EA531EF0AB1D0088C0FF /* PeerAssessment.swift in Sources */,
 				70D1EABE1EF0AC090088C0FF /* AnnouncementHelper.swift in Sources */,
-				70D1EAEE1EF0ACA30088C0FF /* CourseContentTableViewController.swift in Sources */,
+				70D1EAEE1EF0ACA30088C0FF /* CourseItemListViewController.swift in Sources */,
 				50F57DDF1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				70D1EABB1EF0AC060088C0FF /* NetworkHelper.swift in Sources */,
 				50F57DAB1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
@@ -5070,7 +5070,7 @@
 				24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */,
 				4E6AB1F81DD36AB500B048DB /* CourseDate.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */,
-				AB4F22661D7CB30300ED0BF1 /* CourseContentTableViewController.swift in Sources */,
+				AB4F22661D7CB30300ED0BF1 /* CourseItemListViewController.swift in Sources */,
 				5012124B1FCC67510022A7AF /* Pullable.swift in Sources */,
 				AB9A3D8D1E61CE2500384B1E /* CourseDetailViewController.swift in Sources */,
 				AB95897F1DC4A53900586137 /* DropdownViewController.swift in Sources */,
@@ -5182,7 +5182,7 @@
 				503585091F3B06E5002A666C /* String+ascii.swift in Sources */,
 				501212371FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
 				ABA0F05C1DF8CD940001D88D /* CourseSection.swift in Sources */,
-				ABA0F01A1DF8CCA40001D88D /* CourseContentTableViewController.swift in Sources */,
+				ABA0F01A1DF8CCA40001D88D /* CourseItemListViewController.swift in Sources */,
 				ABA0F0E41DF8CE790001D88D /* Routes.swift in Sources */,
 				AB35C9371E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				ABA0F0651DF8CD9F0001D88D /* Content.swift in Sources */,

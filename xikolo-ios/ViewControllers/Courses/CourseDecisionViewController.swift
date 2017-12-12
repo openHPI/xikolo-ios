@@ -72,7 +72,7 @@ class CourseDecisionViewController: UIViewController {
         let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         switch content {
         case .learnings:
-            let vc = storyboard.instantiateViewController(withIdentifier: "CourseContentTableViewController") as! CourseContentTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "CourseItemListViewController") as! CourseItemListViewController
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.learnings.title",

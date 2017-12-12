@@ -1,5 +1,5 @@
 //
-//  CourseContentTableViewController.swift
+//  CourseItemListViewController.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 18.05.16.
@@ -11,7 +11,7 @@ import UIKit
 import DZNEmptyDataSet
 import ReachabilitySwift
 
-class CourseContentTableViewController: UITableViewController {
+class CourseItemListViewController: UITableViewController {
     typealias Resource = CourseItem
 
     var course: Course!
@@ -61,7 +61,7 @@ class CourseContentTableViewController: UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
-        let configuration = CourseContentTableViewConfiguration(tableViewController: self)
+        let configuration = CourseItemListViewConfiguration(tableViewController: self)
         let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
         resultsControllerDelegateImplementation.configuration = configurationWrapper
         resultsController.delegate = resultsControllerDelegateImplementation
@@ -90,7 +90,7 @@ class CourseContentTableViewController: UITableViewController {
             self.reachability = Reachability()
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(CourseItemListViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
     }
 
     private func startReachabilityNotifier() {
@@ -203,7 +203,7 @@ class CourseContentTableViewController: UITableViewController {
 
 }
 
-extension CourseContentTableViewController { // TableViewDelegate
+extension CourseItemListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = self.resultsController.object(at: indexPath)
@@ -220,10 +220,10 @@ extension CourseContentTableViewController { // TableViewDelegate
 }
 
 
-class CourseContentTableViewConfiguration : TableViewResultsControllerConfiguration {
-    weak var tableViewController: CourseContentTableViewController?
+class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration {
+    weak var tableViewController: CourseItemListViewController?
 
-    init(tableViewController: CourseContentTableViewController) {
+    init(tableViewController: CourseItemListViewController) {
         self.tableViewController = tableViewController
     }
 
@@ -241,7 +241,7 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
 }
 
 
-extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
@@ -256,7 +256,7 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
 
 }
 
-extension CourseContentTableViewController: VideoCourseItemCellDelegate {
+extension CourseItemListViewController: VideoCourseItemCellDelegate {
 
     func videoCourseItemCell(_ cell: CourseItemCell, downloadStateDidChange newState: Video.DownloadState) {
         guard let indexPath = self.tableView.indexPath(for: cell) else { return }

@@ -582,6 +582,18 @@
 		50B15BDD1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
 		50B15BDE1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
 		50B15BDF1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
+		50B15BE11FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE21FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE31FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE41FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE51FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE61FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE71FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE81FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BE91FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BEA1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BEB1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50B15BEC1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		50C92B5F1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B601FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B611FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
@@ -1704,6 +1716,7 @@
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
+		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-ios/Categories/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
@@ -2232,6 +2245,7 @@
 				2490C4FC1D2175BA00F42949 /* XikoloURL.swift */,
 				702520901F71A1D4003E0F80 /* NotificationKeys.swift */,
 				7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */,
+				50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */,
 			);
 			path = "xikolo-common";
 			sourceTree = "<group>";
@@ -4143,6 +4157,7 @@
 				2474C87A1D86FE20009BDB94 /* RichText.swift in Sources */,
 				2474C8861D86FE30009BDB94 /* TrackingEventUser.swift in Sources */,
 				501212261FCC669E0022A7AF /* Future+inject.swift in Sources */,
+				50B15BE31FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				2490C4F21D216D5200F42949 /* NetworkHelper.swift in Sources */,
 				243CE4871D709A1B007C59B6 /* Enrollment.swift in Sources */,
 				50F6A5B81FB316A6007DBAFF /* VideoStream.swift in Sources */,
@@ -4216,6 +4231,7 @@
 				5053988D1F72A9FB00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */,
+				50B15BE41FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				4E2B821E1DDB0EE200559217 /* CourseDatesTableViewController.swift in Sources */,
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
@@ -4439,6 +4455,7 @@
 				24BA41301D3F9D1A00E38C2C /* ViewControllerLoadingHelper.swift in Sources */,
 				243CE4991D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA41281D3F9D0600E38C2C /* LearningsViewController.swift in Sources */,
+				50B15BE51FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				AB1FB27C1E0871B200BB3D23 /* CourseDateHelper.swift in Sources */,
 				24BA407E1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */,
 				AB35C9361E89DAA4009832A5 /* UserHelper.swift in Sources */,
@@ -4495,6 +4512,7 @@
 				2474C8851D86FE2E009BDB94 /* TrackingEvent.swift in Sources */,
 				2474C88D1D86FE64009BDB94 /* AVMetadataItem+convenience.swift in Sources */,
 				501212291FCC669E0022A7AF /* Future+inject.swift in Sources */,
+				50B15BE61FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				2474C87B1D86FE20009BDB94 /* RichText.swift in Sources */,
 				2474C8871D86FE31009BDB94 /* TrackingEventUser.swift in Sources */,
 				243CE4881D709A1C007C59B6 /* Enrollment.swift in Sources */,
@@ -4646,6 +4664,7 @@
 				243CE4971D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				AB1FB27A1E0871AD00BB3D23 /* CourseDateHelper.swift in Sources */,
 				240E034A1CE6160D0078A364 /* CourseSectionCell.swift in Sources */,
+				50B15BE21FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				AB35C9341E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				50F57D211FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				ABC1BF201E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
@@ -4774,6 +4793,7 @@
 				70D1EB061EF0ACE60088C0FF /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				50E16CF51F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
 				50D7AEA51F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
+				50B15BEA1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				70D1EA161EF0AAD40088C0FF /* CourseCertificates.swift in Sources */,
 				70D1E9F71EF0AA980088C0FF /* UIView+shake.swift in Sources */,
 				70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */,
@@ -4836,6 +4856,7 @@
 				70D1EAB71EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
 				70D1EAC81EF0AC160088C0FF /* RichTextHelper.swift in Sources */,
 				505398971F72A9FF00A87DC8 /* UserDefaultsKeys.swift in Sources */,
+				50B15BEB1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				70D1EA171EF0AAD40088C0FF /* CourseCertificates.swift in Sources */,
 				70F456341F0128E500A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EA7B1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */,
@@ -4982,6 +5003,7 @@
 				5051F81A1FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				50F6A5C11FB316A6007DBAFF /* VideoStream.swift in Sources */,
 				70D1EA151EF0AAD10088C0FF /* Course.swift in Sources */,
+				50B15BEC1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				5012122F1FCC669E0022A7AF /* Future+inject.swift in Sources */,
 				70D1EA331EF0AAF40088C0FF /* Enrollment.swift in Sources */,
 				50F57DAD1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
@@ -5055,6 +5077,7 @@
 				24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */,
 				243CE4831D709999007C59B6 /* Enrollment.swift in Sources */,
 				24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */,
+				50B15BE11FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				4E2B821D1DDB0EE200559217 /* CourseDatesTableViewController.swift in Sources */,
 				24128FAC1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
@@ -5200,6 +5223,7 @@
 				AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */,
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */,
+				50B15BE71FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				ABA0F0291DF8CCCF0001D88D /* AnnouncementCell.swift in Sources */,
 				ABA0F01C1DF8CCA90001D88D /* RichtextViewController.swift in Sources */,
 				50F57DA81FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
@@ -5423,6 +5447,7 @@
 				ABA0F0371DF8CD0E0001D88D /* CollectionType+dict.swift in Sources */,
 				AB1FB2841E0871D200BB3D23 /* CourseDateHelper.swift in Sources */,
 				ABA0F1111DF8CF610001D88D /* ItemQuizIntroductionController.swift in Sources */,
+				50B15BE81FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				ABA0F1221DF8CF9A0001D88D /* ReplaceSegue.swift in Sources */,
 				AB35C9381E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				50F57D271FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
@@ -5477,6 +5502,7 @@
 				501212111FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				5051F8171FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				ABA0F0581DF8CD8D0001D88D /* CourseItem.swift in Sources */,
+				50B15BE91FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				ABA0F05E1DF8CD950001D88D /* CourseSection.swift in Sources */,
 				5012122C1FCC669E0022A7AF /* Future+inject.swift in Sources */,
 				50F6A5BE1FB316A6007DBAFF /* VideoStream.swift in Sources */,

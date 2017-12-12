@@ -26,4 +26,11 @@ struct CourseHelper {
         return SyncEngine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
     }
 
+    static func syncCourse(forSlugOrId slugOrId: String) -> Future<NSManagedObjectID, XikoloError> {
+        var query = SingleResourceQuery(type: Course.self, id: slugOrId)
+        query.include("channel")
+        query.include("user_enrollment")
+        return SyncEngine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
+    }
+
 }

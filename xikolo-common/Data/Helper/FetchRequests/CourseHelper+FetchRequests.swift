@@ -43,9 +43,12 @@ extension CourseHelper {
             return request
         }
 
-        static func course(withSlug courseSlug: String) -> NSFetchRequest<Course> {
+        static func course(withSlugOrId slugOrId: String) -> NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
-            request.predicate = NSPredicate(format: "slug = %@", courseSlug)
+            request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "slug = %@", slugOrId),
+                NSPredicate(format: "id = %@", slugOrId)
+            ])
             request.fetchLimit = 1
             return request
         }

@@ -578,6 +578,10 @@
 		508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AD1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
+		50B15BDC1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
+		50B15BDD1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
+		50B15BDE1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
+		50B15BDF1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
 		50C92B5F1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B601FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B611FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
@@ -1699,6 +1703,7 @@
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
+		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-ios/Categories/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
@@ -2414,6 +2419,7 @@
 				24B6514F1D35959C00624DBC /* Helpers */,
 				AB91831F1D6B091300018C1D /* Branding */,
 				F875A5161B5697640030F38C /* AppDelegate.swift */,
+				50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */,
 				5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
@@ -4266,6 +4272,7 @@
 				50D9B1751F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				50F57DBF1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				4E2B821B1DDB00C900559217 /* CourseDateHelper.swift in Sources */,
+				50B15BDD1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
 				AB4A01C11E809C82005CD595 /* CourseHeaderView.swift in Sources */,
 				24BA410D1D3F9B7300E38C2C /* CourseItemListViewController.swift in Sources */,
 				24BA40E21D3F9B0500E38C2C /* xikolo.xcdatamodeld in Sources */,
@@ -4796,6 +4803,7 @@
 				50F57D9E1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				70D1EAF01EF0ACA80088C0FF /* CourseListViewController.swift in Sources */,
 				70D1E9F41EF0AA920088C0FF /* NSAttributedString+HTML.swift in Sources */,
+				50B15BDF1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
 				70D1EB201EF12E010088C0FF /* AbstractCourseListViewController.swift in Sources */,
 				70D1EA531EF0AB1D0088C0FF /* PeerAssessment.swift in Sources */,
 				70D1EABE1EF0AC090088C0FF /* AnnouncementHelper.swift in Sources */,
@@ -5103,6 +5111,7 @@
 				50F57DBC1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				ABDD84C91D8E063100C7D193 /* LTIExerciseHelper.swift in Sources */,
 				4E2B821A1DDB00C900559217 /* CourseDateHelper.swift in Sources */,
+				50B15BDC1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
 				AB4A01C01E802CD7005CD595 /* CourseHeaderView.swift in Sources */,
 				AB9AF2CD1CF3480E00ED3EB0 /* VideoViewController.swift in Sources */,
 				501212651FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
@@ -5247,6 +5256,7 @@
 				AB4A01C21E809C83005CD595 /* CourseHeaderView.swift in Sources */,
 				ABA0F09C1DF8CDF20001D88D /* TrackingEventVerb.swift in Sources */,
 				ABA0F0CD1DF8CE480001D88D /* CourseItemHelper.swift in Sources */,
+				50B15BDE1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
 				ABA0F1041DF8CEC10001D88D /* XikoloURL.swift in Sources */,
 				ABA0F01F1DF8CCB10001D88D /* DropdownTableViewController.swift in Sources */,
 				ABA0F04A1DF8CD7C0001D88D /* Course.swift in Sources */,

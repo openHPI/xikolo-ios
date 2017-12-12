@@ -1,9 +1,9 @@
 PODS:
   - BartyCrouch (3.8.1)
-  - BMPlayer (1.0.0):
-    - BMPlayer/Full (= 1.0.0)
-  - BMPlayer/Core (1.0.0)
-  - BMPlayer/Full (1.0.0):
+  - BMPlayer (1.0.1):
+    - BMPlayer/Full (= 1.0.1)
+  - BMPlayer/Core (1.0.1)
+  - BMPlayer/Full (1.0.1):
     - BMPlayer/Core
     - NVActivityIndicatorView (~> 4.0.0)
     - SnapKit (~> 4.0.0)
@@ -14,9 +14,9 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (3.1.0)
   - Marshal (1.2.4)
-  - NVActivityIndicatorView (4.0.0):
-    - NVActivityIndicatorView/Presenter (= 4.0.0)
-  - NVActivityIndicatorView/Presenter (4.0.0)
+  - NVActivityIndicatorView (4.0.1):
+    - NVActivityIndicatorView/Presenter (= 4.0.1)
+  - NVActivityIndicatorView/Presenter (4.0.1)
   - ReachabilitySwift (3)
   - Result (3.2.4)
   - SDWebImage/Core (4.0.0)
@@ -62,14 +62,14 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
-  BMPlayer: 06717ac5daf25d403329df24667abe2354dd9b17
+  BMPlayer: 44eebf06eb01450dd14ea74b27d07c5222f0eed1
   BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
   Down: 89910050356026b194dd4e97a5c6c92f75aee413
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
-  NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
+  NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41

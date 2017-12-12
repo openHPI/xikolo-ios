@@ -193,4 +193,7 @@ extension VideoViewController: BMPlayerDelegate {
         }
     }
 
+    func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool) {
+    }
+
 }

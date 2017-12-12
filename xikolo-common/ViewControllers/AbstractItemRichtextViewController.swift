@@ -21,7 +21,12 @@ class AbstractItemRichtextViewController: UIViewController {
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
             CoreDataHelper.viewContext.perform {
-                self.courseItem = CoreDataHelper.viewContext.object(with: objectId) as CourseItem
+                guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: objectId) as? CourseItem else {
+                    print("Warning: Failed to retrieve course item to display")
+                    return
+                }
+
+                self.courseItem = courseItem
                 DispatchQueue.main.async {
                     self.updateView(for: self.courseItem)
                 }

@@ -101,7 +101,12 @@ class SettingsViewController: UITableViewController {
                 }
 
                 UserHelper.syncMe().onSuccess { managedObjectID in
-                    self.user = CoreDataHelper.viewContext.object(with: managedObjectID) as User
+                    guard let user = CoreDataHelper.viewContext.existingTypedObject(with: managedObjectID) as? User else {
+                        print("Warning: Failed to retrieve user to display")
+                        return
+                    }
+
+                    self.user = user
                 }
             }
         } else {

@@ -19,7 +19,7 @@ class ReachabilityHelper {
         return self.reachability.currentReachabilityStatus
     }
 
-    static func startObeserving() {
+    static func startObserving() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(ReachabilityHelper.reachabilityChanged),
                                                name: ReachabilityChangedNotification,
@@ -31,7 +31,7 @@ class ReachabilityHelper {
         }
     }
 
-    static func stopObeserving() {
+    static func stopObserving() {
         self.reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
     }

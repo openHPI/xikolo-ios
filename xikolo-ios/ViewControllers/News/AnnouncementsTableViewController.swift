@@ -58,7 +58,8 @@ class AnnouncementsTableViewController : UITableViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        TrackingHelper.createEvent(.visitedAnnouncementList, resource: nil)
+        super.viewDidAppear(animated)
+        TrackingHelper.createEvent(.visitedAnnouncementList)
     }
 
     func setupEmptyState() {

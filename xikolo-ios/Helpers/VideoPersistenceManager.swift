@@ -94,7 +94,7 @@ class VideoPersistenceManager: NSObject {
                                                                             assetTitle: assetTitle,
                                                                             assetArtworkData: video.posterImageData,
                                                                             options: options) else { return }
-        TrackingHelper.createEvent(.videoDownloadStart, resource: video)
+        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: video.id)
         task.taskDescription = video.id
 
         self.activeDownloadsMap[task] = video
@@ -185,7 +185,7 @@ class VideoPersistenceManager: NSObject {
 
         for (taskKey, assetVal) in activeDownloadsMap {
             if video == assetVal  {
-                TrackingHelper.createEvent(.videoDownloadCanceled, resource: video)
+                TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: video.id)
                 task = taskKey
                 break
             }
@@ -252,7 +252,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 try video.managedObjectContext?.save()
 
                 let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
-                TrackingHelper.createEvent(.videoDownloadFinished, resource: video, context: context)
+                TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: video.id, context: context)
             } catch {
                 // Failed to create bookmark for location
                 self.deleteAsset(for: video)

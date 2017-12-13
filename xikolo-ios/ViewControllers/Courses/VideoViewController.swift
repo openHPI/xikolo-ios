@@ -22,8 +22,10 @@ class VideoViewController : UIViewController {
     var courseItem: CourseItem!
     var video: Video?
     var videoPlayerConfigured = false
+    private var sentFirstAutoPlayEvent = false
 
-    var player: BMPlayer?
+
+    var player: CustomBMPlayer?
     let playerControlView = VideoPlayerControlView()
 
     override func viewDidLoad() {
@@ -53,7 +55,13 @@ class VideoViewController : UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        self.player?.pause()
+        if !(self.navigationController?.viewControllers.contains(self) ?? false) {
+            self.player?.pause()
+        }
+
+        if !(self.navigationController?.viewControllers.contains(self) ?? true) {
+            self.trackVideoClose()
+        }
     }
 
     override func prefersHomeIndicatorAutoHidden() -> Bool {
@@ -63,6 +71,8 @@ class VideoViewController : UIViewController {
     }
 
     func layoutPlayer() {
+        self.playerControlView.videoController = self
+
         BMPlayerConf.topBarShowInCase = .always
         BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
@@ -70,8 +80,9 @@ class VideoViewController : UIViewController {
         BMPlayerConf.enablePlaytimeGestures = true
 
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
-        let player = BMPlayer(customControlView: self.playerControlView)
+        let player = CustomBMPlayer(customControlView: self.playerControlView)
         player.delegate = self
+        player.videoController = self
         self.videoContainer.addSubview(player)
         player.snp.makeConstraints { (make) in
             make.top.equalTo(self.videoContainer.snp.top)
@@ -164,20 +175,100 @@ class VideoViewController : UIViewController {
 
 }
 
-extension VideoViewController: BMPlayerDelegate {
+extension VideoViewController { // Video tracking
 
     private var newTrackingContext: [String: String?] {
-        var context = ["section_id": self.video?.item?.section?.id]
-        context["course_id"] = self.video?.item?.section?.course?.id
-        context["currentTime"] = String(describing: self.player?.avPlayer?.currentTime().seconds ?? 0.0)
+        var context = [
+            "section_id": self.video?.item?.section?.id,
+            "course_id": self.video?.item?.section?.course?.id,
+            "current_speed": String(self.playerControlView.playRate),
+            "current_orientation": UIDevice.current.orientation.isLandscape ? "landscape" : "portrait",
+            "current_quality": "hls",
+            "current_source": self.playerControlView.offlineLabel.isHidden ? "online" : "offline",
+        ]
+
+        if let currentTime = self.player?.avPlayer?.currentTime().seconds {
+            context["currentTime"] = String(describing: currentTime)
+        }
+
         return context
     }
+
+    func trackVideoPlay() {
+        guard let video = self.video else { return }
+        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+    }
+
+    func trackVideoPause() {
+        guard let video = self.video else { return }
+        TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+    }
+
+    func trackVideoPlayRateChange(oldPlayRate: Float, newPlayRate: Float) {
+        guard let video = self.video else { return }
+
+        var context = self.newTrackingContext
+        context["current_speed"] = nil
+        context["old_speed"] = String(oldPlayRate)
+        context["new_speed"] = String(newPlayRate)
+        TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, context: context)
+    }
+
+    func trackVideoSeek(from: TimeInterval?, to: TimeInterval) {
+        guard let video = self.video else { return }
+
+        var context = self.newTrackingContext
+        context["current_time"] = nil
+        context["new_current_time"] = String(to)
+
+        if let from = from {
+            context["old_current_time"] = String(from)
+        }
+
+        TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, context: context)
+    }
+
+    func trackVideoEnd() {
+        guard let video = self.video else { return }
+        TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+    }
+
+    func trackVideoClose() {
+        guard let video = self.video else { return }
+        TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+    }
+
+    func trackVideoOrientationChangePortrait() {
+        guard let video = self.video else { return }
+
+        var context = self.newTrackingContext
+        context["current_orientation"] = nil
+        TrackingHelper.createEvent(.videoPlaybackDeviceOrientationPortrait, resourceType: .video, resourceId: video.id, context: context)
+    }
+
+    func trackVideoOrientationChangeLandscape() {
+        guard let video = self.video else { return }
+
+        var context = self.newTrackingContext
+        context["current_orientation"] = nil
+        TrackingHelper.createEvent(.videoPlaybackDeviceOrientationLandscape, resourceType: .video, resourceId: video.id, context: context)
+    }
+
+}
+
+extension VideoViewController: BMPlayerDelegate {
 
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .bufferFinished {
             player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+
+            if !self.sentFirstAutoPlayEvent {  // only once
+                self.trackVideoPlay()
+                self.sentFirstAutoPlayEvent = true
+            }
+
         } else if state == .playedToTheEnd {
-            TrackingHelper.createEvent(.videoPlaybackEnd, resource: self.video, context: self.newTrackingContext)
+            self.trackVideoEnd()
         }
     }
 
@@ -194,6 +285,11 @@ extension VideoViewController: BMPlayerDelegate {
     }
 
     func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool) {
+        if UIDevice.current.orientation.isLandscape { // check on ipad // alternative register observer on your own
+            self.trackVideoOrientationChangeLandscape()
+        } else {
+            self.trackVideoOrientationChangePortrait()
+        }
     }
 
 }

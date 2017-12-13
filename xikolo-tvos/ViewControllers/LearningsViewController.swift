@@ -159,7 +159,7 @@ extension LearningsViewController : UICollectionViewDelegate, ItemViewController
     }
 
     func showItem(_ item: CourseItem) {
-        TrackingHelper.createEvent(.visitedItem, resource: item)
+        TrackingHelper.createEvent(.visitedItem, resource: item, context: ["content_type": item.contentType])
 
         switch item.content {
             case is Quiz:

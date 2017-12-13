@@ -38,8 +38,9 @@ class AnnouncementViewController : UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         AnnouncementHelper.markAsVisited(self.announcement)
-        TrackingHelper.createEvent(.visitedAnnouncement, resource: announcement)
+        TrackingHelper.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id)
     }
 
     private func updateView() {

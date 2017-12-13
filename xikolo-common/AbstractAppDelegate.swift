@@ -13,13 +13,13 @@ class AbstractAppDelegate : UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         CoreDataObserver.standard.startObserving()
-        ReachabilityHelper.startObeserving()
+        ReachabilityHelper.startObserving()
         return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         CoreDataObserver.standard.stopObserving()
-        ReachabilityHelper.stopObeserving()
+        ReachabilityHelper.stopObserving()
     }
 
 }

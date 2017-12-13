@@ -10,11 +10,24 @@ import Foundation
 import BMPlayer
 import UIKit
 
+class CustomBMPlayer: BMPlayer {
+
+    weak var videoController: VideoViewController?
+
+    override func seek(_ to:TimeInterval, completion: (()->Void)? = nil) {
+        let from = self.playerLayer?.player?.currentTime().seconds
+        super.seek(to, completion: completion)
+        self.videoController?.trackVideoSeek(from: from, to: to)
+    }
+}
+
 class VideoPlayerControlView: BMPlayerControlView {
 
     private var playbackRateButton = UIButton(type: .custom)
-    private var offlineLabel = UILabel()
+    var offlineLabel = UILabel()
     private(set) var playRate: Float = UserDefaults.standard.float(forKey: UserDefaultsKeys.playbackRateKey)
+
+    weak var videoController: VideoViewController?
 
     override func customizeUIComponents() {
         // update top bar
@@ -95,6 +108,8 @@ class VideoPlayerControlView: BMPlayerControlView {
                 make.right.equalTo(self.bottomMaskView.snp.right)
             }
         }
+
+        self.playButton.addTarget(self, action: #selector(tapPlayButton), for: .touchUpInside)
     }
 
     func setOffline(_ isOffline: Bool) {
@@ -108,6 +123,8 @@ class VideoPlayerControlView: BMPlayerControlView {
 
     @objc private func onPlaybackRateButtonPressed() {
         self.autoFadeOutControlViewWithAnimation()
+        let oldPlayRate = self.playRate
+
         switch self.playRate {
         case 1.0:
             self.playRate = 1.25
@@ -130,10 +147,19 @@ class VideoPlayerControlView: BMPlayerControlView {
 
         self.updatePlaybackRateButton()
         self.delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: self.playRate)
+        self.videoController?.trackVideoPlayRateChange(oldPlayRate: oldPlayRate, newPlayRate: self.playRate)
     }
 
     private func updatePlaybackRateButton() {
         self.playbackRateButton.setTitle("\(self.playRate)x", for: .normal)
+    }
+
+    @objc private func tapPlayButton() {
+        if self.playButton.isSelected {
+            self.videoController?.trackVideoPlay()
+        } else {
+            self.videoController?.trackVideoPause()
+        }
     }
 
 }

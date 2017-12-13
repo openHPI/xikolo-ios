@@ -13,23 +13,9 @@ class TrackingEventResource : NSObject, NSCoding {
     var resourceType: String
     var uuid: String
 
-    static func noneResource() -> TrackingEventResource {
-        return TrackingEventResource(resourceType: "None")
-    }
-
-    private init(resourceType: String) {
-        self.resourceType = resourceType
-        self.uuid = "00000000-0000-0000-0000-000000000000"
-    }
-
-    init(resource: ResourceRepresentable) {
-        self.resourceType = type(of: resource).type
-        self.uuid = resource.id
-    }
-
-    init(resourceType: ResourceRepresentable.Type) {
-        self.resourceType = resourceType.type
-        self.uuid = "00000000-0000-0000-0000-000000000000"
+    init(resourceType: TrackingHelper.AnalyticsResourceType, uuid: String) {
+        self.resourceType = resourceType.rawValue
+        self.uuid = uuid
     }
 
     required init?(coder decoder: NSCoder) {

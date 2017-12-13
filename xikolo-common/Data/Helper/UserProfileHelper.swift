@@ -21,7 +21,7 @@ open class UserProfileHelper {
         Alamofire.request(url, method: .post, parameters:[
                 Routes.HTTP_PARAM_EMAIL: email,
                 Routes.HTTP_PARAM_PASSWORD: password,
-        ], headers: NetworkHelper.getRequestHeaders()).responseJSON { response in
+        ], headers: [:]).responseJSON { response in
             // The API does not return valid JSON when returning a 401.
             // TODO: Remove once the API does that.
             if let response = response.response {

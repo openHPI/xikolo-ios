@@ -37,10 +37,6 @@ class CourseItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .automatic
-        }
-
         var separatorInsetLeft: CGFloat = 20.0
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets

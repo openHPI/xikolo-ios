@@ -216,7 +216,7 @@ struct SyncEngine {
 
     // MARK: - merge
 
-    private static func mergeResources<Resource>(object: ResourceData, withExistingObjects objects: [Resource], inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
+    private static func mergeResources<Resource>(object: ResourceData, withExistingObjects objects: [Resource], deleteNotExistingResources: Bool, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             var existingObjects = objects
             var newObjects: [Resource] = []
@@ -242,8 +242,10 @@ struct SyncEngine {
                 }
             }
 
-            for existingObject in existingObjects {
-                context.delete(existingObject)
+            if deleteNotExistingResources {
+                for existingObject in existingObjects {
+                    context.delete(existingObject)
+                }
             }
 
             return Future(value: newObjects)
@@ -296,7 +298,7 @@ struct SyncEngine {
 
     // MARK: - sync
 
-    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>) -> Future<[NSManagedObjectID], XikoloError> where Resource: NSManagedObject & Pullable {
+    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>, deleteNotExistingResources: Bool = true) -> Future<[NSManagedObjectID], XikoloError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<[NSManagedObjectID], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -308,7 +310,7 @@ struct SyncEngine {
             }
 
             coreDataFetch.zip(networkRequest).flatMap { objects, json in
-                return self.mergeResources(object: json, withExistingObjects: objects, inContext: context)
+                return self.mergeResources(object: json, withExistingObjects: objects, deleteNotExistingResources: deleteNotExistingResources, inContext: context)
             }.inject {
                 do {
                     try context.save()

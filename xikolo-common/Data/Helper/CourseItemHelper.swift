@@ -41,7 +41,7 @@ struct CourseItemHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.addFilter(forKey: "content_type", withValue: "rich_text")
         query.include("content")
-        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
     static func syncVideos(forCourse course: Course) -> Future<[NSManagedObjectID], XikoloError> {
@@ -50,7 +50,7 @@ struct CourseItemHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.addFilter(forKey: "content_type", withValue: "video")
         query.include("content")
-        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
     static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<NSManagedObjectID, XikoloError> {

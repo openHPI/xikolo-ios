@@ -64,7 +64,7 @@ class CourseItemListViewController: UITableViewController {
 
         // setup table view data
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position")  // must be equal to the first sort descriptor
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
         let configuration = CourseItemListViewConfiguration(tableViewController: self)
@@ -211,6 +211,12 @@ class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration 
                                                         isPreloading: self.tableViewController?.isPreloading ?? false,
                                                         inOfflineMode: self.tableViewController?.isOffline ?? false)
         cell.configure(for: item, with: configuration)
+    }
+
+    func headerTitle(forController controller: NSFetchedResultsController<CourseItem>, forSection section: Int) -> String? {
+        let indexPath = IndexPath(row: 0, section: section)
+        let item = controller.object(at: indexPath)
+        return item.section?.title
     }
 
 }

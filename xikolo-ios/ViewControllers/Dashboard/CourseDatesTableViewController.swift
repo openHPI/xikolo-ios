@@ -35,6 +35,11 @@ class CourseDatesTableViewController : UITableViewController {
         let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
         self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateAfterLoginStateChange),
+                                               name: NotificationKeys.loginStateChangedKey,
+                                               object: nil)
+
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
@@ -74,6 +79,12 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
+    @objc func updateAfterLoginStateChange() {
+        if UserProfileHelper.isLoggedIn() {
+            CourseDateHelper.syncAllCourseDates()
+        }
+    }
+
     @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
@@ -84,12 +95,8 @@ class CourseDatesTableViewController : UITableViewController {
         }
 
         self.courseActivityViewController?.refresh()
-        if UserProfileHelper.isLoggedIn() {
-            CourseDateHelper.syncAllCourseDates().onComplete { _ in
-                stopRefreshControl()
-            }
-        } else {
-           stopRefreshControl()
+        CourseDateHelper.syncAllCourseDates().onComplete { _ in
+            stopRefreshControl()
         }
     }
 

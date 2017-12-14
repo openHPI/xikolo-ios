@@ -35,13 +35,15 @@ class CoreDataHelper {
                                              cacheName: nil)
     }
 
-    static func clearCoreDataStorage() {
-        for entityName in self.persistentContainer.managedObjectModel.entitiesByName.keys {
-            self.clearCoreDataEntity(entityName)
-        }
+    static func clearCoreDataStorage() -> Future<Void, XikoloError> {
+        return self.persistentContainer.managedObjectModel.entitiesByName.keys.traverse { entityName in
+            return self.clearCoreDataEntity(entityName)
+        }.asVoid()
     }
 
-    private static func clearCoreDataEntity(_ entityName: String) {
+    private static func clearCoreDataEntity(_ entityName: String) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
         self.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             privateManagedObjectContext.shouldDeleteInaccessibleFaults = true
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
@@ -55,10 +57,15 @@ class CoreDataHelper {
                 print("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
                 try privateManagedObjectContext.save()
+
+                promise.success(())
             } catch {
                 print("Failed to bulk delete all enities of \(entityName) - \(error)")
+                promise.failure(.coreData(error))
             }
         }
+
+        return promise.future
     }
 
 }

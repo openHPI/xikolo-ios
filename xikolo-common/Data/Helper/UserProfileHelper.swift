@@ -81,8 +81,9 @@ open class UserProfileHelper {
 
     static func logout() {
         UserProfileHelper.clearKeychain()
-        CoreDataHelper.clearCoreDataStorage()
-        self.postLoginStateChange()
+        CoreDataHelper.clearCoreDataStorage().onComplete { _ in
+            self.postLoginStateChange()
+        }
     }
 
     static func isLoggedIn() -> Bool {

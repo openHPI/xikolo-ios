@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -95,7 +94,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="CNv-5F-H2z">
-                            <rect key="frame" x="0.0" y="722" width="375" height="55"/>
+                            <rect key="frame" x="0.0" y="694" width="375" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-7O-EQj">
@@ -203,7 +202,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="Small-sized course material will be downloaded in advance for enrolled courses." id="k6k-z7-cxe">
+                            <tableViewSection id="k6k-z7-cxe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TFS-M6-7DR" style="IBUITableViewCellStyleDefault" id="m1w-3a-r50">
                                         <rect key="frame" x="0.0" y="428" width="375" height="44"/>
@@ -225,24 +224,39 @@
                                             <segue destination="SN4-Xn-n1e" kind="show" id="39f-qw-YSo"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="W0A-Ki-Fhq" style="IBUITableViewCellStyleDefault" id="vuV-8h-Bx1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="W0A-Ki-Fhq" detailTextLabel="BoS-Tu-jgs" style="IBUITableViewCellStyleValue1" id="vuV-8h-Bx1">
                                         <rect key="frame" x="0.0" y="472" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vuV-8h-Bx1" id="PuU-8x-WuW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Preload Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W0A-Ki-Fhq">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <rect key="frame" x="16" y="12" width="124" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BoS-Tu-jgs">
+                                                    <rect key="frame" x="296" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!">
+                                                            <attributes>
+                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="accessoryView" destination="yQ4-Cl-ufx" id="HFc-fd-1Hv"/>
+                                            <segue destination="eyj-JL-OJ2" kind="show" id="VPr-qO-RrZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -250,7 +264,7 @@
                             <tableViewSection id="A4M-NK-hn9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedbackCell" textLabel="KWX-En-m9x" style="IBUITableViewCellStyleDefault" id="9nJ-jV-M2z">
-                                        <rect key="frame" x="0.0" y="580" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="552" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9nJ-jV-M2z" id="o3a-O8-a3z">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -271,7 +285,7 @@
                             <tableViewSection id="nfd-6t-c8v">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogoutCell" id="gb5-GE-gbr">
-                                        <rect key="frame" x="0.0" y="660" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="632" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gb5-GE-gbr" id="n19-zg-ozR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -309,6 +323,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="buildView" destination="BYP-h5-ZvT" id="l87-4p-9q6"/>
+                        <outlet property="contentPreloadDetailLabel" destination="BoS-Tu-jgs" id="Fwg-1P-fit"/>
                         <outlet property="dataPrivacyCell" destination="Tz3-Sd-Tn3" id="OjZ-L9-5ay"/>
                         <outlet property="emailView" destination="PoF-ih-nyj" id="CKy-Ha-Mp7"/>
                         <outlet property="githubCell" destination="0xG-YK-hqn" id="AvH-Fk-dJT"/>
@@ -316,20 +331,11 @@
                         <outlet property="imprintCell" destination="FSf-AX-2it" id="mJv-Qp-oYs"/>
                         <outlet property="loginButton" destination="tyU-B6-h3N" id="fdV-Pj-6OT"/>
                         <outlet property="nameView" destination="RdQ-ps-pvk" id="wIn-kc-mKu"/>
-                        <outlet property="preloadContentSwitch" destination="yQ4-Cl-ufx" id="RUe-ON-5eR"/>
                         <outlet property="profileImage" destination="s9Z-IK-gdE" id="w5F-qt-jcP"/>
                         <outlet property="versionView" destination="vaA-TB-qLC" id="7dc-yl-nVB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tvc-XL-inH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="yQ4-Cl-ufx">
-                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <viewLayoutGuide key="safeArea" id="jjk-7B-QsO"/>
-                    <connections>
-                        <action selector="preloadContentSettingChanged:" destination="Ewc-ei-HZU" eventType="valueChanged" id="uDX-YW-jym"/>
-                    </connections>
-                </switch>
             </objects>
             <point key="canvasLocation" x="938.39999999999998" y="953.07346326836591"/>
         </scene>
@@ -340,6 +346,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oIA-ic-Kqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="938" y="1410"/>
+        </scene>
+        <!--Preload Content-->
+        <scene sceneID="gvZ-9o-0M6">
+            <objects>
+                <tableViewController id="eyj-JL-OJ2" customClass="PreloadContentViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="qTB-Pe-BLY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseContentPreloadCell" textLabel="EWm-Ut-dSY" style="IBUITableViewCellStyleDefault" id="4xw-ei-yBc">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4xw-ei-yBc" id="bHV-47-l1E">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Course Content Preload Option Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EWm-Ut-dSY">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <attributedString key="userComments">
+                                                <fragment content="#bc-ignore!">
+                                                    <attributes>
+                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eyj-JL-OJ2" id="Ap3-tk-79B"/>
+                            <outlet property="delegate" destination="eyj-JL-OJ2" id="yHR-lm-geV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Preload Content" largeTitleDisplayMode="never" id="D4w-gU-Zbc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PKh-MJ-Tiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1718" y="1394"/>
         </scene>
         <!--Video Quality-->
         <scene sceneID="ceG-Mj-fvt">
@@ -385,7 +437,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYQ-jN-7ru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="952"/>
+            <point key="canvasLocation" x="1719" y="705"/>
         </scene>
         <!--Settings-->
         <scene sceneID="SqX-yr-lhw">
@@ -411,7 +463,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="500" height="500"/>
-        <image name="profile-header-placeholder" width="1000" height="659"/>
+        <image name="profile-header-placeholder" width="1734" height="808"/>
         <image name="tab-bar-item-settings" width="25" height="25"/>
     </resources>
 </document>

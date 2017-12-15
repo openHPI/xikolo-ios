@@ -34,7 +34,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var nameView: UILabel!
     @IBOutlet weak var emailView: UILabel!
 
-    @IBOutlet weak var preloadContentSwitch: UISwitch!
+    @IBOutlet weak var contentPreloadDetailLabel: UILabel!
 
     @IBOutlet weak var versionView: UILabel!
     @IBOutlet weak var buildView: UILabel!
@@ -75,8 +75,7 @@ class SettingsViewController: UITableViewController {
         self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
 
         // set preload content settings
-        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
-        self.preloadContentSwitch.setOn(!contentPreloadDeactivated, animated: false)
+        self.contentPreloadDetailLabel.text = UserDefaults.standard.contentPreloadSetting.description
 
         // set app version info
         self.versionView.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion
@@ -207,12 +206,6 @@ class SettingsViewController: UITableViewController {
                 self.tableView.tableHeaderView = headerView
             }
         }
-    }
-
-    @IBAction func preloadContentSettingChanged(_ sender: UISwitch) {
-        let contentPreloadDeactivated = !sender.isOn
-        UserDefaults.standard.set(contentPreloadDeactivated, forKey: UserDefaultsKeys.noContentPreloadKey)
-        UserDefaults.standard.synchronize()
     }
 
     private func indexPathIncludingHiddenCells(for indexPath: IndexPath) -> IndexPath {

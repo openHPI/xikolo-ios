@@ -80,6 +80,21 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* course content preload setting: always */
+"settings.course-item-content-preload.always" = "Always";
+
+/* course content preload setting: never */
+"settings.course-item-content-preload.never" = "Never";
+
+/* section footer for preload setting for course content */
+"settings.course-item-content-preload.section-footer" = "Small-sized course material will be downloaded in advance for enrolled courses.";
+
+/* section header for preload setting for course content */
+"settings.course-item-content-preload.section-header.course content" = "Course Content";
+
+/* course content preload setting: wifi only */
+"settings.course-item-content-preload.wifi-only" = "Wifi only";
+
 /* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS app on GitHub";
 
@@ -96,7 +111,7 @@
 "settings.video-persistence-quality.medium" = "Medium";
 
 /* section title for download quality */
-"settings.video-persistence-quality.section-title.download quality" = "Download Quality";
+"settings.video-persistence-quality.section-header.download quality" = "Download Quality";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

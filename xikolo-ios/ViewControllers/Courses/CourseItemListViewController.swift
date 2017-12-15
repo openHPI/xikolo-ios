@@ -93,8 +93,9 @@ class CourseItemListViewController: UITableViewController {
             }
         }
 
-        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
-        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
+        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
+        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.reachabilityStatus == .reachableViaWiFi)
+        self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
 
         guard UserProfileHelper.isLoggedIn() else {
             stopRefreshControl()
@@ -102,7 +103,7 @@ class CourseItemListViewController: UITableViewController {
         }
 
         CourseItemHelper.syncCourseItems(forCourse: self.course).onSuccess { _ in
-            if !contentPreloadDeactivated {
+            if preloadingWanted {
                 self.preloadCourseContent()
             }
         }.onComplete { _ in

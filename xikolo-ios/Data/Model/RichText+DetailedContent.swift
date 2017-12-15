@@ -12,6 +12,10 @@ import BrightFutures
 
 extension RichText: DetailedContent {
 
+    static var contentType: String {
+        return "rich_text"
+    }
+
     var detailedInformation: String? {
 
         let words = self.text?.components(separatedBy: CharacterSet.whitespacesAndNewlines)

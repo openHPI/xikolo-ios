@@ -12,6 +12,10 @@ import BrightFutures
 
 extension Video: DetailedContent {
 
+    static var contentType: String {
+        return "video"
+    }
+
     var detailedInformation: String? {
         let textComponents = [self.durationText, self.slidesText].flatMap { $0 }
         guard !textComponents.isEmpty else {

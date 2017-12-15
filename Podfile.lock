@@ -26,7 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/mathebox/BartyCrouch.git`, commit `cf75991`)
-  - BMPlayer (~> 1.0)
+  - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `a8e110d`)
   - BrightFutures (~> 6.0)
   - Down (from `https://github.com/iwasrobbed/Down`, commit `18eb466`)
   - DownloadButton (= 0.1.0)
@@ -42,6 +42,9 @@ EXTERNAL SOURCES:
   BartyCrouch:
     :commit: cf75991
     :git: https://github.com/mathebox/BartyCrouch.git
+  BMPlayer:
+    :commit: a8e110d
+    :git: https://github.com/openHPI/bmplayer.git
   Down:
     :commit: 18eb466
     :git: https://github.com/iwasrobbed/Down
@@ -53,6 +56,9 @@ CHECKOUT OPTIONS:
   BartyCrouch:
     :commit: cf75991
     :git: https://github.com/mathebox/BartyCrouch.git
+  BMPlayer:
+    :commit: a8e110d
+    :git: https://github.com/openHPI/bmplayer.git
   Down:
     :commit: 18eb466
     :git: https://github.com/iwasrobbed/Down
@@ -62,7 +68,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
-  BMPlayer: 44eebf06eb01450dd14ea74b27d07c5222f0eed1
+  BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
   BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
   Down: 89910050356026b194dd4e97a5c6c92f75aee413
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
@@ -77,6 +83,6 @@ SPEC CHECKSUMS:
   SimpleRoundedButton: 4a04d0d3d79986973f74e34d543d0bc089fbc3e6
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 04f76720ed74d0a93508d716c14b830d320231bd
+PODFILE CHECKSUM: 16ee8612687517330e0727a206a922991295935b
 
 COCOAPODS: 1.3.1

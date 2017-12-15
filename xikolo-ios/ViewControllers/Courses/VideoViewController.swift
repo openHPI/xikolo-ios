@@ -285,7 +285,7 @@ extension VideoViewController: BMPlayerDelegate {
     }
 
     func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool) {
-        if UIDevice.current.orientation.isLandscape { // check on ipad // alternative register observer on your own
+        if UIDevice.current.orientation.isLandscape {
             self.trackVideoOrientationChangeLandscape()
         } else {
             self.trackVideoOrientationChangePortrait()

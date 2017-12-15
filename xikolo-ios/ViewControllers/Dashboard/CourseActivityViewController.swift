@@ -20,18 +20,6 @@ class CourseActivityViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(CourseActivityViewController.updateAfterLoginStateChange),
-                                               name: NotificationKeys.loginStateChangedKey,
-                                               object: nil)
-        self.updateFetchedResultController()
-    }
-
-    @objc func updateAfterLoginStateChange() {
-        self.updateFetchedResultController()
-    }
-
-    private func updateFetchedResultController() {
         let request = CourseHelper.FetchRequest.enrolledNotCompletedCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
@@ -46,13 +34,8 @@ class CourseActivityViewController: UICollectionViewController {
         } catch {
             // TODO: Error handling.
         }
-
-        self.refresh()
     }
 
-    func refresh() {
-        CourseHelper.syncAllCourses()
-    }
 }
 
 extension CourseActivityViewController {

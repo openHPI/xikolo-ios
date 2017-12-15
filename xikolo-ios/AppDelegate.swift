@@ -27,6 +27,11 @@ class AppDelegate : AbstractAppDelegate {
 
         // select start tab
         self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
+        if UserProfileHelper.isLoggedIn() {
+            CourseHelper.syncAllCourses().onComplete { _ in
+                CourseDateHelper.syncAllCourseDates()
+            }
+        }
 
         // register tab bar delegate
         self.tabBarController?.delegate = self
@@ -39,9 +44,6 @@ class AppDelegate : AbstractAppDelegate {
         SyncPushEngine.shared.check()
 
         UserProfileHelper.migrateLegacyKeychain()
-        AnnouncementHelper.syncAllAnnouncements()
-        EnrollmentHelper.syncEnrollments()
-
         VideoPersistenceManager.shared.restorePersistenceManager()
 
         #if OPENSAP
@@ -106,11 +108,11 @@ extension AppDelegate : UITabBarControllerDelegate {
 
         guard let navigationController = viewController as? UINavigationController else {
             print("Info: Navigation controller not found")
-            return true
+            return false
         }
 
         guard navigationController.viewControllers.first is CourseDatesTableViewController else {
-            return true
+            return false
         }
 
         let storyboard = UIStoryboard(name: "Login", bundle: nil)

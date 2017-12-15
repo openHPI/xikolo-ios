@@ -35,11 +35,6 @@ class CourseDatesTableViewController : UITableViewController {
         let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
         self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateAfterLoginStateChange),
-                                               name: NotificationKeys.loginStateChangedKey,
-                                               object: nil)
-
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
@@ -61,8 +56,6 @@ class CourseDatesTableViewController : UITableViewController {
             // TODO: Error handling.
         }
 
-        self.refresh()
-
         self.tableView.reloadData()
         self.setupEmptyState()
     }
@@ -79,12 +72,6 @@ class CourseDatesTableViewController : UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    @objc func updateAfterLoginStateChange() {
-        if UserProfileHelper.isLoggedIn() {
-            CourseDateHelper.syncAllCourseDates()
-        }
-    }
-
     @objc func refresh() {
         self.tableView.reloadEmptyDataSet()
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
@@ -94,10 +81,12 @@ class CourseDatesTableViewController : UITableViewController {
             }
         }
 
-        self.courseActivityViewController?.refresh()
-        CourseDateHelper.syncAllCourseDates().onComplete { _ in
-            stopRefreshControl()
+        CourseHelper.syncAllCourses().onComplete { _ in
+            CourseDateHelper.syncAllCourseDates().onComplete { _ in
+                stopRefreshControl()
+            }
         }
+
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

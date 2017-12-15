@@ -66,7 +66,6 @@ class CourseListViewController : AbstractCourseListViewController {
 
     @objc func updateAfterLoginStateChange() {
         self.collectionView?.reloadEmptyDataSet()
-        self.refresh()
     }
 
     @objc func refresh() {
@@ -78,7 +77,9 @@ class CourseListViewController : AbstractCourseListViewController {
         }
 
         if UserProfileHelper.isLoggedIn() {
-            CourseHelper.syncAllCourses().zip(EnrollmentHelper.syncEnrollments()).onComplete { _ in
+            CourseHelper.syncAllCourses().map { _ in
+                return EnrollmentHelper.syncEnrollments()
+            }.onComplete { _ in
                 stopRefreshControl()
             }
         } else {

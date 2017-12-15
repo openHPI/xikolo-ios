@@ -91,6 +91,17 @@ open class UserProfileHelper {
     }
 
     static func postLoginStateChange() {
+        let coursesFuture = CourseHelper.syncAllCourses().onSuccess { _ in
+            AnnouncementHelper.syncAllAnnouncements()
+        }
+
+        if UserProfileHelper.isLoggedIn() {
+            coursesFuture.onSuccess { _ in
+                EnrollmentHelper.syncEnrollments()
+                CourseDateHelper.syncAllCourseDates()
+            }
+        }
+
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
         }

@@ -25,7 +25,7 @@ struct CourseItemHelper {
                 let promise = Promise<[NSManagedObjectID], XikoloError>()
 
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                    let courseSection = context.object(with: sectionObjectId) as CourseSection
+                    let courseSection = context.typedObject(with: sectionObjectId) as CourseSection
                     let courseItemsFuture = CourseItemHelper.syncCourseItems(forSection: courseSection)
                     promise.completeWith(courseItemsFuture)
                 }
@@ -41,7 +41,7 @@ struct CourseItemHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.addFilter(forKey: "content_type", withValue: "rich_text")
         query.include("content")
-        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
     static func syncVideos(forCourse course: Course) -> Future<[NSManagedObjectID], XikoloError> {
@@ -50,7 +50,7 @@ struct CourseItemHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.addFilter(forKey: "content_type", withValue: "video")
         query.include("content")
-        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
     static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<NSManagedObjectID, XikoloError> {
@@ -68,7 +68,11 @@ struct CourseItemHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let courseItem = context.object(with: item.objectID) as CourseItem
+            guard let courseItem = context.existingTypedObject(with: item.objectID) as? CourseItem else {
+                promise.failure(.missingResource(ofType: CourseItem.self))
+                return
+            }
+
             courseItem.visited = true
             courseItem.objectState = .modified
             promise.complete(context.saveWithResult())

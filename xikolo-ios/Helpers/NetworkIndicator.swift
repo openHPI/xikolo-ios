@@ -28,7 +28,7 @@ class NetworkIndicator {
     }
 
     private class func update() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: 250.milliseconds.fromNow) {  // to avoid a flickering network indicator
             UIApplication.shared.isNetworkActivityIndicatorVisible = counter > 0
         }
     }

@@ -41,8 +41,6 @@ class CourseDatesTableViewController : UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        TrackingHelper.createEvent(.visitedDashboard, resource: nil)
-
         resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
@@ -58,10 +56,13 @@ class CourseDatesTableViewController : UITableViewController {
             // TODO: Error handling.
         }
 
-        self.refresh()
-
         self.tableView.reloadData()
         self.setupEmptyState()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        TrackingHelper.createEvent(.visitedDashboard)
     }
 
     func setupEmptyState() {
@@ -80,14 +81,12 @@ class CourseDatesTableViewController : UITableViewController {
             }
         }
 
-        self.courseActivityViewController?.refresh()
-        if UserProfileHelper.isLoggedIn() {
+        CourseHelper.syncAllCourses().onComplete { _ in
             CourseDateHelper.syncAllCourseDates().onComplete { _ in
                 stopRefreshControl()
             }
-        } else {
-           stopRefreshControl()
         }
+
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

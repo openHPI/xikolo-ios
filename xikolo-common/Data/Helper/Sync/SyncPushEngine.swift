@@ -52,7 +52,7 @@ class SyncPushEngine {
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
-                guard let resource = context.object(with: managedObjectId) as? (NSManagedObject & Pushable) else {
+                guard let object = try? context.existingObject(with: managedObjectId), let resource = object as? (NSManagedObject & Pushable) else {
                     print("Info: Resource to be pushed could not be found")
                     return
                 }
@@ -92,6 +92,7 @@ class SyncPushEngine {
                 // post sync actions
                 if resource.objectState == .deleted || resource.deleteAfterSync {
                     context.delete(resource)
+                    print("Verbose: Deleted resource of type: \(type(of: resource).type)")
                 } else {
                     if resource.objectState == .new || resource.objectState == .modified {
                         resource.markAsUnchanged()

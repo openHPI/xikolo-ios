@@ -28,7 +28,11 @@ struct AnnouncementHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let announcement = context.object(with: item.objectID) as Announcement
+            guard let announcement = context.existingTypedObject(with: item.objectID) as? Announcement else {
+                promise.failure(.missingResource(ofType: Announcement.self))
+                return
+            }
+
             announcement.visited = true
             announcement.objectState = .modified
             promise.complete(context.saveWithResult())

@@ -39,11 +39,11 @@ extension TrackingEvent : Pushable {
     }
 
     var deleteAfterSync: Bool {
-        return false
+        return true
     }
 
     var objectState: ObjectState {
-        return .unchanged
+        return .new
     }
 
     func markAsUnchanged() {
@@ -51,8 +51,11 @@ extension TrackingEvent : Pushable {
     }
 
     func resourceAttributes() -> [String : Any] {
-        let dateFormatOptions : ISO8601DateFormatter.Options = [.withFullDate, .withFullTime, .withTimeZone,
+        var dateFormatOptions : ISO8601DateFormatter.Options = [.withFullDate, .withFullTime, .withTimeZone,
                                                                 .withDashSeparatorInDate, .withColonSeparatorInTime]
+        if #available(iOS 11.0, *) {
+            dateFormatOptions.insert(.withFractionalSeconds)
+        }
         var timestamp: String?
         if let timeZone = TimeZone(identifier: self.timeZoneIdentifier) {
             timestamp = ISO8601DateFormatter.string(from: self.timestamp, timeZone: timeZone, formatOptions: dateFormatOptions)
@@ -67,6 +70,5 @@ extension TrackingEvent : Pushable {
             "context": self.context as Any,
         ]
     }
-
 
 }

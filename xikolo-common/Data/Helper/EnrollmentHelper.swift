@@ -26,7 +26,11 @@ struct EnrollmentHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let course = context.object(with: course.objectID) as Course
+            guard let course = context.existingTypedObject(with: course.objectID) as? Course else {
+                promise.failure(.missingResource(ofType: Course.self))
+                return
+            }
+
             let _ = Enrollment(forCourse: course, inContext: context)
             let saveResult = context.saveWithResult()
 
@@ -40,11 +44,19 @@ struct EnrollmentHelper {
         return promise.future
     }
 
-    static func delete(_ enrollment: Enrollment) -> Future<Void, XikoloError> {
+    static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {
+        guard let enrollment = enrollment else {
+            return Future(error: .missingResource(ofType: Enrollment.self))
+        }
+
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let enrollment = context.object(with: enrollment.objectID) as Enrollment
+            guard let enrollment = context.existingTypedObject(with: enrollment.objectID) as? Enrollment else {
+                promise.success(())
+                return
+            }
+
             enrollment.objectState = .deleted
             let saveResult = context.saveWithResult()
 
@@ -60,7 +72,7 @@ struct EnrollmentHelper {
 
     static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
         guard let enrollment = course.enrollment else {
-            return Future(error: .missingEnrollemnt)
+            return Future(error: .missingResource(ofType: Enrollment.self))
         }
 
         guard !enrollment.completed else {
@@ -70,7 +82,11 @@ struct EnrollmentHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            let enrollment = context.object(with: enrollment.objectID) as Enrollment
+            guard let enrollment = context.existingTypedObject(with: enrollment.objectID) as? Enrollment else {
+                promise.failure(.missingResource(ofType: Enrollment.self))
+                return
+            }
+
             enrollment.completed = true
             if enrollment.objectState != .new, enrollment.objectState != .deleted {
                 enrollment.objectState = .modified

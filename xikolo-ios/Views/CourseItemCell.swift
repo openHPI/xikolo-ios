@@ -135,21 +135,14 @@ class CourseItemCell : UITableViewCell {
     }
 
     private func configureDetailContent(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
-        guard let detailedContent = courseItem.content as? DetailedContent else {
-            // only detailed content items show additional information
-            self.detailContainer.isHidden = true
-            return
-        }
-
-        let contentType = type(of: detailedContent)
-        guard configuration.contentTypes.contains(where: { String(describing: contentType.self) == String(describing: $0) }) else {
+        guard configuration.contentTypes.contains(where: { $0.contentType == courseItem.contentType }) else {
             // only certain content items will show additional information
             self.detailContainer.isHidden = true
             return
         }
 
         self.detailLabel.text = nil
-        if let detailedInfo = detailedContent.detailedInformation {
+        if let detailedContent = courseItem.content as? DetailedContent, let detailedInfo = detailedContent.detailedInformation {
             self.shimmerContainer.isShimmering = false
             self.detailLabel.text = detailedInfo
             self.detailLabel.isHidden = false

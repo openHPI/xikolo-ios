@@ -42,7 +42,7 @@ class AnnouncementsTableViewController : UITableViewController {
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
-        self.updateAfterLoginStateChange()
+        self.refresh()
 
         do {
             try resultsController.performFetch()
@@ -50,15 +50,11 @@ class AnnouncementsTableViewController : UITableViewController {
             // TODO: Error handling.
         }
         setupEmptyState()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(AnnouncementsTableViewController.updateAfterLoginStateChange),
-                                               name: NotificationKeys.loginStateChangedKey,
-                                               object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        TrackingHelper.createEvent(.visitedAnnouncementList, resource: nil)
+        super.viewDidAppear(animated)
+        TrackingHelper.createEvent(.visitedAnnouncementList)
     }
 
     func setupEmptyState() {
@@ -66,10 +62,6 @@ class AnnouncementsTableViewController : UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
-    }
-
-    @objc func updateAfterLoginStateChange() {
-        self.refresh()
     }
 
     @objc func refresh() {

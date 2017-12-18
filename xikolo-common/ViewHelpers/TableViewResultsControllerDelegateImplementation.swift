@@ -59,7 +59,6 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
             #else
             self.tableView?.reloadRows(at: [convertedIndexPath!], with: .fade)
             #endif
-
         case .move:
             self.tableView?.deleteRows(at: [convertedIndexPath!], with: .fade)
             self.tableView?.insertRows(at: [convertedNewIndexPath!], with: .fade)
@@ -104,6 +103,9 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         }
 
         let (controller, newSection) = controllerAndImplementationSection(forSection: section)!
+        if let headerTitle = self.configuration?.headerTitle(forController: controller, forSection: newSection) {
+            return headerTitle
+        }
         return controller.sections?[newSection].name
     }
 
@@ -180,12 +182,18 @@ protocol TableViewResultsControllerConfiguration {
 
     func shouldShowHeader() -> Bool
 
+    func headerTitle(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String?
+
 }
 
 extension TableViewResultsControllerConfiguration {
 
     func shouldShowHeader() -> Bool {
         return true
+    }
+
+    func headerTitle(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String? {
+        return nil
     }
 
 }
@@ -196,10 +204,12 @@ class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableV
 
     private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let _shouldShowHeader: () -> Bool
+    private let _headerTitle: (NSFetchedResultsController<T>, Int) -> String?
 
     required init<U: TableViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
         self._configureTableCell = configuration.configureTableCell
         self._shouldShowHeader = configuration.shouldShowHeader
+        self._headerTitle = configuration.headerTitle
     }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
@@ -209,4 +219,9 @@ class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableV
     func shouldShowHeader() -> Bool {
         return self._shouldShowHeader()
     }
+
+    func headerTitle(forController controller: NSFetchedResultsController<T>, forSection section: Int) -> String? {
+        return self._headerTitle(controller, section)
+    }
+
 }

@@ -17,9 +17,6 @@
 /* Class = "UILabel"; text = "Imprint"; ObjectID = "yNe-zB-n9b"; */
 "yNe-zB-n9b.text" = "Impressum";
 
-/* Class = "UITableViewSection"; footerTitle = "Small-sized course material will be downloaded in advance for enrolled courses."; ObjectID = "k6k-z7-cxe"; */
-"k6k-z7-cxe.footerTitle" = "Für eingeschriebene Kurse werden kleine Materialen im Voraus geladen.";
-
 /* Class = "UILabel"; text = "Send Feedback"; ObjectID = "KWX-En-m9x"; */
 "KWX-En-m9x.text" = "Feedback senden";
 
@@ -31,3 +28,6 @@
 
 /* Class = "UINavigationItem"; title = "Video Quality"; ObjectID = "Xwk-nE-GTG"; */
 "Xwk-nE-GTG.title" = "Video-Qualität";
+
+/* Class = "UINavigationItem"; title = "Preload Content"; ObjectID = "D4w-gU-Zbc"; */
+"D4w-gU-Zbc.title" = "Inhalte vorladen";

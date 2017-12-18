@@ -6,10 +6,8 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
-import CoreData
 import UIKit
 import SDWebImage
-import CoreSpotlight
 
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
@@ -29,6 +27,11 @@ class AppDelegate : AbstractAppDelegate {
 
         // select start tab
         self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
+        if UserProfileHelper.isLoggedIn() {
+            CourseHelper.syncAllCourses().onComplete { _ in
+                CourseDateHelper.syncAllCourseDates()
+            }
+        }
 
         // register tab bar delegate
         self.tabBarController?.delegate = self
@@ -41,9 +44,6 @@ class AppDelegate : AbstractAppDelegate {
         SyncPushEngine.shared.check()
 
         UserProfileHelper.migrateLegacyKeychain()
-        AnnouncementHelper.syncAllAnnouncements()
-        EnrollmentHelper.syncEnrollments()
-
         VideoPersistenceManager.shared.restorePersistenceManager()
 
         #if OPENSAP
@@ -62,74 +62,7 @@ class AppDelegate : AbstractAppDelegate {
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        var activityURL: URL?
-        if userActivity.activityType == CSSearchableItemActionType {
-            // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
-            // Note that the unique identifier of the Core Spotlight item is set in the activity’s userInfo property for the key CSSearchableItemActivityIdentifier.
-            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-                activityURL = URL(string: uniqueIdentifier)
-            }
-            // this contains the courses uuid
-            // Next, find and open the item specified by uniqueIdentifer.
-
-        } else {
-             activityURL = userActivity.webpageURL
-        }
-
-        guard let url = activityURL else {
-            print("Failed to load url for user activity")
-            return false
-        }
-
-        guard let rootViewController = self.window?.rootViewController as? UITabBarController else {
-            print("UITabBarController could not be found")
-            return false
-        }
-
-        guard url.pathComponents.count > 1 else {
-            print("Invalid url for user activity")
-            return false
-        }
-
-        switch url.pathComponents[1] {
-            case "courses":
-                if url.pathComponents.count > 2{
-                    //support /courses/slug -> course detail page or learning
-                    let slug = url.pathComponents[2]
-                    //get course by slug
-
-                    //TODO: the course might not be synced yet, than we could try to fetch from the API by slug
-                    let fetchRequest = CourseHelper.FetchRequest.course(withSlug: slug)
-                    var couldFindCourse = false
-
-                    CoreDataHelper.viewContext.performAndWait {
-                        switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
-                        case .success(let course):
-                            couldFindCourse = true
-                            self.goToCourse(course)
-                        case .failure(let error):
-                            print("Warning: could not find course: \(error)")
-                        }
-                    }
-
-                    if couldFindCourse {
-                        return true
-                    }
-                } else {
-                    rootViewController.selectedIndex = 1
-                }
-            case "dashboard":
-                rootViewController.selectedIndex = 0
-            case "news":
-                rootViewController.selectedIndex = 2
-            default:
-                break
-        }
-
-        // we can't handle the url, open it with a browser
-        let webpageUrl = url
-        application.open(webpageUrl)
-        return false
+        return AppNavigator.handle(userActivity: userActivity, forApplication: application, on: self.tabBarController)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -164,28 +97,6 @@ class AppDelegate : AbstractAppDelegate {
         return tabBarController
     }
 
-    func goToCourse(_ course: Course) {
-        guard let courseNavigationController = self.tabBarController?.viewControllers?[1] as? UINavigationController else {
-            print("CourseNavigationController could not be found")
-            return
-        }
-
-        courseNavigationController.popToRootViewController(animated: false)
-
-        let vc = UIStoryboard(name: "TabCourses", bundle: nil).instantiateViewController(withIdentifier: "CourseDecisionViewController")
-
-        guard let courseDecisionViewController = vc as? CourseDecisionViewController else {
-            print("CourseDecisionViewController could not be found")
-            return
-        }
-
-        courseDecisionViewController.course = course
-        courseDecisionViewController.content = course.accessible ? .learnings : .courseDetails
-        courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
-
-        self.tabBarController?.selectedIndex = 1
-    }
-
 }
 
 extension AppDelegate : UITabBarControllerDelegate {
@@ -197,11 +108,11 @@ extension AppDelegate : UITabBarControllerDelegate {
 
         guard let navigationController = viewController as? UINavigationController else {
             print("Info: Navigation controller not found")
-            return true
+            return false
         }
 
         guard navigationController.viewControllers.first is CourseDatesTableViewController else {
-            return true
+            return false
         }
 
         let storyboard = UIStoryboard(name: "Login", bundle: nil)

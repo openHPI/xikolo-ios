@@ -22,8 +22,8 @@ extension Brand {
     static let APP_PRIVACY_URL = PRIVACY_URL + "?in_app=true"
     static let APP_GITHUB_URL = "https://github.com/openHPI/xikolo-ios"
     
-    static var host: String? {
-        return URL(string: self.BaseURL)?.host
+    static var host: String {
+        return URL(string: self.BaseURL)!.host!
     }
 
 }

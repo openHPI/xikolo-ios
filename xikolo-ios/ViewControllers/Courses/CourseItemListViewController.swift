@@ -1,5 +1,5 @@
 //
-//  CourseContentTableViewController.swift
+//  CourseItemListViewController.swift
 //  xikolo-ios
 //
 //  Created by Bjarne Sievers on 18.05.16.
@@ -11,7 +11,7 @@ import UIKit
 import DZNEmptyDataSet
 import ReachabilitySwift
 
-class CourseContentTableViewController: UITableViewController {
+class CourseItemListViewController: UITableViewController {
     typealias Resource = CourseItem
 
     var course: Course!
@@ -21,22 +21,21 @@ class CourseContentTableViewController: UITableViewController {
 
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
-
-    var isOffline = false
-    var reachability: Reachability?
+    var isOffline = ReachabilityHelper.reachabilityStatus == .notReachable {
+        didSet {
+            if oldValue != self.isOffline {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
-        self.stopReachabilityNotifier()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .automatic
-        }
 
         var separatorInsetLeft: CGFloat = 20.0
         if #available(iOS 11.0, *) {
@@ -46,8 +45,11 @@ class CourseContentTableViewController: UITableViewController {
         }
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
 
-        self.setupReachability(Brand.host)
-        self.startReachabilityNotifier()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(CourseItemListViewController.reachabilityChanged),
+                                               name: NotificationKeys.reachabilityChanged,
+                                               object: nil)
+
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
 
@@ -58,10 +60,10 @@ class CourseContentTableViewController: UITableViewController {
 
         // setup table view data
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.title")
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position")  // must be equal to the first sort descriptor
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
 
-        let configuration = CourseContentTableViewConfiguration(tableViewController: self)
+        let configuration = CourseItemListViewConfiguration(tableViewController: self)
         let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
         resultsControllerDelegateImplementation.configuration = configurationWrapper
         resultsController.delegate = resultsControllerDelegateImplementation
@@ -83,30 +85,6 @@ class CourseContentTableViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func setupReachability(_ host: String?) {
-        if let hostName = host {
-            self.reachability = Reachability(hostname: hostName)
-        } else {
-            self.reachability = Reachability()
-        }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(CourseContentTableViewController.reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: self.reachability)
-    }
-
-    private func startReachabilityNotifier() {
-        do {
-            try self.reachability?.startNotifier()
-        } catch {
-            print("Failed to start reachability notificaition")
-        }
-    }
-
-    private func stopReachabilityNotifier() {
-        self.reachability?.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-        self.reachability = nil
-    }
-
     @objc func refresh() {
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
         let stopRefreshControl = {
@@ -115,8 +93,9 @@ class CourseContentTableViewController: UITableViewController {
             }
         }
 
-        let contentPreloadDeactivated = UserDefaults.standard.bool(forKey: UserDefaultsKeys.noContentPreloadKey)
-        self.isPreloading = !contentPreloadDeactivated && !self.contentToBePreloaded.isEmpty
+        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
+        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.reachabilityStatus == .reachableViaWiFi)
+        self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
 
         guard UserProfileHelper.isLoggedIn() else {
             stopRefreshControl()
@@ -124,7 +103,7 @@ class CourseContentTableViewController: UITableViewController {
         }
 
         CourseItemHelper.syncCourseItems(forCourse: self.course).onSuccess { _ in
-            if !contentPreloadDeactivated {
+            if preloadingWanted {
                 self.preloadCourseContent()
             }
         }.onComplete { _ in
@@ -134,7 +113,7 @@ class CourseContentTableViewController: UITableViewController {
 
     func showItem(_ item: CourseItem) {
         CourseItemHelper.markAsVisited(item)
-        TrackingHelper.createEvent(.visitedItem, resource: item)
+        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: ["content_type": item.contentType])
 
         switch item.contentType {
         case "video"?:
@@ -146,15 +125,8 @@ class CourseContentTableViewController: UITableViewController {
         }
     }
 
-    @objc func reachabilityChanged(_ note: Notification) {
-        guard let reachability = note.object as? Reachability else { return }
-
-        let oldOfflinesState = self.isOffline
-        self.isOffline = !reachability.isReachable
-
-        if oldOfflinesState != self.isOffline {
-            self.tableView.reloadData()
-        }
+    @objc func reachabilityChanged() {
+        self.isOffline = ReachabilityHelper.reachabilityStatus == .notReachable
     }
 
     func preloadCourseContent() {
@@ -203,7 +175,7 @@ class CourseContentTableViewController: UITableViewController {
 
 }
 
-extension CourseContentTableViewController { // TableViewDelegate
+extension CourseItemListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = self.resultsController.object(at: indexPath)
@@ -220,10 +192,10 @@ extension CourseContentTableViewController { // TableViewDelegate
 }
 
 
-class CourseContentTableViewConfiguration : TableViewResultsControllerConfiguration {
-    weak var tableViewController: CourseContentTableViewController?
+class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration {
+    weak var tableViewController: CourseItemListViewController?
 
-    init(tableViewController: CourseContentTableViewController) {
+    init(tableViewController: CourseItemListViewController) {
         self.tableViewController = tableViewController
     }
 
@@ -238,10 +210,16 @@ class CourseContentTableViewConfiguration : TableViewResultsControllerConfigurat
         cell.configure(for: item, with: configuration)
     }
 
+    func headerTitle(forController controller: NSFetchedResultsController<CourseItem>, forSection section: Int) -> String? {
+        let indexPath = IndexPath(row: 0, section: section)
+        let item = controller.object(at: indexPath)
+        return item.section?.title
+    }
+
 }
 
 
-extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
@@ -256,7 +234,7 @@ extension CourseContentTableViewController : DZNEmptyDataSetSource, DZNEmptyData
 
 }
 
-extension CourseContentTableViewController: VideoCourseItemCellDelegate {
+extension CourseItemListViewController: VideoCourseItemCellDelegate {
 
     func videoCourseItemCell(_ cell: CourseItemCell, downloadStateDidChange newState: Video.DownloadState) {
         guard let indexPath = self.tableView.indexPath(for: cell) else { return }

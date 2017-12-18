@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReachabilitySwift
 
 struct NotificationKeys {
 
@@ -16,7 +17,7 @@ struct NotificationKeys {
     static let deletedEnrollmentKey = Notification.Name("de.xikolo.ios.deletedEnrollment")
 
     static let dropdownCourseContentKey = Notification.Name("de.xikolo.ios.dropdown.courseContent")
-
+    static let reachabilityChanged = ReachabilityChangedNotification
 
     // Video Download
     static let VideoDownloadStateChangedKey = Notification.Name("de.xikolo.ios.video.download.stateChanged")

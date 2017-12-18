@@ -37,7 +37,13 @@ class AbstractCourseListViewController : UICollectionViewController {
         super.viewDidLoad()
         
         self.updateView()
-        CourseHelper.syncAllCourses()
+        if UserProfileHelper.isLoggedIn() {
+            CourseHelper.syncAllCourses().map { _ in
+                return EnrollmentHelper.syncEnrollments()
+            }
+        } else {
+            CourseHelper.syncAllCourses()
+        }
     }
 
     func updateView(){

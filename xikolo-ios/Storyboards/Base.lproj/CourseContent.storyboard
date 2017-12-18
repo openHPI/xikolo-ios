@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -206,13 +207,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s40-oe-5ie" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pZC-Ky-f3w">
-                                                <rect key="frame" x="20" y="20" width="335" height="57"/>
+                                                <rect key="frame" x="20" y="20" width="375" height="73"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3R-aw-Xc8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -226,7 +227,7 @@
                                                         </attributedString>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Richtext" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-fr-A67">
-                                                        <rect key="frame" x="0.0" y="40" width="0.0" height="17"/>
+                                                        <rect key="frame" x="0.0" y="40" width="375" height="33"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -345,23 +346,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpN-V6-WFJ">
-                                <rect key="frame" x="0.0" y="64" width="0.0" height="0.0"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PpN-V6-WFJ" secondAttribute="height" multiplier="16:9" id="ezy-kb-MKY"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-FI-E1H">
-                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="667"/>
+                                <rect key="frame" x="0.0" y="275" width="375" height="392"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-3n-vAy">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="106.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="5880.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nje-Pq-Ost">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="66.5"/>
+                                                <rect key="frame" x="20" y="20" width="335" height="5840.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8K-vc-cFV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -375,6 +376,7 @@
                                                         </attributedString>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXV-0t-btA">
+                                                        <rect key="frame" x="0.0" y="28.5" width="335" height="5774"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -398,7 +400,7 @@
                                                         </attributedString>
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-I3-Gce">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                        <rect key="frame" x="0.0" y="5810.5" width="335" height="30"/>
                                                         <state key="normal" title="open slides"/>
                                                         <connections>
                                                             <action selector="openSlides:" destination="Sj1-Jn-P6O" eventType="touchUpInside" id="Alq-28-geK"/>
@@ -489,7 +491,7 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmt-BU-Whh">
-                                                <rect key="frame" x="315" y="8" width="52" height="26"/>
+                                                <rect key="frame" x="8" y="8" width="52" height="26"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUN-kR-qDm">
                                                         <rect key="frame" x="4" y="4" width="44" height="18"/>
@@ -627,7 +629,7 @@
                                             <constraint firstItem="eYU-07-UIU" firstAttribute="leading" secondItem="jJL-eR-xcD" secondAttribute="leading" constant="20" symbolic="YES" id="Rav-OK-ysD"/>
                                             <constraint firstItem="CXk-Yb-gBp" firstAttribute="top" secondItem="jJL-eR-xcD" secondAttribute="top" id="Vw5-h1-62b"/>
                                             <constraint firstAttribute="trailing" secondItem="eYU-07-UIU" secondAttribute="trailing" constant="20" symbolic="YES" id="eiA-6a-R1h"/>
-                                            <constraint firstItem="qmt-BU-Whh" firstAttribute="top" secondItem="CXk-Yb-gBp" secondAttribute="top" constant="8" id="xPK-KE-8kG"/>
+                                            <constraint firstItem="qmt-BU-Whh" firstAttribute="top" secondItem="CXk-Yb-gBp" secondAttribute="topMargin" id="xPK-KE-8kG"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -646,7 +648,7 @@
                             <constraint firstItem="k7i-zj-8QJ" firstAttribute="leading" secondItem="yDh-HB-UEx" secondAttribute="leading" id="GbE-a7-FiS"/>
                             <constraint firstItem="CXk-Yb-gBp" firstAttribute="leading" secondItem="yDh-HB-UEx" secondAttribute="leading" id="SIf-Zz-EsJ"/>
                             <constraint firstItem="k7i-zj-8QJ" firstAttribute="trailing" secondItem="yDh-HB-UEx" secondAttribute="trailing" id="ezA-Jv-X9E"/>
-                            <constraint firstItem="yDh-HB-UEx" firstAttribute="trailing" secondItem="qmt-BU-Whh" secondAttribute="trailing" constant="8" id="ksX-VR-hW1"/>
+                            <constraint firstItem="CXk-Yb-gBp" firstAttribute="leadingMargin" secondItem="qmt-BU-Whh" secondAttribute="leading" id="ksX-VR-hW1"/>
                             <constraint firstItem="k7i-zj-8QJ" firstAttribute="top" secondItem="yDh-HB-UEx" secondAttribute="top" id="sw4-Jt-S7v"/>
                             <constraint firstItem="yDh-HB-UEx" firstAttribute="trailing" secondItem="CXk-Yb-gBp" secondAttribute="trailing" id="xwc-Q5-F2g"/>
                         </constraints>

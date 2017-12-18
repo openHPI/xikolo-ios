@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -137,18 +138,18 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="GHo-fM-LYs" firstAttribute="leading" secondItem="6Yq-cI-AlX" secondAttribute="leading" constant="8" id="4CH-vT-S8I"/>
+                                                <constraint firstItem="GHo-fM-LYs" firstAttribute="leading" secondItem="6Yq-cI-AlX" secondAttribute="leadingMargin" id="4CH-vT-S8I"/>
                                                 <constraint firstItem="oPr-4B-4WM" firstAttribute="leading" secondItem="6Yq-cI-AlX" secondAttribute="leading" id="4Md-KK-2er"/>
                                                 <constraint firstItem="kzU-FG-IjK" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leading" id="CHa-RU-BeX"/>
                                                 <constraint firstItem="6Yq-cI-AlX" firstAttribute="bottom" secondItem="oPr-4B-4WM" secondAttribute="bottom" id="EYg-MP-1mm"/>
                                                 <constraint firstAttribute="trailing" secondItem="kzU-FG-IjK" secondAttribute="trailing" id="IjC-mu-va4"/>
-                                                <constraint firstItem="6Yq-cI-AlX" firstAttribute="bottom" secondItem="zY6-C8-fKZ" secondAttribute="bottom" constant="8" id="LIH-SR-PDd"/>
-                                                <constraint firstItem="zY6-C8-fKZ" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leading" constant="8" id="MIG-rh-BFo"/>
+                                                <constraint firstItem="6Yq-cI-AlX" firstAttribute="bottomMargin" secondItem="zY6-C8-fKZ" secondAttribute="bottom" constant="0.5" id="LIH-SR-PDd"/>
+                                                <constraint firstItem="zY6-C8-fKZ" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leadingMargin" id="MIG-rh-BFo"/>
                                                 <constraint firstItem="kzU-FG-IjK" firstAttribute="top" secondItem="6Yq-cI-AlX" secondAttribute="bottom" constant="6" id="NCu-4j-8zE"/>
                                                 <constraint firstAttribute="trailing" secondItem="6Yq-cI-AlX" secondAttribute="trailing" id="NHO-QY-5T4"/>
-                                                <constraint firstItem="GHo-fM-LYs" firstAttribute="top" secondItem="6Yq-cI-AlX" secondAttribute="top" constant="8" id="VBP-6c-Es3"/>
+                                                <constraint firstItem="GHo-fM-LYs" firstAttribute="top" secondItem="6Yq-cI-AlX" secondAttribute="topMargin" id="VBP-6c-Es3"/>
                                                 <constraint firstItem="6Yq-cI-AlX" firstAttribute="leading" secondItem="gYp-9N-k8A" secondAttribute="leading" id="W5x-lm-CSS"/>
-                                                <constraint firstAttribute="trailing" secondItem="zY6-C8-fKZ" secondAttribute="trailing" constant="8" id="Y31-Rv-eBC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zY6-C8-fKZ" secondAttribute="trailing" id="Y31-Rv-eBC"/>
                                                 <constraint firstItem="EZ9-O4-Wg2" firstAttribute="top" secondItem="kzU-FG-IjK" secondAttribute="bottom" constant="4" id="fm0-ay-X63"/>
                                                 <constraint firstItem="6Yq-cI-AlX" firstAttribute="top" secondItem="gYp-9N-k8A" secondAttribute="top" id="kgU-OZ-6IN"/>
                                                 <constraint firstAttribute="trailing" secondItem="EZ9-O4-Wg2" secondAttribute="trailing" id="lGD-NS-uvw"/>

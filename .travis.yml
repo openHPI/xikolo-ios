@@ -18,7 +18,7 @@ env:
 
 install:
   - bundle install --without documentation
-  - then bundle exec pod repo update > /dev/null
+  - bundle exec pod repo update > /dev/null
   - bundle exec pod install
 
 script:

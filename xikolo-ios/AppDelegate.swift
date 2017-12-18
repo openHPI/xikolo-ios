@@ -108,11 +108,11 @@ extension AppDelegate : UITabBarControllerDelegate {
 
         guard let navigationController = viewController as? UINavigationController else {
             print("Info: Navigation controller not found")
-            return false
+            return true
         }
 
         guard navigationController.viewControllers.first is CourseDatesTableViewController else {
-            return false
+            return true
         }
 
         let storyboard = UIStoryboard(name: "Login", bundle: nil)

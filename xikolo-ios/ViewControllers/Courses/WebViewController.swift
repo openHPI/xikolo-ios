@@ -58,6 +58,7 @@ extension WebViewController : UIWebViewDelegate {
             if let tokenItem = queryItems.first(where: { $0.name == "token"}) {
                 guard let token = tokenItem.value else { return false }
 
+                UserProfileHelper.userId = nil
                 UserProfileHelper.userToken = token
                 UserProfileHelper.postLoginStateChange()
                 self.loginDelegate?.didSuccessfullyLogin()

@@ -309,18 +309,18 @@ struct SyncEngine {
                 return self.doNetworkRequest(request)
             }
 
-            coreDataFetch.zip(networkRequest).flatMap { objects, json in
+            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { objects, json in
                 return self.mergeResources(object: json, withExistingObjects: objects, deleteNotExistingResources: deleteNotExistingResources, inContext: context)
-            }.inject {
+            }.inject(ImmediateExecutionContext) {
                 do {
                     try context.save()
                     return Future(value: ())
                 } catch {
                     return Future(error: .coreData(error))
                 }
-            }.map { objects in
+            }.map(ImmediateExecutionContext) { objects in
                 return objects.map { $0.objectID }
-            }.onComplete { result in
+            }.onComplete(ImmediateExecutionContext) { result in
                 promise.complete(result)
             }
         }
@@ -343,18 +343,18 @@ struct SyncEngine {
                 return self.doNetworkRequest(request)
             }
 
-            coreDataFetch.zip(networkRequest).flatMap { object, json -> Future<Resource, XikoloError> in
+            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { object, json -> Future<Resource, XikoloError> in
                 return self.mergeResource(object: json, withExistingObject: object, inContext: context)
-            }.inject {
+            }.inject(ImmediateExecutionContext) {
                 do {
                     try context.save()
                     return Future(value: ())
                 } catch {
                     return Future(error: .coreData(error))
                 }
-            }.map { object in
+            }.map(ImmediateExecutionContext) { object in
                 return object.objectID
-            }.onComplete { result in
+            }.onComplete(ImmediateExecutionContext) { result in
                 promise.complete(result)
             }
         }

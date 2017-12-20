@@ -306,7 +306,9 @@ struct SyncEngine {
 
             let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
             let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
-                return self.doNetworkRequest(request)
+                return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
+                    return self.doNetworkRequest(request)
+                }
             }
 
             coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { objects, json in
@@ -340,7 +342,9 @@ struct SyncEngine {
 
             let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
             let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
-                return self.doNetworkRequest(request)
+                return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
+                    return self.doNetworkRequest(request)
+                }
             }
 
             coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { object, json -> Future<Resource, XikoloError> in

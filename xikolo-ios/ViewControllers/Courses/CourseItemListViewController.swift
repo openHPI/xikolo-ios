@@ -296,13 +296,11 @@ extension CourseItemListViewController: VideoCourseItemCellDelegate {
 
     private func showAlert(withActions actions: [UIAlertAction], onView view: UIView) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = view
+        alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
+
         for action in actions {
             alert.addAction(action)
-        }
-
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            alert.popoverPresentationController?.sourceView = view
-            alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
         }
 
         self.present(alert, animated: true)

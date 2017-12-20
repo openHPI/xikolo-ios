@@ -98,6 +98,9 @@ class CourseDetailViewController: UIViewController {
         let alertTitle = NSLocalizedString("enrollment.options-alert.title", comment:"title of enrollment options alert")
         let alertMessage = NSLocalizedString("enrollment.options-alert.message", comment: "message of enrollment alert")
         let alert = UIAlertController(title: alertTitle, message:  alertMessage, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = self.enrollmentButton
+        alert.popoverPresentationController?.sourceRect = self.enrollmentButton.bounds
+        alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up.union(.down)
 
         let completedActionTitle = NSLocalizedString("enrollment.options-alert.mask-as-completed-action.title",
                                                      comment: "title for 'mask as completed' action")

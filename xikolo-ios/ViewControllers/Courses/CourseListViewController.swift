@@ -55,15 +55,6 @@ class CourseListViewController : AbstractCourseListViewController {
                                                object: nil)
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        self.collectionView?.collectionViewLayout.invalidateLayout()
-        coordinator.animate(alongsideTransition: { context in
-            // Force redraw
-            self.collectionView?.performBatchUpdates(nil, completion: nil)
-        })
-    }
-
     @objc func updateAfterLoginStateChange() {
         self.collectionView?.reloadEmptyDataSet()
     }

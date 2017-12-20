@@ -111,11 +111,10 @@ class CourseListLayout: UICollectionViewLayout {
     }
 
     override func invalidateLayout() {
-        super.invalidateLayout()
-
+        self.contentHeight = 0
         self.cache.removeAll()
         self.sectionRange.removeAll()
-        self.prepare()
+        super.invalidateLayout()
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -179,6 +178,29 @@ class CourseListLayout: UICollectionViewLayout {
     }
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return true
+        let shouldInvalidate = super.shouldInvalidateLayout(forBoundsChange: newBounds)
+        let invalidationContext = self.invalidationContext(forBoundsChange: newBounds)
+        self.invalidateLayout(with: invalidationContext)
+        return shouldInvalidate || self.collectionView?.bounds.width != newBounds.width
     }
+
+    override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
+        let context = super.invalidationContext(forBoundsChange: newBounds)
+
+        // invalidate visible section headers
+        var sectionsToInvalidate: Set<IndexPath> = []
+        for layoutAttribute in self.cache.values.filter({ $0.frame.intersects(newBounds) }) {
+            let indexPath = IndexPath(item: 0, section: layoutAttribute.indexPath.section)
+            if layoutAttribute.representedElementCategory == .cell {
+                sectionsToInvalidate.insert(indexPath)
+            } else if layoutAttribute.representedElementCategory == .supplementaryView {
+                sectionsToInvalidate.insert(indexPath)
+            }
+        }
+
+        context.invalidateSupplementaryElements(ofKind: UICollectionElementKindSectionHeader, at: sectionsToInvalidate.map { $0 })
+
+        return context
+    }
+
 }

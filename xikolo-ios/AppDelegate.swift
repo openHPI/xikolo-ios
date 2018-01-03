@@ -19,11 +19,7 @@ class AppDelegate : AbstractAppDelegate {
     }
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        #if OPENSAP
-            self.window?.tintColor = Brand.TintColorSecond
-        #else
-            self.window?.tintColor = Brand.TintColor
-        #endif
+        self.window?.tintColor = Brand.windowTintColor
 
         // select start tab
         self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1

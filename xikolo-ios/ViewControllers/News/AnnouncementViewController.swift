@@ -88,7 +88,7 @@ extension AnnouncementViewController: UITextViewDelegate {
         }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
-        safariVC.preferredControlTintColor = Brand.TintColor
+        safariVC.preferredControlTintColor = Brand.windowTintColor
         return false
     }
 

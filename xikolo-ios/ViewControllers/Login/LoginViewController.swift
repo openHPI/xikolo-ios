@@ -63,13 +63,13 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
     @IBAction func register() {
         guard let url = URL(string: Routes.REGISTER_URL) else { return }
         let safariVC = SFSafariViewController(url: url)
-        safariVC.preferredControlTintColor = Brand.TintColor
+        safariVC.preferredControlTintColor = Brand.windowTintColor
         self.present(safariVC, animated: true)
     }
 
     @IBAction func forgotPassword() {
         let safariVC = SFSafariViewController(url: Routes.localizedForgotPasswordURL)
-        safariVC.preferredControlTintColor = Brand.TintColor
+        safariVC.preferredControlTintColor = Brand.windowTintColor
         self.present(safariVC, animated: true)
     }
 

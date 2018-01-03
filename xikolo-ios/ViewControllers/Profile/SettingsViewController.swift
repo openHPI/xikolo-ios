@@ -221,7 +221,7 @@ class SettingsViewController: UITableViewController {
         guard let urlToOpen = url else { return }
 
         let safariVC = SFSafariViewController(url: urlToOpen)
-        safariVC.preferredControlTintColor = Brand.TintColor
+        safariVC.preferredControlTintColor = Brand.windowTintColor
         self.present(safariVC, animated: true, completion: nil)
     }
 
@@ -231,7 +231,7 @@ class SettingsViewController: UITableViewController {
         composeVC.setToRecipients(Brand.FeedbackRecipients)
         composeVC.setSubject(Brand.FeedbackSubject)
         composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: false)
-        composeVC.navigationBar.tintColor = Brand.TintColor
+        composeVC.navigationBar.tintColor = Brand.windowTintColor
         self.present(composeVC, animated: true, completion: nil)
     }
 

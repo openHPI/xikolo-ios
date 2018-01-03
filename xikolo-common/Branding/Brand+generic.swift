@@ -26,4 +26,12 @@ extension Brand {
         return URL(string: self.BaseURL)!.host!
     }
 
+    static var windowTintColor: UIColor {
+        #if OPENSAP
+            return self.TintColorSecond
+        #else
+            return self.TintColor
+        #endif
+    }
+
 }

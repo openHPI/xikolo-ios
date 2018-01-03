@@ -100,6 +100,16 @@ platform :ios do
     end
   end
 
+  desc "Lint swift code with swiftline"
+  lane :lint do
+    swiftlint(
+      mode: :lint,
+      executable: "Pods/SwiftLint/swiftlint",
+      config_file: ".swiftlint.yml",
+      ignore_exit_status: true,
+    )
+  end
+
   desc "Checks application for potential App Store violations"
   desc "- requires app environment via '--env'"
   lane :precheck_app do

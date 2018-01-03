@@ -2,6 +2,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'BartyCrouch', :git => 'https://github.com/mathebox/BartyCrouch.git', :commit => 'cf75991'
+pod 'SwiftLint', '~> 0.22'
 
 def common_pods
     pod 'BrightFutures', '~> 6.0'

@@ -1,18 +1,20 @@
 [![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev)](https://travis-ci.org/openHPI/xikolo-ios)
+[![codebeat badge](https://codebeat.co/badges/042d1ec1-67fb-40d5-8c9a-38cc843f26e1)](https://codebeat.co/projects/github-com-openhpi-xikolo-ios-dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # xikolo-ios
 iOS application for openHPI, openSAP, mooc.house and OpenWHO
 
 ### Development toolchain
-- Xcode 9.1
+- Xcode 9.2
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:
 - [CocoaPods](https://cocoapods.org/)
 - [fastlane](https://fastlane.tools/)
 
-The following tools will be installed via cocoapods:
+The following tools will be installed via CocoaPods:
+- [SwiftLint](https://github.com/realm/SwiftLint)
 - [BartyCrouch](https://github.com/Flinesoft/BartyCrouch)
 
 ### How to get started

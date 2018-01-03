@@ -1,11 +1,12 @@
 language: objective-c
-osx_image: xcode9.1
+osx_image: xcode9.2
 xcode_workspace: xikolo-ios.xcworkspace
 xcode_scheme: xikolo-ios
 cache: cocoapods
 
 env:
   - CHECK_LOCALIZATION=1
+  - LINT=1
   - BUILD=1 SCHEME="openHPI-iOS" SDK="iphonesimulator"
   - BUILD=1 SCHEME="openSAP-iOS" SDK="iphonesimulator"
   - BUILD=1 SCHEME="openWHO-iOS" SDK="iphonesimulator"
@@ -16,7 +17,7 @@ env:
   # - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
 install:
-  - bundle install
+  - bundle install --without documentation
   - bundle exec pod repo update > /dev/null
   - bundle exec pod install
 
@@ -24,3 +25,4 @@ script:
   - set -o pipefail
   - if [ "$BUILD" == 1 ]; then xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty; fi
   - if [ "$CHECK_LOCALIZATION" == 1 ]; then bundle exec fastlane localize; git status --porcelain; git diff --quiet head xikolo-common xikolo-ios || travis_terminate 1; fi
+  - if [ "$LINT" == 1 ]; then bundle exec danger --verbose; fi

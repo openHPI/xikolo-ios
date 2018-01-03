@@ -34,8 +34,6 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var nameView: UILabel!
     @IBOutlet weak var emailView: UILabel!
 
-    @IBOutlet weak var contentPreloadDetailLabel: UILabel!
-
     @IBOutlet weak var versionView: UILabel!
     @IBOutlet weak var buildView: UILabel!
 
@@ -73,9 +71,6 @@ class SettingsViewController: UITableViewController {
         let localizedGithubText = NSLocalizedString("settings.github-link.%@ iOS app on GitHub",
                                                     comment: "title for link to GitHub repo (includes application name)")
         self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
-
-        // set preload content settings
-        self.contentPreloadDetailLabel.text = UserDefaults.standard.contentPreloadSetting.description
 
         // set app version info
         self.versionView.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion

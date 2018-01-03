@@ -46,7 +46,7 @@ class CourseItemListViewController: UITableViewController {
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(CourseItemListViewController.reachabilityChanged),
+                                               selector: #selector(reachabilityChanged),
                                                name: NotificationKeys.reachabilityChanged,
                                                object: nil)
 
@@ -55,7 +55,7 @@ class CourseItemListViewController: UITableViewController {
 
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
 
         // setup table view data

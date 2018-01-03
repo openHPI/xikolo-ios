@@ -30,7 +30,7 @@ class VideoPersistenceManager: NSObject {
                                                                  delegateQueue: OperationQueue.main)
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(VideoPersistenceManager.handleAssetDownloadProgressNotification(_:)),
+                                               selector: #selector(handleAssetDownloadProgressNotification(_:)),
                                                name: NotificationKeys.VideoDownloadStateChangedKey,
                                                object: nil)
     }

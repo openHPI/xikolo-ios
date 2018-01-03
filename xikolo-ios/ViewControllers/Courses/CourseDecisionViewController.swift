@@ -31,7 +31,10 @@ class CourseDecisionViewController: UIViewController {
 
         SpotlightHelper.setUserActivity(for: self.course)
         self.decideContent()
-        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController), name: NotificationKeys.dropdownCourseContentKey, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(switchViewController),
+                                               name: NotificationKeys.dropdownCourseContentKey,
+                                               object: nil)
 
         self.course.notifyOnChange(self, updateHandler: {}) {
             let isVisible = self.isViewLoaded && self.view.window != nil

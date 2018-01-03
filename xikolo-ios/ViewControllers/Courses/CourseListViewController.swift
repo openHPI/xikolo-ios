@@ -46,11 +46,11 @@ class CourseListViewController : AbstractCourseListViewController {
 
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.collectionView?.refreshControl = refreshControl
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(CourseListViewController.updateAfterLoginStateChange),
+                                               selector: #selector(updateAfterLoginStateChange),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
     }

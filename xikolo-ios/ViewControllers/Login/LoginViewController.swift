@@ -24,11 +24,11 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
         self.registerButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.adjustViewForKeyboardShow(_:)),
+                                               selector: #selector(adjustViewForKeyboardShow(_:)),
                                                name: NSNotification.Name.UIKeyboardWillShow,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.adjustViewForKeyboardHide(_:)),
+                                               selector: #selector(adjustViewForKeyboardHide(_:)),
                                                name: NSNotification.Name.UIKeyboardWillHide,
                                                object: nil)
 

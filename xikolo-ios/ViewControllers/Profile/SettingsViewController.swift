@@ -77,7 +77,7 @@ class SettingsViewController: UITableViewController {
         self.buildView.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(SettingsViewController.updateUIAfterLoginStateChanged),
+                                               selector: #selector(updateUIAfterLoginStateChanged),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
     }

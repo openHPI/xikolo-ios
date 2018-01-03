@@ -29,7 +29,7 @@ class AnnouncementsTableViewController : UITableViewController {
 
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
 
         // setup table view data

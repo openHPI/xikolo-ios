@@ -21,6 +21,8 @@ extension AnnouncementHelper {
 
         static var unreadAnnouncements: NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
+            let dateSort = NSSortDescriptor(key: "publishedAt", ascending: false)
+            request.sortDescriptors = [dateSort]
             request.predicate = NSPredicate(format: "visited = %@", NSNumber(booleanLiteral: false))
             return request
         }

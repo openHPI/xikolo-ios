@@ -11,6 +11,9 @@
 /* title of discussions view of course view */
 "course-content.view.discussions.title" = "Diskussionen";
 
+/* title of announcements view of course view */
+"course-content.view.announcements.title" = "Neuigkeiten";
+
 /* title of learnings view of course view */
 "course-content.view.learnings.title" = "Lernmaterial";
 

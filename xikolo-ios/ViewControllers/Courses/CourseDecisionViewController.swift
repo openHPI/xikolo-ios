@@ -14,7 +14,8 @@ class CourseDecisionViewController: UIViewController {
     enum CourseContent : Int {
         case learnings = 0
         case discussions = 1
-        case courseDetails = 2
+        case announcements = 2
+        case courseDetails = 3
     }
 
   
@@ -88,6 +89,13 @@ class CourseDecisionViewController: UIViewController {
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.discussions.title",
                                                comment: "title of discussions view of course view")
+        case .announcements:
+            let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle:nil)
+            let vc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController").require(toHaveType: AnnouncementsTableViewController.self)
+            vc.course = course
+            changeToViewController(vc)
+            titleView.text = NSLocalizedString("course-content.view.announcements.title",
+                                               comment: "title of announcements view of course view")
         case .courseDetails:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController").require(toHaveType: CourseDetailViewController.self)
             vc.course = course

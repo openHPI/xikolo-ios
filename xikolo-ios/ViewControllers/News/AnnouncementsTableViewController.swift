@@ -20,6 +20,8 @@ class AnnouncementsTableViewController : UITableViewController {
         self.tableView?.emptyDataSetDelegate = nil
     }
 
+    var course: Course?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,7 +35,14 @@ class AnnouncementsTableViewController : UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        let request = AnnouncementHelper.FetchRequest.allAnnouncements
+        var request: NSFetchRequest<Announcement>
+
+        if let course = course {
+            request = AnnouncementHelper.FetchRequest.courseAnnouncements(forCourseId: course.id)
+        } else {
+            request = AnnouncementHelper.FetchRequest.allAnnouncements
+        }
+
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")

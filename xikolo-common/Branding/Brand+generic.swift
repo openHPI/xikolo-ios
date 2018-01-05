@@ -23,7 +23,8 @@ extension Brand {
     static let APP_GITHUB_URL = "https://github.com/openHPI/xikolo-ios"
     
     static var host: String {
-        return URL(string: self.BaseURL)!.host!
+        let url = URL(string: self.BaseURL).require(hint: "Invalid base URL")
+        return url.host.require(hint: "Invalid base URL - Unable to find host")
     }
 
     static var windowTintColor: UIColor {

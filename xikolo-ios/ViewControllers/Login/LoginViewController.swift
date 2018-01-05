@@ -84,7 +84,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSSOWebView" {
-            let vc = segue.destination as! WebViewController
+            let vc = segue.destination.require(toHaveType: WebViewController.self)
             vc.url = Routes.SSO_URL
             vc.loginDelegate = self.delegate
 

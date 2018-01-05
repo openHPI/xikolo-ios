@@ -23,7 +23,7 @@ open class UserProfileHelper {
             return "\(key)=\(value)"
         }.joined(separator: "&")
 
-        let url = URL(string: Routes.AUTHENTICATE_URL)!
+        let url = URL(string: Routes.AUTHENTICATE_URL).require(hint: "Invalid URL for authentication")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = parameters.data(using: .utf8)

@@ -160,13 +160,13 @@ class CourseItemListViewController: UITableViewController {
 
         switch segue.identifier {
         case "ShowVideo"?:
-            let videoViewController = segue.destination as! VideoViewController
+            let videoViewController = segue.destination.require(toHaveType: VideoViewController.self)
             videoViewController.courseItem = courseItem
         case "ShowCourseItem"?:
-            let webView = segue.destination as! CourseItemWebViewController
+            let webView = segue.destination.require(toHaveType: CourseItemWebViewController.self)
             webView.courseItem = courseItem
         case "ShowRichtext"?:
-            let richtextViewController = segue.destination as! RichtextViewController
+            let richtextViewController = segue.destination.require(toHaveType: RichtextViewController.self)
             richtextViewController.courseItem = courseItem
         default:
             super.prepare(for: segue, sender: sender)
@@ -200,7 +200,7 @@ class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration 
     }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
-        let cell = cell as! CourseItemCell
+        let cell = cell.require(toHaveType: CourseItemCell.self, hint: "CourseItemListViewController requires cell of type CourseItemCell")
         let item = controller.object(at: indexPath)
         cell.delegate = self.tableViewController
 

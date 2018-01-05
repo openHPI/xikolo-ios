@@ -9,6 +9,10 @@
 import CoreData
 import UIKit
 
+fileprivate let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
+fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
+fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
+
 class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
     weak var collectionView: UICollectionView?
@@ -26,7 +30,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex))!
+        let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex)).require(hint: errorMessageIndexSetConversion)
         switch type {
         case .insert:
             self.contentChangeOperations.append(BlockOperation(block: {
@@ -47,20 +51,20 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
         switch type {
         case .insert:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.insertItems(at: [convertedNewIndexPath!])
+                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)])
             }))
         case .delete:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath!])
+                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)])
             }))
         case .update:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.reloadItems(at: [convertedIndexPath!])
+                self.collectionView?.reloadItems(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)])
             }))
         case .move:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath!])
-                self.collectionView?.insertItems(at: [convertedNewIndexPath!])
+                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)])
+                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)])
             }))
         }
     }

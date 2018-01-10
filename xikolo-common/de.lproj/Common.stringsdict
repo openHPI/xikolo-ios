@@ -50,5 +50,21 @@
 			<string>%d Sekunden</string>
 		</dict>
 	</dict>
+	<key>%d courses</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@courses@</string>
+		<key>courses</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>1 Kurs</string>
+			<key>other</key>
+			<string>%d Kurse</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

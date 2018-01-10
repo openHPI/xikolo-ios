@@ -112,4 +112,10 @@ struct CourseListViewConfiguration : CollectionViewResultsControllerConfiguratio
         return NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
     }
 
+    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
+        let view = view as! CourseHeaderView
+        let format = NSLocalizedString("%d courses", tableName: "Common", comment: "<number> of courses #bc-ignore!")
+        view.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
+    }
+
 }

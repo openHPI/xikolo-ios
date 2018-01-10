@@ -173,7 +173,9 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
             if let searchResultsController = self.searchFetchResultsController {
-                (view as? CourseHeaderView)?.configure(withText: "Hello")
+                if let numberOfSearchResults = searchResultsController.fetchedObjects?.count {
+                    self.configuration?.configureSearchHeaderView(view, numberOfSearchResults: numberOfSearchResults)
+                }
             } else {
                 let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
                 if let section = controller.sections?[newIndexPath.section] {
@@ -274,10 +276,10 @@ protocol CollectionViewResultsControllerConfiguration {
     associatedtype Content : NSManagedObject
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
-
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate?
+    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int)
 
 }
 
@@ -289,6 +291,8 @@ extension CollectionViewResultsControllerConfiguration {
         return nil
     }
 
+    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {}
+
 }
 
 // This is a wrapper for type erasure allowing the generic CollectionViewResultsControllerDelegateImplementation to be
@@ -298,11 +302,13 @@ class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: C
     private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let configureCollectionHeaderView: (UICollectionReusableView, NSFetchedResultsSectionInfo) -> Void
     private let searchPredicate: (String) -> NSPredicate?
+    private let configureSearchHeaderView: (UICollectionReusableView, Int) -> Void
 
     required init<U: CollectionViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
         self.configureCollectionCell = configuration.configureCollectionCell
         self.configureCollectionHeaderView = configuration.configureCollectionHeaderView
         self.searchPredicate = configuration.searchPredicate
+        self.configureSearchHeaderView = configuration.configureSearchHeaderView
     }
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
@@ -315,6 +321,10 @@ class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: C
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
         return self.searchPredicate(searchText)
+    }
+
+    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
+        self.configureSearchHeaderView(view, numberOfSearchResults)
     }
 
 }

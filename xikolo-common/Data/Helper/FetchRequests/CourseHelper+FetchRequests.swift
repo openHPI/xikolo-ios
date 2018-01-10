@@ -28,7 +28,7 @@ extension CourseHelper {
         private static let completedPredicate = NSPredicate(format: "enrollment.completed = %@", NSNumber(booleanLiteral: true))
         private static let notcompletedPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: completedPredicate)
 
-        private static var genericCoursesRequest: NSFetchRequest<Course> {
+        static var genericCoursesRequest: NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
             let customOrderSort = NSSortDescriptor(key: "order", ascending: true)
             request.sortDescriptors = [customOrderSort]

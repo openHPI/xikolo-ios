@@ -16,17 +16,39 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
+    var searchFetchRequest: NSFetchRequest<T>?
+    var searchFetchResultsController: NSFetchedResultsController<T>?
+
     var configuration: CollectionViewResultsControllerConfigurationWrapper<T>?
     private var contentChangeOperations: [BlockOperation] = []
 
-    required init(_ collectionView: UICollectionView?, resultsControllers: [NSFetchedResultsController<T>], cellReuseIdentifier: String) {
+    required init(_ collectionView: UICollectionView?,
+                  resultsControllers: [NSFetchedResultsController<T>],
+                  searchFetchRequest: NSFetchRequest<T>? = nil,
+                  cellReuseIdentifier: String) {
         self.collectionView = collectionView
         self.resultsControllers = resultsControllers
+        self.searchFetchRequest = searchFetchRequest
         self.cellReuseIdentifier = cellReuseIdentifier
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
+//        let convertedIndexSet: IndexSet
+//        if self.searchFetchResultsController == controller {
+//            convertedIndexSet = IndexSet(integer: sectionIndex)
+//        } else if self.searchFetchResultsController == nil {
+//            convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex))!
+//        } else {
+//            return
+//        }
+
+        guard self.searchFetchResultsController == nil else { return }
+
         let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex))!
+
         switch type {
         case .insert:
             self.contentChangeOperations.append(BlockOperation(block: {
@@ -41,9 +63,28 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
         }
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        guard self.searchFetchResultsController == nil else { return }
+
         let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
+
+//        let convertedIndexPath: IndexPath?
+//        let convertedNewIndexPath: IndexPath?
+//        if self.searchFetchResultsController == controller {
+//            convertedIndexPath = indexPath
+//            convertedNewIndexPath = newIndexPath
+//        } else if self.searchFetchResultsController == nil {
+//            convertedIndexPath = self.indexPath(for: controller, with: indexPath)
+//            convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
+//        } else {
+//            return
+//        }
+
         switch type {
         case .insert:
             self.contentChangeOperations.append(BlockOperation(block: {
@@ -66,6 +107,8 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        guard self.searchFetchResultsController == nil else { return }
+
         self.collectionView?.performBatchUpdates({
             for operation in self.contentChangeOperations {
                 operation.start()
@@ -88,39 +131,88 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     // MARK: UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.resultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
+        if self.searchFetchResultsController != nil {
+            return 1
+        } else {
+            return self.resultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var sectionsToGo = section
-        for controller in resultsControllers {
-            let sectionCount = controller.sections?.count ?? 0
-            if sectionsToGo >= sectionCount {
-                sectionsToGo -= sectionCount
-            } else {
-                return controller.sections?[sectionsToGo].numberOfObjects ?? 0
+        if let searchResultsController = self.searchFetchResultsController {
+            return searchResultsController.fetchedObjects?.count ?? 0
+        } else {
+            var sectionsToGo = section
+            for controller in resultsControllers {
+                let sectionCount = controller.sections?.count ?? 0
+                if sectionsToGo >= sectionCount {
+                    sectionsToGo -= sectionCount
+                } else {
+                    return controller.sections?[sectionsToGo].numberOfObjects ?? 0
+                }
             }
+            return 0
         }
-        return 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-        let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)! // TODO nil-handling or logging
-        self.configuration?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
+        if let searchResultsController = self.searchFetchResultsController {
+            self.configuration?.configureCollectionCell(cell, for: searchResultsController, indexPath: indexPath)
+        } else {
+            let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)! // TODO nil-handling or logging
+            self.configuration?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
+        }
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
-            let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
-            if let section = controller.sections?[newIndexPath.section] {
-                self.configuration?.configureCollectionHeaderView(view, section: section)
+            if let searchResultsController = self.searchFetchResultsController {
+                (view as? CourseHeaderView)?.configure(withText: "Hello")
+            } else {
+                let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
+                if let section = controller.sections?[newIndexPath.section] {
+                    self.configuration?.configureCollectionHeaderView(view, section: section)
+                }
             }
             return view
         } else {
             return UICollectionReusableView()
+        }
+    }
+
+    func search(withText searchText: String) {
+        guard let fetchRequest = self.searchFetchRequest?.copy() as? NSFetchRequest<T> else {
+            print("Warning: CollectionViewControllerDelegateImplementation is not configured for search. Missing search fetch request.")
+            self.resetSearch()
+            return
+        }
+
+        guard !searchText.isEmpty else {
+            self.resetSearch()
+            return
+        }
+
+        let searchPredicate = self.configuration?.searchPredicate(forSearchText: searchText)
+        let fetchPredicate = fetchRequest.predicate
+        let predicates = [fetchPredicate, searchPredicate].flatMap { $0 }
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+
+        self.searchFetchResultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: nil)
+        try? self.searchFetchResultsController?.performFetch()
+        self.collectionView?.reloadData()
+    }
+
+    func resetSearch() {
+        let shouldReloadData = self.searchFetchResultsController != nil
+        self.searchFetchResultsController = nil
+        if shouldReloadData {
+            self.collectionView?.reloadData()
         }
     }
 
@@ -185,11 +277,17 @@ protocol CollectionViewResultsControllerConfiguration {
 
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
 
+    func searchPredicate(forSearchText searchText: String) -> NSPredicate?
+
 }
 
 extension CollectionViewResultsControllerConfiguration {
 
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {}
+
+    func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
+        return nil
+    }
 
 }
 
@@ -199,10 +297,12 @@ class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: C
 
     private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let configureCollectionHeaderView: (UICollectionReusableView, NSFetchedResultsSectionInfo) -> Void
+    private let searchPredicate: (String) -> NSPredicate?
 
     required init<U: CollectionViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
         self.configureCollectionCell = configuration.configureCollectionCell
         self.configureCollectionHeaderView = configuration.configureCollectionHeaderView
+        self.searchPredicate = configuration.searchPredicate
     }
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
@@ -211,6 +311,10 @@ class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: C
 
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
         self.configureCollectionHeaderView(view, section)
+    }
+
+    func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
+        return self.searchPredicate(searchText)
     }
 
 }

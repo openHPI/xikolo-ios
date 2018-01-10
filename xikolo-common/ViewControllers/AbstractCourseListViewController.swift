@@ -20,7 +20,7 @@ class AbstractCourseListViewController : UICollectionViewController {
 
     var resultsControllers: [NSFetchedResultsController<Course>] = []
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
-    var contentChangeOperations: [[AnyObject?]] = []
+    var searchResultsController: NSFetchedResultsController<Course>?
     var courseDisplayMode: CourseDisplayMode = .enrolledOnly {
         didSet {
             if self.courseDisplayMode != oldValue {
@@ -64,7 +64,7 @@ class AbstractCourseListViewController : UICollectionViewController {
             resultsControllers = [CoreDataHelper.createResultsController(CourseHelper.FetchRequest.allCoursesSectioned, sectionNameKeyPath: "is_enrolled_section")]
         }
 
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsControllers: resultsControllers, cellReuseIdentifier: "CourseCell")
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsControllers: resultsControllers, searchFetchRequest: CourseHelper.FetchRequest.genericCoursesRequest, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
         let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseListViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
@@ -99,6 +99,17 @@ struct CourseListViewConfiguration : CollectionViewResultsControllerConfiguratio
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
         let view = view as! CourseHeaderView
         view.configure(section)
+    }
+
+    func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
+        let subPredicates = searchText.split(separator: " ").map(String.init).map { searchTextPart in
+            return NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "title CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "teachers CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "abstract CONTAINS[c] %@", searchTextPart),
+            ])
+        }
+        return NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
     }
 
 }

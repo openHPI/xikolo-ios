@@ -64,7 +64,7 @@ class AbstractCourseListViewController : UICollectionViewController {
             resultsControllers = [CoreDataHelper.createResultsController(CourseHelper.FetchRequest.allCoursesSectioned, sectionNameKeyPath: "is_enrolled_section")]
         }
 
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(collectionView, resultsControllers: resultsControllers, searchFetchRequest: CourseHelper.FetchRequest.genericCoursesRequest, cellReuseIdentifier: "CourseCell")
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView, resultsControllers: resultsControllers, searchFetchRequest: CourseHelper.FetchRequest.genericCoursesRequest, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
         let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseListViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
@@ -72,7 +72,7 @@ class AbstractCourseListViewController : UICollectionViewController {
         for rC in resultsControllers {
             rC.delegate = resultsControllerDelegateImplementation
         }
-        collectionView!.dataSource = resultsControllerDelegateImplementation
+        self.collectionView?.dataSource = resultsControllerDelegateImplementation
 
         do {
             for rC in resultsControllers {
@@ -91,14 +91,14 @@ class AbstractCourseListViewController : UICollectionViewController {
 struct CourseListViewConfiguration : CollectionViewResultsControllerConfiguration {
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
-        let cell = cell as! CourseCell
+        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseList requires cells of type CourseCell")
         let course = controller.object(at: indexPath)
         cell.configure(course, forConfiguration: .courseList)
     }
 
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
-        let view = view as! CourseHeaderView
-        view.configure(section)
+        let headerView = view.require(toHaveType: CourseHeaderView.self, hint: "CourseList requires header cells of type CourseHeaderView")
+        headerView.configure(section)
     }
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {

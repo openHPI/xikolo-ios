@@ -75,13 +75,13 @@ class CourseDecisionViewController: UIViewController {
         let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         switch content {
         case .learnings:
-            let vc = storyboard.instantiateViewController(withIdentifier: "CourseItemListViewController") as! CourseItemListViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "CourseItemListViewController").require(toHaveType: CourseItemListViewController.self)
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.learnings.title",
                                                comment: "title of learnings view of course view")
         case .discussions:
-            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
@@ -89,7 +89,7 @@ class CourseDecisionViewController: UIViewController {
             titleView.text = NSLocalizedString("course-content.view.discussions.title",
                                                comment: "title of discussions view of course view")
         case .courseDetails:
-            let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController") as! CourseDetailViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController").require(toHaveType: CourseDetailViewController.self)
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.course-details.title",
@@ -119,7 +119,7 @@ class CourseDecisionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowContentChoice"?:
-            let dropdownViewController = segue.destination as! DropdownViewController
+            let dropdownViewController = segue.destination.require(toHaveType: DropdownViewController.self)
             if let ppc = dropdownViewController.popoverPresentationController {
                 if let view = navigationItem.titleView {
                     ppc.sourceView = view

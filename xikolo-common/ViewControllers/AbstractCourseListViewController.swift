@@ -114,7 +114,7 @@ struct CourseListViewConfiguration : CollectionViewResultsControllerConfiguratio
 
     func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
         let view = view as! CourseHeaderView
-        let format = NSLocalizedString("%d courses", tableName: "Common", comment: "<number> of courses #bc-ignore!")
+        let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
         view.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }
 

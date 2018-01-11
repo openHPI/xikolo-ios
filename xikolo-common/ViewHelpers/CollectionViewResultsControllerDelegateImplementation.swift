@@ -74,7 +74,6 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
 
         let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
-
         switch type {
         case .insert:
             self.contentChangeOperations.append(BlockOperation(block: {
@@ -121,7 +120,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     // MARK: UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if self.searchFetchResultsController != nil {
+        if self.isSearching {
             return 1
         } else {
             return self.resultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
@@ -214,7 +213,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     }
 
     func resetSearch() {
-        let shouldReloadData = self.searchFetchResultsController != nil
+        let shouldReloadData = self.isSearching
         self.searchFetchResultsController = nil
         if shouldReloadData {
             self.collectionView?.reloadData()

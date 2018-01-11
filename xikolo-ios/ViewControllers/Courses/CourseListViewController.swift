@@ -62,6 +62,7 @@ class CourseListViewController : AbstractCourseListViewController {
 
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = searchController
+            self.collectionView?.preservesSuperviewLayoutMargins = true
         } else {
             searchController.searchBar.searchBarStyle = .minimal
             searchController.searchBar.isTranslucent = false

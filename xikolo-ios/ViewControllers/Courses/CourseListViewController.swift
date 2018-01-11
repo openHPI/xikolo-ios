@@ -162,6 +162,9 @@ extension CourseListViewController: CourseListLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
         let course: Course
         if let searchResultsController = self.resultsControllerDelegateImplementation.searchFetchResultsController {
+            if searchResultsController.fetchedObjects?.isEmpty ?? true {
+                return 0.0
+            }
             course = searchResultsController.object(at: indexPath)
         } else {
             let (controller, dataIndexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!

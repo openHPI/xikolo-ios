@@ -30,6 +30,9 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
         self.resultsControllers = resultsControllers
         self.searchFetchRequest = searchFetchRequest
         self.cellReuseIdentifier = cellReuseIdentifier
+
+        let nib = UINib(nibName: "EmptyCollectionViewCell", bundle: nil)
+        self.collectionView?.register(nib, forCellWithReuseIdentifier: "EmptyCell")
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
@@ -140,7 +143,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let searchResultsController = self.searchFetchResultsController {
-            return searchResultsController.fetchedObjects?.count ?? 0
+            return max(searchResultsController.fetchedObjects?.count ?? 0, 1)
         } else {
             var sectionsToGo = section
             for controller in resultsControllers {
@@ -157,6 +160,10 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if self.searchFetchResultsController?.fetchedObjects?.isEmpty ?? false {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCell", for: indexPath)
+        }
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
         if let searchResultsController = self.searchFetchResultsController {
             self.configuration?.configureCollectionCell(cell, for: searchResultsController, indexPath: indexPath)

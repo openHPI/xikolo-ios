@@ -74,8 +74,8 @@ class AnnouncementsTableViewController : UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let newsVC = segue.destination as! AnnouncementViewController
-        let announcement = sender as! Announcement
+        let newsVC = segue.destination.require(toHaveType: AnnouncementViewController.self)
+        let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
         newsVC.announcement = announcement
     }
 
@@ -93,7 +93,7 @@ extension AnnouncementsTableViewController { // TableViewDelegate
 struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Announcement>, indexPath: IndexPath) {
-        let cell = cell as! AnnouncementCell
+        let cell = cell.require(toHaveType: AnnouncementCell.self, hint: "AnnouncementsTabelViewController requires cells of type AnnouncementCell")
         let announcement = controller.object(at: indexPath)
         cell.configure(announcement)
     }

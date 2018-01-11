@@ -66,7 +66,7 @@ extension Enrollment : Pushable {
 
     var objectState: ObjectState {
         get {
-            return ObjectState(rawValue: self.objectStateValue)!
+            return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for enrollment")
         }
         set {
             self.objectStateValue = newValue.rawValue

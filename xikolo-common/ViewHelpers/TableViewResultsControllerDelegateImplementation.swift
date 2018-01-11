@@ -9,6 +9,10 @@
 import CoreData
 import UIKit
 
+fileprivate let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
+fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
+fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
+
 class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
     weak var tableView: UITableView?
@@ -30,12 +34,12 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex)
+        let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex).require(hint: errorMessageIndexSetConversion)
         switch type {
         case .insert:
-            self.tableView?.insertSections(convertedIndexSet!, with: .fade)
+            self.tableView?.insertSections(convertedIndexSet, with: .fade)
         case .delete:
-            self.tableView?.deleteSections(convertedIndexSet!, with: .fade)
+            self.tableView?.deleteSections(convertedIndexSet, with: .fade)
         case .move:
             break
         case .update:
@@ -48,20 +52,20 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
         switch type {
         case .insert:
-            self.tableView?.insertRows(at: [convertedNewIndexPath!], with: .fade)
+            self.tableView?.insertRows(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)], with: .fade)
         case .delete:
-            self.tableView?.deleteRows(at: [convertedIndexPath!], with: .fade)
+            self.tableView?.deleteRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
         case .update:
             #if os(tvOS)
             // Undocumented by Apple:
             // Need to create rows that don't exist here to prevent assertion errors (tvOS only).
-            self.tableView?.insertRows(at: [convertedIndexPath!], with: .fade)
+            self.tableView?.insertRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
             #else
-            self.tableView?.reloadRows(at: [convertedIndexPath!], with: .fade)
+            self.tableView?.reloadRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
             #endif
         case .move:
-            self.tableView?.deleteRows(at: [convertedIndexPath!], with: .fade)
-            self.tableView?.insertRows(at: [convertedNewIndexPath!], with: .fade)
+            self.tableView?.deleteRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
+            self.tableView?.insertRows(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)], with: .fade)
         }
     }
 

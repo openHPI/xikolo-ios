@@ -15,7 +15,8 @@ class AppDelegate : AbstractAppDelegate {
     var window: UIWindow?
 
     class func instance() -> AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
+        let instance = UIApplication.shared.delegate as? AppDelegate
+        return instance.require(hint: "Unable to find AppDelegate")
     }
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

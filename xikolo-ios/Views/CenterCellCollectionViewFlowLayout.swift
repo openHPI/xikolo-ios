@@ -49,10 +49,12 @@ class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
                     let b = candAttrs.center.x - proposedContentOffsetCenterX
 
                     if abs(Float(a)) < abs(Float(b)) {
-                        candidateAttributes = attributes;
+                        candidateAttributes = attributes
                     }
                 }
-                return CGPoint(x: floor(candidateAttributes!.center.x - halfWidth), y: proposedContentOffset.y)
+
+                let attributes = candidateAttributes.require(hint: "CollectionViewLayourAttribritues are required")
+                return CGPoint(x: floor(attributes.center.x - halfWidth), y: proposedContentOffset.y)
             }
         }
 

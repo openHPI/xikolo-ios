@@ -120,7 +120,7 @@ extension CourseDatesTableViewController {
         }
 
         let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController") as! CourseDecisionViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController").require(toHaveType: CourseDecisionViewController.self)
         vc.course = course
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -130,7 +130,7 @@ extension CourseDatesTableViewController {
 struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseDate>, indexPath: IndexPath) {
-        let cell = cell as! CourseDateCell
+        let cell = cell.require(toHaveType: CourseDateCell.self, hint: "CourseDatesViewController requires cell of type CourseDateCell")
         let courseDate = controller.object(at: indexPath)
         cell.configure(courseDate)
     }

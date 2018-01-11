@@ -11,16 +11,22 @@ import UIKit
 
 extension UIApplication {
 
-    static let appName = {
-        return Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+    static let appName: String = {
+        let key = kCFBundleNameKey as String
+        let appName = Bundle.main.object(forInfoDictionaryKey: key) as? String
+        return appName.require(hint: "Unable to retrieve bundle name")
     }()
 
-    static let appVersion = {
-        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    static let appVersion: String = {
+        let key = "CFBundleShortVersionString"
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: key) as? String
+        return appVersion.require(hint: "Unable to retrieve app version")
     }()
 
-    static let appBuild = {
-        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+    static let appBuild: String = {
+        let key = kCFBundleVersionKey as String
+        let appBuild = Bundle.main.object(forInfoDictionaryKey: key) as? String
+        return appBuild.require(hint: "Unable to retrieve build number")
     }()
 
 }

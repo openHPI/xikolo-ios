@@ -23,11 +23,11 @@ class CourseActivityViewController: UICollectionViewController {
         let request = CourseHelper.FetchRequest.enrolledNotCompletedCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView!, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
         let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseActivityViewConfiguration())
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
-        collectionView!.dataSource = resultsControllerDelegateImplementation
+        self.collectionView?.dataSource = resultsControllerDelegateImplementation
 
         do {
             try resultsController.performFetch()
@@ -43,7 +43,7 @@ extension CourseActivityViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = resultsController.object(at: indexPath)
         let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController") as! CourseDecisionViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController").require(toHaveType: CourseDecisionViewController.self)
         vc.course = course
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -78,7 +78,7 @@ extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
 struct CourseActivityViewConfiguration : CollectionViewResultsControllerConfiguration {
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
-        let cell = cell as! CourseCell
+        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseActivityViewController requires cell of type CourseCell")
         let course = controller.object(at: indexPath)
         cell.configure(course, forConfiguration: .courseActivity)
     }

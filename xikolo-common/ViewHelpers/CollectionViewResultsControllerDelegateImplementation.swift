@@ -16,8 +16,16 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
     var cellReuseIdentifier: String
     var headerReuseIdentifier: String?
 
-    var searchFetchRequest: NSFetchRequest<T>?
-    var searchFetchResultsController: NSFetchedResultsController<T>?
+    private var searchFetchRequest: NSFetchRequest<T>?
+    private var searchFetchResultsController: NSFetchedResultsController<T>?
+
+    var isSearching: Bool {
+        return self.searchFetchResultsController != nil
+    }
+
+    var hasSearchResults: Bool {
+        return !(self.searchFetchResultsController?.fetchedObjects?.isEmpty ?? true)
+    }
 
     var configuration: CollectionViewResultsControllerConfigurationWrapper<T>?
     private var contentChangeOperations: [BlockOperation] = []
@@ -39,15 +47,6 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
                     for type: NSFetchedResultsChangeType) {
-//        let convertedIndexSet: IndexSet
-//        if self.searchFetchResultsController == controller {
-//            convertedIndexSet = IndexSet(integer: sectionIndex)
-//        } else if self.searchFetchResultsController == nil {
-//            convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex))!
-//        } else {
-//            return
-//        }
-
         guard self.searchFetchResultsController == nil else { return }
 
         let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex))!
@@ -75,18 +74,6 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
 
         let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
-
-//        let convertedIndexPath: IndexPath?
-//        let convertedNewIndexPath: IndexPath?
-//        if self.searchFetchResultsController == controller {
-//            convertedIndexPath = indexPath
-//            convertedNewIndexPath = newIndexPath
-//        } else if self.searchFetchResultsController == nil {
-//            convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-//            convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
-//        } else {
-//            return
-//        }
 
         switch type {
         case .insert:
@@ -193,6 +180,15 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
         } else {
             return UICollectionReusableView()
         }
+    }
+
+    func visibleObject(at indexPath: IndexPath) -> T {
+        if let searchResultsController = self.searchFetchResultsController {
+            return searchResultsController.object(at: indexPath)
+        }
+
+        let (controller, dataIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        return controller.object(at: dataIndexPath)
     }
 
     func search(withText searchText: String) {

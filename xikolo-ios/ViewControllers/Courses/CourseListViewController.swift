@@ -120,14 +120,7 @@ class CourseListViewController : AbstractCourseListViewController {
                 let vc = segue.destination as! CourseDecisionViewController
                 let cell = sender as! CourseCell
                 let indexPath = collectionView!.indexPath(for: cell)!
-                let course: Course
-                if let searchResultsController = self.resultsControllerDelegateImplementation.searchFetchResultsController {
-                    course = searchResultsController.object(at: indexPath)
-                } else {
-                    let (controller, dataIndexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
-                    course = controller.object(at: dataIndexPath)
-                }
-                vc.course = course
+                vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
             default:
                 break
         }
@@ -160,17 +153,11 @@ class CourseListViewController : AbstractCourseListViewController {
 extension CourseListViewController: CourseListLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-        let course: Course
-        if let searchResultsController = self.resultsControllerDelegateImplementation.searchFetchResultsController {
-            if searchResultsController.fetchedObjects?.isEmpty ?? true {
-                return 0.0
-            }
-            course = searchResultsController.object(at: indexPath)
-        } else {
-            let (controller, dataIndexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
-            course = controller.object(at: dataIndexPath)
+        if self.resultsControllerDelegateImplementation.isSearching && !self.resultsControllerDelegateImplementation.hasSearchResults {
+            return 0.0
         }
 
+        let course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
         let imageHeight = boundingWidth / 2
 
         let boundingSize = CGSize(width: boundingWidth, height: CGFloat.infinity)

@@ -226,11 +226,11 @@ extension CourseListViewController : UISearchResultsUpdating {
 extension CourseListViewController : UISearchControllerDelegate {
 
     func willPresentSearchController(_ searchController: UISearchController) {
+        self.collectionView?.refreshControl = nil
+
         if #available(iOS 11.0, *) {
             // nothing to do here
         } else {
-            self.collectionView?.refreshControl = nil
-
             // on iOS 10 the search bar's backgorund will not overlap with the status bar, so we need the cover the status bar manually
             let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: UIApplication.shared.statusBarFrame.height)
             let statusBarBackground = UIView(frame: frame)
@@ -242,10 +242,11 @@ extension CourseListViewController : UISearchControllerDelegate {
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {
+        self.addPullToRefresh()
+
         if #available(iOS 11.0, *) {
             // nothing to do here
         } else {
-            self.addPullToRefresh()
             self.statusBarBackground?.removeFromSuperview()
         }
     }

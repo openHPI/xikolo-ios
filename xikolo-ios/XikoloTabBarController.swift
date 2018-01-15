@@ -116,10 +116,19 @@ class XikoloTabBarController: UITabBarController {
     func updateStatus(_ status: Status) {
         guard self.status != status else { return }
 
+        // allow only some status changes
+        switch (self.status, status) {
+        case (.standard, _): fallthrough
+        case (.deprecated, .maintainance): fallthrough
+        case (.deprecated, .expired): fallthrough
+        case (.maintainance, .standard): fallthrough
+        case (.maintainance, .expired): break
+        default: return
+        }
+
         let animationDuration: TimeInterval = self.status == .standard ? 0 : 0.25
         UIView.animate(withDuration: animationDuration) {
             self.status = status
-
             self.view.layoutSubviews()
             self.viewDidLayoutSubviews()
         }

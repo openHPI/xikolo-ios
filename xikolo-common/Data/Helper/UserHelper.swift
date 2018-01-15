@@ -11,11 +11,11 @@ import CoreData
 
 class UserHelper {
 
-    static func syncMe() -> Future<NSManagedObjectID, XikoloError> {
+    static func syncMe() -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
-        return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

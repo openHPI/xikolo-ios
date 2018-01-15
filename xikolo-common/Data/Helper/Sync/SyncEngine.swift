@@ -14,6 +14,31 @@ import Marshal
 
 struct SyncEngine {
 
+    struct SyncMultipleResult {
+        let objectIds: [NSManagedObjectID]
+        let headers: [AnyHashable: Any]
+    }
+
+    struct SyncSingleResult {
+        let objectId: NSManagedObjectID
+        let headers: [AnyHashable: Any]
+    }
+
+    private struct MergeMultipleResult<Resource> where Resource: NSManagedObject & Pullable {
+        let resources: [Resource]
+        let headers: [AnyHashable: Any]
+    }
+
+    private struct MergeSingleResult<Resource> where Resource: NSManagedObject & Pullable {
+        let resource: Resource
+        let headers: [AnyHashable: Any]
+    }
+
+    private struct NetworkResult {
+        let resourceData: ResourceData
+        let headers: [AnyHashable: Any]
+    }
+
     private static let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForResource = 300
@@ -147,8 +172,8 @@ struct SyncEngine {
         }
     }
 
-    private static func doNetworkRequest(_ request: URLRequest) -> Future<ResourceData, XikoloError> {
-        let promise = Promise<ResourceData, XikoloError>()
+    private static func doNetworkRequest(_ request: URLRequest) -> Future<NetworkResult, XikoloError> {
+        let promise = Promise<NetworkResult, XikoloError>()
 
         let task = self.session.dataTask(with: request) { (data, response, error) in
             if let err = error {
@@ -162,7 +187,7 @@ struct SyncEngine {
             }
 
             guard 200 ... 299 ~= urlResponse.statusCode else {
-                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode)))
+                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields)))
                 return
             }
 
@@ -201,7 +226,8 @@ struct SyncEngine {
                     return
                 }
 
-                promise.success(resourceData)
+                let result = NetworkResult(resourceData: resourceData, headers: urlResponse.allHeaderFields)
+                promise.success(result)
             } catch {
                 promise.failure(.api(.serializationError(.jsonSerializationError(error))))
             }
@@ -298,8 +324,8 @@ struct SyncEngine {
 
     // MARK: - sync
 
-    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>, deleteNotExistingResources: Bool = true) -> Future<[NSManagedObjectID], XikoloError> where Resource: NSManagedObject & Pullable {
-        let promise = Promise<[NSManagedObjectID], XikoloError>()
+    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>, deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, XikoloError> where Resource: NSManagedObject & Pullable {
+        let promise = Promise<SyncMultipleResult, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
@@ -311,8 +337,10 @@ struct SyncEngine {
                 }
             }
 
-            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { objects, json in
-                return self.mergeResources(object: json, withExistingObjects: objects, deleteNotExistingResources: deleteNotExistingResources, inContext: context)
+            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { objects, networkResult in
+                return self.mergeResources(object: networkResult.resourceData, withExistingObjects: objects, deleteNotExistingResources: deleteNotExistingResources, inContext: context).map { resources in
+                    return MergeMultipleResult(resources: resources, headers: networkResult.headers)
+                }
             }.inject(ImmediateExecutionContext) {
                 do {
                     try context.save()
@@ -320,8 +348,8 @@ struct SyncEngine {
                 } catch {
                     return Future(error: .coreData(error))
                 }
-            }.map(ImmediateExecutionContext) { objects in
-                return objects.map { $0.objectID }
+            }.map(ImmediateExecutionContext) { mergeResult in
+                return SyncMultipleResult(objectIds: mergeResult.resources.map { $0.objectID }, headers: mergeResult.headers)
             }.onComplete(ImmediateExecutionContext) { result in
                 promise.complete(result)
             }
@@ -334,8 +362,8 @@ struct SyncEngine {
         }
     }
 
-    static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<NSManagedObjectID, XikoloError> where Resource: NSManagedObject & Pullable {
-        let promise = Promise<NSManagedObjectID, XikoloError>()
+    static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable {
+        let promise = Promise<SyncSingleResult, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
@@ -347,8 +375,10 @@ struct SyncEngine {
                 }
             }
 
-            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { object, json -> Future<Resource, XikoloError> in
-                return self.mergeResource(object: json, withExistingObject: object, inContext: context)
+            coreDataFetch.zip(networkRequest).flatMap(ImmediateExecutionContext) { object, networkResult -> Future<MergeSingleResult<Resource>, XikoloError> in
+                return self.mergeResource(object: networkResult.resourceData, withExistingObject: object, inContext: context).map { resource in
+                    return MergeSingleResult(resource: resource, headers: networkResult.headers)
+                }
             }.inject(ImmediateExecutionContext) {
                 do {
                     try context.save()
@@ -356,8 +386,8 @@ struct SyncEngine {
                 } catch {
                     return Future(error: .coreData(error))
                 }
-            }.map(ImmediateExecutionContext) { object in
-                return object.objectID
+            }.map(ImmediateExecutionContext) { mergeResult in
+                return SyncSingleResult(objectId: mergeResult.resource.objectID, headers: mergeResult.headers)
             }.onComplete(ImmediateExecutionContext) { result in
                 promise.complete(result)
             }

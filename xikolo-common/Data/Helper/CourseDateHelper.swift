@@ -12,9 +12,9 @@ import BrightFutures
 
 struct CourseDateHelper {
 
-    static func syncAllCourseDates() -> Future<[NSManagedObjectID], XikoloError> {
+    static func syncAllCourseDates() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let query = MultipleResourcesQuery(type: CourseDate.self)
-        return SyncEngine.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query)
+        return SyncHelper.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query)
     }
 
 }

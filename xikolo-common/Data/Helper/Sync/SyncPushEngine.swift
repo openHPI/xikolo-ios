@@ -77,7 +77,7 @@ class SyncPushEngine {
                 pushFuture = pushFuture?.recoverWith { error -> Future<(), XikoloError> in
                     if case .network = error {
                         return Future(error: error)
-                    } else if case let .api(.responseError(statusCode: statusCode)) = error, 500 ... 599 ~= statusCode {
+                    } else if case let .api(.responseError(statusCode: statusCode, headers: _)) = error, 500 ... 599 ~= statusCode {
                         return Future(error: error)
                     }
                     print("Error: Failed to push resource modification - \(error)")

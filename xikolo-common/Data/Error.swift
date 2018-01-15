@@ -38,7 +38,7 @@ enum XikoloError : Error {
 enum APIError : Error {
     case invalidResponse
     case noData
-    case responseError(statusCode: Int)
+    case responseError(statusCode: Int, headers: [AnyHashable: Any])
     case unknownServerError
     case serverError(message: String)
     case resourceNotFound

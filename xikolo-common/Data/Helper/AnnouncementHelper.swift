@@ -12,10 +12,10 @@ import BrightFutures
 
 struct AnnouncementHelper {
 
-    static func syncAllAnnouncements() -> Future<[NSManagedObjectID], XikoloError> {
+    static func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         let query = MultipleResourcesQuery(type: Announcement.self)
-        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete {_ in
+        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete {_ in
             self.updateUnreadAnnouncementsBadge()
         }
     }

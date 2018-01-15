@@ -23,9 +23,9 @@ class CourseItemWebViewController: WebViewController {
             return
         }
 
-        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
+        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
             CoreDataHelper.viewContext.perform {
-                guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: objectId) as? CourseItem else {
+                guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: syncResult.objectId) as? CourseItem else {
                     print("Warning: Failed to retrieve course item to display")
                     return
                 }

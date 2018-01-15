@@ -53,17 +53,6 @@ class CourseListViewController : AbstractCourseListViewController {
                                                selector: #selector(updateAfterLoginStateChange),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
-
-        let barButton = UIBarButtonItem(title: "Test", style: UIBarButtonItemStyle.plain, target: self, action: #selector(updateTabBar))
-        self.navigationItem.rightBarButtonItem = barButton
-    }
-
-    private var index = 0
-    @objc func updateTabBar() {
-        guard let tabbar = self.tabBarController as? XikoloTabBarController else { return }
-        self.index = (self.index + 1) % tabbar.status.values.count
-        tabbar.updateStatus(tabbar.status.values[self.index])
-
     }
 
     @objc func updateAfterLoginStateChange() {

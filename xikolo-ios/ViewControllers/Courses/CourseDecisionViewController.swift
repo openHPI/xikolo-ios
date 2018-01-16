@@ -15,7 +15,8 @@ class CourseDecisionViewController: UIViewController {
         case learnings = 0
         case discussions = 1
         case announcements = 2
-        case courseDetails = 3
+        case platformEvents = 3
+        case courseDetails = 4
     }
 
   
@@ -96,6 +97,12 @@ class CourseDecisionViewController: UIViewController {
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.announcements.title",
                                                comment: "title of announcements view of course view")
+        case .platformEvents:
+            let vc = storyboard.instantiateViewController(withIdentifier: "PlatformEventsTableViewController").require(toHaveType: PlatformEventsTableViewController.self)
+            vc.course = course
+            changeToViewController(vc)
+            titleView.text = NSLocalizedString("course-content.view.platform-events.title",
+                                               comment: "title of platform events view of course view")
         case .courseDetails:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController").require(toHaveType: CourseDetailViewController.self)
             vc.course = course

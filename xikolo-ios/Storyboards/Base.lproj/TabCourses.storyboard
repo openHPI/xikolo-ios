@@ -306,9 +306,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4V-6l-NtX">
-                                <rect key="frame" x="0.0" y="20" width="375" height="173"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="218"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="173" id="LpH-qr-v08"/>
+                                    <constraint firstAttribute="height" constant="218" id="LpH-qr-v08"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="6J1-nF-Dot" kind="embed" identifier="EmbedCourseContentChoice" id="SxM-JY-dGM"/>
@@ -359,7 +359,7 @@
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="6J1-nF-Dot" customClass="DropdownTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YAz-3s-0sS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -491,8 +491,50 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="abS-TX-nsl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1m4-ty-DmN">
                                         <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1m4-ty-DmN" id="hTh-0N-Ilv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCn-lp-OVD">
+                                                    <rect key="frame" x="52" y="11" width="57" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-announcements-28" translatesAutoresizingMaskIntoConstraints="NO" id="jia-V8-6gc">
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="28" id="1Mx-dj-t9g"/>
+                                                        <constraint firstAttribute="height" constant="28" id="2IS-NJ-NS4"/>
+                                                        <constraint firstAttribute="width" constant="41" id="don-D7-gEZ"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="don-D7-gEZ"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jia-V8-6gc" firstAttribute="centerY" secondItem="hTh-0N-Ilv" secondAttribute="centerY" id="IYW-EW-AS9"/>
+                                                <constraint firstItem="jia-V8-6gc" firstAttribute="leading" secondItem="hTh-0N-Ilv" secondAttribute="leadingMargin" constant="8" id="YFE-qd-ybB"/>
+                                                <constraint firstItem="nCn-lp-OVD" firstAttribute="leading" secondItem="hTh-0N-Ilv" secondAttribute="leadingMargin" constant="7" id="ga1-DA-bWO"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="nCn-lp-OVD" secondAttribute="trailing" constant="16" id="kBJ-oZ-PFX"/>
+                                                <constraint firstItem="nCn-lp-OVD" firstAttribute="centerY" secondItem="hTh-0N-Ilv" secondAttribute="centerY" id="r8F-f8-fgg"/>
+                                                <constraint firstItem="nCn-lp-OVD" firstAttribute="leading" secondItem="jia-V8-6gc" secondAttribute="trailing" constant="8" symbolic="YES" id="sXP-au-Tco"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="ga1-DA-bWO"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="abS-TX-nsl">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="abS-TX-nsl" id="DQp-JL-GFZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>

@@ -16,3 +16,6 @@
 
 /* Class = "UILabel"; title = "News"; ObjectID = "DRo-CM-ssb"; */
 "DRo-CM-ssb.title" = "Neuigkeiten";
+
+/* Class = "UILabel"; title = "Activity"; ObjectID = "1m4-ty-DmN"; */
+"1m4-ty-DmN.title" = "Aktivität";

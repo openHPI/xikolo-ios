@@ -51,28 +51,32 @@ extension SyncHelper {
 
     private static func handleSyncFailure(_ error: XikoloError) {
         guard case let .api(.responseError(statusCode: statusCode, headers: headers)) = error else { return }
-        guard let tabBarController = AppDelegate.instance().tabBarController as? XikoloTabBarController else { return }
+        DispatchQueue.main.async {
+            guard let tabBarController = AppDelegate.instance().tabBarController as? XikoloTabBarController else { return }
 
-        if 200 ... 299 ~= statusCode {
-            self.checkForAPIDeprecation(headers)
-        } else if statusCode == 406 {
-             tabBarController.updateStatus(.expired)
-        } else if statusCode == 503 {
-            tabBarController.updateStatus(.maintainance)
+            if 200 ... 299 ~= statusCode {
+                self.checkForAPIDeprecation(headers)
+            } else if statusCode == 406 {
+                 tabBarController.updateStatus(.expired)
+            } else if statusCode == 503 {
+                tabBarController.updateStatus(.maintainance)
+            }
         }
     }
 
     private static func checkForAPIDeprecation(_ headers: [AnyHashable: Any]) {
-        guard let tabBarController = AppDelegate.instance().tabBarController as? XikoloTabBarController else { return }
+        DispatchQueue.main.async {
+            guard let tabBarController = AppDelegate.instance().tabBarController as? XikoloTabBarController else { return }
 
-        guard let expirationDateString = headers[Routes.HTTP_API_Version_Expiration_Date_Header] as? String,
-              let expirationDate = SyncHelper.dateFormatter.date(from: expirationDateString),
-              expirationDate <= Date().subtractingTimeInterval(14.days) else {
-            tabBarController.updateStatus(.standard)
-            return
+            guard let expirationDateString = headers[Routes.HTTP_API_Version_Expiration_Date_Header] as? String,
+                  let expirationDate = SyncHelper.dateFormatter.date(from: expirationDateString),
+                  expirationDate <= Date().subtractingTimeInterval(14.days) else {
+                tabBarController.updateStatus(.standard)
+                return
+            }
+
+            tabBarController.updateStatus(.deprecated(expiresOn: expirationDate))
         }
-
-        tabBarController.updateStatus(.deprecated(expiresOn: expirationDate))
     }
 
 }

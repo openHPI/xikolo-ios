@@ -14,8 +14,9 @@ struct AnnouncementHelper {
 
     static func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
-        let query = MultipleResourcesQuery(type: Announcement.self)
-        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete {_ in
+        var query = MultipleResourcesQuery(type: Announcement.self)
+        query.addFilter(forKey: "global", withValue: "true")
+        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.updateUnreadAnnouncementsBadge()
         }
     }

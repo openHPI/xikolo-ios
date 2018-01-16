@@ -49,17 +49,23 @@ class XikoloTabBarController: UITabBarController {
             case .standard:
                 return Configuration(backgroundColor: .white, textColor: .clear, message: nil)
             case .maintainance:
-                let message = "Maintance"
+                let format = NSLocalizedString("app-state.maintenance.server maintenance on %@",
+                                               comment: "App state message for server maintainance")
+                let message = String.localizedStringWithFormat(format, UIApplication.appName)
                 return Configuration(backgroundColor: Brand.windowTintColor, textColor: .white, message: message)
             case .deprecated(expiresOn: let expirationDate):
-                let message = "Will deprecate on \(Status.dateFormatter.string(from: expirationDate))"
+                let formattedExpirationDate = Status.dateFormatter.string(from: expirationDate)
+                let format = NSLocalizedString("app-state.api-deprecated.please update the %@ app before %@",
+                                               comment: "App state message for deprecated API version")
+                let message = String.localizedStringWithFormat(format, UIApplication.appName, formattedExpirationDate)
                 return Configuration(backgroundColor: .orange, textColor: .white, message: message)
             case .expired:
-                let message = "Expired"
+                let format = NSLocalizedString("app-state.api-expired.app version of %@ expired - please update",
+                                               comment: "App state message for expired API version")
+                let message = String.localizedStringWithFormat(format, UIApplication.appName)
                 return Configuration(backgroundColor: .red, textColor: .white, message: message)
             }
         }
-
     }
 
     private static let messageViewHeight: CGFloat = 16
@@ -107,7 +113,6 @@ class XikoloTabBarController: UITabBarController {
         self.messageView.frame = newMessageViewFrame
         self.tabBar.frame = newTabBarFrame
 
-
         if #available(iOS 11.0, *) {
             self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: tabBarOffset, right: 0)
         }
@@ -126,6 +131,7 @@ class XikoloTabBarController: UITabBarController {
         default: return
         }
 
+        print("Verbose: update app state from \(self.status) to \(status)")
         let animationDuration: TimeInterval = self.status == .standard ? 0 : 0.25
         UIView.animate(withDuration: animationDuration) {
             self.status = status

@@ -12,6 +12,9 @@ protocol CourseListLayoutDelegate: class {
 
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
 
+    // only needed in iOS 10
+    func topInset() -> CGFloat
+
 }
 
 class CourseListLayout: UICollectionViewLayout {
@@ -36,10 +39,10 @@ class CourseListLayout: UICollectionViewLayout {
     }
 
     private func layoutInsets(for collectionView: UICollectionView) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0,
-                            left: max(self.cellPadding, collectionView.layoutMargins.left),
+        return UIEdgeInsets(top: self.delegate?.topInset() ?? 0,
+                            left: collectionView.layoutMargins.left,
                             bottom: 0,
-                            right: max(self.cellPadding, collectionView.layoutMargins.right))
+                            right: collectionView.layoutMargins.right)
     }
 
     override var collectionViewContentSize: CGSize {
@@ -61,13 +64,13 @@ class CourseListLayout: UICollectionViewLayout {
         }
 
         let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * cellPadding) / CGFloat(numberOfColumns)
-        let layoutInsetLeft = self.layoutInsets(for: collectionView).left
+        let layoutInsets = self.layoutInsets(for: collectionView)
 
         var xOffset = [CGFloat]()
         var yOffset = [CGFloat]()
         for columnIndex in 0 ..< numberOfColumns {
-            xOffset.append(layoutInsetLeft + CGFloat(columnIndex) * (columnWidth + self.cellPadding))
-            yOffset.append(-self.linePadding)
+            xOffset.append(layoutInsets.left + CGFloat(columnIndex) * (columnWidth + self.cellPadding))
+            yOffset.append(layoutInsets.top - self.linePadding)
         }
 
         var rowOffset: CGFloat = 0

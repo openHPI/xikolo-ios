@@ -508,6 +508,30 @@
 		5019A7691F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */; };
 		5019A76A1F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */; };
 		5019A76B1F20AD4F008C8138 /* RichText+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */; };
+		501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F946A20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F946B20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F946C20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F946D20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F946E20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F946F20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F947020075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F947120075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F947220075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F947320075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F947420075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
+		501F9477200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F9478200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F9479200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F947A200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F947B200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F947C200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F947D200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F947E200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F947F200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F9480200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F9481200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		501F9482200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
 		503585051F3AF6AA002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		503585061F3B06D8002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		503585071F3B06DD002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
@@ -1748,6 +1772,8 @@
 		5019A7621F20ACE6008C8138 /* Video+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Video+DetailedContent.swift"; path = "Data/Model/Video+DetailedContent.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RichText+DetailedContent.swift"; path = "Data/Model/RichText+DetailedContent.swift"; sourceTree = "<group>"; };
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
+		501F946820075536001C8754 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
+		501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		504C5A6F1F99F8210021EB17 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
 		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseContent.storyboard; sourceTree = "<group>"; };
@@ -2287,6 +2313,8 @@
 				249C01AD1D3F721E00B54AAC /* Branding */,
 				241D4AEA1CC9918600E35B1F /* ViewControllers */,
 				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
+				501F94672007550A001C8754 /* Stroyboard */,
+				501F94752007556A001C8754 /* Views */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Common.strings */,
 				2493481A1D9550FD006D4F2C /* Common.stringsdict */,
@@ -2380,6 +2408,22 @@
 				5060A5211F177304007896FF /* DetailedContent.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		501F94672007550A001C8754 /* Stroyboard */ = {
+			isa = PBXGroup;
+			children = (
+				501F946820075536001C8754 /* EmptyCollectionViewCell.xib */,
+			);
+			path = Stroyboard;
+			sourceTree = "<group>";
+		};
+		501F94752007556A001C8754 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5057ED7E1FE3D91B0096095B /* UserDefaults */ = {
@@ -3183,6 +3227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249C01C21D3F78DD00B54AAC /* assets-brand.xcassets in Resources */,
+				501F946B20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				249348151D9550FD006D4F2C /* Common.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3207,6 +3252,7 @@
 				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
 				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
 				ABF26FA41E963A0200763A39 /* LaunchScreen.storyboard in Resources */,
+				501F946C20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2F01FCEC1CA007255B5 /* TabNews.storyboard in Resources */,
 				24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */,
 				24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */,
@@ -3223,6 +3269,7 @@
 				24BA40FA1D3F9B3600E38C2C /* assets-common.xcassets in Resources */,
 				24BA41331D3F9D2200E38C2C /* assets-tvos.xcassets in Resources */,
 				249348171D9550FD006D4F2C /* Common.stringsdict in Resources */,
+				501F946D20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				ABE060AA1DF8C26000FC186D /* xikolo-tvos.entitlements in Resources */,
 				24BA41231D3F9CF800E38C2C /* Main.storyboard in Resources */,
 				24BA41431D3FAAC600E38C2C /* assets-tvos-brand.xcassets in Resources */,
@@ -3234,6 +3281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24BA40E71D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
+				501F946E20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				249348181D9550FD006D4F2C /* Common.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3248,6 +3296,7 @@
 				ABA0F10A1DF8CF230001D88D /* Main.storyboard in Resources */,
 				24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */,
 				24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */,
+				501F946A20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				243484041E6969E700F0DAA5 /* xikolo-tvos.entitlements in Resources */,
 				249348141D9550FD006D4F2C /* Common.stringsdict in Resources */,
 				24BA41411D3FAAB800E38C2C /* assets-tvos-brand.xcassets in Resources */,
@@ -3274,6 +3323,7 @@
 				70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */,
 				70D1EB0A1EF0AD000088C0FF /* LaunchScreen.storyboard in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
+				501F947220075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2ED1FCEC1B5007255B5 /* TabNews.storyboard in Resources */,
 				70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */,
 				70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */,
@@ -3288,6 +3338,7 @@
 				70D1EB321EF12E1F0088C0FF /* Common.strings in Resources */,
 				70D1EB301EF12E1C0088C0FF /* assets-common.xcassets in Resources */,
 				3DD110B21F06351D00C1060A /* logo_moochaus.png in Resources */,
+				501F947320075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				70D1EB601EF134870088C0FF /* Localizable.strings in Resources */,
 				70D1EB5B1EF134580088C0FF /* assets-tvos-brand.xcassets in Resources */,
 				70D1EB5F1EF134820088C0FF /* assets-tvos.xcassets in Resources */,
@@ -3300,6 +3351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70D1EB351EF12E220088C0FF /* Common.stringsdict in Resources */,
+				501F947420075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				3DD110B31F06351D00C1060A /* logo_moochaus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3315,6 +3367,7 @@
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				508BD0AA1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */,
+				501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				2490C4D31D1D6F7100F42949 /* Common.strings in Resources */,
 				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
@@ -3351,6 +3404,7 @@
 				ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */,
 				ABE0609E1DF8C21200FC186D /* assets-ios-brand.xcassets in Resources */,
 				ABF26FA61E963A1200763A39 /* LaunchScreen.storyboard in Resources */,
+				501F946F20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2EE1FCEC1B6007255B5 /* TabNews.storyboard in Resources */,
 				ABA0F0141DF8CC360001D88D /* TabDashboard.storyboard in Resources */,
 				ABE060951DF8C19700FC186D /* assets-brand.xcassets in Resources */,
@@ -3367,6 +3421,7 @@
 				ABA0F10B1DF8CF270001D88D /* Main.storyboard in Resources */,
 				ABA0F1251DF8CFAC0001D88D /* Localizable.strings in Resources */,
 				ABE060AF1DF8C29500FC186D /* assets-tvos-brand.xcassets in Resources */,
+				501F947020075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				ABE060961DF8C19800FC186D /* assets-brand.xcassets in Resources */,
 				ABA0F1241DF8CFA70001D88D /* assets-tvos.xcassets in Resources */,
 				ABA0F0FD1DF8CEB60001D88D /* Common.stringsdict in Resources */,
@@ -3378,6 +3433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABE060971DF8C1A000FC186D /* assets-brand.xcassets in Resources */,
+				501F947120075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				ABA0F0FE1DF8CEB70001D88D /* Common.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4274,6 +4330,7 @@
 				70F4563C1F01296100A2C6B7 /* UserProfile.swift in Sources */,
 				2490C4E01D1D92F200F42949 /* ServiceProvider.swift in Sources */,
 				70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */,
+				501F9479200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70A830AC1EC780F30029235D /* AnnouncementHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4316,6 +4373,7 @@
 				24BA41151D3F9B8800E38C2C /* SettingsViewController.swift in Sources */,
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
+				501F947A200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				5053988C1F72A9FB00A87DC8 /* NotificationKeys.swift in Sources */,
 				50DD35161FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				4E6AB1FB1DD36AB500B048DB /* CourseDate.swift in Sources */,
@@ -4528,6 +4586,7 @@
 				24BA40A11D3F9AB300E38C2C /* Quiz.swift in Sources */,
 				24BA41301D3F9D1A00E38C2C /* ViewControllerLoadingHelper.swift in Sources */,
 				243CE4991D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
+				501F947B200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				24BA41281D3F9D0600E38C2C /* LearningsViewController.swift in Sources */,
 				50B15BE51FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				AB1FB27C1E0871B200BB3D23 /* CourseDateHelper.swift in Sources */,
@@ -4640,6 +4699,7 @@
 				24BA40DE1D3F9AFF00E38C2C /* Error.swift in Sources */,
 				70F4563B1F01296100A2C6B7 /* UserProfile.swift in Sources */,
 				70A8309A1EC7807E0029235D /* CourseCertificates.swift in Sources */,
+				501F947C200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70A830AB1EC780F20029235D /* AnnouncementHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4743,6 +4803,7 @@
 				24B6514E1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
 				243CE4971D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				AB1FB27A1E0871AD00BB3D23 /* CourseDateHelper.swift in Sources */,
+				501F9478200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				240E034A1CE6160D0078A364 /* CourseSectionCell.swift in Sources */,
 				50B15BE21FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				AB35C9341E89DAA4009832A5 /* UserHelper.swift in Sources */,
@@ -4864,6 +4925,7 @@
 				70D1EAC71EF0AC150088C0FF /* RichTextHelper.swift in Sources */,
 				70D1EAA91EF0AB950088C0FF /* CoreDataHelper.swift in Sources */,
 				5012121F1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
+				501F9480200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70D1EAB61EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
 				70D1EA831EF0AB560088C0FF /* Video.swift in Sources */,
 				5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */,
@@ -4983,6 +5045,7 @@
 				70D1EB4E1EF1342B0088C0FF /* ItemRichTextController.swift in Sources */,
 				70D1EA201EF0AADF0088C0FF /* CourseDate.swift in Sources */,
 				5035850C1F3B06E7002A666C /* String+ascii.swift in Sources */,
+				501F9481200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				50EFACC81FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				70D1EA4B1EF0AB130088C0FF /* PlatformEvent.swift in Sources */,
 				70D1EAC61EF0AC130088C0FF /* QuizHelper.swift in Sources */,
@@ -5145,6 +5208,7 @@
 				70D1EA2D1EF0AAEE0088C0FF /* CourseSection.swift in Sources */,
 				70F4563A1F01296000A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EAC01EF0AC0A0088C0FF /* AnnouncementHelper.swift in Sources */,
+				501F9482200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70D1EA791EF0AB4B0088C0FF /* TrackingEventVerb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5187,6 +5251,7 @@
 				ABCE24301E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				243CE4961D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
+				501F9477200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				50DD35151FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */,
@@ -5338,6 +5403,7 @@
 				505398901F72A9FD00A87DC8 /* NotificationKeys.swift in Sources */,
 				ABA0F0E71DF8CE7E0001D88D /* xikolo.xcdatamodeld in Sources */,
 				ABA0F0721DF8CDB80001D88D /* Announcement.swift in Sources */,
+				501F947D200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				ABA0F0DF1DF8CE6F0001D88D /* TrackingHelper.swift in Sources */,
 				50DD35171FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				ABA0F0EA1DF8CE940001D88D /* AbstractCourseListViewController.swift in Sources */,
@@ -5550,6 +5616,7 @@
 				ABA0F08E1DF8CDDF0001D88D /* RichText.swift in Sources */,
 				ABA0F0371DF8CD0E0001D88D /* CollectionType+dict.swift in Sources */,
 				AB1FB2841E0871D200BB3D23 /* CourseDateHelper.swift in Sources */,
+				501F947E200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				ABA0F1111DF8CF610001D88D /* ItemQuizIntroductionController.swift in Sources */,
 				50B15BE81FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				ABA0F1221DF8CF9A0001D88D /* ReplaceSegue.swift in Sources */,
@@ -5590,6 +5657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				501F947F200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				504C5A781F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				ABA0F04C1DF8CD7D0001D88D /* Course.swift in Sources */,
 				50F57DF81FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,

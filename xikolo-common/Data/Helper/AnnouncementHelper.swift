@@ -14,7 +14,8 @@ struct AnnouncementHelper {
 
     static func syncAllAnnouncements() -> Future<[NSManagedObjectID], XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
-        let query = MultipleResourcesQuery(type: Announcement.self)
+        var query = MultipleResourcesQuery(type: Announcement.self)
+        query.addFilter(forKey: "global", withValue: "true")
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete {_ in
             self.updateUnreadAnnouncementsBadge()
         }

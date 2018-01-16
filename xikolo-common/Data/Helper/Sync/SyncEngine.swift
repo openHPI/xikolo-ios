@@ -355,11 +355,7 @@ struct SyncEngine {
             }
         }
 
-        return promise.future.onSuccess { _ in
-            print("Verbose: Successfully merged resources of type: \(Resource.type)")
-        }.onFailure { error in
-            print("Error: Failed to sync resources of type: \(Resource.type) ==> \(error)")
-        }
+        return promise.future
     }
 
     static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable {
@@ -393,11 +389,7 @@ struct SyncEngine {
             }
         }
 
-        return promise.future.onSuccess { _ in
-            print("Verbose: Successfully merged resource of type: \(Resource.type)")
-        }.onFailure { error in
-            print("Error: Failed to sync resource of type: \(Resource.type) ==> \(error)")
-        }
+        return promise.future
     }
 
     // MARK: - saving
@@ -409,11 +401,7 @@ struct SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.onSuccess { _ in
-            print("Verbose: Successfully saved resource of type: \(resourceType)")
-        }.onFailure { error in
-            print("Error: Failed to save resource of type: \(resourceType) ==> \(error)")
-        }.asVoid()
+        return networkRequest.asVoid()
     }
 
     @discardableResult static func saveResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
@@ -431,11 +419,7 @@ struct SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.onSuccess { _ in
-            print("Verbose: Successfully saved resource of type: \(resourceType)")
-        }.onFailure { error in
-            print("Error: Failed to save resource of type: \(resourceType) ==> \(error)")
-        }.asVoid()
+        return networkRequest.asVoid()
     }
 
     // MARK: - deleting
@@ -447,11 +431,7 @@ struct SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.onSuccess { _ in
-            print("Verbose: Successfully deleted resource of type: \(resourceType)")
-        }.onFailure { error in
-            print("Error: Failed to delete resource: \(resource) ==> \(error)")
-        }.asVoid()
+        return networkRequest.asVoid()
     }
 
     static func findExistingResource<Resource>(withId objectId: String,

@@ -87,7 +87,7 @@ extension SyncHelper {
             } else if statusCode == 406 {
                  tabBarController.updateStatus(.expired)
             } else if statusCode == 503 {
-                tabBarController.updateStatus(.maintainance)
+                tabBarController.updateStatus(.maintenance)
             }
         }
     }

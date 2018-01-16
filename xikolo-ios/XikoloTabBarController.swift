@@ -18,7 +18,7 @@ class XikoloTabBarController: UITabBarController {
 
     enum Status: Equatable {
         case standard
-        case maintainance
+        case maintenance
         case deprecated(expiresOn: Date)
         case expired
 
@@ -33,7 +33,7 @@ class XikoloTabBarController: UITabBarController {
         static func ==(lhs: Status, rhs: Status) -> Bool {
             switch (lhs, rhs) {
             case (.standard, .standard): return true
-            case (.maintainance, .maintainance): return true
+            case (.maintenance, .maintenance): return true
             case let (.deprecated(l), .deprecated(r)): return l == r
             case (.expired, .expired): return true
             default: return false
@@ -44,9 +44,9 @@ class XikoloTabBarController: UITabBarController {
             switch self {
             case .standard:
                 return Configuration(backgroundColor: .white, textColor: .clear, message: nil)
-            case .maintainance:
+            case .maintenance:
                 let format = NSLocalizedString("app-state.maintenance.server maintenance on %@",
-                                               comment: "App state message for server maintainance")
+                                               comment: "App state message for server maintenance")
                 let message = String.localizedStringWithFormat(format, UIApplication.appName)
                 return Configuration(backgroundColor: Brand.windowTintColor, textColor: .white, message: message)
             case .deprecated(expiresOn: let expirationDate):
@@ -120,10 +120,10 @@ class XikoloTabBarController: UITabBarController {
         // allow only some status changes
         switch (self.status, status) {
         case (.standard, _): fallthrough
-        case (.deprecated, .maintainance): fallthrough
+        case (.deprecated, .maintenance): fallthrough
         case (.deprecated, .expired): fallthrough
-        case (.maintainance, .standard): fallthrough
-        case (.maintainance, .expired): break
+        case (.maintenance, .standard): fallthrough
+        case (.maintenance, .expired): break
         default: return
         }
 

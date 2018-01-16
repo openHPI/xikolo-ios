@@ -22,10 +22,6 @@ class XikoloTabBarController: UITabBarController {
         case deprecated(expiresOn: Date)
         case expired
 
-        var values: [Status] {
-            return [.standard, .maintainance, .deprecated(expiresOn: Date()), .expired]
-        }
-
         private static let dateFormatter: DateFormatter = {
             var formatter = DateFormatter()
             formatter.dateStyle = .medium

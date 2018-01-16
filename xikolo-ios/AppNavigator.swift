@@ -37,7 +37,7 @@ struct AppNavigator {
 
         guard url.pathComponents.count > 1 else {
             print("Invalid url for user activity")
-            return false
+            return true
         }
 
 

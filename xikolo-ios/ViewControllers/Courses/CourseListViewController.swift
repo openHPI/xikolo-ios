@@ -12,6 +12,15 @@ import CoreData
 
 class CourseListViewController : AbstractCourseListViewController {
 
+    @available(iOS, obsoleted: 11.0)
+    private var searchController: UISearchController?
+
+    @available(iOS, obsoleted: 11.0)
+    private var statusBarBackground: UIView?
+
+    @available(iOS, obsoleted: 11.0)
+    private var isFirstTimeAppearance = true
+
     enum CourseDisplayMode {
         case enrolledOnly
         case all
@@ -44,15 +53,36 @@ class CourseListViewController : AbstractCourseListViewController {
 
         super.viewDidLoad()
 
-        // setup pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.collectionView?.refreshControl = refreshControl
+        // setup search controller
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        self.definesPresentationContext = true
+
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = searchController
+            self.collectionView?.preservesSuperviewLayoutMargins = true
+        } else {
+            searchController.searchBar.searchBarStyle = .minimal
+            searchController.searchBar.isTranslucent = false
+            searchController.searchBar.backgroundColor = .white
+            self.collectionView?.addSubview(searchController.searchBar)
+            self.searchController = searchController
+        }
+
+        self.addPullToRefresh()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateAfterLoginStateChange),
                                                name: NotificationKeys.loginStateChangedKey,
                                                object: nil)
+    }
+
+    private func addPullToRefresh() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.collectionView?.refreshControl = refreshControl
     }
 
     @objc func updateAfterLoginStateChange() {
@@ -90,11 +120,32 @@ class CourseListViewController : AbstractCourseListViewController {
             case "ShowCourseContent"?:
                 let vc = segue.destination.require(toHaveType: CourseDecisionViewController.self)
                 let cell = (sender as? CourseCell).require(hint: "Sender must be CourseCell")
-                let indexPath = collectionView!.indexPath(for: cell)
-                let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath!)!
-                vc.course = controller.object(at: dataIndexPath)
+                let indexPath = collectionView!.indexPath(for: cell)!
+                vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
             default:
                 break
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 11.0, *) {
+            // nothing to do here
+        } else {
+            if self.isFirstTimeAppearance {
+                let contentOffset = CGPoint(x: 0, y: self.searchController?.searchBar.bounds.height ?? 0)
+                self.collectionView?.setContentOffset(contentOffset, animated: animated)
+                self.isFirstTimeAppearance = false
+            }
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let xikoloNavigationController = self.navigationController as? XikoloNavigationController {
+            xikoloNavigationController.fixShadowImage()
         }
     }
 
@@ -103,9 +154,11 @@ class CourseListViewController : AbstractCourseListViewController {
 extension CourseListViewController: CourseListLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-        let (controller, dataIndexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
-        let course = controller.object(at: dataIndexPath)
+        if self.resultsControllerDelegateImplementation.isSearching && !self.resultsControllerDelegateImplementation.hasSearchResults {
+            return 0.0
+        }
 
+        let course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
         let imageHeight = boundingWidth / 2
 
         let boundingSize = CGSize(width: boundingWidth, height: CGFloat.infinity)
@@ -139,4 +192,64 @@ extension CourseListViewController: CourseListLayoutDelegate {
 
         return height
     }
+
+    func topInset() -> CGFloat {
+        if #available(iOS 11.0, *) {
+            return 0
+        } else {
+            return self.searchController?.searchBar.bounds.height ?? 0
+        }
+    }
+
+}
+
+extension CourseListViewController : UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        let scrollOffset: CGPoint
+        if #available(iOS 11.0, *) {
+            scrollOffset = CGPoint(x: 0, y: (self.collectionView?.safeAreaInsets.top ?? 0) * -1.0)
+        } else {
+            scrollOffset = CGPoint(x: 0, y: self.topLayoutGuide.length * -1.0)
+        }
+        self.collectionView?.setContentOffset(scrollOffset, animated: true)
+
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {
+            self.resultsControllerDelegateImplementation.resetSearch()
+            return
+        }
+
+        self.resultsControllerDelegateImplementation.search(withText: searchText)
+    }
+
+}
+
+extension CourseListViewController : UISearchControllerDelegate {
+
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.collectionView?.refreshControl = nil
+
+        if #available(iOS 11.0, *) {
+            // nothing to do here
+        } else {
+            // on iOS 10 the search bar's backgorund will not overlap with the status bar, so we need the cover the status bar manually
+            let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: UIApplication.shared.statusBarFrame.height)
+            let statusBarBackground = UIView(frame: frame)
+            statusBarBackground.backgroundColor = .white
+            self.view.addSubview(statusBarBackground)
+            statusBarBackground.autoresizingMask = [.flexibleWidth]
+            self.statusBarBackground = statusBarBackground
+        }
+    }
+
+    func didDismissSearchController(_ searchController: UISearchController) {
+        self.addPullToRefresh()
+
+        if #available(iOS 11.0, *) {
+            // nothing to do here
+        } else {
+            self.statusBarBackground?.removeFromSuperview()
+        }
+    }
+
 }

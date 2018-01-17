@@ -10,9 +10,9 @@ import Foundation
 
 final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
 
-    var confirmationOfParticipation: Bool
-    var recordOfAchievement: Bool
-    var certificate: Bool
+    var confirmationOfParticipation: URL?
+    var recordOfAchievement: URL?
+    var certificate: URL?
 
     required init(object: ResourceData) throws {
         self.confirmationOfParticipation = try object.value(for: "confirmation_of_participation")
@@ -21,9 +21,9 @@ final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
     }
 
     required init(coder decoder: NSCoder) {
-        self.confirmationOfParticipation = decoder.decodeBool(forKey: "confirmation_of_participation")
-        self.recordOfAchievement = decoder.decodeBool(forKey: "record_of_achievement")
-        self.certificate = decoder.decodeBool(forKey: "qualified_certificate")
+        self.confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as? URL
+        self.recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as? URL
+        self.certificate = decoder.decodeObject(forKey: "qualified_certificate") as? URL
     }
 
     func encode(with coder: NSCoder) {

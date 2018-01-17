@@ -27,9 +27,9 @@ extension AnnouncementHelper {
             return request
         }
 
-        static func courseAnnouncements(forCourseId courseId: String) -> NSFetchRequest<Announcement> {
+        static func announcements(forCourse course: Course) -> NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = AnnouncementHelper.FetchRequest.allAnnouncements
-            request.predicate = NSPredicate(format: "course.id = %@", courseId)
+            request.predicate = NSPredicate(format: "course = %@", course)
             return request
         }
 

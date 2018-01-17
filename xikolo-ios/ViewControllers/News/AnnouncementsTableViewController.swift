@@ -38,7 +38,7 @@ class AnnouncementsTableViewController : UITableViewController {
         var request: NSFetchRequest<Announcement>
 
         if let course = course {
-            request = AnnouncementHelper.FetchRequest.courseAnnouncements(forCourseId: course.id)
+            request = AnnouncementHelper.FetchRequest.announcements(forCourse: course)
         } else {
             request = AnnouncementHelper.FetchRequest.allAnnouncements
         }

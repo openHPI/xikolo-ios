@@ -16,7 +16,7 @@ class XikoloTabBarController: UITabBarController {
         let message: String?
     }
 
-    enum Status: Equatable {
+    enum State: Equatable {
         case standard
         case maintenance
         case deprecated(expiresOn: Date)
@@ -30,7 +30,7 @@ class XikoloTabBarController: UITabBarController {
             return formatter
         }()
 
-        static func ==(lhs: Status, rhs: Status) -> Bool {
+        static func ==(lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
             case (.standard, .standard): return true
             case (.maintenance, .maintenance): return true
@@ -50,7 +50,7 @@ class XikoloTabBarController: UITabBarController {
                 let message = String.localizedStringWithFormat(format, UIApplication.appName)
                 return Configuration(backgroundColor: Brand.windowTintColor, textColor: .white, message: message)
             case .deprecated(expiresOn: let expirationDate):
-                let formattedExpirationDate = Status.dateFormatter.string(from: expirationDate)
+                let formattedExpirationDate = State.dateFormatter.string(from: expirationDate)
                 let format = NSLocalizedString("app-state.api-deprecated.please update the %@ app before %@",
                                                comment: "App state message for deprecated API version")
                 let message = String.localizedStringWithFormat(format, UIApplication.appName, formattedExpirationDate)
@@ -70,7 +70,7 @@ class XikoloTabBarController: UITabBarController {
     private var messageView = UIView()
     private var messageLabel = UILabel()
 
-    private(set) var status: Status = .standard
+    private(set) var state: State = .standard
 
     override func viewDidLoad() {
         self.messageLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: XikoloTabBarController.messageViewHeight)
@@ -90,35 +90,14 @@ class XikoloTabBarController: UITabBarController {
         // Make sure we can correctly determine the height of tab bar items
         self.tabBar.layoutSubviews()
 
-        let config = self.status.configuration
-        self.messageView.backgroundColor = config.backgroundColor
-        self.messageLabel.textColor = config.textColor
-        self.messageLabel.text = config.message
-
-        let tabBarHeight = self.tabBar.frame.height
-        let tabBarItemHeight = self.tabBarItemHeight() ?? tabBarHeight
-        let tabBarOffset = self.status == .standard ? 0 : XikoloTabBarController.messageViewHeight
-
-        var newTabBarFrame = self.tabBar.frame
-        newTabBarFrame.origin.y = self.view.frame.height - tabBarHeight - tabBarOffset
-
-        var newMessageViewFrame = self.messageView.frame
-        newMessageViewFrame.origin.y = self.status == .standard ? tabBarHeight : tabBarItemHeight
-        newMessageViewFrame.size.height = self.status == .standard ? 0 : tabBarHeight - tabBarItemHeight + tabBarOffset
-
-        self.messageView.frame = newMessageViewFrame
-        self.tabBar.frame = newTabBarFrame
-
-        if #available(iOS 11.0, *) {
-            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: tabBarOffset, right: 0)
-        }
+        self.updateMessageViewAppearance()
     }
 
-    func updateStatus(_ status: Status) {
-        guard self.status != status else { return }
+    func updateState(_ state: State) {
+        guard self.state != state else { return }
 
         // allow only some status changes
-        switch (self.status, status) {
+        switch (self.state, state) {
         case (.standard, _): fallthrough
         case (.deprecated, .maintenance): fallthrough
         case (.deprecated, .expired): fallthrough
@@ -127,12 +106,36 @@ class XikoloTabBarController: UITabBarController {
         default: return
         }
 
-        print("Verbose: update app state from \(self.status) to \(status)")
-        let animationDuration: TimeInterval = self.status == .standard ? 0 : 0.25
+        print("Verbose: update app state from \(self.state) to \(state)")
+        let animationDuration: TimeInterval = self.state == .standard ? 0 : 0.25
         UIView.animate(withDuration: animationDuration) {
-            self.status = status
-            self.view.layoutSubviews()
-            self.viewDidLayoutSubviews()
+            self.state = state
+            self.updateMessageViewAppearance()
+        }
+    }
+
+    private func updateMessageViewAppearance() {
+        let config = self.state.configuration
+        self.messageView.backgroundColor = config.backgroundColor
+        self.messageLabel.textColor = config.textColor
+        self.messageLabel.text = config.message
+
+        let tabBarHeight = self.tabBar.frame.height
+        let tabBarItemHeight = self.tabBarItemHeight() ?? tabBarHeight
+        let tabBarOffset = self.state == .standard ? 0 : XikoloTabBarController.messageViewHeight
+
+        var newTabBarFrame = self.tabBar.frame
+        newTabBarFrame.origin.y = self.view.frame.height - tabBarHeight - tabBarOffset
+
+        var newMessageViewFrame = self.messageView.frame
+        newMessageViewFrame.origin.y = self.state == .standard ? tabBarHeight : tabBarItemHeight
+        newMessageViewFrame.size.height = self.state == .standard ? 0 : tabBarHeight - tabBarItemHeight + tabBarOffset
+
+        self.messageView.frame = newMessageViewFrame
+        self.tabBar.frame = newTabBarFrame
+
+        if #available(iOS 11.0, *) {
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: tabBarOffset, right: 0)
         }
     }
 

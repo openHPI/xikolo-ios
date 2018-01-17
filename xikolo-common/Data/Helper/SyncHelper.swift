@@ -85,9 +85,9 @@ extension SyncHelper {
             if 200 ... 299 ~= statusCode {
                 self.checkForAPIDeprecation(headers)
             } else if statusCode == 406 {
-                 tabBarController.updateStatus(.expired)
+                 tabBarController.updateState(.expired)
             } else if statusCode == 503 {
-                tabBarController.updateStatus(.maintenance)
+                tabBarController.updateState(.maintenance)
             }
         }
     }
@@ -99,11 +99,11 @@ extension SyncHelper {
             guard let expirationDateString = headers[Routes.HTTP_API_Version_Expiration_Date_Header] as? String,
                   let expirationDate = SyncHelper.dateFormatter.date(from: expirationDateString),
                   expirationDate <= Date().subtractingTimeInterval(14.days) else {
-                tabBarController.updateStatus(.standard)
+                tabBarController.updateState(.standard)
                 return
             }
 
-            tabBarController.updateStatus(.deprecated(expiresOn: expirationDate))
+            tabBarController.updateState(.deprecated(expiresOn: expirationDate))
         }
     }
 

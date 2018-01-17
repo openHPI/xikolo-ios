@@ -52,6 +52,7 @@ class VideoViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.toggleControlBars(animated)
+        self.toggleOfflineState()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -93,6 +94,10 @@ class VideoViewController : UIViewController {
 
         self.player = player
         self.videoContainer.layoutIfNeeded()
+    }
+
+    private func toggleOfflineState() {
+        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
     }
 
     private func updateView(for courseItem: CourseItem) {

@@ -95,7 +95,7 @@ extension Pullable where Self: NSManagedObject {
             if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                 self[keyPath: keyPath] = fetchedResource
             } else {
-                print("Info: relationship update saved (\(Self.type) --> \(A.type)?)")
+                log.info("relationship update saved (\(Self.type) --> \(A.type)?)")
             }
         }
     }
@@ -131,7 +131,7 @@ extension Pullable where Self: NSManagedObject {
                         if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                             self[keyPath: keyPath].insert(fetchedResource)
                         } else {
-                            print("Info: relationship update saved (\(Self.type) --> Set<\(A.type)>)")
+                            log.info("relationship update saved (\(Self.type) --> Set<\(A.type)>)")
                         }
                     }
                 }

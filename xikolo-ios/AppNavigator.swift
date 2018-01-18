@@ -52,7 +52,7 @@ struct AppNavigator {
                         couldFindCourse = true
                         self.show(course: course, on: tabBarController)
                     case .failure(let error):
-                        print("Info: Could not find course in local database: \(error)")
+                        log.info("Could not find course in local database: \(error)")
                     }
                 }
 

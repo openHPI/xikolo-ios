@@ -104,7 +104,7 @@ extension AppDelegate : UITabBarControllerDelegate {
         }
 
         guard let navigationController = viewController as? UINavigationController else {
-            print("Info: Navigation controller not found")
+            log.info("Navigation controller not found")
             return true
         }
 
@@ -115,12 +115,12 @@ extension AppDelegate : UITabBarControllerDelegate {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
 
         guard let loginNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            print("Error: Initial view controller of Login stroyboard in not of type UINavigationController")
+            log.error("Initial view controller of Login stroyboard in not of type UINavigationController")
             return false
         }
 
         guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            print("Error: Could not find LoginViewController")
+            log.error("Could not find LoginViewController")
             return false
         }
 

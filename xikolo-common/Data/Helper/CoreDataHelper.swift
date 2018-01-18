@@ -111,12 +111,12 @@ extension NSManagedObjectContext {
 
     func existingTypedObject<T>(with id: NSManagedObjectID) -> T? where T: NSManagedObject {
         guard let managedObject = try? self.existingObject(with: id) else {
-            print("Info: NSManagedObject could not be retrieved by id (\(id))")
+            log.info("NSManagedObject could not be retrieved by id (\(id))")
             return nil
         }
 
         guard let object = managedObject as? T else {
-            print("Error: Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
+            log.error("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
             return nil
         }
 

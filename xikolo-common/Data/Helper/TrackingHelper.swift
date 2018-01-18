@@ -130,7 +130,7 @@ class TrackingHelper {
                                       trackingContext: trackingContext as [String: AnyObject],
                                       inContext: context)
                 promise.complete(context.saveWithResult())
-                print("Verbose: Created tracking event '\(trackingVerb.type)'")
+                log.verbose("Created tracking event '\(trackingVerb.type)'")
             }
             return promise.future
         #endif

@@ -8,13 +8,6 @@
 
 import CoreData
 import UIKit
-import XCGLogger
-
-let log: XCGLogger = {
-    let log = XCGLogger.default
-    log.setup(level: .verbose, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil)
-    return log
-}()
 
 class AbstractAppDelegate : UIResponder, UIApplicationDelegate {
 

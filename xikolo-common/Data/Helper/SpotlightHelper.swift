@@ -62,7 +62,7 @@ class SpotlightHelper {
         activity.webpageURL = url
         activity.isEligibleForSearch = true
         activity.isEligibleForHandoff = true
-        activity.isEligibleForPublicIndexing = !(course.hidden ?? true)
+        activity.isEligibleForPublicIndexing = !course.hidden
         activity.userInfo = ["course_id": course.id]
         activity.becomeCurrent()
     }

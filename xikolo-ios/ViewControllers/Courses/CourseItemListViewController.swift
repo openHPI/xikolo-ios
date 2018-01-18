@@ -153,7 +153,7 @@ class CourseItemListViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let courseItem = sender as? CourseItem else {
-            print("Sender is not a course item")
+            log.debug("Sender is not a course item")
             super.prepare(for: segue, sender: sender)
             return
         }

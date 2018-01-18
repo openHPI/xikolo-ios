@@ -54,13 +54,13 @@ class CoreDataHelper {
                 let result = try privateManagedObjectContext.execute(deleteRequest) as? NSBatchDeleteResult
                 guard let objectIDArray = result?.result as? [NSManagedObjectID] else { return }
                 let changes = [NSDeletedObjectsKey : objectIDArray]
-                print("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
+                log.verbose("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
                 try privateManagedObjectContext.save()
 
                 promise.success(())
             } catch {
-                print("Failed to bulk delete all enities of \(entityName) - \(error)")
+                log.error("Failed to bulk delete all enities of \(entityName) - \(error)")
                 promise.failure(.coreData(error))
             }
         }

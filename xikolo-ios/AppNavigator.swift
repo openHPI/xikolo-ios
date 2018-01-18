@@ -26,17 +26,17 @@ struct AppNavigator {
         }
 
         guard let url = activityURL else {
-            print("Failed to load url for user activity")
+            log.error("Failed to load url for user activity")
             return false
         }
 
         guard let tabBarController = tabBarController else {
-            print("UITabBarController could not be found")
+            log.error("UITabBarController could not be found")
             return false
         }
 
         guard url.pathComponents.count > 1 else {
-            print("Invalid url for user activity")
+            log.error("Invalid url for user activity")
             return true
         }
 
@@ -78,7 +78,7 @@ struct AppNavigator {
 
     static func show(course: Course, on tabBarController: UITabBarController?) {
         guard let courseNavigationController = tabBarController?.viewControllers?[safe: 1] as? UINavigationController else {
-            print("CourseNavigationController could not be found")
+            log.error("CourseNavigationController could not be found")
             return
         }
 
@@ -87,7 +87,7 @@ struct AppNavigator {
         let vc = UIStoryboard(name: "TabCourses", bundle: nil).instantiateViewController(withIdentifier: "CourseDecisionViewController")
 
         guard let courseDecisionViewController = vc as? CourseDecisionViewController else {
-            print("CourseDecisionViewController could not be found")
+            log.error("CourseDecisionViewController could not be found")
             return
         }
 

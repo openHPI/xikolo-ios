@@ -13,7 +13,7 @@ class SpotlightHelper {
 
     static func addSearchIndex(for course: Course) {
         guard let url = course.url else {
-            print("Failed to add search index for course (\(course.title ?? "")): no course url")
+            log.error("Failed to add search index for course (\(course.title ?? "")): no course url")
             return
         }
 
@@ -28,31 +28,31 @@ class SpotlightHelper {
         let item = CSSearchableItem(uniqueIdentifier: url.absoluteString, domainIdentifier: self.getReverseDomain(appendix:"course"), attributeSet: attributeSet)
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if let error = error {
-                print(error.localizedDescription)
+                log.error(error.localizedDescription)
             } else {
-                print("Item indexed.")
+                log.verbose("Item indexed.")
             }
         }
     }
 
     static func removeSearchIndex(for course: Course) {
         guard let url = course.url else {
-            print("Failed to remove search index for course (\(course.title ?? "")): no course url")
+            log.error("Failed to remove search index for course (\(course.title ?? "")): no course url")
             return
         }
 
         CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [url.absoluteString]) { error in
             if let error = error {
-                print(error.localizedDescription)
+                log.error(error.localizedDescription)
             } else {
-                print("Item deleted.")
+                log.verbose("Item deleted.")
             }
         }
     }
 
     static func setUserActivity(for course: Course) {
         guard let url = course.url else {
-            print("Failed to set search user activity for course (\(course.title ?? "")): no course url")
+            log.error("Failed to set search user activity for course (\(course.title ?? "")): no course url")
             return
         }
 

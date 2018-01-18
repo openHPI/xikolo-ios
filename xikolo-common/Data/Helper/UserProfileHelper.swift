@@ -139,7 +139,7 @@ extension UserProfileHelper {
         do {
             try self.keychain.removeAll()
         } catch {
-            print("Failed to clear keychain - \(error)")
+            log.error("Failed to clear keychain - \(error)")
         }
     }
 

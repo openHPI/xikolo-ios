@@ -87,7 +87,7 @@ class AppDelegate : AbstractAppDelegate {
 
     var tabBarController: UITabBarController? {
         guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            print("UITabBarController could not be found")
+            log.warning("UITabBarController could not be found")
             return nil
         }
 

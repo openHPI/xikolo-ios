@@ -119,7 +119,7 @@ class TrackingHelper {
 
 
         #if DEBUG
-            print("DEBUG: Would have created tracking event '\(trackingVerb.type)'")
+            log.debug("Would have created tracking event '\(trackingVerb.type)'")
             return Future(value: ())
         #else
             let promise = Promise<Void, XikoloError>()

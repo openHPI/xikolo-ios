@@ -47,12 +47,15 @@ class VideoViewController : UIViewController {
                 }
             }
         }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged),
+                                               name: NotificationKeys.reachabilityChanged,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.toggleControlBars(animated)
-        self.toggleOfflineState()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -96,7 +99,7 @@ class VideoViewController : UIViewController {
         self.videoContainer.layoutIfNeeded()
     }
 
-    private func toggleOfflineState() {
+    @objc func reachabilityChanged() {
         self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
     }
 
@@ -149,7 +152,11 @@ class VideoViewController : UIViewController {
     }
 
     @IBAction func openSlides(_ sender: UIButton) {
-        performSegue(withIdentifier: "ShowSlides", sender: self.video)
+        if ReachabilityHelper.reachability.isReachable {
+            performSegue(withIdentifier: "ShowSlides", sender: self.video)
+        } else {
+            print("Info: Tapped open slides button without internet, which shouldn't be possible")
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

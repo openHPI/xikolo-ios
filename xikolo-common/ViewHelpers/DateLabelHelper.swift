@@ -11,10 +11,7 @@ import Foundation
 class DateLabelHelper {
 
     fileprivate static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale.current
-        dateFormatter.calendar = Calendar.current
-        dateFormatter.timeZone = TimeZone.current
+        let dateFormatter = LocalizedDateFormatterFactory.newDateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         return dateFormatter

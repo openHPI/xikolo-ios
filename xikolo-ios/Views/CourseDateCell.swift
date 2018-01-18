@@ -18,14 +18,14 @@ class CourseDateCell : UITableViewCell {
     @IBOutlet var dateHighlightView: UIView!
 
     static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
+        let dateFormatter = LocalizedDateFormatterFactory.newDateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         return dateFormatter
     }()
 
     static let timeFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
+        let dateFormatter = LocalizedDateFormatterFactory.newDateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         return dateFormatter

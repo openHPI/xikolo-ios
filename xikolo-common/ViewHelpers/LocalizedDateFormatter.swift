@@ -9,7 +9,7 @@
 import Foundation
 
 class LocalizedDateFormatterFactory {
-    class func newDateFormatter(with locale: Locale = Locale.current, and calendar: Calendar = Calendar.current, and timeZone: TimeZone = TimeZone.current) -> DateFormatter {
+    class func newDateFormatter(with locale: Locale = Locale.autoupdatingCurrent, and calendar: Calendar = Calendar.autoupdatingCurrent, and timeZone: TimeZone = TimeZone.autoupdatingCurrent) -> DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = locale
         dateFormatter.calendar = calendar

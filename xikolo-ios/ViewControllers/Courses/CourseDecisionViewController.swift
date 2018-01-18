@@ -8,18 +8,16 @@
 
 import UIKit
 
-
 class CourseDecisionViewController: UIViewController {
 
     enum CourseContent : Int {
         case learnings = 0
         case discussions = 1
-        case announcements = 2
-        case platformEvents = 3
-        case courseDetails = 4
+        case courseDetails = 2
+        case announcements = 3
+        case platformEvents = 4
     }
 
-  
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var dropdownIcon: UIImageView!

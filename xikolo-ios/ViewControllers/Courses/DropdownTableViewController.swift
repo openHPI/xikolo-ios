@@ -19,7 +19,7 @@ class DropdownTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row != 4 {
+        if indexPath.row != 2 {
             cell.enable(course.hasEnrollment && course.accessible)
         }
     }

@@ -159,5 +159,9 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
                                             comment: "description for empty course dates list if logged in")
         return NSAttributedString(string: description)
     }
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.refresh()
+    }
     
 }

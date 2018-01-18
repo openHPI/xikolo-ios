@@ -108,4 +108,8 @@ extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyData
         return NSAttributedString(string: description)
     }
 
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.refresh()
+    }
+
 }

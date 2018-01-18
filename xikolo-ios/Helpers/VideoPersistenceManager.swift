@@ -206,9 +206,11 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
                 userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
             case (NSURLErrorDomain, NSURLErrorUnknown):
+                log.severe("Downloading HLS streams is not supported in the simulator.")
                 fatalError("Downloading HLS streams is not supported in the simulator.")
                 // TODO better catch
             default:
+                log.severe("An unexpected error occured \(error.domain)")
                 fatalError("An unexpected error occured \(error.domain)")
 
             }

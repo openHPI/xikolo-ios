@@ -43,6 +43,7 @@ struct Routes {
         urlComponents?.queryItems = queryItems
 
         guard let url = urlComponents?.url else {
+            log.severe("Failed to create url for password reset")
             fatalError("Failed to create url for password reset")
         }
 

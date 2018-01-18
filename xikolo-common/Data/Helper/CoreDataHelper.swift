@@ -17,6 +17,7 @@ class CoreDataHelper {
         container.loadPersistentStores { (storeDescription, error) in
             // TODO: check for space etc
             if let error = error as NSError? {
+                log.severe("Unresolved error \(error), \(error.userInfo)")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
             container.viewContext.automaticallyMergesChangesFromParent = true
@@ -103,6 +104,7 @@ extension NSManagedObjectContext {
     func typedObject<T>(with id: NSManagedObjectID) -> T where T: NSManagedObject {
         let managedObject = self.object(with: id)
         guard let object = managedObject as? T else {
+            log.severe("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
             fatalError("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
         }
 

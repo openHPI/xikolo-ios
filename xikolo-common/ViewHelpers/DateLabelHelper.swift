@@ -11,7 +11,7 @@ import Foundation
 class DateLabelHelper {
 
     fileprivate static let dateFormatter: DateFormatter = {
-        let dateFormatter = LocalizedDateFormatterFactory.newDateFormatter()
+        let dateFormatter = DateFormatter.localizedFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         return dateFormatter

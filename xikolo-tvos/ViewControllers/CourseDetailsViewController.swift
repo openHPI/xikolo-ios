@@ -58,7 +58,7 @@ class CourseDetailsViewController : UIViewController {
         backgroundImageHelper.imageView.sd_setImage(with: course.image_url)
         abstractView.text = course.abstract
 
-        let dateFormatter = LocalizedDateFormatterFactory.newDateFormatter()
+        let dateFormatter = DateFormatter.localizedFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
 

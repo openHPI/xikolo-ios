@@ -54,7 +54,7 @@ class AnnouncementViewController : UIViewController {
         self.titleLabel.text = self.announcement.title
 
         if let date = self.announcement.publishedAt {
-            let dateFormatter = LocalizedDateFormatterFactory.newDateFormatter()
+            let dateFormatter = DateFormatter.localizedFormatter()
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
             self.dateLabel.text = dateFormatter.string(from: date)

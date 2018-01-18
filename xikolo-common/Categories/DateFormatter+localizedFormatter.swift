@@ -8,8 +8,9 @@
 
 import Foundation
 
-class LocalizedDateFormatterFactory {
-    class func newDateFormatter(with locale: Locale = Locale.autoupdatingCurrent, and calendar: Calendar = Calendar.autoupdatingCurrent, and timeZone: TimeZone = TimeZone.autoupdatingCurrent) -> DateFormatter {
+extension DateFormatter {
+    
+    static func localizedFormatter(locale: Locale = Locale.autoupdatingCurrent, calendar: Calendar = Calendar.autoupdatingCurrent, timeZone: TimeZone = TimeZone.autoupdatingCurrent) -> DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = locale
         dateFormatter.calendar = calendar

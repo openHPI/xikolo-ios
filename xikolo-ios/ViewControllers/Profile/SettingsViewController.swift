@@ -34,8 +34,10 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var nameView: UILabel!
     @IBOutlet weak var emailView: UILabel!
 
-    @IBOutlet weak var versionView: UILabel!
-    @IBOutlet weak var buildView: UILabel!
+    @IBOutlet weak var copyrightLabel: UILabel!
+    @IBOutlet weak var poweredByLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var buildLabel: UILabel!
 
     var headerHeight: HeaderHeight = .noContent
     var user: User? {
@@ -72,9 +74,12 @@ class SettingsViewController: UITableViewController {
                                                     comment: "title for link to GitHub repo (includes application name)")
         self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
 
-        // set app version info
-        self.versionView.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion
-        self.buildView.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild
+        // set copyright and app version info
+        self.copyrightLabel.text = Brand.copyrightText
+        self.poweredByLabel.text = Brand.poweredByText
+        self.poweredByLabel.isHidden = Brand.poweredByText == nil
+        self.versionLabel.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion
+        self.buildLabel.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateUIAfterLoginStateChanged),

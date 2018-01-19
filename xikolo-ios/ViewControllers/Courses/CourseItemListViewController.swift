@@ -232,6 +232,10 @@ extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetD
         return NSAttributedString(string: description)
     }
 
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.refresh()
+    }
+
 }
 
 extension CourseItemListViewController: VideoCourseItemCellDelegate {

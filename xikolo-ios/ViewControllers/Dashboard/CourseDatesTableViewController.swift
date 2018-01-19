@@ -27,10 +27,6 @@ class CourseDatesTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .automatic
-        }
-
         // register custom section header view
         let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
         self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
@@ -162,6 +158,10 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
         let description = NSLocalizedString("empty-view.course-dates.no-dates.description",
                                             comment: "description for empty course dates list if logged in")
         return NSAttributedString(string: description)
+    }
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.refresh()
     }
     
 }

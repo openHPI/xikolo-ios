@@ -373,13 +373,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3Z-HX-RBa">
-                                                    <rect key="frame" x="52" y="11" width="75" height="21"/>
+                                                    <rect key="frame" x="60" y="11" width="75" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-learnings-28" translatesAutoresizingMaskIntoConstraints="NO" id="Bgr-uP-r4G">
-                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="BOX-nM-0e4"/>
                                                         <constraint firstAttribute="width" constant="41" id="TdP-mJ-pEB"/>
@@ -415,13 +415,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discussions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOy-KB-LgV">
-                                                    <rect key="frame" x="52" y="11" width="92" height="21"/>
+                                                    <rect key="frame" x="60" y="11" width="92" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-discussions-28" translatesAutoresizingMaskIntoConstraints="NO" id="SfY-1e-rcg">
-                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="RAb-qo-kjk"/>
                                                         <constraint firstAttribute="width" constant="41" id="pgD-Fg-ftl"/>
@@ -449,63 +449,21 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7sZ-f7-LMK">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sZ-f7-LMK" id="Kw0-Nh-mDM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRo-CM-ssb">
-                                                    <rect key="frame" x="52" y="11" width="43" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-announcements-28" translatesAutoresizingMaskIntoConstraints="NO" id="UAv-8z-Nmm">
-                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="Ecu-UG-Sqv"/>
-                                                        <constraint firstAttribute="width" constant="41" id="KCC-VW-LSO"/>
-                                                        <constraint firstAttribute="width" constant="28" id="rqj-UV-YwK"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="KCC-VW-LSO"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="UAv-8z-Nmm" firstAttribute="leading" secondItem="Kw0-Nh-mDM" secondAttribute="leadingMargin" constant="8" id="BP4-jP-lAi"/>
-                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="centerY" secondItem="Kw0-Nh-mDM" secondAttribute="centerY" id="Csp-oU-3lZ"/>
-                                                <constraint firstItem="UAv-8z-Nmm" firstAttribute="centerY" secondItem="Kw0-Nh-mDM" secondAttribute="centerY" id="KAG-iH-tCr"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DRo-CM-ssb" secondAttribute="trailing" constant="16" id="aWh-6h-B8n"/>
-                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="leading" secondItem="Kw0-Nh-mDM" secondAttribute="leadingMargin" constant="7" id="dcB-jc-XbD"/>
-                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="leading" secondItem="UAv-8z-Nmm" secondAttribute="trailing" constant="8" symbolic="YES" id="uh7-DF-IWV"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="dcB-jc-XbD"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="abS-TX-nsl">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="abS-TX-nsl" id="DQp-JL-GFZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4C-3A-1GB">
-                                                    <rect key="frame" x="52" y="11" width="112" height="21"/>
+                                                    <rect key="frame" x="60" y="11" width="112" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-couse_details-28" translatesAutoresizingMaskIntoConstraints="NO" id="LW5-cv-1mO">
-                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="StU-h2-1q9"/>
                                                         <constraint firstAttribute="width" constant="41" id="gCZ-QE-lnb"/>
@@ -529,6 +487,48 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="fkt-l6-OXO"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7sZ-f7-LMK">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sZ-f7-LMK" id="Kw0-Nh-mDM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRo-CM-ssb">
+                                                    <rect key="frame" x="60" y="11" width="125" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-announcements-28" translatesAutoresizingMaskIntoConstraints="NO" id="UAv-8z-Nmm">
+                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="Ecu-UG-Sqv"/>
+                                                        <constraint firstAttribute="width" constant="41" id="KCC-VW-LSO"/>
+                                                        <constraint firstAttribute="width" constant="28" id="rqj-UV-YwK"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="KCC-VW-LSO"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="UAv-8z-Nmm" firstAttribute="leading" secondItem="Kw0-Nh-mDM" secondAttribute="leadingMargin" constant="8" id="BP4-jP-lAi"/>
+                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="centerY" secondItem="Kw0-Nh-mDM" secondAttribute="centerY" id="Csp-oU-3lZ"/>
+                                                <constraint firstItem="UAv-8z-Nmm" firstAttribute="centerY" secondItem="Kw0-Nh-mDM" secondAttribute="centerY" id="KAG-iH-tCr"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DRo-CM-ssb" secondAttribute="trailing" constant="16" id="aWh-6h-B8n"/>
+                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="leading" secondItem="Kw0-Nh-mDM" secondAttribute="leadingMargin" constant="7" id="dcB-jc-XbD"/>
+                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="leading" secondItem="UAv-8z-Nmm" secondAttribute="trailing" constant="8" symbolic="YES" id="uh7-DF-IWV"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dcB-jc-XbD"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

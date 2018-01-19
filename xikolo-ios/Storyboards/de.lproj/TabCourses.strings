@@ -13,3 +13,6 @@
 
 /* Class = "UINavigationItem"; title = "Courses"; ObjectID = "feQ-Xn-WIz"; */
 "feQ-Xn-WIz.title" = "Kurse";
+
+/* Class = "UILabel"; title = "News"; ObjectID = "DRo-CM-ssb"; */
+"DRo-CM-ssb.title" = "Neuigkeiten";

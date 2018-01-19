@@ -143,7 +143,6 @@ class VideoPlayerControlView: BMPlayerControlView {
         }
 
         UserDefaults.standard.set(self.playRate, forKey: UserDefaultsKeys.playbackRateKey)
-        UserDefaults.standard.synchronize()
 
         self.updatePlaybackRateButton()
         self.delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: self.playRate)

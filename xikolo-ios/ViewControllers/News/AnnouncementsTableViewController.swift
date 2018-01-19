@@ -25,10 +25,6 @@ class AnnouncementsTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .automatic
-        }
-
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -46,8 +42,10 @@ class AnnouncementsTableViewController : UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil))
-        resultsControllerDelegateImplementation.configuration = configuration
+
+        let configuration = AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil)
+        let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
+        resultsControllerDelegateImplementation.configuration = configurationWrapper
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -103,10 +101,6 @@ struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfigura
 
     var shouldShowCourseTitle: Bool
 
-    init(shouldShowCourseTitle: Bool) {
-        self.shouldShowCourseTitle = shouldShowCourseTitle
-    }
-
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Announcement>, indexPath: IndexPath) {
         let cell = cell.require(toHaveType: AnnouncementCell.self, hint: "AnnouncementsTabelViewController requires cells of type AnnouncementCell")
         let announcement = controller.object(at: indexPath)
@@ -125,6 +119,10 @@ extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyData
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let description = NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
         return NSAttributedString(string: description)
+    }
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.refresh()
     }
 
 }

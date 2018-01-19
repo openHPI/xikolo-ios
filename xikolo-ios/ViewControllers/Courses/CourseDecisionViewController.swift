@@ -41,7 +41,7 @@ class CourseDecisionViewController: UIViewController {
             self.navigationController?.popToRootViewController(animated: isVisible)
         }
     }
-  
+
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
 
     @IBAction func tapped(_ sender: Any) {
@@ -88,6 +88,13 @@ class CourseDecisionViewController: UIViewController {
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.discussions.title",
                                                comment: "title of discussions view of course view")
+
+        case .courseDetails:
+            let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController").require(toHaveType: CourseDetailViewController.self)
+            vc.course = course
+            changeToViewController(vc)
+            titleView.text = NSLocalizedString("course-content.view.course-details.title",
+                                               comment: "title of course details view of course view")
         case .announcements:
             let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle:nil)
             let vc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController").require(toHaveType: AnnouncementsTableViewController.self)
@@ -101,12 +108,6 @@ class CourseDecisionViewController: UIViewController {
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.platform-events.title",
                                                comment: "title of platform events view of course view")
-        case .courseDetails:
-            let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController").require(toHaveType: CourseDetailViewController.self)
-            vc.course = course
-            changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.course-details.title",
-                                               comment: "title of course details view of course view")
         }
         self.content = content
 

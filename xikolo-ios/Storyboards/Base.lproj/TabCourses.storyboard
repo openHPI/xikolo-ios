@@ -182,7 +182,7 @@
                             <outlet property="delegate" destination="uLl-5G-DMn" id="r9b-Z8-ClD"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Courses" largeTitleDisplayMode="never" id="feQ-Xn-WIz"/>
+                    <navigationItem key="navigationItem" title="Courses" id="feQ-Xn-WIz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -571,6 +571,48 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="fkt-l6-OXO"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7sZ-f7-LMK">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sZ-f7-LMK" id="Kw0-Nh-mDM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRo-CM-ssb">
+                                                    <rect key="frame" x="60" y="11" width="125" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-announcements-28" translatesAutoresizingMaskIntoConstraints="NO" id="UAv-8z-Nmm">
+                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="Ecu-UG-Sqv"/>
+                                                        <constraint firstAttribute="width" constant="41" id="KCC-VW-LSO"/>
+                                                        <constraint firstAttribute="width" constant="28" id="rqj-UV-YwK"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="KCC-VW-LSO"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="UAv-8z-Nmm" firstAttribute="leading" secondItem="Kw0-Nh-mDM" secondAttribute="leadingMargin" constant="8" id="BP4-jP-lAi"/>
+                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="centerY" secondItem="Kw0-Nh-mDM" secondAttribute="centerY" id="Csp-oU-3lZ"/>
+                                                <constraint firstItem="UAv-8z-Nmm" firstAttribute="centerY" secondItem="Kw0-Nh-mDM" secondAttribute="centerY" id="KAG-iH-tCr"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DRo-CM-ssb" secondAttribute="trailing" constant="16" id="aWh-6h-B8n"/>
+                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="leading" secondItem="Kw0-Nh-mDM" secondAttribute="leadingMargin" constant="7" id="dcB-jc-XbD"/>
+                                                <constraint firstItem="DRo-CM-ssb" firstAttribute="leading" secondItem="UAv-8z-Nmm" secondAttribute="trailing" constant="8" symbolic="YES" id="uh7-DF-IWV"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dcB-jc-XbD"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

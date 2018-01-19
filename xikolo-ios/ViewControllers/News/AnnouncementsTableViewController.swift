@@ -46,8 +46,9 @@ class AnnouncementsTableViewController : UITableViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil))
-        resultsControllerDelegateImplementation.configuration = configuration
+        let configuration = AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil)
+        let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
+        resultsControllerDelegateImplementation.configuration = configurationWrapper
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
 
@@ -102,10 +103,6 @@ extension AnnouncementsTableViewController { // TableViewDelegate
 struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfiguration {
 
     var shouldShowCourseTitle: Bool
-
-    init(shouldShowCourseTitle: Bool) {
-        self.shouldShowCourseTitle = shouldShowCourseTitle
-    }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Announcement>, indexPath: IndexPath) {
         let cell = cell.require(toHaveType: AnnouncementCell.self, hint: "AnnouncementsTabelViewController requires cells of type AnnouncementCell")

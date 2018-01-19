@@ -144,7 +144,7 @@
                             <outlet property="delegate" destination="TzN-ab-aeu" id="KOC-Ey-o3s"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="never" id="T9X-VC-shp"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="T9X-VC-shp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0XJ-Ct-Y4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -25,10 +25,6 @@ class AnnouncementsTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .automatic
-        }
-
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -122,6 +118,10 @@ extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyData
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let description = NSLocalizedString("empty-view.announcements.description", comment: "description for empty announcement list")
         return NSAttributedString(string: description)
+    }
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.refresh()
     }
 
 }

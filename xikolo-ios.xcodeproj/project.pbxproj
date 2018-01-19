@@ -532,6 +532,9 @@
 		501F9480200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
 		501F9481200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
 		501F9482200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
+		502F89B820109B510056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
+		502F89B920109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
+		502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		503585051F3AF6AA002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		503585061F3B06D8002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		503585071F3B06DD002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
@@ -1108,7 +1111,6 @@
 		70D1EB071EF0ACE90088C0FF /* CourseDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */; };
 		70D1EB081EF0ACEC0088C0FF /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
-		70D1EB0A1EF0AD000088C0FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */; };
 		70D1EB0B1EF0AD050088C0FF /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */; };
 		70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
@@ -1532,8 +1534,6 @@
 		ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */; };
 		ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */; };
 		ABF26F971E9637F000763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
-		ABF26FA41E963A0200763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F9C1E96383800763A39 /* LaunchScreen.storyboard */; };
-		ABF26FA61E963A1200763A39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26FA01E96384A00763A39 /* LaunchScreen.storyboard */; };
 		ABFCF7631E81EEC40043C7B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF75F1E81EEC40043C7B7 /* User.swift */; };
 		ABFCF7641E81EEC40043C7B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF75F1E81EEC40043C7B7 /* User.swift */; };
 		ABFCF7651E81EEC40043C7B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF75F1E81EEC40043C7B7 /* User.swift */; };
@@ -1838,7 +1838,6 @@
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/moocHOUSE/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		709C93581EF09C2C00F8F045 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/moocHOUSE/Info.plist; sourceTree = "<group>"; };
 		709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/moocHOUSE/xikolo-ios.entitlements"; sourceTree = "<group>"; };
-		709C935E1EF09C4700F8F045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Branding/moocHOUSE/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		709C93611EF09C8A00F8F045 /* assets-tvos-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-tvos-brand.xcassets"; path = "moocHOUSE/assets-tvos-brand.xcassets"; sourceTree = "<group>"; };
 		709C93621EF09C8A00F8F045 /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brand+tvOS.swift"; path = "moocHOUSE/Brand+tvOS.swift"; sourceTree = "<group>"; };
 		709C93631EF09C8A00F8F045 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-tvos.entitlements"; path = "moocHOUSE/xikolo-tvos.entitlements"; sourceTree = "<group>"; };
@@ -1921,8 +1920,6 @@
 		ABE060A31DF8C24600FC186D /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brand+tvOS.swift"; path = "openWHO/Brand+tvOS.swift"; sourceTree = "<group>"; };
 		ABE060A41DF8C24600FC186D /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "xikolo-tvos.entitlements"; path = "openWHO/xikolo-tvos.entitlements"; sourceTree = "<group>"; };
 		ABF26F961E9637F000763A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Branding/openHPI/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ABF26F9D1E96383800763A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Branding/openSAP/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ABF26FA11E96384A00763A39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Branding/openWHO/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABFCF75F1E81EEC40043C7B7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownTableViewController.swift; sourceTree = "<group>"; };
@@ -2477,7 +2474,6 @@
 			isa = PBXGroup;
 			children = (
 				3DD110AF1F06351D00C1060A /* logo_moochaus.png */,
-				709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */,
 				709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */,
 				709C93581EF09C2C00F8F045 /* Info.plist */,
 				709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */,
@@ -2609,7 +2605,6 @@
 			isa = PBXGroup;
 			children = (
 				70DABFEF1ED8331F0095E551 /* Info.plist */,
-				ABF26F9C1E96383800763A39 /* LaunchScreen.storyboard */,
 				AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */,
 				AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */,
 			);
@@ -2620,7 +2615,6 @@
 			isa = PBXGroup;
 			children = (
 				70DABFED1ED833110095E551 /* Info.plist */,
-				ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */,
 				ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */,
 				AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */,
 			);
@@ -2649,7 +2643,6 @@
 			isa = PBXGroup;
 			children = (
 				70DABFF11ED8332A0095E551 /* Info.plist */,
-				ABF26FA01E96384A00763A39 /* LaunchScreen.storyboard */,
 				ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */,
 				ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */,
 			);
@@ -2749,6 +2742,7 @@
 		F8FABFBB1B580B5A0007F308 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */,
 				A90587C21B3BFC130095DB89 /* Main.storyboard */,
 				5014E2FB1FCEDFFA007255B5 /* Login.storyboard */,
 				AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */,
@@ -3251,9 +3245,9 @@
 				50502E291FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
 				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
-				ABF26FA41E963A0200763A39 /* LaunchScreen.storyboard in Resources */,
 				501F946C20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2F01FCEC1CA007255B5 /* TabNews.storyboard in Resources */,
+				502F89B820109B510056B334 /* LaunchScreen.storyboard in Resources */,
 				24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */,
 				24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */,
 			);
@@ -3321,10 +3315,10 @@
 				70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */,
 				50502E2B1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */,
-				70D1EB0A1EF0AD000088C0FF /* LaunchScreen.storyboard in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
 				501F947220075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2ED1FCEC1B5007255B5 /* TabNews.storyboard in Resources */,
+				502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */,
 				70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */,
 				70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */,
 			);
@@ -3403,9 +3397,9 @@
 				50502E2A1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */,
 				ABE0609E1DF8C21200FC186D /* assets-ios-brand.xcassets in Resources */,
-				ABF26FA61E963A1200763A39 /* LaunchScreen.storyboard in Resources */,
 				501F946F20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2EE1FCEC1B6007255B5 /* TabNews.storyboard in Resources */,
+				502F89B920109B520056B334 /* LaunchScreen.storyboard in Resources */,
 				ABA0F0141DF8CC360001D88D /* TabDashboard.storyboard in Resources */,
 				ABE060951DF8C19700FC186D /* assets-brand.xcassets in Resources */,
 			);
@@ -5830,14 +5824,6 @@
 			name = CourseDateHeader.xib;
 			sourceTree = "<group>";
 		};
-		709C935D1EF09C4700F8F045 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				709C935E1EF09C4700F8F045 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		A90587C21B3BFC130095DB89 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -5878,22 +5864,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				ABF26F961E9637F000763A39 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		ABF26F9C1E96383800763A39 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ABF26F9D1E96383800763A39 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		ABF26FA01E96384A00763A39 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ABF26FA11E96384A00763A39 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

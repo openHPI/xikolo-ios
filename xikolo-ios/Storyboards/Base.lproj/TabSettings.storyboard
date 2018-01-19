@@ -94,14 +94,42 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="CNv-5F-H2z">
-                            <rect key="frame" x="0.0" y="694" width="375" height="55"/>
+                            <rect key="frame" x="0.0" y="694" width="375" height="97"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-7O-EQj">
-                                    <rect key="frame" x="20" y="8" width="335" height="38"/>
+                                    <rect key="frame" x="20" y="8" width="335" height="80"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12x-tZ-Fjh">
+                                            <rect key="frame" x="135.5" y="0.0" width="64" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                            <attributedString key="userComments">
+                                                <fragment content="#bc-ignore!">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-q0-3w4">
+                                            <rect key="frame" x="130" y="21" width="75.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                            <attributedString key="userComments">
+                                                <fragment content="#bc-ignore!">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="smallSystem"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaA-TB-qLC">
-                                            <rect key="frame" x="117.5" y="0.0" width="100.5" height="17"/>
+                                            <rect key="frame" x="117.5" y="42" width="100.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -115,7 +143,7 @@
                                             </attributedString>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="build number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYP-h5-ZvT">
-                                            <rect key="frame" x="125" y="21" width="85" height="17"/>
+                                            <rect key="frame" x="125" y="63" width="85" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -256,7 +284,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KWX-En-m9x">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -299,7 +327,7 @@
                             <outlet property="delegate" destination="Ewc-ei-HZU" id="CaI-Bu-qUo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="never" id="wNE-fd-aKh">
+                    <navigationItem key="navigationItem" title="Settings" id="wNE-fd-aKh">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="tyU-B6-h3N">
                             <connections>
                                 <segue destination="O8W-IG-m3E" kind="presentation" identifier="ShowLogin" id="3Rm-Of-fj1"/>
@@ -307,7 +335,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="buildView" destination="BYP-h5-ZvT" id="l87-4p-9q6"/>
+                        <outlet property="buildLabel" destination="BYP-h5-ZvT" id="l87-4p-9q6"/>
+                        <outlet property="copyrightLabel" destination="12x-tZ-Fjh" id="FhA-RO-dC6"/>
                         <outlet property="dataPrivacyCell" destination="Tz3-Sd-Tn3" id="OjZ-L9-5ay"/>
                         <outlet property="emailView" destination="PoF-ih-nyj" id="CKy-Ha-Mp7"/>
                         <outlet property="githubCell" destination="0xG-YK-hqn" id="AvH-Fk-dJT"/>
@@ -315,8 +344,9 @@
                         <outlet property="imprintCell" destination="FSf-AX-2it" id="mJv-Qp-oYs"/>
                         <outlet property="loginButton" destination="tyU-B6-h3N" id="fdV-Pj-6OT"/>
                         <outlet property="nameView" destination="RdQ-ps-pvk" id="wIn-kc-mKu"/>
+                        <outlet property="poweredByLabel" destination="Bht-q0-3w4" id="hNp-a9-cct"/>
                         <outlet property="profileImage" destination="s9Z-IK-gdE" id="w5F-qt-jcP"/>
-                        <outlet property="versionView" destination="vaA-TB-qLC" id="7dc-yl-nVB"/>
+                        <outlet property="versionLabel" destination="vaA-TB-qLC" id="7dc-yl-nVB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tvc-XL-inH" userLabel="First Responder" sceneMemberID="firstResponder"/>

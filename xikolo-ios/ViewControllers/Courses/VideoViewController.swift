@@ -33,6 +33,8 @@ class VideoViewController : UIViewController {
         self.layoutPlayer()
 
         self.openSlidesButton.isHidden = true
+        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
+
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
             CoreDataHelper.viewContext.perform {
@@ -47,7 +49,7 @@ class VideoViewController : UIViewController {
                 }
             }
         }
-        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
                                                name: NotificationKeys.reachabilityChanged,

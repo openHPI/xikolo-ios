@@ -47,6 +47,7 @@ class VideoViewController : UIViewController {
                 }
             }
         }
+        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
                                                name: NotificationKeys.reachabilityChanged,

@@ -18,7 +18,7 @@ struct SyncHelper {
         return formatter
     }()
 
-    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+    @discardableResult static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
                                         withQuery query: MultipleResourcesQuery<Resource>,
                                         deleteNotExistingResources: Bool = true) -> Future<SyncEngine.SyncMultipleResult, XikoloError> where Resource: NSManagedObject & Pullable {
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: deleteNotExistingResources).onSuccess { syncResult in
@@ -30,7 +30,7 @@ struct SyncHelper {
         }
     }
 
-    static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+    @discardableResult static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
                                        withQuery query: SingleResourceQuery<Resource>) -> Future<SyncEngine.SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable {
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query).onSuccess { syncResult in
             print("Verbose: Successfully merged resource of type: \(Resource.type)")

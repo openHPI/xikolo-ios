@@ -37,7 +37,7 @@ class VideoViewController : UIViewController {
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { objectId in
             CoreDataHelper.viewContext.perform {
                 guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: objectId) as? CourseItem else {
-                    print("Warning: Failed to retrieve course item to display")
+                    log.warning("Failed to retrieve course item to display")
                     return
                 }
 

@@ -328,9 +328,9 @@ struct SyncEngine {
         }
 
         return promise.future.onSuccess { _ in
-            print("Verbose: Successfully merged resources of type: \(Resource.type)")
+            log.verbose("Successfully merged resources of type: \(Resource.type)")
         }.onFailure { error in
-            print("Error: Failed to sync resources of type: \(Resource.type) ==> \(error)")
+            log.error("Failed to sync resources of type: \(Resource.type) ==> \(error)")
         }
     }
 
@@ -364,9 +364,9 @@ struct SyncEngine {
         }
 
         return promise.future.onSuccess { _ in
-            print("Verbose: Successfully merged resource of type: \(Resource.type)")
+            log.verbose("Successfully merged resource of type: \(Resource.type)")
         }.onFailure { error in
-            print("Error: Failed to sync resource of type: \(Resource.type) ==> \(error)")
+            log.error("Failed to sync resource of type: \(Resource.type) ==> \(error)")
         }
     }
 
@@ -380,9 +380,9 @@ struct SyncEngine {
         }
 
         return networkRequest.onSuccess { _ in
-            print("Verbose: Successfully saved resource of type: \(resourceType)")
+            log.verbose("Successfully saved resource of type: \(resourceType)")
         }.onFailure { error in
-            print("Error: Failed to save resource of type: \(resourceType) ==> \(error)")
+            log.error("Failed to save resource of type: \(resourceType) ==> \(error)")
         }.asVoid()
     }
 
@@ -402,9 +402,9 @@ struct SyncEngine {
         }
 
         return networkRequest.onSuccess { _ in
-            print("Verbose: Successfully saved resource of type: \(resourceType)")
+            log.verbose("Successfully saved resource of type: \(resourceType)")
         }.onFailure { error in
-            print("Error: Failed to save resource of type: \(resourceType) ==> \(error)")
+            log.error("Failed to save resource of type: \(resourceType) ==> \(error)")
         }.asVoid()
     }
 
@@ -418,9 +418,9 @@ struct SyncEngine {
         }
 
         return networkRequest.onSuccess { _ in
-            print("Verbose: Successfully deleted resource of type: \(resourceType)")
+            log.verbose("Successfully deleted resource of type: \(resourceType)")
         }.onFailure { error in
-            print("Error: Failed to delete resource: \(resource) ==> \(error)")
+            log.error("Failed to delete resource: \(resource) ==> \(error)")
         }.asVoid()
     }
 
@@ -437,7 +437,7 @@ struct SyncEngine {
         let objects = try context.fetch(fetchRequest)
 
         if objects.count > 1 {
-            print("Warning: Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))")
+            log.warning("Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))")
         }
 
         return objects.first

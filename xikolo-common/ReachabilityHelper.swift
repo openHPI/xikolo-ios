@@ -27,7 +27,7 @@ class ReachabilityHelper {
         do {
             try self.reachability.startNotifier()
         } catch {
-            print("Failed to start reachability notification")
+            log.error("Failed to start reachability notification")
         }
     }
 

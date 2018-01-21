@@ -50,7 +50,7 @@ class VideoPersistenceManager: NSObject {
                     case .success(let video):
                         self.activeDownloadsMap[assetDownloadTask] = video
                     case .failure(let error):
-                        print("Failed to restore download for video \(videoId) : \(error)")
+                        log.error("Failed to restore download for video \(videoId) : \(error)")
                     }
                 }
             }
@@ -80,7 +80,7 @@ class VideoPersistenceManager: NSObject {
         do {
             try video.managedObjectContext?.save()
         } catch {
-            print("failed to save video (start)")
+            log.error("Failed to save video (start)")
         }
 
         var userInfo: [String: Any] = [:]
@@ -150,7 +150,7 @@ class VideoPersistenceManager: NSObject {
 
                 NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
             } catch {
-                print("An error occured deleting the file: \(error)")
+                log.error("An error occured deleting the file: \(error)")
             }
         }
     }
@@ -201,14 +201,16 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                     video.localFileBookmark = nil
                     try video.managedObjectContext?.save()
                 } catch {
-                    print("An error occured deleting the file: \(error)")
+                    log.error("An error occured deleting the file: \(error)")
                 }
 
                 userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
             case (NSURLErrorDomain, NSURLErrorUnknown):
+                log.severe("Downloading HLS streams is not supported in the simulator.")
                 fatalError("Downloading HLS streams is not supported in the simulator.")
                 // TODO better catch
             default:
+                log.severe("An unexpected error occured \(error.domain)")
                 fatalError("An unexpected error occured \(error.domain)")
 
             }

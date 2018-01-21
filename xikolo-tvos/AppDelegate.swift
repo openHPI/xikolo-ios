@@ -57,7 +57,7 @@ class AppDelegate : AbstractAppDelegate {
                             window?.rootViewController?.present(vc, animated: false, completion: nil)
                             couldfindCourse = true
                         case .failure(let error):
-                            print("Warning: Could not find course")
+                            log.warning("Could not find course")
                         }
                     }
 

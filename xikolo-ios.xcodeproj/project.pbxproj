@@ -912,6 +912,18 @@
 		50FE19391FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE193A1FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE193B1FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
+		70103D0A201138EF006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0B201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0C201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0D201139C4006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0E201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0F201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D10201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D11201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D12201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D13201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D14201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D15201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
 		70103CEF20110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
 		70103CF020110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
 		70103CF120110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
@@ -1835,6 +1847,7 @@
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		6E388554E08BE40160B5B382 /* Pods-moocHOUSE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		702520801F6FFFD6003E0F80 /* UserDefaults+videoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+videoQuality.swift"; sourceTree = "<group>"; };
 		7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
@@ -2353,6 +2366,7 @@
 		24D48E1F1CCA740500E8051E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */,
 				24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */,
 				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
 				249C01AA1D3D139400B54AAC /* CollectionType+dict.swift */,
@@ -4305,6 +4319,7 @@
 				2490C4F21D216D5200F42949 /* NetworkHelper.swift in Sources */,
 				243CE4871D709A1B007C59B6 /* Enrollment.swift in Sources */,
 				50F6A5B81FB316A6007DBAFF /* VideoStream.swift in Sources */,
+				70103D0C201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				2490C4F11D216D4500F42949 /* Routes.swift in Sources */,
 				2490C4F41D216D6500F42949 /* Error.swift in Sources */,
 				50F57DA41FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
@@ -4391,6 +4406,7 @@
 				3D6F12EF1F2914BD00D5DFE8 /* SpotlightHelper.swift in Sources */,
 				50F57D641FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift in Sources */,
 				50F57D981FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
+				70103D0D201139C4006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				24BA409C1D3F9AAD00E38C2C /* Content.swift in Sources */,
 				ABC8A1711D689ED80059CEF2 /* PeerAssessment.swift in Sources */,
 				24BA40D01D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
@@ -4581,6 +4597,7 @@
 				3D6F12F71F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */,
 				24BA40DB1D3F9AFC00E38C2C /* AnnouncementHelper.swift in Sources */,
 				501212281FCC669E0022A7AF /* Future+inject.swift in Sources */,
+				70103D0E201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				24BA41251D3F9CFF00E38C2C /* CourseListViewController.swift in Sources */,
 				24BA412C1D3F9D1100E38C2C /* CourseCell.swift in Sources */,
 				24BA412F1D3F9D1700E38C2C /* CourseItemCell.swift in Sources */,
@@ -4677,6 +4694,7 @@
 				2474C87B1D86FE20009BDB94 /* RichText.swift in Sources */,
 				2474C8871D86FE31009BDB94 /* TrackingEventUser.swift in Sources */,
 				243CE4881D709A1C007C59B6 /* Enrollment.swift in Sources */,
+				70103D0F201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				50F6A5BB1FB316A6007DBAFF /* VideoStream.swift in Sources */,
 				24BA40C81D3F9AE500E38C2C /* NetworkHelper.swift in Sources */,
 				AB17C5861DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
@@ -4800,6 +4818,7 @@
 				24D48E611CCAA86F00E8051E /* NetworkHelper.swift in Sources */,
 				3D6F12F51F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */,
 				501212251FCC669E0022A7AF /* Future+inject.swift in Sources */,
+				70103D0B201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				24A16D6D1CFC883A00CAD9FE /* Video.swift in Sources */,
 				2490C4CB1D1C5A9900F42949 /* Settings.swift in Sources */,
 				249C01C41D3F78E100B54AAC /* Brand.swift in Sources */,
@@ -4874,6 +4893,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70D1EAC51EF0AC120088C0FF /* QuizHelper.swift in Sources */,
+				70103D13201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				50EFACBA1FFE3C0100169C35 /* Optional+require.swift in Sources */,
 				70D1EAD91EF0AC2C0088C0FF /* Routes.swift in Sources */,
 				70F456351F01290B00A2C6B7 /* User.swift in Sources */,
@@ -5151,6 +5171,7 @@
 				70D1EABA1EF0AC040088C0FF /* LTIExerciseHelper.swift in Sources */,
 				70D1EB501EF134300088C0FF /* LoginViewController.swift in Sources */,
 				70D1EB541EF1343C0088C0FF /* CourseItemCell.swift in Sources */,
+				70103D14201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				5068B9D51FEA94A10047A75E /* Future+retry.swift in Sources */,
 				50F57DED1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				70D1EB4A1EF134200088C0FF /* ItemQuizViewController.swift in Sources */,
@@ -5190,6 +5211,7 @@
 				5012122F1FCC669E0022A7AF /* Future+inject.swift in Sources */,
 				70D1EA331EF0AAF40088C0FF /* Enrollment.swift in Sources */,
 				50F57DAD1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
+				70103D15201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				70D1EADB1EF0AC2D0088C0FF /* Routes.swift in Sources */,
 				70D1EA7F1EF0AB510088C0FF /* BuildFile in Sources */,
 				70D1EA0F1EF0AACB0088C0FF /* Content.swift in Sources */,
@@ -5276,6 +5298,7 @@
 				50F57D201FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				2433A5A31CE634A00060DD98 /* CourseItem.swift in Sources */,
 				3D6F12ED1F2914BD00D5DFE8 /* SpotlightHelper.swift in Sources */,
+				70103D0A201138EF006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				50F57D611FBC9A5500910950 /* EnrollmentHelper+FetchRequests.swift in Sources */,
 				50F57D951FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				ABC8A16F1D689ED80059CEF2 /* PeerAssessment.swift in Sources */,
@@ -5429,6 +5452,7 @@
 				50F57D9B1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				ABA0F0F01DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F0D51DF8CE5F0001D88D /* QuizHelper.swift in Sources */,
+				70103D10201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				ABCE24321E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				ABA0F0501DF8CD850001D88D /* Enrollment.swift in Sources */,
 				ABA0F0201DF8CCB40001D88D /* AnnouncementViewController.swift in Sources */,
@@ -5619,6 +5643,7 @@
 				ABA0F11E1DF8CF8D0001D88D /* QuestionIndicatorListView.swift in Sources */,
 				ABA0F09D1DF8CDF30001D88D /* TrackingEventVerb.swift in Sources */,
 				5012122B1FCC669E0022A7AF /* Future+inject.swift in Sources */,
+				70103D11201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				ABA0F0C51DF8CE330001D88D /* NetworkHelper.swift in Sources */,
 				ABA0F1171DF8CF730001D88D /* ItemVideoLoadingController.swift in Sources */,
 				50F57DD01FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
@@ -5733,6 +5758,7 @@
 				5012126D1FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				70A8309E1EC780860029235D /* CourseCertificatesHash.swift in Sources */,
 				ABA0F06D1DF8CDAB0001D88D /* LTIExercise.swift in Sources */,
+				70103D12201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				ABA0F0981DF8CDEC0001D88D /* TrackingEvent.swift in Sources */,
 				ABC1BF271E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				5068B9D31FEA94A10047A75E /* Future+retry.swift in Sources */,

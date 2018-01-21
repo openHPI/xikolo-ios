@@ -53,46 +53,46 @@ class SyncPushEngine {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
                 guard let object = try? context.existingObject(with: managedObjectId), let resource = object as? (NSManagedObject & Pushable) else {
-                    print("Info: Resource to be pushed could not be found")
+                    log.info("Resource to be pushed could not be found")
                     return
                 }
 
                 guard resource.objectState != .unchanged else {
-                    print("Info: No change to be pushed for resource of type \(type(of: resource).type)")
+                    log.info("No change to be pushed for resource of type \(type(of: resource).type)")
                     return
                 }
 
                 var pushFuture: Future<Void, XikoloError>?
                 if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
-                    pushFuture = SyncEngine.saveResource(pullableResource)
+                    pushFuture = SyncHelper.saveResource(pullableResource)
                 } else if resource.objectState == .new {
-                    pushFuture = SyncEngine.saveResource(resource)
+                    pushFuture = SyncHelper.saveResource(resource)
                 } else if let deletableResource = resource as? (Pullable & Pushable), resource.objectState == .deleted {
-                    pushFuture = SyncEngine.deleteResource(deletableResource)
+                    pushFuture = SyncHelper.deleteResource(deletableResource)
                 } else {
-                    print("Warning: unhandle resource modification")
+                    log.warning("unhandle resource modification")
                 }
 
                 // it makes only sense to retry on network errors
                 pushFuture = pushFuture?.recoverWith { error -> Future<(), XikoloError> in
                     if case .network = error {
                         return Future(error: error)
-                    } else if case let .api(.responseError(statusCode: statusCode)) = error, 500 ... 599 ~= statusCode {
+                    } else if case let .api(.responseError(statusCode: statusCode, headers: _)) = error, 500 ... 599 ~= statusCode {
                         return Future(error: error)
                     }
-                    print("Error: Failed to push resource modification - \(error)")
+                    log.error("Failed to push resource modification - \(error)")
                     return Future(value: ())
                 }
 
                 guard let result = pushFuture?.forced(), case .success(_) = result else {
-                    print("Warning: Failed to push resource modification due to network issues")
+                    log.warning("Failed to push resource modification due to network issues")
                     return
                 }
 
                 // post sync actions
                 if resource.objectState == .deleted || resource.deleteAfterSync {
                     context.delete(resource)
-                    print("Verbose: Deleted resource of type: \(type(of: resource).type)")
+                    log.verbose("Deleted resource of type: \(type(of: resource).type)")
                 } else {
                     if resource.objectState == .new || resource.objectState == .modified {
                         resource.markAsUnchanged()
@@ -102,7 +102,7 @@ class SyncPushEngine {
                 do {
                     try context.save()
                 } catch {
-                    print("Error: while pushing core data changes: \(error)")
+                    log.error("while pushing core data changes: \(error)")
                 }
             }
         }

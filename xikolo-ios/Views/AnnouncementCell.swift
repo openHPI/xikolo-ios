@@ -11,7 +11,7 @@ import UIKit
 class AnnouncementCell : UITableViewCell {
 
     static var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter.localizedFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         return dateFormatter

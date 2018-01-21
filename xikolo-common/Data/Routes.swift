@@ -30,6 +30,7 @@ struct Routes {
     static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.api+json; xikolo-version=\(apiVersion)"
     static let HTTP_AUTH_HEADER = "Authorization"
     static let HTTP_AUTH_HEADER_VALUE_PREFIX = "Token token="
+    static let HTTP_API_Version_Expiration_Date_Header = "X-Api-Version-Expiration-Date"
 
     static let HTTP_PARAM_EMAIL = "email"
     static let HTTP_PARAM_PASSWORD = "password"
@@ -43,6 +44,7 @@ struct Routes {
         urlComponents?.queryItems = queryItems
 
         guard let url = urlComponents?.url else {
+            log.severe("Failed to create url for password reset")
             fatalError("Failed to create url for password reset")
         }
 

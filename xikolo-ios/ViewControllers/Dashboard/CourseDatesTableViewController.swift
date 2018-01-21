@@ -111,7 +111,7 @@ extension CourseDatesTableViewController {
         let courseDate = controller.object(at: dataIndexPath)
 
         guard let course = courseDate.course else {
-            print("Error: Did not find course for course date")
+            log.error("Did not find course for course date")
             return
         }
 

@@ -46,7 +46,7 @@ extension Video: DetailedContent {
         return NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
     }
 
-    static func preloadContentFor(course: Course) -> Future<[NSManagedObjectID], XikoloError> {
+    static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         return CourseItemHelper.syncVideos(forCourse: course)
     }
 

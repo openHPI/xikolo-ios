@@ -12,12 +12,12 @@ import BrightFutures
 
 struct QuizHelper {
 
-    static func syncQuiz(_ quiz: Quiz) -> Future<NSManagedObjectID, XikoloError> {
+    static func syncQuiz(_ quiz: Quiz) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = QuizHelper.FetchRequest.quiz(withId: quiz.id)
         var query = SingleResourceQuery(resource: quiz)
         query.include("questions")
         query.include("submission")
-        return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

@@ -35,7 +35,7 @@ extension RichText: DetailedContent {
         return "~\(durationText)"
     }
 
-    static func preloadContentFor(course: Course) -> Future<[NSManagedObjectID], XikoloError> {
+    static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         return CourseItemHelper.syncRichTexts(forCourse: course)
     }
 

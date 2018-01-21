@@ -119,7 +119,7 @@ class TrackingHelper {
 
 
         #if DEBUG
-            print("DEBUG: Would have created tracking event '\(trackingVerb.type)'")
+            log.debug("Would have created tracking event '\(trackingVerb.type)'")
             return Future(value: ())
         #else
             let promise = Promise<Void, XikoloError>()
@@ -130,7 +130,7 @@ class TrackingHelper {
                                       trackingContext: trackingContext as [String: AnyObject],
                                       inContext: context)
                 promise.complete(context.saveWithResult())
-                print("Verbose: Created tracking event '\(trackingVerb.type)'")
+                log.verbose("Created tracking event '\(trackingVerb.type)'")
             }
             return promise.future
         #endif

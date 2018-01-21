@@ -13,13 +13,14 @@ import Result
 
 struct EnrollmentHelper {
 
-    static func syncEnrollments() -> Future<[NSManagedObjectID], XikoloError> {
+    static func syncEnrollments() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         guard UserProfileHelper.isLoggedIn() else {
-            return Future(value: [])
+            let result = SyncEngine.SyncMultipleResult(objectIds: [], headers: [:])
+            return Future(value: result)
         }
 
         let query = MultipleResourcesQuery(type: Enrollment.self)
-        return SyncEngine.syncResources(withFetchRequest: EnrollmentHelper.FetchRequest.allEnrollements, withQuery: query)
+        return SyncHelper.syncResources(withFetchRequest: EnrollmentHelper.FetchRequest.allEnrollements, withQuery: query)
     }
 
     static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {

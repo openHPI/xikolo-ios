@@ -12,11 +12,11 @@ import BrightFutures
 
 struct AnnouncementHelper {
 
-    static func syncAllAnnouncements() -> Future<[NSManagedObjectID], XikoloError> {
+    static func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete {_ in
+        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.updateUnreadAnnouncementsBadge()
         }
     }
@@ -46,12 +46,12 @@ struct AnnouncementHelper {
     private static func updateUnreadAnnouncementsBadge() {
         DispatchQueue.main.async {
             guard let rootViewController = AppDelegate.instance().window?.rootViewController as? UITabBarController else {
-                print("Warning: root view controller is not TabBarController")
+                log.warning("root view controller is not TabBarController")
                 return
             }
 
             guard let tabItem = rootViewController.tabBar.items?[safe: 2] else {
-                print("Warning: Failed to retrieve tab item for announcements")
+                log.warning("Failed to retrieve tab item for announcements")
                 return
             }
 
@@ -69,7 +69,7 @@ struct AnnouncementHelper {
                         tabItem.badgeValue = badgeValue
                     }
                 } catch {
-                    print("Warning: Failed to retrieve unread announcement count")
+                    log.warning("Failed to retrieve unread announcement count")
                 }
             }
         }

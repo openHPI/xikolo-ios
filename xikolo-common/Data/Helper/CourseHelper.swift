@@ -12,25 +12,25 @@ import BrightFutures
 
 struct CourseHelper {
 
-    static func syncAllCourses() -> Future<[NSManagedObjectID], XikoloError> {
+    static func syncAllCourses() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         var query = MultipleResourcesQuery(type: Course.self)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
+        return SyncHelper.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
     }
 
-    static func syncCourse(_ course: Course) -> Future<NSManagedObjectID, XikoloError> {
+    static func syncCourse(_ course: Course) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         var query = SingleResourceQuery(resource: course)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
+        return SyncHelper.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
     }
 
-    static func syncCourse(forSlugOrId slugOrId: String) -> Future<NSManagedObjectID, XikoloError> {
+    static func syncCourse(forSlugOrId slugOrId: String) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         var query = SingleResourceQuery(type: Course.self, id: slugOrId)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
+        return SyncHelper.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
     }
 
 }

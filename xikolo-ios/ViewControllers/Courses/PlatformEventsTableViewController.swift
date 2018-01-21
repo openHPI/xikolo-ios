@@ -102,28 +102,15 @@ struct PlatformEventsTableViewConfiguration : TableViewResultsControllerConfigur
 extension PlatformEventsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title: String
-        if UserProfileHelper.isLoggedIn() {
-            title = NSLocalizedString("empty-view.platform-events.no-activities.title",
-                                      comment: "title for empty platform event list if logged in")
-        } else {
-            title = NSLocalizedString("empty-view.platform-events.not-logged-in.title",
-                                      comment: "title for empty announcement list if not logged in")
-        }
+        let title = NSLocalizedString("empty-view.platform-events.title",
+                                      comment: "title for empty platform event list")
         return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description: String
-        if UserProfileHelper.isLoggedIn() {
-            description = NSLocalizedString("empty-view.platform-events.no-activities.description",
-                                            comment: "description for empty platform event list if logged in")
-        } else {
-            description = NSLocalizedString("empty-view.platform-events.not-logged-in.description",
-                                            comment: "description for empty announcement list if not logged in")
-        }
+        let description = NSLocalizedString("empty-view.platform-events.description",
+                                            comment: "description for empty platform event list")
         return NSAttributedString(string: description)
     }
 
 }
-

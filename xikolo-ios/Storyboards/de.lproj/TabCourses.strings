@@ -14,8 +14,8 @@
 /* Class = "UINavigationItem"; title = "Courses"; ObjectID = "feQ-Xn-WIz"; */
 "feQ-Xn-WIz.title" = "Kurse";
 
-/* Class = "UILabel"; title = "Activity"; ObjectID = "1m4-ty-DmN"; */
-"1m4-ty-DmN.title" = "Aktivität";
+/* Class = "UILabel"; text = "Announcements"; ObjectID = "DRo-CM-ssb"; */
+"DRo-CM-ssb.text" = "Neuigkeiten";
 
-/* Class = "UILabel"; title = "Announcements"; ObjectID = "DRo-CM-ssb"; */
-"DRo-CM-ssb.title" = "Neuigkeiten";
+/* Class = "UILabel"; text = "Activity"; ObjectID = "nCn-lp-OVD"; */
+"nCn-lp-OVD.text" = "Aktivität";

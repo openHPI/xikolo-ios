@@ -625,6 +625,14 @@
 		508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AD1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
+		509988B62014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988B52014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift */; };
+		509988B72014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988B52014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift */; };
+		509988B82014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988B52014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift */; };
+		509988B92014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988B52014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift */; };
+		509988BB2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988BA2014BEAF00FD2DF0 /* PlatformEventCell.swift */; };
+		509988BC2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988BA2014BEAF00FD2DF0 /* PlatformEventCell.swift */; };
+		509988BD2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988BA2014BEAF00FD2DF0 /* PlatformEventCell.swift */; };
+		509988BE2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509988BA2014BEAF00FD2DF0 /* PlatformEventCell.swift */; };
 		509B10D1200790560042AA7D /* XikoloTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B10D0200790560042AA7D /* XikoloTabBarController.swift */; };
 		509B10D2200790560042AA7D /* XikoloTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B10D0200790560042AA7D /* XikoloTabBarController.swift */; };
 		509B10D3200790560042AA7D /* XikoloTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B10D0200790560042AA7D /* XikoloTabBarController.swift */; };
@@ -952,26 +960,6 @@
 		50FE19391FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE193A1FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE193B1FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
-		701593C2200E918A0005F387 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C1200E918A0005F387 /* PlatformEventsTableViewController.swift */; };
-		701593C3200E918A0005F387 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C1200E918A0005F387 /* PlatformEventsTableViewController.swift */; };
-		701593C4200E918A0005F387 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C1200E918A0005F387 /* PlatformEventsTableViewController.swift */; };
-		701593C5200E918A0005F387 /* PlatformEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C1200E918A0005F387 /* PlatformEventsTableViewController.swift */; };
-		701593C7200E91D30005F387 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C6200E91D30005F387 /* PlatformEventCell.swift */; };
-		701593C8200E91D30005F387 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C6200E91D30005F387 /* PlatformEventCell.swift */; };
-		701593C9200E91D30005F387 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C6200E91D30005F387 /* PlatformEventCell.swift */; };
-		701593CA200E91D30005F387 /* PlatformEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701593C6200E91D30005F387 /* PlatformEventCell.swift */; };
-		70103D0A201138EF006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D0B201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D0C201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D0D201139C4006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D0E201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D0F201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D10201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D11201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D12201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D13201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D14201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
-		70103D15201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
 		70103CEF20110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
 		70103CF020110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
 		70103CF120110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
@@ -984,6 +972,18 @@
 		70103CF820110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
 		70103CF920110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
 		70103CFA20110C31006DA177 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103CEE20110C31006DA177 /* Logger.swift */; };
+		70103D0A201138EF006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0B201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0C201139C3006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0D201139C4006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0E201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D0F201139C5006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D10201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D11201139C6006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D12201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D13201139C7006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D14201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
+		70103D15201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
 		702520811F6FFFD7003E0F80 /* UserDefaults+videoQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+videoQuality.swift */; };
 		702520821F6FFFD7003E0F80 /* UserDefaults+videoQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+videoQuality.swift */; };
 		702520831F6FFFD7003E0F80 /* UserDefaults+videoQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+videoQuality.swift */; };
@@ -1859,6 +1859,8 @@
 		5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Layout.swift"; sourceTree = "<group>"; };
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
+		509988B52014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventsTableViewController.swift; sourceTree = "<group>"; };
+		509988BA2014BEAF00FD2DF0 /* PlatformEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventCell.swift; sourceTree = "<group>"; };
 		509B10D0200790560042AA7D /* XikoloTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloTabBarController.swift; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
@@ -1899,8 +1901,8 @@
 		5F7FACD0DDE3D5B09EDC3EBF /* Pods_openHPI_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		663B90C0C959F14481EFDDA4 /* Pods-openWHO-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		6E388554E08BE40160B5B382 /* Pods-moocHOUSE-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moocHOUSE-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
 		702520801F6FFFD6003E0F80 /* UserDefaults+videoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+videoQuality.swift"; sourceTree = "<group>"; };
 		7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		702520901F71A1D4003E0F80 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
@@ -2299,12 +2301,12 @@
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
 				AB91F9E41CED029B00007D06 /* CourseItemCell.swift */,
 				AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */,
+				509988BA2014BEAF00FD2DF0 /* PlatformEventCell.swift */,
 				4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */,
 				4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */,
 				7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */,
 				7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */,
 				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
-				701593C6200E91D30005F387 /* PlatformEventCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2652,7 +2654,7 @@
 				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
 				50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */,
 				AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */,
-				701593C1200E918A0005F387 /* PlatformEventsTableViewController.swift */,
+				509988B52014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -4501,6 +4503,7 @@
 				24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
 				50F57DD91FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				5057ED8E1FE3DB230096095B /* PreloadContentViewController.swift in Sources */,
+				509988B72014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */,
 				5051F8121FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
 				50F57DF31FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
@@ -4544,6 +4547,7 @@
 				50F97ABA1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				70103CF220110C31006DA177 /* Logger.swift in Sources */,
 				5060A5251F177304007896FF /* DetailedContent.swift in Sources */,
+				509988BC2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */,
 				5057ED831FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */,
 				50D643331F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
@@ -4997,6 +5001,7 @@
 				50F57DF91FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				70D1EA191EF0AAD70088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA1F1EF0AADF0088C0FF /* CourseDate.swift in Sources */,
+				509988BE2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */,
 				501212471FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */,
 				70D1EAF71EF0ACBA0088C0FF /* AnnouncementViewController.swift in Sources */,
@@ -5049,6 +5054,7 @@
 				5019A7661F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
 				70D1EB221EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */,
 				70D1EAEC1EF0AC9A0088C0FF /* CourseDatesTableViewController.swift in Sources */,
+				509988B92014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */,
 				70D1EACF1EF0AC1E0088C0FF /* TrackingHelper.swift in Sources */,
 				70F456321F0128E400A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EAC71EF0AC150088C0FF /* RichTextHelper.swift in Sources */,
@@ -5420,6 +5426,7 @@
 				4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
 				5051F80F1FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				5057ED8D1FE3DB230096095B /* PreloadContentViewController.swift in Sources */,
+				509988B62014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* AnnouncementCell.swift in Sources */,
 				50F57DD61FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				ABC8A1671D689ED80059CEF2 /* LTIExercise.swift in Sources */,
@@ -5463,6 +5470,7 @@
 				5060A5221F177304007896FF /* DetailedContent.swift in Sources */,
 				70103CEF20110C31006DA177 /* Logger.swift in Sources */,
 				50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
+				509988BB2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */,
 				5057ED801FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */,
 				50D643301F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */,
@@ -5580,6 +5588,7 @@
 				ABA0F0991DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				AB17C5871DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
 				5057ED8F1FE3DB230096095B /* PreloadContentViewController.swift in Sources */,
+				509988B82014BE9D00FD2DF0 /* PlatformEventsTableViewController.swift in Sources */,
 				5051F8151FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */,
 				50F57DDC1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
@@ -5623,6 +5632,7 @@
 				70F456511F0139BB00A2C6B7 /* AnnouncementsTableViewController.swift in Sources */,
 				70103CF520110C31006DA177 /* Logger.swift in Sources */,
 				ABA0F0CA1DF8CE450001D88D /* CourseHelper.swift in Sources */,
+				509988BD2014BEAF00FD2DF0 /* PlatformEventCell.swift in Sources */,
 				5057ED861FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */,
 				ABA0F0961DF8CDEB0001D88D /* TrackingEvent.swift in Sources */,
 				ABFCF7671E81EEC40043C7B7 /* User.swift in Sources */,

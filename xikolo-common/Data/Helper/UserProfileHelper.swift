@@ -43,7 +43,7 @@ open class UserProfileHelper {
             }
 
             guard 200 ... 299 ~= urlResponse.statusCode else {
-                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode)))
+                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields)))
                 return
             }
 

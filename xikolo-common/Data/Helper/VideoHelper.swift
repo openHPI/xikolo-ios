@@ -12,10 +12,10 @@ import BrightFutures
 
 struct VideoHelper {
 
-    static func syncVideo(_ video: Video) -> Future<NSManagedObjectID, XikoloError> {
+    static func syncVideo(_ video: Video) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)
         let query = SingleResourceQuery(resource: video)
-        return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

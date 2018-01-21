@@ -1,4 +1,13 @@
 
+/* App state message for deprecated API version */
+"app-state.api-deprecated.please update the %@ app before %@" = "Please update the %@ app before %@";
+
+/* App state message for expired API version */
+"app-state.api-expired.app version of %@ expired - please update" = "App version of %@ expired - Please update";
+
+/* App state message for server maintenance */
+"app-state.maintenance.server maintenance on %@" = "Server maintenance on %@";
+
 /* status 'enrolled' of a course */
 "course-cell.status.enrolled" = "Enrolled";
 

@@ -158,7 +158,7 @@ class VideoViewController : UIViewController {
         if ReachabilityHelper.reachability.isReachable {
             performSegue(withIdentifier: "ShowSlides", sender: self.video)
         } else {
-            print("Info: Tapped open slides button without internet, which shouldn't be possible")
+            log.info("Tapped open slides button without internet, which shouldn't be possible")
         }
     }
 

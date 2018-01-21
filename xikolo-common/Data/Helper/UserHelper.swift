@@ -11,7 +11,7 @@ import CoreData
 
 class UserHelper {
 
-    static func syncMe() -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult static func syncMe() -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")

@@ -12,7 +12,7 @@ import BrightFutures
 
 struct PlatformEventHelper {
 
-    static func syncAllPlatformEvents() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult static func syncAllPlatformEvents() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = PlatformEventHelper.FetchRequest.allPlatformEvents
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query)

@@ -106,7 +106,7 @@ class XikoloTabBarController: UITabBarController {
         default: return
         }
 
-        print("Verbose: update app state from \(self.state) to \(state)")
+        log.verbose("Update app state from \(self.state) to \(state)")
         let animationDuration: TimeInterval = self.state == .standard ? 0 : 0.25
         UIView.animate(withDuration: animationDuration) {
             self.state = state

@@ -30,6 +30,7 @@ extension SafeCastable {
                 message.append(". Debugging hint: \(hint)")
             }
 
+            log.severe(message)
             fatalError(message)
         }
 

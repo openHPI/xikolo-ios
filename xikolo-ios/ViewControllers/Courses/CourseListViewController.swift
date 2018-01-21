@@ -45,10 +45,6 @@ class CourseListViewController : AbstractCourseListViewController {
             courseListLayout.delegate = self
         }
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .automatic
-        }
-
         courseDisplayMode = .all
 
         super.viewDidLoad()

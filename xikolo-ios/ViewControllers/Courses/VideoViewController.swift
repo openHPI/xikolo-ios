@@ -33,11 +33,13 @@ class VideoViewController : UIViewController {
         self.layoutPlayer()
 
         self.openSlidesButton.isHidden = true
+        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
+
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
             CoreDataHelper.viewContext.perform {
                 guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: syncResult.objectId) as? CourseItem else {
-                    print("Warning: Failed to retrieve course item to display")
+                    log.warning("Failed to retrieve course item to display")
                     return
                 }
 
@@ -47,6 +49,11 @@ class VideoViewController : UIViewController {
                 }
             }
         }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged),
+                                               name: NotificationKeys.reachabilityChanged,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +100,10 @@ class VideoViewController : UIViewController {
 
         self.player = player
         self.videoContainer.layoutIfNeeded()
+    }
+
+    @objc func reachabilityChanged() {
+        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -144,7 +155,11 @@ class VideoViewController : UIViewController {
     }
 
     @IBAction func openSlides(_ sender: UIButton) {
-        performSegue(withIdentifier: "ShowSlides", sender: self.video)
+        if ReachabilityHelper.reachability.isReachable {
+            performSegue(withIdentifier: "ShowSlides", sender: self.video)
+        } else {
+            log.info("Tapped open slides button without internet, which shouldn't be possible")
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

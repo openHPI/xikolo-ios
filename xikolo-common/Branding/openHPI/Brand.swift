@@ -25,4 +25,10 @@ struct Brand {
     static let FeedbackRecipients = ["mobile-feedback@hpi.de"]
     static let FeedbackSubject = "openHPI | App Feedback"
 
+    static var copyrightText: String {
+        let currentYear = Calendar.current.component(.year, from: Date())
+        return "Copyright © \(currentYear) HPI. All rights reserved."
+    }
+    static let poweredByText: String? = nil
+
 }

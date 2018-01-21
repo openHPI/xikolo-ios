@@ -82,7 +82,7 @@ class ModelObserver {
 
     @objc func dataModelDidChange(_ notification: Notification) {
         guard let userInfo = notification.userInfo else {
-            print("No user info provided in notification")
+            log.debug("No user info provided in notification")
             return
         }
 

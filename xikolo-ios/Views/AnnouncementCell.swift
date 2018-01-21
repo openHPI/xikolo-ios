@@ -11,7 +11,7 @@ import UIKit
 class AnnouncementCell : UITableViewCell {
 
     static var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter.localizedFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         return dateFormatter
@@ -24,7 +24,7 @@ class AnnouncementCell : UITableViewCell {
     @IBOutlet weak var readStateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 
-    func configure(_ announcement: Announcement) {
+    func configure(_ announcement: Announcement, showCourseTitle: Bool) {
         if UserProfileHelper.isLoggedIn(), !announcement.visited {
             self.readStateLabel.textColor = Brand.TintColorSecond
             self.readStateLabel.isHidden = false
@@ -35,7 +35,7 @@ class AnnouncementCell : UITableViewCell {
         }
 
         self.courseLabel.textColor = Brand.TintColorSecond
-        if let courseTitle = announcement.course?.title {
+        if let courseTitle = announcement.course?.title, showCourseTitle {
             self.courseLabel.text = courseTitle
             self.courseLabel.isHidden = false
         } else {

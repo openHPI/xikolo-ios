@@ -447,7 +447,7 @@ struct SyncEngine {
         let objects = try context.fetch(fetchRequest)
 
         if objects.count > 1 {
-            print("Warning: Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))")
+            log.warning("Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))")
         }
 
         return objects.first

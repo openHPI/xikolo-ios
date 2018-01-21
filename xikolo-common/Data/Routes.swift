@@ -12,6 +12,7 @@ import Foundation
 struct Routes {
 
     static let API_V2_URL = Brand.BaseURL + "/api/v2/"
+    static let apiVersion = "3"
 
     static let AUTHENTICATE_URL = API_V2_URL + "authenticate/"
 
@@ -26,7 +27,7 @@ struct Routes {
     static let HEADER_USER_PLATFORM_VALUE = "iOS"
 
     static let HTTP_ACCEPT_HEADER = "Accept"
-    static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.api+json; xikolo-version=2"
+    static let HTTP_ACCEPT_HEADER_VALUE = "application/vnd.api+json; xikolo-version=\(apiVersion)"
     static let HTTP_AUTH_HEADER = "Authorization"
     static let HTTP_AUTH_HEADER_VALUE_PREFIX = "Token token="
     static let HTTP_API_Version_Expiration_Date_Header = "X-Api-Version-Expiration-Date"
@@ -43,6 +44,7 @@ struct Routes {
         urlComponents?.queryItems = queryItems
 
         guard let url = urlComponents?.url else {
+            log.severe("Failed to create url for password reset")
             fatalError("Failed to create url for password reset")
         }
 

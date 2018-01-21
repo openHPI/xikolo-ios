@@ -14,6 +14,9 @@
 /* status 'upcoming' of a course */
 "course-cell.status.upcoming" = "Zukünftig";
 
+/* title of announcements view of course view */
+"course-content.view.announcements.title" = "Neuigkeiten";
+
 /* title of course details view of course view */
 "course-content.view.course-details.title" = "Kursdetails";
 

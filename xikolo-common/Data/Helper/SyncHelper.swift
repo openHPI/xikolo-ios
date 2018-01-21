@@ -22,10 +22,10 @@ struct SyncHelper {
                                         withQuery query: MultipleResourcesQuery<Resource>,
                                         deleteNotExistingResources: Bool = true) -> Future<SyncEngine.SyncMultipleResult, XikoloError> where Resource: NSManagedObject & Pullable {
         return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: deleteNotExistingResources).onSuccess { syncResult in
-            print("Verbose: Successfully merged resources of type: \(Resource.type)")
+            log.info("Successfully merged resources of type: \(Resource.type)")
             SyncHelper.handleSyncSuccess(syncResult)
         }.onFailure { error in
-            print("Error: Failed to sync resources of type: \(Resource.type) ==> \(error)")
+            log.error("Failed to sync resources of type: \(Resource.type) ==> \(error)")
             SyncHelper.handleSyncFailure(error)
         }
     }
@@ -33,35 +33,35 @@ struct SyncHelper {
     static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
                                        withQuery query: SingleResourceQuery<Resource>) -> Future<SyncEngine.SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable {
         return SyncEngine.syncResource(withFetchRequest: fetchRequest, withQuery: query).onSuccess { syncResult in
-            print("Verbose: Successfully merged resource of type: \(Resource.type)")
+            log.info("Successfully merged resource of type: \(Resource.type)")
             SyncHelper.handleSyncSuccess(syncResult)
         }.onFailure { error in
-            print("Error: Failed to sync resource of type: \(Resource.type) ==> \(error)")
+            log.error("Failed to sync resource of type: \(Resource.type) ==> \(error)")
             SyncHelper.handleSyncFailure(error)
         }
     }
 
     @discardableResult static func saveResource(_ resource: Pushable) -> Future<Void, XikoloError> {
         return SyncEngine.saveResource(resource).onSuccess { _ in
-            print("Verbose: Successfully saved resource of type: \(type(of: resource).type)")
+            log.info("Successfully saved resource of type: \(type(of: resource).type)")
         }.onFailure { error in
-            print("Error: Failed to save resource of type: \(resource) ==> \(error)")
+            log.error("Failed to save resource of type: \(resource) ==> \(error)")
         }
     }
 
     @discardableResult static func saveResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
         return SyncEngine.saveResource(resource).onSuccess { _ in
-            print("Verbose: Successfully saved resource of type: \(type(of: resource).type)")
+            log.info("Successfully saved resource of type: \(type(of: resource).type)")
         }.onFailure { error in
-            print("Error: Failed to save resource of type: \(resource) ==> \(error)")
+            log.error("Failed to save resource of type: \(resource) ==> \(error)")
         }
     }
 
     @discardableResult static func deleteResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
         return SyncEngine.deleteResource(resource).onSuccess { _ in
-            print("Verbose: Successfully deleted resource of type: \(type(of: resource).type)")
+            log.info("Successfully deleted resource of type: \(type(of: resource).type)")
         }.onFailure { error in
-            print("Error: Failed to delete resource: \(resource) ==> \(error)")
+            log.error("Failed to delete resource: \(resource) ==> \(error)")
         }
     }
 

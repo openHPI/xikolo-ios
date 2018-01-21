@@ -196,7 +196,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> 
 
     func search(withText searchText: String) {
         guard let fetchRequest = self.searchFetchRequest?.copy() as? NSFetchRequest<T> else {
-            print("Warning: CollectionViewControllerDelegateImplementation is not configured for search. Missing search fetch request.")
+            log.warning("CollectionViewControllerDelegateImplementation is not configured for search. Missing search fetch request.")
             self.resetSearch()
             return
         }

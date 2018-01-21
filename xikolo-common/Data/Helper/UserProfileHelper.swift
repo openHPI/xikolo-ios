@@ -20,15 +20,15 @@ open class UserProfileHelper {
             Routes.HTTP_PARAM_EMAIL: email,
             Routes.HTTP_PARAM_PASSWORD: password,
         ].map { (key, value) in
-            return "\(key)=\(value)"
+            return "\(NetworkHelper.escape(key))=\(NetworkHelper.escape(value))"
         }.joined(separator: "&")
 
         let url = URL(string: Routes.AUTHENTICATE_URL).require(hint: "Invalid URL for authentication")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = parameters.data(using: .utf8)
+        request.httpBody = parameters.data(using: .utf8, allowLossyConversion: false)
 
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in

@@ -70,7 +70,32 @@ class XikoloTabBarController: UITabBarController {
     private var messageView = UIView()
     private var messageLabel = UILabel()
 
-    private(set) var state: State = .standard
+    private var _state: State = .standard
+    var state: State {
+        get {
+            return self._state
+        }
+        set {
+            guard self.state != newValue else { return }
+
+            // allow only some status changes
+            switch (self.state, newValue) {
+            case (.standard, _): fallthrough
+            case (.deprecated, .maintenance): fallthrough
+            case (.deprecated, .expired): fallthrough
+            case (.maintenance, .standard): fallthrough
+            case (.maintenance, .expired): break
+            default: return
+            }
+
+            log.verbose("Update app state from \(self.state) to \(newValue)")
+            let animationDuration: TimeInterval = self.state == .standard ? 0 : 0.25
+            UIView.animate(withDuration: animationDuration) {
+                self._state = newValue
+                self.updateMessageViewAppearance()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         self.messageLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: XikoloTabBarController.messageViewHeight)
@@ -91,27 +116,6 @@ class XikoloTabBarController: UITabBarController {
         self.tabBar.layoutSubviews()
 
         self.updateMessageViewAppearance()
-    }
-
-    func updateState(_ state: State) {
-        guard self.state != state else { return }
-
-        // allow only some status changes
-        switch (self.state, state) {
-        case (.standard, _): fallthrough
-        case (.deprecated, .maintenance): fallthrough
-        case (.deprecated, .expired): fallthrough
-        case (.maintenance, .standard): fallthrough
-        case (.maintenance, .expired): break
-        default: return
-        }
-
-        log.verbose("Update app state from \(self.state) to \(state)")
-        let animationDuration: TimeInterval = self.state == .standard ? 0 : 0.25
-        UIView.animate(withDuration: animationDuration) {
-            self.state = state
-            self.updateMessageViewAppearance()
-        }
     }
 
     private func updateMessageViewAppearance() {

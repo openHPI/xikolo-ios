@@ -17,6 +17,7 @@ class CoreDataHelper {
         container.loadPersistentStores { (storeDescription, error) in
             // TODO: check for space etc
             if let error = error as NSError? {
+                log.severe("Unresolved error \(error), \(error.userInfo)")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
             container.viewContext.automaticallyMergesChangesFromParent = true
@@ -54,13 +55,13 @@ class CoreDataHelper {
                 let result = try privateManagedObjectContext.execute(deleteRequest) as? NSBatchDeleteResult
                 guard let objectIDArray = result?.result as? [NSManagedObjectID] else { return }
                 let changes = [NSDeletedObjectsKey : objectIDArray]
-                print("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
+                log.verbose("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
                 try privateManagedObjectContext.save()
 
                 promise.success(())
             } catch {
-                print("Failed to bulk delete all enities of \(entityName) - \(error)")
+                log.error("Failed to bulk delete all enities of \(entityName) - \(error)")
                 promise.failure(.coreData(error))
             }
         }
@@ -103,6 +104,7 @@ extension NSManagedObjectContext {
     func typedObject<T>(with id: NSManagedObjectID) -> T where T: NSManagedObject {
         let managedObject = self.object(with: id)
         guard let object = managedObject as? T else {
+            log.severe("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
             fatalError("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
         }
 
@@ -111,12 +113,12 @@ extension NSManagedObjectContext {
 
     func existingTypedObject<T>(with id: NSManagedObjectID) -> T? where T: NSManagedObject {
         guard let managedObject = try? self.existingObject(with: id) else {
-            print("Info: NSManagedObject could not be retrieved by id (\(id))")
+            log.info("NSManagedObject could not be retrieved by id (\(id))")
             return nil
         }
 
         guard let object = managedObject as? T else {
-            print("Error: Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
+            log.error("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
             return nil
         }
 

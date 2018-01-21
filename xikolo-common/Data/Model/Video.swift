@@ -38,7 +38,7 @@ final class Video : Content {
             do {
                 return try Data(contentsOf: posterImageURL)
             } catch {
-                print("Failed to load poster image")
+                log.warning("Failed to load poster image")
             }
         }
         return nil

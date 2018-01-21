@@ -88,7 +88,7 @@ class CourseItemCell : UITableViewCell {
         self.iconView.image = UIImage(named: "course-item-icon-\(iconName)")?.withRenderingMode(.alwaysTemplate)
         self.iconView.tintColor = isAvailable ? UIColor.black : UIColor.lightGray
 
-        let wasVisitedBefore = courseItem.visited ?? true
+        let wasVisitedBefore = courseItem.visited
         self.readStateView.alpha = wasVisitedBefore ? 0.0 : 1.0
         self.readStateView.backgroundColor = isAvailable ? Brand.TintColor : UIColor.lightGray
 

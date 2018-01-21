@@ -153,7 +153,7 @@ class CourseItemListViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let courseItem = sender as? CourseItem else {
-            print("Sender is not a course item")
+            log.debug("Sender is not a course item")
             super.prepare(for: segue, sender: sender)
             return
         }
@@ -230,6 +230,10 @@ extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetD
         let description = NSLocalizedString("empty-view.course-content.description",
                                             comment: "description for empty course content list")
         return NSAttributedString(string: description)
+    }
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        self.refresh()
     }
 
 }

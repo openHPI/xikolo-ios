@@ -80,7 +80,7 @@ class AbstractCourseListViewController : UICollectionViewController {
             }
         } catch {
             // TODO: Error handling.
-            print(error)
+            log.error(error)
         }
 
         self.collectionView?.reloadData()

@@ -68,6 +68,7 @@ class AppDelegate : AbstractAppDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        UserDefaults.standard.synchronize()
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -87,7 +88,7 @@ class AppDelegate : AbstractAppDelegate {
 
     var tabBarController: UITabBarController? {
         guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            print("UITabBarController could not be found")
+            log.warning("UITabBarController could not be found")
             return nil
         }
 
@@ -104,7 +105,7 @@ extension AppDelegate : UITabBarControllerDelegate {
         }
 
         guard let navigationController = viewController as? UINavigationController else {
-            print("Info: Navigation controller not found")
+            log.info("Navigation controller not found")
             return true
         }
 
@@ -115,12 +116,12 @@ extension AppDelegate : UITabBarControllerDelegate {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
 
         guard let loginNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            print("Error: Initial view controller of Login stroyboard in not of type UINavigationController")
+            log.error("Initial view controller of Login stroyboard in not of type UINavigationController")
             return false
         }
 
         guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            print("Error: Could not find LoginViewController")
+            log.error("Could not find LoginViewController")
             return false
         }
 

@@ -63,10 +63,6 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 11.0, *) {
-            self.navigationItem.largeTitleDisplayMode = .automatic
-        }
-
         self.updateUIAfterLoginStateChanged()
 
         // set text for github link
@@ -101,7 +97,7 @@ class SettingsViewController: UITableViewController {
 
                 UserHelper.syncMe().onSuccess { managedObjectID in
                     guard let user = CoreDataHelper.viewContext.existingTypedObject(with: managedObjectID) as? User else {
-                        print("Warning: Failed to retrieve user to display")
+                        log.warning("Failed to retrieve user to display")
                         return
                     }
 

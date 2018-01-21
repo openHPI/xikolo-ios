@@ -284,7 +284,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KWX-En-m9x">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -327,7 +327,7 @@
                             <outlet property="delegate" destination="Ewc-ei-HZU" id="CaI-Bu-qUo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="never" id="wNE-fd-aKh">
+                    <navigationItem key="navigationItem" title="Settings" id="wNE-fd-aKh">
                         <barButtonItem key="rightBarButtonItem" title="Login" id="tyU-B6-h3N">
                             <connections>
                                 <segue destination="O8W-IG-m3E" kind="presentation" identifier="ShowLogin" id="3Rm-Of-fj1"/>

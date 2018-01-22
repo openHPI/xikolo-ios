@@ -27,7 +27,7 @@ class PlatformEventCell: UITableViewCell {
         case CourseAnnouncement = "course.announcement"
         case LearningRoomNewFile = "learning_room.new_file"
         case LearningRoomNewMembership = "learning_room.new_membership"
-        case LearningRoomQuitMemebership = "learning_room.quit_membership"
+        case LearningRoomQuitMembership = "learning_room.quit_membership"
     }
 
     func configure(_ platformEvent: PlatformEvent) {
@@ -49,20 +49,20 @@ class PlatformEventCell: UITableViewCell {
                  EventTypes.PinboardAnswer.rawValue,
                  EventTypes.PinboardDiscussionComment.rawValue,
                  EventTypes.PinboardDiscussion.rawValue:
-                iconName = "events-comment-22"
+                iconName = "platform_events-icon-events-comment"
             case EventTypes.PinboardQuestion.rawValue:
-                iconName = "events-question-22"
+                iconName = "platform_events-icon-question"
             case EventTypes.NewsAnnoucement.rawValue,
                  EventTypes.CourseAnnouncement.rawValue:
-                iconName = "events-mail-22"
+                iconName = "platform_events-icon-mail"
             case EventTypes.LearningRoomNewFile.rawValue:
-                iconName = "events-file-22"
+                iconName = "platform_events-icon-file"
             case EventTypes.LearningRoomNewMembership.rawValue:
-                iconName = "events-user-plus-22"
-            case EventTypes.LearningRoomQuitMemebership.rawValue:
-                iconName = "events-user-times-22"
+                iconName = "platform_events-icon-user_plus"
+            case EventTypes.LearningRoomQuitMembership.rawValue:
+                iconName = "platform_events-icon-user_times"
             default:
-                iconName = "events-mail-22"
+                iconName = "platform_events-icon-mail"
             }
             categoryView.image = UIImage(named: iconName)
         }

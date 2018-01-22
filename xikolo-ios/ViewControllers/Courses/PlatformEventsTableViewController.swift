@@ -31,7 +31,8 @@ class PlatformEventsTableViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
-        let request = PlatformEventHelper.FetchRequest.allPlatformEvents
+        let course = self.course.require(hint: "Platform event list need course for filtering")
+        let request = PlatformEventHelper.FetchRequest.platformEvents(forCourse: course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
@@ -78,8 +79,8 @@ class PlatformEventsTableViewController: UITableViewController {
             }
         }
 
-        if UserProfileHelper.isLoggedIn() {
-            PlatformEventHelper.syncAllPlatformEvents().onComplete { _ in
+        if UserProfileHelper.isLoggedIn(), let course = self.course {
+            PlatformEventHelper.syncPlatformEvents(forCourse: course).onComplete { _ in
                 stopRefreshControl()
             }
         } else {

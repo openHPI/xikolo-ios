@@ -221,6 +221,8 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
             userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
         } else {
             userInfo[Video.Keys.downloadState] = Video.DownloadState.downloaded.rawValue
+            let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
+            TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: video.id, context: context)
         }
 
         NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
@@ -232,9 +234,6 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 let bookmark = try location.bookmarkData()
                 video.localFileBookmark = NSData(data: bookmark)
                 try video.managedObjectContext?.save()
-
-                let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
-                TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: video.id, context: context)
             } catch {
                 // Failed to create bookmark for location
                 self.deleteAsset(for: video)

@@ -13,7 +13,7 @@ import Result
 
 struct EnrollmentHelper {
 
-    static func syncEnrollments() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult static func syncEnrollments() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         guard UserProfileHelper.isLoggedIn() else {
             let result = SyncEngine.SyncMultipleResult(objectIds: [], headers: [:])
             return Future(value: result)
@@ -71,7 +71,7 @@ struct EnrollmentHelper {
         return promise.future
     }
 
-    static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
+    @discardableResult static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
         guard let enrollment = course.enrollment else {
             return Future(error: .missingResource(ofType: Enrollment.self))
         }

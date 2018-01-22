@@ -12,7 +12,7 @@ import BrightFutures
 
 struct AnnouncementHelper {
 
-    static func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult static func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
@@ -21,7 +21,7 @@ struct AnnouncementHelper {
         }
     }
 
-    static func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
+    @discardableResult static func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
         guard UserProfileHelper.isLoggedIn() && !item.visited else {
             return Future(value: ())
         }

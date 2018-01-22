@@ -12,7 +12,7 @@ import BrightFutures
 
 struct QuizHelper {
 
-    static func syncQuiz(_ quiz: Quiz) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult static func syncQuiz(_ quiz: Quiz) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = QuizHelper.FetchRequest.quiz(withId: quiz.id)
         var query = SingleResourceQuery(resource: quiz)
         query.include("questions")

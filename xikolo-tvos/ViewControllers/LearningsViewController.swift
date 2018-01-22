@@ -41,7 +41,7 @@ class LearningsViewController : UIViewController {
         sectionResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         sectionResultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(sectionTableView, resultsController: [sectionResultsController], cellReuseIdentifier: "CourseSectionCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(LearningsViewControllerSectionConfiguration())
+        let configuration = LearningsViewControllerSectionConfiguration().wrapped
         sectionResultsControllerDelegateImplementation.configuration = configuration
         sectionResultsController.delegate = sectionResultsControllerDelegateImplementation
         sectionTableView.dataSource = sectionResultsControllerDelegateImplementation
@@ -104,7 +104,7 @@ class LearningsViewController : UIViewController {
         itemResultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         itemResultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(itemCollectionView, resultsControllers: [itemResultsController!], cellReuseIdentifier: "CourseItemCell")
-        let configuration = CollectionViewResultsControllerConfigurationWrapper(LearningsViewControllerItemConfiguration())
+        let configuration = LearningsViewControllerItemConfiguration().wrapped
         itemResultsControllerDelegateImplementation.configuration = configuration
         itemCollectionView.dataSource = itemResultsControllerDelegateImplementation
         itemResultsController!.delegate = itemResultsControllerDelegateImplementation

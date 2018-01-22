@@ -178,7 +178,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
     
 }
 
-protocol TableViewResultsControllerConfiguration {
+protocol TableViewResultsControllerConfigurationProtocol {
 
     associatedtype Content: NSManagedObject
 
@@ -190,7 +190,7 @@ protocol TableViewResultsControllerConfiguration {
 
 }
 
-extension TableViewResultsControllerConfiguration {
+extension TableViewResultsControllerConfigurationProtocol {
 
     func shouldShowHeader() -> Bool {
         return true
@@ -202,9 +202,19 @@ extension TableViewResultsControllerConfiguration {
 
 }
 
+protocol TableViewResultsControllerConfiguration: TableViewResultsControllerConfigurationProtocol {
+    var wrapped: TableViewResultsControllerConfigurationWrapper<Content> { get }
+}
+
+extension TableViewResultsControllerConfiguration {
+    var wrapped: TableViewResultsControllerConfigurationWrapper<Content> {
+        return TableViewResultsControllerConfigurationWrapper(self)
+    }
+}
+
 // This is a wrapper for type erasure allowing the generic TableViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
-class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableViewResultsControllerConfiguration {
+class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableViewResultsControllerConfigurationProtocol {
 
     private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let _shouldShowHeader: () -> Bool

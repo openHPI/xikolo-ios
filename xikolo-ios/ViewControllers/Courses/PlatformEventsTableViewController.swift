@@ -37,7 +37,7 @@ class PlatformEventsTableViewController: UITableViewController {
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "PlatformEventCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(PlatformEventsTableViewConfiguration())
+        let configuration = PlatformEventsTableViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation

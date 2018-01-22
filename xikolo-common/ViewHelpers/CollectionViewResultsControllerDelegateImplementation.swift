@@ -278,7 +278,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
 
 }
 
-protocol CollectionViewResultsControllerConfiguration {
+protocol CollectionViewResultsControllerConfigurationProtocol {
     associatedtype Content : NSManagedObject
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
@@ -289,7 +289,7 @@ protocol CollectionViewResultsControllerConfiguration {
 
 }
 
-extension CollectionViewResultsControllerConfiguration {
+extension CollectionViewResultsControllerConfigurationProtocol {
 
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {}
 
@@ -301,9 +301,19 @@ extension CollectionViewResultsControllerConfiguration {
 
 }
 
+protocol CollectionViewResultsControllerConfiguration: CollectionViewResultsControllerConfigurationProtocol {
+    var wrapped: CollectionViewResultsControllerConfigurationWrapper<Content> { get }
+}
+
+extension CollectionViewResultsControllerConfiguration {
+    var wrapped: CollectionViewResultsControllerConfigurationWrapper<Content> {
+        return CollectionViewResultsControllerConfigurationWrapper(self)
+    }
+}
+
 // This is a wrapper for type erasure allowing the generic CollectionViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
-class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: CollectionViewResultsControllerConfiguration {
+class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: CollectionViewResultsControllerConfigurationProtocol {
 
     private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
     private let configureCollectionHeaderView: (UICollectionReusableView, NSFetchedResultsSectionInfo) -> Void

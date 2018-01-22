@@ -66,7 +66,7 @@ class AbstractCourseListViewController : UICollectionViewController {
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView, resultsControllers: resultsControllers, searchFetchRequest: CourseHelper.FetchRequest.genericCoursesRequest, cellReuseIdentifier: "CourseCell")
         resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
-        let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseListViewConfiguration())
+        let configuration = CourseListViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
 
         for rC in resultsControllers {

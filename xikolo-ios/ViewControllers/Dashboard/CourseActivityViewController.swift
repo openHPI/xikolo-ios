@@ -24,7 +24,7 @@ class CourseActivityViewController: UICollectionViewController {
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
-        let configuration = CollectionViewResultsControllerConfigurationWrapper(CourseActivityViewConfiguration())
+        let configuration = CourseActivityViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         self.collectionView?.dataSource = resultsControllerDelegateImplementation

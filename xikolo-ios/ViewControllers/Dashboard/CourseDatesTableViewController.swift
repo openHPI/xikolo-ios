@@ -41,7 +41,7 @@ class CourseDatesTableViewController : UITableViewController {
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: "CourseDateCell")
-        let configuration = TableViewResultsControllerConfigurationWrapper(CourseDatesTableViewConfiguration())
+        let configuration = CourseDatesTableViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation

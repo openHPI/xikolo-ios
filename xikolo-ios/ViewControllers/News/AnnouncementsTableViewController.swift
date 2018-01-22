@@ -43,7 +43,7 @@ class AnnouncementsTableViewController : UITableViewController {
 
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
         let configuration = AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil)
-        let configurationWrapper = TableViewResultsControllerConfigurationWrapper(configuration)
+        let configurationWrapper = configuration.wrapped
         resultsControllerDelegateImplementation.configuration = configurationWrapper
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation

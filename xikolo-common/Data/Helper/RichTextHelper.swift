@@ -12,7 +12,7 @@ import BrightFutures
 
 struct RichTextHelper {
 
-    static func syncRichText(_ richText: RichText) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult static func syncRichText(_ richText: RichText) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = RichTextHelper.FetchRequest.richText(withId: richText.id)
         let query = SingleResourceQuery(resource: richText)
         return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)

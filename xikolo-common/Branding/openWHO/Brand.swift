@@ -31,6 +31,6 @@ struct Brand {
         let currentYear = Calendar.current.component(.year, from: Date())
         return "Copyright © \(currentYear) WHO. All rights reserved."
     }
-    static let poweredByText = "Powered by HPI / openHPI"
+    static let poweredByText: String? = "Powered by HPI / openHPI"
     
 }

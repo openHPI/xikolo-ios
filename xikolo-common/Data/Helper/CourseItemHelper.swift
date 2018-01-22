@@ -35,7 +35,7 @@ struct CourseItemHelper {
         }
     }
 
-    static func syncRichTexts(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult static func syncRichTexts(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "rich_text")
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
@@ -44,7 +44,7 @@ struct CourseItemHelper {
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
-    static func syncVideos(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult static func syncVideos(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "video")
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
@@ -53,14 +53,14 @@ struct CourseItemHelper {
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
-    static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
         var query = SingleResourceQuery(resource: courseItem)
         query.include("content")
         return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-    static func markAsVisited(_ item: CourseItem) -> Future<Void, XikoloError> {
+    @discardableResult static func markAsVisited(_ item: CourseItem) -> Future<Void, XikoloError> {
         guard !item.visited else {
             return Future(value: ())
         }

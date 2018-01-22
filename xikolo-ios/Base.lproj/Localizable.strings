@@ -38,6 +38,9 @@
 /* delete video item */
 "course-item.video-download-alert.delete-item-action.title" = "Delete video";
 
+/* title to download error alert */
+"course-item.video-download-alert.download-error.title" = "Error while downloading video";
+
 /* start download of video item */
 "course-item.video-download-alert.start-download-action.title" = "Download video";
 

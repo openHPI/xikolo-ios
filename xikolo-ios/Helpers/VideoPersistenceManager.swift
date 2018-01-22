@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import CoreData
+import UIKit
 
 class VideoPersistenceManager: NSObject {
 
@@ -136,23 +137,22 @@ class VideoPersistenceManager: NSObject {
     }
 
     func deleteAsset(for video: Video) {
-        if let localFileLocation = self.localAsset(for: video)?.url {
-            do {
-                try FileManager.default.removeItem(at: localFileLocation)
+        guard let localFileLocation = self.localAsset(for: video)?.url else { return }
 
-                video.downloadDate = nil
-                video.localFileBookmark = nil
-                try video.managedObjectContext?.save()
-
-                var userInfo: [String: Any] = [:]
-                userInfo[Video.Keys.id] = video.id
-                userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
-
-                NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
-            } catch {
-                log.error("An error occured deleting the file: \(error)")
-            }
+        do {
+            try FileManager.default.removeItem(at: localFileLocation)
+            video.downloadDate = nil
+            video.localFileBookmark = nil
+            try video.managedObjectContext?.save()
+        } catch {
+            log.error("An error occured deleting the file: \(error)")
         }
+
+        var userInfo: [String: Any] = [:]
+        userInfo[Video.Keys.id] = video.id
+        userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
+
+        NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
     func cancelDownload(for video: Video) {
@@ -189,31 +189,36 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
         userInfo[Video.Keys.id] = video.id
 
         if let error = error as NSError? {
-            switch (error.domain, error.code) {
-            case (NSURLErrorDomain, NSURLErrorCancelled):
-
-                guard let localFileLocation = self.localAsset(for: video)?.url else { return }
-
+            if let localFileLocation = self.localAsset(for: video)?.url {
                 do {
                     try FileManager.default.removeItem(at: localFileLocation)
-
                     video.downloadDate = nil
                     video.localFileBookmark = nil
-                    try video.managedObjectContext?.save()
+                    try? video.managedObjectContext?.save()
                 } catch {
                     log.error("An error occured deleting the file: \(error)")
                 }
-
-                userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
-            case (NSURLErrorDomain, NSURLErrorUnknown):
-                log.severe("Downloading HLS streams is not supported in the simulator.")
-                fatalError("Downloading HLS streams is not supported in the simulator.")
-                // TODO better catch
-            default:
-                log.severe("An unexpected error occured \(error.domain)")
-                fatalError("An unexpected error occured \(error.domain)")
-
             }
+
+            if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+                log.debug("Canceled download of video (video id: \(video.id))")
+            } else {
+                log.error("Unknown asset download error (video id: \(video.id) | domain: \(error.domain) | code: \(error.code)")
+
+                // show error
+                DispatchQueue.main.async {
+                    let alertTitle = NSLocalizedString("course-item.video-download-alert.download-error.title", comment: "title to download error alert")
+                    let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
+                    let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+                    let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
+                    alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
+                        alert.dismiss(animated: true)
+                    })
+                    AppDelegate.instance().tabBarController?.present(alert, animated: true)
+                }
+            }
+
+            userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
         } else {
             userInfo[Video.Keys.downloadState] = Video.DownloadState.downloaded.rawValue
         }

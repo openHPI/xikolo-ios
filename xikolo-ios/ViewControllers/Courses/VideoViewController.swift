@@ -30,6 +30,9 @@ class VideoViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.descriptionView.textContainerInset = UIEdgeInsets.zero
+        self.descriptionView.textContainer.lineFragmentPadding = 0
+
         self.layoutPlayer()
 
         self.errorView.isHidden = true

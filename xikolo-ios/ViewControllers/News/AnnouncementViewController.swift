@@ -86,6 +86,11 @@ extension AnnouncementViewController: UITextViewDelegate {
         if !(url.scheme?.hasPrefix("http") ?? false) { // abort if it still isnt http
             return false
         }
+        
+        if AppNavigator.handle(url) { // We can open the link inside the app
+            return false
+        }
+
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
         safariVC.preferredControlTintColor = Brand.windowTintColor

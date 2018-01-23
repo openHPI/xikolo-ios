@@ -16,3 +16,6 @@
 
 /* Class = "UILabel"; text = "Announcements"; ObjectID = "DRo-CM-ssb"; */
 "DRo-CM-ssb.text" = "Neuigkeiten";
+
+/* Class = "UILabel"; text = "Activity"; ObjectID = "nCn-lp-OVD"; */
+"nCn-lp-OVD.text" = "Aktivität";

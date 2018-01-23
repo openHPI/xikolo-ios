@@ -26,6 +26,9 @@
 /* title of learnings view of course view */
 "course-content.view.learnings.title" = "Lernmaterial";
 
+/* title of platform events view of course view */
+"course-content.view.platform-events.title" = "Aktivität";
+
 /* specfic title for course start in a course date cell */
 "course-date-cell.course-start.title" = "Kursstart";
 
@@ -64,6 +67,12 @@
 
 /* title for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.title" = "Es gibt keine wichtigen Kursdaten";
+
+/* description for empty platform event list */
+"empty-view.platform-events.description" = "Zukünftig werden hier Aktivitäten erscheinen.";
+
+/* title for empty platform event list */
+"empty-view.platform-events.title" = "Zurzeit gibt es noch keine Aktivitäten";
 
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";

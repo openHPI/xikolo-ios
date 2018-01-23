@@ -37,8 +37,9 @@ extension PlatformEvent : Pullable {
         self.preview = try attributes.value(for: "preview")
         self.type = try attributes.value(for: "type")
 
-        let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \PlatformEvent.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
+        if let relationships = try? object.value(for: "relationships") as JSON {
+            try self.updateRelationship(forKeyPath: \PlatformEvent.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
+        }
     }
 
 }

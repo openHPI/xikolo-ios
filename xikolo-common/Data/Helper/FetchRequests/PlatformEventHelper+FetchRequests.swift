@@ -12,10 +12,11 @@ extension PlatformEventHelper {
 
     struct FetchRequest {
 
-        static var allPlatformEvents: NSFetchRequest<PlatformEvent> {
+        static func platformEvents(forCourse course: Course) -> NSFetchRequest<PlatformEvent> {
             let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()
             let dateSort = NSSortDescriptor(key: "createdAt", ascending: false)
             request.sortDescriptors = [dateSort]
+            request.predicate = NSPredicate(format: "course = %@", course)
             return request
         }
 

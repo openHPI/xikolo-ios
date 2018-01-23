@@ -29,10 +29,26 @@ struct AppNavigator {
             return false
         }
 
-        guard let tabBarController = tabBarController else {
+        if handle(url) {
+            return true
+        }
+        // We can't handle the url, open it with a browser
+        let webpageUrl = url
+        application.open(webpageUrl)
+        return false
+    }
+
+    static func handle(_ url: URL) -> Bool {
+        guard let tabBarController = AppDelegate.instance().tabBarController else {
             let reason = "UITabBarController could not be found"
             CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
             log.error(reason)
+            return false
+        }
+
+        guard let hostURL = url.host else { return false }
+        guard hostURL == Brand.HostURL else {
+            log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
 
@@ -69,10 +85,6 @@ struct AppNavigator {
                 return true
             }
         }
-
-        // We can't handle the url, open it with a browser
-        let webpageUrl = url
-        application.open(webpageUrl)
         return false
     }
 

@@ -11,7 +11,8 @@ import UIKit
 
 struct Brand {
 
-    static let BaseURL = "https://open.hpi.de"
+    static let HostURL = "open.hpi.de"
+    static let BaseURL = "https://" + HostURL
 
     static let TintColor = UIColor(red: 222/255, green: 98/255, blue: 18/255, alpha: 1.0)
     static let TintColorSecond = UIColor(red: 180/255, green: 41/255, blue: 70/255, alpha: 1.0)

@@ -1,3 +1,6 @@
 
 /* Class = "UIButton"; normalTitle = "open slides"; ObjectID = "a7h-I3-Gce"; */
 "a7h-I3-Gce.normalTitle" = "Folien anschauen";
+
+/* Class = "UILabel"; text = "Error: Could not find video stream"; ObjectID = "XUY-uY-wln"; */
+"XUY-uY-wln.text" = "Fehler: Video-Stream konnte nicht gefunden werden";

@@ -15,6 +15,7 @@ import NVActivityIndicatorView
 class VideoViewController : UIViewController {
 
     @IBOutlet weak var videoContainer: UIView!
+    @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var openSlidesButton: UIButton!
@@ -24,7 +25,6 @@ class VideoViewController : UIViewController {
     var videoPlayerConfigured = false
     private var sentFirstAutoPlayEvent = false
 
-
     var player: CustomBMPlayer?
     let playerControlView = VideoPlayerControlView()
 
@@ -32,6 +32,7 @@ class VideoViewController : UIViewController {
         super.viewDidLoad()
         self.layoutPlayer()
 
+        self.errorView.isHidden = true
         self.openSlidesButton.isHidden = true
         self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
 
@@ -130,28 +131,31 @@ class VideoViewController : UIViewController {
         }
 
         // configure video player
-        guard !self.videoPlayerConfigured else { return }
+        if self.videoPlayerConfigured { return }
 
         // pull latest change for video content item
         video.managedObjectContext?.refresh(video, mergeChanges: true)
 
         // determine video url (local file, currently downloading or remote)
-        var videoURL: URL?
+        var videoURL: URL
         if let localAsset = VideoPersistenceManager.shared.localAsset(for: video) {
             videoURL = localAsset.url
             self.playerControlView.setOffline(true)
-        } else {
-            videoURL = video.singleStream?.hlsURL
+        } else if let hlsURL = video.singleStream?.hlsURL {
+            videoURL = hlsURL
             self.playerControlView.setOffline(false)
+        } else {
+            self.errorView.isHidden = false
+            self.playerControlView.setOffline(false)
+            return
         }
 
-        if let url = videoURL {  // video.hlsURL can be nil
-            self.videoPlayerConfigured = true
- 
-            let asset = BMPlayerResource(url: url, name: self.courseItem?.title ?? "")
-            self.player?.setVideo(resource: asset)
-            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        }
+        self.videoPlayerConfigured = true
+        self.errorView.isHidden = true
+
+        let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
+        self.player?.setVideo(resource: asset)
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
     }
 
     @IBAction func openSlides(_ sender: UIButton) {

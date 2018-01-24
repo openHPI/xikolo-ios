@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "502E71542018D960007FC8C0"
+               BuildableName = "moocHOUSE-iOS-UITests.xctest"
+               BlueprintName = "moocHOUSE-iOS-UITests"
+               ReferencedContainer = "container:xikolo-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

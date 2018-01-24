@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "502E71382018D93D007FC8C0"
+               BuildableName = "openSAP-iOS-UITests.xctest"
+               BlueprintName = "openSAP-iOS-UITests"
+               ReferencedContainer = "container:xikolo-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

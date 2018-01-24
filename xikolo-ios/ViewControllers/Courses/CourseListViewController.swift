@@ -145,6 +145,11 @@ class CourseListViewController : AbstractCourseListViewController {
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionView?.performBatchUpdates(nil)
+    }
+
 }
 
 extension CourseListViewController: CourseListLayoutDelegate {

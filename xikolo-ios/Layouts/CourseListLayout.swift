@@ -159,7 +159,8 @@ class CourseListLayout: UICollectionViewLayout {
         if #available(iOS 11.0, *) {
             contentOffsetY = collectionView.contentOffset.y + collectionView.safeAreaInsets.top
         } else {
-            contentOffsetY = collectionView.contentOffset.y + 64
+            let navigationBarHeight = (self.delegate as? UIViewController)?.topLayoutGuide.length ?? 64
+            contentOffsetY = collectionView.contentOffset.y + navigationBarHeight
         }
 
         let offsetY: CGFloat
@@ -185,25 +186,6 @@ class CourseListLayout: UICollectionViewLayout {
         let invalidationContext = self.invalidationContext(forBoundsChange: newBounds)
         self.invalidateLayout(with: invalidationContext)
         return shouldInvalidate || self.collectionView?.bounds.width != newBounds.width
-    }
-
-    override func invalidationContext(forBoundsChange newBounds: CGRect) -> UICollectionViewLayoutInvalidationContext {
-        let context = super.invalidationContext(forBoundsChange: newBounds)
-
-        // invalidate visible section headers
-        var sectionsToInvalidate: Set<IndexPath> = []
-        for layoutAttribute in self.cache.values.filter({ $0.frame.intersects(newBounds) }) {
-            let indexPath = IndexPath(item: 0, section: layoutAttribute.indexPath.section)
-            if layoutAttribute.representedElementCategory == .cell {
-                sectionsToInvalidate.insert(indexPath)
-            } else if layoutAttribute.representedElementCategory == .supplementaryView {
-                sectionsToInvalidate.insert(indexPath)
-            }
-        }
-
-        context.invalidateSupplementaryElements(ofKind: UICollectionElementKindSectionHeader, at: sectionsToInvalidate.map { $0 })
-
-        return context
     }
 
 }

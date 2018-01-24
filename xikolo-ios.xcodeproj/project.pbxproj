@@ -536,6 +536,10 @@
 		502E713C2018D93D007FC8C0 /* openSAP_iOS_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E713B2018D93D007FC8C0 /* openSAP_iOS_UITests.swift */; };
 		502E714A2018D950007FC8C0 /* openWHO_iOS_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E71492018D950007FC8C0 /* openWHO_iOS_UITests.swift */; };
 		502E71582018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E71572018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift */; };
+		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
+		502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
+		502E716E2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
+		502E716F2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502F89B820109B510056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89B920109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
@@ -1882,6 +1886,7 @@
 		502E71552018D960007FC8C0 /* moocHOUSE-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moocHOUSE-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E71572018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moocHOUSE_iOS_UITests.swift; sourceTree = "<group>"; };
 		502E71592018D960007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		504C5A6F1F99F8210021EB17 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
 		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseContent.storyboard; sourceTree = "<group>"; };
@@ -2605,6 +2610,18 @@
 			path = "moocHOUSE-iOS-UITests";
 			sourceTree = "<group>";
 		};
+		502E71652018DC2B007FC8C0 /* UI tests */ = {
+			isa = PBXGroup;
+			children = (
+				502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */,
+				502E712C2018D8BF007FC8C0 /* openHPI-iOS-UITests */,
+				502E713A2018D93D007FC8C0 /* openSAP-iOS-UITests */,
+				502E71482018D950007FC8C0 /* openWHO-iOS-UITests */,
+				502E71562018D960007FC8C0 /* moocHOUSE-iOS-UITests */,
+			);
+			path = "UI tests";
+			sourceTree = "<group>";
+		};
 		5057ED7E1FE3D91B0096095B /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -2679,10 +2696,7 @@
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				24CB7E351CC678A000960269 /* xikolo-tvos */,
-				502E712C2018D8BF007FC8C0 /* openHPI-iOS-UITests */,
-				502E713A2018D93D007FC8C0 /* openSAP-iOS-UITests */,
-				502E71482018D950007FC8C0 /* openWHO-iOS-UITests */,
-				502E71562018D960007FC8C0 /* moocHOUSE-iOS-UITests */,
+				502E71652018DC2B007FC8C0 /* UI tests */,
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				D7D6B56CF669E978F1E7A6E0 /* Pods */,
@@ -5201,6 +5215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				502E712E2018D8BF007FC8C0 /* openHPI_iOS_UITests.swift in Sources */,
+				502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5209,6 +5224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				502E713C2018D93D007FC8C0 /* openSAP_iOS_UITests.swift in Sources */,
+				502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5217,6 +5233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				502E714A2018D950007FC8C0 /* openWHO_iOS_UITests.swift in Sources */,
+				502E716E2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5225,6 +5242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				502E71582018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift in Sources */,
+				502E716F2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -481,8 +481,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7i-zj-8QJ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJL-eR-xcD" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="293"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJL-eR-xcD" userLabel="Scroll Content">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="322.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXk-Yb-gBp">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
@@ -714,80 +714,70 @@
         <scene sceneID="1kI-5p-EA5">
             <objects>
                 <tableViewController storyboardIdentifier="PlatformEventsTableViewController" id="7Hx-Mm-BvF" customClass="PlatformEventsTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="186" sectionHeaderHeight="28" sectionFooterHeight="28" id="5rZ-iL-zbZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" id="5rZ-iL-zbZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlatformEventCell" id="fZD-jP-BOu" customClass="PlatformEventCell" customModule="moocHOUSE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="186"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="fZD-jP-BOu" id="IZU-OP-xWB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="186"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gw4-EE-XVr">
-                                            <rect key="frame" x="41" y="8" width="322" height="169.5"/>
-                                            <color key="backgroundColor" red="0.95927601809999996" green="0.95927601809999996" blue="0.95927601809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="240" id="qAd-Sm-Jnc"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="2"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="qAd-Sm-Jnc"/>
-                                                </mask>
-                                            </variation>
-                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCE-jo-Rfn">
-                                            <rect key="frame" x="24" y="0.0" width="2" height="186"/>
+                                            <rect key="frame" x="24" y="0.0" width="2" height="44"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="2" id="Hkb-Iv-bWa"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnA-M7-QgD">
-                                            <rect key="frame" x="279" y="16" width="80" height="14.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="4U0-tL-hTy"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <attributedString key="userComments">
-                                                <fragment content="#bc-ignore!">
-                                                    <attributes>
-                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Platform Event Preview" translatesAutoresizingMaskIntoConstraints="NO" id="0fj-dm-gO5">
-                                            <rect key="frame" x="46" y="76" width="321" height="101.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="122" id="SAb-kB-U4G"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            <attributedString key="userComments">
-                                                <fragment content="#bc-ignore!">
-                                                    <attributes>
-                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="SAb-kB-U4G"/>
-                                                </mask>
-                                            </variation>
-                                        </textView>
+                                        <stackView opaque="NO" contentMode="scaleAspectFit" verticalCompressionResistancePriority="751" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JUw-kZ-Zzp">
+                                            <rect key="frame" x="65" y="0.0" width="290" height="44"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Date" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnA-M7-QgD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!">
+                                                            <attributes>
+                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Platform Event Title" translatesAutoresizingMaskIntoConstraints="NO" id="pHH-YI-bBb">
+                                                    <rect key="frame" x="0.0" y="8" width="290" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!">
+                                                            <attributes>
+                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </textView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="754" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Platform Event Preview" translatesAutoresizingMaskIntoConstraints="NO" id="0fj-dm-gO5">
+                                                    <rect key="frame" x="0.0" y="16" width="290" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!">
+                                                            <attributes>
+                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </textView>
+                                            </subviews>
+                                        </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5H-Ot-iSU">
                                             <rect key="frame" x="9" y="28" width="32" height="32"/>
                                             <subviews>
@@ -826,68 +816,15 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Platform Event Title" translatesAutoresizingMaskIntoConstraints="NO" id="pHH-YI-bBb">
-                                            <rect key="frame" x="46" y="8" width="225" height="68"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="68" id="8cb-jO-zlc"/>
-                                                <constraint firstAttribute="width" constant="240" id="Kr3-5B-rrq"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            <attributedString key="userComments">
-                                                <fragment content="#bc-ignore!">
-                                                    <attributes>
-                                                        <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="Kr3-5B-rrq"/>
-                                                </mask>
-                                            </variation>
-                                        </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="0fj-dm-gO5" firstAttribute="leading" secondItem="pHH-YI-bBb" secondAttribute="leading" id="1sD-Mz-Tlh"/>
-                                        <constraint firstAttribute="topMargin" secondItem="pHH-YI-bBb" secondAttribute="top" id="2wC-XJ-GDc"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="pHH-YI-bBb" secondAttribute="bottom" constant="39.5" id="3qH-Ps-2x4"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="0fj-dm-gO5" secondAttribute="bottom" constant="-0.5" id="6c7-YR-9WU"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="QnA-M7-QgD" secondAttribute="trailing" constant="8" id="6lP-hB-ihp"/>
-                                        <constraint firstItem="pHH-YI-bBb" firstAttribute="leading" secondItem="sCE-jo-Rfn" secondAttribute="trailing" constant="20" id="7Fr-0y-uti"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="QnA-M7-QgD" secondAttribute="bottom" constant="16" id="8a7-oG-fwA"/>
-                                        <constraint firstItem="0fj-dm-gO5" firstAttribute="top" secondItem="IZU-OP-xWB" secondAttribute="topMargin" constant="12" id="A96-7o-zzV"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Gw4-EE-XVr" secondAttribute="trailing" constant="4" id="HQR-ir-MeS"/>
-                                        <constraint firstItem="QnA-M7-QgD" firstAttribute="top" secondItem="IZU-OP-xWB" secondAttribute="topMargin" constant="8" id="I51-uI-eC2"/>
-                                        <constraint firstItem="Gw4-EE-XVr" firstAttribute="leading" secondItem="pHH-YI-bBb" secondAttribute="leading" multiplier="0.9" id="LZl-sM-rJV"/>
+                                        <constraint firstAttribute="trailing" secondItem="JUw-kZ-Zzp" secondAttribute="trailing" constant="20" symbolic="YES" id="5WQ-XM-LhP"/>
+                                        <constraint firstAttribute="bottom" secondItem="JUw-kZ-Zzp" secondAttribute="bottom" id="7XZ-SJ-sBA"/>
                                         <constraint firstItem="b5H-Ot-iSU" firstAttribute="top" secondItem="IZU-OP-xWB" secondAttribute="topMargin" constant="20" id="NDy-By-u2W"/>
-                                        <constraint firstItem="QnA-M7-QgD" firstAttribute="top" secondItem="IZU-OP-xWB" secondAttribute="topMargin" constant="17" id="PJk-Ia-nlh"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Gw4-EE-XVr" secondAttribute="bottom" id="TOa-Cp-Abi"/>
-                                        <constraint firstAttribute="topMargin" secondItem="pHH-YI-bBb" secondAttribute="top" id="Vfe-Se-X7Y"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="QnA-M7-QgD" secondAttribute="trailing" constant="34" id="Vnb-bK-vH6"/>
-                                        <constraint firstItem="0fj-dm-gO5" firstAttribute="leading" secondItem="pHH-YI-bBb" secondAttribute="trailing" constant="20" id="aL4-tl-KBH"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="0fj-dm-gO5" secondAttribute="bottom" id="aUr-UY-7cw"/>
-                                        <constraint firstItem="0fj-dm-gO5" firstAttribute="top" secondItem="pHH-YI-bBb" secondAttribute="bottom" id="fqI-cW-Lgp"/>
-                                        <constraint firstAttribute="topMargin" secondItem="Gw4-EE-XVr" secondAttribute="top" id="gCE-xj-aJE"/>
-                                        <constraint firstItem="QnA-M7-QgD" firstAttribute="leading" secondItem="pHH-YI-bBb" secondAttribute="trailing" constant="8" symbolic="YES" id="rFM-kj-apN"/>
-                                        <constraint firstItem="QnA-M7-QgD" firstAttribute="leading" secondItem="0fj-dm-gO5" secondAttribute="trailing" constant="59" id="sdn-VE-5xb"/>
+                                        <constraint firstItem="JUw-kZ-Zzp" firstAttribute="leading" secondItem="b5H-Ot-iSU" secondAttribute="trailing" constant="24" id="Ney-wg-PyH"/>
+                                        <constraint firstItem="JUw-kZ-Zzp" firstAttribute="top" secondItem="IZU-OP-xWB" secondAttribute="top" id="PPP-HH-pB9"/>
                                         <constraint firstItem="b5H-Ot-iSU" firstAttribute="centerX" secondItem="sCE-jo-Rfn" secondAttribute="centerX" id="tnC-vl-Ymq"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="0fj-dm-gO5" secondAttribute="trailing" id="yPY-hf-DtV"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="2wC-XJ-GDc"/>
-                                            <exclude reference="3qH-Ps-2x4"/>
-                                            <exclude reference="6c7-YR-9WU"/>
-                                            <exclude reference="A96-7o-zzV"/>
-                                            <exclude reference="aL4-tl-KBH"/>
-                                            <exclude reference="8a7-oG-fwA"/>
-                                            <exclude reference="PJk-Ia-nlh"/>
-                                            <exclude reference="Vnb-bK-vH6"/>
-                                            <exclude reference="sdn-VE-5xb"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="sCE-jo-Rfn" secondAttribute="trailing" constant="551" id="HsJ-Vf-FDz"/>

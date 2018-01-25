@@ -55,7 +55,7 @@ final class Course : NSManagedObject {
 
     var language_translated: String? {
         if let language = language {
-            let locale = Locale.current
+            let locale = Brand.locale
             return (locale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: language)
         }
         return nil

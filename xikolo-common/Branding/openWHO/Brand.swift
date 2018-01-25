@@ -32,5 +32,7 @@ struct Brand {
         return "Copyright © \(currentYear) WHO. All rights reserved."
     }
     static let poweredByText: String? = "Powered by HPI / openHPI"
+
+    static var locale: Locale = Locale.autoupdatingCurrent
     
 }

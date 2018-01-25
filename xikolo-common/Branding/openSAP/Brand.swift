@@ -33,4 +33,6 @@ struct Brand {
     }
     static let poweredByText: String? = "Powered by HPI / openHPI"
 
+    static var locale: Locale = Locale.init(identifier: "en")
+
 }

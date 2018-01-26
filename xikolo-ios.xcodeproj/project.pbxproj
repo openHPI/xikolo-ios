@@ -532,14 +532,26 @@
 		501F9480200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
 		501F9481200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
 		501F9482200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		502E712E2018D8BF007FC8C0 /* openHPI_iOS_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* openHPI_iOS_UITests.swift */; };
-		502E713C2018D93D007FC8C0 /* openSAP_iOS_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E713B2018D93D007FC8C0 /* openSAP_iOS_UITests.swift */; };
-		502E714A2018D950007FC8C0 /* openWHO_iOS_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E71492018D950007FC8C0 /* openWHO_iOS_UITests.swift */; };
-		502E71582018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E71572018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift */; };
+		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E716E2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E716F2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
+		502E71702018E2AB007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
+		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
+		502E7173201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
+		502E7174201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
+		502E7175201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
+		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
+		502E717A201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
+		502E717B201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
+		502E717C201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
+		502E717D201B1FC9007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
+		502E717E201B1FC9007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
+		502E717F201B1FCA007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
+		502E7180201B1FD0007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
+		502E7181201B1FD1007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
+		502E7182201B1FD1007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
 		502F89B820109B510056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89B920109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
@@ -1875,18 +1887,14 @@
 		501F946820075536001C8754 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		502E712B2018D8BF007FC8C0 /* openHPI-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "openHPI-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		502E712D2018D8BF007FC8C0 /* openHPI_iOS_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openHPI_iOS_UITests.swift; sourceTree = "<group>"; };
+		502E712D2018D8BF007FC8C0 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		502E712F2018D8BF007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		502E71392018D93D007FC8C0 /* openSAP-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "openSAP-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		502E713B2018D93D007FC8C0 /* openSAP_iOS_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openSAP_iOS_UITests.swift; sourceTree = "<group>"; };
-		502E713D2018D93D007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		502E71472018D950007FC8C0 /* openWHO-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "openWHO-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		502E71492018D950007FC8C0 /* openWHO_iOS_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openWHO_iOS_UITests.swift; sourceTree = "<group>"; };
-		502E714B2018D950007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		502E71552018D960007FC8C0 /* moocHOUSE-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moocHOUSE-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		502E71572018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moocHOUSE_iOS_UITests.swift; sourceTree = "<group>"; };
-		502E71592018D960007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		502E7171201A20C9007FC8C0 /* Credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
+		502E7178201B1C78007FC8C0 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		504C5A6F1F99F8210021EB17 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
 		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseContent.storyboard; sourceTree = "<group>"; };
@@ -2574,52 +2582,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		502E712C2018D8BF007FC8C0 /* openHPI-iOS-UITests */ = {
-			isa = PBXGroup;
-			children = (
-				502E712D2018D8BF007FC8C0 /* openHPI_iOS_UITests.swift */,
-				502E712F2018D8BF007FC8C0 /* Info.plist */,
-			);
-			path = "openHPI-iOS-UITests";
-			sourceTree = "<group>";
-		};
-		502E713A2018D93D007FC8C0 /* openSAP-iOS-UITests */ = {
-			isa = PBXGroup;
-			children = (
-				502E713B2018D93D007FC8C0 /* openSAP_iOS_UITests.swift */,
-				502E713D2018D93D007FC8C0 /* Info.plist */,
-			);
-			path = "openSAP-iOS-UITests";
-			sourceTree = "<group>";
-		};
-		502E71482018D950007FC8C0 /* openWHO-iOS-UITests */ = {
-			isa = PBXGroup;
-			children = (
-				502E71492018D950007FC8C0 /* openWHO_iOS_UITests.swift */,
-				502E714B2018D950007FC8C0 /* Info.plist */,
-			);
-			path = "openWHO-iOS-UITests";
-			sourceTree = "<group>";
-		};
-		502E71562018D960007FC8C0 /* moocHOUSE-iOS-UITests */ = {
-			isa = PBXGroup;
-			children = (
-				502E71572018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift */,
-				502E71592018D960007FC8C0 /* Info.plist */,
-			);
-			path = "moocHOUSE-iOS-UITests";
-			sourceTree = "<group>";
-		};
-		502E71652018DC2B007FC8C0 /* UI tests */ = {
+		502E71652018DC2B007FC8C0 /* UI Tests */ = {
 			isa = PBXGroup;
 			children = (
 				502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */,
-				502E712C2018D8BF007FC8C0 /* openHPI-iOS-UITests */,
-				502E713A2018D93D007FC8C0 /* openSAP-iOS-UITests */,
-				502E71482018D950007FC8C0 /* openWHO-iOS-UITests */,
-				502E71562018D960007FC8C0 /* moocHOUSE-iOS-UITests */,
+				502E7171201A20C9007FC8C0 /* Credentials.plist */,
+				502E7176201B1B7C007FC8C0 /* ios */,
 			);
-			path = "UI tests";
+			path = "UI Tests";
+			sourceTree = "<group>";
+		};
+		502E7176201B1B7C007FC8C0 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				502E7178201B1C78007FC8C0 /* LoginHelper.swift */,
+				502E712D2018D8BF007FC8C0 /* Screenshots.swift */,
+				502E712F2018D8BF007FC8C0 /* Info.plist */,
+			);
+			path = ios;
 			sourceTree = "<group>";
 		};
 		5057ED7E1FE3D91B0096095B /* UserDefaults */ = {
@@ -2696,7 +2676,7 @@
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				24CB7E351CC678A000960269 /* xikolo-tvos */,
-				502E71652018DC2B007FC8C0 /* UI tests */,
+				502E71652018DC2B007FC8C0 /* UI Tests */,
 				FF91D61F2A79812A5E7FB607 /* Frameworks */,
 				A90587BC1B3BFC130095DB89 /* Products */,
 				D7D6B56CF669E978F1E7A6E0 /* Pods */,
@@ -3607,6 +3587,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502E71702018E2AB007FC8C0 /* Info.plist in Resources */,
+				502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3614,6 +3596,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502E7180201B1FD0007FC8C0 /* Info.plist in Resources */,
+				502E7173201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3621,6 +3605,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502E7181201B1FD1007FC8C0 /* Info.plist in Resources */,
+				502E7174201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3628,6 +3614,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502E7182201B1FD1007FC8C0 /* Info.plist in Resources */,
+				502E7175201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5214,8 +5202,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E712E2018D8BF007FC8C0 /* openHPI_iOS_UITests.swift in Sources */,
+				502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */,
 				502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
+				502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5223,8 +5212,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E713C2018D93D007FC8C0 /* openSAP_iOS_UITests.swift in Sources */,
+				502E717D201B1FC9007FC8C0 /* Screenshots.swift in Sources */,
 				502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
+				502E717A201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5232,8 +5222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E714A2018D950007FC8C0 /* openWHO_iOS_UITests.swift in Sources */,
+				502E717E201B1FC9007FC8C0 /* Screenshots.swift in Sources */,
 				502E716E2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
+				502E717B201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5241,8 +5232,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E71582018D960007FC8C0 /* moocHOUSE_iOS_UITests.swift in Sources */,
+				502E717F201B1FCA007FC8C0 /* Screenshots.swift in Sources */,
 				502E716F2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
+				502E717C201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6604,7 +6596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "openHPI-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -6628,7 +6620,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "openHPI-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -6651,7 +6643,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "openSAP-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
@@ -6675,7 +6667,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "openSAP-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
@@ -6698,7 +6690,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "openWHO-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
@@ -6722,7 +6714,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "openWHO-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
@@ -6745,7 +6737,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "moocHOUSE-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
@@ -6769,7 +6761,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "moocHOUSE-iOS-UITests/Info.plist";
+				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";

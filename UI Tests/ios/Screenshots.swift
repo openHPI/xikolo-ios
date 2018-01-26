@@ -1,0 +1,51 @@
+//
+//  Screenshots.swift
+//  Screenshots
+//
+//  Created by Max Bothe on 24.01.18.
+//  Copyright © 2018 HPI. All rights reserved.
+//
+
+import XCTest
+
+class Screenshots: XCTestCase {
+        
+    override func setUp() {
+        super.setUp()
+
+        self.continueAfterFailure = false
+
+        let app = XCUIApplication()
+        setupSnapshot(app)
+        app.launch()
+    }
+
+    func testMakeScreenshots() {
+        LoginHelper.logoutIfPossible()
+        let app = XCUIApplication()
+
+        // Course list
+        app.tabBars.buttons.element(boundBy: 1).tap()
+        sleep(3)
+        snapshot("1-CourseList")
+
+        LoginHelper.loginIfPossible()
+
+        // Dashboard
+        app.tabBars.buttons.element(boundBy: 0).tap()
+        sleep(3)
+        snapshot("2-Dashboard")
+
+        // Course item list
+        // tap on first element in course activity view
+        app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).tap()
+        sleep(3)
+        snapshot("3-Course-Items")
+
+        // tap on first video item
+        app.tables.element(boundBy: 0).cells.containing(XCUIElement.ElementType.button, identifier: nil).firstMatch.tap()
+        sleep(3)
+        snapshot("4-Video-Item")
+    }
+    
+}

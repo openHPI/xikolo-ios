@@ -54,3 +54,6 @@ fastlane/screenshots
 fastlane/test_output
 # Appfile with sensitive values
 fastlane/Appfile
+
+# UI Tests
+UI Tests/Credentials.plist

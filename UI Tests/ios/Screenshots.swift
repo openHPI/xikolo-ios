@@ -16,6 +16,7 @@ class Screenshots: XCTestCase {
         self.continueAfterFailure = false
 
         let app = XCUIApplication()
+        app.launchEnvironment = ["isUITest": "true"]
         setupSnapshot(app)
         app.launch()
     }

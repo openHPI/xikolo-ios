@@ -44,6 +44,11 @@ struct AnnouncementHelper {
     }
 
     private static func updateUnreadAnnouncementsBadge() {
+        if ProcessInfo.processInfo.environment["isUITest"] == "true" {
+            log.info("Don't show badge in UI test mode")
+            return
+        }
+
         DispatchQueue.main.async {
             guard let rootViewController = AppDelegate.instance().window?.rootViewController as? UITabBarController else {
                 log.warning("root view controller is not TabBarController")

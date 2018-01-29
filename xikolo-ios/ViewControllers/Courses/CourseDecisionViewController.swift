@@ -143,6 +143,13 @@ class CourseDecisionViewController: UIViewController {
         }
     }
 
+    @IBAction func shareCourse(_ sender: UIBarButtonItem) {
+        let activityItems = ([self.course.title, self.course.url] as [Any?]).flatMap { $0 }
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = sender
+        self.present(activityViewController, animated: true)
+    }
+
 }
 
 extension CourseDecisionViewController : UIPopoverPresentationControllerDelegate {

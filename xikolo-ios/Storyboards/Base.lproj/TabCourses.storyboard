@@ -277,6 +277,11 @@
                                 <outletCollection property="gestureRecognizers" destination="N59-nb-AYg" appends="YES" id="rvz-W4-BRj"/>
                             </connections>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="EwV-KR-4Fx">
+                            <connections>
+                                <action selector="shareCourse:" destination="oKc-yo-VbQ" id="wvA-A5-QN4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="f3q-3c-ztQ" id="MWl-ur-Og2"/>
@@ -583,7 +588,7 @@
         <image name="titlebar-dropdown-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fvt-qD-Nql"/>
+        <segue reference="ThX-Ci-ZbU"/>
         <segue reference="5jb-EE-lFA"/>
     </inferredMetricsTieBreakers>
 </document>

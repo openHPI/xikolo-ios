@@ -18,9 +18,6 @@ class CourseListViewController : AbstractCourseListViewController {
     @available(iOS, obsoleted: 11.0)
     private var statusBarBackground: UIView?
 
-    @available(iOS, obsoleted: 11.0)
-    private var isFirstTimeAppearance = true
-
     enum CourseDisplayMode {
         case enrolledOnly
         case all
@@ -127,13 +124,7 @@ class CourseListViewController : AbstractCourseListViewController {
         super.viewWillAppear(animated)
 
         if #available(iOS 11.0, *) {
-            // nothing to do here
-        } else {
-            if self.isFirstTimeAppearance {
-                let contentOffset = CGPoint(x: 0, y: self.searchController?.searchBar.bounds.height ?? 0)
-                self.collectionView?.setContentOffset(contentOffset, animated: animated)
-                self.isFirstTimeAppearance = false
-            }
+            self.navigationItem.hidesSearchBarWhenScrolling = false
         }
     }
 
@@ -142,6 +133,10 @@ class CourseListViewController : AbstractCourseListViewController {
 
         if let xikoloNavigationController = self.navigationController as? XikoloNavigationController {
             xikoloNavigationController.fixShadowImage()
+        }
+
+        if #available(iOS 11.0, *) {
+            self.navigationItem.hidesSearchBarWhenScrolling = true
         }
     }
 

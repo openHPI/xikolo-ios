@@ -60,8 +60,8 @@ class CourseListViewController : AbstractCourseListViewController {
             searchController.searchBar.searchBarStyle = .minimal
             searchController.searchBar.isTranslucent = false
             searchController.searchBar.backgroundColor = .white
+            searchController.searchBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
             self.collectionView?.addSubview(searchController.searchBar)
-            searchController.searchBar.sizeToFit()
             self.searchController = searchController
         }
 
@@ -144,12 +144,6 @@ class CourseListViewController : AbstractCourseListViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.collectionView?.performBatchUpdates(nil)
-
-        if #available(iOS 11.0, *) {
-            // nothing to do here
-        } else {
-            self.searchController?.searchBar.sizeToFit()
-        }
     }
 
 }

@@ -29,9 +29,11 @@ class AnnouncementCell : UITableViewCell {
             self.readStateLabel.textColor = Brand.TintColorSecond
             self.readStateLabel.isHidden = false
             self.separatorView.isHidden = false
+            self.titleLabel.textColor = .black
         } else {
             self.readStateLabel.isHidden = true
             self.separatorView.isHidden = true
+            self.titleLabel.textColor = .gray
         }
 
         self.courseLabel.textColor = Brand.TintColorSecond

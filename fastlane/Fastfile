@@ -2,7 +2,7 @@ fastlane_version "2.55.0"
 
 default_platform :ios
 
-flavors = [:openHPI, :openSAP] #, :OpenWHO, :moocHOUSE]
+flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE]
 
 platform :ios do
   desc "Increments the version number for a new patch version"

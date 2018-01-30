@@ -57,19 +57,9 @@ Adds localizations for the application incrementally
 fastlane ios check
 ```
 Checks application for potential App Store violations
-### ios screenshots
-```
-fastlane ios screenshots
-```
-Create screenshots for all applications
 ### ios check_openhpi
 ```
 fastlane ios check_openhpi
-```
-
-### ios screenshots_openhpi
-```
-fastlane ios screenshots_openhpi
 ```
 
 ### ios check_opensap
@@ -77,9 +67,39 @@ fastlane ios screenshots_openhpi
 fastlane ios check_opensap
 ```
 
+### ios check_openwho
+```
+fastlane ios check_openwho
+```
+
+### ios check_moochouse
+```
+fastlane ios check_moochouse
+```
+
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Create screenshots for all applications
+### ios screenshots_openhpi
+```
+fastlane ios screenshots_openhpi
+```
+
 ### ios screenshots_opensap
 ```
 fastlane ios screenshots_opensap
+```
+
+### ios screenshots_openwho
+```
+fastlane ios screenshots_openwho
+```
+
+### ios screenshots_moochouse
+```
+fastlane ios screenshots_moochouse
 ```
 
 

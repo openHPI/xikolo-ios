@@ -58,7 +58,7 @@ class AppDelegate : AbstractAppDelegate {
         #endif
 
         #if DEBUG
-        if ProcessInfo.processInfo.environment["isUITest"] == "true" {
+        if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {
             log.info("Setup clean status bar")
             SDStatusBarManager.sharedInstance().enableOverrides()
         }

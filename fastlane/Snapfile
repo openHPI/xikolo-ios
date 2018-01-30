@@ -14,6 +14,10 @@ languages([
   "de-DE",
 ])
 
+launch_arguments = [
+  "cleanStatusBar",
+  "cleanTabBar",
+]
 clear_previous_screenshots true
 skip_open_summary true
 localize_simulator true

@@ -44,10 +44,12 @@ struct AnnouncementHelper {
     }
 
     private static func updateUnreadAnnouncementsBadge() {
-        if ProcessInfo.processInfo.environment["isUITest"] == "true" {
-            log.info("Don't show badge in UI test mode")
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
+            log.info("Don't show badge when making screenshots")
             return
         }
+        #endif
 
         DispatchQueue.main.async {
             guard let rootViewController = AppDelegate.instance().window?.rootViewController as? UITabBarController else {

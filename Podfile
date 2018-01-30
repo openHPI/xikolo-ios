@@ -19,7 +19,7 @@ def ios_pods
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
-    pod 'SimulatorStatusMagic', :configurations => ['Debug']
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
     pod 'XCGLogger', '6.0.2'
 end
 

@@ -26,14 +26,14 @@ class Screenshots: XCTestCase {
         let app = XCUIApplication()
 
         // Course list
-        app.tabBars.buttons.element(boundBy: 1).tap()
+        Navigator.goToTabBarItem(.courses)
         sleep(3)
         snapshot("1-CourseList")
 
         LoginHelper.loginIfPossible()
 
         // Dashboard
-        app.tabBars.buttons.element(boundBy: 0).tap()
+        Navigator.goToTabBarItem(.dashboard)
         sleep(3)
         snapshot("2-Dashboard")
 

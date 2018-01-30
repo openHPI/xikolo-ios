@@ -31,7 +31,7 @@ class LoginHelper {
 
     static func loginIfPossible() {
         let app = XCUIApplication()
-        app.tabBars.buttons.element(boundBy: 3).tap()
+        Navigator.goToTabBarItem(.settings)
         let loginButton = app.navigationBars.buttons.element(boundBy: 0)
 
         guard loginButton.exists else { return }
@@ -53,7 +53,7 @@ class LoginHelper {
 
     static func logoutIfPossible() {
         let app = XCUIApplication()
-        app.tabBars.buttons.element(boundBy: 3).tap()
+        Navigator.goToTabBarItem(.settings)
         let logoutCell = app.tables.cells["logoutCell"]
         if logoutCell.exists {
             logoutCell.tap()

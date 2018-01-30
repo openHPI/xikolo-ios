@@ -1,21 +1,18 @@
 # A list of devices you want to take the screenshots from
 devices([
-  # "iPhone X",
+  "iPhone X",
   # "iPhone 8 Plus",
   # "iPhone 8",
   # "iPhone SE",
   # "iPad Pro (12.9-inch)",
   # "iPad Pro (10.5-inch)",
-  "iPad Pro (9.7-inch)"
+  # "iPad Pro (9.7-inch)"
 ])
 
 languages([
-  # "en-US",
+  "en-US",
   "de-DE"
 ])
-
-# The name of the scheme which contains the UI Tests
-scheme "openHPI-iOS-UITests"
 
 clear_previous_screenshots true
 skip_open_summary true

@@ -43,13 +43,6 @@ Determines the commit for a given build number
 fastlane ios lint
 ```
 Lint swift code with swiftline
-### ios precheck_app
-```
-fastlane ios precheck_app
-```
-Checks application for potential App Store violations
-
-- requires app environment via '--env'
 ### ios localize
 ```
 fastlane ios localize
@@ -59,6 +52,36 @@ Adds localizations for the application incrementally
 - uses bartycrouch
 
 - translates storyboard files and NSLocalizedString usages
+### ios check
+```
+fastlane ios check
+```
+Checks application for potential App Store violations
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Create screenshots for all applications
+### ios check_openhpi
+```
+fastlane ios check_openhpi
+```
+
+### ios screenshots_openhpi
+```
+fastlane ios screenshots_openhpi
+```
+
+### ios check_opensap
+```
+fastlane ios check_opensap
+```
+
+### ios screenshots_opensap
+```
+fastlane ios screenshots_opensap
+```
+
 
 ----
 

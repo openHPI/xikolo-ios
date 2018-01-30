@@ -39,12 +39,13 @@ class Screenshots: XCTestCase {
 
         // Course item list
         // tap on first element in course activity view
-        app.collectionViews.element(boundBy: 0).cells.element(boundBy: 0).tap()
+        // course cell must be accessibility element (.isAccessibilityElement = true)
+        app.collectionViews.firstMatch.cells.firstMatch.tap()
         sleep(3)
         snapshot("3-Course-Items")
 
         // tap on first video item
-        app.tables.element(boundBy: 0).cells.containing(XCUIElement.ElementType.button, identifier: nil).firstMatch.tap()
+        app.tables.firstMatch.cells.containing(XCUIElement.ElementType.button, identifier: nil).firstMatch.tap()
         sleep(3)
         snapshot("4-Video-Item")
     }

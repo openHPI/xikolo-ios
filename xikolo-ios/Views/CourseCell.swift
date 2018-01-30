@@ -27,6 +27,7 @@ class CourseCell : UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isAccessibilityElement = true
 
         self.courseImage.layer.cornerRadius = 4.0
         self.courseImage.layer.masksToBounds = true

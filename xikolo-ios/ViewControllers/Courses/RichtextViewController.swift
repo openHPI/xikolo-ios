@@ -20,6 +20,15 @@ class RichtextViewController : AbstractItemRichtextViewController {
         Crashlytics.sharedInstance().setObjectValue("item_id", forKey: self.courseItem.id)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openInWebView" {
+            let webView = segue.destination.require(toHaveType: CourseItemWebViewController.self)
+            webView.courseItem = self.courseItem
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+
 }
 
 extension RichtextViewController: UITextViewDelegate {

@@ -9,7 +9,6 @@
 import CoreData
 import UIKit
 import DZNEmptyDataSet
-import ReachabilitySwift
 
 class CourseItemListViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -21,7 +20,7 @@ class CourseItemListViewController: UITableViewController {
 
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
-    var isOffline = ReachabilityHelper.reachabilityStatus == .notReachable {
+    var isOffline = ReachabilityHelper.connection == .none {
         didSet {
             if oldValue != self.isOffline {
                 self.tableView.reloadData()
@@ -47,7 +46,7 @@ class CourseItemListViewController: UITableViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
-                                               name: NotificationKeys.reachabilityChanged,
+                                               name: Notification.Name.reachabilityChanged,
                                                object: nil)
 
         self.setupEmptyState()
@@ -93,7 +92,7 @@ class CourseItemListViewController: UITableViewController {
         }
 
         let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
-        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.reachabilityStatus == .reachableViaWiFi)
+        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
         self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
 
         guard UserProfileHelper.isLoggedIn() else {
@@ -125,7 +124,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.isOffline = ReachabilityHelper.reachabilityStatus == .notReachable
+        self.isOffline = ReachabilityHelper.connection == .none
     }
 
     func preloadCourseContent() {

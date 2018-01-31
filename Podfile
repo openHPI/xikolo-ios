@@ -6,21 +6,21 @@ pod 'SwiftLint', '~> 0.22'
 
 def common_pods
     pod 'BrightFutures', '~> 6.0'
-    pod 'Down', :git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
     pod 'KeychainAccess', '~> 3.1'
     pod 'Marshal', '~> 1.2'
-    pod 'SDWebImage/Core', '4.0.0'
+    pod 'SDWebImage', '~> 4.2'
 end
 
 def ios_pods
     pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
-    pod 'DownloadButton', '0.1.0'
-    pod 'DZNEmptyDataSet', '1.8.1'
-    pod 'Shimmer', '1.0.2'
-    pod 'ReachabilitySwift', '3'
+    pod 'DownloadButton', '~> 0.1'
+    pod 'DZNEmptyDataSet', '~> 1.8'
+    pod 'Shimmer', '~> 1.0'
+    pod 'ReachabilitySwift', '~> 4.1'
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
-    pod 'XCGLogger', '6.0.2'
+    pod 'XCGLogger', '~> 6.0'
 end
 
 target 'openHPI-iOS' do

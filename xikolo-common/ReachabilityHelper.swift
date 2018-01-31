@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ReachabilitySwift
+import Reachability
 
 class ReachabilityHelper {
 
@@ -15,15 +15,11 @@ class ReachabilityHelper {
         return Reachability(hostname: Brand.host)!
     }()
 
-    static var reachabilityStatus: Reachability.NetworkStatus {
-        return self.reachability.currentReachabilityStatus
+    static var connection: Reachability.Connection {
+        return self.reachability.connection
     }
 
     static func startObserving() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reachabilityChanged),
-                                               name: ReachabilityChangedNotification,
-                                               object: self.reachability)
         do {
             try self.reachability.startNotifier()
         } catch {
@@ -33,13 +29,6 @@ class ReachabilityHelper {
 
     static func stopObserving() {
         self.reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: ReachabilityChangedNotification, object: nil)
-    }
-
-    @objc class func reachabilityChanged() {
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: NotificationKeys.reachabilityChanged, object: nil)
-        }
     }
 
 }

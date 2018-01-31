@@ -53,12 +53,12 @@ class TrackingHelper {
     }
 
     private static var networkState: String {
-        switch ReachabilityHelper.reachabilityStatus {
-        case .reachableViaWiFi:
+        switch ReachabilityHelper.connection {
+        case .wifi:
             return "wifi"
-        case .reachableViaWWAN:
+        case .cellular:
             return "mobile"
-        case .notReachable:
+        case .none:
             return "offline"
         }
     }

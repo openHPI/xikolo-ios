@@ -9,7 +9,7 @@ PODS:
     - SnapKit (~> 4.0.0)
   - BrightFutures (6.0.0):
     - Result (~> 3.2.4)
-  - Down (0.4.0)
+  - Down (0.4.2)
   - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (3.1.0)
@@ -20,14 +20,16 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - ReachabilitySwift (3)
+  - ReachabilitySwift (4.1.0)
   - Result (3.2.4)
-  - SDWebImage/Core (4.0.0)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
   - Shimmer (1.0.2)
   - SimpleRoundedButton (1.0)
   - SimulatorStatusMagic (2.1)
   - SnapKit (4.0.0)
-  - SwiftLint (0.22.0)
+  - SwiftLint (0.24.2)
   - XCGLogger (6.0.2):
     - XCGLogger/Core (= 6.0.2)
   - XCGLogger/Core (6.0.2):
@@ -37,18 +39,18 @@ DEPENDENCIES:
   - BartyCrouch (from `https://github.com/mathebox/BartyCrouch.git`, commit `cf75991`)
   - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `a8e110d`)
   - BrightFutures (~> 6.0)
-  - Down (from `https://github.com/iwasrobbed/Down`, commit `18eb466`)
-  - DownloadButton (= 0.1.0)
-  - DZNEmptyDataSet (= 1.8.1)
+  - Down (~> 0.4)
+  - DownloadButton (~> 0.1)
+  - DZNEmptyDataSet (~> 1.8)
   - KeychainAccess (~> 3.1)
   - Marshal (~> 1.2)
-  - ReachabilitySwift (= 3)
-  - SDWebImage/Core (= 4.0.0)
-  - Shimmer (= 1.0.2)
+  - ReachabilitySwift (~> 4.1)
+  - SDWebImage (~> 4.2)
+  - Shimmer (~> 1.0)
   - SimpleRoundedButton (from `https://github.com/mathebox/SimpleRoundedButton.git`, commit `91225d2`)
   - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
-  - XCGLogger (= 6.0.2)
+  - XCGLogger (~> 6.0)
 
 EXTERNAL SOURCES:
   BartyCrouch:
@@ -57,9 +59,6 @@ EXTERNAL SOURCES:
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
-  Down:
-    :commit: 18eb466
-    :git: https://github.com/iwasrobbed/Down
   SimpleRoundedButton:
     :commit: 91225d2
     :git: https://github.com/mathebox/SimpleRoundedButton.git
@@ -71,9 +70,6 @@ CHECKOUT OPTIONS:
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
-  Down:
-    :commit: 18eb466
-    :git: https://github.com/iwasrobbed/Down
   SimpleRoundedButton:
     :commit: 91225d2
     :git: https://github.com/mathebox/SimpleRoundedButton.git
@@ -82,23 +78,23 @@ SPEC CHECKSUMS:
   BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
   BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
   BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
-  Down: 89910050356026b194dd4e97a5c6c92f75aee413
+  Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
   DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   SimpleRoundedButton: 4a04d0d3d79986973f74e34d543d0bc089fbc3e6
   SimulatorStatusMagic: 481558caf2b9ccb2ceba2cc193728d4db3dcac07
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
+  SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 229f12a7ff51b998f7a8822bb38651853a8c0954
+PODFILE CHECKSUM: f59097c62c4069d0eca7bb5c9f79de34929fbd5a
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

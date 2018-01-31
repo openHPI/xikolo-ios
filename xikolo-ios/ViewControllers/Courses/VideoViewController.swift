@@ -37,7 +37,7 @@ class VideoViewController : UIViewController {
 
         self.errorView.isHidden = true
         self.openSlidesButton.isHidden = true
-        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
+        self.openSlidesButton.isEnabled = ReachabilityHelper.connection != .none
 
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
@@ -56,7 +56,7 @@ class VideoViewController : UIViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
-                                               name: NotificationKeys.reachabilityChanged,
+                                               name: Notification.Name.reachabilityChanged,
                                                object: nil)
     }
 
@@ -107,7 +107,7 @@ class VideoViewController : UIViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
+        self.openSlidesButton.isEnabled = ReachabilityHelper.connection != .none
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -162,7 +162,7 @@ class VideoViewController : UIViewController {
     }
 
     @IBAction func openSlides(_ sender: UIButton) {
-        if ReachabilityHelper.reachability.isReachable {
+        if ReachabilityHelper.connection != .none {
             performSegue(withIdentifier: "ShowSlides", sender: self.video)
         } else {
             log.info("Tapped open slides button without internet, which shouldn't be possible")

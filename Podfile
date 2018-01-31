@@ -19,6 +19,7 @@ def ios_pods
     pod 'Shimmer', '1.0.2'
     pod 'ReachabilitySwift', '3'
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
     pod 'XCGLogger', '6.0.2'
 end
 
@@ -95,7 +96,7 @@ post_install do |installer|
     # but creates only one pod license file for iOs instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'SwiftLint']
+    excluded = ['BartyCrouch', 'SwiftLint', 'SimulatorStatusMagic']
     sandbox = installer.sandbox
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first
     root_specs = ios_target.specs.map(&:root).uniq.reject { |spec| excluded.include?(spec.name) }

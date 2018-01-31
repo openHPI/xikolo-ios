@@ -32,6 +32,10 @@ The following tools will be installed via CocoaPods:
 - for all available fastlane commands have a look at the [fastlane Readme](https://github.com/openHPI/xikolo-ios/tree/master/fastlane/)
 - some commands require setting the app environment via `--env {openhpi|opensap|moochouse|openwho}`
 
+#### Setup testing
+- copy the credentials plist dummy file `cp UI\ Tests/Credentials.plist.dummy UI\ Tests/Credentials.plist`
+- enter your login credentials for testing
+
 ### Contributing
 If you would like to contribute by adding a feature or fixing a bug, feel free to do so. You can have a look at the open issues to get some inspiration and create a pull request as soon as you are ready to go.
 

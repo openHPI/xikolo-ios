@@ -44,6 +44,13 @@ struct AnnouncementHelper {
     }
 
     private static func updateUnreadAnnouncementsBadge() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
+            log.info("Don't show badge when making screenshots")
+            return
+        }
+        #endif
+
         DispatchQueue.main.async {
             guard let rootViewController = AppDelegate.instance().window?.rootViewController as? UITabBarController else {
                 log.warning("root view controller is not TabBarController")

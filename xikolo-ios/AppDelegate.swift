@@ -9,6 +9,10 @@
 import UIKit
 import SDWebImage
 
+#if DEBUG
+import SimulatorStatusMagic
+#endif
+
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
 
@@ -51,6 +55,13 @@ class AppDelegate : AbstractAppDelegate {
             // SDWebImage (ver. 4.0.0) -> SDWebImageDownloaderOperation -> Line 408
             SDWebImageDownloader.shared().username = "open"
             SDWebImageDownloader.shared().password = "SAP"
+        #endif
+
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {
+            log.info("Setup clean status bar")
+            SDStatusBarManager.sharedInstance().enableOverrides()
+        }
         #endif
 
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)

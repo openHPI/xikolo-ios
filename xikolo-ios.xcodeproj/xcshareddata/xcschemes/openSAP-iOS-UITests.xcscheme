@@ -1,40 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0920"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "729DD3368595C74F66B0B5E5639B342D"
-               BuildableName = "Pods_xikolo_ios.framework"
-               BlueprintName = "Pods-xikolo-ios"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
-               BuildableName = "openHPI.app"
-               BlueprintName = "openHPI-iOS"
-               ReferencedContainer = "container:xikolo-ios.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -47,9 +17,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "502E712A2018D8BF007FC8C0"
-               BuildableName = "openHPI-iOS-UITests.xctest"
-               BlueprintName = "openHPI-iOS-UITests"
+               BlueprintIdentifier = "502E71382018D93D007FC8C0"
+               BuildableName = "openSAP-iOS-UITests.xctest"
+               BlueprintName = "openSAP-iOS-UITests"
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,9 +27,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
-            BuildableName = "openHPI.app"
-            BlueprintName = "openHPI-iOS"
+            BlueprintIdentifier = "24BA40331D3F976700E38C2C"
+            BuildableName = "openSAP.app"
+            BlueprintName = "openSAP-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -81,19 +51,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
-            BuildableName = "openHPI.app"
-            BlueprintName = "openHPI-iOS"
+            BlueprintIdentifier = "24BA40331D3F976700E38C2C"
+            BuildableName = "openSAP.app"
+            BlueprintName = "openSAP-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -103,16 +66,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
-            BuildableName = "openHPI.app"
-            BlueprintName = "openHPI-iOS"
+            BlueprintIdentifier = "24BA40331D3F976700E38C2C"
+            BuildableName = "openSAP.app"
+            BlueprintName = "openSAP-iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

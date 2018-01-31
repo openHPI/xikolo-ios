@@ -1,19 +1,8 @@
-# Customise this file, documentation can be found here:
-# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
-# All available actions: https://docs.fastlane.tools/actions
-# can also be listed using the `fastlane actions` command
-
-# Change the syntax highlighting to Ruby
-# All lines starting with a # are ignored when running `fastlane`
-
-# If you want to automatically update fastlane if a new version is available:
-# update_fastlane
-
-# This is the minimum version number required.
-# Update this, if you use features of a newer version
 fastlane_version "2.55.0"
 
 default_platform :ios
+
+flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE]
 
 platform :ios do
   desc "Increments the version number for a new patch version"
@@ -110,14 +99,6 @@ platform :ios do
     )
   end
 
-  desc "Checks application for potential App Store violations"
-  desc "- requires app environment via '--env'"
-  lane :precheck_app do
-    precheck(
-      app_identifier: ENV["BUNDLE_ID"],
-    )
-  end
-
   private_lane :revert_tvOS_changes do
     sh "git checkout head -- ../xikolo-tvos/Info.plist"
   end
@@ -130,11 +111,31 @@ platform :ios do
     sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c -e"
     sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c -e"
   end
+
+  desc "Checks application for potential App Store violations"
+  lane :check do
+    flavors.each { |flavor| public_send :"check_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"check_#{flavor.downcase}" do
+      precheck(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+      )
+    end
+  end
+
+  desc "Create screenshots for all applications"
+  lane :screenshots do
+    flavors.each { |flavor| public_send :"screenshots_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"screenshots_#{flavor.downcase}" do
+      snapshot(
+        scheme: "#{flavor}-iOS-UITests",
+        output_directory: "fastlane/screenshots/#{flavor}",
+      )
+    end
+  end
 end
-
-
-# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
-# All available actions: https://docs.fastlane.tools/actions
-
-# fastlane reports which actions are used. No personal data is recorded.
-# Learn more at https://github.com/fastlane/fastlane#metrics

@@ -6,6 +6,7 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
+import Firebase
 import UIKit
 import SDWebImage
 
@@ -36,6 +37,9 @@ class AppDelegate : AbstractAppDelegate {
 
         // register tab bar delegate
         self.tabBarController?.delegate = self
+
+        // Configure Firebase
+        FirebaseApp.configure()
 
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)

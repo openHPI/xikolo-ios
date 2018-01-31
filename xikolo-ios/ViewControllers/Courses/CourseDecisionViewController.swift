@@ -6,6 +6,7 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
+import Crashlytics
 import UIKit
 
 class CourseDecisionViewController: UIViewController {
@@ -28,7 +29,6 @@ class CourseDecisionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        SpotlightHelper.setUserActivity(for: self.course)
         self.decideContent()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(switchViewController),
@@ -39,6 +39,9 @@ class CourseDecisionViewController: UIViewController {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popToRootViewController(animated: isVisible)
         }
+
+        SpotlightHelper.setUserActivity(for: self.course)
+        Crashlytics.sharedInstance().setObjectValue("course_id", forKey: self.course.id)
     }
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }

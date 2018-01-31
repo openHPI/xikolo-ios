@@ -361,10 +361,6 @@
 		3D6F12F71F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */; };
 		3D6F12F81F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */; };
 		3D6F12F91F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */; };
-		3DD110B01F06351D00C1060A /* logo_moochaus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD110AF1F06351D00C1060A /* logo_moochaus.png */; };
-		3DD110B11F06351D00C1060A /* logo_moochaus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD110AF1F06351D00C1060A /* logo_moochaus.png */; };
-		3DD110B21F06351D00C1060A /* logo_moochaus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD110AF1F06351D00C1060A /* logo_moochaus.png */; };
-		3DD110B31F06351D00C1060A /* logo_moochaus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD110AF1F06351D00C1060A /* logo_moochaus.png */; };
 		4E2B80A81DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */; };
 		4E2B80A91DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */; };
 		4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
@@ -645,6 +641,14 @@
 		5071BA271FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
 		5071BA281FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
 		5071BA291FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
+		507A5CCA2021CBAA009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */; };
+		507A5CCC2021CBBC009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CCB2021CBBC009B1F95 /* GoogleService-Info-Release.plist */; };
+		507A5CD92021EF03009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */; };
+		507A5CDA2021EF03009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */; };
+		507A5CDB2021EF08009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */; };
+		507A5CDC2021EF08009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD32021EEC1009B1F95 /* GoogleService-Info-Release.plist */; };
+		507A5CDD2021EF0C009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD02021EC81009B1F95 /* GoogleService-Info-Debug.plist */; };
+		507A5CDE2021EF0C009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CCF2021EC81009B1F95 /* GoogleService-Info-Release.plist */; };
 		508BD0AA1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
@@ -1864,7 +1868,6 @@
 		286D95CC0DA684A15BE8ED6D /* Pods-openSAP-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotlightHelper.swift; sourceTree = "<group>"; };
 		3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataObserver.swift; sourceTree = "<group>"; };
-		3DD110AF1F06351D00C1060A /* logo_moochaus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_moochaus.png; sourceTree = "<group>"; };
 		3EFE4C53E4D0BE59A3B7D3DC /* Pods-openHPI-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -1911,6 +1914,14 @@
 		5068B9CA1FEA94A10047A75E /* Future+retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+retry.swift"; sourceTree = "<group>"; };
 		506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
 		5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Layout.swift"; sourceTree = "<group>"; };
+		507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		507A5CCB2021CBBC009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		507A5CCF2021EC81009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		507A5CD02021EC81009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		507A5CD32021EEC1009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		509B10D0200790560042AA7D /* XikoloTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloTabBarController.swift; sourceTree = "<group>"; };
@@ -1967,16 +1978,16 @@
 		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C93511EF09BB500F8F045 /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-brand.xcassets"; path = "moocHOUSE/assets-brand.xcassets"; sourceTree = "<group>"; };
 		709C93521EF09BB500F8F045 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = moocHOUSE/Brand.swift; sourceTree = "<group>"; };
-		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/moocHOUSE/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
-		709C93581EF09C2C00F8F045 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/moocHOUSE/Info.plist; sourceTree = "<group>"; };
-		709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/moocHOUSE/xikolo-ios.entitlements"; sourceTree = "<group>"; };
+		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
+		709C93581EF09C2C00F8F045 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
 		709C93611EF09C8A00F8F045 /* assets-tvos-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-tvos-brand.xcassets"; path = "moocHOUSE/assets-tvos-brand.xcassets"; sourceTree = "<group>"; };
 		709C93621EF09C8A00F8F045 /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brand+tvOS.swift"; path = "moocHOUSE/Brand+tvOS.swift"; sourceTree = "<group>"; };
 		709C93631EF09C8A00F8F045 /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-tvos.entitlements"; path = "moocHOUSE/xikolo-tvos.entitlements"; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
-		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openHPI/Info.plist; sourceTree = "<group>"; };
-		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openSAP/Info.plist; sourceTree = "<group>"; };
-		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Branding/openWHO/Info.plist; sourceTree = "<group>"; };
+		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2007,7 +2018,7 @@
 		AB2802D01D2AAFDB008C8BAE /* AnnouncementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementHelper.swift; sourceTree = "<group>"; };
 		AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
 		AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openSAP/xikolo-ios.entitlements"; sourceTree = "<group>"; };
+		AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
 		AB35C9321E89DAA4009832A5 /* UserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
 		AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCertificates.swift; sourceTree = "<group>"; };
 		AB48B4351DF8BB2A00523062 /* openWHO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openWHO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2017,8 +2028,8 @@
 		AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventHelper.swift; sourceTree = "<group>"; };
 		AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		AB77C2961DF956EE00B30619 /* Brand+generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+generic.swift"; sourceTree = "<group>"; };
-		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openHPI/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
-		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openSAP/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
+		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
+		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemListViewController.swift; sourceTree = "<group>"; };
 		AB91F9E41CED029B00007D06 /* CourseItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemCell.swift; sourceTree = "<group>"; };
 		AB947CE11E19E1EC009888B0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
@@ -2032,8 +2043,8 @@
 		ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLabelHelper.swift; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
-		ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openWHO/xikolo-ios.entitlements"; sourceTree = "<group>"; };
-		ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "xikolo-ios.entitlements"; path = "Branding/openHPI/xikolo-ios.entitlements"; sourceTree = "<group>"; };
+		ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
+		ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
 		ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 2.xcdatamodel"; sourceTree = "<group>"; };
 		ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentHelper.swift; sourceTree = "<group>"; };
 		ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -2047,7 +2058,7 @@
 		ABE060841DF8BFE100FC186D /* openWHO-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "openWHO-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE060911DF8C18D00FC186D /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-brand.xcassets"; path = "openWHO/assets-brand.xcassets"; sourceTree = "<group>"; };
 		ABE060921DF8C18D00FC186D /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = openWHO/Brand.swift; sourceTree = "<group>"; };
-		ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-ios-brand.xcassets"; path = "Branding/openWHO/assets-ios-brand.xcassets"; sourceTree = "<group>"; };
+		ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		ABE060A21DF8C24600FC186D /* assets-tvos-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-tvos-brand.xcassets"; path = "openWHO/assets-tvos-brand.xcassets"; sourceTree = "<group>"; };
 		ABE060A31DF8C24600FC186D /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brand+tvOS.swift"; path = "openWHO/Brand+tvOS.swift"; sourceTree = "<group>"; };
 		ABE060A41DF8C24600FC186D /* xikolo-tvos.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "xikolo-tvos.entitlements"; path = "openWHO/xikolo-tvos.entitlements"; sourceTree = "<group>"; };
@@ -2658,12 +2669,13 @@
 		709C93551EF09BFA00F8F045 /* moocHOUSE */ = {
 			isa = PBXGroup;
 			children = (
-				3DD110AF1F06351D00C1060A /* logo_moochaus.png */,
-				709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */,
+				507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */,
+				507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */,
 				709C93581EF09C2C00F8F045 /* Info.plist */,
 				709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */,
+				709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */,
 			);
-			name = moocHOUSE;
+			path = moocHOUSE;
 			sourceTree = "<group>";
 		};
 		709C93601EF09C6F00F8F045 /* moocHOUSE */ = {
@@ -2789,27 +2801,31 @@
 				ABE0609B1DF8C1B300FC186D /* openWHO */,
 				709C93551EF09BFA00F8F045 /* moocHOUSE */,
 			);
-			name = Branding;
+			path = Branding;
 			sourceTree = "<group>";
 		};
 		AB9183201D6B091E00018C1D /* openSAP */ = {
 			isa = PBXGroup;
 			children = (
+				507A5CD02021EC81009B1F95 /* GoogleService-Info-Debug.plist */,
+				507A5CCF2021EC81009B1F95 /* GoogleService-Info-Release.plist */,
 				70DABFEF1ED8331F0095E551 /* Info.plist */,
 				AB32A7B41E893EE00083E949 /* xikolo-ios.entitlements */,
 				AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */,
 			);
-			name = openSAP;
+			path = openSAP;
 			sourceTree = "<group>";
 		};
 		AB9183211D6B092400018C1D /* openHPI */ = {
 			isa = PBXGroup;
 			children = (
+				507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */,
+				507A5CCB2021CBBC009B1F95 /* GoogleService-Info-Release.plist */,
 				70DABFED1ED833110095E551 /* Info.plist */,
 				ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */,
 				AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */,
 			);
-			name = openHPI;
+			path = openHPI;
 			sourceTree = "<group>";
 		};
 		AB95897A1DC4A3C400586137 /* Categories */ = {
@@ -2833,11 +2849,13 @@
 		ABE0609B1DF8C1B300FC186D /* openWHO */ = {
 			isa = PBXGroup;
 			children = (
+				507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */,
+				507A5CD32021EEC1009B1F95 /* GoogleService-Info-Release.plist */,
 				70DABFF11ED8332A0095E551 /* Info.plist */,
 				ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */,
 				ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */,
 			);
-			name = openWHO;
+			path = openWHO;
 			sourceTree = "<group>";
 		};
 		ABE060A11DF8C22100FC186D /* openWHO */ = {
@@ -3006,6 +3024,7 @@
 				24BA40301D3F976700E38C2C /* Sources */,
 				24BA40311D3F976700E38C2C /* Frameworks */,
 				24BA40321D3F976700E38C2C /* Resources */,
+				507A5CDF2021F3C4009B1F95 /* Copy GoogleServices-Info.plist */,
 				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				747AA6185FE4F61F6B113EC5 /* [CP] Copy Pods Resources */,
 				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
@@ -3164,6 +3183,7 @@
 				709C92FF1EF0952500F8F045 /* Sources */,
 				709C93001EF0952500F8F045 /* Frameworks */,
 				709C93011EF0952500F8F045 /* Resources */,
+				507A5CE12021F40F009B1F95 /* Copy GoogleServices-Info.plist */,
 				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
 				1F57239A56A003CFD9A17C49 /* [CP] Copy Pods Resources */,
 				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
@@ -3227,6 +3247,7 @@
 				A90587B71B3BFC130095DB89 /* Sources */,
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
+				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				AC51BF7E1DD4B0B165B5B82B /* [CP] Copy Pods Resources */,
 				50429D991FB07149000C1D5E /* Clear Build Number */,
@@ -3249,6 +3270,7 @@
 				AB48B4311DF8BB2A00523062 /* Sources */,
 				AB48B4321DF8BB2A00523062 /* Frameworks */,
 				AB48B4331DF8BB2A00523062 /* Resources */,
+				507A5CE02021F3ED009B1F95 /* Copy GoogleServices-Info.plist */,
 				ACB757C47A664C44D01683E8 /* [CP] Embed Pods Frameworks */,
 				99A701B933A853760C844333 /* [CP] Copy Pods Resources */,
 				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
@@ -3524,6 +3546,7 @@
 			files = (
 				ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */,
 				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
+				507A5CDD2021EF0C009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */,
 				50DD352F1FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				24BA40FB1D3F9B3900E38C2C /* Common.strings in Resources */,
@@ -3531,6 +3554,7 @@
 				5014E2F71FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
+				507A5CDE2021EF0C009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Common.stringsdict in Resources */,
@@ -3631,7 +3655,6 @@
 			files = (
 				70D1EAE51EF0AC720088C0FF /* TabCourses.storyboard in Resources */,
 				70D1EB0B1EF0AD050088C0FF /* assets-ios-brand.xcassets in Resources */,
-				3DD110B11F06351D00C1060A /* logo_moochaus.png in Resources */,
 				50DD35311FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				70D1EB311EF12E1E0088C0FF /* Common.strings in Resources */,
 				70D1EB2F1EF12E1B0088C0FF /* assets-common.xcassets in Resources */,
@@ -3642,10 +3665,12 @@
 				70D1EB331EF12E210088C0FF /* Common.stringsdict in Resources */,
 				70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */,
 				50502E2B1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
+				507A5CDA2021EF03009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
 				501F947220075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2ED1FCEC1B5007255B5 /* TabNews.storyboard in Resources */,
+				507A5CD92021EF03009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */,
 				70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */,
 				70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */,
@@ -3659,7 +3684,6 @@
 				70D1EB341EF12E220088C0FF /* Common.stringsdict in Resources */,
 				70D1EB321EF12E1F0088C0FF /* Common.strings in Resources */,
 				70D1EB301EF12E1C0088C0FF /* assets-common.xcassets in Resources */,
-				3DD110B21F06351D00C1060A /* logo_moochaus.png in Resources */,
 				501F947320075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				70D1EB601EF134870088C0FF /* Localizable.strings in Resources */,
 				70D1EB5B1EF134580088C0FF /* assets-tvos-brand.xcassets in Resources */,
@@ -3674,7 +3698,6 @@
 			files = (
 				70D1EB351EF12E220088C0FF /* Common.stringsdict in Resources */,
 				501F947420075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
-				3DD110B31F06351D00C1060A /* logo_moochaus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3691,6 +3714,7 @@
 				70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */,
 				501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
+				507A5CCA2021CBAA009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				2490C4D31D1D6F7100F42949 /* Common.strings in Resources */,
 				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
 				AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */,
@@ -3698,8 +3722,8 @@
 				5014E2F61FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				5014E2EF1FCEC1B7007255B5 /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
-				3DD110B01F06351D00C1060A /* logo_moochaus.png in Resources */,
 				249348131D9550FD006D4F2C /* Common.stringsdict in Resources */,
+				507A5CCC2021CBBC009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				ABF26F971E9637F000763A39 /* LaunchScreen.storyboard in Resources */,
 				50DD352E1FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
@@ -3712,6 +3736,7 @@
 			files = (
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Common.strings in Resources */,
+				507A5CDB2021EF08009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
 				50DD35301FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */,
@@ -3719,6 +3744,7 @@
 				5014E2F81FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */,
 				ABA0F02E1DF8CCE80001D88D /* Localizable.strings in Resources */,
+				507A5CDC2021EF08009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */,
 				ABA0F0FC1DF8CEB60001D88D /* Common.stringsdict in Resources */,
@@ -3927,6 +3953,7 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Down-iOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/DownloadButton/DownloadButton.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -3939,6 +3966,7 @@
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3947,6 +3975,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DownloadButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -3959,6 +3988,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulatorStatusMagic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4095,6 +4125,62 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
 		};
+		507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy GoogleServices-Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Release\" ]; then\n    suffix=\"Release\"\nelse\n    suffix=\"Debug\"\nfi\n\necho \"Using GoogleService-Info.plist for ${suffix} mode\"\ncp \"${PROJECT_DIR}/xikolo-ios/Branding/${PRODUCT_NAME}/GoogleService-Info-${suffix}.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
+		};
+		507A5CDF2021F3C4009B1F95 /* Copy GoogleServices-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy GoogleServices-Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Release\" ]; then\n    suffix=\"Release\"\nelse\n    suffix=\"Debug\"\nfi\n\necho \"Using GoogleService-Info.plist for ${suffix} mode\"\ncp \"${PROJECT_DIR}/xikolo-ios/Branding/${PRODUCT_NAME}/GoogleService-Info-${suffix}.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
+		};
+		507A5CE02021F3ED009B1F95 /* Copy GoogleServices-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy GoogleServices-Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Release\" ]; then\n    suffix=\"Release\"\nelse\n    suffix=\"Debug\"\nfi\n\necho \"Using GoogleService-Info.plist for ${suffix} mode\"\ncp \"${PROJECT_DIR}/xikolo-ios/Branding/${PRODUCT_NAME}/GoogleService-Info-${suffix}.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
+		};
+		507A5CE12021F40F009B1F95 /* Copy GoogleServices-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy GoogleServices-Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Release\" ]; then\n    suffix=\"Release\"\nelse\n    suffix=\"Debug\"\nfi\n\necho \"Using GoogleService-Info.plist for ${suffix} mode\"\ncp \"${PROJECT_DIR}/xikolo-ios/Branding/${PRODUCT_NAME}/GoogleService-Info-${suffix}.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
+		};
 		508DDBBB1FDAE8D400F2ACB9 /* Remove German localization */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4182,6 +4268,7 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Down-iOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/DownloadButton/DownloadButton.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -4194,6 +4281,7 @@
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -4202,6 +4290,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DownloadButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -4214,6 +4303,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulatorStatusMagic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4382,6 +4472,7 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Down-iOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/DownloadButton/DownloadButton.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -4394,6 +4485,7 @@
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -4402,6 +4494,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DownloadButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -4414,6 +4507,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulatorStatusMagic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4475,6 +4569,7 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Down-iOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/DownloadButton/DownloadButton.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -4487,6 +4582,7 @@
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -4495,6 +4591,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DownloadButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -4507,6 +4604,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulatorStatusMagic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6417,12 +6515,13 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openSAP/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Branding/openSAP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENSAP";
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.opensap.debug;
 				PRODUCT_NAME = openSAP;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6802,11 +6901,12 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/moocHOUSE/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Branding/moocHOUSE/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse.debug;
 				PRODUCT_NAME = moocHOUSE;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7054,6 +7154,7 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openHPI/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7064,7 +7165,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENHPI";
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug;
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7112,12 +7213,13 @@
 				CODE_SIGN_ENTITLEMENTS = "xikolo-ios/Branding/openWHO/xikolo-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = "xikolo-ios/Branding/openWHO/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOPENWHO";
-				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho;
+				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho.debug;
 				PRODUCT_NAME = openWHO;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

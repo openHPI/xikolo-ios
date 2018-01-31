@@ -6,14 +6,15 @@
 //  Copyright © 2017 HPI. All rights reserved.
 //
 
+import Crashlytics
 import Foundation
-
 
 class CourseItemWebViewController: WebViewController {
 
     var courseItem: CourseItem! {
         didSet {
             self.setURL()
+            Crashlytics.sharedInstance().setObjectValue("item_id", forKey: self.courseItem.id)
         }
     }
 

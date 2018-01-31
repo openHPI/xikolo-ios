@@ -21,6 +21,11 @@ def ios_pods
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
     pod 'XCGLogger', '~> 6.0'
+
+    # Firebase
+    pod 'Firebase/Core', '~> 4.8'
+    pod 'Fabric', '~> 1.7'
+    pod 'Crashlytics', '~> 3.9'
 end
 
 target 'openHPI-iOS' do

@@ -69,3 +69,8 @@ Add `#bc-ignore!` to the user comment of `NSLocalizedString`
 ```
 let format = NSLocalizedString("%d hours", comment: "<number> of hours #bc-ignore!")
 ```
+
+### How to release to apps
+- Install git-crypt via `brew install git-crypt`
+- Retrieve the `xikolo-ios.key` from the openHPI team and run `git-crypt unlock /path/to/xikolo-ios.key`
+- Use the standard Xcode workflow to upload the app to iTunesConnect (You have to possess the iOS Distribution Certificate)

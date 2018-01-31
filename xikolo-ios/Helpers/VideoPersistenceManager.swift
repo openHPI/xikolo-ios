@@ -6,9 +6,10 @@
 //  Copyright © 2017 HPI. All rights reserved.
 //
 
-import Foundation
 import AVFoundation
 import CoreData
+import Crashlytics
+import Foundation
 import UIKit
 
 class VideoPersistenceManager: NSObject {
@@ -204,6 +205,8 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                 log.debug("Canceled download of video (video id: \(video.id))")
             } else {
                 log.error("Unknown asset download error (video id: \(video.id) | domain: \(error.domain) | code: \(error.code)")
+
+                Crashlytics.sharedInstance().recordError(error)
 
                 // show error
                 DispatchQueue.main.async {

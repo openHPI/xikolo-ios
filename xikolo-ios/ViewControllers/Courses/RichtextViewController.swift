@@ -6,8 +6,9 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import UIKit
+import Crashlytics
 import SafariServices
+import UIKit
 
 class RichtextViewController : AbstractItemRichtextViewController {
 
@@ -16,6 +17,7 @@ class RichtextViewController : AbstractItemRichtextViewController {
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
+        Crashlytics.sharedInstance().setObjectValue("item_id", forKey: self.courseItem.id)
     }
 
 }

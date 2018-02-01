@@ -16,6 +16,7 @@ class Screenshots: XCTestCase {
         self.continueAfterFailure = false
 
         let app = XCUIApplication()
+        app.launchArguments = ["-cleanStatusBar", "-cleanTabBar"]
         setupSnapshot(app)
         app.launch()
     }
@@ -26,26 +27,26 @@ class Screenshots: XCTestCase {
 
         // Course list
         Navigator.goToTabBarItem(.courses)
-        sleep(3)
+        sleep(5)
         snapshot("1-CourseList")
 
         LoginHelper.loginIfPossible()
 
         // Dashboard
         Navigator.goToTabBarItem(.dashboard)
-        sleep(3)
+        sleep(5)
         snapshot("2-Dashboard")
 
         // Course item list
         // tap on first element in course activity view
         // course cell must be accessibility element (.isAccessibilityElement = true)
         app.collectionViews.firstMatch.cells.firstMatch.tap()
-        sleep(3)
+        sleep(5)
         snapshot("3-Course-Items")
 
         // tap on first video item
         app.tables.firstMatch.cells.containing(XCUIElement.ElementType.button, identifier: nil).firstMatch.tap()
-        sleep(3)
+        sleep(4)
         snapshot("4-Video-Item")
     }
     

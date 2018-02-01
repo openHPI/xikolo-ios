@@ -1,3 +1,6 @@
-Dieses Update bringt eine Suche für die Kursliste. Neuigkeiten können nun auch für jeden Kurs einzeln abgerufen werden. 
-Außerdem haben wir ein paar Fehler behoben und die Stabilität der App verbessert. 
-Viel Spaß mit diesem Update!
+• Die Kurssuche ist nun gleich beim Öffnen der Kursliste sichtbar
+• Ungelesene Neuigkeiten werden besser hervorgehoben
+
+Auch in Version 2.1:
+• Suche für Kurse
+• Neuigkeitenliste für einzelne Kurse

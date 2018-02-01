@@ -1,3 +1,6 @@
-This update adds a search for the course list and announcements can now be accessed for each course separately. 
-Furthermore, we improved the performance and stability of the app.
-We hope you enjoy this update!
+• Course search is now visible right from the beginning
+• Better hightlighting for unread news
+
+Also in version 2.1:
+• Search for courses
+• View announcements for each course individually

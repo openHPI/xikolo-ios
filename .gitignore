@@ -48,6 +48,7 @@ Carthage/Build
 fastlane/report.xml
 # deliver temporary files
 fastlane/Preview.html
+Preview.html
 # snapshot generated screenshots
 fastlane/screenshots
 # scan temporary files

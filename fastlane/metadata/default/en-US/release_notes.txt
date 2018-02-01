@@ -1,0 +1,3 @@
+This update adds a search for the course list and announcements can now be accessed for each course separately. 
+Furthermore, we improved the performance and stability of the app.
+We hope you enjoy this update!

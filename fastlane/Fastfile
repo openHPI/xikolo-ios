@@ -112,29 +112,55 @@ platform :ios do
     sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c -e"
   end
 
-  desc "Checks application for potential App Store violations"
-  lane :check do
-    flavors.each { |flavor| public_send :"check_#{flavor.downcase}" }
+  desc "Create screenshots for all applications"
+  lane :screenshots do
+    flavors.each { |flavor| public_send :"make_screenshots_#{flavor.downcase}" }
   end
 
   flavors.each do |flavor|
-    lane :"check_#{flavor.downcase}" do
-      precheck(
-        app_identifier: "de.xikolo.#{flavor.downcase}",
+    lane :"make_screenshots_#{flavor.downcase}" do
+      snapshot(
+        scheme: "#{flavor}-iOS-UITests",
+        output_directory: "fastlane/screenshots/#{flavor}",
       )
     end
   end
 
-  desc "Create screenshots for all applications"
-  lane :screenshots do
-    flavors.each { |flavor| public_send :"screenshots_#{flavor.downcase}" }
+  desc "Upload only screenshots to iTunesConnect"
+  desc "No upload of screenshots or IPA"
+  lane :upload_screenshots do
+    flavors.each { |flavor| public_send :"upload_screenshots_#{flavor.downcase}" }
   end
 
   flavors.each do |flavor|
-    lane :"screenshots_#{flavor.downcase}" do
-      snapshot(
-        scheme: "#{flavor}-iOS-UITests",
-        output_directory: "fastlane/screenshots/#{flavor}",
+    lane :"upload_screenshots_#{flavor.downcase}" do
+      deliver(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        app_version: get_version_number,
+        metadata_path: "fastlane/metadata/#{flavor}",
+        screenshots_path: "fastlane/screenshots/#{flavor}",
+        overwrite_screenshots: true,
+        skip_binary_upload: true,
+        skip_metadata: true,
+      )
+    end
+  end
+
+  desc "Upload only metadata to iTunesConnect"
+  desc "No upload of screenshots or IPA"
+  lane :upload_metadata do
+    flavors.each { |flavor| public_send :"upload_metadata_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"upload_metadata_#{flavor.downcase}" do
+      deliver(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        app_version: get_version_number,
+        metadata_path: "fastlane/metadata/#{flavor}",
+        skip_binary_upload: true,
+        skip_screenshots: true,
+        force: true,
       )
     end
   end

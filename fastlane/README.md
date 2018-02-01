@@ -52,54 +52,83 @@ Adds localizations for the application incrementally
 - uses bartycrouch
 
 - translates storyboard files and NSLocalizedString usages
-### ios check
-```
-fastlane ios check
-```
-Checks application for potential App Store violations
-### ios check_openhpi
-```
-fastlane ios check_openhpi
-```
-
-### ios check_opensap
-```
-fastlane ios check_opensap
-```
-
-### ios check_openwho
-```
-fastlane ios check_openwho
-```
-
-### ios check_moochouse
-```
-fastlane ios check_moochouse
-```
-
 ### ios screenshots
 ```
 fastlane ios screenshots
 ```
 Create screenshots for all applications
-### ios screenshots_openhpi
+### ios make_screenshots_openhpi
 ```
-fastlane ios screenshots_openhpi
-```
-
-### ios screenshots_opensap
-```
-fastlane ios screenshots_opensap
+fastlane ios make_screenshots_openhpi
 ```
 
-### ios screenshots_openwho
+### ios make_screenshots_opensap
 ```
-fastlane ios screenshots_openwho
+fastlane ios make_screenshots_opensap
 ```
 
-### ios screenshots_moochouse
+### ios make_screenshots_openwho
 ```
-fastlane ios screenshots_moochouse
+fastlane ios make_screenshots_openwho
+```
+
+### ios make_screenshots_moochouse
+```
+fastlane ios make_screenshots_moochouse
+```
+
+### ios upload_screenshots
+```
+fastlane ios upload_screenshots
+```
+Upload only screenshots to iTunesConnect
+
+No upload of screenshots or IPA
+### ios upload_screenshots_openhpi
+```
+fastlane ios upload_screenshots_openhpi
+```
+
+### ios upload_screenshots_opensap
+```
+fastlane ios upload_screenshots_opensap
+```
+
+### ios upload_screenshots_openwho
+```
+fastlane ios upload_screenshots_openwho
+```
+
+### ios upload_screenshots_moochouse
+```
+fastlane ios upload_screenshots_moochouse
+```
+
+### ios upload_metadata
+```
+fastlane ios upload_metadata
+```
+Upload only metadata to iTunesConnect
+
+No upload of screenshots or IPA
+### ios upload_metadata_openhpi
+```
+fastlane ios upload_metadata_openhpi
+```
+
+### ios upload_metadata_opensap
+```
+fastlane ios upload_metadata_opensap
+```
+
+### ios upload_metadata_openwho
+```
+fastlane ios upload_metadata_openwho
+```
+
+### ios upload_metadata_moochouse
+```
+fastlane ios upload_metadata_moochouse
 ```
 
 

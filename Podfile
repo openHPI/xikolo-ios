@@ -97,6 +97,11 @@ post_install do |installer|
     system("make installables -C ./Pods/BartyCrouch --silent")
     system("cp -f /tmp/BartyCrouch.dst/usr/local/bin/bartycrouch ./Pods/BartyCrouch/bartycrouch")
 
+    Pod::UI.info "Fix provisioning profile specifiers"
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = ''
+    end
+
     # This is highly inspired by cocoapods-acknowledgements (https://github.com/CocoaPods/cocoapods-acknowledgements)
     # but creates only one pod license file for iOs instead of one license file for each target
     # Additonally, it provides more customization possibilities.

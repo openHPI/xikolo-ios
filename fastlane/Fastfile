@@ -164,4 +164,32 @@ platform :ios do
       )
     end
   end
+
+  desc "Build and ppload only IPA and metadata to iTunesConnect"
+  desc "No upload of screenshots"
+  lane :release do
+    flavors.each { |flavor| public_send :"release_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"release_#{flavor.downcase}" do
+      gym(
+        scheme: "#{flavor}-iOS",
+        include_bitcode: true,
+        include_symbols: true,
+        export_method: "app-store",
+        export_options: {
+          provisioningProfiles: {
+            "de.xikolo.#{flavor.downcase}" => "#{flavor}-iOS-dist",
+          }
+        },
+      )
+      deliver(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        app_version: get_version_number,
+        metadata_path: "fastlane/metadata/#{flavor}",
+        skip_screenshots: true,
+      )
+    end
+  end
 end

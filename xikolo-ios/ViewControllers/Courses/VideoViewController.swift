@@ -150,6 +150,12 @@ class VideoViewController : UIViewController {
         } else if let hlsURL = video.singleStream?.hlsURL {
             videoURL = hlsURL
             self.playerControlView.setOffline(false)
+        } else if let hdURL = video.singleStream?.hdURL, ReachabilityHelper.connection == .wifi {
+            videoURL = hdURL
+            self.playerControlView.setOffline(false)
+        } else if let sdURL = video.singleStream?.sdURL {
+            videoURL = sdURL
+            self.playerControlView.setOffline(false)
         } else {
             self.errorView.isHidden = false
             self.playerControlView.setOffline(false)

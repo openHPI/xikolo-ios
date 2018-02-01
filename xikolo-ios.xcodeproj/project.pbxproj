@@ -641,14 +641,6 @@
 		5071BA271FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
 		5071BA281FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
 		5071BA291FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* NavigationBar+Layout.swift */; };
-		507A5CCA2021CBAA009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */; };
-		507A5CCC2021CBBC009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CCB2021CBBC009B1F95 /* GoogleService-Info-Release.plist */; };
-		507A5CD92021EF03009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */; };
-		507A5CDA2021EF03009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */; };
-		507A5CDB2021EF08009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */; };
-		507A5CDC2021EF08009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD32021EEC1009B1F95 /* GoogleService-Info-Release.plist */; };
-		507A5CDD2021EF0C009B1F95 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CD02021EC81009B1F95 /* GoogleService-Info-Debug.plist */; };
-		507A5CDE2021EF0C009B1F95 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507A5CCF2021EC81009B1F95 /* GoogleService-Info-Release.plist */; };
 		508BD0AA1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
@@ -3546,7 +3538,6 @@
 			files = (
 				ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */,
 				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
-				507A5CDD2021EF0C009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */,
 				50DD352F1FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				24BA40FB1D3F9B3900E38C2C /* Common.strings in Resources */,
@@ -3554,7 +3545,6 @@
 				5014E2F71FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
-				507A5CDE2021EF0C009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Common.stringsdict in Resources */,
@@ -3665,12 +3655,10 @@
 				70D1EB331EF12E210088C0FF /* Common.stringsdict in Resources */,
 				70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */,
 				50502E2B1FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
-				507A5CDA2021EF03009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
 				501F947220075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2ED1FCEC1B5007255B5 /* TabNews.storyboard in Resources */,
-				507A5CD92021EF03009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */,
 				70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */,
 				70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */,
@@ -3714,7 +3702,6 @@
 				70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */,
 				501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
-				507A5CCA2021CBAA009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				2490C4D31D1D6F7100F42949 /* Common.strings in Resources */,
 				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
 				AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */,
@@ -3723,7 +3710,6 @@
 				5014E2EF1FCEC1B7007255B5 /* TabNews.storyboard in Resources */,
 				AB9AF2D71CF72E8E00ED3EB0 /* TabDashboard.storyboard in Resources */,
 				249348131D9550FD006D4F2C /* Common.stringsdict in Resources */,
-				507A5CCC2021CBBC009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				ABF26F971E9637F000763A39 /* LaunchScreen.storyboard in Resources */,
 				50DD352E1FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				F80D67981B98751700E27520 /* Localizable.strings in Resources */,
@@ -3736,7 +3722,6 @@
 			files = (
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Common.strings in Resources */,
-				507A5CDB2021EF08009B1F95 /* GoogleService-Info-Debug.plist in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
 				50DD35301FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */,
@@ -3744,7 +3729,6 @@
 				5014E2F81FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */,
 				ABA0F02E1DF8CCE80001D88D /* Localizable.strings in Resources */,
-				507A5CDC2021EF08009B1F95 /* GoogleService-Info-Release.plist in Resources */,
 				508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */,
 				ABA0F0FC1DF8CEB60001D88D /* Common.stringsdict in Resources */,

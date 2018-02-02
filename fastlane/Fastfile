@@ -119,10 +119,18 @@ platform :ios do
 
   flavors.each do |flavor|
     lane :"make_screenshots_#{flavor.downcase}" do
-      snapshot(
-        scheme: "#{flavor}-iOS-UITests",
-        output_directory: "fastlane/screenshots/#{flavor}",
-      )
+      if flavor == :openSAP
+        snapshot(
+          scheme: "#{flavor}-iOS-UITests",
+          output_directory: "fastlane/screenshots/#{flavor}",
+          languages: ["en-US"],
+        )
+      else
+        snapshot(
+          scheme: "#{flavor}-iOS-UITests",
+          output_directory: "fastlane/screenshots/#{flavor}",
+        )
+      end
     end
   end
 

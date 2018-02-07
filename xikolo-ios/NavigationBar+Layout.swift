@@ -15,6 +15,12 @@ class XikoloNavigationController : UINavigationController {
         self.navigationBar.barTintColor = UIColor.white
         self.navigationBar.isTranslucent = true
         self.navigationBar.shadowImage = UIImage()
+
+        if #available(iOS 11.0, *) {
+            // Nothing to do here
+        } else {
+            self.hideShadowImage(inView: self.view)
+        }
     }
 
     func fixShadowImage() {

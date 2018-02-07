@@ -173,14 +173,38 @@ platform :ios do
     end
   end
 
-  desc "Build and ppload only IPA and metadata to iTunesConnect"
+  desc "Build and upload only IPA and metadata to iTunesConnect"
   desc "No upload of screenshots"
   lane :release do
+    ensure_git_branch(branch: 'master')
     flavors.each { |flavor| public_send :"release_#{flavor.downcase}" }
   end
 
   flavors.each do |flavor|
     lane :"release_#{flavor.downcase}" do
+      ensure_git_branch(branch: 'master')
+      upload_ipa(flavor: flavor)
+    end
+  end
+
+  desc "Build and upload only IPA (beta) to iTunesConnect"
+  desc "No upload of screenshots or metadata"
+  lane :beta do
+    ensure_git_branch(branch: 'dev')
+    flavors.each { |flavor| public_send :"beta_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"beta_#{flavor.downcase}" do
+      ensure_git_branch(branch: 'dev')
+      upload_ipa(flavor: flavor, skip_metadata: true)
+    end
+  end
+
+  private_lane :upload_ipa do |options|
+    if options[:flavor]
+      flavor = options[:flavor]
+      skip_metadata = (options[:skip_metadata] ? true : false)
       gym(
         scheme: "#{flavor}-iOS",
         include_bitcode: true,
@@ -197,7 +221,10 @@ platform :ios do
         app_version: get_version_number,
         metadata_path: "fastlane/metadata/#{flavor}",
         skip_screenshots: true,
+        skip_metadata: skip_metadata,
       )
+    else
+      UI.user_error! "No flavor supplied for IPA upload"
     end
   end
 end

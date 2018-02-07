@@ -135,7 +135,7 @@ fastlane ios upload_metadata_moochouse
 ```
 fastlane ios release
 ```
-Build and ppload only IPA and metadata to iTunesConnect
+Build and upload only IPA and metadata to iTunesConnect
 
 No upload of screenshots
 ### ios release_openhpi
@@ -156,6 +156,33 @@ fastlane ios release_openwho
 ### ios release_moochouse
 ```
 fastlane ios release_moochouse
+```
+
+### ios beta
+```
+fastlane ios beta
+```
+Build and upload only IPA (beta) to iTunesConnect
+
+No upload of screenshots or metadata
+### ios beta_openhpi
+```
+fastlane ios beta_openhpi
+```
+
+### ios beta_opensap
+```
+fastlane ios beta_opensap
+```
+
+### ios beta_openwho
+```
+fastlane ios beta_openwho
+```
+
+### ios beta_moochouse
+```
+fastlane ios beta_moochouse
 ```
 
 

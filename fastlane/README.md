@@ -185,6 +185,16 @@ fastlane ios beta_openwho
 fastlane ios beta_moochouse
 ```
 
+### ios tag_release
+```
+fastlane ios tag_release
+```
+
+### ios changelog
+```
+fastlane ios changelog
+```
+
 
 ----
 

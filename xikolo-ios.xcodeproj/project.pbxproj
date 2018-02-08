@@ -533,7 +533,6 @@
 		502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E716E2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E716F2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
-		502E71702018E2AB007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
 		502E7173201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
 		502E7174201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
@@ -545,9 +544,6 @@
 		502E717D201B1FC9007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E717E201B1FC9007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E717F201B1FCA007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
-		502E7180201B1FD0007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
-		502E7181201B1FD1007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
-		502E7182201B1FD1007FC8C0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E712F2018D8BF007FC8C0 /* Info.plist */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		502E718A20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		502E718B20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
@@ -3605,7 +3601,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E71702018E2AB007FC8C0 /* Info.plist in Resources */,
 				502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3614,7 +3609,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E7180201B1FD0007FC8C0 /* Info.plist in Resources */,
 				502E7173201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3623,7 +3617,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E7181201B1FD1007FC8C0 /* Info.plist in Resources */,
 				502E7174201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3632,7 +3625,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502E7182201B1FD1007FC8C0 /* Info.plist in Resources */,
 				502E7175201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -190,6 +190,31 @@ fastlane ios beta_moochouse
 fastlane ios tag_release
 ```
 
+### ios refresh_dsyms
+```
+fastlane ios refresh_dsyms
+```
+Download dSYMS files from iTunesConnect and upload them to Firebase
+### ios refresh_dsyms_openhpi
+```
+fastlane ios refresh_dsyms_openhpi
+```
+
+### ios refresh_dsyms_opensap
+```
+fastlane ios refresh_dsyms_opensap
+```
+
+### ios refresh_dsyms_openwho
+```
+fastlane ios refresh_dsyms_openwho
+```
+
+### ios refresh_dsyms_moochouse
+```
+fastlane ios refresh_dsyms_moochouse
+```
+
 ### ios changelog
 ```
 fastlane ios changelog

@@ -243,6 +243,24 @@ platform :ios do
     )
   end
 
+  desc "Download dSYMS files from iTunesConnect and upload them to Firebase"
+  lane :refresh_dsyms do
+    flavors.each { |flavor| public_send :"refresh_dsyms_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"refresh_dsyms_#{flavor.downcase}" do
+      download_dsyms(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        version: get_version_number,
+      )
+      upload_symbols_to_crashlytics(
+        gsp_path: "xikolo-ios/Branding/#{flavor}/GoogleService-Info-Release.plist",
+      )
+      clean_build_artifacts
+    end
+  end
+
   lane :changelog do
     git_pull(only_tags: true)
     changelog_from_git_commits(pretty: '%h %s')

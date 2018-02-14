@@ -41,7 +41,7 @@ class CourseDecisionViewController: UIViewController {
         }
 
         SpotlightHelper.setUserActivity(for: self.course)
-        Crashlytics.sharedInstance().setObjectValue("course_id", forKey: self.course.id)
+        Crashlytics.sharedInstance().setObjectValue(self.course.id, forKey: "course_id")
     }
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }

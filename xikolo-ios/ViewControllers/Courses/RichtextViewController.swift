@@ -17,7 +17,7 @@ class RichtextViewController : AbstractItemRichtextViewController {
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
-        Crashlytics.sharedInstance().setObjectValue("item_id", forKey: self.courseItem.id)
+        Crashlytics.sharedInstance().setObjectValue(self.courseItem.id, forKey: "item_id")
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -206,6 +206,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
             } else {
                 log.error("Unknown asset download error (video id: \(video.id) | domain: \(error.domain) | code: \(error.code)")
 
+                Crashlytics.sharedInstance().setObjectValue(video.item?.id, forKey: "download_video_id")
                 Crashlytics.sharedInstance().recordError(error)
 
                 // show error

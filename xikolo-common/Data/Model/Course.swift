@@ -99,6 +99,15 @@ extension Course : Pullable {
         self.external = try attributes.value(for: "external")
 
         self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
+
+        if let relationships = try? object.value(for: "relationships") as JSON {
+            try self.updateRelationship(forKeyPath: \Course.enrollment,
+                                        forKey: "user_enrollment",
+                                        fromObject: relationships,
+                                        including: includes,
+                                        inContext: context)
+        }
+
     }
 
 }

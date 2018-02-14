@@ -97,7 +97,6 @@ open class UserProfileHelper {
 
         if UserProfileHelper.isLoggedIn() {
             coursesFuture.onSuccess { _ in
-                EnrollmentHelper.syncEnrollments()
                 CourseDateHelper.syncAllCourseDates()
             }
         }

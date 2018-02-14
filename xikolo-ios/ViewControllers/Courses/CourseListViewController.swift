@@ -92,9 +92,7 @@ class CourseListViewController : AbstractCourseListViewController {
         }
 
         if UserProfileHelper.isLoggedIn() {
-            CourseHelper.syncAllCourses().flatMap { _ in
-                return EnrollmentHelper.syncEnrollments()
-            }.onComplete { _ in
+            CourseHelper.syncAllCourses().onComplete { _ in
                 stopRefreshControl()
             }
         } else {

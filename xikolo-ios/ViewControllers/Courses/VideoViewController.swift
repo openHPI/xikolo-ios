@@ -100,9 +100,9 @@ class VideoViewController : UIViewController {
         self.videoContainer.addSubview(player)
         player.snp.makeConstraints { (make) in
             make.top.equalTo(self.videoContainer.snp.top)
-            make.left.equalTo(self.videoContainer.snp.left)
-            make.right.equalTo(self.videoContainer.snp.right)
-            make.height.equalTo(self.videoContainer.snp.width).multipliedBy(9.0/16.0)
+            make.bottom.equalTo(self.videoContainer.snp.bottom)
+            make.centerX.equalTo(self.videoContainer.snp.centerX)
+            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0/9.0)
         }
 
         self.player = player

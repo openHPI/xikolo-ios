@@ -54,7 +54,7 @@ class CourseDetailViewController: UIViewController {
         teacherView.text = course.teachers
         teacherView.textColor = Brand.TintColorSecond
 
-        dateView.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
+        dateView.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
         imageView.sd_setImage(with: course.imageURL)
 
         if let description = course.abstract {

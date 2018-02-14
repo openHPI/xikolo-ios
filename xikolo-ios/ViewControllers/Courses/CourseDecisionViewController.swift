@@ -150,6 +150,13 @@ class CourseDecisionViewController: UIViewController {
         let activityItems = ([self.course.title, self.course.url] as [Any?]).flatMap { $0 }
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
+        activityViewController.completionWithItemsHandler = { (activityType, completed, _, _) in
+            let context: [String : String?] = [
+                "service": activityType?.rawValue,
+                "completed": String(describing: completed),
+            ]
+            TrackingHelper.createEvent(.share, resourceType: .course, resourceId: self.course.id, context: context)
+        }
         self.present(activityViewController, animated: true)
     }
 

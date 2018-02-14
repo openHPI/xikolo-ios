@@ -37,6 +37,9 @@ class TrackingHelper {
         case videoDownloadStart = "DOWNLOADED_HLS_VIDEO"
         case videoDownloadFinished = "DOWNLOADED_HLS_VIDEO_FINISHED"
         case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
+
+        // social
+        case share = "SHARE_BUTTON_CLICK"
     }
 
     enum AnalyticsResourceType : String {

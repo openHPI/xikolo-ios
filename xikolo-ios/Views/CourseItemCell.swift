@@ -25,8 +25,6 @@ class CourseItemCell : UITableViewCell {
     var item: CourseItem?
     var delegate: VideoCourseItemCellDelegate?
 
-    var singleReloadInProgress = false
-
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setupDownloadButton()
@@ -97,13 +95,9 @@ class CourseItemCell : UITableViewCell {
     }
 
     private func configureDownloadButton(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
-        if let video = courseItem.content as? Video {
+        if let video = courseItem.content as? Video, video.singleStream?.hlsURL != nil {
             let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
-            var newButtonState = self.downloadButtonState(for: videoDownloadState)
-
-            if newButtonState == .startDownload && self.singleReloadInProgress {
-                newButtonState = .pending
-            }
+            let newButtonState = self.downloadButtonState(for: videoDownloadState)
 
             DispatchQueue.main.async {
                 self.downloadButton.state = newButtonState

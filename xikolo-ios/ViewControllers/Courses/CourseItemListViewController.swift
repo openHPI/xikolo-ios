@@ -249,19 +249,7 @@ extension CourseItemListViewController: VideoCourseItemCellDelegate {
         let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
                                                     comment: "start download of video item")
         let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
-            if video.singleStream?.hlsURL != nil {
-                VideoPersistenceManager.shared.downloadStream(for: video)
-            } else {
-                DispatchQueue.main.async {
-                    cell.singleReloadInProgress = true
-                }
-                VideoHelper.syncVideo(video).onComplete { result in
-                    DispatchQueue.main.async {
-                        cell.singleReloadInProgress = false
-                    }
-                    VideoPersistenceManager.shared.downloadStream(for: video)
-                }
-            }
+            VideoPersistenceManager.shared.downloadStream(for: video)
         }
 
         let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")

@@ -132,9 +132,6 @@ class CourseItemListViewController: UITableViewController {
             return contentType.preloadContentFor(course: self.course)
         }.onComplete { _ in
             self.isPreloading = false
-            for case let cell as CourseItemCell in self.tableView.visibleCells {
-                cell.removeLoadingState()
-            }
         }
     }
 
@@ -237,13 +234,6 @@ extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetD
 }
 
 extension CourseItemListViewController: VideoCourseItemCellDelegate {
-
-    func videoCourseItemCell(_ cell: CourseItemCell, downloadStateDidChange newState: Video.DownloadState) {
-        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
-
-        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
-
 
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
         let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",

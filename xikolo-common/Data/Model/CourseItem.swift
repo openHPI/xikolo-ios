@@ -89,7 +89,7 @@ extension CourseItem : Pushable {
 
     var objectState: ObjectState {
         get {
-            return ObjectState(rawValue: self.objectStateValue)!
+            return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for course item")
         }
         set {
             self.objectStateValue = newValue.rawValue

@@ -25,13 +25,6 @@ final class Enrollment : NSManagedObject {
         return NSFetchRequest<Enrollment>(entityName: "Enrollment");
     }
 
-    convenience init(forCourse course: Course, inContext context: NSManagedObjectContext) {
-        self.init(context: context)
-        self.course = course
-        self.completed = false
-        self.objectState = .new
-    }
-
     func compare(_ object: Enrollment) -> ComparisonResult {
         // This method is required, because we're using an NSSortDescriptor to sort courses based on enrollment.
         // Since we only rely on sorting enrolled vs. un-enrolled courses, this comparison method considers all enrollments equal,

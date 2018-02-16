@@ -23,8 +23,9 @@ protocol IncludedPushable {
 
 protocol Pushable : ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult {
     var objectState: ObjectState { get }
-    var deleteAfterSync: Bool { get }
 
+    static func resourceDataObject(attributes: [String: Any], relationships: [String: AnyObject]?) -> [String: Any]
+    static func resourceData(attributes: [String: Any], relationships: [String: AnyObject]?) -> Result<Data, XikoloError>
     func resourceData() -> Result<Data, XikoloError>
     func resourceRelationships() -> [String: AnyObject]?
     func markAsUnchanged()
@@ -32,33 +33,46 @@ protocol Pushable : ResourceTypeRepresentable, IncludedPushable, NSFetchRequestR
 
 extension Pushable {
 
-    var deleteAfterSync: Bool {
-        return false
+    static func resourceDataObject(attributes: [String: Any], relationships: [String: AnyObject]?) -> [String: Any] {
+        var data: [String: Any] = [ "type": Self.type ]
+
+        data["attributes"] = attributes
+        if let resourceRelationships = relationships {
+            var relationships: [String: Any] = [:]
+            for (relationshipName, object) in resourceRelationships {
+                if let resource = object as? ResourceRepresentable {
+                    relationships[relationshipName] = ["data": resource.identifier]
+                } else if let resources = object as? [ResourceRepresentable] {
+                    relationships[relationshipName] = ["data": resources.map { $0.identifier }]
+                }
+            }
+            if !relationships.isEmpty {
+                data["relationships"] = relationships
+            }
+        }
+
+        return data
+    }
+
+    static func resourceData(attributes: [String: Any], relationships: [String: AnyObject]?) -> Result<Data, XikoloError> {
+        do {
+            let data = Self.resourceDataObject(attributes: attributes, relationships: relationships)
+            let json = ["data": data]
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+            return .success(jsonData)
+        } catch {
+            return .failure(.api(.serializationError(.jsonSerializationError(error))))
+        }
     }
 
     func resourceData() -> Result<Data, XikoloError> {
         do {
-            var data: [String: Any] = [ "type": Self.type ]
+            var data = Self.resourceDataObject(attributes: self.resourceAttributes(), relationships: self.resourceRelationships())
             if let newResource = self as? ResourceRepresentable, self.objectState != .new {
                 data["id"] = newResource.id
             }
 
-            data["attributes"] = self.resourceAttributes()
-            if let resourceRelationships = self.resourceRelationships() {
-                var relationships: [String: Any] = [:]
-                for (relationshipName, object) in resourceRelationships {
-                    if let resource = object as? ResourceRepresentable {
-                        relationships[relationshipName] = ["data": resource.identifier]
-                    } else if let resources = object as? [ResourceRepresentable] {
-                        relationships[relationshipName] = ["data": resources.map { $0.identifier }]
-                    }
-                }
-                if !relationships.isEmpty {
-                    data["relationships"] = relationships
-                }
-            }
-
-            let json = [ "data": data ]
+            let json = ["data": data]
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
             return .success(jsonData)
         } catch {

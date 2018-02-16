@@ -65,8 +65,8 @@ class SyncPushEngine {
                 var pushFuture: Future<Void, XikoloError>?
                 if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
                     pushFuture = SyncHelper.saveResource(pullableResource)
-                } else if resource.objectState == .new {
-                    pushFuture = SyncHelper.saveResource(resource)
+                } else if resource.objectState == .new, !(resource is Pullable) {
+                    pushFuture = SyncHelper.createResource(resource)
                 } else if let deletableResource = resource as? (Pullable & Pushable), resource.objectState == .deleted {
                     pushFuture = SyncHelper.deleteResource(deletableResource)
                 } else {
@@ -91,13 +91,11 @@ class SyncPushEngine {
                 }
 
                 // post sync actions
-                if resource.objectState == .deleted || resource.deleteAfterSync {
+                if resource.objectState == .deleted || !(resource is Pullable) {
                     context.delete(resource)
-                    log.verbose("Deleted resource of type: \(type(of: resource).type)")
-                } else {
-                    if resource.objectState == .new || resource.objectState == .modified {
-                        resource.markAsUnchanged()
-                    }
+                    log.verbose("Deleted local resource of type: \(type(of: resource).type)")
+                } else if resource.objectState == .new || resource.objectState == .modified {
+                    resource.markAsUnchanged()
                 }
 
                 do {

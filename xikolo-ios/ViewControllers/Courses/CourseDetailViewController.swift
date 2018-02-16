@@ -128,7 +128,6 @@ class CourseDetailViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.updateView()
                 }
-                CourseHelper.syncCourse(self.course)
             }.onFailure { _ in
                 self.enrollmentButton.shake()
             }

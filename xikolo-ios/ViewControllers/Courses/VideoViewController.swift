@@ -9,7 +9,6 @@
 import AVKit
 import AVFoundation
 import BMPlayer
-import Crashlytics
 import NVActivityIndicatorView
 import UIKit
 
@@ -60,7 +59,7 @@ class VideoViewController : UIViewController {
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
 
-        Crashlytics.sharedInstance().setObjectValue("item_id", forKey: self.courseItem.id)
+        CrashlyticsHelper.shared.setObjectValue("item_id", forKey: self.courseItem.id)
     }
 
     override func viewWillAppear(_ animated: Bool) {

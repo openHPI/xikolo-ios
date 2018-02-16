@@ -73,7 +73,7 @@ class AbstractCourseListViewController : UICollectionViewController {
                 try rC.performFetch()
             }
         } catch {
-            // TODO: Error handling.
+            CrashlyticsHelper.shared.recordError(error)
             log.error(error)
         }
 

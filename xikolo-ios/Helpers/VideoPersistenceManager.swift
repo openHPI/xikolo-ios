@@ -8,7 +8,6 @@
 
 import AVFoundation
 import CoreData
-import Crashlytics
 import Foundation
 import UIKit
 
@@ -80,6 +79,8 @@ class VideoPersistenceManager: NSObject {
                 do {
                     try context.save()
                 } catch {
+                    CrashlyticsHelper.shared.setObjectValue(video.id, forKey: "video_id")
+                    CrashlyticsHelper.shared.recordError(error)
                     log.error("Failed to save video (start)")
                 }
             }
@@ -160,6 +161,8 @@ class VideoPersistenceManager: NSObject {
             video.localFileBookmark = nil
             try context.save()
         } catch {
+            CrashlyticsHelper.shared.setObjectValue(video.id, forKey: "video_id")
+            CrashlyticsHelper.shared.recordError(error)
             log.error("An error occured deleting the file: \(error)")
         }
 
@@ -218,6 +221,8 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                                 video.localFileBookmark = nil
                                 try context.save()
                             } catch {
+                                CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                                CrashlyticsHelper.shared.recordError(error)
                                 log.error("An error occured deleting the file: \(error)")
                             }
                         }
@@ -225,10 +230,9 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                         if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
                             log.debug("Canceled download of video (video id: \(videoId))")
                         } else {
+                            CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                            CrashlyticsHelper.shared.recordError(error)
                             log.error("Unknown asset download error (video id: \(videoId) | domain: \(error.domain) | code: \(error.code)")
-
-                            Crashlytics.sharedInstance().setObjectValue(videoId, forKey: "download_video_id")
-                            Crashlytics.sharedInstance().recordError(error)
 
                             // show error
                             DispatchQueue.main.async {
@@ -245,6 +249,8 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
                         userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
                     case .failure(let error):
+                        CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                        CrashlyticsHelper.shared.recordError(error)
                         log.error("Failed to complete download for video \(videoId) : \(error)")
                     }
                 } else {
@@ -275,6 +281,8 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                     self.deleteAsset(for: video, in: context)
                 }
             case .failure(let error):
+                CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                CrashlyticsHelper.shared.recordError(error)
                 log.error("Failed to finish download for video \(videoId) : \(error)")
             }
         }

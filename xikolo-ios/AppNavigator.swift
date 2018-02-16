@@ -26,20 +26,20 @@ struct AppNavigator {
         }
 
         guard let url = activityURL else {
-            log.error("Failed to load url for user activity")
             return false
         }
 
         guard let tabBarController = tabBarController else {
-            log.error("UITabBarController could not be found")
+            let reason = "UITabBarController could not be found"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
             return false
         }
 
         guard url.pathComponents.count > 1 else {
-            log.error("Invalid url for user activity")
+            // simply open the app
             return true
         }
-
 
         if url.pathComponents[safe: 1] == "courses" {
             if let slugOrId = url.pathComponents[safe: 2] {
@@ -78,7 +78,9 @@ struct AppNavigator {
 
     static func show(course: Course, on tabBarController: UITabBarController?) {
         guard let courseNavigationController = tabBarController?.viewControllers?[safe: 1] as? UINavigationController else {
-            log.error("CourseNavigationController could not be found")
+            let reason = "CourseNavigationController could not be found"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
             return
         }
 
@@ -87,7 +89,9 @@ struct AppNavigator {
         let vc = UIStoryboard(name: "TabCourses", bundle: nil).instantiateViewController(withIdentifier: "CourseDecisionViewController")
 
         guard let courseDecisionViewController = vc as? CourseDecisionViewController else {
-            log.error("CourseDecisionViewController could not be found")
+            let reason = "CourseDecisionViewController could not be found"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
             return
         }
 

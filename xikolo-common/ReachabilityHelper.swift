@@ -23,6 +23,7 @@ class ReachabilityHelper {
         do {
             try self.reachability.startNotifier()
         } catch {
+            CrashlyticsHelper.shared.recordError(error)
             log.error("Failed to start reachability notification")
         }
     }

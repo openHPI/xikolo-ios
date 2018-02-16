@@ -6,7 +6,6 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import Crashlytics
 import UIKit
 
 class CourseDecisionViewController: UIViewController {
@@ -41,7 +40,7 @@ class CourseDecisionViewController: UIViewController {
         }
 
         SpotlightHelper.setUserActivity(for: self.course)
-        Crashlytics.sharedInstance().setObjectValue(self.course.id, forKey: "course_id")
+        CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
     }
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }

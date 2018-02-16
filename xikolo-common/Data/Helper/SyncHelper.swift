@@ -25,6 +25,7 @@ struct SyncHelper {
             log.info("Successfully merged resources of type: \(Resource.type)")
             SyncHelper.handleSyncSuccess(syncResult)
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to sync resources of type: \(Resource.type) ==> \(error)")
             SyncHelper.handleSyncFailure(error)
         }
@@ -36,6 +37,7 @@ struct SyncHelper {
             log.info("Successfully merged resource of type: \(Resource.type)")
             SyncHelper.handleSyncSuccess(syncResult)
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to sync resource of type: \(Resource.type) ==> \(error)")
             SyncHelper.handleSyncFailure(error)
         }
@@ -45,6 +47,7 @@ struct SyncHelper {
         return SyncEngine.saveResource(resource).onSuccess { _ in
             log.info("Successfully saved resource of type: \(type(of: resource).type)")
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to save resource of type: \(resource) ==> \(error)")
         }
     }
@@ -53,6 +56,7 @@ struct SyncHelper {
         return SyncEngine.saveResource(resource).onSuccess { _ in
             log.info("Successfully saved resource of type: \(type(of: resource).type)")
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to save resource of type: \(resource) ==> \(error)")
         }
     }
@@ -61,6 +65,7 @@ struct SyncHelper {
         return SyncEngine.deleteResource(resource).onSuccess { _ in
             log.info("Successfully deleted resource of type: \(type(of: resource).type)")
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to delete resource: \(resource) ==> \(error)")
         }
     }

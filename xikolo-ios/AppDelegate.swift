@@ -131,12 +131,16 @@ extension AppDelegate : UITabBarControllerDelegate {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
 
         guard let loginNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            log.error("Initial view controller of Login stroyboard in not of type UINavigationController")
+            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
             return false
         }
 
         guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            log.error("Could not find LoginViewController")
+            let reason = "Could not find LoginViewController"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
             return false
         }
 

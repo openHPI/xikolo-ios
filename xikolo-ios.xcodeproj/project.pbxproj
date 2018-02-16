@@ -661,6 +661,10 @@
 		50B15BEA1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		50B15BEB1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		50B15BEC1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50BEC82F2036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
+		50BEC8302036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
+		50BEC8312036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
+		50BEC8322036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
 		50C92B5F1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B601FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
 		50C92B611FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */; };
@@ -1904,6 +1908,7 @@
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
+		50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsHelper.swift; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-common/Categories/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
@@ -2395,6 +2400,7 @@
 			children = (
 				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 				50F720271F28D72D00779995 /* VideoPersistenceManager.swift */,
+				50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4876,6 +4882,7 @@
 				501212411FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				50ED3C521F4AE7FD00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				50F57D3D1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
+				50BEC8302036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */,
 				24BA40DC1D3F9AFE00E38C2C /* Error.swift in Sources */,
 				50F7202E1F28E29B00779995 /* Video+Download.swift in Sources */,
 				24BA40951D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
@@ -5394,6 +5401,7 @@
 				70D1EACF1EF0AC1E0088C0FF /* TrackingHelper.swift in Sources */,
 				70F456321F0128E400A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EAC71EF0AC150088C0FF /* RichTextHelper.swift in Sources */,
+				50BEC8322036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */,
 				70D1EAA91EF0AB950088C0FF /* CoreDataHelper.swift in Sources */,
 				5012121F1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
 				501F9480200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
@@ -5828,6 +5836,7 @@
 				5012123E1FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				50D9B16A1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				5019A7631F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
+				50BEC82F2036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */,
 				50F7202D1F28E29B00779995 /* Video+Download.swift in Sources */,
 				F852253A1B4D27D700C9BF56 /* SettingsViewController.swift in Sources */,
 				50F57D3A1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
@@ -5985,6 +5994,7 @@
 				501212441FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				50F7202F1F28E29B00779995 /* Video+Download.swift in Sources */,
 				7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */,
+				50BEC8312036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */,
 				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
 				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				50F57DCF1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,

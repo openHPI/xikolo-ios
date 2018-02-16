@@ -138,6 +138,7 @@ extension UserProfileHelper {
         do {
             try self.keychain.removeAll()
         } catch {
+            CrashlyticsHelper.shared.recordError(error)
             log.error("Failed to clear keychain - \(error)")
         }
     }

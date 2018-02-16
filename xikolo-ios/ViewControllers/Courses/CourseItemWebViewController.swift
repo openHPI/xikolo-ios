@@ -6,7 +6,6 @@
 //  Copyright © 2017 HPI. All rights reserved.
 //
 
-import Crashlytics
 import Foundation
 
 class CourseItemWebViewController: WebViewController {
@@ -14,7 +13,7 @@ class CourseItemWebViewController: WebViewController {
     var courseItem: CourseItem! {
         didSet {
             self.setURL()
-            Crashlytics.sharedInstance().setObjectValue("item_id", forKey: self.courseItem.id)
+            CrashlyticsHelper.shared.setObjectValue("item_id", forKey: self.courseItem.id)
         }
     }
 
@@ -34,6 +33,7 @@ class CourseItemWebViewController: WebViewController {
                 self.url = self.quizURL(for: courseItem)
             }
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordError(error)
             log.error("\(error)")
         }
     }

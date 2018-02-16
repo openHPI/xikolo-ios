@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DZNEmptyDataSet
 import CoreData
 
 class CourseListViewController : AbstractCourseListViewController {
@@ -27,11 +26,6 @@ class CourseListViewController : AbstractCourseListViewController {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-
-    deinit {
-        self.collectionView?.emptyDataSetSource = nil
-        self.collectionView?.emptyDataSetDelegate = nil
     }
 
     override func viewDidLoad() {
@@ -66,21 +60,12 @@ class CourseListViewController : AbstractCourseListViewController {
         }
 
         self.addPullToRefresh()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateAfterLoginStateChange),
-                                               name: NotificationKeys.loginStateChangedKey,
-                                               object: nil)
     }
 
     private func addPullToRefresh() {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.collectionView?.refreshControl = refreshControl
-    }
-
-    @objc func updateAfterLoginStateChange() {
-        self.collectionView?.reloadEmptyDataSet()
     }
 
     @objc func refresh() {
@@ -91,14 +76,8 @@ class CourseListViewController : AbstractCourseListViewController {
             }
         }
 
-        if UserProfileHelper.isLoggedIn() {
-            CourseHelper.syncAllCourses().onComplete { _ in
-                stopRefreshControl()
-            }
-        } else {
-            CourseHelper.syncAllCourses().onComplete { _ in
-                stopRefreshControl()
-            }
+        CourseHelper.syncAllCourses().onComplete { _ in
+            stopRefreshControl()
         }
     }
 

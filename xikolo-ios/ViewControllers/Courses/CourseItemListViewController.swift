@@ -111,7 +111,12 @@ class CourseItemListViewController: UITableViewController {
 
     func showItem(_ item: CourseItem) {
         CourseItemHelper.markAsVisited(item)
-        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: ["content_type": item.contentType])
+        let context = [
+            "content_type": item.contentType,
+            "section_id": item.section?.id,
+            "course_id": self.course.id,
+        ]
+        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
 
         switch item.contentType {
         case "video"?:

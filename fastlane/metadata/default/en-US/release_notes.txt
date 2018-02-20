@@ -1,5 +1,4 @@
-• Course search is now visible right from the beginning
-• Better hightlighting for unread news
+• Bug fixes and general improvements
 
 Also in version 2.1:
 • Search for courses

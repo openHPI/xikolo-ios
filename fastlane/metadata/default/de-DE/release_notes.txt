@@ -1,5 +1,4 @@
-• Die Kurssuche ist nun gleich beim Öffnen der Kursliste sichtbar
-• Ungelesene Neuigkeiten werden besser hervorgehoben
+• Fehlerkorrekturen und allgemeine Verbesserungen
 
 Auch in Version 2.1:
 • Suche für Kurse

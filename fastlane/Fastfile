@@ -245,7 +245,10 @@ platform :ios do
 
   desc "Download dSYMS files from iTunesConnect and upload them to Firebase"
   lane :refresh_dsyms do
-    flavors.each { |flavor| public_send :"refresh_dsyms_#{flavor.downcase}" }
+    flavors.each do |flavor|
+      public_send :"refresh_dsyms_#{flavor.downcase}"
+      lane_context[SharedValues::DSYM_PATHS] = nil
+    end
   end
 
   flavors.each do |flavor|

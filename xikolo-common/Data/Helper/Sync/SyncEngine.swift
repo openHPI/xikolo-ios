@@ -216,14 +216,14 @@ struct SyncEngine {
                 return
             }
 
-            guard let responseData = data else {
-                promise.failure(.api(.noData))
-                return
-            }
-
             guard expectsData else {
                 let result = NetworkResult(resourceData: [:], headers: urlResponse.allHeaderFields)
                 return promise.success(result)
+            }
+
+            guard let responseData = data else {
+                promise.failure(.api(.noData))
+                return
             }
 
             do {

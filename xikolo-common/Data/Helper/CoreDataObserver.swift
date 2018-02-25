@@ -18,10 +18,8 @@ class CoreDataObserver {
     }
 
     func stopObserving() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextDidSave, object: CoreDataHelper.viewContext)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
     }
-
-    //support for videos should follow once they contain the seo texts
     
     @objc func coreDataChange(note: Notification) {
         var shouldCheckForChangesToPush = false
@@ -56,6 +54,15 @@ class CoreDataObserver {
                     SpotlightHelper.addSearchIndex(for: course)
                 }
 
+                // Pushable
+                if object is Pushable {
+                    shouldCheckForChangesToPush = true
+                }
+            }
+        }
+
+        if let refreshed = note.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject>, refreshed.count > 0 {
+            for object in refreshed {
                 // Pushable
                 if object is Pushable {
                     shouldCheckForChangesToPush = true

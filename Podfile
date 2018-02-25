@@ -6,20 +6,26 @@ pod 'SwiftLint', '~> 0.22'
 
 def common_pods
     pod 'BrightFutures', '~> 6.0'
-    pod 'Down', :git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
     pod 'KeychainAccess', '~> 3.1'
     pod 'Marshal', '~> 1.2'
-    pod 'SDWebImage/Core', '4.0.0'
+    pod 'SDWebImage', '~> 4.2'
 end
 
 def ios_pods
     pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
-    pod 'DownloadButton', '0.1.0'
-    pod 'DZNEmptyDataSet', '1.8.1'
-    pod 'Shimmer', '1.0.2'
-    pod 'ReachabilitySwift', '3'
+    pod 'DownloadButton', '~> 0.1'
+    pod 'DZNEmptyDataSet', '~> 1.8'
+    pod 'Shimmer', '~> 1.0'
+    pod 'ReachabilitySwift', '~> 4.1'
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
-    pod 'XCGLogger', '6.0.2'
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
+    pod 'XCGLogger', '~> 6.0'
+
+    # Firebase
+    pod 'Firebase/Core', '~> 4.8'
+    pod 'Fabric', '~> 1.7'
+    pod 'Crashlytics', '~> 3.9'
 end
 
 target 'openHPI-iOS' do
@@ -91,11 +97,16 @@ post_install do |installer|
     system("make installables -C ./Pods/BartyCrouch --silent")
     system("cp -f /tmp/BartyCrouch.dst/usr/local/bin/bartycrouch ./Pods/BartyCrouch/bartycrouch")
 
+    Pod::UI.info "Fix provisioning profile specifiers"
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = ''
+    end
+
     # This is highly inspired by cocoapods-acknowledgements (https://github.com/CocoaPods/cocoapods-acknowledgements)
     # but creates only one pod license file for iOs instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'SwiftLint']
+    excluded = ['BartyCrouch', 'SwiftLint', 'SimulatorStatusMagic']
     sandbox = installer.sandbox
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first
     root_specs = ios_target.specs.map(&:root).uniq.reject { |spec| excluded.include?(spec.name) }

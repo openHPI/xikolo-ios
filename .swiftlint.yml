@@ -41,12 +41,6 @@ custom_rules:
     name: "Unnecessary Closure Params Parantheses"
     message: "Don't use parantheses around non-typed parameters in a closure."
     severity: warning
-  if_as_guard:
-    included: ".*.swift"
-    regex: '\n *if [^\{]+\{\s*return[^\n]*\n *\}(?! *else)'
-    name: "If as Guard"
-    message: "Don't use an if statement to just return – use guard for such cases instead."
-    severity: warning
   late_force_unwrapping:
     included: ".*.swift"
     regex: '\(\S+\?\.\S+\)!'
@@ -58,12 +52,6 @@ custom_rules:
     regex: '\} *\) *\{'
     name: "Multiple Closure Params"
     message: "Don't use multiple in-line closures – save one or more of them to variables instead."
-    severity: warning
-  single_line_guard:
-    included: ".*.swift"
-    regex: 'guard[^\{]{2,80}else\s*\{\s*\n\s*return.{2,40}\}'
-    name: "Single Line Guard"
-    message: "Use a single line guard for simple checks."
     severity: warning
   too_much_indentation:
     included: ".*.swift"
@@ -94,18 +82,6 @@ custom_rules:
     regex: '\/\/\s*MARK:[^\n]*(\n\n)|(\n\n\n)[ \t]*\/\/\s*MARK:|[^\s{]\n[^\n\/]*\/\/\s*MARK:'
     name: "Vertical Whitespaces Around MARK:"
     message: "Include a single vertical whitespace (empty line) before and none after MARK: comments."
-    severity: warning
-  vertical_whitespace_opening_braces:
-    included: ".*.swift"
-    regex: '[{(\[][ \t]*\n[ \t]*\n'
-    name: "Vertical Whitespace after Opening Braces"
-    message: "Don't include vertical whitespace (empty line) after opening braces."
-    severity: warning
-  vertical_whitespace_closing_braces:
-    included: ".*.swift"
-    regex: '\n[ \t]*\n[ \t]*[)}\]]'
-    name: "Vertical Whitespace before Closing Braces"
-    message: "Don't include vertical whitespace (empty line) before closing braces."
     severity: warning
   whitespace_comment_start:
     included: ".*.swift"

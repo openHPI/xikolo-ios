@@ -4,3 +4,6 @@
 
 /* Class = "UILabel"; text = "Error: Could not find video stream"; ObjectID = "XUY-uY-wln"; */
 "XUY-uY-wln.text" = "Fehler: Video-Stream konnte nicht gefunden werden";
+
+/* Class = "UIButton"; normalTitle = "Display issues?"; ObjectID = "pHK-EI-eQB"; */
+"pHK-EI-eQB.normalTitle" = "Darstellungsfehler?";

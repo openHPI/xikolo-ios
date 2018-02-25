@@ -6,8 +6,13 @@
 //  Copyright © 2015 HPI. All rights reserved.
 //
 
+import Firebase
 import UIKit
 import SDWebImage
+
+#if DEBUG
+import SimulatorStatusMagic
+#endif
 
 @UIApplicationMain
 class AppDelegate : AbstractAppDelegate {
@@ -33,6 +38,9 @@ class AppDelegate : AbstractAppDelegate {
         // register tab bar delegate
         self.tabBarController?.delegate = self
 
+        // Configure Firebase
+        FirebaseApp.configure()
+
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)
         SyncPushEngine.shared.register(CourseItem.self)
@@ -51,6 +59,13 @@ class AppDelegate : AbstractAppDelegate {
             // SDWebImage (ver. 4.0.0) -> SDWebImageDownloaderOperation -> Line 408
             SDWebImageDownloader.shared().username = "open"
             SDWebImageDownloader.shared().password = "SAP"
+        #endif
+
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {
+            log.info("Setup clean status bar")
+            SDStatusBarManager.sharedInstance().enableOverrides()
+        }
         #endif
 
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -116,12 +131,16 @@ extension AppDelegate : UITabBarControllerDelegate {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
 
         guard let loginNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            log.error("Initial view controller of Login stroyboard in not of type UINavigationController")
+            let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
             return false
         }
 
         guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
-            log.error("Could not find LoginViewController")
+            let reason = "Could not find LoginViewController"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
             return false
         }
 

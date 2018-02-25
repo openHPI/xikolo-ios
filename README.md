@@ -32,6 +32,10 @@ The following tools will be installed via CocoaPods:
 - for all available fastlane commands have a look at the [fastlane Readme](https://github.com/openHPI/xikolo-ios/tree/master/fastlane/)
 - some commands require setting the app environment via `--env {openhpi|opensap|moochouse|openwho}`
 
+#### Setup testing
+- copy the credentials plist dummy file `cp UI\ Tests/Credentials.plist.dummy UI\ Tests/Credentials.plist`
+- enter your login credentials for testing
+
 ### Contributing
 If you would like to contribute by adding a feature or fixing a bug, feel free to do so. You can have a look at the open issues to get some inspiration and create a pull request as soon as you are ready to go.
 
@@ -65,3 +69,8 @@ Add `#bc-ignore!` to the user comment of `NSLocalizedString`
 ```
 let format = NSLocalizedString("%d hours", comment: "<number> of hours #bc-ignore!")
 ```
+
+### How to release to apps
+- Install git-crypt via `brew install git-crypt`
+- Retrieve the `xikolo-ios.key` from the openHPI team and run `git-crypt unlock /path/to/xikolo-ios.key`
+- Use the standard Xcode workflow to upload the app to iTunesConnect (You have to possess the iOS Distribution Certificate)

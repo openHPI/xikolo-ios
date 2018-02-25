@@ -46,6 +46,11 @@ class CourseDetailViewController: UIViewController {
         self.statusView.backgroundColor = Brand.TintColorSecond
 
         self.updateView()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged),
+                                               name: Notification.Name.reachabilityChanged,
+                                               object: nil)
     }
 
     func updateView() {
@@ -54,7 +59,7 @@ class CourseDetailViewController: UIViewController {
         teacherView.text = course.teachers
         teacherView.textColor = Brand.TintColorSecond
 
-        dateView.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
+        dateView.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
         imageView.sd_setImage(with: course.imageURL)
 
         if let description = course.abstract {
@@ -62,6 +67,15 @@ class CourseDetailViewController: UIViewController {
             descriptionView.attributedText = markDown
         }
 
+        self.refreshEnrollmentViews()
+    }
+
+    private func refreshEnrollmentViews() {
+        self.refreshEnrollButton()
+        self.refreshStatusView()
+    }
+
+    private func refreshEnrollButton() {
         let buttonTitle: String
         if self.course.hasEnrollment {
             buttonTitle = NSLocalizedString("enrollment.button.enrolled.title", comment: "title of course enrollment button")
@@ -69,15 +83,32 @@ class CourseDetailViewController: UIViewController {
             buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title", comment: "title of Course enrollment options button")
         }
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
-        self.enrollmentButton.backgroundColor = self.course.hasEnrollment ? Brand.TintColor.withAlphaComponent(0.2) : Brand.TintColor
-        self.enrollmentButton.tintColor = self.course.hasEnrollment ? UIColor.darkGray : UIColor.white
 
+        if self.course.hasEnrollment {
+            self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+            self.enrollmentButton.tintColor = UIColor.darkGray
+        } else if ReachabilityHelper.connection != .none {
+            self.enrollmentButton.backgroundColor = Brand.TintColor
+            self.enrollmentButton.tintColor = UIColor.white
+        } else {
+            self.enrollmentButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+            self.enrollmentButton.tintColor = UIColor.darkText
+        }
+
+        self.enrollmentButton.isEnabled = self.course.hasEnrollment || ReachabilityHelper.connection != .none
+    }
+
+    private func refreshStatusView() {
         if self.course.hasEnrollment {
             self.statusView.isHidden = false
             self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
         } else {
             self.statusView.isHidden = true
         }
+    }
+
+    @objc func reachabilityChanged() {
+        self.refreshEnrollButton()
     }
 
     func createEnrollment() {
@@ -110,9 +141,8 @@ class CourseDetailViewController: UIViewController {
                 self.enrollmentButton.stopAnimating()
             }.onSuccess { _ in
                 DispatchQueue.main.async {
-                    self.updateView()
+                    self.refreshEnrollmentViews()
                 }
-                CourseHelper.syncCourse(self.course)
             }.onFailure { _ in
                 self.enrollmentButton.shake()
             }
@@ -126,9 +156,8 @@ class CourseDetailViewController: UIViewController {
                 self.enrollmentButton.stopAnimating()
             }.onSuccess { _ in
                 DispatchQueue.main.async {
-                    self.updateView()
+                    self.refreshEnrollmentViews()
                 }
-                CourseHelper.syncCourse(self.course)
             }.onFailure { _ in
                 self.enrollmentButton.shake()
             }

@@ -44,8 +44,10 @@ struct Routes {
         urlComponents?.queryItems = queryItems
 
         guard let url = urlComponents?.url else {
-            log.severe("Failed to create url for password reset")
-            fatalError("Failed to create url for password reset")
+            let reason = "Failed to create url for password reset"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Invalid URL", reason: reason, frameArray: [])
+            log.severe(reason)
+            fatalError(reason)
         }
 
         return url

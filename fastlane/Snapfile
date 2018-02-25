@@ -1,0 +1,18 @@
+devices([
+  "iPhone X",
+  "iPhone 8 Plus",
+  "iPhone 8",
+  "iPhone SE",
+  "iPad Pro (12.9-inch)",
+  "iPad Pro (10.5-inch)",
+  "iPad Pro (9.7-inch)",
+])
+
+languages([
+  "de-DE",
+  "en-US",
+])
+
+clear_previous_screenshots true
+skip_open_summary true
+localize_simulator true

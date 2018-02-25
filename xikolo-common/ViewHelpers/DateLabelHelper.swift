@@ -17,38 +17,42 @@ class DateLabelHelper {
         return dateFormatter
     }()
 
-    class func labelFor(startdate: Date?, enddate: Date?) -> String {
-        if let start = startdate {
-            if let end = enddate {
-                // start & enddate
-                return self.format(date: start) + " - " + format(date: end)
-            } else {
-                if start.timeIntervalSinceNow > 0 {
-                    // startdate in the future
-                    let format = NSLocalizedString("course-date-formatting.not-started.beginning %@",
-                                                   tableName: "Common",
-                                                   comment: "course start at specific date in the future")
-                    return String.localizedStringWithFormat(format, self.format(date: start))
-                } else {
-                    // startdate in the past
-                    #if OPENWHO
-                        let format = NSLocalizedString("course-date-formatting.started.since %@",
-                                                       tableName: "Common",
-                                                       comment: "course start at specfic date in the past")
-                        return String.localizedStringWithFormat(format, self.format(date: start))
-                    #else
-                        return NSLocalizedString("course-date-formatting.self-paced",
-                                                 tableName: "Common",
-                                                 comment: "Self-paced course")
-                    #endif
-                }
-            }
-        } else {
-            // neither start nor enddate
-            return NSLocalizedString("course-date-formatting.not-started.coming soon",
-                                     tableName: "Common",
-                                     comment: "course start at unknown date")
+    class func labelFor(startDate: Date?, endDate: Date?) -> String {
+        if endDate?.inPast ?? false {
+            return NSLocalizedString("course-date-formatting.self-paced", tableName: "Common", comment: "Self-paced course")
         }
+
+        if let startDate = startDate, startDate.inPast, endDate == nil {
+            #if OPENWHO
+                return NSLocalizedString("course-date-formatting.self-paced", tableName: "Common", comment: "Self-paced course")
+            #else
+                let format = NSLocalizedString("course-date-formatting.started.since %@",
+                                               tableName: "Common",
+                                               comment: "course start at specfic date in the past")
+                return String.localizedStringWithFormat(format, self.format(date: startDate))
+            #endif
+        }
+
+        if let startDate = startDate, startDate.inFuture, endDate == nil {
+            #if OPENWHO
+                return NSLocalizedString("course-date-formatting.not-started.coming soon",
+                                         tableName: "Common",
+                                         comment: "course start at unknown date")
+            #else
+                let format = NSLocalizedString("course-date-formatting.not-started.beginning %@",
+                                               tableName: "Common",
+                                               comment: "course start at specific date in the future")
+                return String.localizedStringWithFormat(format, self.format(date: startDate))
+            #endif
+        }
+
+        if let startDate = startDate, let endDate = endDate {
+            return self.format(date: startDate) + " - " + format(date: endDate)
+        }
+
+        return NSLocalizedString("course-date-formatting.not-started.coming soon",
+                                 tableName: "Common",
+                                 comment: "course start at unknown date")
     }
 
     private class func format(date: Date) -> String {

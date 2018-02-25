@@ -13,36 +13,14 @@ import Result
 
 struct EnrollmentHelper {
 
-    @discardableResult static func syncEnrollments() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        guard UserProfileHelper.isLoggedIn() else {
-            let result = SyncEngine.SyncMultipleResult(objectIds: [], headers: [:])
-            return Future(value: result)
-        }
-
-        let query = MultipleResourcesQuery(type: Enrollment.self)
-        return SyncHelper.syncResources(withFetchRequest: EnrollmentHelper.FetchRequest.allEnrollements, withQuery: query)
-    }
-
     static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
-        let promise = Promise<Void, XikoloError>()
+        let attributes = ["completed": false]
+        let relationships = ["course": course as AnyObject]
+        let resourceData = Enrollment.resourceData(attributes: attributes, relationships: relationships)
 
-        CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            guard let course = context.existingTypedObject(with: course.objectID) as? Course else {
-                promise.failure(.missingResource(ofType: Course.self))
-                return
-            }
-
-            let _ = Enrollment(forCourse: course, inContext: context)
-            let saveResult = context.saveWithResult()
-
-            if case .success(_) = saveResult {
-                NotificationCenter.default.post(name: NotificationKeys.createdEnrollmentKey, object: nil)
-            }
-
-            promise.complete(saveResult)
+        return resourceData.flatMap { data in
+            return SyncHelper.createResource(ofType: Enrollment.self, withData: data).asVoid()
         }
-
-        return promise.future
     }
 
     static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {
@@ -53,17 +31,15 @@ struct EnrollmentHelper {
         let promise = Promise<Void, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
-            guard let enrollment = context.existingTypedObject(with: enrollment.objectID) as? Enrollment else {
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+            guard let enrollmentToDelete = context.existingTypedObject(with: enrollment.objectID) as? Enrollment else {
                 promise.success(())
                 return
             }
 
-            enrollment.objectState = .deleted
+            enrollmentToDelete.objectState = .deleted
             let saveResult = context.saveWithResult()
-
-            if case .success(_) = saveResult {
-                NotificationCenter.default.post(name: NotificationKeys.deletedEnrollmentKey, object: enrollment)
-            }
 
             promise.complete(saveResult)
         }

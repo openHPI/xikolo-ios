@@ -1,0 +1,5 @@
+• Fehlerkorrekturen und allgemeine Verbesserungen
+
+Auch in Version 2.1:
+• Suche für Kurse
+• Neuigkeitenliste für einzelne Kurse

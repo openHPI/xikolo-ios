@@ -25,8 +25,6 @@ class CourseItemCell : UITableViewCell {
     var item: CourseItem?
     var delegate: VideoCourseItemCellDelegate?
 
-    var singleReloadInProgress = false
-
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setupDownloadButton()
@@ -97,13 +95,9 @@ class CourseItemCell : UITableViewCell {
     }
 
     private func configureDownloadButton(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
-        if let video = courseItem.content as? Video {
+        if let video = courseItem.content as? Video, video.singleStream?.hlsURL != nil {
             let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
-            var newButtonState = self.downloadButtonState(for: videoDownloadState)
-
-            if newButtonState == .startDownload && self.singleReloadInProgress {
-                newButtonState = .pending
-            }
+            let newButtonState = self.downloadButtonState(for: videoDownloadState)
 
             DispatchQueue.main.async {
                 self.downloadButton.state = newButtonState
@@ -159,12 +153,6 @@ class CourseItemCell : UITableViewCell {
         }
     }
 
-    func removeLoadingState() {
-        if self.detailLabel.text?.isEmpty ?? true {
-            self.detailContainer.isHidden = true
-        }
-    }
-
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
         guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
             let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
@@ -173,10 +161,8 @@ class CourseItemCell : UITableViewCell {
             video.id == videoId else { return }
 
         DispatchQueue.main.async {
-            // Update UI
+            // Update download button
             self.downloadButton.state = self.downloadButtonState(for: downloadState)
-
-            self.delegate?.videoCourseItemCell(self, downloadStateDidChange: downloadState)
         }
     }
 
@@ -213,8 +199,6 @@ protocol VideoCourseItemCellDelegate {
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell)
     func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell)
     func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell)
-
-    func videoCourseItemCell(_ cell: CourseItemCell, downloadStateDidChange newState: Video.DownloadState)
 
 }
 

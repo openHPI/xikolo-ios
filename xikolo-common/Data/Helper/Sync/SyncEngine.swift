@@ -100,15 +100,18 @@ struct SyncEngine {
         return .success(request)
     }
 
-    enum SaveRequestMethod: String {
-        case post = "POST"
-        case patch = "PATCH"
+    private static func buildCreateRequest(forQuery query: ResourceURLRepresentable,
+                                           forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
+        switch resource.resourceData() {
+        case let .success(resourceData):
+            return self.buildCreateRequest(forQuery: query, withData: resourceData)
+        case let .failure(error):
+            return .failure(error)
+        }
     }
 
-    private static func buildSaveRequest(forQuery query: ResourceURLRepresentable,
-                                         withHTTPMethod httpMethod: SaveRequestMethod,
-                                         forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
-
+    private static func buildCreateRequest(forQuery query: ResourceURLRepresentable,
+                                           withData resourceData: Data) -> Result<URLRequest, XikoloError> {
         guard let baseURL = URL(string: Routes.API_V2_URL) else {
             return .failure(.invalidURL(Routes.API_V2_URL))
         }
@@ -118,7 +121,29 @@ struct SyncEngine {
         }
 
         var request = URLRequest(url: resourceUrl)
-        request.httpMethod = httpMethod.rawValue
+        request.httpMethod = "POST"
+        request.httpBody = resourceData
+
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        for (header, value) in NetworkHelper.getRequestHeaders() {
+            request.setValue(value, forHTTPHeaderField: header)
+        }
+
+        return .success(request)
+    }
+
+    private static func buildSaveRequest(forQuery query: ResourceURLRepresentable,
+                                         forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
+        guard let baseURL = URL(string: Routes.API_V2_URL) else {
+            return .failure(.invalidURL(Routes.API_V2_URL))
+        }
+
+        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+            return .failure(.invalidResourceURL)
+        }
+
+        var request = URLRequest(url: resourceUrl)
+        request.httpMethod = "PATCH"
 
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
         for (header, value) in NetworkHelper.getRequestHeaders() {
@@ -172,7 +197,7 @@ struct SyncEngine {
         }
     }
 
-    private static func doNetworkRequest(_ request: URLRequest) -> Future<NetworkResult, XikoloError> {
+    private static func doNetworkRequest(_ request: URLRequest, expectsData: Bool = true) -> Future<NetworkResult, XikoloError> {
         let promise = Promise<NetworkResult, XikoloError>()
 
         let task = self.session.dataTask(with: request) { (data, response, error) in
@@ -189,6 +214,11 @@ struct SyncEngine {
             guard 200 ... 299 ~= urlResponse.statusCode else {
                 promise.failure(.api(.responseError(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields)))
                 return
+            }
+
+            guard expectsData else {
+                let result = NetworkResult(resourceData: [:], headers: urlResponse.allHeaderFields)
+                return promise.success(result)
             }
 
             guard let responseData = data else {
@@ -392,28 +422,64 @@ struct SyncEngine {
         return promise.future
     }
 
-    // MARK: - saving
+    // MARK: - creating
 
-    @discardableResult static func saveResource(_ resource: Pushable) -> Future<Void, XikoloError> {
+    @discardableResult static func createResource<Resource>(ofType resourceType: Resource.Type, withData resourceData: Data) -> Future<SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable & Pushable {
+        let query = RawMultipleResourcesQuery(type: Resource.type)
+        let networkRequest = self.buildCreateRequest(forQuery: query, withData: resourceData).flatMap { request in
+            return self.doNetworkRequest(request)
+        }
+
+        let promise = Promise<SyncSingleResult, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
+            networkRequest.flatMap(ImmediateExecutionContext) { networkResult -> Future<SyncSingleResult, XikoloError> in
+                do {
+                    let data = try networkResult.resourceData.value(for: "data") as ResourceData
+                    let resource = try Resource.value(from: data, including: [], inContext: context)
+                    return Future(value: SyncSingleResult(objectId: resource.objectID, headers: networkResult.headers))
+                } catch let error as MarshalError {
+                    return Future(error: .api(.serializationError(.modelDeserializationError(error, onType: Resource.type))))
+                } catch let error as SynchronizationError {
+                    return Future(error: .synchronizationError(error))
+                } catch {
+                    return Future(error: .unknownError(error))
+                }
+            }.inject(ImmediateExecutionContext) {
+                do {
+                    try context.save()
+                    return Future(value: ())
+                } catch {
+                    return Future(error: .coreData(error))
+                }
+            }.onComplete(ImmediateExecutionContext) { result in
+                promise.complete(result)
+            }
+
+        }
+
+        return promise.future
+    }
+
+    @discardableResult static func createResource(_ resource: Pushable) -> Future<Void, XikoloError> {
         let resourceType = type(of: resource).type
         let query = RawMultipleResourcesQuery(type: resourceType)
-        let networkRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource).flatMap { request in
+        let networkRequest = self.buildCreateRequest(forQuery: query, forResource: resource).flatMap { request in
             return self.doNetworkRequest(request)
         }
 
         return networkRequest.asVoid()
     }
 
-    @discardableResult static func saveResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
+
+    // MARK: - saving
+
+    @discardableResult static func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
         let resourceType = type(of: resource).type
-        let urlRequest: Result<URLRequest, XikoloError>
-        if resource.objectState == .new {
-            let query = RawMultipleResourcesQuery(type: resourceType)
-            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .post, forResource: resource)
-        } else {
-            let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
-            urlRequest = self.buildSaveRequest(forQuery: query, withHTTPMethod: .patch, forResource: resource)
-        }
+        let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
+        let urlRequest = self.buildSaveRequest(forQuery: query, forResource: resource)
 
         let networkRequest = urlRequest.flatMap { request in
             return self.doNetworkRequest(request)
@@ -424,11 +490,11 @@ struct SyncEngine {
 
     // MARK: - deleting
 
-    @discardableResult static func deleteResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
+    @discardableResult static func deleteResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
         let resourceType = type(of: resource).type
         let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
         let networkRequest = self.buildDeleteRequest(forQuery: query).flatMap { request in
-            return self.doNetworkRequest(request)
+            return self.doNetworkRequest(request, expectsData: false)
         }
 
         return networkRequest.asVoid()

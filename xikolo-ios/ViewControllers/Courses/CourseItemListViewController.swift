@@ -9,7 +9,6 @@
 import CoreData
 import UIKit
 import DZNEmptyDataSet
-import ReachabilitySwift
 
 class CourseItemListViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -21,7 +20,7 @@ class CourseItemListViewController: UITableViewController {
 
     var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
     var isPreloading = false
-    var isOffline = ReachabilityHelper.reachabilityStatus == .notReachable {
+    var isOffline = ReachabilityHelper.connection == .none {
         didSet {
             if oldValue != self.isOffline {
                 self.tableView.reloadData()
@@ -47,7 +46,7 @@ class CourseItemListViewController: UITableViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
-                                               name: NotificationKeys.reachabilityChanged,
+                                               name: Notification.Name.reachabilityChanged,
                                                object: nil)
 
         self.setupEmptyState()
@@ -93,7 +92,7 @@ class CourseItemListViewController: UITableViewController {
         }
 
         let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
-        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.reachabilityStatus == .reachableViaWiFi)
+        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
         self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
 
         guard UserProfileHelper.isLoggedIn() else {
@@ -112,7 +111,12 @@ class CourseItemListViewController: UITableViewController {
 
     func showItem(_ item: CourseItem) {
         CourseItemHelper.markAsVisited(item)
-        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: ["content_type": item.contentType])
+        let context = [
+            "content_type": item.contentType,
+            "section_id": item.section?.id,
+            "course_id": self.course.id,
+        ]
+        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
 
         switch item.contentType {
         case "video"?:
@@ -125,7 +129,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.isOffline = ReachabilityHelper.reachabilityStatus == .notReachable
+        self.isOffline = ReachabilityHelper.connection == .none
     }
 
     func preloadCourseContent() {
@@ -133,9 +137,6 @@ class CourseItemListViewController: UITableViewController {
             return contentType.preloadContentFor(course: self.course)
         }.onComplete { _ in
             self.isPreloading = false
-            for case let cell as CourseItemCell in self.tableView.visibleCells {
-                cell.removeLoadingState()
-            }
         }
     }
 
@@ -239,30 +240,11 @@ extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetD
 
 extension CourseItemListViewController: VideoCourseItemCellDelegate {
 
-    func videoCourseItemCell(_ cell: CourseItemCell, downloadStateDidChange newState: Video.DownloadState) {
-        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
-
-        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
-
-
     func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
         let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
                                                     comment: "start download of video item")
         let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
-            if video.singleStream?.hlsURL != nil {
-                VideoPersistenceManager.shared.downloadStream(for: video)
-            } else {
-                DispatchQueue.main.async {
-                    cell.singleReloadInProgress = true
-                }
-                VideoHelper.syncVideo(video).onComplete { result in
-                    DispatchQueue.main.async {
-                        cell.singleReloadInProgress = false
-                    }
-                    VideoPersistenceManager.shared.downloadStream(for: video)
-                }
-            }
+            VideoPersistenceManager.shared.downloadStream(for: video)
         }
 
         let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")

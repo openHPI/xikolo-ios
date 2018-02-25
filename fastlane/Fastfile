@@ -1,19 +1,9 @@
-# Customise this file, documentation can be found here:
-# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
-# All available actions: https://docs.fastlane.tools/actions
-# can also be listed using the `fastlane actions` command
-
-# Change the syntax highlighting to Ruby
-# All lines starting with a # are ignored when running `fastlane`
-
-# If you want to automatically update fastlane if a new version is available:
-# update_fastlane
-
-# This is the minimum version number required.
-# Update this, if you use features of a newer version
 fastlane_version "2.55.0"
 
 default_platform :ios
+
+flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE]
+fastlane_dir = File.expand_path(File.dirname(__FILE__))
 
 platform :ios do
   desc "Increments the version number for a new patch version"
@@ -110,14 +100,6 @@ platform :ios do
     )
   end
 
-  desc "Checks application for potential App Store violations"
-  desc "- requires app environment via '--env'"
-  lane :precheck_app do
-    precheck(
-      app_identifier: ENV["BUNDLE_ID"],
-    )
-  end
-
   private_lane :revert_tvOS_changes do
     sh "git checkout head -- ../xikolo-tvos/Info.plist"
   end
@@ -130,11 +112,160 @@ platform :ios do
     sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c -e"
     sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c -e"
   end
+
+  desc "Create screenshots for all applications"
+  lane :screenshots do
+    flavors.each { |flavor| public_send :"make_screenshots_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"make_screenshots_#{flavor.downcase}" do
+      if flavor == :openSAP
+        snapshot(
+          scheme: "#{flavor}-iOS-UITests",
+          output_directory: "#{fastlane_dir}/screenshots/#{flavor}",
+          languages: ["en-US"],
+        )
+      else
+        snapshot(
+          scheme: "#{flavor}-iOS-UITests",
+          output_directory: "#{fastlane_dir}/screenshots/#{flavor}",
+        )
+      end
+    end
+  end
+
+  desc "Upload only screenshots to iTunesConnect"
+  desc "No upload of screenshots or IPA"
+  lane :upload_screenshots do
+    flavors.each { |flavor| public_send :"upload_screenshots_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"upload_screenshots_#{flavor.downcase}" do
+      deliver(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        app_version: get_version_number,
+        metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
+        screenshots_path: "#{fastlane_dir}/screenshots/#{flavor}",
+        overwrite_screenshots: true,
+        skip_binary_upload: true,
+        skip_metadata: true,
+      )
+    end
+  end
+
+  desc "Upload only metadata to iTunesConnect"
+  desc "No upload of screenshots or IPA"
+  lane :upload_metadata do
+    flavors.each { |flavor| public_send :"upload_metadata_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"upload_metadata_#{flavor.downcase}" do
+      deliver(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        app_version: get_version_number,
+        metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
+        skip_binary_upload: true,
+        skip_screenshots: true,
+        force: true,
+      )
+    end
+  end
+
+  desc "Build and upload only IPA and metadata to iTunesConnect"
+  desc "No upload of screenshots"
+  lane :release do
+    ensure_git_branch(branch: 'master')
+    flavors.each { |flavor| public_send :"release_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"release_#{flavor.downcase}" do
+      ensure_git_branch(branch: 'master')
+      upload_ipa(flavor: flavor)
+    end
+  end
+
+  desc "Build and upload only IPA (beta) to iTunesConnect"
+  desc "No upload of screenshots or metadata"
+  lane :beta do
+    ensure_git_branch(branch: 'dev')
+    flavors.each { |flavor| public_send :"beta_#{flavor.downcase}" }
+  end
+
+  flavors.each do |flavor|
+    lane :"beta_#{flavor.downcase}" do
+      ensure_git_branch(branch: 'dev')
+      upload_ipa(flavor: flavor, skip_metadata: true)
+    end
+  end
+
+  private_lane :upload_ipa do |options|
+    if options[:flavor]
+      flavor = options[:flavor]
+      skip_metadata = (options[:skip_metadata] ? true : false)
+      gym(
+        scheme: "#{flavor}-iOS",
+        include_bitcode: true,
+        include_symbols: true,
+        export_method: "app-store",
+        export_options: {
+          provisioningProfiles: {
+            "de.xikolo.#{flavor.downcase}" => "#{flavor}-iOS-dist",
+          }
+        },
+      )
+      deliver(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        app_version: get_version_number,
+        metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
+        skip_screenshots: true,
+        skip_metadata: skip_metadata,
+      )
+    else
+      UI.user_error! "No flavor supplied for IPA upload"
+    end
+  end
+
+  lane :tag_release do
+    version_number = get_version_number
+    last_commit_id = sh("git rev-parse HEAD")
+    last_commit_id.strip!
+    release_notes = File.read("#{fastlane_dir}/metadata/default/en-US/release_notes.txt") rescue "No changelog provided"
+    set_github_release(
+      repository_name: "openHPI/xikolo-ios",
+      name: "iOS v#{version_number}",
+      tag_name: "ios-v#{version_number}",
+      description: release_notes,
+      commitish: last_commit_id,
+    )
+  end
+
+  desc "Download dSYMS files from iTunesConnect and upload them to Firebase"
+  lane :refresh_dsyms do
+    flavors.each do |flavor|
+      public_send :"refresh_dsyms_#{flavor.downcase}"
+      lane_context[SharedValues::DSYM_PATHS] = nil
+    end
+  end
+
+  flavors.each do |flavor|
+    lane :"refresh_dsyms_#{flavor.downcase}" do
+      download_dsyms(
+        app_identifier: "de.xikolo.#{flavor.downcase}",
+        version: get_version_number,
+      )
+      upload_symbols_to_crashlytics(
+        gsp_path: "xikolo-ios/Branding/#{flavor}/GoogleService-Info-Release.plist",
+      )
+      clean_build_artifacts
+    end
+  end
+
+  lane :changelog do
+    git_pull(only_tags: true)
+    changelog_from_git_commits(pretty: '%h %s')
+  end
 end
-
-
-# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
-# All available actions: https://docs.fastlane.tools/actions
-
-# fastlane reports which actions are used. No personal data is recorded.
-# Learn more at https://github.com/fastlane/fastlane#metrics

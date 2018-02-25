@@ -1,0 +1,2 @@
+mooc.house is the innovative platform of the German Hasso Plattner Institute (HPI), Potsdam, where companies and institutions can offer MOOCs under their own branding. It is technically based on the innovative and well-developed online learning platforms openSAP and openHPI – successful online learning platforms with hundreds of thousands users. 
+With mooc.house the HPI offers a ready-to-use technical platform and consultancy services for organizations aiming at publishing their corporate educational content to a wider audience.

@@ -27,6 +27,7 @@ class CourseCell : UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isAccessibilityElement = true
 
         self.courseImage.layer.cornerRadius = 4.0
         self.courseImage.layer.masksToBounds = true
@@ -65,7 +66,7 @@ class CourseCell : UICollectionViewCell {
         self.teacherLabel.text = course.teachers
         self.languageLabel.text = course.language_translated
         self.languageLabel.text = course.language_translated
-        self.dateLabel.text = DateLabelHelper.labelFor(startdate: course.startsAt, enddate: course.endsAt)
+        self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
 
         self.statusView.isHidden = true
         switch configuration {

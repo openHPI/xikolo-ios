@@ -38,10 +38,6 @@ extension TrackingEvent : Pushable {
         return "tracking-events"
     }
 
-    var deleteAfterSync: Bool {
-        return true
-    }
-
     var objectState: ObjectState {
         return .new
     }

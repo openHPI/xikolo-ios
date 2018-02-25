@@ -8,13 +8,11 @@ Make sure you have the latest version of the Xcode command line tools installed:
 xcode-select --install
 ```
 
-## Choose your installation method:
-
-| Method                     | OS support                              | Description                                                                                                                           |
-|----------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| [Homebrew](http://brew.sh) | macOS                                   | `brew cask install fastlane`                                                                                                          |
-| Installer Script           | macOS                                   | [Download the zip file](https://download.fastlane.tools). Then double click on the `install` script (or run it in a terminal window). |
-| RubyGems                   | macOS or Linux with Ruby 2.0.0 or above | `sudo gem install fastlane -NV`                                                                                                       |
+Install _fastlane_ using
+```
+[sudo] gem install fastlane -NV
+```
+or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
@@ -45,13 +43,6 @@ Determines the commit for a given build number
 fastlane ios lint
 ```
 Lint swift code with swiftline
-### ios precheck_app
-```
-fastlane ios precheck_app
-```
-Checks application for potential App Store violations
-
-- requires app environment via '--env'
 ### ios localize
 ```
 fastlane ios localize
@@ -61,6 +52,174 @@ Adds localizations for the application incrementally
 - uses bartycrouch
 
 - translates storyboard files and NSLocalizedString usages
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Create screenshots for all applications
+### ios make_screenshots_openhpi
+```
+fastlane ios make_screenshots_openhpi
+```
+
+### ios make_screenshots_opensap
+```
+fastlane ios make_screenshots_opensap
+```
+
+### ios make_screenshots_openwho
+```
+fastlane ios make_screenshots_openwho
+```
+
+### ios make_screenshots_moochouse
+```
+fastlane ios make_screenshots_moochouse
+```
+
+### ios upload_screenshots
+```
+fastlane ios upload_screenshots
+```
+Upload only screenshots to iTunesConnect
+
+No upload of screenshots or IPA
+### ios upload_screenshots_openhpi
+```
+fastlane ios upload_screenshots_openhpi
+```
+
+### ios upload_screenshots_opensap
+```
+fastlane ios upload_screenshots_opensap
+```
+
+### ios upload_screenshots_openwho
+```
+fastlane ios upload_screenshots_openwho
+```
+
+### ios upload_screenshots_moochouse
+```
+fastlane ios upload_screenshots_moochouse
+```
+
+### ios upload_metadata
+```
+fastlane ios upload_metadata
+```
+Upload only metadata to iTunesConnect
+
+No upload of screenshots or IPA
+### ios upload_metadata_openhpi
+```
+fastlane ios upload_metadata_openhpi
+```
+
+### ios upload_metadata_opensap
+```
+fastlane ios upload_metadata_opensap
+```
+
+### ios upload_metadata_openwho
+```
+fastlane ios upload_metadata_openwho
+```
+
+### ios upload_metadata_moochouse
+```
+fastlane ios upload_metadata_moochouse
+```
+
+### ios release
+```
+fastlane ios release
+```
+Build and upload only IPA and metadata to iTunesConnect
+
+No upload of screenshots
+### ios release_openhpi
+```
+fastlane ios release_openhpi
+```
+
+### ios release_opensap
+```
+fastlane ios release_opensap
+```
+
+### ios release_openwho
+```
+fastlane ios release_openwho
+```
+
+### ios release_moochouse
+```
+fastlane ios release_moochouse
+```
+
+### ios beta
+```
+fastlane ios beta
+```
+Build and upload only IPA (beta) to iTunesConnect
+
+No upload of screenshots or metadata
+### ios beta_openhpi
+```
+fastlane ios beta_openhpi
+```
+
+### ios beta_opensap
+```
+fastlane ios beta_opensap
+```
+
+### ios beta_openwho
+```
+fastlane ios beta_openwho
+```
+
+### ios beta_moochouse
+```
+fastlane ios beta_moochouse
+```
+
+### ios tag_release
+```
+fastlane ios tag_release
+```
+
+### ios refresh_dsyms
+```
+fastlane ios refresh_dsyms
+```
+Download dSYMS files from iTunesConnect and upload them to Firebase
+### ios refresh_dsyms_openhpi
+```
+fastlane ios refresh_dsyms_openhpi
+```
+
+### ios refresh_dsyms_opensap
+```
+fastlane ios refresh_dsyms_opensap
+```
+
+### ios refresh_dsyms_openwho
+```
+fastlane ios refresh_dsyms_openwho
+```
+
+### ios refresh_dsyms_moochouse
+```
+fastlane ios refresh_dsyms_moochouse
+```
+
+### ios changelog
+```
+fastlane ios changelog
+```
+
 
 ----
 

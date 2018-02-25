@@ -37,16 +37,18 @@ class AbstractItemRichtextViewController: UIViewController {
     private func updateView(for courseItem: CourseItem) {
         self.titleView.text = self.courseItem.title
 
-        guard let richText = courseItem.content as? RichText else { return }
-
-        if let markdown = richText.text {
-            self.display(markdown: markdown)
+        guard let richText = courseItem.content as? RichText, let markdown = richText.text else {
+            self.textView.isHidden = true
+            return
         }
+
+        self.display(markdown: markdown)
     }
 
     func display(markdown: String) {
         let markDown = try? MarkdownHelper.parse(markdown) // TODO: Error handling
         self.textView.attributedText = markDown
+        self.textView.isHidden = false
         self.richTextLoaded()
     }
 

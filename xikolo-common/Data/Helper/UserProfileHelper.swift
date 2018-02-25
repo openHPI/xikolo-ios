@@ -97,7 +97,6 @@ open class UserProfileHelper {
 
         if UserProfileHelper.isLoggedIn() {
             coursesFuture.onSuccess { _ in
-                EnrollmentHelper.syncEnrollments()
                 CourseDateHelper.syncAllCourseDates()
             }
         }
@@ -139,6 +138,7 @@ extension UserProfileHelper {
         do {
             try self.keychain.removeAll()
         } catch {
+            CrashlyticsHelper.shared.recordError(error)
             log.error("Failed to clear keychain - \(error)")
         }
     }

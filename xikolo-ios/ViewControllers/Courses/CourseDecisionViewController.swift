@@ -28,7 +28,6 @@ class CourseDecisionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        SpotlightHelper.setUserActivity(for: self.course)
         self.decideContent()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(switchViewController),
@@ -39,6 +38,9 @@ class CourseDecisionViewController: UIViewController {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popToRootViewController(animated: isVisible)
         }
+
+        SpotlightHelper.setUserActivity(for: self.course)
+        CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
     }
   
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
@@ -141,6 +143,20 @@ class CourseDecisionViewController: UIViewController {
         default:
             break
         }
+    }
+
+    @IBAction func shareCourse(_ sender: UIBarButtonItem) {
+        let activityItems = ([self.course.title, self.course.url] as [Any?]).flatMap { $0 }
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = sender
+        activityViewController.completionWithItemsHandler = { (activityType, completed, _, _) in
+            let context: [String : String?] = [
+                "service": activityType?.rawValue,
+                "completed": String(describing: completed),
+            ]
+            TrackingHelper.createEvent(.share, resourceType: .course, resourceId: self.course.id, context: context)
+        }
+        self.present(activityViewController, animated: true)
     }
 
 }

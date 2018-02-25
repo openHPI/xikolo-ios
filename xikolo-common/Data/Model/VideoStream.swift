@@ -38,7 +38,7 @@ final class VideoStream: NSObject, NSCoding, IncludedPullable {
     func encode(with coder: NSCoder) {
         coder.encode(self.hdURL, forKey: "hd_url")
         coder.encode(self.sdURL, forKey: "sd_url")
-        coder.encode(self.hlsURL, forKey: "hls_size")
+        coder.encode(self.hlsURL, forKey: "hls_url")
         coder.encode(self.hdSize, forKey: "hd_size")
         coder.encode(self.sdSize, forKey: "sd_size")
         coder.encode(self.thumbnailURL, forKey: "thumbnail_url")

@@ -21,6 +21,14 @@ extension Optional {
             }
 
             log.severe(message)
+
+            let exception = NSException(
+                name: .invalidArgumentException,
+                reason: message,
+                userInfo: nil
+            )
+            exception.raise()
+
             fatalError(message)
         }
 

@@ -43,6 +43,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "502E712A2018D8BF007FC8C0"
+               BuildableName = "openHPI-iOS-UITests.xctest"
+               BlueprintName = "openHPI-iOS-UITests"
+               ReferencedContainer = "container:xikolo-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

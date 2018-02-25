@@ -6,21 +6,25 @@
 //  Copyright © 2017 HPI. All rights reserved.
 //
 
-import Foundation
 import AVFoundation
 import CoreData
+import Foundation
 import UIKit
 
 class VideoPersistenceManager: NSObject {
 
     static let shared = VideoPersistenceManager()
 
-    private var didRestorePersistenceManager = false
-
     private var assetDownloadURLSession: AVAssetDownloadURLSession!
+    private var activeDownloadsMap: [AVAssetDownloadTask: String] = [:]
+    private var progressMap: [String: Double] = [:]
+    private let persistentContainerQueue: OperationQueue = {
+        let queue = OperationQueue();
+        queue.maxConcurrentOperationCount = 1;
+        return queue;
+    }()
 
-    fileprivate var activeDownloadsMap: [AVAssetDownloadTask: Video] = [:]
-    fileprivate var progressMap: [String: Double] = [:]
+    private var didRestorePersistenceManager = false
 
     override private init() {
         super.init()
@@ -44,16 +48,7 @@ class VideoPersistenceManager: NSObject {
         self.assetDownloadURLSession.getAllTasks { tasks in
             for task in tasks {
                 guard let assetDownloadTask = task as? AVAssetDownloadTask, let videoId = task.taskDescription else { break }
-
-                CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                    let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
-                    switch context.fetchSingle(fetchRequest) {
-                    case .success(let video):
-                        self.activeDownloadsMap[assetDownloadTask] = video
-                    case .failure(let error):
-                        log.error("Failed to restore download for video \(videoId) : \(error)")
-                    }
-                }
+                self.activeDownloadsMap[assetDownloadTask] = videoId
             }
         }
     }
@@ -73,22 +68,30 @@ class VideoPersistenceManager: NSObject {
         TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: video.id)
         task.taskDescription = video.id
 
-        self.activeDownloadsMap[task] = video
+        self.activeDownloadsMap[task] = video.id
 
         task.resume()
 
-        video.downloadDate = Date()
-        do {
-            try video.managedObjectContext?.save()
-        } catch {
-            log.error("Failed to save video (start)")
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                video.downloadDate = Date()
+                do {
+                    try context.save()
+                } catch {
+                    CrashlyticsHelper.shared.setObjectValue(video.id, forKey: "video_id")
+                    CrashlyticsHelper.shared.recordError(error)
+                    log.error("Failed to save video (start)")
+                }
+            }
+
+            var userInfo: [String: Any] = [:]
+            userInfo[Video.Keys.id] = video.id
+            userInfo[Video.Keys.downloadState] = Video.DownloadState.downloading.rawValue
+
+            NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
         }
 
-        var userInfo: [String: Any] = [:]
-        userInfo[Video.Keys.id] = video.id
-        userInfo[Video.Keys.downloadState] = Video.DownloadState.downloading.rawValue
-
-        NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
     func localAsset(for video: Video) -> AVURLAsset? {
@@ -120,8 +123,8 @@ class VideoPersistenceManager: NSObject {
             }
         }
 
-        for (_, assetIdentifier) in self.activeDownloadsMap {
-            if video.id == assetIdentifier.id {
+        for (_, downloadingVideoId) in self.activeDownloadsMap {
+            if video.id == downloadingVideoId {
                 if self.progressMap[video.id] != nil {
                     return .downloading
                 }
@@ -137,14 +140,29 @@ class VideoPersistenceManager: NSObject {
     }
 
     func deleteAsset(for video: Video) {
+        let objectId = video.objectID
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                guard let video = context.existingTypedObject(with: objectId) as? Video else {
+                    return
+                }
+                self.deleteAsset(for: video, in: context)
+            }
+        }
+    }
+
+    private func deleteAsset(for video: Video, in context: NSManagedObjectContext) {
         guard let localFileLocation = self.localAsset(for: video)?.url else { return }
 
         do {
             try FileManager.default.removeItem(at: localFileLocation)
             video.downloadDate = nil
             video.localFileBookmark = nil
-            try video.managedObjectContext?.save()
+            try context.save()
         } catch {
+            CrashlyticsHelper.shared.setObjectValue(video.id, forKey: "video_id")
+            CrashlyticsHelper.shared.recordError(error)
             log.error("An error occured deleting the file: \(error)")
         }
 
@@ -155,13 +173,14 @@ class VideoPersistenceManager: NSObject {
         NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
+
     func cancelDownload(for video: Video) {
         var task: AVAssetDownloadTask?
 
-        for (taskKey, assetVal) in activeDownloadsMap {
-            if video == assetVal  {
+        for (donwloadTask, downloadingVideoId) in activeDownloadsMap {
+            if video.id == downloadingVideoId  {
                 TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: video.id)
-                task = taskKey
+                task = donwloadTask
                 break
             }
         }
@@ -181,68 +200,97 @@ class VideoPersistenceManager: NSObject {
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        guard let task = task as? AVAssetDownloadTask, let video = self.activeDownloadsMap.removeValue(forKey: task) else { return }
+        guard let task = task as? AVAssetDownloadTask, let videoId = self.activeDownloadsMap.removeValue(forKey: task) else { return }
 
-        self.progressMap.removeValue(forKey: video.id)
+        self.progressMap.removeValue(forKey: videoId)
 
         var userInfo: [String: Any] = [:]
-        userInfo[Video.Keys.id] = video.id
+        userInfo[Video.Keys.id] = videoId
 
-        if let error = error as NSError? {
-            if let localFileLocation = self.localAsset(for: video)?.url {
-                do {
-                    try FileManager.default.removeItem(at: localFileLocation)
-                    video.downloadDate = nil
-                    video.localFileBookmark = nil
-                    try? video.managedObjectContext?.save()
-                } catch {
-                    log.error("An error occured deleting the file: \(error)")
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                if let error = error as NSError? {
+                    let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
+                    switch context.fetchSingle(fetchRequest) {
+                    case .success(let video):
+                        if let localFileLocation = self.localAsset(for: video)?.url {
+                            do {
+                                try FileManager.default.removeItem(at: localFileLocation)
+                                video.downloadDate = nil
+                                video.localFileBookmark = nil
+                                try context.save()
+                            } catch {
+                                CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                                CrashlyticsHelper.shared.recordError(error)
+                                log.error("An error occured deleting the file: \(error)")
+                            }
+                        }
+
+                        if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+                            log.debug("Canceled download of video (video id: \(videoId))")
+                        } else {
+                            CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                            CrashlyticsHelper.shared.recordError(error)
+                            log.error("Unknown asset download error (video id: \(videoId) | domain: \(error.domain) | code: \(error.code)")
+
+                            // show error
+                            DispatchQueue.main.async {
+                                let alertTitle = NSLocalizedString("course-item.video-download-alert.download-error.title", comment: "title to download error alert")
+                                let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
+                                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+                                let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
+                                alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
+                                    alert.dismiss(animated: true)
+                                })
+                                AppDelegate.instance().tabBarController?.present(alert, animated: true)
+                            }
+                        }
+
+                        userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
+                    case .failure(let error):
+                        CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                        CrashlyticsHelper.shared.recordError(error)
+                        log.error("Failed to complete download for video \(videoId) : \(error)")
+                    }
+                } else {
+                    userInfo[Video.Keys.downloadState] = Video.DownloadState.downloaded.rawValue
+                    let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
+                    TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: videoId, context: context)
                 }
+
+                NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
             }
-
-            if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-                log.debug("Canceled download of video (video id: \(video.id))")
-            } else {
-                log.error("Unknown asset download error (video id: \(video.id) | domain: \(error.domain) | code: \(error.code)")
-
-                // show error
-                DispatchQueue.main.async {
-                    let alertTitle = NSLocalizedString("course-item.video-download-alert.download-error.title", comment: "title to download error alert")
-                    let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
-                    let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-                    let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
-                    alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
-                        alert.dismiss(animated: true)
-                    })
-                    AppDelegate.instance().tabBarController?.present(alert, animated: true)
-                }
-            }
-
-            userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
-        } else {
-            userInfo[Video.Keys.downloadState] = Video.DownloadState.downloaded.rawValue
-            let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
-            TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: video.id, context: context)
         }
-
-        NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
-        if let video = self.activeDownloadsMap[assetDownloadTask]  {
-            do {
-                let bookmark = try location.bookmarkData()
-                video.localFileBookmark = NSData(data: bookmark)
-                try video.managedObjectContext?.save()
-            } catch {
-                // Failed to create bookmark for location
-                self.deleteAsset(for: video)
+        guard let videoId = self.activeDownloadsMap[assetDownloadTask] else { return }
+
+        let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+        context.performAndWait {
+            let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
+            switch context.fetchSingle(fetchRequest) {
+            case .success(let video):
+                do {
+                    let bookmark = try location.bookmarkData()
+                    video.localFileBookmark = NSData(data: bookmark)
+                    try context.save()
+                } catch {
+                    // Failed to create bookmark for location
+                    self.deleteAsset(for: video, in: context)
+                }
+            case .failure(let error):
+                CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                CrashlyticsHelper.shared.recordError(error)
+                log.error("Failed to finish download for video \(videoId) : \(error)")
             }
         }
+
     }
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didLoad timeRange: CMTimeRange, totalTimeRangesLoaded loadedTimeRanges: [NSValue], timeRangeExpectedToLoad: CMTimeRange) {
-        guard let video = self.activeDownloadsMap[assetDownloadTask] else { return }
+        guard let videoId = self.activeDownloadsMap[assetDownloadTask] else { return }
 
         var percentComplete = 0.0
         for value in loadedTimeRanges {
@@ -251,7 +299,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
         }
 
         var userInfo: [String: Any] = [:]
-        userInfo[Video.Keys.id] = video.id
+        userInfo[Video.Keys.id] = videoId
         userInfo[Video.Keys.precentDownload] = percentComplete
 
         NotificationCenter.default.post(name: NotificationKeys.VideoDownloadProgressKey, object: nil, userInfo: userInfo)

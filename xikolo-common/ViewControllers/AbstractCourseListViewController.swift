@@ -37,13 +37,7 @@ class AbstractCourseListViewController : UICollectionViewController {
         super.viewDidLoad()
         
         self.updateView()
-        if UserProfileHelper.isLoggedIn() {
-            CourseHelper.syncAllCourses().map { _ in
-                return EnrollmentHelper.syncEnrollments()
-            }
-        } else {
-            CourseHelper.syncAllCourses()
-        }
+        CourseHelper.syncAllCourses()
     }
 
     func updateView(){
@@ -79,7 +73,7 @@ class AbstractCourseListViewController : UICollectionViewController {
                 try rC.performFetch()
             }
         } catch {
-            // TODO: Error handling.
+            CrashlyticsHelper.shared.recordError(error)
             log.error(error)
         }
 

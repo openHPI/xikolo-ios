@@ -6,8 +6,8 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import UIKit
 import SafariServices
+import UIKit
 
 class RichtextViewController : AbstractItemRichtextViewController {
 
@@ -16,6 +16,16 @@ class RichtextViewController : AbstractItemRichtextViewController {
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
+        CrashlyticsHelper.shared.setObjectValue(self.courseItem.id, forKey: "item_id")
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openInWebView" {
+            let webView = segue.destination.require(toHaveType: CourseItemWebViewController.self)
+            webView.courseItem = self.courseItem
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
 
 }

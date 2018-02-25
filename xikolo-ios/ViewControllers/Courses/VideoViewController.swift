@@ -6,11 +6,11 @@
 //  Copyright © 2016 HPI. All rights reserved.
 //
 
-import UIKit
 import AVKit
 import AVFoundation
 import BMPlayer
 import NVActivityIndicatorView
+import UIKit
 
 class VideoViewController : UIViewController {
 
@@ -37,7 +37,7 @@ class VideoViewController : UIViewController {
 
         self.errorView.isHidden = true
         self.openSlidesButton.isHidden = true
-        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
+        self.openSlidesButton.isEnabled = ReachabilityHelper.connection != .none
 
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
@@ -56,8 +56,10 @@ class VideoViewController : UIViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
-                                               name: NotificationKeys.reachabilityChanged,
+                                               name: Notification.Name.reachabilityChanged,
                                                object: nil)
+
+        CrashlyticsHelper.shared.setObjectValue("item_id", forKey: self.courseItem.id)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -97,9 +99,9 @@ class VideoViewController : UIViewController {
         self.videoContainer.addSubview(player)
         player.snp.makeConstraints { (make) in
             make.top.equalTo(self.videoContainer.snp.top)
-            make.left.equalTo(self.videoContainer.snp.left)
-            make.right.equalTo(self.videoContainer.snp.right)
-            make.height.equalTo(self.videoContainer.snp.width).multipliedBy(9.0/16.0)
+            make.bottom.equalTo(self.videoContainer.snp.bottom)
+            make.centerX.equalTo(self.videoContainer.snp.centerX)
+            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0/9.0)
         }
 
         self.player = player
@@ -107,7 +109,7 @@ class VideoViewController : UIViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.openSlidesButton.isEnabled = ReachabilityHelper.reachability.isReachable
+        self.openSlidesButton.isEnabled = ReachabilityHelper.connection != .none
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -147,6 +149,12 @@ class VideoViewController : UIViewController {
         } else if let hlsURL = video.singleStream?.hlsURL {
             videoURL = hlsURL
             self.playerControlView.setOffline(false)
+        } else if let hdURL = video.singleStream?.hdURL, ReachabilityHelper.connection == .wifi {
+            videoURL = hdURL
+            self.playerControlView.setOffline(false)
+        } else if let sdURL = video.singleStream?.sdURL {
+            videoURL = sdURL
+            self.playerControlView.setOffline(false)
         } else {
             self.errorView.isHidden = false
             self.playerControlView.setOffline(false)
@@ -162,7 +170,7 @@ class VideoViewController : UIViewController {
     }
 
     @IBAction func openSlides(_ sender: UIButton) {
-        if ReachabilityHelper.reachability.isReachable {
+        if ReachabilityHelper.connection != .none {
             performSegue(withIdentifier: "ShowSlides", sender: self.video)
         } else {
             log.info("Tapped open slides button without internet, which shouldn't be possible")

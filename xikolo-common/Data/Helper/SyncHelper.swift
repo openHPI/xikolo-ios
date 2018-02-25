@@ -25,6 +25,7 @@ struct SyncHelper {
             log.info("Successfully merged resources of type: \(Resource.type)")
             SyncHelper.handleSyncSuccess(syncResult)
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to sync resources of type: \(Resource.type) ==> \(error)")
             SyncHelper.handleSyncFailure(error)
         }
@@ -36,31 +37,44 @@ struct SyncHelper {
             log.info("Successfully merged resource of type: \(Resource.type)")
             SyncHelper.handleSyncSuccess(syncResult)
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to sync resource of type: \(Resource.type) ==> \(error)")
             SyncHelper.handleSyncFailure(error)
         }
     }
 
-    @discardableResult static func saveResource(_ resource: Pushable) -> Future<Void, XikoloError> {
+    @discardableResult static func createResource<Resource>(ofType resourceType: Resource.Type, withData resourceData: Data) -> Future<SyncEngine.SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable & Pushable {
+        return SyncEngine.createResource(ofType: resourceType, withData: resourceData).onSuccess { _ in
+            log.info("Successfully created and saved resource of type: \(resourceType.type)")
+        }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
+            log.error("Failed to create and save resource of type: \(resourceType) ==> \(error)")
+        }
+    }
+
+    @discardableResult static func createResource(_ resource: Pushable) -> Future<Void, XikoloError> {
+        return SyncEngine.createResource(resource).onSuccess { _ in
+            log.info("Successfully created resource of type: \(type(of: resource).type)")
+        }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
+            log.error("Failed to create resource of type: \(resource) ==> \(error)")
+        }
+    }
+
+    @discardableResult static func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError>{
         return SyncEngine.saveResource(resource).onSuccess { _ in
             log.info("Successfully saved resource of type: \(type(of: resource).type)")
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to save resource of type: \(resource) ==> \(error)")
         }
     }
 
-    @discardableResult static func saveResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
-        return SyncEngine.saveResource(resource).onSuccess { _ in
-            log.info("Successfully saved resource of type: \(type(of: resource).type)")
-        }.onFailure { error in
-            log.error("Failed to save resource of type: \(resource) ==> \(error)")
-        }
-    }
-
-    @discardableResult static func deleteResource(_ resource: Pushable & Pullable) -> Future<Void, XikoloError> {
+    @discardableResult static func deleteResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
         return SyncEngine.deleteResource(resource).onSuccess { _ in
             log.info("Successfully deleted resource of type: \(type(of: resource).type)")
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordAPIError(error)
             log.error("Failed to delete resource: \(resource) ==> \(error)")
         }
     }

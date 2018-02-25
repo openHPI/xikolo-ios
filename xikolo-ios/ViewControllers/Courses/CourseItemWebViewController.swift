@@ -8,12 +8,12 @@
 
 import Foundation
 
-
 class CourseItemWebViewController: WebViewController {
 
     var courseItem: CourseItem! {
         didSet {
             self.setURL()
+            CrashlyticsHelper.shared.setObjectValue("item_id", forKey: self.courseItem.id)
         }
     }
 
@@ -33,6 +33,7 @@ class CourseItemWebViewController: WebViewController {
                 self.url = self.quizURL(for: courseItem)
             }
         }.onFailure { error in
+            CrashlyticsHelper.shared.recordError(error)
             log.error("\(error)")
         }
     }

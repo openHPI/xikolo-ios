@@ -37,6 +37,9 @@ class TrackingHelper {
         case videoDownloadStart = "DOWNLOADED_HLS_VIDEO"
         case videoDownloadFinished = "DOWNLOADED_HLS_VIDEO_FINISHED"
         case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
+
+        // social
+        case share = "SHARE_BUTTON_CLICK"
     }
 
     enum AnalyticsResourceType : String {
@@ -53,12 +56,12 @@ class TrackingHelper {
     }
 
     private static var networkState: String {
-        switch ReachabilityHelper.reachabilityStatus {
-        case .reachableViaWiFi:
+        switch ReachabilityHelper.connection {
+        case .wifi:
             return "wifi"
-        case .reachableViaWWAN:
+        case .cellular:
             return "mobile"
-        case .notReachable:
+        case .none:
             return "offline"
         }
     }
@@ -110,30 +113,33 @@ class TrackingHelper {
         let trackingVerb = TrackingEventVerb(type: verb.rawValue)
         let trackingResource = TrackingEventResource(resourceType: resourceType, uuid: resourceId)
 
-        var trackingContext = self.defaultContext()
-        for (k, v) in context {
-            if let value = v {
-                trackingContext.updateValue(value, forKey: k)
+        let promise = Promise<Void, XikoloError>()
+
+        DispatchQueue.main.async {
+            var trackingContext = self.defaultContext()
+            for (k, v) in context {
+                if let value = v {
+                    trackingContext.updateValue(value, forKey: k)
+                }
             }
+
+            #if DEBUG
+                log.debug("Would have created tracking event '\(trackingVerb.type)'")
+                promise.success(())
+            #else
+                CoreDataHelper.persistentContainer.performBackgroundTask { context in
+                    let _ = TrackingEvent(user: trackingUser,
+                                          verb: trackingVerb,
+                                          resource: trackingResource,
+                                          trackingContext: trackingContext as [String: AnyObject],
+                                          inContext: context)
+                    promise.complete(context.saveWithResult())
+                    log.verbose("Created tracking event '\(trackingVerb.type)'")
+                }
+            #endif
         }
 
-
-        #if DEBUG
-            log.debug("Would have created tracking event '\(trackingVerb.type)'")
-            return Future(value: ())
-        #else
-            let promise = Promise<Void, XikoloError>()
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                let _ = TrackingEvent(user: trackingUser,
-                                      verb: trackingVerb,
-                                      resource: trackingResource,
-                                      trackingContext: trackingContext as [String: AnyObject],
-                                      inContext: context)
-                promise.complete(context.saveWithResult())
-                log.verbose("Created tracking event '\(trackingVerb.type)'")
-            }
-            return promise.future
-        #endif
+        return promise.future
     }
 
 }

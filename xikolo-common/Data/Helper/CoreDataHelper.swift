@@ -16,9 +16,10 @@ class CoreDataHelper {
         let container = NSPersistentContainer(name: "xikolo")
         container.loadPersistentStores { (storeDescription, error) in
             // TODO: check for space etc
-            if let error = error as NSError? {
-                log.severe("Unresolved error \(error), \(error.userInfo)")
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+            if let error = error {
+                CrashlyticsHelper.shared.recordError(error)
+                log.severe("Unresolved error \(error)")
+                fatalError("Unresolved error \(error)")
             }
             container.viewContext.automaticallyMergesChangesFromParent = true
         }
@@ -61,6 +62,7 @@ class CoreDataHelper {
 
                 promise.success(())
             } catch {
+                CrashlyticsHelper.shared.recordError(error)
                 log.error("Failed to bulk delete all enities of \(entityName) - \(error)")
                 promise.failure(.coreData(error))
             }
@@ -104,8 +106,11 @@ extension NSManagedObjectContext {
     func typedObject<T>(with id: NSManagedObjectID) -> T where T: NSManagedObject {
         let managedObject = self.object(with: id)
         guard let object = managedObject as? T else {
-            log.severe("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
-            fatalError("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
+            let message = "Type mismatch for NSManagedObject (required)"
+            let reason = "required: \(T.self), found: \(type(of: managedObject))"
+            CrashlyticsHelper.shared.recordCustomExceptionName(message, reason: reason, frameArray: [])
+            log.severe("\(message): \(reason)")
+            fatalError("\(message): \(reason)")
         }
 
         return object
@@ -118,7 +123,10 @@ extension NSManagedObjectContext {
         }
 
         guard let object = managedObject as? T else {
-            log.error("Type mismatch for NSManagedObject (expected: \(T.self), found: \(type(of: managedObject)))")
+            let message = "Type mismatch for NSManagedObject"
+            let reason = "expected: \(T.self), found: \(type(of: managedObject))"
+            CrashlyticsHelper.shared.recordCustomExceptionName(message, reason: reason, frameArray: [])
+            log.error("\(message): \(reason)")
             return nil
         }
 

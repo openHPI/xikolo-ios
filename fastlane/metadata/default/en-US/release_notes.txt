@@ -1,0 +1,5 @@
+• Bug fixes and general improvements
+
+Also in version 2.1:
+• Search for courses
+• View announcements for each course individually

@@ -52,9 +52,9 @@ Adds localizations for the application incrementally
 - uses bartycrouch
 
 - translates storyboard files and NSLocalizedString usages
-### ios screenshots
+### ios make_screenshots
 ```
-fastlane ios screenshots
+fastlane ios make_screenshots
 ```
 Create screenshots for all applications
 ### ios make_screenshots_openhpi

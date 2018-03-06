@@ -559,10 +559,10 @@
 		5035850A1F3B06E5002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		5035850C1F3B06E7002A666C /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
-		50371FF9204ECB8E006E9634 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* ProgressView.swift */; };
-		50371FFA204ECB8E006E9634 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* ProgressView.swift */; };
-		50371FFB204ECB8E006E9634 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* ProgressView.swift */; };
-		50371FFC204ECB8E006E9634 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* ProgressView.swift */; };
+		50371FF9204ECB8E006E9634 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* CircularProgressView.swift */; };
+		50371FFA204ECB8E006E9634 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* CircularProgressView.swift */; };
+		50371FFB204ECB8E006E9634 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* CircularProgressView.swift */; };
+		50371FFC204ECB8E006E9634 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FF8204ECB8E006E9634 /* CircularProgressView.swift */; };
 		504C5A701F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
 		504C5A711F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
 		504C5A721F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
@@ -1888,7 +1888,7 @@
 		502E7178201B1C78007FC8C0 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		502E718820207C92007FC8C0 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
-		50371FF8204ECB8E006E9634 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		504C5A6F1F99F8210021EB17 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
 		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseContent.storyboard; sourceTree = "<group>"; };
 		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseContent.strings; sourceTree = "<group>"; };
@@ -2382,7 +2382,7 @@
 				7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */,
 				7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */,
 				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
-				50371FF8204ECB8E006E9634 /* ProgressView.swift */,
+				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4900,7 +4900,7 @@
 				50EFACC11FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				50F720291F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
 				AB4A01B11E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
-				50371FFA204ECB8E006E9634 /* ProgressView.swift in Sources */,
+				50371FFA204ECB8E006E9634 /* CircularProgressView.swift in Sources */,
 				24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				24BA410A1D3F9B6900E38C2C /* LoginViewController.swift in Sources */,
 			);
@@ -5326,7 +5326,7 @@
 				70F456351F01290B00A2C6B7 /* User.swift in Sources */,
 				501212121FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				70D1EAD11EF0AC200088C0FF /* UserProfileHelper.swift in Sources */,
-				50371FFC204ECB8E006E9634 /* ProgressView.swift in Sources */,
+				50371FFC204ECB8E006E9634 /* CircularProgressView.swift in Sources */,
 				50D9B1701F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				50F57DB81FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				70D1E9EC1EF0AA830088C0FF /* AVMetadataItem+convenience.swift in Sources */,
@@ -5856,7 +5856,7 @@
 				50EFACBE1FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				AB4A01AE1E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				2490C4CF1D1C5F3600F42949 /* Settings.swift in Sources */,
-				50371FF9204ECB8E006E9634 /* ProgressView.swift in Sources */,
+				50371FF9204ECB8E006E9634 /* CircularProgressView.swift in Sources */,
 				50F720281F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
 				702520921F71A1D5003E0F80 /* NotificationKeys.swift in Sources */,
 			);
@@ -6015,7 +6015,7 @@
 				50EFACC41FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				50F7202A1F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
 				ABA0F0EC1DF8CE980001D88D /* AbstractLoginViewController.swift in Sources */,
-				50371FFB204ECB8E006E9634 /* ProgressView.swift in Sources */,
+				50371FFB204ECB8E006E9634 /* CircularProgressView.swift in Sources */,
 				ABA0F0E11DF8CE750001D88D /* Error.swift in Sources */,
 				ABA0F0EE1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */,
 			);

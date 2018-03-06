@@ -19,7 +19,7 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var shimmerContainer: FBShimmeringView!
     @IBOutlet weak var loadingBox: UIView!
     @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var progressView: ProgressView!
+    @IBOutlet weak var progressView: CircularProgressView!
     @IBOutlet weak var actionsButton: UIButton!
 
     var item: CourseItem?

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class ProgressView: UIView {
+class CircularProgressView: UIView {
 
     @IBInspectable var lineWidth: CGFloat {
         get {
@@ -42,14 +42,14 @@ class ProgressView: UIView {
 
     var timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
-    private var progressLayer: ProgressLayer {
+    private var progressLayer: CircularProgressLayer {
         get {
-            return self.layer as! ProgressLayer
+            return self.layer as! CircularProgressLayer
         }
     }
 
     override class var layerClass : AnyClass {
-        return ProgressLayer.self
+        return CircularProgressLayer.self
     }
 
     override init(frame: CGRect) {
@@ -117,7 +117,7 @@ class ProgressView: UIView {
         self.progressLayer.removeAnimation(forKey: AnimationKeys.progress)
 
         var currentProgress: CGFloat = 0
-        if let presentationLayer = progressLayer.presentation() as ProgressLayer! {
+        if let presentationLayer = progressLayer.presentation() as CircularProgressLayer! {
             currentProgress = presentationLayer.progress
         }
 
@@ -147,7 +147,7 @@ class ProgressView: UIView {
         }
     }
 
-    class ProgressLayer : CALayer {
+    class CircularProgressLayer : CALayer {
 
         @NSManaged var tintColor: UIColor
         @NSManaged var lineWidth: CGFloat

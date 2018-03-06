@@ -31,6 +31,4 @@ struct Brand {
     }
     static let poweredByText: String? = nil
 
-    static var locale: Locale = Locale.autoupdatingCurrent
-
 }

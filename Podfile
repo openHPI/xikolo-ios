@@ -14,7 +14,6 @@ end
 
 def ios_pods
     pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
-    pod 'DownloadButton', '~> 0.1'
     pod 'DZNEmptyDataSet', '~> 1.8'
     pod 'Shimmer', '~> 1.0'
     pod 'ReachabilitySwift', '~> 4.1'

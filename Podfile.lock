@@ -12,7 +12,6 @@ PODS:
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - Down (0.4.2)
-  - DownloadButton (0.1.0)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.7.2)
   - Firebase/Core (4.8.2):
@@ -64,7 +63,6 @@ DEPENDENCIES:
   - BrightFutures (~> 6.0)
   - Crashlytics (~> 3.9)
   - Down (~> 0.4)
-  - DownloadButton (~> 0.1)
   - DZNEmptyDataSet (~> 1.8)
   - Fabric (~> 1.7)
   - Firebase/Core (~> 4.8)
@@ -106,7 +104,6 @@ SPEC CHECKSUMS:
   BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
-  DownloadButton: 49a21a89e0d7d1b42d9134f79aaa40e727cd57c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
@@ -129,6 +126,6 @@ SPEC CHECKSUMS:
   SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: ab241c9886549086dbdca332f4ce00dc5fb014cf
+PODFILE CHECKSUM: 60c1dcb4eb089f6371394cdd31eccb96d8b7799e
 
 COCOAPODS: 1.4.0

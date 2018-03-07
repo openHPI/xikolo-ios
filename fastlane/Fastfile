@@ -114,7 +114,7 @@ platform :ios do
   end
 
   desc "Create screenshots for all applications"
-  lane :screenshots do
+  lane :make_screenshots do
     flavors.each { |flavor| public_send :"make_screenshots_#{flavor.downcase}" }
   end
 

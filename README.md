@@ -30,7 +30,6 @@ The following tools will be installed via CocoaPods:
   - `apple_id`
   - `itunes_connect_id` (if required)
 - for all available fastlane commands have a look at the [fastlane Readme](https://github.com/openHPI/xikolo-ios/tree/master/fastlane/)
-- some commands require setting the app environment via `--env {openhpi|opensap|moochouse|openwho}`
 
 #### Setup testing
 - copy the credentials plist dummy file `cp UI\ Tests/Credentials.plist.dummy UI\ Tests/Credentials.plist`

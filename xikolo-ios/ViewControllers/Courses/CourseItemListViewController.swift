@@ -18,7 +18,7 @@ class CourseItemListViewController: UITableViewController {
     var resultsController: NSFetchedResultsController<CourseItem>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
 
-    var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
+    var contentToBePreloaded: [DetailedCourseItem.Type] = [Video.self, RichText.self]
     var isPreloading = false
     var isOffline = ReachabilityHelper.connection == .none {
         didSet {

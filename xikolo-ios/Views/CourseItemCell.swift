@@ -18,7 +18,7 @@ class CourseItemCell : UITableViewCell {
     @IBOutlet weak var detailContainer: UIView!
     @IBOutlet weak var shimmerContainer: FBShimmeringView!
     @IBOutlet weak var loadingBox: UIView!
-    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var detailContentView: UIStackView!
     @IBOutlet weak var progressView: CircularProgressView!
     @IBOutlet weak var actionsButton: UIButton!
 
@@ -48,7 +48,6 @@ class CourseItemCell : UITableViewCell {
         self.item = courseItem
         self.titleView.text = courseItem.title
         self.titleView.textColor = isAvailable ? UIColor.black : UIColor.lightGray
-        self.detailLabel.textColor = isAvailable ? UIColor.darkText : UIColor.lightGray
 
         let iconName = courseItem.icon ?? "document"
         self.iconView.image = UIImage(named: "course-item-icon-\(iconName)")?.withRenderingMode(.alwaysTemplate)
@@ -84,17 +83,39 @@ class CourseItemCell : UITableViewCell {
             return
         }
 
-        self.detailLabel.text = nil
-        if let detailedContent = courseItem.content as? DetailedContent, let detailedInfo = detailedContent.detailedInformation {
+        self.detailContentView.arrangedSubviews.forEach { view in
+            view.removeFromSuperview()
+        }
+
+        let isAvailable = !configuration.inOfflineMode || (courseItem.content?.isAvailableOffline ?? false) // TODO duplicate
+        if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, detailedContent.hasContent {
             self.shimmerContainer.isShimmering = false
-            self.detailLabel.text = detailedInfo
-            self.detailLabel.isHidden = false
+
+            if let detailedText = detailedContent.text {
+                let label = UILabel()
+                label.font = UIFont.systemFont(ofSize: 12)
+                label.text = detailedText
+                label.textColor = isAvailable ? UIColor.darkText : UIColor.lightGray
+                label.sizeToFit()
+                self.detailContentView.addArrangedSubview(label)
+            }
+
+            for (image, color) in detailedContent.icons {
+                let imageView = UIImageView()
+                imageView.image = image
+                imageView.tintColor = color
+                imageView.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
+                imageView.contentMode = .scaleAspectFit
+                self.detailContentView.addArrangedSubview(imageView)
+            }
+
+            self.detailContentView.isHidden = false
             self.shimmerContainer.isHidden = true
             self.detailContainer.isHidden = false
         } else if configuration.isPreloading {
             self.shimmerContainer.contentView = self.loadingBox
             self.shimmerContainer.isShimmering = true
-            self.detailLabel.isHidden = true
+            self.detailContentView.isHidden = true
             self.shimmerContainer.isHidden = false
             self.detailContainer.isHidden = configuration.inOfflineMode
         } else {
@@ -144,7 +165,7 @@ protocol VideoCourseItemCellDelegate {
 
 struct CourseItemCellConfiguration {
 
-    let contentTypes: [DetailedContent.Type]
+    let contentTypes: [DetailedCourseItem.Type]
     let isPreloading: Bool
     let inOfflineMode: Bool
 

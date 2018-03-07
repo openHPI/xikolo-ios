@@ -1,5 +1,5 @@
 //
-//  RichText+DetailedContent.swift
+//  RichText+DetailedCourseItem.swift
 //  xikolo-ios
 //
 //  Created by Max Bothe on 20/07/17.
@@ -10,14 +10,13 @@ import Foundation
 import CoreData
 import BrightFutures
 
-extension RichText: DetailedContent {
+extension RichText: DetailedCourseItem {
 
     static var contentType: String {
         return "rich_text"
     }
 
-    var detailedInformation: String? {
-
+    var detailedText: String? {
         let words = self.text?.components(separatedBy: CharacterSet.whitespacesAndNewlines)
         guard let wordcount = words?.count else {
             return nil

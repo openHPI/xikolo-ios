@@ -7,23 +7,18 @@
 //
 
 import UIKit
-import Shimmer
-
 
 class CourseItemCell : UITableViewCell {
 
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var readStateView: UIView!
     @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var detailContainer: UIView!
-    @IBOutlet weak var shimmerContainer: FBShimmeringView!
-    @IBOutlet weak var loadingBox: UIView!
-    @IBOutlet weak var detailContentView: UIStackView!
+    @IBOutlet weak var detailContentView: CourseItemDetailView!
     @IBOutlet weak var progressView: CircularProgressView!
     @IBOutlet weak var actionsButton: UIButton!
 
     var item: CourseItem?
-    var delegate: VideoCourseItemCellDelegate?
+    var delegate: CourseItemCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,8 +35,8 @@ class CourseItemCell : UITableViewCell {
                                        object: nil)
     }
 
-    func configure(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
-        let isAvailable = !configuration.inOfflineMode || (courseItem.content?.isAvailableOffline ?? false)
+    func configure(for courseItem: CourseItem) {
+        let isAvailable = !(self.delegate?.inOfflineMode ?? true) || (courseItem.content?.isAvailableOffline ?? false)
 
         self.isUserInteractionEnabled = isAvailable
 
@@ -57,18 +52,29 @@ class CourseItemCell : UITableViewCell {
         self.readStateView.alpha = wasVisitedBefore ? 0.0 : 1.0
         self.readStateView.backgroundColor = isAvailable ? Brand.TintColor : UIColor.lightGray
 
-        self.configureDownloadButton(for: courseItem, with: configuration)
-        self.configureDetailContent(for: courseItem, with: configuration)
+        self.configureActionsButton(for: courseItem)
+        self.configureProgressView(for: courseItem)
+        self.configureDetailContent(for: courseItem)
+
+        self.setNeedsDisplay()
+        self.setNeedsLayout()
     }
 
-    private func configureDownloadButton(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
+    private func configureActionsButton(for courseItem: CourseItem) {
         guard let video = courseItem.content as? Video, video.singleStream?.hlsURL != nil else {
             self.actionsButton.isHidden = true
-            self.progressView.isHidden = true
             return
         }
 
+        self.actionsButton.tintColor = .lightGray
         self.actionsButton.isHidden = video.alertActions.isEmpty
+    }
+
+    private func configureProgressView(for courseItem: CourseItem) {
+        guard let video = courseItem.content as? Video, video.singleStream?.hlsURL != nil else {
+            self.progressView.isHidden = true
+            return
+        }
 
         let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
         let progress = VideoPersistenceManager.shared.progress(for: video)
@@ -76,50 +82,21 @@ class CourseItemCell : UITableViewCell {
         self.progressView.updateProgress(progress)
     }
 
-    private func configureDetailContent(for courseItem: CourseItem, with configuration: CourseItemCellConfiguration) {
-        guard configuration.contentTypes.contains(where: { $0.contentType == courseItem.contentType }) else {
+    private func configureDetailContent(for courseItem: CourseItem) {
+        guard self.delegate?.contentToBePreloaded.contains(where: { $0.contentType == courseItem.contentType }) ?? false else {
             // only certain content items will show additional information
-            self.detailContainer.isHidden = true
+            self.detailContentView.isHidden = true
             return
         }
 
-        self.detailContentView.arrangedSubviews.forEach { view in
-            view.removeFromSuperview()
-        }
-
-        let isAvailable = !configuration.inOfflineMode || (courseItem.content?.isAvailableOffline ?? false) // TODO duplicate
-        if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, detailedContent.hasContent {
-            self.shimmerContainer.isShimmering = false
-
-            if let detailedText = detailedContent.text {
-                let label = UILabel()
-                label.font = UIFont.systemFont(ofSize: 12)
-                label.text = detailedText
-                label.textColor = isAvailable ? UIColor.darkText : UIColor.lightGray
-                label.sizeToFit()
-                self.detailContentView.addArrangedSubview(label)
-            }
-
-            for (image, color) in detailedContent.icons {
-                let imageView = UIImageView()
-                imageView.image = image
-                imageView.tintColor = color
-                imageView.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
-                imageView.contentMode = .scaleAspectFit
-                self.detailContentView.addArrangedSubview(imageView)
-            }
-
+        if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, !detailedContent.isEmpty {
+            self.detailContentView.setContent(detailedContent, inOfflineMode: self.delegate?.inOfflineMode ?? false)
             self.detailContentView.isHidden = false
-            self.shimmerContainer.isHidden = true
-            self.detailContainer.isHidden = false
-        } else if configuration.isPreloading {
-            self.shimmerContainer.contentView = self.loadingBox
-            self.shimmerContainer.isShimmering = true
-            self.detailContentView.isHidden = true
-            self.shimmerContainer.isHidden = false
-            self.detailContainer.isHidden = configuration.inOfflineMode
+        } else if self.delegate?.isPreloading ?? false {
+            self.detailContentView.isShimmering = true
+            self.detailContentView.isHidden = false //configuration.inOfflineMode
         } else {
-            self.detailContainer.isHidden = true
+            self.detailContentView.isHidden = true
         }
     }
 
@@ -133,12 +110,14 @@ class CourseItemCell : UITableViewCell {
         guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
             let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
             let downloadState = Video.DownloadState(rawValue: downloadStateRawValue),
-            let video = self.item?.content as? Video,
+            let item = self.item,
+            let video = item.content as? Video,
             video.id == videoId else { return }
 
         DispatchQueue.main.async {
             self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
             self.progressView.updateProgress(VideoPersistenceManager.shared.progress(for: video))
+            self.configureDetailContent(for: item)
         }
     }
 
@@ -157,16 +136,12 @@ class CourseItemCell : UITableViewCell {
 }
 
 
-protocol VideoCourseItemCellDelegate {
+protocol CourseItemCellDelegate {
+
+    var contentToBePreloaded: [DetailedCourseItem.Type] { get }
+    var isPreloading: Bool { get }
+    var inOfflineMode: Bool { get }
 
     func showAlert(with actions: [UIAlertAction], on anchor: UIView)
-
-}
-
-struct CourseItemCellConfiguration {
-
-    let contentTypes: [DetailedCourseItem.Type]
-    let isPreloading: Bool
-    let inOfflineMode: Bool
 
 }

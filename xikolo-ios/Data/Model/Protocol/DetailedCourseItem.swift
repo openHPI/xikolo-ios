@@ -14,33 +14,16 @@ protocol DetailedCourseItem {
 
     static var contentType: String { get }
 
-    var detailedContent: DetailedContent? { get }
-    var detailedText: String? { get }
-    var detailedIcons: [(image: UIImage, color: UIColor)] { get }
+    var detailedContent: [DetailedData] { get }
 
     static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError>
 
 }
 
-extension DetailedCourseItem {
+struct DetailedData {
 
-    var detailedContent: DetailedContent? {
-        return DetailedContent(text: self.detailedText, icons: self.detailedIcons)
-    }
-
-    var detailedIcons: [(image: UIImage, color: UIColor)] {
-        return []
-    }
-
-}
-
-struct DetailedContent {
-
-    let text: String?
-    let icons: [(image: UIImage, color: UIColor)]
-
-    var hasContent: Bool {
-        return text != nil || !icons.isEmpty
-    }
+    let text: String
+    let isOfflineAvailable: Bool
+    let showOfflineIcon: Bool
 
 }

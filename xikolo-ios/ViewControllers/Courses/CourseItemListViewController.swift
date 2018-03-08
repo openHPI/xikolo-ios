@@ -20,9 +20,9 @@ class CourseItemListViewController: UITableViewController {
 
     var contentToBePreloaded: [DetailedCourseItem.Type] = [Video.self, RichText.self]
     var isPreloading = false
-    var isOffline = ReachabilityHelper.connection == .none {
+    var inOfflineMode = ReachabilityHelper.connection == .none {
         didSet {
-            if oldValue != self.isOffline {
+            if oldValue != self.inOfflineMode {
                 self.tableView.reloadData()
             }
         }
@@ -129,7 +129,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.isOffline = ReachabilityHelper.connection == .none
+        self.inOfflineMode = ReachabilityHelper.connection == .none
     }
 
     func preloadCourseContent() {
@@ -204,10 +204,7 @@ class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration 
         let item = controller.object(at: indexPath)
         cell.delegate = self.tableViewController
 
-        let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
-                                                        isPreloading: self.tableViewController?.isPreloading ?? false,
-                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
-        cell.configure(for: item, with: configuration)
+        cell.configure(for: item)
     }
 
     func headerTitle(forController controller: NSFetchedResultsController<CourseItem>, forSection section: Int) -> String? {
@@ -238,7 +235,7 @@ extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetD
 
 }
 
-extension CourseItemListViewController: VideoCourseItemCellDelegate {
+extension CourseItemListViewController: CourseItemCellDelegate {
 
     func showAlert(with actions: [UIAlertAction], on anchor: UIView) {
         guard !actions.isEmpty else { return }

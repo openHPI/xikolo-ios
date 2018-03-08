@@ -16,11 +16,12 @@ extension RichText: DetailedCourseItem {
         return "rich_text"
     }
 
-    var detailedText: String? {
+    var detailedContent: [DetailedData] {
         let words = self.text?.components(separatedBy: CharacterSet.whitespacesAndNewlines)
         guard let wordcount = words?.count else {
-            return nil
+            return []
         }
+
         var calendar = Calendar.current
         calendar.locale = Locale.current
         let formatter = DateComponentsFormatter()
@@ -28,10 +29,12 @@ extension RichText: DetailedCourseItem {
         formatter.unitsStyle = .abbreviated
         formatter.allowedUnits = [.minute]
         formatter.zeroFormattingBehavior = [.pad]
+
         guard let durationText = formatter.string(from: ceil(Double(wordcount)/200)*60) else {
-            return nil
+            return []
         }
-        return "~\(durationText)"
+
+        return [DetailedData(text: "~\(durationText)", isOfflineAvailable: true, showOfflineIcon: false)]
     }
 
     static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {

@@ -27,7 +27,21 @@ extension Video: DetailedCourseItem {
         return "video"
     }
 
-    var detailedText: String? {
+    var detailedContent: [DetailedData] {
+        var content: [DetailedData] = []
+
+        if let durationText = self.durationText {
+            content.append(DetailedData(text: durationText, isOfflineAvailable: self.isAvailableOffline, showOfflineIcon: true))
+        }
+
+        if let slidesText = self.slidesText {
+            content.append(DetailedData(text: slidesText, isOfflineAvailable: false, showOfflineIcon: true))
+        }
+
+        return content
+    }
+
+    private var durationText: String? {
         let timeInterval = TimeInterval(self.duration)
         guard timeInterval > 0 else {
             return nil
@@ -36,19 +50,9 @@ extension Video: DetailedCourseItem {
         return Video.videoDurationFormatter.string(from: timeInterval)
     }
 
-    var detailedIcons: [(image: UIImage, color: UIColor)] {
-        var icons: [(image: UIImage, color: UIColor)] = []
-
-        let videoIconColor: UIColor = self.isAvailableOffline ? .black : .lightGray
-        if let videoIcon = UIImage(named: "download-video") {
-            icons.append((image: videoIcon, color: videoIconColor))
-        }
-
-        if self.slidesURL != nil, let slidesIcon = UIImage(named: "download-spread") {
-            icons.append((image: slidesIcon, color: .lightGray))
-        }
-
-        return icons
+    private var slidesText: String? {
+        guard self.slidesURL != nil else { return nil }
+        return NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
     }
 
     static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {

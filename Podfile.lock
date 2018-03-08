@@ -47,7 +47,6 @@ PODS:
   - SDWebImage (4.2.3):
     - SDWebImage/Core (= 4.2.3)
   - SDWebImage/Core (4.2.3)
-  - Shimmer (1.0.2)
   - SimpleRoundedButton (1.0)
   - SimulatorStatusMagic (2.1)
   - SnapKit (4.0.0)
@@ -70,7 +69,6 @@ DEPENDENCIES:
   - Marshal (~> 1.2)
   - ReachabilitySwift (~> 4.1)
   - SDWebImage (~> 4.2)
-  - Shimmer (~> 1.0)
   - SimpleRoundedButton (from `https://github.com/mathebox/SimpleRoundedButton.git`, commit `91225d2`)
   - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
@@ -119,13 +117,12 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
-  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   SimpleRoundedButton: 4a04d0d3d79986973f74e34d543d0bc089fbc3e6
   SimulatorStatusMagic: 481558caf2b9ccb2ceba2cc193728d4db3dcac07
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 60c1dcb4eb089f6371394cdd31eccb96d8b7799e
+PODFILE CHECKSUM: 6f50273d38619b52ae88b7f184a5d4029c58bed5
 
 COCOAPODS: 1.4.0

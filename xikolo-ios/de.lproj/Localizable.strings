@@ -129,10 +129,10 @@
 "settings.video-quality.section-header.download quality" = "Download-Qualität";
 
 /* section title for video quality on cellular connection */
-"settings.video-quality.section-header.on cellular" = "mit mobilen Daten";
+"settings.video-quality.section-header.on cellular" = "Video-Streaming mit mobilen Daten";
 
 /* section title for video quality on wifi connection */
-"settings.video-quality.section-header.on wifi" = "im WLAN";
+"settings.video-quality.section-header.on wifi" = "Video-Streaming mit WLAN";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

@@ -22,19 +22,8 @@ extension RichText: DetailedCourseItem {
             return []
         }
 
-        var calendar = Calendar.current
-        calendar.locale = Locale.current
-        let formatter = DateComponentsFormatter()
-        formatter.calendar = calendar
-        formatter.unitsStyle = .abbreviated
-        formatter.allowedUnits = [.minute]
-        formatter.zeroFormattingBehavior = [.pad]
-
-        guard let durationText = formatter.string(from: ceil(Double(wordcount)/200)*60) else {
-            return []
-        }
-
-        return [DetailedData(text: "~\(durationText)", isOfflineAvailable: true, showOfflineIcon: false)]
+        let approximatedReadingTime = ceil(Double(wordcount) / 200) * 60
+        return [.text(readingTime: approximatedReadingTime)]
     }
 
     static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {

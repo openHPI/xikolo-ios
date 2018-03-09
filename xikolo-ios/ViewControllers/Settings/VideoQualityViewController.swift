@@ -43,19 +43,8 @@ class VideoQualityViewController: UITableViewController {
         let videoQuality = VideoQuality.orderedValues[indexPath.row]
         cell.textLabel?.text = videoQuality.description
 
-        var currentVideoQuality: VideoQuality?
-        switch indexPath.section {
-        case 0:
-            currentVideoQuality = UserDefaults.standard.videoQualityForDownload
-        case 1:
-            currentVideoQuality = UserDefaults.standard.videoQualityOnCellular
-        case 2:
-            currentVideoQuality = UserDefaults.standard.videoQualityOnWifi
-        default:
-            break
-        }
-
-        if let currentVideoQuality = currentVideoQuality {
+        if let videoQualityKeyPath = self.videoQualityKeyPath(for: indexPath.section) {
+            let currentVideoQuality = UserDefaults.standard[keyPath: videoQualityKeyPath]
             cell.accessoryType = videoQuality == currentVideoQuality ? .checkmark : .none
         }
 
@@ -63,39 +52,35 @@ class VideoQualityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let videoQualityKeyPath = self.videoQualityKeyPath(for: indexPath.section) else { return }
+
+        let oldVideoQuality = UserDefaults.standard[keyPath: videoQualityKeyPath]
         let newVideoQuality = VideoQuality.orderedValues[indexPath.row]
-        var oldVideoQuality : VideoQuality?
-        switch indexPath.section {
-        case 0:
-            oldVideoQuality = UserDefaults.standard.videoQualityForDownload
-        case 1:
-            oldVideoQuality = UserDefaults.standard.videoQualityOnCellular
-        case 2:
-            oldVideoQuality = UserDefaults.standard.videoQualityOnWifi
-        default:
-            break
-        }
 
         if oldVideoQuality != newVideoQuality {
             // update preferred video quality
-            switch indexPath.section {
-            case 0:
-                UserDefaults.standard.videoQualityForDownload = newVideoQuality
-            case 1:
-                UserDefaults.standard.videoQualityOnCellular = newVideoQuality
-            case 2:
-                UserDefaults.standard.videoQualityOnWifi = newVideoQuality
-            default:
-                break
-            }
+            UserDefaults.standard[keyPath: videoQualityKeyPath] = newVideoQuality
 
-            if let oldVideoQuality = oldVideoQuality, let oldVideoQualityRow = VideoQuality.orderedValues.index(of: oldVideoQuality) {
+            if let oldVideoQualityRow = VideoQuality.orderedValues.index(of: oldVideoQuality) {
                 let oldVideoQualityIndexPath = IndexPath(row: oldVideoQualityRow, section: indexPath.section)
                 tableView.reloadRows(at: [oldVideoQualityIndexPath, indexPath], with: .none)
             } else {
                 let indexSet = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexSet, with: .none)
             }
+        }
+    }
+
+    private func videoQualityKeyPath(for section: Int) -> ReferenceWritableKeyPath<UserDefaults, VideoQuality>? {
+        switch section {
+        case 0:
+            return \UserDefaults.videoQualityForDownload
+        case 1:
+            return \UserDefaults.videoQualityOnCellular
+        case 2:
+            return \UserDefaults.videoQualityOnWifi
+        default:
+            return nil
         }
     }
 }

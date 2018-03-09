@@ -48,7 +48,7 @@ class VideoQualityViewController: UITableViewController {
         case 0:
             currentVideoQuality = UserDefaults.standard.videoQualityForDownload
         case 1:
-            currentVideoQuality = UserDefaults.standard.videoQualityOnCelluar
+            currentVideoQuality = UserDefaults.standard.videoQualityOnCellular
         case 2:
             currentVideoQuality = UserDefaults.standard.videoQualityOnWifi
         default:
@@ -69,7 +69,7 @@ class VideoQualityViewController: UITableViewController {
         case 0:
             oldVideoQuality = UserDefaults.standard.videoQualityForDownload
         case 1:
-            oldVideoQuality = UserDefaults.standard.videoQualityOnCelluar
+            oldVideoQuality = UserDefaults.standard.videoQualityOnCellular
         case 2:
             oldVideoQuality = UserDefaults.standard.videoQualityOnWifi
         default:
@@ -82,7 +82,7 @@ class VideoQualityViewController: UITableViewController {
             case 0:
                 UserDefaults.standard.videoQualityForDownload = newVideoQuality
             case 1:
-                UserDefaults.standard.videoQualityOnCelluar = newVideoQuality
+                UserDefaults.standard.videoQualityOnCellular = newVideoQuality
             case 2:
                 UserDefaults.standard.videoQualityOnWifi = newVideoQuality
             default:

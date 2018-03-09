@@ -54,7 +54,7 @@ extension UserDefaults {
 
     private static let videoQualityCellularKey = "de.xikolo.ios.video.cellular.quality"
 
-    var videoQualityOnCelluar: VideoQuality {
+    var videoQualityOnCellular: VideoQuality {
         get {
             let rawValue = self.integer(forKey: UserDefaults.videoQualityCellularKey)
             guard let value = VideoQuality(rawValue: rawValue) else { return .high }

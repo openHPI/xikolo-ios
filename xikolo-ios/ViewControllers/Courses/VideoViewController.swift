@@ -110,6 +110,7 @@ class VideoViewController : UIViewController {
 
     @objc func reachabilityChanged() {
         self.openSlidesButton.isEnabled = ReachabilityHelper.connection != .none
+        self.updatePreferredVideoBitrate()
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -166,6 +167,7 @@ class VideoViewController : UIViewController {
 
         let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
         self.player?.setVideo(resource: asset)
+        self.updatePreferredVideoBitrate()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
     }
 
@@ -201,6 +203,18 @@ class VideoViewController : UIViewController {
         self.navigationController?.setNavigationBarHidden(hiddenBars, animated: animated)
         self.tabBarController?.tabBar.isHidden = hiddenBars
         return hiddenBars
+    }
+
+    private func updatePreferredVideoBitrate() {
+        if let video = self.video, VideoPersistenceManager.shared.localAsset(for: video) == nil {
+            let videoQuaility: VideoQuality
+            if ReachabilityHelper.connection == .wifi {
+                videoQuaility = UserDefaults.standard.videoQualityOnWifi
+            } else {
+                videoQuaility = UserDefaults.standard.videoQualityOnCellular
+            }
+            self.player?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
+        }
     }
 
 }

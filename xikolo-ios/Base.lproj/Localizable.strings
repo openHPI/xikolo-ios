@@ -105,7 +105,7 @@
 "settings.course-item-content-preload.section-footer" = "Small-sized course material will be downloaded in advance for enrolled courses.";
 
 /* section header for preload setting for course content */
-"settings.course-item-content-preload.section-header.course content" = "Course Content";
+"settings.course-item-content-preload.section-header.course content" = "Preload Course Content";
 
 /* course content preload setting: wifi only */
 "settings.course-item-content-preload.wifi-only" = "Wifi only";
@@ -113,20 +113,26 @@
 /* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS app on GitHub";
 
-/* best video persistence quality */
-"settings.video-persistence-quality.best" = "Best";
+/* best video quality */
+"settings.video-quality.best" = "Best";
 
-/* high video persistence quality */
-"settings.video-persistence-quality.high" = "High";
+/* high video quality */
+"settings.video-quality.high" = "High";
 
-/* low video persistence quality */
-"settings.video-persistence-quality.low" = "Low";
+/* low video quality */
+"settings.video-quality.low" = "Low";
 
-/* medium video persistence quality */
-"settings.video-persistence-quality.medium" = "Medium";
+/* medium video quality */
+"settings.video-quality.medium" = "Medium";
 
 /* section title for download quality */
-"settings.video-persistence-quality.section-header.download quality" = "Download Quality";
+"settings.video-quality.section-header.download quality" = "Video Download Quality";
+
+/* section title for video quality on cellular connection */
+"settings.video-quality.section-header.on cellular" = "Video Quality using mobile data";
+
+/* section title for video quality on wifi connection */
+"settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

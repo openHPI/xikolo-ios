@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  AccountViewController.swift
 //  xikolo-ios
 //
 //  Created by Jonas Müller on 08.07.15.
@@ -13,7 +13,7 @@ import MessageUI
 
 import Result
 
-class SettingsViewController: UITableViewController {
+class AccountViewController: UITableViewController {
 
     enum HeaderHeight: CGFloat {
         case noContent = 190
@@ -160,9 +160,9 @@ class SettingsViewController: UITableViewController {
             self.open(url: URL(string: Brand.APP_PRIVACY_URL))
         case let githubIndexPath where githubIndexPath == tableView.indexPath(for: self.githubCell):
             self.open(url: URL(string: Brand.APP_GITHUB_URL))
-        case SettingsViewController.feedbackIndexPath:
+        case AccountViewController.feedbackIndexPath:
             self.sendFeedbackMail()
-        case SettingsViewController.logoutIndexPath:
+        case AccountViewController.logoutIndexPath:
             UserProfileHelper.logout()
         default:
             break
@@ -207,11 +207,11 @@ class SettingsViewController: UITableViewController {
     private func indexPathIncludingHiddenCells(for indexPath: IndexPath) -> IndexPath {
         var newIndexPath = indexPath
 
-        if !MFMailComposeViewController.canSendMail(), indexPath.section >= SettingsViewController.feedbackIndexPath.section {
+        if !MFMailComposeViewController.canSendMail(), indexPath.section >= AccountViewController.feedbackIndexPath.section {
             newIndexPath.section += 1
         }
 
-        if !UserProfileHelper.isLoggedIn(), indexPath.section >= SettingsViewController.logoutIndexPath.section {
+        if !UserProfileHelper.isLoggedIn(), indexPath.section >= AccountViewController.logoutIndexPath.section {
             newIndexPath.section += 1
         }
 
@@ -249,13 +249,12 @@ class SettingsViewController: UITableViewController {
             "app name: \(UIApplication.appName)",
             "app version: \(UIApplication.appVersion)",
             "app build: \(UIApplication.appBuild)",
-
         ]
         return components.joined(separator: "\n")
     }
 }
 
-extension SettingsViewController: MFMailComposeViewControllerDelegate {
+extension AccountViewController: MFMailComposeViewControllerDelegate {
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)

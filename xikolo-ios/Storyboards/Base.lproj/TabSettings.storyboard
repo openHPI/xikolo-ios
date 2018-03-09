@@ -176,7 +176,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Video Quality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TFS-M6-7DR">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Video Streaming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TFS-M6-7DR">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -196,7 +196,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Preload Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W0A-Ki-Fhq">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Download" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W0A-Ki-Fhq">
                                                     <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -284,7 +284,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KWX-En-m9x">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -362,7 +362,7 @@
             </objects>
             <point key="canvasLocation" x="938" y="1410"/>
         </scene>
-        <!--Preload Content-->
+        <!--Download-->
         <scene sceneID="gvZ-9o-0M6">
             <objects>
                 <tableViewController id="eyj-JL-OJ2" customClass="DownloadSettingsViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
@@ -402,13 +402,13 @@
                             <outlet property="delegate" destination="eyj-JL-OJ2" id="yHR-lm-geV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Preload Content" largeTitleDisplayMode="never" id="D4w-gU-Zbc"/>
+                    <navigationItem key="navigationItem" title="Download" largeTitleDisplayMode="never" id="D4w-gU-Zbc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKh-MJ-Tiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1718" y="1394"/>
         </scene>
-        <!--Video Quality-->
+        <!--Video Streaming-->
         <scene sceneID="ceG-Mj-fvt">
             <objects>
                 <tableViewController id="SN4-Xn-n1e" customClass="VideoStreamingSettingsViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
@@ -448,7 +448,7 @@
                             <outlet property="delegate" destination="SN4-Xn-n1e" id="apt-2t-FGJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Video Quality" largeTitleDisplayMode="never" id="Xwk-nE-GTG"/>
+                    <navigationItem key="navigationItem" title="Video Streaming" largeTitleDisplayMode="never" id="Xwk-nE-GTG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYQ-jN-7ru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

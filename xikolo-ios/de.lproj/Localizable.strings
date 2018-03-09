@@ -105,7 +105,7 @@
 "settings.course-item-content-preload.section-footer" = "Für eingeschriebene Kurse werden kleine Materialen im Voraus geladen.";
 
 /* section header for preload setting for course content */
-"settings.course-item-content-preload.section-header.course content" = "Kursinhalte";
+"settings.course-item-content-preload.section-header.course content" = "Kursinhalte vorladen";
 
 /* course content preload setting: wifi only */
 "settings.course-item-content-preload.wifi-only" = "Nur mit WLAN";
@@ -126,13 +126,13 @@
 "settings.video-quality.medium" = "Mittel";
 
 /* section title for download quality */
-"settings.video-quality.section-header.download quality" = "Download-Qualität";
+"settings.video-quality.section-header.download quality" = "Download-Qualität für Videos";
 
 /* section title for video quality on cellular connection */
-"settings.video-quality.section-header.on cellular" = "Video-Streaming mit mobilen Daten";
+"settings.video-quality.section-header.on cellular" = "Video-Qualität mit mobilen Daten";
 
 /* section title for video quality on wifi connection */
-"settings.video-quality.section-header.on wifi" = "Video-Streaming mit WLAN";
+"settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

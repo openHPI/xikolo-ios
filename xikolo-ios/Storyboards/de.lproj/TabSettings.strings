@@ -2,8 +2,8 @@
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "KhH-tO-TnH"; */
 "KhH-tO-TnH.title" = "Einstellungen";
 
-/* Class = "UILabel"; text = "Preload Content"; ObjectID = "W0A-Ki-Fhq"; */
-"W0A-Ki-Fhq.text" = "Inhalte vorladen";
+/* Class = "UILabel"; text = "Download"; ObjectID = "W0A-Ki-Fhq"; */
+"W0A-Ki-Fhq.text" = "Download";
 
 /* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "csD-D9-eda"; */
 "csD-D9-eda.text" = "Datenschutzerklärung";
@@ -20,14 +20,14 @@
 /* Class = "UILabel"; text = "Send Feedback"; ObjectID = "KWX-En-m9x"; */
 "KWX-En-m9x.text" = "Feedback senden";
 
-/* Class = "UILabel"; text = "Video Quality"; ObjectID = "TFS-M6-7DR"; */
-"TFS-M6-7DR.text" = "Video-Qualität";
+/* Class = "UILabel"; text = "Video Streaming"; ObjectID = "TFS-M6-7DR"; */
+"TFS-M6-7DR.text" = "Video-Streaming";
 
 /* Class = "UILabel"; text = "Logout"; ObjectID = "UOY-X6-cgU"; */
 "UOY-X6-cgU.text" = "Ausloggen";
 
-/* Class = "UINavigationItem"; title = "Video Quality"; ObjectID = "Xwk-nE-GTG"; */
-"Xwk-nE-GTG.title" = "Video-Qualität";
+/* Class = "UINavigationItem"; title = "Video Streaming"; ObjectID = "Xwk-nE-GTG"; */
+"Xwk-nE-GTG.title" = "Video-Streaming";
 
-/* Class = "UINavigationItem"; title = "Preload Content"; ObjectID = "D4w-gU-Zbc"; */
-"D4w-gU-Zbc.title" = "Inhalte vorladen";
+/* Class = "UINavigationItem"; title = "Download"; ObjectID = "D4w-gU-Zbc"; */
+"D4w-gU-Zbc.title" = "Download";

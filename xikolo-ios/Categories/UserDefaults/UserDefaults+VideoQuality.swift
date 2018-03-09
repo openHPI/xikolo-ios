@@ -21,13 +21,13 @@ enum VideoQuality: Int, CustomStringConvertible {
     var description: String {
         switch self {
         case .low:
-            return NSLocalizedString("settings.video-persistence-quality.low", comment: "low video persistence quality")
+            return NSLocalizedString("settings.video-quality.low", comment: "low video quality")
         case .medium:
-            return NSLocalizedString("settings.video-persistence-quality.medium", comment: "medium video persistence quality")
+            return NSLocalizedString("settings.video-quality.medium", comment: "medium video quality")
         case .high:
-            return NSLocalizedString("settings.video-persistence-quality.high", comment: "high video persistence quality")
+            return NSLocalizedString("settings.video-quality.high", comment: "high video quality")
         case .best:
-            return NSLocalizedString("settings.video-persistence-quality.best", comment: "best video persistence quality")
+            return NSLocalizedString("settings.video-quality.best", comment: "best video quality")
         }
     }
 

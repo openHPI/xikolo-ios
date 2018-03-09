@@ -113,20 +113,20 @@
 /* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS app on GitHub";
 
-/* best video persistence quality */
-"settings.video-persistence-quality.best" = "Best";
+/* best video quality */
+"settings.video-quality.best" = "Best";
 
-/* high video persistence quality */
-"settings.video-persistence-quality.high" = "High";
+/* high video quality */
+"settings.video-quality.high" = "High";
 
-/* low video persistence quality */
-"settings.video-persistence-quality.low" = "Low";
+/* low video quality */
+"settings.video-quality.low" = "Low";
 
-/* medium video persistence quality */
-"settings.video-persistence-quality.medium" = "Medium";
+/* medium video quality */
+"settings.video-quality.medium" = "Medium";
 
 /* section title for download quality */
-"settings.video-persistence-quality.section-header.download quality" = "Download Quality";
+"settings.video-quality.section-header.download quality" = "Download Quality";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

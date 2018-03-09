@@ -1,5 +1,4 @@
 opt_in_rules:
-- attributes
 - closure_end_indentation
 - closure_spacing
 - empty_count
@@ -52,18 +51,6 @@ custom_rules:
     regex: '\} *\) *\{'
     name: "Multiple Closure Params"
     message: "Don't use multiple in-line closures – save one or more of them to variables instead."
-    severity: warning
-  too_much_indentation:
-    included: ".*.swift"
-    regex: '\n {0}[^\s\/][^\n]*[^,|&]\n+ {5,}\S|\n {4}[^\s\/][^\n]*[^,|&]\n+ {9,}\S|\n {8}[^\s\/][^\n]*[^,|&]\n+ {13,}\S|\n {12}[^\s\/][^\n]*[^,|&]\n+ {17,}\S|\n {16}[^\s\/][^\n]*[^,|&]\n+ {21,}\S|\n {20}[^\s\/][^\n]*[^,|&]\n+ {25,}\S'
-    name: "Too Much Indentation"
-    message: "Don't indent code by more than 4 whitespaces."
-    severity: warning
-  too_much_unindentation:
-    included: ".*.swift"
-    regex: ' {28}[^\s\.](.|[^\n]*[^\)][^\ ][^\}])\n+ {0,23}[^\s\/]| {24}[^\s\.](.|[^\n]*[^\)][^\ ][^\}])\n+ {0,19}[^\s\/]| {20}[^\s\.](.|[^\n]*[^\)][^\ ][^\}])\n+ {0,15}[^\s\/]| {16}[^\s\.](.|[^\n]*[^\)][^\ ][^\}])\n+ {0,11}[^\s\/]| {12}[^\s\.](.|[^\n]*[^\)][^\ ][^\}])\n+ {0,7}[^\s\/]| {8}[^\s\.](.|[^\n]*[^\)][^\ ][^\}])\n+ {0,3}[^\s\/]'
-    name: "Too Much Unindentation"
-    message: "Don't unindent code by more than 4 whitespaces."
     severity: warning
   unnecessary_case_break:
     included: ".*.swift"

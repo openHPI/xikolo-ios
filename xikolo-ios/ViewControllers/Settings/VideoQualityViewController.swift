@@ -27,9 +27,11 @@ class VideoQualityViewController: UITableViewController {
             return NSLocalizedString("settings.video-quality.section-header.download quality",
                                      comment: "section title for download quality")
         case 1:
-            return "Cellular"
+            return NSLocalizedString("settings.video-quality.section-header.on cellular",
+                                     comment: "section title for video quality on cellular connection")
         case 2:
-            return "Wifi"
+            return NSLocalizedString("settings.video-quality.section-header.on wifi",
+                                     comment: "section title for video quality on wifi connection")
         default:
             return nil
         }

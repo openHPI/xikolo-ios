@@ -95,11 +95,11 @@
             </objects>
             <point key="canvasLocation" x="717" y="427"/>
         </scene>
-        <!--SettingsNavigationController-->
+        <!--AccountNavigationController-->
         <scene sceneID="w9f-ev-CqT">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SettingsNavigationController" storyboardName="TabSettings" referencedIdentifier="SettingsNavigationController" id="qPo-RG-mu4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="HAW-UO-Q11">
+                <viewControllerPlaceholder storyboardIdentifier="AccountNavigationController" storyboardName="TabAccount" referencedIdentifier="AccountNavigationController" id="qPo-RG-mu4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Account" id="HAW-UO-Q11">
                         <attributedString key="userComments">
                             <fragment content="#bc-ignore!">
                                 <attributes>

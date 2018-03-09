@@ -278,7 +278,7 @@
 		24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		24BA41041D3F9B4200E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
-		24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
+		24BA41061D3F9B5500E38C2C /* TabAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */; };
 		24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		24BA41091D3F9B6200E38C2C /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		24BA410A1D3F9B6900E38C2C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
@@ -287,7 +287,7 @@
 		24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
 		24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		24BA41111D3F9B7D00E38C2C /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
-		24BA41151D3F9B8800E38C2C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
+		24BA41151D3F9B8800E38C2C /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* AccountViewController.swift */; };
 		24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
 		24BA411A1D3F9B9500E38C2C /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */; };
@@ -1155,8 +1155,8 @@
 		70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		70D1EAE41EF0AC710088C0FF /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		70D1EAE51EF0AC720088C0FF /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
-		70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
-		70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
+		70D1EAE71EF0AC7D0088C0FF /* TabAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */; };
+		70D1EAE81EF0AC7E0088C0FF /* TabAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */; };
 		70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
 		70D1EAEC1EF0AC9A0088C0FF /* CourseDatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDatesTableViewController.swift */; };
 		70D1EAED1EF0AC9D0088C0FF /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
@@ -1172,7 +1172,7 @@
 		70D1EAF71EF0ACBA0088C0FF /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
 		70D1EAF81EF0ACBC0088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		70D1EAF91EF0ACBF0088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
+		70D1EAFC1EF0ACC80088C0FF /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* AccountViewController.swift */; };
 		70D1EAFE1EF0ACCD0088C0FF /* CustomHeaderWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */; };
 		70D1EB001EF0ACD80088C0FF /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		70D1EB011EF0ACDA0088C0FF /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */; };
@@ -1374,7 +1374,7 @@
 		ABA0BB441E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */; };
 		ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
-		ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */; };
+		ABA0F0131DF8CC2F0001D88D /* TabAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */; };
 		ABA0F0141DF8CC360001D88D /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
 		ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		ABA0F0171DF8CC950001D88D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
@@ -1386,7 +1386,7 @@
 		ABA0F01E1DF8CCAF0001D88D /* CourseDecisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */; };
 		ABA0F01F1DF8CCB10001D88D /* DropdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEE0011D8807F5007D49FB /* DropdownTableViewController.swift */; };
 		ABA0F0201DF8CCB40001D88D /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
-		ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
+		ABA0F0241DF8CCBF0001D88D /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* AccountViewController.swift */; };
 		ABA0F0271DF8CCCA0001D88D /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
 		ABA0F0281DF8CCCC0001D88D /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
 		ABA0F0291DF8CCCF0001D88D /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */; };
@@ -1634,7 +1634,7 @@
 		F80D67931B98683400E27520 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
 		F80D67981B98751700E27520 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		F81523931B67AC9F009803B1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81523921B67AC9F009803B1 /* Routes.swift */; };
-		F852253A1B4D27D700C9BF56 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* SettingsViewController.swift */; };
+		F852253A1B4D27D700C9BF56 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* AccountViewController.swift */; };
 		F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */; };
 		F875A5171B5697640030F38C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		F89473C21B3C46FD00553882 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
@@ -1918,7 +1918,7 @@
 		50DD35141FD83D5E002B40CC /* CourseListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseListLayout.swift; path = "xikolo-ios/Layouts/CourseListLayout.swift"; sourceTree = SOURCE_ROOT; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamingSettingsViewController.swift; sourceTree = "<group>"; };
-		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
+		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabAccount.strings; sourceTree = "<group>"; };
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50EFACB01FFE3C0100169C35 /* Optional+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+require.swift"; sourceTree = "<group>"; };
 		50EFACBD1FFFB25400169C35 /* SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCastable.swift; sourceTree = "<group>"; };
@@ -2019,7 +2019,7 @@
 		AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		AB9AF2D11CF72D9D00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabCourses.storyboard; sourceTree = "<group>"; };
 		AB9AF2D61CF72E8E00ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabDashboard.storyboard; sourceTree = "<group>"; };
-		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabSettings.storyboard; sourceTree = "<group>"; };
+		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabAccount.storyboard; sourceTree = "<group>"; };
 		ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLabelHelper.swift; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
@@ -2066,7 +2066,7 @@
 		F80D67991B98751700E27520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F80D679B1B9875BA00E27520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F81523921B67AC9F009803B1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
-		F85225371B4D27D700C9BF56 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F85225371B4D27D700C9BF56 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		F85225401B4D299C00C9BF56 /* UserProfileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileHelper.swift; sourceTree = "<group>"; };
 		F875A5161B5697640030F38C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89473C11B3C46FD00553882 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -2726,14 +2726,14 @@
 			path = "xikolo-ios";
 			sourceTree = "<group>";
 		};
-		AB6AE0C41CF7D69200708654 /* Settings */ = {
+		AB6AE0C41CF7D69200708654 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				F85225371B4D27D700C9BF56 /* SettingsViewController.swift */,
+				F85225371B4D27D700C9BF56 /* AccountViewController.swift */,
 				50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */,
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 			);
-			path = Settings;
+			path = Account;
 			sourceTree = "<group>";
 		};
 		AB6AE0C51CF7D6A700708654 /* Courses */ = {
@@ -2884,7 +2884,7 @@
 				AB6AE0C61CF7D6B000708654 /* Dashboard */,
 				AB6AE0C51CF7D6A700708654 /* Courses */,
 				AB6AE0C71CF7D6CC00708654 /* News */,
-				AB6AE0C41CF7D69200708654 /* Settings */,
+				AB6AE0C41CF7D69200708654 /* Account */,
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
 			);
 			path = ViewControllers;
@@ -2936,7 +2936,7 @@
 				AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */,
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
-				AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */,
+				AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */,
 				50502E2D1FD04E56000A8D35 /* CourseContent.storyboard */,
 				508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */,
 				50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */,
@@ -3532,7 +3532,7 @@
 				AB947CE31E19E1EC009888B0 /* Settings.bundle in Resources */,
 				24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */,
 				508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
-				24BA41061D3F9B5500E38C2C /* TabSettings.storyboard in Resources */,
+				24BA41061D3F9B5500E38C2C /* TabAccount.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Common.stringsdict in Resources */,
 				50502E291FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
@@ -3643,7 +3643,7 @@
 				5014E2ED1FCEC1B5007255B5 /* TabNews.storyboard in Resources */,
 				502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */,
 				70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */,
-				70D1EAE81EF0AC7E0088C0FF /* TabSettings.storyboard in Resources */,
+				70D1EAE81EF0AC7E0088C0FF /* TabAccount.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3681,7 +3681,7 @@
 				50502E281FD04E56000A8D35 /* CourseContent.storyboard in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				508BD0AA1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
-				70D1EAE71EF0AC7D0088C0FF /* TabSettings.storyboard in Resources */,
+				70D1EAE71EF0AC7D0088C0FF /* TabAccount.storyboard in Resources */,
 				501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				2490C4D31D1D6F7100F42949 /* Common.strings in Resources */,
@@ -3706,7 +3706,7 @@
 				ABA0F0FA1DF8CEB30001D88D /* Common.strings in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
 				50DD35301FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
-				ABA0F0131DF8CC2F0001D88D /* TabSettings.storyboard in Resources */,
+				ABA0F0131DF8CC2F0001D88D /* TabAccount.storyboard in Resources */,
 				ABA0F02C1DF8CCDD0001D88D /* assets-ios.xcassets in Resources */,
 				5014E2F81FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				AB947CE41E19E1EC009888B0 /* Settings.bundle in Resources */,
@@ -4785,7 +4785,7 @@
 				24BA40D01D3F9AEE00E38C2C /* CourseItemHelper.swift in Sources */,
 				ABCE24311E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				50F45AE4200D06BD009304A3 /* Date.swift in Sources */,
-				24BA41151D3F9B8800E38C2C /* SettingsViewController.swift in Sources */,
+				24BA41151D3F9B8800E38C2C /* AccountViewController.swift in Sources */,
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
 				501F947A200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
@@ -5421,7 +5421,7 @@
 				50B15BEA1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				70D1EA161EF0AAD40088C0FF /* CourseCertificates.swift in Sources */,
 				70D1E9F71EF0AA980088C0FF /* UIView+shake.swift in Sources */,
-				70D1EAFC1EF0ACC80088C0FF /* SettingsViewController.swift in Sources */,
+				70D1EAFC1EF0ACC80088C0FF /* AccountViewController.swift in Sources */,
 				702520841F6FFFD7003E0F80 /* UserDefaults+VideoQuality.swift in Sources */,
 				70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */,
 				50F57DC51FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
@@ -5838,7 +5838,7 @@
 				5019A7631F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
 				50BEC82F2036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */,
 				50F7202D1F28E29B00779995 /* Video+Download.swift in Sources */,
-				F852253A1B4D27D700C9BF56 /* SettingsViewController.swift in Sources */,
+				F852253A1B4D27D700C9BF56 /* AccountViewController.swift in Sources */,
 				50F57D3A1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				501212161FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
@@ -5924,7 +5924,7 @@
 				AB17C5871DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
 				5057ED8F1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
 				5051F8151FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
-				ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */,
+				ABA0F0241DF8CCBF0001D88D /* AccountViewController.swift in Sources */,
 				50F57DDC1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				50EFACB71FFE3C0100169C35 /* Optional+require.swift in Sources */,
 				ABA0F0F61DF8CEAB0001D88D /* Settings.swift in Sources */,
@@ -6387,13 +6387,13 @@
 			name = TabDashboard.storyboard;
 			sourceTree = "<group>";
 		};
-		AB9AF2D81CF72EF100ED3EB0 /* TabSettings.storyboard */ = {
+		AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AB9AF2D91CF72EF100ED3EB0 /* Base */,
 				50E16D041F47070A00D67632 /* de */,
 			);
-			name = TabSettings.storyboard;
+			name = TabAccount.storyboard;
 			sourceTree = "<group>";
 		};
 		ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */ = {

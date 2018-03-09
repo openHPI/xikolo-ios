@@ -31,16 +31,16 @@ class CircularProgressView: UIView {
         }
     }
 
-    @IBInspectable var progress: CGFloat {
-        get {
-            return self.progressLayer.progress
-        }
-    }
-
     @IBInspectable var indeterminateProgress: CGFloat = Defaults.indeterminateProgress
     @IBInspectable var indeterminateDuration: CFTimeInterval = Defaults.indeterminateDuration
 
     var timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+
+    var progress: CGFloat {
+        get {
+            return self.progressLayer.progress
+        }
+    }
 
     private var progressLayer: CircularProgressLayer {
         get {

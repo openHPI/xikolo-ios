@@ -605,10 +605,10 @@
 		5057ED831FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */; };
 		5057ED861FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */; };
 		5057ED891FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */; };
-		5057ED8D1FE3DB230096095B /* PreloadContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* PreloadContentViewController.swift */; };
-		5057ED8E1FE3DB230096095B /* PreloadContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* PreloadContentViewController.swift */; };
-		5057ED8F1FE3DB230096095B /* PreloadContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* PreloadContentViewController.swift */; };
-		5057ED901FE3DB230096095B /* PreloadContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* PreloadContentViewController.swift */; };
+		5057ED8D1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
+		5057ED8E1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
+		5057ED8F1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
+		5057ED901FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
 		5060A5221F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A5251F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
 		5060A5281F177304007896FF /* DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedContent.swift */; };
@@ -729,10 +729,10 @@
 		50DD352F1FD8983E002B40CC /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
 		50DD35301FD8983E002B40CC /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
 		50DD35311FD8983E002B40CC /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
-		50E16CF21F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
-		50E16CF31F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
-		50E16CF41F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
-		50E16CF51F46E28200D67632 /* VideoQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */; };
+		50E16CF21F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
+		50E16CF31F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
+		50E16CF41F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
+		50E16CF51F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
 		50ED3C4F1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50ED3C501F4AE7FC00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50ED3C511F4AE7FD00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
@@ -1889,7 +1889,7 @@
 		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseContent.strings; sourceTree = "<group>"; };
 		5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+contentPreload.swift"; sourceTree = "<group>"; };
-		5057ED8C1FE3DB230096095B /* PreloadContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadContentViewController.swift; sourceTree = "<group>"; };
+		5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadSettingsViewController.swift; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedContent.swift; sourceTree = "<group>"; };
 		5068B9CA1FEA94A10047A75E /* Future+retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+retry.swift"; sourceTree = "<group>"; };
 		506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
@@ -1917,7 +1917,7 @@
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
 		50DD35141FD83D5E002B40CC /* CourseListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseListLayout.swift; path = "xikolo-ios/Layouts/CourseListLayout.swift"; sourceTree = SOURCE_ROOT; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
-		50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoQualityViewController.swift; sourceTree = "<group>"; };
+		50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamingSettingsViewController.swift; sourceTree = "<group>"; };
 		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabSettings.strings; sourceTree = "<group>"; };
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50EFACB01FFE3C0100169C35 /* Optional+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+require.swift"; sourceTree = "<group>"; };
@@ -2730,8 +2730,8 @@
 			isa = PBXGroup;
 			children = (
 				F85225371B4D27D700C9BF56 /* SettingsViewController.swift */,
-				50E16CF11F46E28200D67632 /* VideoQualityViewController.swift */,
-				5057ED8C1FE3DB230096095B /* PreloadContentViewController.swift */,
+				50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */,
+				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -4810,7 +4810,7 @@
 				24BA40E81D3F9B1100E38C2C /* Brand.swift in Sources */,
 				24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
 				50F57DD91FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
-				5057ED8E1FE3DB230096095B /* PreloadContentViewController.swift in Sources */,
+				5057ED8E1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
 				5051F8121FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */,
 				50F57DF31FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
@@ -4819,7 +4819,7 @@
 				50F57DB21FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				ABC8A1691D689ED80059CEF2 /* LTIExercise.swift in Sources */,
 				50F57DE61FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
-				50E16CF31F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
+				50E16CF31F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */,
 				ABFCF7711E81EEC40043C7B7 /* UserProfile.swift in Sources */,
 				24BA40D21D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
 				4E2B82241DDC9DB200559217 /* CourseActivityViewController.swift in Sources */,
@@ -5394,7 +5394,7 @@
 				70D1EAD41EF0AC240088C0FF /* VideoHelper.swift in Sources */,
 				50F97ABE1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				70D1EAB31EF0ABFC0088C0FF /* CourseItemHelper.swift in Sources */,
-				5057ED901FE3DB230096095B /* PreloadContentViewController.swift in Sources */,
+				5057ED901FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
 				5019A7661F20ACE6008C8138 /* Video+DetailedContent.swift in Sources */,
 				70D1EB221EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */,
 				70D1EAEC1EF0AC9A0088C0FF /* CourseDatesTableViewController.swift in Sources */,
@@ -5416,7 +5416,7 @@
 				5057ED891FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */,
 				70D1EA4A1EF0AB130088C0FF /* PlatformEvent.swift in Sources */,
 				70D1EB061EF0ACE60088C0FF /* CenterCellCollectionViewFlowLayout.swift in Sources */,
-				50E16CF51F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
+				50E16CF51F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */,
 				50D7AEA51F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
 				50B15BEA1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				70D1EA161EF0AAD40088C0FF /* CourseCertificates.swift in Sources */,
@@ -5764,7 +5764,7 @@
 				ABAC56091D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
 				4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
 				5051F80F1FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
-				5057ED8D1FE3DB230096095B /* PreloadContentViewController.swift in Sources */,
+				5057ED8D1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
 				AB2802D41D2AC425008C8BAE /* AnnouncementCell.swift in Sources */,
 				50F57DD61FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				ABC8A1671D689ED80059CEF2 /* LTIExercise.swift in Sources */,
@@ -5772,7 +5772,7 @@
 				50F57DF01FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				24A179F01CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */,
 				50F57DAF1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
-				50E16CF21F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
+				50E16CF21F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */,
 				50F57DE31FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				ABFCF76F1E81EEC40043C7B7 /* UserProfile.swift in Sources */,
 				4E2B82231DDC9DB200559217 /* CourseActivityViewController.swift in Sources */,
@@ -5922,7 +5922,7 @@
 				AB17C5771DFCAE040013BBCD /* CourseDatesTableViewController.swift in Sources */,
 				ABA0F0991DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
 				AB17C5871DFCC5CB0013BBCD /* PlatformEvent.swift in Sources */,
-				5057ED8F1FE3DB230096095B /* PreloadContentViewController.swift in Sources */,
+				5057ED8F1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
 				5051F8151FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				ABA0F0241DF8CCBF0001D88D /* SettingsViewController.swift in Sources */,
 				50F57DDC1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
@@ -5932,7 +5932,7 @@
 				50F57DB51FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				50F57DE91FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */,
-				50E16CF41F46E28200D67632 /* VideoQualityViewController.swift in Sources */,
+				50E16CF41F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */,
 				ABFCF7731E81EEC40043C7B7 /* UserProfile.swift in Sources */,
 				ABA0F0781DF8CDC00001D88D /* PeerAssessment.swift in Sources */,
 				ABA0F0DD1DF8CE6B0001D88D /* AnnouncementHelper.swift in Sources */,

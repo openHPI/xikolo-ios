@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class VideoQualityViewController: UITableViewController {
+class VideoStreamingSettingsViewController: UITableViewController {
 
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,12 +24,9 @@ class VideoQualityViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return NSLocalizedString("settings.video-quality.section-header.download quality",
-                                     comment: "section title for download quality")
-        case 1:
             return NSLocalizedString("settings.video-quality.section-header.on cellular",
                                      comment: "section title for video quality on cellular connection")
-        case 2:
+        case 1:
             return NSLocalizedString("settings.video-quality.section-header.on wifi",
                                      comment: "section title for video quality on wifi connection")
         default:
@@ -39,7 +36,7 @@ class VideoQualityViewController: UITableViewController {
 
     // delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoQualityCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsOptionBasicCell", for: indexPath)
         let videoQuality = VideoQuality.orderedValues[indexPath.row]
         cell.textLabel?.text = videoQuality.description
 
@@ -74,10 +71,8 @@ class VideoQualityViewController: UITableViewController {
     private func videoQualityKeyPath(for section: Int) -> ReferenceWritableKeyPath<UserDefaults, VideoQuality>? {
         switch section {
         case 0:
-            return \UserDefaults.videoQualityForDownload
-        case 1:
             return \UserDefaults.videoQualityOnCellular
-        case 2:
+        case 1:
             return \UserDefaults.videoQualityOnWifi
         default:
             return nil

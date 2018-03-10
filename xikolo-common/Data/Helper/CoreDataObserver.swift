@@ -1,9 +1,6 @@
 //
-//  CoreDataObserver.swift
-//  xikolo-ios
-//
-//  Created by Jan Renz and Max Bothe
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation

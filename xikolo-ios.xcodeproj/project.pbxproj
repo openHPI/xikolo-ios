@@ -1966,8 +1966,8 @@
 		709C93031EF0952500F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C932C1EF0996C00F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		709C93511EF09BB500F8F045 /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-brand.xcassets"; path = "moocHOUSE/assets-brand.xcassets"; sourceTree = "<group>"; };
-		709C93521EF09BB500F8F045 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = moocHOUSE/Brand.swift; sourceTree = "<group>"; };
+		709C93511EF09BB500F8F045 /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-brand.xcassets"; sourceTree = "<group>"; };
+		709C93521EF09BB500F8F045 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		709C93581EF09C2C00F8F045 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		709C93591EF09C2C00F8F045 /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
@@ -2046,8 +2046,8 @@
 		ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIExerciseHelper.swift; sourceTree = "<group>"; };
 		ABE0605E1DF8BDDE00FC186D /* openWHO-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "openWHO-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE060841DF8BFE100FC186D /* openWHO-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "openWHO-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABE060911DF8C18D00FC186D /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-brand.xcassets"; path = "openWHO/assets-brand.xcassets"; sourceTree = "<group>"; };
-		ABE060921DF8C18D00FC186D /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Brand.swift; path = openWHO/Brand.swift; sourceTree = "<group>"; };
+		ABE060911DF8C18D00FC186D /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-brand.xcassets"; sourceTree = "<group>"; };
+		ABE060921DF8C18D00FC186D /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		ABE060A21DF8C24600FC186D /* assets-tvos-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "assets-tvos-brand.xcassets"; path = "openWHO/assets-tvos-brand.xcassets"; sourceTree = "<group>"; };
 		ABE060A31DF8C24600FC186D /* Brand+tvOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Brand+tvOS.swift"; path = "openWHO/Brand+tvOS.swift"; sourceTree = "<group>"; };
@@ -2251,10 +2251,10 @@
 		2433A5AB1CE641E70060DD98 /* ViewHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
 				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
 				AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */,
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
-				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
 				ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */,
 			);
 			path = ViewHelpers;
@@ -2654,7 +2654,7 @@
 				709C93511EF09BB500F8F045 /* assets-brand.xcassets */,
 				709C93521EF09BB500F8F045 /* Brand.swift */,
 			);
-			name = moocHOUSE;
+			path = moocHOUSE;
 			sourceTree = "<group>";
 		};
 		709C93551EF09BFA00F8F045 /* moocHOUSE */ = {
@@ -2833,7 +2833,7 @@
 				ABE060911DF8C18D00FC186D /* assets-brand.xcassets */,
 				ABE060921DF8C18D00FC186D /* Brand.swift */,
 			);
-			name = openWHO;
+			path = openWHO;
 			sourceTree = "<group>";
 		};
 		ABE0609B1DF8C1B300FC186D /* openWHO */ = {

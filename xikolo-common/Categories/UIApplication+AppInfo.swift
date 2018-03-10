@@ -1,16 +1,13 @@
 //
-//  UIApplication+AppInfo.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 02.04.17.
-//  Copyright © 2017 HPI. All rights reserved.
-//  Inspired by http://stackoverflow.com/a/7608711/2387552
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
 
 extension UIApplication {
 
+    //  Inspired by http://stackoverflow.com/a/7608711/2387552
     static let appName: String = {
         let key = kCFBundleNameKey as String
         let appName = Bundle.main.object(forInfoDictionaryKey: key) as? String

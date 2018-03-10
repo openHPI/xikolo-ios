@@ -172,7 +172,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
         }
         return nil
     }
-    
+
 }
 
 protocol TableViewResultsControllerConfigurationProtocol {

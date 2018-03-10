@@ -25,12 +25,12 @@ class AbstractLoginViewController : UIViewController {
             self?.handleLoginFailure(with: error)
         }
     }
-    
+
     func handleLoginSuccess(with token: String) {
         self.delegate?.didSuccessfullyLogin()
         self.presentingViewController?.dismiss(animated: true)
     }
-    
+
     func handleLoginFailure(with error: Error) {
         self.emailField.shake()
         self.passwordField.shake()

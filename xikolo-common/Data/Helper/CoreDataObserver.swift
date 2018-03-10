@@ -17,7 +17,7 @@ class CoreDataObserver {
     func stopObserving() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
     }
-    
+
     @objc func coreDataChange(note: Notification) {
         var shouldCheckForChangesToPush = false
 

@@ -6,7 +6,7 @@
 import XCTest
 
 class Screenshots: XCTestCase {
-        
+
     override func setUp() {
         super.setUp()
 
@@ -46,5 +46,5 @@ class Screenshots: XCTestCase {
         sleep(4)
         snapshot("4-Video-Item")
     }
-    
+
 }

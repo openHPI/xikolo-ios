@@ -14,5 +14,5 @@ struct PeerAssessmentHelper {
         let query = SingleResourceQuery(resource: peerAssessment)
         return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
-    
+
 }

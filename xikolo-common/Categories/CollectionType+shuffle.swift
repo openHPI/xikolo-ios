@@ -20,7 +20,7 @@ extension MutableCollection where Index == Int, IndexDistance == Int {
             swap(&self[i], &self[j])
         }
     }
-    
+
 }
 
 extension Collection {

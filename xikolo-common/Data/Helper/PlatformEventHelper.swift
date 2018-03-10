@@ -14,5 +14,5 @@ struct PlatformEventHelper {
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
-    
+
 }

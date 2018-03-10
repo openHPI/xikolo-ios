@@ -18,7 +18,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet weak var enrollmentButton: SimpleRoundedButton!
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
-    
+
     @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {
             if !course.hasEnrollment {
@@ -31,10 +31,10 @@ class CourseDetailViewController: UIViewController {
         }
     }
     var course: Course!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
@@ -168,6 +168,5 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion:nil)
     }
-    
 
 }

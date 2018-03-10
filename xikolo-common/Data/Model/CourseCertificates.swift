@@ -28,5 +28,5 @@ final class CourseCertificates : NSObject, NSCoding, IncludedPullable {
         coder.encode(self.recordOfAchievement, forKey: "record_of_achievement")
         coder.encode(self.certificate, forKey: "qualified_certificate")
     }
-    
+
 }

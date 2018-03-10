@@ -18,7 +18,7 @@ class NetworkHelper {
         headers[Routes.HEADER_USER_PLATFORM] = Routes.HEADER_USER_PLATFORM_VALUE
         return headers
     }
-    
+
     class func getRequestForURL(_ url: String) -> NSMutableURLRequest {
         //TODO: test whether url is a valid url
         let url = URL(string: url).require(hint: "Can't build URLRequest from invalid URL")

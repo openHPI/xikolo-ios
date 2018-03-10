@@ -24,5 +24,5 @@ final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
         coder.encode(available, forKey: "available")
         coder.encode(threshold, forKey: "threshold")
     }
-    
+
 }

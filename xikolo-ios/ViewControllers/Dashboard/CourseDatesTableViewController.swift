@@ -117,7 +117,7 @@ extension CourseDatesTableViewController {
         vc.course = course
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
 }
 
 struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfiguration {
@@ -160,5 +160,5 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
         self.refresh()
     }
-    
+
 }

@@ -37,17 +37,17 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
             singleSignOnView.isHidden = true
         #endif
     }
-    
+
     override func login() {
         loginButton.startAnimating()
         super.login()
     }
-    
+
     override func handleLoginSuccess(with token: String) {
         loginButton.stopAnimating()
         super.handleLoginSuccess(with: token)
     }
-    
+
     override func handleLoginFailure(with error: Error) {
         loginButton.stopAnimating()
         super.handleLoginFailure(with: error)

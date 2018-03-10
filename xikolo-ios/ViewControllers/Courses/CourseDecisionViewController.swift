@@ -39,7 +39,7 @@ class CourseDecisionViewController: UIViewController {
         SpotlightHelper.setUserActivity(for: self.course)
         CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
     }
-  
+
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
 
     @IBAction func tapped(_ sender: Any) {

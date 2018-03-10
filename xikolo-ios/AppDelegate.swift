@@ -1,9 +1,6 @@
 //
-//  AppDelegate.swift
-//  xikolo-ios
-//
-//  Created by Jan Renz on 25/06/15.
-//  Copyright © 2015 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Firebase

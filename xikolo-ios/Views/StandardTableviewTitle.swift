@@ -1,9 +1,6 @@
 //
-//  StandardTableviewTitle.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 16.05.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation

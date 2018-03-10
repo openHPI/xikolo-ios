@@ -24,8 +24,19 @@ opt_in_rules:
 included:
 - xikolo-common
 - xikolo-ios
+- UI Tests
+
+excluded:
+- UI Tests/SnapshotHelper.swift
 
 line_length: 160
+
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/  Created for xikolo-ios under MIT license\.
+                    \/\/  Copyright © HPI\. All rights reserved\.
+                    \/\/
 
 custom_rules:
   closing_brace_whitespace:

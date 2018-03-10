@@ -1,9 +1,6 @@
 //
-//  Navigator.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 30.01.18.
-//  Copyright © 2018 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import XCTest

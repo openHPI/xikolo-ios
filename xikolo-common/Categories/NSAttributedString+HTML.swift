@@ -1,9 +1,6 @@
 //
-//  NSAttributedString+HTML.swift
-//  Down
-//
-//  Created by Rob Phillips on 6/1/16.
-//  Copyright © 2016 Glazed Donut, LLC. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit

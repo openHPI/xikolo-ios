@@ -1,9 +1,6 @@
 //
-//  AbstractItemRichtextViewController.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 17.06.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit

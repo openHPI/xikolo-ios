@@ -8,7 +8,7 @@ import Foundation
 public extension Int {
 
     public var days: TimeInterval {
-        return TimeInterval(self*24*60*60)
+        return TimeInterval(self * 24 * 60 * 60)
     }
 
     public var day: TimeInterval {

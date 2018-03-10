@@ -7,9 +7,9 @@ import UIKit
 
 extension Brand {
 
-    static let FlagUpcomingColor = UIColor(red: 20/255, green: 136/255, blue: 255/255, alpha: 1.0)
-    static let FlagSelfpacedColor = UIColor(red: 245/255, green: 167/255, blue: 4/255, alpha: 1.0)
-    static let FlagRunningColor = UIColor(red: 140/255, green: 179/255, blue: 13/255, alpha: 1.0)
+    static let FlagUpcomingColor = UIColor(red: 20 / 255, green: 136 / 255, blue: 255 / 255, alpha: 1.0)
+    static let FlagSelfpacedColor = UIColor(red: 245 / 255, green: 167 / 255, blue: 4 / 255, alpha: 1.0)
+    static let FlagRunningColor = UIColor(red: 140 / 255, green: 179 / 255, blue: 13 / 255, alpha: 1.0)
 
     static let CorrectAnswerColor = UIColor(red: 140 / 255, green: 179 / 255, blue: 13 / 255, alpha: 1)
     static let IncorrectAnswerColor = UIColor(red: 214 / 255, green: 0 / 255, blue: 26 / 255, alpha: 1)

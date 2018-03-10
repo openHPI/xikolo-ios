@@ -108,7 +108,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
         let viewHeight = self.view.frame.size.height - contentInset
 
-        let overlappingOffset = 0.5*viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0
+        let overlappingOffset = 0.5 * viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0
         self.centerInputFieldsConstraints.constant = min(overlappingOffset, 0)  // we only want to move the container upwards
 
         UIView.animate(withDuration: 0.25) {

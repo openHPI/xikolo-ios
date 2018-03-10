@@ -84,7 +84,7 @@ class VideoViewController : UIViewController {
         self.playerControlView.videoController = self
 
         BMPlayerConf.topBarShowInCase = .always
-        BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
+        BMPlayerConf.loaderType = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enablePlaytimeGestures = true
@@ -98,7 +98,7 @@ class VideoViewController : UIViewController {
             make.top.equalTo(self.videoContainer.snp.top)
             make.bottom.equalTo(self.videoContainer.snp.bottom)
             make.centerX.equalTo(self.videoContainer.snp.centerX)
-            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0/9.0)
+            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0 / 9.0)
         }
 
         self.player = player

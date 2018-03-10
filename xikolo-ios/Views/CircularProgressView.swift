@@ -172,7 +172,7 @@ class CircularProgressView: UIView {
             ctx.addPath(borderPath)
             ctx.strokePath()
 
-            let bodyRadius = self.gapWidth > 0 ? borderRadius - self.lineWidth / 2  - self.gapWidth : borderRadius
+            let bodyRadius = self.gapWidth > 0 ? borderRadius - self.lineWidth / 2 - self.gapWidth : borderRadius
             let bodyEndAngle = 1.5 * CGFloat.pi
             let bodyStartAngle = bodyEndAngle + self.progress * 2 * CGFloat.pi
 

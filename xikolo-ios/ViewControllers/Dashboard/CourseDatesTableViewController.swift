@@ -142,7 +142,7 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
         }
         // DZNEmptyDataSet has some undefined behavior for the verticalOffset when using a custom tableView header.
         // Dividing it again by 2 will do the trick.
-        return tableHeaderView.frame.height/2/2
+        return tableHeaderView.frame.height / 2 / 2
     }
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {

@@ -53,7 +53,7 @@ extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = 300
-        let height = width/2 + 70.5 // 6 + 42.5 + 4 + 18 (padding + text + padding + text)
+        let height = width / 2 + 70.5 // 6 + 42.5 + 4 + 18 (padding + text + padding + text)
         return CGSize(width: width, height: height)
     }
 
@@ -64,7 +64,7 @@ extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
         let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath(item: 0, section: section))
         let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
         let viewWidth = self.collectionView?.frame.size.width ?? 0
-        let horizontalPadding = max(0, (viewWidth - 2*padding - numberOfCellsInSection * cellSize.width) / 2)
+        let horizontalPadding = max(0, (viewWidth - 2 * padding - numberOfCellsInSection * cellSize.width) / 2)
 
         return UIEdgeInsets(top: 0, left: padding + horizontalPadding, bottom: 0, right: padding + horizontalPadding)
     }

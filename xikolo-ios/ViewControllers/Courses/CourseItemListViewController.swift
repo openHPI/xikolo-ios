@@ -18,11 +18,11 @@ class CourseItemListViewController: UITableViewController {
     var resultsController: NSFetchedResultsController<CourseItem>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
 
-    var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
+    var contentToBePreloaded: [DetailedCourseItem.Type] = [Video.self, RichText.self]
     var isPreloading = false
-    var isOffline = ReachabilityHelper.connection == .none {
+    var inOfflineMode = ReachabilityHelper.connection == .none {
         didSet {
-            if oldValue != self.isOffline {
+            if oldValue != self.inOfflineMode {
                 self.tableView.reloadData()
             }
         }
@@ -129,7 +129,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.isOffline = ReachabilityHelper.connection == .none
+        self.inOfflineMode = ReachabilityHelper.connection == .none
     }
 
     func preloadCourseContent() {
@@ -204,10 +204,7 @@ class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration 
         let item = controller.object(at: indexPath)
         cell.delegate = self.tableViewController
 
-        let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
-                                                        isPreloading: self.tableViewController?.isPreloading ?? false,
-                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
-        cell.configure(for: item, with: configuration)
+        cell.configure(for: item)
     }
 
     func headerTitle(forController controller: NSFetchedResultsController<CourseItem>, forSection section: Int) -> String? {
@@ -238,48 +235,11 @@ extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetD
 
 }
 
-extension CourseItemListViewController: VideoCourseItemCellDelegate {
+extension CourseItemListViewController: CourseItemCellDelegate {
 
-    func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
-        let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
-                                                    comment: "start download of video item")
-        let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
-            VideoPersistenceManager.shared.downloadStream(for: video)
-        }
+    func showAlert(with actions: [UIAlertAction], on anchor: UIView) {
+        guard !actions.isEmpty else { return }
 
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        
-        self.showAlert(withActions: [downloadAction, cancelAction], onView: cell.downloadButton)
-    }
-
-    func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let abortActionTitle = NSLocalizedString("course-item.video-download-alert.stop-download-action.title",
-                                                 comment: "stop download of video item")
-        let abortAction = UIAlertAction(title: abortActionTitle, style: .default) { action in
-            VideoPersistenceManager.shared.cancelDownload(for: video)
-        }
-
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        
-        self.showAlert(withActions: [abortAction, cancelAction], onView: cell.downloadButton)
-    }
-
-    func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let deleteActionTitle = NSLocalizedString("course-item.video-download-alert.delete-item-action.title",
-                                                  comment: "delete video item")
-        let deleteAction = UIAlertAction(title: deleteActionTitle, style: .default) { action in
-            VideoPersistenceManager.shared.deleteAsset(for: video)
-        }
-
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        
-        self.showAlert(withActions: [deleteAction, cancelAction], onView: cell.downloadButton)
-    }
-
-    private func showAlert(withActions actions: [UIAlertAction], onView view: UIView) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = view
         alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
@@ -287,6 +247,10 @@ extension CourseItemListViewController: VideoCourseItemCellDelegate {
         for action in actions {
             alert.addAction(action)
         }
+
+        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
+        alert.addAction(cancelAction)
 
         self.present(alert, animated: true)
     }

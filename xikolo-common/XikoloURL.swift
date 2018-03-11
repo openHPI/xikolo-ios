@@ -55,6 +55,6 @@ class XikoloURL {
 
 enum XikoloURLTypes {
 
-    case course;
+    case course
 
 }

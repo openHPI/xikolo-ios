@@ -15,7 +15,7 @@ final class CourseDate: NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseDate> {
-        return NSFetchRequest<CourseDate>(entityName: "CourseDate");
+        return NSFetchRequest<CourseDate>(entityName: "CourseDate")
     }
 
 }

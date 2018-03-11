@@ -15,7 +15,7 @@ final class User: NSManagedObject {
     @NSManaged var profile: UserProfile?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<User> {
-        return NSFetchRequest<User>(entityName: "User");
+        return NSFetchRequest<User>(entityName: "User")
     }
 
 }

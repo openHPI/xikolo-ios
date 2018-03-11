@@ -19,7 +19,7 @@ final class Quiz: Content {
     @NSManaged var questions: Set<QuizQuestion>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Quiz> {
-        return NSFetchRequest<Quiz>(entityName: "Quiz");
+        return NSFetchRequest<Quiz>(entityName: "Quiz")
     }
 
     var maxPoints: Double? {

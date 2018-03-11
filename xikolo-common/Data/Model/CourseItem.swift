@@ -24,7 +24,7 @@ final class CourseItem: NSManagedObject {
     @NSManaged var section: CourseSection?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseItem> {
-        return NSFetchRequest<CourseItem>(entityName: "CourseItem");
+        return NSFetchRequest<CourseItem>(entityName: "CourseItem")
     }
 
     var next: CourseItem? {

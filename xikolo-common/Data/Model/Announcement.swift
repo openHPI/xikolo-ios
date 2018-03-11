@@ -19,7 +19,7 @@ final class Announcement: NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Announcement> {
-        return NSFetchRequest<Announcement>(entityName: "Announcement");
+        return NSFetchRequest<Announcement>(entityName: "Announcement")
     }
 
 }

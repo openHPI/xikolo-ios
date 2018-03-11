@@ -13,9 +13,9 @@ class SyncPushEngine {
 
     static let shared = SyncPushEngine()
     private let persistentContainerQueue: OperationQueue = {
-        let queue = OperationQueue();
-        queue.maxConcurrentOperationCount = 1;
-        return queue;
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
     }()
 
     func register(_ newType: (NSManagedObject & Pushable).Type) {

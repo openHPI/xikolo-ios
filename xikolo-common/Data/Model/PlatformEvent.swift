@@ -16,7 +16,7 @@ final class PlatformEvent: NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PlatformEvent> {
-        return NSFetchRequest<PlatformEvent>(entityName: "PlatformEvent");
+        return NSFetchRequest<PlatformEvent>(entityName: "PlatformEvent")
     }
 
 }

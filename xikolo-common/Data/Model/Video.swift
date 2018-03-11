@@ -27,7 +27,7 @@ final class Video: Content {
     @NSManaged var transcriptURL: URL?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Video> {
-        return NSFetchRequest<Video>(entityName: "Video");
+        return NSFetchRequest<Video>(entityName: "Video")
     }
 
     var posterImageData: Data? {

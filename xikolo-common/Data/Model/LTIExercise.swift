@@ -15,7 +15,7 @@ final class LTIExercise: Content {
     @NSManaged var lockSubmissionsAt: Date?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LTIExercise> {
-        return NSFetchRequest<LTIExercise>(entityName: "LTIExercise");
+        return NSFetchRequest<LTIExercise>(entityName: "LTIExercise")
     }
 
 }

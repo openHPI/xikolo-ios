@@ -32,7 +32,7 @@ final class Course: NSManagedObject {
     @NSManaged var dates: Set<CourseDate>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
-        return NSFetchRequest<Course>(entityName: "Course");
+        return NSFetchRequest<Course>(entityName: "Course")
     }
 
     @objc var interesting_section = NSLocalizedString("course.section-title.suggested", tableName: "Common", comment: "section title for collapsed upcoming & active courses")

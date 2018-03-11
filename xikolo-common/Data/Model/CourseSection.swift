@@ -20,7 +20,7 @@ final class CourseSection: NSManagedObject {
     @NSManaged var items: Set<CourseItem>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseSection> {
-        return NSFetchRequest<CourseSection>(entityName: "CourseSection");
+        return NSFetchRequest<CourseSection>(entityName: "CourseSection")
     }
 
     var itemsSorted: [CourseItem] {

@@ -12,7 +12,7 @@ final class PeerAssessment: Content {
     @NSManaged var title: String?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PeerAssessment> {
-        return NSFetchRequest<PeerAssessment>(entityName: "PeerAssessment");
+        return NSFetchRequest<PeerAssessment>(entityName: "PeerAssessment")
     }
 
 }

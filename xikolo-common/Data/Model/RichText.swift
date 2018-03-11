@@ -13,7 +13,7 @@ final class RichText: Content {
     @NSManaged var text: String?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<RichText> {
-        return NSFetchRequest<RichText>(entityName: "RichText");
+        return NSFetchRequest<RichText>(entityName: "RichText")
     }
 
     override var isAvailableOffline: Bool {

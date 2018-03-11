@@ -19,7 +19,7 @@ final class Enrollment: NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
-        return NSFetchRequest<Enrollment>(entityName: "Enrollment");
+        return NSFetchRequest<Enrollment>(entityName: "Enrollment")
     }
 
     func compare(_ object: Enrollment) -> ComparisonResult {

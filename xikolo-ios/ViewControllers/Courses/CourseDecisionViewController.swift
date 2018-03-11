@@ -14,9 +14,9 @@ class CourseDecisionViewController: UIViewController {
         case announcements = 3
     }
 
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var dropdownIcon: UIImageView!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var dropdownIcon: UIImageView!
 
     var containerContentViewController: UIViewController?
     var course: Course!

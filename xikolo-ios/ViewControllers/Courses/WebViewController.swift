@@ -7,7 +7,7 @@ import UIKit
 
 class WebViewController: UIViewController {
 
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet private weak var webView: UIWebView!
 
     var loginDelegate : AbstractLoginViewControllerDelegate?
 

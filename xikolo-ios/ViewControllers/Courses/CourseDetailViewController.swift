@@ -9,15 +9,15 @@ import SimpleRoundedButton
 
 class CourseDetailViewController: UIViewController {
 
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var languageView: UILabel!
-    @IBOutlet weak var dateView: UILabel!
-    @IBOutlet weak var teacherView: UILabel!
-    @IBOutlet weak var descriptionView: UITextView!
-    @IBOutlet weak var enrollmentButton: SimpleRoundedButton!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var languageView: UILabel!
+    @IBOutlet private weak var dateView: UILabel!
+    @IBOutlet private weak var teacherView: UILabel!
+    @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var enrollmentButton: SimpleRoundedButton!
+    @IBOutlet private weak var statusView: UIView!
+    @IBOutlet private weak var statusLabel: UILabel!
 
     @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn() {

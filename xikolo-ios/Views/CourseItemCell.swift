@@ -7,12 +7,12 @@ import UIKit
 
 class CourseItemCell : UITableViewCell {
 
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var readStateView: UIView!
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var detailContentView: CourseItemDetailView!
-    @IBOutlet weak var progressView: CircularProgressView!
-    @IBOutlet weak var actionsButton: UIButton!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var readStateView: UIView!
+    @IBOutlet private weak var iconView: UIImageView!
+    @IBOutlet private weak var detailContentView: CourseItemDetailView!
+    @IBOutlet private weak var progressView: CircularProgressView!
+    @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
     var delegate: CourseItemCellDelegate?

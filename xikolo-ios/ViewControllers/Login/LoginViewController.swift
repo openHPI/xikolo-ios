@@ -9,11 +9,12 @@ import SafariServices
 import SimpleRoundedButton
 
 class LoginViewController : AbstractLoginViewController, WKUIDelegate {
-    @IBOutlet weak var loginButton: SimpleRoundedButton!
-    @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet weak var singleSignOnView: UIView!
-    @IBOutlet weak var singleSignOnButton: UIButton!
-    @IBOutlet weak var centerInputFieldsConstraints: NSLayoutConstraint!
+
+    @IBOutlet private weak var loginButton: SimpleRoundedButton!
+    @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var singleSignOnView: UIView!
+    @IBOutlet private weak var singleSignOnButton: UIButton!
+    @IBOutlet private weak var centerInputFieldsConstraints: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()

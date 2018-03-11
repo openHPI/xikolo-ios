@@ -9,10 +9,10 @@ import SafariServices
 
 class AnnouncementViewController : UIViewController {
 
-    @IBOutlet weak var courseLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet private weak var courseLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var textView: UITextView!
 
     var announcement: Announcement!
 

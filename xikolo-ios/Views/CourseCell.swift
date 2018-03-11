@@ -13,14 +13,14 @@ class CourseCell : UICollectionViewCell {
         case courseActivity
     }
 
-    @IBOutlet weak var courseImage: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var teacherLabel: UILabel!
-    @IBOutlet weak var languageLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var statusView: UIView!
+    @IBOutlet private weak var courseImage: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var teacherLabel: UILabel!
+    @IBOutlet private weak var languageLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var gradientView: UIView!
+    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var statusView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

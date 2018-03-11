@@ -11,11 +11,11 @@ import UIKit
 
 class VideoViewController : UIViewController {
 
-    @IBOutlet weak var videoContainer: UIView!
-    @IBOutlet weak var errorView: UIView!
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var descriptionView: UITextView!
-    @IBOutlet weak var openSlidesButton: UIButton!
+    @IBOutlet private weak var videoContainer: UIView!
+    @IBOutlet private weak var errorView: UIView!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var openSlidesButton: UIButton!
 
     var courseItem: CourseItem!
     var video: Video?

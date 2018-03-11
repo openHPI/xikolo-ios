@@ -31,7 +31,7 @@ extension CourseHelper {
         private static let notCompletedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
             NSCompoundPredicate(andPredicateWithSubpredicates: [
                 enrolledPredicate,
-                NSPredicate(format: "enrollment.completed = %@", NSNumber(booleanLiteral: false))
+                NSPredicate(format: "enrollment.completed = %@", NSNumber(booleanLiteral: false)),
             ]),
             notEnrolledPredicate,
         ])
@@ -55,7 +55,7 @@ extension CourseHelper {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
             request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSPredicate(format: "slug = %@", slugOrId),
-                NSPredicate(format: "id = %@", slugOrId)
+                NSPredicate(format: "id = %@", slugOrId),
             ])
             request.fetchLimit = 1
             return request

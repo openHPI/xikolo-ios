@@ -12,7 +12,7 @@ import SimulatorStatusMagic
 #endif
 
 @UIApplicationMain
-class AppDelegate : AbstractAppDelegate {
+class AppDelegate: AbstractAppDelegate {
 
     var window: UIWindow?
 
@@ -109,7 +109,7 @@ class AppDelegate : AbstractAppDelegate {
 
 }
 
-extension AppDelegate : UITabBarControllerDelegate {
+extension AppDelegate: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         guard !UserProfileHelper.isLoggedIn() else {
@@ -150,7 +150,7 @@ extension AppDelegate : UITabBarControllerDelegate {
 
 }
 
-extension AppDelegate : AbstractLoginViewControllerDelegate {
+extension AppDelegate: AbstractLoginViewControllerDelegate {
 
     func didSuccessfullyLogin() {
         self.tabBarController?.selectedIndex = 0

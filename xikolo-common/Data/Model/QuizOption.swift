@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class QuizOption : NSObject, NSCoding, IncludedPullable {
+final class QuizOption: NSObject, NSCoding, IncludedPullable {
 
     var id: String
     var text: String?

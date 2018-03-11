@@ -45,7 +45,7 @@ class CircularProgressView: UIView {
         }
     }
 
-    override class var layerClass : AnyClass {
+    override class var layerClass: AnyClass {
         return CircularProgressLayer.self
     }
 
@@ -144,7 +144,7 @@ class CircularProgressView: UIView {
         }
     }
 
-    class CircularProgressLayer : CALayer {
+    class CircularProgressLayer: CALayer {
 
         @NSManaged var tintColor: UIColor
         @NSManaged var lineWidth: CGFloat

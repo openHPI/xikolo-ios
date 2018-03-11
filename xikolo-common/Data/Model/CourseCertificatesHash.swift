@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
+final class CourseCertificatesHash: NSObject, NSCoding, IncludedPullable {
 
     var available: Bool
     var threshold: Int32?

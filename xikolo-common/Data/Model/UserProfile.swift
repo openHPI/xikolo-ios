@@ -22,7 +22,7 @@ final class UserProfile: NSManagedObject {
 
 }
 
-extension UserProfile : Pullable {
+extension UserProfile: Pullable {
 
     static var type: String {
         return "user-profile"

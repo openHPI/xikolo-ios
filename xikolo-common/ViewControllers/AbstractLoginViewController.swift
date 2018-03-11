@@ -5,12 +5,12 @@
 
 import UIKit
 
-class AbstractLoginViewController : UIViewController {
+class AbstractLoginViewController: UIViewController {
 
-    @IBOutlet weak var emailField : UITextField!
-    @IBOutlet weak var passwordField : UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
 
-    var delegate : AbstractLoginViewControllerDelegate?
+    var delegate: AbstractLoginViewControllerDelegate?
 
     @IBAction func login() {
         guard let email = emailField.text, let password = passwordField.text else {

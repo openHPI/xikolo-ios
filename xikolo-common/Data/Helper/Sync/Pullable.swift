@@ -8,7 +8,7 @@ import CoreData
 import Marshal
 
 
-protocol Pullable : ResourceRepresentable {
+protocol Pullable: ResourceRepresentable {
 
     static func value(from object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws -> Self
 
@@ -176,7 +176,7 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: NS
         self.context = context
     }
 
-    func update<C>(forType type : C.Type) throws where C : NSManagedObject & Pullable {
+    func update<C>(forType type: C.Type) throws where C: NSManagedObject & Pullable {
         let resourceIdentifier = try self.object.value(for: "\(self.key).data") as ResourceIdentifier
 
         guard resourceIdentifier.type == C.type else { return }

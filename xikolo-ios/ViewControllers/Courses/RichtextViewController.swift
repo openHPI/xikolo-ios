@@ -6,7 +6,7 @@
 import SafariServices
 import UIKit
 
-class RichtextViewController : AbstractItemRichtextViewController {
+class RichtextViewController: AbstractItemRichtextViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,7 +10,7 @@ fileprivate let errorMessageIndexSetConversion = "Convertion of IndexSet for mul
 fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
 fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
 
-class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
+class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
     weak var collectionView: UICollectionView?
     var resultsControllers: [NSFetchedResultsController<T>] = [] // 2Think: Do we create a memory loop here?
@@ -276,7 +276,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
 }
 
 protocol CollectionViewResultsControllerConfigurationProtocol {
-    associatedtype Content : NSManagedObject
+    associatedtype Content: NSManagedObject
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
     func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)

@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class CourseDateCell : UITableViewCell {
+class CourseDateCell: UITableViewCell {
 
     @IBOutlet var courseLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!

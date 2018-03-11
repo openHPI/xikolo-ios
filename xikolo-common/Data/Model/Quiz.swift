@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class Quiz : Content {
+final class Quiz: Content {
 
     @NSManaged var id: String
     @NSManaged var instructions: String?
@@ -59,7 +59,7 @@ final class Quiz : Content {
 
 }
 
-extension Quiz : Pullable {
+extension Quiz: Pullable {
 
     static var type: String {
         return "quizzes"

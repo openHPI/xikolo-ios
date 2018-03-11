@@ -10,7 +10,7 @@ class DropdownTableViewController: UITableViewController {
     var course: Course!
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let userList = [NotificationKeys.dropdownCourseContentKey:indexPath.row]
+        let userList = [NotificationKeys.dropdownCourseContentKey: indexPath.row]
         NotificationCenter.default.post(name: NotificationKeys.dropdownCourseContentKey, object: self, userInfo: userList)
         presentingViewController?.dismiss(animated: true, completion: nil)
     }

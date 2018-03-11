@@ -9,7 +9,7 @@ class WebViewController: UIViewController {
 
     @IBOutlet private weak var webView: UIWebView!
 
-    var loginDelegate : AbstractLoginViewControllerDelegate?
+    var loginDelegate: AbstractLoginViewControllerDelegate?
 
     var url: String? {
         didSet {
@@ -32,7 +32,7 @@ class WebViewController: UIViewController {
 
 }
 
-extension WebViewController : UIWebViewDelegate {
+extension WebViewController: UIWebViewDelegate {
 
     func webViewDidStartLoad(_ webView: UIWebView) {
         NetworkIndicator.start()

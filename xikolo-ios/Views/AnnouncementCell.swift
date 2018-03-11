@@ -5,7 +5,7 @@
 
 import UIKit
 
-class AnnouncementCell : UITableViewCell {
+class AnnouncementCell: UITableViewCell {
 
     static var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter.localizedFormatter()

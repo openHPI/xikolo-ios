@@ -46,7 +46,7 @@ extension Announcement: Pullable {
 
 }
 
-extension Announcement : Pushable {
+extension Announcement: Pushable {
 
     var objectState: ObjectState {
         get {
@@ -61,7 +61,7 @@ extension Announcement : Pushable {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String : Any] {
+    func resourceAttributes() -> [String: Any] {
         return [ "visited": self.visited ]
     }
 

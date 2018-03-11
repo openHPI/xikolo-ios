@@ -6,7 +6,7 @@
 import Foundation
 import CoreData
 
-final class CourseDate : NSManagedObject {
+final class CourseDate: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var title: String?
@@ -20,7 +20,7 @@ final class CourseDate : NSManagedObject {
 
 }
 
-extension CourseDate : Pullable {
+extension CourseDate: Pullable {
 
     static var type: String {
         return "course-dates"

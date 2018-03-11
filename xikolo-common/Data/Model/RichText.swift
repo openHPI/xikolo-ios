@@ -7,7 +7,7 @@ import BrightFutures
 import CoreData
 import Foundation
 
-final class RichText : Content {
+final class RichText: Content {
 
     @NSManaged var id: String
     @NSManaged var text: String?
@@ -22,7 +22,7 @@ final class RichText : Content {
 
 }
 
-extension RichText : Pullable {
+extension RichText: Pullable {
 
     static var type: String {
         return "rich-texts"

@@ -7,7 +7,7 @@ import UIKit
 import Down
 import SafariServices
 
-class AnnouncementViewController : UIViewController {
+class AnnouncementViewController: UIViewController {
 
     @IBOutlet private weak var courseLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!

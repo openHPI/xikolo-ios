@@ -6,7 +6,7 @@
 import UIKit
 import CoreData
 
-class CourseListViewController : AbstractCourseListViewController {
+class CourseListViewController: AbstractCourseListViewController {
 
     @available(iOS, obsoleted: 11.0)
     private var searchController: UISearchController?
@@ -174,7 +174,7 @@ extension CourseListViewController: CourseListLayoutDelegate {
 
 }
 
-extension CourseListViewController : UISearchResultsUpdating {
+extension CourseListViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         let scrollOffset: CGPoint
@@ -195,7 +195,7 @@ extension CourseListViewController : UISearchResultsUpdating {
 
 }
 
-extension CourseListViewController : UISearchControllerDelegate {
+extension CourseListViewController: UISearchControllerDelegate {
 
     func willPresentSearchController(_ searchController: UISearchController) {
         self.collectionView?.refreshControl = nil

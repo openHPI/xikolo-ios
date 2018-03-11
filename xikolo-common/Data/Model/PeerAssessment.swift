@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class PeerAssessment : Content {
+final class PeerAssessment: Content {
 
     @NSManaged var id: String
     @NSManaged var title: String?
@@ -17,7 +17,7 @@ final class PeerAssessment : Content {
 
 }
 
-extension PeerAssessment : Pullable {
+extension PeerAssessment: Pullable {
 
     static var type: String {
         return "peer-assessments"

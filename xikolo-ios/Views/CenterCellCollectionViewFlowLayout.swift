@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
+class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         if let collectionView = self.collectionView {
@@ -24,7 +24,7 @@ class CenterCellCollectionViewFlowLayout : UICollectionViewFlowLayout {
                 }
 
                 //  == If not, we need to calculate the "snapping" center position  == //
-                var candidateAttributes : UICollectionViewLayoutAttributes?
+                var candidateAttributes: UICollectionViewLayoutAttributes?
                 for attributes in attributesForVisibleCells {
 
                     // == Skip comparison with non-cell items (headers and footers) == //

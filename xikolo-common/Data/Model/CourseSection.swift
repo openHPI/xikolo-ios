@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class CourseSection : NSManagedObject {
+final class CourseSection: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var abstract: String?
@@ -31,7 +31,7 @@ final class CourseSection : NSManagedObject {
 
 }
 
-extension CourseSection : Pullable {
+extension CourseSection: Pullable {
 
     static var type: String {
         return "course-sections"

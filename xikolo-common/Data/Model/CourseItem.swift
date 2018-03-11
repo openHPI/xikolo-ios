@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class CourseItem : NSManagedObject {
+final class CourseItem: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var title: String?
@@ -49,7 +49,7 @@ final class CourseItem : NSManagedObject {
 
 }
 
-extension CourseItem : Pullable {
+extension CourseItem: Pullable {
 
     static var type: String {
         return "course-items"
@@ -82,7 +82,7 @@ extension CourseItem : Pullable {
 
 }
 
-extension CourseItem : Pushable {
+extension CourseItem: Pushable {
 
     var objectState: ObjectState {
         get {
@@ -97,8 +97,8 @@ extension CourseItem : Pushable {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String : Any] {
-        return [ "visited": self.visited ]
+    func resourceAttributes() -> [String: Any] {
+        return ["visited": self.visited]
     }
 
 }

@@ -8,7 +8,7 @@ import WebKit
 import SafariServices
 import SimpleRoundedButton
 
-class LoginViewController : AbstractLoginViewController, WKUIDelegate {
+class LoginViewController: AbstractLoginViewController, WKUIDelegate {
 
     @IBOutlet private weak var loginButton: SimpleRoundedButton!
     @IBOutlet private weak var registerButton: UIButton!
@@ -127,7 +127,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
 }
 
-extension LoginViewController : UITextFieldDelegate {
+extension LoginViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.emailField {

@@ -6,7 +6,7 @@
 import CoreData
 import UIKit
 
-class AbstractCourseListViewController : UICollectionViewController {
+class AbstractCourseListViewController: UICollectionViewController {
 
     enum CourseDisplayMode {
         case enrolledOnly
@@ -79,7 +79,7 @@ class AbstractCourseListViewController : UICollectionViewController {
 
 }
 
-struct CourseListViewConfiguration : CollectionViewResultsControllerConfiguration {
+struct CourseListViewConfiguration: CollectionViewResultsControllerConfiguration {
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
         let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseList requires cells of type CourseCell")

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class XikoloNavigationController : UINavigationController {
+class XikoloNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

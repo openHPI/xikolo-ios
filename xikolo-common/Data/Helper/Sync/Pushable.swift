@@ -18,7 +18,7 @@ protocol IncludedPushable {
     func resourceAttributes() -> [String: Any]
 }
 
-protocol Pushable : ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult {
+protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult {
     var objectState: ObjectState { get }
 
     static func resourceDataObject(attributes: [String: Any], relationships: [String: AnyObject]?) -> [String: Any]

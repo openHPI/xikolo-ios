@@ -20,7 +20,7 @@ final class User: NSManagedObject {
 
 }
 
-extension User : Pullable {
+extension User: Pullable {
 
     static var type: String {
         return "users"

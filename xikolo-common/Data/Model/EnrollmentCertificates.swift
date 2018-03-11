@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
+final class EnrollmentCertificates: NSObject, NSCoding, IncludedPullable {
 
     var confirmationOfParticipation: URL?
     var recordOfAchievement: URL?

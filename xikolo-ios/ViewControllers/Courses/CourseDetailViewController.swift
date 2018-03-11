@@ -123,9 +123,9 @@ class CourseDetailViewController: UIViewController {
     }
 
     func showEnrollmentOptions() {
-        let alertTitle = NSLocalizedString("enrollment.options-alert.title", comment:"title of enrollment options alert")
+        let alertTitle = NSLocalizedString("enrollment.options-alert.title", comment: "title of enrollment options alert")
         let alertMessage = NSLocalizedString("enrollment.options-alert.message", comment: "message of enrollment alert")
-        let alert = UIAlertController(title: alertTitle, message:  alertMessage, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.enrollmentButton
         alert.popoverPresentationController?.sourceRect = self.enrollmentButton.bounds
         alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up.union(.down)
@@ -166,7 +166,7 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(completedAction)
         alert.addAction(unenrollAction)
         alert.addAction(cancelAction)
-        present(alert, animated: true, completion:nil)
+        self.present(alert, animated: true)
     }
 
 }

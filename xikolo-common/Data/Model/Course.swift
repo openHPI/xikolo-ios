@@ -7,7 +7,7 @@ import BrightFutures
 import CoreData
 import Foundation
 
-final class Course : NSManagedObject {
+final class Course: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var abstract: String?
@@ -71,7 +71,7 @@ final class Course : NSManagedObject {
 
 }
 
-extension Course : Pullable {
+extension Course: Pullable {
 
     static var type: String {
         return "courses"

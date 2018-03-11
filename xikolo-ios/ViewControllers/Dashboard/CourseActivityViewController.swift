@@ -47,7 +47,7 @@ extension CourseActivityViewController {
 
 }
 
-extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
+extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -71,8 +71,7 @@ extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
 
 }
 
-
-struct CourseActivityViewConfiguration : CollectionViewResultsControllerConfiguration {
+struct CourseActivityViewConfiguration: CollectionViewResultsControllerConfiguration {
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
         let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseActivityViewController requires cell of type CourseCell")

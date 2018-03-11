@@ -6,7 +6,7 @@
 import UIKit
 import CoreData
 
-class CourseHeaderView : UICollectionReusableView {
+class CourseHeaderView: UICollectionReusableView {
 
     @IBOutlet private weak var backgroundView: UIVisualEffectView!
     @IBOutlet private weak var titleView: UILabel!

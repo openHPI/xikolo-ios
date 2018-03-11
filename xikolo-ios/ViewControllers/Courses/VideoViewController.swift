@@ -9,7 +9,7 @@ import BMPlayer
 import NVActivityIndicatorView
 import UIKit
 
-class VideoViewController : UIViewController {
+class VideoViewController: UIViewController {
 
     @IBOutlet private weak var videoContainer: UIView!
     @IBOutlet private weak var errorView: UIView!
@@ -316,7 +316,7 @@ extension VideoViewController: BMPlayerDelegate {
     func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
     }
 
-    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
     }
 
     func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {

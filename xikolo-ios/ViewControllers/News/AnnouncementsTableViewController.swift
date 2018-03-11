@@ -7,7 +7,7 @@ import CoreData
 import UIKit
 import DZNEmptyDataSet
 
-class AnnouncementsTableViewController : UITableViewController {
+class AnnouncementsTableViewController: UITableViewController {
 
     var resultsController: NSFetchedResultsController<Announcement>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<Announcement>!
@@ -93,7 +93,7 @@ extension AnnouncementsTableViewController { // TableViewDelegate
 
 }
 
-struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfiguration {
+struct AnnouncementsTableViewConfiguration: TableViewResultsControllerConfiguration {
 
     var shouldShowCourseTitle: Bool
 
@@ -105,7 +105,7 @@ struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfigura
 
 }
 
-extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension AnnouncementsTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")

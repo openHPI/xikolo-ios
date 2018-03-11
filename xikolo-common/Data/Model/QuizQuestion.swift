@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class QuizQuestion : NSManagedObject {
+final class QuizQuestion: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var explanation: String?
@@ -47,7 +47,7 @@ final class QuizQuestion : NSManagedObject {
 
 }
 
-extension QuizQuestion : Pullable {
+extension QuizQuestion: Pullable {
 
     static var type: String {
         return "quiz-questions"

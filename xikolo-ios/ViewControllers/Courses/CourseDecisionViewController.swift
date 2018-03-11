@@ -7,7 +7,7 @@ import UIKit
 
 class CourseDecisionViewController: UIViewController {
 
-    enum CourseContent : Int {
+    enum CourseContent: Int {
         case learnings = 0
         case discussions = 1
         case courseDetails = 2
@@ -87,7 +87,7 @@ class CourseDecisionViewController: UIViewController {
             titleView.text = NSLocalizedString("course-content.view.discussions.title",
                                                comment: "title of discussions view of course view")
         case .announcements:
-            let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle:nil)
+            let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
             let vc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController").require(toHaveType: AnnouncementsTableViewController.self)
             vc.course = course
             changeToViewController(vc)
@@ -104,7 +104,7 @@ class CourseDecisionViewController: UIViewController {
 
         // set width for new title view
         if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font : self.titleView.font]).width
+            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font: self.titleView.font]).width
             var frame = titleView.frame
             frame.size.width = titleWidth + self.dropdownIcon.frame.width + 2
             titleView.frame = frame
@@ -147,7 +147,7 @@ class CourseDecisionViewController: UIViewController {
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         activityViewController.completionWithItemsHandler = { (activityType, completed, _, _) in
-            let context: [String : String?] = [
+            let context: [String: String?] = [
                 "service": activityType?.rawValue,
                 "completed": String(describing: completed),
             ]
@@ -158,7 +158,7 @@ class CourseDecisionViewController: UIViewController {
 
 }
 
-extension CourseDecisionViewController : UIPopoverPresentationControllerDelegate {
+extension CourseDecisionViewController: UIPopoverPresentationControllerDelegate {
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.overFullScreen

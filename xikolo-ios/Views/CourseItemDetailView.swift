@@ -5,9 +5,9 @@
 
 import UIKit
 
-class CourseItemDetailView : UIView {
+class CourseItemDetailView: UIView {
 
-    private static let readingTimeFormatter : DateComponentsFormatter = {
+    private static let readingTimeFormatter: DateComponentsFormatter = {
         var calendar = Calendar.current
         calendar.locale = Locale.current
         let formatter = DateComponentsFormatter()
@@ -140,7 +140,7 @@ class CourseItemDetailView : UIView {
         return label
     }
 
-    private var pulseAnimation : CAAnimation {
+    private var pulseAnimation: CAAnimation {
         let pulseAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.backgroundColor))
         pulseAnimation.fromValue = UIColor(white: 0.9, alpha: 1.0).cgColor
         pulseAnimation.toValue = UIColor(white: 0.95, alpha: 1.0).cgColor

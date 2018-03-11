@@ -8,7 +8,7 @@ import BrightFutures
 import CoreData
 import Foundation
 
-final class Video : Content {
+final class Video: Content {
 
     @NSManaged var id: String
     @NSManaged var audioSize: Int32
@@ -58,7 +58,7 @@ final class Video : Content {
 
 }
 
-extension Video : Pullable {
+extension Video: Pullable {
 
     static var type: String {
         return "videos"

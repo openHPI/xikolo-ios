@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class CourseCertificates : NSObject, NSCoding, IncludedPullable {
+final class CourseCertificates: NSObject, NSCoding, IncludedPullable {
 
     var confirmationOfParticipation: CourseCertificatesHash?
     var recordOfAchievement: CourseCertificatesHash?

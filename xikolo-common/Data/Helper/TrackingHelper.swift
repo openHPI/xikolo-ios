@@ -9,7 +9,7 @@ import UIKit
 
 class TrackingHelper {
 
-    enum AnalyticsVerb : String {
+    enum AnalyticsVerb: String {
         // tabs
         case visitedDashboard = "VISITED_DASHBOARD"
         case visitedAnnouncementList = "VISITED_ANNOUNCEMENTS"
@@ -39,7 +39,7 @@ class TrackingHelper {
         case share = "SHARE_BUTTON_CLICK"
     }
 
-    enum AnalyticsResourceType : String {
+    enum AnalyticsResourceType: String {
         case section = "section"
         case course = "course"
         case announcement = "announcement"

@@ -189,7 +189,7 @@ extension CourseItemListViewController { // TableViewDelegate
 }
 
 
-class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration {
+class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
     weak var tableViewController: CourseItemListViewController?
 
     init(tableViewController: CourseItemListViewController) {
@@ -213,7 +213,7 @@ class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration 
 }
 
 
-extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")

@@ -6,7 +6,7 @@
 import UIKit
 import SDWebImage
 
-class CourseCell : UICollectionViewCell {
+class CourseCell: UICollectionViewCell {
 
     enum Configuration {
         case courseList

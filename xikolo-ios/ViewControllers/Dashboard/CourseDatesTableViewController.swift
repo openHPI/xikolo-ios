@@ -7,7 +7,7 @@ import UIKit
 import CoreData
 import DZNEmptyDataSet
 
-class CourseDatesTableViewController : UITableViewController {
+class CourseDatesTableViewController: UITableViewController {
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
@@ -120,7 +120,7 @@ extension CourseDatesTableViewController {
 
 }
 
-struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfiguration {
+struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseDate>, indexPath: IndexPath) {
         let cell = cell.require(toHaveType: CourseDateCell.self, hint: "CourseDatesViewController requires cell of type CourseDateCell")
@@ -134,7 +134,7 @@ struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfigurati
 
 }
 
-extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseDatesTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         guard let tableHeaderView = self.tableView.tableHeaderView else {

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CourseItemCell : UITableViewCell {
+class CourseItemCell: UITableViewCell {
 
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var readStateView: UIView!

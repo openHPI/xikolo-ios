@@ -71,12 +71,6 @@ custom_rules:
     name: "Late Force Unwrapping"
     message: "Don't use ? first to force unwrap later – directly unwrap within the parantheses."
     severity: warning
-  multiple_closure_params:
-    included: ".*.swift"
-    regex: '\} *\) *\{'
-    name: "Multiple Closure Params"
-    message: "Don't use multiple in-line closures – save one or more of them to variables instead."
-    severity: warning
   unnecessary_nil_assignment:
     included: ".*.swift"
     regex: 'var \S+\s*:\s*[^\s]+\?\s*=\s*nil'

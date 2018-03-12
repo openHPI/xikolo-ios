@@ -43,7 +43,6 @@ extension Pullable where Self: NSManagedObject {
         }
     }
 
-
     func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A>,
                                forKey key: KeyType,
                                fromObject object: ResourceData,

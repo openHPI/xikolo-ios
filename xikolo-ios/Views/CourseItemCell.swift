@@ -132,7 +132,6 @@ class CourseItemCell: UITableViewCell {
 
 }
 
-
 protocol CourseItemCellDelegate {
 
     var contentToBePreloaded: [DetailedCourseItem.Type] { get }

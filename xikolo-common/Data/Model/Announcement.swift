@@ -24,7 +24,6 @@ final class Announcement: NSManagedObject {
 
 }
 
-
 extension Announcement: Pullable {
 
     static var type: String {

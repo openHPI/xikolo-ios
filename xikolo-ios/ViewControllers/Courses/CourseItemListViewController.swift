@@ -39,7 +39,7 @@ class CourseItemListViewController: UITableViewController {
         } else {
             separatorInsetLeft = separatorInsetLeft + 15.0
         }
-    
+
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
 
         NotificationCenter.default.addObserver(self,
@@ -191,7 +191,6 @@ extension CourseItemListViewController { // TableViewDelegate
 
 }
 
-
 class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
     weak var tableViewController: CourseItemListViewController?
 
@@ -214,7 +213,6 @@ class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
     }
 
 }
-
 
 extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 

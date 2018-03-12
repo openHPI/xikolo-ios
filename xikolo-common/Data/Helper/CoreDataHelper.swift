@@ -72,7 +72,6 @@ class CoreDataHelper {
 
 }
 
-
 extension NSManagedObjectContext {
 
     func fetchSingle<T>(_ fetchRequest: NSFetchRequest<T>) -> Result<T, XikoloError> where T: NSManagedObject {

@@ -69,7 +69,6 @@ class CourseDecisionViewController: UIViewController {
             containerContentViewController = nil
         }
 
-
         let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         switch content {
         case .learnings:
@@ -118,7 +117,6 @@ class CourseDecisionViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {

@@ -175,7 +175,6 @@ struct SyncEngine {
         return .success(request)
     }
 
-
     // MARK: - core data operation
 
     private static func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
@@ -473,7 +472,6 @@ struct SyncEngine {
 
         return networkRequest.asVoid()
     }
-
 
     // MARK: - saving
 

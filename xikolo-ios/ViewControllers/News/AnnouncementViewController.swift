@@ -26,6 +26,8 @@ class AnnouncementViewController: UIViewController {
         self.textView.textContainer.lineFragmentPadding = 0
 
         self.updateView()
+
+        // swiftlint:disable:next multiline_arguments
         self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
         }) {

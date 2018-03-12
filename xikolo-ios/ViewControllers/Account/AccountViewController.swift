@@ -48,6 +48,7 @@ class AccountViewController: UITableViewController {
                 oldValue?.removeNotifications(self)
             }
 
+            // swiftlint:disable:next multiline_arguments
             self.user?.notifyOnChange(self, updateHandler: {
                 DispatchQueue.main.async {
                     self.updateProfileInfo()
@@ -121,6 +122,7 @@ class AccountViewController: UITableViewController {
                 view.isHidden = false
             }
 
+            // swiftlint:disable:next multiline_arguments
             UIView.animate(withDuration: 0.25, animations: {
                 self.headerHeight = .userProfile
                 self.view.layoutIfNeeded()
@@ -132,6 +134,7 @@ class AccountViewController: UITableViewController {
                 }
             })
         } else {
+            // swiftlint:disable:next multiline_arguments
             UIView.animate(withDuration: 0.25, animations: {
                 for view in profileViews {
                     view.alpha = 0

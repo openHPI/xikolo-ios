@@ -112,6 +112,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         for operation in self.contentChangeOperations {
             operation.cancel()
         }
+
         self.contentChangeOperations.removeAll(keepingCapacity: false)
         self.configuration = nil
         self.resultsControllers.removeAll(keepingCapacity: false)
@@ -141,6 +142,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
                     return controller.sections?[sectionsToGo].numberOfObjects ?? 0
                 }
             }
+        
             return 0
         }
     }
@@ -158,6 +160,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
             let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)! // TODO nil-handling or logging
             self.configuration?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
         }
+
         return cell
     }
 
@@ -176,6 +179,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
                     self.configuration?.configureCollectionHeaderView(view, section: section)
                 }
             }
+
             return view
         } else {
             return UICollectionReusableView()
@@ -229,6 +233,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
         guard var newIndexPath = indexPath else {
             return nil
         }
+
         for contr in resultsControllers {
             if contr == controller {
                 return newIndexPath
@@ -236,6 +241,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
                 newIndexPath.section += contr.sections?.count ?? 0
             }
         }
+
         return nil
     }
 
@@ -244,6 +250,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
         guard let newIndexSet = indexSet else {
             return nil
         }
+
         var convertedIndexSet = IndexSet()
         var passedSections = 0
         for contr in resultsControllers {
@@ -251,11 +258,13 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
                 for i in newIndexSet {
                     convertedIndexSet.insert(i + passedSections)
                 }
+
                 break
             } else {
                 passedSections += contr.sections?.count ?? 0
             }
         }
+
         return convertedIndexSet
     }
 
@@ -270,6 +279,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
+
         return nil
     }
 

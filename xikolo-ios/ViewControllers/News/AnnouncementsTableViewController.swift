@@ -54,7 +54,8 @@ class AnnouncementsTableViewController: UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-        setupEmptyState()
+
+        self.setupEmptyState()
     }
 
     override func viewDidAppear(_ animated: Bool) {

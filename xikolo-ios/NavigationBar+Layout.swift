@@ -35,11 +35,13 @@ class XikoloNavigationController: UINavigationController {
                 return true
             }
         }
+
         for subview in view.subviews {
             if self.hideShadowImage(inView: subview) {
                 break
             }
         }
+
         return false
     }
 

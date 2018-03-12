@@ -82,6 +82,7 @@ class CourseDecisionViewController: UIViewController {
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
+
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
         case .announcements:
@@ -97,6 +98,7 @@ class CourseDecisionViewController: UIViewController {
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
         }
+
         self.content = content
 
         // set width for new title view
@@ -133,7 +135,6 @@ class CourseDecisionViewController: UIViewController {
                 dropdownViewController.preferredContentSize = minimumSize
                 ppc.delegate = self
             }
-            break
         default:
             break
         }
@@ -150,6 +151,7 @@ class CourseDecisionViewController: UIViewController {
             ]
             TrackingHelper.createEvent(.share, resourceType: .course, resourceId: self.course.id, context: context)
         }
+
         self.present(activityViewController, animated: true)
     }
 

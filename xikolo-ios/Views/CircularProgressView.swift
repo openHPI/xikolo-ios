@@ -93,6 +93,7 @@ class CircularProgressView: UIView {
         if let progress = newValue {
             value = CGFloat(progress)
         }
+
         self.updateProgress(value)
     }
 

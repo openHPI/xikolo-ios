@@ -19,17 +19,6 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
 
-    @IBAction func enroll(_ sender: UIButton) {
-        if UserProfileHelper.isLoggedIn() {
-            if !course.hasEnrollment {
-                createEnrollment()
-            } else {
-                showEnrollmentOptions()
-            }
-        } else {
-            performSegue(withIdentifier: "ShowLogin", sender: nil)
-        }
-    }
     var course: Course!
 
     override func viewDidLoad() {
@@ -79,6 +68,7 @@ class CourseDetailViewController: UIViewController {
         } else {
             buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title", comment: "title of Course enrollment options button")
         }
+
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
         if self.course.hasEnrollment {
@@ -108,15 +98,27 @@ class CourseDetailViewController: UIViewController {
         self.refreshEnrollButton()
     }
 
+    @IBAction func enroll(_ sender: UIButton) {
+        if UserProfileHelper.isLoggedIn() {
+            if !course.hasEnrollment {
+                createEnrollment()
+            } else {
+                showEnrollmentOptions()
+            }
+        } else {
+            self.performSegue(withIdentifier: "ShowLogin", sender: nil)
+        }
+    }
+
     func createEnrollment() {
         self.enrollmentButton.startAnimating()
         EnrollmentHelper.createEnrollment(for: self.course).onComplete { _ in
             self.enrollmentButton.stopAnimating()
         }.onSuccess { _ in
+            CourseHelper.syncCourse(self.course)
             if let parent = self.parent as? CourseDecisionViewController {
                 parent.decideContent()
             }
-            CourseHelper.syncCourse(self.course)
         }.onFailure { _ in
             self.enrollmentButton.shake()
         }
@@ -143,8 +145,8 @@ class CourseDetailViewController: UIViewController {
             }.onFailure { _ in
                 self.enrollmentButton.shake()
             }
-
         }
+
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",
                                                     comment: "title for unenroll action")
         let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in

@@ -120,6 +120,7 @@ class AccountViewController: UITableViewController {
                 view.alpha = 0
                 view.isHidden = false
             }
+
             UIView.animate(withDuration: 0.25, animations: {
                 self.headerHeight = .userProfile
                 self.view.layoutIfNeeded()
@@ -139,6 +140,7 @@ class AccountViewController: UITableViewController {
                 for view in profileViews {
                     view.isHidden = true
                 }
+
                 UIView.animate(withDuration: 0.25) {
                     self.headerHeight = .noContent
                     self.view.layoutIfNeeded()

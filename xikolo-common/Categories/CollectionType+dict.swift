@@ -14,6 +14,7 @@ extension Collection {
                 dictionary[key] = value
             }
         }
+
         return dictionary
     }
 

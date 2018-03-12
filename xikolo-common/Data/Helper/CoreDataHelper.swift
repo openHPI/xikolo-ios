@@ -18,8 +18,10 @@ class CoreDataHelper {
                 log.severe("Unresolved error \(error)")
                 fatalError("Unresolved error \(error)")
             }
+
             container.viewContext.automaticallyMergesChangesFromParent = true
         }
+
         return container
     }()
 
@@ -135,6 +137,7 @@ extension NSManagedObjectContext {
             if self.hasChanges {
                 try self.save()
             }
+
             return .success(())
         } catch {
             return .failure(.coreData(error))

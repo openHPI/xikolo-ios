@@ -42,8 +42,10 @@ final class CourseItem: NSManagedObject {
             if index < 0 || index >= items.count {
                 return nil
             }
+
             return items[index]
         }
+
         return nil
     }
 

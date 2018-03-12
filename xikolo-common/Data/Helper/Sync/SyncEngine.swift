@@ -42,6 +42,7 @@ struct SyncEngine {
         if #available(iOS 11, *) {
             configuration.waitsForConnectivity = true
         }
+
         return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
     }()
 
@@ -77,6 +78,7 @@ struct SyncEngine {
             } else {
                 stringValue = "null"
             }
+
             let queryItem = URLQueryItem(name: "filter[\(key)]", value: stringValue)
             queryItems.append(queryItem)
         }
@@ -250,6 +252,7 @@ struct SyncEngine {
                     } else {
                         promise.failure(.api(.unknownServerError))
                     }
+
                     return
                 }
 
@@ -283,6 +286,7 @@ struct SyncEngine {
                     if let index = existingObjects.index(of: existingObject) {
                         existingObjects.remove(at: index)
                     }
+
                     newObjects.append(existingObject)
                 } else {
                     if var fetchedResource = try self.findExistingResource(withId: id, ofType: Resource.self, inContext: context) {

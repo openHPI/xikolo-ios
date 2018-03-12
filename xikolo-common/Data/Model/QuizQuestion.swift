@@ -35,6 +35,7 @@ final class QuizQuestion: NSManagedObject {
         guard let type = self.type else {
             return .unsupported
         }
+
         return QuizQuestionType.fromString(type)
     }
 
@@ -42,6 +43,7 @@ final class QuizQuestion: NSManagedObject {
         guard self.questionType != .unsupported else {
             return false
         }
+
         return self.options.filter({ $0.correct }).count > 0
     }
 

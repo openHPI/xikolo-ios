@@ -153,12 +153,15 @@ extension CourseListViewController: CourseListLayoutDelegate {
         if !titleText.isEmpty || !teachersText.isEmpty {
             height += 6
         }
+        
         if !titleText.isEmpty {
             height += titleSize.height
         }
+
         if !titleText.isEmpty && !teachersText.isEmpty {
             height += 4
         }
+
         if !teachersText.isEmpty {
             height += teachersSize.height
         }
@@ -185,6 +188,7 @@ extension CourseListViewController: UISearchResultsUpdating {
         } else {
             scrollOffset = CGPoint(x: 0, y: self.topLayoutGuide.length * -1.0)
         }
+
         self.collectionView?.setContentOffset(scrollOffset, animated: true)
 
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {

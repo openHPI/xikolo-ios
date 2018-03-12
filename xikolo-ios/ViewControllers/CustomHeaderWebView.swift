@@ -15,6 +15,7 @@ class CustomHeaderWebView: WKWebView {
         for entry in headerDict {
             mutableRequest.setValue(entry.value, forHTTPHeaderField: entry.key)
         }
+    
         return super.load(mutableRequest)
     }
 }

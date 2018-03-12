@@ -95,6 +95,7 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
                 return controller.sections?[sectionsToGo].numberOfObjects ?? 0
             }
         }
+
         return 0
     }
 
@@ -114,6 +115,7 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         if let headerTitle = self.configuration?.headerTitle(forController: controller, forSection: newSection) {
             return headerTitle
         }
+
         return controller.sections?[newSection].name
     }
 
@@ -125,6 +127,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
         guard var newIndexPath = indexPath else {
             return nil
         }
+
         for contr in resultsControllers {
             if contr == controller {
                 return newIndexPath
@@ -132,6 +135,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 newIndexPath.section += contr.sections?.count ?? 0
             }
         }
+
         return nil
     }
 
@@ -149,6 +153,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += contr.sections?.count ?? 0
             }
         }
+
         return convertedIndexSet
     }
 
@@ -163,6 +168,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
+
         return nil
     }
 
@@ -177,6 +183,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
+    
         return nil
     }
 

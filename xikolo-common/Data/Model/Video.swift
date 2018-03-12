@@ -38,6 +38,7 @@ final class Video: Content {
                 log.warning("Failed to load poster image")
             }
         }
+
         return nil
     }
 
@@ -46,9 +47,11 @@ final class Video: Content {
         if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierTitle, value: course_item.title) {
             items.append(item)
         }
+
         if let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierDescription, value: summary) {
             items.append(item)
         }
+
         return items
     }
 

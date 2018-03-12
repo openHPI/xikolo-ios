@@ -75,6 +75,7 @@ class AbstractCourseListViewController: UICollectionViewController {
         for rC in resultsControllers {
             rC.delegate = resultsControllerDelegateImplementation
         }
+    
         self.collectionView?.dataSource = resultsControllerDelegateImplementation
 
         do {
@@ -112,6 +113,7 @@ struct CourseListViewConfiguration: CollectionViewResultsControllerConfiguration
                 NSPredicate(format: "abstract CONTAINS[c] %@", searchTextPart),
             ])
         }
+
         return NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
     }
 

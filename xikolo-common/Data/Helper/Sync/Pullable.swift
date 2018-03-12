@@ -22,6 +22,7 @@ extension Pullable where Self: NSManagedObject {
         guard resourceType == Self.type else {
             throw SerializationError.resourceTypeMismatch(expected: resourceType, found: Self.type)
         }
+
         var managedObject = self.init(entity: self.entity(), insertInto: context)
         try managedObject.id = object.value(for: "id")
         try managedObject.update(withObject: object, including: includes, inContext: context)
@@ -37,6 +38,7 @@ extension Pullable where Self: NSManagedObject {
             guard let identifier = try? ResourceIdentifier(object: item) else {
                 return false
             }
+            
             return objectIdentifier.id == identifier.id && objectIdentifier.type == identifier.type
         }
     }

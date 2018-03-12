@@ -17,8 +17,6 @@ struct AppNavigator {
             if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
                 activityURL = URL(string: uniqueIdentifier)
             }
-            // this contains the courses uuid
-            // Next, find and open the item specified by uniqueIdentifer.
         } else {
             activityURL = userActivity.webpageURL
         }

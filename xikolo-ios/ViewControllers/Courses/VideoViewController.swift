@@ -210,6 +210,7 @@ class VideoViewController: UIViewController {
             } else {
                 videoQuaility = UserDefaults.standard.videoQualityOnCellular
             }
+
             self.player?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
         }
     }

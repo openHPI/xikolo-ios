@@ -53,18 +53,20 @@ final class Course: NSManagedObject {
     }
 
     var language_translated: String? {
-        if let language = language {
-            let locale = Locale.current
-            return (locale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: language)
+        guard let language = language else {
+            return nil
         }
-        return nil
+
+        let locale = Locale.current
+        return (locale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: language)
     }
 
     var url: URL? {
-        if let slug = self.slug {
-            return URL(string: "\(Brand.BaseURL)/courses/\(slug)")
+        guard let slug = self.slug else {
+            return nil
         }
-        return nil
+
+        return URL(string: "\(Brand.BaseURL)/courses/\(slug)")
     }
 
     var hasEnrollment: Bool {

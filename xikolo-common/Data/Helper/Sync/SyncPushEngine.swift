@@ -77,6 +77,7 @@ class SyncPushEngine {
                     } else if case let .api(.responseError(statusCode: statusCode, headers: _)) = error, 500 ... 599 ~= statusCode {
                         return Future(error: error)
                     }
+
                     CrashlyticsHelper.shared.recordError(error)
                     log.error("Failed to push resource modification - \(error)")
                     return Future(value: ())

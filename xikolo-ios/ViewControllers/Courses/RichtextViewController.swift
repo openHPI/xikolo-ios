@@ -38,9 +38,11 @@ extension RichtextViewController: UITextViewDelegate {
             guard let trimmedURL = getURL(forString: trimmedString) else { return false }
             url = trimmedURL
         }
+
         if !(url.scheme?.hasPrefix("http") ?? false) { // abort if it still isnt http
             return false
         }
+
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
         safariVC.preferredControlTintColor = Brand.windowTintColor

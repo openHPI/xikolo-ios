@@ -64,6 +64,7 @@ struct EnrollmentHelper {
             if enrollment.objectState != .new, enrollment.objectState != .deleted {
                 enrollment.objectState = .modified
             }
+
             promise.complete(context.saveWithResult())
         }
 

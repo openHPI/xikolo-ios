@@ -183,7 +183,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
-    
+
         return nil
     }
 

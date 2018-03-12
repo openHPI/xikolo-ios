@@ -44,7 +44,7 @@ class XikoloURL {
                 if pathComponents.count != 2 {
                     return nil
                 }
-            
+
                 return XikoloURL(type: .course, targetId: pathComponents[1])
             default:
                 return nil

@@ -38,7 +38,7 @@ extension Pullable where Self: NSManagedObject {
             guard let identifier = try? ResourceIdentifier(object: item) else {
                 return false
             }
-            
+
             return objectIdentifier.id == identifier.id && objectIdentifier.type == identifier.type
         }
     }

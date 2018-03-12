@@ -38,7 +38,7 @@ struct Routes {
         if let locale = NSLocale.preferredLanguages.first {
             queryItems.append(URLQueryItem(name: "locale", value: locale))
         }
-        
+
         urlComponents?.queryItems = queryItems
 
         guard let url = urlComponents?.url else {

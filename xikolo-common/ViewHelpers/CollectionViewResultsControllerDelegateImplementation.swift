@@ -142,7 +142,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
                     return controller.sections?[sectionsToGo].numberOfObjects ?? 0
                 }
             }
-        
+
             return 0
         }
     }

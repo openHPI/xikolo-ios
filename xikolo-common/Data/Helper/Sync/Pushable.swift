@@ -43,7 +43,7 @@ extension Pushable {
                     relationships[relationshipName] = ["data": resources.map { $0.identifier }]
                 }
             }
-            
+
             if !relationships.isEmpty {
                 data["relationships"] = relationships
             }

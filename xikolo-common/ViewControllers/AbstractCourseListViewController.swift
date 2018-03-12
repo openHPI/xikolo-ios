@@ -75,7 +75,7 @@ class AbstractCourseListViewController: UICollectionViewController {
         for rC in resultsControllers {
             rC.delegate = resultsControllerDelegateImplementation
         }
-    
+
         self.collectionView?.dataSource = resultsControllerDelegateImplementation
 
         do {

@@ -77,7 +77,7 @@ extension WebViewController: UIWebViewDelegate {
                     self.webView.loadRequest(newRequest)
                 }
             }
-        
+
             return false
         }
 

@@ -153,7 +153,7 @@ extension CourseListViewController: CourseListLayoutDelegate {
         if !titleText.isEmpty || !teachersText.isEmpty {
             height += 6
         }
-        
+
         if !titleText.isEmpty {
             height += titleSize.height
         }

@@ -50,7 +50,7 @@ final class Quiz: Content {
             let format = NSLocalizedString("%d minutes", tableName: "Common", comment: "<number> of minutes #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, minutes))
         }
-    
+
         if seconds > 0 {
             let format = NSLocalizedString("%d seconds", tableName: "Common", comment: "<number> of seconds #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, seconds))

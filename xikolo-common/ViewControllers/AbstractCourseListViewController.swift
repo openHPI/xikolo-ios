@@ -41,25 +41,25 @@ class AbstractCourseListViewController: UICollectionViewController {
         switch courseDisplayMode {
         case .enrolledOnly:
             resultsControllers = [
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.enrolledCurrentCoursesRequest, sectionNameKeyPath: "current_section"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.enrolledUpcomingCourses, sectionNameKeyPath: "upcoming_section"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.enrolledSelfPacedCourses, sectionNameKeyPath: "selfpaced_section"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.completedCourses, sectionNameKeyPath: "completed_section"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.enrolledCurrentCoursesRequest, sectionNameKeyPath: "currentSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.enrolledUpcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.enrolledSelfPacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.completedCourses, sectionNameKeyPath: "completedSectionName"),
             ]
         case .explore:
             resultsControllers = [
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.interestingCoursesRequest, sectionNameKeyPath: "interesting_section"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.pastCourses, sectionNameKeyPath: "selfpaced_section"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.interestingCoursesRequest, sectionNameKeyPath: "interestingSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.pastCourses, sectionNameKeyPath: "selfpacedSectionName"),
             ]
         case .all:
             resultsControllers = [
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "current_section"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcoming_section"),
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpaced_section"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "currentSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
             ]
         case .bothSectioned:
             resultsControllers = [
-                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.allCoursesSectioned, sectionNameKeyPath: "is_enrolled_section"),
+                CoreDataHelper.createResultsController(CourseHelper.FetchRequest.allCoursesSectioned, sectionNameKeyPath: "isEnrolledSectionName"),
             ]
         }
 
@@ -118,7 +118,7 @@ struct CourseListViewConfiguration: CollectionViewResultsControllerConfiguration
     }
 
     func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
-        let view = view as! CourseHeaderView
+        let view = view as! CourseHeaderView // swiftlint:disable:this force_cast
         let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
         view.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }

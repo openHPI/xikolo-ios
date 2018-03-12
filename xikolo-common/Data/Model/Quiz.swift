@@ -35,7 +35,7 @@ final class Quiz: Content {
         }
     }
 
-    var time_limit_formatted: [String] {
+    var formattedTimeLimit: [String] {
         let hours = self.timeLimit / 3600
         let minutes = (self.timeLimit % 3600) / 60
         let seconds = self.timeLimit % 60

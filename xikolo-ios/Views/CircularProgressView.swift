@@ -41,6 +41,7 @@ class CircularProgressView: UIView {
 
     private var progressLayer: CircularProgressLayer {
         get {
+            // swiftlint:disable:next force_cast
             return self.layer as! CircularProgressLayer
         }
     }

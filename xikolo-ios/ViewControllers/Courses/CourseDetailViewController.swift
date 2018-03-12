@@ -41,7 +41,7 @@ class CourseDetailViewController: UIViewController {
 
     func updateView() {
         titleView.text = course.title
-        languageView.text = course.language_translated
+        languageView.text = course.localizedLanguage
         teacherView.text = course.teachers
         teacherView.textColor = Brand.TintColorSecond
 

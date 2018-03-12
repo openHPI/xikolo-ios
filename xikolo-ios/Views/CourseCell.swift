@@ -61,8 +61,7 @@ class CourseCell: UICollectionViewCell {
 
         self.titleLabel.text = course.title
         self.teacherLabel.text = course.teachers
-        self.languageLabel.text = course.language_translated
-        self.languageLabel.text = course.language_translated
+        self.languageLabel.text = course.localizedLanguage
         self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
 
         self.statusView.isHidden = true

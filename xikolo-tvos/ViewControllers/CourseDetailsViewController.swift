@@ -70,7 +70,7 @@ class CourseDetailsViewController : UIViewController {
             dateView.text = dateString
         }
 
-        if let language = course.language_translated {
+        if let language = course.localizedLanguage {
             languageView.text = language
         }
         teacherView.text = course.teachers

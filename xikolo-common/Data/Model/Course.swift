@@ -35,14 +35,14 @@ final class Course: NSManagedObject {
         return NSFetchRequest<Course>(entityName: "Course")
     }
 
-    @objc var interesting_section = NSLocalizedString("course.section-title.suggested",
+    @objc var interestingSection = NSLocalizedString("course.section-title.suggested",
                                                       tableName: "Common",
                                                       comment: "section title for collapsed upcoming & active courses")
-    @objc var selfpaced_section = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
-    @objc var current_section = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
-    @objc var upcoming_section = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
-    @objc var completed_section = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
-    @objc var is_enrolled_section: String {
+    @objc var selfpacedSectionName = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
+    @objc var currentSectionName = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
+    @objc var upcomingSectionName = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
+    @objc var completedSectioName = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
+    @objc var isEnrolledSectionName: String {
         get {
             if enrollment != nil {
                 return NSLocalizedString("course.section-title.my courses", tableName: "Common", comment: "section title for enrolled courses")
@@ -52,7 +52,7 @@ final class Course: NSManagedObject {
         }
     }
 
-    var language_translated: String? {
+    var localizedLanguage: String? {
         guard let language = language else {
             return nil
         }

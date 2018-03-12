@@ -64,4 +64,3 @@ enum SynchronizationError: Error {
 enum NestedMarshalError: Error {
     case nestedMarshalError(Error, includeType: String, includeKey: KeyType)
 }
-

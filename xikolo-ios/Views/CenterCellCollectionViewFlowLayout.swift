@@ -19,7 +19,7 @@ class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
                 /*  == If we're at the beginning of the list, the item should be
                        aligned with the left content inset of the collectionView    == */
-                if(proposedContentOffset.x == -(collectionView.contentInset.left)) {
+                if proposedContentOffset.x == -1 * collectionView.contentInset.left {
                     return proposedContentOffset
                 }
 

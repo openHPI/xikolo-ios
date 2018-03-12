@@ -19,7 +19,7 @@ class XikoloURL {
         var components = URLComponents()
         components.scheme = "xikolo-tvos"
 
-        switch(type) {
+        switch type {
         case .course:
             components.path = "course/\(targetId)"
         }

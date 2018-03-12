@@ -73,7 +73,7 @@ extension AnnouncementViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         var url = URL
-        if (URL.scheme == "applewebdata") { // replace applewebdata with baseURL for relative urls in markdown
+        if URL.scheme == "applewebdata" { // replace applewebdata with baseURL for relative urls in markdown
             var absoluteString = URL.absoluteString
             let trimmedUrlString = absoluteString.stringByRemovingRegexMatches(pattern: "^(?:applewebdata://[0-9A-Z-]*/?)", replaceWith: Brand.BaseURL + "/")
             guard let trimmedString = trimmedUrlString else { return false }

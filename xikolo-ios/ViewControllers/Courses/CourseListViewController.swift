@@ -124,7 +124,9 @@ class CourseListViewController: AbstractCourseListViewController {
 
 extension CourseListViewController: CourseListLayoutDelegate {
 
-    func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForCellAtIndexPath indexPath: IndexPath,
+                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
         if self.resultsControllerDelegateImplementation.isSearching && !self.resultsControllerDelegateImplementation.hasSearchResults {
             return 0.0
         }

@@ -10,7 +10,10 @@ class CoreDataObserver {
     static let standard = CoreDataObserver()
 
     func startObserving() {
-        NotificationCenter.default.addObserver(self, selector: #selector(coreDataChange(note:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(note:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     func stopObserving() {

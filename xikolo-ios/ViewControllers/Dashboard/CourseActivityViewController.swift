@@ -19,7 +19,9 @@ class CourseActivityViewController: UICollectionViewController {
         let request = CourseHelper.FetchRequest.enrolledNotCompletedCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
+                                                                                                        resultsControllers: [resultsController],
+                                                                                                        cellReuseIdentifier: "LastCourseCell")
         let configuration = CourseActivityViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation

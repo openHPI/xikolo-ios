@@ -35,7 +35,9 @@ final class Course: NSManagedObject {
         return NSFetchRequest<Course>(entityName: "Course")
     }
 
-    @objc var interesting_section = NSLocalizedString("course.section-title.suggested", tableName: "Common", comment: "section title for collapsed upcoming & active courses")
+    @objc var interesting_section = NSLocalizedString("course.section-title.suggested",
+                                                      tableName: "Common",
+                                                      comment: "section title for collapsed upcoming & active courses")
     @objc var selfpaced_section = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
     @objc var current_section = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
     @objc var upcoming_section = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")

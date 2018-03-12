@@ -56,8 +56,10 @@ class CourseItemListViewController: UITableViewController {
 
         // setup table view data
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position")  // must be equal to the first sort descriptor
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "CourseItemCell")
 
         let configuration = CourseItemListViewConfiguration(tableViewController: self).wrapped
         resultsControllerDelegateImplementation.configuration = configuration

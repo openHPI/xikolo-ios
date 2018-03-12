@@ -133,7 +133,8 @@ class CourseListLayout: UICollectionViewLayout {
 
         for section in sectionsToAdd {
             let indexPath = IndexPath(item: 0, section: section)
-            if let sectionAttributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath), sectionAttributes.frame.intersects(rect) {
+            let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+            if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
                 layoutAttributes.append(sectionAttributes)
             }
         }

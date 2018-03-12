@@ -76,29 +76,26 @@ class CourseDecisionViewController: UIViewController {
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseItemListViewController").require(toHaveType: CourseItemListViewController.self)
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.learnings.title",
-                                               comment: "title of learnings view of course view")
+            titleView.text = NSLocalizedString("course-content.view.learnings.title", comment: "title of learnings view of course view")
         case .discussions:
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.discussions.title",
-                                               comment: "title of discussions view of course view")
+            titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
         case .announcements:
             let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
-            let vc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController").require(toHaveType: AnnouncementsTableViewController.self)
+            let loadedVc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController")
+            let vc = loadedVc.require(toHaveType: AnnouncementsTableViewController.self)
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.announcements.title",
-                                               comment: "title of announcements view of course view")
+            titleView.text = NSLocalizedString("course-content.view.announcements.title", comment: "title of announcements view of course view")
         case .courseDetails:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController").require(toHaveType: CourseDetailViewController.self)
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.course-details.title",
-                                               comment: "title of course details view of course view")
+            titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
         }
         self.content = content
 
@@ -164,7 +161,8 @@ extension CourseDecisionViewController: UIPopoverPresentationControllerDelegate 
         return UIModalPresentationStyle.overFullScreen
     }
 
-    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    func presentationController(_ controller: UIPresentationController,
+                                viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
         let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
         visualEffectView.frame = navigationController.view.bounds

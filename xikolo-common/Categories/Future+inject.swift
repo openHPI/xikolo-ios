@@ -7,7 +7,8 @@ import BrightFutures
 
 extension Future {
 
-    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), f: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
+    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(),
+                f: @escaping () -> Future<Void, Value.Error>) -> Future<Value.Value, Value.Error> {
         let promise = Promise<Value.Value, Value.Error>()
 
         self.onComplete(context) { result in

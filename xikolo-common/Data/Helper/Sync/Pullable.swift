@@ -147,7 +147,12 @@ extension Pullable where Self: NSManagedObject {
                                        including includes: [ResourceData]?,
                                        inContext context: NSManagedObjectContext,
                                        updatingBlock block: (AbstractPullableContainer<Self, A>) throws -> Void) throws {
-        let container = AbstractPullableContainer<Self, A>(onResource: self, withKeyPath: keyPath, forKey: key, fromObject: object, including: includes, inContext: context)
+        let container = AbstractPullableContainer<Self, A>(onResource: self,
+                                                           withKeyPath: keyPath,
+                                                           forKey: key,
+                                                           fromObject: object,
+                                                           including: includes,
+                                                           inContext: context)
         try block(container)
     }
 

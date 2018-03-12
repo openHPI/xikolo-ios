@@ -14,7 +14,7 @@ extension AVMetadataItem {
         }
         // HACKHACK: Fix description to prevent visual bug in metadata display.
         if identifier == AVMetadataIdentifier.commonIdentifierDescription && str.count < 212 {
-            str = str + "                                                                                                                                  \n\n\n                                                                                                                                                                                     "
+            str += String(repeating: " ", count: 131) + "\n\n\n" + String(repeating: " ", count: 183)
         }
 
         let item = AVMutableMetadataItem()

@@ -30,7 +30,10 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         self.tableView?.beginUpdates()
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
         let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex).require(hint: errorMessageIndexSetConversion)
         switch type {
         case .insert:
@@ -44,7 +47,11 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         }
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
         let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
         switch type {

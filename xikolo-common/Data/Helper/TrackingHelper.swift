@@ -100,7 +100,10 @@ class TrackingHelper {
         return self.createEvent(verb, resourceType: .none, resourceId: "00000000-0000-0000-0000-000000000000", context: context)
     }
 
-    @discardableResult class func createEvent(_ verb: AnalyticsVerb, resourceType: AnalyticsResourceType, resourceId: String, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult class func createEvent(_ verb: AnalyticsVerb,
+                                              resourceType: AnalyticsResourceType,
+                                              resourceId: String,
+                                              context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         guard let userId = UserProfileHelper.userId else {
             return Future(error: .trackingForUnknownUser)
         }

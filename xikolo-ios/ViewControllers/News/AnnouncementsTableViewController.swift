@@ -38,7 +38,9 @@ class AnnouncementsTableViewController: UITableViewController {
 
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "AnnouncementCell")
         let configuration = AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil)
         let configurationWrapper = configuration.wrapped
         resultsControllerDelegateImplementation.configuration = configurationWrapper

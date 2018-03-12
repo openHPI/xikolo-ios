@@ -37,7 +37,7 @@ class AbstractCourseListViewController: UICollectionViewController {
         CourseHelper.syncAllCourses()
     }
 
-    func updateView(){
+    func updateView() {
         switch courseDisplayMode {
         case .enrolledOnly:
             resultsControllers = [

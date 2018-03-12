@@ -26,9 +26,9 @@ class MarkdownHelper {
 
 }
 
-public extension DownAttributedStringRenderable {
+extension DownAttributedStringRenderable {
 
-    public func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, color: String) throws -> NSAttributedString {
+    func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, color: String) throws -> NSAttributedString {
         let htmlResponse = try self.toHTML(options)
         let html = "<span style=\"font: \(font); color: \(color);\">\(htmlResponse)</span>"
         let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [

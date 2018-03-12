@@ -15,12 +15,13 @@ final class TrackingEvent: NSManagedObject {
     @NSManaged var result: [String: AnyObject]?
     @NSManaged var context: [String: AnyObject]?
 
-    convenience init(user: TrackingEventUser,
-                     verb: TrackingEventVerb,
-                     resource: TrackingEventResource,
-                     result: [String: AnyObject]? = nil,
-                     trackingContext: [String: AnyObject]? = nil,
-                     inContext context: NSManagedObjectContext) {
+
+    @discardableResult convenience init(user: TrackingEventUser,
+                                        verb: TrackingEventVerb,
+                                        resource: TrackingEventResource,
+                                        result: [String: AnyObject]? = nil,
+                                        trackingContext: [String: AnyObject]? = nil,
+                                        inContext context: NSManagedObjectContext) {
         self.init(context: context)
         self.user = user
         self.verb = verb

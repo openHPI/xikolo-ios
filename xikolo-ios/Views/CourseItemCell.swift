@@ -15,7 +15,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
-    var delegate: CourseItemCellDelegate?
+    weak var delegate: CourseItemCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -132,7 +132,7 @@ class CourseItemCell: UITableViewCell {
 
 }
 
-protocol CourseItemCellDelegate {
+protocol CourseItemCellDelegate: class {
 
     var contentToBePreloaded: [DetailedCourseItem.Type] { get }
     var isPreloading: Bool { get }

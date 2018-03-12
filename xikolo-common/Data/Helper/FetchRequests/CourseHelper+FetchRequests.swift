@@ -9,7 +9,7 @@ extension CourseHelper {
 
     struct FetchRequest {
 
-        private static let genericPredicate = NSPredicate(format: "external != %@", NSNumber(booleanLiteral: true))
+        private static let genericPredicate = NSPredicate(format: "external != %@", NSNumber(value: true))
 
         private static let deletedEnrollmentPrecidate = NSPredicate(format: "enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)
         private static let notDeletedEnrollmentPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: deletedEnrollmentPrecidate)
@@ -27,7 +27,7 @@ extension CourseHelper {
         private static let previewPredicate = NSPredicate(format: "status = %@", "preview")
         private static let activePredicate = NSPredicate(format: "status = %@", "active")
         private static let selfpacedPredicate = NSPredicate(format: "status = %@", "self-paced")
-        private static let accessiblePredicate = NSPredicate(format: "accessible = %@", NSNumber(booleanLiteral: true))
+        private static let accessiblePredicate = NSPredicate(format: "accessible = %@", NSNumber(value: true))
         private static let interestingPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
             announcedPredicate,
             previewPredicate,
@@ -36,12 +36,12 @@ extension CourseHelper {
 
         private static let completedPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             enrolledPredicate,
-            NSPredicate(format: "enrollment.completed = %@", NSNumber(booleanLiteral: true)),
+            NSPredicate(format: "enrollment.completed = %@", NSNumber(value: true)),
         ])
         private static let notCompletedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
             NSCompoundPredicate(andPredicateWithSubpredicates: [
                 enrolledPredicate,
-                NSPredicate(format: "enrollment.completed = %@", NSNumber(booleanLiteral: false)),
+                NSPredicate(format: "enrollment.completed = %@", NSNumber(value: false)),
             ]),
             notEnrolledPredicate,
         ])

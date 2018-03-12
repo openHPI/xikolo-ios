@@ -5,21 +5,21 @@
 
 import Foundation
 
-public extension Int {
+extension Int {
 
-    public var seconds: DispatchTimeInterval {
+    var seconds: DispatchTimeInterval {
         return DispatchTimeInterval.seconds(self)
     }
 
-    public var second: DispatchTimeInterval {
+    var second: DispatchTimeInterval {
         return seconds
     }
 
-    public var milliseconds: DispatchTimeInterval {
+    var milliseconds: DispatchTimeInterval {
         return DispatchTimeInterval.milliseconds(self)
     }
 
-    public var millisecond: DispatchTimeInterval {
+    var millisecond: DispatchTimeInterval {
         return milliseconds
     }
 

@@ -9,7 +9,7 @@ class WebViewController: UIViewController {
 
     @IBOutlet private weak var webView: UIWebView!
 
-    var loginDelegate: AbstractLoginViewControllerDelegate?
+    weak var loginDelegate: AbstractLoginViewControllerDelegate?
 
     var url: String? {
         didSet {
@@ -52,7 +52,7 @@ extension WebViewController: UIWebViewDelegate {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
 
-            if let tokenItem = queryItems.first(where: { $0.name == "token"}) {
+            if let tokenItem = queryItems.first(where: { $0.name == "token" }) {
                 guard let token = tokenItem.value else { return false }
 
                 UserProfileHelper.userId = nil

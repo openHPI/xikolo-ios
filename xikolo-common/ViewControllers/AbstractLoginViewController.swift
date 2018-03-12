@@ -10,7 +10,7 @@ class AbstractLoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
 
-    var delegate: AbstractLoginViewControllerDelegate?
+    weak var delegate: AbstractLoginViewControllerDelegate?
 
     @IBAction func login() {
         guard let email = emailField.text, let password = passwordField.text else {
@@ -44,7 +44,7 @@ class AbstractLoginViewController: UIViewController {
 
 }
 
-protocol AbstractLoginViewControllerDelegate {
+protocol AbstractLoginViewControllerDelegate: class {
 
     func didSuccessfullyLogin()
 

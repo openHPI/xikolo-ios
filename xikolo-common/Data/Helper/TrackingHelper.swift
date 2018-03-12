@@ -129,11 +129,11 @@ class TrackingHelper {
                 promise.success(())
             #else
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                    let _ = TrackingEvent(user: trackingUser,
-                                          verb: trackingVerb,
-                                          resource: trackingResource,
-                                          trackingContext: trackingContext as [String: AnyObject],
-                                          inContext: context)
+                    TrackingEvent(user: trackingUser,
+                                  verb: trackingVerb,
+                                  resource: trackingResource,
+                                  trackingContext: trackingContext as [String: AnyObject],
+                                  inContext: context)
                     promise.complete(context.saveWithResult())
                     log.verbose("Created tracking event '\(trackingVerb.type)'")
                 }

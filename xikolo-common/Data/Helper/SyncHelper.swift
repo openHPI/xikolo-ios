@@ -60,7 +60,7 @@ struct SyncHelper {
         }
     }
 
-    @discardableResult static func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError>{
+    @discardableResult static func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
         return SyncEngine.saveResource(resource).onSuccess { _ in
             log.info("Successfully saved resource of type: \(type(of: resource).type)")
         }.onFailure { error in

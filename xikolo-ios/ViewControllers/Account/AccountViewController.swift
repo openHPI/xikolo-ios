@@ -81,7 +81,7 @@ class AccountViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn(){
+        if UserProfileHelper.isLoggedIn() {
             self.navigationItem.rightBarButtonItem = nil
 
             CoreDataHelper.viewContext.perform {

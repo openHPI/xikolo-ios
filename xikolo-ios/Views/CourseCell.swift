@@ -55,7 +55,7 @@ class CourseCell: UICollectionViewCell {
     func configure(_ course: Course, forConfiguration configuration: Configuration) {
         self.courseImage.image = nil
         self.gradientView.isHidden = true
-        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { (image, _, _, _) in
+        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in
             self.gradientView.isHidden = (image == nil)
         }
 

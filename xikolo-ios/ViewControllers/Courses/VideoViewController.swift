@@ -96,7 +96,7 @@ class VideoViewController: UIViewController {
         player.delegate = self
         player.videoController = self
         self.videoContainer.addSubview(player)
-        player.snp.makeConstraints { (make) in
+        player.snp.makeConstraints { make in
             make.top.equalTo(self.videoContainer.snp.top)
             make.bottom.equalTo(self.videoContainer.snp.bottom)
             make.centerX.equalTo(self.videoContainer.snp.centerX)

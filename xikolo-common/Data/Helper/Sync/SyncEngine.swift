@@ -199,7 +199,7 @@ struct SyncEngine {
     private static func doNetworkRequest(_ request: URLRequest, expectsData: Bool = true) -> Future<NetworkResult, XikoloError> {
         let promise = Promise<NetworkResult, XikoloError>()
 
-        let task = self.session.dataTask(with: request) { (data, response, error) in
+        let task = self.session.dataTask(with: request) { data, response, error in
             if let err = error {
                 promise.failure(.network(err))
                 return

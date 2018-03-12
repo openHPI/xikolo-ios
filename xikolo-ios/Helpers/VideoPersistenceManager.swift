@@ -1,9 +1,6 @@
 //
-//  VideoPersistenceManager.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 26/07/17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -59,7 +56,7 @@ class VideoPersistenceManager: NSObject {
         let assetTitleCourse = video.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = video.item?.title ?? "Untitled video"
         let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
-        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoPersistenceQuality.rawValue]
+        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoQualityForDownload.rawValue]
 
         guard let task = self.assetDownloadURLSession.makeAssetDownloadTask(asset: AVURLAsset(url: url),
                                                                             assetTitle: assetTitle,
@@ -255,7 +252,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
                     }
                 } else {
                     userInfo[Video.Keys.downloadState] = Video.DownloadState.downloaded.rawValue
-                    let context = ["video_download_pref": String(describing: UserDefaults.standard.videoPersistenceQuality.rawValue)]
+                    let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
                     TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: videoId, context: context)
                 }
 

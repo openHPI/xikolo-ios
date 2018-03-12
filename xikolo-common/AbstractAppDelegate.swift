@@ -1,9 +1,6 @@
 //
-//  AbstractAppDelegate.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 24.04.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData

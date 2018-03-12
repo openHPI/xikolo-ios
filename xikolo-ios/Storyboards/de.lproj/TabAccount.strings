@@ -1,0 +1,39 @@
+
+/* Class = "UITabBarItem"; title = "Account"; ObjectID = "KhH-tO-TnH"; */
+"KhH-tO-TnH.title" = "Konto";
+
+/* Class = "UILabel"; text = "Download"; ObjectID = "W0A-Ki-Fhq"; */
+"W0A-Ki-Fhq.text" = "Download";
+
+/* Class = "UILabel"; text = "Data privacy statement"; ObjectID = "csD-D9-eda"; */
+"csD-D9-eda.text" = "Datenschutzerklärung";
+
+/* Class = "UIBarButtonItem"; title = "Login"; ObjectID = "tyU-B6-h3N"; */
+"tyU-B6-h3N.title" = "Einloggen";
+
+/* Class = "UINavigationItem"; title = "Account"; ObjectID = "wNE-fd-aKh"; */
+"wNE-fd-aKh.title" = "Konto";
+
+/* Class = "UILabel"; text = "Imprint"; ObjectID = "yNe-zB-n9b"; */
+"yNe-zB-n9b.text" = "Impressum";
+
+/* Class = "UILabel"; text = "Send App Feedback"; ObjectID = "KWX-En-m9x"; */
+"KWX-En-m9x.text" = "App-Feedback senden";
+
+/* Class = "UILabel"; text = "Video Streaming"; ObjectID = "TFS-M6-7DR"; */
+"TFS-M6-7DR.text" = "Video-Streaming";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "UOY-X6-cgU"; */
+"UOY-X6-cgU.text" = "Ausloggen";
+
+/* Class = "UINavigationItem"; title = "Video Streaming"; ObjectID = "Xwk-nE-GTG"; */
+"Xwk-nE-GTG.title" = "Video-Streaming";
+
+/* Class = "UINavigationItem"; title = "Download"; ObjectID = "D4w-gU-Zbc"; */
+"D4w-gU-Zbc.title" = "Download";
+
+/* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "k6k-z7-cxe"; */
+"k6k-z7-cxe.headerTitle" = "Einstellungen";
+
+/* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "zoF-aO-Ebb"; */
+"zoF-aO-Ebb.headerTitle" = "Info";

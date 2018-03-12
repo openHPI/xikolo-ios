@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tab-bar-item-settings.pdf"
+      "filename" : "downloaded.pdf"
     }
   ],
   "info" : {
@@ -10,6 +10,7 @@
     "author" : "xcode"
   },
   "properties" : {
+    "template-rendering-intent" : "template",
     "preserves-vector-representation" : true
   }
 }

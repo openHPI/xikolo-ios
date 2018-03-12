@@ -63,8 +63,8 @@ class ModelObserverManager {
 
 class ModelObserver {
 
-    typealias UpdateHandler = () -> ()
-    typealias DeleteHandler = () -> ()
+    typealias UpdateHandler = () -> Void
+    typealias DeleteHandler = () -> Void
 
     var model: NSManagedObject
     var updateHandler: UpdateHandler

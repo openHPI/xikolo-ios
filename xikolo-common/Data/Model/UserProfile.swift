@@ -16,7 +16,7 @@ final class UserProfile: NSManagedObject {
 
     var fullName: String? {
         let components = [self.firstName, self.lastName].flatMap{ $0 }
-        return components.count > 0 ? components.joined(separator: " ") : nil
+        return components.isEmpty ? nil : components.joined(separator: " ")
     }
 
 }

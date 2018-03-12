@@ -66,8 +66,8 @@ struct AnnouncementHelper {
             CoreDataHelper.persistentContainer.performBackgroundTask { context in
                 let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
                 do {
-                    let count = try context.count(for: fetchRequest)
-                    let badgeValue = count > 0 ? String(describing: count) : nil
+                    let announcementCount = try context.count(for: fetchRequest)
+                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
                     DispatchQueue.main.async {
                         tabItem.badgeValue = badgeValue
                     }

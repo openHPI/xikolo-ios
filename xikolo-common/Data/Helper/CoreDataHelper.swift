@@ -11,7 +11,7 @@ class CoreDataHelper {
 
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "xikolo")
-        container.loadPersistentStores { storeDescription, error in
+        container.loadPersistentStores { _, error in
             // TODO: check for space etc
             if let error = error {
                 CrashlyticsHelper.shared.recordError(error)

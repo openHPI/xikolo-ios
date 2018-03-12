@@ -16,7 +16,7 @@ func retry<T,E>(_ context: @escaping ExecutionContext = DefaultThreadingModel(),
         return future
     }
 
-    return future.recoverWith(context: context) { error in
+    return future.recoverWith(context: context) { _ in
         return Future(value: ()).delay(coolDown).flatMap { _ in
             return retry(context, times: times - 1, coolDown: coolDownRate(coolDown), coolDownRate: coolDownRate, task: task)
         }

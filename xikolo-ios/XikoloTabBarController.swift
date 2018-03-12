@@ -106,6 +106,8 @@ class XikoloTabBarController: UITabBarController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         self.messageLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: XikoloTabBarController.messageViewHeight)
         self.messageLabel.textAlignment = .center
         self.messageLabel.font = UIFont.systemFont(ofSize: XikoloTabBarController.messageLabelFontSize)

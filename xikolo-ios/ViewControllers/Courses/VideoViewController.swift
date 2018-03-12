@@ -65,6 +65,8 @@ class VideoViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
         if !(self.navigationController?.viewControllers.contains(self) ?? false) {
             self.player?.pause()
         }

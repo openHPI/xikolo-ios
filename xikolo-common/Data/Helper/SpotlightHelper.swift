@@ -1,9 +1,6 @@
 //
-//  SpotlightHelper.swift
-//  xikolo-ios
-//
-//  Created by Jan Renz on 26/07/2017.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation

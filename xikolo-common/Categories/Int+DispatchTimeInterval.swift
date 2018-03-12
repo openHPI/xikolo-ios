@@ -1,9 +1,6 @@
 //
-//  Int+DispatchTimeInterval.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 22.09.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation

@@ -1,9 +1,6 @@
 //
-//  String+ascii.swift
-//  openHPI-iOS
-//
-//  Created by Max Bothe on 09.08.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation

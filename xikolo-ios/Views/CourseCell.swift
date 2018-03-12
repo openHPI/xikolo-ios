@@ -38,7 +38,7 @@ class CourseCell: UICollectionViewCell {
 
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
-        gradient.locations = [0.0 , 1.0]
+        gradient.locations = [0.0, 1.0]
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
         self.gradientView.layer.insertSublayer(gradient, at: 0)
         self.gradientView.layer.cornerRadius = 4.0

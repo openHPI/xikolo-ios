@@ -5,11 +5,11 @@
 
 import BrightFutures
 
-func retry<T,E>(_ context: @escaping ExecutionContext = DefaultThreadingModel(),
-                times: Int,
-                coolDown: DispatchTimeInterval,
-                coolDownRate: @escaping (DispatchTimeInterval) -> DispatchTimeInterval = { rate in return rate },
-                task: @escaping () -> Future<T,E>) -> Future<T,E> {
+func retry<T, E>(_ context: @escaping ExecutionContext = DefaultThreadingModel(),
+                 times: Int,
+                 coolDown: DispatchTimeInterval,
+                 coolDownRate: @escaping (DispatchTimeInterval) -> DispatchTimeInterval = { rate in return rate },
+                 task: @escaping () -> Future<T, E>) -> Future<T, E> {
     let future = task()
 
     guard times > 1 else {

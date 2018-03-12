@@ -28,6 +28,9 @@ opt_in_rules:
 - unneeded_parentheses_in_closure_argument
 - vertical_parameter_alignment_on_call
 
+disabled_rules:
+- explicit_enum_raw_value
+
 included:
 - xikolo-common
 - xikolo-ios

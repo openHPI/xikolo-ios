@@ -38,6 +38,7 @@ class TrackingHelper {
         case share = "SHARE_BUTTON_CLICK"
     }
 
+    // swiftlint:disable redundant_string_enum_value
     enum AnalyticsResourceType: String {
         case section = "section"
         case course = "course"
@@ -50,6 +51,7 @@ class TrackingHelper {
         // none
         case none = "none"
     }
+    // swiftlint:enable redundant_string_enum_value
 
     private static var networkState: String {
         switch ReachabilityHelper.connection {

@@ -27,7 +27,7 @@ class XikoloTabBarController: UITabBarController {
             return formatter
         }()
 
-        static func ==(lhs: State, rhs: State) -> Bool {
+        static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
             case (.standard, .standard):
                 return true

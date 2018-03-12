@@ -32,7 +32,7 @@ class ModelObserverManager {
             return self.viewController.hashValue ^ self.objectId.hashValue
         }
 
-        static func ==(lhs: ModelObserverManager.ModelObeserverKey, rhs: ModelObserverManager.ModelObeserverKey) -> Bool {
+        static func == (lhs: ModelObserverManager.ModelObeserverKey, rhs: ModelObserverManager.ModelObeserverKey) -> Bool {
             return lhs.viewController == rhs.viewController && lhs.objectId == rhs.objectId
         }
     }

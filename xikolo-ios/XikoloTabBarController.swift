@@ -165,7 +165,7 @@ class XikoloTabBarController: UITabBarController {
         }
 
         let itemsCounts = self.tabBar.items?.count ?? 0
-        return heightCounter.filter { $1 == itemsCounts }.first?.key
+        return heightCounter.first { $1 == itemsCounts }?.key
     }
 
 }

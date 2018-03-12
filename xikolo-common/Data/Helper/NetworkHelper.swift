@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import BrightFutures
+import Foundation
 
 class NetworkHelper {
 

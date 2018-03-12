@@ -3,10 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
-import WebKit
 import SafariServices
 import SimpleRoundedButton
+import UIKit
+import WebKit
 
 class LoginViewController: AbstractLoginViewController, WKUIDelegate {
 

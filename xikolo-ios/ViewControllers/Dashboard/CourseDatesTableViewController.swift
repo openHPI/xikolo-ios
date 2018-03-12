@@ -3,9 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import CoreData
 import DZNEmptyDataSet
+import UIKit
 
 class CourseDatesTableViewController: UITableViewController {
 

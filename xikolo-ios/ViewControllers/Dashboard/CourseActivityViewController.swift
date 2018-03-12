@@ -3,11 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import UIKit
 import CoreData
 import DZNEmptyDataSet
-
+import Foundation
+import UIKit
 
 class CourseActivityViewController: UICollectionViewController {
 

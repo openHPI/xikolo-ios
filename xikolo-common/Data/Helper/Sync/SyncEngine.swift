@@ -3,11 +3,11 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import BrightFutures
-import Result
 import CoreData
+import Foundation
 import Marshal
+import Result
 
 struct SyncEngine {
 

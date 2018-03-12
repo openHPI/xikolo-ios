@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import Result
 
 enum ObjectState: Int16 {

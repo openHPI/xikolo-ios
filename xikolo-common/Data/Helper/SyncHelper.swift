@@ -3,9 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import BrightFutures
 import CoreData
+import Foundation
 
 struct SyncHelper {
 

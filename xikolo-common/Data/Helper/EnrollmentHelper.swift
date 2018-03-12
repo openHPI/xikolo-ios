@@ -3,10 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
-import Result
+import CoreData
+import Foundation
 
 struct EnrollmentHelper {
 

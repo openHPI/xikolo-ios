@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 final class TrackingEvent: NSManagedObject {

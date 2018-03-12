@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import BMPlayer
+import Foundation
 import UIKit
 
 class CustomBMPlayer: BMPlayer {

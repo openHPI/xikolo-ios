@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import SDWebImage
+import UIKit
 
 class CourseCell: UICollectionViewCell {
 

@@ -3,9 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import SDWebImage
 import SimpleRoundedButton
+import UIKit
 
 class CourseDetailViewController: UIViewController {
 

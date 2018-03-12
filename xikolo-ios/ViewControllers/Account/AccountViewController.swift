@@ -3,12 +3,11 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
+import MessageUI
+import Result
 import SafariServices
 import SDWebImage
-import MessageUI
-
-import Result
+import UIKit
 
 class AccountViewController: UITableViewController {
 

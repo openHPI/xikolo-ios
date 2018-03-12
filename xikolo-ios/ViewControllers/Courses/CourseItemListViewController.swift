@@ -4,8 +4,8 @@
 //
 
 import CoreData
-import UIKit
 import DZNEmptyDataSet
+import UIKit
 
 class CourseItemListViewController: UITableViewController {
     typealias Resource = CourseItem

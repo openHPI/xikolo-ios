@@ -3,9 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import UIKit
 import CoreData
+import UIKit
 
 extension NSManagedObject {
 

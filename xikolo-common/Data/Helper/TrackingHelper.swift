@@ -4,7 +4,6 @@
 //
 
 import BrightFutures
-import CoreData
 import UIKit
 
 class TrackingHelper {

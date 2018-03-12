@@ -3,9 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 class CoreDataObserver {
     static let standard = CoreDataObserver()

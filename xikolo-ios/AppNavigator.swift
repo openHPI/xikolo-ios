@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import CoreSpotlight
+import UIKit
 
 struct AppNavigator {
 

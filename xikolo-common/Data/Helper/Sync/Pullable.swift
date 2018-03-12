@@ -3,10 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import Marshal
-
 
 protocol Pullable: ResourceRepresentable {
 

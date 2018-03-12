@@ -4,8 +4,8 @@
 //
 
 import Firebase
-import UIKit
 import SDWebImage
+import UIKit
 
 #if DEBUG
 import SimulatorStatusMagic

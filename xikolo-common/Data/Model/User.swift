@@ -3,9 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
-import BrightFutures
 
 final class User: NSManagedObject {
 

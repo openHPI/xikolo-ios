@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import CoreData
 import BrightFutures
+import CoreData
 import Result
 
 class CoreDataHelper {

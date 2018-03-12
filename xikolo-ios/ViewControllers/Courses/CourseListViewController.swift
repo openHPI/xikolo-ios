@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 class CourseListViewController: AbstractCourseListViewController {
 

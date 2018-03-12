@@ -4,8 +4,6 @@
 //
 
 import BrightFutures
-import Foundation
-import CoreData
 import KeychainAccess
 
 open class UserProfileHelper {

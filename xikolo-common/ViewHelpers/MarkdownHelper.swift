@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import Down
 
 class MarkdownHelper {

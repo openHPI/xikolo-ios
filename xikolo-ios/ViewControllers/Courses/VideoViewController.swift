@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import AVKit
 import AVFoundation
+import AVKit
 import BMPlayer
 import NVActivityIndicatorView
 import UIKit

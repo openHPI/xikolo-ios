@@ -3,9 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import Down
 import SafariServices
+import UIKit
 
 class AnnouncementViewController: UIViewController {
 

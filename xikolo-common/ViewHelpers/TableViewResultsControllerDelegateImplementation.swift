@@ -80,9 +80,9 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     // MARK: UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return resultsControllers.reduce(0, { partialCount, controller -> Int in
+        return resultsControllers.reduce(0) { partialCount, controller -> Int in
             return (controller.sections?.count ?? 0) + partialCount
-        })
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

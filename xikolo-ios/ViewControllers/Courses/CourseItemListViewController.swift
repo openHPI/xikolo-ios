@@ -180,9 +180,9 @@ extension CourseItemListViewController { // TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = self.resultsController.object(at: indexPath)
         if item.proctored && (self.course.enrollment?.proctored ?? false) {
-            self.showProctoringDialog(onComplete: {
+            self.showProctoringDialog {
                 tableView.deselectRow(at: indexPath, animated: true)
-            })
+            }
         } else {
             self.showItem(item)
             tableView.deselectRow(at: indexPath, animated: true)

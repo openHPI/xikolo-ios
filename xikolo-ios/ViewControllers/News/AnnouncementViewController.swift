@@ -30,10 +30,10 @@ class AnnouncementViewController: UIViewController {
         // swiftlint:disable:next multiline_arguments
         self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
-        }) {
+        }, deleteHandler: {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popViewController(animated: isVisible)
-        }
+        })
     }
 
     override func viewDidAppear(_ animated: Bool) {

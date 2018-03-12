@@ -31,10 +31,10 @@ class CourseDecisionViewController: UIViewController {
                                                name: NotificationKeys.dropdownCourseContentKey,
                                                object: nil)
 
-        self.course.notifyOnChange(self, updateHandler: {}) {
+        self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popToRootViewController(animated: isVisible)
-        }
+        })
 
         SpotlightHelper.setUserActivity(for: self.course)
         CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")

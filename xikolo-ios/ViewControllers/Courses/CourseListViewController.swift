@@ -138,16 +138,16 @@ extension CourseListViewController: CourseListLayoutDelegate {
         let titleText = course.title ?? ""
         let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
-                                                                          options: .usesLineFragmentOrigin,
-                                                                          attributes: titleAttributes,
-                                                                          context: nil)
+                                                                 options: .usesLineFragmentOrigin,
+                                                                 attributes: titleAttributes,
+                                                                 context: nil)
 
         let teachersText = course.teachers ?? ""
         let teachersAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
         let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
-                                                                                options: .usesLineFragmentOrigin,
-                                                                                attributes: teachersAttributes,
-                                                                                context: nil)
+                                                                       options: .usesLineFragmentOrigin,
+                                                                       attributes: teachersAttributes,
+                                                                       context: nil)
 
         var height = imageHeight
         if !titleText.isEmpty || !teachersText.isEmpty {

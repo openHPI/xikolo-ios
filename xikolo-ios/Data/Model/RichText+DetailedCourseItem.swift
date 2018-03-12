@@ -5,7 +5,6 @@
 
 import BrightFutures
 import Foundation
-//import CoreData
 
 extension RichText: DetailedCourseItem {
 

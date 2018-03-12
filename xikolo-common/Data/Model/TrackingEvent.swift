@@ -15,7 +15,6 @@ final class TrackingEvent: NSManagedObject {
     @NSManaged var result: [String: AnyObject]?
     @NSManaged var context: [String: AnyObject]?
 
-
     @discardableResult convenience init(user: TrackingEventUser,
                                         verb: TrackingEventVerb,
                                         resource: TrackingEventResource,

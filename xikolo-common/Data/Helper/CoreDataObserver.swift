@@ -63,7 +63,7 @@ class CoreDataObserver {
         if let refreshed = note.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject>, !refreshed.isEmpty {
             for object in refreshed {
                 // Pushable
-                if object is Pushable {
+                if object is Pushable { // swiftlint:disable:this for_where
                     shouldCheckForChangesToPush = true
                 }
             }

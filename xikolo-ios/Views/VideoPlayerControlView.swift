@@ -16,6 +16,7 @@ class CustomBMPlayer: BMPlayer {
         super.seek(to, completion: completion)
         self.videoController?.trackVideoSeek(from: from, to: to)
     }
+
 }
 
 class VideoPlayerControlView: BMPlayerControlView {

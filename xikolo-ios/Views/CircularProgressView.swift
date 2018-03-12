@@ -29,21 +29,17 @@ class CircularProgressView: UIView {
     }
 
     @IBInspectable var indeterminateProgress: CGFloat = Defaults.indeterminateProgress
-    @IBInspectable var indeterminateDuration: CFTimeInterval = Defaults.indeterminateDuration
+    @IBInspectable var indeterminateDuration: Double = Defaults.indeterminateDuration
 
     var timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
     var progress: CGFloat {
-        get {
-            return self.progressLayer.progress
-        }
+        return self.progressLayer.progress
     }
 
     private var progressLayer: CircularProgressLayer {
-        get {
-            // swiftlint:disable:next force_cast
-            return self.layer as! CircularProgressLayer
-        }
+        // swiftlint:disable:next force_cast
+        return self.layer as! CircularProgressLayer
     }
 
     override class var layerClass: AnyClass {

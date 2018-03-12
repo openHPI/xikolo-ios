@@ -105,11 +105,12 @@ open class UserProfileHelper {
 
 extension UserProfileHelper {
 
-    private static let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
     private enum KeychainKey: String {
         case userId = "de.xikolo.ios.user-id"
         case userToken = "de.xikolo.ios.user-token"
     }
+
+    private static let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
 
     static var userId: String? {
         get {

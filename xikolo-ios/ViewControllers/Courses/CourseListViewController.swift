@@ -85,13 +85,13 @@ class CourseListViewController: AbstractCourseListViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            case "ShowCourseContent"?:
-                let vc = segue.destination.require(toHaveType: CourseDecisionViewController.self)
-                let cell = (sender as? CourseCell).require(hint: "Sender must be CourseCell")
-                let indexPath = collectionView!.indexPath(for: cell)!
-                vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
-            default:
-                break
+        case "ShowCourseContent"?:
+            let vc = segue.destination.require(toHaveType: CourseDecisionViewController.self)
+            let cell = (sender as? CourseCell).require(hint: "Sender must be CourseCell")
+            let indexPath = collectionView!.indexPath(for: cell)!
+            vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
+        default:
+            break
         }
     }
 

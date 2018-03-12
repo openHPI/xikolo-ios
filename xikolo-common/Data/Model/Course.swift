@@ -36,19 +36,17 @@ final class Course: NSManagedObject {
     }
 
     @objc var interestingSection = NSLocalizedString("course.section-title.suggested",
-                                                      tableName: "Common",
-                                                      comment: "section title for collapsed upcoming & active courses")
+                                                     tableName: "Common",
+                                                     comment: "section title for collapsed upcoming & active courses")
     @objc var selfpacedSectionName = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
     @objc var currentSectionName = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
     @objc var upcomingSectionName = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
     @objc var completedSectioName = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
     @objc var isEnrolledSectionName: String {
-        get {
-            if enrollment != nil {
-                return NSLocalizedString("course.section-title.my courses", tableName: "Common", comment: "section title for enrolled courses")
-            } else {
-                return NSLocalizedString("course.section-title.all courses", tableName: "Common", comment: "section title for all courses")
-            }
+        if enrollment != nil {
+            return NSLocalizedString("course.section-title.my courses", tableName: "Common", comment: "section title for enrolled courses")
+        } else {
+            return NSLocalizedString("course.section-title.all courses", tableName: "Common", comment: "section title for all courses")
         }
     }
 

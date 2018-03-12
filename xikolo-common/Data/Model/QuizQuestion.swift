@@ -77,14 +77,14 @@ enum QuizQuestionType {
 
     static func fromString(_ str: String) -> QuizQuestionType {
         switch str {
-            case "select_one":
-                return .singleAnswer
-            case "select_multiple":
-                return .multipleAnswer
-            // case "free_text":
-            //     return .freeText
-            default:
-                return .unsupported
+        case "select_one":
+            return .singleAnswer
+        case "select_multiple":
+            return .multipleAnswer
+        // case "free_text":
+        //     return .freeText
+        default:
+            return .unsupported
         }
     }
 

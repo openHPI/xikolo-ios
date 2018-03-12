@@ -20,7 +20,7 @@ class NetworkHelper {
     }
 
     class func getRequestForURL(_ url: String) -> NSMutableURLRequest {
-        //TODO: test whether url is a valid url
+        // TODO: test whether url is a valid url
         let url = URL(string: url).require(hint: "Can't build URLRequest from invalid URL")
         let request = NSMutableURLRequest(url: url)
         request.allHTTPHeaderFields = getRequestHeaders()

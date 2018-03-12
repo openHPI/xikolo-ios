@@ -91,7 +91,7 @@ class CourseItemCell: UITableViewCell {
             self.detailContentView.isHidden = false
         } else if self.delegate?.isPreloading ?? false {
             self.detailContentView.isShimmering = true
-            self.detailContentView.isHidden = false //configuration.inOfflineMode
+            self.detailContentView.isHidden = false
         } else {
             self.detailContentView.isHidden = true
         }

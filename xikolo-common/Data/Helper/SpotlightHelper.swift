@@ -19,7 +19,6 @@ class SpotlightHelper {
         // Add metadata that supplies details about the item.
         attributeSet.title = course.title
         attributeSet.contentDescription = (course.abstract ?? "") + " " + (course.teachers ?? "")
-        //attributeSet.thumbnailData = DocumentImage.jpg
 
         // Create an item with a unique identifier, a domain identifier, and the attribute set you created earlier.
         let item = CSSearchableItem(uniqueIdentifier: url.absoluteString, domainIdentifier: self.getReverseDomain(appendix: "course"), attributeSet: attributeSet)

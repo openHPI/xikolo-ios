@@ -24,6 +24,14 @@ extension Brand {
         return url.host.require(hint: "Invalid base URL - Unable to find host")
     }
 
+    static var locale: Locale = {
+        if Bundle.main.localizations.contains(Locale.current.languageCode ?? Locale.current.identifier) {
+            return Locale.current
+        } else {
+            return Locale(identifier: "en")
+        }
+    }()
+
     static var windowTintColor: UIColor {
         #if OPENSAP
             return self.TintColorSecond

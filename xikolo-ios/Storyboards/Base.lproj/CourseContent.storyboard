@@ -419,18 +419,18 @@
                                                                 </state>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yCb-bI-AW3">
-                                                                <rect key="frame" x="251" y="0.0" width="84" height="28"/>
+                                                                <rect key="frame" x="250" y="0.0" width="85" height="28"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloaded" translatesAutoresizingMaskIntoConstraints="NO" id="1PV-aM-oRa">
-                                                                        <rect key="frame" x="0.0" y="4" width="20" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="3.5" width="21" height="21"/>
                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="20" id="hlv-TG-1t9"/>
+                                                                            <constraint firstAttribute="height" constant="21" id="hlv-TG-1t9"/>
                                                                             <constraint firstAttribute="width" secondItem="1PV-aM-oRa" secondAttribute="height" multiplier="1:1" id="iTh-NT-XOB"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQS-5h-i0c" customClass="CircularProgressView" customModule="moocHOUSE" customModuleProvider="target">
-                                                                        <rect key="frame" x="28" y="4" width="20" height="20"/>
+                                                                        <rect key="frame" x="29" y="4" width="20" height="20"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="NQS-5h-i0c" secondAttribute="height" multiplier="1:1" id="8jm-c0-nXd"/>
@@ -449,7 +449,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfL-Ji-GjO">
-                                                                        <rect key="frame" x="56" y="0.0" width="28" height="28"/>
+                                                                        <rect key="frame" x="57" y="0.0" width="28" height="28"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="28" id="PLu-zh-wkx"/>
                                                                             <constraint firstAttribute="width" secondItem="VfL-Ji-GjO" secondAttribute="height" multiplier="1:1" id="Y3A-nU-SiK"/>
@@ -477,21 +477,21 @@
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2I-hx-hxh">
-                                                                <rect key="frame" x="121.5" y="0.0" width="50" height="28"/>
+                                                                <rect key="frame" x="121" y="0.0" width="50" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9Qa-v7-8vA">
-                                                                <rect key="frame" x="251" y="0.0" width="84" height="28"/>
+                                                                <rect key="frame" x="250" y="0.0" width="85" height="28"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloaded" translatesAutoresizingMaskIntoConstraints="NO" id="sub-w1-OoS">
-                                                                        <rect key="frame" x="0.0" y="4" width="20" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="3.5" width="21" height="21"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="20" id="Csw-wm-0RT"/>
+                                                                            <constraint firstAttribute="height" constant="21" id="Csw-wm-0RT"/>
                                                                             <constraint firstAttribute="width" secondItem="sub-w1-OoS" secondAttribute="height" multiplier="1:1" id="IOS-iD-KTI"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVc-3o-zwa" customClass="CircularProgressView" customModule="moocHOUSE" customModuleProvider="target">
-                                                                        <rect key="frame" x="28" y="4" width="20" height="20"/>
+                                                                        <rect key="frame" x="29" y="4" width="20" height="20"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="BVc-3o-zwa" secondAttribute="height" multiplier="1:1" id="2ca-IT-8vV"/>
@@ -510,7 +510,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmA-3o-EpW">
-                                                                        <rect key="frame" x="56" y="0.0" width="28" height="28"/>
+                                                                        <rect key="frame" x="57" y="0.0" width="28" height="28"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="28" id="Un1-yX-IAg"/>
                                                                             <constraint firstAttribute="width" secondItem="YmA-3o-EpW" secondAttribute="height" multiplier="1:1" id="rMv-tY-RSo"/>
@@ -852,7 +852,7 @@
     </scenes>
     <resources>
         <image name="dots" width="28" height="28"/>
-        <image name="downloaded" width="14" height="14"/>
+        <image name="downloaded" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Pt9-PY-lWf"/>

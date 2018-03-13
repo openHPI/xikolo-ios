@@ -63,7 +63,6 @@ class CourseItemCell : UITableViewCell {
             return
         }
 
-        self.actionsButton.tintColor = .lightGray
         self.actionsButton.isHidden = video.alertActions.isEmpty
     }
 

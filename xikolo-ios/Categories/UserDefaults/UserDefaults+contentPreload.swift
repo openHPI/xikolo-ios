@@ -22,7 +22,6 @@ extension UserDefaults {
 
 }
 
-
 enum CourseItemContentPreloadSetting: Int, CustomStringConvertible {
     case wifiOnly = 0  // default value must be zero
     case never

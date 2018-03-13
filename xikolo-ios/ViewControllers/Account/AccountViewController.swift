@@ -3,12 +3,11 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
+import MessageUI
+import Result
 import SafariServices
 import SDWebImage
-import MessageUI
-
-import Result
+import UIKit
 
 class AccountViewController: UITableViewController {
 
@@ -20,21 +19,23 @@ class AccountViewController: UITableViewController {
     static let feedbackIndexPath = IndexPath(row: 0, section: 2)
     static let logoutIndexPath = IndexPath(row: 0, section: 3)
 
-    @IBOutlet weak var imprintCell: UITableViewCell!
-    @IBOutlet weak var dataPrivacyCell: UITableViewCell!
-    @IBOutlet weak var githubCell: UITableViewCell!
+    @IBOutlet private weak var videoSettingsCell: UITableViewCell!
+    @IBOutlet private weak var downloadCell: UITableViewCell!
+    @IBOutlet private weak var imprintCell: UITableViewCell!
+    @IBOutlet private weak var dataPrivacyCell: UITableViewCell!
+    @IBOutlet private weak var githubCell: UITableViewCell!
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
-    @IBOutlet weak var headerImage: UIImageView!
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nameView: UILabel!
-    @IBOutlet weak var emailView: UILabel!
+    @IBOutlet private weak var headerImage: UIImageView!
+    @IBOutlet private weak var profileImage: UIImageView!
+    @IBOutlet private weak var nameView: UILabel!
+    @IBOutlet private weak var emailView: UILabel!
 
-    @IBOutlet weak var copyrightLabel: UILabel!
-    @IBOutlet weak var poweredByLabel: UILabel!
-    @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var buildLabel: UILabel!
+    @IBOutlet private weak var copyrightLabel: UILabel!
+    @IBOutlet private weak var poweredByLabel: UILabel!
+    @IBOutlet private weak var versionLabel: UILabel!
+    @IBOutlet private weak var buildLabel: UILabel!
 
     var headerHeight: HeaderHeight = .noContent
     var user: User? {
@@ -49,6 +50,7 @@ class AccountViewController: UITableViewController {
                 oldValue?.removeNotifications(self)
             }
 
+            // swiftlint:disable:next multiline_arguments
             self.user?.notifyOnChange(self, updateHandler: {
                 DispatchQueue.main.async {
                     self.updateProfileInfo()
@@ -81,7 +83,7 @@ class AccountViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn(){
+        if UserProfileHelper.isLoggedIn() {
             self.navigationItem.rightBarButtonItem = nil
 
             CoreDataHelper.viewContext.perform {
@@ -121,6 +123,8 @@ class AccountViewController: UITableViewController {
                 view.alpha = 0
                 view.isHidden = false
             }
+
+            // swiftlint:disable:next multiline_arguments
             UIView.animate(withDuration: 0.25, animations: {
                 self.headerHeight = .userProfile
                 self.view.layoutIfNeeded()
@@ -132,6 +136,7 @@ class AccountViewController: UITableViewController {
                 }
             })
         } else {
+            // swiftlint:disable:next multiline_arguments
             UIView.animate(withDuration: 0.25, animations: {
                 for view in profileViews {
                     view.alpha = 0
@@ -140,6 +145,7 @@ class AccountViewController: UITableViewController {
                 for view in profileViews {
                     view.isHidden = true
                 }
+
                 UIView.animate(withDuration: 0.25) {
                     self.headerHeight = .noContent
                     self.view.layoutIfNeeded()
@@ -151,6 +157,18 @@ class AccountViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
         switch newIndexPath {
+        case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
+            let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalStreamingSettings" : "PushStreamingSettings"
+            self.performSegue(withIdentifier: identifier, sender: self)
+            if self.traitCollection.horizontalSizeClass == .regular {
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            }
+        case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
+            let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalDownloadSettings" : "PushDownloadSettings"
+            self.performSegue(withIdentifier: identifier, sender: self)
+            if self.traitCollection.horizontalSizeClass == .regular {
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            }
         case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
             self.open(url: URL(string: Brand.APP_IMPRINT_URL))
         case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):
@@ -249,6 +267,9 @@ class AccountViewController: UITableViewController {
         ]
         return components.joined(separator: "\n")
     }
+
+    @IBAction func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }
+
 }
 
 extension AccountViewController: MFMailComposeViewControllerDelegate {

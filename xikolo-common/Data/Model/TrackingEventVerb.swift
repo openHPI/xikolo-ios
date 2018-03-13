@@ -5,7 +5,7 @@
 
 import Foundation
 
-class TrackingEventVerb : NSObject, NSCoding {
+class TrackingEventVerb: NSObject, NSCoding {
 
     var type: String
 
@@ -27,10 +27,10 @@ class TrackingEventVerb : NSObject, NSCoding {
 
 }
 
-extension TrackingEventVerb : IncludedPushable {
+extension TrackingEventVerb: IncludedPushable {
 
-    func resourceAttributes() -> [String : Any] {
-        return [ "type": self.type ]
+    func resourceAttributes() -> [String: Any] {
+        return ["type": self.type]
     }
 
 }

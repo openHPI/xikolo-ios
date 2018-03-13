@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import Down
 
 class MarkdownHelper {
@@ -27,14 +26,17 @@ class MarkdownHelper {
 
 }
 
-public extension DownAttributedStringRenderable {
-    public func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, color: String) throws -> NSAttributedString {
+extension DownAttributedStringRenderable {
+
+    func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, color: String) throws -> NSAttributedString {
         let htmlResponse = try self.toHTML(options)
         let html = "<span style=\"font: \(font); color: \(color);\">\(htmlResponse)</span>"
-        let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8)!, options: [
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
             .documentType: NSAttributedString.DocumentType.html,
             .characterEncoding: String.Encoding.utf8.rawValue,
-        ], documentAttributes: nil)
+        ]
+        let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8)!, options: options, documentAttributes: nil)
         return mutableString.trimmedAttributedString(set: .whitespacesAndNewlines)
     }
+
 }

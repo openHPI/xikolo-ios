@@ -6,9 +6,11 @@
 import CoreData
 import UIKit
 
+// swiftlint:disable private_over_fileprivate
 fileprivate let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
 fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
 fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
+// swiftlint:enable private_over_fileprivate
 
 class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
@@ -30,7 +32,10 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         self.tableView?.beginUpdates()
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
         let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex).require(hint: errorMessageIndexSetConversion)
         switch type {
         case .insert:
@@ -44,7 +49,11 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         }
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
         let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
         switch type {
@@ -73,9 +82,9 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     // MARK: UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return resultsControllers.reduce(0, { (partialCount, controller) -> Int in
+        return resultsControllers.reduce(0) { partialCount, controller -> Int in
             return (controller.sections?.count ?? 0) + partialCount
-        })
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +97,7 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
                 return controller.sections?[sectionsToGo].numberOfObjects ?? 0
             }
         }
+
         return 0
     }
 
@@ -107,6 +117,7 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         if let headerTitle = self.configuration?.headerTitle(forController: controller, forSection: newSection) {
             return headerTitle
         }
+
         return controller.sections?[newSection].name
     }
 
@@ -118,6 +129,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
         guard var newIndexPath = indexPath else {
             return nil
         }
+
         for contr in resultsControllers {
             if contr == controller {
                 return newIndexPath
@@ -125,6 +137,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 newIndexPath.section += contr.sections?.count ?? 0
             }
         }
+
         return nil
     }
 
@@ -142,6 +155,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += contr.sections?.count ?? 0
             }
         }
+
         return convertedIndexSet
     }
 
@@ -156,6 +170,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
+
         return nil
     }
 
@@ -170,9 +185,10 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
+
         return nil
     }
-    
+
 }
 
 protocol TableViewResultsControllerConfigurationProtocol {

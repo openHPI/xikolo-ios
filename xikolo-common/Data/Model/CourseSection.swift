@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class CourseSection : NSManagedObject {
+final class CourseSection: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var abstract: String?
@@ -20,7 +20,7 @@ final class CourseSection : NSManagedObject {
     @NSManaged var items: Set<CourseItem>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseSection> {
-        return NSFetchRequest<CourseSection>(entityName: "CourseSection");
+        return NSFetchRequest<CourseSection>(entityName: "CourseSection")
     }
 
     var itemsSorted: [CourseItem] {
@@ -31,7 +31,7 @@ final class CourseSection : NSManagedObject {
 
 }
 
-extension CourseSection : Pullable {
+extension CourseSection: Pullable {
 
     static var type: String {
         return "course-sections"

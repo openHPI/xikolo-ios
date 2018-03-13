@@ -3,19 +3,20 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import BMPlayer
+import Foundation
 import UIKit
 
 class CustomBMPlayer: BMPlayer {
 
     weak var videoController: VideoViewController?
 
-    override func seek(_ to:TimeInterval, completion: (()->Void)? = nil) {
+    override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) {
         let from = self.playerLayer?.player?.currentTime().seconds
         super.seek(to, completion: completion)
         self.videoController?.trackVideoSeek(from: from, to: to)
     }
+
 }
 
 class VideoPlayerControlView: BMPlayerControlView {
@@ -65,8 +66,8 @@ class VideoPlayerControlView: BMPlayerControlView {
         let playbackRateButtonSize = CGSize(width: 40, height: 20)
         self.playRate = self.playRate == 0 ? 1.0 : self.playRate  // playback rate can be 0 on the first time
         let backgroundLayer = CALayer()
-        backgroundLayer.frame = CGRect(x: (44 - playbackRateButtonSize.width)/2,
-                                       y: (50 - playbackRateButtonSize.height)/2,
+        backgroundLayer.frame = CGRect(x: (44 - playbackRateButtonSize.width) / 2,
+                                       y: (50 - playbackRateButtonSize.height) / 2,
                                        width: playbackRateButtonSize.width,
                                        height: playbackRateButtonSize.height)
         backgroundLayer.cornerRadius = 2

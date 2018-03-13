@@ -5,7 +5,7 @@
 
 import CoreData
 
-class Content : NSManagedObject {
+class Content: NSManagedObject {
 
     var isAvailableOffline: Bool {
         return false
@@ -13,4 +13,4 @@ class Content : NSManagedObject {
 
 }
 
-extension Content : AbstractPullable {}
+extension Content: AbstractPullable {}

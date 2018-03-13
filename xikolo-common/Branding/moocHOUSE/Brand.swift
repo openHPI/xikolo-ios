@@ -10,9 +10,9 @@ struct Brand {
 
     static let BaseURL = "https://mooc.house"
 
-    static let TintColor = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
-    static let TintColorSecond = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
-    static let TintColorThird = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
+    static let TintColor = UIColor(red: 171 / 255, green: 179 / 255, blue: 36 / 255, alpha: 1.0)
+    static let TintColorSecond = UIColor(red: 171 / 255, green: 179 / 255, blue: 36 / 255, alpha: 1.0)
+    static let TintColorThird = UIColor(red: 171 / 255, green: 179 / 255, blue: 36 / 255, alpha: 1.0)
     static let AppID = "de.xikolo.moochouse"
     static let PlatformTitle = "moochouse"
 
@@ -26,6 +26,7 @@ struct Brand {
         let currentYear = Calendar.current.component(.year, from: Date())
         return "Copyright © \(currentYear) HPI. All rights reserved."
     }
+
     static let poweredByText: String? = nil
 
 }

@@ -19,10 +19,11 @@ class XikoloURL {
         var components = URLComponents()
         components.scheme = "xikolo-tvos"
 
-        switch(type) {
+        switch type {
         case .course:
             components.path = "course/\(targetId)"
         }
+
         return components.url!
     }
 
@@ -43,11 +44,13 @@ class XikoloURL {
                 if pathComponents.count != 2 {
                     return nil
                 }
+
                 return XikoloURL(type: .course, targetId: pathComponents[1])
             default:
                 return nil
             }
         }
+
         return nil
     }
 
@@ -55,6 +58,6 @@ class XikoloURL {
 
 enum XikoloURLTypes {
 
-    case course;
+    case course
 
 }

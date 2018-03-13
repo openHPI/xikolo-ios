@@ -3,11 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import UIKit
 import CoreData
 import DZNEmptyDataSet
-
+import Foundation
+import UIKit
 
 class CourseActivityViewController: UICollectionViewController {
 
@@ -20,7 +19,9 @@ class CourseActivityViewController: UICollectionViewController {
         let request = CourseHelper.FetchRequest.enrolledNotCompletedCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView, resultsControllers: [resultsController], cellReuseIdentifier: "LastCourseCell")
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
+                                                                                                        resultsControllers: [resultsController],
+                                                                                                        cellReuseIdentifier: "LastCourseCell")
         let configuration = CourseActivityViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
@@ -47,13 +48,13 @@ extension CourseActivityViewController {
 
 }
 
-extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
+extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = 300
-        let height = width/2 + 70.5 // 6 + 42.5 + 4 + 18 (padding + text + padding + text)
+        let height = width / 2 + 70.5 // 6 + 42.5 + 4 + 18 (padding + text + padding + text)
         return CGSize(width: width, height: height)
     }
 
@@ -64,15 +65,14 @@ extension CourseActivityViewController : UICollectionViewDelegateFlowLayout {
         let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath(item: 0, section: section))
         let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
         let viewWidth = self.collectionView?.frame.size.width ?? 0
-        let horizontalPadding = max(0, (viewWidth - 2*padding - numberOfCellsInSection * cellSize.width) / 2)
+        let horizontalPadding = max(0, (viewWidth - 2 * padding - numberOfCellsInSection * cellSize.width) / 2)
 
         return UIEdgeInsets(top: 0, left: padding + horizontalPadding, bottom: 0, right: padding + horizontalPadding)
     }
 
 }
 
-
-struct CourseActivityViewConfiguration : CollectionViewResultsControllerConfiguration {
+struct CourseActivityViewConfiguration: CollectionViewResultsControllerConfiguration {
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
         let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseActivityViewController requires cell of type CourseCell")

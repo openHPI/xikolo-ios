@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
+final class CourseCertificatesHash: NSObject, NSCoding, IncludedPullable {
 
     var available: Bool
     var threshold: Int32?
@@ -24,5 +24,5 @@ final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
         coder.encode(available, forKey: "available")
         coder.encode(threshold, forKey: "threshold")
     }
-    
+
 }

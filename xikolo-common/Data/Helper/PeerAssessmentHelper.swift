@@ -3,9 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct PeerAssessmentHelper {
 
@@ -14,5 +13,5 @@ struct PeerAssessmentHelper {
         let query = SingleResourceQuery(resource: peerAssessment)
         return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
-    
+
 }

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class XikoloNavigationController : UINavigationController {
+class XikoloNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class XikoloNavigationController : UINavigationController {
     @discardableResult func hideShadowImage(inView view: UIView) -> Bool {
         if let imageView = view as? UIImageView {
             let size = imageView.bounds.size.height
-            if size <= 1 && size > 0 && imageView.subviews.count == 0 {
+            if size <= 1 && size > 0 && imageView.subviews.isEmpty {
                 let forcedBackground = UIView(frame: imageView.bounds)
                 forcedBackground.backgroundColor = .white
                 imageView.addSubview(forcedBackground)
@@ -35,11 +35,13 @@ class XikoloNavigationController : UINavigationController {
                 return true
             }
         }
+
         for subview in view.subviews {
             if self.hideShadowImage(inView: subview) {
                 break
             }
         }
+
         return false
     }
 

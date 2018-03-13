@@ -3,10 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
-final class CourseDate : NSManagedObject {
+final class CourseDate: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var title: String?
@@ -15,12 +14,12 @@ final class CourseDate : NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseDate> {
-        return NSFetchRequest<CourseDate>(entityName: "CourseDate");
+        return NSFetchRequest<CourseDate>(entityName: "CourseDate")
     }
 
 }
 
-extension CourseDate : Pullable {
+extension CourseDate: Pullable {
 
     static var type: String {
         return "course-dates"

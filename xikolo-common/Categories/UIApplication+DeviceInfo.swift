@@ -23,9 +23,11 @@ extension UIApplication {
         var name = withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
             String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
         }
+
         if ["i386", "x86_64"].contains(name) {
             name = "Simulator"
         }
+
         return name
     }()
 

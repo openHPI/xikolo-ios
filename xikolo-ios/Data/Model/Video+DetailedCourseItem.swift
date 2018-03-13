@@ -3,9 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import CoreData
+import Foundation
 
 extension Video: DetailedCourseItem {
 

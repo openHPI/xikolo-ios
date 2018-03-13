@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import Result
 
 enum ObjectState: Int16 {
@@ -18,7 +18,7 @@ protocol IncludedPushable {
     func resourceAttributes() -> [String: Any]
 }
 
-protocol Pushable : ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult {
+protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult {
     var objectState: ObjectState { get }
 
     static func resourceDataObject(attributes: [String: Any], relationships: [String: AnyObject]?) -> [String: Any]
@@ -43,6 +43,7 @@ extension Pushable {
                     relationships[relationshipName] = ["data": resources.map { $0.identifier }]
                 }
             }
+
             if !relationships.isEmpty {
                 data["relationships"] = relationships
             }

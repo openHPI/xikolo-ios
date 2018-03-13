@@ -7,7 +7,7 @@ import WebKit
 
 class CustomHeaderWebView: WKWebView {
 
-    var header: [String : String]?
+    var header: [String: String]?
 
     override func load(_ request: URLRequest) -> WKNavigation? {
         var mutableRequest = request
@@ -15,6 +15,7 @@ class CustomHeaderWebView: WKWebView {
         for entry in headerDict {
             mutableRequest.setValue(entry.value, forHTTPHeaderField: entry.key)
         }
+
         return super.load(mutableRequest)
     }
 }

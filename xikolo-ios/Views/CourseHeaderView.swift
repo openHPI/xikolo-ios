@@ -3,13 +3,13 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
-class CourseHeaderView : UICollectionReusableView {
+class CourseHeaderView: UICollectionReusableView {
 
-    @IBOutlet weak var backgroundView: UIVisualEffectView!
-    @IBOutlet weak var titleView: UILabel!
+    @IBOutlet private weak var backgroundView: UIVisualEffectView!
+    @IBOutlet private weak var titleView: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

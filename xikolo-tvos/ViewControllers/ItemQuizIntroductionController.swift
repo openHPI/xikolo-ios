@@ -65,7 +65,7 @@ class ItemQuizIntroductionController : UIViewController {
             textView.attributedText = try? MarkdownHelper.parse(text)
         }
 
-        let formattedTimeLimit = quiz.time_limit_formatted
+        let formattedTimeLimit = quiz.formattedTimeLimit
         let timeLimitHidden = formattedTimeLimit.count == 0
         timeLimitHeaderView.isHidden = timeLimitHidden
         timeLimitView.isHidden = timeLimitHidden

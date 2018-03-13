@@ -3,23 +3,25 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import CoreData
 import BrightFutures
+import CoreData
 import Result
 
 class CoreDataHelper {
 
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "xikolo")
-        container.loadPersistentStores { (storeDescription, error) in
+        container.loadPersistentStores { _, error in
             // TODO: check for space etc
             if let error = error {
                 CrashlyticsHelper.shared.recordError(error)
                 log.severe("Unresolved error \(error)")
                 fatalError("Unresolved error \(error)")
             }
+
             container.viewContext.automaticallyMergesChangesFromParent = true
         }
+
         return container
     }()
 
@@ -52,7 +54,7 @@ class CoreDataHelper {
             do {
                 let result = try privateManagedObjectContext.execute(deleteRequest) as? NSBatchDeleteResult
                 guard let objectIDArray = result?.result as? [NSManagedObjectID] else { return }
-                let changes = [NSDeletedObjectsKey : objectIDArray]
+                let changes = [NSDeletedObjectsKey: objectIDArray]
                 log.verbose("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
                 try privateManagedObjectContext.save()
@@ -69,7 +71,6 @@ class CoreDataHelper {
     }
 
 }
-
 
 extension NSManagedObjectContext {
 
@@ -135,6 +136,7 @@ extension NSManagedObjectContext {
             if self.hasChanges {
                 try self.save()
             }
+
             return .success(())
         } catch {
             return .failure(.coreData(error))

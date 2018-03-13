@@ -7,9 +7,9 @@ import UIKit
 
 class WebViewController: UIViewController {
 
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet private weak var webView: UIWebView!
 
-    var loginDelegate : AbstractLoginViewControllerDelegate?
+    weak var loginDelegate: AbstractLoginViewControllerDelegate?
 
     var url: String? {
         didSet {
@@ -32,7 +32,7 @@ class WebViewController: UIViewController {
 
 }
 
-extension WebViewController : UIWebViewDelegate {
+extension WebViewController: UIWebViewDelegate {
 
     func webViewDidStartLoad(_ webView: UIWebView) {
         NetworkIndicator.start()
@@ -52,7 +52,7 @@ extension WebViewController : UIWebViewDelegate {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
 
-            if let tokenItem = queryItems.first(where: { $0.name == "token"}) {
+            if let tokenItem = queryItems.first(where: { $0.name == "token" }) {
                 guard let token = tokenItem.value else { return false }
 
                 UserProfileHelper.userId = nil
@@ -77,6 +77,7 @@ extension WebViewController : UIWebViewDelegate {
                     self.webView.loadRequest(newRequest)
                 }
             }
+
             return false
         }
 

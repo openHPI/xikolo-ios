@@ -5,9 +5,9 @@
 
 import Foundation
 
-public extension DispatchTimeInterval {
+extension DispatchTimeInterval {
 
-    public var fromNow: DispatchTime {
+    var fromNow: DispatchTime {
         return DispatchTime.now() + self
     }
 

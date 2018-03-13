@@ -29,23 +29,20 @@ class CircularProgressView: UIView {
     }
 
     @IBInspectable var indeterminateProgress: CGFloat = Defaults.indeterminateProgress
-    @IBInspectable var indeterminateDuration: CFTimeInterval = Defaults.indeterminateDuration
+    @IBInspectable var indeterminateDuration: Double = Defaults.indeterminateDuration
 
     var timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
     var progress: CGFloat {
-        get {
-            return self.progressLayer.progress
-        }
+        return self.progressLayer.progress
     }
 
     private var progressLayer: CircularProgressLayer {
-        get {
-            return self.layer as! CircularProgressLayer
-        }
+        // swiftlint:disable:next force_cast
+        return self.layer as! CircularProgressLayer
     }
 
-    override class var layerClass : AnyClass {
+    override class var layerClass: AnyClass {
         return CircularProgressLayer.self
     }
 
@@ -94,6 +91,7 @@ class CircularProgressView: UIView {
         if let progress = newValue {
             value = CGFloat(progress)
         }
+
         self.updateProgress(value)
     }
 
@@ -145,7 +143,7 @@ class CircularProgressView: UIView {
         }
     }
 
-    class CircularProgressLayer : CALayer {
+    class CircularProgressLayer: CALayer {
 
         @NSManaged var tintColor: UIColor
         @NSManaged var lineWidth: CGFloat
@@ -173,7 +171,7 @@ class CircularProgressView: UIView {
             ctx.addPath(borderPath)
             ctx.strokePath()
 
-            let bodyRadius = self.gapWidth > 0 ? borderRadius - self.lineWidth / 2  - self.gapWidth : borderRadius
+            let bodyRadius = self.gapWidth > 0 ? borderRadius - self.lineWidth / 2 - self.gapWidth : borderRadius
             let bodyEndAngle = 1.5 * CGFloat.pi
             let bodyStartAngle = bodyEndAngle + self.progress * 2 * CGFloat.pi
 

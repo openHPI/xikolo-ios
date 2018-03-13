@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class Enrollment : NSManagedObject {
+final class Enrollment: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var certificates: EnrollmentCertificates?
@@ -19,7 +19,7 @@ final class Enrollment : NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
-        return NSFetchRequest<Enrollment>(entityName: "Enrollment");
+        return NSFetchRequest<Enrollment>(entityName: "Enrollment")
     }
 
     func compare(_ object: Enrollment) -> ComparisonResult {
@@ -31,7 +31,7 @@ final class Enrollment : NSManagedObject {
 
 }
 
-extension Enrollment : Pullable {
+extension Enrollment: Pullable {
 
     static var type: String {
         return "enrollments"
@@ -52,7 +52,7 @@ extension Enrollment : Pullable {
 
 }
 
-extension Enrollment : Pushable {
+extension Enrollment: Pushable {
 
     var objectState: ObjectState {
         get {
@@ -67,13 +67,12 @@ extension Enrollment : Pushable {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String : Any] {
+    func resourceAttributes() -> [String: Any] {
         return [ "completed": self.completed ]
     }
 
-    func resourceRelationships() -> [String : AnyObject]? {
+    func resourceRelationships() -> [String: AnyObject]? {
         return [ "course": self.course as AnyObject ]
     }
 
 }
-

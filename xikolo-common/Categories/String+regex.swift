@@ -6,13 +6,15 @@
 import Foundation
 
 extension String {
+
     mutating func stringByRemovingRegexMatches(pattern: String, replaceWith: String = "") -> String? {
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
-            let range = NSMakeRange(0, self.count)
+            let range = NSRange(location: 0, length: self.count)
             return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replaceWith)
         } catch {
             return nil
         }
     }
+
 }

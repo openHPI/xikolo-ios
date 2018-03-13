@@ -3,10 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
-final class PlatformEvent : NSManagedObject {
+final class PlatformEvent: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var createdAt: Date?
@@ -16,12 +15,12 @@ final class PlatformEvent : NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PlatformEvent> {
-        return NSFetchRequest<PlatformEvent>(entityName: "PlatformEvent");
+        return NSFetchRequest<PlatformEvent>(entityName: "PlatformEvent")
     }
 
 }
 
-extension PlatformEvent : Pullable {
+extension PlatformEvent: Pullable {
 
     static var type: String {
         return "platform-events"

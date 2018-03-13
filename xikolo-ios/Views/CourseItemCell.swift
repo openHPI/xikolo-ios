@@ -5,17 +5,17 @@
 
 import UIKit
 
-class CourseItemCell : UITableViewCell {
+class CourseItemCell: UITableViewCell {
 
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var readStateView: UIView!
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var detailContentView: CourseItemDetailView!
-    @IBOutlet weak var progressView: CircularProgressView!
-    @IBOutlet weak var actionsButton: UIButton!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var readStateView: UIView!
+    @IBOutlet private weak var iconView: UIImageView!
+    @IBOutlet private weak var detailContentView: CourseItemDetailView!
+    @IBOutlet private weak var progressView: CircularProgressView!
+    @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
-    var delegate: CourseItemCellDelegate?
+    weak var delegate: CourseItemCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,7 +63,6 @@ class CourseItemCell : UITableViewCell {
             return
         }
 
-        self.actionsButton.tintColor = .lightGray
         self.actionsButton.isHidden = video.alertActions.isEmpty
     }
 
@@ -91,7 +90,7 @@ class CourseItemCell : UITableViewCell {
             self.detailContentView.isHidden = false
         } else if self.delegate?.isPreloading ?? false {
             self.detailContentView.isShimmering = true
-            self.detailContentView.isHidden = false //configuration.inOfflineMode
+            self.detailContentView.isHidden = false
         } else {
             self.detailContentView.isHidden = true
         }
@@ -132,8 +131,7 @@ class CourseItemCell : UITableViewCell {
 
 }
 
-
-protocol CourseItemCellDelegate {
+protocol CourseItemCellDelegate: class {
 
     var contentToBePreloaded: [DetailedCourseItem.Type] { get }
     var isPreloading: Bool { get }

@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class CourseDateCell : UITableViewCell {
+class CourseDateCell: UITableViewCell {
 
     @IBOutlet var courseLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
@@ -46,7 +46,7 @@ class CourseDateCell : UITableViewCell {
             self.timeLabel.textColor = UIColor.white
         case "course_start"?:
             self.titleLabel.text = NSLocalizedString("course-date-cell.course-start.title",
-                                               comment: "specfic title for course start in a course date cell")
+                                                     comment: "specfic title for course start in a course date cell")
         default:
             self.dateHighlightView.backgroundColor = nil
             self.dateLabel.textColor = UIColor.darkGray
@@ -63,5 +63,5 @@ class CourseDateCell : UITableViewCell {
         }
 
     }
-    
+
 }

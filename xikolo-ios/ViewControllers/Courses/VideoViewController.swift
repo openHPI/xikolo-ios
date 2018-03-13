@@ -18,13 +18,13 @@ class VideoViewController : UIViewController {
 
     @IBOutlet private weak var videoActionsButton: UIButton!
     @IBOutlet private weak var videoProgressView: CircularProgressView!
-    @IBOutlet private weak var videoDownloadedImage: UIImageView!
+    @IBOutlet private weak var videoDownloadedIcon: UIImageView!
 
     @IBOutlet private weak var slidesView: UIView!
     @IBOutlet private weak var slidesButton: UIButton!
     @IBOutlet private weak var slidesActionsButton: UIButton!
     @IBOutlet private weak var slidesProgressView: CircularProgressView!
-    @IBOutlet private weak var slidesDownloadedImage: UIImageView!
+    @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     var courseItem: CourseItem!
     var video: Video?
@@ -45,15 +45,15 @@ class VideoViewController : UIViewController {
 
         self.videoActionsButton.isEnabled = ReachabilityHelper.connection != .none
         self.videoProgressView.isHidden = true
-        self.videoDownloadedImage.tintColor = UIColor.darkText.withAlphaComponent(0.7)
-        self.videoDownloadedImage.isHidden = true
+        self.videoDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.videoDownloadedIcon.isHidden = true
 
         self.slidesView.isHidden = true
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
         self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
         self.slidesProgressView.isHidden = true
-        self.slidesDownloadedImage.tintColor = UIColor.darkText.withAlphaComponent(0.7)
-        self.slidesDownloadedImage.isHidden = true
+        self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.slidesDownloadedIcon.isHidden = true
 
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
@@ -149,7 +149,7 @@ class VideoViewController : UIViewController {
         let progress = VideoPersistenceManager.shared.progress(for: video)
         self.videoProgressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
         self.videoProgressView.updateProgress(progress)
-        self.videoDownloadedImage.isHidden = !(videoDownloadState == .downloaded)
+        self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -216,9 +216,7 @@ class VideoViewController : UIViewController {
             alert.addAction(action)
         }
 
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        alert.addAction(cancelAction)
+        alert.addCancelAction()
 
         self.present(alert, animated: true)
     }
@@ -231,9 +229,7 @@ class VideoViewController : UIViewController {
         alert.popoverPresentationController?.sourceRect = sender.frame.insetBy(dx: -4, dy: -4)
 
         alert.addAction(videoAction)
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        alert.addAction(cancelAction)
+        alert.addCancelAction()
 
         self.present(alert, animated: true)
     }
@@ -266,7 +262,7 @@ class VideoViewController : UIViewController {
         DispatchQueue.main.async {
             self.videoProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
             self.videoProgressView.updateProgress(VideoPersistenceManager.shared.progress(for: video))
-            self.videoDownloadedImage.isHidden = !(downloadState == .downloaded)
+            self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
         }
     }
 

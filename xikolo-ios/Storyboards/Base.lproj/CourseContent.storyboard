@@ -578,13 +578,13 @@
                         <outlet property="errorView" destination="44p-ju-7es" id="jgi-2F-0hm"/>
                         <outlet property="slidesActionsButton" destination="YmA-3o-EpW" id="rKg-Jp-Wk5"/>
                         <outlet property="slidesButton" destination="xZ7-yy-Tyb" id="J7Y-bw-6rm"/>
-                        <outlet property="slidesDownloadedImage" destination="sub-w1-OoS" id="WRO-Jy-gMf"/>
+                        <outlet property="slidesDownloadedIcon" destination="sub-w1-OoS" id="WRO-Jy-gMf"/>
                         <outlet property="slidesProgressView" destination="BVc-3o-zwa" id="d9C-Pt-Dss"/>
                         <outlet property="slidesView" destination="M5j-Ej-ebI" id="9vL-dC-aDe"/>
                         <outlet property="titleView" destination="x8K-vc-cFV" id="kvG-62-cER"/>
                         <outlet property="videoActionsButton" destination="VfL-Ji-GjO" id="ArP-yv-FUZ"/>
                         <outlet property="videoContainer" destination="PpN-V6-WFJ" id="Sgk-NC-wKM"/>
-                        <outlet property="videoDownloadedImage" destination="1PV-aM-oRa" id="MLw-QM-Ktj"/>
+                        <outlet property="videoDownloadedIcon" destination="1PV-aM-oRa" id="MLw-QM-Ktj"/>
                         <outlet property="videoProgressView" destination="NQS-5h-i0c" id="hOD-5s-t0E"/>
                         <segue destination="KeB-kN-D43" kind="show" identifier="ShowSlides" id="hyW-bz-juP"/>
                     </connections>

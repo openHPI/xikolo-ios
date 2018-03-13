@@ -71,6 +71,7 @@ class CircularProgressView: UIView {
     override func tintColorDidChange() {
         super.tintColorDidChange()
         self.progressLayer.tintColor = self.tintColor
+        self.progressLayer.setNeedsDisplay()
     }
 
     private func setupDefaults() {

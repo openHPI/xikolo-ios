@@ -17,7 +17,7 @@ class DownloadSettingsViewController: UITableViewController {
             navigationItem.rightBarButtonItem = nil
         }
     }
-    
+
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2

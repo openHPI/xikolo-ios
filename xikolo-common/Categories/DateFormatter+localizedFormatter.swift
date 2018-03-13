@@ -7,7 +7,7 @@ import Foundation
 
 extension DateFormatter {
 
-    static func localizedFormatter(locale: Locale = Locale.autoupdatingCurrent,
+    static func localizedFormatter(locale: Locale = Brand.locale,
                                    calendar: Calendar = Calendar.autoupdatingCurrent,
                                    timeZone: TimeZone = TimeZone.autoupdatingCurrent) -> DateFormatter {
         let dateFormatter = DateFormatter()

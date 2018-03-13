@@ -55,8 +55,7 @@ final class Course: NSManagedObject {
             return nil
         }
 
-        let locale = Locale.current
-        return (locale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: language)
+        return NSLocale(localeIdentifier: Brand.locale.identifier).displayName(forKey: NSLocale.Key.languageCode, value: language)
     }
 
     var url: URL? {

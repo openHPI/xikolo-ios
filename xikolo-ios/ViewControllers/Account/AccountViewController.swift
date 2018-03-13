@@ -19,6 +19,8 @@ class AccountViewController: UITableViewController {
     static let feedbackIndexPath = IndexPath(row: 0, section: 2)
     static let logoutIndexPath = IndexPath(row: 0, section: 3)
 
+    @IBOutlet private weak var videoSettingsCell: UITableViewCell!
+    @IBOutlet private weak var downloadCell: UITableViewCell!
     @IBOutlet private weak var imprintCell: UITableViewCell!
     @IBOutlet private weak var dataPrivacyCell: UITableViewCell!
     @IBOutlet private weak var githubCell: UITableViewCell!
@@ -155,6 +157,18 @@ class AccountViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
         switch newIndexPath {
+        case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
+            let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalStreamingSettings" : "PushStreamingSettings"
+            self.performSegue(withIdentifier: identifier, sender: self)
+            if self.traitCollection.horizontalSizeClass == .regular {
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            }
+        case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
+            let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalDownloadSettings" : "PushDownloadSettings"
+            self.performSegue(withIdentifier: identifier, sender: self)
+            if self.traitCollection.horizontalSizeClass == .regular {
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            }
         case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
             self.open(url: URL(string: Brand.APP_IMPRINT_URL))
         case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):
@@ -253,6 +267,9 @@ class AccountViewController: UITableViewController {
         ]
         return components.joined(separator: "\n")
     }
+
+    @IBAction func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }
+
 }
 
 extension AccountViewController: MFMailComposeViewControllerDelegate {

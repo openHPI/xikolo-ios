@@ -239,8 +239,8 @@ extension CourseItemListViewController: CourseItemCellDelegate {
         guard !actions.isEmpty else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.sourceView = view
-        alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
+        alert.popoverPresentationController?.sourceView = anchor
+        alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
 
         for action in actions {
             alert.addAction(action)

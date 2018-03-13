@@ -156,9 +156,15 @@ class AccountViewController: UITableViewController {
         case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
             let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalStreamingSettings" : "PushStreamingSettings"
             self.performSegue(withIdentifier: identifier, sender: self)
+            if self.traitCollection.horizontalSizeClass == .regular {
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            }
         case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
             let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalDownloadSettings" : "PushDownloadSettings"
             self.performSegue(withIdentifier: identifier, sender: self)
+            if self.traitCollection.horizontalSizeClass == .regular {
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            }
         case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
             self.open(url: URL(string: Brand.APP_IMPRINT_URL))
         case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):

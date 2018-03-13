@@ -8,7 +8,7 @@ import Foundation
 extension Date {
 
     func subtractingTimeInterval(_ timeInterval: TimeInterval) -> Date {
-        return self.addingTimeInterval(-1*timeInterval)
+        return self.addingTimeInterval(-1 * timeInterval)
     }
 
     var inPast: Bool {

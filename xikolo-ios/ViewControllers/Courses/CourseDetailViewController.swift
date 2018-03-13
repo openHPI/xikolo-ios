@@ -3,38 +3,27 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import SDWebImage
 import SimpleRoundedButton
+import UIKit
 
 class CourseDetailViewController: UIViewController {
 
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var languageView: UILabel!
-    @IBOutlet weak var dateView: UILabel!
-    @IBOutlet weak var teacherView: UILabel!
-    @IBOutlet weak var descriptionView: UITextView!
-    @IBOutlet weak var enrollmentButton: SimpleRoundedButton!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var statusLabel: UILabel!
-    
-    @IBAction func enroll(_ sender: UIButton) {
-        if UserProfileHelper.isLoggedIn() {
-            if !course.hasEnrollment {
-                createEnrollment()
-            } else {
-                showEnrollmentOptions()
-            }
-        } else {
-            performSegue(withIdentifier: "ShowLogin", sender: nil)
-        }
-    }
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var languageView: UILabel!
+    @IBOutlet private weak var dateView: UILabel!
+    @IBOutlet private weak var teacherView: UILabel!
+    @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var enrollmentButton: SimpleRoundedButton!
+    @IBOutlet private weak var statusView: UIView!
+    @IBOutlet private weak var statusLabel: UILabel!
+
     var course: Course!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
@@ -52,7 +41,7 @@ class CourseDetailViewController: UIViewController {
 
     func updateView() {
         titleView.text = course.title
-        languageView.text = course.language_translated
+        languageView.text = course.localizedLanguage
         teacherView.text = course.teachers
         teacherView.textColor = Brand.TintColorSecond
 
@@ -79,6 +68,7 @@ class CourseDetailViewController: UIViewController {
         } else {
             buttonTitle = NSLocalizedString("enrollment.button.not-enrolled.title", comment: "title of Course enrollment options button")
         }
+
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
         if self.course.hasEnrollment {
@@ -108,24 +98,36 @@ class CourseDetailViewController: UIViewController {
         self.refreshEnrollButton()
     }
 
+    @IBAction func enroll(_ sender: UIButton) {
+        if UserProfileHelper.isLoggedIn() {
+            if !course.hasEnrollment {
+                createEnrollment()
+            } else {
+                showEnrollmentOptions()
+            }
+        } else {
+            self.performSegue(withIdentifier: "ShowLogin", sender: nil)
+        }
+    }
+
     func createEnrollment() {
         self.enrollmentButton.startAnimating()
         EnrollmentHelper.createEnrollment(for: self.course).onComplete { _ in
             self.enrollmentButton.stopAnimating()
         }.onSuccess { _ in
+            CourseHelper.syncCourse(self.course)
             if let parent = self.parent as? CourseDecisionViewController {
                 parent.decideContent()
             }
-            CourseHelper.syncCourse(self.course)
         }.onFailure { _ in
             self.enrollmentButton.shake()
         }
     }
 
     func showEnrollmentOptions() {
-        let alertTitle = NSLocalizedString("enrollment.options-alert.title", comment:"title of enrollment options alert")
+        let alertTitle = NSLocalizedString("enrollment.options-alert.title", comment: "title of enrollment options alert")
         let alertMessage = NSLocalizedString("enrollment.options-alert.message", comment: "message of enrollment alert")
-        let alert = UIAlertController(title: alertTitle, message:  alertMessage, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.enrollmentButton
         alert.popoverPresentationController?.sourceRect = self.enrollmentButton.bounds
         alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up.union(.down)
@@ -143,8 +145,8 @@ class CourseDetailViewController: UIViewController {
             }.onFailure { _ in
                 self.enrollmentButton.shake()
             }
-
         }
+
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",
                                                     comment: "title for unenroll action")
         let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in
@@ -166,8 +168,7 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(completedAction)
         alert.addAction(unenrollAction)
         alert.addAction(cancelAction)
-        present(alert, animated: true, completion:nil)
+        self.present(alert, animated: true)
     }
-    
 
 }

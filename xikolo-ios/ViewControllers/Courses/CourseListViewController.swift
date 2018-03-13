@@ -3,10 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
-class CourseListViewController : AbstractCourseListViewController {
+class CourseListViewController: AbstractCourseListViewController {
 
     @available(iOS, obsoleted: 11.0)
     private var searchController: UISearchController?
@@ -85,13 +85,13 @@ class CourseListViewController : AbstractCourseListViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            case "ShowCourseContent"?:
-                let vc = segue.destination.require(toHaveType: CourseDecisionViewController.self)
-                let cell = (sender as? CourseCell).require(hint: "Sender must be CourseCell")
-                let indexPath = collectionView!.indexPath(for: cell)!
-                vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
-            default:
-                break
+        case "ShowCourseContent"?:
+            let vc = segue.destination.require(toHaveType: CourseDecisionViewController.self)
+            let cell = (sender as? CourseCell).require(hint: "Sender must be CourseCell")
+            let indexPath = collectionView!.indexPath(for: cell)!
+            vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
+        default:
+            break
         }
     }
 
@@ -124,7 +124,9 @@ class CourseListViewController : AbstractCourseListViewController {
 
 extension CourseListViewController: CourseListLayoutDelegate {
 
-    func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForCellAtIndexPath indexPath: IndexPath,
+                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
         if self.resultsControllerDelegateImplementation.isSearching && !self.resultsControllerDelegateImplementation.hasSearchResults {
             return 0.0
         }
@@ -136,27 +138,30 @@ extension CourseListViewController: CourseListLayoutDelegate {
         let titleText = course.title ?? ""
         let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
-                                                                          options: .usesLineFragmentOrigin,
-                                                                          attributes: titleAttributes,
-                                                                          context: nil)
+                                                                 options: .usesLineFragmentOrigin,
+                                                                 attributes: titleAttributes,
+                                                                 context: nil)
 
         let teachersText = course.teachers ?? ""
         let teachersAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
         let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
-                                                                                options: .usesLineFragmentOrigin,
-                                                                                attributes: teachersAttributes,
-                                                                                context: nil)
+                                                                       options: .usesLineFragmentOrigin,
+                                                                       attributes: teachersAttributes,
+                                                                       context: nil)
 
         var height = imageHeight
         if !titleText.isEmpty || !teachersText.isEmpty {
             height += 6
         }
+
         if !titleText.isEmpty {
             height += titleSize.height
         }
+
         if !titleText.isEmpty && !teachersText.isEmpty {
             height += 4
         }
+
         if !teachersText.isEmpty {
             height += teachersSize.height
         }
@@ -174,7 +179,7 @@ extension CourseListViewController: CourseListLayoutDelegate {
 
 }
 
-extension CourseListViewController : UISearchResultsUpdating {
+extension CourseListViewController: UISearchResultsUpdating {
 
     func updateSearchResults(for searchController: UISearchController) {
         let scrollOffset: CGPoint
@@ -183,6 +188,7 @@ extension CourseListViewController : UISearchResultsUpdating {
         } else {
             scrollOffset = CGPoint(x: 0, y: self.topLayoutGuide.length * -1.0)
         }
+
         self.collectionView?.setContentOffset(scrollOffset, animated: true)
 
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {
@@ -195,7 +201,7 @@ extension CourseListViewController : UISearchResultsUpdating {
 
 }
 
-extension CourseListViewController : UISearchControllerDelegate {
+extension CourseListViewController: UISearchControllerDelegate {
 
     func willPresentSearchController(_ searchController: UISearchController) {
         self.collectionView?.refreshControl = nil

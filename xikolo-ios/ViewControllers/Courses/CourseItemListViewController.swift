@@ -4,8 +4,8 @@
 //
 
 import CoreData
-import UIKit
 import DZNEmptyDataSet
+import UIKit
 
 class CourseItemListViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -37,8 +37,9 @@ class CourseItemListViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets
         } else {
-            separatorInsetLeft = separatorInsetLeft + 15.0
+            separatorInsetLeft += 15.0
         }
+
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
 
         NotificationCenter.default.addObserver(self,
@@ -56,8 +57,10 @@ class CourseItemListViewController: UITableViewController {
 
         // setup table view data
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position")  // must be equal to the first sort descriptor
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "CourseItemCell")
 
         let configuration = CourseItemListViewConfiguration(tableViewController: self).wrapped
         resultsControllerDelegateImplementation.configuration = configuration
@@ -177,9 +180,9 @@ extension CourseItemListViewController { // TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = self.resultsController.object(at: indexPath)
         if item.proctored && (self.course.enrollment?.proctored ?? false) {
-            self.showProctoringDialog(onComplete: {
+            self.showProctoringDialog {
                 tableView.deselectRow(at: indexPath, animated: true)
-            })
+            }
         } else {
             self.showItem(item)
             tableView.deselectRow(at: indexPath, animated: true)
@@ -188,8 +191,7 @@ extension CourseItemListViewController { // TableViewDelegate
 
 }
 
-
-class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration {
+class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
     weak var tableViewController: CourseItemListViewController?
 
     init(tableViewController: CourseItemListViewController) {
@@ -212,8 +214,7 @@ class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration 
 
 }
 
-
-extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")

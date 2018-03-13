@@ -4,8 +4,6 @@
 //
 
 import BrightFutures
-import Foundation
-import CoreData
 import KeychainAccess
 
 open class UserProfileHelper {
@@ -16,7 +14,7 @@ open class UserProfileHelper {
         let parameters: String = [
             Routes.HTTP_PARAM_EMAIL: email,
             Routes.HTTP_PARAM_PASSWORD: password,
-        ].map { (key, value) in
+        ].map { key, value in
             return "\(NetworkHelper.escape(key))=\(NetworkHelper.escape(value))"
         }.joined(separator: "&")
 
@@ -28,7 +26,7 @@ open class UserProfileHelper {
         request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
 
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let err = error {
                 promise.failure(.network(err))
                 return
@@ -107,11 +105,12 @@ open class UserProfileHelper {
 
 extension UserProfileHelper {
 
-    private static let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
-    private enum KeychainKey : String {
+    private enum KeychainKey: String {
         case userId = "de.xikolo.ios.user-id"
         case userToken = "de.xikolo.ios.user-token"
     }
+
+    private static let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
 
     static var userId: String? {
         get {

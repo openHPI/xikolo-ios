@@ -3,11 +3,11 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import CoreData
 import DZNEmptyDataSet
+import UIKit
 
-class CourseDatesTableViewController : UITableViewController {
+class CourseDatesTableViewController: UITableViewController {
 
     @IBOutlet var loginButton: UIBarButtonItem!
 
@@ -117,10 +117,10 @@ extension CourseDatesTableViewController {
         vc.course = course
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
 }
 
-struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfiguration {
+struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseDate>, indexPath: IndexPath) {
         let cell = cell.require(toHaveType: CourseDateCell.self, hint: "CourseDatesViewController requires cell of type CourseDateCell")
@@ -134,15 +134,16 @@ struct CourseDatesTableViewConfiguration : TableViewResultsControllerConfigurati
 
 }
 
-extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseDatesTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         guard let tableHeaderView = self.tableView.tableHeaderView else {
             return 0
         }
+
         // DZNEmptyDataSet has some undefined behavior for the verticalOffset when using a custom tableView header.
         // Dividing it again by 2 will do the trick.
-        return tableHeaderView.frame.height/2/2
+        return tableHeaderView.frame.height / 2 / 2
     }
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -160,5 +161,5 @@ extension CourseDatesTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSe
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
         self.refresh()
     }
-    
+
 }

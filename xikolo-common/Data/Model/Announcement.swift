@@ -19,11 +19,10 @@ final class Announcement: NSManagedObject {
     @NSManaged var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Announcement> {
-        return NSFetchRequest<Announcement>(entityName: "Announcement");
+        return NSFetchRequest<Announcement>(entityName: "Announcement")
     }
 
 }
-
 
 extension Announcement: Pullable {
 
@@ -46,7 +45,7 @@ extension Announcement: Pullable {
 
 }
 
-extension Announcement : Pushable {
+extension Announcement: Pushable {
 
     var objectState: ObjectState {
         get {
@@ -61,7 +60,7 @@ extension Announcement : Pushable {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String : Any] {
+    func resourceAttributes() -> [String: Any] {
         return [ "visited": self.visited ]
     }
 

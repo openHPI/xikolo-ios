@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class CourseDateHeader : UITableViewHeaderFooterView {
+class CourseDateHeader: UITableViewHeaderFooterView {
 
     @IBOutlet var titleView: UILabel!
 

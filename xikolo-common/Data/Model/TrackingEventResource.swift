@@ -5,7 +5,7 @@
 
 import Foundation
 
-class TrackingEventResource : NSObject, NSCoding {
+class TrackingEventResource: NSObject, NSCoding {
 
     var resourceType: String
     var uuid: String
@@ -32,9 +32,9 @@ class TrackingEventResource : NSObject, NSCoding {
 
 }
 
-extension TrackingEventResource : IncludedPushable {
+extension TrackingEventResource: IncludedPushable {
 
-    func resourceAttributes() -> [String : Any] {
+    func resourceAttributes() -> [String: Any] {
         return [
             "type": self.resourceType,
             "uuid": self.uuid,

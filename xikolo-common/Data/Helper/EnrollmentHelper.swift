@@ -3,10 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
-import Result
+import CoreData
+import Foundation
 
 struct EnrollmentHelper {
 
@@ -65,6 +64,7 @@ struct EnrollmentHelper {
             if enrollment.objectState != .new, enrollment.objectState != .deleted {
                 enrollment.objectState = .modified
             }
+
             promise.complete(context.saveWithResult())
         }
 

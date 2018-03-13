@@ -5,7 +5,8 @@
 
 import Foundation
 
-// TODO: all urls should be of type URL to avoid checks when using these urls
+// TODO: All urls should be of type URL to avoid checks when using these urls
+
 struct Routes {
 
     static let API_V2_URL = Brand.BaseURL + "/api/v2/"
@@ -38,6 +39,7 @@ struct Routes {
         if let locale = NSLocale.preferredLanguages.first {
             queryItems.append(URLQueryItem(name: "locale", value: locale))
         }
+
         urlComponents?.queryItems = queryItems
 
         guard let url = urlComponents?.url else {

@@ -3,19 +3,19 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import AVKit
 import AVFoundation
+import AVKit
 import BMPlayer
 import NVActivityIndicatorView
 import UIKit
 
-class VideoViewController : UIViewController {
+class VideoViewController: UIViewController {
 
-    @IBOutlet weak var videoContainer: UIView!
-    @IBOutlet weak var errorView: UIView!
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var descriptionView: UITextView!
-    @IBOutlet weak var openSlidesButton: UIButton!
+    @IBOutlet private weak var videoContainer: UIView!
+    @IBOutlet private weak var errorView: UIView!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var descriptionView: UITextView!
+    @IBOutlet private weak var openSlidesButton: UIButton!
 
     var courseItem: CourseItem!
     var video: Video?
@@ -65,6 +65,8 @@ class VideoViewController : UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
         if !(self.navigationController?.viewControllers.contains(self) ?? false) {
             self.player?.pause()
         }
@@ -84,7 +86,7 @@ class VideoViewController : UIViewController {
         self.playerControlView.videoController = self
 
         BMPlayerConf.topBarShowInCase = .always
-        BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
+        BMPlayerConf.loaderType = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enablePlaytimeGestures = true
@@ -94,11 +96,11 @@ class VideoViewController : UIViewController {
         player.delegate = self
         player.videoController = self
         self.videoContainer.addSubview(player)
-        player.snp.makeConstraints { (make) in
+        player.snp.makeConstraints { make in
             make.top.equalTo(self.videoContainer.snp.top)
             make.bottom.equalTo(self.videoContainer.snp.bottom)
             make.centerX.equalTo(self.videoContainer.snp.centerX)
-            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0/9.0)
+            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0 / 9.0)
         }
 
         self.player = player
@@ -210,6 +212,7 @@ class VideoViewController : UIViewController {
             } else {
                 videoQuaility = UserDefaults.standard.videoQualityOnCellular
             }
+
             self.player?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
         }
     }
@@ -316,7 +319,7 @@ extension VideoViewController: BMPlayerDelegate {
     func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
     }
 
-    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
     }
 
     func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {

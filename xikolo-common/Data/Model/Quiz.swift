@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class Quiz : Content {
+final class Quiz: Content {
 
     @NSManaged var id: String
     @NSManaged var instructions: String?
@@ -19,7 +19,7 @@ final class Quiz : Content {
     @NSManaged var questions: Set<QuizQuestion>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Quiz> {
-        return NSFetchRequest<Quiz>(entityName: "Quiz");
+        return NSFetchRequest<Quiz>(entityName: "Quiz")
     }
 
     var maxPoints: Double? {
@@ -35,7 +35,7 @@ final class Quiz : Content {
         }
     }
 
-    var time_limit_formatted: [String] {
+    var formattedTimeLimit: [String] {
         let hours = self.timeLimit / 3600
         let minutes = (self.timeLimit % 3600) / 60
         let seconds = self.timeLimit % 60
@@ -45,10 +45,12 @@ final class Quiz : Content {
             let format = NSLocalizedString("%d hours", tableName: "Common", comment: "<number> of hours #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, hours))
         }
+
         if minutes > 0 {
             let format = NSLocalizedString("%d minutes", tableName: "Common", comment: "<number> of minutes #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, minutes))
         }
+
         if seconds > 0 {
             let format = NSLocalizedString("%d seconds", tableName: "Common", comment: "<number> of seconds #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, seconds))
@@ -59,7 +61,7 @@ final class Quiz : Content {
 
 }
 
-extension Quiz : Pullable {
+extension Quiz: Pullable {
 
     static var type: String {
         return "quizzes"

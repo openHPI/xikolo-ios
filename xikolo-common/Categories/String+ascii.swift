@@ -9,13 +9,13 @@ extension String {
 
     func safeAsciiString() -> String? {
         let charSubstitions = [
-            "Ä" : "Ae",
-            "ä" : "ae",
-            "Ö" : "Oe",
-            "ö" : "oe",
-            "Ü" : "Ue",
-            "ü" : "ue",
-            "ß" : "ss",
+            "Ä": "Ae",
+            "ä": "ae",
+            "Ö": "Oe",
+            "ö": "oe",
+            "Ü": "Ue",
+            "ü": "ue",
+            "ß": "ss",
         ]
 
         var asciiText = self

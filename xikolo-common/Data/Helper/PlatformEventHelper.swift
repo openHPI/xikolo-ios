@@ -3,9 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct PlatformEventHelper {
 
@@ -14,5 +13,5 @@ struct PlatformEventHelper {
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
-    
+
 }

@@ -3,12 +3,11 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 import Marshal
 
-
-protocol Pullable : ResourceRepresentable {
+protocol Pullable: ResourceRepresentable {
 
     static func value(from object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws -> Self
 
@@ -23,6 +22,7 @@ extension Pullable where Self: NSManagedObject {
         guard resourceType == Self.type else {
             throw SerializationError.resourceTypeMismatch(expected: resourceType, found: Self.type)
         }
+
         var managedObject = self.init(entity: self.entity(), insertInto: context)
         try managedObject.id = object.value(for: "id")
         try managedObject.update(withObject: object, including: includes, inContext: context)
@@ -38,10 +38,10 @@ extension Pullable where Self: NSManagedObject {
             guard let identifier = try? ResourceIdentifier(object: item) else {
                 return false
             }
+
             return objectIdentifier.id == identifier.id && objectIdentifier.type == identifier.type
         }
     }
-
 
     func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A>,
                                forKey key: KeyType,
@@ -148,7 +148,12 @@ extension Pullable where Self: NSManagedObject {
                                        including includes: [ResourceData]?,
                                        inContext context: NSManagedObjectContext,
                                        updatingBlock block: (AbstractPullableContainer<Self, A>) throws -> Void) throws {
-        let container = AbstractPullableContainer<Self, A>(onResource: self, withKeyPath: keyPath, forKey: key, fromObject: object, including: includes, inContext: context)
+        let container = AbstractPullableContainer<Self, A>(onResource: self,
+                                                           withKeyPath: keyPath,
+                                                           forKey: key,
+                                                           fromObject: object,
+                                                           including: includes,
+                                                           inContext: context)
         try block(container)
     }
 
@@ -176,14 +181,14 @@ class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable, B: NS
         self.context = context
     }
 
-    func update<C>(forType type : C.Type) throws where C : NSManagedObject & Pullable {
+    func update<C>(forType type: C.Type) throws where C: NSManagedObject & Pullable {
         let resourceIdentifier = try self.object.value(for: "\(self.key).data") as ResourceIdentifier
 
         guard resourceIdentifier.type == C.type else { return }
 
         if let includedObject = self.resource.findIncludedObject(for: resourceIdentifier, in: self.includes) {
             do {
-                if var existingObject = self.resource[keyPath: self.keyPath] as? C{
+                if var existingObject = self.resource[keyPath: self.keyPath] as? C {
                     try existingObject.update(withObject: includedObject, including: includes, inContext: context)
                 } else if let newObject = try C.value(from: includedObject, including: includes, inContext: context) as? B {
                     self.resource[keyPath: self.keyPath] = newObject

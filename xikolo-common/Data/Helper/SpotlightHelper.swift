@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreSpotlight
+import Foundation
 
 class SpotlightHelper {
 
@@ -19,10 +19,11 @@ class SpotlightHelper {
         // Add metadata that supplies details about the item.
         attributeSet.title = course.title
         attributeSet.contentDescription = (course.abstract ?? "") + " " + (course.teachers ?? "")
-        //attributeSet.thumbnailData = DocumentImage.jpg
 
         // Create an item with a unique identifier, a domain identifier, and the attribute set you created earlier.
-        let item = CSSearchableItem(uniqueIdentifier: url.absoluteString, domainIdentifier: self.getReverseDomain(appendix:"course"), attributeSet: attributeSet)
+        let item = CSSearchableItem(uniqueIdentifier: url.absoluteString,
+                                    domainIdentifier: self.getReverseDomain(appendix: "course"),
+                                    attributeSet: attributeSet)
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if let error = error {
                 CrashlyticsHelper.shared.recordError(error)

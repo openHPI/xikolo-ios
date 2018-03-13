@@ -37,7 +37,7 @@ extension CourseItemHelper {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "section.course = %@", course),
-                NSPredicate(format: "icon = %@", type)
+                NSPredicate(format: "icon = %@", type),
             ])
             return request
         }

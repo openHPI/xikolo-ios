@@ -6,7 +6,7 @@
 import CoreData
 import Foundation
 
-final class CourseItem : NSManagedObject {
+final class CourseItem: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var title: String?
@@ -24,7 +24,7 @@ final class CourseItem : NSManagedObject {
     @NSManaged var section: CourseSection?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseItem> {
-        return NSFetchRequest<CourseItem>(entityName: "CourseItem");
+        return NSFetchRequest<CourseItem>(entityName: "CourseItem")
     }
 
     var next: CourseItem? {
@@ -42,14 +42,16 @@ final class CourseItem : NSManagedObject {
             if index < 0 || index >= items.count {
                 return nil
             }
+
             return items[index]
         }
+
         return nil
     }
 
 }
 
-extension CourseItem : Pullable {
+extension CourseItem: Pullable {
 
     static var type: String {
         return "course-items"
@@ -67,11 +69,18 @@ extension CourseItem : Pullable {
         self.accessible = try attributes.value(for: "accessible")
         self.visited = try attributes.value(for: "visited") || self.visited  // course items can't be set to 'not visited'
 
-
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \CourseItem.section, forKey: "section", fromObject: relationships, including: includes, inContext: context)
+        try self.updateRelationship(forKeyPath: \CourseItem.section,
+                                    forKey: "section",
+                                    fromObject: relationships,
+                                    including: includes,
+                                    inContext: context)
 
-        try self.updateAbstractRelationship(forKeyPath: \CourseItem.content, forKey: "content", fromObject: relationships, including: includes, inContext: context) { container in
+        try self.updateAbstractRelationship(forKeyPath: \CourseItem.content,
+                                            forKey: "content",
+                                            fromObject: relationships,
+                                            including: includes,
+                                            inContext: context) { container in
             try container.update(forType: Video.self)
             try container.update(forType: RichText.self)
             try container.update(forType: Quiz.self)
@@ -82,7 +91,7 @@ extension CourseItem : Pullable {
 
 }
 
-extension CourseItem : Pushable {
+extension CourseItem: Pushable {
 
     var objectState: ObjectState {
         get {
@@ -97,8 +106,8 @@ extension CourseItem : Pushable {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String : Any] {
-        return [ "visited": self.visited ]
+    func resourceAttributes() -> [String: Any] {
+        return ["visited": self.visited]
     }
 
 }

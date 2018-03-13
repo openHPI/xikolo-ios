@@ -35,6 +35,9 @@
 /* title for proctoring alert */
 "course-item.proctoring.alert.title" = "Für dieses Element ist eine Online-Aufsicht erforderlich";
 
+/* title to cancel alert */
+"course-item.slides-alert.open-action.title" = "Folien anschauen";
+
 /* delete video item */
 "course-item.video-download-alert.delete-item-action.title" = "Video löschen";
 

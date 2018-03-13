@@ -239,15 +239,13 @@ class VideoViewController : UIViewController {
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.frame.insetBy(dx: -4, dy: -4)
 
-        let openSlidesActionTitle = NSLocalizedString("open slides", comment: "title to cancel alert")
+        let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
         let openSlides = UIAlertAction(title: openSlidesActionTitle, style: .default) { _ in
             self.openSlides()
         }
-        alert.addAction(openSlides)
 
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        alert.addAction(cancelAction)
+        alert.addAction(openSlides)
+        alert.addCancelAction()
 
         self.present(alert, animated: true)
     }

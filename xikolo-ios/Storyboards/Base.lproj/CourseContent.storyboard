@@ -455,6 +455,15 @@
                                                                             <constraint firstAttribute="width" secondItem="VfL-Ji-GjO" secondAttribute="height" multiplier="1:1" id="Y3A-nU-SiK"/>
                                                                         </constraints>
                                                                         <state key="normal" title="Button" image="dots"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                    </paragraphStyle>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                         <connections>
                                                                             <action selector="showVideoActionMenu:" destination="Sj1-Jn-P6O" eventType="touchUpInside" id="dHa-So-P2m"/>
                                                                         </connections>
@@ -516,6 +525,15 @@
                                                                             <constraint firstAttribute="width" secondItem="YmA-3o-EpW" secondAttribute="height" multiplier="1:1" id="rMv-tY-RSo"/>
                                                                         </constraints>
                                                                         <state key="normal" title="Button" image="dots"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                    </paragraphStyle>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                         <connections>
                                                                             <action selector="showSlidesActionMenu:" destination="Sj1-Jn-P6O" eventType="touchUpInside" id="Fe2-df-dt6"/>
                                                                         </connections>

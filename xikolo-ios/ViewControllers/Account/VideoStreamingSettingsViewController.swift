@@ -13,7 +13,7 @@ class VideoStreamingSettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if self.presentingViewController?.traitCollection.horizontalSizeClass != .regular {
+        if UIDevice.current.userInterfaceIdiom != .pad {
             navigationItem.rightBarButtonItem = nil
         }
     }

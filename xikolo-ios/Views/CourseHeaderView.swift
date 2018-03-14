@@ -26,4 +26,5 @@ class CourseHeaderView: UICollectionReusableView {
     func configure(withText headerText: String) {
         self.titleView.text = headerText
     }
+
 }

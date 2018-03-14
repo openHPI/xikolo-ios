@@ -35,6 +35,9 @@
 /* title for proctoring alert */
 "course-item.proctoring.alert.title" = "This item needs to be proctored";
 
+/* title to cancel alert */
+"course-item.slides-alert.open-action.title" = "Open slides";
+
 /* delete video item */
 "course-item.video-download-alert.delete-item-action.title" = "Delete video";
 

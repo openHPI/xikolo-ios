@@ -246,9 +246,7 @@ extension CourseItemListViewController: CourseItemCellDelegate {
             alert.addAction(action)
         }
 
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        alert.addAction(cancelAction)
+        alert.addCancelAction()
 
         self.present(alert, animated: true)
     }

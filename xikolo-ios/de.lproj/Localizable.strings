@@ -39,16 +39,16 @@
 "course-item.slides-alert.open-action.title" = "Folien anschauen";
 
 /* delete video item */
-"course-item.video-download-alert.delete-item-action.title" = "Video löschen";
+"course-item.video-download-action.delete-item.title" = "Video löschen";
 
 /* title to download error alert */
-"course-item.video-download-alert.download-error.title" = "Fehler beim Video-Download";
+"course-item.video-download-action.download-error.title" = "Fehler beim Video-Download";
 
 /* start download of video item */
-"course-item.video-download-alert.start-download-action.title" = "Video herunterladen";
+"course-item.video-download-action.start-download.title" = "Video herunterladen";
 
 /* stop download of video item */
-"course-item.video-download-alert.stop-download-action.title" = "Download stoppen";
+"course-item.video-download-action.stop-download.title" = "Download stoppen";
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";

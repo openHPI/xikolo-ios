@@ -264,7 +264,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
                             // show error
                             DispatchQueue.main.async {
-                                let alertTitle = NSLocalizedString("course-item.video-download-alert.download-error.title",
+                                let alertTitle = NSLocalizedString("course-item.video-download-action.download-error.title",
                                                                    comment: "title to download error alert")
                                 let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
                                 let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)

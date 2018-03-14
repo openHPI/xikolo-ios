@@ -46,7 +46,7 @@ extension Video {
         let downloadState = VideoPersistenceManager.shared.downloadState(for: self)
 
         if downloadState == .notDownloaded && !isOffline {
-            let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
+            let downloadActionTitle = NSLocalizedString("course-item.video-download-action.start-download.title",
                                                         comment: "start download of video item")
             return UIAlertAction(title: downloadActionTitle, style: .default) { _ in
                 VideoPersistenceManager.shared.downloadStream(for: self)
@@ -54,7 +54,7 @@ extension Video {
         }
 
         if downloadState == .pending || downloadState == .downloading {
-            let abortActionTitle = NSLocalizedString("course-item.video-download-alert.stop-download-action.title",
+            let abortActionTitle = NSLocalizedString("course-item.video-download-action.stop-download.title",
                                                      comment: "stop download of video item")
             return UIAlertAction(title: abortActionTitle, style: .default) { _ in
                 VideoPersistenceManager.shared.cancelDownload(for: self)
@@ -62,7 +62,7 @@ extension Video {
         }
 
         if downloadState == .downloaded {
-            let deleteActionTitle = NSLocalizedString("course-item.video-download-alert.delete-item-action.title",
+            let deleteActionTitle = NSLocalizedString("course-item.video-download-action.delete-item.title",
                                                       comment: "delete video item")
             return UIAlertAction(title: deleteActionTitle, style: .default) { _ in
                 VideoPersistenceManager.shared.deleteAsset(for: self)

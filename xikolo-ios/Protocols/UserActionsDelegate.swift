@@ -7,6 +7,6 @@ import UIKit
 
 protocol UserActionsDelegate: class {
 
-    func showAlert(with actions: [UIAlertAction], on anchor: UIView)
+    func showAlert(with actions: [UIAlertAction], withTitle title: String?, on anchor: UIView)
 
 }

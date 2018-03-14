@@ -22,7 +22,7 @@ class CourseItemHeader: UITableViewHeaderFooterView {
 
     @IBAction func tappedActionsButton(_ sender: UIButton) {
         guard let actions = self.section?.userActions, !actions.isEmpty else { return }
-        self.delegate?.showAlert(with: actions, on: self.actionsButton)
+        self.delegate?.showAlert(with: actions, withTitle: self.section?.title, on: self.actionsButton)
     }
 
 }

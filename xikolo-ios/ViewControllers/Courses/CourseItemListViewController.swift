@@ -257,10 +257,10 @@ extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDe
 
 extension CourseItemListViewController: UserActionsDelegate {
 
-    func showAlert(with actions: [UIAlertAction], on anchor: UIView) {
+    func showAlert(with actions: [UIAlertAction], withTitle title: String? = nil, on anchor: UIView) {
         guard !actions.isEmpty else { return }
 
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = anchor
         alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
 

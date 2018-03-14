@@ -9,7 +9,7 @@ import UIKit
 
 class CourseDatesTableViewController: UITableViewController {
 
-    @IBOutlet var loginButton: UIBarButtonItem!
+    @IBOutlet private var loginButton: UIBarButtonItem!
 
     var courseActivityViewController: CourseActivityViewController?
 

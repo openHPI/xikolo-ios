@@ -25,7 +25,7 @@ class AccountViewController: UITableViewController {
     @IBOutlet private weak var dataPrivacyCell: UITableViewCell!
     @IBOutlet private weak var githubCell: UITableViewCell!
 
-    @IBOutlet var loginButton: UIBarButtonItem!
+    @IBOutlet private var loginButton: UIBarButtonItem!
 
     @IBOutlet private weak var headerImage: UIImageView!
     @IBOutlet private weak var profileImage: UIImageView!

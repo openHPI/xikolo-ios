@@ -158,15 +158,15 @@ class AccountViewController: UITableViewController {
         let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
         switch newIndexPath {
         case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
-            let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalStreamingSettings" : "PushStreamingSettings"
+            let identifier = UIDevice.current.userInterfaceIdiom == .pad ? "ModalStreamingSettings" : "PushStreamingSettings"
             self.performSegue(withIdentifier: identifier, sender: self)
-            if self.traitCollection.horizontalSizeClass == .regular {
+            if UIDevice.current.userInterfaceIdiom == .pad {
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
         case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
-            let identifier = self.traitCollection.horizontalSizeClass == .regular ? "ModalDownloadSettings" : "PushDownloadSettings"
+            let identifier = UIDevice.current.userInterfaceIdiom == .pad ? "ModalDownloadSettings" : "PushDownloadSettings"
             self.performSegue(withIdentifier: identifier, sender: self)
-            if self.traitCollection.horizontalSizeClass == .regular {
+            if UIDevice.current.userInterfaceIdiom == .pad {
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
         case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):

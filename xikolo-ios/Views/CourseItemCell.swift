@@ -63,7 +63,9 @@ class CourseItemCell: UITableViewCell {
             return
         }
 
-        self.actionsButton.isHidden = video.userActions.isEmpty
+        let isAvailable = !(self.delegate?.inOfflineMode ?? true) || video.isAvailableOffline
+        self.actionsButton.tintColor = isAvailable ? Brand.TintColor : UIColor.lightGray
+        self.actionsButton.isHidden = false
     }
 
     private func configureProgressView(for courseItem: CourseItem) {

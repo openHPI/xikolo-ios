@@ -155,7 +155,7 @@ class VideoViewController: UIViewController {
         let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
         let progress = VideoPersistenceManager.shared.progress(for: video)
         self.videoProgressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
-        self.videoProgressView.updateProgress(progress)
+        self.videoProgressView.updateProgress(progress, animated: false)
         self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
 
         self.navigationItem.rightBarButtonItem?.isEnabled = video.videoUserAction != nil

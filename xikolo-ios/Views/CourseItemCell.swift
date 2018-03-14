@@ -77,7 +77,7 @@ class CourseItemCell: UITableViewCell {
         let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
         let progress = VideoPersistenceManager.shared.progress(for: video)
         self.progressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
-        self.progressView.updateProgress(progress)
+        self.progressView.updateProgress(progress, animated: false)
     }
 
     private func configureDetailContent(for courseItem: CourseItem) {

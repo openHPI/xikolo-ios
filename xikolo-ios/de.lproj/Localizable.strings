@@ -53,6 +53,15 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
 
+/* delete all downloaded videos downloads in section */
+"course-section.video-download-action.delete-videos.title" = "Alle Videos löschen";
+
+/* start video downloads for all videos in section */
+"course-section.video-download-action.start-downloads.title" = "Videos herunterladen";
+
+/* stop all video downloads in section */
+"course-section.video-download-action.stop-downloads.title" = "Alle Downloads stoppen";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
 

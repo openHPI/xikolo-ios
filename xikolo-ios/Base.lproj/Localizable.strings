@@ -53,6 +53,15 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
 
+/* delete all downloaded videos downloads in section */
+"course-section.video-download-action.delete-videos.title" = "Delete all videos";
+
+/* start video downloads for all videos in section */
+"course-section.video-download-action.start-downloads.title" = "Download all videos";
+
+/* stop all video downloads in section */
+"course-section.video-download-action.stop-downloads.title" = "Stop all downloads";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";
 

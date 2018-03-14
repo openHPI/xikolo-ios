@@ -42,22 +42,25 @@ extension CourseSection {
         }
 
         if itemCounter.numberOfDownloadableVideos > 0, ReachabilityHelper.connection != .none {
-            actions.append(UIAlertAction(title: "download all videos", style: .default) { _ in
-                print("download all videos in section")
+            let downloadActionTitle = NSLocalizedString("course-section.video-download-action.start-downloads.title",
+                                                        comment: "start video downloads for all videos in section")
+            actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
                 VideoPersistenceManager.shared.downloadVideos(for: self)
             })
         }
 
         if itemCounter.numberOfDownloadedVideos > 0 {
-            actions.append(UIAlertAction(title: "delete all videos", style: .default) { _ in
-                print("delete all videos in section")
+            let deleteActionTitle = NSLocalizedString("course-section.video-download-action.delete-videos.title",
+                                                      comment: "delete all downloaded videos downloads in section")
+            actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
                 VideoPersistenceManager.shared.deleteVideos(for: self)
             })
         }
 
         if itemCounter.numberOfDownloadingVideos > 0 {
-            actions.append(UIAlertAction(title: "stop all video downloads", style: .default) { _ in
-                print("stop all video downloads in section")
+            let stopActionTitle = NSLocalizedString("course-section.video-download-action.stop-downloads.title",
+                                                    comment: "stop all video downloads in section")
+            actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
                 VideoPersistenceManager.shared.cancelVideoDownloads(for: self)
             })
         }

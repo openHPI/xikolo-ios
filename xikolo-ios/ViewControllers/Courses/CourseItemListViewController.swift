@@ -255,7 +255,7 @@ extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDe
 
 }
 
-extension CourseItemListViewController: CourseItemCellDelegate, CourseItemHeaderDelegate {
+extension CourseItemListViewController: UserActionsDelegate {
 
     func showAlert(with actions: [UIAlertAction], on anchor: UIView) {
         guard !actions.isEmpty else { return }

@@ -393,6 +393,10 @@
 		500228F820583DF9003301A7 /* CourseSection+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228F620583DF9003301A7 /* CourseSection+Download.swift */; };
 		500228F920583DF9003301A7 /* CourseSection+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228F620583DF9003301A7 /* CourseSection+Download.swift */; };
 		500228FA20583DF9003301A7 /* CourseSection+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228F620583DF9003301A7 /* CourseSection+Download.swift */; };
+		50022902205928E2003301A7 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
+		50022903205928E2003301A7 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
+		50022904205928E2003301A7 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
+		50022905205928E2003301A7 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
 		501212091FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120A1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120B1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
@@ -1885,6 +1889,7 @@
 		500228EC20582573003301A7 /* CourseItemHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemHeader.swift; sourceTree = "<group>"; };
 		500228F120583139003301A7 /* CourseItemHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseItemHeader.xib; sourceTree = "<group>"; };
 		500228F620583DF9003301A7 /* CourseSection+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseSection+Download.swift"; sourceTree = "<group>"; };
+		50022901205928E2003301A7 /* UserActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionsDelegate.swift; sourceTree = "<group>"; };
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
 		501212151FCC660F0022A7AF /* ResourceQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuery.swift; sourceTree = "<group>"; };
 		501212231FCC669E0022A7AF /* Future+inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+inject.swift"; sourceTree = "<group>"; };
@@ -2554,6 +2559,15 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		50022900205928B0003301A7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5060A5211F177304007896FF /* DetailedCourseItem.swift */,
+				50022901205928E2003301A7 /* UserActionsDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		501212221FCC665A0022A7AF /* Sync */ = {
 			isa = PBXGroup;
 			children = (
@@ -2580,21 +2594,12 @@
 		5019A7601F20AC0B008C8138 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5019A7611F20AC16008C8138 /* Protocol */,
 				5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */,
 				5019A7621F20ACE6008C8138 /* Video+DetailedCourseItem.swift */,
 				50F7202C1F28E29B00779995 /* Video+Download.swift */,
 				500228F620583DF9003301A7 /* CourseSection+Download.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		5019A7611F20AC16008C8138 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				5060A5211F177304007896FF /* DetailedCourseItem.swift */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		501F94672007550A001C8754 /* Stroyboard */ = {
@@ -2740,6 +2745,7 @@
 		A90587BD1B3BFC130095DB89 /* xikolo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				50022900205928B0003301A7 /* Protocols */,
 				AB95897A1DC4A3C400586137 /* Categories */,
 				5019A75F1F20ABF3008C8138 /* Data */,
 				F8FABFBB1B580B5A0007F308 /* Storyboards */,
@@ -4829,6 +4835,7 @@
 				50F45ACA200CE819009304A3 /* SyncHelper.swift in Sources */,
 				AB3B821F1EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				24F833EE1E628A9600590E90 /* MarkdownHelper.swift in Sources */,
+				50022903205928E2003301A7 /* UserActionsDelegate.swift in Sources */,
 				50C92B621FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				509B10D2200790560042AA7D /* XikoloTabBarController.swift in Sources */,
 				702520821F6FFFD7003E0F80 /* UserDefaults+VideoQuality.swift in Sources */,
@@ -5463,6 +5470,7 @@
 				70D1EAE91EF0AC910088C0FF /* LoginViewController.swift in Sources */,
 				50F6A5BF1FB316A6007DBAFF /* VideoStream.swift in Sources */,
 				70D1EA5F1EF0AB310088C0FF /* QuizQuestion.swift in Sources */,
+				50022905205928E2003301A7 /* UserActionsDelegate.swift in Sources */,
 				70D1EAF11EF0ACAA0088C0FF /* DropdownTableViewController.swift in Sources */,
 				70D1EAFE1EF0ACCD0088C0FF /* CustomHeaderWebView.swift in Sources */,
 				70D1E9EF1EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */,
@@ -5793,6 +5801,7 @@
 				50F45AC7200CE819009304A3 /* SyncHelper.swift in Sources */,
 				24F833EC1E628A9400590E90 /* MarkdownHelper.swift in Sources */,
 				5071BA1E1FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */,
+				50022902205928E2003301A7 /* UserActionsDelegate.swift in Sources */,
 				AB3B821D1EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				509B10D1200790560042AA7D /* XikoloTabBarController.swift in Sources */,
 				702520811F6FFFD7003E0F80 /* UserDefaults+VideoQuality.swift in Sources */,
@@ -5956,6 +5965,7 @@
 				50F45ACD200CE819009304A3 /* SyncHelper.swift in Sources */,
 				AB3B82211EA25EBC00815D3F /* CourseCertificates.swift in Sources */,
 				50C92B651FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */,
+				50022904205928E2003301A7 /* UserActionsDelegate.swift in Sources */,
 				702520831F6FFFD7003E0F80 /* UserDefaults+VideoQuality.swift in Sources */,
 				509B10D3200790560042AA7D /* XikoloTabBarController.swift in Sources */,
 				AB9A3D8F1E61CE2500384B1E /* CourseDetailViewController.swift in Sources */,

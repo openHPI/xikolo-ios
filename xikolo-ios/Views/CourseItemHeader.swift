@@ -5,13 +5,13 @@
 
 import UIKit
 
-class CourseItemHeader : UITableViewHeaderFooterView {
+class CourseItemHeader: UITableViewHeaderFooterView {
 
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var actionsButton: UIButton!
 
     private var section: CourseSection?
-    weak var delegate: CourseItemHeaderDelegate?
+    weak var delegate: UserActionsDelegate?
 
     func configure(for section: CourseSection, inOfflineMode: Bool) {
         self.section = section
@@ -27,8 +27,4 @@ class CourseItemHeader : UITableViewHeaderFooterView {
 
 }
 
-protocol CourseItemHeaderDelegate: class {
 
-    func showAlert(with actions: [UIAlertAction], on anchor: UIView)
-
-}

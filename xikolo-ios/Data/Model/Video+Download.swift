@@ -37,11 +37,11 @@ extension Video {
 
 extension Video {
 
-    var alertActions: [UIAlertAction] {
-        return [self.videoAlertAction].flatMap { $0 }
+    var userActions: [UIAlertAction] {
+        return [self.videoUserAction].flatMap { $0 }
     }
 
-    var videoAlertAction: UIAlertAction? {
+    var videoUserAction: UIAlertAction? {
         let isOffline = ReachabilityHelper.connection == .none
         let downloadState = VideoPersistenceManager.shared.downloadState(for: self)
 

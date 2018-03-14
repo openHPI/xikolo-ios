@@ -209,7 +209,7 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction func showActionMenu(_ sender: UIBarButtonItem) {
-        guard let actions = self.video?.alertActions else { return }
+        guard let actions = self.video?.userActions else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
@@ -224,7 +224,7 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction func showVideoActionMenu(_ sender: UIButton) {
-        guard let videoAction = self.video?.videoAlertAction else { return }
+        guard let videoAction = self.video?.videoUserAction else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
@@ -279,7 +279,7 @@ class VideoViewController: UIViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.videoActionsButton.isEnabled = self.video?.videoAlertAction != nil
+        self.videoActionsButton.isEnabled = self.video?.videoUserAction != nil
         self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
         self.updatePreferredVideoBitrate()

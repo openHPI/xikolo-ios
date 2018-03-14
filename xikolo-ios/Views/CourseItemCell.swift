@@ -63,7 +63,7 @@ class CourseItemCell: UITableViewCell {
             return
         }
 
-        self.actionsButton.isHidden = video.alertActions.isEmpty
+        self.actionsButton.isHidden = video.userActions.isEmpty
     }
 
     private func configureProgressView(for courseItem: CourseItem) {
@@ -99,7 +99,7 @@ class CourseItemCell: UITableViewCell {
     @IBAction func tappedActionsButton() {
         guard let video = self.item?.content as? Video else { return }
 
-        self.delegate?.showAlert(with: video.alertActions, on: self.actionsButton)
+        self.delegate?.showAlert(with: video.userActions, on: self.actionsButton)
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {

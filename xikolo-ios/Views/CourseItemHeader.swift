@@ -26,5 +26,3 @@ class CourseItemHeader: UITableViewHeaderFooterView {
     }
 
 }
-
-

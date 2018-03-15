@@ -53,6 +53,9 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
 
+/* title for spinner when loading section content */
+"course-section.loading-spinner.title" = "Inhalte werden geladen";
+
 /* delete all downloaded videos downloads in section */
 "course-section.video-download-action.delete-videos.title" = "Alle Videos löschen";
 

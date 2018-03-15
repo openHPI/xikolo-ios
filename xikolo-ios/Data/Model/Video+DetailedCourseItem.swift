@@ -25,8 +25,4 @@ extension Video: DetailedCourseItem {
         return content
     }
 
-    static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        return CourseItemHelper.syncVideos(forCourse: course)
-    }
-
 }

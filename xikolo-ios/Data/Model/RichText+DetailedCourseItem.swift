@@ -22,8 +22,4 @@ extension RichText: DetailedCourseItem {
         return [.text(readingTime: approximatedReadingTime)]
     }
 
-    static func preloadContentFor(course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        return CourseItemHelper.syncRichTexts(forCourse: course)
-    }
-
 }

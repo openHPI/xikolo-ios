@@ -138,7 +138,7 @@ class CourseItemListViewController: UITableViewController {
 
     func preloadCourseContent() {
         self.contentToBePreloaded.traverse { contentType in
-            return contentType.preloadContentFor(course: self.course)
+            return contentType.preloadContent(forCourse: self.course)
         }.onComplete { _ in
             self.isPreloading = false
         }

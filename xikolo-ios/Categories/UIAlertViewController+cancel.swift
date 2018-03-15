@@ -7,14 +7,10 @@ import UIKit
 
 extension UIAlertController {
 
-    static var cancelAction: UIAlertAction {
+    func addCancelAction(handler: ((UIAlertAction) -> Void)? = nil) {
         let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        return cancelAction
-    }
-
-    func addCancelAction() {
-        self.addAction(UIAlertController.cancelAction)
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel, handler: handler)
+        self.addAction(cancelAction)
     }
 
 }

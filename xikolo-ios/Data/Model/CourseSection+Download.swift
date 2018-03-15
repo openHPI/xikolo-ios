@@ -19,9 +19,15 @@ extension CourseSection {
         }
     }
 
+    var allVideosPreloaded: Bool {
+        return !self.items.contains { item in
+            return item.contentType == Video.contentType && item.content == nil
+        }
+    }
+
     var hasUserActions: Bool {
         return self.items.contains { item in
-            return item.content is Video
+            return item.contentType == Video.contentType
         }
     }
 

@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
 import DZNEmptyDataSet
 import UIKit
@@ -271,6 +272,24 @@ extension CourseItemListViewController: UserActionsDelegate {
         alert.addCancelAction()
 
         self.present(alert, animated: true)
+    }
+
+    func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        let alert = UIAlertController(spinnerTitled: title, preferredStyle: .alert)
+        alert.addCancelAction { _ in
+            promise.failure(.userCanceled)
+        }
+
+        self.present(alert, animated: true)
+
+        task().onComplete { result in
+            promise.tryComplete(result)
+            alert.dismiss(animated: true)
+        }
+
+        return promise.future
     }
 
 }

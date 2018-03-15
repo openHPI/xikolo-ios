@@ -22,8 +22,18 @@ class CourseItemHeader: UITableViewHeaderFooterView {
     }
 
     @IBAction func tappedActionsButton(_ sender: UIButton) {
-        guard let actions = self.section?.userActions, !actions.isEmpty else { return }
-        self.delegate?.showAlert(with: actions, withTitle: self.section?.title, on: self.actionsButton)
+        guard let section = self.section else { return }
+
+        if section.allVideosPreloaded {
+            self.delegate?.showAlert(with: section.userActions, withTitle: section.title, on: self.actionsButton)
+        } else {
+            self.delegate?.showAlertSpinner(title: "Loading section content", task: {
+                return CourseItemHelper.syncCourseItems(forSection: section, withContentType: Video.contentType).asVoid()
+            }).onSuccess {
+                self.delegate?.showAlert(with: section.userActions, withTitle: section.title, on: self.actionsButton)
+            }
+        }
+
     }
 
 }

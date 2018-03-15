@@ -30,6 +30,8 @@ enum XikoloError: Error {
     case synchronizationError(SynchronizationError)
     case trackingForUnknownUser
     case missingResource(ofType: Any)
+
+    case userCanceled
 }
 
 enum APIError: Error {

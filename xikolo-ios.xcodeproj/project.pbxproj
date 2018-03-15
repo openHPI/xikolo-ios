@@ -397,6 +397,14 @@
 		50022903205928E2003301A7 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
 		50022904205928E2003301A7 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
 		50022905205928E2003301A7 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
+		50022907205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */; };
+		50022908205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */; };
+		50022909205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */; };
+		5002290A205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */; };
+		5002290C205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
+		5002290D205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
+		5002290E205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
+		5002290F205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		501212091FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120A1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120B1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
@@ -1890,6 +1898,8 @@
 		500228F120583139003301A7 /* CourseItemHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseItemHeader.xib; sourceTree = "<group>"; };
 		500228F620583DF9003301A7 /* CourseSection+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseSection+Download.swift"; sourceTree = "<group>"; };
 		50022901205928E2003301A7 /* UserActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionsDelegate.swift; sourceTree = "<group>"; };
+		50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+customView.swift"; sourceTree = "<group>"; };
+		5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+spinner.swift"; sourceTree = "<group>"; };
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
 		501212151FCC660F0022A7AF /* ResourceQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuery.swift; sourceTree = "<group>"; };
 		501212231FCC669E0022A7AF /* Future+inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+inject.swift"; sourceTree = "<group>"; };
@@ -2852,6 +2862,8 @@
 				5057ED7E1FE3D91B0096095B /* UserDefaults */,
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
+				50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */,
+				5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -4820,11 +4832,13 @@
 				24BA41151D3F9B8800E38C2C /* AccountViewController.swift in Sources */,
 				243CE4981D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				500228EE20582573003301A7 /* CourseItemHeader.swift in Sources */,
+				50022908205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
 				501F947A200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				5053988C1F72A9FB00A87DC8 /* NotificationKeys.swift in Sources */,
 				50DD35161FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				4E6AB1FB1DD36AB500B048DB /* CourseDate.swift in Sources */,
+				5002290D205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
 				24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
 				24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */,
 				5068B9CE1FEA94A10047A75E /* Future+retry.swift in Sources */,
@@ -5399,6 +5413,7 @@
 				5012126E1FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				50F668981F3857B800ACC26A /* SpotlightHelper.swift in Sources */,
 				70D1EAEF1EF0ACA50088C0FF /* CourseDecisionViewController.swift in Sources */,
+				5002290F205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
 				504C5A791F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				70D1EAF91EF0ACBF0088C0FF /* (null) in Sources */,
 				70D1EB071EF0ACE90088C0FF /* CourseDateHeader.swift in Sources */,
@@ -5513,6 +5528,7 @@
 				50D9B1791F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				505398951F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				70D1EAF31EF0ACB00088C0FF /* RichtextViewController.swift in Sources */,
+				5002290A205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */,
 				70D1EB2A1EF12E110088C0FF /* Settings.swift in Sources */,
 				500228FA20583DF9003301A7 /* CourseSection+Download.swift in Sources */,
 				505398941F72A9FE00A87DC8 /* NotificationKeys.swift in Sources */,
@@ -5786,11 +5802,13 @@
 				ABCE24301E8B938E00D55CB7 /* CustomHeaderWebView.swift in Sources */,
 				243CE4961D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				500228ED20582573003301A7 /* CourseItemHeader.swift in Sources */,
+				50022907205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */,
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
 				501F9477200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				50DD35151FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */,
+				5002290C205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
 				4E6AB1F81DD36AB500B048DB /* CourseDate.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */,
 				5068B9CB1FEA94A10047A75E /* Future+retry.swift in Sources */,
@@ -5950,11 +5968,13 @@
 				505398901F72A9FD00A87DC8 /* NotificationKeys.swift in Sources */,
 				ABA0F0E71DF8CE7E0001D88D /* xikolo.xcdatamodeld in Sources */,
 				500228EF20582573003301A7 /* CourseItemHeader.swift in Sources */,
+				50022909205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */,
 				ABA0F0721DF8CDB80001D88D /* Announcement.swift in Sources */,
 				501F947D200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				ABA0F0DF1DF8CE6F0001D88D /* TrackingHelper.swift in Sources */,
 				50DD35171FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				ABA0F0EA1DF8CE940001D88D /* AbstractCourseListViewController.swift in Sources */,
+				5002290E205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
 				ABB49A8E1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */,
 				ABA0F0841DF8CDD10001D88D /* QuizQuestion.swift in Sources */,
 				5068B9D11FEA94A10047A75E /* Future+retry.swift in Sources */,

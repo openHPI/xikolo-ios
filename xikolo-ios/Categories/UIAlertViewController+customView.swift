@@ -24,14 +24,15 @@ extension UIAlertController {
         self.init(title: title, message: marker, preferredStyle: preferredStyle)
 
         // Try to find the message label in the alert controller's view hierarchie
-        if let customContentPlaceholder = self.view.findLabel(withText: marker),
-            let customContainer =  customContentPlaceholder.superview {
-
+        if let customContentPlaceholder = self.view.findLabel(withText: marker), let customContainer = customContentPlaceholder.superview {
             // The message label was found. Add the custom view over it and fix the autolayout...
             customContainer.addSubview(customView)
 
             customView.translatesAutoresizingMaskIntoConstraints = false
-            customContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[customView]-|", options: [], metrics: nil, views: ["customView": customView]))
+            customContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[customView]-|",
+                                                                          options: [],
+                                                                          metrics: nil,
+                                                                          views: ["customView": customView]))
             customContainer.addConstraint(NSLayoutConstraint(item: customContentPlaceholder,
                                                              attribute: .top,
                                                              relatedBy: .equal,
@@ -53,7 +54,7 @@ extension UIAlertController {
     }
 }
 
-private extension UIView {
+private extension UIView { // swiftlint:disable:this no_extension_access_modifier
 
     /// Searches a `UILabel` with the given text in the view's subviews hierarchy.
     ///

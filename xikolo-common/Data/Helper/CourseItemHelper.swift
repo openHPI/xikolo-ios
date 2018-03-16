@@ -31,7 +31,8 @@ struct CourseItemHelper {
         }
     }
 
-    @discardableResult static func syncCourseItems(forCourse course: Course, withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult static func syncCourseItems(forCourse course: Course,
+                                                   withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
@@ -40,7 +41,8 @@ struct CourseItemHelper {
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
-    @discardableResult static func syncCourseItems(forSection section: CourseSection, withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult static func syncCourseItems(forSection section: CourseSection,
+                                                   withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forSection: section, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)

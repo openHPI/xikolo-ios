@@ -29,9 +29,9 @@ class CourseItemHeader: UITableViewHeaderFooterView {
         } else {
             let spinnerTitle = NSLocalizedString("course-section.loading-spinner.title",
                                                  comment: "title for spinner when loading section content")
-            self.delegate?.showAlertSpinner(title: spinnerTitle, task: {
+            self.delegate?.showAlertSpinner(title: spinnerTitle) {
                 return CourseItemHelper.syncCourseItems(forSection: section, withContentType: Video.contentType).asVoid()
-            }).onSuccess {
+            }.onSuccess {
                 self.delegate?.showAlert(with: section.userActions, withTitle: section.title, on: self.actionsButton)
             }
         }

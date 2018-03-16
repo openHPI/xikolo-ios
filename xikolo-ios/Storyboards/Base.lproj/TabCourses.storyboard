@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -311,9 +311,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4V-6l-NtX">
-                                <rect key="frame" x="0.0" y="20" width="375" height="173"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="217"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="173" id="LpH-qr-v08"/>
+                                    <constraint firstAttribute="height" constant="217" id="LpH-qr-v08"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="6J1-nF-Dot" kind="embed" identifier="EmbedCourseContentChoice" id="SxM-JY-dGM"/>
@@ -364,7 +364,7 @@
             <objects>
                 <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="6J1-nF-Dot" customClass="DropdownTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YAz-3s-0sS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="217"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -378,13 +378,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learnings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3Z-HX-RBa">
-                                                    <rect key="frame" x="60" y="11" width="75" height="21"/>
+                                                    <rect key="frame" x="52" y="11" width="75" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-learnings-28" translatesAutoresizingMaskIntoConstraints="NO" id="Bgr-uP-r4G">
-                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="BOX-nM-0e4"/>
                                                         <constraint firstAttribute="width" constant="41" id="TdP-mJ-pEB"/>
@@ -420,13 +420,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discussions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOy-KB-LgV">
-                                                    <rect key="frame" x="60" y="11" width="92" height="21"/>
+                                                    <rect key="frame" x="52" y="11" width="92" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-discussions-28" translatesAutoresizingMaskIntoConstraints="NO" id="SfY-1e-rcg">
-                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="RAb-qo-kjk"/>
                                                         <constraint firstAttribute="width" constant="41" id="pgD-Fg-ftl"/>
@@ -462,13 +462,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4C-3A-1GB">
-                                                    <rect key="frame" x="60" y="11" width="112" height="21"/>
+                                                    <rect key="frame" x="52" y="11" width="112" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-couse_details-28" translatesAutoresizingMaskIntoConstraints="NO" id="LW5-cv-1mO">
-                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="StU-h2-1q9"/>
                                                         <constraint firstAttribute="width" constant="41" id="gCZ-QE-lnb"/>
@@ -504,13 +504,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRo-CM-ssb">
-                                                    <rect key="frame" x="60" y="11" width="125" height="21"/>
+                                                    <rect key="frame" x="52" y="11" width="125" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-announcements-28" translatesAutoresizingMaskIntoConstraints="NO" id="UAv-8z-Nmm">
-                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="Ecu-UG-Sqv"/>
                                                         <constraint firstAttribute="width" constant="41" id="KCC-VW-LSO"/>
@@ -534,6 +534,48 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="dcB-jc-XbD"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UsU-eF-wfc">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UsU-eF-wfc" id="qoK-Mn-JSa">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYt-ay-XwD">
+                                                    <rect key="frame" x="52" y="11" width="125" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content-announcements-28" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-zl-c04">
+                                                    <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="37L-3S-CV1"/>
+                                                        <constraint firstAttribute="width" constant="28" id="kd0-fi-bFx"/>
+                                                        <constraint firstAttribute="width" constant="41" id="whr-77-v8x"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="whr-77-v8x"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qYt-ay-XwD" firstAttribute="centerY" secondItem="qoK-Mn-JSa" secondAttribute="centerY" id="Aah-aU-ucR"/>
+                                                <constraint firstItem="EZz-zl-c04" firstAttribute="leading" secondItem="qoK-Mn-JSa" secondAttribute="leadingMargin" constant="8" id="DOv-v3-ype"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="qYt-ay-XwD" secondAttribute="trailing" constant="16" id="m6f-kB-fmq"/>
+                                                <constraint firstItem="qYt-ay-XwD" firstAttribute="leading" secondItem="qoK-Mn-JSa" secondAttribute="leadingMargin" constant="7" id="r23-ej-Uzc"/>
+                                                <constraint firstItem="qYt-ay-XwD" firstAttribute="leading" secondItem="EZz-zl-c04" secondAttribute="trailing" constant="8" symbolic="YES" id="tb9-22-g2r"/>
+                                                <constraint firstItem="EZz-zl-c04" firstAttribute="centerY" secondItem="qoK-Mn-JSa" secondAttribute="centerY" id="vg5-NR-Kvh"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="r23-ej-Uzc"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

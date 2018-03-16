@@ -10,8 +10,9 @@ class CourseDecisionViewController: UIViewController {
     enum CourseContent: Int {
         case learnings = 0
         case discussions = 1
-        case courseDetails = 2
-        case announcements = 3
+        case certificates = 2
+        case courseDetails = 3
+        case announcements = 4
     }
 
     @IBOutlet private weak var containerView: UIView!
@@ -84,6 +85,11 @@ class CourseDecisionViewController: UIViewController {
 
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
+        case .certificates:
+            let vc = storyboard.instantiateViewController(withIdentifier: "CertificatesTableViewController").require(toHaveType: CertificatesTableViewController.self)
+            vc.course = course
+            changeToViewController(vc)
+            titleView.text = NSLocalizedString("course-content.view.certificates.title", comment: "title of certificates view of course view")
         case .announcements:
             let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
             let loadedVc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController")

@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
 import DZNEmptyDataSet
 import UIKit
@@ -32,6 +33,10 @@ class CourseItemListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // register custom section header view
+        let nib = UINib(nibName: "CourseItemHeader", bundle: nil)
+        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseItemHeader")
 
         var separatorInsetLeft: CGFloat = 20.0
         if #available(iOS 11.0, *) {
@@ -134,7 +139,7 @@ class CourseItemListViewController: UITableViewController {
 
     func preloadCourseContent() {
         self.contentToBePreloaded.traverse { contentType in
-            return contentType.preloadContentFor(course: self.course)
+            return contentType.preloadContent(forCourse: self.course)
         }.onComplete { _ in
             self.isPreloading = false
         }
@@ -189,6 +194,30 @@ extension CourseItemListViewController { // TableViewDelegate
         }
     }
 
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseItemHeader") as? CourseItemHeader else {
+            return nil
+        }
+
+        let visualIndexPath = IndexPath(row: 0, section: section)
+        guard let (controller, indexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
+            return nil
+        }
+
+        guard let section = controller.object(at: indexPath).section else {
+            return nil
+        }
+
+        header.configure(for: section, inOfflineMode: self.inOfflineMode)
+        header.delegate = self
+
+        return header
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+
 }
 
 class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
@@ -204,12 +233,6 @@ class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
         cell.delegate = self.tableViewController
 
         cell.configure(for: item)
-    }
-
-    func headerTitle(forController controller: NSFetchedResultsController<CourseItem>, forSection section: Int) -> String? {
-        let indexPath = IndexPath(row: 0, section: section)
-        let item = controller.object(at: indexPath)
-        return item.section?.title
     }
 
 }
@@ -233,12 +256,12 @@ extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDe
 
 }
 
-extension CourseItemListViewController: CourseItemCellDelegate {
+extension CourseItemListViewController: UserActionsDelegate {
 
-    func showAlert(with actions: [UIAlertAction], on anchor: UIView) {
+    func showAlert(with actions: [UIAlertAction], withTitle title: String? = nil, on anchor: UIView) {
         guard !actions.isEmpty else { return }
 
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = anchor
         alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
 
@@ -249,6 +272,24 @@ extension CourseItemListViewController: CourseItemCellDelegate {
         alert.addCancelAction()
 
         self.present(alert, animated: true)
+    }
+
+    func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        let alert = UIAlertController(spinnerTitled: title, preferredStyle: .alert)
+        alert.addCancelAction { _ in
+            promise.failure(.userCanceled)
+        }
+
+        self.present(alert, animated: true)
+
+        task().onComplete { result in
+            promise.tryComplete(result)
+            alert.dismiss(animated: true)
+        }
+
+        return promise.future
     }
 
 }

@@ -31,20 +31,22 @@ struct CourseItemHelper {
         }
     }
 
-    @discardableResult static func syncRichTexts(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "rich_text")
+    @discardableResult static func syncCourseItems(forCourse course: Course,
+                                                   withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        query.addFilter(forKey: "content_type", withValue: "rich_text")
+        query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
-    @discardableResult static func syncVideos(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "video")
+    @discardableResult static func syncCourseItems(forSection section: CourseSection,
+                                                   withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forSection: section, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
-        query.addFilter(forKey: "course", withValue: course.id)
-        query.addFilter(forKey: "content_type", withValue: "video")
+        query.addFilter(forKey: "section", withValue: section.id)
+        query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }

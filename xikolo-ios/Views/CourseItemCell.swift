@@ -15,7 +15,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
-    weak var delegate: CourseItemCellDelegate?
+    weak var delegate: (CourseItemListViewController & UserActionsDelegate)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -101,7 +101,7 @@ class CourseItemCell: UITableViewCell {
     @IBAction func tappedActionsButton() {
         guard let video = self.item?.content as? Video else { return }
 
-        self.delegate?.showAlert(with: video.userActions, on: self.actionsButton)
+        self.delegate?.showAlert(with: video.userActions, withTitle: self.item?.title, on: self.actionsButton)
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
@@ -130,15 +130,5 @@ class CourseItemCell: UITableViewCell {
             self.progressView.updateProgress(progress)
         }
     }
-
-}
-
-protocol CourseItemCellDelegate: class {
-
-    var contentToBePreloaded: [DetailedCourseItem.Type] { get }
-    var isPreloading: Bool { get }
-    var inOfflineMode: Bool { get }
-
-    func showAlert(with actions: [UIAlertAction], on anchor: UIView)
 
 }

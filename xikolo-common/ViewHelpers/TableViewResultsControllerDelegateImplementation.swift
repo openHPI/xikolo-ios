@@ -109,16 +109,12 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let configuration = self.configuration, !configuration.shouldShowHeader() {
+        let (controller, newSection) = controllerAndImplementationSection(forSection: section)!
+        guard let headerTitle = self.configuration?.titleForDefaultHeader(forController: controller, forSection: newSection) else {
             return nil
         }
 
-        let (controller, newSection) = controllerAndImplementationSection(forSection: section)!
-        if let headerTitle = self.configuration?.headerTitle(forController: controller, forSection: newSection) {
-            return headerTitle
-        }
-
-        return controller.sections?[newSection].name
+        return headerTitle
     }
 
 }
@@ -197,19 +193,13 @@ protocol TableViewResultsControllerConfigurationProtocol {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
 
-    func shouldShowHeader() -> Bool
-
-    func headerTitle(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String?
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String?
 
 }
 
 extension TableViewResultsControllerConfigurationProtocol {
 
-    func shouldShowHeader() -> Bool {
-        return true
-    }
-
-    func headerTitle(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String? {
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String? {
         return nil
     }
 
@@ -230,25 +220,19 @@ extension TableViewResultsControllerConfiguration {
 class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableViewResultsControllerConfigurationProtocol {
 
     private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
-    private let _shouldShowHeader: () -> Bool
-    private let _headerTitle: (NSFetchedResultsController<T>, Int) -> String?
+    private let _titleForDefaultHeader: (NSFetchedResultsController<T>, Int) -> String?
 
     required init<U: TableViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
         self._configureTableCell = configuration.configureTableCell
-        self._shouldShowHeader = configuration.shouldShowHeader
-        self._headerTitle = configuration.headerTitle
+        self._titleForDefaultHeader = configuration.titleForDefaultHeader
     }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
         self._configureTableCell(cell, controller, indexPath)
     }
 
-    func shouldShowHeader() -> Bool {
-        return self._shouldShowHeader()
-    }
-
-    func headerTitle(forController controller: NSFetchedResultsController<T>, forSection section: Int) -> String? {
-        return self._headerTitle(controller, section)
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<T>, forSection section: Int) -> String? {
+        return self._titleForDefaultHeader(controller, section)
     }
 
 }

@@ -128,10 +128,6 @@ struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguratio
         cell.configure(courseDate)
     }
 
-    func shouldShowHeader() -> Bool {
-        return false
-    }
-
 }
 
 extension CourseDatesTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {

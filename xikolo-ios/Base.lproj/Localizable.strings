@@ -17,6 +17,9 @@
 /* title of announcements view of course view */
 "course-content.view.announcements.title" = "Announcements";
 
+/* title of certificates view of course view */
+"course-content.view.certificates.title" = "Certificates";
+
 /* title of course details view of course view */
 "course-content.view.course-details.title" = "Course Details";
 
@@ -49,6 +52,21 @@
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
+
+/* the current state of a certificate */
+"course.certificates.achieved" = "achieved";
+
+/* name of certificate */
+"course.certificates.confirmationOfParticipation" = "Confirmation of Participation";
+
+/* the current state of a certificate */
+"course.certificates.not-achieved" = "not-achieved";
+
+/* name of certificate */
+"course.certificates.qualifiedCertificate" = "Qualified Certificate";
+
+/* name of certificate */
+"course.certificates.recordOfAchievement" = "Record of Achievement";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";
@@ -134,23 +152,11 @@
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
 
-/* title of certificates view of course view */
-"course-content.view.certificates.title" = "Certificates";
+/* description for empty certificates list */
+"empty-view.certificates.no-certificates.description" = "Study a topic while the course is running to obtain a certificate or confirmation of participation.";
 
-/* the current state of a certificate */
-"course.certificates.achieved" = "achieved";
-
-/* name of certificate */
-"course.certificates.confirmationOfParticipation" = "Confirmation of Participation";
-
-/* the current state of a certificate */
-"course.certificates.not-achieved" = "not-achieved";
-
-/* name of certificate */
-"course.certificates.qualifiedCertificate" = "Qualified Certificate";
-
-/* name of certificate */
-"course.certificates.recordOfAchievement" = "Record of Achievement";
+/* title for empty certificates list */
+"empty-view.certificates.no-certificates.title" = "No certificates available";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

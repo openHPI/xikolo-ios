@@ -3,8 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
+import DZNEmptyDataSet
 import SafariServices
+import UIKit
 
 class CertificatesTableViewController: UITableViewController {
 
@@ -70,6 +71,22 @@ class CertificatesTableViewController: UITableViewController {
         } else {
             return NSLocalizedString("course.certificates.not-achieved", comment: "the current state of a certificate")
         }
+    }
+
+}
+
+extension CertificatesTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = NSLocalizedString("empty-view.certificates.no-certificates.title",
+                                      comment: "title for empty certificates list")
+        return NSAttributedString(string: title)
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let description = NSLocalizedString("empty-view.certificates.no-certificates.description",
+                                            comment: "description for empty certificates list")
+        return NSAttributedString(string: description)
     }
 
 }

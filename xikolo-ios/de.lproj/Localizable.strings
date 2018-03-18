@@ -17,6 +17,9 @@
 /* title of announcements view of course view */
 "course-content.view.announcements.title" = "Neuigkeiten";
 
+/* title of certificates view of course view */
+"course-content.view.certificates.title" = "Leistungsnachweise";
+
 /* title of course details view of course view */
 "course-content.view.course-details.title" = "Kursdetails";
 
@@ -53,8 +56,17 @@
 /* the current state of a certificate */
 "course.certificates.achieved" = "erreicht";
 
+/* name of certificate */
+"course.certificates.confirmationOfParticipation" = "Teilnahmebestätigung";
+
 /* the current state of a certificate */
 "course.certificates.not-achieved" = "nicht erreicht";
+
+/* name of certificate */
+"course.certificates.qualifiedCertificate" = "Qualifiziertes Zertifikat";
+
+/* name of certificate */
+"course.certificates.recordOfAchievement" = "Zeugnis";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
@@ -140,17 +152,11 @@
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
 
-/* title of certificates view of course view */
-"course-content.view.certificates.title" = "Leistungsnachweise";
+/* description for empty certificates list */
+"empty-view.certificates.no-certificates.description" = "Du hast noch keine Zeugnisse oder Teilnahmebestätigungen erhalten. Lerne in einem Kurs zur Veranstaltungszeit um ein Zeugnis zu erhalten.";
 
-/* name of certificate */
-"course.certificates.confirmationOfParticipation" = "Teilnahmebestätigung";
-
-/* name of certificate */
-"course.certificates.qualifiedCertificate" = "Qualifiziertes Zertifikat";
-
-/* name of certificate */
-"course.certificates.recordOfAchievement" = "Zeugnis";
+/* title for empty certificates list */
+"empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

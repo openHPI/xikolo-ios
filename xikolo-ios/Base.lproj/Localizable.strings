@@ -134,5 +134,23 @@
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video Quality using WiFi";
 
+/* title of certificates view of course view */
+"course-content.view.certificates.title" = "Certificates";
+
+/* the current state of a certificate */
+"course.certificates.achieved" = "achieved";
+
+/* name of certificate */
+"course.certificates.confirmationOfParticipation" = "Confirmation of Participation";
+
+/* the current state of a certificate */
+"course.certificates.not-achieved" = "not-achieved";
+
+/* name of certificate */
+"course.certificates.qualifiedCertificate" = "Qualified Certificate";
+
+/* name of certificate */
+"course.certificates.recordOfAchievement" = "Record of Achievement";
+
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

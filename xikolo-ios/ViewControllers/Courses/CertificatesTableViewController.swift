@@ -10,8 +10,6 @@ class CertificatesTableViewController: UITableViewController {
 
     var course: Course!
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -25,17 +23,17 @@ class CertificatesTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let certificate = course.enrollment?.certificates?.confirmationOfParticipation
-            cell.textLabel?.text = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "")
+            cell.textLabel?.text = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "name of certificate")
             cell.detailTextLabel?.text = certificateState(certificate)
             cell.enable(certificate != nil)
         case 1:
             let certificate = course.enrollment?.certificates?.recordOfAchievement
-            cell.textLabel?.text = NSLocalizedString("course.certificates.recordOfAchievement", comment: "")
+            cell.textLabel?.text = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of certificate")
             cell.detailTextLabel?.text = certificateState(certificate)
             cell.enable(certificate != nil)
         case 2:
             let certificate = course.enrollment?.certificates?.certificate
-            cell.textLabel?.text = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "")
+            cell.textLabel?.text = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of certificate")
             cell.detailTextLabel?.text = certificateState(certificate)
             cell.enable(certificate != nil)
         default:
@@ -73,16 +71,5 @@ class CertificatesTableViewController: UITableViewController {
             return NSLocalizedString("course.certificates.not-achieved", comment: "the current state of a certificate")
         }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

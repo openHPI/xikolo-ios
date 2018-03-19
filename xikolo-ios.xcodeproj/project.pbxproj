@@ -1261,10 +1261,10 @@
 		70D1EB601EF134870088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
 		70D1EB621EF134FD0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
-		70F379CF205B643400149C3B /* CertificatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesTableViewController.swift */; };
-		70F379D0205B643400149C3B /* CertificatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesTableViewController.swift */; };
-		70F379D1205B643400149C3B /* CertificatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesTableViewController.swift */; };
-		70F379D2205B643400149C3B /* CertificatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesTableViewController.swift */; };
+		70F379CF205B643400149C3B /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
+		70F379D0205B643400149C3B /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
+		70F379D1205B643400149C3B /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
+		70F379D2205B643400149C3B /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
 		70F456321F0128E400A2C6B7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */; };
 		70F456341F0128E500A2C6B7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */; };
 		70F456351F01290B00A2C6B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF75F1E81EEC40043C7B7 /* User.swift */; };
@@ -1982,7 +1982,7 @@
 		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70F379CE205B643400149C3B /* CertificatesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatesTableViewController.swift; sourceTree = "<group>"; };
+		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2766,7 +2766,7 @@
 				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
 				50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */,
 				AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */,
-				70F379CE205B643400149C3B /* CertificatesTableViewController.swift */,
+				70F379CE205B643400149C3B /* CertificatesListViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -4798,7 +4798,7 @@
 				24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
 				24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */,
 				5068B9CE1FEA94A10047A75E /* Future+retry.swift in Sources */,
-				70F379D0205B643400149C3B /* CertificatesTableViewController.swift in Sources */,
+				70F379D0205B643400149C3B /* CertificatesListViewController.swift in Sources */,
 				AB9A3D8E1E61CE2500384B1E /* CourseDetailViewController.swift in Sources */,
 				5012124E1FCC67510022A7AF /* Pullable.swift in Sources */,
 				5071BA211FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */,
@@ -5382,7 +5382,7 @@
 				50F720301F28E29B00779995 /* Video+Download.swift in Sources */,
 				70D1EAB91EF0AC030088C0FF /* LTIExerciseHelper.swift in Sources */,
 				70D1EA411EF0AB090088C0FF /* LTIExercise.swift in Sources */,
-				70F379D2205B643400149C3B /* CertificatesTableViewController.swift in Sources */,
+				70F379D2205B643400149C3B /* CertificatesListViewController.swift in Sources */,
 				5071BA271FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */,
 				70D1EADF1EF0AC430088C0FF /* UITableViewCell+enable.swift in Sources */,
 				5068B9D41FEA94A10047A75E /* Future+retry.swift in Sources */,
@@ -5758,7 +5758,7 @@
 				4E6AB1F81DD36AB500B048DB /* CourseDate.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */,
 				5068B9CB1FEA94A10047A75E /* Future+retry.swift in Sources */,
-				70F379CF205B643400149C3B /* CertificatesTableViewController.swift in Sources */,
+				70F379CF205B643400149C3B /* CertificatesListViewController.swift in Sources */,
 				AB4F22661D7CB30300ED0BF1 /* CourseItemListViewController.swift in Sources */,
 				5012124B1FCC67510022A7AF /* Pullable.swift in Sources */,
 				AB9A3D8D1E61CE2500384B1E /* CourseDetailViewController.swift in Sources */,
@@ -5919,7 +5919,7 @@
 				ABB49A8E1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */,
 				ABA0F0841DF8CDD10001D88D /* QuizQuestion.swift in Sources */,
 				5068B9D11FEA94A10047A75E /* Future+retry.swift in Sources */,
-				70F379D1205B643400149C3B /* CertificatesTableViewController.swift in Sources */,
+				70F379D1205B643400149C3B /* CertificatesListViewController.swift in Sources */,
 				5071BA241FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */,
 				ABA0F02B1DF8CCD60001D88D /* NetworkIndicator.swift in Sources */,
 				501212511FCC67510022A7AF /* Pullable.swift in Sources */,

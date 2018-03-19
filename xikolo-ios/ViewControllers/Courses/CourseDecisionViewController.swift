@@ -98,7 +98,7 @@ class CourseDecisionViewController: UIViewController {
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
         case .certificates:
-            let vc = storyboard.instantiateViewController(withIdentifier: "CertificatesTableViewController").require(toHaveType: CertificatesTableViewController.self)
+            let vc = storyboard.instantiateViewController(withIdentifier: "CertificatesListViewController").require(toHaveType: CertificatesListViewController.self)
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.certificates.title", comment: "title of certificates view of course view")

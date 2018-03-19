@@ -11,6 +11,13 @@ class CertificatesListViewController: UITableViewController {
 
     var course: Course!
 
+    var certificates: [(String, URL?)] = []
+
+    override func viewDidLoad() {
+        certificates = findAvailableCertificates()
+        self.setupEmptyState()
+    }
+
     func showCertificate(url: URL) {
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
@@ -25,12 +32,24 @@ class CertificatesListViewController: UITableViewController {
         }
     }
 
-    func numberOfCertificates() -> Int {
-        var count: Int = 0
-        count += course.certificates?.confirmationOfParticipation != nil ? 1 : 0
-        count += course.certificates?.recordOfAchievement != nil ? 1 : 0
-        count += course.certificates?.certificate != nil ? 1 : 0
-        return count
+    func findAvailableCertificates() -> [(String, URL?)] {
+        var certificates: [(String, URL?)] = []
+        if let cop = course.certificates?.confirmationOfParticipation, cop.available {
+            let name = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "name of certificate")
+            let url = course.enrollment?.certificates?.confirmationOfParticipation
+            certificates.append((name, url))
+        }
+        if let roa = course.certificates?.recordOfAchievement, roa.available {
+            let name = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of certificate")
+            let url = course.enrollment?.certificates?.recordOfAchievement
+            certificates.append((name, url))
+        }
+        if let cop = course.certificates?.qualifiedCertificate, cop.available {
+            let name = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of certificate")
+            let url = course.enrollment?.certificates?.qualifiedCertificate
+            certificates.append((name, url))
+        }
+        return certificates
     }
 
 }
@@ -42,46 +61,20 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfCertificates()
+        return certificates.count
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            guard let url = course.enrollment?.certificates?.confirmationOfParticipation else { return }
+        if let url = certificates[indexPath.row].1 {
             showCertificate(url: url)
-        case 1:
-            guard let url = course.enrollment?.certificates?.recordOfAchievement else { return }
-            showCertificate(url: url)
-        case 2:
-            guard let url = course.enrollment?.certificates?.certificate else { return }
-            showCertificate(url: url)
-        default:
-            break
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
-        switch indexPath.row {
-        case 0:
-            let certificate = course.enrollment?.certificates?.confirmationOfParticipation
-            cell.textLabel?.text = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "name of certificate")
-            cell.detailTextLabel?.text = certificateState(certificate)
-            cell.enable(certificate != nil)
-        case 1:
-            let certificate = course.enrollment?.certificates?.recordOfAchievement
-            cell.textLabel?.text = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of certificate")
-            cell.detailTextLabel?.text = certificateState(certificate)
-            cell.enable(certificate != nil)
-        case 2:
-            let certificate = course.enrollment?.certificates?.certificate
-            cell.textLabel?.text = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of certificate")
-            cell.detailTextLabel?.text = certificateState(certificate)
-            cell.enable(certificate != nil)
-        default:
-            break
-        }
+        cell.textLabel?.text = certificates[indexPath.row].0
+        cell.detailTextLabel?.text = certificateState(certificates[indexPath.row].1)
+        cell.enable(certificates[indexPath.row].1 != nil)
         return cell
     }
 }
@@ -98,6 +91,13 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
         let description = NSLocalizedString("empty-view.certificates.no-certificates.description",
                                             comment: "description for empty certificates list")
         return NSAttributedString(string: description)
+    }
+
+    func setupEmptyState() {
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
+        tableView.reloadEmptyDataSet()
     }
 
 }

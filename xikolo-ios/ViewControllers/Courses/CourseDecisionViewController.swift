@@ -87,8 +87,8 @@ class CourseDecisionViewController: UIViewController {
             titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
         case .announcements:
             let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
-            let loadedVc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController")
-            let vc = loadedVc.require(toHaveType: AnnouncementsTableViewController.self)
+            let loadedVc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsListViewController")
+            let vc = loadedVc.require(toHaveType: AnnouncementsListViewController.self)
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.announcements.title", comment: "title of announcements view of course view")

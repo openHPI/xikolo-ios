@@ -710,10 +710,10 @@
             </objects>
             <point key="canvasLocation" x="3814" y="-188"/>
         </scene>
-        <!--Certificates Table View Controller-->
+        <!--Certificates List View Controller-->
         <scene sceneID="qOk-PS-dfL">
             <objects>
-                <tableViewController storyboardIdentifier="CertificatesTableViewController" id="YUz-eF-UqH" customClass="CertificatesTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CertificatesListViewController" id="YUz-eF-UqH" customClass="CertificatesListViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="48s-BP-jbZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

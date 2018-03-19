@@ -7,7 +7,7 @@ import CoreData
 import DZNEmptyDataSet
 import UIKit
 
-class AnnouncementsTableViewController: UITableViewController {
+class AnnouncementsListViewController: UITableViewController {
 
     var resultsController: NSFetchedResultsController<Announcement>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<Announcement>!
@@ -87,7 +87,7 @@ class AnnouncementsTableViewController: UITableViewController {
 
 }
 
-extension AnnouncementsTableViewController { // TableViewDelegate
+extension AnnouncementsListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let announcement = resultsController.object(at: indexPath)
@@ -101,14 +101,14 @@ struct AnnouncementsTableViewConfiguration: TableViewResultsControllerConfigurat
     var shouldShowCourseTitle: Bool
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Announcement>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: AnnouncementCell.self, hint: "AnnouncementsTabelViewController requires cells of type AnnouncementCell")
+        let cell = cell.require(toHaveType: AnnouncementCell.self, hint: "AnnouncementsListViewController requires cells of type AnnouncementCell")
         let announcement = controller.object(at: indexPath)
         cell.configure(announcement, showCourseTitle: shouldShowCourseTitle)
     }
 
 }
 
-extension AnnouncementsTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension AnnouncementsListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")

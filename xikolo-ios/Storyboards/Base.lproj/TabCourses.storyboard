@@ -359,10 +359,10 @@
             </objects>
             <point key="canvasLocation" x="3324" y="0.0"/>
         </scene>
-        <!--Dropdown Table View Controller-->
+        <!--Dropdown List View Controller-->
         <scene sceneID="koV-za-70u">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="6J1-nF-Dot" customClass="DropdownTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="6J1-nF-Dot" customClass="DropdownListViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YAz-3s-0sS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="217"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

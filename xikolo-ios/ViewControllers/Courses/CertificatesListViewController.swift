@@ -66,7 +66,10 @@ extension CertificatesListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let url = certificates[indexPath.row].1 {
-            showCertificate(url: url)
+            let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
+            vc.url = url.absoluteString
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 

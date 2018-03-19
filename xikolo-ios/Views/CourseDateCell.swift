@@ -8,11 +8,11 @@ import UIKit
 
 class CourseDateCell: UITableViewCell {
 
-    @IBOutlet var courseLabel: UILabel!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var dateHighlightView: UIView!
+    @IBOutlet private var courseLabel: UILabel!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var dateLabel: UILabel!
+    @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet private var dateHighlightView: UIView!
 
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter.localizedFormatter()

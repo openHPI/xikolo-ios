@@ -185,6 +185,42 @@ class VideoPersistenceManager: NSObject {
         self.progressMap[videoId] = progress
     }
 
+    // MARK: course sections
+
+    func downloadVideos(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.flatMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return VideoPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+            }.forEach { video in
+                self.downloadStream(for: video)
+            }
+        }
+    }
+
+    func deleteVideos(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.flatMap { item in
+                return item.content as? Video
+            }.forEach { video in
+                self.deleteAsset(for: video)
+            }
+        }
+    }
+
+    func cancelVideoDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.flatMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return [.pending, .downloading].contains(VideoPersistenceManager.shared.downloadState(for: video))
+            }.forEach { video in
+                self.cancelDownload(for: video)
+            }
+        }
+    }
+
 }
 
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
@@ -228,7 +264,7 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
                             // show error
                             DispatchQueue.main.async {
-                                let alertTitle = NSLocalizedString("course-item.video-download-alert.download-error.title",
+                                let alertTitle = NSLocalizedString("course-item.video-download-action.download-error.title",
                                                                    comment: "title to download error alert")
                                 let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
                                 let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)

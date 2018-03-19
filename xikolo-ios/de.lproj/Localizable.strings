@@ -38,17 +38,20 @@
 /* title for proctoring alert */
 "course-item.proctoring.alert.title" = "Für dieses Element ist eine Online-Aufsicht erforderlich";
 
+/* title to cancel alert */
+"course-item.slides-alert.open-action.title" = "Folien anschauen";
+
 /* delete video item */
-"course-item.video-download-alert.delete-item-action.title" = "Video löschen";
+"course-item.video-download-action.delete-item.title" = "Video löschen";
 
 /* title to download error alert */
-"course-item.video-download-alert.download-error.title" = "Fehler beim Video-Download";
+"course-item.video-download-action.download-error.title" = "Fehler beim Video-Download";
 
 /* start download of video item */
-"course-item.video-download-alert.start-download-action.title" = "Video herunterladen";
+"course-item.video-download-action.start-download.title" = "Video herunterladen";
 
 /* stop download of video item */
-"course-item.video-download-alert.stop-download-action.title" = "Download stoppen";
+"course-item.video-download-action.stop-download.title" = "Download stoppen";
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
@@ -67,6 +70,18 @@
 
 /* name of certificate */
 "course.certificates.recordOfAchievement" = "Zeugnis";
+
+/* title for spinner when loading section content */
+"course-section.loading-spinner.title" = "Inhalte werden geladen";
+
+/* delete all downloaded videos downloads in section */
+"course-section.video-download-action.delete-videos.title" = "Alle Videos löschen";
+
+/* start video downloads for all videos in section */
+"course-section.video-download-action.start-downloads.title" = "Videos herunterladen";
+
+/* stop all video downloads in section */
+"course-section.video-download-action.stop-downloads.title" = "Alle Downloads stoppen";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";

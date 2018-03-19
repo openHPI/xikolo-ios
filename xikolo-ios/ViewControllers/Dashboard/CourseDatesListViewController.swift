@@ -9,7 +9,7 @@ import UIKit
 
 class CourseDatesListViewController: UITableViewController {
 
-    @IBOutlet var loginButton: UIBarButtonItem!
+    @IBOutlet private var loginButton: UIBarButtonItem!
 
     var courseActivityViewController: CourseActivityViewController?
 
@@ -126,10 +126,6 @@ struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguratio
         let cell = cell.require(toHaveType: CourseDateCell.self, hint: "CourseDatesViewController requires cell of type CourseDateCell")
         let courseDate = controller.object(at: indexPath)
         cell.configure(courseDate)
-    }
-
-    func shouldShowHeader() -> Bool {
-        return false
     }
 
 }

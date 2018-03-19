@@ -8,12 +8,12 @@ import UIKit
 
 class VideoStreamingSettingsViewController: UITableViewController {
 
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet private weak var doneButton: UIBarButtonItem!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if self.presentingViewController?.traitCollection.horizontalSizeClass != .regular {
+        if UIDevice.current.userInterfaceIdiom != .pad {
             navigationItem.rightBarButtonItem = nil
         }
     }

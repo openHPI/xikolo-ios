@@ -86,21 +86,27 @@ class CircularProgressView: UIView {
         return min(max(value, minValue), maxValue)
     }
 
-    func updateProgress(_ newValue: Double?) {
+    func updateProgress(_ newValue: Double?, animated: Bool = true) {
         var value: CGFloat?
         if let progress = newValue {
             value = CGFloat(progress)
         }
 
-        self.updateProgress(value)
+        self.updateProgress(value, animated: animated)
     }
 
-    func updateProgress(_ newValue: CGFloat?) {
-        if let progress = newValue {
+    func updateProgress(_ newValue: CGFloat?, animated: Bool = true) {
+        if let progress = newValue{
             let pinnedProgress = self.pin(progress)
             self.progressLayer.indeterminateProgress = 1
             self.setIndeterminateAnimationState(to: false)
-            self.animateProgress(pinnedProgress)
+
+            if animated {
+                self.animateProgress(pinnedProgress)
+            } else {
+                self.progressLayer.progress = pinnedProgress
+                self.progressLayer.setNeedsDisplay()
+            }
         } else {
             self.progressLayer.indeterminateProgress = self.pin(self.indeterminateProgress, minValue: 0.05, maxValue: 0.9)
             self.setIndeterminateAnimationState(to: true)

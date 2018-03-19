@@ -33,11 +33,20 @@ extension CourseItemHelper {
             return request
         }
 
-        static func courseItems(forCourse course: Course, withType type: String) -> NSFetchRequest<CourseItem> {
+        static func courseItems(forCourse course: Course, withContentType type: String) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "section.course = %@", course),
-                NSPredicate(format: "icon = %@", type),
+                NSPredicate(format: "contentType = %@", type),
+            ])
+            return request
+        }
+
+        static func courseItems(forSection section: CourseSection, withContentType type: String) -> NSFetchRequest<CourseItem> {
+            let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "section = %@", section),
+                NSPredicate(format: "contentType = %@", type),
             ])
             return request
         }

@@ -1,9 +1,8 @@
-[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev)](https://travis-ci.org/openHPI/xikolo-ios)
-[![codebeat badge](https://codebeat.co/badges/042d1ec1-67fb-40d5-8c9a-38cc843f26e1)](https://codebeat.co/projects/github-com-openhpi-xikolo-ios-dev)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 # xikolo-ios
 iOS application for openHPI, openSAP, mooc.house and OpenWHO
+
+[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev)](https://travis-ci.org/openHPI/xikolo-ios)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Development toolchain
 - Xcode 9.2

@@ -93,7 +93,7 @@ class CourseItemDetailView: UIView {
             let label = self.label(forContentItem: contentItem, inOfflineMode: isOffline)
             self.stackView.addArrangedSubview(label)
 
-            if contentItem.shownDownloadedIcon, let image = UIImage(named: "downloaded") {
+            if contentItem.shownDownloadedIcon, let image = UIImage(named: "downloaded-tiny") {
                 let imageView = UIImageView(image: image)
                 imageView.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
                 imageView.contentMode = .scaleAspectFit

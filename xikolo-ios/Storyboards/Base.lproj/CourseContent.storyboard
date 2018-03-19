@@ -861,7 +861,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZo-TQ-qud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3814" y="-188"/>
+            <point key="canvasLocation" x="3799" y="-188"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="cbg-I9-UtO">
+            <objects>
+                <viewController storyboardIdentifier="PDFWebViewController" id="Gqb-fe-lxd" customClass="PDFWebViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hwc-if-aBa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ds-wY-SUB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" red="0.95927601809999996" green="0.95927601809999996" blue="0.95927601809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Gqb-fe-lxd" id="el3-V1-sak"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9ds-wY-SUB" firstAttribute="top" secondItem="iYr-US-55L" secondAttribute="top" id="9ed-Sj-sFe"/>
+                            <constraint firstItem="iYr-US-55L" firstAttribute="bottom" secondItem="9ds-wY-SUB" secondAttribute="bottom" id="JnJ-oV-OAO"/>
+                            <constraint firstItem="9ds-wY-SUB" firstAttribute="trailing" secondItem="iYr-US-55L" secondAttribute="trailing" id="cyP-az-c37"/>
+                            <constraint firstItem="9ds-wY-SUB" firstAttribute="leading" secondItem="iYr-US-55L" secondAttribute="leading" id="fxM-mq-Lwn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iYr-US-55L"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Qmq-jj-Lbv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="UWq-HY-Hyv">
+                            <connections>
+                                <action selector="sharePDF:" destination="Gqb-fe-lxd" id="hwG-Iw-4C7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="9ds-wY-SUB" id="Pr9-9Q-Cn8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XyY-Xh-LYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5266" y="-188"/>
         </scene>
         <!--Certificates List View Controller-->
         <scene sceneID="qOk-PS-dfL">

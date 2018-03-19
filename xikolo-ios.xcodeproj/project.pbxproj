@@ -1029,6 +1029,10 @@
 		703005BF1EFEFC1500CCDCC9 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35C9321E89DAA4009832A5 /* UserHelper.swift */; };
 		703005C01EFEFC1600CCDCC9 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35C9321E89DAA4009832A5 /* UserHelper.swift */; };
 		70388C631EF1566A0093F186 /* AnnouncementsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */; };
+		70576D4820604CEE007DD51A /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576D4720604CEE007DD51A /* PDFWebViewController.swift */; };
+		70576D4920604CEE007DD51A /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576D4720604CEE007DD51A /* PDFWebViewController.swift */; };
+		70576D4A20604CEE007DD51A /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576D4720604CEE007DD51A /* PDFWebViewController.swift */; };
+		70576D4B20604CEE007DD51A /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70576D4720604CEE007DD51A /* PDFWebViewController.swift */; };
 		7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
@@ -1999,6 +2003,7 @@
 		7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		702520901F71A1D4003E0F80 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsListViewController.swift; sourceTree = "<group>"; };
+		70576D4720604CEE007DD51A /* PDFWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
@@ -2805,6 +2810,7 @@
 				50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */,
 				AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */,
 				70F379CE205B643400149C3B /* CertificatesListViewController.swift */,
+				70576D4720604CEE007DD51A /* PDFWebViewController.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -4801,6 +4807,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70576D4920604CEE007DD51A /* PDFWebViewController.swift in Sources */,
 				ABFEE0031D8807F5007D49FB /* DropdownListViewController.swift in Sources */,
 				249E3AB01D43C7C900D7663F /* QuizQuestion.swift in Sources */,
 				249E3AA61D43C0A100D7663F /* QuizHelper.swift in Sources */,
@@ -5529,6 +5536,7 @@
 				70D1EAC41EF0AC0F0088C0FF /* PlatformEventHelper.swift in Sources */,
 				70D1EADC1EF0AC330088C0FF /* xikolo.xcdatamodeld in Sources */,
 				70D1EAAF1EF0ABF80088C0FF /* CourseHelper.swift in Sources */,
+				70576D4B20604CEE007DD51A /* PDFWebViewController.swift in Sources */,
 				703005BF1EFEFC1500CCDCC9 /* UserHelper.swift in Sources */,
 				70D1EB261EF12E0B0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				70D1EB021EF0ACDC0088C0FF /* CourseItemCell.swift in Sources */,
@@ -5773,6 +5781,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70576D4820604CEE007DD51A /* PDFWebViewController.swift in Sources */,
 				ABFEE0021D8807F5007D49FB /* DropdownListViewController.swift in Sources */,
 				249E3AAE1D43C7C900D7663F /* QuizQuestion.swift in Sources */,
 				249E3AA41D43C0A100D7663F /* QuizHelper.swift in Sources */,
@@ -5940,6 +5949,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70576D4A20604CEE007DD51A /* PDFWebViewController.swift in Sources */,
 				AB17C5751DFCAD8E0013BBCD /* CourseDateHelper.swift in Sources */,
 				ABA0F0561DF8CD8C0001D88D /* CourseItem.swift in Sources */,
 				ABA0F09F1DF8CDF60001D88D /* TrackingEventResource.swift in Sources */,

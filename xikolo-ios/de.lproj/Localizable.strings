@@ -56,6 +56,18 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
 
+/* title for spinner when loading section content */
+"course-section.loading-spinner.title" = "Inhalte werden geladen";
+
+/* delete all downloaded videos downloads in section */
+"course-section.video-download-action.delete-videos.title" = "Alle Videos löschen";
+
+/* start video downloads for all videos in section */
+"course-section.video-download-action.start-downloads.title" = "Videos herunterladen";
+
+/* stop all video downloads in section */
+"course-section.video-download-action.stop-downloads.title" = "Alle Downloads stoppen";
+
 /* the current state of a certificate */
 "course.certificates.achieved" = "erreicht";
 
@@ -71,23 +83,17 @@
 /* name of certificate */
 "course.certificates.recordOfAchievement" = "Zeugnis";
 
-/* title for spinner when loading section content */
-"course-section.loading-spinner.title" = "Inhalte werden geladen";
-
-/* delete all downloaded videos downloads in section */
-"course-section.video-download-action.delete-videos.title" = "Alle Videos löschen";
-
-/* start video downloads for all videos in section */
-"course-section.video-download-action.start-downloads.title" = "Videos herunterladen";
-
-/* stop all video downloads in section */
-"course-section.video-download-action.stop-downloads.title" = "Alle Downloads stoppen";
-
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
 
 /* title for empty announcement list */
 "empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";
+
+/* description for empty certificates list */
+"empty-view.certificates.no-certificates.description" = "Du hast noch keine Zeugnisse oder Teilnahmebestätigungen erhalten. Lerne in einem Kurs zur Veranstaltungszeit um ein Zeugnis zu erhalten.";
+
+/* title for empty certificates list */
+"empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 
 /* title for empty course content list */
 "empty-view.course-content.title" = "Kursinhalte werden geladen ...";
@@ -166,12 +172,6 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
-
-/* description for empty certificates list */
-"empty-view.certificates.no-certificates.description" = "Du hast noch keine Zeugnisse oder Teilnahmebestätigungen erhalten. Lerne in einem Kurs zur Veranstaltungszeit um ein Zeugnis zu erhalten.";
-
-/* title for empty certificates list */
-"empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";

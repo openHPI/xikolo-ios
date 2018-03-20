@@ -1,16 +1,9 @@
 //
-//  CourseDateHeader.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 15.05.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class CourseDateHeader : UITableViewHeaderFooterView {
-
-    @IBOutlet var titleView: UILabel!
-
-}
+class CourseDateHeader: UITableViewHeaderFooterView {}

@@ -1,14 +1,11 @@
 //
-//  EnrollmentCertificates.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 19.03.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
+final class EnrollmentCertificates: NSObject, NSCoding, IncludedPullable {
 
     var confirmationOfParticipation: URL?
     var recordOfAchievement: URL?
@@ -31,5 +28,5 @@ final class EnrollmentCertificates : NSObject, NSCoding, IncludedPullable {
         coder.encode(self.recordOfAchievement, forKey: "record_of_achievement")
         coder.encode(self.certificate, forKey: "qualified_certificate")
     }
-    
+
 }

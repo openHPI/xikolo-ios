@@ -1,13 +1,10 @@
 //
-//  AppNavigator.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 12.12.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import CoreSpotlight
+import UIKit
 
 struct AppNavigator {
 
@@ -15,12 +12,11 @@ struct AppNavigator {
         var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
             // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
-            // Note that the unique identifier of the Core Spotlight item is set in the activity’s userInfo property for the key CSSearchableItemActivityIdentifier.
+            // Note that the unique identifier of the Core Spotlight item is set in the activity’s userInfo property
+            // for the key CSSearchableItemActivityIdentifier.
             if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
                 activityURL = URL(string: uniqueIdentifier)
             }
-            // this contains the courses uuid
-            // Next, find and open the item specified by uniqueIdentifer.
         } else {
             activityURL = userActivity.webpageURL
         }

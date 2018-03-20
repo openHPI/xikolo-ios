@@ -1,14 +1,11 @@
 //
-//  SyncHelper.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 15.01.18.
-//  Copyright © 2018 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import BrightFutures
 import CoreData
+import Foundation
 
 struct SyncHelper {
 
@@ -21,7 +18,9 @@ struct SyncHelper {
     static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
                                         withQuery query: MultipleResourcesQuery<Resource>,
                                         deleteNotExistingResources: Bool = true) -> Future<SyncEngine.SyncMultipleResult, XikoloError> where Resource: NSManagedObject & Pullable {
-        return SyncEngine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: deleteNotExistingResources).onSuccess { syncResult in
+        return SyncEngine.syncResources(withFetchRequest: fetchRequest,
+                                        withQuery: query,
+                                        deleteNotExistingResources: deleteNotExistingResources).onSuccess { syncResult in
             log.info("Successfully merged resources of type: \(Resource.type)")
             SyncHelper.handleSyncSuccess(syncResult)
         }.onFailure { error in
@@ -61,7 +60,7 @@ struct SyncHelper {
         }
     }
 
-    @discardableResult static func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError>{
+    @discardableResult static func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
         return SyncEngine.saveResource(resource).onSuccess { _ in
             log.info("Successfully saved resource of type: \(type(of: resource).type)")
         }.onFailure { error in

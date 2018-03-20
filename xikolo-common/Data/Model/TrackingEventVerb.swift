@@ -1,14 +1,11 @@
 //
-//  TrackingEventVerb.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 29.08.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-class TrackingEventVerb : NSObject, NSCoding {
+class TrackingEventVerb: NSObject, NSCoding {
 
     var type: String
 
@@ -30,10 +27,10 @@ class TrackingEventVerb : NSObject, NSCoding {
 
 }
 
-extension TrackingEventVerb : IncludedPushable {
+extension TrackingEventVerb: IncludedPushable {
 
-    func resourceAttributes() -> [String : Any] {
-        return [ "type": self.type ]
+    func resourceAttributes() -> [String: Any] {
+        return ["type": self.type]
     }
 
 }

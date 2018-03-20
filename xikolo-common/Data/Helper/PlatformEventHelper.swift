@@ -1,14 +1,10 @@
 //
-//  PlatformEventHelper.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 07.09.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct PlatformEventHelper {
 
@@ -17,5 +13,5 @@ struct PlatformEventHelper {
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
-    
+
 }

@@ -1,20 +1,17 @@
 //
-//  UITableViewCell+enable.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 29.10.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
 
 extension UITableViewCell {
 
-    func enable(_ on: Bool) {
-        self.isUserInteractionEnabled = on
+    func enable(_ enabled: Bool) {
+        self.isUserInteractionEnabled = enabled
         for view in contentView.subviews {
-            view.isUserInteractionEnabled = on
-            view.alpha = on ? 1 : 0.5
+            view.isUserInteractionEnabled = enabled
+            view.alpha = enabled ? 1 : 0.5
         }
     }
 

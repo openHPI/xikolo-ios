@@ -1,9 +1,6 @@
 //
-//  CourseListLayout.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 05.12.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
@@ -136,7 +133,8 @@ class CourseListLayout: UICollectionViewLayout {
 
         for section in sectionsToAdd {
             let indexPath = IndexPath(item: 0, section: section)
-            if let sectionAttributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath), sectionAttributes.frame.intersects(rect) {
+            let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+            if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
                 layoutAttributes.append(sectionAttributes)
             }
         }

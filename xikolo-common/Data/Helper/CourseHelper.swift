@@ -1,14 +1,10 @@
 //
-//  CourseHelper.swift
-//  xikolo-ios
-//
-//  Created by Jonas Müller on 30.09.15.
-//  Copyright © 2015 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct CourseHelper {
 

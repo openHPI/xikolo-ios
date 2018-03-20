@@ -1,14 +1,11 @@
 //
-//  TrackingEventResource.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 29.08.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-class TrackingEventResource : NSObject, NSCoding {
+class TrackingEventResource: NSObject, NSCoding {
 
     var resourceType: String
     var uuid: String
@@ -35,9 +32,9 @@ class TrackingEventResource : NSObject, NSCoding {
 
 }
 
-extension TrackingEventResource : IncludedPushable {
+extension TrackingEventResource: IncludedPushable {
 
-    func resourceAttributes() -> [String : Any] {
+    func resourceAttributes() -> [String: Any] {
         return [
             "type": self.resourceType,
             "uuid": self.uuid,

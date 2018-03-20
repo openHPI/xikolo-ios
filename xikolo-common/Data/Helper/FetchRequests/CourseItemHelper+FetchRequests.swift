@@ -1,9 +1,6 @@
 //
-//  CourseItemHelper+FetchRequests.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 15.11.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData
@@ -36,11 +33,20 @@ extension CourseItemHelper {
             return request
         }
 
-        static func courseItems(forCourse course: Course, withType type: String) -> NSFetchRequest<CourseItem> {
+        static func courseItems(forCourse course: Course, withContentType type: String) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "section.course = %@", course),
-                NSPredicate(format: "icon = %@", type)
+                NSPredicate(format: "contentType = %@", type),
+            ])
+            return request
+        }
+
+        static func courseItems(forSection section: CourseSection, withContentType type: String) -> NSFetchRequest<CourseItem> {
+            let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "section = %@", section),
+                NSPredicate(format: "contentType = %@", type),
             ])
             return request
         }

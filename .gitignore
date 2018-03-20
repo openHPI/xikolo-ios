@@ -34,8 +34,13 @@ xcuserdata
 # you should judge for yourself, the pros and cons are mentioned at:
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
-/*.xcworkspace/
+/*.xcworkspace/*
 /Pods/
+
+# include file header template
+!/*.xcworkspace/xcshareddata
+/*.xcworkspace/xcshareddata/*
+!/*.xcworkspace/xcshareddata/IDETemplateMacros.plist
 
 # Carthage
 #

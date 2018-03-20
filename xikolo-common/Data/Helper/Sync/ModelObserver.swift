@@ -1,14 +1,10 @@
 //
-//  ModelObserver.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 27.11.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import UIKit
 import CoreData
+import UIKit
 
 extension NSManagedObject {
 
@@ -36,7 +32,7 @@ class ModelObserverManager {
             return self.viewController.hashValue ^ self.objectId.hashValue
         }
 
-        static func ==(lhs: ModelObserverManager.ModelObeserverKey, rhs: ModelObserverManager.ModelObeserverKey) -> Bool {
+        static func == (lhs: ModelObserverManager.ModelObeserverKey, rhs: ModelObserverManager.ModelObeserverKey) -> Bool {
             return lhs.viewController == rhs.viewController && lhs.objectId == rhs.objectId
         }
     }
@@ -67,8 +63,8 @@ class ModelObserverManager {
 
 class ModelObserver {
 
-    typealias UpdateHandler = () -> ()
-    typealias DeleteHandler = () -> ()
+    typealias UpdateHandler = () -> Void
+    typealias DeleteHandler = () -> Void
 
     var model: NSManagedObject
     var updateHandler: UpdateHandler

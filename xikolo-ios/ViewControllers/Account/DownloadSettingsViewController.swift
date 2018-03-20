@@ -1,15 +1,22 @@
 //
-//  PreloadContentViewController.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 15.12.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
 class DownloadSettingsViewController: UITableViewController {
+
+    @IBOutlet private weak var doneButton: UIBarButtonItem!
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
 
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -106,4 +113,3 @@ class DownloadSettingsViewController: UITableViewController {
         }
     }
 }
-

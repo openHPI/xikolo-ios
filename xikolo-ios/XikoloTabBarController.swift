@@ -1,9 +1,6 @@
 //
-//  XikoloTabBarController.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 11.01.18.
-//  Copyright © 2018 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
@@ -30,13 +27,18 @@ class XikoloTabBarController: UITabBarController {
             return formatter
         }()
 
-        static func ==(lhs: State, rhs: State) -> Bool {
+        static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
-            case (.standard, .standard): return true
-            case (.maintenance, .maintenance): return true
-            case let (.deprecated(l), .deprecated(r)): return l == r
-            case (.expired, .expired): return true
-            default: return false
+            case (.standard, .standard):
+                return true
+            case (.maintenance, .maintenance):
+                return true
+            case let (.deprecated(l), .deprecated(r)):
+                return l == r
+            case (.expired, .expired):
+                return true
+            default:
+                 return false
             }
         }
 
@@ -80,12 +82,18 @@ class XikoloTabBarController: UITabBarController {
 
             // allow only some status changes
             switch (self.state, newValue) {
-            case (.standard, _): fallthrough
-            case (.deprecated, .maintenance): fallthrough
-            case (.deprecated, .expired): fallthrough
-            case (.maintenance, .standard): fallthrough
-            case (.maintenance, .expired): break
-            default: return
+            case (.standard, _):
+                break
+            case (.deprecated, .maintenance):
+                break
+            case (.deprecated, .expired):
+                break
+            case (.maintenance, .standard):
+                break
+            case (.maintenance, .expired):
+                break
+            default:
+                return
             }
 
             log.verbose("Update app state from \(self.state) to \(newValue)")
@@ -98,6 +106,8 @@ class XikoloTabBarController: UITabBarController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         self.messageLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: XikoloTabBarController.messageViewHeight)
         self.messageLabel.textAlignment = .center
         self.messageLabel.font = UIFont.systemFont(ofSize: XikoloTabBarController.messageLabelFontSize)
@@ -155,7 +165,7 @@ class XikoloTabBarController: UITabBarController {
         }
 
         let itemsCounts = self.tabBar.items?.count ?? 0
-        return heightCounter.filter { $1 == itemsCounts }.first?.key
+        return heightCounter.first { $1 == itemsCounts }?.key
     }
 
 }

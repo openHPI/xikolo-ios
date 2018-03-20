@@ -1,14 +1,10 @@
 //
-//  CourseItemHelper.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 13.05.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct CourseItemHelper {
 
@@ -35,20 +31,22 @@ struct CourseItemHelper {
         }
     }
 
-    @discardableResult static func syncRichTexts(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "rich_text")
+    @discardableResult static func syncCourseItems(forCourse course: Course,
+                                                   withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        query.addFilter(forKey: "content_type", withValue: "rich_text")
+        query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
-    @discardableResult static func syncVideos(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withType: "video")
+    @discardableResult static func syncCourseItems(forSection section: CourseSection,
+                                                   withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+        let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forSection: section, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
-        query.addFilter(forKey: "course", withValue: course.id)
-        query.addFilter(forKey: "content_type", withValue: "video")
+        query.addFilter(forKey: "section", withValue: section.id)
+        query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
         return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }

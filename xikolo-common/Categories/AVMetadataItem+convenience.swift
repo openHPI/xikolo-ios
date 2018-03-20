@@ -1,9 +1,6 @@
 //
-//  AVMetaDataItem+creation.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 20.06.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -15,9 +12,10 @@ extension AVMetadataItem {
         guard var str = value else {
             return nil
         }
+
         // HACKHACK: Fix description to prevent visual bug in metadata display.
         if identifier == AVMetadataIdentifier.commonIdentifierDescription && str.count < 212 {
-            str = str + "                                                                                                                                  \n\n\n                                                                                                                                                                                     "
+            str += String(repeating: " ", count: 131) + "\n\n\n" + String(repeating: " ", count: 183)
         }
 
         let item = AVMutableMetadataItem()

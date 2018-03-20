@@ -1,14 +1,10 @@
 //
-//  CourseDateHelper.swift
-//  xikolo-ios
-//
-//  Created by Tobias Rohloff on 15.11.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct CourseDateHelper {
 

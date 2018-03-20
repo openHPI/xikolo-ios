@@ -1,14 +1,10 @@
 //
-//  AnnouncementHelper.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 04.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct AnnouncementHelper {
 
@@ -70,8 +66,8 @@ struct AnnouncementHelper {
             CoreDataHelper.persistentContainer.performBackgroundTask { context in
                 let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
                 do {
-                    let count = try context.count(for: fetchRequest)
-                    let badgeValue = count > 0 ? String(describing: count) : nil
+                    let announcementCount = try context.count(for: fetchRequest)
+                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
                     DispatchQueue.main.async {
                         tabItem.badgeValue = badgeValue
                     }

@@ -1,24 +1,30 @@
 //
-//  VideoViewController.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 23.05.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import AVKit
 import AVFoundation
+import AVKit
 import BMPlayer
 import NVActivityIndicatorView
 import UIKit
 
-class VideoViewController : UIViewController {
+class VideoViewController: UIViewController {
 
-    @IBOutlet weak var videoContainer: UIView!
-    @IBOutlet weak var errorView: UIView!
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var descriptionView: UITextView!
-    @IBOutlet weak var openSlidesButton: UIButton!
+    @IBOutlet private weak var videoContainer: UIView!
+    @IBOutlet private weak var errorView: UIView!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var descriptionView: UITextView!
+
+    @IBOutlet private weak var videoActionsButton: UIButton!
+    @IBOutlet private weak var videoProgressView: CircularProgressView!
+    @IBOutlet private weak var videoDownloadedIcon: UIImageView!
+
+    @IBOutlet private weak var slidesView: UIView!
+    @IBOutlet private weak var slidesButton: UIButton!
+    @IBOutlet private weak var slidesActionsButton: UIButton!
+    @IBOutlet private weak var slidesProgressView: CircularProgressView!
+    @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
     var courseItem: CourseItem!
     var video: Video?
@@ -36,8 +42,23 @@ class VideoViewController : UIViewController {
         self.layoutPlayer()
 
         self.errorView.isHidden = true
-        self.openSlidesButton.isHidden = true
-        self.openSlidesButton.isEnabled = ReachabilityHelper.connection != .none
+
+        self.navigationItem.rightBarButtonItem?.isEnabled = ReachabilityHelper.connection != .none
+        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+
+        self.videoActionsButton.isEnabled = ReachabilityHelper.connection != .none
+        self.videoActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.videoProgressView.isHidden = true
+        self.videoDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.videoDownloadedIcon.isHidden = true
+
+        self.slidesView.isHidden = true
+        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
+        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.slidesProgressView.isHidden = true
+        self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        self.slidesDownloadedIcon.isHidden = true
 
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
@@ -54,10 +75,20 @@ class VideoViewController : UIViewController {
             }
         }
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reachabilityChanged),
-                                               name: Notification.Name.reachabilityChanged,
-                                               object: nil)
+        // register notification observer
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
+                                       name: NotificationKeys.VideoDownloadStateChangedKey,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleAssetDownloadProgressNotification(_:)),
+                                       name: NotificationKeys.VideoDownloadProgressKey,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(reachabilityChanged),
+                                       name: Notification.Name.reachabilityChanged,
+                                       object: nil)
 
         CrashlyticsHelper.shared.setObjectValue("item_id", forKey: self.courseItem.id)
     }
@@ -68,6 +99,8 @@ class VideoViewController : UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
         if !(self.navigationController?.viewControllers.contains(self) ?? false) {
             self.player?.pause()
         }
@@ -87,7 +120,7 @@ class VideoViewController : UIViewController {
         self.playerControlView.videoController = self
 
         BMPlayerConf.topBarShowInCase = .always
-        BMPlayerConf.loaderType  = NVActivityIndicatorType.ballScale
+        BMPlayerConf.loaderType = NVActivityIndicatorType.ballScale
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enablePlaytimeGestures = true
@@ -97,20 +130,15 @@ class VideoViewController : UIViewController {
         player.delegate = self
         player.videoController = self
         self.videoContainer.addSubview(player)
-        player.snp.makeConstraints { (make) in
+        player.snp.makeConstraints { make in
             make.top.equalTo(self.videoContainer.snp.top)
             make.bottom.equalTo(self.videoContainer.snp.bottom)
             make.centerX.equalTo(self.videoContainer.snp.centerX)
-            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0/9.0)
+            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0 / 9.0)
         }
 
         self.player = player
         self.videoContainer.layoutIfNeeded()
-    }
-
-    @objc func reachabilityChanged() {
-        self.openSlidesButton.isEnabled = ReachabilityHelper.connection != .none
-        self.updatePreferredVideoBitrate()
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -124,8 +152,20 @@ class VideoViewController : UIViewController {
     private func show(video: Video) {
         self.video = video
 
+        let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
+        let progress = VideoPersistenceManager.shared.progress(for: video)
+        self.videoProgressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
+        self.videoProgressView.updateProgress(progress, animated: false)
+        self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
+
+        self.navigationItem.rightBarButtonItem?.isEnabled = video.videoUserAction != nil
+        self.navigationItem.rightBarButtonItem?.tintColor = video.videoUserAction != nil ? Brand.TintColor : .lightGray
+
+        self.videoActionsButton.isEnabled = video.videoUserAction != nil
+        self.videoActionsButton.tintColor = video.videoUserAction != nil ? Brand.TintColor : .lightGray
+
         // show slides button
-        self.openSlidesButton.isHidden = (video.slidesURL == nil)
+        self.slidesView.isHidden = (video.slidesURL == nil)
 
         // show description
         if let summary = video.summary {
@@ -171,12 +211,96 @@ class VideoViewController : UIViewController {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
     }
 
-    @IBAction func openSlides(_ sender: UIButton) {
+    @IBAction func openSlides() {
         if ReachabilityHelper.connection != .none {
             performSegue(withIdentifier: "ShowSlides", sender: self.video)
         } else {
             log.info("Tapped open slides button without internet, which shouldn't be possible")
         }
+    }
+
+    @IBAction func showActionMenu(_ sender: UIBarButtonItem) {
+        guard let actions = self.video?.userActions else { return }
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.barButtonItem = sender
+
+        for action in actions {
+            alert.addAction(action)
+        }
+
+        alert.addCancelAction()
+
+        self.present(alert, animated: true)
+    }
+
+    @IBAction func showVideoActionMenu(_ sender: UIButton) {
+        guard let videoAction = self.video?.videoUserAction else { return }
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = sender
+        alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
+
+        alert.addAction(videoAction)
+        alert.addCancelAction()
+
+        self.present(alert, animated: true)
+    }
+
+    @IBAction func showSlidesActionMenu(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = sender
+        alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
+
+        let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
+        let openSlides = UIAlertAction(title: openSlidesActionTitle, style: .default) { _ in
+            self.openSlides()
+        }
+
+        alert.addAction(openSlides)
+        alert.addCancelAction()
+
+        self.present(alert, animated: true)
+    }
+
+    @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
+        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
+            let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
+            let downloadState = Video.DownloadState(rawValue: downloadStateRawValue),
+            let video = self.video,
+            video.id == videoId else { return }
+
+        DispatchQueue.main.async {
+            self.videoProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
+            self.videoProgressView.updateProgress(VideoPersistenceManager.shared.progress(for: video))
+            self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
+        }
+    }
+
+    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
+        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
+            let progress = noticaition.userInfo?[Video.Keys.precentDownload] as? Double,
+            let video = self.video,
+            video.id == videoId else { return }
+
+        DispatchQueue.main.async {
+            self.videoProgressView.isHidden = false
+            self.videoProgressView.updateProgress(progress)
+        }
+    }
+
+    @objc func reachabilityChanged() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = ReachabilityHelper.connection != .none
+        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+
+        self.videoActionsButton.isEnabled = self.video?.videoUserAction != nil
+        self.videoActionsButton.tintColor = self.video?.videoUserAction != nil ? Brand.TintColor : .lightGray
+
+        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
+
+        self.updatePreferredVideoBitrate()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -213,6 +337,7 @@ class VideoViewController : UIViewController {
             } else {
                 videoQuaility = UserDefaults.standard.videoQualityOnCellular
             }
+
             self.player?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
         }
     }
@@ -319,7 +444,7 @@ extension VideoViewController: BMPlayerDelegate {
     func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
     }
 
-    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval) {
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
     }
 
     func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {

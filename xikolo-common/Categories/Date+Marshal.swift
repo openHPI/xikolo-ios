@@ -1,9 +1,6 @@
 //
-//  Date+Marshal.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 27.11.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
@@ -13,10 +10,12 @@ extension Date: ValueType {
 
     static let iso8601Formatter: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withFullDate,
-                                   .withTime,
-                                   .withDashSeparatorInDate,
-                                   .withColonSeparatorInTime]
+        formatter.formatOptions = [
+            .withFullDate,
+            .withTime,
+            .withDashSeparatorInDate,
+            .withColonSeparatorInTime,
+        ]
         return formatter
     }()
 

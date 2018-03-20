@@ -35,20 +35,35 @@
 /* title for proctoring alert */
 "course-item.proctoring.alert.title" = "This item needs to be proctored";
 
+/* title to cancel alert */
+"course-item.slides-alert.open-action.title" = "Open slides";
+
 /* delete video item */
-"course-item.video-download-alert.delete-item-action.title" = "Delete video";
+"course-item.video-download-action.delete-item.title" = "Delete video";
 
 /* title to download error alert */
-"course-item.video-download-alert.download-error.title" = "Error while downloading video";
+"course-item.video-download-action.download-error.title" = "Error while downloading video";
 
 /* start download of video item */
-"course-item.video-download-alert.start-download-action.title" = "Download video";
+"course-item.video-download-action.start-download.title" = "Download video";
 
 /* stop download of video item */
-"course-item.video-download-alert.stop-download-action.title" = "Stop download";
+"course-item.video-download-action.stop-download.title" = "Stop download";
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
+
+/* title for spinner when loading section content */
+"course-section.loading-spinner.title" = "Loading content";
+
+/* delete all downloaded videos downloads in section */
+"course-section.video-download-action.delete-videos.title" = "Delete all videos";
+
+/* start video downloads for all videos in section */
+"course-section.video-download-action.start-downloads.title" = "Download all videos";
+
+/* stop all video downloads in section */
+"course-section.video-download-action.stop-downloads.title" = "Stop all downloads";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";

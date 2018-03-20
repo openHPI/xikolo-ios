@@ -1,9 +1,6 @@
 //
-//  Brand.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 29.11.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
@@ -14,9 +11,9 @@ struct Brand {
     static let HostURL = "openwho.org"
     static let BaseURL = "https://" + HostURL
 
-    static let TintColor = UIColor(red: 11/255, green: 114/255, blue: 181/255, alpha: 1.0)
-    static let TintColorSecond = UIColor(red: 145/255, green: 100/255, blue: 167/255, alpha: 1.0)
-    static let TintColorThird = UIColor(red: 167/255, green: 202/255, blue: 108/255, alpha: 1.0)
+    static let TintColor = UIColor(red: 11 / 255, green: 114 / 255, blue: 181 / 255, alpha: 1.0)
+    static let TintColorSecond = UIColor(red: 145 / 255, green: 100 / 255, blue: 167 / 255, alpha: 1.0)
+    static let TintColorThird = UIColor(red: 167 / 255, green: 202 / 255, blue: 108 / 255, alpha: 1.0)
     static let AppID = "de.xikolo.openwho"
     static let PlatformTitle = "who"
 
@@ -32,6 +29,7 @@ struct Brand {
         let currentYear = Calendar.current.component(.year, from: Date())
         return "Copyright © \(currentYear) WHO. All rights reserved."
     }
+
     static let poweredByText: String? = "Powered by HPI / openHPI"
-    
+
 }

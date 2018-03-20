@@ -1,14 +1,11 @@
 //
-//  SyncPushEngine.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 24.11.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import CoreData
+import Foundation
 
 class SyncPushEngine {
 
@@ -16,9 +13,9 @@ class SyncPushEngine {
 
     static let shared = SyncPushEngine()
     private let persistentContainerQueue: OperationQueue = {
-        let queue = OperationQueue();
-        queue.maxConcurrentOperationCount = 1;
-        return queue;
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
     }()
 
     func register(_ newType: (NSManagedObject & Pushable).Type) {
@@ -80,6 +77,7 @@ class SyncPushEngine {
                     } else if case let .api(.responseError(statusCode: statusCode, headers: _)) = error, 500 ... 599 ~= statusCode {
                         return Future(error: error)
                     }
+
                     CrashlyticsHelper.shared.recordError(error)
                     log.error("Failed to push resource modification - \(error)")
                     return Future(value: ())

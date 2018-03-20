@@ -1,22 +1,19 @@
 //
-//  RichText.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 31.05.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import BrightFutures
 import CoreData
 import Foundation
 
-final class RichText : Content {
+final class RichText: Content {
 
     @NSManaged var id: String
     @NSManaged var text: String?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<RichText> {
-        return NSFetchRequest<RichText>(entityName: "RichText");
+        return NSFetchRequest<RichText>(entityName: "RichText")
     }
 
     override var isAvailableOffline: Bool {
@@ -25,7 +22,7 @@ final class RichText : Content {
 
 }
 
-extension RichText : Pullable {
+extension RichText: Pullable {
 
     static var type: String {
         return "rich-texts"

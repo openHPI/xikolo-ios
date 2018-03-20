@@ -1,15 +1,12 @@
 //
-//  LTIExercise.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 20.08.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData
 import Foundation
 
-final class LTIExercise : Content {
+final class LTIExercise: Content {
 
     @NSManaged var id: String
     @NSManaged var instructions: String?
@@ -18,12 +15,12 @@ final class LTIExercise : Content {
     @NSManaged var lockSubmissionsAt: Date?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LTIExercise> {
-        return NSFetchRequest<LTIExercise>(entityName: "LTIExercise");
+        return NSFetchRequest<LTIExercise>(entityName: "LTIExercise")
     }
 
 }
 
-extension LTIExercise : Pullable {
+extension LTIExercise: Pullable {
 
     static var type: String {
         return "lti-exercises"

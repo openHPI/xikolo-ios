@@ -1,9 +1,6 @@
 //
-//  AnnouncementHelper+FetchRequests.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 16.11.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData
@@ -21,7 +18,7 @@ extension AnnouncementHelper {
 
         static var unreadAnnouncements: NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
-            request.predicate = NSPredicate(format: "visited = %@", NSNumber(booleanLiteral: false))
+            request.predicate = NSPredicate(format: "visited = %@", NSNumber(value: false))
             return request
         }
 

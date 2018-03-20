@@ -1,15 +1,12 @@
 //
-//  QuizQuestion.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 28.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData
 import Foundation
 
-final class QuizQuestion : NSManagedObject {
+final class QuizQuestion: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var explanation: String?
@@ -38,6 +35,7 @@ final class QuizQuestion : NSManagedObject {
         guard let type = self.type else {
             return .unsupported
         }
+
         return QuizQuestionType.fromString(type)
     }
 
@@ -45,12 +43,13 @@ final class QuizQuestion : NSManagedObject {
         guard self.questionType != .unsupported else {
             return false
         }
-        return self.options.filter({ $0.correct }).count > 0
+
+        return !self.options.filter { $0.correct }.isEmpty
     }
 
 }
 
-extension QuizQuestion : Pullable {
+extension QuizQuestion: Pullable {
 
     static var type: String {
         return "quiz-questions"
@@ -78,14 +77,14 @@ enum QuizQuestionType {
 
     static func fromString(_ str: String) -> QuizQuestionType {
         switch str {
-            case "select_one":
-                return .singleAnswer
-            case "select_multiple":
-                return .multipleAnswer
-            // case "free_text":
-            //     return .freeText
-            default:
-                return .unsupported
+        case "select_one":
+            return .singleAnswer
+        case "select_multiple":
+            return .multipleAnswer
+        // case "free_text":
+        //     return .freeText
+        default:
+            return .unsupported
         }
     }
 

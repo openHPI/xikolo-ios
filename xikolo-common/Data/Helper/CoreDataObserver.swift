@@ -1,30 +1,29 @@
 //
-//  CoreDataObserver.swift
-//  xikolo-ios
-//
-//  Created by Jan Renz and Max Bothe
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 class CoreDataObserver {
     static let standard = CoreDataObserver()
 
     func startObserving() {
-        NotificationCenter.default.addObserver(self, selector: #selector(coreDataChange(note:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(note:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     func stopObserving() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
     }
-    
+
     @objc func coreDataChange(note: Notification) {
         var shouldCheckForChangesToPush = false
 
-        if let updated = note.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, updated.count > 0 {
+        if let updated = note.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updated.isEmpty {
             for object in updated {
                 // Spotlight
                 if let course = object as? Course {
@@ -38,7 +37,7 @@ class CoreDataObserver {
             }
         }
 
-        if let deleted = note.userInfo?[NSDeletedObjectsKey] as? Set<NSManagedObject>, deleted.count > 0 {
+        if let deleted = note.userInfo?[NSDeletedObjectsKey] as? Set<NSManagedObject>, !deleted.isEmpty {
             for object in deleted {
                 // Spotlight
                 if let course = object as? Course {
@@ -47,7 +46,7 @@ class CoreDataObserver {
             }
         }
 
-        if let inserted = note.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, inserted.count > 0 {
+        if let inserted = note.userInfo?[NSInsertedObjectsKey] as? Set<NSManagedObject>, !inserted.isEmpty {
             for object in inserted {
                 // Spotlight
                 if let course = object as? Course {
@@ -61,10 +60,10 @@ class CoreDataObserver {
             }
         }
 
-        if let refreshed = note.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject>, refreshed.count > 0 {
+        if let refreshed = note.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject>, !refreshed.isEmpty {
             for object in refreshed {
                 // Pushable
-                if object is Pushable {
+                if object is Pushable { // swiftlint:disable:this for_where
                     shouldCheckForChangesToPush = true
                 }
             }

@@ -1,15 +1,12 @@
 //
-//  Screenshots.swift
-//  Screenshots
-//
-//  Created by Max Bothe on 24.01.18.
-//  Copyright © 2018 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import XCTest
 
 class Screenshots: XCTestCase {
-        
+
     override func setUp() {
         super.setUp()
 
@@ -49,5 +46,5 @@ class Screenshots: XCTestCase {
         sleep(4)
         snapshot("4-Video-Item")
     }
-    
+
 }

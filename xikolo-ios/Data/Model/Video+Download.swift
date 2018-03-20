@@ -1,17 +1,13 @@
 //
-//  Video+Download.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 26/07/17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension Video {
 
     enum DownloadState: String {
-
         // The asset is not downloaded at all.
         case notDownloaded
 
@@ -32,11 +28,48 @@ extension Video {
     struct Keys {
 
         static let id = "VideoIdKey"
-
         static let downloadState = "VideoDownloadStateKey"
-
         static let precentDownload = "VideoPrecentDownloadKey"
 
+    }
+
+}
+
+extension Video {
+
+    var userActions: [UIAlertAction] {
+        return [self.videoUserAction].flatMap { $0 }
+    }
+
+    var videoUserAction: UIAlertAction? {
+        let isOffline = ReachabilityHelper.connection == .none
+        let downloadState = VideoPersistenceManager.shared.downloadState(for: self)
+
+        if downloadState == .notDownloaded && !isOffline {
+            let downloadActionTitle = NSLocalizedString("course-item.video-download-action.start-download.title",
+                                                        comment: "start download of video item")
+            return UIAlertAction(title: downloadActionTitle, style: .default) { _ in
+                VideoPersistenceManager.shared.downloadStream(for: self)
+            }
+        }
+
+        if downloadState == .pending || downloadState == .downloading {
+            let abortActionTitle = NSLocalizedString("course-item.video-download-action.stop-download.title",
+                                                     comment: "stop download of video item")
+            return UIAlertAction(title: abortActionTitle, style: .default) { _ in
+                VideoPersistenceManager.shared.cancelDownload(for: self)
+            }
+        }
+
+        if downloadState == .downloaded {
+            let deleteActionTitle = NSLocalizedString("course-item.video-download-action.delete-item.title",
+                                                      comment: "delete video item")
+            return UIAlertAction(title: deleteActionTitle, style: .default) { _ in
+                VideoPersistenceManager.shared.deleteAsset(for: self)
+            }
+        }
+
+        return nil
     }
 
 }

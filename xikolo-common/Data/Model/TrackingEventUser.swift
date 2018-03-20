@@ -1,14 +1,11 @@
 //
-//  TrackingEventUser.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 29.08.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-class TrackingEventUser : NSObject, NSCoding {
+class TrackingEventUser: NSObject, NSCoding {
 
     var uuid: String
 
@@ -31,9 +28,9 @@ class TrackingEventUser : NSObject, NSCoding {
 
 }
 
-extension TrackingEventUser : IncludedPushable {
+extension TrackingEventUser: IncludedPushable {
 
-    func resourceAttributes() -> [String : Any] {
+    func resourceAttributes() -> [String: Any] {
         return [ "uuid": self.uuid ]
     }
 

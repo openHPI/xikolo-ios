@@ -1,21 +1,20 @@
 //
-//  String+regex.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 15.05.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
 extension String {
+
     mutating func stringByRemovingRegexMatches(pattern: String, replaceWith: String = "") -> String? {
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
-            let range = NSMakeRange(0, self.count)
+            let range = NSRange(location: 0, length: self.count)
             return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replaceWith)
         } catch {
             return nil
         }
     }
+
 }

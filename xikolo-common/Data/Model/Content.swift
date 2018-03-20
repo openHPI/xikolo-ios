@@ -1,14 +1,11 @@
 //
-//  Content.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 31.05.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData
 
-class Content : NSManagedObject {
+class Content: NSManagedObject {
 
     var isAvailableOffline: Bool {
         return false
@@ -16,4 +13,4 @@ class Content : NSManagedObject {
 
 }
 
-extension Content : AbstractPullable {}
+extension Content: AbstractPullable {}

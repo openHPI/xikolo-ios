@@ -1,9 +1,6 @@
 //
-//  Brand.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 20.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
@@ -14,9 +11,9 @@ struct Brand {
     static let HostURL = "mooc.house"
     static let BaseURL = "https://" + HostURL
 
-    static let TintColor = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
-    static let TintColorSecond = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
-    static let TintColorThird = UIColor(red: 171/255, green: 179/255, blue: 36/255, alpha: 1.0)
+    static let TintColor = UIColor(red: 171 / 255, green: 179 / 255, blue: 36 / 255, alpha: 1.0)
+    static let TintColorSecond = UIColor(red: 171 / 255, green: 179 / 255, blue: 36 / 255, alpha: 1.0)
+    static let TintColorThird = UIColor(red: 171 / 255, green: 179 / 255, blue: 36 / 255, alpha: 1.0)
     static let AppID = "de.xikolo.moochouse"
     static let PlatformTitle = "moochouse"
 
@@ -30,6 +27,7 @@ struct Brand {
         let currentYear = Calendar.current.component(.year, from: Date())
         return "Copyright © \(currentYear) HPI. All rights reserved."
     }
+
     static let poweredByText: String? = nil
 
 }

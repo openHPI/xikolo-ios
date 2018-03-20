@@ -1,18 +1,14 @@
 //
-//  TrackingHelper.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 31.08.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import BrightFutures
-import CoreData
 import UIKit
 
 class TrackingHelper {
 
-    enum AnalyticsVerb : String {
+    enum AnalyticsVerb: String {
         // tabs
         case visitedDashboard = "VISITED_DASHBOARD"
         case visitedAnnouncementList = "VISITED_ANNOUNCEMENTS"
@@ -42,7 +38,8 @@ class TrackingHelper {
         case share = "SHARE_BUTTON_CLICK"
     }
 
-    enum AnalyticsResourceType : String {
+    // swiftlint:disable redundant_string_enum_value
+    enum AnalyticsResourceType: String {
         case section = "section"
         case course = "course"
         case announcement = "announcement"
@@ -54,6 +51,7 @@ class TrackingHelper {
         // none
         case none = "none"
     }
+    // swiftlint:enable redundant_string_enum_value
 
     private static var networkState: String {
         switch ReachabilityHelper.connection {
@@ -104,7 +102,10 @@ class TrackingHelper {
         return self.createEvent(verb, resourceType: .none, resourceId: "00000000-0000-0000-0000-000000000000", context: context)
     }
 
-    @discardableResult class func createEvent(_ verb: AnalyticsVerb, resourceType: AnalyticsResourceType, resourceId: String, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult class func createEvent(_ verb: AnalyticsVerb,
+                                              resourceType: AnalyticsResourceType,
+                                              resourceId: String,
+                                              context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         guard let userId = UserProfileHelper.userId else {
             return Future(error: .trackingForUnknownUser)
         }
@@ -128,11 +129,11 @@ class TrackingHelper {
                 promise.success(())
             #else
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                    let _ = TrackingEvent(user: trackingUser,
-                                          verb: trackingVerb,
-                                          resource: trackingResource,
-                                          trackingContext: trackingContext as [String: AnyObject],
-                                          inContext: context)
+                    TrackingEvent(user: trackingUser,
+                                  verb: trackingVerb,
+                                  resource: trackingResource,
+                                  trackingContext: trackingContext as [String: AnyObject],
+                                  inContext: context)
                     promise.complete(context.saveWithResult())
                     log.verbose("Created tracking event '\(trackingVerb.type)'")
                 }

@@ -1,28 +1,25 @@
 //
-//  Int+DispatchTimeInterval.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 22.09.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-public extension Int {
+extension Int {
 
-    public var seconds: DispatchTimeInterval {
+    var seconds: DispatchTimeInterval {
         return DispatchTimeInterval.seconds(self)
     }
 
-    public var second: DispatchTimeInterval {
+    var second: DispatchTimeInterval {
         return seconds
     }
 
-    public var milliseconds: DispatchTimeInterval {
+    var milliseconds: DispatchTimeInterval {
         return DispatchTimeInterval.milliseconds(self)
     }
 
-    public var millisecond: DispatchTimeInterval {
+    var millisecond: DispatchTimeInterval {
         return milliseconds
     }
 

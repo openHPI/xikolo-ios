@@ -1,14 +1,11 @@
 //
-//  AnnouncementCell.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 04.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
 
-class AnnouncementCell : UITableViewCell {
+class AnnouncementCell: UITableViewCell {
 
     static var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter.localizedFormatter()
@@ -17,12 +14,12 @@ class AnnouncementCell : UITableViewCell {
         return dateFormatter
     }()
 
-    @IBOutlet weak var courseLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var separatorView: UIView!
-    @IBOutlet weak var readStateLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var courseLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var separatorView: UIView!
+    @IBOutlet private weak var readStateLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
 
     func configure(_ announcement: Announcement, showCourseTitle: Bool) {
         if UserProfileHelper.isLoggedIn(), !announcement.visited {

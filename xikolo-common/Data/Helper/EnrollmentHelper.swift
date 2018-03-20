@@ -1,15 +1,11 @@
 //
-//  EnrollmentHelper.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 16.03.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
-import Result
+import CoreData
+import Foundation
 
 struct EnrollmentHelper {
 
@@ -68,6 +64,7 @@ struct EnrollmentHelper {
             if enrollment.objectState != .new, enrollment.objectState != .deleted {
                 enrollment.objectState = .modified
             }
+
             promise.complete(context.saveWithResult())
         }
 

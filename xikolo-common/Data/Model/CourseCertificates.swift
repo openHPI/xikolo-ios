@@ -1,14 +1,11 @@
 //
-//  CourseCertificates.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 15.04.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-final class CourseCertificates : NSObject, NSCoding, IncludedPullable {
+final class CourseCertificates: NSObject, NSCoding, IncludedPullable {
 
     var confirmationOfParticipation: CourseCertificatesHash?
     var recordOfAchievement: CourseCertificatesHash?
@@ -31,5 +28,5 @@ final class CourseCertificates : NSObject, NSCoding, IncludedPullable {
         coder.encode(self.recordOfAchievement, forKey: "record_of_achievement")
         coder.encode(self.certificate, forKey: "qualified_certificate")
     }
-    
+
 }

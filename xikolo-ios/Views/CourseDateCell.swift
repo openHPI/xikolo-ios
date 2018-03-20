@@ -1,21 +1,18 @@
 //
-//  CourseDateCell.swift
-//  xikolo-ios
-//
-//  Created by Tobias Rohloff on 17.11.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class CourseDateCell : UITableViewCell {
+class CourseDateCell: UITableViewCell {
 
-    @IBOutlet var courseLabel: UILabel!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var dateHighlightView: UIView!
+    @IBOutlet private var courseLabel: UILabel!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var dateLabel: UILabel!
+    @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet private var dateHighlightView: UIView!
 
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter.localizedFormatter()
@@ -49,7 +46,7 @@ class CourseDateCell : UITableViewCell {
             self.timeLabel.textColor = UIColor.white
         case "course_start"?:
             self.titleLabel.text = NSLocalizedString("course-date-cell.course-start.title",
-                                               comment: "specfic title for course start in a course date cell")
+                                                     comment: "specfic title for course start in a course date cell")
         default:
             self.dateHighlightView.backgroundColor = nil
             self.dateLabel.textColor = UIColor.darkGray
@@ -66,5 +63,5 @@ class CourseDateCell : UITableViewCell {
         }
 
     }
-    
+
 }

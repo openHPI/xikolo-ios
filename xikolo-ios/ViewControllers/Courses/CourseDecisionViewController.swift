@@ -1,25 +1,22 @@
 //
-//  CourseDecisionViewController.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 04.09.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
 
 class CourseDecisionViewController: UIViewController {
 
-    enum CourseContent : Int {
+    enum CourseContent: Int {
         case learnings = 0
         case discussions = 1
         case courseDetails = 2
         case announcements = 3
     }
 
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var dropdownIcon: UIImageView!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var dropdownIcon: UIImageView!
 
     var containerContentViewController: UIViewController?
     var course: Course!
@@ -34,15 +31,15 @@ class CourseDecisionViewController: UIViewController {
                                                name: NotificationKeys.dropdownCourseContentKey,
                                                object: nil)
 
-        self.course.notifyOnChange(self, updateHandler: {}) {
+        self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: {
             let isVisible = self.isViewLoaded && self.view.window != nil
             self.navigationController?.popToRootViewController(animated: isVisible)
-        }
+        })
 
         SpotlightHelper.setUserActivity(for: self.course)
         CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
     }
-  
+
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
 
     @IBAction func tapped(_ sender: Any) {
@@ -50,7 +47,7 @@ class CourseDecisionViewController: UIViewController {
     }
 
     func decideContent() {
-        if (course.hasEnrollment) {
+        if course.hasEnrollment {
             updateContainerView(course.accessible ? .learnings : .courseDetails)
         } else {
             updateContainerView(.courseDetails)
@@ -72,42 +69,40 @@ class CourseDecisionViewController: UIViewController {
             containerContentViewController = nil
         }
 
-
         let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         switch content {
         case .learnings:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseItemListViewController").require(toHaveType: CourseItemListViewController.self)
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.learnings.title",
-                                               comment: "title of learnings view of course view")
+            titleView.text = NSLocalizedString("course-content.view.learnings.title", comment: "title of learnings view of course view")
         case .discussions:
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
             if let slug = course.slug {
                 vc.url = Routes.COURSES_URL + slug + "/pinboard"
             }
+
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.discussions.title",
-                                               comment: "title of discussions view of course view")
+            titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
         case .announcements:
-            let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle:nil)
-            let vc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController").require(toHaveType: AnnouncementsTableViewController.self)
+            let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
+            let loadedVc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController")
+            let vc = loadedVc.require(toHaveType: AnnouncementsTableViewController.self)
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.announcements.title",
-                                               comment: "title of announcements view of course view")
+            titleView.text = NSLocalizedString("course-content.view.announcements.title", comment: "title of announcements view of course view")
         case .courseDetails:
             let vc = storyboard.instantiateViewController(withIdentifier: "CourseDetailsViewController").require(toHaveType: CourseDetailViewController.self)
             vc.course = course
             changeToViewController(vc)
-            titleView.text = NSLocalizedString("course-content.view.course-details.title",
-                                               comment: "title of course details view of course view")
+            titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
         }
+
         self.content = content
 
         // set width for new title view
         if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font : self.titleView.font]).width
+            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font: self.titleView.font]).width
             var frame = titleView.frame
             frame.size.width = titleWidth + self.dropdownIcon.frame.width + 2
             titleView.frame = frame
@@ -122,7 +117,6 @@ class CourseDecisionViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
         containerContentViewController = viewController
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -139,7 +133,6 @@ class CourseDecisionViewController: UIViewController {
                 dropdownViewController.preferredContentSize = minimumSize
                 ppc.delegate = self
             }
-            break
         default:
             break
         }
@@ -149,25 +142,27 @@ class CourseDecisionViewController: UIViewController {
         let activityItems = ([self.course.title, self.course.url] as [Any?]).flatMap { $0 }
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
-        activityViewController.completionWithItemsHandler = { (activityType, completed, _, _) in
-            let context: [String : String?] = [
+        activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in
+            let context: [String: String?] = [
                 "service": activityType?.rawValue,
                 "completed": String(describing: completed),
             ]
             TrackingHelper.createEvent(.share, resourceType: .course, resourceId: self.course.id, context: context)
         }
+
         self.present(activityViewController, animated: true)
     }
 
 }
 
-extension CourseDecisionViewController : UIPopoverPresentationControllerDelegate {
+extension CourseDecisionViewController: UIPopoverPresentationControllerDelegate {
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.overFullScreen
     }
 
-    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    func presentationController(_ controller: UIPresentationController,
+                                viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
         let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
         visualEffectView.frame = navigationController.view.bounds

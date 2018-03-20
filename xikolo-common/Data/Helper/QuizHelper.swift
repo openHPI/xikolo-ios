@@ -1,14 +1,10 @@
 //
-//  QuizHelper.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 26.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import BrightFutures
+import Foundation
 
 struct QuizHelper {
 

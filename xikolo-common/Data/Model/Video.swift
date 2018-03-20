@@ -1,9 +1,6 @@
 //
-//  Video.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 30.05.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -11,7 +8,7 @@ import BrightFutures
 import CoreData
 import Foundation
 
-final class Video : Content {
+final class Video: Content {
 
     @NSManaged var id: String
     @NSManaged var audioSize: Int32
@@ -30,7 +27,7 @@ final class Video : Content {
     @NSManaged var transcriptURL: URL?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Video> {
-        return NSFetchRequest<Video>(entityName: "Video");
+        return NSFetchRequest<Video>(entityName: "Video")
     }
 
     var posterImageData: Data? {
@@ -41,6 +38,7 @@ final class Video : Content {
                 log.warning("Failed to load poster image")
             }
         }
+
         return nil
     }
 
@@ -49,9 +47,11 @@ final class Video : Content {
         if let course_item = self.item, let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierTitle, value: course_item.title) {
             items.append(item)
         }
+
         if let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierDescription, value: summary) {
             items.append(item)
         }
+
         return items
     }
 
@@ -61,7 +61,7 @@ final class Video : Content {
 
 }
 
-extension Video : Pullable {
+extension Video: Pullable {
 
     static var type: String {
         return "videos"

@@ -1,9 +1,6 @@
 //
-//  XikoloURI.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 27.06.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
@@ -22,10 +19,11 @@ class XikoloURL {
         var components = URLComponents()
         components.scheme = "xikolo-tvos"
 
-        switch(type) {
+        switch type {
         case .course:
             components.path = "course/\(targetId)"
         }
+
         return components.url!
     }
 
@@ -46,11 +44,13 @@ class XikoloURL {
                 if pathComponents.count != 2 {
                     return nil
                 }
+
                 return XikoloURL(type: .course, targetId: pathComponents[1])
             default:
                 return nil
             }
         }
+
         return nil
     }
 
@@ -58,6 +58,6 @@ class XikoloURL {
 
 enum XikoloURLTypes {
 
-    case course;
+    case course
 
 }

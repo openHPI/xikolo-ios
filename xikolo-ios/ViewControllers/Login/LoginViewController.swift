@@ -1,22 +1,20 @@
 //
-//  RegisterViewController.swift
-//  xikolo-ios
-//
-//  Created by Jonas Müller on 25.06.15.
-//  Copyright © 2015 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
-import WebKit
 import SafariServices
 import SimpleRoundedButton
+import UIKit
+import WebKit
 
-class LoginViewController : AbstractLoginViewController, WKUIDelegate {
-    @IBOutlet weak var loginButton: SimpleRoundedButton!
-    @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet weak var singleSignOnView: UIView!
-    @IBOutlet weak var singleSignOnButton: UIButton!
-    @IBOutlet weak var centerInputFieldsConstraints: NSLayoutConstraint!
+class LoginViewController: AbstractLoginViewController, WKUIDelegate {
+
+    @IBOutlet private weak var loginButton: SimpleRoundedButton!
+    @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var singleSignOnView: UIView!
+    @IBOutlet private weak var singleSignOnButton: UIButton!
+    @IBOutlet private weak var centerInputFieldsConstraints: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +38,17 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
             singleSignOnView.isHidden = true
         #endif
     }
-    
+
     override func login() {
         loginButton.startAnimating()
         super.login()
     }
-    
+
     override func handleLoginSuccess(with token: String) {
         loginButton.stopAnimating()
         super.handleLoginSuccess(with: token)
     }
-    
+
     override func handleLoginFailure(with error: Error) {
         loginButton.stopAnimating()
         super.handleLoginFailure(with: error)
@@ -111,7 +109,7 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
         let viewHeight = self.view.frame.size.height - contentInset
 
-        let overlappingOffset = 0.5*viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0
+        let overlappingOffset = 0.5 * viewHeight - keyboardHeight - self.emailField.frame.size.height - 8.0
         self.centerInputFieldsConstraints.constant = min(overlappingOffset, 0)  // we only want to move the container upwards
 
         UIView.animate(withDuration: 0.25) {
@@ -129,17 +127,19 @@ class LoginViewController : AbstractLoginViewController, WKUIDelegate {
 
 }
 
-extension LoginViewController : UITextFieldDelegate {
+extension LoginViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        textField.layoutIfNeeded()
+
         if textField == self.emailField {
             self.passwordField.becomeFirstResponder()
         } else if textField === self.passwordField {
             self.login()
-            textField.resignFirstResponder()
         }
+
         return true
     }
 
 }
-

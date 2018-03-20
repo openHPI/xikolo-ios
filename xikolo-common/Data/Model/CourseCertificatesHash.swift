@@ -1,14 +1,11 @@
 //
-//  CourseCertificatesHash.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 22.04.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
+final class CourseCertificatesHash: NSObject, NSCoding, IncludedPullable {
 
     var available: Bool
     var threshold: Int32?
@@ -27,5 +24,5 @@ final class CourseCertificatesHash : NSObject, NSCoding, IncludedPullable {
         coder.encode(available, forKey: "available")
         coder.encode(threshold, forKey: "threshold")
     }
-    
+
 }

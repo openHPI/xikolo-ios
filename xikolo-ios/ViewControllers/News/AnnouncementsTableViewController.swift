@@ -1,16 +1,13 @@
 //
-//  AnnouncementTableViewController.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 04.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData
-import UIKit
 import DZNEmptyDataSet
+import UIKit
 
-class AnnouncementsTableViewController : UITableViewController {
+class AnnouncementsTableViewController: UITableViewController {
 
     var resultsController: NSFetchedResultsController<Announcement>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<Announcement>!
@@ -41,7 +38,9 @@ class AnnouncementsTableViewController : UITableViewController {
 
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "AnnouncementCell")
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "AnnouncementCell")
         let configuration = AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil)
         let configurationWrapper = configuration.wrapped
         resultsControllerDelegateImplementation.configuration = configurationWrapper
@@ -55,7 +54,8 @@ class AnnouncementsTableViewController : UITableViewController {
         } catch {
             // TODO: Error handling.
         }
-        setupEmptyState()
+
+        self.setupEmptyState()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -96,7 +96,7 @@ extension AnnouncementsTableViewController { // TableViewDelegate
 
 }
 
-struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfiguration {
+struct AnnouncementsTableViewConfiguration: TableViewResultsControllerConfiguration {
 
     var shouldShowCourseTitle: Bool
 
@@ -108,7 +108,7 @@ struct AnnouncementsTableViewConfiguration : TableViewResultsControllerConfigura
 
 }
 
-extension AnnouncementsTableViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension AnnouncementsTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")

@@ -1,19 +1,16 @@
 //
-//  AbstractLoginViewController.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 27.04.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import UIKit
 
-class AbstractLoginViewController : UIViewController {
+class AbstractLoginViewController: UIViewController {
 
-    @IBOutlet weak var emailField : UITextField!
-    @IBOutlet weak var passwordField : UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
 
-    var delegate : AbstractLoginViewControllerDelegate?
+    weak var delegate: AbstractLoginViewControllerDelegate?
 
     @IBAction func login() {
         guard let email = emailField.text, let password = passwordField.text else {
@@ -28,12 +25,12 @@ class AbstractLoginViewController : UIViewController {
             self?.handleLoginFailure(with: error)
         }
     }
-    
+
     func handleLoginSuccess(with token: String) {
         self.delegate?.didSuccessfullyLogin()
         self.presentingViewController?.dismiss(animated: true)
     }
-    
+
     func handleLoginFailure(with error: Error) {
         self.emailField.shake()
         self.passwordField.shake()
@@ -47,7 +44,7 @@ class AbstractLoginViewController : UIViewController {
 
 }
 
-protocol AbstractLoginViewControllerDelegate {
+protocol AbstractLoginViewControllerDelegate: class {
 
     func didSuccessfullyLogin()
 

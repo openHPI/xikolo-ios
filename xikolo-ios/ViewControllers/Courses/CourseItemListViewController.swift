@@ -1,14 +1,12 @@
 //
-//  CourseItemListViewController.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 18.05.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
-import UIKit
 import DZNEmptyDataSet
+import UIKit
 
 class CourseItemListViewController: UITableViewController {
     typealias Resource = CourseItem
@@ -18,11 +16,11 @@ class CourseItemListViewController: UITableViewController {
     var resultsController: NSFetchedResultsController<CourseItem>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
 
-    var contentToBePreloaded: [DetailedContent.Type] = [Video.self, RichText.self]
+    var contentToBePreloaded: [DetailedCourseItem.Type] = [Video.self, RichText.self]
     var isPreloading = false
-    var isOffline = ReachabilityHelper.connection == .none {
+    var inOfflineMode = ReachabilityHelper.connection == .none {
         didSet {
-            if oldValue != self.isOffline {
+            if oldValue != self.inOfflineMode {
                 self.tableView.reloadData()
             }
         }
@@ -36,12 +34,17 @@ class CourseItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // register custom section header view
+        let nib = UINib(nibName: "CourseItemHeader", bundle: nil)
+        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseItemHeader")
+
         var separatorInsetLeft: CGFloat = 20.0
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets
         } else {
-            separatorInsetLeft = separatorInsetLeft + 15.0
+            separatorInsetLeft += 15.0
         }
+
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
 
         NotificationCenter.default.addObserver(self,
@@ -59,8 +62,10 @@ class CourseItemListViewController: UITableViewController {
 
         // setup table view data
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position")  // must be equal to the first sort descriptor
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView, resultsController: [resultsController], cellReuseIdentifier: "CourseItemCell")
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
+        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
+                                                                                                   resultsController: [resultsController],
+                                                                                                   cellReuseIdentifier: "CourseItemCell")
 
         let configuration = CourseItemListViewConfiguration(tableViewController: self).wrapped
         resultsControllerDelegateImplementation.configuration = configuration
@@ -129,12 +134,12 @@ class CourseItemListViewController: UITableViewController {
     }
 
     @objc func reachabilityChanged() {
-        self.isOffline = ReachabilityHelper.connection == .none
+        self.inOfflineMode = ReachabilityHelper.connection == .none
     }
 
     func preloadCourseContent() {
         self.contentToBePreloaded.traverse { contentType in
-            return contentType.preloadContentFor(course: self.course)
+            return contentType.preloadContent(forCourse: self.course)
         }.onComplete { _ in
             self.isPreloading = false
         }
@@ -180,19 +185,42 @@ extension CourseItemListViewController { // TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = self.resultsController.object(at: indexPath)
         if item.proctored && (self.course.enrollment?.proctored ?? false) {
-            self.showProctoringDialog(onComplete: {
+            self.showProctoringDialog {
                 tableView.deselectRow(at: indexPath, animated: true)
-            })
+            }
         } else {
             self.showItem(item)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseItemHeader") as? CourseItemHeader else {
+            return nil
+        }
+
+        let visualIndexPath = IndexPath(row: 0, section: section)
+        guard let (controller, indexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
+            return nil
+        }
+
+        guard let section = controller.object(at: indexPath).section else {
+            return nil
+        }
+
+        header.configure(for: section, inOfflineMode: self.inOfflineMode)
+        header.delegate = self
+
+        return header
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+
 }
 
-
-class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration {
+class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
     weak var tableViewController: CourseItemListViewController?
 
     init(tableViewController: CourseItemListViewController) {
@@ -204,22 +232,12 @@ class CourseItemListViewConfiguration : TableViewResultsControllerConfiguration 
         let item = controller.object(at: indexPath)
         cell.delegate = self.tableViewController
 
-        let configuration = CourseItemCellConfiguration(contentTypes: self.tableViewController?.contentToBePreloaded ?? [],
-                                                        isPreloading: self.tableViewController?.isPreloading ?? false,
-                                                        inOfflineMode: self.tableViewController?.isOffline ?? false)
-        cell.configure(for: item, with: configuration)
-    }
-
-    func headerTitle(forController controller: NSFetchedResultsController<CourseItem>, forSection section: Int) -> String? {
-        let indexPath = IndexPath(row: 0, section: section)
-        let item = controller.object(at: indexPath)
-        return item.section?.title
+        cell.configure(for: item)
     }
 
 }
 
-
-extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.course-content.title", comment: "title for empty course content list")
@@ -238,57 +256,40 @@ extension CourseItemListViewController : DZNEmptyDataSetSource, DZNEmptyDataSetD
 
 }
 
-extension CourseItemListViewController: VideoCourseItemCellDelegate {
+extension CourseItemListViewController: UserActionsDelegate {
 
-    func showAlertForDownloading(of video: Video, forCell cell: CourseItemCell) {
-        let downloadActionTitle = NSLocalizedString("course-item.video-download-alert.start-download-action.title",
-                                                    comment: "start download of video item")
-        let downloadAction = UIAlertAction(title: downloadActionTitle, style: .default) { action in
-            VideoPersistenceManager.shared.downloadStream(for: video)
-        }
+    func showAlert(with actions: [UIAlertAction], withTitle title: String? = nil, on anchor: UIView) {
+        guard !actions.isEmpty else { return }
 
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        
-        self.showAlert(withActions: [downloadAction, cancelAction], onView: cell.downloadButton)
-    }
-
-    func showAlertForCancellingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let abortActionTitle = NSLocalizedString("course-item.video-download-alert.stop-download-action.title",
-                                                 comment: "stop download of video item")
-        let abortAction = UIAlertAction(title: abortActionTitle, style: .default) { action in
-            VideoPersistenceManager.shared.cancelDownload(for: video)
-        }
-
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        
-        self.showAlert(withActions: [abortAction, cancelAction], onView: cell.downloadButton)
-    }
-
-    func showAlertForDeletingDownload(of video: Video, forCell cell: CourseItemCell) {
-        let deleteActionTitle = NSLocalizedString("course-item.video-download-alert.delete-item-action.title",
-                                                  comment: "delete video item")
-        let deleteAction = UIAlertAction(title: deleteActionTitle, style: .default) { action in
-            VideoPersistenceManager.shared.deleteAsset(for: video)
-        }
-
-        let cancelActionTitle = NSLocalizedString("global.alert.cancel", comment: "title to cancel alert")
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
-        
-        self.showAlert(withActions: [deleteAction, cancelAction], onView: cell.downloadButton)
-    }
-
-    private func showAlert(withActions actions: [UIAlertAction], onView view: UIView) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.sourceView = view
-        alert.popoverPresentationController?.sourceRect = view.bounds.offsetBy(dx: -4, dy: 0)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = anchor
+        alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
 
         for action in actions {
             alert.addAction(action)
         }
 
+        alert.addCancelAction()
+
         self.present(alert, animated: true)
+    }
+
+    func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
+        let promise = Promise<Void, XikoloError>()
+
+        let alert = UIAlertController(spinnerTitled: title, preferredStyle: .alert)
+        alert.addCancelAction { _ in
+            promise.failure(.userCanceled)
+        }
+
+        self.present(alert, animated: true)
+
+        task().onComplete { result in
+            promise.tryComplete(result)
+            alert.dismiss(animated: true)
+        }
+
+        return promise.future
     }
 
 }

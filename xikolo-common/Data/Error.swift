@@ -1,15 +1,12 @@
 //
-//  Error.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 02.06.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 import Marshal
 
-enum XikoloError : Error {
+enum XikoloError: Error {
     case api(APIError)
 
     case coreData(Error)
@@ -33,9 +30,11 @@ enum XikoloError : Error {
     case synchronizationError(SynchronizationError)
     case trackingForUnknownUser
     case missingResource(ofType: Any)
+
+    case userCanceled
 }
 
-enum APIError : Error {
+enum APIError: Error {
     case invalidResponse
     case noData
     case responseError(statusCode: Int, headers: [AnyHashable: Any])
@@ -45,7 +44,7 @@ enum APIError : Error {
     case serializationError(SerializationError)
 }
 
-enum SerializationError : Error {
+enum SerializationError: Error {
     case invalidDocumentStructure
     case topLevelEntryMissing
     case topLevelDataAndErrorsCoexist
@@ -55,7 +54,7 @@ enum SerializationError : Error {
     case includedModelDeserializationError(Error, onType: String, forIncludedType: String, forKey: String)
 }
 
-enum SynchronizationError : Error {
+enum SynchronizationError: Error {
     case noRelationshipBetweenEnities(from: Any, to: Any)
     case toManyRelationshipBetweenEnities(from: Any, to: Any)
     case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
@@ -67,4 +66,3 @@ enum SynchronizationError : Error {
 enum NestedMarshalError: Error {
     case nestedMarshalError(Error, includeType: String, includeKey: KeyType)
 }
-

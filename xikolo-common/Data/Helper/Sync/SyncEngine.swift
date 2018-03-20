@@ -1,16 +1,13 @@
 //
-//  SyncEngine.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 20.10.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import BrightFutures
-import Result
 import CoreData
+import Foundation
 import Marshal
+import Result
 
 struct SyncEngine {
 
@@ -45,6 +42,7 @@ struct SyncEngine {
         if #available(iOS 11, *) {
             configuration.waitsForConnectivity = true
         }
+
         return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
     }()
 
@@ -80,6 +78,7 @@ struct SyncEngine {
             } else {
                 stringValue = "null"
             }
+
             let queryItem = URLQueryItem(name: "filter[\(key)]", value: stringValue)
             queryItems.append(queryItem)
         }
@@ -176,7 +175,6 @@ struct SyncEngine {
         return .success(request)
     }
 
-
     // MARK: - core data operation
 
     private static func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
@@ -200,7 +198,7 @@ struct SyncEngine {
     private static func doNetworkRequest(_ request: URLRequest, expectsData: Bool = true) -> Future<NetworkResult, XikoloError> {
         let promise = Promise<NetworkResult, XikoloError>()
 
-        let task = self.session.dataTask(with: request) { (data, response, error) in
+        let task = self.session.dataTask(with: request) { data, response, error in
             if let err = error {
                 promise.failure(.network(err))
                 return
@@ -253,6 +251,7 @@ struct SyncEngine {
                     } else {
                         promise.failure(.api(.unknownServerError))
                     }
+
                     return
                 }
 
@@ -286,6 +285,7 @@ struct SyncEngine {
                     if let index = existingObjects.index(of: existingObject) {
                         existingObjects.remove(at: index)
                     }
+
                     newObjects.append(existingObject)
                 } else {
                     if var fetchedResource = try self.findExistingResource(withId: id, ofType: Resource.self, inContext: context) {
@@ -472,7 +472,6 @@ struct SyncEngine {
 
         return networkRequest.asVoid()
     }
-
 
     // MARK: - saving
 

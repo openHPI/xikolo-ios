@@ -1,9 +1,6 @@
 //
-//  UserDefaults+contentPreload.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 15.12.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
@@ -24,7 +21,6 @@ extension UserDefaults {
     }
 
 }
-
 
 enum CourseItemContentPreloadSetting: Int, CustomStringConvertible {
     case wifiOnly = 0  // default value must be zero

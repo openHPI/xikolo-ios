@@ -1,16 +1,13 @@
 //
-//  Course.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 22.04.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import BrightFutures
 import CoreData
 import Foundation
 
-final class Course : NSManagedObject {
+final class Course: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var abstract: String?
@@ -35,37 +32,38 @@ final class Course : NSManagedObject {
     @NSManaged var dates: Set<CourseDate>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
-        return NSFetchRequest<Course>(entityName: "Course");
+        return NSFetchRequest<Course>(entityName: "Course")
     }
 
-    @objc var interesting_section = NSLocalizedString("course.section-title.suggested", tableName: "Common", comment: "section title for collapsed upcoming & active courses")
-    @objc var selfpaced_section = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
-    @objc var current_section = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
-    @objc var upcoming_section = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
-    @objc var completed_section = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
-    @objc var is_enrolled_section: String {
-        get {
-            if enrollment != nil {
-                return NSLocalizedString("course.section-title.my courses", tableName: "Common", comment: "section title for enrolled courses")
-            } else {
-                return NSLocalizedString("course.section-title.all courses", tableName: "Common", comment: "section title for all courses")
-            }
+    @objc var interestingSection = NSLocalizedString("course.section-title.suggested",
+                                                     tableName: "Common",
+                                                     comment: "section title for collapsed upcoming & active courses")
+    @objc var selfpacedSectionName = NSLocalizedString("course.section-title.self-paced", tableName: "Common", comment: "section title for selfpaced courses")
+    @objc var currentSectionName = NSLocalizedString("course.section-title.current", tableName: "Common", comment: "section title for current courses")
+    @objc var upcomingSectionName = NSLocalizedString("course.section-title.upcoming", tableName: "Common", comment: "section title for upcoming courses")
+    @objc var completedSectioName = NSLocalizedString("course.section-title.completed", tableName: "Common", comment: "section title for completed courses")
+    @objc var isEnrolledSectionName: String {
+        if enrollment != nil {
+            return NSLocalizedString("course.section-title.my courses", tableName: "Common", comment: "section title for enrolled courses")
+        } else {
+            return NSLocalizedString("course.section-title.all courses", tableName: "Common", comment: "section title for all courses")
         }
     }
 
-    var language_translated: String? {
-        if let language = language {
-            let locale = Locale.current
-            return (locale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: language)
+    var localizedLanguage: String? {
+        guard let language = language else {
+            return nil
         }
-        return nil
+
+        return NSLocale(localeIdentifier: Brand.locale.identifier).displayName(forKey: NSLocale.Key.languageCode, value: language)
     }
 
     var url: URL? {
-        if let slug = self.slug {
-            return URL(string: "\(Brand.BaseURL)/courses/\(slug)")
+        guard let slug = self.slug else {
+            return nil
         }
-        return nil
+
+        return URL(string: "\(Brand.BaseURL)/courses/\(slug)")
     }
 
     var hasEnrollment: Bool {
@@ -74,7 +72,7 @@ final class Course : NSManagedObject {
 
 }
 
-extension Course : Pullable {
+extension Course: Pullable {
 
     static var type: String {
         return "courses"

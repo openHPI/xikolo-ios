@@ -1,17 +1,16 @@
 //
-//  TableViewResultsControllerDelegateImplementation.swift
-//  xikolo-ios
-//
-//  Created by Sebastian Brückner on 12.07.16.
-//  Copyright © 2016 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import CoreData
 import UIKit
 
+// swiftlint:disable private_over_fileprivate
 fileprivate let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
 fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
 fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
+// swiftlint:enable private_over_fileprivate
 
 class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
@@ -33,7 +32,10 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         self.tableView?.beginUpdates()
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
         let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex).require(hint: errorMessageIndexSetConversion)
         switch type {
         case .insert:
@@ -47,7 +49,11 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         }
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
         let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
         let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
         switch type {
@@ -76,9 +82,9 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     // MARK: UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return resultsControllers.reduce(0, { (partialCount, controller) -> Int in
+        return resultsControllers.reduce(0) { partialCount, controller -> Int in
             return (controller.sections?.count ?? 0) + partialCount
-        })
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,6 +97,7 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
                 return controller.sections?[sectionsToGo].numberOfObjects ?? 0
             }
         }
+
         return 0
     }
 
@@ -102,15 +109,12 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let configuration = self.configuration, !configuration.shouldShowHeader() {
+        let (controller, newSection) = controllerAndImplementationSection(forSection: section)!
+        guard let headerTitle = self.configuration?.titleForDefaultHeader(forController: controller, forSection: newSection) else {
             return nil
         }
 
-        let (controller, newSection) = controllerAndImplementationSection(forSection: section)!
-        if let headerTitle = self.configuration?.headerTitle(forController: controller, forSection: newSection) {
-            return headerTitle
-        }
-        return controller.sections?[newSection].name
+        return headerTitle
     }
 
 }
@@ -121,6 +125,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
         guard var newIndexPath = indexPath else {
             return nil
         }
+
         for contr in resultsControllers {
             if contr == controller {
                 return newIndexPath
@@ -128,6 +133,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 newIndexPath.section += contr.sections?.count ?? 0
             }
         }
+
         return nil
     }
 
@@ -145,6 +151,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += contr.sections?.count ?? 0
             }
         }
+
         return convertedIndexSet
     }
 
@@ -159,6 +166,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
+
         return nil
     }
 
@@ -173,9 +181,10 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
                 passedSections += (contr.sections?.count ?? 0)
             }
         }
+
         return nil
     }
-    
+
 }
 
 protocol TableViewResultsControllerConfigurationProtocol {
@@ -184,19 +193,13 @@ protocol TableViewResultsControllerConfigurationProtocol {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
 
-    func shouldShowHeader() -> Bool
-
-    func headerTitle(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String?
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String?
 
 }
 
 extension TableViewResultsControllerConfigurationProtocol {
 
-    func shouldShowHeader() -> Bool {
-        return true
-    }
-
-    func headerTitle(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String? {
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String? {
         return nil
     }
 
@@ -217,25 +220,19 @@ extension TableViewResultsControllerConfiguration {
 class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableViewResultsControllerConfigurationProtocol {
 
     private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
-    private let _shouldShowHeader: () -> Bool
-    private let _headerTitle: (NSFetchedResultsController<T>, Int) -> String?
+    private let _titleForDefaultHeader: (NSFetchedResultsController<T>, Int) -> String?
 
     required init<U: TableViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
         self._configureTableCell = configuration.configureTableCell
-        self._shouldShowHeader = configuration.shouldShowHeader
-        self._headerTitle = configuration.headerTitle
+        self._titleForDefaultHeader = configuration.titleForDefaultHeader
     }
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
         self._configureTableCell(cell, controller, indexPath)
     }
 
-    func shouldShowHeader() -> Bool {
-        return self._shouldShowHeader()
-    }
-
-    func headerTitle(forController controller: NSFetchedResultsController<T>, forSection section: Int) -> String? {
-        return self._headerTitle(controller, section)
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<T>, forSection section: Int) -> String? {
+        return self._titleForDefaultHeader(controller, section)
     }
 
 }

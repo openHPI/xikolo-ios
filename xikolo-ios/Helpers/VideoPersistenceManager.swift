@@ -1,9 +1,6 @@
 //
-//  VideoPersistenceManager.swift
-//  xikolo-ios
-//
-//  Created by Max Bothe on 26/07/17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import AVFoundation
@@ -19,9 +16,9 @@ class VideoPersistenceManager: NSObject {
     private var activeDownloadsMap: [AVAssetDownloadTask: String] = [:]
     private var progressMap: [String: Double] = [:]
     private let persistentContainerQueue: OperationQueue = {
-        let queue = OperationQueue();
-        queue.maxConcurrentOperationCount = 1;
-        return queue;
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
     }()
 
     private var didRestorePersistenceManager = false
@@ -123,13 +120,8 @@ class VideoPersistenceManager: NSObject {
             }
         }
 
-        for (_, downloadingVideoId) in self.activeDownloadsMap {
-            if video.id == downloadingVideoId {
-                if self.progressMap[video.id] != nil {
-                    return .downloading
-                }
-                return .pending
-            }
+        for (_, downloadingVideoId) in self.activeDownloadsMap where video.id == downloadingVideoId {
+            return self.progressMap[video.id] != nil ? .downloading : .pending
         }
 
         return .notDownloaded
@@ -147,6 +139,7 @@ class VideoPersistenceManager: NSObject {
                 guard let video = context.existingTypedObject(with: objectId) as? Video else {
                     return
                 }
+
                 self.deleteAsset(for: video, in: context)
             }
         }
@@ -173,16 +166,13 @@ class VideoPersistenceManager: NSObject {
         NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
-
     func cancelDownload(for video: Video) {
         var task: AVAssetDownloadTask?
 
-        for (donwloadTask, downloadingVideoId) in activeDownloadsMap {
-            if video.id == downloadingVideoId  {
-                TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: video.id)
-                task = donwloadTask
-                break
-            }
+        for (donwloadTask, downloadingVideoId) in activeDownloadsMap where video.id == downloadingVideoId {
+            TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: video.id)
+            task = donwloadTask
+            break
         }
 
         task?.cancel()
@@ -195,11 +185,49 @@ class VideoPersistenceManager: NSObject {
         self.progressMap[videoId] = progress
     }
 
+    // MARK: course sections
+
+    func downloadVideos(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.flatMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return VideoPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+            }.forEach { video in
+                self.downloadStream(for: video)
+            }
+        }
+    }
+
+    func deleteVideos(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.flatMap { item in
+                return item.content as? Video
+            }.forEach { video in
+                self.deleteAsset(for: video)
+            }
+        }
+    }
+
+    func cancelVideoDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.flatMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return [.pending, .downloading].contains(VideoPersistenceManager.shared.downloadState(for: video))
+            }.forEach { video in
+                self.cancelDownload(for: video)
+            }
+        }
+    }
+
 }
 
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    func urlSession(_ session: URLSession,
+                    task: URLSessionTask,
+                    didCompleteWithError error: Error?) {
         guard let task = task as? AVAssetDownloadTask, let videoId = self.activeDownloadsMap.removeValue(forKey: task) else { return }
 
         self.progressMap.removeValue(forKey: videoId)
@@ -236,13 +264,15 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
                             // show error
                             DispatchQueue.main.async {
-                                let alertTitle = NSLocalizedString("course-item.video-download-alert.download-error.title", comment: "title to download error alert")
+                                let alertTitle = NSLocalizedString("course-item.video-download-action.download-error.title",
+                                                                   comment: "title to download error alert")
                                 let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
                                 let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                                 let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
                                 alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
                                     alert.dismiss(animated: true)
                                 })
+
                                 AppDelegate.instance().tabBarController?.present(alert, animated: true)
                             }
                         }
@@ -264,7 +294,9 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
         }
     }
 
-    func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
+    func urlSession(_ session: URLSession,
+                    assetDownloadTask: AVAssetDownloadTask,
+                    didFinishDownloadingTo location: URL) {
         guard let videoId = self.activeDownloadsMap[assetDownloadTask] else { return }
 
         let context = CoreDataHelper.persistentContainer.newBackgroundContext()
@@ -289,7 +321,11 @@ extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
     }
 
-    func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didLoad timeRange: CMTimeRange, totalTimeRangesLoaded loadedTimeRanges: [NSValue], timeRangeExpectedToLoad: CMTimeRange) {
+    func urlSession(_ session: URLSession,
+                    assetDownloadTask: AVAssetDownloadTask,
+                    didLoad timeRange: CMTimeRange,
+                    totalTimeRangesLoaded loadedTimeRanges: [NSValue],
+                    timeRangeExpectedToLoad: CMTimeRange) {
         guard let videoId = self.activeDownloadsMap[assetDownloadTask] else { return }
 
         var percentComplete = 0.0

@@ -1,16 +1,13 @@
 //
-//  CustomHeaderWebView.swift
-//  xikolo-ios
-//
-//  Created by Bjarne Sievers on 29.03.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import WebKit
 
 class CustomHeaderWebView: WKWebView {
 
-    var header: [String : String]?
+    var header: [String: String]?
 
     override func load(_ request: URLRequest) -> WKNavigation? {
         var mutableRequest = request
@@ -18,6 +15,7 @@ class CustomHeaderWebView: WKWebView {
         for entry in headerDict {
             mutableRequest.setValue(entry.value, forHTTPHeaderField: entry.key)
         }
+
         return super.load(mutableRequest)
     }
 }

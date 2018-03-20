@@ -1,9 +1,6 @@
 //
-//  VideoQualityViewController
-//  xikolo-ios
-//
-//  Created by Max Bothe on 18.08.17.
-//  Copyright © 2017 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
@@ -11,6 +8,15 @@ import UIKit
 
 class VideoStreamingSettingsViewController: UITableViewController {
 
+    @IBOutlet private weak var doneButton: UIBarButtonItem!
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2

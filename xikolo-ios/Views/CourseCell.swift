@@ -1,29 +1,26 @@
 //
-//  CourseCell.swift
-//  xikolo-ios
-//
-//  Created by Jonas Müller on 16.07.15.
-//  Copyright © 2015 HPI. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
-import UIKit
 import SDWebImage
+import UIKit
 
-class CourseCell : UICollectionViewCell {
+class CourseCell: UICollectionViewCell {
 
     enum Configuration {
         case courseList
         case courseActivity
     }
 
-    @IBOutlet weak var courseImage: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var teacherLabel: UILabel!
-    @IBOutlet weak var languageLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var statusView: UIView!
+    @IBOutlet private weak var courseImage: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var teacherLabel: UILabel!
+    @IBOutlet private weak var languageLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var gradientView: UIView!
+    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var statusView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,7 +38,7 @@ class CourseCell : UICollectionViewCell {
 
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
-        gradient.locations = [0.0 , 1.0]
+        gradient.locations = [0.0, 1.0]
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
         self.gradientView.layer.insertSublayer(gradient, at: 0)
         self.gradientView.layer.cornerRadius = 4.0
@@ -58,14 +55,13 @@ class CourseCell : UICollectionViewCell {
     func configure(_ course: Course, forConfiguration configuration: Configuration) {
         self.courseImage.image = nil
         self.gradientView.isHidden = true
-        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { (image, _, _, _) in
+        self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in
             self.gradientView.isHidden = (image == nil)
         }
 
         self.titleLabel.text = course.title
         self.teacherLabel.text = course.teachers
-        self.languageLabel.text = course.language_translated
-        self.languageLabel.text = course.language_translated
+        self.languageLabel.text = course.localizedLanguage
         self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
 
         self.statusView.isHidden = true

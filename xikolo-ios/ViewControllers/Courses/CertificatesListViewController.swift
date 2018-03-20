@@ -68,7 +68,7 @@ extension CertificatesListViewController { // TableViewDelegate
         if let url = certificates[indexPath.row].1 {
             let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "PDFWebViewController").require(toHaveType: PDFWebViewController.self)
-            vc.url = url.absoluteString
+            vc.urlToDownload = url.absoluteString
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

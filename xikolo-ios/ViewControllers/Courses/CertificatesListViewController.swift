@@ -14,6 +14,7 @@ class CertificatesListViewController: UITableViewController {
     var certificates: [(String, URL?)] = []
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         certificates = findAvailableCertificates()
         self.setupEmptyState()
     }
@@ -39,16 +40,19 @@ class CertificatesListViewController: UITableViewController {
             let url = course.enrollment?.certificates?.confirmationOfParticipation
             certificates.append((name, url))
         }
+
         if let roa = course.certificates?.recordOfAchievement, roa.available {
             let name = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of certificate")
             let url = course.enrollment?.certificates?.recordOfAchievement
             certificates.append((name, url))
         }
+
         if let cop = course.certificates?.qualifiedCertificate, cop.available {
             let name = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of certificate")
             let url = course.enrollment?.certificates?.qualifiedCertificate
             certificates.append((name, url))
         }
+
         return certificates
     }
 

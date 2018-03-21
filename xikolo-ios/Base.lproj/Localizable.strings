@@ -75,7 +75,7 @@
 "course.certificates.confirmationOfParticipation" = "Confirmation of Participation";
 
 /* the current state of a certificate */
-"course.certificates.not-achieved" = "not-achieved";
+"course.certificates.not-achieved" = "not achieved";
 
 /* name of certificate */
 "course.certificates.qualifiedCertificate" = "Qualified Certificate";

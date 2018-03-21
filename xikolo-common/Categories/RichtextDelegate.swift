@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 import SafariServices
 
-protocol RichTextViewDelegate : UITextViewDelegate {
+protocol RichTextViewDelegate: UITextViewDelegate {}
 
-}
-
-extension RichTextViewDelegate {
+extension RichTextViewDelegate where Self: UIViewController {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         var url = URL

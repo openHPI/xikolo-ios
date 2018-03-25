@@ -1289,10 +1289,10 @@
 		70D1EB601EF134870088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		70D1EB611EF134FC0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
 		70D1EB621EF134FD0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
-		70F3798E2052F32800149C3B /* RichtextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichtextDelegate.swift */; };
-		70F3798F2052F32800149C3B /* RichtextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichtextDelegate.swift */; };
-		70F379902052F32800149C3B /* RichtextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichtextDelegate.swift */; };
-		70F379912052F32800149C3B /* RichtextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichtextDelegate.swift */; };
+		70F3798E2052F32800149C3B /* RichTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichTextViewDelegate.swift */; };
+		70F3798F2052F32800149C3B /* RichTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichTextViewDelegate.swift */; };
+		70F379902052F32800149C3B /* RichTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichTextViewDelegate.swift */; };
+		70F379912052F32800149C3B /* RichTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3798D2052F32800149C3B /* RichTextViewDelegate.swift */; };
 		70F456321F0128E400A2C6B7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */; };
 		70F456341F0128E500A2C6B7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */; };
 		70F456351F01290B00A2C6B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFCF75F1E81EEC40043C7B7 /* User.swift */; };
@@ -2017,7 +2017,7 @@
 		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70F3798D2052F32800149C3B /* RichtextDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichtextDelegate.swift; sourceTree = "<group>"; };
+		70F3798D2052F32800149C3B /* RichTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextViewDelegate.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
 		7B05D7F76447D6DEDC4E3F4E /* Pods-openSAP-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2570,7 +2570,6 @@
 				5012123D1FCC670D0022A7AF /* Date+Marshal.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				50EFACBD1FFFB25400169C35 /* SafeCastable.swift */,
-				70F3798D2052F32800149C3B /* RichtextDelegate.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2578,6 +2577,7 @@
 		50022900205928B0003301A7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				70F3798D2052F32800149C3B /* RichTextViewDelegate.swift */,
 				5060A5211F177304007896FF /* DetailedCourseItem.swift */,
 				50022901205928E2003301A7 /* UserActionsDelegate.swift */,
 			);
@@ -4808,7 +4808,7 @@
 				501212341FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
 				24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */,
 				503585061F3B06D8002A666C /* String+ascii.swift in Sources */,
-				70F3798F2052F32800149C3B /* RichtextDelegate.swift in Sources */,
+				70F3798F2052F32800149C3B /* RichTextViewDelegate.swift in Sources */,
 				24BA40D41D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
 				24BA408C1D3F9A9300E38C2C /* Course.swift in Sources */,
 				243CE48E1D786422007C59B6 /* TrackingEvent.swift in Sources */,
@@ -5515,7 +5515,7 @@
 				70D1EAF01EF0ACA80088C0FF /* CourseListViewController.swift in Sources */,
 				70D1E9F41EF0AA920088C0FF /* NSAttributedString+HTML.swift in Sources */,
 				50B15BDF1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
-				70F379912052F32800149C3B /* RichtextDelegate.swift in Sources */,
+				70F379912052F32800149C3B /* RichTextViewDelegate.swift in Sources */,
 				70D1EB201EF12E010088C0FF /* AbstractCourseListViewController.swift in Sources */,
 				70D1EA531EF0AB1D0088C0FF /* PeerAssessment.swift in Sources */,
 				70D1EABE1EF0AC090088C0FF /* AnnouncementHelper.swift in Sources */,
@@ -5780,7 +5780,7 @@
 				501212311FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
 				2448BE211D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
-				70F3798E2052F32800149C3B /* RichtextDelegate.swift in Sources */,
+				70F3798E2052F32800149C3B /* RichTextViewDelegate.swift in Sources */,
 				24A16D921CFFA72100CAD9FE /* CoreDataHelper.swift in Sources */,
 				503585051F3AF6AA002A666C /* String+ascii.swift in Sources */,
 				ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */,
@@ -5947,7 +5947,7 @@
 				501212371FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
 				ABA0F05C1DF8CD940001D88D /* CourseSection.swift in Sources */,
 				ABA0F01A1DF8CCA40001D88D /* CourseItemListViewController.swift in Sources */,
-				70F379902052F32800149C3B /* RichtextDelegate.swift in Sources */,
+				70F379902052F32800149C3B /* RichTextViewDelegate.swift in Sources */,
 				ABA0F0E41DF8CE790001D88D /* Routes.swift in Sources */,
 				AB35C9371E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				ABA0F0651DF8CD9F0001D88D /* Content.swift in Sources */,

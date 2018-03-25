@@ -8,8 +8,7 @@ import UIKit
 
 struct Brand {
 
-    static let HostURL = "open.sap.com"
-    static let BaseURL = "https://" + HostUR
+    static let Host = "open.sap.com"
 
     static let TintColor = UIColor(red: 240 / 255, green: 171 / 255, blue: 0 / 255, alpha: 1.0)
     static let TintColorSecond = UIColor(red: 34 / 255, green: 108 / 255, blue: 169 / 255, alpha: 1.0)

@@ -28,6 +28,7 @@ struct AppNavigator {
         if handle(url) {
             return true
         }
+
         // We can't handle the url, open it with a browser
         let webpageUrl = url
         application.open(webpageUrl)
@@ -43,7 +44,7 @@ struct AppNavigator {
         }
 
         guard let hostURL = url.host else { return false }
-        guard hostURL == Brand.HostURL else {
+        guard hostURL == Brand.Host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }

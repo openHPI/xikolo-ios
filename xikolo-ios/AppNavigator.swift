@@ -85,7 +85,11 @@ class AppNavigator {
                     switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
                     case .success(let course):
                         couldFindCourse = true
-                        self.show(course: course, on: tabBarController)
+                        if url.pathComponents[safe: 3] == "pinboard" {
+                            self.show(course: course, with: .discussions, on: tabBarController)
+                        } else {
+                            self.show(course: course, with: .learnings, on: tabBarController)
+                        }
                     case .failure(let error):
                         log.info("Could not find course in local database: \(error)")
                     }
@@ -99,15 +103,17 @@ class AppNavigator {
                 } else if case .success(_)? = courseFuture.forced(30.seconds.fromNow) {  // we only wait 30 seconds
                     return true
                 }
+
             } else {
                 tabBarController.selectedIndex = 1
                 return true
             }
         }
+        
         return false
     }
 
-    static func show(course: Course, on tabBarController: UITabBarController?) {
+    static func show(course: Course, with content: CourseDecisionViewController.CourseContent, on tabBarController: UITabBarController?) {
         guard let courseNavigationController = tabBarController?.viewControllers?[safe: 1] as? UINavigationController else {
             let reason = "CourseNavigationController could not be found"
             CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
@@ -127,8 +133,12 @@ class AppNavigator {
         }
 
         courseDecisionViewController.course = course
-        courseDecisionViewController.content = course.accessible ? .learnings : .courseDetails
         courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
+        if course.accessible {
+            courseDecisionViewController.content = content
+        } else {
+            courseDecisionViewController.content = .courseDetails
+        }
 
         tabBarController?.selectedIndex = 1
     }

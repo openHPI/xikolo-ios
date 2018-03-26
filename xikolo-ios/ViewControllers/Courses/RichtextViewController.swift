@@ -6,7 +6,7 @@
 import SafariServices
 import UIKit
 
-class RichtextViewController: AbstractItemRichtextViewController, UITextViewDelegate {
+class RichtextViewController: AbstractItemRichtextViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,14 @@ class RichtextViewController: AbstractItemRichtextViewController, UITextViewDele
         } else {
             super.prepare(for: segue, sender: sender)
         }
+    }
+
+}
+
+extension RichtextViewController : UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return AppNavigator.handle(URL, on: self)
     }
 
 }

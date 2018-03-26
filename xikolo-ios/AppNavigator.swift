@@ -4,9 +4,10 @@
 //
 
 import CoreSpotlight
+import SafariServices
 import UIKit
 
-struct AppNavigator {
+class AppNavigator {
 
     static func handle(userActivity: NSUserActivity, forApplication application: UIApplication, on tabBarController: UITabBarController?) -> Bool {
         var activityURL: URL?
@@ -33,6 +34,27 @@ struct AppNavigator {
         let webpageUrl = url
         application.open(webpageUrl)
         return false
+    }
+
+    static func handle(_ url: URL, on sourceVC: UIViewController) -> Bool {
+        guard let url = MarkdownHelper.trueScheme(for: url) else {
+            log.error("URL in Markdown or Markdownparser is broken")
+            return false
+        }
+        
+        if self.handle(url) {
+            return false
+        }
+
+        if url.host == Brand.Host {
+            let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
+            vc.url = url.absoluteString
+            sourceVC.navigationController?.pushViewController(vc, animated: true)
+            return false
+        }
+
+        return true
     }
 
     static func handle(_ url: URL) -> Bool {

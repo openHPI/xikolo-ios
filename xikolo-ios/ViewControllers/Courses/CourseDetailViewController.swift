@@ -26,6 +26,7 @@ class CourseDetailViewController: UIViewController {
 
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
+        self.descriptionView.delegate = self
 
         self.statusView.layer.cornerRadius = 4.0
         self.statusView.layer.masksToBounds = true
@@ -169,6 +170,14 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(unenrollAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true)
+    }
+
+}
+
+extension CourseDetailViewController : UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return AppNavigator.handle(URL, on: self)
     }
 
 }

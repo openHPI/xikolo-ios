@@ -174,7 +174,7 @@ class CourseDetailViewController: UIViewController {
 
 }
 
-extension CourseDetailViewController : UITextViewDelegate {
+extension CourseDetailViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         return AppNavigator.handle(URL, on: self)

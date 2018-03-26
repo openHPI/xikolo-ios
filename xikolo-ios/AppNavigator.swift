@@ -41,7 +41,7 @@ class AppNavigator {
             log.error("URL in Markdown or Markdownparser is broken")
             return false
         }
-        
+
         if self.handle(url) {
             return false
         }

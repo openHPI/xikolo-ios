@@ -20,7 +20,7 @@ class CourseDecisionViewController: UIViewController {
 
     var containerContentViewController: UIViewController?
     var course: Course!
-    var content: CourseContent? = nil
+    var content: CourseContent?
 
     override func viewDidLoad() {
         super.viewDidLoad()

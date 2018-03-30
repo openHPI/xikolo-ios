@@ -121,11 +121,11 @@ class AppNavigator {
                 return true
             }
         }
-        
+
         return false
     }
 
-    static func show(course: Course, with content: CourseDecisionViewController.CourseContent, on tabBarController: UITabBarController?) {
+    static func show(course: Course, with content: CourseDecisionViewController.CourseContent = .learnings, on tabBarController: UITabBarController?) {
         guard let courseNavigationController = tabBarController?.viewControllers?[safe: 1] as? UINavigationController else {
             let reason = "CourseNavigationController could not be found"
             CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])

@@ -80,19 +80,31 @@ class AppNavigator {
             if let slugOrId = url.pathComponents[safe: 2] {
                 let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
                 var couldFindCourse = false
+                var canOpenInApp = true
 
                 CoreDataHelper.viewContext.performAndWait {
                     switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
                     case .success(let course):
                         couldFindCourse = true
-                        if url.pathComponents[safe: 3] == "pinboard" {
-                            self.show(course: course, with: .discussions, on: tabBarController)
-                        } else {
+                        if url.pathComponents[safe: 3] == "items" {
                             self.show(course: course, with: .learnings, on: tabBarController)
+                        } else if url.pathComponents[safe: 3] == "pinboard" {
+                            self.show(course: course, with: .discussions, on: tabBarController)
+                        } else if url.pathComponents[safe: 3] == nil {
+                            self.show(course: course, with: .courseDetails, on: tabBarController)
+                        } else if url.pathComponents[safe: 3] == "announcements" {
+                            self.show(course: course, with: .announcements, on: tabBarController)
+                        } else {
+                            // We dont support this yet, so we should just open the url with some kind of browser
+                            canOpenInApp = false
                         }
                     case .failure(let error):
                         log.info("Could not find course in local database: \(error)")
                     }
+                }
+
+                if !canOpenInApp {
+                    return false
                 }
 
                 // sync course or get course if not in local database

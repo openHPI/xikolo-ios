@@ -15,7 +15,7 @@ final class UserProfile: NSManagedObject {
     @NSManaged var user: User?
 
     var fullName: String? {
-        let components = [self.firstName, self.lastName].flatMap { $0 }
+        let components = [self.firstName, self.lastName].compactMap { $0 }
         return components.isEmpty ? nil : components.joined(separator: " ")
     }
 

@@ -10,7 +10,7 @@
         <attribute name="visited" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="announcements" inverseEntity="Course" syncable="YES"/>
     </entity>
-    <entity name="Channel" representedClassName=".Channel" syncable="YES" codeGenerationType="class">
+    <entity name="Channel" representedClassName=".Channel" syncable="YES">
         <attribute name="channelDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="color" optional="YES" attributeType="String" elementID="color_string" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -178,6 +178,7 @@
     </entity>
     <elements>
         <element name="Announcement" positionX="304" positionY="146" width="128" height="165"/>
+        <element name="Channel" positionX="234" positionY="-63" width="128" height="165"/>
         <element name="Content" positionX="666" positionY="198" width="128" height="60"/>
         <element name="Course" positionX="45" positionY="-18" width="128" height="390"/>
         <element name="CourseDate" positionX="214" positionY="-180" width="128" height="120"/>
@@ -194,6 +195,5 @@
         <element name="User" positionX="187" positionY="498" width="128" height="105"/>
         <element name="UserProfile" positionX="342" positionY="504" width="128" height="135"/>
         <element name="Video" positionX="621" positionY="-99" width="128" height="270"/>
-        <element name="Channel" positionX="234" positionY="-63" width="128" height="165"/>
     </elements>
 </model>

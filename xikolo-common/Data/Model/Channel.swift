@@ -41,7 +41,11 @@ extension Channel: Pullable {
 
         guard let relationships = try? object.value(for: "relationships") as JSON else { return }
 
-        try self.updateRelationship(forKeyPath: \Channel.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
+        try self.updateRelationship(forKeyPath: \Channel.courses,
+                                    forKey: "courses",
+                                    fromObject: relationships,
+                                    including: includes,
+                                    inContext: context)
     }
 
 }

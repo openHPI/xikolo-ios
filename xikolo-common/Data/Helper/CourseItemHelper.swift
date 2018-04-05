@@ -17,7 +17,7 @@ struct CourseItemHelper {
 
     static func syncCourseItems(forCourse course: Course) -> Future<[SyncEngine.SyncMultipleResult], XikoloError> {
         return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sectionObjectIds in
-            return sectionObjectIds.objectIds.flatMap { sectionObjectId -> Future<SyncEngine.SyncMultipleResult, XikoloError> in
+            return sectionObjectIds.objectIds.compactMap { sectionObjectId -> Future<SyncEngine.SyncMultipleResult, XikoloError> in
                 let promise = Promise<SyncEngine.SyncMultipleResult, XikoloError>()
 
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in

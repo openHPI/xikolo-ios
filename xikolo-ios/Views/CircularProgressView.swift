@@ -118,11 +118,7 @@ class CircularProgressView: UIView {
     private func animateProgress(_ pinnedProgress: CGFloat) {
         self.progressLayer.removeAnimation(forKey: AnimationKeys.progress)
 
-        var currentProgress: CGFloat = 0
-        if let presentationLayer = progressLayer.presentation() as CircularProgressLayer! {
-            currentProgress = presentationLayer.progress
-        }
-
+        let currentProgress = self.progressLayer.presentation()?.progress ?? 0
         let duration = CFTimeInterval(fabsf(Float(currentProgress - pinnedProgress)))
 
         let animation = CABasicAnimation(keyPath: AnimationKeys.progress)

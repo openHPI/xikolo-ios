@@ -211,7 +211,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
 
         let searchPredicate = self.configuration?.searchPredicate(forSearchText: searchText)
         let fetchPredicate = fetchRequest.predicate
-        let predicates = [fetchPredicate, searchPredicate].flatMap { $0 }
+        let predicates = [fetchPredicate, searchPredicate].compactMap { $0 }
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
 
         self.searchFetchResultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: nil)

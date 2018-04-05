@@ -43,7 +43,7 @@ class AppNavigator {
         }
 
         if self.handle(url) {
-            return false
+            return true
         }
 
         if url.host == Brand.Host {
@@ -51,7 +51,10 @@ class AppNavigator {
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
             vc.url = url.absoluteString
             sourceVC.navigationController?.pushViewController(vc, animated: true)
-            return false
+        } else {
+            let safariViewController = SFSafariViewController(url: url)
+            safariViewController.preferredControlTintColor = Brand.windowTintColor
+            sourceVC.present(safariViewController, animated: true)
         }
 
         return true

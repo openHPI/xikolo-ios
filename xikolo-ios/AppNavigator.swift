@@ -89,16 +89,18 @@ class AppNavigator {
                     switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
                     case .success(let course):
                         couldFindCourse = true
-                        if url.pathComponents[safe: 3] == "items" {
-                            self.show(course: course, with: .learnings, on: tabBarController)
-                        } else if url.pathComponents[safe: 3] == "pinboard" {
-                            self.show(course: course, with: .discussions, on: tabBarController)
-                        } else if url.pathComponents[safe: 3] == nil {
+                        let courseArea = url.pathComponents[safe: 3]
+                        if courseArea == nil {
                             self.show(course: course, with: .courseDetails, on: tabBarController)
-                        } else if url.pathComponents[safe: 3] == "announcements" {
+                        } else if courseArea == "items" {
+                            self.show(course: course, with: .learnings, on: tabBarController)
+                        } else if courseArea == "pinboard" {
+                            self.show(course: course, with: .discussions, on: tabBarController)
+                        } else if courseArea == "announcements" {
                             self.show(course: course, with: .announcements, on: tabBarController)
                         } else {
                             // We dont support this yet, so we should just open the url with some kind of browser
+                            log.info("Unable to open course area (\(courseArea ?? "") for course (\(slugOrId))")
                             canOpenInApp = false
                         }
                     case .failure(let error):
@@ -106,7 +108,7 @@ class AppNavigator {
                     }
                 }
 
-                if !canOpenInApp {
+                guard canOpenInApp else {
                     return false
                 }
 

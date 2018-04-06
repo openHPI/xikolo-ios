@@ -36,7 +36,7 @@ class AppNavigator {
         return false
     }
 
-    static func handle(_ url: URL, on sourceVC: UIViewController) -> Bool {
+    static func handle(_ url: URL, on sourceViewController: UIViewController) -> Bool {
         guard let url = MarkdownHelper.trueScheme(for: url) else {
             log.error("URL in Markdown or Markdownparser is broken")
             return false
@@ -48,13 +48,13 @@ class AppNavigator {
 
         if url.host == Brand.Host {
             let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
-            vc.url = url.absoluteString
-            sourceVC.navigationController?.pushViewController(vc, animated: true)
+            let webViewController = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
+            webViewController.url = url.absoluteString
+            sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
         } else {
             let safariViewController = SFSafariViewController(url: url)
             safariViewController.preferredControlTintColor = Brand.windowTintColor
-            sourceVC.present(safariViewController, animated: true)
+            sourceViewController.present(safariViewController, animated: true)
         }
 
         return true
@@ -140,9 +140,9 @@ class AppNavigator {
 
         courseNavigationController.popToRootViewController(animated: false)
 
-        let vc = UIStoryboard(name: "TabCourses", bundle: nil).instantiateViewController(withIdentifier: "CourseDecisionViewController")
+        let viewController = UIStoryboard(name: "TabCourses", bundle: nil).instantiateViewController(withIdentifier: "CourseDecisionViewController")
 
-        guard let courseDecisionViewController = vc as? CourseDecisionViewController else {
+        guard let courseDecisionViewController = viewController as? CourseDecisionViewController else {
             let reason = "CourseDecisionViewController could not be found"
             CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
             log.error(reason)

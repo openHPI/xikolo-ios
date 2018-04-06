@@ -63,7 +63,7 @@ final class Course: NSManagedObject {
             return nil
         }
 
-        return URL(string: "\(Brand.BaseURL)/courses/\(slug)")
+        return Routes.courses.appendingPathComponent(slug)
     }
 
     var hasEnrollment: Bool {

@@ -109,7 +109,7 @@ extension SyncHelper {
         DispatchQueue.main.async {
             guard let tabBarController = AppDelegate.instance().tabBarController as? XikoloTabBarController else { return }
 
-            guard let expirationDateString = headers[Routes.HTTP_API_Version_Expiration_Date_Header] as? String,
+            guard let expirationDateString = headers[Routes.Header.apiVersionExpirationDate] as? String,
                   let expirationDate = SyncHelper.dateFormatter.date(from: expirationDateString),
                   expirationDate <= Date().subtractingTimeInterval(14.days) else {
                 tabBarController.state = .standard

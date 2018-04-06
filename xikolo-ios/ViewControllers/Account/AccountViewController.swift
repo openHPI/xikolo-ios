@@ -170,11 +170,11 @@ class AccountViewController: UITableViewController {
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
         case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
-            self.open(url: URL(string: Brand.APP_IMPRINT_URL))
+            self.open(url: Routes.imprint)
         case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):
-            self.open(url: URL(string: Brand.APP_PRIVACY_URL))
+            self.open(url: Routes.privacy)
         case let githubIndexPath where githubIndexPath == tableView.indexPath(for: self.githubCell):
-            self.open(url: URL(string: Brand.APP_GITHUB_URL))
+            self.open(url: Routes.github)
         case AccountViewController.feedbackIndexPath:
             self.sendFeedbackMail()
         case AccountViewController.logoutIndexPath:
@@ -237,17 +237,17 @@ class AccountViewController: UITableViewController {
         guard let urlToOpen = url else { return }
 
         let safariVC = SFSafariViewController(url: urlToOpen)
-        safariVC.preferredControlTintColor = Brand.windowTintColor
+        safariVC.preferredControlTintColor = Brand.Color.window
         self.present(safariVC, animated: true, completion: nil)
     }
 
     private func sendFeedbackMail() {
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
-        composeVC.setToRecipients(Brand.FeedbackRecipients)
-        composeVC.setSubject(Brand.FeedbackSubject)
+        composeVC.setToRecipients(Brand.feedbackRecipients)
+        composeVC.setSubject(Brand.feedbackSubject)
         composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: false)
-        composeVC.navigationBar.tintColor = Brand.windowTintColor
+        composeVC.navigationBar.tintColor = Brand.Color.window
         self.present(composeVC, animated: true, completion: nil)
     }
 

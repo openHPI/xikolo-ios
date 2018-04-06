@@ -83,7 +83,7 @@ class CourseDecisionViewController: UIViewController {
         case .discussions:
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
             if let slug = course.slug {
-                vc.url = Routes.COURSES_URL + slug + "/pinboard"
+                vc.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
             }
 
             changeToViewController(vc)

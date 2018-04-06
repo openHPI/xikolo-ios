@@ -25,7 +25,7 @@ class VideoPersistenceManager: NSObject {
 
     override private init() {
         super.init()
-        let sessionIdentifier = "\(Brand.AppID).asset-download"
+        let sessionIdentifier = "\(UIApplication.bundleIdentifier).asset-download"
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: sessionIdentifier)
         self.assetDownloadURLSession = AVAssetDownloadURLSession(configuration: backgroundConfiguration,
                                                                  assetDownloadDelegate: self,

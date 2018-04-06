@@ -5,6 +5,7 @@
 
 import CoreSpotlight
 import Foundation
+import UIKit
 
 class SpotlightHelper {
 
@@ -68,7 +69,7 @@ class SpotlightHelper {
     }
 
     private static func getReverseDomain(appendix: String) -> String {
-        return "\(Brand.AppID).\(appendix)"
+        return "\(UIApplication.bundleIdentifier).\(appendix)"
     }
 
 }

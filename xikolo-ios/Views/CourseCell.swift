@@ -30,11 +30,11 @@ class CourseCell: UICollectionViewCell {
         self.courseImage.layer.masksToBounds = true
         self.courseImage.layer.borderColor = UIColor(white: 0.0, alpha: 0.15).cgColor
         self.courseImage.layer.borderWidth = 0.5
-        self.courseImage.backgroundColor = Brand.TintColorSecond
+        self.courseImage.backgroundColor = Brand.Color.secondary
 
         self.statusView.layer.cornerRadius = 4.0
         self.statusView.layer.masksToBounds = true
-        self.statusView.backgroundColor = Brand.TintColorSecond
+        self.statusView.backgroundColor = Brand.Color.secondary
 
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
@@ -44,7 +44,7 @@ class CourseCell: UICollectionViewCell {
         self.gradientView.layer.cornerRadius = 4.0
         self.gradientView.layer.masksToBounds = true
 
-        self.teacherLabel.textColor = Brand.TintColorSecond
+        self.teacherLabel.textColor = Brand.Color.secondary
     }
 
     override func layoutSubviews() {

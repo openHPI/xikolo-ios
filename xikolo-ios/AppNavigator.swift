@@ -4,7 +4,6 @@
 //
 
 import CoreSpotlight
-import SafariServices
 import UIKit
 
 class AppNavigator {
@@ -51,13 +50,10 @@ class AppNavigator {
             let webViewController = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
             webViewController.url = url.absoluteString
             sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
-        } else {
-            let safariViewController = SFSafariViewController(url: url)
-            safariViewController.preferredControlTintColor = Brand.windowTintColor
-            sourceViewController.present(safariViewController, animated: true)
+            return true
         }
 
-        return true
+        return false
     }
 
     static func handle(_ url: URL) -> Bool {

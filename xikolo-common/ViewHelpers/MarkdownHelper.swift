@@ -24,6 +24,21 @@ class MarkdownHelper {
         }
     }
 
+    static func trueScheme(for url: URL) -> URL? {
+        var url = url
+        if url.scheme == "applewebdata" { // replace applewebdata with baseURL for relative urls in markdown
+            var absoluteString = url.absoluteString
+            let trimmedUrlString = absoluteString.stringByRemovingRegexMatches(pattern: "^(?:applewebdata://[0-9A-Z-]*/?)", replaceWith: Brand.BaseURL + "/")
+            guard let trimmedString = trimmedUrlString else { return nil }
+            guard let trimmedURL = URL(string: trimmedString) else { return nil }
+            url = trimmedURL
+        }
+
+        guard url.scheme?.hasPrefix("http") ?? false else { return nil }
+
+        return url
+    }
+
 }
 
 extension DownAttributedStringRenderable {

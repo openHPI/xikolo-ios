@@ -20,7 +20,7 @@ class CourseDecisionViewController: UIViewController {
 
     var containerContentViewController: UIViewController?
     var course: Course!
-    var content = CourseContent.learnings
+    var content: CourseContent?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +48,13 @@ class CourseDecisionViewController: UIViewController {
 
     func decideContent() {
         if course.hasEnrollment {
-            updateContainerView(course.accessible ? .learnings : .courseDetails)
+            if let content = self.content { // it already got set from outside
+                self.updateContainerView(content)
+            } else {
+                self.updateContainerView(course.accessible ? .learnings : .courseDetails)
+            }
         } else {
-            updateContainerView(.courseDetails)
+            self.updateContainerView(.courseDetails)
         }
     }
 

@@ -45,15 +45,16 @@ class AppNavigator {
             return true
         }
 
-        if url.host == Brand.Host {
-            let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
-            let webViewController = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
-            webViewController.url = url.absoluteString
-            sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
-            return true
+        guard url.host == Brand.Host else {
+            log.debug("Can't open \(url) inside of the app because host is wrong")
+            return false
         }
 
-        return false
+        let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
+        let webViewController = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
+        webViewController.url = url.absoluteString
+        sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
+        return true
     }
 
     static func handle(_ url: URL) -> Bool {
@@ -70,57 +71,61 @@ class AppNavigator {
             return false
         }
 
-        guard url.pathComponents.count > 1 else {
-            // simply open the app
+        switch url.pathComponents[safe: 1] {
+        case nil:
+            return true // url to base page, simply open the app
+        case "courses":
+            return self.handleCourseURL(url, on: tabBarController)
+        default:
+            return false
+        }
+    }
+
+    private static func handleCourseURL(_ url: URL, on tabBarController: UITabBarController) -> Bool {
+        guard let slugOrId = url.pathComponents[safe: 2] else {
+            // url points to courses list
+            tabBarController.selectedIndex = 1
             return true
         }
 
-        if url.pathComponents[safe: 1] == "courses" {
-            if let slugOrId = url.pathComponents[safe: 2] {
-                let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
-                var couldFindCourse = false
-                var canOpenInApp = true
+        let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
+        var couldFindCourse = false
+        var canOpenInApp = true
 
-                CoreDataHelper.viewContext.performAndWait {
-                    switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
-                    case .success(let course):
-                        couldFindCourse = true
-                        let courseArea = url.pathComponents[safe: 3]
-                        if courseArea == nil {
-                            self.show(course: course, with: .courseDetails, on: tabBarController)
-                        } else if courseArea == "items" {
-                            self.show(course: course, with: .learnings, on: tabBarController)
-                        } else if courseArea == "pinboard" {
-                            self.show(course: course, with: .discussions, on: tabBarController)
-                        } else if courseArea == "announcements" {
-                            self.show(course: course, with: .announcements, on: tabBarController)
-                        } else {
-                            // We dont support this yet, so we should just open the url with some kind of browser
-                            log.info("Unable to open course area (\(courseArea ?? "") for course (\(slugOrId))")
-                            canOpenInApp = false
-                        }
-                    case .failure(let error):
-                        log.info("Could not find course in local database: \(error)")
-                    }
+        CoreDataHelper.viewContext.performAndWait {
+            switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+            case .success(let course):
+                couldFindCourse = true
+                let courseArea = url.pathComponents[safe: 3]
+                if courseArea == nil {
+                    self.show(course: course, with: .courseDetails, on: tabBarController)
+                } else if courseArea == "items" {
+                    self.show(course: course, with: .learnings, on: tabBarController)
+                } else if courseArea == "pinboard" {
+                    self.show(course: course, with: .discussions, on: tabBarController)
+                } else if courseArea == "announcements" {
+                    self.show(course: course, with: .announcements, on: tabBarController)
+                } else {
+                    // We dont support this yet, so we should just open the url with some kind of browser
+                    log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")
+                    canOpenInApp = false
                 }
-
-                guard canOpenInApp else {
-                    return false
-                }
-
-                // sync course or get course if not in local database
-                let courseFuture = CourseHelper.syncCourse(forSlugOrId: slugOrId)
-
-                if couldFindCourse {
-                    return true
-                } else if case .success(_)? = courseFuture.forced(30.seconds.fromNow) {  // we only wait 30 seconds
-                    return true
-                }
-
-            } else {
-                tabBarController.selectedIndex = 1
-                return true
+            case .failure(let error):
+                log.info("Could not find course in local database: \(error)")
             }
+        }
+
+        guard canOpenInApp else {
+            return false
+        }
+
+        // sync course or get course if not in local database
+        let courseFuture = CourseHelper.syncCourse(forSlugOrId: slugOrId)
+
+        if couldFindCourse {
+            return true
+        } else if case .success(_)? = courseFuture.forced(30.seconds.fromNow) {  // we only wait 30 seconds
+            return true
         }
 
         return false

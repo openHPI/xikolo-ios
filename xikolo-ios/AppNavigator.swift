@@ -79,16 +79,7 @@ class AppNavigator {
 
     private static func handleCourseURL(_ url: URL) -> Bool {
         guard let slugOrId = url.pathComponents[safe: 2] else {
-            guard let tabBarController = AppDelegate.instance().tabBarController else {
-                let reason = "UITabBarController could not be found"
-                CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
-                log.error(reason)
-                return false
-            }
-
-            // url points to courses list
-            tabBarController.selectedIndex = 1
-            return true
+            return self.showCourseList()
         }
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
@@ -132,6 +123,19 @@ class AppNavigator {
         }
 
         return false
+    }
+
+    private static func showCourseList() -> Bool {
+        guard let tabBarController = AppDelegate.instance().tabBarController else {
+            let reason = "UITabBarController could not be found"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
+            return false
+        }
+
+        // url points to courses list
+        tabBarController.selectedIndex = 1
+        return true
     }
 
     static func show(course: Course, with content: CourseDecisionViewController.CourseContent = .learnings) {

@@ -67,12 +67,19 @@ class CourseCell: UICollectionViewCell {
         self.statusView.isHidden = true
         switch configuration {
         case .courseList:
-            if course.hasEnrollment {
+            if let enrollment = course.enrollment {
                 self.statusView.isHidden = false
-                self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
+                if enrollment.completed {
+                    self.statusLabel.text = NSLocalizedString("course-cell.status.completed", comment: "status 'completed' of a course")
+                } else {
+                    self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
+                }
             }
         case .courseActivity:
-            if course.status == "announced" {
+            if let enrollment = course.enrollment, enrollment.completed {
+                self.statusView.isHidden = false
+                self.statusLabel.text = NSLocalizedString("course-cell.status.completed", comment: "status 'completed' of a course")
+            } else if course.status == "announced" {
                 self.statusView.isHidden = false
                 self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")
             }

@@ -16,7 +16,7 @@ class CourseActivityViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let request = CourseHelper.FetchRequest.enrolledNotCompletedCourses
+        let request = CourseHelper.FetchRequest.enrolledCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,

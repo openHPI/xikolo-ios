@@ -7,7 +7,7 @@ PODS:
     - BMPlayer/Core
     - NVActivityIndicatorView (~> 4.0.0)
     - SnapKit (~> 4.0.0)
-  - BrightFutures (6.0.0):
+  - BrightFutures (6.0.1):
     - Result (~> 3.2.4)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
@@ -99,7 +99,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
   BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
-  BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
+  BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7

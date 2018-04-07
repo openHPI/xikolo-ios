@@ -14,7 +14,7 @@ extension CourseSection {
     }
 
     private var videos: [Video] {
-        return self.items.flatMap { item in
+        return self.items.compactMap { item in
             return item.content as? Video
         }
     }
@@ -35,7 +35,7 @@ extension CourseSection {
         var actions: [UIAlertAction] = []
         var itemCounter = ItemCounter()
 
-        self.items.flatMap { item in
+        self.items.compactMap { item in
             return item.content as? Video
         }.forEach { video in
             if video.localFileBookmark != nil {

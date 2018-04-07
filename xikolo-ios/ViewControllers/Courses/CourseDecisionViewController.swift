@@ -20,7 +20,7 @@ class CourseDecisionViewController: UIViewController {
 
     var containerContentViewController: UIViewController?
     var course: Course!
-    var content = CourseContent.learnings
+    var content: CourseContent?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +48,13 @@ class CourseDecisionViewController: UIViewController {
 
     func decideContent() {
         if course.hasEnrollment {
-            updateContainerView(course.accessible ? .learnings : .courseDetails)
+            if let content = self.content { // it already got set from outside
+                self.updateContainerView(content)
+            } else {
+                self.updateContainerView(course.accessible ? .learnings : .courseDetails)
+            }
         } else {
-            updateContainerView(.courseDetails)
+            self.updateContainerView(.courseDetails)
         }
     }
 
@@ -139,7 +143,7 @@ class CourseDecisionViewController: UIViewController {
     }
 
     @IBAction func shareCourse(_ sender: UIBarButtonItem) {
-        let activityItems = ([self.course.title, self.course.url] as [Any?]).flatMap { $0 }
+        let activityItems = ([self.course.title, self.course.url] as [Any?]).compactMap { $0 }
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         activityViewController.completionWithItemsHandler = { activityType, completed, _, _ in

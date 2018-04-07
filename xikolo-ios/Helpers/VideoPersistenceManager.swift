@@ -189,7 +189,7 @@ class VideoPersistenceManager: NSObject {
 
     func downloadVideos(for section: CourseSection) {
         self.persistentContainerQueue.addOperation {
-            section.items.flatMap { item in
+            section.items.compactMap { item in
                 return item.content as? Video
             }.filter { video in
                 return VideoPersistenceManager.shared.downloadState(for: video) == .notDownloaded
@@ -201,7 +201,7 @@ class VideoPersistenceManager: NSObject {
 
     func deleteVideos(for section: CourseSection) {
         self.persistentContainerQueue.addOperation {
-            section.items.flatMap { item in
+            section.items.compactMap { item in
                 return item.content as? Video
             }.forEach { video in
                 self.deleteAsset(for: video)
@@ -211,7 +211,7 @@ class VideoPersistenceManager: NSObject {
 
     func cancelVideoDownloads(for section: CourseSection) {
         self.persistentContainerQueue.addOperation {
-            section.items.flatMap { item in
+            section.items.compactMap { item in
                 return item.content as? Video
             }.filter { video in
                 return [.pending, .downloading].contains(VideoPersistenceManager.shared.downloadState(for: video))

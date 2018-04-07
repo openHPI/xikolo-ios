@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Course Details"; ObjectID = "48Z-28-efI"; */
+"48Z-28-efI.text" = "Course Details";
+
+/* Class = "UILabel"; text = "Discussions"; ObjectID = "Ngq-Rd-kbK"; */
+"Ngq-Rd-kbK.text" = "Discussions";
+
+/* Class = "UILabel"; text = "Announcements"; ObjectID = "gbN-nI-OPH"; */
+"gbN-nI-OPH.text" = "Announcements";
+
+/* Class = "UILabel"; text = "CourseContent"; ObjectID = "lSe-9y-mWG"; Note = "#bc-ignore!"; */
+"lSe-9y-mWG.text" = "CourseContent";
+
+/* Class = "UILabel"; text = "Learnings"; ObjectID = "tIp-cH-1MM"; */
+"tIp-cH-1MM.text" = "Learnings";

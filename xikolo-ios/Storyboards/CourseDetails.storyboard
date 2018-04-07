@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HmT-zz-ZfW">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LoginNavigationController-->
+        <scene sceneID="0cL-E8-fkz">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Login" referencedIdentifier="LoginNavigationController" id="NEg-5o-jXX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m66-tu-58a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2910" y="222"/>
+        </scene>
+        <!--Course Detail View Controller-->
+        <scene sceneID="5ae-wq-an1">
+            <objects>
+                <viewController storyboardIdentifier="CourseDetailsViewController" id="HmT-zz-ZfW" customClass="CourseDetailViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sIY-aU-CD1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWe-9L-XSn">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-KQ-kUh" userLabel="Scroll Content">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="293"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4b-Ar-94F">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="bKi-vh-nFT"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCC-vf-4Pk">
+                                                <rect key="frame" x="8" y="8" width="52" height="26"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hft-pf-uVT">
+                                                        <rect key="frame" x="4" y="4" width="44" height="18"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.54901960780000003" green="0.70196078429999997" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="hft-pf-uVT" firstAttribute="leading" secondItem="yCC-vf-4Pk" secondAttribute="leading" constant="4" id="60s-uc-vpm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hft-pf-uVT" secondAttribute="trailing" constant="4" id="CTI-ua-CbL"/>
+                                                    <constraint firstAttribute="bottom" secondItem="hft-pf-uVT" secondAttribute="bottom" constant="4" id="DZh-7A-tot"/>
+                                                    <constraint firstItem="hft-pf-uVT" firstAttribute="top" secondItem="yCC-vf-4Pk" secondAttribute="top" constant="4" id="Zxl-ek-CbG"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kCa-Sj-iZr">
+                                                <rect key="frame" x="20" y="136" width="335" height="166.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kg8-BI-OgB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="71.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ms1-Wm-QhH">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teachers" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDY-g0-onI">
+                                                                <rect key="frame" x="0.0" y="29.5" width="335" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" red="0.87058823529999996" green="0.38431372549999998" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <attributedString key="userComments">
+                                                                    <fragment content="#bc-ignore!">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IXq-aP-8dM">
+                                                                <rect key="frame" x="0.0" y="54.5" width="335" height="17"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AX1-JO-2go">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="108" height="17"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cX-gd-UHs">
+                                                                        <rect key="frame" x="116" y="0.0" width="219" height="17"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="#bc-ignore!">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-6J-dNP" customClass="SimpleRoundedButton" customModule="SimpleRoundedButton">
+                                                        <rect key="frame" x="0.0" y="87.5" width="335" height="30"/>
+                                                        <state key="normal" title="Enrollment"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="enroll:" destination="HmT-zz-ZfW" eventType="touchUpInside" id="ZbL-h0-Zga"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Course Description" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f38-k8-QXv">
+                                                        <rect key="frame" x="0.0" y="133.5" width="335" height="33"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </textView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="kCa-Sj-iZr" secondAttribute="bottom" constant="20" symbolic="YES" id="BcB-pf-wkV"/>
+                                            <constraint firstAttribute="trailing" secondItem="kCa-Sj-iZr" secondAttribute="trailing" constant="20" symbolic="YES" id="Soh-C8-scF"/>
+                                            <constraint firstItem="yCC-vf-4Pk" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="topMargin" id="Wb4-9s-QlN"/>
+                                            <constraint firstItem="kCa-Sj-iZr" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leading" constant="20" symbolic="YES" id="Z4w-6L-8h4"/>
+                                            <constraint firstItem="kCa-Sj-iZr" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="bottom" constant="8" symbolic="YES" id="bot-DA-QD3"/>
+                                            <constraint firstItem="d4b-Ar-94F" firstAttribute="top" secondItem="bWt-KQ-kUh" secondAttribute="top" id="i4Y-ou-QhK"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="bWt-KQ-kUh" secondAttribute="bottom" id="VVs-WM-yg8"/>
+                                    <constraint firstItem="bWt-KQ-kUh" firstAttribute="leading" secondItem="MWe-9L-XSn" secondAttribute="leading" id="efg-Tl-fg7"/>
+                                    <constraint firstAttribute="trailing" secondItem="bWt-KQ-kUh" secondAttribute="trailing" id="g4e-9d-cxW"/>
+                                    <constraint firstItem="bWt-KQ-kUh" firstAttribute="top" secondItem="MWe-9L-XSn" secondAttribute="top" id="rjM-bw-gCC"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MWe-9L-XSn" firstAttribute="trailing" secondItem="CsQ-Pt-R1r" secondAttribute="trailing" id="9yj-9T-saQ"/>
+                            <constraint firstItem="d4b-Ar-94F" firstAttribute="leadingMargin" secondItem="yCC-vf-4Pk" secondAttribute="leading" id="Mvb-ch-MW1"/>
+                            <constraint firstItem="MWe-9L-XSn" firstAttribute="top" secondItem="CsQ-Pt-R1r" secondAttribute="top" id="QnP-Is-H40"/>
+                            <constraint firstItem="CsQ-Pt-R1r" firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="YgW-nw-x6x"/>
+                            <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="CsQ-Pt-R1r" secondAttribute="leading" id="cT7-ff-Hlw"/>
+                            <constraint firstItem="CsQ-Pt-R1r" firstAttribute="bottom" secondItem="MWe-9L-XSn" secondAttribute="bottom" id="mqB-qY-mYX"/>
+                            <constraint firstItem="MWe-9L-XSn" firstAttribute="leading" secondItem="CsQ-Pt-R1r" secondAttribute="leading" id="xBX-gx-O3a"/>
+                            <constraint firstItem="bWt-KQ-kUh" firstAttribute="width" secondItem="sIY-aU-CD1" secondAttribute="width" id="zAP-uP-cC0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CsQ-Pt-R1r"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="dateView" destination="AX1-JO-2go" id="XMf-fO-Gyt"/>
+                        <outlet property="descriptionView" destination="f38-k8-QXv" id="T3G-v3-30g"/>
+                        <outlet property="enrollmentButton" destination="ceU-6J-dNP" id="89a-80-Bxe"/>
+                        <outlet property="imageView" destination="d4b-Ar-94F" id="Nnm-kT-fiS"/>
+                        <outlet property="languageView" destination="3cX-gd-UHs" id="N9U-9N-r72"/>
+                        <outlet property="statusLabel" destination="hft-pf-uVT" id="ZOY-BP-Q4x"/>
+                        <outlet property="statusView" destination="yCC-vf-4Pk" id="dPf-Cp-RUc"/>
+                        <outlet property="teacherView" destination="DDY-g0-onI" id="bXT-QC-d5B"/>
+                        <outlet property="titleView" destination="ms1-Wm-QhH" id="7Cq-t2-84h"/>
+                        <segue destination="NEg-5o-jXX" kind="show" identifier="ShowLogin" id="giU-wL-kWG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lDC-Fl-byF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2909.5999999999999" y="-188.45577211394306"/>
+        </scene>
+    </scenes>
+</document>

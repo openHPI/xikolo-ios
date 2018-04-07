@@ -253,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x4M-yv-wVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013.6" y="590.55472263868069"/>
+            <point key="canvasLocation" x="1015" y="668"/>
         </scene>
         <!--Course Item Web View Controller-->
         <scene sceneID="3g7-OU-Mfj">
@@ -300,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLM-6F-TPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1873" y="591"/>
+            <point key="canvasLocation" x="1525" y="668"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="zVG-t4-nV2">
@@ -597,15 +597,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SaR-95-Nfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="590.55472263868069"/>
+            <point key="canvasLocation" x="539" y="668"/>
         </scene>
         <!--WebViewController-->
         <scene sceneID="5qz-Dj-aIb">
             <objects>
-                <viewControllerPlaceholder storyboardName="CourseContent" referencedIdentifier="WebViewController" id="KeB-kN-D43" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="WebViewController" referencedIdentifier="WebViewController" id="KeB-kN-D43" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUn-7r-9gJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="1031"/>
+            <point key="canvasLocation" x="538" y="1155"/>
         </scene>
     </scenes>
     <resources>
@@ -613,6 +613,6 @@
         <image name="downloaded" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pt9-PY-lWf"/>
+        <segue reference="Ach-Qd-eGW"/>
     </inferredMetricsTieBreakers>
 </document>

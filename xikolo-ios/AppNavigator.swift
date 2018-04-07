@@ -9,6 +9,7 @@ import UIKit
 class AppNavigator {
 
     private static var currentCourseViewController: CourseDecisionViewController?
+    private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
     static func handle(userActivity: NSUserActivity, forApplication application: UIApplication, on tabBarController: UITabBarController?) -> Bool {
         var activityURL: URL?
@@ -164,7 +165,10 @@ class AppNavigator {
 
         self.currentCourseViewController = courseDecisionViewController
 
-        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.transitioningDelegate = self.courseTransitioningDelegate
+        navigationController.modalPresentationStyle = .custom
+        navigationController.modalPresentationCapturesStatusBarAppearance = true
+
         tabBarController.present(navigationController, animated: true)
     }
 }

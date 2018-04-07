@@ -114,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-fu-qK4">
-                                <rect key="frame" x="0.0" y="64" width="375" height="173"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="173"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="173" id="9Zr-uE-8IH"/>
                                 </constraints>
@@ -381,10 +381,10 @@
             </objects>
             <point key="canvasLocation" x="3468" y="423"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Course Navigation Controller-->
         <scene sceneID="bRC-RK-zBN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WaE-pr-4AO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WaE-pr-4AO" customClass="CourseNavigationController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="T25-DF-ezb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -408,6 +408,6 @@
         <image name="titlebar-dropdown-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QTQ-rO-Fsq"/>
+        <segue reference="vBR-pw-Z1U"/>
     </inferredMetricsTieBreakers>
 </document>

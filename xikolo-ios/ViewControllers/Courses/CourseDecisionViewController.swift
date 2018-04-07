@@ -50,7 +50,7 @@ class CourseDecisionViewController: UIViewController {
         self.closeCourse()
     }
 
-    func closeCourse() {
+    @objc func closeCourse() {
         self.dismiss(animated: true)
     }
 

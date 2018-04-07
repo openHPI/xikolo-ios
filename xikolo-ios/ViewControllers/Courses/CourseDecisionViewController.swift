@@ -46,6 +46,10 @@ class CourseDecisionViewController: UIViewController {
         self.performSegue(withIdentifier: "ShowContentChoice", sender: sender)
     }
 
+    @IBAction func closeCourse(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+
     func decideContent() {
         if course.hasEnrollment {
             if let content = self.content { // it already got set from outside
@@ -100,7 +104,7 @@ class CourseDecisionViewController: UIViewController {
         case .courseDetails:
             let storyboard = UIStoryboard(name: "CourseDetails", bundle: nil)
             let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-            let viewController = initialViewController.require(toHaveType: CourseDetailViewController.self.self)
+            let viewController = initialViewController.require(toHaveType: CourseDetailViewController.self)
             viewController.course = course
             self.changeToViewController(viewController)
             self.titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")

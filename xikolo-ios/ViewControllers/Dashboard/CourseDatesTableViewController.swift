@@ -112,10 +112,7 @@ extension CourseDatesTableViewController {
             return
         }
 
-        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController").require(toHaveType: CourseDecisionViewController.self)
-        vc.course = course
-        self.navigationController?.pushViewController(vc, animated: true)
+        AppNavigator.show(course: course)
     }
 
 }

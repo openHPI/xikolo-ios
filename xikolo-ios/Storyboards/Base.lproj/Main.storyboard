@@ -38,14 +38,6 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="713"/>
         </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="e2T-a8-4Gc">
-            <objects>
-                <viewControllerPlaceholder id="hSC-F6-LLZ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jrq-Gu-xES" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-19" y="1191"/>
-        </scene>
         <!--CoursesNavigationController-->
         <scene sceneID="yCL-cx-d71">
             <objects>

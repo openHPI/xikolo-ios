@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GW9-XM-IkA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WaE-pr-4AO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,11 +17,11 @@
             <objects>
                 <viewController storyboardIdentifier="CourseDecisionViewController" id="GW9-XM-IkA" customClass="CourseDecisionViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="raX-iA-spo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGS-px-ZG2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -35,6 +35,11 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="K1m-mm-Pjy">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Lu2-d8-THe">
+                            <connections>
+                                <action selector="closeCourse:" destination="GW9-XM-IkA" id="IhM-tA-SDy"/>
+                            </connections>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="r06-lw-oEd">
                             <rect key="frame" x="111.5" y="5.5" width="152" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -81,7 +86,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="containerView" destination="kGS-px-ZG2" id="nXu-7I-A8c"/>
                         <outlet property="dropdownIcon" destination="zMQ-Tc-EfU" id="Akh-6N-W5X"/>
@@ -99,7 +103,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2529" y="0.0"/>
+            <point key="canvasLocation" x="3468" y="-0.44977511244377816"/>
         </scene>
         <!--Dropdown View Controller-->
         <scene sceneID="vYl-0Q-0ya">
@@ -110,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-fu-qK4">
-                                <rect key="frame" x="0.0" y="20" width="375" height="173"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="173"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="173" id="9Zr-uE-8IH"/>
                                 </constraints>
@@ -156,7 +160,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVL-TE-sey" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jS4-vw-hk3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3324" y="0.0"/>
+            <point key="canvasLocation" x="4263.1999999999998" y="-0.44977511244377816"/>
         </scene>
         <!--Dropdown Table View Controller-->
         <scene sceneID="QiS-Rn-7Nh">
@@ -348,7 +352,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8CG-XU-SxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4134" y="-2"/>
+            <point key="canvasLocation" x="5072.8000000000002" y="-2.2488755622188905"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gip-So-kDr">
@@ -367,7 +371,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSy-HK-4yL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3324" y="-716"/>
+            <point key="canvasLocation" x="4263" y="-770"/>
         </scene>
         <!--LoginNavigationController-->
         <scene sceneID="AUb-yL-l1X">
@@ -375,7 +379,25 @@
                 <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="LoginNavigationController" id="Nqa-is-6mG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJ8-Ti-a1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2529" y="425"/>
+            <point key="canvasLocation" x="3468" y="423"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bRC-RK-zBN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WaE-pr-4AO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="T25-DF-ezb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GW9-XM-IkA" kind="relationship" relationship="rootViewController" id="jZ7-wv-SJ3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZU7-z9-pMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2606" y="0.0"/>
         </scene>
     </scenes>
     <resources>
@@ -386,6 +408,6 @@
         <image name="titlebar-dropdown-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vBR-pw-Z1U"/>
+        <segue reference="QTQ-rO-Fsq"/>
     </inferredMetricsTieBreakers>
 </document>

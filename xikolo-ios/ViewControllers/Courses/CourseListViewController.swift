@@ -79,20 +79,8 @@ class CourseListViewController: AbstractCourseListViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        self.performSegue(withIdentifier: "ShowCourseContent", sender: cell) // TODO: open course
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "ShowCourseContent"?: // TODO: see upper comment
-            let vc = segue.destination.require(toHaveType: CourseDecisionViewController.self)
-            let cell = (sender as? CourseCell).require(hint: "Sender must be CourseCell")
-            let indexPath = collectionView!.indexPath(for: cell)!
-            vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
-        default:
-            break
-        }
+        let course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
+        AppNavigator.show(course: course)
     }
 
     override func viewWillAppear(_ animated: Bool) {

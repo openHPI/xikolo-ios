@@ -37,7 +37,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="Lu2-d8-THe">
                             <connections>
-                                <action selector="closeCourse:" destination="GW9-XM-IkA" id="IhM-tA-SDy"/>
+                                <action selector="tappedCloseButton:" destination="GW9-XM-IkA" id="hks-dm-2X6"/>
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="r06-lw-oEd">

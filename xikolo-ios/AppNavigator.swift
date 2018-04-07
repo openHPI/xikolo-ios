@@ -8,6 +8,8 @@ import UIKit
 
 class AppNavigator {
 
+    private static var currentCourseViewController: CourseDecisionViewController?
+
     static func handle(userActivity: NSUserActivity, forApplication application: UIApplication, on tabBarController: UITabBarController?) -> Bool {
         var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
@@ -133,6 +135,9 @@ class AppNavigator {
     }
 
     static func show(course: Course, with content: CourseDecisionViewController.CourseContent = .learnings) {
+        self.currentCourseViewController?.closeCourse()
+        self.currentCourseViewController = nil
+
         guard let tabBarController = AppDelegate.instance().tabBarController else {
             let reason = "UITabBarController could not be found"
             CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
@@ -152,6 +157,8 @@ class AppNavigator {
         } else {
             courseDecisionViewController.content = .courseDetails
         }
+
+        self.currentCourseViewController = courseDecisionViewController
 
         navigationController.modalPresentationStyle = .fullScreen
         tabBarController.present(navigationController, animated: true)

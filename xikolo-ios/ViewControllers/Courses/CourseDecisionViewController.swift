@@ -46,7 +46,11 @@ class CourseDecisionViewController: UIViewController {
         self.performSegue(withIdentifier: "ShowContentChoice", sender: sender)
     }
 
-    @IBAction func closeCourse(_ sender: Any) {
+    @IBAction func tappedCloseButton(_ sender: Any) {
+        self.closeCourse()
+    }
+
+    func closeCourse() {
         self.dismiss(animated: true)
     }
 

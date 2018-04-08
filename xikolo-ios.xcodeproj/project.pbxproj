@@ -603,10 +603,10 @@
 		5040A60B20795BFE00E98351 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60920795BFD00E98351 /* WebViewController.storyboard */; };
 		5040A60C20795BFE00E98351 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60920795BFD00E98351 /* WebViewController.storyboard */; };
 		5040A60D20795BFE00E98351 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60920795BFD00E98351 /* WebViewController.storyboard */; };
-		5040A60E20795CB200E98351 /* CourseDecision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* CourseDecision.storyboard */; };
-		5040A60F20795CB200E98351 /* CourseDecision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* CourseDecision.storyboard */; };
-		5040A61020795CB200E98351 /* CourseDecision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* CourseDecision.storyboard */; };
-		5040A61120795CB200E98351 /* CourseDecision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* CourseDecision.storyboard */; };
+		5040A60E20795CB200E98351 /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* Course.storyboard */; };
+		5040A60F20795CB200E98351 /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* Course.storyboard */; };
+		5040A61020795CB200E98351 /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* Course.storyboard */; };
+		5040A61120795CB200E98351 /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* Course.storyboard */; };
 		5040A6182079780500E98351 /* CourseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6172079780500E98351 /* CourseInteractor.swift */; };
 		5040A6192079780500E98351 /* CourseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6172079780500E98351 /* CourseInteractor.swift */; };
 		5040A61A2079780500E98351 /* CourseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6172079780500E98351 /* CourseInteractor.swift */; };
@@ -643,10 +643,10 @@
 		504C5A791F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
 		504C5A7A1F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
 		504C5A7B1F99F8210021EB17 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504C5A6F1F99F8210021EB17 /* SyncEngine.swift */; };
-		50502E281FD04E56000A8D35 /* Learnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* Learnings.storyboard */; };
-		50502E291FD04E56000A8D35 /* Learnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* Learnings.storyboard */; };
-		50502E2A1FD04E56000A8D35 /* Learnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* Learnings.storyboard */; };
-		50502E2B1FD04E56000A8D35 /* Learnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* Learnings.storyboard */; };
+		50502E281FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */; };
+		50502E291FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */; };
+		50502E2A1FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */; };
+		50502E2B1FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */; };
 		5051F80F1FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */; };
 		5051F8101FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */; };
 		5051F8111FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */; };
@@ -1967,8 +1967,8 @@
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
 		5040A60420795BBE00E98351 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
 		5040A60920795BFD00E98351 /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
-		5040A61220795CB200E98351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseDecision.storyboard; sourceTree = "<group>"; };
-		5040A61520795CBA00E98351 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDecision.strings; sourceTree = "<group>"; };
+		5040A61220795CB200E98351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Course.storyboard; sourceTree = "<group>"; };
+		5040A61520795CBA00E98351 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Course.strings; sourceTree = "<group>"; };
 		5040A6172079780500E98351 /* CourseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInteractor.swift; sourceTree = "<group>"; };
 		5040A61C2079781900E98351 /* CourseTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTransitioningDelegate.swift; sourceTree = "<group>"; };
 		5040A6212079787000E98351 /* CoursePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePresentationController.swift; sourceTree = "<group>"; };
@@ -1976,8 +1976,8 @@
 		5040A62B207978BA00E98351 /* CourseDismissionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDismissionAnimator.swift; sourceTree = "<group>"; };
 		5040A63020797ED800E98351 /* CourseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigationController.swift; sourceTree = "<group>"; };
 		504C5A6F1F99F8210021EB17 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
-		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Learnings.storyboard; sourceTree = "<group>"; };
-		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Learnings.strings; sourceTree = "<group>"; };
+		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearnings.storyboard; sourceTree = "<group>"; };
+		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearnings.strings; sourceTree = "<group>"; };
 		5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+contentPreload.swift"; sourceTree = "<group>"; };
 		5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadSettingsViewController.swift; sourceTree = "<group>"; };
@@ -3050,8 +3050,8 @@
 				AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */,
 				24B6514B1D355B4A00624DBC /* TabNews.storyboard */,
 				AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */,
-				5040A61320795CB200E98351 /* CourseDecision.storyboard */,
-				50502E2D1FD04E56000A8D35 /* Learnings.storyboard */,
+				5040A61320795CB200E98351 /* Course.storyboard */,
+				50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */,
 				5040A60420795BBE00E98351 /* CourseDetails.storyboard */,
 				5040A60920795BFD00E98351 /* WebViewController.storyboard */,
 				500228F120583139003301A7 /* CourseItemHeader.xib */,
@@ -3642,7 +3642,7 @@
 				5040A60B20795BFE00E98351 /* WebViewController.storyboard in Resources */,
 				ABF26F8E1E94DDC500763A39 /* xikolo-ios.entitlements in Resources */,
 				24BA40E51D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
-				5040A60F20795CB200E98351 /* CourseDecision.storyboard in Resources */,
+				5040A60F20795CB200E98351 /* Course.storyboard in Resources */,
 				24BA41201D3F9BAD00E38C2C /* Localizable.strings in Resources */,
 				50DD352F1FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				24BA40FB1D3F9B3900E38C2C /* Common.strings in Resources */,
@@ -3654,7 +3654,7 @@
 				508BD0AB1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				24BA41061D3F9B5500E38C2C /* TabAccount.storyboard in Resources */,
 				249348161D9550FD006D4F2C /* Common.stringsdict in Resources */,
-				50502E291FD04E56000A8D35 /* Learnings.storyboard in Resources */,
+				50502E291FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */,
 				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
 				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
 				501F946C20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
@@ -3747,7 +3747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70D1EAE51EF0AC720088C0FF /* TabCourses.storyboard in Resources */,
-				5040A61120795CB200E98351 /* CourseDecision.storyboard in Resources */,
+				5040A61120795CB200E98351 /* Course.storyboard in Resources */,
 				70D1EB0B1EF0AD050088C0FF /* assets-ios-brand.xcassets in Resources */,
 				50DD35311FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				70D1EB311EF12E1E0088C0FF /* Common.strings in Resources */,
@@ -3758,7 +3758,7 @@
 				508BD0AD1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				70D1EB331EF12E210088C0FF /* Common.stringsdict in Resources */,
 				70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */,
-				50502E2B1FD04E56000A8D35 /* Learnings.storyboard in Resources */,
+				50502E2B1FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */,
 				70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
 				5040A60D20795BFE00E98351 /* WebViewController.storyboard in Resources */,
@@ -3803,9 +3803,9 @@
 				5040A60A20795BFE00E98351 /* WebViewController.storyboard in Resources */,
 				70D1EAE41EF0AC710088C0FF /* TabCourses.storyboard in Resources */,
 				70D1EAE11EF0AC530088C0FF /* Main.storyboard in Resources */,
-				5040A60E20795CB200E98351 /* CourseDecision.storyboard in Resources */,
+				5040A60E20795CB200E98351 /* Course.storyboard in Resources */,
 				ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */,
-				50502E281FD04E56000A8D35 /* Learnings.storyboard in Resources */,
+				50502E281FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */,
 				24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */,
 				508BD0AA1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				70D1EAE71EF0AC7D0088C0FF /* TabAccount.storyboard in Resources */,
@@ -3834,7 +3834,7 @@
 				5040A60C20795BFE00E98351 /* WebViewController.storyboard in Resources */,
 				ABF26F8F1E94DDCF00763A39 /* xikolo-ios.entitlements in Resources */,
 				ABA0F0FA1DF8CEB30001D88D /* Common.strings in Resources */,
-				5040A61020795CB200E98351 /* CourseDecision.storyboard in Resources */,
+				5040A61020795CB200E98351 /* Course.storyboard in Resources */,
 				ABA0F0161DF8CC420001D88D /* TabCourses.storyboard in Resources */,
 				50DD35301FD8983E002B40CC /* CourseHeaderView.xib in Resources */,
 				ABA0F0131DF8CC2F0001D88D /* TabAccount.storyboard in Resources */,
@@ -3846,7 +3846,7 @@
 				508BD0AC1FD6CCE100AF0167 /* CourseDateHeader.xib in Resources */,
 				ABA0F0121DF8CC220001D88D /* Main.storyboard in Resources */,
 				ABA0F0FC1DF8CEB60001D88D /* Common.stringsdict in Resources */,
-				50502E2A1FD04E56000A8D35 /* Learnings.storyboard in Resources */,
+				50502E2A1FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */,
 				ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */,
 				ABE0609E1DF8C21200FC186D /* assets-ios-brand.xcassets in Resources */,
 				501F946F20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
@@ -6515,22 +6515,22 @@
 			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
-		5040A61320795CB200E98351 /* CourseDecision.storyboard */ = {
+		5040A61320795CB200E98351 /* Course.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5040A61220795CB200E98351 /* Base */,
 				5040A61520795CBA00E98351 /* de */,
 			);
-			name = CourseDecision.storyboard;
+			name = Course.storyboard;
 			sourceTree = "<group>";
 		};
-		50502E2D1FD04E56000A8D35 /* Learnings.storyboard */ = {
+		50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				50502E2C1FD04E56000A8D35 /* Base */,
 				50502E2F1FD04E59000A8D35 /* de */,
 			);
-			name = Learnings.storyboard;
+			name = CourseLearnings.storyboard;
 			sourceTree = "<group>";
 		};
 		508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */ = {

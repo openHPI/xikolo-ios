@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CourseDecisionViewController: UIViewController {
+class CourseViewController: UIViewController {
 
     enum CourseContent: Int {
         case learnings = 0
@@ -82,7 +82,7 @@ class CourseDecisionViewController: UIViewController {
 
         switch content {
         case .learnings:
-            let storyboard = UIStoryboard(name: "Learnings", bundle: nil)
+            let storyboard = UIStoryboard(name: "CourseLearnings", bundle: nil)
             let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
             let viewController = initialViewController.require(toHaveType: CourseItemListViewController.self)
             viewController.course = course
@@ -171,7 +171,7 @@ class CourseDecisionViewController: UIViewController {
 
 }
 
-extension CourseDecisionViewController: UIPopoverPresentationControllerDelegate {
+extension CourseViewController: UIPopoverPresentationControllerDelegate {
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.overFullScreen

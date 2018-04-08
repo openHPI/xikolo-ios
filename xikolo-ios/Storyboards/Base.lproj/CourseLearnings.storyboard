@@ -300,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLM-6F-TPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1525" y="668"/>
+            <point key="canvasLocation" x="1778" y="668"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="zVG-t4-nV2">
@@ -597,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SaR-95-Nfn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="539" y="668"/>
+            <point key="canvasLocation" x="298" y="668"/>
         </scene>
         <!--WebViewController-->
         <scene sceneID="5qz-Dj-aIb">
@@ -605,7 +605,7 @@
                 <viewControllerPlaceholder storyboardName="WebViewController" referencedIdentifier="WebViewController" id="KeB-kN-D43" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUn-7r-9gJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="1155"/>
+            <point key="canvasLocation" x="296" y="1131"/>
         </scene>
     </scenes>
     <resources>

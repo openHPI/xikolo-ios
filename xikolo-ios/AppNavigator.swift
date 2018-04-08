@@ -139,7 +139,7 @@ class AppNavigator {
         return true
     }
 
-    static func show(course: Course, with content: CourseDecisionViewController.CourseContent = .learnings) {
+    static func show(course: Course, with content: CourseViewController.CourseContent = .learnings) {
         self.currentCourseViewController?.closeCourse()
         self.currentCourseViewController = nil
 
@@ -150,11 +150,11 @@ class AppNavigator {
             return
         }
 
-        let storyboard = UIStoryboard(name: "CourseDecision", bundle: nil)
+        let storyboard = UIStoryboard(name: "Course", bundle: nil)
         let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
         let courseNavigationController = initialViewController.require(toHaveType: CourseNavigationController.self)
         let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
-        let courseDecisionViewController = topViewController.require(toHaveType: CourseDecisionViewController.self)
+        let courseDecisionViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseDecisionViewController.course = course
 
         if course.accessible {

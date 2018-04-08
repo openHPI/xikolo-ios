@@ -44,10 +44,10 @@ class VideoViewController: UIViewController {
         self.errorView.isHidden = true
 
         self.navigationItem.rightBarButtonItem?.isEnabled = ReachabilityHelper.connection != .none
-        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
 
         self.videoActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.videoActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.videoActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
         self.videoProgressView.isHidden = true
         self.videoDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
         self.videoDownloadedIcon.isHidden = true
@@ -55,7 +55,7 @@ class VideoViewController: UIViewController {
         self.slidesView.isHidden = true
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
         self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
         self.slidesProgressView.isHidden = true
         self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
         self.slidesDownloadedIcon.isHidden = true
@@ -159,10 +159,10 @@ class VideoViewController: UIViewController {
         self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
 
         self.navigationItem.rightBarButtonItem?.isEnabled = video.videoUserAction != nil
-        self.navigationItem.rightBarButtonItem?.tintColor = video.videoUserAction != nil ? Brand.TintColor : .lightGray
+        self.navigationItem.rightBarButtonItem?.tintColor = video.videoUserAction != nil ? Brand.Color.primary : .lightGray
 
         self.videoActionsButton.isEnabled = video.videoUserAction != nil
-        self.videoActionsButton.tintColor = video.videoUserAction != nil ? Brand.TintColor : .lightGray
+        self.videoActionsButton.tintColor = video.videoUserAction != nil ? Brand.Color.primary : .lightGray
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -291,13 +291,13 @@ class VideoViewController: UIViewController {
 
     @objc func reachabilityChanged() {
         self.navigationItem.rightBarButtonItem?.isEnabled = ReachabilityHelper.connection != .none
-        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
 
         self.videoActionsButton.isEnabled = self.video?.videoUserAction != nil
-        self.videoActionsButton.tintColor = self.video?.videoUserAction != nil ? Brand.TintColor : .lightGray
+        self.videoActionsButton.tintColor = self.video?.videoUserAction != nil ? Brand.Color.primary : .lightGray
 
         self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
 
         self.updatePreferredVideoBitrate()
@@ -307,7 +307,7 @@ class VideoViewController: UIViewController {
         switch segue.identifier {
         case "ShowSlides"?:
             if let vc = segue.destination as? WebViewController {
-                vc.url = self.video?.slidesURL?.absoluteString
+                vc.url = self.video?.slidesURL
             }
         default:
             super.prepare(for: segue, sender: sender)

@@ -47,7 +47,7 @@ class CourseItemCell: UITableViewCell {
 
         let wasVisitedBefore = courseItem.visited
         self.readStateView.alpha = wasVisitedBefore ? 0.0 : 1.0
-        self.readStateView.backgroundColor = isAvailable ? Brand.TintColor : UIColor.lightGray
+        self.readStateView.backgroundColor = isAvailable ? Brand.Color.primary : UIColor.lightGray
 
         self.configureActionsButton(for: courseItem)
         self.configureProgressView(for: courseItem)
@@ -64,7 +64,7 @@ class CourseItemCell: UITableViewCell {
         }
 
         let isAvailable = !(self.delegate?.inOfflineMode ?? true) || video.isAvailableOffline
-        self.actionsButton.tintColor = isAvailable ? Brand.TintColor : UIColor.lightGray
+        self.actionsButton.tintColor = isAvailable ? Brand.Color.primary : UIColor.lightGray
         self.actionsButton.isHidden = false
     }
 

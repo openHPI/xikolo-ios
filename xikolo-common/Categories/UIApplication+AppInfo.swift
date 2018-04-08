@@ -7,6 +7,10 @@ import UIKit
 
 extension UIApplication {
 
+    static let bundleIdentifier: String = {
+        return Bundle.main.bundleIdentifier.require(hint: "Unable to retrieve bundle identifier")
+    }()
+
     //  Inspired by http://stackoverflow.com/a/7608711/2387552
     static let appName: String = {
         let key = kCFBundleNameKey as String

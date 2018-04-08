@@ -8,7 +8,7 @@ import UIKit
 
 class AppNavigator {
 
-    private static var currentCourseViewController: CourseDecisionViewController?
+    private static var currentCourseViewController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
     static func handle(userActivity: NSUserActivity, forApplication application: UIApplication, on tabBarController: UITabBarController?) -> Bool {
@@ -152,8 +152,8 @@ class AppNavigator {
 
         let storyboard = UIStoryboard(name: "CourseDecision", bundle: nil)
         let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-        let navigationController = initialViewController.require(toHaveType: UINavigationController.self)
-        let topViewController = navigationController.topViewController.require(hint: "Top view controller required")
+        let courseNavigationController = initialViewController.require(toHaveType: CourseNavigationController.self)
+        let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
         let courseDecisionViewController = topViewController.require(toHaveType: CourseDecisionViewController.self)
         courseDecisionViewController.course = course
 
@@ -163,12 +163,12 @@ class AppNavigator {
             courseDecisionViewController.content = .courseDetails
         }
 
-        self.currentCourseViewController = courseDecisionViewController
+        self.currentCourseViewController = courseNavigationController
 
-        navigationController.transitioningDelegate = self.courseTransitioningDelegate
-        navigationController.modalPresentationStyle = .custom
-        navigationController.modalPresentationCapturesStatusBarAppearance = true
+        courseNavigationController.transitioningDelegate = self.courseTransitioningDelegate
+        courseNavigationController.modalPresentationStyle = .custom
+        courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        tabBarController.present(navigationController, animated: true)
+        tabBarController.present(courseNavigationController, animated: true)
     }
 }

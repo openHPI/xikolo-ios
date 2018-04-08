@@ -27,11 +27,8 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         containerView.addSubview(blurEffectView)
 
-        let navigationController = toViewController.require(toHaveType: UINavigationController.self)
-        let topViewController = navigationController.topViewController.require(hint: "Top view controller required")
-        let courseDecisionViewController = topViewController.require(toHaveType: CourseDecisionViewController.self)
-
-        let tapGestureRecognizer = UITapGestureRecognizer(target: courseDecisionViewController, action: #selector(CourseDecisionViewController.closeCourse))
+        let courseNavigationController = toViewController.require(toHaveType: CourseNavigationController.self)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: courseNavigationController, action: #selector(CourseNavigationController.closeCourse))
         tapGestureRecognizer.numberOfTouchesRequired = 1
         blurEffectView.addGestureRecognizer(tapGestureRecognizer)
 

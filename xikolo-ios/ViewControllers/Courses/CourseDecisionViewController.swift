@@ -47,11 +47,11 @@ class CourseDecisionViewController: UIViewController {
     }
 
     @IBAction func tappedCloseButton(_ sender: Any) {
-        self.closeCourse()
-    }
-
-    @objc func closeCourse() {
-        self.dismiss(animated: true)
+        if let courseNavigationController = self.navigationController as? CourseNavigationController {
+            courseNavigationController.closeCourse()
+        } else {
+            self.dismiss(animated: true) // because this is the first view controller
+        }
     }
 
     func decideContent() {

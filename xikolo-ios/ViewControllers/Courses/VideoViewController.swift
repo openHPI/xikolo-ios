@@ -315,8 +315,11 @@ class VideoViewController: UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
         self.toggleControlBars(true)
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
+
         if #available(iOS 11.0, *) {
             self.setNeedsUpdateOfHomeIndicatorAutoHidden()
         }

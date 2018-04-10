@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.2
+osx_image: xcode9.3beta
 xcode_workspace: xikolo-ios.xcworkspace
 xcode_scheme: xikolo-ios
 cache: cocoapods

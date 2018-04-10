@@ -46,7 +46,7 @@ extension CourseHelper {
             notEnrolledPredicate,
         ])
 
-        static var genericCoursesRequest: NSFetchRequest<Course> {
+        private static var genericCoursesRequest: NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
             let customOrderSort = NSSortDescriptor(key: "order", ascending: true)
             request.sortDescriptors = [customOrderSort]
@@ -73,6 +73,15 @@ extension CourseHelper {
 
         static var allCourses: NSFetchRequest<Course> {
             return Course.fetchRequest() as NSFetchRequest<Course>
+        }
+
+        static var accessibleCourses: NSFetchRequest<Course> {
+            let request = self.genericCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                genericPredicate,
+                accessiblePredicate,
+            ])
+            return request
         }
 
         static var interestingCoursesRequest: NSFetchRequest<Course> {
@@ -121,6 +130,16 @@ extension CourseHelper {
                 genericPredicate,
                 notEnrolledPredicate,
                 selfpacedPredicate,
+            ])
+            return request
+        }
+
+        static var enrolledCourses: NSFetchRequest<Course> {
+            let request = self.genericCoursesRequest
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                genericPredicate,
+                enrolledPredicate,
+                accessiblePredicate,
             ])
             return request
         }

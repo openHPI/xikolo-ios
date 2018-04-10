@@ -54,7 +54,7 @@ extension UIAlertController {
     }
 }
 
-private extension UIView { // swiftlint:disable:this no_extension_access_modifier
+private extension UIView {
 
     /// Searches a `UILabel` with the given text in the view's subviews hierarchy.
     ///

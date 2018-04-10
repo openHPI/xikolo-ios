@@ -38,7 +38,7 @@ extension Video {
 extension Video {
 
     var userActions: [UIAlertAction] {
-        return [self.videoUserAction].flatMap { $0 }
+        return [self.videoUserAction].compactMap { $0 }
     }
 
     var videoUserAction: UIAlertAction? {

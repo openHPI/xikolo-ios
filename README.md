@@ -5,7 +5,7 @@ iOS application for openHPI, openSAP, mooc.house and OpenWHO
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Development toolchain
-- Xcode 9.2
+- Xcode 9.3
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

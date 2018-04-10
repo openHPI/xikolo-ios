@@ -8,11 +8,12 @@ import UIKit
 
 struct Brand {
 
-    static let BaseURL = "https://open.sap.com"
+    static let Host = "open.sap.com"
 
     static let TintColor = UIColor(red: 240 / 255, green: 171 / 255, blue: 0 / 255, alpha: 1.0)
     static let TintColorSecond = UIColor(red: 34 / 255, green: 108 / 255, blue: 169 / 255, alpha: 1.0)
     static let TintColorThird = UIColor(red: 138 / 255, green: 181 / 255, blue: 78 / 255, alpha: 1.0)
+
     static let AppID = "de.xikolo.opensap"
     static let PlatformTitle = "sap"
 

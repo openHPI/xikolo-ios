@@ -9,7 +9,7 @@ import Reachability
 class ReachabilityHelper {
 
     static var reachability: Reachability = {
-        return Reachability(hostname: Brand.host)!
+        return Reachability(hostname: Brand.Host)!
     }()
 
     static var connection: Reachability.Connection {

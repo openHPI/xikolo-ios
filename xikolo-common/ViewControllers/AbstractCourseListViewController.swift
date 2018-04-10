@@ -17,7 +17,6 @@ class AbstractCourseListViewController: UICollectionViewController {
 
     var resultsControllers: [NSFetchedResultsController<Course>] = []
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
-    var searchResultsController: NSFetchedResultsController<Course>?
     var courseDisplayMode: CourseDisplayMode = .enrolledOnly {
         didSet {
             if self.courseDisplayMode != oldValue {
@@ -63,7 +62,7 @@ class AbstractCourseListViewController: UICollectionViewController {
             ]
         }
 
-        let searchFetchRequest = CourseHelper.FetchRequest.genericCoursesRequest
+        let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
                                                                                                         resultsControllers: resultsControllers,
                                                                                                         searchFetchRequest: searchFetchRequest,

@@ -23,7 +23,22 @@ class CertificatesListViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+
     func showCertificate(url: URL) {
+        let config = URLSessionConfiguration.background(withIdentifier: "com.example.DownloadTaskExample.background")
+        config.httpAdditionalHeaders  = NetworkHelper.getRequestHeaders()
+        let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue())
+        let task = session.downloadTask(with: url)
+        task.resume()
+
+
+
+
+
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
         safariVC.preferredControlTintColor = Brand.windowTintColor
@@ -110,5 +125,25 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
     }
+
+}
+
+extension CertificatesListViewController : URLSessionTaskDelegate, URLSessionDownloadDelegate {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        if totalBytesExpectedToWrite > 0 {
+            let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+            debugPrint("Progress \(downloadTask) \(progress)")
+        }
+    }
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        log.info("Certificate successfully downloaded to: " + location.absoluteString)
+        //try? FileManager.default.removeItem(at: location)
+    }
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        log.error(error.debugDescription)
+    }
+
 
 }

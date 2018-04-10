@@ -11,7 +11,7 @@ class CertificatesListViewController: UITableViewController {
 
     var course: Course!
 
-    var certificates: [(String, URL?)] = []
+    var certificates: [(name: String, url: URL?)] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +69,7 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = certificates[indexPath.row].1 {
+        if let url = certificates[indexPath.row].url {
             let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
             vc.url = url.absoluteString
@@ -79,9 +79,9 @@ extension CertificatesListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
-        cell.textLabel?.text = certificates[indexPath.row].0
-        cell.detailTextLabel?.text = certificateState(certificates[indexPath.row].1)
-        cell.enable(certificates[indexPath.row].1 != nil)
+        cell.textLabel?.text = certificates[indexPath.row].name
+        cell.detailTextLabel?.text = certificateState(certificates[indexPath.row].url)
+        cell.enable(certificates[indexPath.row].url != nil)
         return cell
     }
 }

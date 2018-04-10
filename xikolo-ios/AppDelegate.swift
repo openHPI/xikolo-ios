@@ -22,7 +22,7 @@ class AppDelegate: AbstractAppDelegate {
     }
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window?.tintColor = Brand.windowTintColor
+        self.window?.tintColor = Brand.Color.window
 
         // select start tab
         self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1

@@ -6,26 +6,24 @@
 import BrightFutures
 import Foundation
 
-class NetworkHelper {
+struct NetworkHelper {
 
-    class func getRequestHeaders() -> [String: String] {
+    static var requestHeaders: [String: String] {
         var headers = [
-            Routes.HTTP_ACCEPT_HEADER: Routes.HTTP_ACCEPT_HEADER_VALUE,
+            Routes.Header.acceptKey: Routes.Header.acceptValue,
         ]
 
         if UserProfileHelper.isLoggedIn() {
-            headers[Routes.HTTP_AUTH_HEADER] = Routes.HTTP_AUTH_HEADER_VALUE_PREFIX + UserProfileHelper.userToken
+            headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.userToken
         }
 
-        headers[Routes.HEADER_USER_PLATFORM] = Routes.HEADER_USER_PLATFORM_VALUE
+        headers[Routes.Header.userPlatformKey] = Routes.Header.userPlatformValue
         return headers
     }
 
-    class func getRequestForURL(_ url: String) -> NSMutableURLRequest {
-        // TODO: test whether url is a valid url
-        let url = URL(string: url).require(hint: "Can't build URLRequest from invalid URL")
+    static func request(for url: URL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(url: url)
-        request.allHTTPHeaderFields = getRequestHeaders()
+        request.allHTTPHeaderFields = self.requestHeaders
         return request
     }
 

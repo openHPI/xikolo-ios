@@ -645,6 +645,30 @@
 		5057ED8E1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
 		5057ED8F1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
 		5057ED901FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
+		50604586206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		50604587206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		50604588206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		50604589206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		5060458A206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		5060458B206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		5060458C206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		5060458D206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		5060458E206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		5060458F206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		50604590206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		50604591206BCE10009569D1 /* XikoloBrandColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604585206BCE10009569D1 /* XikoloBrandColor.swift */; };
+		50604593206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		50604594206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		50604595206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		50604596206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		50604597206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		50604598206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		50604599206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		5060459A206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		5060459B206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		5060459C206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		5060459D206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
+		5060459E206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
 		5060A5221F177304007896FF /* DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedCourseItem.swift */; };
 		5060A5251F177304007896FF /* DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedCourseItem.swift */; };
 		5060A5281F177304007896FF /* DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedCourseItem.swift */; };
@@ -1224,9 +1248,9 @@
 		70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		70D1EB0F1EF12DE90088C0FF /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93511EF09BB500F8F045 /* assets-brand.xcassets */; };
 		70D1EB101EF12DEC0088C0FF /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709C93521EF09BB500F8F045 /* Brand.swift */; };
-		70D1EB111EF12DF00088C0FF /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		70D1EB121EF12DF00088C0FF /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		70D1EB131EF12DF10088C0FF /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		70D1EB111EF12DF00088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		70D1EB121EF12DF00088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		70D1EB131EF12DF10088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		70D1EB201EF12E010088C0FF /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
 		70D1EB211EF12E010088C0FF /* AbstractCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D4AEB1CC992C300E35B1F /* AbstractCourseListViewController.swift */; };
 		70D1EB221EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
@@ -1394,18 +1418,18 @@
 		AB4F22881D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
 		AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
 		AB4F228A1D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
-		AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB4F6CFD1E0C336800FD1CC9 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB4F6CFE1E0C336800FD1CC9 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB4F6CFC1E0C336700FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		AB4F6CFD1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		AB4F6CFE1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
 		AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
 		AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
-		AB77C2971DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB77C2981DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB77C2991DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB77C29B1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
-		AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* Brand+generic.swift */; };
+		AB77C2971DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		AB77C2981DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		AB77C2991DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		AB77C29A1DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		AB77C29B1DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
+		AB77C29C1DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
 		AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */; };
 		AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -1951,6 +1975,8 @@
 		5051F80E1FC85A5A00FD1AA4 /* SyncPushEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
 		5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+contentPreload.swift"; sourceTree = "<group>"; };
 		5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadSettingsViewController.swift; sourceTree = "<group>"; };
+		50604585206BCE10009569D1 /* XikoloBrandColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloBrandColor.swift; sourceTree = "<group>"; };
+		50604592206BCF48009569D1 /* URL+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+URLQueryItem.swift"; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedCourseItem.swift; sourceTree = "<group>"; };
 		5068B9CA1FEA94A10047A75E /* Future+retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+retry.swift"; sourceTree = "<group>"; };
 		506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
@@ -2072,7 +2098,7 @@
 		AB4F226D1D7CB95500ED0BF1 /* CourseDecisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDecisionViewController.swift; sourceTree = "<group>"; };
 		AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventHelper.swift; sourceTree = "<group>"; };
 		AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
-		AB77C2961DF956EE00B30619 /* Brand+generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Brand+generic.swift"; sourceTree = "<group>"; };
+		AB77C2961DF956EE00B30619 /* XikoloBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloBrand.swift; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemListViewController.swift; sourceTree = "<group>"; };
@@ -2407,7 +2433,8 @@
 				249C01AF1D3F724D00B54AAC /* openSAP */,
 				ABE060901DF8C17800FC186D /* openWHO */,
 				709C93501EF09B9E00F8F045 /* moocHOUSE */,
-				AB77C2961DF956EE00B30619 /* Brand+generic.swift */,
+				AB77C2961DF956EE00B30619 /* XikoloBrand.swift */,
+				50604585206BCE10009569D1 /* XikoloBrandColor.swift */,
 			);
 			path = Branding;
 			sourceTree = "<group>";
@@ -2543,6 +2570,8 @@
 				7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */,
 				50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */,
 				70103CEE20110C31006DA177 /* Logger.swift */,
+				24A16D8F1CFFA3E500CAD9FE /* Error.swift */,
+				F81523921B67AC9F009803B1 /* Routes.swift */,
 			);
 			path = "xikolo-common";
 			sourceTree = "<group>";
@@ -2552,8 +2581,6 @@
 			children = (
 				24597D231CC6C87600FB5338 /* Model */,
 				F80D67DC1B9881FA00E27520 /* Helper */,
-				24A16D8F1CFFA3E500CAD9FE /* Error.swift */,
-				F81523921B67AC9F009803B1 /* Routes.swift */,
 				24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */,
 			);
 			path = Data;
@@ -2585,6 +2612,7 @@
 				501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */,
 				50F45AE0200D06BD009304A3 /* Date.swift */,
 				5012123D1FCC670D0022A7AF /* Date+Marshal.swift */,
+				50604592206BCF48009569D1 /* URL+URLQueryItem.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				50EFACBD1FFFB25400169C35 /* SafeCastable.swift */,
 			);
@@ -4553,7 +4581,7 @@
 				50EFACB31FFE3C0100169C35 /* Optional+require.swift in Sources */,
 				50F57DCB1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				2474C8741D86FE17009BDB94 /* QuizQuestion.swift in Sources */,
-				AB77C2991DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				AB77C2991DF956EE00B30619 /* XikoloBrand.swift in Sources */,
 				2474C8841D86FE2E009BDB94 /* TrackingEvent.swift in Sources */,
 				2474C88C1D86FE63009BDB94 /* AVMetadataItem+convenience.swift in Sources */,
 				501212181FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
@@ -4597,8 +4625,10 @@
 				2474C87E1D86FE25009BDB94 /* Video.swift in Sources */,
 				ABDD84BD1D8E010500C7D193 /* PeerAssessment.swift in Sources */,
 				50F57DB11FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
+				50604595206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				24BA413F1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */,
 				2474C8621D86FDFE009BDB94 /* CourseItem.swift in Sources */,
+				50604588206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				50F45AD6200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				ABDD84BF1D8E010900C7D193 /* LTIExercise.swift in Sources */,
 				249C01C51D3F78E100B54AAC /* Brand.swift in Sources */,
@@ -4642,6 +4672,7 @@
 				243CE4851D709999007C59B6 /* Enrollment.swift in Sources */,
 				AB35C9351E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				5053988D1F72A9FB00A87DC8 /* UserDefaultsKeys.swift in Sources */,
+				50604589206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				24BA411D1D3F9B9D00E38C2C /* AppDelegate.swift in Sources */,
 				50371FFF20501388006E9634 /* CourseItemDetailView.swift in Sources */,
@@ -4650,7 +4681,7 @@
 				4E2B821E1DDB0EE200559217 /* CourseDatesListViewController.swift in Sources */,
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
-				AB77C29A1DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				AB77C29A1DF956EE00B30619 /* XikoloBrand.swift in Sources */,
 				50F57DA51FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				50F57D231FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				24BA41181D3F9B9100E38C2C /* CourseCell.swift in Sources */,
@@ -4744,6 +4775,7 @@
 				70F456501F0139BA00A2C6B7 /* AnnouncementsListViewController.swift in Sources */,
 				24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */,
 				24BA411A1D3F9B9500E38C2C /* AnnouncementCell.swift in Sources */,
+				50604596206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				24E3DD1A1D5DFD5000297118 /* QuizOption.swift in Sources */,
 				ABC8A14E1D6895A00059CEF2 /* WebViewController.swift in Sources */,
 				3D6F12F61F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */,
@@ -4850,6 +4882,7 @@
 				243CE49E1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				243CE4741D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */,
 				501212421FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
+				5060458A206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				50F57DDA1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				50F57DB31FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				24BA40D31D3F9AF100E38C2C /* CourseSectionHelper.swift in Sources */,
@@ -4891,7 +4924,8 @@
 				24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */,
 				249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
 				24BA40AD1D3F9AC300E38C2C /* Announcement.swift in Sources */,
-				AB77C29B1DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				50604597206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
+				AB77C29B1DF956EE00B30619 /* XikoloBrand.swift in Sources */,
 				50EFACB51FFE3C0100169C35 /* Optional+require.swift in Sources */,
 				24BA40A11D3F9AB300E38C2C /* Quiz.swift in Sources */,
 				24BA41301D3F9D1A00E38C2C /* ViewControllerLoadingHelper.swift in Sources */,
@@ -4950,7 +4984,7 @@
 				50F57DCE1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				2474C8751D86FE18009BDB94 /* QuizQuestion.swift in Sources */,
 				24BA40CB1D3F9AE800E38C2C /* UserProfileHelper.swift in Sources */,
-				AB77C29C1DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				AB77C29C1DF956EE00B30619 /* XikoloBrand.swift in Sources */,
 				5012121B1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
 				5012120E1FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				5051F8141FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
@@ -4992,8 +5026,10 @@
 				2474C87F1D86FE26009BDB94 /* Video.swift in Sources */,
 				ABDD84BE1D8E010600C7D193 /* PeerAssessment.swift in Sources */,
 				50F57DB41FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
+				50604598206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				2474C8631D86FDFE009BDB94 /* CourseItem.swift in Sources */,
 				ABDD84C01D8E010A00C7D193 /* LTIExercise.swift in Sources */,
+				5060458B206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				50F45AD9200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				24BA413C1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24BA40CE1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
@@ -5075,6 +5111,7 @@
 				4E6AB1F91DD36AB500B048DB /* CourseDate.swift in Sources */,
 				24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */,
 				5012123F1FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
+				50604587206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				243CE49C1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				50F57DD71FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				243CE4731D660F1F007C59B6 /* CollectionType+shuffle.swift in Sources */,
@@ -5116,7 +5153,8 @@
 				24D48E2C1CCA934300E8051E /* UserProfileHelper.swift in Sources */,
 				24895DBD1CCAF05000D6DFB8 /* CourseCell.swift in Sources */,
 				249E3A9A1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
-				AB77C2981DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				50604594206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
+				AB77C2981DF956EE00B30619 /* XikoloBrand.swift in Sources */,
 				50EFACB21FFE3C0100169C35 /* Optional+require.swift in Sources */,
 				24B6514E1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
 				243CE4971D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
@@ -5302,6 +5340,7 @@
 				5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */,
 				70D1EAD61EF0AC290088C0FF /* Error.swift in Sources */,
 				70D1EA251EF0AAE50088C0FF /* CourseItem.swift in Sources */,
+				5060458F206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				5019A75E1F20AAE4008C8138 /* NSMutableAttributedString+trim.swift in Sources */,
 				5051F8181FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				70D1EAF61EF0ACB60088C0FF /* WebViewController.swift in Sources */,
@@ -5330,8 +5369,9 @@
 				70103CF820110C31006DA177 /* Logger.swift in Sources */,
 				70D1EAED1EF0AC9D0088C0FF /* CourseActivityViewController.swift in Sources */,
 				70D1EB281EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */,
+				5060459C206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				50ED3C581F4AE80100CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
-				70D1EB111EF12DF00088C0FF /* Brand+generic.swift in Sources */,
+				70D1EB111EF12DF00088C0FF /* XikoloBrand.swift in Sources */,
 				70D1EAF21EF0ACAD0088C0FF /* DropdownViewController.swift in Sources */,
 				70D1EAF81EF0ACBC0088C0FF /* (null) in Sources */,
 				70D1E9F51EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
@@ -5474,6 +5514,7 @@
 				70D1EADA1EF0AC2C0088C0FF /* Routes.swift in Sources */,
 				5071BA281FCD901600BF5C5F /* NavigationBar+Layout.swift in Sources */,
 				70D1EB4F1EF1342E0088C0FF /* ItemVideoLoadingController.swift in Sources */,
+				5060459D206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				70D1E9F61EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
 				70D1EA761EF0AB480088C0FF /* TrackingEventUser.swift in Sources */,
 				50D9B17A1F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
@@ -5507,8 +5548,9 @@
 				5068B9D51FEA94A10047A75E /* Future+retry.swift in Sources */,
 				50F57DED1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				70D1EB4A1EF134200088C0FF /* ItemQuizViewController.swift in Sources */,
+				50604590206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				70D1EB411EF133FA0088C0FF /* ServiceProvider.swift in Sources */,
-				70D1EB121EF12DF00088C0FF /* Brand+generic.swift in Sources */,
+				70D1EB121EF12DF00088C0FF /* XikoloBrand.swift in Sources */,
 				50F57DFA1FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				70D1EA271EF0AAE60088C0FF /* CourseItem.swift in Sources */,
 				70D1EA7E1EF0AB510088C0FF /* (null) in Sources */,
@@ -5553,7 +5595,7 @@
 				70D1EA491EF0AB100088C0FF /* Announcement.swift in Sources */,
 				501212631FCC679F0022A7AF /* Pushable.swift in Sources */,
 				50F57DA01FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
-				70D1EB131EF12DF10088C0FF /* Brand+generic.swift in Sources */,
+				70D1EB131EF12DF10088C0FF /* XikoloBrand.swift in Sources */,
 				50ED3C591F4AE80200CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				50F57D2B1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				50F45AEC200D06BD009304A3 /* Date.swift in Sources */,
@@ -5575,8 +5617,10 @@
 				70D1EA641EF0AB350088C0FF /* QuizOption.swift in Sources */,
 				70D1EA701EF0AB410088C0FF /* RichText.swift in Sources */,
 				70D1EAD31EF0AC210088C0FF /* UserProfileHelper.swift in Sources */,
+				5060459E206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				50F57DBA1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				70D1EA551EF0AB1E0088C0FF /* PeerAssessment.swift in Sources */,
+				50604591206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				50F45ADF200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				70D1EA851EF0AB570088C0FF /* Video.swift in Sources */,
 				70D1EA1B1EF0AAD90088C0FF /* CourseCertificatesHash.swift in Sources */,
@@ -5620,6 +5664,7 @@
 				F80D67931B98683400E27520 /* AnnouncementViewController.swift in Sources */,
 				243CE48C1D786422007C59B6 /* TrackingEvent.swift in Sources */,
 				24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */,
+				50604586206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				243CE4831D709999007C59B6 /* Enrollment.swift in Sources */,
 				24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */,
 				50371FFE20501388006E9634 /* CourseItemDetailView.swift in Sources */,
@@ -5630,7 +5675,7 @@
 				24128FAC1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
 				AB4F22871D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24A16D781CFDD27200CAD9FE /* RichText.swift in Sources */,
-				AB77C2971DF956EE00B30619 /* Brand+generic.swift in Sources */,
+				AB77C2971DF956EE00B30619 /* XikoloBrand.swift in Sources */,
 				AB2802CB1D2A8ABB008C8BAE /* Announcement.swift in Sources */,
 				50F57DA21FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				50F57D201FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
@@ -5722,6 +5767,7 @@
 				2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				24E3DD181D5DFD5000297118 /* QuizOption.swift in Sources */,
 				ABC8A14D1D6895A00059CEF2 /* WebViewController.swift in Sources */,
+				50604593206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				3D6F12F41F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */,
 				ABFCF7631E81EEC40043C7B7 /* User.swift in Sources */,
 				501212721FCC68830022A7AF /* ResourceRepresentable.swift in Sources */,
@@ -5790,6 +5836,7 @@
 				505398911F72A9FD00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				ABA0F0BB1DF8CE270001D88D /* CoreDataHelper.swift in Sources */,
 				AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */,
+				5060458C206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */,
 				5037200020501388006E9634 /* CourseItemDetailView.swift in Sources */,
@@ -5892,6 +5939,7 @@
 				ABFFA8601EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				50C92B8C1FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				ABA0F02F1DF8CD010001D88D /* UIView+shake.swift in Sources */,
+				50604599206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				ABA0F0FF1DF8CEB90001D88D /* AbstractAppDelegate.swift in Sources */,
 				501212781FCC68830022A7AF /* ResourceRepresentable.swift in Sources */,
 				5012125E1FCC679F0022A7AF /* Pushable.swift in Sources */,
@@ -5915,7 +5963,7 @@
 				50F7202F1F28E29B00779995 /* Video+Download.swift in Sources */,
 				7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */,
 				50BEC8312036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */,
-				AB4F6CFC1E0C336700FD1CC9 /* Brand+generic.swift in Sources */,
+				AB4F6CFC1E0C336700FD1CC9 /* XikoloBrand.swift in Sources */,
 				ABC1BF251E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				50F57DCF1FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
@@ -5998,6 +6046,7 @@
 				50F57DDD1FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				50F57DB61FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				501212451FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
+				5060458D206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				ABA0F0ED1DF8CE990001D88D /* AbstractLoginViewController.swift in Sources */,
 				ABA0F1051DF8CEC20001D88D /* XikoloURL.swift in Sources */,
 				ABA0F1121DF8CF630001D88D /* ItemQuizViewController.swift in Sources */,
@@ -6020,7 +6069,7 @@
 				50D9B16F1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				ABA0F0321DF8CD060001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				501212521FCC67510022A7AF /* Pullable.swift in Sources */,
-				AB4F6CFD1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
+				AB4F6CFD1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */,
 				ABFCF7681E81EEC40043C7B7 /* User.swift in Sources */,
 				ABA0F1131DF8CF680001D88D /* AbstractQuestionViewController.swift in Sources */,
 				ABA0F0731DF8CDB80001D88D /* Announcement.swift in Sources */,
@@ -6039,6 +6088,7 @@
 				ABE060AB1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */,
 				ABA0F0F31DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F1161DF8CF710001D88D /* ItemRichTextController.swift in Sources */,
+				5060459A206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				ABA0F0A01DF8CDF70001D88D /* TrackingEventResource.swift in Sources */,
 				50EFACB81FFE3C0100169C35 /* Optional+require.swift in Sources */,
 				ABA0F08E1DF8CDDF0001D88D /* RichText.swift in Sources */,
@@ -6091,7 +6141,7 @@
 				50F57DF81FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				ABA0F0861DF8CDD20001D88D /* QuizQuestion.swift in Sources */,
 				ABA0F0C61DF8CE330001D88D /* NetworkHelper.swift in Sources */,
-				AB4F6CFE1E0C336800FD1CC9 /* Brand+generic.swift in Sources */,
+				AB4F6CFE1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */,
 				501212531FCC67510022A7AF /* Pullable.swift in Sources */,
 				70A830AA1EC780B90029235D /* CourseDateHelper.swift in Sources */,
 				50F57DD11FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
@@ -6114,6 +6164,7 @@
 				50F57DC41FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				ABA0F07A1DF8CDC10001D88D /* PeerAssessment.swift in Sources */,
 				ABE0609A1DF8C1A600FC186D /* Brand.swift in Sources */,
+				5060458E206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				501212601FCC679F0022A7AF /* Pushable.swift in Sources */,
 				50F45ADC200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				50F57D9D1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
@@ -6159,6 +6210,7 @@
 				AB17C5891DFCC5CC0013BBCD /* PlatformEvent.swift in Sources */,
 				50EFACC61FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				70A8309B1EC7807F0029235D /* CourseCertificates.swift in Sources */,
+				5060459B206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				70A830AD1EC780F40029235D /* AnnouncementHelper.swift in Sources */,
 				ABA0F09E1DF8CDF30001D88D /* TrackingEventVerb.swift in Sources */,
 				ABA0F0331DF8CD070001D88D /* AVMetadataItem+convenience.swift in Sources */,

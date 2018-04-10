@@ -28,7 +28,8 @@ class MarkdownHelper {
         var url = url
         if url.scheme == "applewebdata" { // replace applewebdata with baseURL for relative urls in markdown
             var absoluteString = url.absoluteString
-            let trimmedUrlString = absoluteString.stringByRemovingRegexMatches(pattern: "^(?:applewebdata://[0-9A-Z-]*/?)", replaceWith: Brand.BaseURL + "/")
+            let trimmedUrlString = absoluteString.stringByRemovingRegexMatches(pattern: "^(?:applewebdata://[0-9A-Z-]*/?)",
+                                                                               replaceWith: Routes.base.absoluteString + "/")
             guard let trimmedString = trimmedUrlString else { return nil }
             guard let trimmedURL = URL(string: trimmedString) else { return nil }
             url = trimmedURL

@@ -37,7 +37,9 @@ class CoreDataHelper {
     }
 
     static func clearCoreDataStorage() -> Future<Void, XikoloError> {
-        return self.persistentContainer.managedObjectModel.entitiesByName.keys.traverse { entityName in
+        return self.persistentContainer.managedObjectModel.entitiesByName.keys.filter { entityName in
+            return entityName != "TrackingEvent"
+        }.traverse { entityName in
             return self.clearCoreDataEntity(entityName)
         }.asVoid()
     }

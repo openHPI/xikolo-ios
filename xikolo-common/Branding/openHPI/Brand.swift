@@ -6,27 +6,20 @@
 import Foundation
 import UIKit
 
-struct Brand {
+struct Brand: XikoloBrand {
 
-    static let Host = "open.hpi.de"
-
-    static let TintColor = UIColor(red: 222 / 255, green: 98 / 255, blue: 18 / 255, alpha: 1.0)
-    static let TintColorSecond = UIColor(red: 180 / 255, green: 41 / 255, blue: 70 / 255, alpha: 1.0)
-    static let TintColorThird = UIColor(red: 245 / 255, green: 167 / 255, blue: 4 / 255, alpha: 1.0)
-    static let AppID = "de.xikolo.openhpi"
-    static let PlatformTitle = "hpi"
-
-    static let IMPRINT_URL = Brand.BaseURL + "/pages/imprint"
-    static let PRIVACY_URL = Brand.BaseURL + "/pages/privacy"
-
-    static let FeedbackRecipients = ["mobile-feedback@hpi.de"]
-    static let FeedbackSubject = "openHPI | App Feedback"
-
-    static var copyrightText: String {
-        let currentYear = Calendar.current.component(.year, from: Date())
-        return "Copyright © \(currentYear) HPI. All rights reserved."
+    struct Color: XikoloBrandColor {
+        static let primary = UIColor(red: 222 / 255, green: 98 / 255, blue: 18 / 255, alpha: 1.0)
+        static let secondary = UIColor(red: 180 / 255, green: 41 / 255, blue: 70 / 255, alpha: 1.0)
+        static let tertiary = UIColor(red: 245 / 255, green: 167 / 255, blue: 4 / 255, alpha: 1.0)
     }
 
-    static let poweredByText: String? = nil
+    static let host = "open.hpi.de"
+    static let imprintURL = Routes.base.appendingPathComponents(["pages", "imprint"])
+    static let privacyURL = Routes.base.appendingPathComponents(["pages", "privacy"])
+
+    static let platformTitle = "hpi"
+
+    static let copyrightName = "HPI"
 
 }

@@ -15,8 +15,12 @@ class CertificatesListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        certificates = findAvailableCertificates()
         self.setupEmptyState()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        certificates = findAvailableCertificates()
+        super.viewWillAppear(animated)
     }
 
     func showCertificate(url: URL) {

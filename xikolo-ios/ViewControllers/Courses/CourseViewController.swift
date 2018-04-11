@@ -16,7 +16,6 @@ class CourseViewController: UIViewController {
 
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleView: UILabel!
-    @IBOutlet private weak var dropdownIcon: UIImageView!
 
     var containerContentViewController: UIViewController?
     var course: Course!
@@ -34,6 +33,16 @@ class CourseViewController: UIViewController {
         self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: { [weak self] in
             self?.closeCourse()
         })
+
+        self.titleView.text = self.course.title
+
+        if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
+            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font: self.titleView.font]).width
+            var frame = titleView.frame
+            frame.size.width = titleWidth + 2
+            titleView.frame = frame
+            titleView.setNeedsLayout()
+        }
 
         SpotlightHelper.setUserActivity(for: self.course)
         CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
@@ -123,17 +132,6 @@ class CourseViewController: UIViewController {
         self.addChildViewController(configuredViewController)
         configuredViewController.didMove(toParentViewController: self)
         self.containerContentViewController = configuredViewController
-
-
-        self.titleView.text = content.title // TODO: we need somethign different here
-        // set width for new title view
-        if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font: self.titleView.font]).width
-            var frame = titleView.frame
-            frame.size.width = titleWidth + self.dropdownIcon.frame.width + 2
-            titleView.frame = frame
-            titleView.setNeedsLayout()
-        }
     }
 
     func changeToViewController(_ viewController: UIViewController) {
@@ -147,24 +145,6 @@ class CourseViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let courseContentListViewController = segue.destination as? CourseContentListViewController {
             courseContentListViewController.delegate = self
-        }
-
-        switch segue.identifier {
-        case "ShowContentChoice"?:
-            let dropdownViewController = segue.destination.require(toHaveType: DropdownViewController.self)
-            if let ppc = dropdownViewController.popoverPresentationController {
-                if let view = navigationItem.titleView {
-                    ppc.sourceView = view
-                    ppc.sourceRect = view.bounds
-                }
-
-                dropdownViewController.course = course
-                let minimumSize = dropdownViewController.view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-                dropdownViewController.preferredContentSize = minimumSize
-                ppc.delegate = self
-            }
-        default:
-            break
         }
     }
 
@@ -181,24 +161,6 @@ class CourseViewController: UIViewController {
         }
 
         self.present(activityViewController, animated: true)
-    }
-
-}
-
-// TODO: cann be removed later
-extension CourseViewController: UIPopoverPresentationControllerDelegate {
-
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.overFullScreen
-    }
-
-    func presentationController(_ controller: UIPresentationController,
-                                viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
-        visualEffectView.frame = navigationController.view.bounds
-        navigationController.view.insertSubview(visualEffectView, at: 0)
-        return navigationController
     }
 
 }

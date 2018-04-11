@@ -15,17 +15,15 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
         let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
         let containerView = transitionContext.containerView
 
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        //always fill the view
-        blurEffectView.frame = containerView.bounds
-        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0.0
-        blurEffectView.tag = 437
-        blurEffectView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        let overlayView = UIView()
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        overlayView.frame = containerView.bounds
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        overlayView.alpha = 0.0
+        overlayView.tag = 437
 
-        containerView.addSubview(blurEffectView)
+        containerView.addSubview(overlayView)
 
         let animationDuration = transitionDuration(using: transitionContext)
 
@@ -48,7 +46,7 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         UIView.animate(withDuration: animationDuration, animations: {
             toViewController.view.transform = CGAffineTransform.identity
-            blurEffectView.alpha = 1.0
+            overlayView.alpha = 1.0
         }, completion: { finished in
             transitionContext.completeTransition(finished)
         })

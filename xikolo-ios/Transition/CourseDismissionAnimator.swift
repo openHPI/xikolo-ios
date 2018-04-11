@@ -28,13 +28,13 @@ class CourseDismissionAnimator : NSObject, UIViewControllerAnimatedTransitioning
 
         let animationDuration = self.transitionDuration(using: transitionContext)
 
-        let blurEffectView = containerView.viewWithTag(437)
+        let overlayView = containerView.viewWithTag(437)
 
         let animator = UIViewPropertyAnimator(duration: animationDuration, timingParameters: UICubicTimingParameters(animationCurve: .easeInOut))
 
         animator.addAnimations {
             fromViewController.view.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)
-            blurEffectView?.alpha = 0
+            overlayView?.alpha = 0
         }
 
         animator.addCompletion { _ in

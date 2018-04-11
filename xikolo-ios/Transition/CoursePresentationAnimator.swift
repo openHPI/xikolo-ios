@@ -27,11 +27,6 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         containerView.addSubview(blurEffectView)
 
-        let courseNavigationController = toViewController.require(toHaveType: CourseNavigationController.self)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: courseNavigationController, action: #selector(CourseNavigationController.closeCourse))
-        tapGestureRecognizer.numberOfTouchesRequired = 1
-        blurEffectView.addGestureRecognizer(tapGestureRecognizer)
-
         let animationDuration = transitionDuration(using: transitionContext)
 
         toViewController.view.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)

@@ -21,6 +21,10 @@ enum CourseContent {
         .certificates,
     ]
 
+    var acessibleWithoutEnrollment: Bool {
+        return self == .courseDetails
+    }
+
     var title: String {
         switch self {
         case .learnings:
@@ -73,11 +77,4 @@ enum CourseContent {
             return viewController
         }
     }
-
-//    switch self {
-//    case .learnings:
-//    case .discussions:
-//    case .courseDetails:
-//    case .announcements:
-//    }
 }

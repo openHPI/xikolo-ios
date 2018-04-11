@@ -19,16 +19,15 @@ class CourseContentCell: UICollectionViewCell {
         self.hightlightView.clipsToBounds = true
     }
 
-    func configure(for content: CourseContent, isSelected: Bool) {
+    func configure(for content: CourseContent, selected: Bool) {
         self.titleView.text = content.title
-        self.markAsSelected(isSelected)
-
+        self.markAsSelected(selected)
     }
 
-    func markAsSelected(_ isSeleted: Bool) {
-        self.titleView.textColor = isSelected ? UIColor.black : UIColor.lightGray
-        self.titleView.font = isSelected ? UIFont.boldSystemFont(ofSize: 14) : UIFont.systemFont(ofSize: 14)
-        self.hightlightView.isHidden = !isSelected
+    func markAsSelected(_ selected: Bool) {
+        self.titleView.textColor = selected ? UIColor.black : UIColor.lightGray
+        self.titleView.font = selected ? UIFont.boldSystemFont(ofSize: 14) : UIFont.systemFont(ofSize: 14)
+        self.hightlightView.isHidden = !selected
     }
 
 }

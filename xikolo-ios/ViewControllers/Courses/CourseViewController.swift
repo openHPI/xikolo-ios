@@ -10,7 +10,9 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleView: UILabel!
 
-    var containerContentViewController: UIViewController?
+    private var courseContentListViewController: CourseContentListViewController?
+    private var containerContentViewController: UIViewController?
+
     var course: Course!
     var content: CourseContent?
 
@@ -46,17 +48,18 @@ class CourseViewController: UIViewController {
         self.closeCourse()
     }
 
-    func decideContent() {
-        guard course.hasEnrollment else {
-            self.updateContainerView(to: .courseDetails)
-            return
+    func decideContent(newlyEnrolled: Bool = false) {
+        if !self.course.hasEnrollment {
+            self.content = .courseDetails
+        } else if newlyEnrolled {
+            self.content = .learnings
+        } else if self.content == nil {
+            self.content = course.accessible ? .learnings : .courseDetails
         }
 
-        if let content = self.content { // it already got set from outside
-            self.updateContainerView(to: content)
-        } else {
-            self.updateContainerView(to: course.accessible ? .learnings : .courseDetails)
-        }
+        let content = self.content.require(hint: "This should never occur. Invalid use of course view controller")
+        self.courseContentListViewController?.refresh(animated: false)
+        self.updateContainerView(to: content)
     }
 
     func updateContainerView(to content: CourseContent) {
@@ -66,8 +69,6 @@ class CourseViewController: UIViewController {
             viewController.removeFromParentViewController()
             self.containerContentViewController = nil
         }
-
-        self.content = content
 
         let configuredViewController = content.viewControllerConfigured(for: course)
         self.containerView.addSubview(configuredViewController.view)
@@ -80,6 +81,7 @@ class CourseViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let courseContentListViewController = segue.destination as? CourseContentListViewController {
             courseContentListViewController.delegate = self
+            self.courseContentListViewController = courseContentListViewController
         }
     }
 
@@ -102,7 +104,20 @@ class CourseViewController: UIViewController {
 
 extension CourseViewController: CourseContentListViewControllerDelegate {
 
+    var accessibleContent: [CourseContent] {
+        if self.course.hasEnrollment && self.course.accessible {
+            return CourseContent.orderedValues
+        } else {
+            return CourseContent.orderedValues.filter { $0.acessibleWithoutEnrollment }
+        }
+    }
+
+    var selectedContent: CourseContent? {
+        return self.content
+    }
+
     func change(to content: CourseContent) {
+        self.content = content
         self.updateContainerView(to: content)
     }
 

@@ -118,7 +118,7 @@ class CourseDetailViewController: UIViewController {
         }.onSuccess { _ in
             CourseHelper.syncCourse(self.course)
             if let parent = self.parent as? CourseViewController {
-                parent.decideContent()
+                parent.decideContent(newlyEnrolled: true)
             }
         }.onFailure { _ in
             self.enrollmentButton.shake()
@@ -142,6 +142,9 @@ class CourseDetailViewController: UIViewController {
             }.onSuccess { _ in
                 DispatchQueue.main.async {
                     self.refreshEnrollmentViews()
+                    if let parent = self.parent as? CourseViewController {
+                        parent.decideContent()
+                    }
                 }
             }.onFailure { _ in
                 self.enrollmentButton.shake()
@@ -157,6 +160,9 @@ class CourseDetailViewController: UIViewController {
             }.onSuccess { _ in
                 DispatchQueue.main.async {
                     self.refreshEnrollmentViews()
+                    if let parent = self.parent as? CourseViewController {
+                        parent.decideContent()
+                    }
                 }
             }.onFailure { _ in
                 self.enrollmentButton.shake()

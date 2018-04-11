@@ -31,13 +31,17 @@ class CourseViewController: UIViewController {
                                                name: NotificationKeys.dropdownCourseContentKey,
                                                object: nil)
 
-        self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: {
-            let isVisible = self.isViewLoaded && self.view.window != nil
-            self.navigationController?.popToRootViewController(animated: isVisible)
+        self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: { [weak self] in
+            self?.closeCourse()
         })
 
         SpotlightHelper.setUserActivity(for: self.course)
         CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
+    }
+
+    private func closeCourse() {
+        let courseNavigationController = self.navigationController as? CourseNavigationController
+        courseNavigationController?.closeCourse()
     }
 
     @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
@@ -47,11 +51,7 @@ class CourseViewController: UIViewController {
     }
 
     @IBAction func tappedCloseButton(_ sender: Any) {
-        if let courseNavigationController = self.navigationController as? CourseNavigationController {
-            courseNavigationController.closeCourse()
-        } else {
-            self.dismiss(animated: true) // because this is the first view controller
-        }
+        self.closeCourse()
     }
 
     func decideContent() {

@@ -7,13 +7,6 @@ import UIKit
 
 class CourseViewController: UIViewController {
 
-//    enum CourseContent: Int {
-//        case learnings = 0
-//        case discussions = 1
-//        case courseDetails = 2
-//        case announcements = 3
-//    }
-
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleView: UILabel!
 
@@ -25,10 +18,6 @@ class CourseViewController: UIViewController {
         super.viewDidLoad()
 
         self.decideContent()
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(switchViewController),
-//                                               name: NotificationKeys.dropdownCourseContentKey,
-//                                               object: nil)
 
         self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: { [weak self] in
             self?.closeCourse()
@@ -53,12 +42,6 @@ class CourseViewController: UIViewController {
         courseNavigationController?.closeCourse()
     }
 
-    @IBAction func unwindSegueToCourseContent(_ segue: UIStoryboardSegue) { }
-
-    @IBAction func tapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "ShowContentChoice", sender: sender)
-    }
-
     @IBAction func tappedCloseButton(_ sender: Any) {
         self.closeCourse()
     }
@@ -76,12 +59,6 @@ class CourseViewController: UIViewController {
         }
     }
 
-//    @objc func switchViewController(_ notification: Notification) {
-//        if let position = notification.userInfo?[NotificationKeys.dropdownCourseContentKey] as? Int, let content = CourseContent(rawValue: position) {
-//            updateContainerView(content)
-//        }
-//    }
-
     func updateContainerView(to content: CourseContent) {
         if let viewController = self.containerContentViewController {
             viewController.willMove(toParentViewController: nil)
@@ -89,40 +66,6 @@ class CourseViewController: UIViewController {
             viewController.removeFromParentViewController()
             self.containerContentViewController = nil
         }
-
-//        switch content {
-//        case .learnings:
-//            let storyboard = UIStoryboard(name: "CourseLearnings", bundle: nil)
-//            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-//            let viewController = initialViewController.require(toHaveType: CourseItemListViewController.self)
-//            viewController.course = course
-//            self.changeToViewController(viewController)
-//            self.titleView.text = NSLocalizedString("course-content.view.learnings.title", comment: "title of learnings view of course view")
-//        case .discussions:
-//            let storyboard = UIStoryboard(name: "WebViewController", bundle: nil)
-//            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-//            let viewController = initialViewController.require(toHaveType: WebViewController.self)
-//            if let slug = course.slug {
-//                viewController.url = Routes.COURSES_URL + slug + "/pinboard"
-//            }
-//
-//            self.changeToViewController(viewController)
-//            self.titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
-//        case .announcements:
-//            let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
-//            let loadedViewController = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController")
-//            let viewController = loadedViewController.require(toHaveType: AnnouncementsTableViewController.self)
-//            viewController.course = course
-//            self.changeToViewController(viewController)
-//            self.titleView.text = NSLocalizedString("course-content.view.announcements.title", comment: "title of announcements view of course view")
-//        case .courseDetails:
-//            let storyboard = UIStoryboard(name: "CourseDetails", bundle: nil)
-//            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-//            let viewController = initialViewController.require(toHaveType: CourseDetailViewController.self)
-//            viewController.course = course
-//            self.changeToViewController(viewController)
-//            self.titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
-//        }
 
         self.content = content
 
@@ -132,14 +75,6 @@ class CourseViewController: UIViewController {
         self.addChildViewController(configuredViewController)
         configuredViewController.didMove(toParentViewController: self)
         self.containerContentViewController = configuredViewController
-    }
-
-    func changeToViewController(_ viewController: UIViewController) {
-        self.containerView.addSubview(viewController.view)
-        viewController.view.frame = self.containerView.bounds
-        self.addChildViewController(viewController)
-        viewController.didMove(toParentViewController: self)
-        self.containerContentViewController = viewController
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

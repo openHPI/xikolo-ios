@@ -98,9 +98,6 @@
                                 <constraint firstAttribute="trailing" secondItem="oJH-G5-y3o" secondAttribute="trailing" id="OUd-SF-0G3"/>
                                 <constraint firstItem="oJH-G5-y3o" firstAttribute="leading" secondItem="r06-lw-oEd" secondAttribute="leading" id="a88-AX-2Bm"/>
                             </constraints>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="NKe-vE-oSJ" appends="YES" id="pqp-4M-DwL"/>
-                            </connections>
                         </view>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="B8z-CN-Upz">
                             <connections>
@@ -115,11 +112,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHf-No-lT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="NKe-vE-oSJ">
-                    <connections>
-                        <action selector="tapped:" destination="GW9-XM-IkA" id="S2G-t5-nvi"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3468" y="-0.44977511244377816"/>
         </scene>

@@ -28,22 +28,6 @@ class CertificatesListViewController: UITableViewController {
 
     }
 
-    func showCertificate(url: URL) {
-        let config = URLSessionConfiguration.background(withIdentifier: "com.example.DownloadTaskExample.background")
-        config.httpAdditionalHeaders  = NetworkHelper.getRequestHeaders()
-        let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue())
-        let task = session.downloadTask(with: url)
-        task.resume()
-
-
-
-
-
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true, completion: nil)
-        safariVC.preferredControlTintColor = Brand.windowTintColor
-    }
-
     func certificateState(_ certificateURL: URL?) -> String {
         if certificateURL != nil {
             return NSLocalizedString("course.certificates.achieved", comment: "the current state of a certificate")
@@ -89,10 +73,21 @@ extension CertificatesListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let url = certificates[indexPath.row].url {
-            let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
-            vc.url = url.absoluteString
-            self.navigationController?.pushViewController(vc, animated: true)
+            let view = UIView.init(frame: self.view.frame)
+            let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+            view.addSubview(spinner)
+            self.view.addSubview(view)
+            view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+            view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+            view.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+            view.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+
+
+            self.download(url)
+
         }
     }
 
@@ -103,6 +98,15 @@ extension CertificatesListViewController { // TableViewDelegate
         cell.enable(certificates[indexPath.row].url != nil)
         return cell
     }
+
+    func download(_ url: URL){
+        let config = URLSessionConfiguration.background(withIdentifier: "com.example.DownloadTaskExample.background")
+        config.httpAdditionalHeaders  = NetworkHelper.requestHeaders
+        let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue())
+        let task = session.downloadTask(with: url)
+        task.resume()
+    }
+
 }
 
 extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
@@ -138,7 +142,18 @@ extension CertificatesListViewController : URLSessionTaskDelegate, URLSessionDow
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         log.info("Certificate successfully downloaded to: " + location.absoluteString)
-        //try? FileManager.default.removeItem(at: location)
+
+        let destination = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".pdf")
+        do {
+            try FileManager.default.copyItem(at: location, to: location.appendingPathComponent("test.pdf"))
+        } catch let error {
+            log.error(error.localizedDescription)
+        }
+
+        let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PDFWebViewController").require(toHaveType: PDFWebViewController.self)
+        vc.cachedPdfPath = location.appendingPathComponent("test.pdf")
+        self.navigationController!.pushViewController(vc, animated: true)
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

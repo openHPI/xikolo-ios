@@ -51,7 +51,7 @@ extension DownAttributedStringRenderable {
             .documentType: NSAttributedString.DocumentType.html,
             .characterEncoding: String.Encoding.utf8.rawValue,
         ]
-        let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8)!, options: options, documentAttributes: nil)
+        let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8) ?? Data(), options: options, documentAttributes: nil)
         return mutableString.trimmedAttributedString(set: .whitespacesAndNewlines)
     }
 

@@ -31,10 +31,6 @@ class CourseContentListViewController : UICollectionViewController {
         return cell
     }
 
-}
-
-extension CourseContentListViewController {
-
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath != self.selectedIndexPath else { return }
         guard let content = CourseContent.orderedValues[safe: indexPath.item] else { return }
@@ -51,6 +47,19 @@ extension CourseContentListViewController {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
 
         self.delegate?.change(to: content)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.collectionViewLayout.invalidateLayout()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let selectedIndexPath = self.selectedIndexPath {
+            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
+        }
     }
 
 }

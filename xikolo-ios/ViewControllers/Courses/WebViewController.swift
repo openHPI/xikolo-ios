@@ -25,6 +25,15 @@ class WebViewController: UIViewController {
         self.loadURL()
     }
 
+    override func removeFromParentViewController() {
+        super.removeFromParentViewController()
+        if self.webView.isLoading {
+            self.webView.stopLoading()
+            NetworkIndicator.end()
+        }
+
+    }
+
     private func loadURL() {
         guard let urlString = self.url else { return }
         webView.loadRequest(NetworkHelper.getRequestForURL(urlString) as URLRequest)

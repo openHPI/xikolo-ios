@@ -97,6 +97,9 @@ open class UserProfileHelper {
 
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+            #if OPENSAP
+            AppDelegate.instance().checkForVoucher()
+            #endif
         }
     }
 

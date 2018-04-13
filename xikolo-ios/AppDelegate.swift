@@ -182,17 +182,12 @@ extension AppDelegate {
     func requestVoucher() -> Future<Bool, XikoloError> {
         let promise = Promise<Bool, XikoloError>()
 
-        let urlString = Routes.API_V2_URL + "/osap_5th_birthday.json"
-        guard let url = URL(string: urlString) else {
-            promise.failure(.invalidURL(urlString))
-            return promise.future
-        }
-
+        let url = Routes.api.appendingPathComponent("/osap_5th_birthday.json")
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
-        request.setValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
-        for (key, value) in NetworkHelper.getRequestHeaders() {
+        request.setValue(Routes.Header.userPlatformValue, forHTTPHeaderField: Routes.Header.userPlatformKey)
+        for (key, value) in NetworkHelper.requestHeaders {
             request.setValue(value, forHTTPHeaderField: key)
         }
 

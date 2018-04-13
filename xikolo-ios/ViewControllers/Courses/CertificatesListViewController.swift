@@ -20,7 +20,7 @@ class CertificatesListViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        certificates = findAvailableCertificates()
+        certificates = course.availableCertificates
         super.viewWillAppear(animated)
     }
 
@@ -35,30 +35,6 @@ class CertificatesListViewController: UITableViewController {
         } else {
             return NSLocalizedString("course.certificates.not-achieved", comment: "the current state of a certificate")
         }
-    }
-
-    // TODO: move this the course extension
-    func findAvailableCertificates() -> [(String, URL?)] {
-        var certificates: [(String, URL?)] = []
-        if let cop = course.certificates?.confirmationOfParticipation, cop.available {
-            let name = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "name of certificate")
-            let url = course.enrollment?.certificates?.confirmationOfParticipation
-            certificates.append((name, url))
-        }
-
-        if let roa = course.certificates?.recordOfAchievement, roa.available {
-            let name = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of certificate")
-            let url = course.enrollment?.certificates?.recordOfAchievement
-            certificates.append((name, url))
-        }
-
-        if let cop = course.certificates?.qualifiedCertificate, cop.available {
-            let name = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of certificate")
-            let url = course.enrollment?.certificates?.qualifiedCertificate
-            certificates.append((name, url))
-        }
-
-        return certificates
     }
 
 }
@@ -80,22 +56,6 @@ extension CertificatesListViewController { // TableViewDelegate
         let pdfViewController = storyboard.instantiateViewController(withIdentifier: "PDFWebViewController").require(toHaveType: PDFWebViewController.self)
         pdfViewController.url = url
         self.navigationController?.pushViewController(pdfViewController, animated: true)
-
-//            let view = UIView.init(frame: self.view.frame)
-//            let spinner = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
-//            view.addSubview(spinner)
-//            self.view.addSubview(view)
-//            view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-//            view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//            view.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-//            view.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
-//
-//            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//
-//
-//            self.download(url)
-
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,30 +64,6 @@ extension CertificatesListViewController { // TableViewDelegate
         cell.detailTextLabel?.text = certificateState(certificates[indexPath.row].url)
         cell.enable(certificates[indexPath.row].url != nil)
         return cell
-    }
-
-    func download(_ url: URL){
-        /*let config = URLSessionConfiguration.background(withIdentifier: "com.example.DownloadTaskExample.background")
-        config.httpAdditionalHeaders  = NetworkHelper.requestHeaders
-        let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue())
-        let task = session.downloadTask(with: url)
-        task.resume()*/
-
-
-//        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-//            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//            let fileURL = documentsURL.appendingPathComponent("test.pdf")
-//
-//            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
-//        }
-        
-//        Alamofire.download(url, to: destination).response { response in
-//            print(response)
-//
-//            if response.error == nil, let pdfPath = response.destinationURL?.path {
-//                log.info(FileManager.default.fileExists(atPath: pdfPath))
-//            }
-//        }
     }
 
 }
@@ -154,37 +90,3 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
     }
 
 }
-
-//extension CertificatesListViewController : URLSessionTaskDelegate, URLSessionDownloadDelegate {
-//    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-//        if totalBytesExpectedToWrite > 0 {
-//            let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-//            debugPrint("Progress \(downloadTask) \(progress)")
-//        }
-//    }
-//
-//    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-//        log.info("Certificate successfully downloaded to: " + location.absoluteString)
-//
-//        let documentsUrl:URL =  FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-//        let destination = documentsUrl.appendingPathComponent(UUID().uuidString + ".pdf")
-//
-//        //let destination = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".pdf")
-//        do {
-//            try FileManager.default.copyItem(at: location, to: destination)
-//        } catch let error {
-//            log.error(error.localizedDescription)
-//        }
-//        log.info(FileManager.default.fileExists(atPath: location.absoluteString))
-//        /*let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "PDFWebViewController").require(toHaveType: PDFWebViewController.self)
-//        vc.cachedPdfPath = destination
-//        self.navigationController!.pushViewController(vc, animated: true)*/
-//    }
-//
-//    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-//        log.error(error.debugDescription)
-//    }
-//
-//
-//}

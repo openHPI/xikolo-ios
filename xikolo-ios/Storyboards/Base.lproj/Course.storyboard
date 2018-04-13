@@ -35,7 +35,7 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="K1m-mm-Pjy">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Lu2-d8-THe">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="Lu2-d8-THe">
                             <connections>
                                 <action selector="tappedCloseButton:" destination="GW9-XM-IkA" id="hks-dm-2X6"/>
                             </connections>
@@ -139,13 +139,13 @@
                         <viewLayoutGuide key="safeArea" id="KBi-An-i6N"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="ncd-oo-Gu8"/>
                                 <exclude reference="XHb-aC-VQl"/>
+                                <exclude reference="ncd-oo-Gu8"/>
+                                <exclude reference="JZq-h9-G2q"/>
                                 <exclude reference="N6K-Mn-ljr"/>
                                 <exclude reference="hnY-5W-Ths"/>
-                                <exclude reference="mbd-eQ-uwu"/>
                                 <exclude reference="hoA-YV-QdU"/>
-                                <exclude reference="JZq-h9-G2q"/>
+                                <exclude reference="mbd-eQ-uwu"/>
                             </mask>
                         </variation>
                     </view>

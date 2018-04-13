@@ -12,11 +12,10 @@ class PDFWebViewController: UIViewController {
     @IBOutlet var shareButton: UIBarButtonItem!
 
     var url: URL!
-    private var tmpFile: TemporaryFile? = try? TemporaryFile(creatingTempDirectoryForFilename: "certificate.pdf")
-    // TODO delete on disappes
+    private var tempPdfFile: TemporaryFile? = try? TemporaryFile(creatingTempDirectoryForFilename: "certificate.pdf")
     
     @IBAction func sharePDF(_ sender: UIBarButtonItem) {
-        guard let fileURL = self.tmpFile?.fileURL else { return }
+        guard let fileURL = self.tempPdfFile?.fileURL else { return }
         guard let activityItem = try? Data(contentsOf: fileURL) else { return }
         let activityViewController = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
@@ -25,12 +24,21 @@ class PDFWebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = nil
 
-        guard let tmp = self.tmpFile else {
-            print("show error")
+        guard let temporaryFile = self.tempPdfFile else {
+            log.warning("temporary file location doesnt exist")
             return
         }
 
+        self.loadPDF(to: temporaryFile)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        try? tempPdfFile?.deleteDirectory()
+    }
+
+    func loadPDF(to file: TemporaryFile) {
         var request = URLRequest(url: self.url)
         request.setValue(Routes.Header.acceptPDF, forHTTPHeaderField: Routes.Header.acceptKey)
         for (key, value) in NetworkHelper.requestHeaders {
@@ -39,14 +47,14 @@ class PDFWebViewController: UIViewController {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             do {
-                try data?.write(to: tmp.fileURL)
+                try data?.write(to: file.fileURL)
             } catch {
-                print("error \(error)")
+                log.error(error)
             }
-            let request = URLRequest(url: tmp.fileURL)
+            let request = URLRequest(url: file.fileURL)
             DispatchQueue.main.async {
                 self.webView.loadRequest(request)
-            }
+                self.navigationItem.rightBarButtonItem = self.shareButton            }
         }
 
         task.resume()

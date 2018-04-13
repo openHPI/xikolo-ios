@@ -429,7 +429,9 @@ extension VideoViewController: BMPlayerDelegate {
 
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .bufferFinished {
-            player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+            if player.isPlaying {
+                player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+            }
 
             if !self.sentFirstAutoPlayEvent {  // only once
                 self.trackVideoPlay()

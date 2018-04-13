@@ -31,8 +31,13 @@ class PDFWebViewController: UIViewController {
             return
         }
 
-        let url = URL(string: "https://education.github.com/git-cheat-sheet-education.pdf")!
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        var request = URLRequest(url: self.url)
+        request.setValue(Routes.Header.acceptPDF, forHTTPHeaderField: Routes.Header.acceptKey)
+        for (key, value) in NetworkHelper.requestHeaders {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             do {
                 try data?.write(to: tmp.fileURL)
             } catch {

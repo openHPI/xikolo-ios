@@ -13,6 +13,7 @@ struct Routes {
 
         static let acceptKey = "Accept"
         static let acceptValue = "application/vnd.api+json; xikolo-version=\(Routes.apiVersion)"
+        static let acceptPDF = "application/pdf"
 
         static let authKey = "Authorization"
         static let authValuePrefix = "Token token="

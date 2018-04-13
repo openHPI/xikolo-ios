@@ -143,17 +143,20 @@ extension CertificatesListViewController : URLSessionTaskDelegate, URLSessionDow
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         log.info("Certificate successfully downloaded to: " + location.absoluteString)
 
-        let destination = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".pdf")
+        let documentsUrl:URL =  FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        let destination = documentsUrl.appendingPathComponent(UUID().uuidString + ".pdf")
+
+        //let destination = URL(fileURLWithPath: NSTemporaryDirectory() + UUID().uuidString + ".pdf")
         do {
-            try FileManager.default.copyItem(at: location, to: location.appendingPathComponent("test.pdf"))
+            try FileManager.default.copyItem(at: location, to: destination)
         } catch let error {
             log.error(error.localizedDescription)
         }
-
-        let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
+        log.info(FileManager.default.fileExists(atPath: location.absoluteString))
+        /*let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "PDFWebViewController").require(toHaveType: PDFWebViewController.self)
-        vc.cachedPdfPath = location.appendingPathComponent("test.pdf")
-        self.navigationController!.pushViewController(vc, animated: true)
+        vc.cachedPdfPath = destination
+        self.navigationController!.pushViewController(vc, animated: true)*/
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

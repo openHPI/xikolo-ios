@@ -1053,6 +1053,10 @@
 		703005BF1EFEFC1500CCDCC9 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35C9321E89DAA4009832A5 /* UserHelper.swift */; };
 		703005C01EFEFC1600CCDCC9 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35C9321E89DAA4009832A5 /* UserHelper.swift */; };
 		70388C631EF1566A0093F186 /* AnnouncementsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */; };
+		70451A1E2080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
+		70451A1F2080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
+		70451A202080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
+		70451A212080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
 		7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
@@ -1155,9 +1159,9 @@
 		70D1EA7A1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
 		70D1EA7B1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
 		70D1EA7C1EF0AB4F0088C0FF /* TrackingEventResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4951D7868A7007C59B6 /* TrackingEventResource.swift */; };
-		70D1EA7D1EF0AB500088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		70D1EA7E1EF0AB510088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		70D1EA7F1EF0AB510088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		70D1EA7D1EF0AB500088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		70D1EA7E1EF0AB510088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		70D1EA7F1EF0AB510088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
 		70D1EA831EF0AB560088C0FF /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		70D1EA841EF0AB560088C0FF /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		70D1EA851EF0AB570088C0FF /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
@@ -1230,8 +1234,8 @@
 		70D1EAF51EF0ACB40088C0FF /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */; };
 		70D1EAF61EF0ACB60088C0FF /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
 		70D1EAF71EF0ACBA0088C0FF /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
-		70D1EAF81EF0ACBC0088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		70D1EAF91EF0ACBF0088C0FF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		70D1EAF81EF0ACBC0088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		70D1EAF91EF0ACBF0088C0FF /* (null) in Sources */ = {isa = PBXBuildFile; };
 		70D1EAFC1EF0ACC80088C0FF /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* AccountViewController.swift */; };
 		70D1EAFE1EF0ACCD0088C0FF /* CustomHeaderWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */; };
 		70D1EB001EF0ACD80088C0FF /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
@@ -2037,6 +2041,7 @@
 		7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		702520901F71A1D4003E0F80 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsListViewController.swift; sourceTree = "<group>"; };
+		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
@@ -2615,6 +2620,7 @@
 				50604592206BCF48009569D1 /* URL+URLQueryItem.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				50EFACBD1FFFB25400169C35 /* SafeCastable.swift */,
+				70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3088,7 +3094,6 @@
 				2490C4D71D1D92F200F42949 /* Sources */,
 				2490C4D81D1D92F200F42949 /* Frameworks */,
 				2490C4D91D1D92F200F42949 /* Resources */,
-				8B047B2F5BC0FFA5AE572670 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3112,7 +3117,6 @@
 				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
 				508DDBBB1FDAE8D400F2ACB9 /* Remove German localization */,
-				D1766B70F6B569261F1015BD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3133,7 +3137,6 @@
 				24BA404F1D3F98CA00E38C2C /* Resources */,
 				24BA40701D3F98FE00E38C2C /* Embed App Extensions */,
 				25042D2EFBE1EAF5532E6113 /* [CP] Embed Pods Frameworks */,
-				F295F0792F40CBE56E66CD0B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3153,7 +3156,6 @@
 				24BA40601D3F98FE00E38C2C /* Sources */,
 				24BA40611D3F98FE00E38C2C /* Frameworks */,
 				24BA40621D3F98FE00E38C2C /* Resources */,
-				A602CE1884B45B20C2775876 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3174,7 +3176,6 @@
 				24CB7E321CC678A000960269 /* Resources */,
 				5A499A68B14F5BD8C4A6BB03 /* [CP] Embed Pods Frameworks */,
 				2490C4E81D1D92F200F42949 /* Embed App Extensions */,
-				7A27E37318F5393F41F5C81D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3270,7 +3271,6 @@
 				507A5CE12021F40F009B1F95 /* Copy GoogleServices-Info.plist */,
 				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
 				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
-				BE6EA05EFDD600E0A8AC4FC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3291,7 +3291,6 @@
 				709C932A1EF0996C00F8F045 /* Resources */,
 				709C934B1EF099A900F8F045 /* Embed App Extensions */,
 				A9007FC0184C2CC7C2528286 /* [CP] Embed Pods Frameworks */,
-				6881F6D110BEDBB990202ED2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3311,7 +3310,6 @@
 				709C933B1EF099A900F8F045 /* Sources */,
 				709C933C1EF099A900F8F045 /* Frameworks */,
 				709C933D1EF099A900F8F045 /* Resources */,
-				BDFE10D0BAC779DB75593776 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3334,7 +3332,6 @@
 				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				50429D991FB07149000C1D5E /* Clear Build Number */,
-				83AF1CFF290AAF09F1069384 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3357,7 +3354,6 @@
 				507A5CE02021F3ED009B1F95 /* Copy GoogleServices-Info.plist */,
 				ACB757C47A664C44D01683E8 /* [CP] Embed Pods Frameworks */,
 				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
-				324BE9CB76444A0FD97E34FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3378,7 +3374,6 @@
 				ABE0605C1DF8BDDE00FC186D /* Resources */,
 				ABE0607F1DF8BE7200FC186D /* Embed App Extensions */,
 				18D20680A8EE76C6C0069167 /* [CP] Embed Pods Frameworks */,
-				8669D4614DCF10EF524C5263 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3398,7 +3393,6 @@
 				ABE060801DF8BFE100FC186D /* Sources */,
 				ABE060811DF8BFE100FC186D /* Frameworks */,
 				ABE060821DF8BFE100FC186D /* Resources */,
-				4A1439525F1E5050E4906881 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3957,36 +3951,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		324BE9CB76444A0FD97E34FC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4A1439525F1E5050E4906881 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4351,21 +4315,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6881F6D110BEDBB990202ED2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7919434A264A33D8AF707163 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4384,51 +4333,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7A27E37318F5393F41F5C81D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		83AF1CFF290AAF09F1069384 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8669D4614DCF10EF524C5263 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-tvOS/Pods-openWHO-tvOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8702673EFFED973EE4C3692B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4445,21 +4349,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B047B2F5BC0FFA5AE572670 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		947C597FB5A012857C2A08CE /* [CP] Check Pods Manifest.lock */ = {
@@ -4548,21 +4437,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A602CE1884B45B20C2775876 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A9007FC0184C2CC7C2528286 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4641,36 +4515,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BDFE10D0BAC779DB75593776 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-tvOS-TopShelf/Pods-moocHOUSE-tvOS-TopShelf-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BE6EA05EFDD600E0A8AC4FC8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C7666C2C40BD7FB90748BC9E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4689,21 +4533,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1766B70F6B569261F1015BD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E4366C3C332640BAB19B0552 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4720,21 +4549,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F295F0792F40CBE56E66CD0B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FB3D5910F8651D97CBDBD3DC /* [CP] Check Pods Manifest.lock */ = {
@@ -4954,6 +4768,7 @@
 				24BA40AC1D3F9AC300E38C2C /* Announcement.swift in Sources */,
 				AB95897D1DC4A42800586137 /* UITableViewCell+enable.swift in Sources */,
 				50F6A5B91FB316A6007DBAFF /* VideoStream.swift in Sources */,
+				70451A1F2080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				5012120C1FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				24BA410C1D3F9B7000E38C2C /* CourseListViewController.swift in Sources */,
 				50F45AD7200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
@@ -5475,13 +5290,13 @@
 				70D1E9F11EF0AA8A0088C0FF /* CollectionType+dict.swift in Sources */,
 				50F57DD21FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				70D1EA2B1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
-				70D1EA7D1EF0AB500088C0FF /* BuildFile in Sources */,
+				70D1EA7D1EF0AB500088C0FF /* (null) in Sources */,
 				5012126E1FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				50F668981F3857B800ACC26A /* SpotlightHelper.swift in Sources */,
 				70D1EAEF1EF0ACA50088C0FF /* CourseDecisionViewController.swift in Sources */,
 				5002290F205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
 				504C5A791F99F8210021EB17 /* SyncEngine.swift in Sources */,
-				70D1EAF91EF0ACBF0088C0FF /* BuildFile in Sources */,
+				70D1EAF91EF0ACBF0088C0FF /* (null) in Sources */,
 				70D1EB071EF0ACE90088C0FF /* CourseDateHeader.swift in Sources */,
 				70D1EB051EF0ACE40088C0FF /* CourseDateCell.swift in Sources */,
 				70D1EA471EF0AB0F0088C0FF /* Announcement.swift in Sources */,
@@ -5539,6 +5354,7 @@
 				5057ED891FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */,
 				70D1EA4A1EF0AB130088C0FF /* PlatformEvent.swift in Sources */,
 				70D1EB061EF0ACE60088C0FF /* CenterCellCollectionViewFlowLayout.swift in Sources */,
+				70451A212080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				50E16CF51F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */,
 				500228EB20580142003301A7 /* UIAlertViewController+cancel.swift in Sources */,
 				50D7AEA51F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
@@ -5565,7 +5381,7 @@
 				50ED3C581F4AE80100CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				70D1EB111EF12DF00088C0FF /* XikoloBrand.swift in Sources */,
 				70D1EAF21EF0ACAD0088C0FF /* DropdownViewController.swift in Sources */,
-				70D1EAF81EF0ACBC0088C0FF /* BuildFile in Sources */,
+				70D1EAF81EF0ACBC0088C0FF /* (null) in Sources */,
 				70D1E9F51EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
 				70D1EB2E1EF12E170088C0FF /* DateLabelHelper.swift in Sources */,
 				509B10D4200790560042AA7D /* XikoloTabBarController.swift in Sources */,
@@ -5745,7 +5561,7 @@
 				70D1EB121EF12DF00088C0FF /* XikoloBrand.swift in Sources */,
 				50F57DFA1FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				70D1EA271EF0AAE60088C0FF /* CourseItem.swift in Sources */,
-				70D1EA7E1EF0AB510088C0FF /* BuildFile in Sources */,
+				70D1EA7E1EF0AB510088C0FF /* (null) in Sources */,
 				50F668991F3857B900ACC26A /* SpotlightHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5780,7 +5596,7 @@
 				50F57DAD1FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				70103D15201139C8006DA177 /* DateFormatter+localizedFormatter.swift in Sources */,
 				70D1EADB1EF0AC2D0088C0FF /* Routes.swift in Sources */,
-				70D1EA7F1EF0AB510088C0FF /* BuildFile in Sources */,
+				70D1EA7F1EF0AB510088C0FF /* (null) in Sources */,
 				70D1EA0F1EF0AACB0088C0FF /* Content.swift in Sources */,
 				70D1EA4C1EF0AB140088C0FF /* PlatformEvent.swift in Sources */,
 				50F57DC71FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
@@ -5946,6 +5762,7 @@
 				24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */,
 				50F97AB81F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				501212091FCC65B00022A7AF /* ModelObserver.swift in Sources */,
+				70451A1E2080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				50F6A5B61FB316A6007DBAFF /* VideoStream.swift in Sources */,
 				AB95897C1DC4A42700586137 /* UITableViewCell+enable.swift in Sources */,
 				50F45AD4200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
@@ -6118,6 +5935,7 @@
 				5060A5281F177304007896FF /* DetailedCourseItem.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
 				5012120F1FCC65B00022A7AF /* ModelObserver.swift in Sources */,
+				70451A202080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				50D643351F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */,
 				50F45ADA200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,

@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Alamofire
 import DZNEmptyDataSet
 import SafariServices
 import UIKit
@@ -100,11 +101,27 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     func download(_ url: URL){
-        let config = URLSessionConfiguration.background(withIdentifier: "com.example.DownloadTaskExample.background")
+        /*let config = URLSessionConfiguration.background(withIdentifier: "com.example.DownloadTaskExample.background")
         config.httpAdditionalHeaders  = NetworkHelper.requestHeaders
         let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue())
         let task = session.downloadTask(with: url)
-        task.resume()
+        task.resume()*/
+
+
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent("test.pdf")
+
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        Alamofire.download(url, to: destination).response { response in
+            print(response)
+
+            if response.error == nil, let pdfPath = response.destinationURL?.path {
+                log.info(FileManager.default.fileExists(atPath: pdfPath))
+            }
+        }
     }
 
 }

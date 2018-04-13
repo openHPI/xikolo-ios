@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.1)
   - BartyCrouch (3.8.1)
   - BMPlayer (1.0.1):
     - BMPlayer/Full (= 1.0.1)
@@ -57,6 +58,7 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
+  - Alamofire
   - BartyCrouch (from `https://github.com/mathebox/BartyCrouch.git`, commit `cf75991`)
   - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `a8e110d`)
   - BrightFutures (~> 6.0)
@@ -76,6 +78,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Alamofire
     - BrightFutures
     - Crashlytics
     - Down
@@ -122,6 +125,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/mathebox/SimpleRoundedButton.git
 
 SPEC CHECKSUMS:
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
   BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
   BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
@@ -148,6 +152,6 @@ SPEC CHECKSUMS:
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 6f50273d38619b52ae88b7f184a5d4029c58bed5
+PODFILE CHECKSUM: 9eb3cd0a895072e83e18c741cebf482709cf127e
 
 COCOAPODS: 1.5.0

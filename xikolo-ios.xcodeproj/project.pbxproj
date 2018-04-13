@@ -3088,6 +3088,7 @@
 				2490C4D71D1D92F200F42949 /* Sources */,
 				2490C4D81D1D92F200F42949 /* Frameworks */,
 				2490C4D91D1D92F200F42949 /* Resources */,
+				8B047B2F5BC0FFA5AE572670 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3111,6 +3112,7 @@
 				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
 				508DDBBB1FDAE8D400F2ACB9 /* Remove German localization */,
+				D1766B70F6B569261F1015BD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3131,6 +3133,7 @@
 				24BA404F1D3F98CA00E38C2C /* Resources */,
 				24BA40701D3F98FE00E38C2C /* Embed App Extensions */,
 				25042D2EFBE1EAF5532E6113 /* [CP] Embed Pods Frameworks */,
+				F295F0792F40CBE56E66CD0B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3150,6 +3153,7 @@
 				24BA40601D3F98FE00E38C2C /* Sources */,
 				24BA40611D3F98FE00E38C2C /* Frameworks */,
 				24BA40621D3F98FE00E38C2C /* Resources */,
+				A602CE1884B45B20C2775876 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3170,6 +3174,7 @@
 				24CB7E321CC678A000960269 /* Resources */,
 				5A499A68B14F5BD8C4A6BB03 /* [CP] Embed Pods Frameworks */,
 				2490C4E81D1D92F200F42949 /* Embed App Extensions */,
+				7A27E37318F5393F41F5C81D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3265,6 +3270,7 @@
 				507A5CE12021F40F009B1F95 /* Copy GoogleServices-Info.plist */,
 				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
 				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
+				BE6EA05EFDD600E0A8AC4FC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3285,6 +3291,7 @@
 				709C932A1EF0996C00F8F045 /* Resources */,
 				709C934B1EF099A900F8F045 /* Embed App Extensions */,
 				A9007FC0184C2CC7C2528286 /* [CP] Embed Pods Frameworks */,
+				6881F6D110BEDBB990202ED2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3304,6 +3311,7 @@
 				709C933B1EF099A900F8F045 /* Sources */,
 				709C933C1EF099A900F8F045 /* Frameworks */,
 				709C933D1EF099A900F8F045 /* Resources */,
+				BDFE10D0BAC779DB75593776 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3326,6 +3334,7 @@
 				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				50429D991FB07149000C1D5E /* Clear Build Number */,
+				83AF1CFF290AAF09F1069384 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3348,6 +3357,7 @@
 				507A5CE02021F3ED009B1F95 /* Copy GoogleServices-Info.plist */,
 				ACB757C47A664C44D01683E8 /* [CP] Embed Pods Frameworks */,
 				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
+				324BE9CB76444A0FD97E34FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3368,6 +3378,7 @@
 				ABE0605C1DF8BDDE00FC186D /* Resources */,
 				ABE0607F1DF8BE7200FC186D /* Embed App Extensions */,
 				18D20680A8EE76C6C0069167 /* [CP] Embed Pods Frameworks */,
+				8669D4614DCF10EF524C5263 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3387,6 +3398,7 @@
 				ABE060801DF8BFE100FC186D /* Sources */,
 				ABE060811DF8BFE100FC186D /* Frameworks */,
 				ABE060821DF8BFE100FC186D /* Resources */,
+				4A1439525F1E5050E4906881 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3945,6 +3957,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		324BE9CB76444A0FD97E34FC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A1439525F1E5050E4906881 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-tvOS-TopShelf/Pods-openWHO-tvOS-TopShelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3952,7 +3994,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures-iOS/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
@@ -3973,7 +4014,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
@@ -4250,7 +4290,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures-iOS/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
@@ -4271,7 +4310,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
@@ -4313,6 +4351,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6881F6D110BEDBB990202ED2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-tvOS/Pods-moocHOUSE-tvOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7919434A264A33D8AF707163 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4331,6 +4384,51 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7A27E37318F5393F41F5C81D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS/Pods-openHPI-tvOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83AF1CFF290AAF09F1069384 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8669D4614DCF10EF524C5263 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-tvOS/Pods-openWHO-tvOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8702673EFFED973EE4C3692B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4347,6 +4445,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B047B2F5BC0FFA5AE572670 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openHPI-tvOS-TopShelf/Pods-openHPI-tvOS-TopShelf-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		947C597FB5A012857C2A08CE /* [CP] Check Pods Manifest.lock */ = {
@@ -4392,7 +4505,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures-iOS/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
@@ -4413,7 +4525,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
@@ -4435,6 +4546,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A602CE1884B45B20C2775876 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A9007FC0184C2CC7C2528286 /* [CP] Embed Pods Frameworks */ = {
@@ -4472,7 +4598,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures-iOS/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
@@ -4493,7 +4618,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
@@ -4517,6 +4641,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BDFE10D0BAC779DB75593776 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-tvOS-TopShelf/Pods-moocHOUSE-tvOS-TopShelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE6EA05EFDD600E0A8AC4FC8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moocHOUSE-iOS/Pods-moocHOUSE-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C7666C2C40BD7FB90748BC9E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4535,6 +4689,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D1766B70F6B569261F1015BD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-iOS/Pods-openSAP-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E4366C3C332640BAB19B0552 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4551,6 +4720,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F295F0792F40CBE56E66CD0B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FB3D5910F8651D97CBDBD3DC /* [CP] Check Pods Manifest.lock */ = {

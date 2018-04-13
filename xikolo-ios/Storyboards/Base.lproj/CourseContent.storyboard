@@ -9,7 +9,6 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -906,81 +905,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="certificateCell" id="wlf-RO-Qci">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="certificateCell" textLabel="Q7j-xL-hC1" detailTextLabel="vpk-rf-dYv" style="IBUITableViewCellStyleSubtitle" id="wlf-RO-Qci">
                                 <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wlf-RO-Qci" id="pNg-Hm-FSy">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="88"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="not achieved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wqw-Em-vIv">
-                                            <rect key="frame" x="20" y="53.5" width="72.5" height="14.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <attributedString key="userComments">
-                                                <fragment content="#bc-ignore!">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" red="0.10588" green="0.12157" blue="0.13725000000000001" alpha="0.047059999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <color key="NSColor" red="0.14118" green="0.16078000000000001" blue="0.18038999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="13.6" name="Menlo-Regular"/>
-                                                        <real key="NSKern" value="0.0"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                            <tabStops/>
-                                                        </paragraphStyle>
-                                                        <color key="NSStrokeColor" red="0.14118" green="0.16078000000000001" blue="0.18038999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Confirmation of Participation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3k-qc-lQv">
-                                            <rect key="frame" x="20" y="25" width="219.5" height="20.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q7j-xL-hC1">
+                                            <rect key="frame" x="16" y="24" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
-                                            <attributedString key="userComments">
-                                                <fragment content="#bc-ignore!">
-                                                    <attributes>
-                                                        <color key="NSBackgroundColor" red="0.10588" green="0.12157" blue="0.13725000000000001" alpha="0.047059999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <color key="NSColor" red="0.14118" green="0.16078000000000001" blue="0.18038999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="13.6" name="Menlo-Regular"/>
-                                                        <real key="NSKern" value="0.0"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                            <tabStops/>
-                                                        </paragraphStyle>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNO-EM-f6Q" customClass="CircularProgressView" customModule="moocHOUSE" customModuleProvider="target">
-                                            <rect key="frame" x="301" y="34" width="20" height="20"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="PcZ-vZ-9ge"/>
-                                                <constraint firstAttribute="width" constant="20" id="mds-Y7-Nse"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                                    <real key="value" value="1.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="indeterminateProgress">
-                                                    <real key="value" value="0.80000000000000004"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="gapWidth">
-                                                    <real key="value" value="1.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vpk-rf-dYv">
+                                            <rect key="frame" x="16" y="47.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="tNO-EM-f6Q" secondAttribute="trailing" constant="20" symbolic="YES" id="BHp-hT-ePe"/>
-                                        <constraint firstItem="Wqw-Em-vIv" firstAttribute="leading" secondItem="c3k-qc-lQv" secondAttribute="leading" id="YK2-Ku-5XN"/>
-                                        <constraint firstItem="c3k-qc-lQv" firstAttribute="leading" secondItem="pNg-Hm-FSy" secondAttribute="leading" constant="20" symbolic="YES" id="a6x-tE-JFb"/>
-                                        <constraint firstItem="Wqw-Em-vIv" firstAttribute="top" secondItem="c3k-qc-lQv" secondAttribute="bottom" constant="8" symbolic="YES" id="eb0-iS-eb7"/>
-                                        <constraint firstItem="tNO-EM-f6Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c3k-qc-lQv" secondAttribute="trailing" constant="8" symbolic="YES" id="rbD-6G-qhd"/>
-                                        <constraint firstItem="tNO-EM-f6Q" firstAttribute="centerY" secondItem="pNg-Hm-FSy" secondAttribute="centerY" id="shx-LD-3Td"/>
-                                        <constraint firstItem="c3k-qc-lQv" firstAttribute="centerY" secondItem="pNg-Hm-FSy" secondAttribute="centerY" multiplier="4:5" id="wUn-ZX-Bw6"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -993,7 +939,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="Gqb-fe-lxd" kind="showDetail" identifier="ShowPDF" id="exQ-lz-AsT"/>
+                        <segue destination="Gqb-fe-lxd" kind="showDetail" identifier="showPDF" id="exQ-lz-AsT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbv-fy-tBB" userLabel="First Responder" sceneMemberID="firstResponder"/>

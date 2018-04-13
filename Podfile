@@ -19,7 +19,6 @@ def ios_pods
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
     pod 'XCGLogger', '~> 6.0'
-    pod 'Alamofire' 
 
     # Firebase
     pod 'Firebase/Core', '~> 4.8'

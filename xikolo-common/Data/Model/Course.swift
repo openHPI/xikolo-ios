@@ -70,6 +70,29 @@ final class Course: NSManagedObject {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 
+    var availableCertificates: [(name: String, url: URL?)] {
+        var certificates: [(String, URL?)] = []
+        if let cop = self.certificates?.confirmationOfParticipation, cop.available {
+            let name = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "name of certificate")
+            let url = self.enrollment?.certificates?.confirmationOfParticipation
+            certificates.append((name, url))
+        }
+
+        if let roa = self.certificates?.recordOfAchievement, roa.available {
+            let name = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of certificate")
+            let url = enrollment?.certificates?.recordOfAchievement
+            certificates.append((name, url))
+        }
+
+        if let cop = self.certificates?.qualifiedCertificate, cop.available {
+            let name = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of certificate")
+            let url = enrollment?.certificates?.qualifiedCertificate
+            certificates.append((name, url))
+        }
+
+        return certificates
+    }
+
 }
 
 extension Course: Pullable {

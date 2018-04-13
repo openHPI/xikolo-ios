@@ -17,6 +17,11 @@ class CourseContentListViewController : UICollectionViewController {
         return IndexPath(item: index, section: 0)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionViewLayout.invalidateLayout()
+    }
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -104,10 +109,9 @@ extension CourseContentListViewController : UICollectionViewDelegateFlowLayout {
 
         let cellGaps: CGFloat = ((collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? 0) * CGFloat(numberOfItemsInSection - 1)
         widthOfCells += cellGaps
-        let leftPadding: CGFloat = max(collectionView.layoutMargins.left, collectionView.superview?.layoutMargins.left ?? 0)
-        let rightPadding: CGFloat = max(collectionView.layoutMargins.right, collectionView.superview?.layoutMargins.right ?? 0)
-        let viewWidth = self.collectionView?.frame.size.width ?? 0
-        let horizontalPadding = max(0, (viewWidth - leftPadding - rightPadding - widthOfCells) / 2)
+        let leftPadding: CGFloat = collectionView.layoutMargins.left
+        let rightPadding: CGFloat = collectionView.layoutMargins.right
+        let horizontalPadding = max(0, (collectionView.frame.size.width - widthOfCells) / 2 - leftPadding - rightPadding)
 
         return UIEdgeInsets(top: 0, left: leftPadding + horizontalPadding, bottom: 0, right: rightPadding + horizontalPadding)
     }

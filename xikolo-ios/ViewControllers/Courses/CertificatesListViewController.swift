@@ -42,11 +42,11 @@ class CertificatesListViewController: UITableViewController {
 extension CertificatesListViewController { // TableViewDelegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return certificates.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return certificates.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -64,6 +64,12 @@ extension CertificatesListViewController { // TableViewDelegate
         cell.detailTextLabel?.text = certificateState(certificates[indexPath.row].url)
         cell.enable(certificates[indexPath.row].url != nil)
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerCell = tableView.dequeueReusableCell(withIdentifier: "footerCell") as! CertificateExplanationFooter
+        footerCell.explanationView.text = certificates[section].name
+        return footerCell
     }
 
 }

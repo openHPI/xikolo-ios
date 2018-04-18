@@ -2,20 +2,5 @@
 /* Class = "UITabBarItem"; title = "Courses"; ObjectID = "fhC-LU-HI2"; */
 "fhC-LU-HI2.title" = "Kurse";
 
-/* Class = "UILabel"; text = "Discussions"; ObjectID = "SOy-KB-LgV"; */
-"SOy-KB-LgV.text" = "Kursforum";
-
-/* Class = "UILabel"; text = "Learnings"; ObjectID = "U3Z-HX-RBa"; */
-"U3Z-HX-RBa.text" = "Kursinhalte";
-
-/* Class = "UILabel"; text = "Course Details"; ObjectID = "w4C-3A-1GB"; */
-"w4C-3A-1GB.text" = "Kursdetails";
-
 /* Class = "UINavigationItem"; title = "Courses"; ObjectID = "feQ-Xn-WIz"; */
 "feQ-Xn-WIz.title" = "Kurse";
-
-/* Class = "UILabel"; text = "Announcements"; ObjectID = "DRo-CM-ssb"; */
-"DRo-CM-ssb.text" = "Neuigkeiten";
-
-/* Class = "UILabel"; text = "Certificates"; ObjectID = "qYt-ay-XwD"; */
-"qYt-ay-XwD.text" = "Leistungsnachweise";

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lar-wX-O6M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lar-wX-O6M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -228,9 +228,7 @@
                         <outlet property="registerButton" destination="zJY-AK-fsU" id="MY3-xr-MQK"/>
                         <outlet property="singleSignOnButton" destination="uJw-Tr-IWa" id="iw1-KQ-JB8"/>
                         <outlet property="singleSignOnView" destination="ahl-aK-JAk" id="Nxz-hg-EK5"/>
-                        <segue destination="y1m-I0-unW" kind="show" identifier="ShowSSOWebView" id="Czg-gB-AnG">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="y1m-I0-unW" kind="show" identifier="ShowSSOWebView" id="Czg-gB-AnG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNs-XQ-vWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -245,7 +243,7 @@
         <!--WebViewController-->
         <scene sceneID="ZPS-YZ-TvW">
             <objects>
-                <viewControllerPlaceholder storyboardName="CourseContent" referencedIdentifier="WebViewController" id="y1m-I0-unW" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="WebViewController" referencedIdentifier="WebViewController" id="y1m-I0-unW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVI-nW-oVQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1438" y="-1"/>

@@ -110,6 +110,17 @@ class VideoViewController: UIViewController {
         }
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if let courseNavigationController = self.navigationController as? CourseNavigationController,
+            let courseTransitioningDelegate = courseNavigationController.transitioningDelegate as? CourseTransitioningDelegate,
+            courseTransitioningDelegate.interactionController.shouldFinish {
+            self.player?.pause()
+            self.trackVideoClose()
+        }
+    }
+
     override func prefersHomeIndicatorAutoHidden() -> Bool {
         let orientation = UIDevice.current.orientation
         let isInLandscapeOrientation = orientation == .landscapeRight || orientation == .landscapeLeft
@@ -315,8 +326,11 @@ class VideoViewController: UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
         self.toggleControlBars(true)
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
+
         if #available(iOS 11.0, *) {
             self.setNeedsUpdateOfHomeIndicatorAutoHidden()
         }

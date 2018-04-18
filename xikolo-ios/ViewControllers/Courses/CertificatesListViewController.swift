@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-//import Alamofire
 import DZNEmptyDataSet
 import SafariServices
 import UIKit

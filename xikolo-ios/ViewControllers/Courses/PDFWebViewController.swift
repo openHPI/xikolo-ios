@@ -8,12 +8,12 @@ import UIKit
 
 class PDFWebViewController: UIViewController {
 
-    @IBOutlet weak var webView: UIWebView!
-    @IBOutlet var shareButton: UIBarButtonItem!
+    @IBOutlet private weak var webView: UIWebView!
+    @IBOutlet private var shareButton: UIBarButtonItem!
 
     var url: URL!
     private var tempPdfFile: TemporaryFile? = try? TemporaryFile(creatingTempDirectoryForFilename: "certificate.pdf")
-    
+
     @IBAction func sharePDF(_ sender: UIBarButtonItem) {
         guard let fileURL = self.tempPdfFile?.fileURL else { return }
         guard let activityItem = try? Data(contentsOf: fileURL) else { return }
@@ -35,6 +35,7 @@ class PDFWebViewController: UIViewController {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         try? tempPdfFile?.deleteDirectory()
     }
 
@@ -45,16 +46,18 @@ class PDFWebViewController: UIViewController {
             request.setValue(value, forHTTPHeaderField: key)
         }
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             do {
                 try data?.write(to: file.fileURL)
             } catch {
                 log.error(error)
             }
+
             let request = URLRequest(url: file.fileURL)
             DispatchQueue.main.async {
                 self.webView.loadRequest(request)
-                self.navigationItem.rightBarButtonItem = self.shareButton            }
+                self.navigationItem.rightBarButtonItem = self.shareButton
+            }
         }
 
         task.resume()

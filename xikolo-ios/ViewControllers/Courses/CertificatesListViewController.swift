@@ -64,9 +64,9 @@ extension CertificatesListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
-        cell.textLabel?.text = certificates[indexPath.row].name
-        cell.detailTextLabel?.text = certificateState(certificates[indexPath.row].url)
-        cell.enable(certificates[indexPath.row].url != nil)
+        cell.textLabel?.text = certificates[indexPath.section].name
+        cell.detailTextLabel?.text = certificateState(certificates[indexPath.section].url)
+        cell.enable(certificates[indexPath.section].url != nil)
         return cell
     }
 

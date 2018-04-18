@@ -1321,10 +1321,6 @@
 		70E37FCE207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		70E37FCF207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		70E37FD0207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
-		70E37FD2207D4EF000F9872F /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD1207D4EEF00F9872F /* CertificateCell.swift */; };
-		70E37FD3207D4EF000F9872F /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD1207D4EEF00F9872F /* CertificateCell.swift */; };
-		70E37FD4207D4EF000F9872F /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD1207D4EEF00F9872F /* CertificateCell.swift */; };
-		70E37FD5207D4EF000F9872F /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD1207D4EEF00F9872F /* CertificateCell.swift */; };
 		70E37FD7207D582700F9872F /* PdfCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD6207D582700F9872F /* PdfCacheHelper.swift */; };
 		70E37FD8207D582700F9872F /* PdfCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD6207D582700F9872F /* PdfCacheHelper.swift */; };
 		70E37FD9207D582700F9872F /* PdfCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD6207D582700F9872F /* PdfCacheHelper.swift */; };
@@ -2061,7 +2057,6 @@
 		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
-		70E37FD1207D4EEF00F9872F /* CertificateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateCell.swift; sourceTree = "<group>"; };
 		70E37FD6207D582700F9872F /* PdfCacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfCacheHelper.swift; sourceTree = "<group>"; };
 		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
@@ -2465,7 +2460,6 @@
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				70E37FD1207D4EEF00F9872F /* CertificateCell.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
 				500228EC20582573003301A7 /* CourseItemHeader.swift */,
@@ -4674,7 +4668,6 @@
 				24BA40D41D3F9AF300E38C2C /* RichTextHelper.swift in Sources */,
 				24BA408C1D3F9A9300E38C2C /* Course.swift in Sources */,
 				243CE48E1D786422007C59B6 /* TrackingEvent.swift in Sources */,
-				70E37FD3207D4EF000F9872F /* CertificateCell.swift in Sources */,
 				243CE4851D709999007C59B6 /* Enrollment.swift in Sources */,
 				AB35C9351E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				5053988D1F72A9FB00A87DC8 /* UserDefaultsKeys.swift in Sources */,
@@ -5331,7 +5324,6 @@
 				70D1EAB31EF0ABFC0088C0FF /* CourseItemHelper.swift in Sources */,
 				5057ED901FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
 				5019A7661F20ACE6008C8138 /* Video+DetailedCourseItem.swift in Sources */,
-				70E37FD5207D4EF000F9872F /* CertificateCell.swift in Sources */,
 				70D1EB221EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */,
 				70D1EAEC1EF0AC9A0088C0FF /* CourseDatesListViewController.swift in Sources */,
 				70D1EACF1EF0AC1E0088C0FF /* TrackingHelper.swift in Sources */,
@@ -5668,7 +5660,6 @@
 				24A16D921CFFA72100CAD9FE /* CoreDataHelper.swift in Sources */,
 				503585051F3AF6AA002A666C /* String+ascii.swift in Sources */,
 				ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */,
-				70E37FD2207D4EF000F9872F /* CertificateCell.swift in Sources */,
 				F80D67931B98683400E27520 /* AnnouncementViewController.swift in Sources */,
 				243CE48C1D786422007C59B6 /* TrackingEvent.swift in Sources */,
 				24D48E1C1CCA5A0D00E8051E /* CourseHelper.swift in Sources */,
@@ -5841,7 +5832,6 @@
 				ABA0F0E41DF8CE790001D88D /* Routes.swift in Sources */,
 				AB35C9371E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				ABA0F0651DF8CD9F0001D88D /* Content.swift in Sources */,
-				70E37FD4207D4EF000F9872F /* CertificateCell.swift in Sources */,
 				505398911F72A9FD00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				ABA0F0BB1DF8CE270001D88D /* CoreDataHelper.swift in Sources */,
 				AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */,

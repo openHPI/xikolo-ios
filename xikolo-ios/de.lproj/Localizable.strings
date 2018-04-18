@@ -74,17 +74,8 @@
 /* the current state of a certificate */
 "course.certificates.achieved" = "erreicht";
 
-/* name of certificate */
-"course.certificates.confirmationOfParticipation" = "Teilnahmebestätigung";
-
 /* the current state of a certificate */
 "course.certificates.not-achieved" = "nicht erreicht";
-
-/* name of certificate */
-"course.certificates.qualifiedCertificate" = "Qualifiziertes Zertifikat";
-
-/* name of certificate */
-"course.certificates.recordOfAchievement" = "Zeugnis";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";

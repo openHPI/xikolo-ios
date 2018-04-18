@@ -1,0 +1,18 @@
+
+/* name of certificate */
+"course.certificates.confirmationOfParticipation" = "Confirmation of Participation";
+
+/* explanation how to achieve certificate */
+"course.certificates.confirmationOfParticipation.explanation" = "A confirmation of participation is issued to those who have completed at least 50% of the course material.";
+
+/* name of certificate */
+"course.certificates.qualifiedCertificate" = "Qualified Certificate";
+
+/* explanation how to achieve certificate */
+"course.certificates.qualifiedCertificate.explanation" = "A qualified certificate is issued to those who have booked it and gained a record of achievement.";
+
+/* name of certificate */
+"course.certificates.recordOfAchievement" = "Record of Achievement";
+
+/* explanation how to achieve certificate */
+"course.certificates.recordOfAchievement.explanation" = "A record of achievement is issued to those who have earned more than 50% of the maximum number of points for the sum of all graded assignments.";

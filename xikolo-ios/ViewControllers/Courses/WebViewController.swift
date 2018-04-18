@@ -31,7 +31,6 @@ class WebViewController: UIViewController {
             self.webView.stopLoading()
             NetworkIndicator.end()
         }
-
     }
 
     private func loadURL() {
@@ -56,7 +55,6 @@ extension WebViewController: UIWebViewDelegate {
     }
 
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }

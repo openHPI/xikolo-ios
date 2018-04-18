@@ -1057,7 +1057,6 @@
 		70451A1F2080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
 		70451A202080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
 		70451A212080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
-		70451A2E2086FE30002D5D3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70451A2C2086FE30002D5D3E /* Localizable.strings */; };
 		7057FFD41EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD51EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		7057FFD61EC9D8CE00FF759B /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
@@ -2043,8 +2042,6 @@
 		702520901F71A1D4003E0F80 /* NotificationKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsListViewController.swift; sourceTree = "<group>"; };
 		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
-		70451A2D2086FE30002D5D3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		70451A2F2086FE3E002D5D3E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
 		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
@@ -2570,7 +2567,6 @@
 				501F94672007550A001C8754 /* Stroyboard */,
 				501F94752007556A001C8754 /* Views */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
-				70451A2C2086FE30002D5D3E /* Localizable.strings */,
 				2490C4D61D1D6F7100F42949 /* Common.strings */,
 				2493481A1D9550FD006D4F2C /* Common.stringsdict */,
 				24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */,
@@ -3794,7 +3790,6 @@
 				2490C4D31D1D6F7100F42949 /* Common.strings in Resources */,
 				AB947CE21E19E1EC009888B0 /* Settings.bundle in Resources */,
 				AB9183231D6B093000018C1D /* assets-ios-brand.xcassets in Resources */,
-				70451A2E2086FE30002D5D3E /* Localizable.strings in Resources */,
 				249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */,
 				5014E2F61FCEDFFA007255B5 /* Login.storyboard in Resources */,
 				5014E2EF1FCEC1B7007255B5 /* TabNews.storyboard in Resources */,
@@ -6347,15 +6342,6 @@
 				508BD0B11FD6CCE800AF0167 /* de */,
 			);
 			name = CourseDateHeader.xib;
-			sourceTree = "<group>";
-		};
-		70451A2C2086FE30002D5D3E /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70451A2D2086FE30002D5D3E /* Base */,
-				70451A2F2086FE3E002D5D3E /* de */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		A90587C21B3BFC130095DB89 /* Main.storyboard */ = {

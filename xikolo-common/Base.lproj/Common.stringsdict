@@ -68,5 +68,33 @@
 			<string>%d courses found</string>
 		</dict>
 	</dict>
+	<key>course.certificates.explanation.recordOfAchievement</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@explanation@</string>
+		<key>explanation</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>A record of achievement is issued to those who have earned more than %d%% of the maximum number of points for the sum of all graded assignments.</string>
+		</dict>
+	</dict>
+	<key>course.certificates.explanation.confirmationOfParticipation</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@explanation@</string>
+		<key>explanation</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>A confirmation of participation is issued to those who have completed at least %d%% of the course material.</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

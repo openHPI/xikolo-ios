@@ -12,6 +12,7 @@ class CourseDecisionViewController: UIViewController {
         case discussions = 1
         case courseDetails = 2
         case announcements = 3
+        case certificates = 4
     }
 
     @IBOutlet private weak var containerView: UIView!
@@ -90,8 +91,8 @@ class CourseDecisionViewController: UIViewController {
             titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
         case .announcements:
             let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
-            let loadedVc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController")
-            let vc = loadedVc.require(toHaveType: AnnouncementsTableViewController.self)
+            let loadedVc = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsListViewController")
+            let vc = loadedVc.require(toHaveType: AnnouncementsListViewController.self)
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.announcements.title", comment: "title of announcements view of course view")
@@ -100,6 +101,11 @@ class CourseDecisionViewController: UIViewController {
             vc.course = course
             changeToViewController(vc)
             titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
+        case .certificates:
+            let vc = storyboard.instantiateViewController(withIdentifier: "CertificatesListViewController").require(toHaveType: CertificatesListViewController.self)
+            vc.course = course
+            changeToViewController(vc)
+            titleView.text = NSLocalizedString("course-content.view.certificates.title", comment: "title of certificates view of course view")
         }
 
         self.content = content

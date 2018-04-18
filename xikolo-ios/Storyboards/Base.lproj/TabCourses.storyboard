@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="krt-FK-dfi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -311,9 +311,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4V-6l-NtX">
-                                <rect key="frame" x="0.0" y="20" width="375" height="173"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="219"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="173" id="LpH-qr-v08"/>
+                                    <constraint firstAttribute="height" constant="219" id="LpH-qr-v08"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="6J1-nF-Dot" kind="embed" identifier="EmbedCourseContentChoice" id="SxM-JY-dGM"/>
@@ -359,12 +359,12 @@
             </objects>
             <point key="canvasLocation" x="3324" y="0.0"/>
         </scene>
-        <!--Dropdown Table View Controller-->
+        <!--Dropdown List View Controller-->
         <scene sceneID="koV-za-70u">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="6J1-nF-Dot" customClass="DropdownTableViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="6J1-nF-Dot" customClass="DropdownListViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YAz-3s-0sS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -538,6 +538,48 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UsU-eF-wfc">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UsU-eF-wfc" id="qoK-Mn-JSa">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Certificates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYt-ay-XwD">
+                                                    <rect key="frame" x="60" y="11" width="89" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="course-item-icon-document" translatesAutoresizingMaskIntoConstraints="NO" id="EZz-zl-c04">
+                                                    <rect key="frame" x="24" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="37L-3S-CV1"/>
+                                                        <constraint firstAttribute="width" constant="28" id="kd0-fi-bFx"/>
+                                                        <constraint firstAttribute="width" constant="41" id="whr-77-v8x"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="whr-77-v8x"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qYt-ay-XwD" firstAttribute="centerY" secondItem="qoK-Mn-JSa" secondAttribute="centerY" id="Aah-aU-ucR"/>
+                                                <constraint firstItem="EZz-zl-c04" firstAttribute="leading" secondItem="qoK-Mn-JSa" secondAttribute="leadingMargin" constant="8" id="DOv-v3-ype"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="qYt-ay-XwD" secondAttribute="trailing" constant="16" id="m6f-kB-fmq"/>
+                                                <constraint firstItem="qYt-ay-XwD" firstAttribute="leading" secondItem="qoK-Mn-JSa" secondAttribute="leadingMargin" constant="7" id="r23-ej-Uzc"/>
+                                                <constraint firstItem="qYt-ay-XwD" firstAttribute="leading" secondItem="EZz-zl-c04" secondAttribute="trailing" constant="8" symbolic="YES" id="tb9-22-g2r"/>
+                                                <constraint firstItem="EZz-zl-c04" firstAttribute="centerY" secondItem="qoK-Mn-JSa" secondAttribute="centerY" id="vg5-NR-Kvh"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="r23-ej-Uzc"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -584,11 +626,12 @@
         <image name="content-couse_details-28" width="28" height="28"/>
         <image name="content-discussions-28" width="28" height="28"/>
         <image name="content-learnings-28" width="28" height="28"/>
+        <image name="course-item-icon-document" width="21" height="21"/>
         <image name="tab-bar-item-courses" width="28" height="28"/>
         <image name="titlebar-dropdown-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ThX-Ci-ZbU"/>
+        <segue reference="Fvt-qD-Nql"/>
         <segue reference="5jb-EE-lFA"/>
     </inferredMetricsTieBreakers>
 </document>

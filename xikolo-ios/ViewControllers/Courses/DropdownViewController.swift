@@ -12,7 +12,7 @@ class DropdownViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "EmbedCourseContentChoice"?:
-            let vc = segue.destination.require(toHaveType: DropdownTableViewController.self)
+            let vc = segue.destination.require(toHaveType: DropdownListViewController.self)
             vc.course = course
         default:
             break

@@ -16,3 +16,6 @@
 
 /* Class = "UILabel"; text = "Announcements"; ObjectID = "DRo-CM-ssb"; */
 "DRo-CM-ssb.text" = "Neuigkeiten";
+
+/* Class = "UILabel"; text = "Certificates"; ObjectID = "qYt-ay-XwD"; */
+"qYt-ay-XwD.text" = "Leistungsnachweise";

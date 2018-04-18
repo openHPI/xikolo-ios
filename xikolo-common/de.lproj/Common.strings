@@ -11,6 +11,18 @@
 /* course start at specfic date in the past */
 "course-date-formatting.started.since %@" = "Seit %@";
 
+/* explanation how to achieve the certificate */
+"course.certificates.explanation.qualifiedCertificate" = "Das Qualifizierte Zertifikat erhält, wer es gebucht hat und das Zeugnis erhalten hat";
+
+/* name of the certificate */
+"course.certificates.name.confirmationOfParticipation" = "Teilnahmebestätigung";
+
+/* name of the certificate */
+"course.certificates.name.qualifiedCertificate" = "Qualifizierte Zertifikat";
+
+/* name of the certificate */
+"course.certificates.name.recordOfAchievement" = "Zeugnis";
+
 /* section title for all courses */
 "course.section-title.all courses" = "Alle Kurse";
 

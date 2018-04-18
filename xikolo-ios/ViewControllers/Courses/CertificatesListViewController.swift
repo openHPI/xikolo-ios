@@ -15,9 +15,6 @@ class CertificatesListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.estimatedSectionFooterHeight = 40
-//        tableView.estimatedRowHeight = 40
-//        tableView.sectionFooterHeight = UITableViewAutomaticDimension
         self.setupEmptyState()
     }
 
@@ -27,7 +24,7 @@ class CertificatesListViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
-    func certificateState(_ certificateURL: URL?) -> String {
+    func stateOfCertificate(withURL certificateURL: URL?) -> String {
         if certificateURL != nil {
             return NSLocalizedString("course.certificates.achieved", comment: "the current state of a certificate")
         } else {
@@ -40,7 +37,7 @@ class CertificatesListViewController: UITableViewController {
 extension CertificatesListViewController { // TableViewDelegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return certificates.count
+        return self.certificates.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +45,7 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = certificates[indexPath.row].url else { return }
+        guard let url = self.certificates[indexPath.row].url else { return }
 
         let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
         let pdfViewController = storyboard.instantiateViewController(withIdentifier: "PDFWebViewController").require(toHaveType: PDFWebViewController.self)
@@ -58,16 +55,16 @@ extension CertificatesListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
-        cell.textLabel?.text = certificates[indexPath.section].name
-        cell.detailTextLabel?.text = certificateState(certificates[indexPath.section].url)
-        cell.enable(certificates[indexPath.section].url != nil)
+        let certificate = self.certificates[indexPath.section]
+        cell.textLabel?.text = certificate.name
+        cell.detailTextLabel?.text = self.stateOfCertificate(withURL: certificate.url)
+        cell.enable(certificate.url != nil)
+        cell.accessoryType = certificate.url != nil ? .disclosureIndicator : .none
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerCell = UITableViewHeaderFooterView(reuseIdentifier: "explanationFooter")
-        footerCell.textLabel?.text = certificates[section].explanation
-        return footerCell
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return self.certificates[section].explanation
     }
 
 }
@@ -75,22 +72,20 @@ extension CertificatesListViewController { // TableViewDelegate
 extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.certificates.no-certificates.title",
-                                      comment: "title for empty certificates list")
+        let title = NSLocalizedString("empty-view.certificates.no-certificates.title", comment: "title for empty certificates list")
         return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.certificates.no-certificates.description",
-                                            comment: "description for empty certificates list")
+        let description = NSLocalizedString("empty-view.certificates.no-certificates.description", comment: "description for empty certificates list")
         return NSAttributedString(string: description)
     }
 
     func setupEmptyState() {
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
-        tableView.reloadEmptyDataSet()
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.tableFooterView = UIView()
+        self.tableView.reloadEmptyDataSet()
     }
 
 }

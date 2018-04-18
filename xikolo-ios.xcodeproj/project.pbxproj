@@ -1321,10 +1321,6 @@
 		70E37FCE207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		70E37FCF207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		70E37FD0207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
-		70E37FD7207D582700F9872F /* PdfCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD6207D582700F9872F /* PdfCacheHelper.swift */; };
-		70E37FD8207D582700F9872F /* PdfCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD6207D582700F9872F /* PdfCacheHelper.swift */; };
-		70E37FD9207D582700F9872F /* PdfCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD6207D582700F9872F /* PdfCacheHelper.swift */; };
-		70E37FDA207D582700F9872F /* PdfCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FD6207D582700F9872F /* PdfCacheHelper.swift */; };
 		70F379CF205B643400149C3B /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
 		70F379D0205B643400149C3B /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
 		70F379D1205B643400149C3B /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
@@ -2057,7 +2053,6 @@
 		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
-		70E37FD6207D582700F9872F /* PdfCacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfCacheHelper.swift; sourceTree = "<group>"; };
 		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		75423375ECC403378EAC1044 /* Pods-openSAP-tvOS-TopShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS-TopShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS-TopShelf/Pods-openSAP-tvOS-TopShelf.release.xcconfig"; sourceTree = "<group>"; };
@@ -2496,7 +2491,6 @@
 				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 				50F720271F28D72D00779995 /* VideoPersistenceManager.swift */,
 				50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */,
-				70E37FD6207D582700F9872F /* PdfCacheHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4809,7 +4803,6 @@
 				24BA40C01D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
 				24BA41111D3F9B7D00E38C2C /* AnnouncementViewController.swift in Sources */,
 				24BA40911D3F9A9900E38C2C /* CourseItem.swift in Sources */,
-				70E37FD8207D582700F9872F /* PdfCacheHelper.swift in Sources */,
 				7057FFDD1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */,
 				ABA0BB431E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
 				5019A7691F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */,
@@ -5403,7 +5396,6 @@
 				703005BF1EFEFC1500CCDCC9 /* UserHelper.swift in Sources */,
 				70D1EB261EF12E0B0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				70D1EB021EF0ACDC0088C0FF /* CourseItemCell.swift in Sources */,
-				70E37FDA207D582700F9872F /* PdfCacheHelper.swift in Sources */,
 				70D1EA741EF0AB460088C0FF /* TrackingEventUser.swift in Sources */,
 				50D9B1791F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				505398951F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */,
@@ -5801,7 +5793,6 @@
 				50F57DC91FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				ABC1BF1F1E7ABE5C00DEAF0E /* EnrollmentHelper.swift in Sources */,
 				24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
-				70E37FD7207D582700F9872F /* PdfCacheHelper.swift in Sources */,
 				F89473C21B3C46FD00553882 /* LoginViewController.swift in Sources */,
 				ABA0BB421E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
 				7057FFDC1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */,
@@ -5973,7 +5964,6 @@
 				ABA0F06B1DF8CDAA0001D88D /* LTIExercise.swift in Sources */,
 				ABA0BB441E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
 				7057FFDE1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */,
-				70E37FD9207D582700F9872F /* PdfCacheHelper.swift in Sources */,
 				AB19D39E1DF8D53F004AB193 /* UITableViewCell+enable.swift in Sources */,
 				5019A76A1F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */,
 				ABA0F0871DF8CDD50001D88D /* QuizOption.swift in Sources */,

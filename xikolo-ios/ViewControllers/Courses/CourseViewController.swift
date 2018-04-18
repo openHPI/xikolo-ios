@@ -51,9 +51,7 @@ class CourseViewController: UIViewController {
     func decideContent(newlyEnrolled: Bool = false) {
         if !self.course.hasEnrollment {
             self.content = .courseDetails
-        } else if newlyEnrolled {
-            self.content = .learnings
-        } else if self.content == nil {
+        } else if newlyEnrolled || self.content == nil {
             self.content = course.accessible ? .learnings : .courseDetails
         }
 

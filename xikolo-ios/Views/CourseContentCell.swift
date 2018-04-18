@@ -7,8 +7,8 @@ import UIKit
 
 class CourseContentCell: UICollectionViewCell {
 
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var hightlightView: UIView!
+    @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var hightlightView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

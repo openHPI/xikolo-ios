@@ -12,6 +12,7 @@ class CourseViewController: UIViewController {
         case discussions = 1
         case courseDetails = 2
         case announcements = 3
+        case certificates = 4
     }
 
     @IBOutlet private weak var containerView: UIView!
@@ -93,15 +94,15 @@ class CourseViewController: UIViewController {
             let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
             let viewController = initialViewController.require(toHaveType: WebViewController.self)
             if let slug = course.slug {
-                viewController.url = Routes.COURSES_URL + slug + "/pinboard"
+                viewController.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
             }
 
             self.changeToViewController(viewController)
             self.titleView.text = NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
         case .announcements:
             let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
-            let loadedViewController = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsTableViewController")
-            let viewController = loadedViewController.require(toHaveType: AnnouncementsTableViewController.self)
+            let loadedViewController = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsListViewController")
+            let viewController = loadedViewController.require(toHaveType: AnnouncementsListViewController.self)
             viewController.course = course
             self.changeToViewController(viewController)
             self.titleView.text = NSLocalizedString("course-content.view.announcements.title", comment: "title of announcements view of course view")
@@ -112,6 +113,13 @@ class CourseViewController: UIViewController {
             viewController.course = course
             self.changeToViewController(viewController)
             self.titleView.text = NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
+        case .certificates:
+            let storyboard = UIStoryboard(name: "CourseCertificates", bundle: nil)
+            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
+            let viewController = initialViewController.require(toHaveType: CertificatesListViewController.self)
+            viewController.course = course
+            self.changeToViewController(viewController)
+            self.titleView.text = NSLocalizedString("course-content.view.certificates.title", comment: "title of certificates view of course view")
         }
 
         self.content = content

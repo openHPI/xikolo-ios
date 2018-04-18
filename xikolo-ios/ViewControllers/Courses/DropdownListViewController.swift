@@ -5,7 +5,7 @@
 
 import UIKit
 
-class DropdownTableViewController: UITableViewController {
+class DropdownListViewController: UITableViewController {
 
     var course: Course!
 

@@ -48,7 +48,7 @@ class AppNavigator {
             return true
         }
 
-        guard url.host == Brand.Host else {
+        guard url.host == Brand.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
@@ -56,14 +56,14 @@ class AppNavigator {
         let storyboard = UIStoryboard(name: "WebViewController", bundle: nil)
         let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
         let webViewController = initialViewController.require(toHaveType: WebViewController.self)
-        webViewController.url = url.absoluteString
+        webViewController.url = url
         sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
         return true
     }
 
     static func handle(_ url: URL) -> Bool {
         guard let hostURL = url.host else { return false }
-        guard hostURL == Brand.Host else {
+        guard hostURL == Brand.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }

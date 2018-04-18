@@ -7,7 +7,7 @@ import CoreData
 import DZNEmptyDataSet
 import UIKit
 
-class CourseDatesTableViewController: UITableViewController {
+class CourseDatesListViewController: UITableViewController {
 
     @IBOutlet private var loginButton: UIBarButtonItem!
 
@@ -101,7 +101,7 @@ class CourseDatesTableViewController: UITableViewController {
 
 }
 
-extension CourseDatesTableViewController {
+extension CourseDatesListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
@@ -127,7 +127,7 @@ struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguratio
 
 }
 
-extension CourseDatesTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseDatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         guard let tableHeaderView = self.tableView.tableHeaderView else {

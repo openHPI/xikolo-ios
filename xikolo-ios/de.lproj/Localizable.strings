@@ -20,6 +20,9 @@
 /* title of announcements view of course view */
 "course-content.view.announcements.title" = "Neuigkeiten";
 
+/* title of certificates view of course view */
+"course-content.view.certificates.title" = "Leistungsnachweise";
+
 /* title of course details view of course view */
 "course-content.view.course-details.title" = "Kursdetails";
 
@@ -68,11 +71,20 @@
 /* stop all video downloads in section */
 "course-section.video-download-action.stop-downloads.title" = "Alle Downloads stoppen";
 
+/* the current state of a certificate */
+"course.certificates.achieved" = "erreicht";
+
+/* the current state of a certificate */
+"course.certificates.not-achieved" = "nicht erreicht";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
 
 /* title for empty announcement list */
 "empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";
+
+/* title for empty certificates list */
+"empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 
 /* title for empty course content list */
 "empty-view.course-content.title" = "Kursinhalte werden geladen ...";

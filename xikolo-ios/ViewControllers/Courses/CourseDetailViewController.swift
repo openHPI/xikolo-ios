@@ -30,7 +30,7 @@ class CourseDetailViewController: UIViewController {
 
         self.statusView.layer.cornerRadius = 4.0
         self.statusView.layer.masksToBounds = true
-        self.statusView.backgroundColor = Brand.TintColorSecond
+        self.statusView.backgroundColor = Brand.Color.secondary
 
         self.updateView()
 
@@ -44,7 +44,7 @@ class CourseDetailViewController: UIViewController {
         titleView.text = course.title
         languageView.text = course.localizedLanguage
         teacherView.text = course.teachers
-        teacherView.textColor = Brand.TintColorSecond
+        teacherView.textColor = Brand.Color.secondary
 
         dateView.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
         imageView.sd_setImage(with: course.imageURL)
@@ -73,10 +73,10 @@ class CourseDetailViewController: UIViewController {
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
         if self.course.hasEnrollment {
-            self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+            self.enrollmentButton.backgroundColor = Brand.Color.primary.withAlphaComponent(0.2)
             self.enrollmentButton.tintColor = UIColor.darkGray
         } else if ReachabilityHelper.connection != .none {
-            self.enrollmentButton.backgroundColor = Brand.TintColor
+            self.enrollmentButton.backgroundColor = Brand.Color.primary
             self.enrollmentButton.tintColor = UIColor.white
         } else {
             self.enrollmentButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)

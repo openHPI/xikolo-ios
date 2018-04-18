@@ -10,3 +10,6 @@
 
 /* Class = "UILabel"; text = "Learnings"; ObjectID = "tIp-cH-1MM"; */
 "tIp-cH-1MM.text" = "Learnings";
+
+/* Class = "UILabel"; text = "Certificates"; ObjectID = "ehu-G1-GhV"; */
+"ehu-G1-GhV.text" = "Leistungsnachweise";

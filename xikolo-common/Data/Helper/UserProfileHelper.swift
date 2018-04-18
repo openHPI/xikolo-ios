@@ -12,19 +12,18 @@ open class UserProfileHelper {
         let promise = Promise<String, XikoloError>()
 
         let parameters: String = [
-            Routes.HTTP_PARAM_EMAIL: email,
-            Routes.HTTP_PARAM_PASSWORD: password,
+            Routes.HeaderParameter.email: email,
+            Routes.HeaderParameter.password: password,
         ].map { key, value in
             return "\(NetworkHelper.escape(key))=\(NetworkHelper.escape(value))"
         }.joined(separator: "&")
 
-        let url = URL(string: Routes.AUTHENTICATE_URL).require(hint: "Invalid URL for authentication")
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: Routes.authenticate)
         request.httpMethod = "POST"
         request.httpBody = parameters.data(using: .utf8, allowLossyConversion: false)
 
         request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue(Routes.HEADER_USER_PLATFORM_VALUE, forHTTPHeaderField: Routes.HEADER_USER_PLATFORM)
+        request.setValue(Routes.Header.userPlatformValue, forHTTPHeaderField: Routes.Header.userPlatformKey)
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let err = error {
@@ -98,6 +97,9 @@ open class UserProfileHelper {
 
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+            #if OPENSAP
+            AppDelegate.instance().checkForVoucher()
+            #endif
         }
     }
 

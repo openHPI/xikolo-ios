@@ -3103,10 +3103,10 @@
 				24BA40311D3F976700E38C2C /* Frameworks */,
 				24BA40321D3F976700E38C2C /* Resources */,
 				507A5CDF2021F3C4009B1F95 /* Copy GoogleServices-Info.plist */,
-				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
-				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
 				508DDBBB1FDAE8D400F2ACB9 /* Remove German localization */,
+				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				0E973DA8D6F8512D87AB9C30 /* [CP] Copy Pods Resources */,
+				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3263,8 +3263,8 @@
 				709C93011EF0952500F8F045 /* Resources */,
 				507A5CE12021F40F009B1F95 /* Copy GoogleServices-Info.plist */,
 				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
-				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
 				CB9D0A7FA0F365C369C2EB67 /* [CP] Copy Pods Resources */,
+				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3327,8 +3327,8 @@
 				A90587B91B3BFC130095DB89 /* Resources */,
 				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
-				50429D991FB07149000C1D5E /* Clear Build Number */,
 				FEB3A85F568542981615E911 /* [CP] Copy Pods Resources */,
+				50429D991FB07149000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -3350,8 +3350,8 @@
 				AB48B4331DF8BB2A00523062 /* Resources */,
 				507A5CE02021F3ED009B1F95 /* Copy GoogleServices-Info.plist */,
 				ACB757C47A664C44D01683E8 /* [CP] Embed Pods Frameworks */,
-				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
 				8EB05A123B0AD9DFF444F5A7 /* [CP] Copy Pods Resources */,
+				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
 			);
 			buildRules = (
 			);

@@ -169,18 +169,3 @@
 
 /* description for empty course content list */
 "empty-view.course-content.description" = "";
-
-/* Class = "UILabel"; text = "Error: Could not find video stream"; ObjectID = "XUY-uY-wln"; */
-"XUY-uY-wln.text" = "Fehler: Video-Stream konnte nicht gefunden werden";
-
-/* Class = "UIButton"; normalTitle = "Display issues?"; ObjectID = "pHK-EI-eQB"; */
-"pHK-EI-eQB.normalTitle" = "Darstellungsfehler?";
-
-/* Class = "UIButton"; normalTitle = "Video"; ObjectID = "wDv-C9-ciX"; */
-"wDv-C9-ciX.normalTitle" = "Video";
-
-/* Class = "UIButton"; normalTitle = "Slides"; ObjectID = "xZ7-yy-Tyb"; */
-"xZ7-yy-Tyb.normalTitle" = "Folien";
-
-/* Class = "UILabel"; text = "Learning Material"; ObjectID = "zsg-Td-Qxk"; */
-"zsg-Td-Qxk.text" = "Lernmaterial";

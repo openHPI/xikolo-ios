@@ -11,7 +11,7 @@ import UIKit
 class CertificatesListViewController: UITableViewController {
 
     var course: Course!
-    var certificates: [(name: String, explanation: String, url: URL?)] = [] // swiftlint:disable:this large_tuple
+    var certificates: [(name: String, explanation: String?, url: URL?)] = [] // swiftlint:disable:this large_tuple
 
     override func viewDidLoad() {
         super.viewDidLoad()

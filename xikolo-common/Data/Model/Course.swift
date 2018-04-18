@@ -70,28 +70,35 @@ final class Course: NSManagedObject {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 
-    var availableCertificates: [(name: String, explanation: String, url: URL?)] { // swiftlint:disable:this large_tuple
-        var certificates: [(String, String, URL?)] = []
+    var availableCertificates: [(name: String, explanation: String?, url: URL?)] { // swiftlint:disable:this large_tuple
+        var certificates: [(String, String?, URL?)] = []
 
         if let cop = self.certificates?.confirmationOfParticipation, cop.available {
-            let name = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "name of the certificate")
-            let explanation = NSLocalizedString("course.certificates.confirmationOfParticipation.explanation",
-                                                comment: "explanation how to achieve the certificate")
+            let name = NSLocalizedString("course.certificates.name.confirmationOfParticipation", tableName: "Common", comment: "name of the certificate")
+            let format = NSLocalizedString("course.certificates.explanation.confirmationOfParticipation",
+                                            tableName: "Common",
+                                            comment: "explanation how to achieve the certificate #bc-ignore!")
+            let explanation = cop.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
             let url = self.enrollment?.certificates?.confirmationOfParticipation
             certificates.append((name, explanation, url))
         }
 
         if let roa = self.certificates?.recordOfAchievement, roa.available {
-            let name = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of the certificate")
-            let explanation = NSLocalizedString("course.certificates.recordOfAchievement.explanation", comment: "explanation how to achieve the certificate")
-            let url = enrollment?.certificates?.recordOfAchievement
+            let name = NSLocalizedString("course.certificates.name.recordOfAchievement", tableName: "Common", comment: "name of the certificate")
+            let format = NSLocalizedString("course.certificates.explanation.recordOfAchievement",
+                                           tableName: "Common",
+                                           comment: "explanation how to achieve the certificate #bc-ignore!")
+            let explanation = roa.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
+            let url = self.enrollment?.certificates?.recordOfAchievement
             certificates.append((name, explanation, url))
         }
 
-        if let cop = self.certificates?.qualifiedCertificate, cop.available {
-            let name = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of the certificate")
-            let explanation = NSLocalizedString("course.certificates.qualifiedCertificate.explanation", comment: "explanation how to achieve the certificate")
-            let url = enrollment?.certificates?.qualifiedCertificate
+        if let certificate = self.certificates?.qualifiedCertificate, certificate.available {
+            let name = NSLocalizedString("course.certificates.name.qualifiedCertificate", tableName: "Common", comment: "name of the certificate")
+            let explanation = NSLocalizedString("course.certificates.explanation.qualifiedCertificate",
+                                                tableName: "Common",
+                                                comment: "explanation how to achieve the certificate")
+            let url = self.enrollment?.certificates?.qualifiedCertificate
             certificates.append((name, explanation, url))
         }
 

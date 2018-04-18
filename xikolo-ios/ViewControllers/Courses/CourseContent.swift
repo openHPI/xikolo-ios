@@ -22,7 +22,7 @@ enum CourseContent {
     ]
 
     var acessibleWithoutEnrollment: Bool {
-        return self == .courseDetails
+        return self == .courseDetails || self == .certificates
     }
 
     var title: String {

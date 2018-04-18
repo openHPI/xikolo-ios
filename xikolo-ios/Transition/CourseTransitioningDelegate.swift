@@ -12,8 +12,7 @@ class CourseTransitioningDelegate: NSObject, UIViewControllerTransitioningDelega
     func presentationController(forPresented presented: UIViewController,
                                 presenting: UIViewController?,
                                 source: UIViewController) -> UIPresentationController? {
-        return CoursePresentationController(presentedViewController: presented,
-                                          presenting: presenting)
+        return CoursePresentationController(presentedViewController: presented, presenting: presenting)
     }
 
     func animationController(forPresented presented: UIViewController,

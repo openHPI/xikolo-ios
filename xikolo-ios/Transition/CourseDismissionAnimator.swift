@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CourseDismissionAnimator : NSObject, UIViewControllerAnimatedTransitioning {
+class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
     private var propertyAnimator: UIViewPropertyAnimator?
 

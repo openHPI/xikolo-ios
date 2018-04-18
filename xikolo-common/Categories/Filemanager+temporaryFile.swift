@@ -5,7 +5,7 @@
 
 import Foundation
 
-//Source: https://oleb.net/blog/2018/03/temp-file-helper/
+// Source: https://oleb.net/blog/2018/03/temp-file-helper/
 extension FileManager {
     /// Creates a temporary directory with a unique name and returns its URL.
     ///
@@ -14,13 +14,12 @@ extension FileManager {
     ///
     /// - Note: You should not rely on the existence of the temporary directory
     ///   after the app is exited.
-    func urlForUniqueTemporaryDirectory(preferredName: String? = nil) throws
-        -> (url: URL, deleteDirectory: () throws -> Void)
-    {
+    func urlForUniqueTemporaryDirectory(preferredName: String? = nil) throws -> (url: URL, deleteDirectory: () throws -> Void) {
         let basename = preferredName ?? UUID().uuidString
 
         var counter = 0
-        var createdSubdirectory: URL? = nil
+        var createdSubdirectory: URL?
+
         repeat {
             do {
                 let subdirName = counter == 0 ? basename : "\(basename)-\(counter)"
@@ -39,6 +38,7 @@ extension FileManager {
         let deleteDirectory: () throws -> Void = {
             try self.removeItem(at: directory)
         }
+
         return (directory, deleteDirectory)
     }
 }

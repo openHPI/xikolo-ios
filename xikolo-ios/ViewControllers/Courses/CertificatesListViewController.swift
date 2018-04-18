@@ -11,26 +11,20 @@ import UIKit
 class CertificatesListViewController: UITableViewController {
 
     var course: Course!
-
-    var certificates: [(name: String, explanation: String, url: URL?)] = []
+    var certificates: [(name: String, explanation: String, url: URL?)] = [] // swiftlint:disable:this large_tuple
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedSectionFooterHeight = 40
-        tableView.estimatedRowHeight = 40
-        tableView.sectionFooterHeight = UITableViewAutomaticDimension
+//        tableView.estimatedSectionFooterHeight = 40
+//        tableView.estimatedRowHeight = 40
+//        tableView.sectionFooterHeight = UITableViewAutomaticDimension
         self.setupEmptyState()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        certificates = course.availableCertificates
         super.viewWillAppear(animated)
-        tableView.layoutIfNeeded()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+        self.certificates = self.course.availableCertificates
+        self.tableView.reloadData()
     }
 
     func certificateState(_ certificateURL: URL?) -> String {
@@ -71,7 +65,7 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerCell = UITableViewHeaderFooterView.init(reuseIdentifier: "explanationFooter")
+        let footerCell = UITableViewHeaderFooterView(reuseIdentifier: "explanationFooter")
         footerCell.textLabel?.text = certificates[section].explanation
         return footerCell
     }

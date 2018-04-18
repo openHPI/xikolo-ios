@@ -46,7 +46,7 @@ extension CertificatesListViewController { // TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let url = self.certificates[indexPath.row].url else { return }
 
-        let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
+        let storyboard = UIStoryboard(name: "CourseCertificates", bundle: nil)
         let pdfViewController = storyboard.instantiateViewController(withIdentifier: "PDFWebViewController").require(toHaveType: PDFWebViewController.self)
         pdfViewController.url = url
         self.navigationController?.pushViewController(pdfViewController, animated: true)

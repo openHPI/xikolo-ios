@@ -77,8 +77,7 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.certificates.no-certificates.description", comment: "description for empty certificates list")
-        return NSAttributedString(string: description)
+        return NSAttributedString(string: "")
     }
 
     func setupEmptyState() {

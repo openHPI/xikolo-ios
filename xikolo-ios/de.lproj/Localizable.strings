@@ -83,9 +83,6 @@
 /* title for empty announcement list */
 "empty-view.announcements.title" = "Zurzeit gibt es keine Neuigkeiten";
 
-/* description for empty certificates list */
-"empty-view.certificates.no-certificates.description" = "Du hast noch keine Zeugnisse oder Teilnahmebestätigungen erhalten. Lerne in einem Kurs zur Veranstaltungszeit um ein Zeugnis zu erhalten.";
-
 /* title for empty certificates list */
 "empty-view.certificates.no-certificates.title" = "Keine Zeugnisse verfügbar";
 

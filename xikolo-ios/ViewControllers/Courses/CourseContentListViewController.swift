@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CourseContentListViewController : UICollectionViewController {
+class CourseContentListViewController: UICollectionViewController {
 
     weak var delegate: CourseContentListViewControllerDelegate?
 
@@ -13,7 +13,7 @@ class CourseContentListViewController : UICollectionViewController {
 
     private var selectedIndexPath: IndexPath? {
         guard let content = self.delegate?.selectedContent else { return nil }
-        guard let index = self.delegate?.accessibleContent.index(of: content) else { return nil}
+        guard let index = self.delegate?.accessibleContent.index(of: content) else { return nil }
         return IndexPath(item: index, section: 0)
     }
 
@@ -81,7 +81,7 @@ class CourseContentListViewController : UICollectionViewController {
 
 }
 
-extension CourseContentListViewController : UICollectionViewDelegateFlowLayout {
+extension CourseContentListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -121,5 +121,6 @@ extension CourseContentListViewController : UICollectionViewDelegateFlowLayout {
 protocol CourseContentListViewControllerDelegate: class {
     var accessibleContent: [CourseContent] { get }
     var selectedContent: CourseContent? { get }
+
     func change(to content: CourseContent)
 }

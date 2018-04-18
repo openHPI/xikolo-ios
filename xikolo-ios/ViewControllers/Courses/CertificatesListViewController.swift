@@ -12,16 +12,20 @@ class CertificatesListViewController: UITableViewController {
 
     var course: Course!
 
-    var certificates: [(name: String, url: URL?)] = []
+    var certificates: [(name: String, explanation: String, url: URL?)] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedSectionFooterHeight = 40
+        tableView.estimatedRowHeight = 40
+        tableView.sectionFooterHeight = UITableViewAutomaticDimension
         self.setupEmptyState()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         certificates = course.availableCertificates
         super.viewWillAppear(animated)
+        tableView.layoutIfNeeded()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,8 +71,8 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerCell = tableView.dequeueReusableCell(withIdentifier: "footerCell") as! CertificateExplanationFooter
-        footerCell.explanationView.text = certificates[section].name
+        let footerCell = UITableViewHeaderFooterView.init(reuseIdentifier: "explanationFooter")
+        footerCell.textLabel?.text = certificates[section].explanation
         return footerCell
     }
 

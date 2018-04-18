@@ -70,24 +70,27 @@ final class Course: NSManagedObject {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 
-    var availableCertificates: [(name: String, url: URL?)] {
-        var certificates: [(String, URL?)] = []
+    var availableCertificates: [(name: String, explanation: String, url: URL?)] {
+        var certificates: [(String, String, URL?)] = []
         if let cop = self.certificates?.confirmationOfParticipation, cop.available {
             let name = NSLocalizedString("course.certificates.confirmationOfParticipation", comment: "name of certificate")
+            let explanation = NSLocalizedString("course.certificates.confirmationOfParticipation.explanation", comment: "explanation how to achieve certificate")
             let url = self.enrollment?.certificates?.confirmationOfParticipation
-            certificates.append((name, url))
+            certificates.append((name, explanation, url))
         }
 
         if let roa = self.certificates?.recordOfAchievement, roa.available {
             let name = NSLocalizedString("course.certificates.recordOfAchievement", comment: "name of certificate")
+            let explanation = NSLocalizedString("course.certificates.recordOfAchievement.explanation", comment: "explanation how to achieve certificate")
             let url = enrollment?.certificates?.recordOfAchievement
-            certificates.append((name, url))
+            certificates.append((name, explanation, url))
         }
 
         if let cop = self.certificates?.qualifiedCertificate, cop.available {
             let name = NSLocalizedString("course.certificates.qualifiedCertificate", comment: "name of certificate")
+            let explanation = NSLocalizedString("course.certificates.qualifiedCertificate.explanation", comment: "explanation how to achieve certificate")
             let url = enrollment?.certificates?.qualifiedCertificate
-            certificates.append((name, url))
+            certificates.append((name, explanation, url))
         }
 
         return certificates

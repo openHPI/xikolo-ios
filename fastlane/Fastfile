@@ -145,7 +145,7 @@ platform :ios do
     lane :"upload_screenshots_#{flavor.downcase}" do
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number,
+        app_version: get_version_number(target: "#{flavor}-iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         screenshots_path: "#{fastlane_dir}/screenshots/#{flavor}",
         overwrite_screenshots: true,
@@ -165,7 +165,7 @@ platform :ios do
     lane :"upload_metadata_#{flavor.downcase}" do
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number,
+        app_version: get_version_number(target: "#{flavor}-iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         skip_binary_upload: true,
         skip_screenshots: true,
@@ -219,7 +219,7 @@ platform :ios do
       )
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number,
+        app_version: get_version_number(target: "#{flavor}-iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         skip_screenshots: true,
         skip_metadata: skip_metadata,
@@ -230,7 +230,7 @@ platform :ios do
   end
 
   lane :tag_release do
-    version_number = get_version_number
+    version_number = get_version_number(target: "#{:openHPI}-iOS")
     last_commit_id = sh("git rev-parse HEAD")
     last_commit_id.strip!
     release_notes = File.read("#{fastlane_dir}/metadata/default/en-US/release_notes.txt") rescue "No changelog provided"

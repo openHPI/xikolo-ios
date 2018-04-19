@@ -55,7 +55,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="oJH-G5-y3o">
-                                    <rect key="frame" x="0.0" y="5.5" width="152" height="23.5"/>
+                                    <rect key="frame" x="0.0" y="3.5" width="152" height="27"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpA-zw-58Z">
                                             <rect key="frame" x="61" y="0.0" width="30" height="4"/>
@@ -76,8 +76,8 @@
                                             </userDefinedRuntimeAttributes>
                                         </visualEffectView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Course Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSe-9y-mWG">
-                                            <rect key="frame" x="40" y="10" width="72.5" height="13.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                                            <rect key="frame" x="31.5" y="10" width="89.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                             <attributedString key="userComments">

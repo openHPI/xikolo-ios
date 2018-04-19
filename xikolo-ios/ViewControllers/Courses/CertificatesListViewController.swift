@@ -24,11 +24,15 @@ class CertificatesListViewController: UITableViewController {
     }
 
     func stateOfCertificate(withURL certificateURL: URL?) -> String {
-        if certificateURL != nil {
-            return NSLocalizedString("course.certificates.achieved", comment: "the current state of a certificate")
-        } else {
+        guard self.course.enrollment != nil else {
+            return NSLocalizedString("course.certificates.not-enrolled", comment: "the current state of a certificate")
+        }
+
+        guard certificateURL != nil else {
             return NSLocalizedString("course.certificates.not-achieved", comment: "the current state of a certificate")
         }
+
+        return NSLocalizedString("course.certificates.achieved", comment: "the current state of a certificate")
     }
 
 }

@@ -20,14 +20,14 @@ PODS:
   - FirebaseAnalytics (4.0.9):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseCore (4.0.14):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (2.0.8):
     - FirebaseCore (~> 4.0)
   - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - KeychainAccess (3.1.0)
   - Marshal (1.2.4)
@@ -73,6 +73,31 @@ DEPENDENCIES:
   - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
   - XCGLogger (~> 6.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - BrightFutures
+    - Crashlytics
+    - Down
+    - DZNEmptyDataSet
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - GoogleToolboxForMac
+    - KeychainAccess
+    - Marshal
+    - nanopb
+    - NVActivityIndicatorView
+    - ObjcExceptionBridging
+    - ReachabilitySwift
+    - Result
+    - SDWebImage
+    - SimulatorStatusMagic
+    - SnapKit
+    - SwiftLint
+    - XCGLogger
 
 EXTERNAL SOURCES:
   BartyCrouch:
@@ -125,4 +150,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6f50273d38619b52ae88b7f184a5d4029c58bed5
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

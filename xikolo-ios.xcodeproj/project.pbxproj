@@ -361,8 +361,6 @@
 		3D6F12F71F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */; };
 		3D6F12F81F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */; };
 		3D6F12F91F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */; };
-		4E2B80A81DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */; };
-		4E2B80A91DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */; };
 		4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
 		4E2B80AC1DDDE43D0058552D /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
 		4E2B821A1DDB00C900559217 /* CourseDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82191DDB00C900559217 /* CourseDateHelper.swift */; };
@@ -1295,7 +1293,6 @@
 		70D1EB021EF0ACDC0088C0FF /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
 		70D1EB031EF0ACDF0088C0FF /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */; };
 		70D1EB051EF0ACE40088C0FF /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
-		70D1EB061EF0ACE60088C0FF /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */; };
 		70D1EB071EF0ACE90088C0FF /* CourseDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */; };
 		70D1EB081EF0ACEC0088C0FF /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
@@ -1415,7 +1412,6 @@
 		AB17C5771DFCAE040013BBCD /* CourseDatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDatesListViewController.swift */; };
 		AB17C5791DFCAE090013BBCD /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
 		AB17C57A1DFCAE1E0013BBCD /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
-		AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */; };
 		AB17C57D1DFCAFB80013BBCD /* DropdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95897E1DC4A53900586137 /* DropdownViewController.swift */; };
 		AB17C5801DFCC5B50013BBCD /* PlatformEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */; };
 		AB17C5821DFCC5C80013BBCD /* PlatformEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */; };
@@ -1974,7 +1970,6 @@
 		3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataObserver.swift; sourceTree = "<group>"; };
 		3EFE4C53E4D0BE59A3B7D3DC /* Pods-openHPI-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openHPI-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openHPI-iOS/Pods-openHPI-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateCell.swift; sourceTree = "<group>"; };
 		4E2B82191DDB00C900559217 /* CourseDateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHelper.swift; sourceTree = "<group>"; };
 		4E2B821C1DDB0EE200559217 /* CourseDatesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDatesListViewController.swift; sourceTree = "<group>"; };
@@ -2803,7 +2798,6 @@
 			isa = PBXGroup;
 			children = (
 				50DD35141FD83D5E002B40CC /* CourseListLayout.swift */,
-				4E2B80A71DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -4887,7 +4881,6 @@
 				50C92B891FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49D1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
-				4E2B80A91DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				5040A6192079780500E98351 /* CourseInteractor.swift in Sources */,
 				501212271FCC669E0022A7AF /* Future+inject.swift in Sources */,
 				24BA40811D3F9A8500E38C2C /* CollectionType+dict.swift in Sources */,
@@ -5458,7 +5451,6 @@
 				70D1EAF61EF0ACB60088C0FF /* WebViewController.swift in Sources */,
 				5057ED891FE3D9680096095B /* UserDefaults+contentPreload.swift in Sources */,
 				70D1EA4A1EF0AB130088C0FF /* PlatformEvent.swift in Sources */,
-				70D1EB061EF0ACE60088C0FF /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				70451A212080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				50E16CF51F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */,
 				500228EB20580142003301A7 /* UIAlertViewController+cancel.swift in Sources */,
@@ -5892,7 +5884,6 @@
 				501212581FCC679F0022A7AF /* Pushable.swift in Sources */,
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				ABFFA85C1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
-				4E2B80A81DDDBCAF0058552D /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				50C92B861FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49B1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
@@ -6019,7 +6010,6 @@
 				50F57DF61FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				50F57DB51FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				50F57DE91FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
-				AB17C57B1DFCAE220013BBCD /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				50E16CF41F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */,
 				ABFCF7731E81EEC40043C7B7 /* UserProfile.swift in Sources */,
 				ABA0F0781DF8CDC00001D88D /* PeerAssessment.swift in Sources */,

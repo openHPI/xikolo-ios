@@ -28,6 +28,9 @@ class AnnouncementsListViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
 
+        // set to follow readable width when course is present
+        self.tableView.cellLayoutMarginsFollowReadableWidth = self.course != nil
+
         // setup table view data
         var request: NSFetchRequest<Announcement>
 

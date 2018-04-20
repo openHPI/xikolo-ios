@@ -13,7 +13,7 @@
         <!--Course View Controller-->
         <scene sceneID="IXL-rF-ys3">
             <objects>
-                <viewController storyboardIdentifier="CourseViewController" id="GW9-XM-IkA" customClass="CourseViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseViewController" automaticallyAdjustsScrollViewInsets="NO" id="GW9-XM-IkA" customClass="CourseViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="raX-iA-spo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -35,7 +35,7 @@ class TrackingHelper {
         case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
 
         // social
-        case share = "SHARE_BUTTON_CLICK"
+        case shareCourse = "SHARE_COURSE"
     }
 
     // swiftlint:disable redundant_string_enum_value

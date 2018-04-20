@@ -26,6 +26,8 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesProgressView: CircularProgressView!
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
+    @IBOutlet var iPadFullScreenContraints: [NSLayoutConstraint]!
+
     var courseItem: CourseItem!
     var video: Video?
     var videoPlayerConfigured = false
@@ -150,6 +152,27 @@ class VideoViewController: UIViewController {
 
         self.player = player
         self.videoContainer.layoutIfNeeded()
+    }
+
+    func activateiPadFullScreenMode(_ isFullScreen: Bool) {
+        self.player?.snp.removeConstraints()
+        if isFullScreen {
+            NSLayoutConstraint.activate(self.iPadFullScreenContraints)
+            self.player?.snp.makeConstraints { make in
+                make.left.equalTo(self.videoContainer.snp.left)
+                make.right.equalTo(self.videoContainer.snp.right)
+                make.centerY.equalTo(self.videoContainer.snp.centerY)
+                make.height.equalTo(self.videoContainer.snp.width).multipliedBy(9.0 / 16.0)
+            }
+        } else {
+            NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
+            self.player?.snp.makeConstraints { make in
+                make.top.equalTo(self.videoContainer.snp.top)
+                make.bottom.equalTo(self.videoContainer.snp.bottom)
+                make.centerX.equalTo(self.videoContainer.snp.centerX)
+                make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0 / 9.0)
+            }
+        }
     }
 
     private func updateView(for courseItem: CourseItem) {

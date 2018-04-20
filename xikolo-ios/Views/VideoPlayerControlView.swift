@@ -22,6 +22,7 @@ class CustomBMPlayer: BMPlayer {
 class VideoPlayerControlView: BMPlayerControlView {
 
     private var playbackRateButton = UIButton(type: .custom)
+    private var iPadFullScreenButton = UIButton(type: .custom)
     var offlineLabel = UILabel()
     private(set) var playRate: Float = UserDefaults.standard.float(forKey: UserDefaultsKeys.playbackRateKey)
 
@@ -83,17 +84,31 @@ class VideoPlayerControlView: BMPlayerControlView {
             self.playbackRateButton.snp.makeConstraints { make in
                 make.width.equalTo(44)
                 make.height.equalTo(50)
-                make.centerY.equalTo(self.currentTimeLabel)
+                make.centerY.equalTo(self.currentTimeLabel.snp.centerY)
                 make.left.equalTo(self.totalTimeLabel.snp.right).offset(5)
-                make.right.equalTo(self.bottomMaskView.snp.right).offset(-10)
             }
 
             self.fullscreenButton.removeFromSuperview()
+            self.bottomMaskView.addSubview(self.iPadFullScreenButton)
+
+            self.iPadFullScreenButton.setTitleColor(UIColor(white: 1.0, alpha: 0.9), for: .normal)
+            self.iPadFullScreenButton.addTarget(self, action: #selector(oniPadFullscreenButtonPressed), for: .touchUpInside)
+            for state in [UIControlState.selected, UIControlState.normal] {
+                self.iPadFullScreenButton.setImage(self.fullscreenButton.image(for: state), for: state)
+            }
+
+            self.iPadFullScreenButton.snp.makeConstraints { make in
+                make.width.equalTo(44)
+                make.height.equalTo(50)
+                make.centerY.equalTo(self.currentTimeLabel.snp.centerY)
+                make.left.equalTo(self.playbackRateButton.snp.right).offset(5)
+                make.right.equalTo(self.bottomMaskView.snp.right).offset(-10)
+            }
         } else {
             self.playbackRateButton.snp.makeConstraints { make in
                 make.width.equalTo(44)
                 make.height.equalTo(50)
-                make.centerY.equalTo(self.currentTimeLabel)
+                make.centerY.equalTo(self.currentTimeLabel.snp.centerY)
                 make.left.equalTo(self.totalTimeLabel.snp.right).offset(5)
             }
 
@@ -101,7 +116,7 @@ class VideoPlayerControlView: BMPlayerControlView {
             self.fullscreenButton.snp.makeConstraints { make in
                 make.width.equalTo(50)
                 make.height.equalTo(50)
-                make.centerY.equalTo(self.currentTimeLabel)
+                make.centerY.equalTo(self.currentTimeLabel.snp.centerY)
                 make.left.equalTo(self.playbackRateButton.snp.right).offset(5)
                 make.right.equalTo(self.bottomMaskView.snp.right)
             }
@@ -157,6 +172,11 @@ class VideoPlayerControlView: BMPlayerControlView {
         } else {
             self.videoController?.trackVideoPause()
         }
+    }
+
+    @objc private func oniPadFullscreenButtonPressed() {
+        self.iPadFullScreenButton.isSelected = !self.iPadFullScreenButton.isSelected
+        self.videoController?.activateiPadFullScreenMode(self.iPadFullScreenButton.isSelected)
     }
 
 }

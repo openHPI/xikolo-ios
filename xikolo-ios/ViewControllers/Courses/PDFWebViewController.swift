@@ -16,8 +16,7 @@ class PDFWebViewController: UIViewController {
 
     @IBAction func sharePDF(_ sender: UIBarButtonItem) {
         guard let fileURL = self.tempPdfFile?.fileURL else { return }
-        guard let activityItem = try? Data(contentsOf: fileURL) else { return }
-        let activityViewController = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         self.present(activityViewController, animated: true)
     }

@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import CoreData
 import DZNEmptyDataSet
 import UIKit
@@ -72,7 +73,15 @@ class AnnouncementsListViewController: UITableViewController {
 
     @objc func refresh() {
         let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        AnnouncementHelper.syncAllAnnouncements().onComplete { _ in
+
+        let refreshFuture: Future<SyncEngine.SyncMultipleResult, XikoloError>
+        if let course = self.course {
+            refreshFuture = AnnouncementHelper.syncAnnouncements(for: course)
+        } else {
+            refreshFuture = AnnouncementHelper.syncAllAnnouncements()
+        }
+
+        refreshFuture.onComplete { _ in
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 self.tableView.refreshControl?.endRefreshing()
             }

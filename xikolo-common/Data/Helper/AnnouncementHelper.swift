@@ -17,6 +17,15 @@ struct AnnouncementHelper {
         }
     }
 
+    @discardableResult static func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+        let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
+        var query = MultipleResourcesQuery(type: Announcement.self)
+        query.addFilter(forKey: "course", withValue: course.id)
+        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
+            self.updateUnreadAnnouncementsBadge()
+        }
+    }
+
     @discardableResult static func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
         guard UserProfileHelper.isLoggedIn() && !item.visited else {
             return Future(value: ())

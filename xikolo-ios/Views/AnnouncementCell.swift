@@ -21,6 +21,8 @@ class AnnouncementCell: UITableViewCell {
     @IBOutlet private weak var readStateLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
+    @IBOutlet private var courseLabelContraints: [NSLayoutConstraint]!
+
     func configure(_ announcement: Announcement, showCourseTitle: Bool) {
         if UserProfileHelper.isLoggedIn(), !announcement.visited {
             self.readStateLabel.textColor = Brand.Color.secondary
@@ -37,8 +39,10 @@ class AnnouncementCell: UITableViewCell {
         if let courseTitle = announcement.course?.title, showCourseTitle {
             self.courseLabel.text = courseTitle
             self.courseLabel.isHidden = false
+            NSLayoutConstraint.activate(self.courseLabelContraints)
         } else {
             self.courseLabel.isHidden = true
+            NSLayoutConstraint.deactivate(self.courseLabelContraints)
         }
 
         self.titleLabel.text = announcement.title

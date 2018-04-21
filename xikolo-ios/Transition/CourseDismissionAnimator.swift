@@ -10,7 +10,7 @@ class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
     private var propertyAnimator: UIViewPropertyAnimator?
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 0.3
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

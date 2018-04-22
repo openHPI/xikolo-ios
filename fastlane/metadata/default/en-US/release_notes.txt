@@ -1,4 +1,7 @@
-• Certificates can be accessed via the app
+• Certificates and record of achievements can be accessed via the app
 • Courses will open in a new card view
 • New control element for course navigation
 • Download all videos of a section
+• Add download buttons to video view
+• Add settings for video streaming quality
+• Settings tab was renamed to account

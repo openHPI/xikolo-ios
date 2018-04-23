@@ -307,7 +307,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="PpN-V6-WFJ" secondAttribute="height" multiplier="16:9" priority="750" id="ezy-kb-MKY"/>
+                                    <constraint firstAttribute="height" secondItem="PpN-V6-WFJ" secondAttribute="width" multiplier="9:16" priority="750" id="ezy-kb-MKY"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-FI-E1H">
@@ -549,12 +549,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Ob8-FI-E1H" secondAttribute="trailing" id="4xG-2X-q6B"/>
                             <constraint firstItem="NLb-3n-vAy" firstAttribute="width" secondItem="Ob8-FI-E1H" secondAttribute="width" id="9ht-M6-wTp"/>
                             <constraint firstItem="Ob8-FI-E1H" firstAttribute="leading" secondItem="L1r-eL-cti" secondAttribute="leadingMargin" id="Ili-zS-TQ7"/>
-                            <constraint firstItem="PpN-V6-WFJ" firstAttribute="trailing" secondItem="L1r-eL-cti" secondAttribute="trailing" priority="750" id="PXv-48-tXD"/>
+                            <constraint firstItem="PpN-V6-WFJ" firstAttribute="trailing" secondItem="L1r-eL-cti" secondAttribute="trailing" id="PXv-48-tXD"/>
                             <constraint firstItem="PpN-V6-WFJ" firstAttribute="leading" secondItem="L1r-eL-cti" secondAttribute="leadingMargin" priority="750" id="Qbe-JF-dmu"/>
                             <constraint firstItem="PpN-V6-WFJ" firstAttribute="leading" secondItem="L1r-eL-cti" secondAttribute="leading" id="Ri0-5V-BDZ"/>
                             <constraint firstAttribute="bottom" secondItem="PpN-V6-WFJ" secondAttribute="bottom" id="Yzm-gE-xHU"/>
                             <constraint firstItem="PpN-V6-WFJ" firstAttribute="trailing" secondItem="L1r-eL-cti" secondAttribute="trailing" id="b4D-UZ-mLT"/>
-                            <constraint firstItem="PpN-V6-WFJ" firstAttribute="leading" secondItem="L1r-eL-cti" secondAttribute="leading" priority="750" id="bQi-lT-u8v"/>
+                            <constraint firstItem="PpN-V6-WFJ" firstAttribute="leading" secondItem="L1r-eL-cti" secondAttribute="leading" id="bQi-lT-u8v"/>
                             <constraint firstItem="Ob8-FI-E1H" firstAttribute="top" secondItem="PpN-V6-WFJ" secondAttribute="bottom" id="kaU-Sz-nky"/>
                             <constraint firstAttribute="bottom" secondItem="Ob8-FI-E1H" secondAttribute="bottom" id="mgo-Kw-Mai"/>
                             <constraint firstItem="PpN-V6-WFJ" firstAttribute="trailing" secondItem="L1r-eL-cti" secondAttribute="trailingMargin" priority="750" id="ujp-x9-xhM"/>
@@ -565,9 +565,9 @@
                             <mask key="constraints">
                                 <exclude reference="Qbe-JF-dmu"/>
                                 <exclude reference="Ri0-5V-BDZ"/>
+                                <exclude reference="Yzm-gE-xHU"/>
                                 <exclude reference="b4D-UZ-mLT"/>
                                 <exclude reference="ujp-x9-xhM"/>
-                                <exclude reference="Yzm-gE-xHU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">

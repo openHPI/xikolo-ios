@@ -144,10 +144,10 @@ class VideoViewController: UIViewController {
         player.videoController = self
         self.videoContainer.addSubview(player)
         player.snp.makeConstraints { make in
-            make.top.equalTo(self.videoContainer.snp.top)
-            make.bottom.equalTo(self.videoContainer.snp.bottom)
-            make.centerX.equalTo(self.videoContainer.snp.centerX)
-            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0 / 9.0)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
 
         self.player = player
@@ -155,23 +155,15 @@ class VideoViewController: UIViewController {
     }
 
     func activateiPadFullScreenMode(_ isFullScreen: Bool) {
-        self.player?.snp.removeConstraints()
-        if isFullScreen {
-            NSLayoutConstraint.activate(self.iPadFullScreenContraints)
-            self.player?.snp.makeConstraints { make in
-                make.left.equalTo(self.videoContainer.snp.left)
-                make.right.equalTo(self.videoContainer.snp.right)
-                make.centerY.equalTo(self.videoContainer.snp.centerY)
-                make.height.equalTo(self.videoContainer.snp.width).multipliedBy(9.0 / 16.0)
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25) {
+            if isFullScreen {
+                NSLayoutConstraint.activate(self.iPadFullScreenContraints)
+            } else {
+                NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
             }
-        } else {
-            NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
-            self.player?.snp.makeConstraints { make in
-                make.top.equalTo(self.videoContainer.snp.top)
-                make.bottom.equalTo(self.videoContainer.snp.bottom)
-                make.centerX.equalTo(self.videoContainer.snp.centerX)
-                make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0 / 9.0)
-            }
+
+            self.view.layoutIfNeeded()
         }
     }
 

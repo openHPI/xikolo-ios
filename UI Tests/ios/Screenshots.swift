@@ -42,7 +42,7 @@ class Screenshots: XCTestCase {
         snapshot("3-Course-Items")
 
         // tap on first video item
-        app.tables.firstMatch.cells.containing(XCUIElement.ElementType.button, identifier: nil).firstMatch.tap()
+        app.tables.cells.containing(XCUIElement.ElementType.button, identifier: nil).firstMatch.tap()
         sleep(4)
         snapshot("4-Video-Item")
     }

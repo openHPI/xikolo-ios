@@ -220,6 +220,7 @@ platform :ios do
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
         app_version: get_version_number(target: "#{flavor}-iOS"),
+        force: true,
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         skip_screenshots: true,
         skip_metadata: skip_metadata,

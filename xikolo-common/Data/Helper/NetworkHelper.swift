@@ -13,7 +13,7 @@ struct NetworkHelper {
             Routes.Header.acceptKey: Routes.Header.acceptValue,
         ]
 
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn {
             headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.userToken
         }
 

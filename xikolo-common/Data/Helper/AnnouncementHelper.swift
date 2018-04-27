@@ -27,7 +27,7 @@ struct AnnouncementHelper {
     }
 
     @discardableResult static func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
-        guard UserProfileHelper.isLoggedIn() && !item.visited else {
+        guard UserProfileHelper.isLoggedIn && !item.visited else {
             return Future(value: ())
         }
 
@@ -67,7 +67,7 @@ struct AnnouncementHelper {
                 return
             }
 
-            guard UserProfileHelper.isLoggedIn() else {
+            guard UserProfileHelper.isLoggedIn else {
                 tabItem.badgeValue = nil
                 return
             }

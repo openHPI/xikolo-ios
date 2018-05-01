@@ -256,7 +256,7 @@ platform :ios do
     lane :"refresh_dsyms_#{flavor.downcase}" do
       download_dsyms(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        version: get_version_number,
+        version: get_version_number(target: "#{flavor}-iOS"),
       )
       upload_symbols_to_crashlytics(
         gsp_path: "xikolo-ios/Branding/#{flavor}/GoogleService-Info-Release.plist",

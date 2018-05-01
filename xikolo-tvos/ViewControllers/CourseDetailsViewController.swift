@@ -98,7 +98,7 @@ extension CourseDetailsViewController : AbstractLoginViewControllerDelegate {
 
     @IBAction func enroll(_ sender: UIButton) {
         // TODO: Move this somewhere more common. We probably need to do this all the time.
-        if (!UserProfileHelper.isLoggedIn()) {
+        if (!UserProfileHelper.isLoggedIn) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             vc.delegate = self

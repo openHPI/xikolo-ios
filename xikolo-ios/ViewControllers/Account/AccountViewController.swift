@@ -83,7 +83,7 @@ class AccountViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn {
             self.navigationItem.rightBarButtonItem = nil
 
             CoreDataHelper.viewContext.perform {
@@ -191,7 +191,7 @@ class AccountViewController: UITableViewController {
             numberOfSections -= 1
         }
 
-        if !UserProfileHelper.isLoggedIn() {
+        if !UserProfileHelper.isLoggedIn {
             numberOfSections -= 1
         }
 
@@ -226,7 +226,7 @@ class AccountViewController: UITableViewController {
             newIndexPath.section += 1
         }
 
-        if !UserProfileHelper.isLoggedIn(), indexPath.section >= AccountViewController.logoutIndexPath.section {
+        if !UserProfileHelper.isLoggedIn, indexPath.section >= AccountViewController.logoutIndexPath.section {
             newIndexPath.section += 1
         }
 

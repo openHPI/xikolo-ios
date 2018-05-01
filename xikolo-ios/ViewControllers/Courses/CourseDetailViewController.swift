@@ -100,7 +100,7 @@ class CourseDetailViewController: UIViewController {
     }
 
     @IBAction func enroll(_ sender: UIButton) {
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn {
             if !course.hasEnrollment {
                 createEnrollment()
             } else {

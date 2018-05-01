@@ -26,8 +26,8 @@ class AppDelegate: AbstractAppDelegate {
         self.window?.tintColor = Brand.Color.window
 
         // select start tab
-        self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
-        if UserProfileHelper.isLoggedIn() {
+        self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn ? 0 : 1
+        if UserProfileHelper.isLoggedIn {
             CourseHelper.syncAllCourses().onComplete { _ in
                 CourseDateHelper.syncAllCourseDates()
             }
@@ -119,7 +119,7 @@ class AppDelegate: AbstractAppDelegate {
 extension AppDelegate: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard !UserProfileHelper.isLoggedIn() else {
+        guard !UserProfileHelper.isLoggedIn else {
             return true
         }
 

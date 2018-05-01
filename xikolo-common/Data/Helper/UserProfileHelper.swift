@@ -80,7 +80,7 @@ open class UserProfileHelper {
         }
     }
 
-    static func isLoggedIn() -> Bool {
+    static var isLoggedIn: Bool {
         return !self.userToken.isEmpty
     }
 
@@ -89,7 +89,7 @@ open class UserProfileHelper {
             AnnouncementHelper.syncAllAnnouncements()
         }
 
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn {
             coursesFuture.onSuccess { _ in
                 CourseDateHelper.syncAllCourseDates()
             }

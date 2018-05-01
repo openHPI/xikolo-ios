@@ -73,7 +73,7 @@ extension WebViewController: UIWebViewDelegate {
             return true
         }
 
-        let userIsLoggedIn = UserProfileHelper.isLoggedIn()
+        let userIsLoggedIn = UserProfileHelper.isLoggedIn
         let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
 
         if userIsLoggedIn && !headerIsPresent {

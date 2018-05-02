@@ -44,7 +44,7 @@ class AbstractLoginViewController: UIViewController {
 
 }
 
-protocol AbstractLoginViewControllerDelegate: class {
+protocol AbstractLoginViewControllerDelegate: AnyObject {
 
     func didSuccessfullyLogin()
 

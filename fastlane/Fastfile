@@ -6,6 +6,18 @@ flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE]
 fastlane_dir = File.expand_path(File.dirname(__FILE__))
 
 platform :ios do
+  private_lane :copyright do |options|
+    copyright = Time.now.year.to_s
+
+    copyright_name_path = "#{fastlane_dir}/metadata/#{options[:flavor]}/copyright_name.txt"
+    if File.exist?(copyright_name_path)
+      copyright += ' '
+      copyright += File.read("#{fastlane_dir}/metadata/#{options[:flavor]}/copyright_name.txt").to_s.strip
+    end
+
+    copyright
+  end
+
   desc "Increments the version number for a new patch version"
   lane :increment_version_patch do
     new_version_number = increment_version_number(
@@ -167,6 +179,7 @@ platform :ios do
         app_identifier: "de.xikolo.#{flavor.downcase}",
         app_version: get_version_number(target: "#{flavor}-iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
+        copyright: copyright(flavor: flavor),
         skip_binary_upload: true,
         skip_screenshots: true,
         force: true,
@@ -222,6 +235,7 @@ platform :ios do
         app_version: get_version_number(target: "#{flavor}-iOS"),
         force: true,
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
+        copyright: copyright(flavor: flavor),
         skip_screenshots: true,
         skip_metadata: skip_metadata,
       )

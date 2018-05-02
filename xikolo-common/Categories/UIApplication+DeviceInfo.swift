@@ -14,7 +14,8 @@ extension UIApplication {
     #endif
 
     static let osVersion: String = {
-        return ProcessInfo().operatingSystemVersion.toString()
+        let version = ProcessInfo().operatingSystemVersion
+        return String(format: "%d.%d.%d", version.majorVersion, version.minorVersion, version.patchVersion)
     }()
 
     static let device: String = {

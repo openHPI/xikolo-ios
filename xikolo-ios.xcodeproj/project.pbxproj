@@ -63,10 +63,6 @@
 		2447CE201D0AF36500B5C39A /* RichTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */; };
 		2448A9D81CDA445D009A1AEA /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
 		2448A9D91CDA445D009A1AEA /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
-		2448BE211D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
-		2448BE221D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
-		2448BE231D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
-		2448BE241D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
 		245929921D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */; };
 		245929931D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */; };
 		24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
@@ -1107,9 +1103,6 @@
 		7057FFD81ECA5BC400FF759B /* CourseDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */; };
 		7057FFD91ECA5BC400FF759B /* CourseDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */; };
 		7057FFDA1ECA5BC400FF759B /* CourseDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */; };
-		7057FFDC1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
-		7057FFDD1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
-		7057FFDE1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		709C93401EF099A900F8F045 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
 		709C93471EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3B821C1EA25EBC00815D3F /* CourseCertificates.swift */; };
@@ -1131,8 +1124,6 @@
 		70D1E9EF1EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		70D1E9F01EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		70D1E9F41EF0AA920088C0FF /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
-		70D1E9F51EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
-		70D1E9F61EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
 		70D1E9F71EF0AA980088C0FF /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		70D1E9F81EF0AA980088C0FF /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		70D1E9F91EF0AA9C0088C0FF /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
@@ -1283,7 +1274,6 @@
 		70D1EB031EF0ACDF0088C0FF /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */; };
 		70D1EB051EF0ACE40088C0FF /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
 		70D1EB071EF0ACE90088C0FF /* CourseDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */; };
-		70D1EB081EF0ACEC0088C0FF /* StandardTableviewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */; };
 		70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		70D1EB0B1EF0AD050088C0FF /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */; };
 		70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
@@ -1505,8 +1495,6 @@
 		ABA0F0331DF8CD070001D88D /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		ABA0F0341DF8CD0A0001D88D /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		ABA0F0351DF8CD0B0001D88D /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
-		ABA0F0391DF8CD180001D88D /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
-		ABA0F03A1DF8CD190001D88D /* NSOperatingSystemVersion+string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */; };
 		ABA0F04A1DF8CD7C0001D88D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		ABA0F04B1DF8CD7C0001D88D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		ABA0F04C1DF8CD7D0001D88D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
@@ -1874,7 +1862,6 @@
 		243CE49F1D788B3A007C59B6 /* TrackingEventVerb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventVerb.swift; sourceTree = "<group>"; };
 		2447CE1E1D0AF36500B5C39A /* RichTextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichTextHelper.swift; sourceTree = "<group>"; };
 		2448A9D51CDA445D009A1AEA /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
-		2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperatingSystemVersion+string.swift"; sourceTree = "<group>"; };
 		245929911D62808A00F7EC0F /* QuestionIndicatorListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionIndicatorListView.swift; sourceTree = "<group>"; };
 		24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = xikolo.xcdatamodel; sourceTree = "<group>"; };
 		24895DBC1CCAF05000D6DFB8 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
@@ -2075,7 +2062,6 @@
 		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
-		7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTableviewTitle.swift; sourceTree = "<group>"; };
 		709C93031EF0952500F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C932C1EF0996C00F8F045 /* moocHOUSE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moocHOUSE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		709C933F1EF099A900F8F045 /* moocHOUSE-tvOS-TopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "moocHOUSE-tvOS-TopShelf.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2103,7 +2089,6 @@
 		7E4F62AC1B3C2EE5006FCAD6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xikolo-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		89EBB281C9BB3737C016302D /* Pods-openSAP-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openSAP-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openSAP-tvOS/Pods-openSAP-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		8A4E4916A744A5EF9D6A85B7 /* Pods-openWHO-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openWHO-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-openWHO-iOS/Pods-openWHO-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -2500,7 +2485,6 @@
 				AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */,
 				4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */,
 				7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */,
-				7057FFDB1ECA658700FF759B /* StandardTableviewTitle.swift */,
 				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
 				50371FFD20501388006E9634 /* CourseItemDetailView.swift */,
@@ -2624,7 +2608,6 @@
 				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
 				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
 				506B0A891F1FC60800353ABE /* NSMutableAttributedString+trim.swift */,
-				2448BE201D79A676008466CC /* NSOperatingSystemVersion+string.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
@@ -2864,7 +2847,6 @@
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
-				7E4F62B61B3C2F15006FCAD6 /* xikolo-ios-Bridging-Header.h */,
 			);
 			path = "xikolo-ios";
 			sourceTree = "<group>";
@@ -4723,7 +4705,6 @@
 				70E37FCE207D47FF00F9872F /* PDFWebViewController.swift in Sources */,
 				249E3AB01D43C7C900D7663F /* QuizQuestion.swift in Sources */,
 				249E3AA61D43C0A100D7663F /* QuizHelper.swift in Sources */,
-				2448BE231D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				501212341FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
 				24BA41101D3F9B7A00E38C2C /* RichtextViewController.swift in Sources */,
 				503585061F3B06D8002A666C /* String+ascii.swift in Sources */,
@@ -4877,7 +4858,6 @@
 				24BA40C01D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
 				24BA41111D3F9B7D00E38C2C /* AnnouncementViewController.swift in Sources */,
 				24BA40911D3F9A9900E38C2C /* CourseItem.swift in Sources */,
-				7057FFDD1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */,
 				ABA0BB431E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
 				5019A7691F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */,
 				24BA41191D3F9B9300E38C2C /* CourseItemCell.swift in Sources */,
@@ -5017,7 +4997,6 @@
 				503585081F3B06E0002A666C /* String+ascii.swift in Sources */,
 				24E3DD211D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				240CAA181D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */,
-				2448BE241D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				3D6F12F01F2914BD00D5DFE8 /* SpotlightHelper.swift in Sources */,
 				24BA40C11D3F9ADF00E38C2C /* CoreDataHelper.swift in Sources */,
 				ABC8A1721D689ED80059CEF2 /* PeerAssessment.swift in Sources */,
@@ -5243,7 +5222,6 @@
 				24E3DD201D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				2490C4C91D1C486100F42949 /* CourseHeaderView.swift in Sources */,
 				240CAA171D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */,
-				2448BE221D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				3D6F12EE1F2914BD00D5DFE8 /* SpotlightHelper.swift in Sources */,
 				ABC8A1701D689ED80059CEF2 /* PeerAssessment.swift in Sources */,
 				2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */,
@@ -5336,7 +5314,6 @@
 				50D91647207D080100DDB6E1 /* CourseContent.swift in Sources */,
 				50C92B8F1FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				50F7202B1F28D72D00779995 /* VideoPersistenceManager.swift in Sources */,
-				70D1EB081EF0ACEC0088C0FF /* StandardTableviewTitle.swift in Sources */,
 				5040A61B2079780500E98351 /* CourseInteractor.swift in Sources */,
 				50F57DF91FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				70D1EA191EF0AAD70088C0FF /* CourseCertificatesHash.swift in Sources */,
@@ -5441,7 +5418,6 @@
 				50ED3C581F4AE80100CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				70D1EB111EF12DF00088C0FF /* XikoloBrand.swift in Sources */,
 				70D1EAF81EF0ACBC0088C0FF /* (null) in Sources */,
-				70D1E9F51EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
 				70D1EB2E1EF12E170088C0FF /* DateLabelHelper.swift in Sources */,
 				509B10D4200790560042AA7D /* XikoloTabBarController.swift in Sources */,
 				70D1EB001EF0ACD80088C0FF /* CourseCell.swift in Sources */,
@@ -5581,7 +5557,6 @@
 				5071BA281FCD901600BF5C5F /* XikoloNavigationController.swift in Sources */,
 				70D1EB4F1EF1342E0088C0FF /* ItemVideoLoadingController.swift in Sources */,
 				5060459D206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
-				70D1E9F61EF0AA950088C0FF /* NSOperatingSystemVersion+string.swift in Sources */,
 				70D1EA761EF0AB480088C0FF /* TrackingEventUser.swift in Sources */,
 				50D9B17A1F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				5012122E1FCC669E0022A7AF /* Future+inject.swift in Sources */,
@@ -5719,7 +5694,6 @@
 				249E3AA41D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				24D48E191CCA4FC100E8051E /* Course.swift in Sources */,
 				501212311FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
-				2448BE211D79A676008466CC /* NSOperatingSystemVersion+string.swift in Sources */,
 				240E03451CE38D590078A364 /* CourseSectionHelper.swift in Sources */,
 				24A16D921CFFA72100CAD9FE /* CoreDataHelper.swift in Sources */,
 				503585051F3AF6AA002A666C /* String+ascii.swift in Sources */,
@@ -5873,7 +5847,6 @@
 				24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				F89473C21B3C46FD00553882 /* LoginViewController.swift in Sources */,
 				ABA0BB421E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
-				7057FFDC1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */,
 				24A16D8D1CFF2F4300CAD9FE /* VideoHelper.swift in Sources */,
 				243CE4A01D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				5019A7681F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */,
@@ -6042,11 +6015,9 @@
 				5040A63320797ED800E98351 /* CourseNavigationController.swift in Sources */,
 				5012121C1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
 				5017B3C320498554001D90A1 /* CourseContentListViewController.swift in Sources */,
-				ABA0F0391DF8CD180001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				ABA0F08D1DF8CDDF0001D88D /* RichText.swift in Sources */,
 				ABA0F06B1DF8CDAA0001D88D /* LTIExercise.swift in Sources */,
 				ABA0BB441E71AD4A007C6C9E /* DateLabelHelper.swift in Sources */,
-				7057FFDE1ECA658700FF759B /* StandardTableviewTitle.swift in Sources */,
 				AB19D39E1DF8D53F004AB193 /* UITableViewCell+enable.swift in Sources */,
 				5019A76A1F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */,
 				ABA0F0871DF8CDD50001D88D /* QuizOption.swift in Sources */,
@@ -6179,7 +6150,6 @@
 				ABA0F0DA1DF8CE650001D88D /* VideoHelper.swift in Sources */,
 				ABA0F0D61DF8CE600001D88D /* QuizHelper.swift in Sources */,
 				ABA0F0CE1DF8CE490001D88D /* CourseItemHelper.swift in Sources */,
-				ABA0F03A1DF8CD190001D88D /* NSOperatingSystemVersion+string.swift in Sources */,
 				5071BA251FCD901600BF5C5F /* XikoloNavigationController.swift in Sources */,
 				ABB49A8F1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */,
 				505398931F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */,
@@ -7181,7 +7151,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -7210,7 +7180,7 @@
 				PRODUCT_NAME = openHPI;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "xikolo-ios/xikolo-ios-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};

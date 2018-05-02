@@ -71,6 +71,7 @@ class CourseItemDetailView: UIView {
         self.addSubview(self.stackView)
         self.addSubview(self.shimmerView)
 
+        // swiftlint:disable line_length
         NSLayoutConstraint.activate([
             NSLayoutConstraint(item: self.stackView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: self.stackView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0),
@@ -81,6 +82,7 @@ class CourseItemDetailView: UIView {
             NSLayoutConstraint(item: self.shimmerView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: self.shimmerView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.5, constant: 0),
         ])
+        // swiftlint:enable line_length
     }
 
     func setContent(_ content: [DetailedData], inOfflineMode isOffline: Bool) {

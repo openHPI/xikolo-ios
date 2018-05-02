@@ -91,9 +91,7 @@ class LearningsViewController : UIViewController {
                     loadItemsForSection(section)
                 }
             }
-        } catch {
-            // TODO: Error handling.
-        }
+        } catch {}
 
         CourseSectionHelper.syncCourseSections(forCourse: course)
     }
@@ -112,9 +110,7 @@ class LearningsViewController : UIViewController {
 
         do {
             try itemResultsController!.performFetch()
-        } catch {
-            // TODO: Error handling
-        }
+        } catch {}
 
         CourseItemHelper.syncCourseItems(forSection: section)
     }

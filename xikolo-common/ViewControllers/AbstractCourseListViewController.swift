@@ -71,15 +71,15 @@ class AbstractCourseListViewController: UICollectionViewController {
         let configuration = CourseListViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
 
-        for rC in resultsControllers {
-            rC.delegate = resultsControllerDelegateImplementation
+        for resultsController in resultsControllers {
+            resultsController.delegate = resultsControllerDelegateImplementation
         }
 
         self.collectionView?.dataSource = resultsControllerDelegateImplementation
 
         do {
-            for rC in resultsControllers {
-                try rC.performFetch()
+            for resultsController in resultsControllers {
+                try resultsController.performFetch()
             }
         } catch {
             CrashlyticsHelper.shared.recordError(error)

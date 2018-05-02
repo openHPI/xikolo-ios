@@ -96,7 +96,7 @@ class CircularProgressView: UIView {
     }
 
     func updateProgress(_ newValue: CGFloat?, animated: Bool = true) {
-        if let progress = newValue{
+        if let progress = newValue {
             let pinnedProgress = self.pin(progress)
             self.progressLayer.indeterminateProgress = 1
             self.setIndeterminateAnimationState(to: false)

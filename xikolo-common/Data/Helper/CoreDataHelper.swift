@@ -12,7 +12,6 @@ class CoreDataHelper {
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "xikolo")
         container.loadPersistentStores { _, error in
-            // TODO: check for space etc
             if let error = error {
                 CrashlyticsHelper.shared.recordError(error)
                 log.severe("Unresolved error \(error)")
@@ -29,7 +28,6 @@ class CoreDataHelper {
 
     static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
                                                             sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
-        // TODO: Add cache name
         return NSFetchedResultsController<T>(fetchRequest: fetchRequest,
                                              managedObjectContext: self.persistentContainer.viewContext,
                                              sectionNameKeyPath: sectionNameKeyPath,

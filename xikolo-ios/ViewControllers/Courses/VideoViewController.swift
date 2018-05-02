@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length type_body_length
+
 import AVFoundation
 import AVKit
 import BMPlayer
@@ -26,7 +28,7 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesProgressView: CircularProgressView!
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
-    @IBOutlet var iPadFullScreenContraints: [NSLayoutConstraint]!
+    @IBOutlet private var iPadFullScreenContraints: [NSLayoutConstraint]!
 
     var courseItem: CourseItem!
     var video: Video?
@@ -36,7 +38,7 @@ class VideoViewController: UIViewController {
     var player: CustomBMPlayer?
     let playerControlView = VideoPlayerControlView()
 
-    override func viewDidLoad() {
+    override func viewDidLoad() { // swiftlint:disable:this function_body_length
         super.viewDidLoad()
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
@@ -175,7 +177,7 @@ class VideoViewController: UIViewController {
         self.show(video: video)
     }
 
-    private func show(video: Video) {
+    private func show(video: Video) { // swiftlint:disable:this function_body_length
         self.video = video
 
         let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
@@ -332,8 +334,8 @@ class VideoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowSlides"?:
-            if let vc = segue.destination as? WebViewController {
-                vc.url = self.video?.slidesURL
+            if let webViewController = segue.destination as? WebViewController {
+                webViewController.url = self.video?.slidesURL
             }
         default:
             super.prepare(for: segue, sender: sender)
@@ -412,7 +414,7 @@ extension VideoViewController { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, context: context)
     }
 
-    func trackVideoSeek(from: TimeInterval?, to: TimeInterval) {
+    func trackVideoSeek(from: TimeInterval?, to: TimeInterval) { // swiftlint:disable:this identifier_name
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext

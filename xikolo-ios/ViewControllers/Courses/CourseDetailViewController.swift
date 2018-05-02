@@ -50,7 +50,7 @@ class CourseDetailViewController: UIViewController {
         imageView.sd_setImage(with: course.imageURL)
 
         if let description = course.abstract {
-            let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
+            let markDown = try? MarkdownHelper.parse(description)
             descriptionView.attributedText = markDown
         }
 

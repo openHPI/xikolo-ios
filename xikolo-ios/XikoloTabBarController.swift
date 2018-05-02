@@ -33,8 +33,8 @@ class XikoloTabBarController: UITabBarController {
                 return true
             case (.maintenance, .maintenance):
                 return true
-            case let (.deprecated(l), .deprecated(r)):
-                return l == r
+            case let (.deprecated(lhsDate), .deprecated(rhsDate)):
+                return lhsDate == rhsDate
             case (.expired, .expired):
                 return true
             default:

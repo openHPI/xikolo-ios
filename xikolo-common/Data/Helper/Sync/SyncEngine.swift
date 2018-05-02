@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length line_length function_body_length type_body_length
+
 import BrightFutures
 import CoreData
 import Foundation

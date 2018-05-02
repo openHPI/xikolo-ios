@@ -8,7 +8,7 @@ import KeychainAccess
 
 open class UserProfileHelper {
 
-    static func login(_ email: String, password: String) -> Future<String, XikoloError> {
+    static func login(_ email: String, password: String) -> Future<String, XikoloError> { // swiftlint:disable:this function_body_length
         let promise = Promise<String, XikoloError>()
 
         let parameters: String = [

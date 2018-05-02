@@ -82,9 +82,9 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSSOWebView" {
-            let vc = segue.destination.require(toHaveType: WebViewController.self)
-            vc.url = Routes.singleSignOn
-            vc.loginDelegate = self.delegate
+            let webViewController = segue.destination.require(toHaveType: WebViewController.self)
+            webViewController.url = Routes.singleSignOn
+            webViewController.loginDelegate = self.delegate
 
             // Delete all cookies since cookies are not shared among applications in iOS.
             let cookieStorage = HTTPCookieStorage.shared

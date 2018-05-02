@@ -7,8 +7,8 @@ import UIKit
 
 class AbstractItemRichtextViewController: UIViewController {
 
-    @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var titleView: UILabel! // swiftlint:disable:this private_outlet
+    @IBOutlet weak var textView: UITextView! // swiftlint:disable:this private_outlet
 
     var courseItem: CourseItem!
 
@@ -43,7 +43,7 @@ class AbstractItemRichtextViewController: UIViewController {
     }
 
     func display(markdown: String) {
-        let markDown = try? MarkdownHelper.parse(markdown) // TODO: Error handling
+        let markDown = try? MarkdownHelper.parse(markdown)
         self.textView.attributedText = markDown
         self.textView.isHidden = false
         self.richTextLoaded()

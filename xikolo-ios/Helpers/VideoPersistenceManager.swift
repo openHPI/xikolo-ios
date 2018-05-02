@@ -225,6 +225,7 @@ class VideoPersistenceManager: NSObject {
 
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
+    // swiftlint:disable:next function_body_length
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
                     didCompleteWithError error: Error?) {

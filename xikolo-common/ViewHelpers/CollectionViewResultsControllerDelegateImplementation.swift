@@ -12,6 +12,7 @@ fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for m
 fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
 // swiftlint:enable private_over_fileprivate
 
+// swiftlint:disable:next type_name
 class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
 
     weak var collectionView: UICollectionView?
@@ -159,7 +160,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         if let searchResultsController = self.searchFetchResultsController {
             self.configuration?.configureCollectionCell(cell, for: searchResultsController, indexPath: indexPath)
         } else {
-            let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)! // TODO nil-handling or logging
+            let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
             self.configuration?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
         }
 
@@ -215,7 +216,14 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
 
         self.searchFetchResultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: nil)
-        try? self.searchFetchResultsController?.performFetch()
+
+        do {
+            try self.searchFetchResultsController?.performFetch()
+        } catch {
+            CrashlyticsHelper.shared.recordError(error)
+            log.error(error)
+        }
+
         self.collectionView?.reloadData()
     }
 
@@ -257,8 +265,8 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
         var passedSections = 0
         for contr in resultsControllers {
             if contr == controller {
-                for i in newIndexSet {
-                    convertedIndexSet.insert(i + passedSections)
+                for index in newIndexSet {
+                    convertedIndexSet.insert(index + passedSections)
                 }
 
                 break
@@ -322,6 +330,7 @@ extension CollectionViewResultsControllerConfiguration {
 
 // This is a wrapper for type erasure allowing the generic CollectionViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
+// swiftlint:disable:next type_name
 class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: CollectionViewResultsControllerConfigurationProtocol {
 
     private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void

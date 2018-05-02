@@ -12,6 +12,7 @@ fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for m
 fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
 // swiftlint:enable private_over_fileprivate
 
+// swiftlint:disable:next type_name
 class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
     weak var tableView: UITableView?
@@ -217,6 +218,7 @@ extension TableViewResultsControllerConfiguration {
 
 // This is a wrapper for type erasure allowing the generic TableViewResultsControllerDelegateImplementation to be
 // configured with a concrete type (via a configuration struct).
+// swiftlint:disable:next type_name
 class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableViewResultsControllerConfigurationProtocol {
 
     private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void

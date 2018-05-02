@@ -7,8 +7,8 @@ import UIKit
 
 class AbstractLoginViewController: UIViewController {
 
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var emailField: UITextField! // swiftlint:disable:this private_outlet
+    @IBOutlet weak var passwordField: UITextField! // swiftlint:disable:this private_outlet
 
     weak var delegate: AbstractLoginViewControllerDelegate?
 

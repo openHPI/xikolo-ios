@@ -44,6 +44,7 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         containerView.addSubview(toViewController.view)
 
+        // swiftlint:disable:next multiline_arguments
         UIView.animate(withDuration: animationDuration, animations: {
             toViewController.view.transform = CGAffineTransform.identity
             overlayView.alpha = 1.0

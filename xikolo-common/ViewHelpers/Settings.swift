@@ -11,7 +11,6 @@ class Settings {
         guard let appSettings = URL(string: UIApplicationOpenSettingsURLString) else { return }
         guard UIApplication.shared.canOpenURL(appSettings) else { return }
         UIApplication.shared.open(appSettings)
-        // TODO: write test for this
     }
 
 }

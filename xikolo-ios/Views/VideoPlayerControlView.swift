@@ -11,7 +11,7 @@ class CustomBMPlayer: BMPlayer {
 
     weak var videoController: VideoViewController?
 
-    override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) {
+    override func seek(_ to: TimeInterval, completion: (() -> Void)? = nil) { // swiftlint:disable:this identifier_name
         let from = self.playerLayer?.player?.currentTime().seconds
         super.seek(to, completion: completion)
         self.videoController?.trackVideoSeek(from: from, to: to)
@@ -28,7 +28,7 @@ class VideoPlayerControlView: BMPlayerControlView {
 
     weak var videoController: VideoViewController?
 
-    override func customizeUIComponents() {
+    override func customizeUIComponents() { // swiftlint:disable:this function_body_length
         // update top bar
         self.chooseDefitionView.removeFromSuperview()
 

@@ -20,7 +20,7 @@ class CoreDataObserver {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
     }
 
-    @objc func coreDataChange(note: Notification) {
+    @objc func coreDataChange(note: Notification) { // swiftlint:disable:this cyclomatic_complexity
         var shouldCheckForChangesToPush = false
 
         if let updated = note.userInfo?[NSUpdatedObjectsKey] as? Set<NSManagedObject>, !updated.isEmpty {

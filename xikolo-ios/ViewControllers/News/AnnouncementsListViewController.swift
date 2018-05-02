@@ -56,7 +56,8 @@ class AnnouncementsListViewController: UITableViewController {
         do {
             try resultsController.performFetch()
         } catch {
-            // TODO: Error handling.
+            CrashlyticsHelper.shared.recordError(error)
+            log.error(error)
         }
 
         self.setupEmptyState()

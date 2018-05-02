@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol CourseListLayoutDelegate: class {
+protocol CourseListLayoutDelegate: AnyObject {
 
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
 

@@ -6,7 +6,7 @@
 import BrightFutures
 import UIKit
 
-protocol UserActionsDelegate: class {
+protocol UserActionsDelegate: AnyObject {
 
     func showAlert(with actions: [UIAlertAction], withTitle title: String?, on anchor: UIView)
     func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError>

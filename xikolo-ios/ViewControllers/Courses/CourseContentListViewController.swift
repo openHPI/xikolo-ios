@@ -118,7 +118,7 @@ extension CourseContentListViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
-protocol CourseContentListViewControllerDelegate: class {
+protocol CourseContentListViewControllerDelegate: AnyObject {
     var accessibleContent: [CourseContent] { get }
     var selectedContent: CourseContent? { get }
 

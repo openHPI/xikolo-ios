@@ -15,6 +15,7 @@ class AnnouncementViewController: UIViewController {
     @IBOutlet private weak var textView: UITextView!
 
     var announcement: Announcement!
+    var showCourseTitle: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class AnnouncementViewController: UIViewController {
     }
 
     private func updateView() {
-        if let courseTitle = announcement.course?.title {
+        if let courseTitle = announcement.course?.title, self.showCourseTitle {
             self.courseLabel.text = courseTitle
             self.courseLabel.isHidden = false
         } else {

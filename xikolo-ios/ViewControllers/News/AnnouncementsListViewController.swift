@@ -93,9 +93,10 @@ class AnnouncementsListViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let newsVC = segue.destination.require(toHaveType: AnnouncementViewController.self)
+        let announcementViewController = segue.destination.require(toHaveType: AnnouncementViewController.self)
         let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
-        newsVC.announcement = announcement
+        announcementViewController.announcement = announcement
+        announcementViewController.showCourseTitle = self.course == nil
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

@@ -46,15 +46,8 @@ class CourseContentListViewController: UICollectionViewController {
         guard indexPath != self.selectedIndexPath else { return }
         guard let content = self.delegate?.accessibleContent[safe: indexPath.item] else { return }
 
-        if let selectedIndexPath = self.selectedIndexPath, let cell = collectionView.cellForItem(at: selectedIndexPath) as? CourseContentCell {
-            cell.markAsSelected(false)
-        }
-
-        if let cell = collectionView.cellForItem(at: indexPath) as? CourseContentCell {
-            cell.markAsSelected(true)
-        }
-
         self.delegate?.change(to: content)
+        collectionView.reloadData()
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 

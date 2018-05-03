@@ -21,10 +21,6 @@ class CourseContentCell: UICollectionViewCell {
 
     func configure(for content: CourseContent, selected: Bool) {
         self.titleView.text = content.title
-        self.markAsSelected(selected)
-    }
-
-    func markAsSelected(_ selected: Bool) {
         self.titleView.textColor = selected ? UIColor.black : UIColor.lightGray
         self.titleView.font = selected ? UIFont.boldSystemFont(ofSize: 14) : UIFont.systemFont(ofSize: 14)
         self.hightlightView.isHidden = !selected

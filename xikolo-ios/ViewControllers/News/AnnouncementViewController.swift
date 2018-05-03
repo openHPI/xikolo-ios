@@ -9,7 +9,7 @@ import UIKit
 
 class AnnouncementViewController: UIViewController {
 
-    @IBOutlet private weak var courseLabel: UILabel!
+    @IBOutlet private weak var courseButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
@@ -20,7 +20,7 @@ class AnnouncementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.courseLabel.textColor = Brand.Color.secondary
+        self.courseButton.tintColor = Brand.Color.secondary
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
@@ -45,10 +45,10 @@ class AnnouncementViewController: UIViewController {
 
     private func updateView() {
         if let courseTitle = announcement.course?.title, self.showCourseTitle {
-            self.courseLabel.text = courseTitle
-            self.courseLabel.isHidden = false
+            self.courseButton.setTitle(courseTitle, for: .normal)
+            self.courseButton.isHidden = false
         } else {
-            self.courseLabel.isHidden = true
+            self.courseButton.isHidden = true
         }
 
         self.titleLabel.text = self.announcement.title
@@ -68,6 +68,11 @@ class AnnouncementViewController: UIViewController {
         } else {
             self.textView.text = "[...]"
         }
+    }
+
+    @IBAction func tappedCourseTitle() {
+        guard let course = announcement.course else { return }
+        AppNavigator.show(course: course)
     }
 
 }

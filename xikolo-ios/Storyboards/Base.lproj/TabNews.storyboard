@@ -182,13 +182,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGV-q6-OZb">
-                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4F-0n-P0h" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="142"/>
+                                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4F-0n-P0h" userLabel="Scroll Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="158"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="md3-Kq-rrt">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="142"/>
+                                                <rect key="frame" x="16" y="8" width="343" height="142"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Course Name " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKv-eU-alg">
                                                         <rect key="frame" x="0.0" y="0.0" width="86" height="16"/>
@@ -252,15 +252,15 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="md3-Kq-rrt" secondAttribute="trailing" id="1rS-Jx-09X"/>
-                                            <constraint firstAttribute="bottom" secondItem="md3-Kq-rrt" secondAttribute="bottom" id="CWJ-KC-7qU"/>
-                                            <constraint firstItem="md3-Kq-rrt" firstAttribute="top" secondItem="G4F-0n-P0h" secondAttribute="top" id="FE3-ET-lnX"/>
-                                            <constraint firstItem="md3-Kq-rrt" firstAttribute="leading" secondItem="G4F-0n-P0h" secondAttribute="leading" id="NZq-oR-Ql7"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="md3-Kq-rrt" secondAttribute="trailing" id="1rS-Jx-09X"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="md3-Kq-rrt" secondAttribute="bottom" id="CWJ-KC-7qU"/>
+                                            <constraint firstItem="md3-Kq-rrt" firstAttribute="top" secondItem="G4F-0n-P0h" secondAttribute="topMargin" id="FE3-ET-lnX"/>
+                                            <constraint firstItem="md3-Kq-rrt" firstAttribute="leading" secondItem="G4F-0n-P0h" secondAttribute="leadingMargin" id="NZq-oR-Ql7"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="G4F-0n-P0h" secondAttribute="bottom" id="NEH-Zl-AXo"/>
+                                    <constraint firstAttribute="bottom" secondItem="G4F-0n-P0h" secondAttribute="bottom" constant="20" symbolic="YES" id="NEH-Zl-AXo"/>
                                     <constraint firstAttribute="trailing" secondItem="G4F-0n-P0h" secondAttribute="trailing" id="W4G-Jp-cd1"/>
                                     <constraint firstItem="G4F-0n-P0h" firstAttribute="top" secondItem="tGV-q6-OZb" secondAttribute="top" id="aps-HJ-Hn9"/>
                                     <constraint firstItem="G4F-0n-P0h" firstAttribute="leading" secondItem="tGV-q6-OZb" secondAttribute="leading" id="wGE-Xy-hcv"/>
@@ -269,9 +269,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="tGV-q6-OZb" firstAttribute="trailing" secondItem="nii-Jl-n7P" secondAttribute="trailingMargin" id="0mU-n1-dye"/>
+                            <constraint firstItem="tGV-q6-OZb" firstAttribute="trailing" secondItem="hQx-mu-H9u" secondAttribute="trailing" id="0mU-n1-dye"/>
                             <constraint firstAttribute="bottom" secondItem="tGV-q6-OZb" secondAttribute="bottom" id="1C6-Yw-odL"/>
-                            <constraint firstItem="tGV-q6-OZb" firstAttribute="leading" secondItem="nii-Jl-n7P" secondAttribute="leadingMargin" id="TJB-FK-3Ew"/>
+                            <constraint firstItem="tGV-q6-OZb" firstAttribute="leading" secondItem="hQx-mu-H9u" secondAttribute="leading" id="TJB-FK-3Ew"/>
                             <constraint firstItem="tGV-q6-OZb" firstAttribute="top" secondItem="nii-Jl-n7P" secondAttribute="top" id="gam-A7-5m5"/>
                             <constraint firstItem="G4F-0n-P0h" firstAttribute="width" secondItem="tGV-q6-OZb" secondAttribute="width" id="xxn-Rq-KaO"/>
                         </constraints>

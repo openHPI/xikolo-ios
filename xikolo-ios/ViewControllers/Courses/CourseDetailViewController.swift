@@ -24,6 +24,8 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.imageView.backgroundColor = Brand.Color.secondary
+
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self

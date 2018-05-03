@@ -42,6 +42,9 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
   - ReachabilitySwift (4.1.0)
   - Result (3.2.4)
   - SDWebImage (4.2.3):
@@ -67,6 +70,7 @@ DEPENDENCIES:
   - Firebase/Core (~> 4.8)
   - KeychainAccess (~> 3.1)
   - Marshal (~> 1.2)
+  - R.swift (~> 4.0)
   - ReachabilitySwift (~> 4.1)
   - SDWebImage (~> 4.2)
   - SimpleRoundedButton (from `https://github.com/mathebox/SimpleRoundedButton.git`, commit `91225d2`)
@@ -91,6 +95,8 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - ObjcExceptionBridging
+    - R.swift
+    - R.swift.Library
     - ReachabilitySwift
     - Result
     - SDWebImage
@@ -139,6 +145,8 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
@@ -148,6 +156,6 @@ SPEC CHECKSUMS:
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 9d1d511d000727440bfe2c8a63b50984c6134f9b
+PODFILE CHECKSUM: 70afd40ee9d84050893c540d9206e28be0f1dc7d
 
 COCOAPODS: 1.5.0

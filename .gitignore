@@ -63,3 +63,6 @@ fastlane/Appfile
 
 # UI Tests
 UI Tests/Credentials.plist
+
+# R.swift
+**/R.generated.swift

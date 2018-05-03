@@ -35,8 +35,7 @@ class CourseItemListViewController: UITableViewController {
         super.viewDidLoad()
 
         // register custom section header view
-        let nib = UINib(nibName: "CourseItemHeader", bundle: nil)
-        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseItemHeader")
+        self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
         var separatorInsetLeft: CGFloat = 20.0
         if #available(iOS 11.0, *) {
@@ -61,11 +60,12 @@ class CourseItemListViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
+        let reuseIdentifier = R.reuseIdentifier.courseItemCell.identifier
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: "CourseItemCell")
+                                                                                                   cellReuseIdentifier: reuseIdentifier)
 
         let configuration = CourseItemListViewConfiguration(tableViewController: self).wrapped
         resultsControllerDelegateImplementation.configuration = configuration
@@ -196,7 +196,7 @@ extension CourseItemListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseItemHeader") as? CourseItemHeader else {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseItemHeader.name) as? CourseItemHeader else {
             return nil
         }
 

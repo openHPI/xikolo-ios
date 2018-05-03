@@ -40,11 +40,12 @@ class AnnouncementsListViewController: UITableViewController {
             request = AnnouncementHelper.FetchRequest.allAnnouncements
         }
 
+        let reuseIdentifier = R.reuseIdentifier.announcementCell.identifier
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: "AnnouncementCell")
+                                                                                                   cellReuseIdentifier: reuseIdentifier)
+
         let configuration = AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil)
         let configurationWrapper = configuration.wrapped
         resultsControllerDelegateImplementation.configuration = configurationWrapper

@@ -26,8 +26,9 @@ class CourseListViewController: AbstractCourseListViewController {
     }
 
     override func viewDidLoad() {
-        let headerNib = UINib(nibName: "CourseHeaderView", bundle: nil)
-        self.collectionView?.register(headerNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CourseHeaderView")
+        self.collectionView?.register(R.nib.courseItemHeader(),
+                                      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                      withReuseIdentifier: R.nib.courseHeaderView.name)
 
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CourseListLayout {
             courseListLayout.delegate = self

@@ -115,7 +115,7 @@ class AccountViewController: UITableViewController {
         let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
 
         if let userProfile = self.user?.profile {
-            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: UIImage(named: "avatar"))
+            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: R.image.avatar())
             self.nameView.text = userProfile.fullName
             self.emailView.text = userProfile.email
 

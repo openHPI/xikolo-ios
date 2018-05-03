@@ -63,11 +63,13 @@ class AbstractCourseListViewController: UICollectionViewController {
         }
 
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
+        let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
                                                                                                         resultsControllers: resultsControllers,
                                                                                                         searchFetchRequest: searchFetchRequest,
-                                                                                                        cellReuseIdentifier: "CourseCell")
-        resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
+                                                                                                        cellReuseIdentifier: reuseIdentifier)
+
+        resultsControllerDelegateImplementation.headerReuseIdentifier = R.nib.courseHeaderView.name
         let configuration = CourseListViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
 

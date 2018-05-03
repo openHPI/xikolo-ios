@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="width" constant="20" id="XgK-Ae-6hw"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand-logo-100h" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-85-KH5">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand-logo" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-85-KH5">
                                 <rect key="frame" x="59" y="110" width="257" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="3dQ-ZL-4Q0"/>
@@ -269,7 +269,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="brand-logo-100h" width="320" height="67"/>
+        <image name="brand-logo" width="320" height="67"/>
         <image name="sso-logo-200h" width="202" height="100"/>
     </resources>
 </document>

@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import BrightFutures
 import Firebase
 import SDWebImage
 import UIKit
@@ -95,9 +94,6 @@ class AppDelegate: AbstractAppDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background,
         // optionally refresh the user interface.
-        #if OPENSAP
-        self.checkForVoucher()
-        #endif
     }
 
     override func applicationWillTerminate(_ application: UIApplication) {
@@ -163,76 +159,3 @@ extension AppDelegate: AbstractLoginViewControllerDelegate {
         self.tabBarController?.selectedIndex = 0
     }
 }
-
-#if OPENSAP
-extension AppDelegate {
-
-    func checkForVoucher() {
-        self.requestVoucher().onSuccess { awarded in
-            guard awarded else { return }
-
-            let title = "It's our fifth anniversary"
-            let message = "You've earned a free openSAP reactivation code! Your code and more details will be delivered to your inbox shortly."
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Thanks", style: .default))
-            self.tabBarController?.present(alert, animated: true)
-        }
-    }
-
-    func requestVoucher() -> Future<Bool, XikoloError> {
-        let promise = Promise<Bool, XikoloError>()
-
-        let url = Routes.api.appendingPathComponent("/osap_5th_birthday.json")
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        request.setValue(Routes.Header.userPlatformValue, forHTTPHeaderField: Routes.Header.userPlatformKey)
-        for (key, value) in NetworkHelper.requestHeaders {
-            request.setValue(value, forHTTPHeaderField: key)
-        }
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let err = error {
-                promise.failure(.network(err))
-                return
-            }
-
-            guard let urlResponse = response as? HTTPURLResponse else {
-                promise.failure(.api(.invalidResponse))
-                return
-            }
-
-            guard 200 ... 299 ~= urlResponse.statusCode else {
-                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields)))
-                return
-            }
-
-            guard let responseData = data else {
-                promise.failure(.api(.noData))
-                return
-            }
-
-            do {
-                guard let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
-                    promise.failure(.api(.serializationError(.invalidDocumentStructure)))
-                    return
-                }
-
-                guard let voucher = json["voucher"] as? String else {
-                    promise.failure(.invalidData)
-                    return
-                }
-
-                return promise.success(voucher == "awarded")
-            } catch {
-                promise.failure(.api(.serializationError(.jsonSerializationError(error))))
-            }
-        }
-
-        task.resume()
-
-        return promise.future
-    }
-
-}
-#endif

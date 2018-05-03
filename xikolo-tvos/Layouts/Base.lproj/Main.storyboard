@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="fa6-5p-taa">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="fa6-5p-taa">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -15,9 +15,9 @@
         <!--Course List View Controller-->
         <scene sceneID="b6r-xM-2eG">
             <objects>
-                <collectionViewController id="lgE-Ld-iJp" customClass="CourseListViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="lgE-Ld-iJp" customClass="CourseListViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YAH-v1-h0J">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="940"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="48" id="Ssm-Ku-hiC">
                             <size key="itemSize" width="548" height="400"/>
@@ -26,7 +26,7 @@
                             <inset key="sectionInset" minX="90" minY="40" maxX="90" maxY="60"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseCell" id="Z4b-yx-1QI" customClass="CourseCell" customModule="openHPI" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CourseCell" id="Z4b-yx-1QI" customClass="CourseCell" customModule="moocHOUSE" customModuleProvider="target">
                                 <rect key="frame" x="90" y="90" width="548" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -34,10 +34,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-DS-mCe">
-                                            <rect key="frame" x="0.0" y="0.0" width="548" height="330"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="548" height="190"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAj-2n-Bz2">
-                                            <rect key="frame" x="8" y="357" width="532" height="43"/>
+                                            <rect key="frame" x="98" y="217" width="442" height="43"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -60,12 +60,12 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="CourseHeaderView" id="kpe-th-jtH" customClass="CourseHeaderView" customModule="openHPI" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="CourseHeaderView" id="kpe-th-jtH" customClass="CourseHeaderView" customModule="moocHOUSE" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="1920" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0f-11-82p">
-                                    <rect key="frame" x="110" y="-4" width="118" height="58"/>
+                                    <rect key="frame" x="110" y="-4" width="116" height="58"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -92,7 +92,7 @@
         <!--Login View Controller-->
         <scene sceneID="Td3-Sl-SLm">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="rjz-el-ZYE" customClass="LoginViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="rjz-el-ZYE" customClass="LoginViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tLG-tK-wz4"/>
                         <viewControllerLayoutGuide type="bottom" id="kZh-HE-TBR"/>
@@ -102,19 +102,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75W-UM-DD2">
-                                <rect key="frame" x="913" y="225" width="94" height="46"/>
+                                <rect key="frame" x="913" y="285" width="94" height="46"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You need to login to perform the requested action." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgg-6J-pbb">
-                                <rect key="frame" x="631" y="279" width="659" height="35"/>
+                                <rect key="frame" x="631" y="339" width="659" height="35"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5j-ZR-DzJ">
-                                <rect key="frame" x="873" y="714" width="174" height="86"/>
+                                <rect key="frame" x="873" y="654" width="174" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -122,7 +122,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jUk-n3-ljj">
-                                <rect key="frame" x="570" y="460" width="780" height="71"/>
+                                <rect key="frame" x="570" y="520" width="780" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="780" id="6ey-bH-vUC"/>
                                     <constraint firstAttribute="height" constant="71" id="Wca-y8-1s8"/>
@@ -132,7 +132,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="di2-5e-mIX">
-                                <rect key="frame" x="570" y="551" width="780" height="71"/>
+                                <rect key="frame" x="570" y="611" width="780" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="JwK-Fn-0mZ"/>
                                     <constraint firstAttribute="width" constant="780" id="WVK-eg-vHG"/>
@@ -167,7 +167,7 @@
         <!--Course details-->
         <scene sceneID="2Ee-f7-HEc">
             <objects>
-                <viewController id="AEd-4M-ZaT" customClass="CourseDetailsViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AEd-4M-ZaT" customClass="CourseDetailsViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0A8-AG-gQX"/>
                         <viewControllerLayoutGuide type="bottom" id="DiY-4X-u5a"/>
@@ -177,19 +177,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Am1-X4-7ws">
-                                <rect key="frame" x="390" y="145" width="1440" height="46"/>
+                                <rect key="frame" x="390" y="205" width="1440" height="46"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZFm-SB-bq0">
-                                <rect key="frame" x="1265" y="286" width="565" height="377"/>
+                                <rect key="frame" x="1265" y="346" width="565" height="377"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ZFm-SB-bq0" secondAttribute="height" multiplier="3:2" id="lbn-qo-mch"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="naB-Kp-dy7">
-                                <rect key="frame" x="390" y="300" width="800" height="227"/>
+                                <rect key="frame" x="390" y="360" width="800" height="227"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="227" id="GKF-ge-00G"/>
                                     <constraint firstAttribute="width" constant="800" id="M4W-8v-gSb"/>
@@ -204,7 +204,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHP-mi-XoU">
-                                <rect key="frame" x="390" y="577" width="241" height="86"/>
+                                <rect key="frame" x="390" y="637" width="241" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Un-enroll"/>
                                 <connections>
@@ -212,7 +212,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LANGUAGE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3it-eJ-30e">
-                                <rect key="frame" x="90" y="226" width="260" height="28"/>
+                                <rect key="frame" x="90" y="286" width="260" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="EV5-tu-3kC"/>
                                 </constraints>
@@ -221,7 +221,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLP-ed-6jg">
-                                <rect key="frame" x="90" y="254" width="260" height="28"/>
+                                <rect key="frame" x="90" y="314" width="260" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="MnJ-IW-dPP"/>
                                 </constraints>
@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May 27 2015, 09:00 AM to June 26 2016, 11:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COK-sO-fhZ">
-                                <rect key="frame" x="390" y="226" width="800" height="30"/>
+                                <rect key="frame" x="390" y="286" width="800" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="800" id="HJS-GV-Imi"/>
                                 </constraints>
@@ -239,7 +239,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEACHER" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uH6-bb-gmV">
-                                <rect key="frame" x="90" y="322" width="260" height="28"/>
+                                <rect key="frame" x="90" y="382" width="260" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="jiV-E8-EgB"/>
                                 </constraints>
@@ -248,7 +248,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iR-QQ-Crh">
-                                <rect key="frame" x="90" y="350" width="260" height="28"/>
+                                <rect key="frame" x="90" y="410" width="260" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="gRU-yV-Tfg"/>
                                 </constraints>
@@ -257,7 +257,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="me5-Ae-LJK">
-                                <rect key="frame" x="390" y="577" width="176" height="86"/>
+                                <rect key="frame" x="390" y="637" width="176" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Enroll"/>
                                 <connections>
@@ -311,7 +311,7 @@
         <!--Learnings-->
         <scene sceneID="1AC-2g-GvT">
             <objects>
-                <viewController id="TiG-l6-dl3" userLabel="Learnings" customClass="LearningsViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TiG-l6-dl3" userLabel="Learnings" customClass="LearningsViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xoI-7S-9LG"/>
                         <viewControllerLayoutGuide type="bottom" id="DuK-0Z-ehY"/>
@@ -321,7 +321,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khS-sp-i4I">
-                                <rect key="frame" x="914" y="75" width="93" height="46"/>
+                                <rect key="frame" x="914" y="135" width="93" height="46"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -333,21 +333,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aCX-8o-S7l">
-                                <rect key="frame" x="90" y="190" width="510" height="830"/>
+                                <rect key="frame" x="90" y="250" width="510" height="710"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="510" id="rGe-aO-ilh"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseSectionCell" id="JQR-Rz-ckY" customClass="CourseSectionCell" customModule="openHPI" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseSectionCell" id="JQR-Rz-ckY" customClass="CourseSectionCell" customModule="moocHOUSE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="40" width="510" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JQR-Rz-ckY" id="c2d-ZM-VmX">
-                                            <rect key="frame" x="0.0" y="0.0" width="494" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="510" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMS-cs-5td">
-                                                    <rect key="frame" x="28" y="15" width="454" height="46"/>
+                                                    <rect key="frame" x="28" y="15" width="352" height="46"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -370,7 +370,7 @@
                                 </connections>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YiW-Ml-dEJ">
-                                <rect key="frame" x="660" y="190" width="1170" height="890"/>
+                                <rect key="frame" x="660" y="250" width="1170" height="770"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="50" minimumInteritemSpacing="10" id="qqU-Kt-uvt">
                                     <size key="itemSize" width="380" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -378,7 +378,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="35" maxX="0.0" maxY="60"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseItemCell" id="xyo-T0-8s5" customClass="CourseItemCell" customModule="openHPI" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CourseItemCell" id="xyo-T0-8s5" customClass="CourseItemCell" customModule="moocHOUSE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="35" width="380" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -451,7 +451,7 @@
         <!--Item Video Loading Controller-->
         <scene sceneID="2yL-Uf-VXk">
             <objects>
-                <viewController id="7n4-sb-Pkn" customClass="ItemVideoLoadingController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7n4-sb-Pkn" customClass="ItemVideoLoadingController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DSt-TN-z4T"/>
                         <viewControllerLayoutGuide type="bottom" id="hz0-Zh-yqP"/>
@@ -462,7 +462,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <segue destination="EZa-T4-NPm" kind="custom" identifier="ShowCourseItemVideoSegue" customClass="ReplaceSegue" customModule="openHPI" customModuleProvider="target" id="UDd-T3-dAW"/>
+                        <segue destination="EZa-T4-NPm" kind="custom" identifier="ShowCourseItemVideoSegue" customClass="ReplaceSegue" customModule="moocHOUSE" customModuleProvider="target" id="UDd-T3-dAW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yP-Dz-TQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -480,7 +480,7 @@
         <!--Item Rich Text Controller-->
         <scene sceneID="yZe-dS-aEl">
             <objects>
-                <viewController storyboardIdentifier="ItemRichTextController" id="YAs-jy-T95" customClass="ItemRichTextController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemRichTextController" id="YAs-jy-T95" customClass="ItemRichTextController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="1Nn-Cz-nKf">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -569,7 +569,7 @@
         <!--Item Quiz Introduction Controller-->
         <scene sceneID="Nnd-ZO-Aqg">
             <objects>
-                <viewController id="YSt-lK-Q2X" customClass="ItemQuizIntroductionController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YSt-lK-Q2X" customClass="ItemQuizIntroductionController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jZk-nk-NQx"/>
                         <viewControllerLayoutGuide type="bottom" id="UdT-iY-4NN"/>
@@ -579,19 +579,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCC-Mw-GM5">
-                                <rect key="frame" x="913" y="75" width="93" height="46"/>
+                                <rect key="frame" x="913" y="135" width="93" height="46"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZ9-YO-hkH">
-                                <rect key="frame" x="400" y="190" width="1120" height="35"/>
+                                <rect key="frame" x="400" y="250" width="1120" height="35"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Iu7-Zn-ReD">
-                                <rect key="frame" x="625" y="794" width="671" height="86"/>
+                                <rect key="frame" x="625" y="734" width="670" height="86"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxp-5t-Vx6">
                                         <rect key="frame" x="0.0" y="0.0" width="383" height="86"/>
@@ -602,7 +602,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FN-Kc-Av5">
-                                        <rect key="frame" x="423" y="0.0" width="248" height="86"/>
+                                        <rect key="frame" x="423" y="0.0" width="247" height="86"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <state key="normal" title="Take Quiz"/>
                                         <connections>
@@ -612,7 +612,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME LIMIT" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ci-vr-EYC">
-                                <rect key="frame" x="90" y="190" width="260" height="28"/>
+                                <rect key="frame" x="90" y="250" width="260" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="ItZ-mT-fhn"/>
                                 </constraints>
@@ -621,7 +621,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8V-06-6Ex">
-                                <rect key="frame" x="90" y="218" width="260" height="28"/>
+                                <rect key="frame" x="90" y="278" width="260" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="F2F-NA-UWf"/>
                                 </constraints>
@@ -652,7 +652,7 @@
                         <outlet property="timeLimitView" destination="x8V-06-6Ex" id="RDe-5x-Tmw"/>
                         <outlet property="titleView" destination="lCC-Mw-GM5" id="5Fe-oU-iR1"/>
                         <segue destination="vo9-zy-Jdi" kind="show" identifier="QuizShowSegue" id="MSi-9Z-Gjc"/>
-                        <segue destination="vo9-zy-Jdi" kind="custom" identifier="QuizReplaceSegue" customClass="ReplaceSegue" customModule="openHPI" customModuleProvider="target" id="z9C-kn-4yK"/>
+                        <segue destination="vo9-zy-Jdi" kind="custom" identifier="QuizReplaceSegue" customClass="ReplaceSegue" customModule="moocHOUSE" customModuleProvider="target" id="z9C-kn-4yK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3hE-JC-t2v" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -662,7 +662,7 @@
         <!--Item Quiz View Controller-->
         <scene sceneID="sjH-cz-Clm">
             <objects>
-                <viewController id="vo9-zy-Jdi" customClass="ItemQuizViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vo9-zy-Jdi" customClass="ItemQuizViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Krf-J5-yyG"/>
                         <viewControllerLayoutGuide type="bottom" id="ktz-th-7GD"/>
@@ -672,7 +672,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H90-rG-qcd">
-                                <rect key="frame" x="90" y="934" width="228" height="86"/>
+                                <rect key="frame" x="90" y="874" width="228" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Previous"/>
                                 <connections>
@@ -681,7 +681,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gG-eB-x7J">
-                                <rect key="frame" x="1670" y="934" width="160" height="86"/>
+                                <rect key="frame" x="1670" y="874" width="160" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
@@ -689,14 +689,14 @@
                                     <action selector="showNextItem:" destination="YAs-jy-T95" eventType="primaryActionTriggered" id="QWT-dA-n5B"/>
                                 </connections>
                             </button>
-                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTV-JK-kp6" customClass="QuestionIndicatorListView" customModule="openHPI" customModuleProvider="target">
-                                <rect key="frame" x="960" y="60" width="0.0" height="80"/>
+                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTV-JK-kp6" customClass="QuestionIndicatorListView" customModule="moocHOUSE" customModuleProvider="target">
+                                <rect key="frame" x="960" y="120" width="0.0" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="6Mz-x1-PAM"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znz-1Y-rkJ">
-                                <rect key="frame" x="400" y="190" width="1120" height="830"/>
+                                <rect key="frame" x="400" y="250" width="1120" height="710"/>
                             </containerView>
                         </subviews>
                         <constraints>
@@ -726,7 +726,7 @@
         <!--Course Tab Bar Controller-->
         <scene sceneID="0AF-rc-gJk">
             <objects>
-                <tabBarController storyboardIdentifier="CourseDetailTabBarController" id="4Yh-6H-ggQ" customClass="CourseTabBarController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CourseDetailTabBarController" id="4Yh-6H-ggQ" customClass="CourseTabBarController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1920" height="1080"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sZI-9j-5WP">
@@ -748,7 +748,6 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="fa6-5p-taa" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GIP-qI-wOt">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -762,7 +761,7 @@
         <!--Main View Controller-->
         <scene sceneID="SgO-8a-ECx">
             <objects>
-                <viewController id="VQv-8X-xGr" customClass="MainViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VQv-8X-xGr" customClass="MainViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VcN-RM-sH5"/>
                         <viewControllerLayoutGuide type="bottom" id="6G3-UR-rqJ"/>
@@ -772,19 +771,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HO9-5S-jhU">
-                                <rect key="frame" x="0.0" y="140" width="1920" height="940"/>
+                                <rect key="frame" x="0.0" y="200" width="1920" height="820"/>
                                 <connections>
                                     <segue destination="lgE-Ld-iJp" kind="embed" id="UOi-rO-ZIy"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand-logo-100h" translatesAutoresizingMaskIntoConstraints="NO" id="raN-00-rX2">
-                                <rect key="frame" x="90" y="20" width="409" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand-logo" translatesAutoresizingMaskIntoConstraints="NO" id="raN-00-rX2">
+                                <rect key="frame" x="90" y="80" width="320" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="qfY-KR-4eb"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2Sp-nz-Y8v">
-                                <rect key="frame" x="1730" y="20" width="100" height="100"/>
+                                <rect key="frame" x="1730" y="80" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="hYD-FB-gze"/>
                                     <constraint firstAttribute="height" constant="100" id="iPP-nq-ZEc"/>
@@ -795,7 +794,7 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qUB-GL-Dab">
-                                <rect key="frame" x="1508" y="20" width="100" height="100"/>
+                                <rect key="frame" x="1508" y="80" width="100" height="100"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
@@ -810,13 +809,13 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8F-G3-byL">
-                                <rect key="frame" x="1618" y="52" width="72" height="35"/>
+                                <rect key="frame" x="1618" y="112" width="72" height="35"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPv-xt-8A5">
-                                <rect key="frame" x="1656" y="27" width="174" height="86"/>
+                                <rect key="frame" x="1656" y="87" width="174" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -856,7 +855,7 @@
         <!--Choice Question View Controller-->
         <scene sceneID="Z58-Pg-Tar">
             <objects>
-                <viewController storyboardIdentifier="ChoiceQuestionViewController" id="e0X-yg-1Dx" customClass="ChoiceQuestionViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChoiceQuestionViewController" id="e0X-yg-1Dx" customClass="ChoiceQuestionViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RMa-KB-Vg5"/>
                         <viewControllerLayoutGuide type="bottom" id="kSB-jm-0vh"/>
@@ -875,15 +874,15 @@
                                 <rect key="frame" x="0.0" y="95" width="1120" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChoiceAnswerCell" id="CO1-RL-RjA" customClass="ChoiceAnswerCell" customModule="openHPI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="40" width="1120" height="66"/>
+                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChoiceAnswerCell" id="CO1-RL-RjA" customClass="ChoiceAnswerCell" customModule="moocHOUSE" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="40" width="940" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CO1-RL-RjA" id="OE7-fF-iXG">
-                                            <rect key="frame" x="0.0" y="0.0" width="1104" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="940" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxC-mT-myL">
-                                                    <rect key="frame" x="108" y="16" width="984" height="35"/>
+                                                    <rect key="frame" x="108" y="31" width="82" height="5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -931,7 +930,7 @@
         <!--Unsupported Question View Controller-->
         <scene sceneID="BX9-O5-Y3F">
             <objects>
-                <viewController storyboardIdentifier="UnsupportedQuestionViewController" id="gsP-Q1-KWJ" customClass="UnsupportedQuestionViewController" customModule="openHPI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UnsupportedQuestionViewController" id="gsP-Q1-KWJ" customClass="UnsupportedQuestionViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4tN-ty-JXG"/>
                         <viewControllerLayoutGuide type="bottom" id="ou3-m9-QLl"/>
@@ -941,13 +940,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZk-tk-K6b">
-                                <rect key="frame" x="0.0" y="0.0" width="1120" height="35"/>
+                                <rect key="frame" x="0.0" y="60" width="1120" height="35"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unfortunately, this type of question is unsupported on tvOS. Please use a different device to answer this question." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-uC-mYv">
-                                <rect key="frame" x="0.0" y="95" width="1120" height="71"/>
+                                <rect key="frame" x="0.0" y="155" width="1120" height="71"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -974,14 +973,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="brand-logo-100h" width="409" height="100"/>
+        <image name="brand-logo" width="320" height="67"/>
         <image name="icon-gear-60" width="60" height="60"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <nil key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="z9C-kn-4yK"/>
     </inferredMetricsTieBreakers>

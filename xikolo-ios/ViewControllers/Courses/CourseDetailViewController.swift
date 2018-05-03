@@ -35,6 +35,7 @@ class CourseDetailViewController: UIViewController {
         self.statusView.backgroundColor = Brand.Color.secondary
 
         self.updateView()
+        CourseHelper.syncCourse(self.course)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
@@ -43,17 +44,17 @@ class CourseDetailViewController: UIViewController {
     }
 
     func updateView() {
-        titleView.text = course.title
-        languageView.text = course.localizedLanguage
-        teacherView.text = course.teachers
-        teacherView.textColor = Brand.Color.secondary
+        self.titleView.text = self.course.title
+        self.languageView.text = self.course.localizedLanguage
+        self.teacherView.text = self.course.teachers
+        self.teacherView.textColor = Brand.Color.secondary
 
-        dateView.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
-        imageView.sd_setImage(with: course.imageURL)
+        self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
+        self.imageView.sd_setImage(with: self.course.imageURL)
 
-        if let description = course.abstract {
+        if let description = self.course.courseDescription ?? self.course.abstract {
             let markDown = try? MarkdownHelper.parse(description)
-            descriptionView.attributedText = markDown
+            self.descriptionView.attributedText = markDown
         }
 
         self.refreshEnrollmentViews()

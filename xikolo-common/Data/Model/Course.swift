@@ -119,7 +119,7 @@ extension Course: Pullable {
         self.slug = try attributes.value(for: "slug")
         self.abstract = try attributes.value(for: "abstract")
         self.accessible = try attributes.value(for: "accessible")
-        self.courseDescription = try attributes.value(for: "description")
+        self.courseDescription = try attributes.value(for: "description") ?? self.courseDescription
         self.certificates = try attributes.value(for: "certificates")
         self.imageURL = try attributes.value(for: "image_url")
         self.teachers = try attributes.value(for: "teachers")

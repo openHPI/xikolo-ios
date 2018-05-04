@@ -11,7 +11,7 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var titleView: UILabel!
 
     private var courseContentListViewController: CourseContentListViewController?
-    private var containerContentViewController: UIViewController?
+    private var courseContentViewController: UIViewController?
 
     var course: Course!
     var content: CourseContent?
@@ -61,19 +61,21 @@ class CourseViewController: UIViewController {
     }
 
     func updateContainerView(to content: CourseContent) {
-        if let viewController = self.containerContentViewController {
+        if let viewController = self.courseContentViewController {
             viewController.willMove(toParentViewController: nil)
             viewController.view.removeFromSuperview()
             viewController.removeFromParentViewController()
-            self.containerContentViewController = nil
+            self.courseContentViewController = nil
         }
 
-        let configuredViewController = content.viewControllerConfigured(for: course)
-        self.containerView.addSubview(configuredViewController.view)
-        configuredViewController.view.frame = self.containerView.bounds
-        self.addChildViewController(configuredViewController)
-        configuredViewController.didMove(toParentViewController: self)
-        self.containerContentViewController = configuredViewController
+        guard let courseContentViewController = content.viewController else { return }
+        courseContentViewController.configure(for: course)
+
+        self.containerView.addSubview(courseContentViewController.view)
+        courseContentViewController.view.frame = self.containerView.bounds
+        self.addChildViewController(courseContentViewController)
+        courseContentViewController.didMove(toParentViewController: self)
+        self.courseContentViewController = courseContentViewController
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

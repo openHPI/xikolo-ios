@@ -148,3 +148,11 @@ extension AnnouncementsListViewController: DZNEmptyDataSetSource, DZNEmptyDataSe
     }
 
 }
+
+extension AnnouncementsListViewController: CourseContentViewController {
+
+    func configure(for course: Course) {
+        self.course = course
+    }
+
+}

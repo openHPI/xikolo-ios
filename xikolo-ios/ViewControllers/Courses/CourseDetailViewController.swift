@@ -190,3 +190,11 @@ extension CourseDetailViewController: UITextViewDelegate {
     }
 
 }
+
+extension CourseDetailViewController: CourseContentViewController {
+
+    func configure(for course: Course) {
+        self.course = course
+    }
+
+}

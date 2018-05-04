@@ -40,31 +40,18 @@ enum CourseContent {
         }
     }
 
-    func viewControllerConfigured(for course: Course) -> UIViewController {
+    var viewController: (UIViewController & CourseContentViewController)? {
         switch self {
         case .learnings:
-            let viewController = R.storyboard.courseLearnings.instantiateInitialViewController().require()
-            viewController.course = course
-            return viewController
+            return R.storyboard.courseLearnings.instantiateInitialViewController()
         case .discussions:
-            let viewController = R.storyboard.webViewController.instantiateInitialViewController().require()
-            if let slug = course.slug {
-                viewController.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
-            }
-
-            return viewController
+            return R.storyboard.webViewController.instantiateInitialViewController()
         case .courseDetails:
-            let viewController = R.storyboard.courseDetails.instantiateInitialViewController().require()
-            viewController.course = course
-            return viewController
+            return R.storyboard.courseDetails.instantiateInitialViewController()
         case .announcements:
-            let viewController = R.storyboard.tabNews.announcementsListViewController().require()
-            viewController.course = course
-            return viewController
+            return R.storyboard.tabNews.announcementsListViewController()
         case .certificates:
-            let viewController = R.storyboard.courseCertificates.instantiateInitialViewController().require()
-            viewController.course = course
-            return viewController
+            return R.storyboard.courseCertificates.instantiateInitialViewController()
         }
     }
 

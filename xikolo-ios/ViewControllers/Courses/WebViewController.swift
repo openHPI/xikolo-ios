@@ -91,3 +91,13 @@ extension WebViewController: UIWebViewDelegate {
         return true
     }
 }
+
+extension WebViewController: CourseContentViewController {
+
+    func configure(for course: Course) {
+        if let slug = course.slug {
+            self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
+        }
+    }
+
+}

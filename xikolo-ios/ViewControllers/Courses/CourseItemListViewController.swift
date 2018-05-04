@@ -288,3 +288,11 @@ extension CourseItemListViewController: UserActionsDelegate {
     }
 
 }
+
+extension CourseItemListViewController: CourseContentViewController {
+
+    func configure(for course: Course) {
+        self.course = course
+    }
+
+}

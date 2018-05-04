@@ -168,7 +168,7 @@ class CourseItemListViewController: UITableViewController {
             typedInfo.destination.courseItem = courseItem
         } else if let typedInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
             typedInfo.destination.courseItem = courseItem
-        } else if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
+        } else if let typedInfo = R.segue.courseItemListViewController.showRichtext(segue: segue) {
             typedInfo.destination.courseItem = courseItem
         }
     }

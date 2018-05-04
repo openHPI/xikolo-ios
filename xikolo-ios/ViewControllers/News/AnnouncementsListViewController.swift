@@ -94,10 +94,11 @@ class AnnouncementsListViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let announcementViewController = segue.destination.require(toHaveType: AnnouncementViewController.self)
         let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
-        announcementViewController.announcement = announcement
-        announcementViewController.showCourseTitle = self.course == nil
+        if let typedInfo = R.segue.announcementsListViewController.showAnnouncement(segue: segue) {
+            typedInfo.destination.announcement = announcement
+            typedInfo.destination.showCourseTitle = self.course == nil
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -113,7 +114,7 @@ extension AnnouncementsListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let announcement = resultsController.object(at: indexPath)
-        performSegue(withIdentifier: "ShowAnnouncement", sender: announcement)
+        self.performSegue(withIdentifier: R.segue.announcementsListViewController.showAnnouncement, sender: announcement)
     }
 
 }

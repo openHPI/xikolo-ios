@@ -241,7 +241,7 @@ class VideoViewController: UIViewController {
 
     @IBAction func openSlides() {
         if ReachabilityHelper.connection != .none {
-            performSegue(withIdentifier: "ShowSlides", sender: self.video)
+            self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
         } else {
             log.info("Tapped open slides button without internet, which shouldn't be possible")
         }
@@ -332,13 +332,8 @@ class VideoViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "ShowSlides"?:
-            if let webViewController = segue.destination as? WebViewController {
-                webViewController.url = self.video?.slidesURL
-            }
-        default:
-            super.prepare(for: segue, sender: sender)
+        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue) {
+            typedInfo.destination.url = self.video?.slidesURL
         }
     }
 

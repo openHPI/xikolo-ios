@@ -93,11 +93,8 @@ class CourseDatesListViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "embedCourseActivity"?:
-            self.courseActivityViewController = segue.destination as? CourseActivityViewController
-        default:
-            super.prepare(for: segue, sender: sender)
+        if let typedInfo = R.segue.courseDatesListViewController.embedCourseActivity(segue: segue) {
+            self.courseActivityViewController = typedInfo.destination
         }
     }
 

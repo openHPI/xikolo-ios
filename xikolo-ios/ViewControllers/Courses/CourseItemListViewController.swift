@@ -126,11 +126,11 @@ class CourseItemListViewController: UITableViewController {
 
         switch item.contentType {
         case "video"?:
-            self.performSegue(withIdentifier: "ShowVideo", sender: item)
+            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showVideo, sender: item)
         case "rich_text"?:
-            self.performSegue(withIdentifier: "ShowRichtext", sender: item)
+            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showRichtext, sender: item)
         default:
-            self.performSegue(withIdentifier: "ShowCourseItem", sender: item)
+            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: item)
         }
     }
 
@@ -164,18 +164,12 @@ class CourseItemListViewController: UITableViewController {
             return
         }
 
-        switch segue.identifier {
-        case "ShowVideo"?:
-            let videoViewController = segue.destination.require(toHaveType: VideoViewController.self)
-            videoViewController.courseItem = courseItem
-        case "ShowCourseItem"?:
-            let webView = segue.destination.require(toHaveType: CourseItemWebViewController.self)
-            webView.courseItem = courseItem
-        case "ShowRichtext"?:
-            let richtextViewController = segue.destination.require(toHaveType: RichtextViewController.self)
-            richtextViewController.courseItem = courseItem
-        default:
-            super.prepare(for: segue, sender: sender)
+        if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
+            typedInfo.destination.courseItem = courseItem
+        } else if let typedInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
+            typedInfo.destination.courseItem = courseItem
+        } else if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
+            typedInfo.destination.courseItem = courseItem
         }
     }
 

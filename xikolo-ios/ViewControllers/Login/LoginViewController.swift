@@ -72,7 +72,7 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
     }
 
     @IBAction func singleSignOn() {
-        self.performSegue(withIdentifier: "ShowSSOWebView", sender: self)
+        self.performSegue(withIdentifier: R.segue.loginViewController.showSSOWebView, sender: self)
     }
 
     @IBAction func tappedBackground() {
@@ -81,10 +81,9 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowSSOWebView" {
-            let webViewController = segue.destination.require(toHaveType: WebViewController.self)
-            webViewController.url = Routes.singleSignOn
-            webViewController.loginDelegate = self.delegate
+        if let typedInfo = R.segue.loginViewController.showSSOWebView(segue: segue) {
+            typedInfo.destination.url = Routes.singleSignOn
+            typedInfo.destination.loginDelegate = self.delegate
 
             // Delete all cookies since cookies are not shared among applications in iOS.
             let cookieStorage = HTTPCookieStorage.shared

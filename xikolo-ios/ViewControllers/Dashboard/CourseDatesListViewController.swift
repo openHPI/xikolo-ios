@@ -25,8 +25,7 @@ class CourseDatesListViewController: UITableViewController {
         super.viewDidLoad()
 
         // register custom section header view
-        let nib = UINib(nibName: "CourseDateHeader", bundle: nil)
-        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseDateHeader")
+        self.tableView.register(R.nib.courseDateHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDateHeader.name)
 
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
@@ -34,10 +33,12 @@ class CourseDatesListViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
+        let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
         resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: "CourseDateCell")
+                                                                                                   cellReuseIdentifier: reuseIdentifier)
+
         let configuration = CourseDatesTableViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
@@ -84,7 +85,7 @@ class CourseDatesListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseDateHeader")
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseDateHeader.name)
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -92,11 +93,8 @@ class CourseDatesListViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "embedCourseActivity"?:
-            self.courseActivityViewController = segue.destination as? CourseActivityViewController
-        default:
-            super.prepare(for: segue, sender: sender)
+        if let typedInfo = R.segue.courseDatesListViewController.embedCourseActivity(segue: segue) {
+            self.courseActivityViewController = typedInfo.destination
         }
     }
 

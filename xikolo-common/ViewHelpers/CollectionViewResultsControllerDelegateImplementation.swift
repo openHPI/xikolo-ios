@@ -43,8 +43,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         self.searchFetchRequest = searchFetchRequest
         self.cellReuseIdentifier = cellReuseIdentifier
 
-        let nib = UINib(nibName: "EmptyCollectionViewCell", bundle: nil)
-        self.collectionView?.register(nib, forCellWithReuseIdentifier: "EmptyCell")
+        self.collectionView?.register(R.nib.emptyCollectionViewCell(), forCellWithReuseIdentifier: R.nib.emptyCollectionViewCell.name)
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
@@ -153,7 +152,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if self.searchFetchResultsController?.fetchedObjects?.isEmpty ?? false {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCell", for: indexPath)
+            return collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.emptyCollectionViewCell.name, for: indexPath)
         }
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)

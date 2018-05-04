@@ -115,7 +115,7 @@ class AccountViewController: UITableViewController {
         let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
 
         if let userProfile = self.user?.profile {
-            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: UIImage(named: "avatar"))
+            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: R.image.avatar())
             self.nameView.text = userProfile.fullName
             self.emailView.text = userProfile.email
 
@@ -158,16 +158,18 @@ class AccountViewController: UITableViewController {
         let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
         switch newIndexPath {
         case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
-            let identifier = UIDevice.current.userInterfaceIdiom == .pad ? "ModalStreamingSettings" : "PushStreamingSettings"
-            self.performSegue(withIdentifier: identifier, sender: self)
             if UIDevice.current.userInterfaceIdiom == .pad {
+                self.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
                 self.tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                self.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
             }
         case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
-            let identifier = UIDevice.current.userInterfaceIdiom == .pad ? "ModalDownloadSettings" : "PushDownloadSettings"
-            self.performSegue(withIdentifier: identifier, sender: self)
             if UIDevice.current.userInterfaceIdiom == .pad {
+                self.performSegue(withIdentifier: R.segue.accountViewController.modalDownloadSettings, sender: self)
                 self.tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                self.performSegue(withIdentifier: R.segue.accountViewController.pushDownloadSettings, sender: self)
             }
         case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
             self.open(url: Routes.imprint)

@@ -53,11 +53,10 @@ class AppNavigator {
             return false
         }
 
-        let storyboard = UIStoryboard(name: "WebViewController", bundle: nil)
-        let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-        let webViewController = initialViewController.require(toHaveType: WebViewController.self)
+        let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
         webViewController.url = url
         sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
+
         return true
     }
 
@@ -150,9 +149,7 @@ class AppNavigator {
             return
         }
 
-        let storyboard = UIStoryboard(name: "Course", bundle: nil)
-        let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-        let courseNavigationController = initialViewController.require(toHaveType: CourseNavigationController.self)
+        let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
         let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
         let courseDecisionViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseDecisionViewController.course = course

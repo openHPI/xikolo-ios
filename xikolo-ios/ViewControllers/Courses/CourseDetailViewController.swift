@@ -110,7 +110,7 @@ class CourseDetailViewController: UIViewController {
                 showEnrollmentOptions()
             }
         } else {
-            self.performSegue(withIdentifier: "ShowLogin", sender: nil)
+            self.performSegue(withIdentifier: R.segue.courseDetailViewController.showLogin, sender: nil)
         }
     }
 

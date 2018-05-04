@@ -43,38 +43,29 @@ enum CourseContent {
     func viewControllerConfigured(for course: Course) -> UIViewController {
         switch self {
         case .learnings:
-            let storyboard = UIStoryboard(name: "CourseLearnings", bundle: nil)
-            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-            let viewController = initialViewController.require(toHaveType: CourseItemListViewController.self)
+            let viewController = R.storyboard.courseLearnings.instantiateInitialViewController().require()
             viewController.course = course
             return viewController
         case .discussions:
-            let storyboard = UIStoryboard(name: "WebViewController", bundle: nil)
-            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-            let viewController = initialViewController.require(toHaveType: WebViewController.self)
+            let viewController = R.storyboard.webViewController.instantiateInitialViewController().require()
             if let slug = course.slug {
                 viewController.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
             }
 
             return viewController
         case .courseDetails:
-            let storyboard = UIStoryboard(name: "CourseDetails", bundle: nil)
-            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-            let viewController = initialViewController.require(toHaveType: CourseDetailViewController.self)
+            let viewController = R.storyboard.courseDetails.instantiateInitialViewController().require()
             viewController.course = course
             return viewController
         case .announcements:
-            let announcementsStoryboard = UIStoryboard(name: "TabNews", bundle: nil)
-            let loadedViewController = announcementsStoryboard.instantiateViewController(withIdentifier: "AnnouncementsListViewController")
-            let viewController = loadedViewController.require(toHaveType: AnnouncementsListViewController.self)
+            let viewController = R.storyboard.tabNews.announcementsListViewController().require()
             viewController.course = course
             return viewController
         case .certificates:
-            let storyboard = UIStoryboard(name: "CourseCertificates", bundle: nil)
-            let initialViewController = storyboard.instantiateInitialViewController().require(hint: "Initial view controller required")
-            let viewController = initialViewController.require(toHaveType: CertificatesListViewController.self)
+            let viewController = R.storyboard.courseCertificates.instantiateInitialViewController().require()
             viewController.course = course
             return viewController
         }
     }
+
 }

@@ -393,6 +393,10 @@
 		5002290D205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		5002290E205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		5002290F205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
+		500A257E20824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
+		500A257F20824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
+		500A258020824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
+		500A258120824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		501212091FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120A1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120B1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
@@ -572,6 +576,10 @@
 		502E718A20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		502E718B20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		502E718C20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
+		502F3DDD209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
+		502F3DDE209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
+		502F3DDF209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
+		502F3DE0209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
 		502F89B820109B510056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89B920109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
@@ -1948,6 +1956,7 @@
 		50022901205928E2003301A7 /* UserActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionsDelegate.swift; sourceTree = "<group>"; };
 		50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+customView.swift"; sourceTree = "<group>"; };
 		5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+spinner.swift"; sourceTree = "<group>"; };
+		500A257D20824C2500EB7AE4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
 		501212151FCC660F0022A7AF /* ResourceQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuery.swift; sourceTree = "<group>"; };
 		501212231FCC669E0022A7AF /* Future+inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+inject.swift"; sourceTree = "<group>"; };
@@ -1976,6 +1985,7 @@
 		502E7171201A20C9007FC8C0 /* Credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		502E7178201B1C78007FC8C0 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		502E718820207C92007FC8C0 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CouseContent+image.swift"; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
@@ -2670,6 +2680,7 @@
 				5019A7621F20ACE6008C8138 /* Video+DetailedCourseItem.swift */,
 				50F7202C1F28E29B00779995 /* Video+Download.swift */,
 				500228F620583DF9003301A7 /* CourseSection+Download.swift */,
+				502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2845,6 +2856,7 @@
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
+				500A257D20824C2500EB7AE4 /* R.generated.swift */,
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
 			);
@@ -3133,6 +3145,7 @@
 			buildPhases = (
 				7919434A264A33D8AF707163 /* [CP] Check Pods Manifest.lock */,
 				50429D9A1FB07288000C1D5E /* Set Build Number */,
+				500A258220826EAA00EB7AE4 /* Run R.swift */,
 				24BA40301D3F976700E38C2C /* Sources */,
 				24BA40311D3F976700E38C2C /* Frameworks */,
 				24BA40321D3F976700E38C2C /* Resources */,
@@ -3288,6 +3301,7 @@
 			buildPhases = (
 				0089F3364BA801A526B4D83B /* [CP] Check Pods Manifest.lock */,
 				50429D9E1FB072D3000C1D5E /* Set Build Number */,
+				500A258420826EEB00EB7AE4 /* Run R.swift */,
 				709C92FF1EF0952500F8F045 /* Sources */,
 				709C93001EF0952500F8F045 /* Frameworks */,
 				709C93011EF0952500F8F045 /* Resources */,
@@ -3349,6 +3363,7 @@
 			buildPhases = (
 				675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */,
 				50429D981FB070E4000C1D5E /* Set Build Number */,
+				500A257C208249C400EB7AE4 /* Run R.swift */,
 				A90587B71B3BFC130095DB89 /* Sources */,
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
@@ -3371,6 +3386,7 @@
 			buildPhases = (
 				E4366C3C332640BAB19B0552 /* [CP] Check Pods Manifest.lock */,
 				50429D9C1FB072AD000C1D5E /* Set Build Number */,
+				500A258320826ED300EB7AE4 /* Run R.swift */,
 				AB48B4311DF8BB2A00523062 /* Sources */,
 				AB48B4321DF8BB2A00523062 /* Frameworks */,
 				AB48B4331DF8BB2A00523062 /* Resources */,
@@ -3927,6 +3943,7 @@
 				"${BUILT_PRODUCTS_DIR}/Down-tvOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-tvOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-tvOS/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-tvOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS/SDWebImage.framework",
 			);
@@ -3936,6 +3953,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -3973,6 +3991,7 @@
 				"${BUILT_PRODUCTS_DIR}/Down-tvOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-tvOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-tvOS/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-tvOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS/SDWebImage.framework",
 			);
@@ -3982,6 +4001,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -4006,6 +4026,7 @@
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-iOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
@@ -4026,6 +4047,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -4057,6 +4079,62 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		500A257C208249C400EB7AE4 /* Run R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run R.swift";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --rswiftignore \"xikolo-ios/.rswiftignore\" \"$SRCROOT/xikolo-ios\"";
+		};
+		500A258220826EAA00EB7AE4 /* Run R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run R.swift";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --rswiftignore \"xikolo-ios/.rswiftignore\" \"$SRCROOT/xikolo-ios\"";
+		};
+		500A258320826ED300EB7AE4 /* Run R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run R.swift";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --rswiftignore \"xikolo-ios/.rswiftignore\" \"$SRCROOT/xikolo-ios\"";
+		};
+		500A258420826EEB00EB7AE4 /* Run R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run R.swift";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --rswiftignore \"xikolo-ios/.rswiftignore\" \"$SRCROOT/xikolo-ios\"";
 		};
 		50429D981FB070E4000C1D5E /* Set Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4269,6 +4347,7 @@
 				"${BUILT_PRODUCTS_DIR}/Down-tvOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-tvOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-tvOS/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-tvOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS/SDWebImage.framework",
 			);
@@ -4278,6 +4357,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -4302,6 +4382,7 @@
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-iOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
@@ -4322,6 +4403,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -4442,6 +4524,7 @@
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-iOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
@@ -4462,6 +4545,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -4487,6 +4571,7 @@
 				"${BUILT_PRODUCTS_DIR}/Down-tvOS/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-tvOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal-tvOS/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-tvOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS/SDWebImage.framework",
 			);
@@ -4496,6 +4581,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -4520,6 +4606,7 @@
 				"${BUILT_PRODUCTS_DIR}/Marshal-iOS/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library-iOS/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
@@ -4540,6 +4627,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -4721,6 +4809,7 @@
 				50371FFF20501388006E9634 /* CourseItemDetailView.swift in Sources */,
 				500228F820583DF9003301A7 /* CourseSection+Download.swift in Sources */,
 				50B15BE41FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
+				502F3DDE209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				4E2B821E1DDB0EE200559217 /* CourseDatesListViewController.swift in Sources */,
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
@@ -4806,6 +4895,7 @@
 				24BA407B1D3F9A7D00E38C2C /* UIView+shake.swift in Sources */,
 				24BA40AC1D3F9AC300E38C2C /* Announcement.swift in Sources */,
 				AB95897D1DC4A42800586137 /* UITableViewCell+enable.swift in Sources */,
+				500A257F20824C2500EB7AE4 /* R.generated.swift in Sources */,
 				50F6A5B91FB316A6007DBAFF /* VideoStream.swift in Sources */,
 				70451A1F2080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				5012120C1FCC65B00022A7AF /* ModelObserver.swift in Sources */,
@@ -5364,6 +5454,7 @@
 				5040A62A2079788900E98351 /* CoursePresentationAnimator.swift in Sources */,
 				70D1EAAC1EF0ABF50088C0FF /* CourseDateHelper.swift in Sources */,
 				70D1EB241EF12E060088C0FF /* AbstractLoginViewController.swift in Sources */,
+				502F3DE0209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				70D1EA6E1EF0AB400088C0FF /* RichText.swift in Sources */,
 				50F45AD0200CE819009304A3 /* SyncHelper.swift in Sources */,
 				70D1EAD41EF0AC240088C0FF /* VideoHelper.swift in Sources */,
@@ -5442,6 +5533,7 @@
 				50F57D291FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				70D1EAC41EF0AC0F0088C0FF /* PlatformEventHelper.swift in Sources */,
 				70D1EADC1EF0AC330088C0FF /* xikolo.xcdatamodeld in Sources */,
+				500A258120824C2500EB7AE4 /* R.generated.swift in Sources */,
 				70D1EAAF1EF0ABF80088C0FF /* CourseHelper.swift in Sources */,
 				70E37FD0207D47FF00F9872F /* PDFWebViewController.swift in Sources */,
 				703005BF1EFEFC1500CCDCC9 /* UserHelper.swift in Sources */,
@@ -5708,6 +5800,7 @@
 				50371FFE20501388006E9634 /* CourseItemDetailView.swift in Sources */,
 				500228F720583DF9003301A7 /* CourseSection+Download.swift in Sources */,
 				50B15BE11FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
+				502F3DDD209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				4E2B821D1DDB0EE200559217 /* CourseDatesListViewController.swift in Sources */,
 				24128FAC1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
@@ -5793,6 +5886,7 @@
 				243CE4911D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				24A16D7E1CFDE60200CAD9FE /* Content.swift in Sources */,
 				50F97AB81F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
+				500A257E20824C2500EB7AE4 /* R.generated.swift in Sources */,
 				501212091FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				70451A1E2080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				50F6A5B61FB316A6007DBAFF /* VideoStream.swift in Sources */,
@@ -5882,6 +5976,7 @@
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */,
 				5037200020501388006E9634 /* CourseItemDetailView.swift in Sources */,
+				502F3DDF209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				500228F920583DF9003301A7 /* CourseSection+Download.swift in Sources */,
 				50B15BE71FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				ABA0F0291DF8CCCF0001D88D /* AnnouncementCell.swift in Sources */,
@@ -5966,6 +6061,7 @@
 				50F97ABC1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				5060A5281F177304007896FF /* DetailedCourseItem.swift in Sources */,
 				ABA0F0111DF8CC120001D88D /* AppDelegate.swift in Sources */,
+				500A258020824C2500EB7AE4 /* R.generated.swift in Sources */,
 				5012120F1FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				70451A202080FE77002D5D3E /* Filemanager+temporaryFile.swift in Sources */,
 				50D643351F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */,

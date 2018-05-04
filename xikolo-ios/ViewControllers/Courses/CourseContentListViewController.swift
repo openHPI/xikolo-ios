@@ -31,7 +31,7 @@ class CourseContentListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellReuseIdentifier = "CourseAreaCell"
+        let cellReuseIdentifier = R.reuseIdentifier.courseContentCell.identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
 
         if let cell = cell as? CourseContentCell, let content = self.delegate?.accessibleContent[safe: indexPath.item] {

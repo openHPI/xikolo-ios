@@ -576,6 +576,10 @@
 		502E718A20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		502E718B20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		502E718C20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
+		502F3DDD209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
+		502F3DDE209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
+		502F3DDF209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
+		502F3DE0209C35ED006B3DAC /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
 		502F89B820109B510056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89B920109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
 		502F89BA20109B520056B334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABF26F951E9637F000763A39 /* LaunchScreen.storyboard */; };
@@ -1981,6 +1985,7 @@
 		502E7171201A20C9007FC8C0 /* Credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		502E7178201B1C78007FC8C0 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		502E718820207C92007FC8C0 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CouseContent+image.swift"; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
@@ -2675,6 +2680,7 @@
 				5019A7621F20ACE6008C8138 /* Video+DetailedCourseItem.swift */,
 				50F7202C1F28E29B00779995 /* Video+Download.swift */,
 				500228F620583DF9003301A7 /* CourseSection+Download.swift */,
+				502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4803,6 +4809,7 @@
 				50371FFF20501388006E9634 /* CourseItemDetailView.swift in Sources */,
 				500228F820583DF9003301A7 /* CourseSection+Download.swift in Sources */,
 				50B15BE41FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
+				502F3DDE209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				4E2B821E1DDB0EE200559217 /* CourseDatesListViewController.swift in Sources */,
 				AB4F22891D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
 				24BA411C1D3F9B9B00E38C2C /* NetworkIndicator.swift in Sources */,
@@ -5447,6 +5454,7 @@
 				5040A62A2079788900E98351 /* CoursePresentationAnimator.swift in Sources */,
 				70D1EAAC1EF0ABF50088C0FF /* CourseDateHelper.swift in Sources */,
 				70D1EB241EF12E060088C0FF /* AbstractLoginViewController.swift in Sources */,
+				502F3DE0209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				70D1EA6E1EF0AB400088C0FF /* RichText.swift in Sources */,
 				50F45AD0200CE819009304A3 /* SyncHelper.swift in Sources */,
 				70D1EAD41EF0AC240088C0FF /* VideoHelper.swift in Sources */,
@@ -5792,6 +5800,7 @@
 				50371FFE20501388006E9634 /* CourseItemDetailView.swift in Sources */,
 				500228F720583DF9003301A7 /* CourseSection+Download.swift in Sources */,
 				50B15BE11FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
+				502F3DDD209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				241D4AEC1CC992C300E35B1F /* AbstractCourseListViewController.swift in Sources */,
 				4E2B821D1DDB0EE200559217 /* CourseDatesListViewController.swift in Sources */,
 				24128FAC1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
@@ -5967,6 +5976,7 @@
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */,
 				5037200020501388006E9634 /* CourseItemDetailView.swift in Sources */,
+				502F3DDF209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				500228F920583DF9003301A7 /* CourseSection+Download.swift in Sources */,
 				50B15BE71FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				ABA0F0291DF8CCCF0001D88D /* AnnouncementCell.swift in Sources */,

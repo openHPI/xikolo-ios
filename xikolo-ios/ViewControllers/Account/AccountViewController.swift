@@ -248,18 +248,14 @@ class AccountViewController: UITableViewController {
         composeVC.mailComposeDelegate = self
         composeVC.setToRecipients(Brand.feedbackRecipients)
         composeVC.setSubject(Brand.feedbackSubject)
-        composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: false)
+        composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: true)
         composeVC.navigationBar.tintColor = Brand.Color.window
         self.present(composeVC, animated: true, completion: nil)
     }
 
     private var feedbackMailSystemInfo: String {
         let components = [
-            "",
-            "",
-            "---------------------",
-            "System info",
-            "---------------------",
+            "<b>System info</b>",
             "platform: \(UIApplication.platform)",
             "os version: \(UIApplication.osVersion)",
             "device: \(UIApplication.device)",
@@ -267,7 +263,7 @@ class AccountViewController: UITableViewController {
             "app version: \(UIApplication.appVersion)",
             "app build: \(UIApplication.appBuild)",
         ]
-        return components.joined(separator: "\n")
+        return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
 
     @IBAction func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }

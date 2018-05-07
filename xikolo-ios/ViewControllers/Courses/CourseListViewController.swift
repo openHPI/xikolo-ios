@@ -26,7 +26,7 @@ class CourseListViewController: AbstractCourseListViewController {
     }
 
     override func viewDidLoad() {
-        self.collectionView?.register(R.nib.courseItemHeader(),
+        self.collectionView?.register(R.nib.courseHeaderView(),
                                       forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 

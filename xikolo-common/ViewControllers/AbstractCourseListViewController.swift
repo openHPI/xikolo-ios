@@ -119,7 +119,7 @@ struct CourseListViewConfiguration: CollectionViewResultsControllerConfiguration
     }
 
     func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
-        let view = view as! CourseHeaderView // swiftlint:disable:this force_cast
+        let view = view.require(toHaveType: CourseHeaderView.self)
         let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
         view.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }

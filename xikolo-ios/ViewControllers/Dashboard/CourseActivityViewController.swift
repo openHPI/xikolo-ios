@@ -67,11 +67,7 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
-            return UIEdgeInsets.zero
-        }
-
-        let cellSize = flowLayout.itemSize
+        let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath())
         let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
         let viewWidth = self.collectionView?.frame.size.width ?? 0
         let horizontalPadding = max(0, (viewWidth - numberOfCellsInSection * cellSize.width) / 2)

@@ -1,3 +1,7 @@
+• Der Kurs zu einer Ankündigung kann nun direkt geöffnet werden
+• Fehlerkorrekturen und allgemeine Verbesserungen
+
+Auch in Version 2.2:
 • Zeugnisse und Teilnahmebestätigungen sind jetzt in der App verfügbar
 • Kurse öffnen sich in einer neuen Ansicht
 • Neue Navigation im Kurs

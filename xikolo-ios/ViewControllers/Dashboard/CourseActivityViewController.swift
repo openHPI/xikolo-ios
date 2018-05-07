@@ -52,21 +52,31 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = 300
-        let height = width / 2 + 48.5 // 6 + 20.5 + 4 + 18 (padding + text + padding + text)
+        let height: CGFloat = 150 + 6 + 20.5 + 4 + 18 // (image height + padding + text + padding + text)
+        var width = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
+
+        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
+            width -= 4 * flowLayout.minimumInteritemSpacing
+        }
+
+        width = min(width, 300)
+
         return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let padding: CGFloat = 10.0
-        let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath(item: 0, section: section))
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return UIEdgeInsets.zero
+        }
+
+        let cellSize = flowLayout.itemSize
         let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
         let viewWidth = self.collectionView?.frame.size.width ?? 0
-        let horizontalPadding = max(0, (viewWidth - 2 * padding - numberOfCellsInSection * cellSize.width) / 2)
+        let horizontalPadding = max(0, (viewWidth - numberOfCellsInSection * cellSize.width) / 2)
 
-        return UIEdgeInsets(top: 0, left: padding + horizontalPadding, bottom: 0, right: padding + horizontalPadding)
+        return UIEdgeInsets(top: 0, left: horizontalPadding, bottom: 0, right: horizontalPadding)
     }
 
 }

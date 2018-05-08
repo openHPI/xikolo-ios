@@ -70,7 +70,13 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
         let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath())
         let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
         let viewWidth = self.collectionView?.frame.size.width ?? 0
-        let horizontalPadding = max(0, (viewWidth - numberOfCellsInSection * cellSize.width) / 2)
+        var horizontalPadding = max(0, (viewWidth - numberOfCellsInSection * cellSize.width) / 2)
+
+        if #available(iOS 11.0, *) {
+            // nothing to do here
+        } else {
+            horizontalPadding += 20
+        }
 
         return UIEdgeInsets(top: 0, left: horizontalPadding, bottom: 0, right: horizontalPadding)
     }

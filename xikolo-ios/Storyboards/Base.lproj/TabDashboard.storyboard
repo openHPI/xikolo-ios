@@ -338,9 +338,9 @@
         <scene sceneID="f4y-KC-UVu">
             <objects>
                 <navigationController storyboardIdentifier="DashboardNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="8ct-r5-KFX" customClass="XikoloNavigationController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="tab-bar-item-dashboard" id="eqp-FY-Bn8"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="tab bar items/dashboard" id="eqp-FY-Bn8"/>
                     <toolbarItems/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="kqf-75-4sm">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -357,6 +357,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab-bar-item-dashboard" width="24" height="24"/>
+        <image name="tab bar items/dashboard" width="24" height="24"/>
     </resources>
 </document>

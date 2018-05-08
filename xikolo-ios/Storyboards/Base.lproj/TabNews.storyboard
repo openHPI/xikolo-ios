@@ -158,8 +158,9 @@
         <scene sceneID="a7D-B7-NgZ">
             <objects>
                 <navigationController storyboardIdentifier="NewsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="hJj-vh-sHE" customClass="XikoloNavigationController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" image="tab-bar-item-news" id="Iok-ZF-Mpk"/>
+                    <tabBarItem key="tabBarItem" title="News" image="tab bar items/news" id="Iok-ZF-Mpk"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Rgc-ev-Ao6">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -296,6 +297,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab-bar-item-news" width="25" height="25"/>
+        <image name="tab bar items/news" width="25" height="25"/>
     </resources>
 </document>

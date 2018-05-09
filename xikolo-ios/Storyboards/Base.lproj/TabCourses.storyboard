@@ -196,8 +196,9 @@
         <scene sceneID="O7e-6a-qIC">
             <objects>
                 <navigationController storyboardIdentifier="CoursesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="krt-FK-dfi" customClass="XikoloNavigationController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="tab-bar-item-courses" id="fhC-LU-HI2"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="tab bar items/courses" id="fhC-LU-HI2"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aYN-LP-p0K">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -222,6 +223,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab-bar-item-courses" width="28" height="28"/>
+        <image name="tab bar items/courses" width="28" height="28"/>
     </resources>
 </document>

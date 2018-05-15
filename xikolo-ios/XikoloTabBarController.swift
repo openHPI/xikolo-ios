@@ -33,8 +33,8 @@ class XikoloTabBarController: UITabBarController {
                 return true
             case (.maintenance, .maintenance):
                 return true
-            case let (.deprecated(l), .deprecated(r)):
-                return l == r
+            case let (.deprecated(lhsDate), .deprecated(rhsDate)):
+                return lhsDate == rhsDate
             case (.expired, .expired):
                 return true
             default:
@@ -50,7 +50,7 @@ class XikoloTabBarController: UITabBarController {
                 let format = NSLocalizedString("app-state.maintenance.server maintenance on %@",
                                                comment: "App state message for server maintenance")
                 let message = String.localizedStringWithFormat(format, UIApplication.appName)
-                return Configuration(backgroundColor: Brand.windowTintColor, textColor: .white, message: message)
+                return Configuration(backgroundColor: Brand.Color.window, textColor: .white, message: message)
             case .deprecated(expiresOn: let expirationDate):
                 let formattedExpirationDate = State.dateFormatter.string(from: expirationDate)
                 let format = NSLocalizedString("app-state.api-deprecated.please update the %@ app before %@",

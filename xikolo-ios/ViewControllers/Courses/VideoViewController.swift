@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length type_body_length
+
 import AVFoundation
 import AVKit
 import BMPlayer
@@ -26,6 +28,8 @@ class VideoViewController: UIViewController {
     @IBOutlet private weak var slidesProgressView: CircularProgressView!
     @IBOutlet private weak var slidesDownloadedIcon: UIImageView!
 
+    @IBOutlet private var iPadFullScreenContraints: [NSLayoutConstraint]!
+
     var courseItem: CourseItem!
     var video: Video?
     var videoPlayerConfigured = false
@@ -34,7 +38,7 @@ class VideoViewController: UIViewController {
     var player: CustomBMPlayer?
     let playerControlView = VideoPlayerControlView()
 
-    override func viewDidLoad() {
+    override func viewDidLoad() { // swiftlint:disable:this function_body_length
         super.viewDidLoad()
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
@@ -44,10 +48,10 @@ class VideoViewController: UIViewController {
         self.errorView.isHidden = true
 
         self.navigationItem.rightBarButtonItem?.isEnabled = ReachabilityHelper.connection != .none
-        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
 
         self.videoActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.videoActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.videoActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
         self.videoProgressView.isHidden = true
         self.videoDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
         self.videoDownloadedIcon.isHidden = true
@@ -55,7 +59,7 @@ class VideoViewController: UIViewController {
         self.slidesView.isHidden = true
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
         self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
         self.slidesProgressView.isHidden = true
         self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
         self.slidesDownloadedIcon.isHidden = true
@@ -110,6 +114,17 @@ class VideoViewController: UIViewController {
         }
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if let courseNavigationController = self.navigationController as? CourseNavigationController,
+            let courseTransitioningDelegate = courseNavigationController.transitioningDelegate as? CourseTransitioningDelegate,
+            courseTransitioningDelegate.interactionController.shouldFinish {
+            self.player?.pause()
+            self.trackVideoClose()
+        }
+    }
+
     override func prefersHomeIndicatorAutoHidden() -> Bool {
         let orientation = UIDevice.current.orientation
         let isInLandscapeOrientation = orientation == .landscapeRight || orientation == .landscapeLeft
@@ -131,14 +146,27 @@ class VideoViewController: UIViewController {
         player.videoController = self
         self.videoContainer.addSubview(player)
         player.snp.makeConstraints { make in
-            make.top.equalTo(self.videoContainer.snp.top)
-            make.bottom.equalTo(self.videoContainer.snp.bottom)
-            make.centerX.equalTo(self.videoContainer.snp.centerX)
-            make.width.equalTo(self.videoContainer.snp.height).multipliedBy(16.0 / 9.0)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
 
         self.player = player
         self.videoContainer.layoutIfNeeded()
+    }
+
+    func activateiPadFullScreenMode(_ isFullScreen: Bool) {
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25) {
+            if isFullScreen {
+                NSLayoutConstraint.activate(self.iPadFullScreenContraints)
+            } else {
+                NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
+            }
+
+            self.view.layoutIfNeeded()
+        }
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -149,7 +177,7 @@ class VideoViewController: UIViewController {
         self.show(video: video)
     }
 
-    private func show(video: Video) {
+    private func show(video: Video) { // swiftlint:disable:this function_body_length
         self.video = video
 
         let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
@@ -159,10 +187,10 @@ class VideoViewController: UIViewController {
         self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
 
         self.navigationItem.rightBarButtonItem?.isEnabled = video.videoUserAction != nil
-        self.navigationItem.rightBarButtonItem?.tintColor = video.videoUserAction != nil ? Brand.TintColor : .lightGray
+        self.navigationItem.rightBarButtonItem?.tintColor = video.videoUserAction != nil ? Brand.Color.primary : .lightGray
 
         self.videoActionsButton.isEnabled = video.videoUserAction != nil
-        self.videoActionsButton.tintColor = video.videoUserAction != nil ? Brand.TintColor : .lightGray
+        self.videoActionsButton.tintColor = video.videoUserAction != nil ? Brand.Color.primary : .lightGray
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -213,7 +241,7 @@ class VideoViewController: UIViewController {
 
     @IBAction func openSlides() {
         if ReachabilityHelper.connection != .none {
-            performSegue(withIdentifier: "ShowSlides", sender: self.video)
+            self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
         } else {
             log.info("Tapped open slides button without internet, which shouldn't be possible")
         }
@@ -291,32 +319,30 @@ class VideoViewController: UIViewController {
 
     @objc func reachabilityChanged() {
         self.navigationItem.rightBarButtonItem?.isEnabled = ReachabilityHelper.connection != .none
-        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
 
         self.videoActionsButton.isEnabled = self.video?.videoUserAction != nil
-        self.videoActionsButton.tintColor = self.video?.videoUserAction != nil ? Brand.TintColor : .lightGray
+        self.videoActionsButton.tintColor = self.video?.videoUserAction != nil ? Brand.Color.primary : .lightGray
 
         self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.TintColor : .lightGray
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
         self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
 
         self.updatePreferredVideoBitrate()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "ShowSlides"?:
-            if let vc = segue.destination as? WebViewController {
-                vc.url = self.video?.slidesURL?.absoluteString
-            }
-        default:
-            super.prepare(for: segue, sender: sender)
+        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue) {
+            typedInfo.destination.url = self.video?.slidesURL
         }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
         self.toggleControlBars(true)
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
+
         if #available(iOS 11.0, *) {
             self.setNeedsUpdateOfHomeIndicatorAutoHidden()
         }
@@ -383,7 +409,7 @@ extension VideoViewController { // Video tracking
         TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, context: context)
     }
 
-    func trackVideoSeek(from: TimeInterval?, to: TimeInterval) {
+    func trackVideoSeek(from: TimeInterval?, to: TimeInterval) { // swiftlint:disable:this identifier_name
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext
@@ -429,7 +455,9 @@ extension VideoViewController: BMPlayerDelegate {
 
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .bufferFinished {
-            player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+            if player.isPlaying {
+                player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
+            }
 
             if !self.sentFirstAutoPlayEvent {  // only once
                 self.trackVideoPlay()

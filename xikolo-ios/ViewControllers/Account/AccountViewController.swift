@@ -83,7 +83,7 @@ class AccountViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn {
             self.navigationItem.rightBarButtonItem = nil
 
             CoreDataHelper.viewContext.perform {
@@ -115,7 +115,7 @@ class AccountViewController: UITableViewController {
         let profileViews: [UIView] = [self.profileImage, self.nameView, self.emailView]
 
         if let userProfile = self.user?.profile {
-            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: UIImage(named: "avatar"))
+            self.profileImage.sd_setImage(with: self.user?.avatarURL, placeholderImage: R.image.avatar())
             self.nameView.text = userProfile.fullName
             self.emailView.text = userProfile.email
 
@@ -158,23 +158,25 @@ class AccountViewController: UITableViewController {
         let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
         switch newIndexPath {
         case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
-            let identifier = UIDevice.current.userInterfaceIdiom == .pad ? "ModalStreamingSettings" : "PushStreamingSettings"
-            self.performSegue(withIdentifier: identifier, sender: self)
             if UIDevice.current.userInterfaceIdiom == .pad {
+                self.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
                 self.tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                self.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
             }
         case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
-            let identifier = UIDevice.current.userInterfaceIdiom == .pad ? "ModalDownloadSettings" : "PushDownloadSettings"
-            self.performSegue(withIdentifier: identifier, sender: self)
             if UIDevice.current.userInterfaceIdiom == .pad {
+                self.performSegue(withIdentifier: R.segue.accountViewController.modalDownloadSettings, sender: self)
                 self.tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                self.performSegue(withIdentifier: R.segue.accountViewController.pushDownloadSettings, sender: self)
             }
         case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
-            self.open(url: URL(string: Brand.APP_IMPRINT_URL))
+            self.open(url: Routes.imprint)
         case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):
-            self.open(url: URL(string: Brand.APP_PRIVACY_URL))
+            self.open(url: Routes.privacy)
         case let githubIndexPath where githubIndexPath == tableView.indexPath(for: self.githubCell):
-            self.open(url: URL(string: Brand.APP_GITHUB_URL))
+            self.open(url: Routes.github)
         case AccountViewController.feedbackIndexPath:
             self.sendFeedbackMail()
         case AccountViewController.logoutIndexPath:
@@ -191,7 +193,7 @@ class AccountViewController: UITableViewController {
             numberOfSections -= 1
         }
 
-        if !UserProfileHelper.isLoggedIn() {
+        if !UserProfileHelper.isLoggedIn {
             numberOfSections -= 1
         }
 
@@ -226,7 +228,7 @@ class AccountViewController: UITableViewController {
             newIndexPath.section += 1
         }
 
-        if !UserProfileHelper.isLoggedIn(), indexPath.section >= AccountViewController.logoutIndexPath.section {
+        if !UserProfileHelper.isLoggedIn, indexPath.section >= AccountViewController.logoutIndexPath.section {
             newIndexPath.section += 1
         }
 
@@ -237,27 +239,23 @@ class AccountViewController: UITableViewController {
         guard let urlToOpen = url else { return }
 
         let safariVC = SFSafariViewController(url: urlToOpen)
-        safariVC.preferredControlTintColor = Brand.windowTintColor
+        safariVC.preferredControlTintColor = Brand.Color.window
         self.present(safariVC, animated: true, completion: nil)
     }
 
     private func sendFeedbackMail() {
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
-        composeVC.setToRecipients(Brand.FeedbackRecipients)
-        composeVC.setSubject(Brand.FeedbackSubject)
-        composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: false)
-        composeVC.navigationBar.tintColor = Brand.windowTintColor
+        composeVC.setToRecipients(Brand.feedbackRecipients)
+        composeVC.setSubject(Brand.feedbackSubject)
+        composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: true)
+        composeVC.navigationBar.tintColor = Brand.Color.window
         self.present(composeVC, animated: true, completion: nil)
     }
 
     private var feedbackMailSystemInfo: String {
         let components = [
-            "",
-            "",
-            "---------------------",
-            "System info",
-            "---------------------",
+            "<b>System info</b>",
             "platform: \(UIApplication.platform)",
             "os version: \(UIApplication.osVersion)",
             "device: \(UIApplication.device)",
@@ -265,7 +263,7 @@ class AccountViewController: UITableViewController {
             "app version: \(UIApplication.appVersion)",
             "app build: \(UIApplication.appBuild)",
         ]
-        return components.joined(separator: "\n")
+        return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
 
     @IBAction func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }

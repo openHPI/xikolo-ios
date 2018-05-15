@@ -26,8 +26,9 @@ class CourseListViewController: AbstractCourseListViewController {
     }
 
     override func viewDidLoad() {
-        let headerNib = UINib(nibName: "CourseHeaderView", bundle: nil)
-        self.collectionView?.register(headerNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CourseHeaderView")
+        self.collectionView?.register(R.nib.courseItemHeader(),
+                                      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                      withReuseIdentifier: R.nib.courseHeaderView.name)
 
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CourseListLayout {
             courseListLayout.delegate = self
@@ -79,20 +80,8 @@ class CourseListViewController: AbstractCourseListViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        self.performSegue(withIdentifier: "ShowCourseContent", sender: cell)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "ShowCourseContent"?:
-            let vc = segue.destination.require(toHaveType: CourseDecisionViewController.self)
-            let cell = (sender as? CourseCell).require(hint: "Sender must be CourseCell")
-            let indexPath = collectionView!.indexPath(for: cell)!
-            vc.course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
-        default:
-            break
-        }
+        let course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
+        AppNavigator.show(course: course)
     }
 
     override func viewWillAppear(_ animated: Bool) {

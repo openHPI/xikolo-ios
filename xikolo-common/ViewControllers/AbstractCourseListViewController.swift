@@ -63,23 +63,25 @@ class AbstractCourseListViewController: UICollectionViewController {
         }
 
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
+        let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
                                                                                                         resultsControllers: resultsControllers,
                                                                                                         searchFetchRequest: searchFetchRequest,
-                                                                                                        cellReuseIdentifier: "CourseCell")
-        resultsControllerDelegateImplementation.headerReuseIdentifier = "CourseHeaderView"
+                                                                                                        cellReuseIdentifier: reuseIdentifier)
+
+        resultsControllerDelegateImplementation.headerReuseIdentifier = R.nib.courseHeaderView.name
         let configuration = CourseListViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
 
-        for rC in resultsControllers {
-            rC.delegate = resultsControllerDelegateImplementation
+        for resultsController in resultsControllers {
+            resultsController.delegate = resultsControllerDelegateImplementation
         }
 
         self.collectionView?.dataSource = resultsControllerDelegateImplementation
 
         do {
-            for rC in resultsControllers {
-                try rC.performFetch()
+            for resultsController in resultsControllers {
+                try resultsController.performFetch()
             }
         } catch {
             CrashlyticsHelper.shared.recordError(error)

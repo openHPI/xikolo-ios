@@ -37,6 +37,8 @@ included:
 
 excluded:
 - UI Tests/SnapshotHelper.swift
+- xikolo-common/R.generated.swift
+- xikolo-ios/R.generated.swift
 
 line_length: 160
 

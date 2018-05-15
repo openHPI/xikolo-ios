@@ -1,5 +1,7 @@
-• Fehlerkorrekturen und allgemeine Verbesserungen
-
-Auch in Version 2.1:
-• Suche für Kurse
-• Neuigkeitenliste für einzelne Kurse
+• Zeugnisse und Teilnahmebestätigungen sind jetzt in der App verfügbar
+• Kurse öffnen sich in einer neuen Ansicht
+• Neue Navigation im Kurs
+• Video-Download für ganze Kursabschnitte
+• Download-Buttons on der Videoansicht
+• Einstellungsmenu für Videoqualität
+• Der Einstellungstab heißt nun 'Konto'

@@ -142,6 +142,7 @@ extension Pullable where Self: NSManagedObject {
         }
     }
 
+    // swiftlint:disable:next function_parameter_count
     func updateAbstractRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
                                        forKey key: KeyType,
                                        fromObject object: ResourceData,

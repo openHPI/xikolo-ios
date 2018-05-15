@@ -6,6 +6,18 @@ flavors = [:openHPI, :openSAP, :openWHO, :moocHOUSE]
 fastlane_dir = File.expand_path(File.dirname(__FILE__))
 
 platform :ios do
+  private_lane :copyright do |options|
+    copyright = Time.now.year.to_s
+
+    copyright_name_path = "#{fastlane_dir}/metadata/#{options[:flavor]}/copyright_name.txt"
+    if File.exist?(copyright_name_path)
+      copyright += ' '
+      copyright += File.read("#{fastlane_dir}/metadata/#{options[:flavor]}/copyright_name.txt").to_s.strip
+    end
+
+    copyright
+  end
+
   desc "Increments the version number for a new patch version"
   lane :increment_version_patch do
     new_version_number = increment_version_number(
@@ -145,7 +157,7 @@ platform :ios do
     lane :"upload_screenshots_#{flavor.downcase}" do
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number,
+        app_version: get_version_number(target: "#{flavor}-iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         screenshots_path: "#{fastlane_dir}/screenshots/#{flavor}",
         overwrite_screenshots: true,
@@ -165,8 +177,9 @@ platform :ios do
     lane :"upload_metadata_#{flavor.downcase}" do
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number,
+        app_version: get_version_number(target: "#{flavor}-iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
+        copyright: copyright(flavor: flavor),
         skip_binary_upload: true,
         skip_screenshots: true,
         force: true,
@@ -219,8 +232,10 @@ platform :ios do
       )
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number,
+        app_version: get_version_number(target: "#{flavor}-iOS"),
+        force: true,
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
+        copyright: copyright(flavor: flavor),
         skip_screenshots: true,
         skip_metadata: skip_metadata,
       )
@@ -230,7 +245,7 @@ platform :ios do
   end
 
   lane :tag_release do
-    version_number = get_version_number
+    version_number = get_version_number(target: "#{:openHPI}-iOS")
     last_commit_id = sh("git rev-parse HEAD")
     last_commit_id.strip!
     release_notes = File.read("#{fastlane_dir}/metadata/default/en-US/release_notes.txt") rescue "No changelog provided"
@@ -255,7 +270,7 @@ platform :ios do
     lane :"refresh_dsyms_#{flavor.downcase}" do
       download_dsyms(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        version: get_version_number,
+        version: get_version_number(target: "#{flavor}-iOS"),
       )
       upload_symbols_to_crashlytics(
         gsp_path: "xikolo-ios/Branding/#{flavor}/GoogleService-Info-Release.plist",

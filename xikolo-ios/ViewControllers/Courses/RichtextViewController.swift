@@ -17,11 +17,8 @@ class RichtextViewController: AbstractItemRichtextViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "openInWebView" {
-            let webView = segue.destination.require(toHaveType: CourseItemWebViewController.self)
-            webView.courseItem = self.courseItem
-        } else {
-            super.prepare(for: segue, sender: sender)
+        if let typedInfo = R.segue.richtextViewController.openInWebView(segue: segue) {
+            typedInfo.destination.courseItem = self.courseItem
         }
     }
 

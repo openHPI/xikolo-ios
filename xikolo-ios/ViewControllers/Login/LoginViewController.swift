@@ -18,8 +18,8 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginButton.backgroundColor = Brand.TintColor
-        self.registerButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+        self.loginButton.backgroundColor = Brand.Color.primary
+        self.registerButton.backgroundColor = Brand.Color.primary.withAlphaComponent(0.2)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustViewForKeyboardShow(_:)),
@@ -30,13 +30,14 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
                                                name: NSNotification.Name.UIKeyboardWillHide,
                                                object: nil)
 
-        #if OPENSAP || OPENWHO
-            singleSignOnView.isHidden = false
-            singleSignOnButton.backgroundColor = Brand.TintColor
-            singleSignOnButton.setTitle(Brand.ButtonLabelSSO, for: .normal)
-        #else
-            singleSignOnView.isHidden = true
-        #endif
+        if let title = Brand.singleSignOnButtonTitle {
+            self.singleSignOnView.isHidden = false
+            self.singleSignOnButton.backgroundColor = Brand.Color.primary
+            self.singleSignOnButton.setTitle(title, for: .normal)
+        } else {
+            self.singleSignOnView.isHidden = true
+        }
+
     }
 
     override func login() {
@@ -59,20 +60,19 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
     }
 
     @IBAction func register() {
-        guard let url = URL(string: Routes.REGISTER_URL) else { return }
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.preferredControlTintColor = Brand.windowTintColor
+        let safariVC = SFSafariViewController(url: Routes.register)
+        safariVC.preferredControlTintColor = Brand.Color.window
         self.present(safariVC, animated: true)
     }
 
     @IBAction func forgotPassword() {
         let safariVC = SFSafariViewController(url: Routes.localizedForgotPasswordURL)
-        safariVC.preferredControlTintColor = Brand.windowTintColor
+        safariVC.preferredControlTintColor = Brand.Color.window
         self.present(safariVC, animated: true)
     }
 
     @IBAction func singleSignOn() {
-        self.performSegue(withIdentifier: "ShowSSOWebView", sender: self)
+        self.performSegue(withIdentifier: R.segue.loginViewController.showSSOWebView, sender: self)
     }
 
     @IBAction func tappedBackground() {
@@ -81,10 +81,9 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowSSOWebView" {
-            let vc = segue.destination.require(toHaveType: WebViewController.self)
-            vc.url = Routes.SSO_URL
-            vc.loginDelegate = self.delegate
+        if let typedInfo = R.segue.loginViewController.showSSOWebView(segue: segue) {
+            typedInfo.destination.url = Routes.singleSignOn
+            typedInfo.destination.loginDelegate = self.delegate
 
             // Delete all cookies since cookies are not shared among applications in iOS.
             let cookieStorage = HTTPCookieStorage.shared

@@ -1,7 +1,8 @@
 use_frameworks!
 inhibit_all_warnings!
 
-pod 'BartyCrouch', :git => 'https://github.com/mathebox/BartyCrouch.git', :commit => 'cf75991'
+pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :commit => 'a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac'
+pod 'R.swift', '~> 4.0'
 pod 'SwiftLint', '~> 0.22'
 
 def common_pods
@@ -104,7 +105,7 @@ post_install do |installer|
     # but creates only one pod license file for iOs instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'SwiftLint', 'SimulatorStatusMagic']
+    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic']
     sandbox = installer.sandbox
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first
     root_specs = ios_target.specs.map(&:root).uniq.reject { |spec| excluded.include?(spec.name) }

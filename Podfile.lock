@@ -1,5 +1,5 @@
 PODS:
-  - BartyCrouch (3.8.1)
+  - BartyCrouch (3.9.0)
   - BMPlayer (1.0.1):
     - BMPlayer/Full (= 1.0.1)
   - BMPlayer/Core (1.0.1)
@@ -42,6 +42,9 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
   - ReachabilitySwift (4.1.0)
   - Result (3.2.4)
   - SDWebImage (4.2.3):
@@ -57,7 +60,7 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
-  - BartyCrouch (from `https://github.com/mathebox/BartyCrouch.git`, commit `cf75991`)
+  - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, commit `a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac`)
   - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `a8e110d`)
   - BrightFutures (~> 6.0)
   - Crashlytics (~> 3.9)
@@ -67,6 +70,7 @@ DEPENDENCIES:
   - Firebase/Core (~> 4.8)
   - KeychainAccess (~> 3.1)
   - Marshal (~> 1.2)
+  - R.swift (~> 4.0)
   - ReachabilitySwift (~> 4.1)
   - SDWebImage (~> 4.2)
   - SimpleRoundedButton (from `https://github.com/mathebox/SimpleRoundedButton.git`, commit `91225d2`)
@@ -91,6 +95,8 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - ObjcExceptionBridging
+    - R.swift
+    - R.swift.Library
     - ReachabilitySwift
     - Result
     - SDWebImage
@@ -101,8 +107,8 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   BartyCrouch:
-    :commit: cf75991
-    :git: https://github.com/mathebox/BartyCrouch.git
+    :commit: a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac
+    :git: https://github.com/Flinesoft/BartyCrouch.git
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
@@ -112,8 +118,8 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BartyCrouch:
-    :commit: cf75991
-    :git: https://github.com/mathebox/BartyCrouch.git
+    :commit: a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac
+    :git: https://github.com/Flinesoft/BartyCrouch.git
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
@@ -122,7 +128,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/mathebox/SimpleRoundedButton.git
 
 SPEC CHECKSUMS:
-  BartyCrouch: 7a57b80f80c94deb1db99942eebf14f9fad927fe
+  BartyCrouch: dd28c3cdf187df4e339145a3b63dd718743382db
   BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
   BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -139,6 +145,8 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
@@ -148,6 +156,6 @@ SPEC CHECKSUMS:
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 6f50273d38619b52ae88b7f184a5d4029c58bed5
+PODFILE CHECKSUM: 70afd40ee9d84050893c540d9206e28be0f1dc7d
 
 COCOAPODS: 1.5.0

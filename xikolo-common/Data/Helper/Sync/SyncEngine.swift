@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length line_length function_body_length type_body_length
+
 import BrightFutures
 import CoreData
 import Foundation
@@ -49,11 +51,7 @@ struct SyncEngine {
     // MARK: - build url request
 
     private static func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
-        guard let baseURL = URL(string: Routes.API_V2_URL) else {
-            return .failure(.invalidURL(Routes.API_V2_URL))
-        }
-
-        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
 
@@ -92,7 +90,7 @@ struct SyncEngine {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
-        for (header, value) in NetworkHelper.getRequestHeaders() {
+        for (header, value) in NetworkHelper.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -111,11 +109,7 @@ struct SyncEngine {
 
     private static func buildCreateRequest(forQuery query: ResourceURLRepresentable,
                                            withData resourceData: Data) -> Result<URLRequest, XikoloError> {
-        guard let baseURL = URL(string: Routes.API_V2_URL) else {
-            return .failure(.invalidURL(Routes.API_V2_URL))
-        }
-
-        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
 
@@ -124,7 +118,7 @@ struct SyncEngine {
         request.httpBody = resourceData
 
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        for (header, value) in NetworkHelper.getRequestHeaders() {
+        for (header, value) in NetworkHelper.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -133,11 +127,7 @@ struct SyncEngine {
 
     private static func buildSaveRequest(forQuery query: ResourceURLRepresentable,
                                          forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
-        guard let baseURL = URL(string: Routes.API_V2_URL) else {
-            return .failure(.invalidURL(Routes.API_V2_URL))
-        }
-
-        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
 
@@ -145,7 +135,7 @@ struct SyncEngine {
         request.httpMethod = "PATCH"
 
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        for (header, value) in NetworkHelper.getRequestHeaders() {
+        for (header, value) in NetworkHelper.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -157,18 +147,14 @@ struct SyncEngine {
 
     private static func buildDeleteRequest(forQuery query: RawSingleResourceQuery) -> Result<URLRequest, XikoloError> {
 
-        guard let baseURL = URL(string: Routes.API_V2_URL) else {
-            return .failure(.invalidURL(Routes.API_V2_URL))
-        }
-
-        guard let resourceUrl = query.resourceURL(relativeTo: baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
 
         var request = URLRequest(url: resourceUrl)
         request.httpMethod = "DELETE"
 
-        for (header, value) in NetworkHelper.getRequestHeaders() {
+        for (header, value) in NetworkHelper.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 

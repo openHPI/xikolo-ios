@@ -24,15 +24,18 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.imageView.backgroundColor = Brand.Color.secondary
+
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
         self.statusView.layer.cornerRadius = 4.0
         self.statusView.layer.masksToBounds = true
-        self.statusView.backgroundColor = Brand.TintColorSecond
+        self.statusView.backgroundColor = Brand.Color.secondary
 
         self.updateView()
+        CourseHelper.syncCourse(self.course)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
@@ -41,17 +44,17 @@ class CourseDetailViewController: UIViewController {
     }
 
     func updateView() {
-        titleView.text = course.title
-        languageView.text = course.localizedLanguage
-        teacherView.text = course.teachers
-        teacherView.textColor = Brand.TintColorSecond
+        self.titleView.text = self.course.title
+        self.languageView.text = self.course.localizedLanguage
+        self.teacherView.text = self.course.teachers
+        self.teacherView.textColor = Brand.Color.secondary
 
-        dateView.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
-        imageView.sd_setImage(with: course.imageURL)
+        self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
+        self.imageView.sd_setImage(with: self.course.imageURL)
 
-        if let description = course.abstract {
-            let markDown = try? MarkdownHelper.parse(description) // TODO: Error handling
-            descriptionView.attributedText = markDown
+        if let description = self.course.courseDescription ?? self.course.abstract {
+            let markDown = try? MarkdownHelper.parse(description)
+            self.descriptionView.attributedText = markDown
         }
 
         self.refreshEnrollmentViews()
@@ -73,10 +76,10 @@ class CourseDetailViewController: UIViewController {
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
         if self.course.hasEnrollment {
-            self.enrollmentButton.backgroundColor = Brand.TintColor.withAlphaComponent(0.2)
+            self.enrollmentButton.backgroundColor = Brand.Color.primary.withAlphaComponent(0.2)
             self.enrollmentButton.tintColor = UIColor.darkGray
         } else if ReachabilityHelper.connection != .none {
-            self.enrollmentButton.backgroundColor = Brand.TintColor
+            self.enrollmentButton.backgroundColor = Brand.Color.primary
             self.enrollmentButton.tintColor = UIColor.white
         } else {
             self.enrollmentButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
@@ -100,14 +103,14 @@ class CourseDetailViewController: UIViewController {
     }
 
     @IBAction func enroll(_ sender: UIButton) {
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn {
             if !course.hasEnrollment {
                 createEnrollment()
             } else {
                 showEnrollmentOptions()
             }
         } else {
-            self.performSegue(withIdentifier: "ShowLogin", sender: nil)
+            self.performSegue(withIdentifier: R.segue.courseDetailViewController.showLogin, sender: nil)
         }
     }
 
@@ -117,8 +120,8 @@ class CourseDetailViewController: UIViewController {
             self.enrollmentButton.stopAnimating()
         }.onSuccess { _ in
             CourseHelper.syncCourse(self.course)
-            if let parent = self.parent as? CourseDecisionViewController {
-                parent.decideContent()
+            if let parent = self.parent as? CourseViewController {
+                parent.decideContent(newlyEnrolled: true)
             }
         }.onFailure { _ in
             self.enrollmentButton.shake()
@@ -142,6 +145,9 @@ class CourseDetailViewController: UIViewController {
             }.onSuccess { _ in
                 DispatchQueue.main.async {
                     self.refreshEnrollmentViews()
+                    if let parent = self.parent as? CourseViewController {
+                        parent.decideContent()
+                    }
                 }
             }.onFailure { _ in
                 self.enrollmentButton.shake()
@@ -157,6 +163,9 @@ class CourseDetailViewController: UIViewController {
             }.onSuccess { _ in
                 DispatchQueue.main.async {
                     self.refreshEnrollmentViews()
+                    if let parent = self.parent as? CourseViewController {
+                        parent.decideContent()
+                    }
                 }
             }.onFailure { _ in
                 self.enrollmentButton.shake()
@@ -178,6 +187,14 @@ extension CourseDetailViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         return !AppNavigator.handle(URL, on: self)
+    }
+
+}
+
+extension CourseDetailViewController: CourseContentViewController {
+
+    func configure(for course: Course) {
+        self.course = course
     }
 
 }

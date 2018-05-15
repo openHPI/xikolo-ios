@@ -6,30 +6,31 @@
 import Foundation
 import UIKit
 
-struct Brand {
+struct Brand: XikoloBrand {
 
-    static let Host = "open.sap.com"
+    struct Color: XikoloBrandColor {
+        static let primary = UIColor(red: 240 / 255, green: 171 / 255, blue: 0 / 255, alpha: 1.0)
+        static let secondary = UIColor(red: 34 / 255, green: 108 / 255, blue: 169 / 255, alpha: 1.0)
+        static let tertiary = UIColor(red: 138 / 255, green: 181 / 255, blue: 78 / 255, alpha: 1.0)
 
-    static let TintColor = UIColor(red: 240 / 255, green: 171 / 255, blue: 0 / 255, alpha: 1.0)
-    static let TintColorSecond = UIColor(red: 34 / 255, green: 108 / 255, blue: 169 / 255, alpha: 1.0)
-    static let TintColorThird = UIColor(red: 138 / 255, green: 181 / 255, blue: 78 / 255, alpha: 1.0)
-
-    static let AppID = "de.xikolo.opensap"
-    static let PlatformTitle = "sap"
-
-    static let IMPRINT_URL = "http://www.sap.com/corporate/en/legal/impressum.html"
-    static let PRIVACY_URL = "http://www.sap.com/corporate/en/legal/privacy.html"
-
-    static let ButtonLabelSSO = "Single Sign On"
-
-    static let FeedbackRecipients = ["mobile-feedback@hpi.de"]
-    static let FeedbackSubject = "openSAP | App Feedback"
-
-    static var copyrightText: String {
-        let currentYear = Calendar.current.component(.year, from: Date())
-        return "Copyright © \(currentYear) SAP. All rights reserved."
+        static var window: UIColor {
+            return self.secondary
+        }
     }
 
-    static let poweredByText: String? = "Powered by HPI / openHPI"
+    static let host = "open.sap.com"
+    static let imprintURL = URL(string: "http://www.sap.com/corporate/en/legal/impressum.html").require(hint: "Invalid imprint URL")
+    static let privacyURL = URL(string: "http://www.sap.com/corporate/en/legal/privacy.html").require(hint: "Invalid privacy URL")
+
+    static let platformTitle = "sap"
+
+    static var singleSignOnButtonTitle: String? {
+        return "Single Sign On"
+    }
+
+    static let copyrightName = "SAP"
+    static var poweredByText: String {
+        return "Powered by HPI / openHPI"
+    }
 
 }

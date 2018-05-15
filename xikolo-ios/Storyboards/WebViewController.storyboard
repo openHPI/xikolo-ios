@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Qi-NA-KEf">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Web View Controller-->
+        <scene sceneID="tSd-dg-NyA">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="5Qi-NA-KEf" customClass="WebViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XcF-bX-dK9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIn-QL-aGw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.95927601809999996" green="0.95927601809999996" blue="0.95927601809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5Qi-NA-KEf" id="Bs0-0r-rc7"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nIn-QL-aGw" firstAttribute="top" secondItem="Btd-Cb-qQh" secondAttribute="top" id="5GU-gU-7td"/>
+                            <constraint firstItem="Btd-Cb-qQh" firstAttribute="bottom" secondItem="nIn-QL-aGw" secondAttribute="bottom" id="BXS-Hp-xvY"/>
+                            <constraint firstItem="nIn-QL-aGw" firstAttribute="trailing" secondItem="Btd-Cb-qQh" secondAttribute="trailing" id="WUu-cq-bg7"/>
+                            <constraint firstItem="nIn-QL-aGw" firstAttribute="leading" secondItem="Btd-Cb-qQh" secondAttribute="leading" id="tre-d0-oKN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Btd-Cb-qQh"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="nIn-QL-aGw" id="aRy-J7-fWf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eS0-Kf-8ST" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3814" y="-188"/>
+        </scene>
+    </scenes>
+</document>

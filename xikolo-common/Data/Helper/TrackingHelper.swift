@@ -35,7 +35,7 @@ class TrackingHelper {
         case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
 
         // social
-        case share = "SHARE_BUTTON_CLICK"
+        case shareCourse = "SHARE_COURSE"
     }
 
     // swiftlint:disable redundant_string_enum_value
@@ -118,10 +118,8 @@ class TrackingHelper {
 
         DispatchQueue.main.async {
             var trackingContext = self.defaultContext()
-            for (k, v) in context {
-                if let value = v {
-                    trackingContext.updateValue(value, forKey: k)
-                }
+            for case let (key, value) as (String, String) in context {
+                trackingContext.updateValue(value, forKey: key)
             }
 
             #if DEBUG

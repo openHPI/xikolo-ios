@@ -35,10 +35,9 @@ class CourseItemWebViewController: WebViewController {
         }
     }
 
-    private func quizURL(for courseItem: CourseItem) -> String {
-        let courseURL = Routes.COURSES_URL + (self.courseItem.section?.course?.id ?? "")
-        let quizpathURL = "/items/" + courseItem.id
-        return courseURL + quizpathURL
+    private func quizURL(for courseItem: CourseItem) -> URL? {
+        guard let courseId = self.courseItem.section?.course?.id else { return nil }
+        return Routes.courses.appendingPathComponents([courseId, "items", courseItem.id])
     }
 
 }

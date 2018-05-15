@@ -22,11 +22,11 @@ class AppDelegate: AbstractAppDelegate {
     }
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window?.tintColor = Brand.windowTintColor
+        self.window?.tintColor = Brand.Color.window
 
         // select start tab
-        self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn() ? 0 : 1
-        if UserProfileHelper.isLoggedIn() {
+        self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn ? 0 : 1
+        if UserProfileHelper.isLoggedIn {
             CourseHelper.syncAllCourses().onComplete { _ in
                 CourseDateHelper.syncAllCourseDates()
             }
@@ -115,7 +115,7 @@ class AppDelegate: AbstractAppDelegate {
 extension AppDelegate: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard !UserProfileHelper.isLoggedIn() else {
+        guard !UserProfileHelper.isLoggedIn else {
             return true
         }
 
@@ -124,13 +124,11 @@ extension AppDelegate: UITabBarControllerDelegate {
             return true
         }
 
-        guard navigationController.viewControllers.first is CourseDatesTableViewController else {
+        guard navigationController.viewControllers.first is CourseDatesListViewController else {
             return true
         }
 
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-
-        guard let loginNavigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+        guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
             let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
             CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
             log.error(reason)

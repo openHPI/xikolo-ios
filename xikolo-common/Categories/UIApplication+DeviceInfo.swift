@@ -14,21 +14,20 @@ extension UIApplication {
     #endif
 
     static let osVersion: String = {
-        return ProcessInfo().operatingSystemVersion.toString()
+        let version = ProcessInfo().operatingSystemVersion
+        return String(format: "%d.%d.%d", version.majorVersion, version.minorVersion, version.patchVersion)
     }()
 
     static let device: String = {
-        var sysinfo = utsname()
-        uname(&sysinfo)
-        var name = withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
-            String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
-        }
-
-        if ["i386", "x86_64"].contains(name) {
-            name = "Simulator"
-        }
-
-        return name
+        #if targetEnvironment(simulator)
+            return "Simulator"
+        #else
+            var sysinfo = utsname()
+            uname(&sysinfo)
+            return withUnsafeMutablePointer(to: &sysinfo.machine) { ptr in
+                String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
+            }
+        #endif
     }()
 
 }

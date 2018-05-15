@@ -29,7 +29,7 @@ class CourseDateCell: UITableViewCell {
     }()
 
     func configure(_ courseDate: CourseDate) {
-        self.courseLabel.textColor = Brand.TintColorSecond
+        self.courseLabel.textColor = Brand.Color.secondary
         if let courseName = courseDate.course?.title {
             self.courseLabel.text = courseName
             self.courseLabel.isHidden = false
@@ -41,7 +41,7 @@ class CourseDateCell: UITableViewCell {
 
         switch courseDate.type {
         case "item_submission_deadline"?:
-            self.dateHighlightView.backgroundColor = Brand.TintColorThird
+            self.dateHighlightView.backgroundColor = Brand.Color.tertiary
             self.dateLabel.textColor = UIColor.white
             self.timeLabel.textColor = UIColor.white
         case "course_start"?:

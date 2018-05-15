@@ -35,8 +35,7 @@ class CourseItemListViewController: UITableViewController {
         super.viewDidLoad()
 
         // register custom section header view
-        let nib = UINib(nibName: "CourseItemHeader", bundle: nil)
-        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: "CourseItemHeader")
+        self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
         var separatorInsetLeft: CGFloat = 20.0
         if #available(iOS 11.0, *) {
@@ -61,11 +60,12 @@ class CourseItemListViewController: UITableViewController {
         self.tableView.refreshControl = refreshControl
 
         // setup table view data
+        let reuseIdentifier = R.reuseIdentifier.courseItemCell.identifier
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: "CourseItemCell")
+                                                                                                   cellReuseIdentifier: reuseIdentifier)
 
         let configuration = CourseItemListViewConfiguration(tableViewController: self).wrapped
         resultsControllerDelegateImplementation.configuration = configuration
@@ -77,7 +77,8 @@ class CourseItemListViewController: UITableViewController {
         do {
             try resultsController.performFetch()
         } catch {
-            // TODO: Error handling.
+            CrashlyticsHelper.shared.recordError(error)
+            log.error(error)
         }
     }
 
@@ -100,7 +101,7 @@ class CourseItemListViewController: UITableViewController {
         let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
         self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
 
-        guard UserProfileHelper.isLoggedIn() else {
+        guard UserProfileHelper.isLoggedIn else {
             stopRefreshControl()
             return
         }
@@ -125,11 +126,11 @@ class CourseItemListViewController: UITableViewController {
 
         switch item.contentType {
         case "video"?:
-            self.performSegue(withIdentifier: "ShowVideo", sender: item)
+            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showVideo, sender: item)
         case "rich_text"?:
-            self.performSegue(withIdentifier: "ShowRichtext", sender: item)
+            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showRichtext, sender: item)
         default:
-            self.performSegue(withIdentifier: "ShowCourseItem", sender: item)
+            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: item)
         }
     }
 
@@ -163,18 +164,12 @@ class CourseItemListViewController: UITableViewController {
             return
         }
 
-        switch segue.identifier {
-        case "ShowVideo"?:
-            let videoViewController = segue.destination.require(toHaveType: VideoViewController.self)
-            videoViewController.courseItem = courseItem
-        case "ShowCourseItem"?:
-            let webView = segue.destination.require(toHaveType: CourseItemWebViewController.self)
-            webView.courseItem = courseItem
-        case "ShowRichtext"?:
-            let richtextViewController = segue.destination.require(toHaveType: RichtextViewController.self)
-            richtextViewController.courseItem = courseItem
-        default:
-            super.prepare(for: segue, sender: sender)
+        if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
+            typedInfo.destination.courseItem = courseItem
+        } else if let typedInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
+            typedInfo.destination.courseItem = courseItem
+        } else if let typedInfo = R.segue.courseItemListViewController.showRichtext(segue: segue) {
+            typedInfo.destination.courseItem = courseItem
         }
     }
 
@@ -195,7 +190,7 @@ extension CourseItemListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CourseItemHeader") as? CourseItemHeader else {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseItemHeader.name) as? CourseItemHeader else {
             return nil
         }
 
@@ -290,6 +285,14 @@ extension CourseItemListViewController: UserActionsDelegate {
         }
 
         return promise.future
+    }
+
+}
+
+extension CourseItemListViewController: CourseContentViewController {
+
+    func configure(for course: Course) {
+        self.course = course
     }
 
 }

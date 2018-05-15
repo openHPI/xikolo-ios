@@ -25,7 +25,7 @@ class VideoPersistenceManager: NSObject {
 
     override private init() {
         super.init()
-        let sessionIdentifier = "\(Brand.AppID).asset-download"
+        let sessionIdentifier = "\(UIApplication.bundleIdentifier).asset-download"
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: sessionIdentifier)
         self.assetDownloadURLSession = AVAssetDownloadURLSession(configuration: backgroundConfiguration,
                                                                  assetDownloadDelegate: self,
@@ -225,6 +225,7 @@ class VideoPersistenceManager: NSObject {
 
 extension VideoPersistenceManager: AVAssetDownloadDelegate {
 
+    // swiftlint:disable:next function_body_length
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
                     didCompleteWithError error: Error?) {

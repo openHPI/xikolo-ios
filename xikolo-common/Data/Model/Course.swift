@@ -63,11 +63,46 @@ final class Course: NSManagedObject {
             return nil
         }
 
-        return URL(string: "\(Brand.BaseURL)/courses/\(slug)")
+        return Routes.courses.appendingPathComponent(slug)
     }
 
     var hasEnrollment: Bool {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
+    }
+
+    var availableCertificates: [(name: String, explanation: String?, url: URL?)] { // swiftlint:disable:this large_tuple
+        var certificates: [(String, String?, URL?)] = []
+
+        if let certificate = self.certificates?.qualifiedCertificate, certificate.available {
+            let name = NSLocalizedString("course.certificates.name.qualifiedCertificate", tableName: "Common", comment: "name of the certificate")
+            let explanation = NSLocalizedString("course.certificates.explanation.qualifiedCertificate",
+                                                tableName: "Common",
+                                                comment: "explanation how to achieve the certificate")
+            let url = self.enrollment?.certificates?.qualifiedCertificate
+            certificates.append((name, explanation, url))
+        }
+
+        if let roa = self.certificates?.recordOfAchievement, roa.available {
+            let name = NSLocalizedString("course.certificates.name.recordOfAchievement", tableName: "Common", comment: "name of the certificate")
+            let format = NSLocalizedString("course.certificates.explanation.recordOfAchievement",
+                                           tableName: "Common",
+                                           comment: "explanation how to achieve the certificate #bc-ignore!")
+            let explanation = roa.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
+            let url = self.enrollment?.certificates?.recordOfAchievement
+            certificates.append((name, explanation, url))
+        }
+
+        if let cop = self.certificates?.confirmationOfParticipation, cop.available {
+            let name = NSLocalizedString("course.certificates.name.confirmationOfParticipation", tableName: "Common", comment: "name of the certificate")
+            let format = NSLocalizedString("course.certificates.explanation.confirmationOfParticipation",
+                                           tableName: "Common",
+                                           comment: "explanation how to achieve the certificate #bc-ignore!")
+            let explanation = cop.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
+            let url = self.enrollment?.certificates?.confirmationOfParticipation
+            certificates.append((name, explanation, url))
+        }
+
+        return certificates
     }
 
 }
@@ -84,7 +119,7 @@ extension Course: Pullable {
         self.slug = try attributes.value(for: "slug")
         self.abstract = try attributes.value(for: "abstract")
         self.accessible = try attributes.value(for: "accessible")
-        self.courseDescription = try attributes.value(for: "description")
+        self.courseDescription = try attributes.value(for: "description") ?? self.courseDescription
         self.certificates = try attributes.value(for: "certificates")
         self.imageURL = try attributes.value(for: "image_url")
         self.teachers = try attributes.value(for: "teachers")

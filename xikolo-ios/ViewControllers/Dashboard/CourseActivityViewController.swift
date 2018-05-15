@@ -19,9 +19,10 @@ class CourseActivityViewController: UICollectionViewController {
         let request = CourseHelper.FetchRequest.enrolledCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
+        let reuseIdentifier = R.reuseIdentifier.lastCourseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
                                                                                                         resultsControllers: [resultsController],
-                                                                                                        cellReuseIdentifier: "LastCourseCell")
+                                                                                                        cellReuseIdentifier: reuseIdentifier)
         let configuration = CourseActivityViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
@@ -30,7 +31,8 @@ class CourseActivityViewController: UICollectionViewController {
         do {
             try resultsController.performFetch()
         } catch {
-            // TODO: Error handling.
+            CrashlyticsHelper.shared.recordError(error)
+            log.error(error)
         }
     }
 
@@ -40,10 +42,7 @@ extension CourseActivityViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = resultsController.object(at: indexPath)
-        let storyboard = UIStoryboard(name: "TabCourses", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CourseDecisionViewController").require(toHaveType: CourseDecisionViewController.self)
-        vc.course = course
-        self.navigationController?.pushViewController(vc, animated: true)
+        AppNavigator.show(course: course)
     }
 
 }
@@ -54,7 +53,7 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = 300
-        let height = width / 2 + 70.5 // 6 + 42.5 + 4 + 18 (padding + text + padding + text)
+        let height = width / 2 + 48.5 // 6 + 20.5 + 4 + 18 (padding + text + padding + text)
         return CGSize(width: width, height: height)
     }
 

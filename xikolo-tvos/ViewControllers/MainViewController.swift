@@ -22,7 +22,7 @@ class MainViewController : UIViewController {
     }
 
     func configureViews() {
-        if UserProfileHelper.isLoggedIn() {
+        if UserProfileHelper.isLoggedIn {
 
             UserHelper.syncMe().onSuccess { user in
                 self.displayNameView.text = (user.profile!.first_name ?? "") + " " + (user.profile!.last_name ?? "")

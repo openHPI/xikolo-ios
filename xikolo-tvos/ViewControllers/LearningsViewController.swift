@@ -53,7 +53,7 @@ class LearningsViewController : UIViewController {
     }
 
     func checkDisplay() {
-        if !UserProfileHelper.isLoggedIn() {
+        if !UserProfileHelper.isLoggedIn {
             showError(NSLocalizedString("You are currently not logged in.\nYou can only see a course's content when you're logged in.", comment: "You are currently not logged in.\nYou can only see a course's content when you're logged in."))
         } else if !course.hasEnrollment {
             showError(NSLocalizedString("You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled.", comment: "You are currently not enrolled in this course.\nYou can only see a course's content when you're enrolled."))
@@ -91,9 +91,7 @@ class LearningsViewController : UIViewController {
                     loadItemsForSection(section)
                 }
             }
-        } catch {
-            // TODO: Error handling.
-        }
+        } catch {}
 
         CourseSectionHelper.syncCourseSections(forCourse: course)
     }
@@ -112,9 +110,7 @@ class LearningsViewController : UIViewController {
 
         do {
             try itemResultsController!.performFetch()
-        } catch {
-            // TODO: Error handling
-        }
+        } catch {}
 
         CourseItemHelper.syncCourseItems(forSection: section)
     }

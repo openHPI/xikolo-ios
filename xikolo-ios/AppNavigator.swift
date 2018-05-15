@@ -8,6 +8,9 @@ import UIKit
 
 class AppNavigator {
 
+    private static var currentCourseViewController: CourseNavigationController?
+    private static let courseTransitioningDelegate = CourseTransitioningDelegate()
+
     static func handle(userActivity: NSUserActivity, forApplication application: UIApplication, on tabBarController: UITabBarController?) -> Bool {
         var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
@@ -45,28 +48,21 @@ class AppNavigator {
             return true
         }
 
-        guard url.host == Brand.Host else {
+        guard url.host == Brand.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
 
-        let storyboard = UIStoryboard(name: "CourseContent", bundle: nil)
-        let webViewController = storyboard.instantiateViewController(withIdentifier: "WebViewController").require(toHaveType: WebViewController.self)
-        webViewController.url = url.absoluteString
+        let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
+        webViewController.url = url
         sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
+
         return true
     }
 
     static func handle(_ url: URL) -> Bool {
-        guard let tabBarController = AppDelegate.instance().tabBarController else {
-            let reason = "UITabBarController could not be found"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
-            log.error(reason)
-            return false
-        }
-
         guard let hostURL = url.host else { return false }
-        guard hostURL == Brand.Host else {
+        guard hostURL == Brand.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
@@ -75,17 +71,15 @@ class AppNavigator {
         case nil:
             return true // url to base page, simply open the app
         case "courses":
-            return self.handleCourseURL(url, on: tabBarController)
+            return self.handleCourseURL(url)
         default:
             return false
         }
     }
 
-    private static func handleCourseURL(_ url: URL, on tabBarController: UITabBarController) -> Bool {
+    private static func handleCourseURL(_ url: URL) -> Bool {
         guard let slugOrId = url.pathComponents[safe: 2] else {
-            // url points to courses list
-            tabBarController.selectedIndex = 1
-            return true
+            return self.showCourseList()
         }
 
         let fetchRequest = CourseHelper.FetchRequest.course(withSlugOrId: slugOrId)
@@ -98,13 +92,13 @@ class AppNavigator {
                 couldFindCourse = true
                 let courseArea = url.pathComponents[safe: 3]
                 if courseArea == nil {
-                    self.show(course: course, with: .courseDetails, on: tabBarController)
+                    self.show(course: course, with: .courseDetails)
                 } else if courseArea == "items" {
-                    self.show(course: course, with: .learnings, on: tabBarController)
+                    self.show(course: course, with: .learnings)
                 } else if courseArea == "pinboard" {
-                    self.show(course: course, with: .discussions, on: tabBarController)
+                    self.show(course: course, with: .discussions)
                 } else if courseArea == "announcements" {
-                    self.show(course: course, with: .announcements, on: tabBarController)
+                    self.show(course: course, with: .announcements)
                 } else {
                     // We dont support this yet, so we should just open the url with some kind of browser
                     log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")
@@ -131,33 +125,47 @@ class AppNavigator {
         return false
     }
 
-    static func show(course: Course, with content: CourseDecisionViewController.CourseContent = .learnings, on tabBarController: UITabBarController?) {
-        guard let courseNavigationController = tabBarController?.viewControllers?[safe: 1] as? UINavigationController else {
-            let reason = "CourseNavigationController could not be found"
+    private static func showCourseList() -> Bool {
+        guard let tabBarController = AppDelegate.instance().tabBarController else {
+            let reason = "UITabBarController could not be found"
+            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            log.error(reason)
+            return false
+        }
+
+        // url points to courses list
+        tabBarController.selectedIndex = 1
+        return true
+    }
+
+    static func show(course: Course, with content: CourseContent = .learnings) {
+        self.currentCourseViewController?.closeCourse()
+        self.currentCourseViewController = nil
+
+        guard let tabBarController = AppDelegate.instance().tabBarController else {
+            let reason = "UITabBarController could not be found"
             CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
             log.error(reason)
             return
         }
 
-        courseNavigationController.popToRootViewController(animated: false)
-
-        let viewController = UIStoryboard(name: "TabCourses", bundle: nil).instantiateViewController(withIdentifier: "CourseDecisionViewController")
-
-        guard let courseDecisionViewController = viewController as? CourseDecisionViewController else {
-            let reason = "CourseDecisionViewController could not be found"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
-            log.error(reason)
-            return
-        }
-
+        let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
+        let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
+        let courseDecisionViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseDecisionViewController.course = course
-        courseNavigationController.pushViewController(courseDecisionViewController, animated: false)
+
         if course.accessible {
             courseDecisionViewController.content = content
         } else {
             courseDecisionViewController.content = .courseDetails
         }
 
-        tabBarController?.selectedIndex = 1
+        self.currentCourseViewController = courseNavigationController
+
+        courseNavigationController.transitioningDelegate = self.courseTransitioningDelegate
+        courseNavigationController.modalPresentationStyle = .custom
+        courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
+
+        tabBarController.present(courseNavigationController, animated: true)
     }
 }

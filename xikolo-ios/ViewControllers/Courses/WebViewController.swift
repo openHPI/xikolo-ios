@@ -11,7 +11,7 @@ class WebViewController: UIViewController {
 
     weak var loginDelegate: AbstractLoginViewControllerDelegate?
 
-    var url: String? {
+    var url: URL? {
         didSet {
             if self.isViewLoaded {
                 self.loadURL()
@@ -25,9 +25,17 @@ class WebViewController: UIViewController {
         self.loadURL()
     }
 
+    override func removeFromParentViewController() {
+        super.removeFromParentViewController()
+        if self.webView.isLoading {
+            self.webView.stopLoading()
+            NetworkIndicator.end()
+        }
+    }
+
     private func loadURL() {
-        guard let urlString = self.url else { return }
-        webView.loadRequest(NetworkHelper.getRequestForURL(urlString) as URLRequest)
+        guard let url = self.url else { return }
+        webView.loadRequest(NetworkHelper.request(for: url) as URLRequest)
     }
 
 }
@@ -47,7 +55,6 @@ extension WebViewController: UIWebViewDelegate {
     }
 
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-
         if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
@@ -66,14 +73,14 @@ extension WebViewController: UIWebViewDelegate {
             return true
         }
 
-        let userIsLoggedIn = UserProfileHelper.isLoggedIn()
-        let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.HTTP_AUTH_HEADER) ?? false
+        let userIsLoggedIn = UserProfileHelper.isLoggedIn
+        let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
 
         if userIsLoggedIn && !headerIsPresent {
             DispatchQueue.global().async {
                 DispatchQueue.main.async {
                     var newRequest = request
-                    newRequest.allHTTPHeaderFields = NetworkHelper.getRequestHeaders()
+                    newRequest.allHTTPHeaderFields = NetworkHelper.requestHeaders
                     self.webView.loadRequest(newRequest)
                 }
             }
@@ -83,4 +90,14 @@ extension WebViewController: UIWebViewDelegate {
 
         return true
     }
+}
+
+extension WebViewController: CourseContentViewController {
+
+    func configure(for course: Course) {
+        if let slug = course.slug {
+            self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
+        }
+    }
+
 }

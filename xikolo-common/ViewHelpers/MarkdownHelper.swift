@@ -44,14 +44,14 @@ class MarkdownHelper {
 
 extension DownAttributedStringRenderable {
 
-    func toAttributedStringWithFont(_ options: DownOptions = .Default, font: String, color: String) throws -> NSAttributedString {
+    func toAttributedStringWithFont(_ options: DownOptions = .default, font: String, color: String) throws -> NSAttributedString {
         let htmlResponse = try self.toHTML(options)
         let html = "<span style=\"font: \(font); color: \(color);\">\(htmlResponse)</span>"
         let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
             .documentType: NSAttributedString.DocumentType.html,
             .characterEncoding: String.Encoding.utf8.rawValue,
         ]
-        let mutableString = try NSMutableAttributedString(data: html.data(using: .utf8)!, options: options, documentAttributes: nil)
+        let mutableString = try NSMutableAttributedString(data: Data(html.utf8), options: options, documentAttributes: nil)
         return mutableString.trimmedAttributedString(set: .whitespacesAndNewlines)
     }
 

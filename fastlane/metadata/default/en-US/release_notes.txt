@@ -1,3 +1,7 @@
+• Open the course for news article
+• Bug fixes and general improvements
+
+Also in version 2.2:
 • Certificates and record of achievements can be accessed via the app
 • Courses will open in a new card view
 • New control element for course navigation

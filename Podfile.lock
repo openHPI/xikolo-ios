@@ -11,7 +11,7 @@ PODS:
     - Result (~> 3.2.4)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
-  - Down (0.4.2)
+  - Down (0.5.1)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.7.2)
   - Firebase/Core (4.8.2):
@@ -132,7 +132,7 @@ SPEC CHECKSUMS:
   BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
   BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
-  Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
+  Down: 6ace44ecec0c408826342ed420002f39a18e38c3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3

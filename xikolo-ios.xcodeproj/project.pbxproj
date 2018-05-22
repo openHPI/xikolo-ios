@@ -600,6 +600,7 @@
 		50371FFF20501388006E9634 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
 		5037200020501388006E9634 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
 		5037200120501388006E9634 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
+		503A0C3120AF3B1A00F53EBA /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
 		5040A60520795BBE00E98351 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
 		5040A60620795BBE00E98351 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
 		5040A60720795BBE00E98351 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
@@ -1994,6 +1995,7 @@
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
+		503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLStyler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5040A60420795BBE00E98351 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
 		5040A60920795BFD00E98351 /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
 		5040A61220795CB200E98351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Course.storyboard; sourceTree = "<group>"; };
@@ -2303,6 +2305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				503A0C3120AF3B1A00F53EBA /* HTMLStyler.framework in Frameworks */,
 				7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */,
 				7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */,
 				7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */,
@@ -3100,6 +3103,7 @@
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */,
 				AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */,
 				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
 				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,

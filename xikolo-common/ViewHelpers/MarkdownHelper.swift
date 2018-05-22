@@ -4,24 +4,35 @@
 //
 
 import Down
+import HTMLStyler
 
-class MarkdownHelper {
+struct MarkdownHelper {
 
-    class func parse(_ string: String) throws -> NSMutableAttributedString {
-        let parser = Down(markdownString: string)
+    static let parser: Parser = {
+        var parser = Parser()
+        parser.styleCollection = DefaultStyleCollection()
+        return parser
+    }()
 
-        #if os(tvOS)
-            let color = "white"
-        #else
-            let color = "black"
-        #endif
-
-        if let attributedString = try? parser.toAttributedStringWithFont(font: "-apple-system-body", color: color) {
-            let mutableString: NSMutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
-            return mutableString
-        } else {
-            throw XikoloError.markdownError
-        }
+    static func parse(_ string: String) throws -> NSMutableAttributedString {
+        let html = try? Down(markdownString: string).toHTML()
+//        return NSMutableAttributedString(string: html ?? "")
+        let attributedString = self.parser.attributedString(for: html ?? "")
+        return attributedString.trimmedAttributedString(set: .whitespacesAndNewlines)
+//        let parser = Down(markdownString: string)
+//
+//        #if os(tvOS)
+//            let color = "white"
+//        #else
+//            let color = "black"
+//        #endif
+//
+//        if let attributedString = try? parser.toAttributedStringWithFont(font: "-apple-system-body", color: color) {
+//            let mutableString: NSMutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
+//            return mutableString
+//        } else {
+//            throw XikoloError.markdownError
+//        }
     }
 
     static func trueScheme(for url: URL) -> URL? {

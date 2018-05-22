@@ -1,8 +1,19 @@
-# xikolo-ios
-iOS application for openHPI, openSAP, mooc.house and OpenWHO
+<h1 align="center">
+    xikolo-ios
+</h1>
 
-[![Build Status](https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev)](https://travis-ci.org/openHPI/xikolo-ios)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<img align="center" src="assets/banner.png?raw=true" alt="xikolo-ios banner" width="933" />
+
+
+<p align="center">
+    iOS application for openHPI, openSAP, mooc.house and OpenWHO
+</p>
+
+<p align="center">
+    <img src="https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev" />
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+</p>
+
 
 ### Development toolchain
 - Xcode 9.3
@@ -35,6 +46,3 @@ Help us keep this project open and inclusive. Please read and follow our [Code o
 
 ## License
 This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file.
-
-<!-- ### Contributing
-If you would like to contribute by adding a feature or fixing a bug, feel free to do so. You can have a look at the open issues to get some inspiration and create a pull request as soon as you are ready to go. -->

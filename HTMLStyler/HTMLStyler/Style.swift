@@ -21,10 +21,27 @@ public typealias Style = [NSAttributedStringKey: Any]
 //}
 
 public protocol StyleCollection {
+
     var baseStyle: Style { get }
 
     func style(for tag: Tag, isLastSibling: Bool) -> Style?
     func style(for checkingType: NSTextCheckingResult.CheckingType) -> Style?
+
+}
+
+public extension StyleCollection {
+
+    var baseStyle: Style {
+        return [:]
+    }
+
+    func style(for tag: Tag, isLastSibling: Bool) -> Style? {
+        return nil
+    }
+
+    func style(for checkingType: NSTextCheckingResult.CheckingType) -> Style? {
+        return nil
+    }
 
 }
 

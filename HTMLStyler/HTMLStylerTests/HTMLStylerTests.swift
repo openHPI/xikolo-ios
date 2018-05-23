@@ -379,7 +379,41 @@ class HTMLStylerTests: XCTestCase {
     }
 
     func testNestedMixedLists() {
-        XCTFail("Implement")
+        let parser = Parser()
+
+        let testHTML = """
+        <ol>
+        <li>Item 1</li>
+        <ul>
+        <li>Item 2</li>
+        <ol>
+        <li>Item 3</li>
+        <ul>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        </ul>
+        <li>Item 6</li>
+        </ol>
+        <li>Item 7</li>
+        </ul>
+        <li>Item 8</li>
+        </ol>
+        """
+        let test = parser.attributedString(for: testHTML)
+
+        let referenceText = """
+        1.\tItem 1
+        \t◦\tItem 2
+        \t\t1.\tItem 3
+        \t\t\t■\tItem 4
+        \t\t\t■\tItem 5
+        \t\t2.\tItem 6
+        \t◦\tItem 7
+        2.\tItem 8
+        """
+        let reference = NSMutableAttributedString(string: referenceText)
+
+        XCTAssertEqual(test, reference)
     }
 
     func testEmojis() {

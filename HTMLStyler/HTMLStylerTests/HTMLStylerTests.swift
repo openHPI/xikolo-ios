@@ -214,8 +214,8 @@ class HTMLStylerTests: XCTestCase {
         let test = parser.attributedString(for: testHTML)
 
         let referenceText = """
-        -\tItem 1
-        -\tItem 2
+        •\tItem 1
+        •\tItem 2
         """
         let reference = NSMutableAttributedString(string: referenceText)
 
@@ -245,10 +245,10 @@ class HTMLStylerTests: XCTestCase {
         let test = parser.attributedString(for: testHTML)
 
         let referenceText = """
-        -\tItem 1
-        -\tItem 2
-        -\tItem 1
-        -\tItem 2
+        •\tItem 1
+        •\tItem 2
+        •\tItem 1
+        •\tItem 2
         """
         let reference = NSMutableAttributedString(string: referenceText)
 
@@ -274,8 +274,8 @@ class HTMLStylerTests: XCTestCase {
         let test = parser.attributedString(for: testHTML)
 
         let referenceText = """
-        -\tItem 1
-        -\tItem 2
+        •\tItem 1
+        •\tItem 2
         """
         let reference = NSMutableAttributedString(string: referenceText)
 
@@ -283,7 +283,41 @@ class HTMLStylerTests: XCTestCase {
     }
 
     func testNestedUnorderedLists() {
-        XCTFail("Implement")
+        let parser = Parser()
+
+        let testHTML = """
+        <ul>
+        <li>Item 1</li>
+        <ul>
+        <li>Item 2</li>
+        <ul>
+        <li>Item 3</li>
+        <ul>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        </ul>
+        <li>Item 6</li>
+        </ul>
+        <li>Item 7</li>
+        </ul>
+        <li>Item 8</li>
+        </ul>
+        """
+        let test = parser.attributedString(for: testHTML)
+
+        let referenceText = """
+        •\tItem 1
+        \t◦\tItem 2
+        \t\t■\tItem 3
+        \t\t\t■\tItem 4
+        \t\t\t■\tItem 5
+        \t\t■\tItem 6
+        \t◦\tItem 7
+        •\tItem 8
+        """
+        let reference = NSMutableAttributedString(string: referenceText)
+
+        XCTAssertEqual(test, reference)
     }
 
     func testOrderedLists() {

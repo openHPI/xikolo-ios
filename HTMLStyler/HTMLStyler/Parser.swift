@@ -28,7 +28,7 @@ public enum Tag {
     case newline
     case paragraph
 
-    static func from(_ rawTag: RawTag) -> Tag? {
+    static func from(_ rawTag: RawTag, in context: Parser.Context) -> Tag? {
         switch rawTag.name {
         case "h1":
             return .headline1
@@ -67,8 +67,8 @@ public enum Tag {
         case "ol":
             return .orderedList
         case "li":
-            let style = ListItemStyle.unordered
-            return .listItem(style: style, depth: 0) // XXX: implement
+            guard let (style, depth) = context.currentListItemContext else { return nil }
+            return .listItem(style: style, depth: depth) // XXX: implement
         case "br":
             return .newline
         case "p":
@@ -86,17 +86,14 @@ public enum Tag {
         case (.headline4, .headline4): return true
         case (.headline5, .headline5): return true
         case (.headline6, .headline6): return true
-        case let (.link(url: lhs), .link(url: rhs)):
-            return lhs == rhs
-        case let (.image(url: lhs), .image(url: rhs)):
-            return lhs == rhs
+        case (.link(url: _), .link(url: _)): return true
+        case (.image(url: _), .image(url: _)): return true
         case (.bold, .bold): return true
         case (.italic, .italic): return true
         case (.code, .code): return true
         case (.orderedList, .orderedList): return true
         case (.unorderedList, .unorderedList): return true
-        case let (.listItem(style: lhsStyle, depth: lhsDepth), .listItem(style: rhsStyle, depth: rhsDepth)):
-            return lhsStyle == rhsStyle && lhsDepth == rhsDepth
+        case (.listItem(style: _, depth: _), .listItem(style: _, depth: _)): return true
         case (.newline, .newline): return true
         case (.paragraph, .paragraph): return true
         default:
@@ -119,11 +116,19 @@ public enum Tag {
         switch self {
         case .newline:
             return "\n"
-        case let .listItem(style: style, depth: _):
+        case let .listItem(style: style, depth: depth):
             if case let .ordered(position: position) = style {
                 return String(position) + ".\t" // XXX: 1. -> i. -> a. -> a.
             } else {
-                return "-\t" // XXX:  bullet filled -> bullet outline -> square filled -> square filled
+                let indent = String(repeating: "\t", count: depth)
+                let symbol: String
+                switch depth {
+                case 0: symbol = "•"
+                case 1: symbol = "◦"
+                default: symbol = "■"
+                }
+
+                return indent + symbol + "\t"
             }
         default:
             return nil
@@ -174,7 +179,7 @@ struct Detection {
 
 public struct Parser {
 
-    private struct Context {
+    struct Context {
         private(set) var tagStack: [(rawTag: RawTag, index: String.Index)] = []
 
         mutating func add(_ rawTag: RawTag, at index: String.Index) {
@@ -185,10 +190,19 @@ public struct Parser {
             self.tagStack.remove(at: index)
         }
 
-        var inListContext: Bool {
-            guard let lastTagName = self.tagStack.last?.rawTag.name else { return false }
-            return ["ul", "ol"].contains(lastTagName)
+        var currentListItemContext: (ListItemStyle, Int)? {
+            let lists = self.tagStack.map { $0.rawTag.name }.filter { $0 == "ol" || $0 == "ul" }
+            let depth = lists.count - 1
+            switch lists.last {
+            case "ol":
+                return (.ordered(position: 1), depth)
+            case "ul":
+                return (.unordered, depth)
+            default:
+                return nil
+            }
         }
+
     }
 
     public init() {}
@@ -234,7 +248,7 @@ public struct Parser {
                     let isStartTag = scanner.scanString("/") == nil
                     if let tagString = scanner.scanUpTo(">") {
                         if let rawTag = self.parseTag(tagString, isStartTag: isStartTag, context: parseContext) {
-                            let tag = Tag.from(rawTag)
+                            let tag = Tag.from(rawTag, in: parseContext)
 
                             var resultTextEndIndex = resultString.endIndex
 
@@ -256,7 +270,7 @@ public struct Parser {
                                 parseContext.add(rawTag, at: resultTextEndIndex)
                             } else {
                                 for (index, tagStackItem) in parseContext.tagStack.enumerated().reversed() {
-                                    if tagStackItem.rawTag.name == rawTag.name, let tag = Tag.from(tagStackItem.rawTag) {
+                                    if tagStackItem.rawTag.name == rawTag.name, let tag = Tag.from(tagStackItem.rawTag, in: parseContext) {
                                         let newDetection = Detection(type: tag, range: tagStackItem.index..<resultTextEndIndex)
 
                                         if var previousDetection = previousDetection {

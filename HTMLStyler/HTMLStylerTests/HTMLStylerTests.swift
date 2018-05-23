@@ -341,7 +341,41 @@ class HTMLStylerTests: XCTestCase {
     }
 
     func testNestedOrderedLists() {
-        XCTFail("Implement")
+        let parser = Parser()
+
+        let testHTML = """
+        <ol>
+        <li>Item 1</li>
+        <ol>
+        <li>Item 2</li>
+        <ol>
+        <li>Item 3</li>
+        <ol>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        </ol>
+        <li>Item 6</li>
+        </ol>
+        <li>Item 7</li>
+        </ol>
+        <li>Item 8</li>
+        </ol>
+        """
+        let test = parser.attributedString(for: testHTML)
+
+        let referenceText = """
+        1.\tItem 1
+        \t1.\tItem 2
+        \t\t1.\tItem 3
+        \t\t\t1.\tItem 4
+        \t\t\t2.\tItem 5
+        \t\t2.\tItem 6
+        \t2.\tItem 7
+        2.\tItem 8
+        """
+        let reference = NSMutableAttributedString(string: referenceText)
+
+        XCTAssertEqual(test, reference)
     }
 
     func testNestedMixedLists() {

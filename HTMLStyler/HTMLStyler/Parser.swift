@@ -117,19 +117,20 @@ public enum Tag {
         case .newline:
             return "\n"
         case let .listItem(style: style, depth: depth):
+            let indent = String(repeating: "\t", count: depth)
+
+            let symbol: String
             if case let .ordered(position: position) = style {
-                return String(position) + ".\t" // XXX: 1. -> i. -> a. -> a.
+                symbol = String(position) + "." // XXX: 1. -> i. -> a. -> a.
             } else {
-                let indent = String(repeating: "\t", count: depth)
-                let symbol: String
                 switch depth {
                 case 0: symbol = "•"
                 case 1: symbol = "◦"
                 default: symbol = "■"
                 }
-
-                return indent + symbol + "\t"
             }
+
+            return indent + symbol + "\t"
         default:
             return nil
         }
@@ -181,13 +182,25 @@ public struct Parser {
 
     struct Context {
         private(set) var tagStack: [(rawTag: RawTag, index: String.Index)] = []
+        private var listItemCounter: [Int] = []
 
         mutating func add(_ rawTag: RawTag, at index: String.Index) {
             self.tagStack.append((rawTag, index))
+            if ["ul", "ol"].contains(rawTag.name) {
+                self.listItemCounter.append(0)
+            } else if rawTag.name == "li" {
+                let index = self.listItemCounter.count - 1
+                let newValue = self.listItemCounter[index] + 1
+                self.listItemCounter[index] = newValue
+            }
         }
 
-        mutating func removeRawTag(at index: Int) {
+        mutating func removeRawTag(with name: String, at index: Int) {
             self.tagStack.remove(at: index)
+            if ["ul", "ol"].contains(name) {
+                let index = self.listItemCounter.count - 1
+                self.listItemCounter.remove(at: index)
+            }
         }
 
         var currentListItemContext: (ListItemStyle, Int)? {
@@ -195,7 +208,8 @@ public struct Parser {
             let depth = lists.count - 1
             switch lists.last {
             case "ol":
-                return (.ordered(position: 1), depth)
+                let position = (self.listItemCounter.last ?? 0) + 1
+                return (.ordered(position: position), depth)
             case "ul":
                 return (.unordered, depth)
             default:
@@ -237,7 +251,6 @@ public struct Parser {
         var previousDetection: Detection?
 
         var detections: [Detection] = []
-        //        var tagStack: [(Tag, String.Index)] = []
         var parseContext = Context()
 
         while !scanner.isAtEnd {
@@ -279,7 +292,7 @@ public struct Parser {
                                         }
 
                                         previousDetection = newDetection
-                                        parseContext.removeRawTag(at: index)
+                                        parseContext.removeRawTag(with: rawTag.name, at: index)
                                         break
                                     }
                                 }

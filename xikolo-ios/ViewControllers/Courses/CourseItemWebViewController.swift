@@ -10,7 +10,7 @@ class CourseItemWebViewController: WebViewController {
     var courseItem: CourseItem! {
         didSet {
             self.setURL()
-            CrashlyticsHelper.shared.setObjectValue("item_id", forKey: self.courseItem.id)
+            CrashlyticsHelper.shared.setObjectValue(self.courseItem.id, forKey: "item_id")
         }
     }
 

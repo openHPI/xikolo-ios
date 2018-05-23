@@ -38,6 +38,14 @@ class HTMLStylerTests: XCTestCase {
         }
     }
 
+    private struct ListStyleCollection: StyleCollection {
+        func style(for tag: Tag, isLastSibling: Bool) -> Style? {
+            guard case .listItem(style: _, depth: _) = tag else { return nil }
+            let color: UIColor = isLastSibling ? .red : .blue
+            return [.foregroundColor: color]
+        }
+    }
+
     func testEmpty() {
         let parser = Parser()
 
@@ -129,18 +137,6 @@ class HTMLStylerTests: XCTestCase {
         XCTAssertEqual(test, reference)
     }
 
-    func testIncompleteTag() {
-        var parser = Parser()
-        parser.styleCollection = BoldStyleCollection()
-
-        let testHTML = "Hello <World!!!"
-        let test = parser.attributedString(for: testHTML)
-
-        let reference = NSMutableAttributedString(string: "Hello <World!!!")
-
-        XCTAssertEqual(test, reference)
-    }
-
     func testBold() {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
@@ -205,53 +201,83 @@ class HTMLStylerTests: XCTestCase {
         XCTAssertEqual(test, reference)
     }
 
-/*
-    func testUnorderedList() {
-        let testHTML = """
-        <p>List:</p>
-        <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-        </ul>
-        <p>New paragraph</p>
-        """
+    func testList() {
+        var parser = Parser()
+        parser.styleCollection = ListStyleCollection()
 
-        let test = self.parser.attributedString(for: testHTML)
+        let testHTML = """
+        <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        </ul>
+        """
+        let test = parser.attributedString(for: testHTML)
 
         let referenceText = """
-        List:
-        - Item 1
-        - Item 2
-        New paragraph
+        -\tItem 1
+        -\tItem 2
         """
         let reference = NSMutableAttributedString(string: referenceText)
 
-        let listItemParagraphStyle = NSMutableParagraphStyle()
-        listItemParagraphStyle.lineHeightMultiple = 1.15
-        listItemParagraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
-        listItemParagraphStyle.paragraphSpacing = 0
-        listItemParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: 16, options: [:])]
-        listItemParagraphStyle.defaultTabInterval = 16
-        listItemParagraphStyle.firstLineHeadIndent = 0
-        listItemParagraphStyle.headIndent = 16
+        let normalItemStyle = parser.styleCollection!.style(for: .listItem(style: .unordered, depth: 0), isLastSibling: false)!
+        let lastItemStyle = parser.styleCollection!.style(for: .listItem(style: .unordered, depth: 0), isLastSibling: true)!
+        reference.addAttributes(normalItemStyle, range: NSRange(location: 0, length: 9))
+        reference.addAttributes(lastItemStyle, range: NSRange(location: 9, length: 8))
 
-        let noSpacingParagraphStyle = NSMutableParagraphStyle()
-        noSpacingParagraphStyle.lineHeightMultiple = 1.15
-        noSpacingParagraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
-        noSpacingParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: 16, options: [:])]
-        noSpacingParagraphStyle.defaultTabInterval = 16
-        noSpacingParagraphStyle.firstLineHeadIndent = 0
-        noSpacingParagraphStyle.headIndent = 16
+        XCTAssertEqual(test, reference)
+    }
 
-        reference.addAttributes(self.defaultStyle, range: NSRange(location: 0, length: 6))
-        reference.addAttributes([
-            .font: UIFont.systemFont(ofSize: UIFont.labelFontSize),
-            .paragraphStyle: listItemParagraphStyle,
-        ], range: NSRange(location: 6, length: 9))
-        reference.addAttributes([
-            .paragraphStyle: noSpacingParagraphStyle,
-        ], range: NSRange(location: 15, length: 9))
-        reference.addAttributes(self.defaultStyle, range: NSRange(location: 24, length: 13))
+    func testMultipleLists() {
+        var parser = Parser()
+        parser.styleCollection = ListStyleCollection()
+
+        let testHTML = """
+        <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        </ul>
+        <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        </ul>
+        """
+
+        let test = parser.attributedString(for: testHTML)
+
+        let referenceText = """
+        -\tItem 1
+        -\tItem 2
+        -\tItem 1
+        -\tItem 2
+        """
+        let reference = NSMutableAttributedString(string: referenceText)
+
+        let normalItemStyle = parser.styleCollection!.style(for: .listItem(style: .unordered, depth: 0), isLastSibling: false)!
+        let lastItemStyle = parser.styleCollection!.style(for: .listItem(style: .unordered, depth: 0), isLastSibling: true)!
+        reference.addAttributes(normalItemStyle, range: NSRange(location: 0, length: 9))
+        reference.addAttributes(lastItemStyle, range: NSRange(location: 9, length: 9))
+        reference.addAttributes(normalItemStyle, range: NSRange(location: 18, length: 9))
+        reference.addAttributes(lastItemStyle, range: NSRange(location: 27, length: 8))
+
+        XCTAssertEqual(test, reference)
+    }
+
+    func testUnorderedList() {
+        let parser = Parser()
+
+        let testHTML = """
+        <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        </ul>
+        """
+        let test = parser.attributedString(for: testHTML)
+
+        let referenceText = """
+        -\tItem 1
+        -\tItem 2
+        """
+        let reference = NSMutableAttributedString(string: referenceText)
 
         XCTAssertEqual(test, reference)
     }
@@ -261,51 +287,21 @@ class HTMLStylerTests: XCTestCase {
     }
 
     func testOrderedLists() {
-        let testHTML = """
-        <p>List:</p>
-        <ol>
-            <li>Item 1</li>
-            <li>Item 2</li>
-        </ol>
-        <p>New paragraph</p>
-        """
+        let parser = Parser()
 
-        let test = self.parser.attributedString(for: testHTML)
+        let testHTML = """
+        <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        </ol>
+        """
+        let test = parser.attributedString(for: testHTML)
 
         let referenceText = """
-        List:
-        1. Item 1
-        2. Item 2
-        New paragraph
+        1.\tItem 1
+        2.\tItem 2
         """
         let reference = NSMutableAttributedString(string: referenceText)
-
-        let listItemParagraphStyle = NSMutableParagraphStyle()
-        listItemParagraphStyle.lineHeightMultiple = 1.15
-        listItemParagraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
-        listItemParagraphStyle.paragraphSpacing = 0
-        listItemParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: 16, options: [:])]
-        listItemParagraphStyle.defaultTabInterval = 16
-        listItemParagraphStyle.firstLineHeadIndent = 0
-        listItemParagraphStyle.headIndent = 16
-
-        let noSpacingParagraphStyle = NSMutableParagraphStyle()
-        noSpacingParagraphStyle.lineHeightMultiple = 1.15
-        noSpacingParagraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
-        noSpacingParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: 16, options: [:])]
-        noSpacingParagraphStyle.defaultTabInterval = 16
-        noSpacingParagraphStyle.firstLineHeadIndent = 0
-        noSpacingParagraphStyle.headIndent = 16
-
-        reference.addAttributes(self.defaultStyle, range: NSRange(location: 0, length: 6))
-        reference.addAttributes([
-            .font: UIFont.systemFont(ofSize: UIFont.labelFontSize),
-            .paragraphStyle: listItemParagraphStyle,
-        ], range: NSRange(location: 6, length: 10))
-        reference.addAttributes([
-            .paragraphStyle: noSpacingParagraphStyle,
-        ], range: NSRange(location: 16, length: 10))
-        reference.addAttributes(self.defaultStyle, range: NSRange(location: 26, length: 13))
 
         XCTAssertEqual(test, reference)
     }
@@ -317,70 +313,6 @@ class HTMLStylerTests: XCTestCase {
     func testNestedMixedLists() {
         XCTFail("Implement")
     }
-
-    func testTwoLists() {
-        let testHTML = """
-        <p>List:</p>
-        <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-        </ul>
-        <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-        </ul>
-        <p>New paragraph</p>
-        """
-
-        let test = self.parser.attributedString(for: testHTML)
-
-        let referenceText = """
-        List:
-        - Item 1
-        - Item 2
-        - Item 1
-        - Item 2
-        New paragraph
-        """
-        let reference = NSMutableAttributedString(string: referenceText)
-
-        let listItemParagraphStyle = NSMutableParagraphStyle()
-        listItemParagraphStyle.lineHeightMultiple = 1.15
-        listItemParagraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
-        listItemParagraphStyle.paragraphSpacing = 0
-        listItemParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: 16, options: [:])]
-        listItemParagraphStyle.defaultTabInterval = 16
-        listItemParagraphStyle.firstLineHeadIndent = 0
-        listItemParagraphStyle.headIndent = 16
-
-        let noSpacingParagraphStyle = NSMutableParagraphStyle()
-        noSpacingParagraphStyle.lineHeightMultiple = 1.15
-        noSpacingParagraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
-        noSpacingParagraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: 16, options: [:])]
-        noSpacingParagraphStyle.defaultTabInterval = 16
-        noSpacingParagraphStyle.firstLineHeadIndent = 0
-        noSpacingParagraphStyle.headIndent = 16
-
-        reference.addAttributes(self.defaultStyle, range: NSRange(location: 0, length: 6))
-        reference.addAttributes([
-            .font: UIFont.systemFont(ofSize: UIFont.labelFontSize),
-            .paragraphStyle: listItemParagraphStyle,
-        ], range: NSRange(location: 6, length: 9))
-        reference.addAttributes([
-            .paragraphStyle: noSpacingParagraphStyle,
-        ], range: NSRange(location: 15, length: 9))
-        reference.addAttributes([
-            .font: UIFont.systemFont(ofSize: UIFont.labelFontSize),
-            .paragraphStyle: listItemParagraphStyle,
-        ], range: NSRange(location: 24, length: 9))
-        reference.addAttributes([
-            .paragraphStyle: noSpacingParagraphStyle,
-        ], range: NSRange(location: 33, length: 9))
-        reference.addAttributes(self.defaultStyle, range: NSRange(location: 42, length: 13))
-
-        XCTAssertEqual(test, reference)
-    }
-*/
 
     func testEmojis() {
         var parser = Parser()

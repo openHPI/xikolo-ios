@@ -17,8 +17,7 @@ struct MarkdownHelper {
     static func parse(_ string: String) throws -> NSMutableAttributedString {
         let html = try? Down(markdownString: string).toHTML()
 //        return NSMutableAttributedString(string: html ?? "")
-        let attributedString = self.parser.attributedString(for: html ?? "")
-        return attributedString.trimmedAttributedString(set: .whitespacesAndNewlines)
+        return self.parser.attributedString(for: html ?? "")
 //        let parser = Down(markdownString: string)
 //
 //        #if os(tvOS)
@@ -63,7 +62,7 @@ extension DownAttributedStringRenderable {
             .characterEncoding: String.Encoding.utf8.rawValue,
         ]
         let mutableString = try NSMutableAttributedString(data: Data(html.utf8), options: options, documentAttributes: nil)
-        return mutableString.trimmedAttributedString(set: .whitespacesAndNewlines)
+        return mutableString //.trimmedAttributedString(set: .whitespacesAndNewlines)
     }
 
 }

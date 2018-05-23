@@ -5,18 +5,6 @@
 
 import Foundation
 
-
-
-
-//struct Tag {
-//
-//    let name: String
-//    let hasEndTag: Bool
-//
-//    // XXX:   var transformers
-//
-//}
-
 public enum ListItemStyle: Hashable {
     case unordered
     case ordered(position: Int)
@@ -90,6 +78,32 @@ public enum Tag {
         }
     }
 
+    func canBeSibling(of other: Tag) -> Bool {
+        switch (self, other) {
+        case (.headline1, .headline1): return true
+        case (.headline2, .headline2): return true
+        case (.headline3, .headline3): return true
+        case (.headline4, .headline4): return true
+        case (.headline5, .headline5): return true
+        case (.headline6, .headline6): return true
+        case let (.link(url: lhs), .link(url: rhs)):
+            return lhs == rhs
+        case let (.image(url: lhs), .image(url: rhs)):
+            return lhs == rhs
+        case (.bold, .bold): return true
+        case (.italic, .italic): return true
+        case (.code, .code): return true
+        case (.orderedList, .orderedList): return true
+        case (.unorderedList, .unorderedList): return true
+        case let (.listItem(style: lhsStyle, depth: lhsDepth), .listItem(style: rhsStyle, depth: rhsDepth)):
+            return lhsStyle == rhsStyle && lhsDepth == rhsDepth
+        case (.newline, .newline): return true
+        case (.paragraph, .paragraph): return true
+        default:
+            return false
+        }
+    }
+
     var hasEndTag: Bool {
         switch self {
         case .image(url: _):
@@ -134,8 +148,6 @@ public enum Tag {
             return "\n"
         case .headline6:
             return "\n"
-//        case .orderedList, .unorderedList:
-//            return "\n"
         default:
             return nil
         }
@@ -187,15 +199,9 @@ public struct Parser {
         let singleLineHtml = html.replacingOccurrences(of: "\n", with: "")
         let (transformedHtml, detections) = self.detectAndTransformTags(in: singleLineHtml)
         let attributedHtml = NSMutableAttributedString(string: transformedHtml)
-//
-//        var defaultAttributes = Style.defaultStyle
-//
-//        for (key, value) in self.customStyle ?? [:] {
-//            defaultAttributes.updateValue(value, forKey: key)
-//        }
-//
+
         guard let styleCollection = self.styleCollection else {
-            return attributedHtml
+            return attributedHtml.trimmedAttributedString(set: .whitespacesAndNewlines)
         }
 
         attributedHtml.addAttributes(styleCollection.baseStyle, range: NSRange(location: 0, length: attributedHtml.length))
@@ -206,7 +212,7 @@ public struct Parser {
             }
         }
 
-        return attributedHtml
+        return attributedHtml.trimmedAttributedString(set: .whitespacesAndNewlines)
     }
 
     func detectAndTransformTags(in html: String) -> (String, [Detection]) {
@@ -230,11 +236,15 @@ public struct Parser {
                         if let rawTag = self.parseTag(tagString, isStartTag: isStartTag, context: parseContext) {
                             let tag = Tag.from(rawTag)
 
+                            var resultTextEndIndex = resultString.endIndex
+
                             if let tag = tag, let textString = isStartTag ? tag.prefix : tag.suffix {
                                 resultString += textString
                             }
 
-                            let resultTextEndIndex = resultString.endIndex
+                            if !isStartTag {
+                                resultTextEndIndex = resultString.endIndex
+                            }
 
                             if let tag = tag, !tag.hasEndTag {
                                 if let previousDetection = previousDetection {
@@ -247,12 +257,14 @@ public struct Parser {
                             } else {
                                 for (index, tagStackItem) in parseContext.tagStack.enumerated().reversed() {
                                     if tagStackItem.rawTag.name == rawTag.name, let tag = Tag.from(tagStackItem.rawTag) {
+                                        let newDetection = Detection(type: tag, range: tagStackItem.index..<resultTextEndIndex)
+
                                         if var previousDetection = previousDetection {
-                                            previousDetection.isLastSibling = false
+                                            previousDetection.isLastSibling = !previousDetection.type.canBeSibling(of: newDetection.type)
                                             detections.append(previousDetection)
                                         }
 
-                                        previousDetection = Detection(type: tag, range: tagStackItem.index..<resultTextEndIndex)
+                                        previousDetection = newDetection
                                         parseContext.removeRawTag(at: index)
                                         break
                                     }
@@ -261,6 +273,8 @@ public struct Parser {
                             }
                         }
                         scanner.scanString(">")
+                    } else {
+                        continue
                     }
                 } else if scanner.scanString("&") != nil {
                     if let specialString = scanner.scanUpTo(";") {

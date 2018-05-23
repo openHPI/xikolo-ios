@@ -13,6 +13,7 @@
 		5072A50E20AED5830049812E /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072A50D20AED5830049812E /* Parser.swift */; };
 		5072A51020AED9C10049812E /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072A50F20AED9C10049812E /* Scanner.swift */; };
 		5072A51220AEDEB80049812E /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072A51120AEDEB80049812E /* Style.swift */; };
+		50FC3C8620B5A037007FEE83 /* NSMutableAttributedString+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC3C8520B5A036007FEE83 /* NSMutableAttributedString+trim.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		5072A50D20AED5830049812E /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		5072A50F20AED9C10049812E /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		5072A51120AEDEB80049812E /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		50FC3C8520B5A036007FEE83 /* NSMutableAttributedString+trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+trim.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				5072A50B20AED0FF0049812E /* OLD-Parser.swift */,
 				5072A50D20AED5830049812E /* Parser.swift */,
 				5072A50F20AED9C10049812E /* Scanner.swift */,
+				50FC3C8520B5A036007FEE83 /* NSMutableAttributedString+trim.swift */,
 				5072A51120AEDEB80049812E /* Style.swift */,
 				5072A4F520AED07E0049812E /* Info.plist */,
 			);
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50FC3C8620B5A037007FEE83 /* NSMutableAttributedString+trim.swift in Sources */,
 				5072A51020AED9C10049812E /* Scanner.swift in Sources */,
 				5072A51220AEDEB80049812E /* Style.swift in Sources */,
 				5072A50E20AED5830049812E /* Parser.swift in Sources */,

@@ -429,7 +429,19 @@ class HTMLStylerTests: XCTestCase {
         XCTAssertEqual(test,reference)
     }
 
-    func testImages() {
+    func testImage() {
+        XCTFail("Implement")
+    }
+
+    func testMultipleImages() {
+        XCTFail("Implement")
+    }
+
+    func testImageWithWidth() {
+        XCTFail("Implement")
+    }
+
+    func testImageResize() {
         XCTFail("Implement")
     }
 

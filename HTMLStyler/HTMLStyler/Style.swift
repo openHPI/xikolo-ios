@@ -12,7 +12,6 @@ public protocol StyleCollection {
     var baseStyle: Style { get }
 
     func style(for tag: Tag, isLastSibling: Bool) -> Style?
-    func style(for checkingType: NSTextCheckingResult.CheckingType) -> Style?
 
 }
 
@@ -23,10 +22,6 @@ public extension StyleCollection {
     }
 
     func style(for tag: Tag, isLastSibling: Bool) -> Style? {
-        return nil
-    }
-
-    func style(for checkingType: NSTextCheckingResult.CheckingType) -> Style? {
         return nil
     }
 
@@ -121,18 +116,6 @@ public struct DefaultStyleCollection: StyleCollection {
         default:
             return nil
         }
-    }
-
-    public func style(for checkingType: NSTextCheckingResult.CheckingType) -> Style? {
-        switch checkingType {
-        case .link:
-            return [
-                .foregroundColor: self.tintColor,
-            ]
-        default:
-            return [:]
-        }
-
     }
 
 }

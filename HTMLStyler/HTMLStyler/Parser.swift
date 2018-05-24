@@ -222,7 +222,6 @@ public struct Parser {
     public init() {}
 
     public var styleCollection: StyleCollection?
-    public var checkingTypes: [NSTextCheckingResult.CheckingType] = []
 
     public func attributedString(for html: String) -> NSMutableAttributedString {
         let singleLineHtml = html.replacingOccurrences(of: "\n", with: "")
@@ -238,17 +237,6 @@ public struct Parser {
         for detection in detections.reversed() {
             if let attributes = styleCollection.style(for: detection.type, isLastSibling: detection.isLastSibling) {
                 attributedHtml.addAttributes(attributes, range: NSRange(detection.range, in: transformedHtml))
-            }
-        }
-
-        for checkingType in self.checkingTypes {
-            guard let attributes = styleCollection.style(for: checkingType) else { continue }
-
-            let dataDetector = try? NSDataDetector(types: checkingType.rawValue)
-            let range = NSRange(location: 0, length: transformedHtml.count)
-            let results = dataDetector?.matches(in: transformedHtml, options: [], range: range) ?? []
-            for result in results {
-                attributedHtml.addAttributes(attributes, range: result.range)
             }
         }
 

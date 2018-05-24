@@ -36,11 +36,6 @@ class HTMLStylerTests: XCTestCase {
                 .link: url,
             ]
         }
-
-        func style(for checkingType: NSTextCheckingResult.CheckingType) -> Style? {
-            guard checkingType == .link else { return nil }
-            return [.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
-        }
     }
 
     private struct ListStyleCollection: StyleCollection {
@@ -448,20 +443,6 @@ class HTMLStylerTests: XCTestCase {
 
     func testImageResize() {
         XCTFail("Implement")
-    }
-
-    func testDataDetectorLink() {
-        var parser = Parser()
-        parser.styleCollection = LinkStyleCollection()
-        parser.checkingTypes = [.link]
-
-        let testHTML = "Link to http://google.com"
-        let test = parser.attributedString(for: testHTML)
-
-        let reference = NSMutableAttributedString(string: "Link to http://google.com")
-        reference.addAttributes(parser.styleCollection!.style(for: .link)!, range: NSRange(location: 8, length: 17))
-
-        XCTAssertEqual(test, reference)
     }
 
 }

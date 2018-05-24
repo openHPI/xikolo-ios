@@ -78,7 +78,7 @@ public enum Tag {
         }
     }
 
-    func canBeSibling(of other: Tag) -> Bool {
+    func hasSameType(as other: Tag) -> Bool {
         switch (self, other) {
         case (.headline1, .headline1): return true
         case (.headline2, .headline2): return true
@@ -99,6 +99,16 @@ public enum Tag {
         default:
             return false
         }
+    }
+
+    func modifyDetection(_ detection: Detection) -> Detection {
+        var detection = detection
+
+        if case .listItem(style: _, depth: _) = detection.type, self.hasSameType(as: .unorderedList) ||  self.hasSameType(as: .orderedList) {
+            detection.isLastSibling = true
+        }
+
+        return detection
     }
 
     var hasEndTag: Bool {
@@ -174,7 +184,7 @@ struct Detection {
     init(type: Tag, range: Range<String.Index>) {
         self.type = type
         self.range = range
-        self.isLastSibling = true
+        self.isLastSibling = false
     }
 }
 
@@ -284,15 +294,13 @@ public struct Parser {
                                 parseContext.add(rawTag, at: resultTextEndIndex)
                             } else {
                                 for (index, tagStackItem) in parseContext.tagStack.enumerated().reversed() {
-                                    if tagStackItem.rawTag.name == rawTag.name, let tag = Tag.from(tagStackItem.rawTag, in: parseContext) {
-                                        let newDetection = Detection(type: tag, range: tagStackItem.index..<resultTextEndIndex)
-
-                                        if var previousDetection = previousDetection {
-                                            previousDetection.isLastSibling = !previousDetection.type.canBeSibling(of: newDetection.type)
-                                            detections.append(previousDetection)
+                                    if tagStackItem.rawTag.name == rawTag.name, let newTag = Tag.from(tagStackItem.rawTag, in: parseContext) {
+                                        if let previousDetection = previousDetection {
+                                            let modifiedDetection = newTag.modifyDetection(previousDetection)
+                                            detections.append(modifiedDetection)
                                         }
 
-                                        previousDetection = newDetection
+                                        previousDetection = Detection(type: newTag, range: tagStackItem.index..<resultTextEndIndex)
                                         parseContext.removeRawTag(with: rawTag.name, at: index)
                                         break
                                     }
@@ -315,7 +323,8 @@ public struct Parser {
             }
         }
 
-        if let previousDetection = previousDetection {
+        if var previousDetection = previousDetection {
+            previousDetection.isLastSibling = true
             detections.append(previousDetection)
         }
 

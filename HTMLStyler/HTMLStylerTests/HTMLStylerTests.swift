@@ -227,6 +227,32 @@ class HTMLStylerTests: XCTestCase {
         XCTAssertEqual(test, reference)
     }
 
+    func testListWithTags() {
+        var parser = Parser()
+        parser.styleCollection = ListStyleCollection()
+
+        let testHTML = """
+        <ul>
+        <li>Item <b>1</b></li>
+        <li>Item <b>2</b></li>
+        </ul>
+        """
+        let test = parser.attributedString(for: testHTML)
+
+        let referenceText = """
+        •\tItem 1
+        •\tItem 2
+        """
+        let reference = NSMutableAttributedString(string: referenceText)
+
+        let normalItemStyle = parser.styleCollection!.style(for: .listItem(style: .unordered, depth: 0), isLastSibling: false)!
+        let lastItemStyle = parser.styleCollection!.style(for: .listItem(style: .unordered, depth: 0), isLastSibling: true)!
+        reference.addAttributes(normalItemStyle, range: NSRange(location: 0, length: 9))
+        reference.addAttributes(lastItemStyle, range: NSRange(location: 9, length: 8))
+
+        XCTAssertEqual(test, reference)
+    }
+
     func testMultipleLists() {
         var parser = Parser()
         parser.styleCollection = ListStyleCollection()

@@ -7,19 +7,6 @@ import Foundation
 
 public typealias Style = [NSAttributedStringKey: Any]
 
-//typealias TagStyle = (tagName: String, style: Style)
-//typealias CheckingTypeStyle = (checkingType: NSTextCheckingResult.CheckingType, style: Style)
-//struct Style {
-//    let attributes: [NSAttributedStringKey: Any]
-//
-//    static var bold: Style {
-//        return Style(attributes: [
-//            .font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize),
-//        ])
-//    }
-//
-//}
-
 public protocol StyleCollection {
 
     var baseStyle: Style { get }
@@ -47,14 +34,16 @@ public extension StyleCollection {
 
 public struct DefaultStyleCollection: StyleCollection {
 
-    var tintColor: UIColor = .blue
+    let tintColor: UIColor
 
-    public init() {} // XXX
+    public init(tintColor: UIColor) {
+        self.tintColor = tintColor
+    }
 
     private var paragraphStyle: NSMutableParagraphStyle {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.15
-        paragraphStyle.paragraphSpacing = UIFont.labelFontSize / 2
+        paragraphStyle.paragraphSpacing = UIFont.labelFontSize / 3 * 2
         return paragraphStyle
     }
 
@@ -104,15 +93,12 @@ public struct DefaultStyleCollection: StyleCollection {
             ]
         case let .link(url):
             return [
-                .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize),
                 .link: url,
                 .foregroundColor: self.tintColor,
             ]
         case .code:
             return [
-                .font: UIFont(name: "Courier New", size: UIFont.labelFontSize) as Any,//UIFont.monospacedDigitSystemFont(ofSize: UIFont.systemFontSize, weight: .regular),
-                //                    .backgroundColor: UIColor.darkGray,
-                //                    .foregroundColor: UIColor.white,
+                .font: UIFont(name: "Courier New", size: UIFont.labelFontSize) as Any,
             ]
         case .image(_):
             return [
@@ -141,7 +127,6 @@ public struct DefaultStyleCollection: StyleCollection {
         switch checkingType {
         case .link:
             return [
-                .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize),
                 .foregroundColor: self.tintColor,
             ]
         default:

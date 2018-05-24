@@ -1066,6 +1066,14 @@
 		50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97ABE1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97ABF1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
+		50FC3C8720B6B8F5007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
+		50FC3C8820B6B8F5007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50FC3C8A20B6DA4C007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
+		50FC3C8B20B6DA4C007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50FC3C8D20B6DA5B007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
+		50FC3C8E20B6DA5B007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50FC3C9020B6DA63007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
+		50FC3C9120B6DA63007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50FE19381FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE19391FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE193A1FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
@@ -1820,6 +1828,50 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		50FC3C8920B6B8F5007FEE83 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50FC3C8820B6B8F5007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50FC3C8C20B6DA4C007FEE83 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50FC3C8B20B6DA4C007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50FC3C8F20B6DA5C007FEE83 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50FC3C8E20B6DA5B007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50FC3C9220B6DA64007FEE83 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50FC3C9120B6DA63007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		709C934B1EF099A900F8F045 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2215,6 +2267,7 @@
 				24BA40761D3F9A7000E38C2C /* CoreData.framework in Frameworks */,
 				24BA40771D3F9A7000E38C2C /* CFNetwork.framework in Frameworks */,
 				E99E83DA77DC34EFE6E0032E /* Pods_openSAP_iOS.framework in Frameworks */,
+				50FC3C8A20B6DA4C007FEE83 /* HTMLStyler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2275,6 +2328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50FC3C9020B6DA63007FEE83 /* HTMLStyler.framework in Frameworks */,
 				CC1502505A8C1787CA4CAA7A /* Pods_moocHOUSE_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2308,6 +2362,7 @@
 				7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */,
 				7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */,
 				E6EDDBD1946C11E27237DCE5 /* Pods_openHPI_iOS.framework in Frameworks */,
+				50FC3C8720B6B8F5007FEE83 /* HTMLStyler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2315,6 +2370,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50FC3C8D20B6DA5B007FEE83 /* HTMLStyler.framework in Frameworks */,
 				8B4F35A36F1A3438354F4A22 /* Pods_openWHO_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3157,6 +3213,7 @@
 				508DDBBB1FDAE8D400F2ACB9 /* Remove German localization */,
 				A37F6E838D362B6B9C45D6FD /* [CP] Embed Pods Frameworks */,
 				50429D9B1FB0728C000C1D5E /* Clear Build Number */,
+				50FC3C8C20B6DA4C007FEE83 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3312,6 +3369,7 @@
 				507A5CE12021F40F009B1F95 /* Copy GoogleServices-Info.plist */,
 				64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */,
 				50429D9F1FB072D5000C1D5E /* Clear Build Number */,
+				50FC3C9220B6DA64007FEE83 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3374,6 +3432,7 @@
 				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				50429D991FB07149000C1D5E /* Clear Build Number */,
+				50FC3C8920B6B8F5007FEE83 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3397,6 +3456,7 @@
 				507A5CE02021F3ED009B1F95 /* Copy GoogleServices-Info.plist */,
 				ACB757C47A664C44D01683E8 /* [CP] Embed Pods Frameworks */,
 				50429D9D1FB072AE000C1D5E /* Clear Build Number */,
+				50FC3C8F20B6DA5C007FEE83 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

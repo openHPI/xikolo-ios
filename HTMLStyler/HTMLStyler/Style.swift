@@ -132,21 +132,22 @@ public struct DefaultStyleCollection: StyleCollection {
             return [
                 .paragraphStyle: paragraphStyle,
             ]
-//        case .orderedList, .unorderedList:
-//            let paragraphStyle = self.paragraphStyle
-////            paragraphStyle.lineHeightMultiple = 0.1
-////            paragraphStyle.lineSpacing = -80
-////            paragraphStyle.paragraphSpacing = 16
-//            return [
-//                .paragraphStyle: paragraphStyle,
-//            ]
         default:
             return nil
         }
     }
 
     public func style(for checkingType: NSTextCheckingResult.CheckingType) -> Style? {
-        return [:]
+        switch checkingType {
+        case .link:
+            return [
+                .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize),
+                .foregroundColor: self.tintColor,
+            ]
+        default:
+            return [:]
+        }
+
     }
 
 }

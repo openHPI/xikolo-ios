@@ -55,28 +55,28 @@ public struct DefaultStyleCollection: StyleCollection {
             let paragraphStyle = self.paragraphStyle
             paragraphStyle.paragraphSpacingBefore = UIFont.labelFontSize
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.48, weight: .bold), // + top and bottom spacing
+                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.30, weight: .bold),
                 .paragraphStyle: paragraphStyle,
             ]
         case .headline2:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.40, weight: .bold)
+                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.25, weight: .bold)
             ]
         case .headline3:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.32, weight: .bold)
+                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.20, weight: .bold)
             ]
         case .headline4:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.24, weight: .bold)
+                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.15, weight: .bold)
             ]
         case .headline5:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.16, weight: .bold)
+                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.10, weight: .bold)
             ]
         case .headline6:
             return [
-                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.08, weight: .bold)
+                .font: UIFont.systemFont(ofSize: UIFont.labelFontSize * 1.05, weight: .bold)
             ]
         case .bold:
             return [

@@ -53,8 +53,7 @@ class CourseDetailViewController: UIViewController {
         self.imageView.sd_setImage(with: self.course.imageURL)
 
         if let description = self.course.courseDescription ?? self.course.abstract {
-            let markDown = try? MarkdownHelper.parse(description)
-            self.descriptionView.attributedText = markDown
+            self.descriptionView.attributedText = MarkdownHelper.attributedString(for: description)
         }
 
         self.refreshEnrollmentViews()

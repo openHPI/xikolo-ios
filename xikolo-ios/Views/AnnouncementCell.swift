@@ -55,7 +55,8 @@ class AnnouncementCell: UITableViewCell {
             self.separatorView.isHidden = true
         }
 
-        if let newsText = announcement.text, let markDown = try? MarkdownHelper.parse(newsText).string {
+        if let newsText = announcement.text {
+            let markDown = MarkdownHelper.string(for: newsText)
             self.descriptionLabel.text = markDown.replacingOccurrences(of: "\n", with: " ")
             self.descriptionLabel.isHidden = false
         } else {

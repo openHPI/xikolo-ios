@@ -197,9 +197,9 @@ class VideoViewController: UIViewController {
 
         // show description
         if let summary = video.summary {
-            let markDown = try? MarkdownHelper.parse(summary)
+            let markDown = MarkdownHelper.attributedString(for: summary)
             self.descriptionView.attributedText = markDown
-            self.descriptionView.isHidden = markDown?.string.isEmpty ?? true
+            self.descriptionView.isHidden = markDown.string.isEmpty
         } else {
             self.descriptionView.isHidden = true
         }

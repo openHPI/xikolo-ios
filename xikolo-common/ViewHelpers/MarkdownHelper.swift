@@ -14,8 +14,13 @@ struct MarkdownHelper {
         return parser
     }()
 
-    static func parse(_ string: String) throws -> NSMutableAttributedString {
-        let html = try? Down(markdownString: string).toHTML()
+    static func string(for markdown: String) -> String {
+        let html = try? Down(markdownString: markdown).toHTML()
+        return self.parser.string(for: html ?? "")
+    }
+
+    static func attributedString(for markdown: String) -> NSMutableAttributedString {
+        let html = try? Down(markdownString: markdown).toHTML()
 //        return NSMutableAttributedString(string: html ?? "")
         return self.parser.attributedString(for: html ?? "")
 

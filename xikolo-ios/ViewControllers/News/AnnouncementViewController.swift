@@ -63,8 +63,8 @@ class AnnouncementViewController: UIViewController {
             self.dateLabel.isHidden = true
         }
 
-        if let newsText = self.announcement.text, let markDown = try? MarkdownHelper.parse(newsText) {
-            self.textView.attributedText = markDown
+        if let newsText = self.announcement.text {
+            self.textView.attributedText = MarkdownHelper.attributedString(for: newsText)
         } else {
             self.textView.text = "[...]"
         }

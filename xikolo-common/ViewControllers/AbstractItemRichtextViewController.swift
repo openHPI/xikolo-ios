@@ -95,7 +95,7 @@ class AbstractItemRichtextViewController: UIViewController {
         """
 
 
-        let markDown = try? MarkdownHelper.parse(markdown2)
+        let markDown = MarkdownHelper.attributedString(for: markdown2)
         self.textView.attributedText = markDown
         self.textView.isHidden = false
         self.richTextLoaded()

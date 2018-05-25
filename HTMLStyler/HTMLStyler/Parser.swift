@@ -226,6 +226,12 @@ public struct Parser {
 
     public var styleCollection: StyleCollection?
 
+    public func string(for html: String) -> String {
+        let singleLineHtml = html.replacingOccurrences(of: "\n", with: "")
+        let (transformedHtml, _) = self.detectAndTransformTags(in: singleLineHtml)
+        return transformedHtml
+    }
+
     public func attributedString(for html: String) -> NSMutableAttributedString {
         let singleLineHtml = html.replacingOccurrences(of: "\n", with: "")
         let (transformedHtml, detections) = self.detectAndTransformTags(in: singleLineHtml)

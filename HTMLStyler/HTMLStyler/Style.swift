@@ -13,6 +13,8 @@ public protocol StyleCollection {
 
     func style(for tag: Tag, isLastSibling: Bool) -> Style?
 
+    func replacement(for tag: Tag) -> NSAttributedString?
+
 }
 
 public extension StyleCollection {
@@ -22,6 +24,10 @@ public extension StyleCollection {
     }
 
     func style(for tag: Tag, isLastSibling: Bool) -> Style? {
+        return nil
+    }
+
+    func replacement(for tag: Tag) -> NSAttributedString? {
         return nil
     }
 
@@ -95,10 +101,6 @@ public struct DefaultStyleCollection: StyleCollection {
             return [
                 .font: UIFont(name: "Courier New", size: UIFont.labelFontSize) as Any,
             ]
-        case .image(_):
-            return [
-                .attachment: UIImage()
-            ]
         case .listItem(style: _, depth: _):
             let paragraphStyle = self.paragraphStyle
             paragraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: 16, options: [:])]
@@ -116,6 +118,53 @@ public struct DefaultStyleCollection: StyleCollection {
         default:
             return nil
         }
+    }
+
+    public func replacement(for tag: Tag) -> NSAttributedString? {
+        switch tag {
+        case let .image(url):
+//            guard let data = try? Data(contentsOf: url) else { return nil }
+//            guard let image = UIImage(data: data) else { return nil }
+//            let attachment = ImageTextAttachment()
+//            attachment.image = image
+
+            let attachment = ImageTextAttachment()
+            attachment.image = self.testImage
+
+            let attachmentString = NSAttributedString(attachment: attachment)
+            let attributedString = NSMutableAttributedString(attributedString: attachmentString)
+            attributedString.append(NSAttributedString(string: "\n"))
+            return attributedString
+        default:
+            return nil
+        }
+    }
+
+    private var testImage: UIImage? {
+        let rect = CGRect(origin: .zero, size: CGSize(width: 200, height: 75))
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        self.tintColor.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        guard let cgImage = image?.cgImage else { return nil }
+
+        return UIImage(cgImage: cgImage)
+    }
+
+}
+
+class ImageTextAttachment: NSTextAttachment {
+
+    override func attachmentBounds(for textContainer: NSTextContainer?,
+                          proposedLineFragment lineFrag: CGRect,
+                          glyphPosition position: CGPoint,
+                          characterIndex charIndex: Int) -> CGRect {
+        guard let image = self.image, image.size.width != 0, image.size.height != 0 else { return CGRect.zero }
+
+        let scalingFactor = min(1, lineFrag.width / image.size.width)
+        return CGRect(x: 0, y: 0, width: image.size.width * scalingFactor, height: image.size.height * scalingFactor)
     }
 
 }

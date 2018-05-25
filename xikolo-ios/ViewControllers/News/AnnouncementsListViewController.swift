@@ -101,13 +101,6 @@ class AnnouncementsListViewController: UITableViewController {
         }
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if #available(iOS 11.0, *) {
-            self.tableView.performBatchUpdates(nil)
-        }
-    }
-
 }
 
 extension AnnouncementsListViewController { // TableViewDelegate

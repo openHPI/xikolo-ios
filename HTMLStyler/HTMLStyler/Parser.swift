@@ -43,15 +43,8 @@ public enum Tag {
         case "h6":
             return .headline6
         case "a":
-            guard let urlString = rawTag.attributes["href"] else {
-                print("no href: \(rawTag.attributes)")
-                return nil
-            }
-
-            guard let url = URL(string: urlString) else {
-                print("no real url")
-                return nil
-            }
+            guard let urlString = rawTag.attributes["href"] else { return nil }
+            guard let url = URL(string: urlString) else { return nil }
             return .link(url: url)
         case "img":
             guard let urlString = rawTag.attributes["src"], let url = URL(string: urlString) else { return nil }
@@ -68,7 +61,7 @@ public enum Tag {
             return .orderedList
         case "li":
             guard let (style, depth) = context.currentListItemContext else { return nil }
-            return .listItem(style: style, depth: depth) // XXX: implement
+            return .listItem(style: style, depth: depth)
         case "br":
             return .newline
         case "p":
@@ -247,6 +240,10 @@ public struct Parser {
         for detection in detections.reversed() {
             if let attributes = styleCollection.style(for: detection.type, isLastSibling: detection.isLastSibling) {
                 attributedHtml.addAttributes(attributes, range: NSRange(detection.range, in: transformedHtml))
+            }
+
+            if let replacement = styleCollection.replacement(for: detection.type) {
+                attributedHtml.replaceCharacters(in: NSRange(detection.range, in: transformedHtml), with: replacement)
             }
         }
 

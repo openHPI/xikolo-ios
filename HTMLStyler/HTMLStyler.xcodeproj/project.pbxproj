@@ -11,6 +11,8 @@
 		5057043020B836AD007DD938 /* Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057042F20B836AD007DD938 /* Detection.swift */; };
 		5057043320B8382D007DD938 /* ImageTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043220B8382D007DD938 /* ImageTextAttachment.swift */; };
 		5057043920B838B6007DD938 /* DefaultStyleCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043820B838B6007DD938 /* DefaultStyleCollection.swift */; };
+		5057043C20B83F5F007DD938 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043B20B83F5F007DD938 /* ImageLoader.swift */; };
+		5057043E20B83F8E007DD938 /* DefaultImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057043D20B83F8E007DD938 /* DefaultImageLoader.swift */; };
 		5072A4FB20AED07F0049812E /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5072A4F120AED07E0049812E /* HTMLStyler.framework */; };
 		5072A50020AED07F0049812E /* HTMLStylerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072A4FF20AED07F0049812E /* HTMLStylerTests.swift */; };
 		5072A50220AED07F0049812E /* HTMLStyler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5072A4F420AED07E0049812E /* HTMLStyler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +37,8 @@
 		5057042F20B836AD007DD938 /* Detection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detection.swift; sourceTree = "<group>"; };
 		5057043220B8382D007DD938 /* ImageTextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextAttachment.swift; sourceTree = "<group>"; };
 		5057043820B838B6007DD938 /* DefaultStyleCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStyleCollection.swift; sourceTree = "<group>"; };
+		5057043B20B83F5F007DD938 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		5057043D20B83F8E007DD938 /* DefaultImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageLoader.swift; sourceTree = "<group>"; };
 		5072A4F120AED07E0049812E /* HTMLStyler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLStyler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5072A4F420AED07E0049812E /* HTMLStyler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLStyler.h; sourceTree = "<group>"; };
 		5072A4F520AED07E0049812E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 			children = (
 				5057043820B838B6007DD938 /* DefaultStyleCollection.swift */,
 				5057043220B8382D007DD938 /* ImageTextAttachment.swift */,
+				5057043B20B83F5F007DD938 /* ImageLoader.swift */,
+				5057043D20B83F8E007DD938 /* DefaultImageLoader.swift */,
 			);
 			path = Default;
 			sourceTree = "<group>";
@@ -251,11 +257,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5057043E20B83F8E007DD938 /* DefaultImageLoader.swift in Sources */,
 				5057042E20B8366C007DD938 /* Tag.swift in Sources */,
 				5057043920B838B6007DD938 /* DefaultStyleCollection.swift in Sources */,
 				5057043320B8382D007DD938 /* ImageTextAttachment.swift in Sources */,
 				50FC3C8620B5A037007FEE83 /* NSMutableAttributedString+trim.swift in Sources */,
 				5072A51020AED9C10049812E /* Scanner.swift in Sources */,
+				5057043C20B83F5F007DD938 /* ImageLoader.swift in Sources */,
 				5072A51220AEDEB80049812E /* StyleCollection.swift in Sources */,
 				5057043020B836AD007DD938 /* Detection.swift in Sources */,
 				5072A50E20AED5830049812E /* Parser.swift in Sources */,

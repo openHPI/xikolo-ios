@@ -8,9 +8,11 @@ import Foundation
 public struct DefaultStyleCollection: StyleCollection {
 
     let tintColor: UIColor
+    let imageLoader: ImageLoader.Type
 
-    public init(tintColor: UIColor) {
+    public init(tintColor: UIColor, imageLoader: ImageLoader.Type = DefaultImageLoader.self) {
         self.tintColor = tintColor
+        self.imageLoader = imageLoader
     }
 
     private var paragraphStyle: NSMutableParagraphStyle {
@@ -95,11 +97,8 @@ public struct DefaultStyleCollection: StyleCollection {
     public func replacement(for tag: Tag) -> NSAttributedString? {
         switch tag {
         case let .image(url):
-            guard let data = try? Data(contentsOf: url) else { return nil }
-
             let attachment = ImageTextAttachment()
-            attachment.image = UIImage(data: data)
-
+            attachment.image = self.imageLoader.load(for: url)
             let attachmentString = NSAttributedString(attachment: attachment)
             let attributedString = NSMutableAttributedString(attributedString: attachmentString)
             attributedString.append(NSAttributedString(string: "\n"))

@@ -459,16 +459,4 @@ class HTMLStylerTests: XCTestCase {
         XCTFail("Implement")
     }
 
-    func testMultipleImages() {
-        XCTFail("Implement")
-    }
-
-    func testImageWithWidth() {
-        XCTFail("Implement")
-    }
-
-    func testImageResize() {
-        XCTFail("Implement")
-    }
-
 }

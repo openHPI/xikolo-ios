@@ -73,10 +73,10 @@ class HTMLStylerTests: XCTestCase {
     func testEmpty() {
         let parser = Parser()
 
-        let testHTML = "Hello World!!!"
+        let testHTML = "Fizz Buzz!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
 
         XCTAssertEqual(test, reference)
     }
@@ -85,11 +85,11 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BaseStyleCollection()
 
-        let testHTML = "Hello World!!!"
+        let testHTML = "Fizz Buzz!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
-        reference.addAttributes(parser.styleCollection!.baseStyle, range: NSRange(location: 0, length: 14))
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
+        reference.addAttributes(parser.styleCollection!.baseStyle, range: NSRange(location: 0, length: 12))
 
         XCTAssertEqual(test, reference)
     }
@@ -98,12 +98,12 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldAndItalicStyleCollection()
 
-        let testHTML = "He<i>llo</i> <b>World</b>!!!"
+        let testHTML = "Fi<i>zz</i> <b>Buzz</b>!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
-        reference.addAttributes(parser.styleCollection!.style(for: .italic, isLastSibling: true)!, range: NSRange(location: 2, length: 3))
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 6, length: 5))
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
+        reference.addAttributes(parser.styleCollection!.style(for: .italic, isLastSibling: true)!, range: NSRange(location: 2, length: 2))
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 5, length: 4))
 
         XCTAssertEqual(test, reference)
     }
@@ -112,12 +112,12 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "He<b>llo</b> <b>World</b>!!!"
+        let testHTML = "Fi<b>zz</b> <b>Buzz</b>!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 2, length: 3))
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 6, length: 5))
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 2, length: 2))
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 5, length: 4))
 
         XCTAssertEqual(test, reference)
     }
@@ -126,13 +126,13 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldAndItalicStyleCollection()
 
-        let testHTML = "Hello <b>W<i>orld</i>!!!</b>"
+        let testHTML = "Fizz <b>B<i>uzz</i>!!!</b>"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 6, length: 1))
-        reference.addAttributes(parser.styleCollection!.style(for: .italic, isLastSibling: true)!, range: NSRange(location: 7, length: 4))
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 11, length: 3))
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 5, length: 1))
+        reference.addAttributes(parser.styleCollection!.style(for: .italic, isLastSibling: true)!, range: NSRange(location: 6, length: 3))
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 9, length: 3))
 
         XCTAssertEqual(test, reference)
     }
@@ -141,10 +141,10 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "Hello <b>World!!!"
+        let testHTML = "Fizz <b>Buzz!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
 
         XCTAssertEqual(test, reference)
     }
@@ -153,10 +153,10 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "Hello </b>World!!!"
+        let testHTML = "Fizz </b>Buzz!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
 
         XCTAssertEqual(test, reference)
     }
@@ -165,11 +165,11 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "Hello <b>World</b>!!!"
+        let testHTML = "Fizz <b>Buzz</b>!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello World!!!")
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 6, length: 5))
+        let reference = NSMutableAttributedString(string: "Fizz Buzz!!!")
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 5, length: 4))
 
         XCTAssertEqual(test, reference)
     }
@@ -178,11 +178,11 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "<p>Hello</p>World!!!"
+        let testHTML = "<p>Fizz</p>Buzz!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello\nWorld!!!")
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 0, length: 6))
+        let reference = NSMutableAttributedString(string: "Fizz\nBuzz!!!")
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 0, length: 5))
 
         XCTAssertEqual(test, reference)
     }
@@ -191,10 +191,10 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "Hello<br>World!!!"
+        let testHTML = "Fizz<br>Buzz!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSAttributedString(string: "Hello\nWorld!!!")
+        let reference = NSAttributedString(string: "Fizz\nBuzz!!!")
 
         XCTAssertEqual(test, reference)
     }
@@ -203,10 +203,10 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "Hello<br />World!!!"
+        let testHTML = "Fizz<br />Buzz!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSAttributedString(string: "Hello\nWorld!!!")
+        let reference = NSAttributedString(string: "Fizz\nBuzz!!!")
 
         XCTAssertEqual(test, reference)
     }
@@ -470,11 +470,11 @@ class HTMLStylerTests: XCTestCase {
         var parser = Parser()
         parser.styleCollection = BoldStyleCollection()
 
-        let testHTML = "Hello <b>W🌎rld</b>!!!"
+        let testHTML = "Fizz <b>B🤘zz</b>!!!"
         let test = parser.attributedString(for: testHTML)
 
-        let reference = NSMutableAttributedString(string: "Hello W🌎rld!!!")
-        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 6, length: 6))
+        let reference = NSMutableAttributedString(string: "Fizz B🤘zz!!!")
+        reference.addAttributes(parser.styleCollection!.style(for: .bold, isLastSibling: true)!, range: NSRange(location: 5, length: 5))
 
         XCTAssertEqual(test,reference)
     }

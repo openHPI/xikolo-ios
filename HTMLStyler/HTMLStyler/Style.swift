@@ -148,19 +148,6 @@ public struct DefaultStyleCollection: StyleCollection {
         }
     }
 
-    private var testImage: UIImage? {
-        let rect = CGRect(origin: .zero, size: CGSize(width: 200, height: 75))
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        self.tintColor.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        guard let cgImage = image?.cgImage else { return nil }
-
-        return UIImage(cgImage: cgImage)
-    }
-
 }
 
 class ImageTextAttachment: NSTextAttachment {

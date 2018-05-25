@@ -46,6 +46,30 @@ class HTMLStylerTests: XCTestCase {
         }
     }
 
+    private struct ImageStyleCollection: StyleCollection {
+
+        let image: UIImage
+
+        init(image: UIImage) {
+            self.image = image
+        }
+
+        public func replacement(for tag: Tag) -> NSAttributedString? {
+            switch tag {
+            case .image(_):
+                let attachment = ImageTextAttachment()
+                attachment.image = self.image
+
+                let attachmentString = NSAttributedString(attachment: attachment)
+                let attributedString = NSMutableAttributedString(attributedString: attachmentString)
+                attributedString.append(NSAttributedString(string: "\n"))
+                return attributedString
+            default:
+                return nil
+            }
+        }
+    }
+
     func testEmpty() {
         let parser = Parser()
 
@@ -456,7 +480,41 @@ class HTMLStylerTests: XCTestCase {
     }
 
     func testImage() {
-        XCTFail("Implement")
+        let rect = CGRect(origin: .zero, size: CGSize(width: 200, height: 75))
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        UIColor.red.setFill()
+        UIRectFill(rect)
+        let rawImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        guard let cgImage = rawImage?.cgImage else {
+            XCTFail("Unable to create test image")
+            return
+        }
+
+        let image = UIImage(cgImage: cgImage)
+
+        var parser = Parser()
+        parser.styleCollection = ImageStyleCollection(image: image)
+
+        let testHTML = "<img src=\"path/to/test-image.png\" />!!!"
+        let test = parser.attributedString(for: testHTML)
+
+        let attachment = ImageTextAttachment()
+        attachment.image = image
+        let attachmentString = NSAttributedString(attachment: attachment)
+        let reference = NSMutableAttributedString(attributedString: attachmentString)
+        reference.append(NSAttributedString(string: "\n!!!"))
+
+        XCTAssertEqual(test.string, reference.string)
+
+        let testAttachment = test.attribute(.attachment, at: 0, longestEffectiveRange: nil, in: NSRange(location: 0, length: 0)) as? ImageTextAttachment
+        XCTAssertNotNil(testAttachment)
+
+        let referenceAttachment = reference.attribute(.attachment, at: 0, longestEffectiveRange: nil, in: NSRange(location: 0, length: 0)) as? ImageTextAttachment
+        XCTAssertNotNil(referenceAttachment)
+
+        XCTAssertEqual(testAttachment?.image, referenceAttachment?.image)
     }
 
 }

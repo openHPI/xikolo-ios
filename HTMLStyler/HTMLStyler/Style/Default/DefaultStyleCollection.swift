@@ -5,53 +5,12 @@
 
 import Foundation
 
-public typealias Style = [NSAttributedStringKey: Any]
-
-public protocol StyleCollection {
-
-    var baseStyle: Style { get }
-
-    func style(for tag: Tag, isLastSibling: Bool) -> Style?
-
-    func replacement(for tag: Tag) -> NSAttributedString?
-
-}
-
-public extension StyleCollection {
-
-    var baseStyle: Style {
-        return [:]
-    }
-
-    func style(for tag: Tag, isLastSibling: Bool) -> Style? {
-        return nil
-    }
-
-    func replacement(for tag: Tag) -> NSAttributedString? {
-        return nil
-    }
-
-}
-
-public protocol ImageLoader {
-    static func load(for url: URL) -> UIImage?
-}
-
-public struct DefaultImageLoader: ImageLoader {
-    public static func load(for url: URL) -> UIImage? {
-        guard let data = try? Data(contentsOf: url) else { return nil }
-        return UIImage(data: data)
-    }
-}
-
 public struct DefaultStyleCollection: StyleCollection {
 
     let tintColor: UIColor
-    let imageLoader: ImageLoader.Type
 
-    public init(tintColor: UIColor, imageLoader: ImageLoader.Type = DefaultImageLoader.self) {
+    public init(tintColor: UIColor) {
         self.tintColor = tintColor
-        self.imageLoader = imageLoader
     }
 
     private var paragraphStyle: NSMutableParagraphStyle {
@@ -136,8 +95,10 @@ public struct DefaultStyleCollection: StyleCollection {
     public func replacement(for tag: Tag) -> NSAttributedString? {
         switch tag {
         case let .image(url):
+            guard let data = try? Data(contentsOf: url) else { return nil }
+
             let attachment = ImageTextAttachment()
-            attachment.image = self.imageLoader.load(for: url)
+            attachment.image = UIImage(data: data)
 
             let attachmentString = NSAttributedString(attachment: attachment)
             let attributedString = NSMutableAttributedString(attributedString: attachmentString)
@@ -146,20 +107,6 @@ public struct DefaultStyleCollection: StyleCollection {
         default:
             return nil
         }
-    }
-
-}
-
-class ImageTextAttachment: NSTextAttachment {
-
-    override func attachmentBounds(for textContainer: NSTextContainer?,
-                          proposedLineFragment lineFrag: CGRect,
-                          glyphPosition position: CGPoint,
-                          characterIndex charIndex: Int) -> CGRect {
-        guard let image = self.image, image.size.width != 0, image.size.height != 0 else { return CGRect.zero }
-
-        let scalingFactor = min(1, lineFrag.width / image.size.width)
-        return CGRect(x: 0, y: 0, width: image.size.width * scalingFactor, height: image.size.height * scalingFactor)
     }
 
 }

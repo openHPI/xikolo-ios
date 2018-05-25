@@ -27,7 +27,6 @@ class AccountViewController: UITableViewController {
 
     @IBOutlet private var loginButton: UIBarButtonItem!
 
-    @IBOutlet private weak var headerImage: UIImageView!
     @IBOutlet private weak var profileImage: UIImageView!
     @IBOutlet private weak var nameView: UILabel!
     @IBOutlet private weak var emailView: UILabel!

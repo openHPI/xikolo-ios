@@ -64,7 +64,9 @@ class AnnouncementViewController: UIViewController {
         }
 
         if let newsText = self.announcement.text {
-            self.textView.attributedText = MarkdownHelper.attributedString(for: newsText)
+            MarkdownHelper.attributedString(for: newsText).onSuccess(DispatchQueue.main.context) { attributedString in
+                self.textView.attributedText = attributedString
+            }
         } else {
             self.textView.text = "[...]"
         }

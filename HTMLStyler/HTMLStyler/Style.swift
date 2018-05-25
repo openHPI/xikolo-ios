@@ -33,12 +33,25 @@ public extension StyleCollection {
 
 }
 
+public protocol ImageLoader {
+    static func load(for url: URL) -> UIImage?
+}
+
+public struct DefaultImageLoader: ImageLoader {
+    public static func load(for url: URL) -> UIImage? {
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        return UIImage(data: data)
+    }
+}
+
 public struct DefaultStyleCollection: StyleCollection {
 
     let tintColor: UIColor
+    let imageLoader: ImageLoader.Type
 
-    public init(tintColor: UIColor) {
+    public init(tintColor: UIColor, imageLoader: ImageLoader.Type = DefaultImageLoader.self) {
         self.tintColor = tintColor
+        self.imageLoader = imageLoader
     }
 
     private var paragraphStyle: NSMutableParagraphStyle {
@@ -123,13 +136,8 @@ public struct DefaultStyleCollection: StyleCollection {
     public func replacement(for tag: Tag) -> NSAttributedString? {
         switch tag {
         case let .image(url):
-//            guard let data = try? Data(contentsOf: url) else { return nil }
-//            guard let image = UIImage(data: data) else { return nil }
-//            let attachment = ImageTextAttachment()
-//            attachment.image = image
-
             let attachment = ImageTextAttachment()
-            attachment.image = self.testImage
+            attachment.image = self.imageLoader.load(for: url)
 
             let attachmentString = NSAttributedString(attachment: attachment)
             let attributedString = NSMutableAttributedString(attributedString: attachmentString)

@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Down
 import HTMLStyler
 
@@ -19,10 +20,16 @@ struct MarkdownHelper {
         return self.parser.string(for: html ?? "")
     }
 
-    static func attributedString(for markdown: String) -> NSMutableAttributedString {
+    static func attributedString(for markdown: String) -> Future<NSMutableAttributedString, XikoloError> {
         let html = try? Down(markdownString: markdown).toHTML()
 //        return NSMutableAttributedString(string: html ?? "")
-        return self.parser.attributedString(for: html ?? "")
+        return Future { complete in
+            DispatchQueue.global().async {
+                let attributedString = self.parser.attributedString(for: html ?? "")
+                complete(.success(attributedString))
+            }
+        }
+
 
 //        let parser = Down(markdownString: string)
 //

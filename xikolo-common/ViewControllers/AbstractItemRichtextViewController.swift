@@ -94,11 +94,12 @@ class AbstractItemRichtextViewController: UIViewController {
         https://google.com
         """
 
+        MarkdownHelper.attributedString(for: markdown2).onSuccess(DispatchQueue.main.context) { attributedString in
+            self.textView.attributedText = attributedString
+            self.textView.isHidden = false
+            self.richTextLoaded()
+        }
 
-        let markDown = MarkdownHelper.attributedString(for: markdown2)
-        self.textView.attributedText = markDown
-        self.textView.isHidden = false
-        self.richTextLoaded()
     }
 
     func richTextLoaded() {

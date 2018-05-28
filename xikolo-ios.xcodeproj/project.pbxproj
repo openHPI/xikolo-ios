@@ -529,6 +529,11 @@
 		5019A7691F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */; };
 		5019A76A1F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */; };
 		5019A76B1F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */; };
+		501BFA2A20BC6EF100995B61 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501BFA2920BC6EF100995B61 /* HTMLStyler.framework */; };
+		501BFA2B20BC6EF100995B61 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 501BFA2920BC6EF100995B61 /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		501BFA2C20BC6F4600995B61 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501BFA2920BC6EF100995B61 /* HTMLStyler.framework */; };
+		501BFA2D20BC6F4700995B61 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501BFA2920BC6EF100995B61 /* HTMLStyler.framework */; };
+		501BFA2E20BC6F4800995B61 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501BFA2920BC6EF100995B61 /* HTMLStyler.framework */; };
 		501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
 		501F946A20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
 		501F946B20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
@@ -597,7 +602,6 @@
 		50371FFF20501388006E9634 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
 		5037200020501388006E9634 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
 		5037200120501388006E9634 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
-		503A0C3120AF3B1A00F53EBA /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
 		5040A60520795BBE00E98351 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
 		5040A60620795BBE00E98351 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
 		5040A60720795BBE00E98351 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
@@ -1066,14 +1070,6 @@
 		50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97ABE1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
 		50F97ABF1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */; };
-		50FC3C8720B6B8F5007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
-		50FC3C8820B6B8F5007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		50FC3C8A20B6DA4C007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
-		50FC3C8B20B6DA4C007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		50FC3C8D20B6DA5B007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
-		50FC3C8E20B6DA5B007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		50FC3C9020B6DA63007FEE83 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; };
-		50FC3C9120B6DA63007FEE83 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50FE19381FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE19391FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
 		50FE193A1FCDB9B700F9D211 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
@@ -1828,13 +1824,13 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50FC3C8920B6B8F5007FEE83 /* Embed Frameworks */ = {
+		501BFA2320BC6E3500995B61 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50FC3C8820B6B8F5007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
+				501BFA2B20BC6EF100995B61 /* HTMLStyler.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1845,7 +1841,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50FC3C8B20B6DA4C007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1856,7 +1851,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50FC3C8E20B6DA5B007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1867,7 +1861,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50FC3C9120B6DA63007FEE83 /* HTMLStyler.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2025,6 +2018,7 @@
 		5017B3BD2049854F001D90A1 /* CourseContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseContentCell.swift; sourceTree = "<group>"; };
 		5019A7621F20ACE6008C8138 /* Video+DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+DetailedCourseItem.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RichText+DetailedCourseItem.swift"; sourceTree = "<group>"; };
+		501BFA2920BC6EF100995B61 /* HTMLStyler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLStyler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
 		501F946820075536001C8754 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -2043,7 +2037,6 @@
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
-		503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLStyler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5040A60420795BBE00E98351 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
 		5040A60920795BFD00E98351 /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
 		5040A61220795CB200E98351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Course.storyboard; sourceTree = "<group>"; };
@@ -2267,7 +2260,7 @@
 				24BA40761D3F9A7000E38C2C /* CoreData.framework in Frameworks */,
 				24BA40771D3F9A7000E38C2C /* CFNetwork.framework in Frameworks */,
 				E99E83DA77DC34EFE6E0032E /* Pods_openSAP_iOS.framework in Frameworks */,
-				50FC3C8A20B6DA4C007FEE83 /* HTMLStyler.framework in Frameworks */,
+				501BFA2C20BC6F4600995B61 /* HTMLStyler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2328,7 +2321,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50FC3C9020B6DA63007FEE83 /* HTMLStyler.framework in Frameworks */,
+				501BFA2E20BC6F4800995B61 /* HTMLStyler.framework in Frameworks */,
 				CC1502505A8C1787CA4CAA7A /* Pods_moocHOUSE_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2354,7 +2347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				503A0C3120AF3B1A00F53EBA /* HTMLStyler.framework in Frameworks */,
+				501BFA2A20BC6EF100995B61 /* HTMLStyler.framework in Frameworks */,
 				7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */,
 				7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */,
 				7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */,
@@ -2362,7 +2355,6 @@
 				7E4F62A91B3C2ED7006FCAD6 /* CoreData.framework in Frameworks */,
 				7E4F62A71B3C2ED1006FCAD6 /* CFNetwork.framework in Frameworks */,
 				E6EDDBD1946C11E27237DCE5 /* Pods_openHPI_iOS.framework in Frameworks */,
-				50FC3C8720B6B8F5007FEE83 /* HTMLStyler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2370,7 +2362,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50FC3C8D20B6DA5B007FEE83 /* HTMLStyler.framework in Frameworks */,
+				501BFA2D20BC6F4700995B61 /* HTMLStyler.framework in Frameworks */,
 				8B4F35A36F1A3438354F4A22 /* Pods_openWHO_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2863,6 +2855,7 @@
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
+				501BFA2920BC6EF100995B61 /* HTMLStyler.framework */,
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				24CB7E351CC678A000960269 /* xikolo-tvos */,
@@ -3153,7 +3146,6 @@
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				503A0C3020AF3B1A00F53EBA /* HTMLStyler.framework */,
 				AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */,
 				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
 				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,
@@ -3430,7 +3422,7 @@
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
 				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
-				50FC3C8920B6B8F5007FEE83 /* Embed Frameworks */,
+				501BFA2320BC6E3500995B61 /* Embed Frameworks */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				50429D991FB07149000C1D5E /* Clear Build Number */,
 			);

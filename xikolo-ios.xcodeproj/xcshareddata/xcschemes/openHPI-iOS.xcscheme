@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5072A4F020AED07E0049812E"
-               BuildableName = "HTMLStyler.framework"
-               BlueprintName = "HTMLStyler"
-               ReferencedContainer = "container:HTMLStyler/HTMLStyler.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "A90587BA1B3BFC130095DB89"
                BuildableName = "openHPI.app"
                BlueprintName = "openHPI-iOS"

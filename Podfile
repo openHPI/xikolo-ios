@@ -11,6 +11,7 @@ def common_pods
     pod 'KeychainAccess', '~> 3.1'
     pod 'Marshal', '~> 1.2'
     pod 'SDWebImage', '~> 4.2'
+    pod 'HTMLStyler', :path => './HTMLStyler'
 end
 
 def ios_pods
@@ -105,7 +106,7 @@ post_install do |installer|
     # but creates only one pod license file for iOs instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic']
+    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'HTMLStyler']
     sandbox = installer.sandbox
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first
     root_specs = ios_target.specs.map(&:root).uniq.reject { |spec| excluded.include?(spec.name) }
@@ -115,8 +116,8 @@ post_install do |installer|
         pod_root = sandbox.pod_dir(spec.name)
         platform = Pod::Platform.new(ios_target.platform.name)
         file_accessor = file_accessor(spec, platform, sandbox)
-        license_text = license_text(spec, file_accessor)
-        license_text = license_text.gsub(/(.)\n(.)/, '\1 \2')  # remove in text line breaks
+        license_text = get_license_text(spec, file_accessor)
+        license_text = license_text.gsub(/(.)\n(.)/, '\1 \2') if license_text # remove in text line breaks
 
         pod_license = {
             "Title" => spec.name,
@@ -163,7 +164,7 @@ end
 # @return [String] The text of the license.
 # @return [Nil] If not license text could be found.
 #
-def license_text(spec, file_accessor)
+def get_license_text(spec, file_accessor)
     return nil unless spec.license
     text = spec.license[:text]
     unless text

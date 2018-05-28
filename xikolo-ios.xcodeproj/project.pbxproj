@@ -3426,13 +3426,13 @@
 				675F726F01CFB36A8F89AFBE /* [CP] Check Pods Manifest.lock */,
 				50429D981FB070E4000C1D5E /* Set Build Number */,
 				500A257C208249C400EB7AE4 /* Run R.swift */,
+				50FC3C8920B6B8F5007FEE83 /* Embed Frameworks */,
 				A90587B71B3BFC130095DB89 /* Sources */,
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
 				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				50429D991FB07149000C1D5E /* Clear Build Number */,
-				50FC3C8920B6B8F5007FEE83 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

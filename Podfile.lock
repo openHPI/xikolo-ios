@@ -29,6 +29,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.3)
   - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
+  - HTMLStyler (0.0.1)
   - KeychainAccess (3.1.0)
   - Marshal (1.2.4)
   - nanopb (0.3.8):
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet (~> 1.8)
   - Fabric (~> 1.7)
   - Firebase/Core (~> 4.8)
+  - HTMLStyler (from `./HTMLStyler`)
   - KeychainAccess (~> 3.1)
   - Marshal (~> 1.2)
   - R.swift (~> 4.0)
@@ -112,6 +114,8 @@ EXTERNAL SOURCES:
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
+  HTMLStyler:
+    :path: "./HTMLStyler"
   SimpleRoundedButton:
     :commit: 91225d2
     :git: https://github.com/mathebox/SimpleRoundedButton.git
@@ -140,6 +144,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  HTMLStyler: d6fa2e33bb97e367b25f852fdfc3faa86349f15c
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
@@ -156,6 +161,6 @@ SPEC CHECKSUMS:
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 70afd40ee9d84050893c540d9206e28be0f1dc7d
+PODFILE CHECKSUM: 5df97562664e18b2ae3ed40ab313b38da644fb9e
 
 COCOAPODS: 1.5.0

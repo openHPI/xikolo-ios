@@ -13,3 +13,6 @@
 
 /* Class = "UILabel"; text = "Learning Material"; ObjectID = "zsg-Td-Qxk"; */
 "zsg-Td-Qxk.text" = "Lernmaterial";
+
+/* Class = "UITextView"; text = "Loading text ..."; ObjectID = "zQN-fr-A67"; */
+"zQN-fr-A67.text" = "Lädt Text ...";

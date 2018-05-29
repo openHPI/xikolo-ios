@@ -11,7 +11,7 @@ def common_pods
     pod 'KeychainAccess', '~> 3.1'
     pod 'Marshal', '~> 1.2'
     pod 'SDWebImage', '~> 4.2'
-    pod 'HTMLStyler', :path => './HTMLStyler'
+    # pod 'HTMLStyler', :path => './HTMLStyler'
 end
 
 def ios_pods

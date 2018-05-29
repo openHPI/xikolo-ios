@@ -1,4 +1,5 @@
 • Open the course for news article
+• Enhanced text rendering
 • Bug fixes and general improvements
 
 Also in version 2.2:

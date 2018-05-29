@@ -1,4 +1,5 @@
 • Der Kurs zu einer Ankündigung kann nun direkt geöffnet werden
+• Bessere Darstellung von Texten
 • Fehlerkorrekturen und allgemeine Verbesserungen
 
 Auch in Version 2.2:

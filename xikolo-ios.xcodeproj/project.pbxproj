@@ -394,7 +394,7 @@
 		5002290E205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		5002290F205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		5007DA9B20BDDF8800F546A4 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5007DA9A20BDDF8800F546A4 /* HTMLStyler.framework */; };
-		5007DA9C20BDDF8800F546A4 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5007DA9A20BDDF8800F546A4 /* HTMLStyler.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5007DA9C20BDDF8800F546A4 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5007DA9A20BDDF8800F546A4 /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		500A257E20824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		500A257F20824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		500A258020824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };

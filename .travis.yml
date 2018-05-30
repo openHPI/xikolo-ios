@@ -7,14 +7,14 @@ cache: cocoapods
 env:
   - CHECK_LOCALIZATION=1
   - LINT=1
-  - BUILD=1 SCHEME="openHPI-iOS" SDK="iphoneos"
-  - BUILD=1 SCHEME="openSAP-iOS" SDK="iphoneos"
-  - BUILD=1 SCHEME="openWHO-iOS" SDK="iphoneos"
-  - BUILD=1 SCHEME="moocHOUSE-iOS" SDK="iphoneos"
-  # - SCHEME="openHPI-tvOS" SDK="appletvos"
-  # - SCHEME="openSAP-tvOS" SDK="appletvos"
-  # - SCHEME="openWHO-tvOS" SDK="appletvos"
-  # - SCHEME="moocHOUSE-tvOS" SDK="appletvos"
+  - BUILD=1 SCHEME="openHPI-iOS" SDK="iphonesimulator"
+  - BUILD=1 SCHEME="openSAP-iOS" SDK="iphonesimulator"
+  - BUILD=1 SCHEME="openWHO-iOS" SDK="iphonesimulator"
+  - BUILD=1 SCHEME="moocHOUSE-iOS" SDK="iphonesimulator"
+  # - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
+  # - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
+  # - SCHEME="openWHO-tvOS" SDK="appletvsimulator"
+  # - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
 install:
   - bundle install --without documentation
@@ -23,6 +23,6 @@ install:
 
 script:
   - set -o pipefail
-  - if [ "$BUILD" == 1 ]; then xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -configuration Debug clean build | xcpretty; fi
+  - if [ "$BUILD" == 1 ]; then xcodebuild -sdk $SDK -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -configuration Debug clean build | xcpretty; fi
   - if [ "$CHECK_LOCALIZATION" == 1 ]; then bundle exec fastlane localize; git status --porcelain; git diff --quiet head xikolo-common xikolo-ios || travis_terminate 1; fi
   - if [ "$LINT" == 1 ]; then bundle exec danger --verbose; fi

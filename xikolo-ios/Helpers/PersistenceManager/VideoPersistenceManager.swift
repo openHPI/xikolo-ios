@@ -14,7 +14,7 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 //    typealias Resource = Video
     typealias Session = AVAssetDownloadURLSession
 
-    let keyPath: KeyPath<Video, NSData?> = \Video.localFileBookmark
+    let keyPath: ReferenceWritableKeyPath<Video, NSData?> = \Video.localFileBookmark
 
     var activeDownloads: [URLSessionTask : String] = [:]
     var progresses: [String : Double] = [:]
@@ -48,6 +48,10 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
     func startDownload(for video: Video) {
         guard let url = video.singleStream?.hlsURL else { return }
         self.startDownload(with: url, for: video)
+    }
+
+    func resourceModificationAfterDeletingDownload(for resourse: Video) {
+        resourse.downloadDate = nil
     }
 
 }
@@ -325,7 +329,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
                     let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
                     switch context.fetchSingle(fetchRequest) {
                     case .success(let video):
-                        if let localFileLocation = self.localURL(for: video) {
+                        if let localFileLocation = self.localFileLocation(for: video) {
                             do {
                                 try FileManager.default.removeItem(at: localFileLocation)
                                 video.downloadDate = nil

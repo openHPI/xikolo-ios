@@ -18,9 +18,9 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
     var progresses: [String: Double] = [:]
     var didRestorePersistenceManager: Bool = false
 
-    var keyPath: KeyPath<Video, NSData?>
+    var keyPath: ReferenceWritableKeyPath<Video, NSData?>
 
-    init(keyPath: KeyPath<Video, NSData?>) {
+    init(keyPath: ReferenceWritableKeyPath<Video, NSData?>) {
         self.keyPath = keyPath
     }
 

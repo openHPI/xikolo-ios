@@ -8,14 +8,14 @@ import CoreData
 
 protocol PersistenceManager: AnyObject {
 
-    associatedtype Resource : Pullable
+    associatedtype Resource : NSManagedObject & Pullable
     associatedtype Session : URLSession
 
     static var shared: Self { get }
 
     var persistentContainerQueue: OperationQueue { get }
     var session: Session { get }
-    var keyPath: KeyPath<Resource, NSData?> { get }
+    var keyPath: ReferenceWritableKeyPath<Resource, NSData?> { get }
 
     var activeDownloads: [URLSessionTask: String] { get set }
     var progresses: [String: Double] { get set }
@@ -27,10 +27,12 @@ protocol PersistenceManager: AnyObject {
     func downloadProgress(for resource: Resource) -> Double?
     func deleteDownload(for resource: Resource)
     func cancelDownload(for resource: Resource)
-    func localURL(for resource: Resource) -> URL?
+    func localFileLocation(for resource: Resource) -> URL?
 
     func modifyLocalFileLocation(url: URL?) -> URL? // XXX
     func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
+
+    func resourceModificationAfterDeletingDownload(for resourse: Resource)
 
 }
 
@@ -54,7 +56,7 @@ extension PersistenceManager {
         }
     }
 
-    func localURL(for resource: Resource) -> URL? {
+    func localFileLocation(for resource: Resource) -> URL? {
         guard let bookmarkData = resource[keyPath: self.keyPath] as Data? else {
             return nil
         }
@@ -87,7 +89,7 @@ extension PersistenceManager {
     }
 
     func downloadState(for resource: Resource) -> DownloadState {
-        if let localURL = self.localURL(for: resource), FileManager.default.fileExists(atPath: localURL.path) {
+        if let localFileLocation = self.localFileLocation(for: resource), FileManager.default.fileExists(atPath: localFileLocation.path) {
             return .downloaded
         }
 
@@ -103,11 +105,35 @@ extension PersistenceManager {
     }
 
     func deleteDownload(for resource: Resource) {
-        // XXX
+        let objectId = resource.objectID
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                guard let refreshedResource = context.existingTypedObject(with: objectId) as? Resource else { return }
+                self.deleteDownload(for: refreshedResource, in: context)
+            }
+        }
     }
 
     func deleteDownload(for resource: Resource, in context: NSManagedObjectContext) {
-        // XXX
+        guard let localFileLocation = self.localFileLocation(for: resource) else { return }
+
+        do {
+            try FileManager.default.removeItem(at: localFileLocation)
+            resource[keyPath: self.keyPath] = nil
+            self.resourceModificationAfterDeletingDownload(for: resource)
+            try context.save()
+        } catch {
+            CrashlyticsHelper.shared.setObjectValue(resource.id, forKey: "video_id")
+            CrashlyticsHelper.shared.recordError(error)
+            log.error("An error occured deleting the file: \(error)")
+        }
+
+        var userInfo: [String: Any] = [:]
+        userInfo[Video.Keys.id] = resource.id
+        userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
+
+        NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
     }
 
     func cancelDownload(for resource: Resource) {
@@ -120,5 +146,7 @@ extension PersistenceManager {
 
         task?.cancel()
     }
+
+    func resourceModificationAfterDeletingDownload(for resource: Resource) {}
 
 }

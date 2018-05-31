@@ -11,3 +11,12 @@ enum DownloadState: String {
     case downloading  // download in progress
     case downloaded  // downloaded and saved on disk
 }
+
+struct DownloadNotificationKey {
+
+    static let type = "ResourceTypeKey"
+    static let id = "ResourceIdKey"
+    static let downloadState = "ResourceDownloadStateKey"
+    static let downloadProgress = "ResourceDownloadProgressKey"
+
+}

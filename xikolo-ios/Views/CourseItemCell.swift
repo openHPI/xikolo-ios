@@ -104,11 +104,13 @@ class CourseItemCell: UITableViewCell {
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
-            let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
+        guard let resourceType = noticaition.userInfo?[DownloadNotificationKey.type] as? String,
+            let videoId = noticaition.userInfo?[DownloadNotificationKey.id] as? String,
+            let downloadStateRawValue = noticaition.userInfo?[DownloadNotificationKey.downloadState] as? String,
             let downloadState = DownloadState(rawValue: downloadStateRawValue),
             let item = self.item,
             let video = item.content as? Video,
+            resourceType == Video.type,
             video.id == videoId else { return }
 
         DispatchQueue.main.async {
@@ -119,9 +121,11 @@ class CourseItemCell: UITableViewCell {
     }
 
     @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
-            let progress = noticaition.userInfo?[Video.Keys.precentDownload] as? Double,
+        guard let resourceType = noticaition.userInfo?[DownloadNotificationKey.type] as? String,
+            let videoId = noticaition.userInfo?[DownloadNotificationKey.id] as? String,
+            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             let video = self.item?.content as? Video,
+            resourceType == Video.type,
             video.id == videoId else { return }
 
         DispatchQueue.main.async {

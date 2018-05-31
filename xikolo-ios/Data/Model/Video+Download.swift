@@ -7,18 +7,6 @@ import UIKit
 
 extension Video {
 
-    struct Keys {
-
-        static let id = "VideoIdKey"
-        static let downloadState = "VideoDownloadStateKey"
-        static let precentDownload = "VideoPrecentDownloadKey"
-
-    }
-
-}
-
-extension Video {
-
     var userActions: [UIAlertAction] {
         return [self.videoUserAction].compactMap { $0 }
     }

@@ -316,7 +316,8 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         self.progresses.removeValue(forKey: videoId)
 
         var userInfo: [String: Any] = [:]
-        userInfo[Video.Keys.id] = videoId
+        userInfo[DownloadNotificationKey.type] = Resource.type
+        userInfo[DownloadNotificationKey.id] = videoId
 
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
@@ -360,14 +361,14 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
                             }
                         }
 
-                        userInfo[Video.Keys.downloadState] = DownloadState.notDownloaded.rawValue
+                        userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
                     case .failure(let error):
                         CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
                         CrashlyticsHelper.shared.recordError(error)
                         log.error("Failed to complete download for video \(videoId) : \(error)")
                     }
                 } else {
-                    userInfo[Video.Keys.downloadState] = DownloadState.downloaded.rawValue
+                    userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
                     let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
                     TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: videoId, context: context)
                 }
@@ -418,8 +419,9 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         }
 
         var userInfo: [String: Any] = [:]
-        userInfo[Video.Keys.id] = videoId
-        userInfo[Video.Keys.precentDownload] = percentComplete
+        userInfo[DownloadNotificationKey.type] = Resource.type
+        userInfo[DownloadNotificationKey.id] = videoId
+        userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
         NotificationCenter.default.post(name: NotificationKeys.DownloadProgressDidChange, object: nil, userInfo: userInfo)
     }

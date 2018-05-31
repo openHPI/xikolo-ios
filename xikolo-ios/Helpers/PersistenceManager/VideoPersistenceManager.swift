@@ -360,14 +360,14 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
                             }
                         }
 
-                        userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
+                        userInfo[Video.Keys.downloadState] = DownloadState.notDownloaded.rawValue
                     case .failure(let error):
                         CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
                         CrashlyticsHelper.shared.recordError(error)
                         log.error("Failed to complete download for video \(videoId) : \(error)")
                     }
                 } else {
-                    userInfo[Video.Keys.downloadState] = Video.DownloadState.downloaded.rawValue
+                    userInfo[Video.Keys.downloadState] = DownloadState.downloaded.rawValue
                     let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
                     TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: videoId, context: context)
                 }

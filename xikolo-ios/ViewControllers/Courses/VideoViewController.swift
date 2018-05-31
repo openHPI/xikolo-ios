@@ -295,7 +295,7 @@ class VideoViewController: UIViewController {
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
         guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
             let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
-            let downloadState = Video.DownloadState(rawValue: downloadStateRawValue),
+            let downloadState = DownloadState(rawValue: downloadStateRawValue),
             let video = self.video,
             video.id == videoId else { return }
 

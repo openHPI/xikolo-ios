@@ -126,7 +126,7 @@ extension PersistenceManager {
 
         var userInfo: [String: Any] = [:]
         userInfo[Video.Keys.id] = resource.id
-        userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
+        userInfo[Video.Keys.downloadState] = DownloadState.notDownloaded.rawValue
 
         NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
     }

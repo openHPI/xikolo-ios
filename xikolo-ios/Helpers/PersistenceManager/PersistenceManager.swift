@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol PersistenceManager: AnyObject {
 
@@ -26,6 +27,7 @@ protocol PersistenceManager: AnyObject {
     func downloadProgress(for resource: Resource) -> Double?
     func deleteDownload(for resource: Resource)
     func cancelDownload(for resource: Resource)
+    func localURL(for resource: Resource) -> URL?
 
     func modifyLocalFileLocation(url: URL?) -> URL? // XXX
     func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
@@ -52,7 +54,7 @@ extension PersistenceManager {
         }
     }
 
-    func resolveBookmarkLocation(for resource: Resource) -> URL? {
+    func localURL(for resource: Resource) -> URL? {
         guard let bookmarkData = resource[keyPath: self.keyPath] as Data? else {
             return nil
         }
@@ -85,7 +87,7 @@ extension PersistenceManager {
     }
 
     func downloadState(for resource: Resource) -> DownloadState {
-        if let bookmarkLocation = self.resolveBookmarkLocation(for: resource), FileManager.default.fileExists(atPath: bookmarkLocation.path) {
+        if let localURL = self.localURL(for: resource), FileManager.default.fileExists(atPath: localURL.path) {
             return .downloaded
         }
 
@@ -100,7 +102,13 @@ extension PersistenceManager {
         return self.progresses[resource.id]
     }
 
-    func deleteDownload(for resource: Resource) {}
+    func deleteDownload(for resource: Resource) {
+        // XXX
+    }
+
+    func deleteDownload(for resource: Resource, in context: NSManagedObjectContext) {
+        // XXX
+    }
 
     func cancelDownload(for resource: Resource) {
         var task: URLSessionTask?

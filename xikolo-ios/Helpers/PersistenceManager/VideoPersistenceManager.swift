@@ -325,7 +325,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
                     let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
                     switch context.fetchSingle(fetchRequest) {
                     case .success(let video):
-                        if let localFileLocation = self.localAsset(for: video)?.url {
+                        if let localFileLocation = self.localURL(for: video) {
                             do {
                                 try FileManager.default.removeItem(at: localFileLocation)
                                 video.downloadDate = nil
@@ -393,7 +393,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
                     try context.save()
                 } catch {
                     // Failed to create bookmark for location
-                    self.deleteAsset(for: video, in: context)
+                    self.deleteDownload(for: video, in: context)
                 }
             case .failure(let error):
                 CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")

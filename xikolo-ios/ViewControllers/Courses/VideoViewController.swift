@@ -213,8 +213,8 @@ class VideoViewController: UIViewController {
 
         // determine video url (local file, currently downloading or remote)
         var videoURL: URL
-        if let localAsset = StreamPersistenceManager.shared.localAsset(for: video) {
-            videoURL = localAsset.url
+        if let localURL = StreamPersistenceManager.shared.localURL(for: video) {
+            videoURL = localURL
             self.playerControlView.setOffline(true)
         } else if let hlsURL = video.singleStream?.hlsURL {
             videoURL = hlsURL
@@ -357,7 +357,7 @@ class VideoViewController: UIViewController {
     }
 
     private func updatePreferredVideoBitrate() {
-        if let video = self.video, StreamPersistenceManager.shared.localAsset(for: video) == nil {
+        if let video = self.video, StreamPersistenceManager.shared.localURL(for: video) == nil {
             let videoQuaility: VideoQuality
             if ReachabilityHelper.connection == .wifi {
                 videoQuaility = UserDefaults.standard.videoQualityOnWifi

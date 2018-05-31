@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import UIKit
 
 final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
 
@@ -32,7 +33,22 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
     }
 
     func didFailToDownloadResource(_ resource: Video, with error: NSError) {
-//        XXX
+        CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
+        CrashlyticsHelper.shared.recordError(error)
+        log.error("Unknown asset download error (resource type: \(Resource.type) | resource id: \(resource.id) | domain: \(error.domain) | code: \(error.code)")
+
+        // show error
+        DispatchQueue.main.async {
+            let alertTitle = "Slide Download Error"
+            let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+            let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
+            alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
+                alert.dismiss(animated: true)
+            })
+
+            AppDelegate.instance().tabBarController?.present(alert, animated: true)
+        }
     }
 
 }

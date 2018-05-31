@@ -29,7 +29,6 @@ protocol PersistenceManager: AnyObject {
     func cancelDownload(for resource: Resource)
     func localFileLocation(for resource: Resource) -> URL?
 
-    func modifyLocalFileLocation(url: URL?) -> URL? // XXX
     func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
 
     func resourceModificationAfterDeletingDownload(for resourse: Resource)
@@ -70,10 +69,6 @@ extension PersistenceManager {
             return nil
         }
 
-        return self.modifyLocalFileLocation(url: url)
-    }
-
-    func modifyLocalFileLocation(url: URL?) -> URL? {
         return url
     }
 

@@ -31,10 +31,6 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
     static var shared = StreamPersistenceManager()
 
-    func modifyLocalFileLocation(url: URL) -> URL {
-        return AVURLAsset(url: url).url // XXX: Do we need this?
-    }
-
     func downloadTask(with url: URL, for resource: Video, on session: AVAssetDownloadURLSession) -> URLSessionTask? {
         let assetTitleCourse = resource.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = resource.item?.title ?? "Untitled video"

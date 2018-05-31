@@ -44,7 +44,13 @@ extension SlidesPersistenceManager: URLSessionDownloadDelegate {
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        self.downloadTask(downloadTask, didFinishDownloadingTo: location)
+        guard let documentsLocation = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).last else { return }
+        do {
+            try FileManager.default.moveItem(at: location, to: documentsLocation)
+            self.downloadTask(downloadTask, didFinishDownloadingTo: documentsLocation)
+        } catch {
+            print(error) // XXX: check this again
+        }
     }
 
     func urlSession(_ session: URLSession,

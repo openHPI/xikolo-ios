@@ -3,13 +3,13 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 protocol PersistenceManager: AnyObject {
 
-    associatedtype Resource : NSManagedObject & Pullable
-    associatedtype Session : URLSession
+    associatedtype Resource: NSManagedObject & Pullable
+    associatedtype Session: URLSession
 
     static var shared: Self { get }
 
@@ -49,6 +49,7 @@ protocol PersistenceManager: AnyObject {
 extension PersistenceManager {
 
     func startListeningToDownloadProgressChanges() {
+        // swiftlint:disable:next discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: NotificationKeys.DownloadStateDidChange, object: nil, queue: nil) { notification in
             guard let resourceType = notification.userInfo?[DownloadNotificationKey.type] as? String,
                 let resourceId = notification.userInfo?[DownloadNotificationKey.id] as? String,
@@ -70,7 +71,7 @@ extension PersistenceManager {
         self.didRestorePersistenceManager = true
 
         self.session.getAllTasks { tasks in
-            for task in tasks{
+            for task in tasks {
                 guard let resourceId = task.taskDescription else { break }
                 self.activeDownloads[task] = resourceId
             }
@@ -83,7 +84,7 @@ extension PersistenceManager {
         }
 
         var bookmarkDataIsStale = false
-        guard let url = try? URL(resolvingBookmarkData: bookmarkData, bookmarkDataIsStale: &bookmarkDataIsStale) ?? nil else {
+        guard let url = try? URL(resolvingBookmarkData: bookmarkData, bookmarkDataIsStale: &bookmarkDataIsStale) else {
             return nil
         }
 

@@ -31,6 +31,11 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
     static var shared = StreamPersistenceManager()
 
+    override init() {
+        super.init()
+        self.startListeningToDownloadProgressChanges()
+    }
+
     func downloadTask(with url: URL, for resource: Video, on session: AVAssetDownloadURLSession) -> URLSessionTask? {
         let assetTitleCourse = resource.item?.section?.course?.slug ?? "Unknown course"
         let assetTitleItem = resource.item?.title ?? "Untitled video"

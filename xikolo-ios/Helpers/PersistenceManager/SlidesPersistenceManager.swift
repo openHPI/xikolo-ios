@@ -22,6 +22,8 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
 
     init(keyPath: ReferenceWritableKeyPath<Video, NSData?>) {
         self.keyPath = keyPath
+        super.init()
+        self.startListeningToDownloadProgressChanges()
     }
 
 }

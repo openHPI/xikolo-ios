@@ -38,6 +38,17 @@ protocol PersistenceManager: AnyObject {
 
 extension PersistenceManager {
 
+    func startListeningToDownloadProgressChanges() {
+        NotificationCenter.default.addObserver(forName: NotificationKeys.DownloadStateDidChange, object: nil, queue: nil) { notification in
+            guard let resourceType = notification.userInfo?[DownloadNotificationKey.type] as? String,
+                let resourceId = notification.userInfo?[DownloadNotificationKey.id] as? String,
+                let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+                resourceType == Resource.type else { return }
+
+            self.progresses[resourceId] = progress
+        }
+    }
+
     func createPersistenceContainerQueue() -> OperationQueue {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1

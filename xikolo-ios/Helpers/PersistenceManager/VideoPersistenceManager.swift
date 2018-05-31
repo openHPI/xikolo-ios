@@ -372,7 +372,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
                     TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: videoId, context: context)
                 }
 
-                NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
+                NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
             }
         }
     }
@@ -421,7 +421,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         userInfo[Video.Keys.id] = videoId
         userInfo[Video.Keys.precentDownload] = percentComplete
 
-        NotificationCenter.default.post(name: NotificationKeys.VideoDownloadProgressKey, object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: NotificationKeys.DownloadProgressDidChange, object: nil, userInfo: userInfo)
     }
 
 }

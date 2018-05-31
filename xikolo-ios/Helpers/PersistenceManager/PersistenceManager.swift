@@ -128,7 +128,7 @@ extension PersistenceManager {
         userInfo[Video.Keys.id] = resource.id
         userInfo[Video.Keys.downloadState] = Video.DownloadState.notDownloaded.rawValue
 
-        NotificationCenter.default.post(name: NotificationKeys.VideoDownloadStateChangedKey, object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
     }
 
     func cancelDownload(for resource: Resource) {

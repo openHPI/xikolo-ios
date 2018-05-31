@@ -24,11 +24,11 @@ class CourseItemCell: UITableViewCell {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
-                                       name: NotificationKeys.VideoDownloadStateChangedKey,
+                                       name: NotificationKeys.DownloadStateDidChange,
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadProgressNotification(_:)),
-                                       name: NotificationKeys.VideoDownloadProgressKey,
+                                       name: NotificationKeys.DownloadProgressDidChange,
                                        object: nil)
     }
 

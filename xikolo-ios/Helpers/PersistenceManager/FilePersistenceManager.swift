@@ -30,7 +30,8 @@ extension FilePersistenceManager {
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        // XXX
+        guard let resourceId = self.activeDownloads[downloadTask] else { return }
+        self.didFinishDownloadForResource(with: resourceId, to: location)
     }
 
     func urlSession(_ session: URLSession,

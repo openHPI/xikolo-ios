@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import CoreData
 import Foundation
 
 final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
@@ -24,6 +25,10 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
         self.keyPath = keyPath
         super.init()
         self.startListeningToDownloadProgressChanges()
+    }
+
+    var fetchRequest: NSFetchRequest<Video> {
+        return Video.fetchRequest()
     }
 
 }

@@ -16,6 +16,7 @@ protocol PersistenceManager: AnyObject {
     var persistentContainerQueue: OperationQueue { get }
     var session: Session { get }
     var keyPath: ReferenceWritableKeyPath<Resource, NSData?> { get }
+    var fetchRequest: NSFetchRequest<Resource> { get }
 
     var activeDownloads: [URLSessionTask: String] { get set }
     var progresses: [String: Double] { get set }
@@ -33,6 +34,8 @@ protocol PersistenceManager: AnyObject {
 
     func resourceModificationAfterStartingDownload(for resource: Resource)
     func resourceModificationAfterDeletingDownload(for resource: Resource)
+
+    func didFinishDownloadForResource(with resourceId: String, to location: URL)
 
 }
 
@@ -172,5 +175,31 @@ extension PersistenceManager {
 
     func resourceModificationAfterStartingDownload(for resource: Resource) {}
     func resourceModificationAfterDeletingDownload(for resource: Resource) {}
+
+    func didFinishDownloadForResource(with resourceId: String, to location: URL) {
+        let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+        context.performAndWait {
+            let request = self.fetchRequest
+            request.predicate = NSPredicate(format: "id == %@", resourceId)
+            request.fetchLimit = 1
+
+            switch context.fetchSingle(fetchRequest) {
+            case let .success(resource):
+                do {
+                    let bookmark = try location.bookmarkData()
+                    resource[keyPath: self.keyPath] = NSData(data: bookmark)
+                    try context.save()
+                } catch {
+                    // Failed to create bookmark for location
+                    self.deleteDownload(for: resource, in: context)
+                }
+            case let .failure(error):
+                // XXX
+                // CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                CrashlyticsHelper.shared.recordError(error)
+                // log.error("Failed to finish download for video \(videoId) : \(error)")
+            }
+        }
+    }
 
 }

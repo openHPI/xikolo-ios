@@ -29,6 +29,10 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
                                          delegateQueue: OperationQueue.main)
     }()
 
+    var fetchRequest: NSFetchRequest<Video> {
+        return Video.fetchRequest()
+    }
+
     static var shared = StreamPersistenceManager()
 
     override init() {
@@ -387,27 +391,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
         guard let videoId = self.activeDownloads[assetDownloadTask] else { return }
-
-        let context = CoreDataHelper.persistentContainer.newBackgroundContext()
-        context.performAndWait {
-            let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
-            switch context.fetchSingle(fetchRequest) {
-            case .success(let video):
-                do {
-                    let bookmark = try location.bookmarkData()
-                    video.localFileBookmark = NSData(data: bookmark)
-                    try context.save()
-                } catch {
-                    // Failed to create bookmark for location
-                    self.deleteDownload(for: video, in: context)
-                }
-            case .failure(let error):
-                CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
-                CrashlyticsHelper.shared.recordError(error)
-                log.error("Failed to finish download for video \(videoId) : \(error)")
-            }
-        }
-
+        self.didFinishDownloadForResource(with: videoId, to: location)
     }
 
     func urlSession(_ session: URLSession,

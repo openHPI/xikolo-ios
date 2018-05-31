@@ -73,8 +73,8 @@ class CourseItemCell: UITableViewCell {
             return
         }
 
-        let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
-        let progress = VideoPersistenceManager.shared.progress(for: video)
+        let videoDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
+        let progress = StreamPersistenceManager.shared.downloadProgress(for: video)
         self.progressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
         self.progressView.updateProgress(progress, animated: false)
     }
@@ -113,7 +113,7 @@ class CourseItemCell: UITableViewCell {
 
         DispatchQueue.main.async {
             self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
-            self.progressView.updateProgress(VideoPersistenceManager.shared.progress(for: video))
+            self.progressView.updateProgress(StreamPersistenceManager.shared.downloadProgress(for: video))
             self.configureDetailContent(for: item)
         }
     }

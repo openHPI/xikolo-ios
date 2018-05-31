@@ -40,7 +40,7 @@ extension CourseSection {
         }.forEach { video in
             if video.localFileBookmark != nil {
                 itemCounter.numberOfDownloadedVideos += 1
-            } else if [.pending, .downloading].contains(VideoPersistenceManager.shared.downloadState(for: video)) {
+            } else if [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video)) {
                 itemCounter.numberOfDownloadingVideos += 1
             } else {
                 itemCounter.numberOfDownloadableVideos += 1
@@ -51,7 +51,7 @@ extension CourseSection {
             let downloadActionTitle = NSLocalizedString("course-section.video-download-action.start-downloads.title",
                                                         comment: "start video downloads for all videos in section")
             actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.downloadVideos(for: self)
+                StreamPersistenceManager.shared.startDownloads(for: self)
             })
         }
 
@@ -59,7 +59,7 @@ extension CourseSection {
             let deleteActionTitle = NSLocalizedString("course-section.video-download-action.delete-videos.title",
                                                       comment: "delete all downloaded videos downloads in section")
             actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.deleteVideos(for: self)
+                StreamPersistenceManager.shared.deleteDownloads(for: self)
             })
         }
 
@@ -67,7 +67,7 @@ extension CourseSection {
             let stopActionTitle = NSLocalizedString("course-section.video-download-action.stop-downloads.title",
                                                     comment: "stop all video downloads in section")
             actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.cancelVideoDownloads(for: self)
+                StreamPersistenceManager.shared.cancelDownloads(for: self)
             })
         }
 

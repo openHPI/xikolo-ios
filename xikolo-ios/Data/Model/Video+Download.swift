@@ -43,13 +43,13 @@ extension Video {
 
     var videoUserAction: UIAlertAction? {
         let isOffline = ReachabilityHelper.connection == .none
-        let downloadState = VideoPersistenceManager.shared.downloadState(for: self)
+        let downloadState = StreamPersistenceManager.shared.downloadState(for: self)
 
         if downloadState == .notDownloaded && !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.video-download-action.start-download.title",
                                                         comment: "start download of video item")
             return UIAlertAction(title: downloadActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.downloadStream(for: self)
+                StreamPersistenceManager.shared.startDownload(for: self)
             }
         }
 
@@ -57,7 +57,7 @@ extension Video {
             let abortActionTitle = NSLocalizedString("course-item.video-download-action.stop-download.title",
                                                      comment: "stop download of video item")
             return UIAlertAction(title: abortActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.cancelDownload(for: self)
+                StreamPersistenceManager.shared.cancelDownload(for: self)
             }
         }
 
@@ -65,7 +65,7 @@ extension Video {
             let deleteActionTitle = NSLocalizedString("course-item.video-download-action.delete-item.title",
                                                       comment: "delete video item")
             return UIAlertAction(title: deleteActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.deleteAsset(for: self)
+                StreamPersistenceManager.shared.deleteDownload(for: self)
             }
         }
 

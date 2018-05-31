@@ -46,7 +46,8 @@ class AppDelegate: AbstractAppDelegate {
         SyncPushEngine.shared.check()
 
         UserProfileHelper.migrateLegacyKeychain()
-        VideoPersistenceManager.shared.restorePersistenceManager()
+
+        StreamPersistenceManager.shared.restoreDownloads()
 
         #if OPENSAP
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.

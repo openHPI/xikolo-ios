@@ -180,8 +180,8 @@ class VideoViewController: UIViewController {
     private func show(video: Video) { // swiftlint:disable:this function_body_length
         self.video = video
 
-        let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
-        let progress = VideoPersistenceManager.shared.progress(for: video)
+        let videoDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
+        let progress = StreamPersistenceManager.shared.downloadProgress(for: video)
         self.videoProgressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
         self.videoProgressView.updateProgress(progress, animated: false)
         self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
@@ -213,7 +213,7 @@ class VideoViewController: UIViewController {
 
         // determine video url (local file, currently downloading or remote)
         var videoURL: URL
-        if let localAsset = VideoPersistenceManager.shared.localAsset(for: video) {
+        if let localAsset = StreamPersistenceManager.shared.localAsset(for: video) {
             videoURL = localAsset.url
             self.playerControlView.setOffline(true)
         } else if let hlsURL = video.singleStream?.hlsURL {
@@ -301,7 +301,7 @@ class VideoViewController: UIViewController {
 
         DispatchQueue.main.async {
             self.videoProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
-            self.videoProgressView.updateProgress(VideoPersistenceManager.shared.progress(for: video))
+            self.videoProgressView.updateProgress(StreamPersistenceManager.shared.downloadProgress(for: video))
             self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
         }
     }
@@ -357,7 +357,7 @@ class VideoViewController: UIViewController {
     }
 
     private func updatePreferredVideoBitrate() {
-        if let video = self.video, VideoPersistenceManager.shared.localAsset(for: video) == nil {
+        if let video = self.video, StreamPersistenceManager.shared.localAsset(for: video) == nil {
             let videoQuaility: VideoQuality
             if ReachabilityHelper.connection == .wifi {
                 videoQuaility = UserDefaults.standard.videoQualityOnWifi

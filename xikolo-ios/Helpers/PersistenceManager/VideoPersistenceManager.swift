@@ -12,7 +12,7 @@ import UIKit
 final class StreamPersistenceManager: NSObject, PersistenceManager {
 
 //    typealias Resource = Video
-//    typealias Session = AVAssetDownloadURLSession
+    typealias Session = AVAssetDownloadURLSession
 
     let keyPath: KeyPath<Video, NSData?> = \Video.localFileBookmark
 
@@ -35,19 +35,58 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         return AVURLAsset(url: url).url // XXX: Do we need this?
     }
 
-    func downloadTask(with url: URL, for resource: Video, on session: Session) -> URLSessionTask? {
-        //        let assetTitleCourse = resource.item?.section?.course?.slug ?? "Unknown course"
-        //        let assetTitleItem = resource.item?.title ?? "Untitled video"
-        //        let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
-        //        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoQualityForDownload.rawValue]
+    func downloadTask(with url: URL, for resource: Video, on session: AVAssetDownloadURLSession) -> URLSessionTask? {
+        let assetTitleCourse = resource.item?.section?.course?.slug ?? "Unknown course"
+        let assetTitleItem = resource.item?.title ?? "Untitled video"
+        let assetTitle = "\(assetTitleItem) (\(assetTitleCourse))".safeAsciiString() ?? "Untitled video"
+        let asset = AVURLAsset(url: url)
+        let options = [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: UserDefaults.standard.videoQualityForDownload.rawValue]
 
-        return session.makeAssetDownloadTask(asset: AVURLAsset(url: url),
-                                             assetTitle: "foo", //assetTitle,
-            assetArtworkData: nil, //video.posterImageData,
-            options: [:]) //options)
+        return session.makeAssetDownloadTask(asset: asset, assetTitle: assetTitle, assetArtworkData: resource.posterImageData, options: options)
     }
 
+    func startDownload(for video: Video) {
+        guard let url = video.singleStream?.hlsURL else { return }
+        self.startDownload(with: url, for: video)
+    }
 
+}
+
+extension StreamPersistenceManager {
+
+    func startDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return StreamPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+            }.forEach { video in
+                self.startDownload(for: video)
+            }
+        }
+    }
+
+    func deleteDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.forEach { video in
+                self.deleteDownload(for: video)
+            }
+        }
+    }
+
+    func cancelDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video))
+            }.forEach { video in
+                self.cancelDownload(for: video)
+            }
+        }
+    }
 }
 
 

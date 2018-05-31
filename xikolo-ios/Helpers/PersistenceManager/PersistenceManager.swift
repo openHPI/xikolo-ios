@@ -154,7 +154,7 @@ extension PersistenceManager {
             self.resourceModificationAfterDeletingDownload(for: resource)
             try context.save()
         } catch {
-            CrashlyticsHelper.shared.setObjectValue(resource.id, forKey: "video_id")
+            CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
             CrashlyticsHelper.shared.recordError(error)
             log.error("An error occured deleting the file: \(error)")
         }
@@ -209,8 +209,7 @@ extension PersistenceManager {
                                 self.resourceModificationAfterDeletingDownload(for: resource)
                                 try context.save()
                             } catch {
-//                                XXX
-//                                CrashlyticsHelper.shared.setObjectValue(resourseId, forKey: "video_id")
+                                CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
                                 CrashlyticsHelper.shared.recordError(error)
                                 log.error("An error occured deleting the file: \(error)")
                             }
@@ -220,8 +219,7 @@ extension PersistenceManager {
 
                         userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
                     case .failure(let error):
-//                        XXX
-//                        CrashlyticsHelper.shared.setObjectValue(resourceId, forKey: "video_id")
+                        CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
                         CrashlyticsHelper.shared.recordError(error)
                         log.error("Failed to complete download for video \(resourceId) : \(error)")
                     }
@@ -257,10 +255,9 @@ extension PersistenceManager {
                     self.deleteDownload(for: resource, in: context)
                 }
             case let .failure(error):
-                // XXX
-                // CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
+                CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
                 CrashlyticsHelper.shared.recordError(error)
-                // log.error("Failed to finish download for video \(videoId) : \(error)")
+                log.error("Failed to finish download for '\(Resource.type)' resourse '\(resourceId)' : \(error)")
             }
         }
     }

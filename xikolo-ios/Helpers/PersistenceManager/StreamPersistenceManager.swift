@@ -63,6 +63,31 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         resourse.downloadDate = nil
     }
 
+    func didFailToDownloadResource(_ resource: Video, with error: NSError) {
+        if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+            log.debug("Canceled download of video (video id: \(resource.id))")
+            return
+        }
+
+        CrashlyticsHelper.shared.setObjectValue(resource.id, forKey: "video_id")
+        CrashlyticsHelper.shared.recordError(error)
+        log.error("Unknown asset download error (video id: \(resource.id) | domain: \(error.domain) | code: \(error.code)")
+
+        // show error
+        DispatchQueue.main.async {
+            let alertTitle = NSLocalizedString("course-item.video-download-action.download-error.title",
+                                               comment: "title to download error alert")
+            let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+            let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
+            alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
+                alert.dismiss(animated: true)
+            })
+
+            AppDelegate.instance().tabBarController?.present(alert, animated: true)
+        }
+    }
+
 }
 
 extension StreamPersistenceManager {
@@ -320,78 +345,12 @@ extension StreamPersistenceManager {
 
 extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
-    // swiftlint:disable:next function_body_length
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        guard let videoId = self.activeDownloads.removeValue(forKey: task) else { return }
-
-        self.progresses.removeValue(forKey: videoId)
-
-        var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.type] = Resource.type
-        userInfo[DownloadNotificationKey.id] = videoId
-
-        self.persistentContainerQueue.addOperation {
-            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
-            context.performAndWait {
-                if let error = error as NSError? {
-                    let fetchRequest = VideoHelper.FetchRequest.video(withId: videoId)
-                    switch context.fetchSingle(fetchRequest) {
-                    case .success(let video):
-                        if let localFileLocation = self.localFileLocation(for: video) {
-                            do {
-                                try FileManager.default.removeItem(at: localFileLocation)
-                                video.downloadDate = nil
-                                video.localFileBookmark = nil
-                                try context.save()
-                            } catch {
-                                CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
-                                CrashlyticsHelper.shared.recordError(error)
-                                log.error("An error occured deleting the file: \(error)")
-                            }
-                        }
-
-                        if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-                            log.debug("Canceled download of video (video id: \(videoId))")
-                        } else {
-                            CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
-                            CrashlyticsHelper.shared.recordError(error)
-                            log.error("Unknown asset download error (video id: \(videoId) | domain: \(error.domain) | code: \(error.code)")
-
-                            // show error
-                            DispatchQueue.main.async {
-                                let alertTitle = NSLocalizedString("course-item.video-download-action.download-error.title",
-                                                                   comment: "title to download error alert")
-                                let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
-                                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-                                let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
-                                alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
-                                    alert.dismiss(animated: true)
-                                })
-
-                                AppDelegate.instance().tabBarController?.present(alert, animated: true)
-                            }
-                        }
-
-                        userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
-                    case .failure(let error):
-                        CrashlyticsHelper.shared.setObjectValue(videoId, forKey: "video_id")
-                        CrashlyticsHelper.shared.recordError(error)
-                        log.error("Failed to complete download for video \(videoId) : \(error)")
-                    }
-                } else {
-                    userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
-                    let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
-                    TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: videoId, context: context)
-                }
-
-                NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
-            }
-        }
+        self.didCompleteDownloadTask(task, with: error)
     }
 
     func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let videoId = self.activeDownloads[assetDownloadTask] else { return }
-        self.didFinishDownloadForResource(with: videoId, to: location)
+        self.didFinishDownloadTask(assetDownloadTask, to: location)
     }
 
     func urlSession(_ session: URLSession,

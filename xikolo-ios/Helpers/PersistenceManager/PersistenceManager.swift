@@ -35,7 +35,10 @@ protocol PersistenceManager: AnyObject {
     func resourceModificationAfterStartingDownload(for resource: Resource)
     func resourceModificationAfterDeletingDownload(for resource: Resource)
 
-    func didFinishDownloadForResource(with resourceId: String, to location: URL)
+    func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?)
+    func didFinishDownloadTask(_ task: URLSessionTask, to location: URL)
+
+    func didFailToDownloadResource(_ resource: Resource, with error: NSError)
 
 }
 
@@ -96,6 +99,8 @@ extension PersistenceManager {
         self.activeDownloads[task] = resource.id
 
         task.resume()
+//        XXX
+//        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: video.id)
 
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
@@ -166,6 +171,8 @@ extension PersistenceManager {
         var task: URLSessionTask?
 
         for (downloadtask, resourceId) in self.activeDownloads where resource.id == resourceId {
+//            XXX
+//            TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: video.id)
             task = downloadtask
             break
         }
@@ -176,7 +183,63 @@ extension PersistenceManager {
     func resourceModificationAfterStartingDownload(for resource: Resource) {}
     func resourceModificationAfterDeletingDownload(for resource: Resource) {}
 
-    func didFinishDownloadForResource(with resourceId: String, to location: URL) {
+    func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?) {
+        guard let resourceId = self.activeDownloads.removeValue(forKey: task) else { return }
+
+        self.progresses.removeValue(forKey: resourceId)
+
+        var userInfo: [String: Any] = [:]
+        userInfo[DownloadNotificationKey.type] = Resource.type
+        userInfo[DownloadNotificationKey.id] = resourceId
+
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                if let error = error as NSError? {
+                    let fetchRequest = self.fetchRequest
+                    fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
+                    fetchRequest.fetchLimit = 1
+
+                    switch context.fetchSingle(fetchRequest) {
+                    case let .success(resource):
+                        if let localFileLocation = self.localFileLocation(for: resource) {
+                            do {
+                                try FileManager.default.removeItem(at: localFileLocation)
+                                resource[keyPath: self.keyPath] = nil
+                                self.resourceModificationAfterDeletingDownload(for: resource)
+                                try context.save()
+                            } catch {
+//                                XXX
+//                                CrashlyticsHelper.shared.setObjectValue(resourseId, forKey: "video_id")
+                                CrashlyticsHelper.shared.recordError(error)
+                                log.error("An error occured deleting the file: \(error)")
+                            }
+                        }
+
+                        self.didFailToDownloadResource(resource, with: error)
+
+                        userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
+                    case .failure(let error):
+//                        XXX
+//                        CrashlyticsHelper.shared.setObjectValue(resourceId, forKey: "video_id")
+                        CrashlyticsHelper.shared.recordError(error)
+                        log.error("Failed to complete download for video \(resourceId) : \(error)")
+                    }
+                } else {
+                    userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
+//                    XXX
+//                    let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
+//                    TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resourceId, context: context)
+                }
+
+                NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
+            }
+        }
+    }
+
+    func didFinishDownloadTask(_ task: URLSessionTask, to location: URL) {
+        guard let resourceId = self.activeDownloads[task] else { return }
+
         let context = CoreDataHelper.persistentContainer.newBackgroundContext()
         context.performAndWait {
             let request = self.fetchRequest

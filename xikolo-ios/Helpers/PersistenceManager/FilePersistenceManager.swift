@@ -27,12 +27,11 @@ extension FilePersistenceManager {
     }
 
     func downloadTask(_ task: URLSessionTask, didCompleteWithError error: Error?) {
-        // XXX
+        self.didCompleteDownloadTask(task, with: error)
     }
 
     func downloadTask(_ task: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let resourceId = self.activeDownloads[task] else { return }
-        self.didFinishDownloadForResource(with: resourceId, to: location)
+        self.didFinishDownloadTask(task, to: location)
     }
 
     func downloadTask(_ task: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {

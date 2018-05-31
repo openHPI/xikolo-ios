@@ -31,6 +31,10 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
         return Video.fetchRequest()
     }
 
+    func didFailToDownloadResource(_ resource: Video, with error: NSError) {
+//        XXX
+    }
+
 }
 
 extension SlidesPersistenceManager: URLSessionDownloadDelegate {

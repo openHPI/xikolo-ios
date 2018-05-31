@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol FilePersistenceManager: PersistenceManager, URLSessionDelegate {
+protocol FilePersistenceManager: PersistenceManager, URLSessionDownloadDelegate {
 
     func createURLSession(withIdentifier identifier: String) -> URLSession
 
@@ -25,17 +25,29 @@ extension FilePersistenceManager {
 }
 
 extension FilePersistenceManager {
-//    func urlSession(_ session: URLSession,
-//                    task: URLSessionTask,
-//                    didCompleteWithError error: Error?) {}
-//
-//    func urlSession(_ session: URLSession,
-//                    assetDownloadTask: AVAssetDownloadTask,
-//                    didFinishDownloadingTo location: URL) {}
-//
-//    func urlSession(_ session: URLSession,
-//                    assetDownloadTask: AVAssetDownloadTask,
-//                    didLoad timeRange: CMTimeRange,
-//                    totalTimeRangesLoaded loadedTimeRanges: [NSValue],
-//                    timeRangeExpectedToLoad: CMTimeRange) {}
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        // XXX
+    }
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        // XXX
+    }
+
+    func urlSession(_ session: URLSession,
+                    downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64,
+                    totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64) {
+        guard let resourceId = self.activeDownloads[downloadTask] else { return }
+
+        let percentComplete = max(0.0, min(1.0, Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)))
+
+        var userInfo: [String: Any] = [:]
+        userInfo[DownloadNotificationKey.type] = Resource.type
+        userInfo[DownloadNotificationKey.id] = resourceId
+        userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
+
+        NotificationCenter.default.post(name: NotificationKeys.DownloadProgressDidChange, object: nil, userInfo: userInfo)
+    }
+
 }

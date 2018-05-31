@@ -317,9 +317,7 @@ extension StreamPersistenceManager {
 extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
     // swiftlint:disable:next function_body_length
-    func urlSession(_ session: URLSession,
-                    task: URLSessionTask,
-                    didCompleteWithError error: Error?) {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard let videoId = self.activeDownloads.removeValue(forKey: task) else { return }
 
         self.progresses.removeValue(forKey: videoId)
@@ -387,9 +385,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         }
     }
 
-    func urlSession(_ session: URLSession,
-                    assetDownloadTask: AVAssetDownloadTask,
-                    didFinishDownloadingTo location: URL) {
+    func urlSession(_ session: URLSession, assetDownloadTask: AVAssetDownloadTask, didFinishDownloadingTo location: URL) {
         guard let videoId = self.activeDownloads[assetDownloadTask] else { return }
 
         let context = CoreDataHelper.persistentContainer.newBackgroundContext()

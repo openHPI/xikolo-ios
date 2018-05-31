@@ -63,6 +63,19 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         resourse.downloadDate = nil
     }
 
+    func didStartDownload(for resourceId: String) {
+        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resourceId)
+    }
+
+    func didCancelDownload(for resourceId: String) {
+        TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resourceId)
+    }
+
+    func didFinishDownload(for resourceId: String) {
+        let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
+        TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resourceId, context: context)
+    }
+
     func didFailToDownloadResource(_ resource: Video, with error: NSError) {
         if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
             log.debug("Canceled download of video (video id: \(resource.id))")

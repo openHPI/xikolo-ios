@@ -38,6 +38,10 @@ protocol PersistenceManager: AnyObject {
     func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?)
     func didFinishDownloadTask(_ task: URLSessionTask, to location: URL)
 
+    func didStartDownload(for resourceId: String)
+    func didCancelDownload(for resourceId: String)
+    func didFinishDownload(for resourceId: String)
+
     func didFailToDownloadResource(_ resource: Resource, with error: NSError)
 
 }
@@ -99,8 +103,8 @@ extension PersistenceManager {
         self.activeDownloads[task] = resource.id
 
         task.resume()
-//        XXX
-//        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: video.id)
+
+        self.didStartDownload(for: resource.id)
 
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
@@ -171,8 +175,7 @@ extension PersistenceManager {
         var task: URLSessionTask?
 
         for (downloadtask, resourceId) in self.activeDownloads where resource.id == resourceId {
-//            XXX
-//            TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: video.id)
+            self.didCancelDownload(for: resource.id)
             task = downloadtask
             break
         }
@@ -225,9 +228,7 @@ extension PersistenceManager {
                     }
                 } else {
                     userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
-//                    XXX
-//                    let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
-//                    TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resourceId, context: context)
+                    self.didFinishDownload(for: resourceId)
                 }
 
                 NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
@@ -261,5 +262,9 @@ extension PersistenceManager {
             }
         }
     }
+
+    func didStartDownload(for resourceId: String) {}
+    func didCancelDownload(for resourceId: String) {}
+    func didFinishDownload(for resourceId: String) {}
 
 }

@@ -9,6 +9,10 @@ protocol FilePersistenceManager: PersistenceManager, URLSessionDownloadDelegate 
 
     func createURLSession(withIdentifier identifier: String) -> URLSession
 
+    func downloadTask(_ task: URLSessionTask, didCompleteWithError error: Error?)
+    func downloadTask(_ task: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
+    func downloadTask(_ task: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
+
 }
 
 extension FilePersistenceManager {
@@ -22,24 +26,17 @@ extension FilePersistenceManager {
         return session.downloadTask(with: url)
     }
 
-}
-
-extension FilePersistenceManager {
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    func downloadTask(_ task: URLSessionTask, didCompleteWithError error: Error?) {
         // XXX
     }
 
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let resourceId = self.activeDownloads[downloadTask] else { return }
+    func downloadTask(_ task: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        guard let resourceId = self.activeDownloads[task] else { return }
         self.didFinishDownloadForResource(with: resourceId, to: location)
     }
 
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didWriteData bytesWritten: Int64,
-                    totalBytesWritten: Int64,
-                    totalBytesExpectedToWrite: Int64) {
-        guard let resourceId = self.activeDownloads[downloadTask] else { return }
+    func downloadTask(_ task: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        guard let resourceId = self.activeDownloads[task] else { return }
 
         let percentComplete = max(0.0, min(1.0, Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)))
 

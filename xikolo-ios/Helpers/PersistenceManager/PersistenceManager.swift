@@ -31,7 +31,8 @@ protocol PersistenceManager: AnyObject {
 
     func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
 
-    func resourceModificationAfterDeletingDownload(for resourse: Resource)
+    func resourceModificationAfterStartingDownload(for resource: Resource)
+    func resourceModificationAfterDeletingDownload(for resource: Resource)
 
 }
 
@@ -81,6 +82,21 @@ extension PersistenceManager {
         self.activeDownloads[task] = resource.id
 
         task.resume()
+
+        self.persistentContainerQueue.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                self.resourceModificationAfterStartingDownload(for: resource)
+                try? context.save()
+            }
+
+            var userInfo: [String: Any] = [:]
+            userInfo[DownloadNotificationKey.type] = Resource.type
+            userInfo[DownloadNotificationKey.id] = resource.id
+            userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloading.rawValue
+
+            NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
+        }
     }
 
     func downloadState(for resource: Resource) -> DownloadState {
@@ -143,6 +159,7 @@ extension PersistenceManager {
         task?.cancel()
     }
 
+    func resourceModificationAfterStartingDownload(for resource: Resource) {}
     func resourceModificationAfterDeletingDownload(for resource: Resource) {}
 
 }

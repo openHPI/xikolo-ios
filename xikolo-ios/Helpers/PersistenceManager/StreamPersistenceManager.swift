@@ -46,6 +46,10 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         self.startDownload(with: url, for: video)
     }
 
+    func resourceModificationAfterStartingDownload(for resource: Video) {
+        resource.downloadDate = Date()
+    }
+
     func resourceModificationAfterDeletingDownload(for resourse: Video) {
         resourse.downloadDate = nil
     }

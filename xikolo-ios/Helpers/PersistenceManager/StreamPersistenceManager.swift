@@ -24,9 +24,7 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
     lazy var session: AVAssetDownloadURLSession = {
         let sessionIdentifier = "asset-download"
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: sessionIdentifier)
-        return AVAssetDownloadURLSession(configuration: backgroundConfiguration,
-                                         assetDownloadDelegate: self,
-                                         delegateQueue: OperationQueue.main)
+        return AVAssetDownloadURLSession(configuration: backgroundConfiguration, assetDownloadDelegate: self, delegateQueue: OperationQueue.main)
     }()
 
     var fetchRequest: NSFetchRequest<Video> {
@@ -59,8 +57,8 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         resource.downloadDate = Date()
     }
 
-    func resourceModificationAfterDeletingDownload(for resourse: Video) {
-        resourse.downloadDate = nil
+    func resourceModificationAfterDeletingDownload(for resource: Video) {
+        resource.downloadDate = nil
     }
 
     func didStartDownload(for resourceId: String) {

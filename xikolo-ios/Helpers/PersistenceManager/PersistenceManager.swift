@@ -224,7 +224,7 @@ extension PersistenceManager {
                     case .failure(let error):
                         CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
                         CrashlyticsHelper.shared.recordError(error)
-                        log.error("Failed to complete download for video \(resourceId) : \(error)")
+                        log.error("Failed to complete download for '\(Resource.type)' resource '\(resourceId)': \(error)")
                     }
                 } else {
                     userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
@@ -258,7 +258,7 @@ extension PersistenceManager {
             case let .failure(error):
                 CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
                 CrashlyticsHelper.shared.recordError(error)
-                log.error("Failed to finish download for '\(Resource.type)' resourse '\(resourceId)' : \(error)")
+                log.error("Failed to finish download for '\(Resource.type)' resource '\(resourceId)': \(error)")
             }
         }
     }

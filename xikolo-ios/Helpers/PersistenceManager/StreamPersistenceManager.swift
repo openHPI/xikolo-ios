@@ -134,6 +134,7 @@ extension StreamPersistenceManager {
             }
         }
     }
+
 }
 
 extension StreamPersistenceManager: AVAssetDownloadDelegate {

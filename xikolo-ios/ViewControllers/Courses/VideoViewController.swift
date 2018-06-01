@@ -186,11 +186,11 @@ class VideoViewController: UIViewController {
         self.videoProgressView.updateProgress(progress, animated: false)
         self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
 
-        self.navigationItem.rightBarButtonItem?.isEnabled = video.videoUserAction != nil
-        self.navigationItem.rightBarButtonItem?.tintColor = video.videoUserAction != nil ? Brand.Color.primary : .lightGray
+        self.navigationItem.rightBarButtonItem?.isEnabled = !video.userActions.isEmpty
+        self.navigationItem.rightBarButtonItem?.tintColor = !video.userActions.isEmpty ? Brand.Color.primary : .lightGray
 
-        self.videoActionsButton.isEnabled = video.videoUserAction != nil
-        self.videoActionsButton.tintColor = video.videoUserAction != nil ? Brand.Color.primary : .lightGray
+        self.videoActionsButton.isEnabled = !video.userActions.isEmpty
+        self.videoActionsButton.tintColor = !video.userActions.isEmpty ? Brand.Color.primary : .lightGray
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
@@ -264,13 +264,13 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction func showVideoActionMenu(_ sender: UIButton) {
-        guard let videoAction = self.video?.videoUserAction else { return }
+        guard let streamUserAction = self.video?.streamUserAction else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
 
-        alert.addAction(videoAction)
+        alert.addAction(streamUserAction)
         alert.addCancelAction()
 
         self.present(alert, animated: true)
@@ -287,6 +287,11 @@ class VideoViewController: UIViewController {
         }
 
         alert.addAction(openSlides)
+
+        if let slidesUserAction = self.video?.slidesUserAction {
+            alert.addAction(slidesUserAction)
+        }
+
         alert.addCancelAction()
 
         self.present(alert, animated: true)
@@ -326,8 +331,8 @@ class VideoViewController: UIViewController {
         self.navigationItem.rightBarButtonItem?.isEnabled = ReachabilityHelper.connection != .none
         self.navigationItem.rightBarButtonItem?.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
 
-        self.videoActionsButton.isEnabled = self.video?.videoUserAction != nil
-        self.videoActionsButton.tintColor = self.video?.videoUserAction != nil ? Brand.Color.primary : .lightGray
+        self.videoActionsButton.isEnabled = self.video?.streamUserAction != nil
+        self.videoActionsButton.tintColor = self.video?.streamUserAction != nil ? Brand.Color.primary : .lightGray
 
         self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
         self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray

@@ -30,6 +30,11 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
         return Video.fetchRequest()
     }
 
+    func startDownload(for video: Video) {
+        guard let url = video.slidesURL else { return }
+        self.startDownload(with: url, for: video)
+    }
+
     func didFailToDownloadResource(_ resource: Video, with error: NSError) {
         CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
         CrashlyticsHelper.shared.recordError(error)
@@ -46,6 +51,44 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
             })
 
             AppDelegate.instance().tabBarController?.present(alert, animated: true)
+        }
+    }
+
+}
+
+extension SlidesPersistenceManager {
+
+    func startDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return SlidesPersistenceManager.shared.downloadState(for: video) == .notDownloaded
+            }.forEach { video in
+                self.startDownload(for: video)
+            }
+        }
+    }
+
+    func deleteDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.forEach { video in
+                self.deleteDownload(for: video)
+            }
+        }
+    }
+
+    func cancelDownloads(for section: CourseSection) {
+        self.persistentContainerQueue.addOperation {
+            section.items.compactMap { item in
+                return item.content as? Video
+            }.filter { video in
+                return [.pending, .downloading].contains(SlidesPersistenceManager.shared.downloadState(for: video))
+            }.forEach { video in
+                self.cancelDownload(for: video)
+            }
         }
     }
 

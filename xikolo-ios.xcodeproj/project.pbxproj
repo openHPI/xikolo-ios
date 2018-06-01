@@ -2016,6 +2016,7 @@
 		50082B5420BFDA8800B4511C /* FilePersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePersistenceManager.swift; sourceTree = "<group>"; };
 		50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidesPersistenceManager.swift; sourceTree = "<group>"; };
 		50082B5E20BFDAC900B4511C /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
+		50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 6.xcdatamodel"; sourceTree = "<group>"; };
 		500A257D20824C2500EB7AE4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
 		501212151FCC660F0022A7AF /* ResourceQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuery.swift; sourceTree = "<group>"; };
@@ -7689,13 +7690,14 @@
 		24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */,
 				501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */,
 				70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */,
 				70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */,
 				ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */,
 				24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */,
 			);
-			currentVersion = 501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */;
+			currentVersion = 50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */;
 			path = xikolo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

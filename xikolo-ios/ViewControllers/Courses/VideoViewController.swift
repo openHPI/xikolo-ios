@@ -57,9 +57,9 @@ class VideoViewController: UIViewController {
         self.videoDownloadedIcon.isHidden = true
 
         self.slidesView.isHidden = true
-        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
-        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
+        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
+        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil ? Brand.Color.primary : .lightGray
         self.slidesProgressView.isHidden = true
         self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
         self.slidesDownloadedIcon.isHidden = true
@@ -180,20 +180,28 @@ class VideoViewController: UIViewController {
     private func show(video: Video) { // swiftlint:disable:this function_body_length
         self.video = video
 
-        let videoDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
-        let progress = StreamPersistenceManager.shared.downloadProgress(for: video)
-        self.videoProgressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
-        self.videoProgressView.updateProgress(progress, animated: false)
-        self.videoDownloadedIcon.isHidden = !(videoDownloadState == .downloaded)
-
         self.navigationItem.rightBarButtonItem?.isEnabled = !video.userActions.isEmpty
         self.navigationItem.rightBarButtonItem?.tintColor = !video.userActions.isEmpty ? Brand.Color.primary : .lightGray
 
-        self.videoActionsButton.isEnabled = !video.userActions.isEmpty
-        self.videoActionsButton.tintColor = !video.userActions.isEmpty ? Brand.Color.primary : .lightGray
+        let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
+        let streamDownloadProgress = StreamPersistenceManager.shared.downloadProgress(for: video)
+        self.videoProgressView.isHidden = streamDownloadState == .notDownloaded || streamDownloadState == .downloaded
+        self.videoProgressView.updateProgress(streamDownloadProgress, animated: false)
+        self.videoDownloadedIcon.isHidden = !(streamDownloadState == .downloaded)
+
+        self.videoActionsButton.isEnabled = video.streamUserAction != nil
+        self.videoActionsButton.tintColor = video.streamUserAction != nil ? Brand.Color.primary : .lightGray
 
         // show slides button
         self.slidesView.isHidden = (video.slidesURL == nil)
+        let slidesDownloadState = SlidesPersistenceManager.shared.downloadState(for: video)
+        let slidesDownloadProgress = SlidesPersistenceManager.shared.downloadProgress(for: video)
+        self.slidesProgressView.isHidden = slidesDownloadState == .notDownloaded || slidesDownloadState == .downloaded
+        self.slidesProgressView.updateProgress(slidesDownloadProgress, animated: false)
+        self.slidesDownloadedIcon.isHidden = !(slidesDownloadState == .downloaded)
+
+        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none || video.slidesUserAction != nil
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none || video.slidesUserAction != nil ? Brand.Color.primary : .lightGray
 
         // show description
         if let summary = video.summary {
@@ -241,7 +249,7 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction func openSlides() {
-        if ReachabilityHelper.connection != .none {
+        if let video = self.video, SlidesPersistenceManager.shared.localFileLocation(for: video) != nil || ReachabilityHelper.connection != .none {
             self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
         } else {
             log.info("Tapped open slides button without internet, which shouldn't be possible")
@@ -316,6 +324,9 @@ class VideoViewController: UIViewController {
                 self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
+                self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
+                self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
+                self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil ? Brand.Color.primary : .lightGray
             }
         }
     }
@@ -347,16 +358,20 @@ class VideoViewController: UIViewController {
         self.videoActionsButton.isEnabled = self.video?.streamUserAction != nil
         self.videoActionsButton.tintColor = self.video?.streamUserAction != nil ? Brand.Color.primary : .lightGray
 
-        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none
-        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none ? Brand.Color.primary : .lightGray
-        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none
+        self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
+        self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil ? Brand.Color.primary : .lightGray
+        self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
 
         self.updatePreferredVideoBitrate()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue) {
-            typedInfo.destination.url = self.video?.slidesURL
+        if let typedInfo = R.segue.videoViewController.showSlides(segue: segue), let video = video {
+            if let localFileLocation = SlidesPersistenceManager.shared.localFileLocation(for: video) {
+                typedInfo.destination.url = localFileLocation
+            } else {
+                typedInfo.destination.url = video.slidesURL
+            }
         }
     }
 

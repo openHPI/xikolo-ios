@@ -120,6 +120,9 @@ class CourseItemCell: UITableViewCell {
             }
         } else if downloadType == SlidesPersistenceManager.downloadType {
 //            XXX
+            DispatchQueue.main.async {
+                self.configureDetailContent(for: item)
+            }
         }
     }
 

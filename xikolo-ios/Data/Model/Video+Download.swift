@@ -19,7 +19,7 @@ extension Video {
             let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
                                                         comment: "start download of stream for video")
             return UIAlertAction(title: downloadActionTitle, style: .default) { _ in
-                StreamPersistenceManager.shared.startDownload(with:url, for: self)
+                StreamPersistenceManager.shared.startDownload(with: url, for: self)
             }
         }
 

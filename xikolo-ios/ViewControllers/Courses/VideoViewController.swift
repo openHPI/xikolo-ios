@@ -325,8 +325,9 @@ class VideoViewController: UIViewController {
                 self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
                 self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
                 self.slidesButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.localSlidesBookmark != nil
-                self.slidesActionsButton.isEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
-                self.slidesActionsButton.tintColor = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil ? Brand.Color.primary : .lightGray
+                let actionButtonEnabled = ReachabilityHelper.connection != .none || self.video?.slidesUserAction != nil
+                self.slidesActionsButton.isEnabled = actionButtonEnabled
+                self.slidesActionsButton.tintColor = actionButtonEnabled ? Brand.Color.primary : .lightGray
             }
         }
     }

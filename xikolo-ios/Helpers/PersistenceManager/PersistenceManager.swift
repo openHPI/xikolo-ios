@@ -242,9 +242,9 @@ extension PersistenceManager {
 
         let context = CoreDataHelper.persistentContainer.newBackgroundContext()
         context.performAndWait {
-            let request = self.fetchRequest
-            request.predicate = NSPredicate(format: "id == %@", resourceId)
-            request.fetchLimit = 1
+            let fetchRequest = self.fetchRequest
+            fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
+            fetchRequest.fetchLimit = 1
 
             switch context.fetchSingle(fetchRequest) {
             case let .success(resource):
@@ -252,8 +252,9 @@ extension PersistenceManager {
                     let bookmark = try location.bookmarkData()
                     resource[keyPath: self.keyPath] = NSData(data: bookmark)
                     try context.save()
+                    log.debug("Successfully downloaded file for '\(Resource.type)' resource '\(resourceId)'")
                 } catch {
-                    // Failed to create bookmark for location
+                    log.debug("Failed to downloaded file for '\(Resource.type)' resource '\(resourceId)'")
                     self.deleteDownload(for: resource, in: context)
                 }
             case let .failure(error):

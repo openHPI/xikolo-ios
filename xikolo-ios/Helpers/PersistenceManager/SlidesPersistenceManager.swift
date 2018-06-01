@@ -9,9 +9,7 @@ import UIKit
 
 final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
 
-    //    typealias Resource = Video
-
-    static var shared = SlidesPersistenceManager(keyPath: \Video.localFileBookmark) /// XXX: Change keypath
+    static var shared = SlidesPersistenceManager(keyPath: \Video.localSlidesBookmark)
 
     lazy var persistentContainerQueue = self.createPersistenceContainerQueue()
     lazy var session: URLSession = self.createURLSession(withIdentifier: "slides-download")
@@ -60,13 +58,7 @@ extension SlidesPersistenceManager: URLSessionDownloadDelegate {
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let documentsLocation = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).last else { return }
-        do {
-            try FileManager.default.moveItem(at: location, to: documentsLocation)
-            self.downloadTask(downloadTask, didFinishDownloadingTo: documentsLocation)
-        } catch {
-            print(error) // XXX: check this again
-        }
+        self.downloadTask(downloadTask, didFinishDownloadingTo: location)
     }
 
     func urlSession(_ session: URLSession,

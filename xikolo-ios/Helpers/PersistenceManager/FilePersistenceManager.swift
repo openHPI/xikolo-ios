@@ -31,7 +31,21 @@ extension FilePersistenceManager {
     }
 
     func downloadTask(_ task: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        self.didFinishDownloadTask(task, to: location)
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else { return }
+        guard let fileName = task.originalRequest?.url?.lastPathComponent else { return }
+
+        let documentLocation = documentsDirectory.appendingPathComponent(fileName)
+
+        do {
+            if FileManager.default.fileExists(atPath: documentLocation.path) {
+                try FileManager.default.removeItem(at: documentLocation)
+            }
+
+            try FileManager.default.moveItem(at: location, to: documentLocation)
+            self.didFinishDownloadTask(task, to: documentLocation)
+        } catch {
+            log.error("Failed to move downloaded file to documents directory: \(error)")
+        }
     }
 
     func downloadTask(_ task: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {

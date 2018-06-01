@@ -54,8 +54,8 @@ extension FilePersistenceManager {
         let percentComplete = max(0.0, min(1.0, Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)))
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.type] = Resource.type
-        userInfo[DownloadNotificationKey.id] = resourceId
+        userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
+        userInfo[DownloadNotificationKey.resourceId] = resourceId
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
         NotificationCenter.default.post(name: NotificationKeys.DownloadProgressDidChange, object: nil, userInfo: userInfo)

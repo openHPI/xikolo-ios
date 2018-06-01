@@ -14,9 +14,9 @@ enum DownloadState: String {
 
 struct DownloadNotificationKey {
 
-    static let type = "ResourceTypeKey"
-    static let id = "ResourceIdKey"
+    static let resourceId = "ResourceIdKey"
     static let downloadState = "ResourceDownloadStateKey"
     static let downloadProgress = "ResourceDownloadProgressKey"
+    static let downloadType = "DownloadTypeKey"
 
 }

@@ -12,6 +12,7 @@ protocol PersistenceManager: AnyObject {
     associatedtype Session: URLSession
 
     static var shared: Self { get }
+    static var downloadType: String { get }
 
     var persistentContainerQueue: OperationQueue { get }
     var session: Session { get }
@@ -51,10 +52,9 @@ extension PersistenceManager {
     func startListeningToDownloadProgressChanges() {
         // swiftlint:disable:next discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: NotificationKeys.DownloadStateDidChange, object: nil, queue: nil) { notification in
-            guard let resourceType = notification.userInfo?[DownloadNotificationKey.type] as? String,
-                let resourceId = notification.userInfo?[DownloadNotificationKey.id] as? String,
-                let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
-                resourceType == Resource.type else { return }
+            guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == Self.downloadType,
+                let resourceId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+                let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double else { return }
 
             self.progresses[resourceId] = progress
         }
@@ -115,8 +115,8 @@ extension PersistenceManager {
             }
 
             var userInfo: [String: Any] = [:]
-            userInfo[DownloadNotificationKey.type] = Resource.type
-            userInfo[DownloadNotificationKey.id] = resource.id
+            userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
+            userInfo[DownloadNotificationKey.resourceId] = resource.id
             userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloading.rawValue
 
             NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
@@ -165,8 +165,8 @@ extension PersistenceManager {
         }
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.type] = Resource.type
-        userInfo[DownloadNotificationKey.id] = resource.id
+        userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
+        userInfo[DownloadNotificationKey.resourceId] = resource.id
         userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
 
         NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
@@ -193,8 +193,8 @@ extension PersistenceManager {
         self.progresses.removeValue(forKey: resourceId)
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.type] = Resource.type
-        userInfo[DownloadNotificationKey.id] = resourceId
+        userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
+        userInfo[DownloadNotificationKey.resourceId] = resourceId
 
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()

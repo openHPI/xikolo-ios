@@ -12,6 +12,9 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
     typealias Session = AVAssetDownloadURLSession
 
+    static var shared = StreamPersistenceManager()
+    static var downloadType = "stream"
+
     let keyPath: ReferenceWritableKeyPath<Video, NSData?> = \Video.localFileBookmark
 
     var activeDownloads: [URLSessionTask: String] = [:]
@@ -28,8 +31,6 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
     var fetchRequest: NSFetchRequest<Video> {
         return Video.fetchRequest()
     }
-
-    static var shared = StreamPersistenceManager()
 
     override init() {
         super.init()
@@ -161,8 +162,8 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         }
 
         var userInfo: [String: Any] = [:]
-        userInfo[DownloadNotificationKey.type] = Resource.type
-        userInfo[DownloadNotificationKey.id] = videoId
+        userInfo[DownloadNotificationKey.downloadType] = StreamPersistenceManager.downloadType
+        userInfo[DownloadNotificationKey.resourceId] = videoId
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
         NotificationCenter.default.post(name: NotificationKeys.DownloadProgressDidChange, object: nil, userInfo: userInfo)

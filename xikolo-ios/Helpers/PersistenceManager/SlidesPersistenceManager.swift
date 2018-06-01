@@ -10,6 +10,7 @@ import UIKit
 final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
 
     static var shared = SlidesPersistenceManager(keyPath: \Video.localSlidesBookmark)
+    static var downloadType = "slides"
 
     lazy var persistentContainerQueue = self.createPersistenceContainerQueue()
     lazy var session: URLSession = self.createURLSession(withIdentifier: "slides-download")

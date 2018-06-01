@@ -298,32 +298,45 @@ class VideoViewController: UIViewController {
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let resourceType = noticaition.userInfo?[DownloadNotificationKey.type] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.id] as? String,
+        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
+            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let downloadStateRawValue = noticaition.userInfo?[DownloadNotificationKey.downloadState] as? String,
             let downloadState = DownloadState(rawValue: downloadStateRawValue),
             let video = self.video,
-            resourceType == Video.type,
             video.id == videoId else { return }
 
-        DispatchQueue.main.async {
-            self.videoProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
-            self.videoProgressView.updateProgress(StreamPersistenceManager.shared.downloadProgress(for: video))
-            self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
+        if downloadType == StreamPersistenceManager.downloadType {
+            DispatchQueue.main.async {
+                self.videoProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
+                self.videoProgressView.updateProgress(StreamPersistenceManager.shared.downloadProgress(for: video))
+                self.videoDownloadedIcon.isHidden = !(downloadState == .downloaded)
+            }
+        } else if downloadType == SlidesPersistenceManager.downloadType {
+            DispatchQueue.main.async {
+                self.slidesProgressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
+                self.slidesProgressView.updateProgress(SlidesPersistenceManager.shared.downloadProgress(for: video))
+                self.slidesDownloadedIcon.isHidden = !(downloadState == .downloaded)
+            }
         }
     }
 
     @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let resourceType = noticaition.userInfo?[DownloadNotificationKey.type] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.id] as? String,
+        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
+            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             let video = self.video,
-            resourceType == Video.type,
             video.id == videoId else { return }
 
-        DispatchQueue.main.async {
-            self.videoProgressView.isHidden = false
-            self.videoProgressView.updateProgress(progress)
+        if downloadType == StreamPersistenceManager.downloadType {
+            DispatchQueue.main.async {
+                self.videoProgressView.isHidden = false
+                self.videoProgressView.updateProgress(progress)
+            }
+        } else if downloadType == SlidesPersistenceManager.downloadType {
+            DispatchQueue.main.async {
+                self.slidesProgressView.isHidden = false
+                self.slidesProgressView.updateProgress(progress)
+            }
         }
     }
 

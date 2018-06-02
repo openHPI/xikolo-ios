@@ -56,14 +56,14 @@
 /* delete stream download for video */
 "course-item.stream-download-action.delete-download.title" = "Delete video";
 
+/* title to download error alert */
+"course-item.stream-download-action.download-error.title" = "Error while downloading video";
+
 /* start download of stream for video */
 "course-item.stream-download-action.start-download.title" = "Download video";
 
 /* stop stream download for video */
 "course-item.stream-download-action.stop-download.title" = "Stop download of video";
-
-/* title to download error alert */
-"course-item.stream-download-action.download-error.title" = "Error while downloading video";
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";

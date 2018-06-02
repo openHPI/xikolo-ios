@@ -56,14 +56,14 @@
 /* delete stream download for video */
 "course-item.stream-download-action.delete-download.title" = "Video löschen";
 
+/* title to download error alert */
+"course-item.stream-download-action.download-error.title" = "Fehler beim Video-Download";
+
 /* start download of stream for video */
 "course-item.stream-download-action.start-download.title" = "Video herunterladen";
 
 /* stop stream download for video */
 "course-item.stream-download-action.stop-download.title" = "Video-Download stoppen";
-
-/* title to download error alert */
-"course-item.stream-download-action.download-error.title" = "Fehler beim Video-Download";
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";

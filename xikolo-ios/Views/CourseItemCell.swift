@@ -104,25 +104,13 @@ class CourseItemCell: UITableViewCell {
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let downloadStateRawValue = noticaition.userInfo?[DownloadNotificationKey.downloadState] as? String,
-            let downloadState = DownloadState(rawValue: downloadStateRawValue),
+        guard let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let item = self.item,
             let video = item.content as? Video,
             video.id == videoId else { return }
 
-        if downloadType == StreamPersistenceManager.downloadType {
-            DispatchQueue.main.async {
-                self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
-                self.progressView.updateProgress(StreamPersistenceManager.shared.downloadProgress(for: video))
-                self.configureDetailContent(for: item)
-            }
-        } else if downloadType == SlidesPersistenceManager.downloadType {
-//            XXX
-            DispatchQueue.main.async {
-                self.configureDetailContent(for: item)
-            }
+        DispatchQueue.main.async {
+            self.configure(for: item)
         }
     }
 

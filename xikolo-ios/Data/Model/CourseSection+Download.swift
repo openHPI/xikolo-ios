@@ -47,7 +47,7 @@ extension CourseSection {
                 itemCounter.stream.numberOfDownloadedItems += 1
             } else if [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video)) {
                 itemCounter.stream.numberOfDownloadingItems += 1
-            } else {
+            } else if video.streamURLForDownload != nil {
                 itemCounter.stream.numberOfDownloadableItems += 1
             }
 
@@ -55,7 +55,7 @@ extension CourseSection {
                 itemCounter.slides.numberOfDownloadedItems += 1
             } else if [.pending, .downloading].contains(SlidesPersistenceManager.shared.downloadState(for: video)) {
                 itemCounter.slides.numberOfDownloadingItems += 1
-            } else {
+            } else if video.slidesURL != nil {
                 itemCounter.slides.numberOfDownloadableItems += 1
             }
         }

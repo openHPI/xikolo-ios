@@ -48,6 +48,7 @@ class AppDelegate: AbstractAppDelegate {
         UserProfileHelper.migrateLegacyKeychain()
 
         StreamPersistenceManager.shared.restoreDownloads()
+        SlidesPersistenceManager.shared.restoreDownloads()
 
         #if OPENSAP
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.

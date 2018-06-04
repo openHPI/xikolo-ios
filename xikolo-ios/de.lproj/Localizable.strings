@@ -35,6 +35,15 @@
 /* specfic title for course start in a course date cell */
 "course-date-cell.course-start.title" = "Kursstart";
 
+/* delete all downloads for video */
+"course-item.combined-download-action.delete-download.title" = "Alle Lernmaterialien löschen";
+
+/* start all downloads for video */
+"course-item.combined-download-action.start-download.title" = "Alle Lernmaterialien herunterladen";
+
+/* stop all downloads for video */
+"course-item.combined-download-action.stop-download.title" = "Alle Downloads stoppen";
+
 /* message for proctoring alert */
 "course-item.proctoring.alert.message" = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
 
@@ -67,6 +76,15 @@
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
+
+/* delete all downloads in section */
+"course-section.combined-download-action.delete-downloads.title" = "Alle Lernmaterialien löschen";
+
+/* start all downloads for all videos in section */
+"course-section.combined-download-action.start-downloads.title" = "Alle Lernmaterialien herunterladen";
+
+/* stop all downloads in section */
+"course-section.combined-download-action.stop-downloads.title" = "Alle Downloads stoppen";
 
 /* title for spinner when loading section content */
 "course-section.loading-spinner.title" = "Inhalte werden geladen";

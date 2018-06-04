@@ -112,6 +112,35 @@ extension CourseSection {
             })
         }
 
+        // combined user actions
+
+        if itemCounter.stream.numberOfDownloadableItems > 0, itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.connection != .none {
+            let downloadActionTitle = NSLocalizedString("course-section.combined-download-action.start-downloads.title",
+                                                        comment: "start all downloads for all videos in section")
+            actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
+                StreamPersistenceManager.shared.startDownloads(for: self)
+                SlidesPersistenceManager.shared.startDownloads(for: self)
+            })
+        }
+
+        if itemCounter.stream.numberOfDownloadedItems > 0, itemCounter.slides.numberOfDownloadedItems > 0 {
+            let deleteActionTitle = NSLocalizedString("course-section.combined-download-action.delete-downloads.title",
+                                                      comment: "delete all downloads in section")
+            actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
+                StreamPersistenceManager.shared.deleteDownloads(for: self)
+                SlidesPersistenceManager.shared.deleteDownloads(for: self)
+            })
+        }
+
+        if itemCounter.stream.numberOfDownloadingItems > 0, itemCounter.slides.numberOfDownloadingItems > 0 {
+            let stopActionTitle = NSLocalizedString("course-section.combined-download-action.stop-downloads.title",
+                                                    comment: "stop all downloads in section")
+            actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
+                StreamPersistenceManager.shared.cancelDownloads(for: self)
+                SlidesPersistenceManager.shared.cancelDownloads(for: self)
+            })
+        }
+
         return actions
     }
 

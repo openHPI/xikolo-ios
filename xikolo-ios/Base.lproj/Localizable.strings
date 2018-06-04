@@ -35,6 +35,15 @@
 /* specfic title for course start in a course date cell */
 "course-date-cell.course-start.title" = "Course Start";
 
+/* delete all downloads for video */
+"course-item.combined-download-action.delete-download.title" = "Delete all learning materials";
+
+/* start all downloads for video */
+"course-item.combined-download-action.start-download.title" = "Download all learning materials";
+
+/* stop all downloads for video */
+"course-item.combined-download-action.stop-download.title" = "Stop all downloads";
+
 /* message for proctoring alert */
 "course-item.proctoring.alert.message" = "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.";
 
@@ -67,6 +76,15 @@
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
+
+/* delete all downloads in section */
+"course-section.combined-download-action.delete-downloads.title" = "Delete all learning materials";
+
+/* start all downloads for all videos in section */
+"course-section.combined-download-action.start-downloads.title" = "Download all learning materials";
+
+/* stop all downloads in section */
+"course-section.combined-download-action.stop-downloads.title" = "Stop all downloads";
 
 /* title for spinner when loading section content */
 "course-section.loading-spinner.title" = "Loading content";

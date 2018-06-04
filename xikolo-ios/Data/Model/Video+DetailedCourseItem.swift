@@ -19,7 +19,7 @@ extension Video: DetailedCourseItem {
         ]
 
         if self.slidesURL != nil {
-            content.append(.slides(downloaded: false))
+            content.append(.slides(downloaded: self.localSlidesBookmark != nil))
         }
 
         return content

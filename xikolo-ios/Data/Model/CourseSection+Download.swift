@@ -7,10 +7,15 @@ import UIKit
 
 extension CourseSection {
 
+    private struct DownloadItemCounter {
+        var numberOfDownloadableItems = 0
+        var numberOfDownloadingItems = 0
+        var numberOfDownloadedItems = 0
+    }
+
     private struct ItemCounter {
-        var numberOfDownloadableVideos = 0
-        var numberOfDownloadingVideos = 0
-        var numberOfDownloadedVideos = 0
+        var stream = DownloadItemCounter()
+        var slides = DownloadItemCounter()
     }
 
     private var videos: [Video] {
@@ -39,35 +44,71 @@ extension CourseSection {
             return item.content as? Video
         }.forEach { video in
             if video.localFileBookmark != nil {
-                itemCounter.numberOfDownloadedVideos += 1
-            } else if [.pending, .downloading].contains(VideoPersistenceManager.shared.downloadState(for: video)) {
-                itemCounter.numberOfDownloadingVideos += 1
+                itemCounter.stream.numberOfDownloadedItems += 1
+            } else if [.pending, .downloading].contains(StreamPersistenceManager.shared.downloadState(for: video)) {
+                itemCounter.stream.numberOfDownloadingItems += 1
             } else {
-                itemCounter.numberOfDownloadableVideos += 1
+                itemCounter.stream.numberOfDownloadableItems += 1
+            }
+
+            if video.localSlidesBookmark != nil {
+                itemCounter.slides.numberOfDownloadedItems += 1
+            } else if [.pending, .downloading].contains(SlidesPersistenceManager.shared.downloadState(for: video)) {
+                itemCounter.slides.numberOfDownloadingItems += 1
+            } else {
+                itemCounter.slides.numberOfDownloadableItems += 1
             }
         }
 
-        if itemCounter.numberOfDownloadableVideos > 0, ReachabilityHelper.connection != .none {
-            let downloadActionTitle = NSLocalizedString("course-section.video-download-action.start-downloads.title",
-                                                        comment: "start video downloads for all videos in section")
+        // user actions for stream
+
+        if itemCounter.stream.numberOfDownloadableItems > 0, ReachabilityHelper.connection != .none {
+            let downloadActionTitle = NSLocalizedString("course-section.stream-download-action.start-downloads.title",
+                                                        comment: "start stream downloads for all videos in section")
             actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.downloadVideos(for: self)
+                StreamPersistenceManager.shared.startDownloads(for: self)
             })
         }
 
-        if itemCounter.numberOfDownloadedVideos > 0 {
-            let deleteActionTitle = NSLocalizedString("course-section.video-download-action.delete-videos.title",
-                                                      comment: "delete all downloaded videos downloads in section")
+        if itemCounter.stream.numberOfDownloadedItems > 0 {
+            let deleteActionTitle = NSLocalizedString("course-section.stream-download-action.delete-downloads.title",
+                                                      comment: "delete all downloaded streams downloads in section")
             actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.deleteVideos(for: self)
+                StreamPersistenceManager.shared.deleteDownloads(for: self)
             })
         }
 
-        if itemCounter.numberOfDownloadingVideos > 0 {
-            let stopActionTitle = NSLocalizedString("course-section.video-download-action.stop-downloads.title",
-                                                    comment: "stop all video downloads in section")
+        if itemCounter.stream.numberOfDownloadingItems > 0 {
+            let stopActionTitle = NSLocalizedString("course-section.stream-download-action.stop-downloads.title",
+                                                    comment: "stop all stream downloads in section")
             actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
-                VideoPersistenceManager.shared.cancelVideoDownloads(for: self)
+                StreamPersistenceManager.shared.cancelDownloads(for: self)
+            })
+        }
+
+        // user actions for slides
+
+        if itemCounter.slides.numberOfDownloadableItems > 0, ReachabilityHelper.connection != .none {
+            let downloadActionTitle = NSLocalizedString("course-section.slides-download-action.start-downloads.title",
+                                                        comment: "start slides downloads for all videos in section")
+            actions.append(UIAlertAction(title: downloadActionTitle, style: .default) { _ in
+                SlidesPersistenceManager.shared.startDownloads(for: self)
+            })
+        }
+
+        if itemCounter.slides.numberOfDownloadedItems > 0 {
+            let deleteActionTitle = NSLocalizedString("course-section.slides-download-action.delete-downloads.title",
+                                                      comment: "delete all downloaded slides downloads in section")
+            actions.append(UIAlertAction(title: deleteActionTitle, style: .default) { _ in
+                SlidesPersistenceManager.shared.deleteDownloads(for: self)
+            })
+        }
+
+        if itemCounter.slides.numberOfDownloadingItems > 0 {
+            let stopActionTitle = NSLocalizedString("course-section.slides-download-action.stop-downloads.title",
+                                                    comment: "stop all slides downloads in section")
+            actions.append(UIAlertAction(title: stopActionTitle, style: .default) { _ in
+                SlidesPersistenceManager.shared.cancelDownloads(for: self)
             })
         }
 

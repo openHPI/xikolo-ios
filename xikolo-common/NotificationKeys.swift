@@ -11,8 +11,8 @@ struct NotificationKeys {
 
     static let dropdownCourseContentKey = Notification.Name("de.xikolo.ios.dropdown.courseContent")
 
-    // Video Download
-    static let VideoDownloadStateChangedKey = Notification.Name("de.xikolo.ios.video.download.stateChanged")
-    static let VideoDownloadProgressKey = Notification.Name("de.xikolo.ios.video.download.progress")
+    // Download
+    static let DownloadStateDidChange = Notification.Name("de.xikolo.ios.download.stateChanged")
+    static let DownloadProgressDidChange = Notification.Name("de.xikolo.ios.download.progress")
 
 }

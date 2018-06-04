@@ -24,11 +24,11 @@ class CourseItemCell: UITableViewCell {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
-                                       name: NotificationKeys.VideoDownloadStateChangedKey,
+                                       name: NotificationKeys.DownloadStateDidChange,
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadProgressNotification(_:)),
-                                       name: NotificationKeys.VideoDownloadProgressKey,
+                                       name: NotificationKeys.DownloadProgressDidChange,
                                        object: nil)
     }
 
@@ -73,8 +73,8 @@ class CourseItemCell: UITableViewCell {
             return
         }
 
-        let videoDownloadState = VideoPersistenceManager.shared.downloadState(for: video)
-        let progress = VideoPersistenceManager.shared.progress(for: video)
+        let videoDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
+        let progress = StreamPersistenceManager.shared.downloadProgress(for: video)
         self.progressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
         self.progressView.updateProgress(progress, animated: false)
     }
@@ -104,29 +104,30 @@ class CourseItemCell: UITableViewCell {
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
-            let downloadStateRawValue = noticaition.userInfo?[Video.Keys.downloadState] as? String,
-            let downloadState = Video.DownloadState(rawValue: downloadStateRawValue),
+        guard let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let item = self.item,
             let video = item.content as? Video,
             video.id == videoId else { return }
 
         DispatchQueue.main.async {
-            self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
-            self.progressView.updateProgress(VideoPersistenceManager.shared.progress(for: video))
-            self.configureDetailContent(for: item)
+            self.configure(for: item)
         }
     }
 
     @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let videoId = noticaition.userInfo?[Video.Keys.id] as? String,
-            let progress = noticaition.userInfo?[Video.Keys.precentDownload] as? Double,
+        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
+            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             let video = self.item?.content as? Video,
             video.id == videoId else { return }
 
-        DispatchQueue.main.async {
-            self.progressView.isHidden = false
-            self.progressView.updateProgress(progress)
+        if downloadType == StreamPersistenceManager.downloadType {
+            DispatchQueue.main.async {
+                self.progressView.isHidden = false
+                self.progressView.updateProgress(progress)
+            }
+        } else if downloadType == SlidesPersistenceManager.downloadType {
+//            XXX
         }
     }
 

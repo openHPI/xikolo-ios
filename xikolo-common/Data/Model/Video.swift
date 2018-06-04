@@ -17,6 +17,7 @@ final class Video: Content {
     @NSManaged var duration: Int32
     @NSManaged var lecturerStream: VideoStream?
     @NSManaged var localFileBookmark: NSData?
+    @NSManaged var localSlidesBookmark: NSData?
     @NSManaged var singleStream: VideoStream?
     @NSManaged var slidesSize: Int32
     @NSManaged var slidesStream: VideoStream?
@@ -56,7 +57,7 @@ final class Video: Content {
     }
 
     override var isAvailableOffline: Bool {
-        return self.localFileBookmark != nil
+        return self.localFileBookmark != nil || self.localSlidesBookmark != nil
     }
 
 }

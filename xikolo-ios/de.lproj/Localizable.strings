@@ -44,17 +44,26 @@
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Folien anschauen";
 
-/* delete video item */
-"course-item.video-download-action.delete-item.title" = "Video löschen";
+/* delete slides download for video */
+"course-item.slides-download-action.delete-download.title" = "Folien löschen";
+
+/* start download of slides for video */
+"course-item.slides-download-action.start-download.title" = "Folien herunterladen";
+
+/* stop slides download for video */
+"course-item.slides-download-action.stop-download.title" = "Folien-Download stoppen";
+
+/* delete stream download for video */
+"course-item.stream-download-action.delete-download.title" = "Video löschen";
 
 /* title to download error alert */
-"course-item.video-download-action.download-error.title" = "Fehler beim Video-Download";
+"course-item.stream-download-action.download-error.title" = "Fehler beim Video-Download";
 
-/* start download of video item */
-"course-item.video-download-action.start-download.title" = "Video herunterladen";
+/* start download of stream for video */
+"course-item.stream-download-action.start-download.title" = "Video herunterladen";
 
-/* stop download of video item */
-"course-item.video-download-action.stop-download.title" = "Download stoppen";
+/* stop stream download for video */
+"course-item.stream-download-action.stop-download.title" = "Video-Download stoppen";
 
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
@@ -62,14 +71,23 @@
 /* title for spinner when loading section content */
 "course-section.loading-spinner.title" = "Inhalte werden geladen";
 
-/* delete all downloaded videos downloads in section */
-"course-section.video-download-action.delete-videos.title" = "Alle Videos löschen";
+/* delete all downloaded slides downloads in section */
+"course-section.slides-download-action.delete-downloads.title" = "Alle Folien löschen";
 
-/* start video downloads for all videos in section */
-"course-section.video-download-action.start-downloads.title" = "Videos herunterladen";
+/* start slides downloads for all videos in section */
+"course-section.slides-download-action.start-downloads.title" = "Alle Folien herunterladen";
 
-/* stop all video downloads in section */
-"course-section.video-download-action.stop-downloads.title" = "Alle Downloads stoppen";
+/* stop all slides downloads in section */
+"course-section.slides-download-action.stop-downloads.title" = "Alle Folien-Downloads stoppen";
+
+/* delete all downloaded streams downloads in section */
+"course-section.stream-download-action.delete-downloads.title" = "Alle Videos löschen";
+
+/* start stream downloads for all videos in section */
+"course-section.stream-download-action.start-downloads.title" = "Alle Folien herunterladen";
+
+/* stop all stream downloads in section */
+"course-section.stream-download-action.stop-downloads.title" = "Alle Video-Downloads stoppen";
 
 /* the current state of a certificate */
 "course.certificates.achieved" = "erreicht";

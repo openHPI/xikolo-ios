@@ -221,8 +221,8 @@ class VideoViewController: UIViewController {
         if let localFileLocation = StreamPersistenceManager.shared.localFileLocation(for: video) {
             videoURL = localFileLocation
             self.playerControlView.setOffline(true)
-        } else if let hlsURL = video.singleStream?.hlsURL {
-            videoURL = hlsURL
+        } else if let streamURL = video.streamURLForDownload {
+            videoURL = streamURL
             self.playerControlView.setOffline(false)
         } else if let hdURL = video.singleStream?.hdURL, ReachabilityHelper.connection == .wifi {
             videoURL = hdURL

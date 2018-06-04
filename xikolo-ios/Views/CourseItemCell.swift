@@ -57,7 +57,7 @@ class CourseItemCell: UITableViewCell {
     }
 
     private func configureActionsButton(for courseItem: CourseItem) {
-        guard let video = courseItem.content as? Video, video.singleStream?.hlsURL != nil else {
+        guard let video = courseItem.content as? Video, video.streamURLForDownload != nil else {
             self.actionsButton.isHidden = true
             return
         }
@@ -68,7 +68,7 @@ class CourseItemCell: UITableViewCell {
     }
 
     private func configureProgressView(for courseItem: CourseItem) {
-        guard let video = courseItem.content as? Video, video.singleStream?.hlsURL != nil else {
+        guard let video = courseItem.content as? Video, video.streamURLForDownload != nil else {
             self.progressView.isHidden = true
             return
         }

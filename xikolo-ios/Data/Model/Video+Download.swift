@@ -7,6 +7,10 @@ import UIKit
 
 extension Video {
 
+    var streamURLForDownload: URL? {
+        return self.singleStream?.hlsURL
+    }
+
     var userActions: [UIAlertAction] {
         return [self.streamUserAction, self.slidesUserAction].compactMap { $0 }
     }
@@ -15,7 +19,7 @@ extension Video {
         let isOffline = ReachabilityHelper.connection == .none
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: self)
 
-        if let url = self.singleStream?.hlsURL, streamDownloadState == .notDownloaded, !isOffline {
+        if let url = self.streamURLForDownload, streamDownloadState == .notDownloaded, !isOffline {
             let downloadActionTitle = NSLocalizedString("course-item.stream-download-action.start-download.title",
                                                         comment: "start download of stream for video")
             return UIAlertAction(title: downloadActionTitle, style: .default) { _ in

@@ -48,7 +48,7 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
     }
 
     func startDownload(for video: Video) {
-        guard let url = video.singleStream?.hlsURL else { return }
+        guard let url = video.streamURLForDownload else { return }
         self.startDownload(with: url, for: video)
     }
 

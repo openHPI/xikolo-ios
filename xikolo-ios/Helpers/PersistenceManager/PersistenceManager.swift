@@ -23,6 +23,7 @@ protocol PersistenceManager: AnyObject {
     var progresses: [String: Double] { get set }
     var didRestorePersistenceManager: Bool { get set }
 
+    // functionality
     func restoreDownloads()
     func startDownload(with url: URL, for resource: Resource)
     func downloadState(for resource: Resource) -> DownloadState
@@ -31,23 +32,26 @@ protocol PersistenceManager: AnyObject {
     func cancelDownload(for resource: Resource)
     func localFileLocation(for resource: Resource) -> URL?
 
-    func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
-
-    func resourceModificationAfterStartingDownload(for resource: Resource)
-    func resourceModificationAfterDeletingDownload(for resource: Resource)
-
+    // callbacks
     func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?)
     func didFinishDownloadTask(_ task: URLSessionTask, to location: URL)
 
+    // configuration
+    func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
+    func didFailToDownloadResource(_ resource: Resource, with error: NSError)
+    func resourceModificationAfterStartingDownload(for resource: Resource)
+    func resourceModificationAfterDeletingDownload(for resource: Resource)
+
+    // delegates
     func didStartDownload(for resourceId: String)
     func didCancelDownload(for resourceId: String)
     func didFinishDownload(for resourceId: String)
 
-    func didFailToDownloadResource(_ resource: Resource, with error: NSError)
-
 }
 
 extension PersistenceManager {
+
+    // MARK: private methods
 
     func startListeningToDownloadProgressChanges() {
         // swiftlint:disable:next discarded_notification_center_observer
@@ -66,6 +70,8 @@ extension PersistenceManager {
         return queue
     }
 
+    // MARK: functionality
+
     func restoreDownloads() {
         guard !self.didRestorePersistenceManager else { return }
         self.didRestorePersistenceManager = true
@@ -76,23 +82,6 @@ extension PersistenceManager {
                 self.activeDownloads[task] = resourceId
             }
         }
-    }
-
-    func localFileLocation(for resource: Resource) -> URL? {
-        guard let bookmarkData = resource[keyPath: self.keyPath] as Data? else {
-            return nil
-        }
-
-        var bookmarkDataIsStale = false
-        guard let url = try? URL(resolvingBookmarkData: bookmarkData, bookmarkDataIsStale: &bookmarkDataIsStale) else {
-            return nil
-        }
-
-        if bookmarkDataIsStale {
-            return nil
-        }
-
-        return url
     }
 
     func startDownload(with url: URL, for resource: Resource) {
@@ -184,8 +173,24 @@ extension PersistenceManager {
         task?.cancel()
     }
 
-    func resourceModificationAfterStartingDownload(for resource: Resource) {}
-    func resourceModificationAfterDeletingDownload(for resource: Resource) {}
+    func localFileLocation(for resource: Resource) -> URL? {
+        guard let bookmarkData = resource[keyPath: self.keyPath] as Data? else {
+            return nil
+        }
+
+        var bookmarkDataIsStale = false
+        guard let url = try? URL(resolvingBookmarkData: bookmarkData, bookmarkDataIsStale: &bookmarkDataIsStale) else {
+            return nil
+        }
+
+        if bookmarkDataIsStale {
+            return nil
+        }
+
+        return url
+    }
+
+    // MARK: callbacks
 
     func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?) {
         guard let resourceId = self.activeDownloads.removeValue(forKey: task) else { return }
@@ -264,6 +269,13 @@ extension PersistenceManager {
             }
         }
     }
+
+    // MARK: configurations
+
+    func resourceModificationAfterStartingDownload(for resource: Resource) {}
+    func resourceModificationAfterDeletingDownload(for resource: Resource) {}
+
+    // MARK: delegate methods
 
     func didStartDownload(for resourceId: String) {}
     func didCancelDownload(for resourceId: String) {}

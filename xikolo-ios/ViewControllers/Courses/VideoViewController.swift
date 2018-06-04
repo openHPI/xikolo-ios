@@ -38,7 +38,7 @@ class VideoViewController: UIViewController {
     var player: CustomBMPlayer?
     let playerControlView = VideoPlayerControlView()
 
-    override func viewDidLoad() { // swiftlint:disable:this function_body_length
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0

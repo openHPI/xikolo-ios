@@ -48,18 +48,4 @@ enum DetailedData {
         }
     }
 
-    // XXX
-    var showDownloadedIcon: Bool {
-        switch self {
-        case .text(readingTime: _):
-            return false
-        default:
-            return true
-//        case let .video(duration: _, downloaded: downloaded):
-//            return downloaded
-//        case let .slides(downloaded: downloaded):
-//            return downloaded
-        }
-    }
-
 }

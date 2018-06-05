@@ -115,6 +115,7 @@ class CourseItemDetailView: UIView {
 class DetailedDataView: UIStackView {
 
     var videoId: String?
+    var downloadType: String?
 
     private static let readingTimeFormatter: DateComponentsFormatter = {
         var calendar = Calendar.current
@@ -169,30 +170,39 @@ class DetailedDataView: UIStackView {
 
     func configure(for data: DetailedData, for video: Video?, inOfflineMode: Bool) {
         self.videoId = video?.id
+        self.downloadType = {
+            switch data {
+            case .video(duration: _, downloaded: _):
+                return StreamPersistenceManager.downloadType
+            case .slides(downloaded: _):
+                return SlidesPersistenceManager.downloadType
+            default:
+                return nil
+            }
+        }()
 
         self.spacing = 3.0
 
         let textLabel = self.textLabel(forContentItem: data, inOfflineMode: inOfflineMode)
         self.addArrangedSubview(textLabel)
 
-        let downloadState: DownloadState = {
-            guard let video = video else { return .notDownloaded }
+        let progressConfiguration: (state: DownloadState, progress: Double?) = {
+            guard let video = video else { return (.notDownloaded, nil) }
 
             switch data {
             case .text(readingTime: _):
-                return .notDownloaded
+                return (.notDownloaded, nil)
             case .video(duration: _, downloaded: _):
-                return StreamPersistenceManager.shared.downloadState(for: video)
+                return (StreamPersistenceManager.shared.downloadState(for: video),StreamPersistenceManager.shared.downloadProgress(for: video))
             case .slides(downloaded: _):
-                return SlidesPersistenceManager.shared.downloadState(for: video)
+                return (SlidesPersistenceManager.shared.downloadState(for: video), SlidesPersistenceManager.shared.downloadProgress(for: video))
             }
         }()
 
-        if downloadState == .pending || downloadState == .downloading {
-            let progress: CGFloat? = nil
-            self.progressView.updateProgress(progress)
+        if progressConfiguration.state == .pending || progressConfiguration.state == .downloading {
             self.addArrangedSubview(self.progressView)
-        } else if downloadState == .downloaded {
+            self.progressView.updateProgress(progressConfiguration.progress, animated: false)
+        } else if progressConfiguration.state == .downloaded {
             self.addArrangedSubview(self.downloadedIcon)
         }
 
@@ -221,7 +231,8 @@ class DetailedDataView: UIStackView {
     }
 
     @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
+        guard noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String == self.downloadType,
+            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             self.videoId == videoId else { return }
 

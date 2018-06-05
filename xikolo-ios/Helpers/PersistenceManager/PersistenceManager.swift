@@ -55,7 +55,7 @@ extension PersistenceManager {
 
     func startListeningToDownloadProgressChanges() {
         // swiftlint:disable:next discarded_notification_center_observer
-        NotificationCenter.default.addObserver(forName: NotificationKeys.DownloadStateDidChange, object: nil, queue: nil) { notification in
+        NotificationCenter.default.addObserver(forName: NotificationKeys.DownloadProgressDidChange, object: nil, queue: nil) { notification in
             guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == Self.downloadType,
                 let resourceId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
                 let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double else { return }

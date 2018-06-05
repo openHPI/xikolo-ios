@@ -11,7 +11,6 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var readStateView: UIView!
     @IBOutlet private weak var iconView: UIImageView!
     @IBOutlet private weak var detailContentView: CourseItemDetailView!
-    @IBOutlet private weak var progressView: CircularProgressView!
     @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
@@ -24,8 +23,6 @@ class CourseItemCell: UITableViewCell {
                                                selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                                name: NotificationKeys.DownloadStateDidChange,
                                                object: nil)
-
-        self.progressView.isHidden = true
     }
 
     func configure(for courseItem: CourseItem) {

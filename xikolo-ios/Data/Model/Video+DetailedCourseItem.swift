@@ -15,11 +15,11 @@ extension Video: DetailedCourseItem {
 
     var detailedContent: [DetailedData] {
         var content: [DetailedData] = [
-            .video(duration: TimeInterval(self.duration), downloaded: self.localFileBookmark != nil),
+            .stream(duration: TimeInterval(self.duration)),
         ]
 
         if self.slidesURL != nil {
-            content.append(.slides(downloaded: self.localSlidesBookmark != nil))
+            content.append(.slides)
         }
 
         return content

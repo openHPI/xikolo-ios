@@ -172,9 +172,9 @@ class DetailedDataView: UIStackView {
         self.videoId = video?.id
         self.downloadType = {
             switch data {
-            case .video(duration: _, downloaded: _):
+            case .stream(duration: _):
                 return StreamPersistenceManager.downloadType
-            case .slides(downloaded: _):
+            case .slides:
                 return SlidesPersistenceManager.downloadType
             default:
                 return nil
@@ -183,21 +183,21 @@ class DetailedDataView: UIStackView {
 
         self.spacing = 3.0
 
-        let textLabel = self.textLabel(forContentItem: data, inOfflineMode: inOfflineMode)
-        self.addArrangedSubview(textLabel)
-
         let progressConfiguration: (state: DownloadState, progress: Double?) = {
             guard let video = video else { return (.notDownloaded, nil) }
 
             switch data {
             case .text(readingTime: _):
                 return (.notDownloaded, nil)
-            case .video(duration: _, downloaded: _):
+            case .stream(duration: _):
                 return (StreamPersistenceManager.shared.downloadState(for: video),StreamPersistenceManager.shared.downloadProgress(for: video))
-            case .slides(downloaded: _):
+            case .slides:
                 return (SlidesPersistenceManager.shared.downloadState(for: video), SlidesPersistenceManager.shared.downloadProgress(for: video))
             }
         }()
+
+        let textLabel = self.textLabel(forContentItem: data, in: progressConfiguration.state, inOfflineMode: inOfflineMode)
+        self.addArrangedSubview(textLabel)
 
         if progressConfiguration.state == .pending || progressConfiguration.state == .downloading {
             self.addArrangedSubview(self.progressView)
@@ -212,20 +212,24 @@ class DetailedDataView: UIStackView {
                                                object: nil)
     }
 
-    private func textLabel(forContentItem contentItem: DetailedData, inOfflineMode isOffline: Bool) -> UILabel {
+    private func textLabel(forContentItem contentItem: DetailedData, in downloadState: DownloadState, inOfflineMode isOffline: Bool) -> UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = contentItem.downloaded || !isOffline ? .darkText : .lightGray
 
+        let downloaded: Bool
         switch contentItem {
         case let .text(readingTime: readingTime):
             label.text = DetailedDataView.readingTimeFormatter.string(from: readingTime)
-        case let .video(duration: duration, downloaded: _):
+            downloaded = true
+        case let .stream(duration: duration):
             label.text = DetailedDataView.videoDurationFormatter.string(from: duration)
-        case .slides(downloaded: _):
+            downloaded = downloadState == .downloaded
+        case .slides:
             label.text = NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
+            downloaded = downloadState == .downloaded
         }
 
+        label.textColor = downloaded || !isOffline ? .darkText : .lightGray
         label.sizeToFit()
         return label
     }

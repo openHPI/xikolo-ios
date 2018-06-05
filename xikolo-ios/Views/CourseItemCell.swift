@@ -20,24 +20,26 @@ class CourseItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        // register notification observer
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
-                                       name: NotificationKeys.DownloadStateDidChange,
-                                       object: nil)
-        notificationCenter.addObserver(self,
-                                       selector: #selector(handleAssetDownloadProgressNotification(_:)),
-                                       name: NotificationKeys.DownloadProgressDidChange,
-                                       object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
+                                               name: NotificationKeys.DownloadStateDidChange,
+                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(handleAssetDownloadProgressNotification(_:)),
+//                                               name: NotificationKeys.DownloadProgressDidChange,
+//                                               object: nil)
+        self.progressView.isHidden = true
     }
 
     func configure(for courseItem: CourseItem) {
-        let isAvailable = !(self.delegate?.inOfflineMode ?? true) || (courseItem.content?.isAvailableOffline ?? false)
+        self.item = courseItem
+
+        let inOfflineMode = self.delegate?.inOfflineMode ?? true
+        let isAvailableInOfflineMode = courseItem.content?.isAvailableOffline ?? false
+        let isAvailable = !inOfflineMode || isAvailableInOfflineMode
 
         self.isUserInteractionEnabled = isAvailable
 
-        self.item = courseItem
         self.titleView.text = courseItem.title
         self.titleView.textColor = isAvailable ? UIColor.black : UIColor.lightGray
 
@@ -49,11 +51,12 @@ class CourseItemCell: UITableViewCell {
         self.readStateView.backgroundColor = isAvailable ? Brand.Color.primary : UIColor.lightGray
 
         self.configureActionsButton(for: courseItem)
-        self.configureProgressView(for: courseItem)
-        self.configureDetailContent(for: courseItem)
+//        self.configureProgressView(for: courseItem)
+//        self.configureDetailContent(for: courseItem)
+        self.detailContentView.configure(for: courseItem, with: self.delegate)
 
-        self.setNeedsDisplay()
-        self.setNeedsLayout()
+//        self.setNeedsDisplay()
+//        self.setNeedsLayout()
     }
 
     private func configureActionsButton(for courseItem: CourseItem) {
@@ -67,39 +70,40 @@ class CourseItemCell: UITableViewCell {
         self.actionsButton.isHidden = false
     }
 
-    private func configureProgressView(for courseItem: CourseItem) {
-        guard let video = courseItem.content as? Video, video.streamURLForDownload != nil else {
-            self.progressView.isHidden = true
-            return
-        }
+//    private func configureProgressView(for courseItem: CourseItem) {
+//        guard let video = courseItem.content as? Video, video.streamURLForDownload != nil else {
+//            self.progressView.isHidden = true
+//            return
+//        }
+//
+//        let videoDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
+//        let progress = StreamPersistenceManager.shared.downloadProgress(for: video)
+//        self.progressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
+//        self.progressView.updateProgress(progress, animated: false)
+//    }
 
-        let videoDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
-        let progress = StreamPersistenceManager.shared.downloadProgress(for: video)
-        self.progressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
-        self.progressView.updateProgress(progress, animated: false)
-    }
-
-    private func configureDetailContent(for courseItem: CourseItem) {
-        guard self.delegate?.contentToBePreloaded.contains(where: { $0.contentType == courseItem.contentType }) ?? false else {
-            // only certain content items will show additional information
-            self.detailContentView.isHidden = true
-            return
-        }
-
-        if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, !detailedContent.isEmpty {
-            self.detailContentView.setContent(detailedContent, inOfflineMode: self.delegate?.inOfflineMode ?? false)
-            self.detailContentView.isHidden = false
-        } else if self.delegate?.isPreloading ?? false {
-            self.detailContentView.isShimmering = true
-            self.detailContentView.isHidden = false
-        } else {
-            self.detailContentView.isHidden = true
-        }
-    }
+//    private func configureDetailContent(for courseItem: CourseItem) {
+//        guard self.delegate?.contentToBePreloaded.contains(where: { $0.contentType == courseItem.contentType }) ?? false else {
+//            // only certain content items will show additional information
+//            self.detailContentView.isHidden = true
+//            return
+//        }
+//
+//        self.detailContentView.configure(for: courseItem, with: self.delegate)
+//
+//        if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, !detailedContent.isEmpty {
+//            self.detailContentView.setContent(detailedContent, inOfflineMode: self.delegate?.inOfflineMode ?? false)
+//            self.detailContentView.isHidden = false
+//        } else if self.delegate?.isPreloading ?? false {
+//            self.detailContentView.isShimmering = true
+//            self.detailContentView.isHidden = false
+//        } else {
+//            self.detailContentView.isHidden = true
+//        }
+//    }
 
     @IBAction func tappedActionsButton() {
         guard let video = self.item?.content as? Video else { return }
-
         self.delegate?.showAlert(with: video.userActions, withTitle: self.item?.title, on: self.actionsButton)
     }
 
@@ -114,21 +118,21 @@ class CourseItemCell: UITableViewCell {
         }
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
-            let video = self.item?.content as? Video,
-            video.id == videoId else { return }
-
-        if downloadType == StreamPersistenceManager.downloadType {
-            DispatchQueue.main.async {
-                self.progressView.isHidden = false
-                self.progressView.updateProgress(progress)
-            }
-        } else if downloadType == SlidesPersistenceManager.downloadType {
-//            XXX
-        }
-    }
+//    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
+//        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
+//            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
+//            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+//            let video = self.item?.content as? Video,
+//            video.id == videoId else { return }
+//
+//        if downloadType == StreamPersistenceManager.downloadType {
+//            DispatchQueue.main.async {
+//                self.progressView.isHidden = false
+//                self.progressView.updateProgress(progress)
+//            }
+//        } else if downloadType == SlidesPersistenceManager.downloadType {
+////            XXX
+//        }
+//    }
 
 }

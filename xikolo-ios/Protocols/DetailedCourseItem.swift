@@ -36,25 +36,29 @@ enum DetailedData {
     case video(duration: TimeInterval, downloaded: Bool)
     case slides(downloaded: Bool)
 
+    // XXX
     var downloaded: Bool {
         switch self {
         case .text(readingTime: _):
             return true
-        case let .video(duration: _, downloaded: downloaded):
+        case let .video(duration: _, downloaded: downloaded): // XXX rename to stream., remove downloaded
             return downloaded
-        case let .slides(downloaded: downloaded):
+        case let .slides(downloaded: downloaded): // XX remove downloaded
             return downloaded
         }
     }
 
-    var shownDownloadedIcon: Bool {
+    // XXX
+    var showDownloadedIcon: Bool {
         switch self {
         case .text(readingTime: _):
             return false
-        case let .video(duration: _, downloaded: downloaded):
-            return downloaded
-        case let .slides(downloaded: downloaded):
-            return downloaded
+        default:
+            return true
+//        case let .video(duration: _, downloaded: downloaded):
+//            return downloaded
+//        case let .slides(downloaded: downloaded):
+//            return downloaded
         }
     }
 

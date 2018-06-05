@@ -24,10 +24,7 @@ class CourseItemCell: UITableViewCell {
                                                selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                                name: NotificationKeys.DownloadStateDidChange,
                                                object: nil)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(handleAssetDownloadProgressNotification(_:)),
-//                                               name: NotificationKeys.DownloadProgressDidChange,
-//                                               object: nil)
+
         self.progressView.isHidden = true
     }
 
@@ -51,12 +48,7 @@ class CourseItemCell: UITableViewCell {
         self.readStateView.backgroundColor = isAvailable ? Brand.Color.primary : UIColor.lightGray
 
         self.configureActionsButton(for: courseItem)
-//        self.configureProgressView(for: courseItem)
-//        self.configureDetailContent(for: courseItem)
         self.detailContentView.configure(for: courseItem, with: self.delegate)
-
-//        self.setNeedsDisplay()
-//        self.setNeedsLayout()
     }
 
     private func configureActionsButton(for courseItem: CourseItem) {
@@ -69,38 +61,6 @@ class CourseItemCell: UITableViewCell {
         self.actionsButton.tintColor = isAvailable ? Brand.Color.primary : UIColor.lightGray
         self.actionsButton.isHidden = false
     }
-
-//    private func configureProgressView(for courseItem: CourseItem) {
-//        guard let video = courseItem.content as? Video, video.streamURLForDownload != nil else {
-//            self.progressView.isHidden = true
-//            return
-//        }
-//
-//        let videoDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
-//        let progress = StreamPersistenceManager.shared.downloadProgress(for: video)
-//        self.progressView.isHidden = videoDownloadState == .notDownloaded || videoDownloadState == .downloaded
-//        self.progressView.updateProgress(progress, animated: false)
-//    }
-
-//    private func configureDetailContent(for courseItem: CourseItem) {
-//        guard self.delegate?.contentToBePreloaded.contains(where: { $0.contentType == courseItem.contentType }) ?? false else {
-//            // only certain content items will show additional information
-//            self.detailContentView.isHidden = true
-//            return
-//        }
-//
-//        self.detailContentView.configure(for: courseItem, with: self.delegate)
-//
-//        if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, !detailedContent.isEmpty {
-//            self.detailContentView.setContent(detailedContent, inOfflineMode: self.delegate?.inOfflineMode ?? false)
-//            self.detailContentView.isHidden = false
-//        } else if self.delegate?.isPreloading ?? false {
-//            self.detailContentView.isShimmering = true
-//            self.detailContentView.isHidden = false
-//        } else {
-//            self.detailContentView.isHidden = true
-//        }
-//    }
 
     @IBAction func tappedActionsButton() {
         guard let video = self.item?.content as? Video else { return }
@@ -117,22 +77,5 @@ class CourseItemCell: UITableViewCell {
             self.configure(for: item)
         }
     }
-
-//    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-//        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-//            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-//            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
-//            let video = self.item?.content as? Video,
-//            video.id == videoId else { return }
-//
-//        if downloadType == StreamPersistenceManager.downloadType {
-//            DispatchQueue.main.async {
-//                self.progressView.isHidden = false
-//                self.progressView.updateProgress(progress)
-//            }
-//        } else if downloadType == SlidesPersistenceManager.downloadType {
-////            XXX
-//        }
-//    }
 
 }

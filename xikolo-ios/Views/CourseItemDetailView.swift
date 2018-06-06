@@ -7,34 +7,12 @@ import UIKit
 
 class CourseItemDetailView: UIView {
 
-    private static let readingTimeFormatter: DateComponentsFormatter = {
-        var calendar = Calendar.current
-        calendar.locale = Locale.current
-        let formatter = DateComponentsFormatter()
-        formatter.calendar = calendar
-        formatter.unitsStyle = .abbreviated
-        formatter.allowedUnits = [.minute]
-        formatter.zeroFormattingBehavior = [.pad]
-        return formatter
-    }()
-
-    private static let videoDurationFormatter: DateComponentsFormatter = {
-        var calendar = Calendar.current
-        calendar.locale = Locale.current
-        let formatter = DateComponentsFormatter()
-        formatter.calendar = calendar
-        formatter.unitsStyle = .abbreviated
-        formatter.allowedUnits = [.minute, .second]
-        formatter.zeroFormattingBehavior = [.pad]
-        return formatter
-    }()
-
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .center
-        stackView.spacing = 2.0
+        stackView.spacing = 10.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -42,7 +20,7 @@ class CourseItemDetailView: UIView {
     private let shimmerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
-        view.layer.cornerRadius = 6
+        view.layer.cornerRadius = 6.0
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
@@ -65,6 +43,8 @@ class CourseItemDetailView: UIView {
         }
     }
 
+    private var courseItem: CourseItem?
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -85,61 +65,38 @@ class CourseItemDetailView: UIView {
         // swiftlint:enable line_length
     }
 
-    func setContent(_ content: [DetailedData], inOfflineMode isOffline: Bool) {
+    func configure(for courseItem: CourseItem, with delegate: CourseItemListViewController?) {
+        self.courseItem = courseItem
+
+        if !(delegate?.contentToBePreloaded.contains(where: { $0.contentType == courseItem.contentType }) ?? false) {
+            // only certain content items will show additional information
+            self.isHidden = true
+        } else if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, !detailedContent.isEmpty {
+            self.setContent(detailedContent, inOfflineMode: delegate?.inOfflineMode ?? false)
+            self.isHidden = false
+        } else if delegate?.isPreloading ?? false {
+            self.isShimmering = true
+            self.isHidden = false
+        } else {
+            self.isHidden = true
+        }
+    }
+
+    private func setContent(_ content: [DetailedData], inOfflineMode isOffline: Bool) {
         self.stackView.arrangedSubviews.forEach { view in
             self.stackView.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
 
-        for (index, contentItem) in content.enumerated() {
-            let label = self.label(forContentItem: contentItem, inOfflineMode: isOffline)
-            self.stackView.addArrangedSubview(label)
+        let video = self.courseItem?.content as? Video
 
-            if contentItem.shownDownloadedIcon, let image = R.image.downloadedTiny() {
-                let imageView = UIImageView(image: image)
-                imageView.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
-                imageView.contentMode = .scaleAspectFit
-                imageView.tintColor = contentItem.downloaded ? UIColor.darkText.withAlphaComponent(0.7) : UIColor.lightGray.withAlphaComponent(0.7)
-                self.stackView.addArrangedSubview(imageView)
-            }
-
-            if index < content.count - 1 {
-                let separator = self.separator(inOfflineMode: isOffline)
-                self.stackView.addArrangedSubview(separator)
-            }
+        for contentItem in content {
+            let view = DetailedDataView()
+            view.configure(for: contentItem, for: video, inOfflineMode: isOffline)
+            self.stackView.addArrangedSubview(view)
         }
 
         self.isShimmering = false
-    }
-
-    private func label(forContentItem contentItem: DetailedData, inOfflineMode isOffline: Bool) -> UILabel {
-        let color: UIColor = contentItem.downloaded || !isOffline ? .darkText : .lightGray
-
-        var labelText: String?
-        switch contentItem {
-        case let .text(readingTime: readingTime):
-            labelText = CourseItemDetailView.readingTimeFormatter.string(from: readingTime)
-        case let .video(duration: duration, downloaded: _):
-            labelText = CourseItemDetailView.videoDurationFormatter.string(from: duration)
-        case .slides(downloaded: _):
-            labelText = NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
-        }
-
-        return self.label(withText: labelText, color: color)
-    }
-
-    private func separator(inOfflineMode isOffline: Bool) -> UILabel {
-        let color: UIColor = !isOffline ? .darkText : .lightGray
-        return self.label(withText: " · ", color: color)
-    }
-
-    private func label(withText text: String?, color: UIColor) -> UILabel {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.text = text
-        label.textColor = color
-        label.sizeToFit()
-        return label
     }
 
     private var pulseAnimation: CAAnimation {
@@ -151,6 +108,141 @@ class CourseItemDetailView: UIView {
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = .infinity
         return pulseAnimation
+    }
+
+}
+
+class DetailedDataView: UIStackView {
+
+    var videoId: String?
+    var downloadType: String?
+
+    private static let readingTimeFormatter: DateComponentsFormatter = {
+        var calendar = Calendar.current
+        calendar.locale = Locale.current
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .abbreviated
+        formatter.allowedUnits = [.minute]
+        formatter.zeroFormattingBehavior = [.pad]
+        return formatter
+    }()
+
+    private static let videoDurationFormatter: DateComponentsFormatter = {
+        var calendar = Calendar.current
+        calendar.locale = Locale.current
+        let formatter = DateComponentsFormatter()
+        formatter.calendar = calendar
+        formatter.unitsStyle = .abbreviated
+        formatter.allowedUnits = [.minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+        return formatter
+    }()
+
+    private lazy var progressView: CircularProgressView = {
+        let progress = CircularProgressView()
+        progress.lineWidth = 1.25
+        progress.gapWidth = 0.0
+        progress.indeterminateProgress = 0.8
+        progress.tintColor = Brand.Color.primary
+        progress.updateProgress(0.33, animated: false)
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: progress, attribute: .width, relatedBy: .equal, toItem: progress, attribute: .height, multiplier: 1, constant: -4),
+        ])
+        return progress
+    }()
+
+    private lazy var downloadedIcon: UIImageView = {
+        let image = R.image.downloadedTiny()
+        let imageView = UIImageView(image: image)
+        imageView.bounds = CGRect(x: 0, y: 0, width: 12, height: 14)
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+        return imageView
+    }()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.axis = .horizontal
+        self.distribution = .fill
+        self.alignment = .center
+    }
+
+    func configure(for data: DetailedData, for video: Video?, inOfflineMode: Bool) {
+        self.videoId = video?.id
+        self.downloadType = {
+            switch data {
+            case .stream(duration: _):
+                return StreamPersistenceManager.downloadType
+            case .slides:
+                return SlidesPersistenceManager.downloadType
+            default:
+                return nil
+            }
+        }()
+
+        self.spacing = 3.0
+
+        let progressConfiguration: (state: DownloadState, progress: Double?) = {
+            guard let video = video else { return (.notDownloaded, nil) }
+
+            switch data {
+            case .text(readingTime: _):
+                return (.notDownloaded, nil)
+            case .stream(duration: _):
+                return (StreamPersistenceManager.shared.downloadState(for: video), StreamPersistenceManager.shared.downloadProgress(for: video))
+            case .slides:
+                return (SlidesPersistenceManager.shared.downloadState(for: video), SlidesPersistenceManager.shared.downloadProgress(for: video))
+            }
+        }()
+
+        let textLabel = self.textLabel(forContentItem: data, in: progressConfiguration.state, inOfflineMode: inOfflineMode)
+        self.addArrangedSubview(textLabel)
+
+        if progressConfiguration.state == .pending || progressConfiguration.state == .downloading {
+            self.addArrangedSubview(self.progressView)
+            self.progressView.updateProgress(progressConfiguration.progress, animated: false)
+        } else if progressConfiguration.state == .downloaded {
+            self.addArrangedSubview(self.downloadedIcon)
+        }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleAssetDownloadProgressNotification(_:)),
+                                               name: NotificationKeys.DownloadProgressDidChange,
+                                               object: nil)
+    }
+
+    private func textLabel(forContentItem contentItem: DetailedData, in downloadState: DownloadState, inOfflineMode isOffline: Bool) -> UILabel {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+
+        let downloaded: Bool
+        switch contentItem {
+        case let .text(readingTime: readingTime):
+            label.text = DetailedDataView.readingTimeFormatter.string(from: readingTime)
+            downloaded = true
+        case let .stream(duration: duration):
+            label.text = DetailedDataView.videoDurationFormatter.string(from: duration)
+            downloaded = downloadState == .downloaded
+        case .slides:
+            label.text = NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
+            downloaded = downloadState == .downloaded
+        }
+
+        label.textColor = downloaded || !isOffline ? .darkText : .lightGray
+        label.sizeToFit()
+        return label
+    }
+
+    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
+        guard noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String == self.downloadType,
+            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+            self.videoId == videoId else { return }
+
+        DispatchQueue.main.async {
+            self.progressView.updateProgress(progress)
+        }
     }
 
 }

@@ -32,30 +32,8 @@ extension DetailedCourseItem {
 
 enum DetailedData {
 
-    case text(readingTime: TimeInterval)  // if we have this, it's always downloaded
-    case video(duration: TimeInterval, downloaded: Bool)
-    case slides(downloaded: Bool)
-
-    var downloaded: Bool {
-        switch self {
-        case .text(readingTime: _):
-            return true
-        case let .video(duration: _, downloaded: downloaded):
-            return downloaded
-        case let .slides(downloaded: downloaded):
-            return downloaded
-        }
-    }
-
-    var shownDownloadedIcon: Bool {
-        switch self {
-        case .text(readingTime: _):
-            return false
-        case let .video(duration: _, downloaded: downloaded):
-            return downloaded
-        case let .slides(downloaded: downloaded):
-            return downloaded
-        }
-    }
+    case text(readingTime: TimeInterval)
+    case stream(duration: TimeInterval)
+    case slides
 
 }

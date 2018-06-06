@@ -190,7 +190,7 @@ class DetailedDataView: UIStackView {
             case .text(readingTime: _):
                 return (.notDownloaded, nil)
             case .stream(duration: _):
-                return (StreamPersistenceManager.shared.downloadState(for: video),StreamPersistenceManager.shared.downloadProgress(for: video))
+                return (StreamPersistenceManager.shared.downloadState(for: video), StreamPersistenceManager.shared.downloadProgress(for: video))
             case .slides:
                 return (SlidesPersistenceManager.shared.downloadState(for: video), SlidesPersistenceManager.shared.downloadProgress(for: video))
             }

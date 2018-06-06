@@ -81,7 +81,7 @@ DEPENDENCIES:
   - XCGLogger (~> 6.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - BrightFutures
     - Crashlytics
     - Down
@@ -163,4 +163,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5df97562664e18b2ae3ed40ab313b38da644fb9e
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

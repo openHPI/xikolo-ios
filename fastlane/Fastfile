@@ -25,7 +25,8 @@ platform :ios do
     )
     revert_tvOS_changes()
     commit_version_bump(
-      message: "New version #{new_version_number}"
+      message: "New version #{new_version_number}",
+      xcodeproj: "./xikolo-ios.xcodeproj",
     )
   end
 
@@ -36,7 +37,8 @@ platform :ios do
     )
     revert_tvOS_changes()
     commit_version_bump(
-      message: "New version #{new_version_number}"
+      message: "New version #{new_version_number}",
+      xcodeproj: "./xikolo-ios.xcodeproj",
     )
   end
 
@@ -47,7 +49,8 @@ platform :ios do
     )
     revert_tvOS_changes()
     commit_version_bump(
-      message: "New version #{new_version_number}"
+      message: "New version #{new_version_number}",
+      xcodeproj: "./xikolo-ios.xcodeproj",
     )
   end
 

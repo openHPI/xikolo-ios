@@ -393,8 +393,6 @@
 		5002290D205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		5002290E205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		5002290F205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
-		5007DA9B20BDDF8800F546A4 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5007DA9A20BDDF8800F546A4 /* HTMLStyler.framework */; };
-		5007DA9C20BDDF8800F546A4 /* HTMLStyler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5007DA9A20BDDF8800F546A4 /* HTMLStyler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		500A257E20824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		500A257F20824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		500A258020824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
@@ -717,6 +715,7 @@
 		5061C15720A1E0C800D6F314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */; };
 		5061C15820A1E0C800D6F314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */; };
 		5061C15920A1E0C800D6F314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */; };
+		50676D4F20C83BEB00E22F05 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5007DA9A20BDDF8800F546A4 /* HTMLStyler.framework */; };
 		5068B9CB1FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
 		5068B9CC1FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
 		5068B9CD1FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
@@ -1821,17 +1820,6 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		501BFA2320BC6E3500995B61 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				5007DA9C20BDDF8800F546A4 /* HTMLStyler.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50FC3C8C20B6DA4C007FEE83 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2054,6 +2042,8 @@
 		50604592206BCF48009569D1 /* URL+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+URLQueryItem.swift"; sourceTree = "<group>"; };
 		5060A5211F177304007896FF /* DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedCourseItem.swift; sourceTree = "<group>"; };
 		5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50676D4B20C83B6800E22F05 /* HTMLStyler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLStyler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50676D4D20C83B8A00E22F05 /* HTMLStyler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HTMLStyler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5068B9CA1FEA94A10047A75E /* Future+retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+retry.swift"; sourceTree = "<group>"; };
 		5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloNavigationController.swift; sourceTree = "<group>"; };
 		507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
@@ -2342,7 +2332,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5007DA9B20BDDF8800F546A4 /* HTMLStyler.framework in Frameworks */,
+				50676D4F20C83BEB00E22F05 /* HTMLStyler.framework in Frameworks */,
 				7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */,
 				7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */,
 				7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */,
@@ -3139,6 +3129,8 @@
 		FF91D61F2A79812A5E7FB607 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50676D4D20C83B8A00E22F05 /* HTMLStyler.framework */,
+				50676D4B20C83B6800E22F05 /* HTMLStyler.framework */,
 				AB2B67FD1CDA4C9C00D7E734 /* MediaPlayer.framework */,
 				7E4F62B01B3C2EF5006FCAD6 /* QuartzCore.framework */,
 				7E4F62AE1B3C2EEE006FCAD6 /* SystemConfiguration.framework */,
@@ -3416,7 +3408,6 @@
 				A90587B81B3BFC130095DB89 /* Frameworks */,
 				A90587B91B3BFC130095DB89 /* Resources */,
 				507A5CCE2021CCB9009B1F95 /* Copy GoogleServices-Info.plist */,
-				501BFA2320BC6E3500995B61 /* Embed Frameworks */,
 				4F0AA42C7F773EF30322D506 /* [CP] Embed Pods Frameworks */,
 				50429D991FB07149000C1D5E /* Clear Build Number */,
 			);

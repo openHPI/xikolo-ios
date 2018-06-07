@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-    <img src="https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev" />
+    <a  href="https://travis-ci.org/openHPI/xikolo-ios" target="_blank"><img src="https://travis-ci.org/openHPI/xikolo-ios.svg?branch=dev" /></a>
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
 </p>
 

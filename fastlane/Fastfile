@@ -286,4 +286,19 @@ platform :ios do
     git_pull(only_tags: true)
     changelog_from_git_commits(pretty: '%h %s')
   end
+
+  desc "Check if the core data model was modified since the last release"
+  lane :check_core_data do
+    git_pull(only_tags: true)
+    latest_tag = sh("git describe --tags `git rev-list --tags --max-count=1`").strip!
+    number_of_changed_core_data_files = sh("git diff #{latest_tag}..head --name-only | grep '.xcdatamodeld' | wc -l").strip!
+    UI.header "Status of Core Data model"
+    if number_of_changed_core_data_files == "0"
+      UI.important "The core data model was not modified since the last release."
+      UI.important "You should create a new model version!"
+    else
+      UI.success "The core data model was already modified since the last release."
+      UI.success "Feel you to make further changes."
+    end
+  end
 end

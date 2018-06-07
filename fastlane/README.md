@@ -220,6 +220,11 @@ fastlane ios refresh_dsyms_moochouse
 fastlane ios changelog
 ```
 
+### ios check_core_data
+```
+fastlane ios check_core_data
+```
+Check if the core data model was modified since the last release
 
 ----
 

@@ -715,7 +715,6 @@
 		5061C15720A1E0C800D6F314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */; };
 		5061C15820A1E0C800D6F314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */; };
 		5061C15920A1E0C800D6F314 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */; };
-		50676D4F20C83BEB00E22F05 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5007DA9A20BDDF8800F546A4 /* HTMLStyler.framework */; };
 		5068B9CB1FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
 		5068B9CC1FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
 		5068B9CD1FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
@@ -763,6 +762,7 @@
 		50B15BEA1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		50B15BEB1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		50B15BEC1FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		50BE78DD20CA56F500949C04 /* HTMLStyler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50BE78D720CA567700949C04 /* HTMLStyler.framework */; };
 		50BEC82F2036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
 		50BEC8302036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
 		50BEC8312036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
@@ -1781,6 +1781,20 @@
 			remoteGlobalIDString = 709C93021EF0952500F8F045;
 			remoteInfo = "moocHOUSE-iOS";
 		};
+		50BE78D620CA567700949C04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50BE78D120CA567700949C04 /* HTMLStyler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5072A4F120AED07E0049812E;
+			remoteInfo = HTMLStyler;
+		};
+		50BE78D820CA567700949C04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50BE78D120CA567700949C04 /* HTMLStyler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5072A4FA20AED07F0049812E;
+			remoteInfo = HTMLStylerTests;
+		};
 		709C93451EF099A900F8F045 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A90587B31B3BFC130095DB89 /* Project object */;
@@ -2060,6 +2074,7 @@
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Common.strings; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
+		50BE78D120CA567700949C04 /* HTMLStyler.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HTMLStyler.xcodeproj; path = HTMLStyler/HTMLStyler.xcodeproj; sourceTree = "<group>"; };
 		50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsHelper.swift; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -2332,7 +2347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50676D4F20C83BEB00E22F05 /* HTMLStyler.framework in Frameworks */,
+				50BE78DD20CA56F500949C04 /* HTMLStyler.framework in Frameworks */,
 				7E4F62B11B3C2EF5006FCAD6 /* QuartzCore.framework in Frameworks */,
 				7E4F62AF1B3C2EEE006FCAD6 /* SystemConfiguration.framework in Frameworks */,
 				7E4F62AD1B3C2EE5006FCAD6 /* Security.framework in Frameworks */,
@@ -2778,6 +2793,15 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		50BE78D220CA567700949C04 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50BE78D720CA567700949C04 /* HTMLStyler.framework */,
+				50BE78D920CA567700949C04 /* HTMLStylerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		50C92B5D1FBC4878001AFC08 /* FetchRequests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2839,6 +2863,7 @@
 		A90587B21B3BFC130095DB89 = {
 			isa = PBXGroup;
 			children = (
+				50BE78D120CA567700949C04 /* HTMLStyler.xcodeproj */,
 				24CB7E521CC6830000960269 /* xikolo-common */,
 				A90587BD1B3BFC130095DB89 /* xikolo-ios */,
 				24CB7E351CC678A000960269 /* xikolo-tvos */,
@@ -3665,6 +3690,12 @@
 			mainGroup = A90587B21B3BFC130095DB89;
 			productRefGroup = A90587BC1B3BFC130095DB89 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 50BE78D220CA567700949C04 /* Products */;
+					ProjectRef = 50BE78D120CA567700949C04 /* HTMLStyler.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A90587BA1B3BFC130095DB89 /* openHPI-iOS */,
@@ -3686,6 +3717,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		50BE78D720CA567700949C04 /* HTMLStyler.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HTMLStyler.framework;
+			remoteRef = 50BE78D620CA567700949C04 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		50BE78D920CA567700949C04 /* HTMLStylerTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HTMLStylerTests.xctest;
+			remoteRef = 50BE78D820CA567700949C04 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2490C4D91D1D92F200F42949 /* Resources */ = {

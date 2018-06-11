@@ -36,6 +36,25 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
         self.startDownload(with: url, for: video)
     }
 
+    private func trackingContext(for video: Video) -> [String: String?] {
+        return [
+            "section_id": video.item?.section?.id,
+            "course_id": video.item?.section?.course?.id,
+        ]
+    }
+
+    func didStartDownload(for resource: Video) {
+        TrackingHelper.createEvent(.slidesDownloadStart, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+    }
+
+    func didCancelDownload(for resource: Video) {
+        TrackingHelper.createEvent(.slidesDownloadCanceled, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+    }
+
+    func didFinishDownload(for resource: Video) {
+        TrackingHelper.createEvent(.slidesDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+    }
+
     func didFailToDownloadResource(_ resource: Video, with error: NSError) {
         CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
         CrashlyticsHelper.shared.recordError(error)

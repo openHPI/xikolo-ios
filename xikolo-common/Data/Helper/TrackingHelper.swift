@@ -34,6 +34,11 @@ class TrackingHelper {
         case videoDownloadFinished = "DOWNLOADED_HLS_VIDEO_FINISHED"
         case videoDownloadCanceled = "DOWNLOADED_HLS_VIDEO_CANCELED"
 
+        // slides download
+        case slidesDownloadStart = "DOWNLOADED_SLIDES"
+        case slidesDownloadFinished = "DOWNLOADED_SLIDES_FINISHED"
+        case slidesDownloadCanceled = "DOWNLOADED_SLIDES_CANCELED"
+
         // social
         case shareCourse = "SHARE_COURSE"
     }

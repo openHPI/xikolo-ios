@@ -60,17 +60,24 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
         resource.downloadDate = nil
     }
 
-    func didStartDownload(for resourceId: String) {
-        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resourceId)
+    private func trackingContext(for video: Video) -> [String: String?] {
+        return [
+            "section_id": video.item?.section?.id,
+            "course_id": video.item?.section?.course?.id,
+            "video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue),
+        ]
     }
 
-    func didCancelDownload(for resourceId: String) {
-        TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resourceId)
+    func didStartDownload(for resource: Video) {
+        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
     }
 
-    func didFinishDownload(for resourceId: String) {
-        let context = ["video_download_pref": String(describing: UserDefaults.standard.videoQualityForDownload.rawValue)]
-        TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resourceId, context: context)
+    func didCancelDownload(for resource: Video) {
+        TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+    }
+
+    func didFinishDownload(for resource: Video) {
+        TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
     }
 
     func didFailToDownloadResource(_ resource: Video, with error: NSError) {

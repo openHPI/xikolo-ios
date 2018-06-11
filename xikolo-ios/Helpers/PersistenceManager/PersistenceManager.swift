@@ -43,9 +43,9 @@ protocol PersistenceManager: AnyObject {
     func resourceModificationAfterDeletingDownload(for resource: Resource)
 
     // delegates
-    func didStartDownload(for resourceId: String)
-    func didCancelDownload(for resourceId: String)
-    func didFinishDownload(for resourceId: String)
+    func didStartDownload(for resource: Resource)
+    func didCancelDownload(for resource: Resource)
+    func didFinishDownload(for resource: Resource)
 
 }
 
@@ -94,7 +94,7 @@ extension PersistenceManager {
 
         task.resume()
 
-        self.didStartDownload(for: resource.id)
+        self.didStartDownload(for: resource)
 
         self.persistentContainerQueue.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()

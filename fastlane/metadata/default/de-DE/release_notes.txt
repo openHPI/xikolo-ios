@@ -1,1 +1,4 @@
+• Fehlerkorrekturen und allgemeine Verbesserungen
+
+Auch in Version 2.3:
 • Folien können nun heruntergeladen und ohne Internet genutzt werden

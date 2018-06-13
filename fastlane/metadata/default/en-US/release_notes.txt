@@ -1,1 +1,4 @@
+• Bug fixes and general improvements
+
+Also in version 2.3:
 • Add option to download slides for offline usage

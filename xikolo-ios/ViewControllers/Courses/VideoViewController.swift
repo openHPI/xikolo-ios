@@ -218,7 +218,8 @@ class VideoViewController: UIViewController {
 
         // determine video url (local file, currently downloading or remote)
         var videoURL: URL
-        if let localFileLocation = StreamPersistenceManager.shared.localFileLocation(for: video) {
+        if let localFileLocation = StreamPersistenceManager.shared.localFileLocation(for: video),
+            AVURLAsset(url: localFileLocation).assetCache?.isPlayableOffline ?? false {
             videoURL = localFileLocation
             self.playerControlView.setOffline(true)
         } else if let streamURL = video.streamURLForDownload {

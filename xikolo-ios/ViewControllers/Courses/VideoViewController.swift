@@ -106,6 +106,7 @@ class VideoViewController: UIViewController {
 
         if !(self.navigationController?.viewControllers.contains(self) ?? true) {
             self.trackVideoClose()
+            self.player?.prepareToDealloc()
         }
     }
 
@@ -117,6 +118,7 @@ class VideoViewController: UIViewController {
             courseTransitioningDelegate.interactionController.shouldFinish {
             self.player?.pause()
             self.trackVideoClose()
+            self.player?.prepareToDealloc()
         }
     }
 

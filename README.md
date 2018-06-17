@@ -16,7 +16,7 @@
 
 
 ### Development toolchain
-- Xcode 9.3
+- Xcode 9.4
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

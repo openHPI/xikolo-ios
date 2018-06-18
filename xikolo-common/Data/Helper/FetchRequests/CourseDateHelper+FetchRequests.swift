@@ -18,6 +18,12 @@ extension CourseDateHelper {
             return request
         }
 
+        static func courseDates(for course: Course) -> NSFetchRequest<CourseDate> {
+            let request: NSFetchRequest<CourseDate> = CourseDateHelper.FetchRequest.allCourseDates
+            request.predicate = NSPredicate(format: "course = %@", course)
+            return request
+        }
+
     }
 
 }

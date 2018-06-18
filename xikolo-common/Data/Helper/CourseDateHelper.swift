@@ -13,4 +13,11 @@ struct CourseDateHelper {
         return SyncHelper.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query)
     }
 
+    @discardableResult static func syncCourseDates(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+        let fetchRequest = CourseDateHelper.FetchRequest.courseDates(for: course)
+        var query = MultipleResourcesQuery(type: CourseDate.self)
+        query.addFilter(forKey: "course", withValue: course.id)
+        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+    }
+
 }

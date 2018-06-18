@@ -121,6 +121,7 @@ class CourseDetailViewController: UIViewController {
             self.enrollmentButton.stopAnimating()
         }.onSuccess { _ in
             CourseHelper.syncCourse(self.course)
+            CourseDateHelper.syncCourseDates(for: self.course)
             if let parent = self.parent as? CourseViewController {
                 parent.decideContent(newlyEnrolled: true)
             }

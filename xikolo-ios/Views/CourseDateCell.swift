@@ -11,57 +11,55 @@ class CourseDateCell: UITableViewCell {
     @IBOutlet private var courseLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
-    @IBOutlet private var timeLabel: UILabel!
-    @IBOutlet private var dateHighlightView: UIView!
 
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter.localizedFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        return dateFormatter
-    }()
-
-    static let timeFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter.localizedFormatter()
-        dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
 
-    func configure(_ courseDate: CourseDate) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         self.courseLabel.textColor = Brand.Color.secondary
-        if let courseName = courseDate.course?.title {
-            self.courseLabel.text = courseName
-            self.courseLabel.isHidden = false
-        } else {
-            self.courseLabel.isHidden = true
-        }
+    }
 
-        self.titleLabel.text = courseDate.title
+    func configure(_ courseDate: CourseDate) {
+        self.dateLabel.text = self.dateText(for: courseDate)
+        self.courseLabel.text = courseDate.course?.title
+        self.titleLabel.text = self.title(for: courseDate)
+    }
 
+    private func title(for courseDate: CourseDate) -> String {
+        let title = courseDate.title ?? "Unknown"
         switch courseDate.type {
-        case "item_submission_deadline"?:
-            self.dateHighlightView.backgroundColor = Brand.Color.tertiary
-            self.dateLabel.textColor = UIColor.white
-            self.timeLabel.textColor = UIColor.white
         case "course_start"?:
-            self.titleLabel.text = NSLocalizedString("course-date-cell.course-start.title",
-                                                     comment: "specfic title for course start in a course date cell")
+            return NSLocalizedString("course-date-cell.course-start.title",
+                                     comment: "title for course start in a course date cell")
+        case "section_start"?:
+            let format = NSLocalizedString("course-date-cell.section-start.title.%@ starts",
+                                           comment: "format for section start in course date cell")
+            return String.localizedStringWithFormat(format, title)
+        case "item_submission_deadline"?:
+            let format = NSLocalizedString("course-date-cell.item-submission.title.submission for %@ ends",
+                                           comment: "format for item submission in course date cell")
+            return String.localizedStringWithFormat(format, title)
         default:
-            self.dateHighlightView.backgroundColor = nil
-            self.dateLabel.textColor = UIColor.darkGray
-            self.timeLabel.textColor = UIColor.darkGray
+            return title
+        }
+    }
+
+    private func dateText(for courseDate: CourseDate) -> String {
+        guard let date = courseDate.date else {
+            return "Unknown"
         }
 
-        if let date = courseDate.date {
-            self.dateLabel.text = CourseDateCell.dateFormatter.string(from: date)
-            self.timeLabel.text = CourseDateCell.timeFormatter.string(from: date)
-            self.timeLabel.isHidden = false
-        } else {
-            self.dateLabel.text = "Unknown"
-            self.timeLabel.isHidden = true
+        var dateText = CourseDateCell.dateFormatter.string(from: date)
+        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
+            dateText += " (\(timeZoneAbbreviation))"
         }
 
+        return dateText
     }
 
 }

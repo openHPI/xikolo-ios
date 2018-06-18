@@ -7,6 +7,9 @@ import UIKit
 
 class CourseNavigationController: XikoloNavigationController {
 
+    static let dragPercentageThreshold: CGFloat = 0.5
+    static let flickVelocityThreshold: CGFloat = 300
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,22 +26,24 @@ class CourseNavigationController: XikoloNavigationController {
     }
 
     @objc func handlePullDown(sender: UIPanGestureRecognizer) {
-        let percentThreshold: CGFloat = 0.5
-
-        let translation = sender.translation(in: view)
-        let verticalMovement = translation.y / view.bounds.height
-        let progress = max(0.0, min(verticalMovement, 1.0))
-
         let transitionDelegate = self.transitioningDelegate as? CourseTransitioningDelegate
         guard let interactor = transitionDelegate?.interactionController else { return }
+
+        let translation = sender.translation(in: self.view)
+        let verticalMovement = translation.y / self.view.bounds.height
+        let dragPercentage = max(0.0, min(verticalMovement, 1.0))
+        let shouldFinishByDragging = dragPercentage > CourseNavigationController.dragPercentageThreshold
+
+        let velocity = sender.velocity(in: self.view)
+        let shouldFinishByFlicking = velocity.y > CourseNavigationController.flickVelocityThreshold
 
         switch sender.state {
         case .began:
             interactor.hasStarted = true
             self.dismiss(animated: true)
         case .changed:
-            interactor.shouldFinish = progress > percentThreshold
-            interactor.update(progress)
+            interactor.shouldFinish = shouldFinishByDragging || shouldFinishByFlicking
+            interactor.update(dragPercentage)
         case .cancelled:
             interactor.hasStarted = false
             interactor.cancel()

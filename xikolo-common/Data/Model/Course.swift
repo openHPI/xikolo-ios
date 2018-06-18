@@ -86,7 +86,7 @@ final class Course: NSManagedObject {
             let name = NSLocalizedString("course.certificates.name.recordOfAchievement", tableName: "Common", comment: "name of the certificate")
             let format = NSLocalizedString("course.certificates.explanation.recordOfAchievement",
                                            tableName: "Common",
-                                           comment: "explanation how to achieve the certificate #bc-ignore!")
+                                           comment: "explanation how to achieve the certificate")
             let explanation = roa.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
             let url = self.enrollment?.certificates?.recordOfAchievement
             certificates.append((name, explanation, url))
@@ -96,7 +96,7 @@ final class Course: NSManagedObject {
             let name = NSLocalizedString("course.certificates.name.confirmationOfParticipation", tableName: "Common", comment: "name of the certificate")
             let format = NSLocalizedString("course.certificates.explanation.confirmationOfParticipation",
                                            tableName: "Common",
-                                           comment: "explanation how to achieve the certificate #bc-ignore!")
+                                           comment: "explanation how to achieve the certificate")
             let explanation = cop.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
             let url = self.enrollment?.certificates?.confirmationOfParticipation
             certificates.append((name, explanation, url))

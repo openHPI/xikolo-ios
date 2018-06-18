@@ -68,33 +68,5 @@
 			<string>%d Kurse gefunden</string>
 		</dict>
 	</dict>
-	<key>course.certificates.explanation.recordOfAchievement</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@explanation@</string>
-		<key>explanation</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>other</key>
-			<string>Das Zeugnis erhält, wer in der Summe aller benoteten Aufgaben mehr als %d%% der Höchstpunktzahl erreicht hat.</string>
-		</dict>
-	</dict>
-	<key>course.certificates.explanation.confirmationOfParticipation</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@explanation@</string>
-		<key>explanation</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>other</key>
-			<string>Die Teilnahmebestätigung erhält, wer auf zumindest %d%% der Kursunterlagen zugegriffen hat.</string>
-		</dict>
-	</dict>
 </dict>
 </plist>

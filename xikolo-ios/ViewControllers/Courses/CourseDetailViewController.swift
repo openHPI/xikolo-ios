@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import SDWebImage
 import SimpleRoundedButton
 import UIKit
@@ -43,7 +44,7 @@ class CourseDetailViewController: UIViewController {
                                                object: nil)
     }
 
-    func updateView() {
+    private func updateView() {
         self.titleView.text = self.course.title
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
@@ -106,71 +107,42 @@ class CourseDetailViewController: UIViewController {
     @IBAction func enroll(_ sender: UIButton) {
         if UserProfileHelper.isLoggedIn {
             if !course.hasEnrollment {
-                createEnrollment()
+                self.createEnrollment()
             } else {
-                showEnrollmentOptions()
+                self.showEnrollmentOptions()
             }
         } else {
             self.performSegue(withIdentifier: R.segue.courseDetailViewController.showLogin, sender: nil)
         }
     }
 
-    func createEnrollment() {
-        self.enrollmentButton.startAnimating()
-        EnrollmentHelper.createEnrollment(for: self.course).onComplete { _ in
-            self.enrollmentButton.stopAnimating()
-        }.onSuccess { _ in
-            CourseHelper.syncCourse(self.course)
-            CourseDateHelper.syncCourseDates(for: self.course)
-            if let parent = self.parent as? CourseViewController {
-                parent.decideContent(newlyEnrolled: true)
-            }
-        }.onFailure { _ in
-            self.enrollmentButton.shake()
+    private func createEnrollment() {
+        self.actOnEnrollmentChange(whenNewlyCreated: true) {
+            EnrollmentHelper.createEnrollment(for: self.course)
         }
     }
 
-    func showEnrollmentOptions() {
+    private func showEnrollmentOptions() {
         let alertTitle = NSLocalizedString("enrollment.options-alert.title", comment: "title of enrollment options alert")
         let alertMessage = NSLocalizedString("enrollment.options-alert.message", comment: "message of enrollment alert")
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = self.enrollmentButton
         alert.popoverPresentationController?.sourceRect = self.enrollmentButton.bounds
-        alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up.union(.down)
+        alert.popoverPresentationController?.permittedArrowDirections = [.up, .down]
 
         let completedActionTitle = NSLocalizedString("enrollment.options-alert.mask-as-completed-action.title",
                                                      comment: "title for 'mask as completed' action")
         let completedAction = UIAlertAction(title: completedActionTitle, style: .default) { _ in
-            self.enrollmentButton.startAnimating()
-            EnrollmentHelper.markAsCompleted(self.course).onComplete { _ in
-                self.enrollmentButton.stopAnimating()
-            }.onSuccess { _ in
-                DispatchQueue.main.async {
-                    self.refreshEnrollmentViews()
-                    if let parent = self.parent as? CourseViewController {
-                        parent.decideContent()
-                    }
-                }
-            }.onFailure { _ in
-                self.enrollmentButton.shake()
+            self.actOnEnrollmentChange {
+                EnrollmentHelper.markAsCompleted(self.course)
             }
         }
 
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",
                                                     comment: "title for unenroll action")
         let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in
-            self.enrollmentButton.startAnimating()
-            EnrollmentHelper.delete(self.course.enrollment).onComplete { _ in
-                self.enrollmentButton.stopAnimating()
-            }.onSuccess { _ in
-                DispatchQueue.main.async {
-                    self.refreshEnrollmentViews()
-                    if let parent = self.parent as? CourseViewController {
-                        parent.decideContent()
-                    }
-                }
-            }.onFailure { _ in
-                self.enrollmentButton.shake()
+            self.actOnEnrollmentChange {
+                EnrollmentHelper.delete(self.course.enrollment)
             }
         }
 
@@ -181,6 +153,27 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(unenrollAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true)
+    }
+
+    private func actOnEnrollmentChange(whenNewlyCreated newlyCreated: Bool = false, for task: () -> Future<Void, XikoloError>) {
+        self.enrollmentButton.startAnimating()
+        task().onComplete { _ in
+            self.enrollmentButton.stopAnimating()
+        }.onSuccess { _ in
+            if newlyCreated {
+                CourseHelper.syncCourse(self.course)
+                CourseDateHelper.syncCourseDates(for: self.course)
+            }
+
+            DispatchQueue.main.async {
+                self.refreshEnrollmentViews()
+                if let parent = self.parent as? CourseViewController {
+                    parent.decideContent(newlyEnrolled: newlyCreated)
+                }
+            }
+        }.onFailure { _ in
+            self.enrollmentButton.shake()
+        }
     }
 
 }

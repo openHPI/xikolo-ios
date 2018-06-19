@@ -12,7 +12,13 @@
 "course-date-formatting.started.since %@" = "Seit %@";
 
 /* explanation how to achieve the certificate */
+"course.certificates.explanation.confirmationOfParticipation" = "Die Teilnahmebestätigung erhält, wer auf zumindest %d%% der Kursunterlagen zugegriffen hat.";
+
+/* explanation how to achieve the certificate */
 "course.certificates.explanation.qualifiedCertificate" = "Das Qualifizierte Zertifikat erhält, wer es gebucht hat und das Zeugnis erhalten hat";
+
+/* explanation how to achieve the certificate */
+"course.certificates.explanation.recordOfAchievement" = "Das Zeugnis erhält, wer in der Summe aller benoteten Aufgaben mehr als %d%% der Höchstpunktzahl erreicht hat.";
 
 /* name of the certificate */
 "course.certificates.name.confirmationOfParticipation" = "Teilnahmebestätigung";

@@ -12,7 +12,13 @@
 "course-date-formatting.started.since %@" = "Since %@";
 
 /* explanation how to achieve the certificate */
+"course.certificates.explanation.confirmationOfParticipation" = "A confirmation of participation is issued to those who have completed at least %d%% of the course material.";
+
+/* explanation how to achieve the certificate */
 "course.certificates.explanation.qualifiedCertificate" = "A qualified certificate is issued to those who have booked it and gained a record of achievement.";
+
+/* explanation how to achieve the certificate */
+"course.certificates.explanation.recordOfAchievement" = "A record of achievement is issued to those who have earned more than %d%% of the maximum number of points for the sum of all graded assignments.";
 
 /* name of the certificate */
 "course.certificates.name.confirmationOfParticipation" = "Confirmation of Participation";

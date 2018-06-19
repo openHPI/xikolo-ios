@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ct-r5-KFX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ct-r5-KFX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,73 +27,33 @@
                             </connections>
                         </containerView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseDateCell" id="rl9-bq-Z74" customClass="CourseDateCell" customModule="moocHOUSE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="262" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseDateCell" rowHeight="70" id="rl9-bq-Z74" customClass="CourseDateCell" customModule="moocHOUSE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="262" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="rl9-bq-Z74" id="we2-zY-m1M">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXD-3G-Ph4">
-                                            <rect key="frame" x="20" y="6" width="80" height="32"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym6-4L-lMw">
+                                            <rect key="frame" x="16" y="11" width="343" height="48"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qkO-mu-iHn">
-                                                    <rect key="frame" x="4" y="2" width="72" height="28"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaE-wZ-2o2">
-                                                            <rect key="frame" x="23" y="0.0" width="26.5" height="14.5"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <attributedString key="userComments">
-                                                                <fragment content="#bc-ignore!">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="smallSystem"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1e-df-voh">
-                                                            <rect key="frame" x="23" y="14.5" width="26" height="13.5"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <attributedString key="userComments">
-                                                                <fragment content="#bc-ignore!">
-                                                                    <attributes>
-                                                                        <font key="NSFont" usesAppearanceFont="YES"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="90" id="OFt-aK-xdD"/>
-                                                    </constraints>
-                                                </stackView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="qkO-mu-iHn" firstAttribute="leading" secondItem="OXD-3G-Ph4" secondAttribute="leading" constant="4" id="M2L-Yg-14F"/>
-                                                <constraint firstAttribute="width" constant="80" id="eC9-LJ-yrr"/>
-                                                <constraint firstItem="qkO-mu-iHn" firstAttribute="top" secondItem="OXD-3G-Ph4" secondAttribute="top" constant="2" id="qza-oR-dBj"/>
-                                                <constraint firstAttribute="bottom" secondItem="qkO-mu-iHn" secondAttribute="bottom" constant="2" id="vdV-yI-pXn"/>
-                                                <constraint firstAttribute="trailing" secondItem="qkO-mu-iHn" secondAttribute="trailing" constant="4" id="wBb-gl-JTd"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ym6-4L-lMw">
-                                            <rect key="frame" x="108" y="4" width="247" height="35.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="1000" text="Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grh-cI-he0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="247" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaE-wZ-2o2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="10.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="smallSystem"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="1000" text="Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grh-cI-he0">
+                                                    <rect key="frame" x="0.0" y="13" width="343" height="13.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -104,8 +66,8 @@
                                                     </attributedString>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOC-D7-bV6">
-                                                    <rect key="frame" x="0.0" y="15" width="247" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="27.5" width="343" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <attributedString key="userComments">
@@ -121,19 +83,15 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Ym6-4L-lMw" secondAttribute="bottom" constant="4" id="4Kf-UX-odz"/>
-                                        <constraint firstItem="Ym6-4L-lMw" firstAttribute="leading" secondItem="OXD-3G-Ph4" secondAttribute="trailing" constant="8" id="UPO-cl-Baj"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ym6-4L-lMw" secondAttribute="trailing" constant="20" symbolic="YES" id="aIG-q5-aIE"/>
-                                        <constraint firstItem="OXD-3G-Ph4" firstAttribute="leading" secondItem="we2-zY-m1M" secondAttribute="leading" constant="20" symbolic="YES" id="j0z-9W-MCF"/>
-                                        <constraint firstItem="OXD-3G-Ph4" firstAttribute="centerY" secondItem="we2-zY-m1M" secondAttribute="centerY" id="jkg-4E-Z2E"/>
-                                        <constraint firstItem="Ym6-4L-lMw" firstAttribute="top" secondItem="we2-zY-m1M" secondAttribute="top" constant="4" id="oKV-8m-FGL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ym6-4L-lMw" secondAttribute="bottom" id="4Kf-UX-odz"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ym6-4L-lMw" secondAttribute="trailing" id="aIG-q5-aIE"/>
+                                        <constraint firstItem="Ym6-4L-lMw" firstAttribute="leading" secondItem="we2-zY-m1M" secondAttribute="leadingMargin" id="fJH-S7-2BG"/>
+                                        <constraint firstItem="Ym6-4L-lMw" firstAttribute="top" secondItem="we2-zY-m1M" secondAttribute="topMargin" id="oKV-8m-FGL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="courseLabel" destination="grh-cI-he0" id="GoZ-2g-9WT"/>
-                                    <outlet property="dateHighlightView" destination="OXD-3G-Ph4" id="UFW-0o-hzm"/>
                                     <outlet property="dateLabel" destination="BaE-wZ-2o2" id="hgY-p6-uOk"/>
-                                    <outlet property="timeLabel" destination="t1e-df-voh" id="19b-Ut-mNG"/>
                                     <outlet property="titleLabel" destination="zOC-D7-bV6" id="DqW-l5-fY4"/>
                                 </connections>
                             </tableViewCell>

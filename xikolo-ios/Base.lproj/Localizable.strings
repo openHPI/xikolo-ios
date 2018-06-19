@@ -32,8 +32,14 @@
 /* title of learnings view of course view */
 "course-content.view.learnings.title" = "Learnings";
 
-/* specfic title for course start in a course date cell */
+/* title for course start in a course date cell */
 "course-date-cell.course-start.title" = "Course Start";
+
+/* format for item submission in course date cell */
+"course-date-cell.item-submission.title.submission for %@ ends" = "Submission for %@ ends";
+
+/* format for section start in course date cell */
+"course-date-cell.section-start.title.%@ starts" = "%@ starts";
 
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Delete all learning materials";

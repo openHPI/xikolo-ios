@@ -12,7 +12,7 @@ import SimulatorStatusMagic
 #endif
 
 @UIApplicationMain
-class AppDelegate: AbstractAppDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -21,7 +21,7 @@ class AppDelegate: AbstractAppDelegate {
         return instance.require(hint: "Unable to find AppDelegate")
     }
 
-    override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window?.tintColor = Brand.Color.window
 
         // select start tab
@@ -50,6 +50,9 @@ class AppDelegate: AbstractAppDelegate {
         StreamPersistenceManager.shared.restoreDownloads()
         SlidesPersistenceManager.shared.restoreDownloads()
 
+        CoreDataObserver.standard.startObserving()
+        ReachabilityHelper.startObserving()
+
         #if OPENSAP
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.
             // By setting 'username' and 'password', a dummy certificate is created that allows the request
@@ -67,7 +70,7 @@ class AppDelegate: AbstractAppDelegate {
         }
         #endif
 
-        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
     }
 
     func application(_ application: UIApplication,
@@ -98,9 +101,10 @@ class AppDelegate: AbstractAppDelegate {
         // optionally refresh the user interface.
     }
 
-    override func applicationWillTerminate(_ application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        super.applicationWillTerminate(application)
+        CoreDataObserver.standard.stopObserving()
+        ReachabilityHelper.stopObserving()
     }
 
     var tabBarController: UITabBarController? {

@@ -247,8 +247,6 @@
 		24BA40EA1D3F9B1200E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
 		24BA40ED1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
-		24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
-		24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
@@ -1304,8 +1302,6 @@
 		70D1EB111EF12DF00088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		70D1EB121EF12DF00088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		70D1EB131EF12DF10088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
-		70D1EB221EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
-		70D1EB231EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		70D1EB241EF12E060088C0FF /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		70D1EB251EF12E070088C0FF /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		70D1EB261EF12E0B0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
@@ -1606,8 +1602,6 @@
 		ABA0F0E91DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		ABA0F0EC1DF8CE980001D88D /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		ABA0F0ED1DF8CE990001D88D /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
-		ABA0F0EE1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
-		ABA0F0EF1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		ABA0F0F01DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F11DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
@@ -1657,8 +1651,6 @@
 		ABA0F1241DF8CFA70001D88D /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
 		ABA0F1251DF8CFAC0001D88D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
-		ABAC56091D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
-		ABAC560A1D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		ABB49A8E1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
 		ABB49A8F1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
 		ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */; };
@@ -2194,7 +2186,6 @@
 		AB9AF2D91CF72EF100ED3EB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabAccount.storyboard; sourceTree = "<group>"; };
 		ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLabelHelper.swift; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
-		ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractItemRichtextViewController.swift; sourceTree = "<group>"; };
 		ABBE0E2D1E94D72A00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
 		ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
 		ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -2401,7 +2392,6 @@
 		241D4AEA1CC9918600E35B1F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */,
 				24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */,
 			);
 			path = ViewControllers;
@@ -4921,7 +4911,6 @@
 				50DD35161FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				4E6AB1FB1DD36AB500B048DB /* CourseDate.swift in Sources */,
 				5002290D205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
-				24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
 				24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */,
 				5068B9CE1FEA94A10047A75E /* Future+retry.swift in Sources */,
 				70F379D0205B643400149C3B /* CertificatesListViewController.swift in Sources */,
@@ -5087,7 +5076,6 @@
 				AB4A01B21E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				5012125C1FCC679F0022A7AF /* Pushable.swift in Sources */,
 				70103CF320110C31006DA177 /* Logger.swift in Sources */,
-				24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */,
 				24E3DD1E1D5E219E00297118 /* ItemQuizViewController.swift in Sources */,
 				50F57DE71FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				24BA40A91D3F9ABE00E38C2C /* Video.swift in Sources */,
@@ -5306,7 +5294,6 @@
 				5053988A1F72A9F500A87DC8 /* NotificationKeys.swift in Sources */,
 				240CAA1A1D65EB930072F96D /* ChoiceAnswerCell.swift in Sources */,
 				24128FAD1D183287000684B7 /* AVMetadataItem+convenience.swift in Sources */,
-				ABAC560A1D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
 				50C92B601FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				AB4A01AF1E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				249C01A51D39169600B54AAC /* ViewControllerLoadingHelper.swift in Sources */,
@@ -5548,7 +5535,6 @@
 				70D1EAB31EF0ABFC0088C0FF /* CourseItemHelper.swift in Sources */,
 				5057ED901FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
 				5019A7661F20ACE6008C8138 /* Video+DetailedCourseItem.swift in Sources */,
-				70D1EB221EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */,
 				70D1EAEC1EF0AC9A0088C0FF /* CourseDatesListViewController.swift in Sources */,
 				70D1EACF1EF0AC1E0088C0FF /* TrackingHelper.swift in Sources */,
 				70F456321F0128E400A2C6B7 /* UserProfile.swift in Sources */,
@@ -5655,7 +5641,6 @@
 				50F6A5C01FB316A6007DBAFF /* VideoStream.swift in Sources */,
 				70D1EB401EF133F10088C0FF /* UIViewController+ErrorHelper.swift in Sources */,
 				70D1EAC21EF0AC0C0088C0FF /* PeerAssessmentHelper.swift in Sources */,
-				70D1EB231EF12E040088C0FF /* AbstractItemRichtextViewController.swift in Sources */,
 				50F57DC61FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				70D1EB561EF134410088C0FF /* QuestionIndicatorListView.swift in Sources */,
 				50ED3C5A1F4AE80200CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
@@ -5933,7 +5918,6 @@
 				50C92B5F1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				24B6514D1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
 				50082B5F20BFDAC900B4511C /* DownloadState.swift in Sources */,
-				ABAC56091D145012008D30FB /* AbstractItemRichtextViewController.swift in Sources */,
 				4E2B80AB1DDDE43D0058552D /* CourseDateCell.swift in Sources */,
 				5051F80F1FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				5057ED8D1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
@@ -6217,7 +6201,6 @@
 				ABA0F0EC1DF8CE980001D88D /* AbstractLoginViewController.swift in Sources */,
 				50371FFB204ECB8E006E9634 /* CircularProgressView.swift in Sources */,
 				ABA0F0E11DF8CE750001D88D /* Error.swift in Sources */,
-				ABA0F0EE1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6250,7 +6233,6 @@
 				504C5A771F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				ABA0F0CB1DF8CE450001D88D /* CourseHelper.swift in Sources */,
 				ABA0F06C1DF8CDAA0001D88D /* LTIExercise.swift in Sources */,
-				ABA0F0EF1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */,
 				ABA0F0DE1DF8CE6C0001D88D /* AnnouncementHelper.swift in Sources */,
 				ABA0F10F1DF8CF5B0001D88D /* CourseDetailsViewController.swift in Sources */,
 				505398921F72A9FE00A87DC8 /* NotificationKeys.swift in Sources */,

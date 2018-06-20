@@ -29,24 +29,14 @@ extension UIAlertController {
             customContainer.addSubview(customView)
 
             customView.translatesAutoresizingMaskIntoConstraints = false
-            customContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[customView]-|",
-                                                                          options: [],
-                                                                          metrics: nil,
-                                                                          views: ["customView": customView]))
-            customContainer.addConstraint(NSLayoutConstraint(item: customContentPlaceholder,
-                                                             attribute: .top,
-                                                             relatedBy: .equal,
-                                                             toItem: customView,
-                                                             attribute: .top,
-                                                             multiplier: 1,
-                                                             constant: -8))
-            customContainer.addConstraint(NSLayoutConstraint(item: customContentPlaceholder,
-                                                             attribute: .height,
-                                                             relatedBy: .equal,
-                                                             toItem: customView,
-                                                             attribute: .height,
-                                                             multiplier: 1,
-                                                             constant: 0))
+
+            NSLayoutConstraint.activate([
+                customView.leadingAnchor.constraint(equalTo: customContainer.leadingAnchor),
+                customView.trailingAnchor.constraint(equalTo: customContainer.trailingAnchor),
+                customContentPlaceholder.topAnchor.constraint(equalTo: customView.topAnchor, constant: -8),
+                customContentPlaceholder.heightAnchor.constraint(equalTo: customView.heightAnchor),
+            ])
+
             customContentPlaceholder.text = ""
         } else { // In case something fishy is going on, fall back to the standard behaviour and display a fallback message string
             self.message = fallbackMessage

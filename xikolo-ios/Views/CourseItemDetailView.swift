@@ -51,18 +51,16 @@ class CourseItemDetailView: UIView {
         self.addSubview(self.stackView)
         self.addSubview(self.shimmerView)
 
-        // swiftlint:disable line_length
         NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: self.stackView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.stackView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.stackView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.stackView, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.shimmerView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 3),
-            NSLayoutConstraint(item: self.shimmerView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 3),
-            NSLayoutConstraint(item: self.shimmerView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: self.shimmerView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.5, constant: 0),
+            self.stackView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.stackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor),
+            self.shimmerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 3),
+            self.shimmerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 3),
+            self.shimmerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.shimmerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
         ])
-        // swiftlint:enable line_length
     }
 
     func configure(for courseItem: CourseItem, with delegate: CourseItemListViewController?) {
@@ -146,9 +144,7 @@ class DetailedDataView: UIStackView {
         progress.indeterminateProgress = 0.8
         progress.tintColor = Brand.Color.primary
         progress.updateProgress(0.33, animated: false)
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: progress, attribute: .width, relatedBy: .equal, toItem: progress, attribute: .height, multiplier: 1, constant: -4),
-        ])
+        progress.widthAnchor.constraint(equalTo: progress.heightAnchor, constant: -4).isActive = true
         return progress
     }()
 

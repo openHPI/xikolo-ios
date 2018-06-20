@@ -28,7 +28,6 @@
 		2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
 		2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
 		2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */; };
 		243484041E6969E700F0DAA5 /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */; };
 		243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4751D6B1639007C59B6 /* UnsupportedQuestionViewController.swift */; };
@@ -170,7 +169,6 @@
 		24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		24B6514D1D35797400624DBC /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		24BA40651D3F98FE00E38C2C /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
@@ -247,9 +245,7 @@
 		24BA40EF1D3F9B2500E38C2C /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		24BA40F01D3F9B2600E38C2C /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		24BA40F81D3F9B3200E38C2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -1269,13 +1265,11 @@
 		70D1EB241EF12E060088C0FF /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		70D1EB251EF12E070088C0FF /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		70D1EB261EF12E0B0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		70D1EB271EF12E0C0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		70D1EB281EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
 		70D1EB291EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
 		70D1EB2A1EF12E110088C0FF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		70D1EB2B1EF12E120088C0FF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		70D1EB2C1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		70D1EB2D1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		70D1EB2E1EF12E170088C0FF /* DateLabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */; };
 		70D1EB2F1EF12E1B0088C0FF /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		70D1EB301EF12E1C0088C0FF /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -1569,9 +1563,7 @@
 		ABA0F0EE1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		ABA0F0EF1DF8CE9C0001D88D /* AbstractItemRichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56081D145012008D30FB /* AbstractItemRichtextViewController.swift */; };
 		ABA0F0F01DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		ABA0F0F11DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		ABA0F0F31DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F61DF8CEAB0001D88D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		ABA0F0F71DF8CEAB0001D88D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -2368,16 +2360,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		2433A5AB1CE641E70060DD98 /* ViewHelpers */ = {
+		2433A5AB1CE641E70060DD98 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
-				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
 				AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */,
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
 				ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */,
 			);
-			path = ViewHelpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		24597D231CC6C87600FB5338 /* Model */ = {
@@ -2595,7 +2585,7 @@
 				24CB7E561CC6C61A00960269 /* Data */,
 				249C01AD1D3F721E00B54AAC /* Branding */,
 				241D4AEA1CC9918600E35B1F /* ViewControllers */,
-				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
+				2433A5AB1CE641E70060DD98 /* Helpers */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Common.strings */,
 				2493481A1D9550FD006D4F2C /* Common.stringsdict */,
@@ -3043,6 +3033,8 @@
 				AB6AE0C71CF7D6CC00708654 /* News */,
 				AB6AE0C41CF7D69200708654 /* Account */,
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
+				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
+				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -5007,7 +4999,6 @@
 				243CE4861D709999007C59B6 /* Enrollment.swift in Sources */,
 				249E3AB41D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
 				50D9B1761F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
-				24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				5012121A1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
 				504C5A741F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				24BA41311D3F9D1D00E38C2C /* ReplaceSegue.swift in Sources */,
@@ -5114,7 +5105,6 @@
 				24BA413B1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24F833EF1E628A9600590E90 /* MarkdownHelper.swift in Sources */,
 				24BA412B1D3F9D0D00E38C2C /* LoginViewController.swift in Sources */,
-				24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				50F6A5BA1FB316A6007DBAFF /* VideoStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5248,7 +5238,6 @@
 				24D48E2F1CCA934A00E8051E /* xikolo.xcdatamodeld in Sources */,
 				50F45AD5200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */,
-				2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				2490C4C71D1C158B00F42949 /* MainViewController.swift in Sources */,
 				501212661FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				ABC8A1681D689ED80059CEF2 /* LTIExercise.swift in Sources */,
@@ -5284,7 +5273,6 @@
 				ABFCF7641E81EEC40043C7B7 /* User.swift in Sources */,
 				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
 				24D48E301CCA934E00E8051E /* AbstractCourseListViewController.swift in Sources */,
-				24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				50F57DA31FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				5051F8101FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				AB4F22881D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
@@ -5619,8 +5607,6 @@
 				5051F8191FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				70D1EB571EF134430088C0FF /* ChoiceAnswerCell.swift in Sources */,
 				70D1EA721EF0AB440088C0FF /* TrackingEvent.swift in Sources */,
-				70D1EB271EF12E0C0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
-				70D1EB2D1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				5012123B1FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
 				70D1EB4D1EF134280088C0FF /* UnsupportedQuestionViewController.swift in Sources */,
 				50F57D441FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
@@ -6180,7 +6166,6 @@
 				50C92B661FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				5012125F1FCC679F0022A7AF /* Pushable.swift in Sources */,
 				70103CF620110C31006DA177 /* Logger.swift in Sources */,
-				ABA0F0F11DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F0D81DF8CE630001D88D /* RichTextHelper.swift in Sources */,
 				ABA0F0EB1DF8CE950001D88D /* AbstractCourseListViewController.swift in Sources */,
 				50F57DEA1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
@@ -6234,7 +6219,6 @@
 				ABA0F04B1DF8CD7C0001D88D /* Course.swift in Sources */,
 				501212101FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				ABE060AB1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */,
-				ABA0F0F31DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F1161DF8CF710001D88D /* ItemRichTextController.swift in Sources */,
 				5060459A206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				ABA0F0A01DF8CDF70001D88D /* TrackingEventResource.swift in Sources */,

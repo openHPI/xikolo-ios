@@ -6,14 +6,12 @@
 import CoreData
 import UIKit
 
-// swiftlint:disable private_over_fileprivate
-fileprivate let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
-fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
-fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
-// swiftlint:enable private_over_fileprivate
-
 // swiftlint:disable:next type_name
 class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
+
+    private let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
+    private let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
+    private let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
 
     weak var tableView: UITableView?
     var resultsControllers: [NSFetchedResultsController<T>]
@@ -37,7 +35,7 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
                     for type: NSFetchedResultsChangeType) {
-        let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex).require(hint: errorMessageIndexSetConversion)
+        let convertedIndexSet = self.indexSet(for: controller, with: sectionIndex).require(hint: self.errorMessageIndexSetConversion)
         switch type {
         case .insert:
             self.tableView?.insertSections(convertedIndexSet, with: .fade)
@@ -61,18 +59,12 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
         case .insert:
             self.tableView?.insertRows(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)], with: .fade)
         case .delete:
-            self.tableView?.deleteRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
+            self.tableView?.deleteRows(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)], with: .fade)
         case .update:
-            #if os(tvOS)
-            // Undocumented by Apple:
-            // Need to create rows that don't exist here to prevent assertion errors (tvOS only).
-            self.tableView?.insertRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
-            #else
-            self.tableView?.reloadRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
-            #endif
+            self.tableView?.reloadRows(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)], with: .fade)
         case .move:
-            self.tableView?.deleteRows(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)], with: .fade)
-            self.tableView?.insertRows(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)], with: .fade)
+            self.tableView?.deleteRows(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)], with: .fade)
+            self.tableView?.insertRows(at: [convertedNewIndexPath.require(hint: self.errorMessageNewIndexPathConversion)], with: .fade)
         }
     }
 

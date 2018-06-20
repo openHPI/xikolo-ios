@@ -42,7 +42,6 @@ class CourseListViewController: UICollectionViewController {
             courseListLayout.delegate = self
         }
 
-
         super.viewDidLoad()
 
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
@@ -75,7 +74,11 @@ class CourseListViewController: UICollectionViewController {
 
         CourseHelper.syncAllCourses()
 
-        // setup search controller
+        self.setupSearchController()
+        self.addPullToRefresh()
+    }
+
+    private func setupSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.delegate = self
         searchController.searchResultsUpdater = self
@@ -93,8 +96,6 @@ class CourseListViewController: UICollectionViewController {
             self.collectionView?.addSubview(searchController.searchBar)
             self.searchController = searchController
         }
-
-        self.addPullToRefresh()
     }
 
     private func addPullToRefresh() {

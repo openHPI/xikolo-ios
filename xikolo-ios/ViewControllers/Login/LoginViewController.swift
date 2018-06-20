@@ -58,10 +58,10 @@ class LoginViewController: UIViewController, WKUIDelegate {
         loginButton.startAnimating()
         UserProfileHelper.login(email, password: password).onComplete { [weak self] _ in
             self?.loginButton.stopAnimating()
-        }.onSuccess { [weak self] token in
+        }.onSuccess { [weak self] _ in
             self?.delegate?.didSuccessfullyLogin()
             self?.presentingViewController?.dismiss(animated: true)
-        }.onFailure { [weak self] error in
+        }.onFailure { [weak self] _ in
             self?.emailField.shake()
             self?.passwordField.shake()
         }

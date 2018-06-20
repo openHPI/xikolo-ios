@@ -6,7 +6,15 @@
 import CoreData
 import UIKit
 
-class CourseListViewController: AbstractCourseListViewController {
+class CourseListViewController: UICollectionViewController {
+
+    private lazy var resultsControllers: [NSFetchedResultsController<Course>] = [
+        CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "currentSectionName"),
+        CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
+        CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
+    ]
+
+    private var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
 
     @available(iOS, obsoleted: 11.0)
     private var searchController: UISearchController?
@@ -34,9 +42,38 @@ class CourseListViewController: AbstractCourseListViewController {
             courseListLayout.delegate = self
         }
 
-        courseDisplayMode = .all
 
         super.viewDidLoad()
+
+        let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
+        let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
+        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
+                                                                                                        resultsControllers: resultsControllers,
+                                                                                                        searchFetchRequest: searchFetchRequest,
+                                                                                                        cellReuseIdentifier: reuseIdentifier)
+
+        resultsControllerDelegateImplementation.headerReuseIdentifier = R.nib.courseHeaderView.name
+        let configuration = CourseListViewConfiguration().wrapped
+        resultsControllerDelegateImplementation.configuration = configuration
+
+        for resultsController in resultsControllers {
+            resultsController.delegate = resultsControllerDelegateImplementation
+        }
+
+        self.collectionView?.dataSource = resultsControllerDelegateImplementation
+
+        do {
+            for resultsController in resultsControllers {
+                try resultsController.performFetch()
+            }
+        } catch {
+            CrashlyticsHelper.shared.recordError(error)
+            log.error(error)
+        }
+
+        self.collectionView?.reloadData()
+
+        CourseHelper.syncAllCourses()
 
         // setup search controller
         let searchController = UISearchController(searchResultsController: nil)
@@ -216,6 +253,39 @@ extension CourseListViewController: UISearchControllerDelegate {
         } else {
             self.statusBarBackground?.removeFromSuperview()
         }
+    }
+
+}
+
+struct CourseListViewConfiguration: CollectionViewResultsControllerConfiguration {
+
+    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
+        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseList requires cells of type CourseCell")
+        let course = controller.object(at: indexPath)
+        cell.configure(course, forConfiguration: .courseList)
+    }
+
+    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
+        let headerView = view.require(toHaveType: CourseHeaderView.self, hint: "CourseList requires header cells of type CourseHeaderView")
+        headerView.configure(section)
+    }
+
+    func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
+        let subPredicates = searchText.split(separator: " ").map(String.init).map { searchTextPart in
+            return NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "title CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "teachers CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "abstract CONTAINS[c] %@", searchTextPart),
+            ])
+        }
+
+        return NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
+    }
+
+    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
+        let view = view.require(toHaveType: CourseHeaderView.self)
+        let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
+        view.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }
 
 }

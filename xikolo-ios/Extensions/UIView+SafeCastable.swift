@@ -5,4 +5,5 @@
 
 import UIKit
 
-class EmptyCollectionViewCell: UICollectionViewCell {}
+extension UIView: SafeCastable {}
+extension UIViewController: SafeCastable {}

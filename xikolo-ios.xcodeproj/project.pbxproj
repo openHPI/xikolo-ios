@@ -27,7 +27,6 @@
 		2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
 		2433A5AA1CE637A00060DD98 /* CourseItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */; };
 		2433A5AD1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		2433A5B01CE64E1D0060DD98 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AF1CE64E1D0060DD98 /* CourseItemCell.swift */; };
 		243484041E6969E700F0DAA5 /* xikolo-tvos.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4EA1D1DA3D600F42949 /* xikolo-tvos.entitlements */; };
 		243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4751D6B1639007C59B6 /* UnsupportedQuestionViewController.swift */; };
@@ -115,8 +114,6 @@
 		2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		2490C4FF1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
-		249347FD1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
-		249347FE1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
 		249348001D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */; };
 		249348011D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FF1D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift */; };
 		249348131D9550FD006D4F2C /* Common.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Common.stringsdict */; };
@@ -164,13 +161,10 @@
 		24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */; };
 		24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */; };
 		24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */; };
-		24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
 		24B651451D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		24B6514D1D35797400624DBC /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
-		24B6514E1D35797400624DBC /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		24BA40651D3F98FE00E38C2C /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2490C4DC1D1D92F200F42949 /* TVServices.framework */; };
 		24BA406C1D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24BA40641D3F98FE00E38C2C /* openSAP-tvOS-TopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -182,11 +176,9 @@
 		24BA40761D3F9A7000E38C2C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		24BA40771D3F9A7000E38C2C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
 		24BA407B1D3F9A7D00E38C2C /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
-		24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24BA407D1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		24BA407E1D3F9A8000E38C2C /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
-		24BA40801D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		24BA408C1D3F9A9300E38C2C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		24BA408E1D3F9A9400E38C2C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
@@ -242,9 +234,7 @@
 		24BA40E91D3F9B1200E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
 		24BA40EA1D3F9B1200E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
 		24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		24BA40F81D3F9B3200E38C2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -297,7 +287,6 @@
 		24BA413F1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BA413D1D3FA7AE00E38C2C /* Brand+tvOS.swift */; };
 		24BA41411D3FAAB800E38C2C /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BA41401D3FAAB800E38C2C /* assets-tvos-brand.xcassets */; };
 		24BA41431D3FAAC600E38C2C /* assets-tvos-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BA41421D3FAAC600E38C2C /* assets-tvos-brand.xcassets */; };
-		24C4EF8F1E35952A00200144 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
 		24CB7E371CC678A000960269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB7E361CC678A000960269 /* AppDelegate.swift */; };
 		24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E3D1CC678A000960269 /* assets-tvos.xcassets */; };
 		24CB7E541CC6833B00960269 /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -399,6 +388,12 @@
 		500A257F20824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		500A258020824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		500A258120824C2500EB7AE4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
+		5011291F20DA443100EE9050 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
+		5011292020DA443100EE9050 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
+		5011292120DA443100EE9050 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
+		5011292620DA465D00EE9050 /* UIView+SafeCastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */; };
+		5011292720DA465D00EE9050 /* UIView+SafeCastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */; };
+		5011292820DA465D00EE9050 /* UIView+SafeCastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */; };
 		501212091FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120A1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
 		5012120B1FCC65B00022A7AF /* ModelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212081FCC65B00022A7AF /* ModelObserver.swift */; };
@@ -531,30 +526,6 @@
 		5019A7691F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */; };
 		5019A76A1F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */; };
 		5019A76B1F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */; };
-		501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F946A20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F946B20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F946C20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F946D20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F946E20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F946F20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F947020075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F947120075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F947220075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F947320075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F947420075536001C8754 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501F946820075536001C8754 /* EmptyCollectionViewCell.xib */; };
-		501F9477200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F9478200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F9479200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F947A200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F947B200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F947C200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F947D200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F947E200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F947F200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F9480200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F9481200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
-		501F9482200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */; };
 		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
@@ -729,6 +700,7 @@
 		5068B9D41FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
 		5068B9D51FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
 		5068B9D61FEA94A10047A75E /* Future+retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068B9CA1FEA94A10047A75E /* Future+retry.swift */; };
+		5070DE0920DA857900C1E8A3 /* UIView+SafeCastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */; };
 		5071BA1E1FCD901600BF5C5F /* XikoloNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */; };
 		5071BA1F1FCD901600BF5C5F /* XikoloNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */; };
 		5071BA201FCD901600BF5C5F /* XikoloNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */; };
@@ -796,18 +768,10 @@
 		50D50ABB20876DBB005ACC2B /* CourseCertificates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */; };
 		50D50ABC20876DBB005ACC2B /* CourseCertificates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */; };
 		50D50ABD20876DBB005ACC2B /* CourseCertificates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */; };
-		50D6432F1F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D643301F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
-		50D643311F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
-		50D643321F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D643331F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
-		50D643341F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D643351F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
-		50D643361F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
-		50D643371F8E587000A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D643381F8E587100A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
-		50D643391F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
-		50D6433A1F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
@@ -817,13 +781,9 @@
 		50D91646207D080100DDB6E1 /* CourseContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D91643207D080000DDB6E1 /* CourseContent.swift */; };
 		50D91647207D080100DDB6E1 /* CourseContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D91643207D080000DDB6E1 /* CourseContent.swift */; };
 		50D9B16A1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
-		50D9B16B1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
 		50D9B16C1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
-		50D9B16D1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
 		50D9B16E1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
-		50D9B16F1F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
 		50D9B1701F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
-		50D9B1711F78EC6300F09056 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
 		50D9B1731F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
 		50D9B1741F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
 		50D9B1751F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
@@ -845,17 +805,9 @@
 		50E16CF41F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
 		50E16CF51F46E28200D67632 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
 		50ED3C4F1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C501F4AE7FC00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C511F4AE7FD00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50ED3C521F4AE7FD00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C531F4AE7FE00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C541F4AE7FE00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50ED3C551F4AE7FF00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C561F4AE7FF00CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C571F4AE80000CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50ED3C581F4AE80100CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C591F4AE80200CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
-		50ED3C5A1F4AE80200CD8466 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50EFACB11FFE3C0100169C35 /* Optional+require.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EFACB01FFE3C0100169C35 /* Optional+require.swift */; };
 		50EFACB21FFE3C0100169C35 /* Optional+require.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EFACB01FFE3C0100169C35 /* Optional+require.swift */; };
 		50EFACB31FFE3C0100169C35 /* Optional+require.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EFACB01FFE3C0100169C35 /* Optional+require.swift */; };
@@ -1133,11 +1085,7 @@
 		70D1E9ED1EF0AA830088C0FF /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		70D1E9EE1EF0AA840088C0FF /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		70D1E9EF1EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
-		70D1E9F01EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
-		70D1E9F41EF0AA920088C0FF /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
 		70D1E9F71EF0AA980088C0FF /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
-		70D1E9F81EF0AA980088C0FF /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
-		70D1E9F91EF0AA9C0088C0FF /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
 		70D1E9FA1EF0AAA00088C0FF /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
 		70D1EA0E1EF0AACA0088C0FF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
@@ -1295,13 +1243,11 @@
 		70D1EB121EF12DF00088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		70D1EB131EF12DF10088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		70D1EB261EF12E0B0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		70D1EB271EF12E0C0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		70D1EB281EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
 		70D1EB291EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
 		70D1EB2A1EF12E110088C0FF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		70D1EB2B1EF12E120088C0FF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		70D1EB2C1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		70D1EB2D1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		70D1EB2E1EF12E170088C0FF /* DateLabelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */; };
 		70D1EB2F1EF12E1B0088C0FF /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		70D1EB301EF12E1C0088C0FF /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -1446,9 +1392,6 @@
 		AB4F6CFC1E0C336700FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB4F6CFD1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB4F6CFE1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
-		AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
-		AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
-		AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
 		AB77C2971DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB77C2981DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB77C2991DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
@@ -1492,12 +1435,10 @@
 		ABA0F02C1DF8CCDD0001D88D /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		ABA0F02E1DF8CCE80001D88D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
 		ABA0F02F1DF8CD010001D88D /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
-		ABA0F0301DF8CD010001D88D /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		ABA0F0311DF8CD050001D88D /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		ABA0F0321DF8CD060001D88D /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		ABA0F0331DF8CD070001D88D /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		ABA0F0341DF8CD0A0001D88D /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
-		ABA0F0351DF8CD0B0001D88D /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		ABA0F04A1DF8CD7C0001D88D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		ABA0F04B1DF8CD7C0001D88D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
 		ABA0F04C1DF8CD7D0001D88D /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D48E171CCA4FC100E8051E /* Course.swift */; };
@@ -1589,9 +1530,7 @@
 		ABA0F0E81DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		ABA0F0E91DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		ABA0F0F01DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
-		ABA0F0F11DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
-		ABA0F0F31DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F61DF8CEAB0001D88D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		ABA0F0F71DF8CEAB0001D88D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
@@ -1983,6 +1922,7 @@
 		50082B5E20BFDAC900B4511C /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
 		50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 6.xcdatamodel"; sourceTree = "<group>"; };
 		500A257D20824C2500EB7AE4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeCastable.swift"; sourceTree = "<group>"; };
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
 		501212151FCC660F0022A7AF /* ResourceQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceQuery.swift; sourceTree = "<group>"; };
 		501212231FCC669E0022A7AF /* Future+inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Future+inject.swift"; sourceTree = "<group>"; };
@@ -1999,8 +1939,6 @@
 		5019A7621F20ACE6008C8138 /* Video+DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+DetailedCourseItem.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RichText+DetailedCourseItem.swift"; sourceTree = "<group>"; };
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
-		501F946820075536001C8754 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
-		501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		502E712B2018D8BF007FC8C0 /* openHPI-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "openHPI-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E712D2018D8BF007FC8C0 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		502E712F2018D8BF007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2056,7 +1994,7 @@
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
-		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-common/Categories/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
+		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-ios/Extensions/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseContent.swift; sourceTree = "<group>"; };
 		50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
@@ -2153,7 +2091,6 @@
 		AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHeaderView.swift; sourceTree = "<group>"; };
 		AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventHelper.swift; sourceTree = "<group>"; };
-		AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		AB77C2961DF956EE00B30619 /* XikoloBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloBrand.swift; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -2371,16 +2308,14 @@
 			path = ItemQuizQuestionControllers;
 			sourceTree = "<group>";
 		};
-		2433A5AB1CE641E70060DD98 /* ViewHelpers */ = {
+		2433A5AB1CE641E70060DD98 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
-				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
 				AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */,
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
 				ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */,
 			);
-			path = ViewHelpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		24597D231CC6C87600FB5338 /* Model */ = {
@@ -2593,12 +2528,11 @@
 		24CB7E521CC6830000960269 /* xikolo-common */ = {
 			isa = PBXGroup;
 			children = (
-				24D48E1F1CCA740500E8051E /* Categories */,
+				24D48E1F1CCA740500E8051E /* Extensions */,
+				5011292320DA453500EE9050 /* Utilities */,
 				24CB7E561CC6C61A00960269 /* Data */,
 				249C01AD1D3F721E00B54AAC /* Branding */,
-				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
-				501F94672007550A001C8754 /* Stroyboard */,
-				501F94752007556A001C8754 /* Views */,
+				2433A5AB1CE641E70060DD98 /* Helpers */,
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Common.strings */,
 				2493481A1D9550FD006D4F2C /* Common.stringsdict */,
@@ -2623,34 +2557,26 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		24D48E1F1CCA740500E8051E /* Categories */ = {
+		24D48E1F1CCA740500E8051E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */,
 				24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */,
-				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
-				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
-				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
-				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
-				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
-				503585041F3AF6AA002A666C /* String+ascii.swift */,
-				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
-				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
-				50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */,
-				50F45AD3200D05F9009304A3 /* Int+TimeInterval.swift */,
-				50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */,
-				50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */,
-				501212231FCC669E0022A7AF /* Future+inject.swift */,
-				5068B9CA1FEA94A10047A75E /* Future+retry.swift */,
 				501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */,
 				50F45AE0200D06BD009304A3 /* Date.swift */,
 				5012123D1FCC670D0022A7AF /* Date+Marshal.swift */,
-				50604592206BCF48009569D1 /* URL+URLQueryItem.swift */,
-				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
-				50EFACBD1FFFB25400169C35 /* SafeCastable.swift */,
+				70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */,
+				50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */,
 				70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */,
+				501212231FCC669E0022A7AF /* Future+inject.swift */,
+				5068B9CA1FEA94A10047A75E /* Future+retry.swift */,
+				50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */,
+				50F45AD3200D05F9009304A3 /* Int+TimeInterval.swift */,
+				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
+				503585041F3AF6AA002A666C /* String+ascii.swift */,
+				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
+				50604592206BCF48009569D1 /* URL+URLQueryItem.swift */,
 			);
-			path = Categories;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		50022900205928B0003301A7 /* Protocols */ = {
@@ -2673,6 +2599,14 @@
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
 			);
 			path = PersistenceManager;
+			sourceTree = "<group>";
+		};
+		5011292320DA453500EE9050 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				50EFACBD1FFFB25400169C35 /* SafeCastable.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		501212221FCC665A0022A7AF /* Sync */ = {
@@ -2708,22 +2642,6 @@
 				502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		501F94672007550A001C8754 /* Stroyboard */ = {
-			isa = PBXGroup;
-			children = (
-				501F946820075536001C8754 /* EmptyCollectionViewCell.xib */,
-			);
-			path = Stroyboard;
-			sourceTree = "<group>";
-		};
-		501F94752007556A001C8754 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				501F9476200756DF001C8754 /* EmptyCollectionViewCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		502E71652018DC2B007FC8C0 /* UI Tests */ = {
@@ -2866,7 +2784,7 @@
 			isa = PBXGroup;
 			children = (
 				50022900205928B0003301A7 /* Protocols */,
-				AB95897A1DC4A3C400586137 /* Categories */,
+				AB95897A1DC4A3C400586137 /* Extensions */,
 				5019A75F1F20ABF3008C8138 /* Data */,
 				F8FABFBB1B580B5A0007F308 /* Storyboards */,
 				50DD35131FD83D24002B40CC /* Layouts */,
@@ -2970,16 +2888,23 @@
 			path = openHPI;
 			sourceTree = "<group>";
 		};
-		AB95897A1DC4A3C400586137 /* Categories */ = {
+		AB95897A1DC4A3C400586137 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				5057ED7E1FE3D91B0096095B /* UserDefaults */,
-				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
+				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
 				50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */,
 				5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */,
+				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
+				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
+				50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */,
+				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
+				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
+				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
+				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
 			);
-			path = Categories;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		ABE060901DF8C17800FC186D /* openWHO */ = {
@@ -3053,6 +2978,8 @@
 				AB6AE0C71CF7D6CC00708654 /* News */,
 				AB6AE0C41CF7D69200708654 /* Account */,
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
+				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
+				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -3681,7 +3608,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				249C01C21D3F78DD00B54AAC /* assets-brand.xcassets in Resources */,
-				501F946B20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				249348151D9550FD006D4F2C /* Common.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3710,7 +3636,6 @@
 				50502E291FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */,
 				AB9183271D6B09F700018C1D /* assets-ios-brand.xcassets in Resources */,
 				24BA411E1D3F9BA000E38C2C /* assets-ios.xcassets in Resources */,
-				501F946C20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2F01FCEC1CA007255B5 /* TabNews.storyboard in Resources */,
 				24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */,
 				5040A60620795BBE00E98351 /* CourseDetails.storyboard in Resources */,
@@ -3728,7 +3653,6 @@
 				24BA40FA1D3F9B3600E38C2C /* assets-common.xcassets in Resources */,
 				24BA41331D3F9D2200E38C2C /* assets-tvos.xcassets in Resources */,
 				249348171D9550FD006D4F2C /* Common.stringsdict in Resources */,
-				501F946D20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				ABE060AA1DF8C26000FC186D /* xikolo-tvos.entitlements in Resources */,
 				24BA41231D3F9CF800E38C2C /* Main.storyboard in Resources */,
 				24BA41431D3FAAC600E38C2C /* assets-tvos-brand.xcassets in Resources */,
@@ -3740,7 +3664,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24BA40E71D3F9B0F00E38C2C /* assets-brand.xcassets in Resources */,
-				501F946E20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				249348181D9550FD006D4F2C /* Common.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3755,7 +3678,6 @@
 				ABA0F10A1DF8CF230001D88D /* Main.storyboard in Resources */,
 				24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */,
 				24CB7E3E1CC678A000960269 /* assets-tvos.xcassets in Resources */,
-				501F946A20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				243484041E6969E700F0DAA5 /* xikolo-tvos.entitlements in Resources */,
 				249348141D9550FD006D4F2C /* Common.stringsdict in Resources */,
 				24BA41411D3FAAB800E38C2C /* assets-tvos-brand.xcassets in Resources */,
@@ -3816,7 +3738,6 @@
 				70D1EB0E1EF0AD1B0088C0FF /* Localizable.strings in Resources */,
 				70D1EB0D1EF0AD170088C0FF /* assets-ios.xcassets in Resources */,
 				5040A60D20795BFE00E98351 /* WebViewController.storyboard in Resources */,
-				501F947220075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2ED1FCEC1B5007255B5 /* TabNews.storyboard in Resources */,
 				70D1EAE31EF0AC610088C0FF /* TabDashboard.storyboard in Resources */,
 				500228F520583139003301A7 /* CourseItemHeader.xib in Resources */,
@@ -3832,7 +3753,6 @@
 				70D1EB341EF12E220088C0FF /* Common.stringsdict in Resources */,
 				70D1EB321EF12E1F0088C0FF /* Common.strings in Resources */,
 				70D1EB301EF12E1C0088C0FF /* assets-common.xcassets in Resources */,
-				501F947320075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				70D1EB601EF134870088C0FF /* Localizable.strings in Resources */,
 				70D1EB5B1EF134580088C0FF /* assets-tvos-brand.xcassets in Resources */,
 				70D1EB5F1EF134820088C0FF /* assets-tvos.xcassets in Resources */,
@@ -3845,7 +3765,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				70D1EB351EF12E220088C0FF /* Common.stringsdict in Resources */,
-				501F947420075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3864,7 +3783,6 @@
 				5061C15620A1E0C800D6F314 /* LaunchScreen.storyboard in Resources */,
 				70D1EAE71EF0AC7D0088C0FF /* TabAccount.storyboard in Resources */,
 				50D50ABA20876DBB005ACC2B /* CourseCertificates.storyboard in Resources */,
-				501F946920075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				500228F220583139003301A7 /* CourseItemHeader.xib in Resources */,
 				A90587C61B3BFC130095DB89 /* assets-ios.xcassets in Resources */,
 				2490C4D31D1D6F7100F42949 /* Common.strings in Resources */,
@@ -3905,7 +3823,6 @@
 				50502E2A1FD04E56000A8D35 /* CourseLearnings.storyboard in Resources */,
 				ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */,
 				ABE0609E1DF8C21200FC186D /* assets-ios-brand.xcassets in Resources */,
-				501F946F20075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				5014E2EE1FCEC1B6007255B5 /* TabNews.storyboard in Resources */,
 				ABA0F0141DF8CC360001D88D /* TabDashboard.storyboard in Resources */,
 				5040A60720795BBE00E98351 /* CourseDetails.storyboard in Resources */,
@@ -3923,7 +3840,6 @@
 				ABA0F10B1DF8CF270001D88D /* Main.storyboard in Resources */,
 				ABA0F1251DF8CFAC0001D88D /* Localizable.strings in Resources */,
 				ABE060AF1DF8C29500FC186D /* assets-tvos-brand.xcassets in Resources */,
-				501F947020075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				ABE060961DF8C19800FC186D /* assets-brand.xcassets in Resources */,
 				ABA0F1241DF8CFA70001D88D /* assets-tvos.xcassets in Resources */,
 				ABA0F0FD1DF8CEB60001D88D /* Common.stringsdict in Resources */,
@@ -3935,7 +3851,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABE060971DF8C1A000FC186D /* assets-brand.xcassets in Resources */,
-				501F947120075536001C8754 /* EmptyCollectionViewCell.xib in Resources */,
 				ABA0F0FE1DF8CEB70001D88D /* Common.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4785,7 +4700,6 @@
 				2474C8881D86FE33009BDB94 /* TrackingEventVerb.swift in Sources */,
 				50F57D971FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				50F45AE3200D06BD009304A3 /* Date.swift in Sources */,
-				50ED3C511F4AE7FD00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				2474C8681D86FE07009BDB94 /* CourseSection.swift in Sources */,
 				50EFACC01FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				50F57D221FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
@@ -4810,7 +4724,6 @@
 				50F45AD6200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				ABDD84BF1D8E010900C7D193 /* LTIExercise.swift in Sources */,
 				249C01C51D3F78E100B54AAC /* Brand.swift in Sources */,
-				50D643321F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				2490C4F31D216D5A00F42949 /* UserProfileHelper.swift in Sources */,
 				70F456491F01297C00A2C6B7 /* UserHelper.swift in Sources */,
 				50F57D3C1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
@@ -4826,7 +4739,6 @@
 				70103CF120110C31006DA177 /* Logger.swift in Sources */,
 				2490C4E01D1D92F200F42949 /* ServiceProvider.swift in Sources */,
 				70A830991EC7807D0029235D /* CourseCertificates.swift in Sources */,
-				501F9479200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70A830AC1EC780F30029235D /* AnnouncementHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4878,11 +4790,11 @@
 				500228EE20582573003301A7 /* CourseItemHeader.swift in Sources */,
 				50022908205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */,
 				24BA40D61D3F9AF500E38C2C /* VideoHelper.swift in Sources */,
-				501F947A200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				5053988C1F72A9FB00A87DC8 /* NotificationKeys.swift in Sources */,
 				50DD35161FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				4E6AB1FB1DD36AB500B048DB /* CourseDate.swift in Sources */,
 				5002290D205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
+				5011292120DA443100EE9050 /* UIViewController+ChildViewController.swift in Sources */,
 				24BA40A81D3F9ABD00E38C2C /* Video.swift in Sources */,
 				5068B9CE1FEA94A10047A75E /* Future+retry.swift in Sources */,
 				70F379D0205B643400149C3B /* CertificatesListViewController.swift in Sources */,
@@ -4900,6 +4812,7 @@
 				24BA40C91D3F9AE700E38C2C /* UserProfileHelper.swift in Sources */,
 				24BA40E81D3F9B1100E38C2C /* Brand.swift in Sources */,
 				50082B6020BFDAC900B4511C /* DownloadState.swift in Sources */,
+				5011292620DA465D00EE9050 /* UIView+SafeCastable.swift in Sources */,
 				24BA407F1D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
 				50F57DD91FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				5057ED8E1FE3DB230096095B /* DownloadSettingsViewController.swift in Sources */,
@@ -4965,7 +4878,6 @@
 				ABFCF7651E81EEC40043C7B7 /* User.swift in Sources */,
 				ABFFA85E1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				50C92B891FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
-				AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49D1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				5040A6192079780500E98351 /* CourseInteractor.swift in Sources */,
 				501212271FCC669E0022A7AF /* Future+inject.swift in Sources */,
@@ -5011,7 +4923,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50D6432F1F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				249E3AA71D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				50F57D991FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				50F97ABB1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
@@ -5023,13 +4934,11 @@
 				245929931D62808A00F7EC0F /* QuestionIndicatorListView.swift in Sources */,
 				24BA408D1D3F9A9400E38C2C /* Course.swift in Sources */,
 				50EFACC21FFFB25400169C35 /* SafeCastable.swift in Sources */,
-				249347FE1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */,
 				50F57DC01FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				24BA412A1D3F9D0B00E38C2C /* ItemVideoLoadingController.swift in Sources */,
 				243CE4861D709999007C59B6 /* Enrollment.swift in Sources */,
 				249E3AB41D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
 				50D9B1761F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
-				24BA40F41D3F9B2D00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				5012121A1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
 				504C5A741F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				24BA41311D3F9D1D00E38C2C /* ReplaceSegue.swift in Sources */,
@@ -5053,7 +4962,6 @@
 				50F45AD8200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				24BA40E91D3F9B1200E38C2C /* Brand.swift in Sources */,
 				ABC8A16A1D689ED80059CEF2 /* LTIExercise.swift in Sources */,
-				24BA40801D3F9A8300E38C2C /* CALayer+UIColor.swift in Sources */,
 				501212691FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				24BA412E1D3F9D1500E38C2C /* CourseSectionCell.swift in Sources */,
 				24BA40F81D3F9B3200E38C2C /* Settings.swift in Sources */,
@@ -5084,7 +4992,6 @@
 				50F57D3E1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				ABFFA85F1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				5012124F1FCC67510022A7AF /* Pullable.swift in Sources */,
-				50D9B16D1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
 				ABFCF7661E81EEC40043C7B7 /* User.swift in Sources */,
 				24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
@@ -5096,7 +5003,6 @@
 				249348011D8C50E0006D4F2C /* UIViewController+ErrorHelper.swift in Sources */,
 				50F57DF41FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				5068B9CF1FEA94A10047A75E /* Future+retry.swift in Sources */,
-				24BA407C1D3F9A7E00E38C2C /* UIView+shake.swift in Sources */,
 				5012120D1FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				24BA41321D3F9D1F00E38C2C /* AppDelegate.swift in Sources */,
 				249E3A9B1D41099200D7663F /* ViewControllerBlurredBackgroundHelper.swift in Sources */,
@@ -5107,7 +5013,6 @@
 				24BA40A11D3F9AB300E38C2C /* Quiz.swift in Sources */,
 				24BA41301D3F9D1A00E38C2C /* ViewControllerLoadingHelper.swift in Sources */,
 				243CE4991D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
-				501F947B200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				24BA41281D3F9D0600E38C2C /* LearningsViewController.swift in Sources */,
 				50B15BE51FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				AB1FB27C1E0871B200BB3D23 /* CourseDateHelper.swift in Sources */,
@@ -5124,7 +5029,6 @@
 				243CE4771D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
 				5053988F1F72A9FC00A87DC8 /* UserDefaultsKeys.swift in Sources */,
 				24BA40961D3F9A9F00E38C2C /* CourseSection.swift in Sources */,
-				50ED3C531F4AE7FE00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				503585081F3B06E0002A666C /* String+ascii.swift in Sources */,
 				24E3DD211D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				240CAA181D64BCEE0072F96D /* ChoiceQuestionViewController.swift in Sources */,
@@ -5137,7 +5041,6 @@
 				24BA413B1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24F833EF1E628A9600590E90 /* MarkdownHelper.swift in Sources */,
 				24BA412B1D3F9D0D00E38C2C /* LoginViewController.swift in Sources */,
-				24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				50F6A5BA1FB316A6007DBAFF /* VideoStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5183,7 +5086,6 @@
 				2474C8691D86FE08009BDB94 /* CourseSection.swift in Sources */,
 				50F57D9A1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				50F45AE6200D06BD009304A3 /* Date.swift in Sources */,
-				50ED3C541F4AE7FE00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				2474C88B1D86FE36009BDB94 /* TrackingEventResource.swift in Sources */,
 				50EFACC31FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				50F57D251FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
@@ -5208,7 +5110,6 @@
 				50F45AD9200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				24BA413C1D3FA75800E38C2C /* Brand+tvOS.swift in Sources */,
 				24BA40CE1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
-				50D643341F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				24BA40C21D3F9AE000E38C2C /* CoreDataHelper.swift in Sources */,
 				70F4564A1F01297D00A2C6B7 /* UserHelper.swift in Sources */,
 				50F57D3F1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
@@ -5224,7 +5125,6 @@
 				70103CF420110C31006DA177 /* Logger.swift in Sources */,
 				70F4563B1F01296100A2C6B7 /* UserProfile.swift in Sources */,
 				70A8309A1EC7807E0029235D /* CourseCertificates.swift in Sources */,
-				501F947C200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70A830AB1EC780F20029235D /* AnnouncementHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5233,7 +5133,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50D643311F8E586D00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				249E3AA51D43C0A100D7663F /* QuizHelper.swift in Sources */,
 				50F57D961FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				50F97AB91F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
@@ -5246,7 +5145,6 @@
 				24A16D7F1CFDE60200CAD9FE /* Content.swift in Sources */,
 				50EFACBF1FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				24D48E2E1CCA934700E8051E /* Routes.swift in Sources */,
-				249347FD1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */,
 				50F57DBD1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				243CE4841D709999007C59B6 /* Enrollment.swift in Sources */,
 				249E3AB31D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
@@ -5273,7 +5171,6 @@
 				24D48E2F1CCA934A00E8051E /* xikolo.xcdatamodeld in Sources */,
 				50F45AD5200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				240E03481CE4E0F10078A364 /* LearningsViewController.swift in Sources */,
-				2433A5AE1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				2490C4C71D1C158B00F42949 /* MainViewController.swift in Sources */,
 				501212661FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				ABC8A1681D689ED80059CEF2 /* LTIExercise.swift in Sources */,
@@ -5305,11 +5202,9 @@
 				50F57D3B1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				ABFFA85D1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				5012124C1FCC67510022A7AF /* Pullable.swift in Sources */,
-				50D9B16B1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				24A16D821CFDE6E400CAD9FE /* Quiz.swift in Sources */,
 				ABFCF7641E81EEC40043C7B7 /* User.swift in Sources */,
 				24A16D791CFDD27200CAD9FE /* RichText.swift in Sources */,
-				24B651461D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				50F57DA31FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				5051F8101FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				AB4F22881D80BC0F00ED0BF1 /* PlatformEventHelper.swift in Sources */,
@@ -5325,10 +5220,8 @@
 				50604594206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				AB77C2981DF956EE00B30619 /* XikoloBrand.swift in Sources */,
 				50EFACB21FFE3C0100169C35 /* Optional+require.swift in Sources */,
-				24B6514E1D35797400624DBC /* CALayer+UIColor.swift in Sources */,
 				243CE4971D7868A7007C59B6 /* TrackingEventResource.swift in Sources */,
 				AB1FB27A1E0871AD00BB3D23 /* CourseDateHelper.swift in Sources */,
-				501F9478200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				240E034A1CE6160D0078A364 /* CourseSectionCell.swift in Sources */,
 				50B15BE21FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				AB35C9341E89DAA4009832A5 /* UserHelper.swift in Sources */,
@@ -5344,7 +5237,6 @@
 				5071BA1F1FCD901600BF5C5F /* XikoloNavigationController.swift in Sources */,
 				243CE4761D6B1639007C59B6 /* UnsupportedQuestionViewController.swift in Sources */,
 				5053988B1F72A9F900A87DC8 /* UserDefaultsKeys.swift in Sources */,
-				50ED3C501F4AE7FC00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				503585071F3B06DD002A666C /* String+ascii.swift in Sources */,
 				24E3DD201D6211A100297118 /* QuestionIndicatorView.swift in Sources */,
 				2490C4C91D1C486100F42949 /* CourseHeaderView.swift in Sources */,
@@ -5357,7 +5249,6 @@
 				50C92B871FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				24BA413E1D3FA7AE00E38C2C /* Brand+tvOS.swift in Sources */,
 				24F833ED1E628A9500590E90 /* MarkdownHelper.swift in Sources */,
-				24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */,
 				24A16D671CF840CC00CAD9FE /* ItemRichTextController.swift in Sources */,
 				2490C4FE1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				50F6A5B71FB316A6007DBAFF /* VideoStream.swift in Sources */,
@@ -5418,6 +5309,7 @@
 				50082B5820BFDA8800B4511C /* FilePersistenceManager.swift in Sources */,
 				5037200120501388006E9634 /* CourseItemDetailView.swift in Sources */,
 				5040A6252079787000E98351 /* CoursePresentationController.swift in Sources */,
+				5011292820DA465D00EE9050 /* UIView+SafeCastable.swift in Sources */,
 				70D1EAD91EF0AC2C0088C0FF /* Routes.swift in Sources */,
 				70F456351F01290B00A2C6B7 /* User.swift in Sources */,
 				501212121FCC65B00022A7AF /* ModelObserver.swift in Sources */,
@@ -5462,6 +5354,7 @@
 				5002290F205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
 				504C5A791F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				70D1EAF91EF0ACBF0088C0FF /* BuildFile in Sources */,
+				5011291F20DA443100EE9050 /* UIViewController+ChildViewController.swift in Sources */,
 				70D1EB071EF0ACE90088C0FF /* CourseDateHeader.swift in Sources */,
 				70D1EB051EF0ACE40088C0FF /* CourseDateCell.swift in Sources */,
 				70D1EA471EF0AB0F0088C0FF /* Announcement.swift in Sources */,
@@ -5507,7 +5400,6 @@
 				50BEC8322036BB7F00CEF963 /* CrashlyticsHelper.swift in Sources */,
 				70D1EAA91EF0AB950088C0FF /* CoreDataHelper.swift in Sources */,
 				5012121F1FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
-				501F9480200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70D1EAB61EF0AC010088C0FF /* EnrollmentHelper.swift in Sources */,
 				70D1EA831EF0AB560088C0FF /* Video.swift in Sources */,
 				5035850B1F3B06E6002A666C /* String+ascii.swift in Sources */,
@@ -5556,7 +5448,6 @@
 				70D1EB2C1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				50F57D9E1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				70D1EAF01EF0ACA80088C0FF /* CourseListViewController.swift in Sources */,
-				70D1E9F41EF0AA920088C0FF /* NSAttributedString+HTML.swift in Sources */,
 				50B15BDF1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
 				5040A6202079781900E98351 /* CourseTransitioningDelegate.swift in Sources */,
 				70D1EA531EF0AB1D0088C0FF /* PeerAssessment.swift in Sources */,
@@ -5607,13 +5498,11 @@
 				70D1EAC21EF0AC0C0088C0FF /* PeerAssessmentHelper.swift in Sources */,
 				50F57DC61FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				70D1EB561EF134410088C0FF /* QuestionIndicatorListView.swift in Sources */,
-				50ED3C5A1F4AE80200CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				50F45AEB200D06BD009304A3 /* Date.swift in Sources */,
 				5012127C1FCC68830022A7AF /* ResourceRepresentable.swift in Sources */,
 				70D1EA781EF0AB4B0088C0FF /* TrackingEventVerb.swift in Sources */,
 				50F57DE01FBD86DC00910950 /* RichTextHelper+FetchRequests.swift in Sources */,
 				504C5A7A1F99F8210021EB17 /* SyncEngine.swift in Sources */,
-				50D643391F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */,
 				70D1EB441EF134130088C0FF /* MainViewController.swift in Sources */,
 				70D1EB5A1EF1344D0088C0FF /* ReplaceSegue.swift in Sources */,
 				70D1EB291EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */,
@@ -5635,7 +5524,6 @@
 				70D1EB4E1EF1342B0088C0FF /* ItemRichTextController.swift in Sources */,
 				70D1EA201EF0AADF0088C0FF /* CourseDate.swift in Sources */,
 				5035850C1F3B06E7002A666C /* String+ascii.swift in Sources */,
-				501F9481200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				50EFACC81FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				70D1EA4B1EF0AB130088C0FF /* PlatformEvent.swift in Sources */,
 				70D1EAC61EF0AC130088C0FF /* QuizHelper.swift in Sources */,
@@ -5644,8 +5532,6 @@
 				5051F8191FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				70D1EB571EF134430088C0FF /* ChoiceAnswerCell.swift in Sources */,
 				70D1EA721EF0AB440088C0FF /* TrackingEvent.swift in Sources */,
-				70D1EB271EF12E0C0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
-				70D1EB2D1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				5012123B1FCC66B50022A7AF /* Collection+SafeSubscript.swift in Sources */,
 				70D1EB4D1EF134280088C0FF /* UnsupportedQuestionViewController.swift in Sources */,
 				50F57D441FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
@@ -5660,7 +5546,6 @@
 				70D1EA1A1EF0AAD80088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA541EF0AB1E0088C0FF /* PeerAssessment.swift in Sources */,
 				70D1EAD01EF0AC1E0088C0FF /* TrackingHelper.swift in Sources */,
-				50D9B1711F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				70D1EAB51EF0ABFF0088C0FF /* CourseSectionHelper.swift in Sources */,
 				50F45ADE200D05F9009304A3 /* Int+TimeInterval.swift in Sources */,
 				50F57D2A1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
@@ -5669,8 +5554,6 @@
 				50C92B901FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
 				70D1EB2B1EF12E120088C0FF /* Settings.swift in Sources */,
 				70D1EAD51EF0AC240088C0FF /* VideoHelper.swift in Sources */,
-				70D1E9F01EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */,
-				70D1E9F81EF0AA980088C0FF /* UIView+shake.swift in Sources */,
 				70D1EAD21EF0AC210088C0FF /* UserProfileHelper.swift in Sources */,
 				70D1EA601EF0AB320088C0FF /* QuizQuestion.swift in Sources */,
 				50F57D9F1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
@@ -5705,7 +5588,6 @@
 				50F97ABF1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
 				70D1EABC1EF0AC060088C0FF /* NetworkHelper.swift in Sources */,
 				70D1EA5A1EF0AB270088C0FF /* Quiz.swift in Sources */,
-				70D1E9F91EF0AA9C0088C0FF /* UIViewController+ChildViewController.swift in Sources */,
 				70D1EABA1EF0AC040088C0FF /* LTIExerciseHelper.swift in Sources */,
 				70D1EB501EF134300088C0FF /* LoginViewController.swift in Sources */,
 				70D1EB541EF1343C0088C0FF /* CourseItemCell.swift in Sources */,
@@ -5761,7 +5643,6 @@
 				501212631FCC679F0022A7AF /* Pushable.swift in Sources */,
 				50F57DA01FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				70D1EB131EF12DF10088C0FF /* XikoloBrand.swift in Sources */,
-				50ED3C591F4AE80200CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				50F57D2B1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift in Sources */,
 				50F45AEC200D06BD009304A3 /* Date.swift in Sources */,
 				70D1EAAB1EF0AB960088C0FF /* CoreDataHelper.swift in Sources */,
@@ -5790,7 +5671,6 @@
 				70D1EA851EF0AB570088C0FF /* Video.swift in Sources */,
 				70D1EA1B1EF0AAD90088C0FF /* CourseCertificatesHash.swift in Sources */,
 				70D1EA731EF0AB440088C0FF /* TrackingEvent.swift in Sources */,
-				50D6433A1F8E587200A89331 /* UIApplication+AppInfo.swift in Sources */,
 				70D1EAAE1EF0ABF60088C0FF /* CourseDateHelper.swift in Sources */,
 				50F57D451FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				70F4564C1F01297E00A2C6B7 /* UserHelper.swift in Sources */,
@@ -5805,7 +5685,6 @@
 				70103CFA20110C31006DA177 /* Logger.swift in Sources */,
 				70F4563A1F01296000A2C6B7 /* UserProfile.swift in Sources */,
 				70D1EAC01EF0AC0A0088C0FF /* AnnouncementHelper.swift in Sources */,
-				501F9482200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				70D1EA791EF0AB4B0088C0FF /* TrackingEventVerb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5857,10 +5736,10 @@
 				500228ED20582573003301A7 /* CourseItemHeader.swift in Sources */,
 				50022907205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */,
 				24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */,
-				501F9477200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				24D48E601CCA9AE100E8051E /* NetworkHelper.swift in Sources */,
 				50DD35151FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				24B651511D3595C100624DBC /* NetworkIndicator.swift in Sources */,
+				5011292020DA443100EE9050 /* UIViewController+ChildViewController.swift in Sources */,
 				5002290C205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
 				4E6AB1F81DD36AB500B048DB /* CourseDate.swift in Sources */,
 				7E5C55711B4D32B3004DCDC7 /* CourseListViewController.swift in Sources */,
@@ -5942,7 +5821,6 @@
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				ABFFA85C1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				50C92B861FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
-				AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49B1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				501212241FCC669E0022A7AF /* Future+inject.swift in Sources */,
 				5040A6182079780500E98351 /* CourseInteractor.swift in Sources */,
@@ -5978,6 +5856,7 @@
 				243CE4A01D788B3A007C59B6 /* TrackingEventVerb.swift in Sources */,
 				5019A7681F20AD4F008C8138 /* RichText+DetailedCourseItem.swift in Sources */,
 				50EFACBE1FFFB25400169C35 /* SafeCastable.swift in Sources */,
+				5070DE0920DA857900C1E8A3 /* UIView+SafeCastable.swift in Sources */,
 				AB4A01AE1E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				2490C4CF1D1C5F3600F42949 /* Settings.swift in Sources */,
 				50371FF9204ECB8E006E9634 /* CircularProgressView.swift in Sources */,
@@ -6006,7 +5885,6 @@
 				5040A62E207978BA00E98351 /* CourseDismissionAnimator.swift in Sources */,
 				ABA0F0BB1DF8CE270001D88D /* CoreDataHelper.swift in Sources */,
 				50082B5720BFDA8800B4511C /* FilePersistenceManager.swift in Sources */,
-				AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */,
 				5060458C206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */,
@@ -6034,7 +5912,6 @@
 				500228EF20582573003301A7 /* CourseItemHeader.swift in Sources */,
 				50022909205B05B2003301A7 /* UIAlertViewController+customView.swift in Sources */,
 				ABA0F0721DF8CDB80001D88D /* Announcement.swift in Sources */,
-				501F947D200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				ABA0F0DF1DF8CE6F0001D88D /* TrackingHelper.swift in Sources */,
 				50DD35171FD83D5E002B40CC /* CourseListLayout.swift in Sources */,
 				5002290E205B05C3003301A7 /* UIAlertViewController+spinner.swift in Sources */,
@@ -6056,6 +5933,7 @@
 				AB9A3D8F1E61CE2500384B1E /* CourseDetailViewController.swift in Sources */,
 				ABA0F01E1DF8CCAF0001D88D /* CourseViewController.swift in Sources */,
 				50082B6120BFDAC900B4511C /* DownloadState.swift in Sources */,
+				5011292720DA465D00EE9050 /* UIView+SafeCastable.swift in Sources */,
 				ABA0F0931DF8CDE70001D88D /* Video.swift in Sources */,
 				AB17C5771DFCAE040013BBCD /* CourseDatesListViewController.swift in Sources */,
 				ABA0F0991DF8CDEF0001D88D /* TrackingEventUser.swift in Sources */,
@@ -6166,7 +6044,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50D643361F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50F57D9C1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				ABA0F0881DF8CDD50001D88D /* QuizOption.swift in Sources */,
 				50F97ABD1F75175D00606177 /* Int+DispatchTimeInterval.swift in Sources */,
@@ -6200,7 +6077,6 @@
 				50C92B661FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift in Sources */,
 				5012125F1FCC679F0022A7AF /* Pushable.swift in Sources */,
 				70103CF620110C31006DA177 /* Logger.swift in Sources */,
-				ABA0F0F11DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F0D81DF8CE630001D88D /* RichTextHelper.swift in Sources */,
 				50F57DEA1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,
 				ABA0F05D1DF8CD940001D88D /* CourseSection.swift in Sources */,
@@ -6221,7 +6097,6 @@
 				ABA0F1121DF8CF630001D88D /* ItemQuizViewController.swift in Sources */,
 				ABA0F0E81DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */,
 				501212791FCC68830022A7AF /* ResourceRepresentable.swift in Sources */,
-				ABA0F0351DF8CD0B0001D88D /* CALayer+UIColor.swift in Sources */,
 				ABA0F11D1DF8CF8A0001D88D /* QuestionIndicatorView.swift in Sources */,
 				3D6F12F91F2A0E3F00D5DFE8 /* CoreDataObserver.swift in Sources */,
 				ABA0F11E1DF8CF8D0001D88D /* QuestionIndicatorListView.swift in Sources */,
@@ -6235,7 +6110,6 @@
 				50F57DD01FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				50F57D411FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				ABFFA8611EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
-				50D9B16F1F78EC6300F09056 /* UIRefreshControl.swift in Sources */,
 				ABA0F0321DF8CD060001D88D /* AVMetadataItem+convenience.swift in Sources */,
 				501212521FCC67510022A7AF /* Pullable.swift in Sources */,
 				AB4F6CFD1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */,
@@ -6245,7 +6119,6 @@
 				ABA0F0971DF8CDEB0001D88D /* TrackingEvent.swift in Sources */,
 				50F57DA91FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				AB17C5701DFCAD460013BBCD /* CourseDate.swift in Sources */,
-				ABA0F0301DF8CD010001D88D /* UIView+shake.swift in Sources */,
 				5051F8161FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
 				50F57DF71FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
 				AB17C5881DFCC5CC0013BBCD /* PlatformEvent.swift in Sources */,
@@ -6254,14 +6127,12 @@
 				ABA0F04B1DF8CD7C0001D88D /* Course.swift in Sources */,
 				501212101FCC65B00022A7AF /* ModelObserver.swift in Sources */,
 				ABE060AB1DF8C26B00FC186D /* Brand+tvOS.swift in Sources */,
-				ABA0F0F31DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				ABA0F1161DF8CF710001D88D /* ItemRichTextController.swift in Sources */,
 				5060459A206BCF48009569D1 /* URL+URLQueryItem.swift in Sources */,
 				ABA0F0A01DF8CDF70001D88D /* TrackingEventResource.swift in Sources */,
 				50EFACB81FFE3C0100169C35 /* Optional+require.swift in Sources */,
 				ABA0F08E1DF8CDDF0001D88D /* RichText.swift in Sources */,
 				AB1FB2841E0871D200BB3D23 /* CourseDateHelper.swift in Sources */,
-				501F947E200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				ABA0F1111DF8CF610001D88D /* ItemQuizIntroductionController.swift in Sources */,
 				50B15BE81FDFE93D00CD86F1 /* ReachabilityHelper.swift in Sources */,
 				ABA0F1221DF8CF9A0001D88D /* ReplaceSegue.swift in Sources */,
@@ -6278,10 +6149,8 @@
 				5071BA251FCD901600BF5C5F /* XikoloNavigationController.swift in Sources */,
 				ABB49A8F1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */,
 				505398931F72A9FE00A87DC8 /* UserDefaultsKeys.swift in Sources */,
-				50ED3C561F4AE7FF00CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				5035850A1F3B06E5002A666C /* String+ascii.swift in Sources */,
 				ABA0F1151DF8CF6D0001D88D /* UnsupportedQuestionViewController.swift in Sources */,
-				24C4EF8F1E35952A00200144 /* UIViewController+ChildViewController.swift in Sources */,
 				ABA0F1191DF8CF7F0001D88D /* CourseCell.swift in Sources */,
 				ABA0F11B1DF8CF850001D88D /* CourseSectionCell.swift in Sources */,
 				3D6F12F21F2914BD00D5DFE8 /* SpotlightHelper.swift in Sources */,
@@ -6301,7 +6170,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501F947F200756DF001C8754 /* EmptyCollectionViewCell.swift in Sources */,
 				504C5A781F99F8210021EB17 /* SyncEngine.swift in Sources */,
 				ABA0F04C1DF8CD7D0001D88D /* Course.swift in Sources */,
 				50F57DF81FBD8F3400910950 /* VideoHelper+FetchRequests.swift in Sources */,
@@ -6359,8 +6227,6 @@
 				ABA0F0801DF8CDCA0001D88D /* Quiz.swift in Sources */,
 				ABA0F0E31DF8CE750001D88D /* Error.swift in Sources */,
 				ABA0F0CC1DF8CE450001D88D /* CourseHelper.swift in Sources */,
-				50D643371F8E587000A89331 /* UIApplication+AppInfo.swift in Sources */,
-				50ED3C571F4AE80000CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
 				70F4564B1F01297E00A2C6B7 /* UserHelper.swift in Sources */,
 				50F57D421FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				50F57DEB1FBD889B00910950 /* UserHelper+FetchRequests.swift in Sources */,

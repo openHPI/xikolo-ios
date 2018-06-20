@@ -43,6 +43,3 @@ extension SafeCastable {
     }
 
 }
-
-extension UIView: SafeCastable {}
-extension UIViewController: SafeCastable {}

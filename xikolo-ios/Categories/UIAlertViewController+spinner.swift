@@ -15,13 +15,7 @@ extension UIAlertController {
         let progressValue: CGFloat? = nil
         progress.updateProgress(progressValue)
 
-        progress.addConstraint(NSLayoutConstraint(item: progress,
-                                                  attribute: .height,
-                                                  relatedBy: .equal,
-                                                  toItem: nil,
-                                                  attribute: .notAnAttribute,
-                                                  multiplier: 1,
-                                                  constant: 25))
+        progress.heightAnchor.constraint(equalToConstant: 25).isActive = true
 
         self.init(title: title, customView: progress, fallbackMessage: nil, preferredStyle: preferredStyle)
     }

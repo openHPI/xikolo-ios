@@ -62,6 +62,13 @@ class CourseDetailViewController: UIViewController {
         self.refreshEnrollmentViews()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.courseDetailViewController.showLogin(segue: segue) {
+            let loginViewController = typedInfo.destination.viewControllers.first as? LoginViewController
+            loginViewController?.delegate = self
+        }
+    }
+
     private func refreshEnrollmentViews() {
         self.refreshEnrollButton()
         self.refreshStatusView()
@@ -174,6 +181,14 @@ class CourseDetailViewController: UIViewController {
         }.onFailure { _ in
             self.enrollmentButton.shake()
         }
+    }
+
+}
+
+extension CourseDetailViewController: LoginDelegate {
+
+    func didSuccessfullyLogin() {
+        self.createEnrollment()
     }
 
 }

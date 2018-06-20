@@ -1100,7 +1100,6 @@
 		70D1E9ED1EF0AA830088C0FF /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		70D1E9EE1EF0AA840088C0FF /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		70D1E9EF1EF0AA870088C0FF /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
-		70D1E9F41EF0AA920088C0FF /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
 		70D1E9F71EF0AA980088C0FF /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		70D1E9FA1EF0AAA00088C0FF /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		70D1EA0D1EF0AACA0088C0FF /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D7B1CFDE60200CAD9FE /* Content.swift */; };
@@ -1416,9 +1415,6 @@
 		AB4F6CFC1E0C336700FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB4F6CFD1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB4F6CFE1E0C336800FD1CC9 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
-		AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
-		AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
-		AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */; };
 		AB77C2971DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB77C2981DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		AB77C2991DF956EE00B30619 /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
@@ -2131,7 +2127,6 @@
 		AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseHeaderView.swift; sourceTree = "<group>"; };
 		AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformEventHelper.swift; sourceTree = "<group>"; };
-		AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		AB77C2961DF956EE00B30619 /* XikoloBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloBrand.swift; sourceTree = "<group>"; };
 		AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -2625,7 +2620,6 @@
 				5068B9CA1FEA94A10047A75E /* Future+retry.swift */,
 				50F97AB71F75175D00606177 /* Int+DispatchTimeInterval.swift */,
 				50F45AD3200D05F9009304A3 /* Int+TimeInterval.swift */,
-				AB5DC44F1E0B1DCC00B2726C /* NSAttributedString+HTML.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
@@ -4937,7 +4931,6 @@
 				ABFCF7651E81EEC40043C7B7 /* User.swift in Sources */,
 				ABFFA85E1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				50C92B891FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
-				AB5DC4511E0B1FF000B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49D1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				5040A6192079780500E98351 /* CourseInteractor.swift in Sources */,
 				501212271FCC669E0022A7AF /* Future+inject.swift in Sources */,
@@ -5519,7 +5512,6 @@
 				70D1EB2C1EF12E140088C0FF /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
 				50F57D9E1FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift in Sources */,
 				70D1EAF01EF0ACA80088C0FF /* CourseListViewController.swift in Sources */,
-				70D1E9F41EF0AA920088C0FF /* NSAttributedString+HTML.swift in Sources */,
 				50B15BDF1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
 				5040A6202079781900E98351 /* CourseTransitioningDelegate.swift in Sources */,
 				70D1EB201EF12E010088C0FF /* AbstractCourseListViewController.swift in Sources */,
@@ -5903,7 +5895,6 @@
 				2433A5A91CE637A00060DD98 /* CourseItemHelper.swift in Sources */,
 				ABFFA85C1EAB6F4700544AB3 /* CourseCertificatesHash.swift in Sources */,
 				50C92B861FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift in Sources */,
-				AB5DC4501E0B1DCC00B2726C /* NSAttributedString+HTML.swift in Sources */,
 				243CE49B1D7876F1007C59B6 /* TrackingHelper.swift in Sources */,
 				501212241FCC669E0022A7AF /* Future+inject.swift in Sources */,
 				5040A6182079780500E98351 /* CourseInteractor.swift in Sources */,
@@ -5967,7 +5958,6 @@
 				5040A62E207978BA00E98351 /* CourseDismissionAnimator.swift in Sources */,
 				ABA0F0BB1DF8CE270001D88D /* CoreDataHelper.swift in Sources */,
 				50082B5720BFDA8800B4511C /* FilePersistenceManager.swift in Sources */,
-				AB5DC4521E0B1FF100B2726C /* NSAttributedString+HTML.swift in Sources */,
 				5060458C206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
 				ABA0F0D31DF8CE5C0001D88D /* PeerAssessmentHelper.swift in Sources */,
 				ABA0F01D1DF8CCAC0001D88D /* WebViewController.swift in Sources */,

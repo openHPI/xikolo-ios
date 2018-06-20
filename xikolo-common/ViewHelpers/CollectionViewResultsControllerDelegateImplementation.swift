@@ -6,14 +6,14 @@
 import CoreData
 import UIKit
 
-// swiftlint:disable private_over_fileprivate
-fileprivate let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
-fileprivate let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
-fileprivate let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
-// swiftlint:enable private_over_fileprivate
-
 // swiftlint:disable:next type_name
 class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
+
+    private let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
+    private let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
+    private let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
+
+    private let emptyCellReuseIdentifier = "collectionview.cell.empty"
 
     weak var collectionView: UICollectionView?
     var resultsControllers: [NSFetchedResultsController<T>] = [] // 2Think: Do we create a memory loop here?
@@ -43,7 +43,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         self.searchFetchRequest = searchFetchRequest
         self.cellReuseIdentifier = cellReuseIdentifier
 
-        self.collectionView?.register(R.nib.emptyCollectionViewCell(), forCellWithReuseIdentifier: R.nib.emptyCollectionViewCell.name)
+        self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: self.emptyCellReuseIdentifier)
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
@@ -52,7 +52,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
                     for type: NSFetchedResultsChangeType) {
         guard self.searchFetchResultsController == nil else { return }
 
-        let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex)).require(hint: errorMessageIndexSetConversion)
+        let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex)).require(hint: self.errorMessageIndexSetConversion)
 
         switch type {
         case .insert:
@@ -80,20 +80,20 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         switch type {
         case .insert:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)])
+                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: self.errorMessageNewIndexPathConversion)])
             }))
         case .delete:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)])
+                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)])
             }))
         case .update:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.reloadItems(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)])
+                self.collectionView?.reloadItems(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)])
             }))
         case .move:
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: errorMessageIndexPathConversion)])
-                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: errorMessageNewIndexPathConversion)])
+                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)])
+                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: self.errorMessageNewIndexPathConversion)])
             }))
         }
     }
@@ -152,7 +152,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if self.searchFetchResultsController?.fetchedObjects?.isEmpty ?? false {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.emptyCollectionViewCell.name, for: indexPath)
+            return collectionView.dequeueReusableCell(withReuseIdentifier: self.emptyCellReuseIdentifier, for: indexPath)
         }
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)

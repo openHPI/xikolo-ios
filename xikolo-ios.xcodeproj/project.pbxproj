@@ -165,9 +165,7 @@
 		24A179F11CCD0B0C0056A8EE /* AbstractAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */; };
 		24A179F31CCF96EF0056A8EE /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */; };
 		24A179F51CCF98F80056A8EE /* CourseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */; };
-		24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		24A179FF1CD11A6E0056A8EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */; };
-		24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		24A17A021CD11E270056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A031CD11E7E0056A8EE /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		24A17A081CD18CB50056A8EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A17A0A1CD18CB50056A8EE /* Localizable.strings */; };
@@ -245,8 +243,6 @@
 		24BA40E81D3F9B1100E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
 		24BA40E91D3F9B1200E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
 		24BA40EA1D3F9B1200E38C2C /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B41D3F72B400B54AAC /* Brand.swift */; };
-		24BA40ED1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
-		24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		24BA40F11D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F21D3F9B2A00E38C2C /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		24BA40F31D3F9B2C00E38C2C /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
@@ -1302,8 +1298,6 @@
 		70D1EB111EF12DF00088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		70D1EB121EF12DF00088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
 		70D1EB131EF12DF10088C0FF /* XikoloBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB77C2961DF956EE00B30619 /* XikoloBrand.swift */; };
-		70D1EB241EF12E060088C0FF /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
-		70D1EB251EF12E070088C0FF /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		70D1EB261EF12E0B0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		70D1EB271EF12E0C0088C0FF /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		70D1EB281EF12E0F0088C0FF /* MarkdownHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2193911E06F1E700E79DB5 /* MarkdownHelper.swift */; };
@@ -1600,8 +1594,6 @@
 		ABA0F0E71DF8CE7E0001D88D /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		ABA0F0E81DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		ABA0F0E91DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
-		ABA0F0EC1DF8CE980001D88D /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
-		ABA0F0ED1DF8CE990001D88D /* AbstractLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */; };
 		ABA0F0F01DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F11DF8CEA10001D88D /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		ABA0F0F21DF8CEA40001D88D /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
@@ -1949,7 +1941,6 @@
 		24A179EF1CCD0B0C0056A8EE /* AbstractAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractAppDelegate.swift; sourceTree = "<group>"; };
 		24A179F21CCF96EE0056A8EE /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		24A179F41CCF98F80056A8EE /* CourseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTabBarController.swift; sourceTree = "<group>"; };
-		24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractLoginViewController.swift; sourceTree = "<group>"; };
 		24A179FE1CD11A6E0056A8EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		24A17A011CD11E270056A8EE /* UIView+shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shake.swift"; sourceTree = "<group>"; };
 		24A17A051CD189390056A8EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -2389,14 +2380,6 @@
 			path = ItemQuizQuestionControllers;
 			sourceTree = "<group>";
 		};
-		241D4AEA1CC9918600E35B1F /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				24A179FC1CD11A530056A8EE /* AbstractLoginViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		2433A5AB1CE641E70060DD98 /* ViewHelpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2622,7 +2605,6 @@
 				24D48E1F1CCA740500E8051E /* Categories */,
 				24CB7E561CC6C61A00960269 /* Data */,
 				249C01AD1D3F721E00B54AAC /* Branding */,
-				241D4AEA1CC9918600E35B1F /* ViewControllers */,
 				2433A5AB1CE641E70060DD98 /* ViewHelpers */,
 				501F94672007550A001C8754 /* Stroyboard */,
 				501F94752007556A001C8754 /* Views */,
@@ -4964,7 +4946,6 @@
 				24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */,
 				24BA40CC1D3F9AEA00E38C2C /* CourseHelper.swift in Sources */,
 				5017B3BF2049854F001D90A1 /* CourseContentCell.swift in Sources */,
-				24BA40ED1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
 				243CE4931D786717007C59B6 /* TrackingEventUser.swift in Sources */,
 				24BA407B1D3F9A7D00E38C2C /* UIView+shake.swift in Sources */,
 				24BA40AC1D3F9AC300E38C2C /* Announcement.swift in Sources */,
@@ -5119,7 +5100,6 @@
 				24BA41031D3F9B4200E38C2C /* XikoloURL.swift in Sources */,
 				ABFCF7661E81EEC40043C7B7 /* User.swift in Sources */,
 				24BA40CD1D3F9AEB00E38C2C /* CourseHelper.swift in Sources */,
-				24BA40EE1D3F9B2300E38C2C /* AbstractLoginViewController.swift in Sources */,
 				240CAA141D649E980072F96D /* AbstractQuestionViewController.swift in Sources */,
 				50F57DA61FBD81AC00910950 /* AnnouncementHelper+FetchRequests.swift in Sources */,
 				5051F8131FC85A5A00FD1AA4 /* SyncPushEngine.swift in Sources */,
@@ -5281,7 +5261,6 @@
 				249347FD1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift in Sources */,
 				50F57DBD1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift in Sources */,
 				243CE4841D709999007C59B6 /* Enrollment.swift in Sources */,
-				24A17A001CD11A710056A8EE /* AbstractLoginViewController.swift in Sources */,
 				249E3AB31D43CEF400D7663F /* ItemQuizIntroductionController.swift in Sources */,
 				50D9B1741F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift in Sources */,
 				501212171FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
@@ -5526,7 +5505,6 @@
 				70D1EA7A1EF0AB4E0088C0FF /* TrackingEventResource.swift in Sources */,
 				5040A62A2079788900E98351 /* CoursePresentationAnimator.swift in Sources */,
 				70D1EAAC1EF0ABF50088C0FF /* CourseDateHelper.swift in Sources */,
-				70D1EB241EF12E060088C0FF /* AbstractLoginViewController.swift in Sources */,
 				502F3DE0209C35ED006B3DAC /* CouseContent+image.swift in Sources */,
 				70D1EA6E1EF0AB400088C0FF /* RichText.swift in Sources */,
 				50F45AD0200CE819009304A3 /* SyncHelper.swift in Sources */,
@@ -5658,7 +5636,6 @@
 				70D1EB4B1EF134240088C0FF /* AbstractQuestionViewController.swift in Sources */,
 				501212621FCC679F0022A7AF /* Pushable.swift in Sources */,
 				501212131FCC65B00022A7AF /* ModelObserver.swift in Sources */,
-				70D1EB251EF12E070088C0FF /* AbstractLoginViewController.swift in Sources */,
 				70D1EB4C1EF134260088C0FF /* ChoiceQuestionViewController.swift in Sources */,
 				50F57DD31FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				70D1EAAD1EF0ABF50088C0FF /* CourseDateHelper.swift in Sources */,
@@ -5947,7 +5924,6 @@
 				501212651FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				AB35C9331E89DAA4009832A5 /* UserHelper.swift in Sources */,
 				F85225411B4D299C00C9BF56 /* UserProfileHelper.swift in Sources */,
-				24A179FD1CD11A530056A8EE /* AbstractLoginViewController.swift in Sources */,
 				AB17C5801DFCC5B50013BBCD /* PlatformEvent.swift in Sources */,
 				AB4F226E1D7CB95500ED0BF1 /* CourseViewController.swift in Sources */,
 				F8FABFBD1B580B7A0007F308 /* CourseCell.swift in Sources */,
@@ -6198,7 +6174,6 @@
 				AB4A01B41E7EA151005CD595 /* EnrollmentCertificates.swift in Sources */,
 				50EFACC41FFFB25400169C35 /* SafeCastable.swift in Sources */,
 				50F7202A1F28D72D00779995 /* StreamPersistenceManager.swift in Sources */,
-				ABA0F0EC1DF8CE980001D88D /* AbstractLoginViewController.swift in Sources */,
 				50371FFB204ECB8E006E9634 /* CircularProgressView.swift in Sources */,
 				ABA0F0E11DF8CE750001D88D /* Error.swift in Sources */,
 			);
@@ -6260,7 +6235,6 @@
 				50F57DB61FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift in Sources */,
 				501212451FCC670D0022A7AF /* Date+Marshal.swift in Sources */,
 				5060458D206BCE10009569D1 /* XikoloBrandColor.swift in Sources */,
-				ABA0F0ED1DF8CE990001D88D /* AbstractLoginViewController.swift in Sources */,
 				ABA0F1051DF8CEC20001D88D /* XikoloURL.swift in Sources */,
 				ABA0F1121DF8CF630001D88D /* ItemQuizViewController.swift in Sources */,
 				ABA0F0E81DF8CE7F0001D88D /* xikolo.xcdatamodeld in Sources */,

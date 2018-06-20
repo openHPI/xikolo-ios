@@ -8,13 +8,17 @@ import SimpleRoundedButton
 import UIKit
 import WebKit
 
-class LoginViewController: AbstractLoginViewController, WKUIDelegate {
+class LoginViewController: UIViewController, WKUIDelegate {
 
+    @IBOutlet private weak var emailField: UITextField!
+    @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var loginButton: SimpleRoundedButton!
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var singleSignOnView: UIView!
     @IBOutlet private weak var singleSignOnButton: UIButton!
     @IBOutlet private weak var centerInputFieldsConstraints: NSLayoutConstraint!
+
+    weak var delegate: LoginDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,23 +44,27 @@ class LoginViewController: AbstractLoginViewController, WKUIDelegate {
 
     }
 
-    override func login() {
-        loginButton.startAnimating()
-        super.login()
-    }
-
-    override func handleLoginSuccess(with token: String) {
-        loginButton.stopAnimating()
-        super.handleLoginSuccess(with: token)
-    }
-
-    override func handleLoginFailure(with error: Error) {
-        loginButton.stopAnimating()
-        super.handleLoginFailure(with: error)
-    }
-
     @IBAction func dismiss() {
         presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func login() {
+        guard let email = emailField.text, let password = passwordField.text else {
+            self.emailField.shake()
+            self.passwordField.shake()
+            return
+        }
+
+        loginButton.startAnimating()
+        UserProfileHelper.login(email, password: password).onComplete { [weak self] _ in
+            self?.loginButton.stopAnimating()
+        }.onSuccess { [weak self] token in
+            self?.delegate?.didSuccessfullyLogin()
+            self?.presentingViewController?.dismiss(animated: true)
+        }.onFailure { [weak self] error in
+            self?.emailField.shake()
+            self?.passwordField.shake()
+        }
     }
 
     @IBAction func register() {
@@ -140,5 +148,11 @@ extension LoginViewController: UITextFieldDelegate {
 
         return true
     }
+
+}
+
+protocol LoginDelegate: AnyObject {
+
+    func didSuccessfullyLogin()
 
 }

@@ -153,7 +153,7 @@ extension AppDelegate: UITabBarControllerDelegate {
 
 }
 
-extension AppDelegate: AbstractLoginViewControllerDelegate {
+extension AppDelegate: LoginDelegate {
 
     func didSuccessfullyLogin() {
         self.tabBarController?.selectedIndex = 0

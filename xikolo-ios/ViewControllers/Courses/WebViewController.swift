@@ -9,7 +9,7 @@ class WebViewController: UIViewController {
 
     @IBOutlet private weak var webView: UIWebView!
 
-    weak var loginDelegate: AbstractLoginViewControllerDelegate?
+    weak var loginDelegate: LoginDelegate?
 
     var url: URL? {
         didSet {

@@ -23,7 +23,6 @@ platform :ios do
     new_version_number = increment_version_number(
       bump_type: "patch",
     )
-    revert_tvOS_changes()
     commit_version_bump(
       message: "New version #{new_version_number}",
       xcodeproj: "./xikolo-ios.xcodeproj",
@@ -35,7 +34,6 @@ platform :ios do
     new_version_number = increment_version_number(
       bump_type: "minor",
     )
-    revert_tvOS_changes()
     commit_version_bump(
       message: "New version #{new_version_number}",
       xcodeproj: "./xikolo-ios.xcodeproj",
@@ -47,7 +45,6 @@ platform :ios do
     new_version_number = increment_version_number(
       bump_type: "major",
     )
-    revert_tvOS_changes()
     commit_version_bump(
       message: "New version #{new_version_number}",
       xcodeproj: "./xikolo-ios.xcodeproj",
@@ -113,10 +110,6 @@ platform :ios do
       config_file: ".swiftlint.yml",
       ignore_exit_status: true,
     )
-  end
-
-  private_lane :revert_tvOS_changes do
-    sh "git checkout head -- ../xikolo-tvos/Info.plist"
   end
 
   desc "Adds localizations for the application incrementally"

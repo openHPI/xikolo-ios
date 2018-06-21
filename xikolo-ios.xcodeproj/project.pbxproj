@@ -29,7 +29,6 @@
 		24597D261CC6CA0D00FB5338 /* xikolo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24597D241CC6CA0D00FB5338 /* xikolo.xcdatamodeld */; };
 		2490C4CF1D1C5F3600F42949 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		2490C4D31D1D6F7100F42949 /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Common.strings */; };
-		2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		249348131D9550FD006D4F2C /* Common.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Common.stringsdict */; };
 		249348161D9550FD006D4F2C /* Common.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Common.stringsdict */; };
 		249C01C01D3F78DC00B54AAC /* assets-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249C01B11D3F729E00B54AAC /* assets-brand.xcassets */; };
@@ -86,7 +85,6 @@
 		24BA40F71D3F9B3200E38C2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4CA1D1C5A9900F42949 /* Settings.swift */; };
 		24BA40F91D3F9B3500E38C2C /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		24BA40FB1D3F9B3900E38C2C /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Common.strings */; };
-		24BA41021D3F9B4100E38C2C /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		24BA41051D3F9B5200E38C2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		24BA41061D3F9B5500E38C2C /* TabAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */; };
 		24BA41071D3F9B5A00E38C2C /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
@@ -638,7 +636,6 @@
 		70D1EB2F1EF12E1B0088C0FF /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		70D1EB311EF12E1E0088C0FF /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Common.strings */; };
 		70D1EB331EF12E210088C0FF /* Common.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Common.stringsdict */; };
-		70D1EB3C1EF12E2A0088C0FF /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		70D1EB3F1EF12E460088C0FF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB947CE11E19E1EC009888B0 /* Settings.bundle */; };
 		70E37FCD207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		70E37FCE207D47FF00F9872F /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
@@ -771,7 +768,6 @@
 		ABA0F0F81DF8CEB00001D88D /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		ABA0F0FA1DF8CEB30001D88D /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Common.strings */; };
 		ABA0F0FC1DF8CEB60001D88D /* Common.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2493481A1D9550FD006D4F2C /* Common.stringsdict */; };
-		ABA0F1041DF8CEC10001D88D /* XikoloURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490C4FC1D2175BA00F42949 /* XikoloURL.swift */; };
 		ABAC56071D142B4A008D30FB /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		ABB49A8E1DF8D6D8004C59B6 /* PlatformEventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F22861D80BC0F00ED0BF1 /* PlatformEventHelper.swift */; };
 		ABBE0E301E94D96200A8666B /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */; };
@@ -910,7 +906,6 @@
 		24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = xikolo.xcdatamodel; sourceTree = "<group>"; };
 		2490C4CA1D1C5A9900F42949 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2490C4D51D1D6F7100F42949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Common.strings; sourceTree = "<group>"; };
-		2490C4FC1D2175BA00F42949 /* XikoloURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XikoloURL.swift; sourceTree = "<group>"; };
 		249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		249348191D9550FD006D4F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Common.stringsdict; sourceTree = "<group>"; };
 		2493481B1D955101006D4F2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Common.stringsdict; sourceTree = "<group>"; };
@@ -1351,7 +1346,6 @@
 				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Common.strings */,
 				2493481A1D9550FD006D4F2C /* Common.stringsdict */,
-				2490C4FC1D2175BA00F42949 /* XikoloURL.swift */,
 				702520901F71A1D4003E0F80 /* NotificationKeys.swift */,
 				7025208F1F71A1D4003E0F80 /* UserDefaultsKeys.swift */,
 				50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */,
@@ -2897,7 +2891,6 @@
 				24BA410D1D3F9B7300E38C2C /* CourseItemListViewController.swift in Sources */,
 				24BA40E21D3F9B0500E38C2C /* xikolo.xcdatamodeld in Sources */,
 				501212681FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
-				24BA41021D3F9B4100E38C2C /* XikoloURL.swift in Sources */,
 				AB17C5841DFCC5C90013BBCD /* PlatformEvent.swift in Sources */,
 				AB4F226F1D7CB95500ED0BF1 /* CourseViewController.swift in Sources */,
 				24BA410E1D3F9B7500E38C2C /* VideoViewController.swift in Sources */,
@@ -3062,7 +3055,6 @@
 				70D1EB091EF0ACF20088C0FF /* NetworkIndicator.swift in Sources */,
 				70D1EAF71EF0ACBA0088C0FF /* AnnouncementViewController.swift in Sources */,
 				70D1EA591EF0AB260088C0FF /* Quiz.swift in Sources */,
-				70D1EB3C1EF12E2A0088C0FF /* XikoloURL.swift in Sources */,
 				50F57DD21FBD852E00910950 /* QuizHelper+FetchRequests.swift in Sources */,
 				70D1EA2B1EF0AAED0088C0FF /* CourseSection.swift in Sources */,
 				5012126E1FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
@@ -3348,7 +3340,6 @@
 				5040A6272079788900E98351 /* CoursePresentationAnimator.swift in Sources */,
 				50F57D3A1FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				5040A6222079787000E98351 /* CoursePresentationController.swift in Sources */,
-				2490C4FD1D2175BA00F42949 /* XikoloURL.swift in Sources */,
 				5040A63120797ED800E98351 /* CourseNavigationController.swift in Sources */,
 				501212161FCC660F0022A7AF /* ResourceQuery.swift in Sources */,
 				50ED3C4F1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift in Sources */,
@@ -3467,7 +3458,6 @@
 				ABA0F09C1DF8CDF20001D88D /* TrackingEventVerb.swift in Sources */,
 				ABA0F0CD1DF8CE480001D88D /* CourseItemHelper.swift in Sources */,
 				50B15BDE1FDFD4C300CD86F1 /* AppNavigator.swift in Sources */,
-				ABA0F1041DF8CEC10001D88D /* XikoloURL.swift in Sources */,
 				ABA0F04A1DF8CD7C0001D88D /* Course.swift in Sources */,
 				5012126B1FCC685E0022A7AF /* ResourceIdentifier.swift in Sources */,
 				ABA0F0171DF8CC950001D88D /* LoginViewController.swift in Sources */,

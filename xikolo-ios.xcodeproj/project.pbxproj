@@ -1488,21 +1488,13 @@
 			isa = PBXGroup;
 			children = (
 				502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */,
-				502E7171201A20C9007FC8C0 /* Credentials.plist */,
-				502E7176201B1B7C007FC8C0 /* ios */,
-			);
-			path = "UI Tests";
-			sourceTree = "<group>";
-		};
-		502E7176201B1B7C007FC8C0 /* ios */ = {
-			isa = PBXGroup;
-			children = (
 				502E718820207C92007FC8C0 /* Navigator.swift */,
 				502E7178201B1C78007FC8C0 /* LoginHelper.swift */,
 				502E712D2018D8BF007FC8C0 /* Screenshots.swift */,
 				502E712F2018D8BF007FC8C0 /* Info.plist */,
+				502E7171201A20C9007FC8C0 /* Credentials.plist */,
 			);
-			path = ios;
+			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		5040A616207977DC00E98351 /* Transition */ = {

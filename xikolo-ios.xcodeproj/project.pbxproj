@@ -1242,7 +1242,7 @@
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50CF1F4020DCD0220011BFE9 /* openHPI-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Release.xcconfig"; sourceTree = "<group>"; };
-		50CF201620DCDBFC0011BFE9 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50CF201620DCDBFC0011BFE9 /* openHPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openHPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CF201820DCDD720011BFE9 /* openHPI-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Common.xcconfig"; sourceTree = "<group>"; };
 		50CF202D20DCE6680011BFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
@@ -1819,7 +1819,7 @@
 				502E71392018D93D007FC8C0 /* openSAP-iOS-UITests.xctest */,
 				502E71472018D950007FC8C0 /* openWHO-iOS-UITests.xctest */,
 				502E71552018D960007FC8C0 /* moocHOUSE-iOS-UITests.xctest */,
-				50CF201620DCDBFC0011BFE9 /* ios.app */,
+				50CF201620DCDBFC0011BFE9 /* openHPI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2221,7 +2221,7 @@
 			);
 			name = iOS;
 			productName = "xikolo-ios";
-			productReference = 50CF201620DCDBFC0011BFE9 /* ios.app */;
+			productReference = 50CF201620DCDBFC0011BFE9 /* openHPI.app */;
 			productType = "com.apple.product-type.application";
 		};
 		709C93021EF0952500F8F045 /* moocHOUSE-iOS */ = {
@@ -4602,7 +4602,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -4890,7 +4890,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "xikolo-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";

@@ -34,30 +34,10 @@ target 'openHPI-iOS' do
     ios_pods
 end
 
-target 'openHPI-tvOS' do
-    platform :tvos, '10.0'
-    common_pods
-end
-
-target 'openHPI-tvOS-TopShelf' do
-    platform :tvos, '10.0'
-    common_pods
-end
-
 target 'openSAP-iOS' do
     platform :ios, '10.0'
     common_pods
     ios_pods
-end
-
-target 'openSAP-tvOS' do
-    platform :tvos, '10.0'
-    common_pods
-end
-
-target 'openSAP-tvOS-TopShelf' do
-    platform :tvos, '10.0'
-    common_pods
 end
 
 target 'openWHO-iOS' do
@@ -66,30 +46,10 @@ target 'openWHO-iOS' do
     ios_pods
 end
 
-target 'openWHO-tvOS' do
-    platform :tvos, '10.0'
-    common_pods
-end
-
-target 'openWHO-tvOS-TopShelf' do
-    platform :tvos, '10.0'
-    common_pods
-end
-
 target 'moocHOUSE-iOS' do
     platform :ios, '10.0'
     common_pods
     ios_pods
-end
-
-target 'moocHOUSE-tvOS' do
-    platform :tvos, '10.0'
-    common_pods
-end
-
-target 'moocHOUSE-tvOS-TopShelf' do
-    platform :tvos, '10.0'
-    common_pods
 end
 
 post_install do |installer|

@@ -11,10 +11,6 @@ env:
   - BUILD=1 SCHEME="openSAP-iOS" SDK="iphonesimulator"
   - BUILD=1 SCHEME="openWHO-iOS" SDK="iphonesimulator"
   - BUILD=1 SCHEME="moocHOUSE-iOS" SDK="iphonesimulator"
-  # - SCHEME="openHPI-tvOS" SDK="appletvsimulator"
-  # - SCHEME="openSAP-tvOS" SDK="appletvsimulator"
-  # - SCHEME="openWHO-tvOS" SDK="appletvsimulator"
-  # - SCHEME="moocHOUSE-tvOS" SDK="appletvsimulator"
 
 install:
   - bundle install --without documentation

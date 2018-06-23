@@ -66,3 +66,6 @@ UI Tests/Credentials.plist
 
 # R.swift
 **/R.generated.swift
+
+# Brand Assets
+xikolo-ios/assets-ios-brand.generated.xcassets

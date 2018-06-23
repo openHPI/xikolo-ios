@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreDataObserver.standard.startObserving()
         ReachabilityHelper.startObserving()
 
-        #if OPENSAP
+        if Brand.default.useDummyCredentialsForSDWebImage {
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.
             // By setting 'username' and 'password', a dummy certificate is created that allows the request
             // of SDWebImage to pass.
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // SDWebImage (ver. 4.0.0) -> SDWebImageDownloaderOperation -> Line 408
             SDWebImageDownloader.shared().username = "open"
             SDWebImageDownloader.shared().password = "SAP"
-        #endif
+        }
 
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {

@@ -584,7 +584,6 @@
 		50CF200320DCDBFC0011BFE9 /* assets-ios.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90587C51B3BFC130095DB89 /* assets-ios.xcassets */; };
 		50CF200420DCDBFC0011BFE9 /* Common.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2490C4D61D1D6F7100F42949 /* Common.strings */; };
 		50CF200520DCDBFC0011BFE9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB947CE11E19E1EC009888B0 /* Settings.bundle */; };
-		50CF200620DCDBFC0011BFE9 /* assets-ios-brand.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */; };
 		50CF200820DCDBFC0011BFE9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5014E2FB1FCEDFFA007255B5 /* Login.storyboard */; };
 		50CF200920DCDBFC0011BFE9 /* TabNews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B6514B1D355B4A00624DBC /* TabNews.storyboard */; };
 		50CF200A20DCDBFC0011BFE9 /* TabDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D51CF72E8E00ED3EB0 /* TabDashboard.storyboard */; };
@@ -602,7 +601,8 @@
 		50D643381F8E587100A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D65A0720DE17AE00DFD183 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */; };
 		50D65A0820DE17AE00DFD183 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */; };
-		50D65A0A20DE1BA200DFD183 /* BrandConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0920DE1BA200DFD183 /* BrandConfiguration.plist */; };
+		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
+		50D65A1020DE88C000DFD183 /* CourseDateLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D65A0E20DE87F700DFD183 /* CourseDateLabelStyle.swift */; };
 		50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
@@ -1246,7 +1246,9 @@
 		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-ios/Extensions/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
 		50D65A0420DD192200DFD183 /* ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
 		50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
-		50D65A0920DE1BA200DFD183 /* BrandConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BrandConfiguration.plist; sourceTree = "<group>"; };
+		50D65A0920DE1BA200DFD183 /* BrandConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = BrandConfiguration.plist; path = "assets-ios-brand.xcassets/BrandConfiguration.dataset/BrandConfiguration.plist"; sourceTree = "<group>"; };
+		50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.generated.xcassets"; sourceTree = "<group>"; };
+		50D65A0E20DE87F700DFD183 /* CourseDateLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateLabelStyle.swift; sourceTree = "<group>"; };
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseContent.swift; sourceTree = "<group>"; };
 		50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
@@ -1533,6 +1535,7 @@
 				709C93501EF09B9E00F8F045 /* moocHOUSE */,
 				AB77C2961DF956EE00B30619 /* Brand.swift */,
 				50604585206BCE10009569D1 /* BrandColors.swift */,
+				50D65A0E20DE87F700DFD183 /* CourseDateLabelStyle.swift */,
 			);
 			path = Branding;
 			sourceTree = "<group>";
@@ -1833,6 +1836,7 @@
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
+				50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */,
 				500A257D20824C2500EB7AE4 /* R.generated.swift */,
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
@@ -2197,6 +2201,7 @@
 			buildPhases = (
 				50CF1F4220DCDBFC0011BFE9 /* [CP] Check Pods Manifest.lock */,
 				50CF1F4320DCDBFC0011BFE9 /* Set Build Number */,
+				50D65A0D20DE33B100DFD183 /* Copy Brand Assets */,
 				50CF1F4420DCDBFC0011BFE9 /* Run R.swift */,
 				50CF1F4520DCDBFC0011BFE9 /* Sources */,
 				50CF1FEE20DCDBFC0011BFE9 /* Frameworks */,
@@ -2494,9 +2499,8 @@
 				50CF200220DCDBFC0011BFE9 /* CourseItemHeader.xib in Resources */,
 				50CF200320DCDBFC0011BFE9 /* assets-ios.xcassets in Resources */,
 				50CF200420DCDBFC0011BFE9 /* Common.strings in Resources */,
+				50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */,
 				50CF200520DCDBFC0011BFE9 /* Settings.bundle in Resources */,
-				50CF200620DCDBFC0011BFE9 /* assets-ios-brand.xcassets in Resources */,
-				50D65A0A20DE1BA200DFD183 /* BrandConfiguration.plist in Resources */,
 				50CF200820DCDBFC0011BFE9 /* Login.storyboard in Resources */,
 				50CF200920DCDBFC0011BFE9 /* TabNews.storyboard in Resources */,
 				50CF200A20DCDBFC0011BFE9 /* TabDashboard.storyboard in Resources */,
@@ -3038,6 +3042,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50D65A0D20DE33B100DFD183 /* Copy Brand Assets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Brand Assets";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rf ${PROJECT_DIR}/xikolo-ios/assets-ios-brand.generated.xcassets\ncp -R ${PROJECT_DIR}/xikolo-ios/Branding/${PRODUCT_NAME}/assets-ios-brand.xcassets ${PROJECT_DIR}/xikolo-ios/assets-ios-brand.generated.xcassets";
 		};
 		64BDA7A093734A38DD163B71 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3603,6 +3621,7 @@
 				50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */,
 				50CF1FBE20DCDBFC0011BFE9 /* URL+URLQueryItem.swift in Sources */,
 				50CF1FBF20DCDBFC0011BFE9 /* CoreDataObserver.swift in Sources */,
+				50D65A1020DE88C000DFD183 /* CourseDateLabelStyle.swift in Sources */,
 				50CF1FC020DCDBFC0011BFE9 /* User.swift in Sources */,
 				50CF1FC120DCDBFC0011BFE9 /* ResourceRepresentable.swift in Sources */,
 				50CF1FC220DCDBFC0011BFE9 /* Pushable.swift in Sources */,

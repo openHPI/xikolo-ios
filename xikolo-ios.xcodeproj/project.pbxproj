@@ -494,7 +494,6 @@
 		50CF1FA420DCDBFC0011BFE9 /* PlatformEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17C57E1DFCC5B50013BBCD /* PlatformEvent.swift */; };
 		50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */; };
 		50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABFBC1B580B7A0007F308 /* CourseCell.swift */; };
-		50CF1FA720DCDBFC0011BFE9 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B71D3F72BD00B54AAC /* Brand.swift */; };
 		50CF1FA820DCDBFC0011BFE9 /* CourseContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017B3BB204983E7001D90A1 /* CourseContentListViewController.swift */; };
 		50CF1FA920DCDBFC0011BFE9 /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448A9D51CDA445D009A1AEA /* CourseSection.swift */; };
 		50CF1FAA20DCDBFC0011BFE9 /* TrackingEventUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE4901D786717007C59B6 /* TrackingEventUser.swift */; };
@@ -604,6 +603,10 @@
 		50D643331F8E586E00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D643351F8E586F00A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50D643381F8E587100A89331 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
+		50D65A0520DE14FB00DFD183 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C01B71D3F72BD00B54AAC /* Brand.swift */; };
+		50D65A0720DE17AE00DFD183 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */; };
+		50D65A0820DE17AE00DFD183 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */; };
+		50D65A0A20DE1BA200DFD183 /* BrandConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0920DE1BA200DFD183 /* BrandConfiguration.plist */; };
 		50D7AEA21F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA31F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50D7AEA41F2224DA00A42EBC /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
@@ -1248,6 +1251,8 @@
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
 		50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIApplication+AppInfo.swift"; path = "xikolo-ios/Extensions/UIApplication+AppInfo.swift"; sourceTree = SOURCE_ROOT; };
 		50D65A0420DD192200DFD183 /* ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
+		50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		50D65A0920DE1BA200DFD183 /* BrandConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BrandConfiguration.plist; sourceTree = "<group>"; };
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseContent.swift; sourceTree = "<group>"; };
 		50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
@@ -1633,6 +1638,7 @@
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
+				50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */,
 				50604592206BCF48009569D1 /* URL+URLQueryItem.swift */,
 			);
 			path = Extensions;
@@ -1930,6 +1936,7 @@
 				ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */,
 				50D65A0420DD192200DFD183 /* ios.entitlements */,
 				AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */,
+				50D65A0920DE1BA200DFD183 /* BrandConfiguration.plist */,
 			);
 			path = openHPI;
 			sourceTree = "<group>";
@@ -2506,6 +2513,7 @@
 				50CF200520DCDBFC0011BFE9 /* Settings.bundle in Resources */,
 				50CF200620DCDBFC0011BFE9 /* assets-ios-brand.xcassets in Resources */,
 				50CF200720DCDBFC0011BFE9 /* assets-brand.xcassets in Resources */,
+				50D65A0A20DE1BA200DFD183 /* BrandConfiguration.plist in Resources */,
 				50CF200820DCDBFC0011BFE9 /* Login.storyboard in Resources */,
 				50CF200920DCDBFC0011BFE9 /* TabNews.storyboard in Resources */,
 				50CF200A20DCDBFC0011BFE9 /* TabDashboard.storyboard in Resources */,
@@ -3588,7 +3596,6 @@
 				50CF1FA420DCDBFC0011BFE9 /* PlatformEvent.swift in Sources */,
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
-				50CF1FA720DCDBFC0011BFE9 /* Brand.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseContentListViewController.swift in Sources */,
 				50CF1FA920DCDBFC0011BFE9 /* CourseSection.swift in Sources */,
 				50CF1FAA20DCDBFC0011BFE9 /* TrackingEventUser.swift in Sources */,
@@ -3601,12 +3608,14 @@
 				50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */,
 				50CF1FB220DCDBFC0011BFE9 /* Int+TimeInterval.swift in Sources */,
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItem.swift in Sources */,
+				50D65A0520DE14FB00DFD183 /* Brand.swift in Sources */,
 				50CF1FB420DCDBFC0011BFE9 /* Logger.swift in Sources */,
 				50CF1FB520DCDBFC0011BFE9 /* VideoPlayerControlView.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				50CF1FB720DCDBFC0011BFE9 /* UIApplication+AppInfo.swift in Sources */,
 				50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */,
 				50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */,
+				50D65A0820DE17AE00DFD183 /* UIColor+hex.swift in Sources */,
 				50CF1FBA20DCDBFC0011BFE9 /* Error.swift in Sources */,
 				50CF1FBB20DCDBFC0011BFE9 /* RichTextHelper.swift in Sources */,
 				50CF1FBC20DCDBFC0011BFE9 /* QuizOption.swift in Sources */,
@@ -3959,6 +3968,7 @@
 				50D643301F8E586C00A89331 /* UIApplication+AppInfo.swift in Sources */,
 				50082B5A20BFDA9C00B4511C /* SlidesPersistenceManager.swift in Sources */,
 				AB91F9E51CED029B00007D06 /* CourseItemCell.swift in Sources */,
+				50D65A0720DE17AE00DFD183 /* UIColor+hex.swift in Sources */,
 				24A16D901CFFA3E500CAD9FE /* Error.swift in Sources */,
 				2447CE1F1D0AF36500B5C39A /* RichTextHelper.swift in Sources */,
 				24E3DD181D5DFD5000297118 /* QuizOption.swift in Sources */,

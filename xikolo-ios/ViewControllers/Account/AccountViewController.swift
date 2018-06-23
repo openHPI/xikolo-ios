@@ -70,9 +70,9 @@ class AccountViewController: UITableViewController {
         self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
 
         // set copyright and app version info
-        self.copyrightLabel.text = Brand.copyrightText
-        self.poweredByLabel.text = Brand.poweredByText
-        self.poweredByLabel.isHidden = Brand.poweredByText == nil
+        self.copyrightLabel.text = Brand.default.copyrightText
+        self.poweredByLabel.text = Brand.default.poweredByText
+        self.poweredByLabel.isHidden = Brand.default.poweredByText == nil
         self.versionLabel.text = NSLocalizedString("settings.app.version.label", comment: "label for app version") + ": " + UIApplication.appVersion
         self.buildLabel.text = NSLocalizedString("settings.app.build.label", comment: "label for app build") + ": " + UIApplication.appBuild
 
@@ -239,17 +239,17 @@ class AccountViewController: UITableViewController {
         guard let urlToOpen = url else { return }
 
         let safariVC = SFSafariViewController(url: urlToOpen)
-        safariVC.preferredControlTintColor = Brand.Color.window
+        safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: true, completion: nil)
     }
 
     private func sendFeedbackMail() {
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
-        composeVC.setToRecipients(Brand.feedbackRecipients)
-        composeVC.setSubject(Brand.feedbackSubject)
+        composeVC.setToRecipients(Brand.default.feedbackRecipients)
+        composeVC.setSubject(Brand.default.feedbackSubject)
         composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: true)
-        composeVC.navigationBar.tintColor = Brand.Color.window
+        composeVC.navigationBar.tintColor = Brand.default.colors.window
         self.present(composeVC, animated: true, completion: nil)
     }
 

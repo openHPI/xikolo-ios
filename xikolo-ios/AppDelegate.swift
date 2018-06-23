@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window?.tintColor = Brand.Color.window
+        self.window?.tintColor = Brand.default.colors.window
 
         // select start tab
         self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn ? 0 : 1

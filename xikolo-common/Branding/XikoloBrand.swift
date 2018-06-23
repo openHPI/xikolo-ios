@@ -6,54 +6,54 @@
 import Foundation
 import UIKit
 
-protocol XikoloBrand {
+//protocol XikoloBrand {
+//
+//    static var host: String { get }
+//    static var imprintURL: URL { get }
+//    static var privacyURL: URL { get }
+//
+//    static var platformTitle: String { get }
+//    static var singleSignOnButtonTitle: String? { get }
+//
+//    static var copyrightName: String { get }
+//    static var poweredByText: String? { get }
+//
+//}
+//
+//extension XikoloBrand {
+//
+//    static var singleSignOnButtonTitle: String? {
+//        return nil
+//    }
+//
+//    static var copyrightText: String {
+//        let currentYear = Calendar.current.component(.year, from: Date())
+//        return "Copyright © \(currentYear) \(Self.copyrightName). All rights reserved."
+//    }
+//
+//    static var poweredByText: String? {
+//        return nil
+//    }
+//
+//    static var locale: Locale {
+//        if Bundle.main.localizations.contains(Locale.current.languageCode ?? Locale.current.identifier) {
+//            return Locale.current
+//        } else {
+//            return Locale(identifier: "en")
+//        }
+//    }
+//
+//    static var feedbackRecipients: [String] {
+//        return ["mobile-feedback@hpi.de"]
+//    }
+//
+//    static var feedbackSubject: String {
+//        return "\(UIApplication.appName) | App Feedback"
+//    }
+//
+//}
 
-    static var host: String { get }
-    static var imprintURL: URL { get }
-    static var privacyURL: URL { get }
-
-    static var platformTitle: String { get }
-    static var singleSignOnButtonTitle: String? { get }
-
-    static var copyrightName: String { get }
-    static var poweredByText: String? { get }
-
-}
-
-extension XikoloBrand {
-
-    static var singleSignOnButtonTitle: String? {
-        return nil
-    }
-
-    static var copyrightText: String {
-        let currentYear = Calendar.current.component(.year, from: Date())
-        return "Copyright © \(currentYear) \(Self.copyrightName). All rights reserved."
-    }
-
-    static var poweredByText: String? {
-        return nil
-    }
-
-    static var locale: Locale {
-        if Bundle.main.localizations.contains(Locale.current.languageCode ?? Locale.current.identifier) {
-            return Locale.current
-        } else {
-            return Locale(identifier: "en")
-        }
-    }
-
-    static var feedbackRecipients: [String] {
-        return ["mobile-feedback@hpi.de"]
-    }
-
-    static var feedbackSubject: String {
-        return "\(UIApplication.appName) | App Feedback"
-    }
-
-}
-
-public struct Brand2: Decodable {
+public struct Brand: Decodable {
 
     private enum CodingKeys: CodingKey {
         case host
@@ -66,11 +66,11 @@ public struct Brand2: Decodable {
         case colors
     }
 
-    public static let `default`: Brand2 = {
+    public static let `default`: Brand = {
         let data = NSDataAsset(name: "BrandConfiguration")?.data
         let data2 = data.require(hint: "No brand configuration found")
         let decoder = PropertyListDecoder()
-        return try! decoder.decode(Brand2.self, from: data2)
+        return try! decoder.decode(Brand.self, from: data2)
     }()
 
     public let host: String

@@ -27,10 +27,10 @@ struct Routes {
 
     struct QueryItem {
         static let inApp = URLQueryItem(name: "in_app", value: "true")
-        static let redirect = URLQueryItem(name: "redirect_to", value: "/auth/" + Brand.platformTitle)
+        static let redirect = URLQueryItem(name: "redirect_to", value: "/auth/" + Brand.default.platformTitle)
     }
 
-    static let base = URL(string: "https://" + Brand.host).require(hint: "Invalid base URL")
+    static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
 
     static let api = Routes.base.appendingPathComponents(["api", "v2"])
     private static let apiVersion = "3"
@@ -41,8 +41,8 @@ struct Routes {
 
     static let courses = Routes.base.appendingPathComponent("courses")
 
-    static var imprint = Brand.imprintURL.appendingInAppParameter()
-    static let privacy = Brand.privacyURL.appendingInAppParameter()
+    static var imprint = Brand.default.imprintURL.appendingInAppParameter()
+    static let privacy = Brand.default.privacyURL.appendingInAppParameter()
     static let github = URL(string: "https://github.com/openHPI/xikolo-ios").require(hint: "Invalid GitHub URL")
 
     static var localizedForgotPasswordURL: URL {

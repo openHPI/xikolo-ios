@@ -11,7 +11,7 @@ struct MarkdownHelper {
 
     static let parser: Parser = {
         var parser = Parser()
-        parser.styleCollection = DefaultStyleCollection(tintColor: Brand.Color.primary)
+        parser.styleCollection = DefaultStyleCollection(tintColor: Brand.default.colors.primary)
         return parser
     }()
 

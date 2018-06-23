@@ -23,13 +23,13 @@ extension UIColor {
         var color: UInt32 = 0
         if scanner.scanHexInt32(&color) {
             let mask = 0x000000FF
-            let r = Int(color >> 16) & mask
-            let g = Int(color >> 8) & mask
-            let b = Int(color) & mask
+            let redValue = Int(color >> 16) & mask
+            let greenValue = Int(color >> 8) & mask
+            let blueValue = Int(color) & mask
 
-            red = CGFloat(r) / 255.0
-            green = CGFloat(g) / 255.0
-            blue = CGFloat(b) / 255.0
+            red = CGFloat(redValue) / 255.0
+            green = CGFloat(greenValue) / 255.0
+            blue = CGFloat(blueValue) / 255.0
         }
 
         self.init(red: red, green: green, blue: blue, alpha: 1)

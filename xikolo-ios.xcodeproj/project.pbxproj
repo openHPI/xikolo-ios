@@ -9,24 +9,9 @@
 /* Begin PBXBuildFile section */
 		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
-		502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
-		502E716E2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
-		502E716F2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
-		502E7173201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
-		502E7174201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
-		502E7175201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
 		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
-		502E717A201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
-		502E717B201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
-		502E717C201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
-		502E717D201B1FC9007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
-		502E717E201B1FC9007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
-		502E717F201B1FCA007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
-		502E718A20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
-		502E718B20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
-		502E718C20207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		50CF1F4720DCDBFC0011BFE9 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA91D43C7C900D7663F /* QuizQuestion.swift */; };
 		50CF1F4820DCDBFC0011BFE9 /* QuizHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E3AA31D43C0A100D7663F /* QuizHelper.swift */; };
@@ -200,7 +185,6 @@
 		50CF1FF220DCDBFC0011BFE9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62AA1B3C2EDE006FCAD6 /* MobileCoreServices.framework */; };
 		50CF1FF320DCDBFC0011BFE9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A81B3C2ED7006FCAD6 /* CoreData.framework */; };
 		50CF1FF420DCDBFC0011BFE9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */; };
-		50CF1FF520DCDBFC0011BFE9 /* Pods_openHPI_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */; };
 		50CF1FF720DCDBFC0011BFE9 /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60920795BFD00E98351 /* WebViewController.storyboard */; };
 		50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		50CF1FF920DCDBFC0011BFE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
@@ -333,12 +317,9 @@
 		5019A7621F20ACE6008C8138 /* Video+DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+DetailedCourseItem.swift"; sourceTree = "<group>"; };
 		5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RichText+DetailedCourseItem.swift"; sourceTree = "<group>"; };
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
-		502E712B2018D8BF007FC8C0 /* openHPI-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "openHPI-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E712D2018D8BF007FC8C0 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		502E712F2018D8BF007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		502E71392018D93D007FC8C0 /* openSAP-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "openSAP-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		502E71472018D950007FC8C0 /* openWHO-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "openWHO-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		502E71552018D960007FC8C0 /* moocHOUSE-iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "moocHOUSE-iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		502E7171201A20C9007FC8C0 /* Credentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		502E7178201B1C78007FC8C0 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
@@ -575,27 +556,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		502E71362018D93D007FC8C0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71442018D950007FC8C0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71522018D960007FC8C0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50CF1FEE20DCDBFC0011BFE9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -606,7 +566,6 @@
 				50CF1FF220DCDBFC0011BFE9 /* MobileCoreServices.framework in Frameworks */,
 				50CF1FF320DCDBFC0011BFE9 /* CoreData.framework in Frameworks */,
 				50CF1FF420DCDBFC0011BFE9 /* CFNetwork.framework in Frameworks */,
-				50CF1FF520DCDBFC0011BFE9 /* Pods_openHPI_iOS.framework in Frameworks */,
 				F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -975,10 +934,7 @@
 		A90587BC1B3BFC130095DB89 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				502E712B2018D8BF007FC8C0 /* openHPI-iOS-UITests.xctest */,
-				502E71392018D93D007FC8C0 /* openSAP-iOS-UITests.xctest */,
-				502E71472018D950007FC8C0 /* openWHO-iOS-UITests.xctest */,
-				502E71552018D960007FC8C0 /* moocHOUSE-iOS-UITests.xctest */,
+				502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */,
 				50CF201620DCDBFC0011BFE9 /* openHPI.app */,
 			);
 			name = Products;
@@ -1291,9 +1247,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		502E712A2018D8BF007FC8C0 /* openHPI-iOS-UITests */ = {
+		502E712A2018D8BF007FC8C0 /* iOS-UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 502E71342018D8BF007FC8C0 /* Build configuration list for PBXNativeTarget "openHPI-iOS-UITests" */;
+			buildConfigurationList = 502E71342018D8BF007FC8C0 /* Build configuration list for PBXNativeTarget "iOS-UITests" */;
 			buildPhases = (
 				502E71272018D8BF007FC8C0 /* Sources */,
 				502E71282018D8BF007FC8C0 /* Frameworks */,
@@ -1304,60 +1260,9 @@
 			dependencies = (
 				50D60D2D20E0D812007A4199 /* PBXTargetDependency */,
 			);
-			name = "openHPI-iOS-UITests";
+			name = "iOS-UITests";
 			productName = "openHPI-iOS-UITests";
-			productReference = 502E712B2018D8BF007FC8C0 /* openHPI-iOS-UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		502E71382018D93D007FC8C0 /* openSAP-iOS-UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 502E71402018D93D007FC8C0 /* Build configuration list for PBXNativeTarget "openSAP-iOS-UITests" */;
-			buildPhases = (
-				502E71352018D93D007FC8C0 /* Sources */,
-				502E71362018D93D007FC8C0 /* Frameworks */,
-				502E71372018D93D007FC8C0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "openSAP-iOS-UITests";
-			productName = "openSAP-iOS-UITests";
-			productReference = 502E71392018D93D007FC8C0 /* openSAP-iOS-UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		502E71462018D950007FC8C0 /* openWHO-iOS-UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 502E714E2018D950007FC8C0 /* Build configuration list for PBXNativeTarget "openWHO-iOS-UITests" */;
-			buildPhases = (
-				502E71432018D950007FC8C0 /* Sources */,
-				502E71442018D950007FC8C0 /* Frameworks */,
-				502E71452018D950007FC8C0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "openWHO-iOS-UITests";
-			productName = "openWHO-iOS-UITests";
-			productReference = 502E71472018D950007FC8C0 /* openWHO-iOS-UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		502E71542018D960007FC8C0 /* moocHOUSE-iOS-UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 502E715C2018D960007FC8C0 /* Build configuration list for PBXNativeTarget "moocHOUSE-iOS-UITests" */;
-			buildPhases = (
-				502E71512018D960007FC8C0 /* Sources */,
-				502E71522018D960007FC8C0 /* Frameworks */,
-				502E71532018D960007FC8C0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "moocHOUSE-iOS-UITests";
-			productName = "moocHOUSE-iOS-UITests";
-			productReference = 502E71552018D960007FC8C0 /* moocHOUSE-iOS-UITests.xctest */;
+			productReference = 502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		50CF1F4120DCDBFC0011BFE9 /* iOS */ = {
@@ -1401,24 +1306,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 50CF1F4120DCDBFC0011BFE9;
 					};
-					502E71382018D93D007FC8C0 = {
-						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = WP53SSE8S6;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 24BA40331D3F976700E38C2C;
-					};
-					502E71462018D950007FC8C0 = {
-						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = WP53SSE8S6;
-						ProvisioningStyle = Automatic;
-						TestTargetID = AB48B4341DF8BB2A00523062;
-					};
-					502E71542018D960007FC8C0 = {
-						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = WP53SSE8S6;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 709C93021EF0952500F8F045;
-					};
 					50CF1F4120DCDBFC0011BFE9 = {
 						DevelopmentTeam = WP53SSE8S6;
 						ProvisioningStyle = Automatic;
@@ -1445,10 +1332,7 @@
 			projectRoot = "";
 			targets = (
 				50CF1F4120DCDBFC0011BFE9 /* iOS */,
-				502E712A2018D8BF007FC8C0 /* openHPI-iOS-UITests */,
-				502E71382018D93D007FC8C0 /* openSAP-iOS-UITests */,
-				502E71462018D950007FC8C0 /* openWHO-iOS-UITests */,
-				502E71542018D960007FC8C0 /* moocHOUSE-iOS-UITests */,
+				502E712A2018D8BF007FC8C0 /* iOS-UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1459,30 +1343,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71372018D93D007FC8C0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				502E7173201A20C9007FC8C0 /* Credentials.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71452018D950007FC8C0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				502E7174201A20C9007FC8C0 /* Credentials.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71532018D960007FC8C0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				502E7175201A20C9007FC8C0 /* Credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1686,39 +1546,6 @@
 				502E718920207C92007FC8C0 /* Navigator.swift in Sources */,
 				502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
 				502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71352018D93D007FC8C0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				502E717D201B1FC9007FC8C0 /* Screenshots.swift in Sources */,
-				502E718A20207C92007FC8C0 /* Navigator.swift in Sources */,
-				502E716D2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
-				502E717A201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71432018D950007FC8C0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				502E717E201B1FC9007FC8C0 /* Screenshots.swift in Sources */,
-				502E718B20207C92007FC8C0 /* Navigator.swift in Sources */,
-				502E716E2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
-				502E717B201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		502E71512018D960007FC8C0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				502E717F201B1FCA007FC8C0 /* Screenshots.swift in Sources */,
-				502E718C20207C92007FC8C0 /* Navigator.swift in Sources */,
-				502E716F2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */,
-				502E717C201B1C78007FC8C0 /* LoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2087,7 +1914,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -2096,78 +1923,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "openHPI-iOS-Debug";
-		};
-		50CF201F20DCE1340011BFE9 /* openHPI-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "openHPI-iOS-Debug";
-		};
-		50CF202020DCE1340011BFE9 /* openHPI-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "openHPI-iOS-Debug";
-		};
-		50CF202120DCE1340011BFE9 /* openHPI-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "openHPI-iOS-Debug";
 		};
@@ -2267,7 +2022,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -2276,78 +2031,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "openHPI-iOS-Release";
-		};
-		50CF202920DCE15E0011BFE9 /* openHPI-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "openHPI-iOS-Release";
-		};
-		50CF202A20DCE15E0011BFE9 /* openHPI-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "openHPI-iOS-Release";
-		};
-		50CF202B20DCE15E0011BFE9 /* openHPI-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "openHPI-iOS-Release";
 		};
@@ -2447,7 +2130,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -2456,78 +2139,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "openSAP-iOS-Debug";
-		};
-		50D65A2820E0295E00DFD183 /* openSAP-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "openSAP-iOS-Debug";
-		};
-		50D65A2920E0295E00DFD183 /* openSAP-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "openSAP-iOS-Debug";
-		};
-		50D65A2A20E0295E00DFD183 /* openSAP-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "openSAP-iOS-Debug";
 		};
@@ -2627,7 +2238,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -2636,78 +2247,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "openSAP-iOS-Release";
-		};
-		50D65A3220E0296C00DFD183 /* openSAP-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "openSAP-iOS-Release";
-		};
-		50D65A3320E0296C00DFD183 /* openSAP-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "openSAP-iOS-Release";
-		};
-		50D65A3420E0296C00DFD183 /* openSAP-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "openSAP-iOS-Release";
 		};
@@ -2807,7 +2346,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -2816,78 +2355,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "openWHO-iOS-Debug";
-		};
-		50D65A3C20E0298D00DFD183 /* openWHO-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "openWHO-iOS-Debug";
-		};
-		50D65A3D20E0298D00DFD183 /* openWHO-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "openWHO-iOS-Debug";
-		};
-		50D65A3E20E0298D00DFD183 /* openWHO-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "openWHO-iOS-Debug";
 		};
@@ -2987,7 +2454,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -2996,78 +2463,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "moocHOUSE-iOS-Debug";
-		};
-		50D65A4620E0299A00DFD183 /* moocHOUSE-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "moocHOUSE-iOS-Debug";
-		};
-		50D65A4720E0299A00DFD183 /* moocHOUSE-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "moocHOUSE-iOS-Debug";
-		};
-		50D65A4820E0299A00DFD183 /* moocHOUSE-iOS-Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "moocHOUSE-iOS-Debug";
 		};
@@ -3167,7 +2562,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -3176,78 +2571,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "openWHO-iOS-Release";
-		};
-		50D65A5020E029A600DFD183 /* openWHO-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "openWHO-iOS-Release";
-		};
-		50D65A5120E029A600DFD183 /* openWHO-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "openWHO-iOS-Release";
-		};
-		50D65A5220E029A600DFD183 /* openWHO-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "openWHO-iOS-Release";
 		};
@@ -3347,7 +2670,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
+				INFOPLIST_FILE = "UI Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openHPI-iOS-UITests";
@@ -3356,78 +2679,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = iOS;
-			};
-			name = "moocHOUSE-iOS-Release";
-		};
-		50D65A5A20E029B000DFD183 /* moocHOUSE-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openSAP-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openSAP-iOS";
-			};
-			name = "moocHOUSE-iOS-Release";
-		};
-		50D65A5B20E029B000DFD183 /* moocHOUSE-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.openWHO-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "openWHO-iOS";
-			};
-			name = "moocHOUSE-iOS-Release";
-		};
-		50D65A5C20E029B000DFD183 /* moocHOUSE-iOS-Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WP53SSE8S6;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "UI Tests/ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.moocHOUSE-iOS-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "moocHOUSE-iOS";
 			};
 			name = "moocHOUSE-iOS-Release";
 		};
@@ -3463,7 +2714,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		502E71342018D8BF007FC8C0 /* Build configuration list for PBXNativeTarget "openHPI-iOS-UITests" */ = {
+		502E71342018D8BF007FC8C0 /* Build configuration list for PBXNativeTarget "iOS-UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50CF201E20DCE1340011BFE9 /* openHPI-iOS-Debug */,
@@ -3474,51 +2725,6 @@
 				50D65A3120E0296C00DFD183 /* openSAP-iOS-Release */,
 				50D65A4F20E029A600DFD183 /* openWHO-iOS-Release */,
 				50D65A5920E029B000DFD183 /* moocHOUSE-iOS-Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "openHPI-iOS-Debug";
-		};
-		502E71402018D93D007FC8C0 /* Build configuration list for PBXNativeTarget "openSAP-iOS-UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50CF201F20DCE1340011BFE9 /* openHPI-iOS-Debug */,
-				50D65A2820E0295E00DFD183 /* openSAP-iOS-Debug */,
-				50D65A3C20E0298D00DFD183 /* openWHO-iOS-Debug */,
-				50D65A4620E0299A00DFD183 /* moocHOUSE-iOS-Debug */,
-				50CF202920DCE15E0011BFE9 /* openHPI-iOS-Release */,
-				50D65A3220E0296C00DFD183 /* openSAP-iOS-Release */,
-				50D65A5020E029A600DFD183 /* openWHO-iOS-Release */,
-				50D65A5A20E029B000DFD183 /* moocHOUSE-iOS-Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "openHPI-iOS-Debug";
-		};
-		502E714E2018D950007FC8C0 /* Build configuration list for PBXNativeTarget "openWHO-iOS-UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50CF202020DCE1340011BFE9 /* openHPI-iOS-Debug */,
-				50D65A2920E0295E00DFD183 /* openSAP-iOS-Debug */,
-				50D65A3D20E0298D00DFD183 /* openWHO-iOS-Debug */,
-				50D65A4720E0299A00DFD183 /* moocHOUSE-iOS-Debug */,
-				50CF202A20DCE15E0011BFE9 /* openHPI-iOS-Release */,
-				50D65A3320E0296C00DFD183 /* openSAP-iOS-Release */,
-				50D65A5120E029A600DFD183 /* openWHO-iOS-Release */,
-				50D65A5B20E029B000DFD183 /* moocHOUSE-iOS-Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "openHPI-iOS-Debug";
-		};
-		502E715C2018D960007FC8C0 /* Build configuration list for PBXNativeTarget "moocHOUSE-iOS-UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				50CF202120DCE1340011BFE9 /* openHPI-iOS-Debug */,
-				50D65A2A20E0295E00DFD183 /* openSAP-iOS-Debug */,
-				50D65A3E20E0298D00DFD183 /* openWHO-iOS-Debug */,
-				50D65A4820E0299A00DFD183 /* moocHOUSE-iOS-Debug */,
-				50CF202B20DCE15E0011BFE9 /* openHPI-iOS-Release */,
-				50D65A3420E0296C00DFD183 /* openSAP-iOS-Release */,
-				50D65A5220E029A600DFD183 /* openWHO-iOS-Release */,
-				50D65A5C20E029B000DFD183 /* moocHOUSE-iOS-Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "openHPI-iOS-Debug";

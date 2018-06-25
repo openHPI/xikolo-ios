@@ -26,6 +26,8 @@
 		<string>#226CA9</string>
 		<key>tertiary</key>
 		<string>#8AB54E</string>
+		<key>window</key>
+		<string>secondary</string>
 	</dict>
 </dict>
 </plist>

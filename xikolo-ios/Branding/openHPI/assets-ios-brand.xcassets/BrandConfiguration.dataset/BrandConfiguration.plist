@@ -20,6 +20,8 @@
 		<string>#B42946</string>
 		<key>tertiary</key>
 		<string>#F5A704</string>
+		<key>window</key>
+		<string>primary</string>
 	</dict>
 </dict>
 </plist>

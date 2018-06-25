@@ -7,3 +7,4 @@ PRODUCT_NAME = openSAP
 DISPLAY_NAME = openSAP
 
 CODE_SIGN_ENTITLEMENTS = ../../xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements
+PRODUCT_MODULE_NAME = iOS

@@ -7,3 +7,4 @@ PRODUCT_NAME = moocHOUSE
 DISPLAY_NAME = mooc.HOUSE
 
 CODE_SIGN_ENTITLEMENTS = ../../xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements
+PRODUCT_MODULE_NAME = iOS

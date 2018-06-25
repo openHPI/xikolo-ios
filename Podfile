@@ -34,30 +34,6 @@ target 'iOS' do
     ios_pods
 end
 
-target 'openHPI-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'openSAP-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'openWHO-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'moocHOUSE-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
 post_install do |installer|
     Pod::UI.info "Installing BartyCrouch manually"
     system("make installables -C ./Pods/BartyCrouch --silent")

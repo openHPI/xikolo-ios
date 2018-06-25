@@ -189,9 +189,7 @@
 		50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D01CF72D9D00ED3EB0 /* TabCourses.storyboard */; };
 		50CF1FF920DCDBFC0011BFE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90587C21B3BFC130095DB89 /* Main.storyboard */; };
 		50CF1FFA20DCDBFC0011BFE9 /* Course.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A61320795CB200E98351 /* Course.storyboard */; };
-		50CF1FFB20DCDBFC0011BFE9 /* xikolo-ios.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */; };
 		50CF1FFC20DCDBFC0011BFE9 /* CourseLearnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50502E2D1FD04E56000A8D35 /* CourseLearnings.storyboard */; };
-		50CF1FFD20DCDBFC0011BFE9 /* assets-common.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24CB7E531CC6833B00960269 /* assets-common.xcassets */; };
 		50CF1FFE20DCDBFC0011BFE9 /* CourseDateHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */; };
 		50CF1FFF20DCDBFC0011BFE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5061C15520A1E0C800D6F314 /* LaunchScreen.storyboard */; };
 		50CF200020DCDBFC0011BFE9 /* TabAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9AF2D81CF72EF100ED3EB0 /* TabAccount.storyboard */; };
@@ -252,8 +250,6 @@
 		249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		249348191D9550FD006D4F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Common.stringsdict; sourceTree = "<group>"; };
 		2493481B1D955101006D4F2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Common.stringsdict; sourceTree = "<group>"; };
-		249C01B01D3F729300B54AAC /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-brand.xcassets"; sourceTree = "<group>"; };
-		249C01B41D3F72B400B54AAC /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		249E3AA31D43C0A100D7663F /* QuizHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHelper.swift; sourceTree = "<group>"; };
 		249E3AA91D43C7C900D7663F /* QuizQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		24A16D6B1CFC883A00CAD9FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -268,7 +264,6 @@
 		24B6514A1D355B4A00624DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabNews.storyboard; sourceTree = "<group>"; };
 		24B6514C1D35797400624DBC /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
 		24B651501D3595C100624DBC /* NetworkIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkIndicator.swift; sourceTree = "<group>"; };
-		24CB7E531CC6833B00960269 /* assets-common.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-common.xcassets"; sourceTree = "<group>"; };
 		24D48E171CCA4FC100E8051E /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		24E3DD171D5DFD5000297118 /* QuizOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizOption.swift; sourceTree = "<group>"; };
@@ -433,15 +428,9 @@
 		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHeader.swift; sourceTree = "<group>"; };
-		709C93511EF09BB500F8F045 /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-brand.xcassets"; sourceTree = "<group>"; };
-		709C93521EF09BB500F8F045 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
-		709C93581EF09C2C00F8F045 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		709C93591EF09C2C00F8F045 /* ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
-		70DABFED1ED833110095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70DABFEF1ED8331F0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70DABFF11ED8332A0095E551 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
 		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
@@ -485,7 +474,6 @@
 		ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLabelHelper.swift; sourceTree = "<group>"; };
 		ABAC56061D142B4A008D30FB /* RichtextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichtextViewController.swift; sourceTree = "<group>"; };
 		ABBE0E2D1E94D72A00A8666B /* ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
-		ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "xikolo-ios.entitlements"; sourceTree = "<group>"; };
 		ABC1BF131E79FF8D00DEAF0E /* xikolo 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 2.xcdatamodel"; sourceTree = "<group>"; };
 		ABC1BF1E1E7ABE5C00DEAF0E /* EnrollmentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentHelper.swift; sourceTree = "<group>"; };
 		ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -495,8 +483,6 @@
 		ABCF4A7C1E0B3EBD00FEFAC3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabDashboard.strings; sourceTree = "<group>"; };
 		ABDD84C31D8E056000C7D193 /* PeerAssessmentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerAssessmentHelper.swift; sourceTree = "<group>"; };
 		ABDD84C81D8E063100C7D193 /* LTIExerciseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIExerciseHelper.swift; sourceTree = "<group>"; };
-		ABE060911DF8C18D00FC186D /* assets-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-brand.xcassets"; sourceTree = "<group>"; };
-		ABE060921DF8C18D00FC186D /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		ABFCF75F1E81EEC40043C7B7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ABFCF7611E81EEC40043C7B7 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
@@ -586,23 +572,11 @@
 		249C01AD1D3F721E00B54AAC /* Branding */ = {
 			isa = PBXGroup;
 			children = (
-				249C01AF1D3F724D00B54AAC /* openSAP */,
-				ABE060901DF8C17800FC186D /* openWHO */,
-				709C93501EF09B9E00F8F045 /* moocHOUSE */,
 				AB77C2961DF956EE00B30619 /* Brand.swift */,
 				50604585206BCE10009569D1 /* BrandColors.swift */,
 				50D65A0E20DE87F700DFD183 /* CourseDateLabelStyle.swift */,
 			);
 			path = Branding;
-			sourceTree = "<group>";
-		};
-		249C01AF1D3F724D00B54AAC /* openSAP */ = {
-			isa = PBXGroup;
-			children = (
-				249C01B01D3F729300B54AAC /* assets-brand.xcassets */,
-				249C01B41D3F72B400B54AAC /* Brand.swift */,
-			);
-			path = openSAP;
 			sourceTree = "<group>";
 		};
 		24B651471D3551C400624DBC /* Views */ = {
@@ -641,7 +615,6 @@
 				24CB7E561CC6C61A00960269 /* Data */,
 				249C01AD1D3F721E00B54AAC /* Branding */,
 				2433A5AB1CE641E70060DD98 /* Helpers */,
-				24CB7E531CC6833B00960269 /* assets-common.xcassets */,
 				2490C4D61D1D6F7100F42949 /* Common.strings */,
 				2493481A1D9550FD006D4F2C /* Common.stringsdict */,
 				702520901F71A1D4003E0F80 /* NotificationKeys.swift */,
@@ -864,21 +837,11 @@
 			path = Layouts;
 			sourceTree = "<group>";
 		};
-		709C93501EF09B9E00F8F045 /* moocHOUSE */ = {
-			isa = PBXGroup;
-			children = (
-				709C93511EF09BB500F8F045 /* assets-brand.xcassets */,
-				709C93521EF09BB500F8F045 /* Brand.swift */,
-			);
-			path = moocHOUSE;
-			sourceTree = "<group>";
-		};
 		709C93551EF09BFA00F8F045 /* moocHOUSE */ = {
 			isa = PBXGroup;
 			children = (
 				507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */,
 				507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */,
-				709C93581EF09C2C00F8F045 /* Info.plist */,
 				709C93591EF09C2C00F8F045 /* ios.entitlements */,
 				709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */,
 				50D65A1320E01C5B00DFD183 /* BrandConfiguration.plist */,
@@ -926,12 +889,12 @@
 				5071BA1D1FCD901600BF5C5F /* XikoloNavigationController.swift */,
 				5040A63020797ED800E98351 /* CourseNavigationController.swift */,
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
+				F80D679A1B98751700E27520 /* Localizable.strings */,
+				50CF202D20DCE6680011BFE9 /* Info.plist */,
+				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */,
 				500A257D20824C2500EB7AE4 /* R.generated.swift */,
-				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
-				F80D679A1B98751700E27520 /* Localizable.strings */,
-				50CF202D20DCE6680011BFE9 /* Info.plist */,
 			);
 			path = "xikolo-ios";
 			sourceTree = "<group>";
@@ -999,7 +962,6 @@
 			children = (
 				507A5CD02021EC81009B1F95 /* GoogleService-Info-Debug.plist */,
 				507A5CCF2021EC81009B1F95 /* GoogleService-Info-Release.plist */,
-				70DABFEF1ED8331F0095E551 /* Info.plist */,
 				AB32A7B41E893EE00083E949 /* ios.entitlements */,
 				AB9183251D6B093F00018C1D /* assets-ios-brand.xcassets */,
 				50D65A1120E01B7D00DFD183 /* BrandConfiguration.plist */,
@@ -1012,8 +974,6 @@
 			children = (
 				507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */,
 				507A5CCB2021CBBC009B1F95 /* GoogleService-Info-Release.plist */,
-				70DABFED1ED833110095E551 /* Info.plist */,
-				ABBE0E2F1E94D94E00A8666B /* xikolo-ios.entitlements */,
 				50D65A0420DD192200DFD183 /* ios.entitlements */,
 				AB9183221D6B093000018C1D /* assets-ios-brand.xcassets */,
 				50D65A0920DE1BA200DFD183 /* BrandConfiguration.plist */,
@@ -1040,21 +1000,11 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		ABE060901DF8C17800FC186D /* openWHO */ = {
-			isa = PBXGroup;
-			children = (
-				ABE060911DF8C18D00FC186D /* assets-brand.xcassets */,
-				ABE060921DF8C18D00FC186D /* Brand.swift */,
-			);
-			path = openWHO;
-			sourceTree = "<group>";
-		};
 		ABE0609B1DF8C1B300FC186D /* openWHO */ = {
 			isa = PBXGroup;
 			children = (
 				507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */,
 				507A5CD32021EEC1009B1F95 /* GoogleService-Info-Release.plist */,
-				70DABFF11ED8332A0095E551 /* Info.plist */,
 				ABBE0E2D1E94D72A00A8666B /* ios.entitlements */,
 				ABE0609C1DF8C20E00FC186D /* assets-ios-brand.xcassets */,
 				50D65A1220E01C2200DFD183 /* BrandConfiguration.plist */,
@@ -1285,9 +1235,7 @@
 				50CF1FFA20DCDBFC0011BFE9 /* Course.storyboard in Resources */,
 				50D60D3620E0F2A2007A4199 /* Pods-iOS.opensap-ios-release.xcconfig in Resources */,
 				50D60D3920E0F2A2007A4199 /* Pods-iOS.openwho-ios-release.xcconfig in Resources */,
-				50CF1FFB20DCDBFC0011BFE9 /* xikolo-ios.entitlements in Resources */,
 				50CF1FFC20DCDBFC0011BFE9 /* CourseLearnings.storyboard in Resources */,
-				50CF1FFD20DCDBFC0011BFE9 /* assets-common.xcassets in Resources */,
 				50CF1FFE20DCDBFC0011BFE9 /* CourseDateHeader.xib in Resources */,
 				50CF1FFF20DCDBFC0011BFE9 /* LaunchScreen.storyboard in Resources */,
 				50D60D3820E0F2A2007A4199 /* Pods-iOS.openwho-ios-debug.xcconfig in Resources */,

@@ -7,11 +7,21 @@ import BrightFutures
 import Down
 import HTMLStyler
 
+struct XikoloImageLoader: ImageLoader {
+
+    public static func load(for url: URL) -> UIImage? {
+        guard let absoluteURL = URL(string: url.absoluteString, relativeTo: Routes.base) else { return nil }
+        guard let data = try? Data(contentsOf: absoluteURL) else { return nil }
+        return UIImage(data: data)
+    }
+
+}
+
 struct MarkdownHelper {
 
     static let parser: Parser = {
         var parser = Parser()
-        parser.styleCollection = DefaultStyleCollection(tintColor: Brand.Color.primary)
+        parser.styleCollection = DefaultStyleCollection(tintColor: Brand.Color.primary, imageLoader: XikoloImageLoader.self)
         return parser
     }()
 

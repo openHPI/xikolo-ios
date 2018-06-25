@@ -1,0 +1,17 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.openwho-ios-debug.xcconfig"
+#include "openWHO-iOS-Common.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openqho.debug
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-Dev
+
+GCC_OPTIMIZATION_LEVEL = 0
+SWIFT_COMPILATION_MODE = singlefile
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+ENABLE_NS_ASSERTIONS = YES
+
+OTHER_SWIFT_FLAGS = $(inherited) -DDEBUG "-D" "COCOAPODS"

@@ -3,7 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../Pods/Target Support Files/Pods-iOS/Pods-iOS.openhpi-ios-release.xcconfig"
+#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.openhpi-ios-release.xcconfig"
 #include "openHPI-iOS-Common.xcconfig"
 
 PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi

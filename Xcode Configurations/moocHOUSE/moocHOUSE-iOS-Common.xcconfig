@@ -1,0 +1,9 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+PRODUCT_NAME = moocHOUSE
+DISPLAY_NAME = mooc.HOUSE
+
+CODE_SIGN_ENTITLEMENTS = ../../xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements

@@ -1,0 +1,9 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+PRODUCT_NAME = openWHO
+DISPLAY_NAME = openWHO
+
+CODE_SIGN_ENTITLEMENTS = ../../xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements

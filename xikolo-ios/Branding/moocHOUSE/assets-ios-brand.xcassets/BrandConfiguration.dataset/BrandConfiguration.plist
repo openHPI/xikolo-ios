@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>host</key>
-	<string>open.hpi.de</string>
+	<string>mooc.house</string>
 	<key>imprintURL</key>
-	<string>https://open.hpi.de/pages/imprint</string>
+	<string>https://mooc.house/pages/imprint</string>
 	<key>privacyURL</key>
-	<string>https://open.hpi.de/pages/privacy</string>
+	<string>https://mooc.house/pages/privacy</string>
 	<key>platformTitle</key>
-	<string>hpi</string>
+	<string>moochouse</string>
 	<key>copyrightName</key>
 	<string>HPI</string>
 	<key>colors</key>
 	<dict>
 		<key>primary</key>
-		<string>#DE6212</string>
+		<string>#ABB324</string>
 		<key>secondary</key>
-		<string>#B42946</string>
+		<string>#ABB324</string>
 		<key>tertiary</key>
-		<string>#F5A704</string>
+		<string>#ABB324</string>
 	</dict>
 </dict>
 </plist>

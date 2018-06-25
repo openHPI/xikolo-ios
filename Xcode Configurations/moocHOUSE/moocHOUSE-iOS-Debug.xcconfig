@@ -3,10 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-#include "../Pods/Target Support Files/Pods-iOS/Pods-iOS.openhpi-ios-debug.xcconfig"
-#include "openHPI-iOS-Common.xcconfig"
+#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.moochouse-ios-debug.xcconfig"
+#include "moocHOUSE-iOS-Common.xcconfig"
 
-PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openhpi.debug
+PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.moochouse.debug
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-Dev
 
 GCC_OPTIMIZATION_LEVEL = 0

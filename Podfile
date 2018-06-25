@@ -19,7 +19,7 @@ def ios_pods
     pod 'DZNEmptyDataSet', '~> 1.8'
     pod 'ReachabilitySwift', '~> 4.1'
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
-    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug'] #, 'openSAP-Debug', 'openHPI-Debug', 'openHPI-Debug']
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
     pod 'XCGLogger', '~> 6.0'
 
     # Firebase

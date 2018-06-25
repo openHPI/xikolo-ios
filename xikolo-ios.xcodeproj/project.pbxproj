@@ -1055,16 +1055,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50CF201020DCDBFC0011BFE9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		50FC3C8C20B6DA4C007FEE83 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2311,7 +2301,7 @@
 				50CF1FEE20DCDBFC0011BFE9 /* Frameworks */,
 				50CF1FF620DCDBFC0011BFE9 /* Resources */,
 				50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */,
-				50CF201020DCDBFC0011BFE9 /* Embed Frameworks */,
+				50D60D2B20E0D2C7007A4199 /* Remove localizations */,
 				50CF201120DCDBFC0011BFE9 /* [CP] Embed Pods Frameworks */,
 				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 			);
@@ -3146,6 +3136,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+		};
+		50D60D2B20E0D2C7007A4199 /* Remove localizations */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Remove localizations";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${PRODUCT_NAME}\" == \"openSAP\" ]; then\n    rm -r \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/de.lproj\"\nfi";
 		};
 		50D65A0D20DE33B100DFD183 /* Copy Brand Assets */ = {
 			isa = PBXShellScriptBuildPhase;

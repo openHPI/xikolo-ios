@@ -1823,7 +1823,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -1931,7 +1931,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -2039,7 +2039,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -2147,7 +2147,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -2255,7 +2255,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -2363,7 +2363,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -2471,7 +2471,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";
@@ -2579,7 +2579,7 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/BartyCrouch\"",
 				);
 				INFOPLIST_FILE = "xikolo-ios/Info.plist";

@@ -19,6 +19,6 @@ install:
 
 script:
   - set -o pipefail
-  - if [ "$BUILD" == 1 ]; then xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK -configuration Debug build | xcpretty; fi
+  - if [ "$BUILD" == 1 ]; then xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty; fi
   - if [ "$CHECK_LOCALIZATION" == 1 ]; then bundle exec fastlane localize; git status --porcelain; git diff --quiet head xikolo-common xikolo-ios || travis_terminate 1; fi
   - if [ "$LINT" == 1 ]; then bundle exec danger --verbose; fi

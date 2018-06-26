@@ -6,5 +6,5 @@
 PRODUCT_NAME = openWHO
 DISPLAY_NAME = OpenWHO
 
-CODE_SIGN_ENTITLEMENTS = ../../xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements
+CODE_SIGN_ENTITLEMENTS = xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements
 PRODUCT_MODULE_NAME = iOS

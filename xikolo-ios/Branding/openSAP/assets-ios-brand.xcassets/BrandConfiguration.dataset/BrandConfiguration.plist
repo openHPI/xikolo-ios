@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>host</key>
+	<string>open.sap.com</string>
+	<key>imprintURL</key>
+	<string>https://www.sap.com/corporate/en/legal/impressum.html</string>
+	<key>privacyURL</key>
+	<string>https://www.sap.com/corporate/en/legal/privacy.html</string>
+	<key>platformTitle</key>
+	<string>sap</string>
+	<key>singleSignOnButtonTitle</key>
+	<string>Single Sign On</string>
+	<key>copyrightName</key>
+	<string>SAP</string>
+	<key>poweredByText</key>
+	<string>Powered by HPI / openHPI</string>
+	<key>useDummyCredentialsForSDWebImage</key>
+	<true/>
+	<key>colors</key>
+	<dict>
+		<key>primary</key>
+		<string>#F0AB00</string>
+		<key>secondary</key>
+		<string>#226CA9</string>
+		<key>tertiary</key>
+		<string>#8AB54E</string>
+		<key>window</key>
+		<string>secondary</string>
+	</dict>
+</dict>
+</plist>

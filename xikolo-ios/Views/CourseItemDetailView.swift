@@ -142,7 +142,7 @@ class DetailedDataView: UIStackView {
         progress.lineWidth = 1.25
         progress.gapWidth = 0.0
         progress.indeterminateProgress = 0.8
-        progress.tintColor = Brand.Color.primary
+        progress.tintColor = Brand.default.colors.primary
         progress.updateProgress(0.33, animated: false)
         progress.widthAnchor.constraint(equalTo: progress.heightAnchor, constant: -4).isActive = true
         return progress

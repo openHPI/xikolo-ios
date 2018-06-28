@@ -25,7 +25,7 @@ class CourseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.imageView.backgroundColor = Brand.Color.secondary
+        self.imageView.backgroundColor = Brand.default.colors.secondary
 
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
@@ -33,7 +33,7 @@ class CourseDetailViewController: UIViewController {
 
         self.statusView.layer.cornerRadius = 4.0
         self.statusView.layer.masksToBounds = true
-        self.statusView.backgroundColor = Brand.Color.secondary
+        self.statusView.backgroundColor = Brand.default.colors.secondary
 
         self.updateView()
         CourseHelper.syncCourse(self.course)
@@ -48,7 +48,7 @@ class CourseDetailViewController: UIViewController {
         self.titleView.text = self.course.title
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
-        self.teacherView.textColor = Brand.Color.secondary
+        self.teacherView.textColor = Brand.default.colors.secondary
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
@@ -85,10 +85,10 @@ class CourseDetailViewController: UIViewController {
         self.enrollmentButton.setTitle(buttonTitle, for: .normal)
 
         if self.course.hasEnrollment {
-            self.enrollmentButton.backgroundColor = Brand.Color.primary.withAlphaComponent(0.2)
+            self.enrollmentButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
             self.enrollmentButton.tintColor = UIColor.darkGray
         } else if ReachabilityHelper.connection != .none {
-            self.enrollmentButton.backgroundColor = Brand.Color.primary
+            self.enrollmentButton.backgroundColor = Brand.default.colors.primary
             self.enrollmentButton.tintColor = UIColor.white
         } else {
             self.enrollmentButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)

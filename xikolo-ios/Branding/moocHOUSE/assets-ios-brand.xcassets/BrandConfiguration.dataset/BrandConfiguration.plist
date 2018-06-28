@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>host</key>
+	<string>mooc.house</string>
+	<key>imprintURL</key>
+	<string>https://mooc.house/pages/imprint</string>
+	<key>privacyURL</key>
+	<string>https://mooc.house/pages/privacy</string>
+	<key>platformTitle</key>
+	<string>moochouse</string>
+	<key>copyrightName</key>
+	<string>HPI</string>
+	<key>colors</key>
+	<dict>
+		<key>primary</key>
+		<string>#ABB324</string>
+		<key>secondary</key>
+		<string>#ABB324</string>
+		<key>tertiary</key>
+		<string>#ABB324</string>
+		<key>window</key>
+		<string>primary</string>
+	</dict>
+</dict>
+</plist>

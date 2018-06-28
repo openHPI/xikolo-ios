@@ -20,27 +20,29 @@ class DateLabelHelper {
         }
 
         if let startDate = startDate, startDate.inPast, endDate == nil {
-            #if OPENWHO
-                return NSLocalizedString("course-date-formatting.self-paced", tableName: "Common", comment: "Self-paced course")
-            #else
+            switch Brand.default.courseDateLabelStyle {
+            case .normal:
                 let format = NSLocalizedString("course-date-formatting.started.since %@",
                                                tableName: "Common",
                                                comment: "course start at specfic date in the past")
                 return String.localizedStringWithFormat(format, self.format(date: startDate))
-            #endif
+            case .who:
+                return NSLocalizedString("course-date-formatting.self-paced", tableName: "Common", comment: "Self-paced course")
+            }
         }
 
         if let startDate = startDate, startDate.inFuture, endDate == nil {
-            #if OPENWHO
-                return NSLocalizedString("course-date-formatting.not-started.coming soon",
-                                         tableName: "Common",
-                                         comment: "course start at unknown date")
-            #else
+            switch Brand.default.courseDateLabelStyle {
+            case .normal:
                 let format = NSLocalizedString("course-date-formatting.not-started.beginning %@",
                                                tableName: "Common",
                                                comment: "course start at specific date in the future")
                 return String.localizedStringWithFormat(format, self.format(date: startDate))
-            #endif
+            case .who:
+                return NSLocalizedString("course-date-formatting.not-started.coming soon",
+                                         tableName: "Common",
+                                         comment: "course start at unknown date")
+            }
         }
 
         if let startDate = startDate, let endDate = endDate {

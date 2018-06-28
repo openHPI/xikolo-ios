@@ -21,7 +21,7 @@ struct MarkdownHelper {
 
     static let parser: Parser = {
         var parser = Parser()
-        parser.styleCollection = DefaultStyleCollection(tintColor: Brand.Color.primary, imageLoader: XikoloImageLoader.self)
+        parser.styleCollection = DefaultStyleCollection(tintColor: Brand.default.colors.primary, imageLoader: XikoloImageLoader.self)
         return parser
     }()
 

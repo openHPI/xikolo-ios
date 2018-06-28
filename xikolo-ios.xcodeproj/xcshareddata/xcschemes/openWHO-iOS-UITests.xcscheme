@@ -7,19 +7,18 @@
       buildImplicitDependencies = "YES">
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "openWHO-iOS-Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "502E71462018D950007FC8C0"
-               BuildableName = "openWHO-iOS-UITests.xctest"
-               BlueprintName = "openWHO-iOS-UITests"
+               BlueprintIdentifier = "502E712A2018D8BF007FC8C0"
+               BuildableName = "iOS-UITests.xctest"
+               BlueprintName = "iOS-UITests"
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -27,9 +26,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AB48B4341DF8BB2A00523062"
-            BuildableName = "openWHO.app"
-            BlueprintName = "openWHO-iOS"
+            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
+            BuildableName = "openHPI.app"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -37,10 +36,9 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "openWHO-iOS-Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -51,9 +49,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AB48B4341DF8BB2A00523062"
-            BuildableName = "openWHO.app"
-            BlueprintName = "openWHO-iOS"
+            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
+            BuildableName = "openHPI.app"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:xikolo-ios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,26 +59,17 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "openWHO-iOS-Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AB48B4341DF8BB2A00523062"
-            BuildableName = "openWHO.app"
-            BlueprintName = "openWHO-iOS"
-            ReferencedContainer = "container:xikolo-ios.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug">
+      buildConfiguration = "openWHO-iOS-Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "openWHO-iOS-Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

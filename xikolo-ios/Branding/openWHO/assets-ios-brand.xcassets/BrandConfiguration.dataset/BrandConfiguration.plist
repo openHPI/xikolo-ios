@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>host</key>
+	<string>openwho.org</string>
+	<key>imprintURL</key>
+	<string>https://openwho.org/pages/about</string>
+	<key>privacyURL</key>
+	<string>https://openwho.org/pages/terms_of_use</string>
+	<key>platformTitle</key>
+	<string>who</string>
+	<key>singleSignOnButtonTitle</key>
+	<string>WHO Identity (WIMS)</string>
+	<key>copyrightName</key>
+	<string>WHO</string>
+	<key>poweredByText</key>
+	<string>Powered by HPI / openHPI</string>
+	<key>courseDateLabelStyle</key>
+	<string>who</string>
+	<key>colors</key>
+	<dict>
+		<key>primary</key>
+		<string>#0B72B5</string>
+		<key>secondary</key>
+		<string>#9164A7</string>
+		<key>tertiary</key>
+		<string>#A7CA6C</string>
+		<key>window</key>
+		<string>primary</string>
+	</dict>
+</dict>
+</plist>

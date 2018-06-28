@@ -1,0 +1,10 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+PRODUCT_NAME = openHPI
+DISPLAY_NAME = openHPI
+
+CODE_SIGN_ENTITLEMENTS = xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements
+PRODUCT_MODULE_NAME = iOS

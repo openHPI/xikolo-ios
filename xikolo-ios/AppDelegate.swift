@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window?.tintColor = Brand.Color.window
+        self.window?.tintColor = Brand.default.colors.window
 
         // select start tab
         self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn ? 0 : 1
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreDataObserver.standard.startObserving()
         ReachabilityHelper.startObserving()
 
-        #if OPENSAP
+        if Brand.default.useDummyCredentialsForSDWebImage {
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.
             // By setting 'username' and 'password', a dummy certificate is created that allows the request
             // of SDWebImage to pass.
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // SDWebImage (ver. 4.0.0) -> SDWebImageDownloaderOperation -> Line 408
             SDWebImageDownloader.shared().username = "open"
             SDWebImageDownloader.shared().password = "SAP"
-        #endif
+        }
 
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {

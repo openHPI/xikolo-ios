@@ -1,0 +1,15 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+#include "../../Pods/Target Support Files/Pods-iOS/Pods-iOS.openwho-ios-release.xcconfig"
+#include "openWHO-iOS-Common.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.openwho
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+
+GCC_OPTIMIZATION_LEVEL = s
+SWIFT_COMPILATION_MODE = wholemodule
+SWIFT_OPTIMIZATION_LEVEL = -O
+ENABLE_NS_ASSERTIONS = NO

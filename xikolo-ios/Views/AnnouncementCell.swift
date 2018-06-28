@@ -25,7 +25,7 @@ class AnnouncementCell: UITableViewCell {
 
     func configure(_ announcement: Announcement, showCourseTitle: Bool) {
         if UserProfileHelper.isLoggedIn, !announcement.visited {
-            self.readStateLabel.textColor = Brand.Color.secondary
+            self.readStateLabel.textColor = Brand.default.colors.secondary
             self.readStateLabel.isHidden = false
             self.separatorView.isHidden = false
             self.titleLabel.textColor = .black
@@ -35,7 +35,7 @@ class AnnouncementCell: UITableViewCell {
             self.titleLabel.textColor = .gray
         }
 
-        self.courseLabel.textColor = Brand.Color.secondary
+        self.courseLabel.textColor = Brand.default.colors.secondary
         if let courseTitle = announcement.course?.title, showCourseTitle {
             self.courseLabel.text = courseTitle
             self.courseLabel.isHidden = false

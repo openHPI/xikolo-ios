@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lar-wX-O6M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lar-wX-O6M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,7 +17,7 @@
         <!--Login View Controller-->
         <scene sceneID="S3N-lW-6xP">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="Njp-vV-ZS8" customClass="LoginViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="Njp-vV-ZS8" customClass="LoginViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WDJ-Nc-ZGm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand logo" translatesAutoresizingMaskIntoConstraints="NO" id="hWt-85-KH5">
-                                <rect key="frame" x="59" y="110" width="257" height="67"/>
+                                <rect key="frame" x="59" y="119" width="257" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="3dQ-ZL-4Q0"/>
                                     <constraint firstAttribute="width" secondItem="hWt-85-KH5" secondAttribute="height" constant="1" id="gnF-Gj-6Wq"/>
@@ -251,7 +251,7 @@
         <!--Xikolo Navigation Controller-->
         <scene sceneID="Gmc-mz-4l1">
             <objects>
-                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lar-wX-O6M" customClass="XikoloNavigationController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lar-wX-O6M" customClass="XikoloNavigationController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8qq-z9-0uF">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

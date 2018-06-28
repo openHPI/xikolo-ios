@@ -20,7 +20,7 @@ class AnnouncementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.courseButton.tintColor = Brand.Color.secondary
+        self.courseButton.tintColor = Brand.default.colors.secondary
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero

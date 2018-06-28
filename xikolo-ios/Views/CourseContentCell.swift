@@ -13,7 +13,7 @@ class CourseContentCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.titleView.textColor = .lightGray
-        self.hightlightView.backgroundColor = Brand.Color.primary
+        self.hightlightView.backgroundColor = Brand.default.colors.primary
         self.hightlightView.isHidden = true
         self.hightlightView.layer.cornerRadius = self.hightlightView.bounds.height / 2
         self.hightlightView.clipsToBounds = true

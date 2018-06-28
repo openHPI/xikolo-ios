@@ -19,7 +19,7 @@ def ios_pods
     pod 'DZNEmptyDataSet', '~> 1.8'
     pod 'ReachabilitySwift', '~> 4.1'
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
-    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
     pod 'XCGLogger', '~> 6.0'
 
     # Firebase
@@ -28,25 +28,7 @@ def ios_pods
     pod 'Crashlytics', '~> 3.9'
 end
 
-target 'openHPI-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'openSAP-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'openWHO-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'moocHOUSE-iOS' do
+target 'iOS' do
     platform :ios, '10.0'
     common_pods
     ios_pods

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>host</key>
+	<string>open.hpi.de</string>
+	<key>imprintURL</key>
+	<string>https://open.hpi.de/pages/imprint</string>
+	<key>privacyURL</key>
+	<string>https://open.hpi.de/pages/privacy</string>
+	<key>platformTitle</key>
+	<string>hpi</string>
+	<key>copyrightName</key>
+	<string>HPI</string>
+	<key>colors</key>
+	<dict>
+		<key>primary</key>
+		<string>#DE6212</string>
+		<key>secondary</key>
+		<string>#B42946</string>
+		<key>tertiary</key>
+		<string>#F5A704</string>
+		<key>window</key>
+		<string>primary</string>
+	</dict>
+</dict>
+</plist>

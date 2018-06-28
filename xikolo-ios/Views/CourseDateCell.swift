@@ -21,7 +21,7 @@ class CourseDateCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.courseLabel.textColor = Brand.Color.secondary
+        self.courseLabel.textColor = Brand.default.colors.secondary
     }
 
     func configure(_ courseDate: CourseDate) {

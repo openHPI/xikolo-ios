@@ -16,7 +16,7 @@ class CourseHeaderView: UICollectionReusableView {
         self.backgroundView.layer.masksToBounds = true
         self.backgroundView.layer.cornerRadius = 17.0
         self.backgroundView.backgroundColor = UIColor(white: 1.0, alpha: 0.9)
-        self.titleView.textColor = Brand.Color.secondary
+        self.titleView.textColor = Brand.default.colors.secondary
     }
 
     func configure(_ section: NSFetchedResultsSectionInfo) {

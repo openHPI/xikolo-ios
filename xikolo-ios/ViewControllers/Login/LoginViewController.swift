@@ -22,8 +22,8 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginButton.backgroundColor = Brand.Color.primary
-        self.registerButton.backgroundColor = Brand.Color.primary.withAlphaComponent(0.2)
+        self.loginButton.backgroundColor = Brand.default.colors.primary
+        self.registerButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustViewForKeyboardShow(_:)),
@@ -34,9 +34,9 @@ class LoginViewController: UIViewController, WKUIDelegate {
                                                name: NSNotification.Name.UIKeyboardWillHide,
                                                object: nil)
 
-        if let title = Brand.singleSignOnButtonTitle {
+        if let title = Brand.default.singleSignOnButtonTitle {
             self.singleSignOnView.isHidden = false
-            self.singleSignOnButton.backgroundColor = Brand.Color.primary
+            self.singleSignOnButton.backgroundColor = Brand.default.colors.primary
             self.singleSignOnButton.setTitle(title, for: .normal)
         } else {
             self.singleSignOnView.isHidden = true
@@ -69,13 +69,13 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
     @IBAction func register() {
         let safariVC = SFSafariViewController(url: Routes.register)
-        safariVC.preferredControlTintColor = Brand.Color.window
+        safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: true)
     }
 
     @IBAction func forgotPassword() {
         let safariVC = SFSafariViewController(url: Routes.localizedForgotPasswordURL)
-        safariVC.preferredControlTintColor = Brand.Color.window
+        safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: true)
     }
 

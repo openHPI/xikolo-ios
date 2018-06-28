@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUD-8G-le9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CUD-8G-le9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,7 +15,7 @@
         <!--Course Item List View Controller-->
         <scene sceneID="1bp-CZ-kLC">
             <objects>
-                <tableViewController storyboardIdentifier="CourseItemListViewController" id="CUD-8G-le9" customClass="CourseItemListViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CourseItemListViewController" id="CUD-8G-le9" customClass="CourseItemListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="56" sectionHeaderHeight="18" sectionFooterHeight="18" id="GTQ-j8-GTD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                         <viewLayoutGuide key="safeArea" id="rJc-jS-PCf"/>
                         <inset key="separatorInset" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" id="G9e-ER-HXC" customClass="CourseItemCell" customModule="moocHOUSE" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" id="G9e-ER-HXC" customClass="CourseItemCell" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G9e-ER-HXC" id="dUS-v4-gua">
@@ -70,7 +70,7 @@
                                                                 </fragment>
                                                             </attributedString>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G72-sV-YTv" customClass="CourseItemDetailView" customModule="moocHOUSE" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G72-sV-YTv" customClass="CourseItemDetailView" customModule="iOS" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="20" width="251" height="14"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -135,7 +135,7 @@
         <!--Richtext View Controller-->
         <scene sceneID="tVE-lt-FrA">
             <objects>
-                <viewController id="rg3-oN-kal" customClass="RichtextViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rg3-oN-kal" customClass="RichtextViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="t4O-cz-BsG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,7 +221,7 @@
         <!--Course Item Web View Controller-->
         <scene sceneID="3g7-OU-Mfj">
             <objects>
-                <viewController storyboardIdentifier="CourseItemWebViewController" id="NW7-Yg-G1A" customClass="CourseItemWebViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseItemWebViewController" id="NW7-Yg-G1A" customClass="CourseItemWebViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XYf-eJ-j6p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -267,7 +267,7 @@
         <!--Video View Controller-->
         <scene sceneID="zVG-t4-nV2">
             <objects>
-                <viewController storyboardIdentifier="VideoViewController" id="Sj1-Jn-P6O" customClass="VideoViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoViewController" id="Sj1-Jn-P6O" customClass="VideoViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="L1r-eL-cti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -380,7 +380,7 @@
                                                                             <constraint firstAttribute="width" secondItem="1PV-aM-oRa" secondAttribute="height" multiplier="1:1" id="iTh-NT-XOB"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQS-5h-i0c" customClass="CircularProgressView" customModule="moocHOUSE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQS-5h-i0c" customClass="CircularProgressView" customModule="iOS" customModuleProvider="target">
                                                                         <rect key="frame" x="29" y="4" width="20" height="20"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -445,7 +445,7 @@
                                                                             <constraint firstAttribute="width" secondItem="sub-w1-OoS" secondAttribute="height" multiplier="1:1" id="IOS-iD-KTI"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVc-3o-zwa" customClass="CircularProgressView" customModule="moocHOUSE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVc-3o-zwa" customClass="CircularProgressView" customModule="iOS" customModuleProvider="target">
                                                                         <rect key="frame" x="29" y="4" width="20" height="20"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -593,6 +593,6 @@
         <image name="downloaded" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ach-Qd-eGW"/>
+        <segue reference="Pt9-PY-lWf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -48,7 +48,7 @@ class AppNavigator {
             return true
         }
 
-        guard url.host == Brand.host else {
+        guard url.host == Brand.default.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
@@ -62,7 +62,7 @@ class AppNavigator {
 
     static func handle(_ url: URL) -> Bool {
         guard let hostURL = url.host else { return false }
-        guard hostURL == Brand.host else {
+        guard hostURL == Brand.default.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }

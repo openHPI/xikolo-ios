@@ -108,7 +108,7 @@
 "course-section.stream-download-action.delete-downloads.title" = "Alle Videos löschen";
 
 /* start stream downloads for all videos in section */
-"course-section.stream-download-action.start-downloads.title" = "Alle Folien herunterladen";
+"course-section.stream-download-action.start-downloads.title" = "Alle Videos herunterladen";
 
 /* stop all stream downloads in section */
 "course-section.stream-download-action.stop-downloads.title" = "Alle Video-Downloads stoppen";

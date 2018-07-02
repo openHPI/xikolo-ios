@@ -86,7 +86,7 @@ open class UserProfileHelper {
 
     static func postLoginStateChange() {
         let coursesFuture = CourseHelper.syncAllCourses().onSuccess { _ in
-            AnnouncementHelper.syncAllAnnouncements()
+            AnnouncementHelper.shared.syncAllAnnouncements()
         }
 
         if UserProfileHelper.isLoggedIn {

@@ -8,25 +8,31 @@ import Foundation
 
 struct AnnouncementHelper {
 
-    @discardableResult static func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    static let shared = AnnouncementHelper()
+
+    var delegate: AnnouncementHelperDelegate?
+
+    private init() {}
+
+    @discardableResult func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
         return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
-            self.updateUnreadAnnouncementsBadge()
+            self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
 
-    @discardableResult static func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
         return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
-            self.updateUnreadAnnouncementsBadge()
+            self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
 
-    @discardableResult static func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
+    @discardableResult func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
         guard UserProfileHelper.isLoggedIn && !item.visited else {
             return Future(value: ())
         }
@@ -42,50 +48,16 @@ struct AnnouncementHelper {
             announcement.visited = true
             announcement.objectState = .modified
             promise.complete(context.saveWithResult())
-            self.updateUnreadAnnouncementsBadge()
+            self.delegate?.updateUnreadAnnouncementsBadge()
         }
 
         return promise.future
     }
 
-    private static func updateUnreadAnnouncementsBadge() {
-        #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
-            log.info("Don't show badge when making screenshots")
-            return
-        }
-        #endif
+}
 
-        DispatchQueue.main.async {
-            guard let rootViewController = AppDelegate.instance().window?.rootViewController as? UITabBarController else {
-                log.warning("root view controller is not TabBarController")
-                return
-            }
+protocol AnnouncementHelperDelegate {
 
-            guard let tabItem = rootViewController.tabBar.items?[safe: 2] else {
-                log.warning("Failed to retrieve tab item for announcements")
-                return
-            }
-
-            guard UserProfileHelper.isLoggedIn else {
-                tabItem.badgeValue = nil
-                return
-            }
-
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
-                do {
-                    let announcementCount = try context.count(for: fetchRequest)
-                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
-                    DispatchQueue.main.async {
-                        tabItem.badgeValue = badgeValue
-                    }
-                } catch {
-                    log.warning("Failed to retrieve unread announcement count")
-                }
-            }
-        }
-
-    }
+    func updateUnreadAnnouncementsBadge()
 
 }

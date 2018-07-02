@@ -81,9 +81,9 @@ class AnnouncementsListViewController: UITableViewController {
 
         let refreshFuture: Future<SyncEngine.SyncMultipleResult, XikoloError>
         if let course = self.course {
-            refreshFuture = AnnouncementHelper.syncAnnouncements(for: course)
+            refreshFuture = AnnouncementHelper.shared.syncAnnouncements(for: course)
         } else {
-            refreshFuture = AnnouncementHelper.syncAllAnnouncements()
+            refreshFuture = AnnouncementHelper.shared.syncAllAnnouncements()
         }
 
         refreshFuture.onComplete { _ in

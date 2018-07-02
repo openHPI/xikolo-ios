@@ -6,7 +6,7 @@
 import BrightFutures
 import UIKit
 
-class TrackingHelper {
+struct TrackingHelper {
 
     enum AnalyticsVerb: String {
         // tabs
@@ -58,7 +58,13 @@ class TrackingHelper {
     }
     // swiftlint:enable redundant_string_enum_value
 
-    private static var networkState: String {
+    static let shared = TrackingHelper()
+
+    private init() {}
+
+    var delegate: TrackingHelperDelegate?
+
+    private var networkState: String {
         switch ReachabilityHelper.connection {
         case .wifi:
             return "wifi"
@@ -69,9 +75,9 @@ class TrackingHelper {
         }
     }
 
-    private class func defaultContext() -> [String: String] {
+    private func defaultContext() -> [String: String] {
         let screenSize = UIScreen.main.bounds.size
-        let windowSize = (UIApplication.shared.delegate as? AppDelegate)?.window?.frame.size
+        let windowSize = self.delegate?.applicationWindowSize
 
         var context = [
             "platform": UIApplication.platform,
@@ -103,14 +109,14 @@ class TrackingHelper {
         return context
     }
 
-    @discardableResult class func createEvent(_ verb: AnalyticsVerb, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult func createEvent(_ verb: AnalyticsVerb, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return self.createEvent(verb, resourceType: .none, resourceId: "00000000-0000-0000-0000-000000000000", context: context)
     }
 
-    @discardableResult class func createEvent(_ verb: AnalyticsVerb,
-                                              resourceType: AnalyticsResourceType,
-                                              resourceId: String,
-                                              context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult func createEvent(_ verb: AnalyticsVerb,
+                                        resourceType: AnalyticsResourceType,
+                                        resourceId: String,
+                                        context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         guard let userId = UserProfileHelper.userId else {
             return Future(error: .trackingForUnknownUser)
         }
@@ -150,15 +156,15 @@ class TrackingHelper {
 
 extension TrackingHelper {
 
-    fileprivate static var systemFreeSize: UInt64 {
+    private var systemFreeSize: UInt64 {
         return self.deviceData(for: .systemFreeSize) ?? 0
     }
 
-    fileprivate static var systemSize: UInt64 {
+    private var systemSize: UInt64 {
         return self.deviceData(for: .systemSize) ?? 0
     }
 
-    private static func deviceData(for key: FileAttributeKey) -> UInt64? {
+    private func deviceData(for key: FileAttributeKey) -> UInt64? {
         guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else {
             return nil
         }
@@ -173,5 +179,11 @@ extension TrackingHelper {
 
         return value.uint64Value
     }
+
+}
+
+protocol TrackingHelperDelegate {
+
+    var applicationWindowSize: CGSize? { get }
 
 }

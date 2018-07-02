@@ -32,12 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        // register tab bar delegate
-        self.tabBarController?.delegate = self
-
         // Configure Firebase
         FirebaseApp.configure()
 
+        // register tab bar delegate
+        self.tabBarController?.delegate = self
+
+        TrackingHelper.shared.delegate = self
+        AnnouncmentHelper.shared.delegate = self
         SyncEngine.shared.delegate = SyncHelper()
 
         // register resource to be pushed automatically
@@ -164,4 +166,50 @@ extension AppDelegate: LoginDelegate {
     func didSuccessfullyLogin() {
         self.tabBarController?.selectedIndex = 0
     }
+}
+
+extension AppDelegate: AnnouncmentHelperDelegate {
+
+    func updateUnreadAnnouncementsBadge() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-cleanTabBar") {
+            log.info("Don't show badge when making screenshots")
+            return
+        }
+        #endif
+
+        DispatchQueue.main.async {
+            guard let tabItem = self.tabBarController?.tabBar.items?[safe: 2] else {
+                log.warning("Failed to retrieve tab item for announcements")
+                return
+            }
+
+            guard UserProfileHelper.isLoggedIn else {
+                tabItem.badgeValue = nil
+                return
+            }
+
+            CoreDataHelper.persistentContainer.performBackgroundTask { context in
+                let fetchRequest = AnnouncementHelper.FetchRequest.unreadAnnouncements
+                do {
+                    let announcementCount = try context.count(for: fetchRequest)
+                    let badgeValue = announcementCount > 0 ? String(describing: announcementCount) : nil
+                    DispatchQueue.main.async {
+                        tabItem.badgeValue = badgeValue
+                    }
+                } catch {
+                    log.warning("Failed to retrieve unread announcement count")
+                }
+            }
+        }
+    }
+
+}
+
+extension AppDelegate: TrackingHelperDelegate {
+
+    var applicationWindowSize: CGSize? {
+        return self.window.frame.size
+    }
+
 }

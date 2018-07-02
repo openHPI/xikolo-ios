@@ -6,5 +6,5 @@
 PRODUCT_NAME = openHPI
 DISPLAY_NAME = openHPI
 
-CODE_SIGN_ENTITLEMENTS = xikolo-ios/Branding/${PRODUCT_NAME}/ios.entitlements
+CODE_SIGN_ENTITLEMENTS = iOS/Branding/${PRODUCT_NAME}/ios.entitlements
 PRODUCT_MODULE_NAME = iOS

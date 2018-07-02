@@ -21,4 +21,5 @@ extension Crashlytics {
             !(200 ... 299 ~= statusCode || statusCode == 406 || statusCode == 503) { return }
         CrashlyticsHelper.shared.recordError(error)
     }
+
 }

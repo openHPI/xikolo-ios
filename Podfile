@@ -5,33 +5,31 @@ pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :comm
 pod 'R.swift', '~> 4.0'
 pod 'SwiftLint', '~> 0.22'
 
-def common_pods
-    pod 'BrightFutures', '~> 6.0'
-    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
-    pod 'KeychainAccess', '~> 3.1'
-    pod 'Marshal', '~> 1.2'
-    pod 'SDWebImage', '~> 4.2'
-    pod 'HTMLStyler', :path => './HTMLStyler'
-end
-
-def ios_pods
-    pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
-    pod 'DZNEmptyDataSet', '~> 1.8'
-    pod 'ReachabilitySwift', '~> 4.1'
-    pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
-    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
-    pod 'XCGLogger', '~> 6.0'
-
-    # Firebase
+def firebase_pods
     pod 'Firebase/Core', '~> 4.8'
     pod 'Fabric', '~> 1.7'
     pod 'Crashlytics', '~> 3.9'
 end
 
+target 'Common' do
+    platform :ios, '10.0'
+    firebase_pods
+    pod 'BrightFutures', '~> 6.0'
+    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'KeychainAccess', '~> 3.1'
+    pod 'Marshal', '~> 1.2'
+    pod 'ReachabilitySwift', '~> 4.1'
+    pod 'SDWebImage', '~> 4.2'
+    pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
+    pod 'XCGLogger', '~> 6.0'
+end
+
 target 'iOS' do
     platform :ios, '10.0'
-    common_pods
-    ios_pods
+    pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
+    pod 'DZNEmptyDataSet', '~> 1.8'
+    pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end
 
 post_install do |installer|

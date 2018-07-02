@@ -31,14 +31,14 @@ disabled_rules:
 - explicit_enum_raw_value
 
 included:
-- xikolo-common
-- xikolo-ios
+- Common
+- iOS
 - UI Tests
 
 excluded:
 - UI Tests/SnapshotHelper.swift
-- xikolo-common/R.generated.swift
-- xikolo-ios/R.generated.swift
+- Common/R.generated.swift
+- iOS/R.generated.swift
 
 line_length: 160
 

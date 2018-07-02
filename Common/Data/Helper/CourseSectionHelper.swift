@@ -12,7 +12,7 @@ struct CourseSectionHelper {
         let fetchRequest = CourseSectionHelper.FetchRequest.allCourseSections(forCourse: course)
         var query = MultipleResourcesQuery(type: CourseSection.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

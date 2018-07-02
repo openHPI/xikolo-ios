@@ -11,7 +11,7 @@ struct VideoHelper {
     @discardableResult static func syncVideo(_ video: Video) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)
         let query = SingleResourceQuery(resource: video)
-        return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

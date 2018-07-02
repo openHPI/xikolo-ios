@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Firebase
         FirebaseApp.configure()
 
+        SyncEngine.shared.delegate = SyncHelper()
+
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)
         SyncPushEngine.shared.register(CourseItem.self)

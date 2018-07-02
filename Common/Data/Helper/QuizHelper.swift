@@ -13,7 +13,7 @@ struct QuizHelper {
         var query = SingleResourceQuery(resource: quiz)
         query.include("questions")
         query.include("submission")
-        return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

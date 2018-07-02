@@ -78,7 +78,7 @@ extension Pullable where Self: NSManagedObject {
                 if var existingObject = self[keyPath: keyPath] {
                     try existingObject.update(withObject: includedObject, including: includes, inContext: context)
                 } else {
-                    if var fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                    if var fetchedResource = try SyncEngine.shared.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                         try fetchedResource.update(withObject: includedObject, including: includes, inContext: context)
                         self[keyPath: keyPath] = fetchedResource
                     } else {
@@ -89,7 +89,7 @@ extension Pullable where Self: NSManagedObject {
                 throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
             }
         } else {
-            if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+            if let fetchedResource = try SyncEngine.shared.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                 self[keyPath: keyPath] = fetchedResource
             } else {
                 log.info("relationship update saved (\(Self.type) --> \(A.type)?)")
@@ -117,7 +117,7 @@ extension Pullable where Self: NSManagedObject {
                     }
                 } else {
                     if let includedObject = self.findIncludedObject(for: resourceIdentifier, in: includes) {
-                        if var fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                        if var fetchedResource = try SyncEngine.shared.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                             try fetchedResource.update(withObject: includedObject, including: includes, inContext: context)
                             self[keyPath: keyPath].insert(fetchedResource)
                         } else {
@@ -125,7 +125,7 @@ extension Pullable where Self: NSManagedObject {
                             self[keyPath: keyPath].insert(newObject)
                         }
                     } else {
-                        if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
+                        if let fetchedResource = try SyncEngine.shared.findExistingResource(withId: resourceIdentifier.id, ofType: A.self, inContext: context) {
                             self[keyPath: keyPath].insert(fetchedResource)
                         } else {
                             log.info("relationship update saved (\(Self.type) --> Set<\(A.type)>)")

@@ -12,7 +12,7 @@ struct AnnouncementHelper {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
+        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.updateUnreadAnnouncementsBadge()
         }
     }
@@ -21,7 +21,7 @@ struct AnnouncementHelper {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncHelper.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
+        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
             self.updateUnreadAnnouncementsBadge()
         }
     }

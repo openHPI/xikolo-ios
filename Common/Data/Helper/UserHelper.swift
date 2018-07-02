@@ -12,7 +12,7 @@ class UserHelper {
         let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
-        return SyncHelper.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

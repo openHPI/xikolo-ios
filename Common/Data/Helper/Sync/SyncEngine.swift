@@ -38,7 +38,7 @@ struct SyncEngine {
         let headers: [AnyHashable: Any]
     }
 
-    private static let session: URLSession = {
+    private let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForResource = 300
         if #available(iOS 11, *) {
@@ -48,9 +48,15 @@ struct SyncEngine {
         return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
     }()
 
+    public static let shared = SyncEngine()
+
+    public var delegate: SyncEngineDelegate?
+
+    private init() {}
+
     // MARK: - build url request
 
-    private static func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
+    private func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, XikoloError> where Query: ResourceQuery {
         guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
@@ -97,8 +103,8 @@ struct SyncEngine {
         return .success(request)
     }
 
-    private static func buildCreateRequest(forQuery query: ResourceURLRepresentable,
-                                           forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
+    private func buildCreateRequest(forQuery query: ResourceURLRepresentable,
+                                    forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
         switch resource.resourceData() {
         case let .success(resourceData):
             return self.buildCreateRequest(forQuery: query, withData: resourceData)
@@ -107,8 +113,8 @@ struct SyncEngine {
         }
     }
 
-    private static func buildCreateRequest(forQuery query: ResourceURLRepresentable,
-                                           withData resourceData: Data) -> Result<URLRequest, XikoloError> {
+    private func buildCreateRequest(forQuery query: ResourceURLRepresentable,
+                                    withData resourceData: Data) -> Result<URLRequest, XikoloError> {
         guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
@@ -125,8 +131,8 @@ struct SyncEngine {
         return .success(request)
     }
 
-    private static func buildSaveRequest(forQuery query: ResourceURLRepresentable,
-                                         forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
+    private func buildSaveRequest(forQuery query: ResourceURLRepresentable,
+                                  forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
         guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
@@ -145,8 +151,7 @@ struct SyncEngine {
         }
     }
 
-    private static func buildDeleteRequest(forQuery query: RawSingleResourceQuery) -> Result<URLRequest, XikoloError> {
-
+    private func buildDeleteRequest(forQuery query: RawSingleResourceQuery) -> Result<URLRequest, XikoloError> {
         guard let resourceUrl = query.resourceURL(relativeTo: Routes.api) else {
             return .failure(.invalidResourceURL)
         }
@@ -163,7 +168,7 @@ struct SyncEngine {
 
     // MARK: - core data operation
 
-    private static func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
+    private func fetchCoreDataObjects<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             let objects = try context.fetch(fetchRequest)
             return Future(value: objects)
@@ -172,7 +177,7 @@ struct SyncEngine {
         }
     }
 
-    private static func fetchCoreDataObject<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<Resource?, XikoloError> where Resource: NSManagedObject & Pullable {
+    private func fetchCoreDataObject<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, inContext context: NSManagedObjectContext) -> Future<Resource?, XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             let objects = try context.fetch(fetchRequest)
             return Future(value: objects.first)
@@ -181,7 +186,7 @@ struct SyncEngine {
         }
     }
 
-    private static func doNetworkRequest(_ request: URLRequest, expectsData: Bool = true) -> Future<NetworkResult, XikoloError> {
+    private func doNetworkRequest(_ request: URLRequest, expectsData: Bool = true) -> Future<NetworkResult, XikoloError> {
         let promise = Promise<NetworkResult, XikoloError>()
 
         let task = self.session.dataTask(with: request) { data, response, error in
@@ -257,7 +262,7 @@ struct SyncEngine {
 
     // MARK: - merge
 
-    private static func mergeResources<Resource>(object: ResourceData, withExistingObjects objects: [Resource], deleteNotExistingResources: Bool, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
+    private func mergeResources<Resource>(object: ResourceData, withExistingObjects objects: [Resource], deleteNotExistingResources: Bool, inContext context: NSManagedObjectContext) -> Future<[Resource], XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             var existingObjects = objects
             var newObjects: [Resource] = []
@@ -302,7 +307,7 @@ struct SyncEngine {
         }
     }
 
-    private static func mergeResource<Resource>(object: ResourceData, withExistingObject existingObject: Resource?, inContext context: NSManagedObjectContext) -> Future<Resource, XikoloError> where Resource: NSManagedObject & Pullable {
+    private func mergeResource<Resource>(object: ResourceData, withExistingObject existingObject: Resource?, inContext context: NSManagedObjectContext) -> Future<Resource, XikoloError> where Resource: NSManagedObject & Pullable {
         do {
             let newObject: Resource
             let data = try object.value(for: "data") as ResourceData
@@ -340,7 +345,7 @@ struct SyncEngine {
 
     // MARK: - sync
 
-    static func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>, deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, XikoloError> where Resource: NSManagedObject & Pullable {
+    func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: MultipleResourcesQuery<Resource>, deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, XikoloError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncMultipleResult, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -371,10 +376,14 @@ struct SyncEngine {
             }
         }
 
-        return promise.future
+        return promise.future.onSuccess { result in
+            self.delegate?.didSynchronizeResources(ofType: Resource.type, withResult: result)
+        }.onFailure{ error in
+            self.delegate?.didFailToSynchronizeResources(ofType: Resource.type, withError: error)
+        }
     }
 
-    static func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable {
+    func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>, withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncSingleResult, XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -405,12 +414,16 @@ struct SyncEngine {
             }
         }
 
-        return promise.future
+        return promise.future.onSuccess { result in
+            self.delegate?.didSynchronizeResource(ofType: Resource.type, withResult: result)
+        }.onFailure{ error in
+            self.delegate?.didFailToSynchronizeResource(ofType: Resource.type, withError: error)
+        }
     }
 
     // MARK: - creating
 
-    @discardableResult static func createResource<Resource>(ofType resourceType: Resource.Type, withData resourceData: Data) -> Future<SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable & Pushable {
+    @discardableResult func createResource<Resource>(ofType resourceType: Resource.Type, withData resourceData: Data) -> Future<SyncSingleResult, XikoloError> where Resource: NSManagedObject & Pullable & Pushable {
         let query = RawMultipleResourcesQuery(type: Resource.type)
         let networkRequest = self.buildCreateRequest(forQuery: query, withData: resourceData).flatMap { request in
             return self.doNetworkRequest(request)
@@ -446,22 +459,30 @@ struct SyncEngine {
 
         }
 
-        return promise.future
+        return promise.future.onSuccess { _ in
+            self.delegate?.didCreateResource(ofType: Resource.type)
+        }.onFailure{ error in
+            self.delegate?.didFailToCreateResource(ofType: Resource.type, withError: error)
+        }
     }
 
-    @discardableResult static func createResource(_ resource: Pushable) -> Future<Void, XikoloError> {
+    @discardableResult func createResource(_ resource: Pushable) -> Future<Void, XikoloError> {
         let resourceType = type(of: resource).type
         let query = RawMultipleResourcesQuery(type: resourceType)
         let networkRequest = self.buildCreateRequest(forQuery: query, forResource: resource).flatMap { request in
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid().onSuccess { _ in
+            self.delegate?.didCreateResource(ofType: resourceType)
+        }.onFailure{ error in
+            self.delegate?.didFailToCreateResource(ofType: resourceType, withError: error)
+        }
     }
 
     // MARK: - saving
 
-    @discardableResult static func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
+    @discardableResult func saveResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
         let resourceType = type(of: resource).type
         let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
         let urlRequest = self.buildSaveRequest(forQuery: query, forResource: resource)
@@ -470,22 +491,30 @@ struct SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid().onSuccess { result in
+            self.delegate?.didSaveResource(ofType: resourceType)
+        }.onFailure{ error in
+            self.delegate?.didFailToSaveResource(ofType: resourceType, withError: error)
+        }
     }
 
     // MARK: - deleting
 
-    @discardableResult static func deleteResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
+    @discardableResult func deleteResource(_ resource: Pullable & Pushable) -> Future<Void, XikoloError> {
         let resourceType = type(of: resource).type
         let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
         let networkRequest = self.buildDeleteRequest(forQuery: query).flatMap { request in
             return self.doNetworkRequest(request, expectsData: false)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid().onSuccess { result in
+            self.delegate?.didDeleteResource(ofType: resourceType)
+        }.onFailure{ error in
+            self.delegate?.didFailToDeleteResource(ofType: resourceType, withError: error)
+        }
     }
 
-    static func findExistingResource<Resource>(withId objectId: String,
+    func findExistingResource<Resource>(withId objectId: String,
                                                ofType type: Resource.Type,
                                                inContext context: NSManagedObjectContext) throws -> Resource? where Resource: NSManagedObject & Pullable {
         guard let entityName = Resource.entity().name else {

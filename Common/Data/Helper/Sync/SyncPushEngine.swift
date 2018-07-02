@@ -61,11 +61,11 @@ class SyncPushEngine {
 
                 var pushFuture: Future<Void, XikoloError>?
                 if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
-                    pushFuture = SyncHelper.saveResource(pullableResource)
+                    pushFuture = SyncEngine.shared.saveResource(pullableResource)
                 } else if resource.objectState == .new, !(resource is Pullable) {
-                    pushFuture = SyncHelper.createResource(resource)
+                    pushFuture = SyncEngine.shared.createResource(resource)
                 } else if let deletableResource = resource as? (Pullable & Pushable), resource.objectState == .deleted {
-                    pushFuture = SyncHelper.deleteResource(deletableResource)
+                    pushFuture = SyncEngine.shared.deleteResource(deletableResource)
                 } else {
                     log.warning("unhandle resource modification")
                 }

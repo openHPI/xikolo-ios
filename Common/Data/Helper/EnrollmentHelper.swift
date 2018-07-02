@@ -15,7 +15,7 @@ struct EnrollmentHelper {
         let resourceData = Enrollment.resourceData(attributes: attributes, relationships: relationships)
 
         return resourceData.flatMap { data in
-            return SyncHelper.createResource(ofType: Enrollment.self, withData: data).asVoid()
+            return SyncEngine.shared.createResource(ofType: Enrollment.self, withData: data).asVoid()
         }
     }
 

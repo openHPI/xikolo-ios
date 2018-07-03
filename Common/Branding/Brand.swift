@@ -29,7 +29,7 @@ public struct Brand: Decodable {
 
     private let copyrightName: String
 
-    let host: String
+    public let host: String
     let imprintURL: URL
     let privacyURL: URL
     let platformTitle: String

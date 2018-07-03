@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import UIKit
 
 class AnnouncementCell: UITableViewCell {
@@ -24,7 +25,7 @@ class AnnouncementCell: UITableViewCell {
     @IBOutlet private var courseLabelContraints: [NSLayoutConstraint]!
 
     func configure(_ announcement: Announcement, showCourseTitle: Bool) {
-        if UserProfileHelper.isLoggedIn, !announcement.visited {
+        if UserProfileHelper.shared.isLoggedIn, !announcement.visited {
             self.readStateLabel.textColor = Brand.default.colors.secondary
             self.readStateLabel.isHidden = false
             self.separatorView.isHidden = false

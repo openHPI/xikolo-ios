@@ -7,9 +7,9 @@ import BrightFutures
 import CoreData
 import Foundation
 
-struct EnrollmentHelper {
+public struct EnrollmentHelper {
 
-    static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
+    public static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
         let attributes = ["completed": false]
         let relationships = ["course": course as AnyObject]
         let resourceData = Enrollment.resourceData(attributes: attributes, relationships: relationships)
@@ -19,7 +19,7 @@ struct EnrollmentHelper {
         }
     }
 
-    static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {
+    public static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {
         guard let enrollment = enrollment else {
             return Future(error: .missingResource(ofType: Enrollment.self))
         }
@@ -43,7 +43,7 @@ struct EnrollmentHelper {
         return promise.future
     }
 
-    @discardableResult static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
+    @discardableResult public static func markAsCompleted(_ course: Course) -> Future<Void, XikoloError> {
         guard let enrollment = course.enrollment else {
             return Future(error: .missingResource(ofType: Enrollment.self))
         }
@@ -70,4 +70,5 @@ struct EnrollmentHelper {
 
         return promise.future
     }
+
 }

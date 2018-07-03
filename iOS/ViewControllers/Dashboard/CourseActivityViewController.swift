@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import CoreData
 import DZNEmptyDataSet
 import Foundation

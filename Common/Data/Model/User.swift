@@ -5,12 +5,12 @@
 
 import CoreData
 
-final class User: NSManagedObject {
+public final class User: NSManagedObject {
 
-    @NSManaged var id: String
-    @NSManaged var name: String?
-    @NSManaged var avatarURL: URL?
-    @NSManaged var profile: UserProfile?
+    @NSManaged public var id: String
+    @NSManaged public var name: String?
+    @NSManaged public var avatarURL: URL?
+    @NSManaged public var profile: UserProfile?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<User> {
         return NSFetchRequest<User>(entityName: "User")
@@ -20,7 +20,7 @@ final class User: NSManagedObject {
 
 extension User: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "users"
     }
 

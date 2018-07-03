@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import SafariServices
 import SimpleRoundedButton
 import UIKit
@@ -56,7 +57,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
         }
 
         loginButton.startAnimating()
-        UserProfileHelper.login(email, password: password).onComplete { [weak self] _ in
+        UserProfileHelper.shared.login(email, password: password).onComplete { [weak self] _ in
             self?.loginButton.stopAnimating()
         }.onSuccess { [weak self] _ in
             self?.delegate?.didSuccessfullyLogin()

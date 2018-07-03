@@ -5,16 +5,16 @@
 
 import CoreData
 
-final class UserProfile: NSManagedObject {
+public final class UserProfile: NSManagedObject {
 
-    @NSManaged var id: String
-    @NSManaged var displayName: String?
-    @NSManaged var firstName: String?
-    @NSManaged var lastName: String?
-    @NSManaged var email: String?
-    @NSManaged var user: User?
+    @NSManaged public var id: String
+    @NSManaged public var displayName: String?
+    @NSManaged public var firstName: String?
+    @NSManaged public var lastName: String?
+    @NSManaged public var email: String?
+    @NSManaged public var user: User?
 
-    var fullName: String? {
+    public var fullName: String? {
         let components = [self.firstName, self.lastName].compactMap { $0 }
         return components.isEmpty ? nil : components.joined(separator: " ")
     }
@@ -23,7 +23,7 @@ final class UserProfile: NSManagedObject {
 
 extension UserProfile: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "user-profile"
     }
 

@@ -61,7 +61,7 @@ extension CourseHelper {
             return request
         }
 
-        static func course(withSlugOrId slugOrId: String) -> NSFetchRequest<Course> {
+        public static func course(withSlugOrId slugOrId: String) -> NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
             request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSPredicate(format: "slug = %@", slugOrId),
@@ -134,7 +134,7 @@ extension CourseHelper {
             return request
         }
 
-        static var enrolledCourses: NSFetchRequest<Course> {
+        public static var enrolledCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 genericPredicate,

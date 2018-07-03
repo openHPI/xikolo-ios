@@ -8,17 +8,17 @@ import UIKit
 extension UIApplication {
 
     #if os(tvOS)
-    static let platform = "tvOS"
+    public static let platform = "tvOS"
     #else
-    static let platform = "iOS"
+    public static let platform = "iOS"
     #endif
 
-    static let osVersion: String = {
+    public static let osVersion: String = {
         let version = ProcessInfo().operatingSystemVersion
         return String(format: "%d.%d.%d", version.majorVersion, version.minorVersion, version.patchVersion)
     }()
 
-    static let device: String = {
+    public static let device: String = {
         #if targetEnvironment(simulator)
             return "Simulator"
         #else

@@ -7,13 +7,15 @@ import CoreData
 
 extension UserHelper {
 
-    struct FetchRequest {
+    public struct FetchRequest {
 
-        static func user(withId userId: String) -> NSFetchRequest<User> {
+        public static func user(withId userId: String) -> NSFetchRequest<User> {
             let request: NSFetchRequest<User> = User.fetchRequest()
             request.predicate = NSPredicate(format: "id == %@", userId)
             request.fetchLimit = 1
             return request
         }
+
     }
+
 }

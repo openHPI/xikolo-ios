@@ -7,7 +7,7 @@ import Foundation
 
 extension String {
 
-    func safeAsciiString() -> String? {
+    public func safeAsciiString() -> String? {
         let charSubstitions = [
             "Ä": "Ae",
             "ä": "ae",

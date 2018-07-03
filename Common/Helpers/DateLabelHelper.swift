@@ -5,7 +5,7 @@
 
 import Foundation
 
-class DateLabelHelper {
+public struct DateLabelHelper {
 
     fileprivate static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter.localizedFormatter()
@@ -14,7 +14,7 @@ class DateLabelHelper {
         return dateFormatter
     }()
 
-    class func labelFor(startDate: Date?, endDate: Date?) -> String {
+    public static func labelFor(startDate: Date?, endDate: Date?) -> String {
         if endDate?.inPast ?? false {
             return NSLocalizedString("course-date-formatting.self-paced", tableName: "Common", comment: "Self-paced course")
         }
@@ -54,7 +54,7 @@ class DateLabelHelper {
                                  comment: "course start at unknown date")
     }
 
-    private class func format(date: Date) -> String {
+    private static func format(date: Date) -> String {
         return dateFormatter.string(from: date)
     }
 

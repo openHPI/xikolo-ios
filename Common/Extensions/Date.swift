@@ -7,7 +7,7 @@ import Foundation
 
 extension Date {
 
-    func subtractingTimeInterval(_ timeInterval: TimeInterval) -> Date {
+    public func subtractingTimeInterval(_ timeInterval: TimeInterval) -> Date {
         return self.addingTimeInterval(-1 * timeInterval)
     }
 

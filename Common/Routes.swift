@@ -36,16 +36,16 @@ public struct Routes {
     private static let apiVersion = "3"
 
     static let authenticate = Routes.api.appendingPathComponent("authenticate")
-    static let register = Routes.base.appendingPathComponents(["account", "new"]).appendingInAppParameter()
-    static let singleSignOn = Routes.base.appendingQueryItems([Routes.QueryItem.inApp, Routes.QueryItem.redirect])
+    public static let register = Routes.base.appendingPathComponents(["account", "new"]).appendingInAppParameter()
+    public static let singleSignOn = Routes.base.appendingQueryItems([Routes.QueryItem.inApp, Routes.QueryItem.redirect])
 
-    static let courses = Routes.base.appendingPathComponent("courses")
+    public static let courses = Routes.base.appendingPathComponent("courses")
 
-    static var imprint = Brand.default.imprintURL.appendingInAppParameter()
-    static let privacy = Brand.default.privacyURL.appendingInAppParameter()
-    static let github = URL(string: "https://github.com/openHPI/xikolo-ios").require(hint: "Invalid GitHub URL")
+    public static var imprint = Brand.default.imprintURL.appendingInAppParameter()
+    public static let privacy = Brand.default.privacyURL.appendingInAppParameter()
+    public static let github = URL(string: "https://github.com/openHPI/xikolo-ios").require(hint: "Invalid GitHub URL")
 
-    static var localizedForgotPasswordURL: URL {
+    public static var localizedForgotPasswordURL: URL {
         let url = Routes.base.appendingPathComponents(["account", "reset", "new"])
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
 

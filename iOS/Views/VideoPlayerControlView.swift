@@ -24,7 +24,7 @@ class VideoPlayerControlView: BMPlayerControlView {
     private var playbackRateButton = UIButton(type: .custom)
     private var iPadFullScreenButton = UIButton(type: .custom)
     var offlineLabel = UILabel()
-    private(set) var playRate: Float = UserDefaults.standard.float(forKey: UserDefaultsKeys.playbackRateKey)
+    private(set) var playRate: Float = UserDefaults.standard.playbackRate
 
     weak var videoController: VideoViewController?
 
@@ -155,7 +155,7 @@ class VideoPlayerControlView: BMPlayerControlView {
             self.playRate = 1.0
         }
 
-        UserDefaults.standard.set(self.playRate, forKey: UserDefaultsKeys.playbackRateKey)
+        UserDefaults.standard.playbackRate = self.playRate
 
         self.updatePlaybackRateButton()
         self.delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: self.playRate)

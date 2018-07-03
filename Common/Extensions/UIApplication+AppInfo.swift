@@ -7,24 +7,24 @@ import UIKit
 
 extension UIApplication {
 
-    static let bundleIdentifier: String = {
+    public static let bundleIdentifier: String = {
         return Bundle.main.bundleIdentifier.require(hint: "Unable to retrieve bundle identifier")
     }()
 
     //  Inspired by http://stackoverflow.com/a/7608711/2387552
-    static let appName: String = {
+    public static let appName: String = {
         let key = kCFBundleNameKey as String
         let appName = Bundle.main.object(forInfoDictionaryKey: key) as? String
         return appName.require(hint: "Unable to retrieve bundle name")
     }()
 
-    static let appVersion: String = {
+    public static let appVersion: String = {
         let key = "CFBundleShortVersionString"
         let appVersion = Bundle.main.object(forInfoDictionaryKey: key) as? String
         return appVersion.require(hint: "Unable to retrieve app version")
     }()
 
-    static let appBuild: String = {
+    public static let appBuild: String = {
         let key = kCFBundleVersionKey as String
         let appBuild = Bundle.main.object(forInfoDictionaryKey: key) as? String
         return appBuild.require(hint: "Unable to retrieve build number")

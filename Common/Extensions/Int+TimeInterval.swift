@@ -7,11 +7,11 @@ import Foundation
 
 extension Int {
 
-    var days: TimeInterval {
+    public var days: TimeInterval {
         return TimeInterval(self * 24 * 60 * 60)
     }
 
-    var day: TimeInterval {
+    public var day: TimeInterval {
         return self.days
     }
 

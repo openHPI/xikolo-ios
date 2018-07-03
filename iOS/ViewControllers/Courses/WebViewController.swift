@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import UIKit
 
 class WebViewController: UIViewController {
@@ -62,9 +63,7 @@ extension WebViewController: UIWebViewDelegate {
             if let tokenItem = queryItems.first(where: { $0.name == "token" }) {
                 guard let token = tokenItem.value else { return false }
 
-                UserProfileHelper.userId = nil
-                UserProfileHelper.userToken = token
-                UserProfileHelper.postLoginStateChange()
+                UserProfileHelper.shared.didLogin(withToken: token)
                 self.loginDelegate?.didSuccessfullyLogin()
                 self.navigationController?.dismiss(animated: true)
                 return false
@@ -73,7 +72,7 @@ extension WebViewController: UIWebViewDelegate {
             return true
         }
 
-        let userIsLoggedIn = UserProfileHelper.isLoggedIn
+        let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
         let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
 
         if userIsLoggedIn && !headerIsPresent {

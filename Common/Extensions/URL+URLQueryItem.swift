@@ -7,7 +7,7 @@ import Foundation
 
 extension URL {
 
-    func appendingPathComponents(_ components: [String]) -> URL {
+    public func appendingPathComponents(_ components: [String]) -> URL {
         var url = self
 
         for component in components {

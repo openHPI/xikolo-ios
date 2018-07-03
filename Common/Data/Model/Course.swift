@@ -50,7 +50,7 @@ public final class Course: NSManagedObject {
         }
     }
 
-    var localizedLanguage: String? {
+    public var localizedLanguage: String? {
         guard let language = language else {
             return nil
         }
@@ -59,7 +59,7 @@ public final class Course: NSManagedObject {
         return locale.displayName(forKey: NSLocale.Key.languageCode, value: language)
     }
 
-    var url: URL? {
+    public var url: URL? {
         guard let slug = self.slug else {
             return nil
         }
@@ -67,7 +67,7 @@ public final class Course: NSManagedObject {
         return Routes.courses.appendingPathComponent(slug)
     }
 
-    var hasEnrollment: Bool {
+    public var hasEnrollment: Bool {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 

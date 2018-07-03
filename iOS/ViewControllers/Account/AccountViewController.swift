@@ -84,11 +84,11 @@ class AccountViewController: UITableViewController {
     }
 
     @objc func updateUIAfterLoginStateChanged() {
-        if UserProfileHelper.isLoggedIn {
+        if UserProfileHelper.shared.isLoggedIn {
             self.navigationItem.rightBarButtonItem = nil
 
             CoreDataHelper.viewContext.perform {
-                if let userId = UserProfileHelper.userId {
+                if let userId = UserProfileHelper.shared.userId {
                     let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
                     if case .success(let user) = CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
                         self.user = user
@@ -181,7 +181,7 @@ class AccountViewController: UITableViewController {
         case AccountViewController.feedbackIndexPath:
             self.sendFeedbackMail()
         case AccountViewController.logoutIndexPath:
-            UserProfileHelper.logout()
+            UserProfileHelper.shared.logout()
         default:
             break
         }
@@ -194,7 +194,7 @@ class AccountViewController: UITableViewController {
             numberOfSections -= 1
         }
 
-        if !UserProfileHelper.isLoggedIn {
+        if !UserProfileHelper.shared.isLoggedIn {
             numberOfSections -= 1
         }
 
@@ -229,7 +229,7 @@ class AccountViewController: UITableViewController {
             newIndexPath.section += 1
         }
 
-        if !UserProfileHelper.isLoggedIn, indexPath.section >= AccountViewController.logoutIndexPath.section {
+        if !UserProfileHelper.shared.isLoggedIn, indexPath.section >= AccountViewController.logoutIndexPath.section {
             newIndexPath.section += 1
         }
 

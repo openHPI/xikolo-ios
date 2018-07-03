@@ -86,6 +86,12 @@ public class UserProfileHelper {
         }
     }
 
+    public func didLogin(withToken token: String) {
+        self.userId = nil
+        self.userToken = token
+        self.postLoginStateChange()
+    }
+
     public func logout() {
         self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onFailure { error in
@@ -115,7 +121,7 @@ public class UserProfileHelper {
         }
     }
 
-    var userId: String? {
+    public private(set) var userId: String? {
         get {
             return self.keychain[KeychainKey.userId.rawValue]
         }

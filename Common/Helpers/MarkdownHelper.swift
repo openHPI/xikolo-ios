@@ -40,7 +40,7 @@ public struct MarkdownHelper {
         }
     }
 
-    static func trueScheme(for url: URL) -> URL? {
+    public static func trueScheme(for url: URL) -> URL? {
         var url = url
         if url.scheme == "applewebdata" { // replace applewebdata with baseURL for relative urls in markdown
             var absoluteString = url.absoluteString

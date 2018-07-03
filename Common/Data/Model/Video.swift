@@ -31,7 +31,7 @@ public final class Video: Content {
         return NSFetchRequest<Video>(entityName: "Video")
     }
 
-    var posterImageData: Data? {
+    public var posterImageData: Data? {
         if let posterImageURL = self.singleStream?.thumbnailURL {
             do {
                 return try Data(contentsOf: posterImageURL)

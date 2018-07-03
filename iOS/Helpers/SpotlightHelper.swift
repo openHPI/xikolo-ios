@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import CoreSpotlight
 import Foundation
 import UIKit

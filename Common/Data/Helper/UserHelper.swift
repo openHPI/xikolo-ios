@@ -6,9 +6,9 @@
 import BrightFutures
 import CoreData
 
-class UserHelper {
+public struct UserHelper {
 
-    @discardableResult static func syncMe() -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult public static func syncMe() -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.shared.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")

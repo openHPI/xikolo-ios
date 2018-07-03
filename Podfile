@@ -13,7 +13,6 @@ end
 
 target 'Common' do
     platform :ios, '10.0'
-    firebase_pods
     pod 'BrightFutures', '~> 6.0'
     pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
     pod 'KeychainAccess', '~> 3.1'
@@ -26,6 +25,7 @@ end
 
 target 'iOS' do
     platform :ios, '10.0'
+    firebase_pods
     pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
     pod 'DZNEmptyDataSet', '~> 1.8'
     pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
@@ -48,11 +48,13 @@ post_install do |installer|
     Pod::UI.info "Adding Pod Licenses"
     excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'HTMLStyler']
     sandbox = installer.sandbox
+    common_target = installer.aggregate_targets.select { |target| target.label.include? 'Common' }.first
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first
-    root_specs = ios_target.specs.map(&:root).uniq.reject { |spec| excluded.include?(spec.name) }
+    all_specs = common_target.specs.map(&:root) + ios_target.specs.map(&:root)
+    ios_specs = all_specs.uniq.sort_by { |spec| spec.name }.reject { |spec| excluded.include?(spec.name) }
 
     pod_licenses = []
-    root_specs.each do |spec|
+    ios_specs.each do |spec|
         pod_root = sandbox.pod_dir(spec.name)
         platform = Pod::Platform.new(ios_target.platform.name)
         file_accessor = file_accessor(spec, platform, sandbox)

@@ -7,10 +7,14 @@ import BrightFutures
 import CoreData
 import Result
 
-public struct CoreDataHelper {
+public class CoreDataHelper {
 
     public static var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "xikolo")
+        let bundle = Bundle(identifier: "de.xikolo.common").require()
+        let modelURL = bundle.url(forResource: "xikolo", withExtension: "momd").require()
+        let model = NSManagedObjectModel(contentsOf: modelURL).require()
+        let container = NSPersistentContainer(name: "xikolo", managedObjectModel: model)
+
         container.loadPersistentStores { _, error in
             if let error = error {
                 log.severe("Unresolved error \(error)")

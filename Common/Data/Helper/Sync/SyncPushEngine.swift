@@ -13,7 +13,7 @@ public class SyncPushEngine {
 
     public static let shared = SyncPushEngine()
 
-    public var delegate: SyncPushEngineDelegate?
+    public weak var delegate: SyncPushEngineDelegate?
 
     private let persistentContainerQueue: OperationQueue = {
         let queue = OperationQueue()
@@ -136,6 +136,6 @@ public class SyncPushEngine {
 
 }
 
-public protocol SyncPushEngineDelegate {
+public protocol SyncPushEngineDelegate: AnyObject {
     func didFailToPushResourceModification(withError error: XikoloError)
 }

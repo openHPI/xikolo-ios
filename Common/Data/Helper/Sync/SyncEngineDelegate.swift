@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol SyncEngineDelegate {
+public protocol SyncEngineDelegate: AnyObject {
 
     func networkActivityStarted()
     func networkActivityEnded()

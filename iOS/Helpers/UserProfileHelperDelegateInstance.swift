@@ -6,7 +6,7 @@
 import Common
 import Foundation
 
-struct UserProfileHelperDelegateInstance: UserProfileHelperDelegate {
+class UserProfileHelperDelegateInstance: UserProfileHelperDelegate {
 
     func networkActivityStarted() {
         NetworkIndicator.start()

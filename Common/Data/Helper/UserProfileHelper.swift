@@ -8,16 +8,17 @@ import KeychainAccess
 
 public class UserProfileHelper {
 
-    private let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
     private enum KeychainKey: String {
         case userId = "de.xikolo.ios.user-id"
         case userToken = "de.xikolo.ios.user-token"
     }
 
+    private let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
+
     public static let loginStateDidChangeNotification = Notification.Name("de.xikolo.ios.loginStateChanged")
     public static let shared = UserProfileHelper()
 
-    public var delegate: UserProfileHelperDelegate?
+    public weak var delegate: UserProfileHelperDelegate?
 
     private init() {}
 
@@ -167,7 +168,7 @@ public class UserProfileHelper {
     }
 }
 
-public protocol UserProfileHelperDelegate {
+public protocol UserProfileHelperDelegate: AnyObject {
 
     func networkActivityStarted()
     func networkActivityEnded()

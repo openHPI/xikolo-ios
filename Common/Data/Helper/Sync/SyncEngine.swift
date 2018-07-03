@@ -50,7 +50,7 @@ public class SyncEngine {
 
     public static let shared = SyncEngine()
 
-    public var delegate: SyncEngineDelegate?
+    public weak var delegate: SyncEngineDelegate?
 
     private init() {}
 

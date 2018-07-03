@@ -60,9 +60,9 @@ public class TrackingHelper {
 
     public static let shared = TrackingHelper()
 
-    private init() {}
+    public weak var delegate: TrackingHelperDelegate?
 
-    public var delegate: TrackingHelperDelegate?
+    private init() {}
 
     private var networkState: String {
         switch ReachabilityHelper.connection {
@@ -182,7 +182,7 @@ extension TrackingHelper {
 
 }
 
-public protocol TrackingHelperDelegate {
+public protocol TrackingHelperDelegate: AnyObject {
 
     var applicationWindowSize: CGSize? { get }
 

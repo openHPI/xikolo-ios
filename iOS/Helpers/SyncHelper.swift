@@ -8,7 +8,7 @@ import Common
 import CoreData
 import Foundation
 
-struct SyncHelper: SyncEngineDelegate {
+class SyncHelper: SyncEngineDelegate {
 
     static private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

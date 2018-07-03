@@ -10,7 +10,7 @@ public class AnnouncementHelper {
 
     public static let shared = AnnouncementHelper()
 
-    public var delegate: AnnouncementHelperDelegate?
+    public weak var delegate: AnnouncementHelperDelegate?
 
     private init() {}
 
@@ -56,7 +56,7 @@ public class AnnouncementHelper {
 
 }
 
-public protocol AnnouncementHelperDelegate {
+public protocol AnnouncementHelperDelegate: AnyObject {
 
     func updateUnreadAnnouncementsBadge()
 

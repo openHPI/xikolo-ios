@@ -378,7 +378,7 @@ public class SyncEngine {
 
         return promise.future.onSuccess { result in
             self.delegate?.didSynchronizeResources(ofType: Resource.type, withResult: result)
-        }.onFailure{ error in
+        }.onFailure { error in
             self.delegate?.didFailToSynchronizeResources(ofType: Resource.type, withError: error)
         }
     }
@@ -416,7 +416,7 @@ public class SyncEngine {
 
         return promise.future.onSuccess { result in
             self.delegate?.didSynchronizeResource(ofType: Resource.type, withResult: result)
-        }.onFailure{ error in
+        }.onFailure { error in
             self.delegate?.didFailToSynchronizeResource(ofType: Resource.type, withError: error)
         }
     }
@@ -461,7 +461,7 @@ public class SyncEngine {
 
         return promise.future.onSuccess { _ in
             self.delegate?.didCreateResource(ofType: Resource.type)
-        }.onFailure{ error in
+        }.onFailure { error in
             self.delegate?.didFailToCreateResource(ofType: Resource.type, withError: error)
         }
     }
@@ -475,7 +475,7 @@ public class SyncEngine {
 
         return networkRequest.asVoid().onSuccess { _ in
             self.delegate?.didCreateResource(ofType: resourceType)
-        }.onFailure{ error in
+        }.onFailure { error in
             self.delegate?.didFailToCreateResource(ofType: resourceType, withError: error)
         }
     }
@@ -491,9 +491,9 @@ public class SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid().onSuccess { result in
+        return networkRequest.asVoid().onSuccess { _ in
             self.delegate?.didSaveResource(ofType: resourceType)
-        }.onFailure{ error in
+        }.onFailure { error in
             self.delegate?.didFailToSaveResource(ofType: resourceType, withError: error)
         }
     }
@@ -507,16 +507,16 @@ public class SyncEngine {
             return self.doNetworkRequest(request, expectsData: false)
         }
 
-        return networkRequest.asVoid().onSuccess { result in
+        return networkRequest.asVoid().onSuccess { _ in
             self.delegate?.didDeleteResource(ofType: resourceType)
-        }.onFailure{ error in
+        }.onFailure { error in
             self.delegate?.didFailToDeleteResource(ofType: resourceType, withError: error)
         }
     }
 
     func findExistingResource<Resource>(withId objectId: String,
-                                               ofType type: Resource.Type,
-                                               inContext context: NSManagedObjectContext) throws -> Resource? where Resource: NSManagedObject & Pullable {
+                                        ofType type: Resource.Type,
+                                        inContext context: NSManagedObjectContext) throws -> Resource? where Resource: NSManagedObject & Pullable {
         guard let entityName = Resource.entity().name else {
             throw SynchronizationError.missingEnityNameForResource(Resource.self)
         }

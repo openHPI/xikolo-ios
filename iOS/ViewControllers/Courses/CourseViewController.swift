@@ -36,7 +36,7 @@ class CourseViewController: UIViewController {
             titleView.setNeedsLayout()
         }
 
-        SpotlightHelper.setUserActivity(for: self.course)
+        SpotlightHelper.shared.setUserActivity(for: self.course)
         CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
     }
 

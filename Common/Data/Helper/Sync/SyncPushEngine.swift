@@ -21,6 +21,17 @@ public class SyncPushEngine {
         return queue
     }()
 
+    public func startObserving() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(note:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
+    }
+
+    public func stopObserving() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
+    }
+
     public func register(_ newType: NSManagedObject.Type) {
         guard let pushableType = newType as? (NSManagedObject & Pushable).Type else {
             return
@@ -31,7 +42,18 @@ public class SyncPushEngine {
         }
     }
 
-    public func check() {
+    @objc private func coreDataChange(note: Notification) {
+        let shouldCheckForChangesToPush = [NSUpdatedObjectsKey, NSInsertedObjectsKey, NSRefreshedObjectsKey].map { key in
+            guard let objects = note.userInfo?[key] as? Set<NSManagedObject>, !objects.isEmpty else { return false}
+            return objects.contains { $0 is Pushable }
+        }.reduce(false) { $0 || $1 }
+
+        if shouldCheckForChangesToPush {
+            self.check()
+        }
+    }
+
+    func check() {
         for type in self.types {
             guard let entityName = type.entity().name else {
                 continue

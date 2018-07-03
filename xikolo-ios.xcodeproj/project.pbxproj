@@ -216,7 +216,6 @@
 		50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */; };
 		50FA2E5E20E4B26400656776 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
 		50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */; };
-		50FA2E6320E51A5B00656776 /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */; };
 		50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
@@ -298,7 +297,6 @@
 		29B3B80BA381AB8AE4B836A3 /* Pods-Common.openwho-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openwho-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openwho-ios-release.xcconfig"; sourceTree = "<group>"; };
 		330DFF127FCB2215F2A56BA4 /* Pods_Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotlightHelper.swift; sourceTree = "<group>"; };
-		3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataObserver.swift; sourceTree = "<group>"; };
 		43F0582C479E42A9569A521F /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4571137763FE2C2E161926A3 /* Pods_openSAP_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openSAP_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF3D3C3932EDA169B33DF9E /* Pods-Common.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.openwho-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
@@ -650,7 +648,6 @@
 				50082B4E20BFDA4400B4511C /* PersistenceManager */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
 				50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */,
-				3D6F12F31F2A0E3F00D5DFE8 /* CoreDataObserver.swift */,
 				50F45AC6200CE819009304A3 /* SyncHelper.swift */,
 				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 				5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */,
@@ -1604,7 +1601,6 @@
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
 				50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */,
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
-				50FA2E6320E51A5B00656776 /* CoreDataObserver.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseContentListViewController.swift in Sources */,
 				50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */,

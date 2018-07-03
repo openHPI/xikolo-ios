@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnnouncementHelper.shared.delegate = self
         SyncEngine.shared.delegate = SyncHelper()
         SyncPushEngine.shared.delegate = CrashlyticsHelper.shared
-        UserProfileHelper.shared.delegate = CrashlyticsHelper.shared
+        UserProfileHelper.shared.delegate = UserProfileHelperDelegateInstance()
 
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)

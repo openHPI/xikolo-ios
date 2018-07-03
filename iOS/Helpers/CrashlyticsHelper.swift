@@ -25,18 +25,6 @@ extension Crashlytics {
 
 }
 
-extension Crashlytics: UserProfileHelperDelegate {
-
-    public func didFailToClearKeychain(withError error: Error) {
-        self.recordError(error)
-    }
-
-    public func didFailToClearCoreDataEnitity(withError error: XikoloError) {
-        self.recordError(error)
-    }
-
-}
-
 extension Crashlytics: SyncPushEngineDelegate {
 
     public func didFailToPushResourceModification(withError error: XikoloError) {

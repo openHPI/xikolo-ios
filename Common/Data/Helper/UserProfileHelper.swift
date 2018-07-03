@@ -79,10 +79,10 @@ public class UserProfileHelper {
             }
         }
 
-        NetworkIndicator.start()
+        self.delegate?.networkActivityStarted()
         task.resume()
         return promise.future.onComplete { _ in
-            NetworkIndicator.end()
+            self.delegate?.networkActivityEnded()
         }
     }
 
@@ -168,6 +168,9 @@ public class UserProfileHelper {
 }
 
 public protocol UserProfileHelperDelegate {
+
+    func networkActivityStarted()
+    func networkActivityEnded()
 
     func didFailToClearKeychain(withError error: Error)
     func didFailToClearCoreDataEnitity(withError error: XikoloError)

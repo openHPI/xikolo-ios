@@ -7,6 +7,9 @@ import Foundation
 
 public protocol SyncEngineDelegate {
 
+    func networkActivityStarted()
+    func networkActivityEnded()
+
     func didSynchronizeResource(ofType resourceType: String, withResult result: SyncEngine.SyncSingleResult)
     func didFailToSynchronizeResource(ofType resourceType: String, withError error: XikoloError)
 

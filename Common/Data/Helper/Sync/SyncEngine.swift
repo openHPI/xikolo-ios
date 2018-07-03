@@ -253,10 +253,10 @@ public class SyncEngine {
             }
         }
 
-        NetworkIndicator.start()
+        self.delegate?.networkActivityStarted()
         task.resume()
         return promise.future.onComplete { _ in
-            NetworkIndicator.end()
+            self.delegate?.networkActivityEnded()
         }
     }
 

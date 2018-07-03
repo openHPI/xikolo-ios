@@ -8,13 +8,13 @@ import UIKit
 
 extension NSManagedObject {
 
-    func notifyOnChange(_ observer: UIViewController,
-                        updateHandler: @escaping ModelObserver.UpdateHandler,
-                        deleteHandler: @escaping ModelObserver.DeleteHandler) {
+    public func notifyOnChange(_ observer: UIViewController,
+                               updateHandler: @escaping ModelObserver.UpdateHandler,
+                               deleteHandler: @escaping ModelObserver.DeleteHandler) {
         ModelObserverManager.shared.notifyOnChange(forObject: self, forObserver: observer, updateHandler: updateHandler, deleteHandler: deleteHandler)
     }
 
-    func removeNotifications(_ observer: UIViewController) {
+    public func removeNotifications(_ observer: UIViewController) {
         ModelObserverManager.shared.removeNotifications(forObject: self, forObserver: observer)
     }
 
@@ -61,10 +61,10 @@ class ModelObserverManager {
     }
 }
 
-class ModelObserver {
+public class ModelObserver {
 
-    typealias UpdateHandler = () -> Void
-    typealias DeleteHandler = () -> Void
+    public typealias UpdateHandler = () -> Void
+    public typealias DeleteHandler = () -> Void
 
     var model: NSManagedObject
     var updateHandler: UpdateHandler

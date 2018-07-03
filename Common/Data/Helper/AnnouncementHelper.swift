@@ -6,15 +6,15 @@
 import BrightFutures
 import Foundation
 
-struct AnnouncementHelper {
+public struct AnnouncementHelper {
 
-    static let shared = AnnouncementHelper()
+    public static let shared = AnnouncementHelper()
 
-    var delegate: AnnouncementHelperDelegate?
+    public var delegate: AnnouncementHelperDelegate?
 
     private init() {}
 
-    @discardableResult func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
@@ -23,7 +23,7 @@ struct AnnouncementHelper {
         }
     }
 
-    @discardableResult func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
@@ -32,7 +32,7 @@ struct AnnouncementHelper {
         }
     }
 
-    @discardableResult func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
+    @discardableResult public func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
         guard UserProfileHelper.isLoggedIn && !item.visited else {
             return Future(value: ())
         }
@@ -56,7 +56,7 @@ struct AnnouncementHelper {
 
 }
 
-protocol AnnouncementHelperDelegate {
+public protocol AnnouncementHelperDelegate {
 
     func updateUnreadAnnouncementsBadge()
 

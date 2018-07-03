@@ -6,9 +6,9 @@
 import BrightFutures
 import Foundation
 
-struct NetworkHelper {
+public struct NetworkHelper {
 
-    static var requestHeaders: [String: String] {
+    public static var requestHeaders: [String: String] {
         var headers = [
             Routes.Header.acceptKey: Routes.Header.acceptValue,
         ]
@@ -21,13 +21,13 @@ struct NetworkHelper {
         return headers
     }
 
-    static func request(for url: URL) -> NSMutableURLRequest {
+    public static func request(for url: URL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(url: url)
         request.allHTTPHeaderFields = self.requestHeaders
         return request
     }
 
-    static func escape(_ string: String ) -> String {
+    public static func escape(_ string: String ) -> String {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,:="
 

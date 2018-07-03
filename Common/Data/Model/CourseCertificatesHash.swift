@@ -5,22 +5,22 @@
 
 import Foundation
 
-final class CourseCertificatesHash: NSObject, NSCoding, IncludedPullable {
+public final class CourseCertificatesHash: NSObject, NSCoding, IncludedPullable {
 
-    var available: Bool
-    var threshold: Int32?
+    public var available: Bool
+    public var threshold: Int32?
 
-    required init(object: ResourceData) throws {
+    required public init(object: ResourceData) throws {
         self.available = try object.value(for: "available")
         self.threshold = try object.value(for: "threshold")
     }
 
-    required init(coder decoder: NSCoder) {
+    required public init(coder decoder: NSCoder) {
         available = decoder.decodeBool(forKey: "available")
         threshold = decoder.decodeObject(forKey: "threshold") as? Int32
     }
 
-    func encode(with coder: NSCoder) {
+    public func encode(with coder: NSCoder) {
         coder.encode(available, forKey: "available")
         coder.encode(threshold, forKey: "threshold")
     }

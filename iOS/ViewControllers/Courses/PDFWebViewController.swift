@@ -4,6 +4,7 @@
 //
 
 import BrightFutures
+import Common
 import UIKit
 
 class PDFWebViewController: UIViewController {

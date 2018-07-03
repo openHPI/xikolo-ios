@@ -21,7 +21,7 @@ class CourseItemCell: UITableViewCell {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
-                                               name: NotificationKeys.DownloadStateDidChange,
+                                               name: DownloadState.didChangeNotification,
                                                object: nil)
     }
 

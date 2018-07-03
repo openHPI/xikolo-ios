@@ -5,13 +5,13 @@
 
 import CoreData
 
-final class CourseDate: NSManagedObject {
+public final class CourseDate: NSManagedObject {
 
-    @NSManaged var id: String
-    @NSManaged var title: String?
-    @NSManaged var type: String?
-    @NSManaged var date: Date?
-    @NSManaged var course: Course?
+    @NSManaged public var id: String
+    @NSManaged public var title: String?
+    @NSManaged public var type: String?
+    @NSManaged public var date: Date?
+    @NSManaged public var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseDate> {
         return NSFetchRequest<CourseDate>(entityName: "CourseDate")
@@ -21,7 +21,7 @@ final class CourseDate: NSManagedObject {
 
 extension CourseDate: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "course-dates"
     }
 

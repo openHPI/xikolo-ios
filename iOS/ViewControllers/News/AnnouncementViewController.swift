@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import Down
 import SafariServices
 import UIKit
@@ -40,7 +41,7 @@ class AnnouncementViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AnnouncementHelper.shared.markAsVisited(self.announcement)
-        TrackingHelper.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id)
+        TrackingHelper.shared.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id)
     }
 
     private func updateView() {

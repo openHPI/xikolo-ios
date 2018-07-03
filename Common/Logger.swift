@@ -5,7 +5,7 @@
 
 import XCGLogger
 
-let log: XCGLogger = {
+public let log: XCGLogger = {
 
     let log = XCGLogger(identifier: "default", includeDefaultDestinations: false)
     let consoleDestination = ConsoleDestination(owner: nil, identifier: "default.consoleDestination")

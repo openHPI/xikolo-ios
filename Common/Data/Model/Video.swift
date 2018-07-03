@@ -8,24 +8,24 @@ import BrightFutures
 import CoreData
 import Foundation
 
-final class Video: Content {
+public final class Video: Content {
 
-    @NSManaged var id: String
-    @NSManaged var audioSize: Int32
-    @NSManaged var audioURL: URL?
-    @NSManaged var downloadDate: Date?
-    @NSManaged var duration: Int32
-    @NSManaged var lecturerStream: VideoStream?
-    @NSManaged var localFileBookmark: NSData?
-    @NSManaged var localSlidesBookmark: NSData?
-    @NSManaged var singleStream: VideoStream?
-    @NSManaged var slidesSize: Int32
-    @NSManaged var slidesStream: VideoStream?
-    @NSManaged var slidesURL: URL?
-    @NSManaged var summary: String?
-    @NSManaged var thumbnailURL: URL?
-    @NSManaged var transcriptSize: Int32
-    @NSManaged var transcriptURL: URL?
+    @NSManaged public var id: String
+    @NSManaged public var audioSize: Int32
+    @NSManaged public var audioURL: URL?
+    @NSManaged public var downloadDate: Date?
+    @NSManaged public var duration: Int32
+    @NSManaged public var lecturerStream: VideoStream?
+    @NSManaged public var localFileBookmark: NSData?
+    @NSManaged public var localSlidesBookmark: NSData?
+    @NSManaged public var singleStream: VideoStream?
+    @NSManaged public var slidesSize: Int32
+    @NSManaged public var slidesStream: VideoStream?
+    @NSManaged public var slidesURL: URL?
+    @NSManaged public var summary: String?
+    @NSManaged public var thumbnailURL: URL?
+    @NSManaged public var transcriptSize: Int32
+    @NSManaged public var transcriptURL: URL?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Video> {
         return NSFetchRequest<Video>(entityName: "Video")
@@ -56,7 +56,7 @@ final class Video: Content {
         return items
     }
 
-    override var isAvailableOffline: Bool {
+    public override var isAvailableOffline: Bool {
         return self.localFileBookmark != nil || self.localSlidesBookmark != nil
     }
 
@@ -64,7 +64,7 @@ final class Video: Content {
 
 extension Video: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "videos"
     }
 

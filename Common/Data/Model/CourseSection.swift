@@ -6,18 +6,18 @@
 import CoreData
 import Foundation
 
-final class CourseSection: NSManagedObject {
+public final class CourseSection: NSManagedObject {
 
-    @NSManaged var id: String
-    @NSManaged var abstract: String?
-    @NSManaged var title: String?
-    @NSManaged var position: Int32
-    @NSManaged var accessible: Bool
-    @NSManaged var startsAt: Date?
-    @NSManaged var endsAt: Date?
+    @NSManaged public var id: String
+    @NSManaged public var abstract: String?
+    @NSManaged public var title: String?
+    @NSManaged public var position: Int32
+    @NSManaged public var accessible: Bool
+    @NSManaged public var startsAt: Date?
+    @NSManaged public var endsAt: Date?
 
-    @NSManaged var course: Course?
-    @NSManaged var items: Set<CourseItem>
+    @NSManaged public var course: Course?
+    @NSManaged public var items: Set<CourseItem>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CourseSection> {
         return NSFetchRequest<CourseSection>(entityName: "CourseSection")
@@ -33,7 +33,7 @@ final class CourseSection: NSManagedObject {
 
 extension CourseSection: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "course-sections"
     }
 

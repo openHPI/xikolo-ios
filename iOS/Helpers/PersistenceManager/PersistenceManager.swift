@@ -3,12 +3,13 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import CoreData
 import Foundation
 
 protocol PersistenceManager: AnyObject {
 
-    associatedtype Resource: NSManagedObject & Pullable
+    associatedtype Resource: NSManagedObject & ResourceRepresentable
     associatedtype Session: URLSession
 
     static var shared: Self { get }
@@ -55,7 +56,7 @@ extension PersistenceManager {
 
     func startListeningToDownloadProgressChanges() {
         // swiftlint:disable:next discarded_notification_center_observer
-        NotificationCenter.default.addObserver(forName: NotificationKeys.DownloadProgressDidChange, object: nil, queue: nil) { notification in
+        NotificationCenter.default.addObserver(forName: DownloadProgress.didChangeNotification, object: nil, queue: nil) { notification in
             guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == Self.downloadType,
                 let resourceId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
                 let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double else { return }
@@ -108,7 +109,7 @@ extension PersistenceManager {
             userInfo[DownloadNotificationKey.resourceId] = resource.id
             userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloading.rawValue
 
-            NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
+            NotificationCenter.default.post(name: DownloadState.didChangeNotification, object: nil, userInfo: userInfo)
         }
     }
 
@@ -158,7 +159,7 @@ extension PersistenceManager {
         userInfo[DownloadNotificationKey.resourceId] = resource.id
         userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
 
-        NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: DownloadState.didChangeNotification, object: nil, userInfo: userInfo)
     }
 
     func cancelDownload(for resource: Resource) {
@@ -237,7 +238,7 @@ extension PersistenceManager {
                     self.didFinishDownload(for: resourceId)
                 }
 
-                NotificationCenter.default.post(name: NotificationKeys.DownloadStateDidChange, object: nil, userInfo: userInfo)
+                NotificationCenter.default.post(name: DownloadState.didChangeNotification, object: nil, userInfo: userInfo)
             }
         }
     }

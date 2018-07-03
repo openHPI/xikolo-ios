@@ -6,9 +6,11 @@
 import BrightFutures
 import KeychainAccess
 
-open class UserProfileHelper {
+public class UserProfileHelper {
 
-    static func login(_ email: String, password: String) -> Future<String, XikoloError> { // swiftlint:disable:this function_body_length
+    public static let loginStateDidChangeNotification = Notification.Name("de.xikolo.ios.loginStateChanged")
+
+    public static func login(_ email: String, password: String) -> Future<String, XikoloError> { // swiftlint:disable:this function_body_length
         let promise = Promise<String, XikoloError>()
 
         let parameters: String = [
@@ -57,8 +59,8 @@ open class UserProfileHelper {
                     return
                 }
 
-                UserProfileHelper.userToken = token
-                UserProfileHelper.userId = id
+                self.userToken = token
+                self.userId = id
                 self.postLoginStateChange()
                 return promise.success(token)
             } catch {
@@ -74,7 +76,7 @@ open class UserProfileHelper {
     }
 
     static func logout() {
-        UserProfileHelper.clearKeychain()
+        self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onComplete { _ in
             self.postLoginStateChange()
         }
@@ -96,7 +98,7 @@ open class UserProfileHelper {
         }
 
         DispatchQueue.main.async {
-            NotificationCenter.default.post(name: NotificationKeys.loginStateChangedKey, object: nil)
+            NotificationCenter.default.post(name: self.loginStateDidChangeNotification, object: nil)
         }
     }
 

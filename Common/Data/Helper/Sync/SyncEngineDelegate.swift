@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol SyncEngineDelegate {
+public protocol SyncEngineDelegate {
 
     func didSynchronizeResource(ofType resourceType: String, withResult result: SyncEngine.SyncSingleResult)
     func didFailToSynchronizeResource(ofType resourceType: String, withError error: XikoloError)

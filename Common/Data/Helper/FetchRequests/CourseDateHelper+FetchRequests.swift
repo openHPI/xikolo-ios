@@ -7,9 +7,9 @@ import CoreData
 
 extension CourseDateHelper {
 
-    struct FetchRequest {
+    public struct FetchRequest {
 
-        static var allCourseDates: NSFetchRequest<CourseDate> {
+        public static var allCourseDates: NSFetchRequest<CourseDate> {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
             let dateSort = NSSortDescriptor(key: "date", ascending: true)
             let courseSort = NSSortDescriptor(key: "course.title", ascending: true)

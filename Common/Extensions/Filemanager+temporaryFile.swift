@@ -48,20 +48,19 @@ extension FileManager {
 /// done working with the file.
 ///
 /// Call `deleteDirectory` when you no longer need the file.
-struct TemporaryFile {
-    let directoryURL: URL
-    let fileURL: URL
+public struct TemporaryFile {
+    public let directoryURL: URL
+    public let fileURL: URL
     /// Deletes the temporary directory and all files in it.
-    let deleteDirectory: () throws -> Void
+    public let deleteDirectory: () throws -> Void
 
     /// Creates a temporary directory with a unique name and initializes the
     /// receiver with a `fileURL` representing a file named `filename` in that
     /// directory.
     ///
     /// - Note: This doesn't create the file!
-    init(creatingTempDirectoryForFilename filename: String) throws {
-        let (directory, deleteDirectory) = try FileManager.default
-            .urlForUniqueTemporaryDirectory()
+    public init(creatingTempDirectoryForFilename filename: String) throws {
+        let (directory, deleteDirectory) = try FileManager.default.urlForUniqueTemporaryDirectory()
         self.directoryURL = directory
         self.fileURL = directory.appendingPathComponent(filename)
         self.deleteDirectory = deleteDirectory

@@ -6,9 +6,9 @@
 import BrightFutures
 import UIKit
 
-struct TrackingHelper {
+public struct TrackingHelper {
 
-    enum AnalyticsVerb: String {
+    public enum AnalyticsVerb: String {
         // tabs
         case visitedDashboard = "VISITED_DASHBOARD"
         case visitedAnnouncementList = "VISITED_ANNOUNCEMENTS"
@@ -44,7 +44,7 @@ struct TrackingHelper {
     }
 
     // swiftlint:disable redundant_string_enum_value
-    enum AnalyticsResourceType: String {
+    public enum AnalyticsResourceType: String {
         case section = "section"
         case course = "course"
         case announcement = "announcement"
@@ -58,11 +58,11 @@ struct TrackingHelper {
     }
     // swiftlint:enable redundant_string_enum_value
 
-    static let shared = TrackingHelper()
+    public static let shared = TrackingHelper()
 
     private init() {}
 
-    var delegate: TrackingHelperDelegate?
+    public var delegate: TrackingHelperDelegate?
 
     private var networkState: String {
         switch ReachabilityHelper.connection {
@@ -109,11 +109,11 @@ struct TrackingHelper {
         return context
     }
 
-    @discardableResult func createEvent(_ verb: AnalyticsVerb, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
+    @discardableResult public func createEvent(_ verb: AnalyticsVerb, context: [String: String?] = [:]) -> Future<Void, XikoloError> {
         return self.createEvent(verb, resourceType: .none, resourceId: "00000000-0000-0000-0000-000000000000", context: context)
     }
 
-    @discardableResult func createEvent(_ verb: AnalyticsVerb,
+    @discardableResult public func createEvent(_ verb: AnalyticsVerb,
                                         resourceType: AnalyticsResourceType,
                                         resourceId: String,
                                         context: [String: String?] = [:]) -> Future<Void, XikoloError> {
@@ -182,7 +182,7 @@ extension TrackingHelper {
 
 }
 
-protocol TrackingHelperDelegate {
+public protocol TrackingHelperDelegate {
 
     var applicationWindowSize: CGSize? { get }
 

@@ -6,17 +6,17 @@
 import CoreData
 import Foundation
 
-final class Announcement: NSManagedObject {
+public final class Announcement: NSManagedObject {
 
-    @NSManaged var id: String
-    @NSManaged var title: String?
-    @NSManaged var text: String?
-    @NSManaged var publishedAt: Date?
-    @NSManaged var visited: Bool
-    @NSManaged var imageURL: URL?
+    @NSManaged public var id: String
+    @NSManaged public var title: String?
+    @NSManaged public var text: String?
+    @NSManaged public var publishedAt: Date?
+    @NSManaged public var visited: Bool
+    @NSManaged public var imageURL: URL?
     @NSManaged private var objectStateValue: Int16
 
-    @NSManaged var course: Course?
+    @NSManaged public var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Announcement> {
         return NSFetchRequest<Announcement>(entityName: "Announcement")
@@ -26,7 +26,7 @@ final class Announcement: NSManagedObject {
 
 extension Announcement: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "announcements"
     }
 

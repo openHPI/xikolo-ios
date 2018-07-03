@@ -7,9 +7,9 @@ import BrightFutures
 import CoreData
 import Result
 
-class CoreDataHelper {
+public struct CoreDataHelper {
 
-    static var persistentContainer: NSPersistentContainer = {
+    public static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "xikolo")
         container.loadPersistentStores { _, error in
             if let error = error {
@@ -24,9 +24,9 @@ class CoreDataHelper {
         return container
     }()
 
-    static let viewContext = persistentContainer.viewContext
+    public static let viewContext = persistentContainer.viewContext
 
-    static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
+    public static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
                                                             sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
         return NSFetchedResultsController<T>(fetchRequest: fetchRequest,
                                              managedObjectContext: self.persistentContainer.viewContext,
@@ -34,7 +34,7 @@ class CoreDataHelper {
                                              cacheName: nil)
     }
 
-    static func clearCoreDataStorage() -> Future<Void, XikoloError> {
+    public static func clearCoreDataStorage() -> Future<Void, XikoloError> {
         return self.persistentContainer.managedObjectModel.entitiesByName.keys.filter { entityName in
             return entityName != "TrackingEvent"
         }.traverse { entityName in
@@ -74,7 +74,7 @@ class CoreDataHelper {
 
 extension NSManagedObjectContext {
 
-    func fetchSingle<T>(_ fetchRequest: NSFetchRequest<T>) -> Result<T, XikoloError> where T: NSManagedObject {
+    public func fetchSingle<T>(_ fetchRequest: NSFetchRequest<T>) -> Result<T, XikoloError> where T: NSManagedObject {
         do {
             let objects = try self.fetch(fetchRequest)
 
@@ -92,7 +92,7 @@ extension NSManagedObjectContext {
         }
     }
 
-    func fetchMultiple<T>(_ fetchRequest: NSFetchRequest<T>) -> Result<[T], XikoloError> where T: NSManagedObject {
+    public func fetchMultiple<T>(_ fetchRequest: NSFetchRequest<T>) -> Result<[T], XikoloError> where T: NSManagedObject {
         do {
             let objects = try self.fetch(fetchRequest)
             return .success(objects)
@@ -101,7 +101,7 @@ extension NSManagedObjectContext {
         }
     }
 
-    func typedObject<T>(with id: NSManagedObjectID) -> T where T: NSManagedObject {
+    public func typedObject<T>(with id: NSManagedObjectID) -> T where T: NSManagedObject {
         let managedObject = self.object(with: id)
         guard let object = managedObject as? T else {
             let message = "Type mismatch for NSManagedObject (required)"
@@ -114,7 +114,7 @@ extension NSManagedObjectContext {
         return object
     }
 
-    func existingTypedObject<T>(with id: NSManagedObjectID) -> T? where T: NSManagedObject {
+    public func existingTypedObject<T>(with id: NSManagedObjectID) -> T? where T: NSManagedObject {
         guard let managedObject = try? self.existingObject(with: id) else {
             log.info("NSManagedObject could not be retrieved by id (\(id))")
             return nil
@@ -131,7 +131,7 @@ extension NSManagedObjectContext {
         return object
     }
 
-    func saveWithResult() -> Result<Void, XikoloError> {
+    public func saveWithResult() -> Result<Void, XikoloError> {
         do {
             if self.hasChanges {
                 try self.save()

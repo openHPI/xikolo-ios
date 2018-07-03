@@ -6,6 +6,7 @@
 // swiftlint:disable line_length
 
 import BrightFutures
+import Common
 import CoreData
 import Foundation
 

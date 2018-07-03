@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import Foundation
 
 protocol FilePersistenceManager: PersistenceManager, URLSessionDownloadDelegate {
@@ -58,7 +59,7 @@ extension FilePersistenceManager {
         userInfo[DownloadNotificationKey.resourceId] = resourceId
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
-        NotificationCenter.default.post(name: NotificationKeys.DownloadProgressDidChange, object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: DownloadProgress.didChangeNotification, object: nil, userInfo: userInfo)
     }
 
 }

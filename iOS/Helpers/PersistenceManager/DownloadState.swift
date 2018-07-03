@@ -10,6 +10,14 @@ enum DownloadState: String {
     case pending  // waiting for downloaded to start
     case downloading  // download in progress
     case downloaded  // downloaded and saved on disk
+
+    static let didChangeNotification = Notification.Name("de.xikolo.ios.download.stateChanged")
+}
+
+typealias DownloadProgress = Double
+
+extension DownloadProgress {
+    static let didChangeNotification = Notification.Name("de.xikolo.ios.download.progressChanged")
 }
 
 struct DownloadNotificationKey {

@@ -17,7 +17,7 @@ struct XikoloImageLoader: ImageLoader {
 
 }
 
-struct MarkdownHelper {
+public struct MarkdownHelper {
 
     static let parser: Parser = {
         var parser = Parser()
@@ -25,12 +25,12 @@ struct MarkdownHelper {
         return parser
     }()
 
-    static func string(for markdown: String) -> String {
+    public static func string(for markdown: String) -> String {
         let html = try? Down(markdownString: markdown).toHTML()
         return self.parser.string(for: html ?? "")
     }
 
-    static func attributedString(for markdown: String) -> Future<NSMutableAttributedString, XikoloError> {
+    public static func attributedString(for markdown: String) -> Future<NSMutableAttributedString, XikoloError> {
         let html = try? Down(markdownString: markdown).toHTML()
         return Future { complete in
             DispatchQueue.global().async {

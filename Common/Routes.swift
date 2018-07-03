@@ -5,24 +5,24 @@
 
 import Foundation
 
-struct Routes {
+public struct Routes {
 
-    struct Header {
-        static let userPlatformKey = "User-Platform"
-        static let userPlatformValue = "iOS"
+    public struct Header {
+        public static let userPlatformKey = "User-Platform"
+        public static let userPlatformValue = "iOS"
 
-        static let acceptKey = "Accept"
-        static let acceptValue = "application/vnd.api+json; xikolo-version=\(Routes.apiVersion)"
-        static let acceptPDF = "application/pdf"
+        public static let acceptKey = "Accept"
+        public static let acceptValue = "application/vnd.api+json; xikolo-version=\(Routes.apiVersion)"
+        public static let acceptPDF = "application/pdf"
 
-        static let authKey = "Authorization"
-        static let authValuePrefix = "Token token="
-        static let apiVersionExpirationDate = "X-Api-Version-Expiration-Date"
+        public static let authKey = "Authorization"
+        public static let authValuePrefix = "Token token="
+        public static let apiVersionExpirationDate = "X-Api-Version-Expiration-Date"
     }
 
-    struct HeaderParameter {
-        static let email = "email"
-        static let password = "password"
+    public struct HeaderParameter {
+        public static let email = "email"
+        public static let password = "password"
     }
 
     struct QueryItem {

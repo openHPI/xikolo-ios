@@ -78,11 +78,11 @@ class VideoViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
-                                       name: NotificationKeys.DownloadStateDidChange,
+                                       name: DownloadState.didChangeNotification,
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(handleAssetDownloadProgressNotification(_:)),
-                                       name: NotificationKeys.DownloadProgressDidChange,
+                                       name: DownloadProgress.didChangeNotification,
                                        object: nil)
         notificationCenter.addObserver(self,
                                        selector: #selector(reachabilityChanged),
@@ -421,12 +421,12 @@ extension VideoViewController { // Video tracking
 
     func trackVideoPlay() {
         guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.shared.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
 
     func trackVideoPause() {
         guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.shared.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
 
     func trackVideoPlayRateChange(oldPlayRate: Float, newPlayRate: Float) {
@@ -436,7 +436,7 @@ extension VideoViewController { // Video tracking
         context["current_speed"] = nil
         context["old_speed"] = String(oldPlayRate)
         context["new_speed"] = String(newPlayRate)
-        TrackingHelper.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.shared.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, context: context)
     }
 
     func trackVideoSeek(from: TimeInterval?, to: TimeInterval) { // swiftlint:disable:this identifier_name
@@ -450,17 +450,17 @@ extension VideoViewController { // Video tracking
             context["old_current_time"] = String(from)
         }
 
-        TrackingHelper.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.shared.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, context: context)
     }
 
     func trackVideoEnd() {
         guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.shared.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
 
     func trackVideoClose() {
         guard let video = self.video else { return }
-        TrackingHelper.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
+        TrackingHelper.shared.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
 
     func trackVideoOrientationChangePortrait() {
@@ -468,7 +468,7 @@ extension VideoViewController { // Video tracking
 
         var context = self.newTrackingContext
         context["current_orientation"] = nil
-        TrackingHelper.createEvent(.videoPlaybackDeviceOrientationPortrait, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.shared.createEvent(.videoPlaybackDeviceOrientationPortrait, resourceType: .video, resourceId: video.id, context: context)
     }
 
     func trackVideoOrientationChangeLandscape() {
@@ -476,7 +476,7 @@ extension VideoViewController { // Video tracking
 
         var context = self.newTrackingContext
         context["current_orientation"] = nil
-        TrackingHelper.createEvent(.videoPlaybackDeviceOrientationLandscape, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.shared.createEvent(.videoPlaybackDeviceOrientationLandscape, resourceType: .video, resourceId: video.id, context: context)
     }
 
 }

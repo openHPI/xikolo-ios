@@ -7,29 +7,29 @@ import BrightFutures
 import CoreData
 import Foundation
 
-final class Course: NSManagedObject {
+public final class Course: NSManagedObject {
 
-    @NSManaged var id: String
-    @NSManaged var abstract: String?
-    @NSManaged var accessible: Bool
-    @NSManaged var courseDescription: String?
-    @NSManaged var certificates: CourseCertificates?
-    @NSManaged var startsAt: Date?
-    @NSManaged var endsAt: Date?
-    @NSManaged var imageURL: URL?
-    @NSManaged var language: String?
-    @NSManaged var slug: String?
-    @NSManaged var teachers: String?
-    @NSManaged var title: String?
-    @NSManaged var order: NSNumber?
-    @NSManaged var status: String?
-    @NSManaged var hidden: Bool
-    @NSManaged var enrollable: Bool
-    @NSManaged var external: Bool
+    @NSManaged public var id: String
+    @NSManaged public var abstract: String?
+    @NSManaged public var accessible: Bool
+    @NSManaged public var courseDescription: String?
+    @NSManaged public var certificates: CourseCertificates?
+    @NSManaged public var startsAt: Date?
+    @NSManaged public var endsAt: Date?
+    @NSManaged public var imageURL: URL?
+    @NSManaged public var language: String?
+    @NSManaged public var slug: String?
+    @NSManaged public var teachers: String?
+    @NSManaged public var title: String?
+    @NSManaged public var order: NSNumber?
+    @NSManaged public var status: String?
+    @NSManaged public var hidden: Bool
+    @NSManaged public var enrollable: Bool
+    @NSManaged public var external: Bool
 
-    @NSManaged var sections: Set<CourseSection>
-    @NSManaged var enrollment: Enrollment?
-    @NSManaged var dates: Set<CourseDate>
+    @NSManaged public var sections: Set<CourseSection>
+    @NSManaged public var enrollment: Enrollment?
+    @NSManaged public var dates: Set<CourseDate>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
         return NSFetchRequest<Course>(entityName: "Course")
@@ -110,7 +110,7 @@ final class Course: NSManagedObject {
 
 extension Course: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "courses"
     }
 

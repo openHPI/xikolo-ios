@@ -7,16 +7,16 @@ import BrightFutures
 import CoreData
 import Foundation
 
-final class RichText: Content {
+public final class RichText: Content {
 
-    @NSManaged var id: String
-    @NSManaged var text: String?
+    @NSManaged public var id: String
+    @NSManaged public var text: String?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<RichText> {
         return NSFetchRequest<RichText>(entityName: "RichText")
     }
 
-    override var isAvailableOffline: Bool {
+    public override var isAvailableOffline: Bool {
         return self.text != nil
     }
 
@@ -24,7 +24,7 @@ final class RichText: Content {
 
 extension RichText: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "rich-texts"
     }
 

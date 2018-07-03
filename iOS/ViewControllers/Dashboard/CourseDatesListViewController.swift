@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import CoreData
 import DZNEmptyDataSet
 import UIKit
@@ -57,7 +58,7 @@ class CourseDatesListViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TrackingHelper.createEvent(.visitedDashboard)
+        TrackingHelper.shared.createEvent(.visitedDashboard)
     }
 
     func setupEmptyState() {

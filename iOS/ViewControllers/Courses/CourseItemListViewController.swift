@@ -122,7 +122,7 @@ class CourseItemListViewController: UITableViewController {
             "section_id": item.section?.id,
             "course_id": self.course.id,
         ]
-        TrackingHelper.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
+        TrackingHelper.shared.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
 
         switch item.contentType {
         case "video"?:

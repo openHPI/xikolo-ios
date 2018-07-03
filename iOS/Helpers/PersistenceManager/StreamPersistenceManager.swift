@@ -4,6 +4,7 @@
 //
 
 import AVFoundation
+import Common
 import CoreData
 import Foundation
 import UIKit
@@ -69,15 +70,15 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
     }
 
     func didStartDownload(for resource: Video) {
-        TrackingHelper.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.shared.createEvent(.videoDownloadStart, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
     }
 
     func didCancelDownload(for resource: Video) {
-        TrackingHelper.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.shared.createEvent(.videoDownloadCanceled, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
     }
 
     func didFinishDownload(for resource: Video) {
-        TrackingHelper.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
+        TrackingHelper.shared.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
     }
 
     func didFailToDownloadResource(_ resource: Video, with error: NSError) {
@@ -173,7 +174,7 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         userInfo[DownloadNotificationKey.resourceId] = videoId
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
-        NotificationCenter.default.post(name: NotificationKeys.DownloadProgressDidChange, object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: DownloadProgress.didChangeNotification, object: nil, userInfo: userInfo)
     }
 
 }

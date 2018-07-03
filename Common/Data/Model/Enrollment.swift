@@ -6,17 +6,17 @@
 import CoreData
 import Foundation
 
-final class Enrollment: NSManagedObject {
+public final class Enrollment: NSManagedObject {
 
-    @NSManaged var id: String
-    @NSManaged var certificates: EnrollmentCertificates?
-    @NSManaged var proctored: Bool
-    @NSManaged var completed: Bool
-    @NSManaged var reactivated: Bool
-    @NSManaged var createdAt: Date?
-    @NSManaged private var objectStateValue: Int16
+    @NSManaged public var id: String
+    @NSManaged public var certificates: EnrollmentCertificates?
+    @NSManaged public var proctored: Bool
+    @NSManaged public var completed: Bool
+    @NSManaged public var reactivated: Bool
+    @NSManaged public var createdAt: Date?
+    @NSManaged public var objectStateValue: Int16
 
-    @NSManaged var course: Course?
+    @NSManaged public var course: Course?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Enrollment> {
         return NSFetchRequest<Enrollment>(entityName: "Enrollment")
@@ -33,7 +33,7 @@ final class Enrollment: NSManagedObject {
 
 extension Enrollment: Pullable {
 
-    static var type: String {
+    public static var type: String {
         return "enrollments"
     }
 

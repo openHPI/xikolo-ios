@@ -5,9 +5,9 @@
 
 import CoreData
 
-class Content: NSManagedObject {
+public class Content: NSManagedObject {
 
-    var isAvailableOffline: Bool {
+    public var isAvailableOffline: Bool {
         return false
     }
 

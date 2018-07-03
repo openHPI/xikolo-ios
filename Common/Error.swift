@@ -6,7 +6,7 @@
 import Foundation
 import Marshal
 
-enum XikoloError: Error {
+public enum XikoloError: Error {
     case api(APIError)
 
     case coreData(Error)
@@ -34,7 +34,7 @@ enum XikoloError: Error {
     case userCanceled
 }
 
-enum APIError: Error {
+public enum APIError: Error {
     case invalidResponse
     case noData
     case responseError(statusCode: Int, headers: [AnyHashable: Any])
@@ -44,7 +44,7 @@ enum APIError: Error {
     case serializationError(SerializationError)
 }
 
-enum SerializationError: Error {
+public enum SerializationError: Error {
     case invalidDocumentStructure
     case topLevelEntryMissing
     case topLevelDataAndErrorsCoexist
@@ -54,7 +54,7 @@ enum SerializationError: Error {
     case includedModelDeserializationError(Error, onType: String, forIncludedType: String, forKey: String)
 }
 
-enum SynchronizationError: Error {
+public enum SynchronizationError: Error {
     case noRelationshipBetweenEnities(from: Any, to: Any)
     case toManyRelationshipBetweenEnities(from: Any, to: Any)
     case abstractRelationshipNotUpdated(from: Any, to: Any, withKey: KeyType)
@@ -63,6 +63,6 @@ enum SynchronizationError: Error {
     case noMatchAbstractType(resourceType: Any, abstractType: Any)
 }
 
-enum NestedMarshalError: Error {
+public enum NestedMarshalError: Error {
     case nestedMarshalError(Error, includeType: String, includeKey: KeyType)
 }

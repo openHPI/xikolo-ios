@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol SafeCastable {
+public protocol SafeCastable {
 
     func require<T>(toHaveType type: T.Type,
                     hint hintExpression: @autoclosure () -> String?,
@@ -16,10 +16,10 @@ protocol SafeCastable {
 
 extension SafeCastable {
 
-    func require<T>(toHaveType type: T.Type,
-                    hint hintExpression: @autoclosure () -> String? = nil,
-                    file: StaticString = #file,
-                    line: UInt = #line) -> T {
+    public func require<T>(toHaveType type: T.Type,
+                           hint hintExpression: @autoclosure () -> String? = nil,
+                           file: StaticString = #file,
+                           line: UInt = #line) -> T {
         guard let unwrapped = self as? T else {
             var message = "Required value was not of type \(T.self) in \(file), at line \(line)"
 

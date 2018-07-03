@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import MessageUI
 import Result
 import SafariServices
@@ -78,7 +79,7 @@ class AccountViewController: UITableViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateUIAfterLoginStateChanged),
-                                               name: NotificationKeys.loginStateChangedKey,
+                                               name: UserProfileHelper.loginStateDidChangeNotification,
                                                object: nil)
     }
 

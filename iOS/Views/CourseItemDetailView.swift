@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import UIKit
 
 class CourseItemDetailView: UIView {
@@ -204,7 +205,7 @@ class DetailedDataView: UIStackView {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleAssetDownloadProgressNotification(_:)),
-                                               name: NotificationKeys.DownloadProgressDidChange,
+                                               name: DownloadProgress.didChangeNotification,
                                                object: nil)
     }
 

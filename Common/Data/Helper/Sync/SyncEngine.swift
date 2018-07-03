@@ -11,16 +11,16 @@ import Foundation
 import Marshal
 import Result
 
-struct SyncEngine {
+public struct SyncEngine {
 
-    struct SyncMultipleResult {
-        let objectIds: [NSManagedObjectID]
-        let headers: [AnyHashable: Any]
+    public struct SyncMultipleResult {
+        public let objectIds: [NSManagedObjectID]
+        public let headers: [AnyHashable: Any]
     }
 
-    struct SyncSingleResult {
-        let objectId: NSManagedObjectID
-        let headers: [AnyHashable: Any]
+    public struct SyncSingleResult {
+        public let objectId: NSManagedObjectID
+        public let headers: [AnyHashable: Any]
     }
 
     private struct MergeMultipleResult<Resource> where Resource: NSManagedObject & Pullable {

@@ -6,17 +6,17 @@
 import Foundation
 import Reachability
 
-class ReachabilityHelper {
+public class ReachabilityHelper {
 
     static var reachability: Reachability = {
         return Reachability(hostname: Brand.default.host)!
     }()
 
-    static var connection: Reachability.Connection {
+    public static var connection: Reachability.Connection {
         return self.reachability.connection
     }
 
-    static func startObserving() {
+    public static func startObserving() {
         do {
             try self.reachability.startNotifier()
         } catch {
@@ -25,7 +25,7 @@ class ReachabilityHelper {
         }
     }
 
-    static func stopObserving() {
+    public static func stopObserving() {
         self.reachability.stopNotifier()
     }
 

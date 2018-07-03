@@ -13,8 +13,8 @@ public struct NetworkHelper {
             Routes.Header.acceptKey: Routes.Header.acceptValue,
         ]
 
-        if UserProfileHelper.isLoggedIn {
-            headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.userToken
+        if UserProfileHelper.shared.isLoggedIn {
+            headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.shared.userToken
         }
 
         headers[Routes.Header.userPlatformKey] = Routes.Header.userPlatformValue

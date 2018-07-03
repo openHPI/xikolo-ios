@@ -4,6 +4,7 @@
 //
 
 import BrightFutures
+import Common
 import CoreData
 import DZNEmptyDataSet
 import UIKit

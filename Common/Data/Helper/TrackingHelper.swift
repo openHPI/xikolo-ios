@@ -117,7 +117,7 @@ public class TrackingHelper {
                                         resourceType: AnalyticsResourceType,
                                         resourceId: String,
                                         context: [String: String?] = [:]) -> Future<Void, XikoloError> {
-        guard let userId = UserProfileHelper.userId else {
+        guard let userId = UserProfileHelper.shared.userId else {
             return Future(error: .trackingForUnknownUser)
         }
 

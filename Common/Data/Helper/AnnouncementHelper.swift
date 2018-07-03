@@ -33,7 +33,7 @@ public class AnnouncementHelper {
     }
 
     @discardableResult public func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {
-        guard UserProfileHelper.isLoggedIn && !item.visited else {
+        guard UserProfileHelper.shared.isLoggedIn && !item.visited else {
             return Future(value: ())
         }
 

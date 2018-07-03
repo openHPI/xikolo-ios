@@ -4,6 +4,7 @@
 //
 
 import BrightFutures
+import Common
 import SDWebImage
 import SimpleRoundedButton
 import UIKit

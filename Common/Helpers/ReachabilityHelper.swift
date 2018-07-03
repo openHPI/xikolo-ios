@@ -16,13 +16,8 @@ public class ReachabilityHelper {
         return self.reachability.connection
     }
 
-    public static func startObserving() {
-        do {
-            try self.reachability.startNotifier()
-        } catch {
-            CrashlyticsHelper.shared.recordError(error)
-            log.error("Failed to start reachability notification")
-        }
+    public static func startObserving() throws {
+        try self.reachability.startNotifier()
     }
 
     public static func stopObserving() {

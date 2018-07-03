@@ -8,6 +8,7 @@
 import AVFoundation
 import AVKit
 import BMPlayer
+import Common
 import NVActivityIndicatorView
 import UIKit
 

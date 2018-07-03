@@ -13,6 +13,8 @@ public class SyncPushEngine {
 
     public static let shared = SyncPushEngine()
 
+    public var delegate: SyncPushEngineDelegate?
+
     private let persistentContainerQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
@@ -83,8 +85,8 @@ public class SyncPushEngine {
                         return Future(error: error)
                     }
 
-                    CrashlyticsHelper.shared.recordError(error)
                     log.error("Failed to push resource modification - \(error)")
+                    self.delegate?.didFailToPushResourceModification(withError: error)
                     return Future(value: ())
                 }
 
@@ -110,4 +112,8 @@ public class SyncPushEngine {
         }
     }
 
+}
+
+public protocol SyncPushEngineDelegate {
+    func didFailToPushResourceModification(withError error: XikoloError)
 }

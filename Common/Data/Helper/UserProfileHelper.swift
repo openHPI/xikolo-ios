@@ -8,9 +8,20 @@ import KeychainAccess
 
 public class UserProfileHelper {
 
-    public static let loginStateDidChangeNotification = Notification.Name("de.xikolo.ios.loginStateChanged")
+    private let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
+    private enum KeychainKey: String {
+        case userId = "de.xikolo.ios.user-id"
+        case userToken = "de.xikolo.ios.user-token"
+    }
 
-    public static func login(_ email: String, password: String) -> Future<String, XikoloError> { // swiftlint:disable:this function_body_length
+    public static let loginStateDidChangeNotification = Notification.Name("de.xikolo.ios.loginStateChanged")
+    public static let shared = UserProfileHelper()
+
+    public var delegate: UserProfileHelperDelegate?
+
+    private init() {}
+
+    public func login(_ email: String, password: String) -> Future<String, XikoloError> { // swiftlint:disable:this function_body_length
         let promise = Promise<String, XikoloError>()
 
         let parameters: String = [
@@ -75,45 +86,36 @@ public class UserProfileHelper {
         }
     }
 
-    public static func logout() {
+    public func logout() {
         self.clearKeychain()
-        CoreDataHelper.clearCoreDataStorage().onComplete { _ in
+        CoreDataHelper.clearCoreDataStorage().onFailure { error in
+            self.delegate?.didFailToClearCoreDataEnitity(withError: error)
+        }.onComplete { _ in
             self.postLoginStateChange()
         }
     }
 
-    public static var isLoggedIn: Bool {
+    public var isLoggedIn: Bool {
         return !self.userToken.isEmpty
     }
 
-    static func postLoginStateChange() {
+    func postLoginStateChange() {
         let coursesFuture = CourseHelper.syncAllCourses().onSuccess { _ in
             AnnouncementHelper.shared.syncAllAnnouncements()
         }
 
-        if UserProfileHelper.isLoggedIn {
+        if self.isLoggedIn {
             coursesFuture.onSuccess { _ in
                 CourseDateHelper.syncAllCourseDates()
             }
         }
 
         DispatchQueue.main.async {
-            NotificationCenter.default.post(name: self.loginStateDidChangeNotification, object: nil)
+            NotificationCenter.default.post(name: UserProfileHelper.loginStateDidChangeNotification, object: nil)
         }
     }
 
-}
-
-extension UserProfileHelper {
-
-    private enum KeychainKey: String {
-        case userId = "de.xikolo.ios.user-id"
-        case userToken = "de.xikolo.ios.user-token"
-    }
-
-    private static let keychain = Keychain(service: "de.xikolo.ios").accessibility(.afterFirstUnlock)
-
-    static var userId: String? {
+    var userId: String? {
         get {
             return self.keychain[KeychainKey.userId.rawValue]
         }
@@ -122,7 +124,7 @@ extension UserProfileHelper {
         }
     }
 
-    static var userToken: String {
+    var userToken: String {
         get {
             return self.keychain[KeychainKey.userToken.rawValue] ?? ""
         }
@@ -131,16 +133,16 @@ extension UserProfileHelper {
         }
     }
 
-    static func clearKeychain() {
+    func clearKeychain() {
         do {
             try self.keychain.removeAll()
         } catch {
-            CrashlyticsHelper.shared.recordError(error)
             log.error("Failed to clear keychain - \(error)")
+            self.delegate?.didFailToClearKeychain(withError: error)
         }
     }
 
-    public static func migrateLegacyKeychain() {
+    public func migrateLegacyKeychain() {
         let defaults = UserDefaults.standard
 
         let legacyUserIdKey = "user"
@@ -157,4 +159,11 @@ extension UserProfileHelper {
 
         defaults.synchronize()
     }
+}
+
+public protocol UserProfileHelperDelegate {
+
+    func didFailToClearKeychain(withError error: Error)
+    func didFailToClearCoreDataEnitity(withError error: XikoloError)
+
 }

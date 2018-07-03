@@ -13,7 +13,6 @@ public struct CoreDataHelper {
         let container = NSPersistentContainer(name: "xikolo")
         container.loadPersistentStores { _, error in
             if let error = error {
-                CrashlyticsHelper.shared.recordError(error)
                 log.severe("Unresolved error \(error)")
                 fatalError("Unresolved error \(error)")
             }
@@ -61,7 +60,6 @@ public struct CoreDataHelper {
 
                 promise.success(())
             } catch {
-                CrashlyticsHelper.shared.recordError(error)
                 log.error("Failed to bulk delete all enities of \(entityName) - \(error)")
                 promise.failure(.coreData(error))
             }
@@ -106,7 +104,6 @@ extension NSManagedObjectContext {
         guard let object = managedObject as? T else {
             let message = "Type mismatch for NSManagedObject (required)"
             let reason = "required: \(T.self), found: \(type(of: managedObject))"
-            CrashlyticsHelper.shared.recordCustomExceptionName(message, reason: reason, frameArray: [])
             log.severe("\(message): \(reason)")
             fatalError("\(message): \(reason)")
         }
@@ -123,7 +120,6 @@ extension NSManagedObjectContext {
         guard let object = managedObject as? T else {
             let message = "Type mismatch for NSManagedObject"
             let reason = "expected: \(T.self), found: \(type(of: managedObject))"
-            CrashlyticsHelper.shared.recordCustomExceptionName(message, reason: reason, frameArray: [])
             log.error("\(message): \(reason)")
             return nil
         }

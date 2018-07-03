@@ -102,7 +102,7 @@ class CourseItemListViewController: UITableViewController {
         let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
         self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
 
-        guard UserProfileHelper.isLoggedIn else {
+        guard UserProfileHelper.shared.isLoggedIn else {
             stopRefreshControl()
             return
         }

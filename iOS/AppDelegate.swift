@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.tintColor = Brand.default.colors.window
 
         // select start tab
-        self.tabBarController?.selectedIndex = UserProfileHelper.isLoggedIn ? 0 : 1
-        if UserProfileHelper.isLoggedIn {
+        self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
+        if UserProfileHelper.shared.isLoggedIn {
             CourseHelper.syncAllCourses().onComplete { _ in
                 CourseDateHelper.syncAllCourseDates()
             }
@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
         SyncEngine.shared.delegate = SyncHelper()
+        SyncPushEngine.shared.delegate = CrashlyticsHelper.shared
+        UserProfileHelper.shared.delegate = CrashlyticsHelper.shared
 
         // register resource to be pushed automatically
         SyncPushEngine.shared.register(Announcement.self)
@@ -50,13 +52,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SyncPushEngine.shared.register(TrackingEvent.self)
         SyncPushEngine.shared.check()
 
-        UserProfileHelper.migrateLegacyKeychain()
+        UserProfileHelper.shared.migrateLegacyKeychain()
 
         StreamPersistenceManager.shared.restoreDownloads()
         SlidesPersistenceManager.shared.restoreDownloads()
 
         CoreDataObserver.standard.startObserving()
-        ReachabilityHelper.startObserving()
+
+        do {
+            try ReachabilityHelper.startObserving()
+        } catch {
+            CrashlyticsHelper.shared.recordError(error)
+            log.error("Failed to start reachability notification")
+        }
 
         if Brand.default.useDummyCredentialsForSDWebImage {
             // The openSAP backend uses a special certificate, which lets SDWebImage to cancel the requests.
@@ -126,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard !UserProfileHelper.isLoggedIn else {
+        guard !UserProfileHelper.shared.isLoggedIn else {
             return true
         }
 
@@ -185,7 +193,7 @@ extension AppDelegate: AnnouncementHelperDelegate {
                 return
             }
 
-            guard UserProfileHelper.isLoggedIn else {
+            guard UserProfileHelper.shared.isLoggedIn else {
                 tabItem.badgeValue = nil
                 return
             }

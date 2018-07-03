@@ -71,7 +71,7 @@ public final class Course: NSManagedObject {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 
-    var availableCertificates: [(name: String, explanation: String?, url: URL?)] { // swiftlint:disable:this large_tuple
+    public var availableCertificates: [(name: String, explanation: String?, url: URL?)] { // swiftlint:disable:this large_tuple
         var certificates: [(String, String?, URL?)] = []
 
         if let certificate = self.certificates?.qualifiedCertificate, certificate.available {

@@ -7,22 +7,22 @@ import CoreData
 
 extension CourseItemHelper {
 
-    struct FetchRequest {
+    public struct FetchRequest {
+
+        public static func orderedCourseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
+            let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
+            request.predicate = NSPredicate(format: "section.course = %@", course)
+            let sectionSort = NSSortDescriptor(key: "section.position", ascending: true)
+            let positionSort = NSSortDescriptor(key: "position", ascending: true)
+            request.sortDescriptors = [sectionSort, positionSort]
+            return request
+        }
 
         static func orderedCourseItems(forSection section: CourseSection) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSPredicate(format: "section = %@", section)
             let titleSort = NSSortDescriptor(key: "position", ascending: true)
             request.sortDescriptors = [titleSort]
-            return request
-        }
-
-        static func orderedCourseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
-            let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
-            request.predicate = NSPredicate(format: "section.course = %@", course)
-            let sectionSort = NSSortDescriptor(key: "section.position", ascending: true)
-            let positionSort = NSSortDescriptor(key: "position", ascending: true)
-            request.sortDescriptors = [sectionSort, positionSort]
             return request
         }
 

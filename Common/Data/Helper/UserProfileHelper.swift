@@ -75,14 +75,14 @@ public class UserProfileHelper {
         }
     }
 
-    static func logout() {
+    public static func logout() {
         self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onComplete { _ in
             self.postLoginStateChange()
         }
     }
 
-    static var isLoggedIn: Bool {
+    public static var isLoggedIn: Bool {
         return !self.userToken.isEmpty
     }
 
@@ -140,7 +140,7 @@ extension UserProfileHelper {
         }
     }
 
-    static func migrateLegacyKeychain() {
+    public static func migrateLegacyKeychain() {
         let defaults = UserDefaults.standard
 
         let legacyUserIdKey = "user"

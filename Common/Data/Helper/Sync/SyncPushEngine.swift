@@ -7,24 +7,29 @@ import BrightFutures
 import CoreData
 import Foundation
 
-class SyncPushEngine {
+public class SyncPushEngine {
 
     var types: [(NSManagedObject & Pushable).Type] = []
 
-    static let shared = SyncPushEngine()
+    public static let shared = SyncPushEngine()
+
     private let persistentContainerQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
 
-    func register(_ newType: (NSManagedObject & Pushable).Type) {
+    public func register(_ newType: NSManagedObject.Type) {
+        guard let pushableType = newType as? (NSManagedObject & Pushable).Type else {
+            return
+        }
+
         if !self.types.contains(where: { $0 == newType }) {
-            self.types.append(newType)
+            self.types.append(pushableType)
         }
     }
 
-    func check() {
+    public func check() {
         for type in self.types {
             guard let entityName = type.entity().name else {
                 continue

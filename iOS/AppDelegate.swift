@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import Firebase
 import SDWebImage
 import UIKit
@@ -39,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.tabBarController?.delegate = self
 
         TrackingHelper.shared.delegate = self
-        AnnouncmentHelper.shared.delegate = self
+        AnnouncementHelper.shared.delegate = self
         SyncEngine.shared.delegate = SyncHelper()
 
         // register resource to be pushed automatically
@@ -168,7 +169,7 @@ extension AppDelegate: LoginDelegate {
     }
 }
 
-extension AppDelegate: AnnouncmentHelperDelegate {
+extension AppDelegate: AnnouncementHelperDelegate {
 
     func updateUnreadAnnouncementsBadge() {
         #if DEBUG
@@ -209,7 +210,7 @@ extension AppDelegate: AnnouncmentHelperDelegate {
 extension AppDelegate: TrackingHelperDelegate {
 
     var applicationWindowSize: CGSize? {
-        return self.window.frame.size
+        return self.window?.frame.size
     }
 
 }

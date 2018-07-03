@@ -7,7 +7,7 @@ import CoreData
 
 extension CourseHelper {
 
-    struct FetchRequest {
+    public struct FetchRequest {
 
         private static let genericPredicate = NSPredicate(format: "external != %@", NSNumber(value: true))
 
@@ -75,7 +75,7 @@ extension CourseHelper {
             return Course.fetchRequest() as NSFetchRequest<Course>
         }
 
-        static var accessibleCourses: NSFetchRequest<Course> {
+        public static var accessibleCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 genericPredicate,
@@ -94,7 +94,7 @@ extension CourseHelper {
             return request
         }
 
-        static var currentCourses: NSFetchRequest<Course> {
+        public static var currentCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 genericPredicate,
@@ -105,7 +105,7 @@ extension CourseHelper {
             return request
         }
 
-        static var upcomingCourses: NSFetchRequest<Course> {
+        public static var upcomingCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 genericPredicate,
@@ -115,7 +115,7 @@ extension CourseHelper {
             return request
         }
 
-        static var selfpacedCourses: NSFetchRequest<Course> {
+        public static var selfpacedCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 genericPredicate,

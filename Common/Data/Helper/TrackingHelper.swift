@@ -6,7 +6,7 @@
 import BrightFutures
 import UIKit
 
-public struct TrackingHelper {
+public class TrackingHelper {
 
     public enum AnalyticsVerb: String {
         // tabs

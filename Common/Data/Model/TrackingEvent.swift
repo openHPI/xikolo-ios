@@ -5,7 +5,7 @@
 
 import CoreData
 
-final class TrackingEvent: NSManagedObject {
+public final class TrackingEvent: NSManagedObject {
 
     @NSManaged var user: TrackingEventUser
     @NSManaged var verb: TrackingEventVerb
@@ -35,7 +35,7 @@ final class TrackingEvent: NSManagedObject {
 
 extension TrackingEvent: Pushable {
 
-    static var type: String {
+    public static var type: String {
         return "tracking-events"
     }
 

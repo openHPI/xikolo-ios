@@ -6,7 +6,7 @@
 import BrightFutures
 import Foundation
 
-public struct AnnouncementHelper {
+public class AnnouncementHelper {
 
     public static let shared = AnnouncementHelper()
 

@@ -11,7 +11,7 @@ import Foundation
 import Marshal
 import Result
 
-public struct SyncEngine {
+public class SyncEngine {
 
     public struct SyncMultipleResult {
         public let objectIds: [NSManagedObjectID]

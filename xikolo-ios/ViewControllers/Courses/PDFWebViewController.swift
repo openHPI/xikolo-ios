@@ -5,10 +5,11 @@
 
 import BrightFutures
 import UIKit
+import WebKit
 
 class PDFWebViewController: UIViewController {
 
-    @IBOutlet private weak var webView: UIWebView!
+    @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private var shareButton: UIBarButtonItem!
 
     var url: URL!
@@ -54,7 +55,7 @@ class PDFWebViewController: UIViewController {
 
             let request = URLRequest(url: file.fileURL)
             DispatchQueue.main.async {
-                self.webView.loadRequest(request)
+                self.webView.load(request)
                 self.navigationItem.rightBarButtonItem = self.shareButton
             }
         }

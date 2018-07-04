@@ -144,7 +144,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  HTMLStyler: d6fa2e33bb97e367b25f852fdfc3faa86349f15c
+  HTMLStyler: f335ce6ed38231dce775a854aef7b6cd566c2633
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3

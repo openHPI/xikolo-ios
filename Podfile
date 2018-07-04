@@ -43,7 +43,7 @@ post_install do |installer|
     end
 
     # This is highly inspired by cocoapods-acknowledgements (https://github.com/CocoaPods/cocoapods-acknowledgements)
-    # but creates only one pod license file for iOs instead of one license file for each target
+    # but creates only one pod license file for iOS instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
     excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'HTMLStyler']

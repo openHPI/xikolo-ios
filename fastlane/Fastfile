@@ -116,9 +116,9 @@ platform :ios do
   desc "- uses bartycrouch"
   desc "- translates storyboard files and NSLocalizedString usages"
   lane :localize do
-    sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../xikolo-ios/"
-    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-common/ -l ../xikolo-common/ -s -c -e"
-    sh "../Pods/BartyCrouch/bartycrouch code -p ../xikolo-ios/ -l ../xikolo-ios/ -s -c -e"
+    sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../iOS/"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../Common/ -l ../Common/ -s -c -e"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../iOS/ -l ../iOS/ -s -c -e"
   end
 
   desc "Create screenshots for all applications"
@@ -269,7 +269,7 @@ platform :ios do
         version: get_version_number(target: "#{flavor}-iOS"),
       )
       upload_symbols_to_crashlytics(
-        gsp_path: "xikolo-ios/Branding/#{flavor}/GoogleService-Info-Release.plist",
+        gsp_path: "iOS/Branding/#{flavor}/GoogleService-Info-Release.plist",
       )
       clean_build_artifacts
     end

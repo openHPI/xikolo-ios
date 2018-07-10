@@ -13,6 +13,8 @@
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
 		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
+		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
+		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		5095B1D920EA4C6200572924 /* SyncEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1D820EA4C6200572924 /* SyncEngineDelegate.swift */; };
 		5095B1DA20EA53E900572924 /* SyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F45AC6200CE819009304A3 /* SyncHelper.swift */; };
 		5095B1DC20EB570B00572924 /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
@@ -380,6 +382,8 @@
 		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
+		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+coreDataModelToCommon.swift"; sourceTree = "<group>"; };
 		5095B1D820EA4C6200572924 /* SyncEngineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngineDelegate.swift; sourceTree = "<group>"; };
 		5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+playbackRate.swift"; sourceTree = "<group>"; };
 		5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHelperDelegateInstance.swift; sourceTree = "<group>"; };
@@ -742,6 +746,7 @@
 			isa = PBXGroup;
 			children = (
 				5019A7601F20AC0B008C8138 /* Model */,
+				50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -789,6 +794,7 @@
 				702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */,
 				5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */,
 				5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */,
+				50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -1587,6 +1593,7 @@
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailViewController.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */,
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,
+				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,
 				50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */,
 				50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */,
 				50CF1F8620DCDBFC0011BFE9 /* CALayer+UIColor.swift in Sources */,
@@ -1610,6 +1617,7 @@
 				50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */,
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItem.swift in Sources */,
 				50CF1FB520DCDBFC0011BFE9 /* VideoPlayerControlView.swift in Sources */,
+				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */,
 				50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */,

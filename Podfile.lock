@@ -69,7 +69,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet (~> 1.8)
   - Fabric (~> 1.7)
   - Firebase/Core (~> 4.8)
-  - HTMLStyler (from `./HTMLStyler`)
+  - HTMLStyler (from `./Frameworks/HTMLStyler`)
   - KeychainAccess (~> 3.1)
   - Marshal (~> 1.2)
   - R.swift (~> 4.0)
@@ -115,7 +115,7 @@ EXTERNAL SOURCES:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
   HTMLStyler:
-    :path: "./HTMLStyler"
+    :path: "./Frameworks/HTMLStyler"
   SimpleRoundedButton:
     :commit: 91225d2
     :git: https://github.com/mathebox/SimpleRoundedButton.git
@@ -161,6 +161,6 @@ SPEC CHECKSUMS:
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 773a6b44077bbe9a7feee002febaff87bacfd823
+PODFILE CHECKSUM: dd2385661b7681a53e2ce0e4e1ea42795b1b2cea
 
 COCOAPODS: 1.5.3

@@ -34,7 +34,7 @@ end
 
 post_install do |installer|
     Pod::UI.info "Installing BartyCrouch manually"
-    system("make installables -C ./Pods/BartyCrouch --silent")
+    system("make installables -C ./Pods/BartyCrouch >> /dev/null")
     system("cp -f /tmp/BartyCrouch.dst/usr/local/bin/bartycrouch ./Pods/BartyCrouch/bartycrouch")
 
     Pod::UI.info "Fix provisioning profile specifiers"

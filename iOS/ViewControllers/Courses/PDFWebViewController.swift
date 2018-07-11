@@ -42,6 +42,7 @@ class PDFWebViewController: UIViewController {
     }
 
     func initializeWebView() {
+        // The manual initialization is necessary due to a bug in MSCoding in iOS 10
         webView = WKWebView(frame: self.view.frame)
         self.view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false

@@ -50,7 +50,7 @@ class CourseItemCell: UITableViewCell {
     }
 
     private func configureActionsButton(for courseItem: CourseItem) {
-        guard let video = courseItem.content as? Video, video.streamURLForDownload != nil else {
+        guard let video = courseItem.content as? Video, (video.streamURLForDownload != nil || video.slidesURL != nil) else {
             self.actionsButton.isHidden = true
             return
         }

@@ -66,3 +66,6 @@ UI Tests/Credentials.plist
 
 # R.swift
 **/R.generated.swift
+
+# Brand Assets
+iOS/assets-ios-brand.generated.xcassets

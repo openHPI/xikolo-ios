@@ -5,51 +5,31 @@ pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :comm
 pod 'R.swift', '~> 4.0'
 pod 'SwiftLint', '~> 0.22'
 
-def common_pods
-    pod 'BrightFutures', '~> 6.0'
-    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
-    pod 'KeychainAccess', '~> 3.1'
-    pod 'Marshal', '~> 1.2'
-    pod 'SDWebImage', '~> 4.2'
-    pod 'HTMLStyler', :path => './HTMLStyler'
-end
-
-def ios_pods
-    pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
-    pod 'DZNEmptyDataSet', '~> 1.8'
-    pod 'ReachabilitySwift', '~> 4.1'
-    pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
-    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['Debug']
-    pod 'XCGLogger', '~> 6.0'
-
-    # Firebase
+def firebase_pods
     pod 'Firebase/Core', '~> 4.8'
     pod 'Fabric', '~> 1.7'
     pod 'Crashlytics', '~> 3.9'
 end
 
-target 'openHPI-iOS' do
+target 'Common' do
     platform :ios, '10.0'
-    common_pods
-    ios_pods
+    pod 'BrightFutures', '~> 6.0'
+    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'KeychainAccess', '~> 3.1'
+    pod 'Marshal', '~> 1.2'
+    pod 'ReachabilitySwift', '~> 4.1'
+    pod 'SDWebImage', '~> 4.2'
+    pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
+    pod 'XCGLogger', '~> 6.0'
 end
 
-target 'openSAP-iOS' do
+target 'iOS' do
     platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'openWHO-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
-end
-
-target 'moocHOUSE-iOS' do
-    platform :ios, '10.0'
-    common_pods
-    ios_pods
+    firebase_pods
+    pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
+    pod 'DZNEmptyDataSet', '~> 1.8'
+    pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end
 
 post_install do |installer|
@@ -63,16 +43,18 @@ post_install do |installer|
     end
 
     # This is highly inspired by cocoapods-acknowledgements (https://github.com/CocoaPods/cocoapods-acknowledgements)
-    # but creates only one pod license file for iOs instead of one license file for each target
+    # but creates only one pod license file for iOS instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
     excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'HTMLStyler']
     sandbox = installer.sandbox
+    common_target = installer.aggregate_targets.select { |target| target.label.include? 'Common' }.first
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first
-    root_specs = ios_target.specs.map(&:root).uniq.reject { |spec| excluded.include?(spec.name) }
+    all_specs = common_target.specs.map(&:root) + ios_target.specs.map(&:root)
+    ios_specs = all_specs.uniq.sort_by { |spec| spec.name }.reject { |spec| excluded.include?(spec.name) }
 
     pod_licenses = []
-    root_specs.each do |spec|
+    ios_specs.each do |spec|
         pod_root = sandbox.pod_dir(spec.name)
         platform = Pod::Platform.new(ios_target.platform.name)
         file_accessor = file_accessor(spec, platform, sandbox)

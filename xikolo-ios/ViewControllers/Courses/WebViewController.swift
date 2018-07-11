@@ -29,6 +29,7 @@ class WebViewController: UIViewController {
 
     func initializeWebView() {
         webView = WKWebView(frame: self.view.frame)
+        self.view.addSubview(webView)
         let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
             webView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
@@ -46,8 +47,6 @@ class WebViewController: UIViewController {
                 self.webView.heightAnchor.constraint(equalTo: bottomLayoutGuide.heightAnchor),
                 ])
         }
-
-
     }
 
     override func removeFromParentViewController() {

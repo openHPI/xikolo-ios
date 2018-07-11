@@ -9,9 +9,9 @@ import WebKit
 
 class PDFWebViewController: UIViewController {
 
-    @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private var shareButton: UIBarButtonItem!
 
+    var webView: WKWebView!
     var url: URL!
     private var tempPdfFile: TemporaryFile? = try? TemporaryFile(creatingTempDirectoryForFilename: "certificate.pdf")
 
@@ -25,6 +25,7 @@ class PDFWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nil
+        initializeWebView()
 
         guard let temporaryFile = self.tempPdfFile else {
             log.warning("temporary file location doesnt exist")
@@ -37,6 +38,28 @@ class PDFWebViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         try? tempPdfFile?.deleteDirectory()
+    }
+
+    func initializeWebView() {
+        webView = WKWebView(frame: self.view.frame)
+        self.view.addSubview(webView)
+        let margins = view.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+            ])
+        if #available(iOS 11, *) {
+            let guide = self.view.safeAreaLayoutGuide
+            NSLayoutConstraint.activate([
+                self.webView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+                self.webView.topAnchor.constraint(equalTo: guide.topAnchor),
+                ])
+        } else {
+            NSLayoutConstraint.activate([
+                self.webView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor),
+                self.webView.heightAnchor.constraint(equalTo: bottomLayoutGuide.heightAnchor),
+                ])
+        }
     }
 
     func loadPDF(to file: TemporaryFile) {

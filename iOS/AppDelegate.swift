@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window?.tintColor = Brand.default.colors.window
 
+        CoreDataHelper.migrateModelToCommon()
+
         // select start tab
         self.tabBarController?.selectedIndex = UserProfileHelper.shared.isLoggedIn ? 0 : 1
         if UserProfileHelper.shared.isLoggedIn {

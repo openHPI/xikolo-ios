@@ -14,7 +14,7 @@
         <scene sceneID="tSd-dg-NyA">
             <objects>
                 <viewController storyboardIdentifier="WebViewController" id="5Qi-NA-KEf" customClass="WebViewController" customModule="moocHOUSE" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XcF-bX-dK9">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="XcF-bX-dK9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

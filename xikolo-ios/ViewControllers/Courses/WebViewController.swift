@@ -30,23 +30,13 @@ class WebViewController: UIViewController {
     func initializeWebView() {
         webView = WKWebView(frame: self.view.frame)
         self.view.addSubview(webView)
-        let margins = view.layoutMarginsGuide
+        webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            webView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            self.webView.topAnchor.constraint(equalTo: view.topAnchor),
             ])
-        if #available(iOS 11, *) {
-            let guide = self.view.safeAreaLayoutGuide
-            NSLayoutConstraint.activate([
-                self.webView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-                self.webView.topAnchor.constraint(equalTo: guide.topAnchor),
-                ])
-        } else {
-            NSLayoutConstraint.activate([
-                self.webView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor),
-                self.webView.heightAnchor.constraint(equalTo: bottomLayoutGuide.heightAnchor),
-                ])
-        }
     }
 
     override func removeFromParentViewController() {

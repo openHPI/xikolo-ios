@@ -153,7 +153,7 @@ platform :ios do
     lane :"upload_screenshots_#{flavor.downcase}" do
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number(target: "#{flavor}-iOS"),
+        app_version: get_version_number(target: "iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         screenshots_path: "#{fastlane_dir}/screenshots/#{flavor}",
         overwrite_screenshots: true,
@@ -173,7 +173,7 @@ platform :ios do
     lane :"upload_metadata_#{flavor.downcase}" do
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number(target: "#{flavor}-iOS"),
+        app_version: get_version_number(target: "iOS"),
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         copyright: copyright(flavor: flavor),
         skip_binary_upload: true,
@@ -228,7 +228,7 @@ platform :ios do
       )
       deliver(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        app_version: get_version_number(target: "#{flavor}-iOS"),
+        app_version: get_version_number(target: "iOS"),
         force: true,
         metadata_path: "#{fastlane_dir}/metadata/#{flavor}",
         copyright: copyright(flavor: flavor),
@@ -241,7 +241,7 @@ platform :ios do
   end
 
   lane :tag_release do
-    version_number = get_version_number(target: "#{:openHPI}-iOS")
+    version_number = get_version_number(target: "iOS")
     last_commit_id = sh("git rev-parse HEAD")
     last_commit_id.strip!
     release_notes = File.read("#{fastlane_dir}/metadata/default/en-US/release_notes.txt") rescue "No changelog provided"
@@ -266,7 +266,7 @@ platform :ios do
     lane :"refresh_dsyms_#{flavor.downcase}" do
       download_dsyms(
         app_identifier: "de.xikolo.#{flavor.downcase}",
-        version: get_version_number(target: "#{flavor}-iOS"),
+        version: get_version_number(target: "iOS"),
       )
       upload_symbols_to_crashlytics(
         gsp_path: "iOS/Branding/#{flavor}/GoogleService-Info-Release.plist",

@@ -17,19 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="2lx-JY-Nu5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WgC-FN-uSE">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" red="0.95927601809999996" green="0.95927601809999996" blue="0.95927601809999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="WgC-FN-uSE" firstAttribute="trailing" secondItem="9MV-Lu-5TY" secondAttribute="trailing" id="Fk4-bT-f4P"/>
-                            <constraint firstItem="WgC-FN-uSE" firstAttribute="top" secondItem="9MV-Lu-5TY" secondAttribute="top" id="KFj-XA-SIr"/>
-                            <constraint firstItem="9MV-Lu-5TY" firstAttribute="bottom" secondItem="WgC-FN-uSE" secondAttribute="bottom" id="hqM-Tg-OVx"/>
-                            <constraint firstItem="WgC-FN-uSE" firstAttribute="leading" secondItem="9MV-Lu-5TY" secondAttribute="leading" id="sfH-fd-cIa"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9MV-Lu-5TY"/>
                     </view>
                     <toolbarItems/>
@@ -44,7 +32,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="shareButton" destination="8G6-OG-phD" id="gPm-XY-I4U"/>
-                        <outlet property="webView" destination="WgC-FN-uSE" id="yJ6-l0-iLz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQa-99-g2e" userLabel="First Responder" sceneMemberID="firstResponder"/>

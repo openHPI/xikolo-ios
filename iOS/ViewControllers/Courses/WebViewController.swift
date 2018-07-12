@@ -30,15 +30,15 @@ class WebViewController: UIViewController {
 
     func initializeWebView() {
         // The manual initialization is necessary due to a bug in MSCoding in iOS 10
-        webView = WKWebView(frame: self.view.frame)
+        self.webView = WKWebView(frame: self.view.frame)
         self.view.addSubview(webView)
-        webView.translatesAutoresizingMaskIntoConstraints = false
+        self.webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            self.webView.topAnchor.constraint(equalTo: view.topAnchor),
-            ])
+            self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
+        ])
     }
 
     override func removeFromParentViewController() {
@@ -51,7 +51,7 @@ class WebViewController: UIViewController {
 
     private func loadURL() {
         guard let url = self.url else { return }
-        webView.load(NetworkHelper.request(for: url) as URLRequest)
+        self.webView.load(NetworkHelper.request(for: url) as URLRequest)
     }
 
 }

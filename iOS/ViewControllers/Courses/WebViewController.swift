@@ -95,7 +95,7 @@ extension WebViewController: WKNavigationDelegate {
         }
 
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
-        let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
+        let headerIsPresent = navigationAction.request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
 
         if userIsLoggedIn && !headerIsPresent {
             DispatchQueue.global().async {

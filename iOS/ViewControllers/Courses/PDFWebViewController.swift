@@ -51,7 +51,7 @@ class PDFWebViewController: UIViewController {
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             self.webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             self.webView.topAnchor.constraint(equalTo: view.topAnchor),
-            ])
+        ])
     }
 
     func loadPDF(to file: TemporaryFile) {

@@ -117,7 +117,7 @@ platform :ios do
   desc "- translates storyboard files and NSLocalizedString usages"
   lane :localize do
     sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../iOS/"
-    sh "../Pods/BartyCrouch/bartycrouch code -p ../Common/ -l ../Common/ -s -c -e"
+    sh "../Pods/BartyCrouch/bartycrouch code -p ../Common/ -l ../Common/ -s -c -e -f 'CommonLocalizedString'"
     sh "../Pods/BartyCrouch/bartycrouch code -p ../iOS/ -l ../iOS/ -s -c -e"
   end
 

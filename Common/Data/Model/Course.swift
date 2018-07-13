@@ -35,37 +35,16 @@ public final class Course: NSManagedObject {
         return NSFetchRequest<Course>(entityName: "Course")
     }
 
-    @objc var interestingSection = NSLocalizedString("course.section-title.suggested",
-                                                     tableName: "Common",
-                                                     bundle: Bundle(for: Course.self),
-                                                     comment: "section title for collapsed upcoming & active courses")
-    @objc var selfpacedSectionName = NSLocalizedString("course.section-title.self-paced",
-                                                       tableName: "Common",
-                                                       bundle: Bundle(for: Course.self),
-                                                       comment: "section title for selfpaced courses")
-    @objc var currentSectionName = NSLocalizedString("course.section-title.current",
-                                                     tableName: "Common",
-                                                     bundle: Bundle(for: Course.self),
-                                                     comment: "section title for current courses")
-    @objc var upcomingSectionName = NSLocalizedString("course.section-title.upcoming",
-                                                      tableName: "Common",
-                                                      bundle: Bundle(for: Course.self),
-                                                      comment: "section title for upcoming courses")
-    @objc var completedSectioName = NSLocalizedString("course.section-title.completed",
-                                                      tableName: "Common",
-                                                      bundle: Bundle(for: Course.self),
-                                                      comment: "section title for completed courses")
+    @objc var interestingSection = CommonLocalizedString("course.section-title.suggested", comment: "section title for collapsed upcoming & active courses")
+    @objc var selfpacedSectionName = CommonLocalizedString("course.section-title.self-paced", comment: "section title for selfpaced courses")
+    @objc var currentSectionName = CommonLocalizedString("course.section-title.current", comment: "section title for current courses")
+    @objc var upcomingSectionName = CommonLocalizedString("course.section-title.upcoming", comment: "section title for upcoming courses")
+    @objc var completedSectioName = CommonLocalizedString("course.section-title.completed", comment: "section title for completed courses")
     @objc var isEnrolledSectionName: String {
         if enrollment != nil {
-            return NSLocalizedString("course.section-title.my courses",
-                                     tableName: "Common",
-                                     bundle: Bundle(for: Course.self),
-                                     comment: "section title for enrolled courses")
+            return CommonLocalizedString("course.section-title.my courses", comment: "section title for enrolled courses")
         } else {
-            return NSLocalizedString("course.section-title.all courses",
-                                     tableName: "Common",
-                                     bundle: Bundle(for: Course.self),
-                                     comment: "section title for all courses")
+            return CommonLocalizedString("course.section-title.all courses", comment: "section title for all courses")
         }
     }
 
@@ -94,41 +73,25 @@ public final class Course: NSManagedObject {
         var certificates: [(String, String?, URL?)] = []
 
         if let certificate = self.certificates?.qualifiedCertificate, certificate.available {
-            let name = NSLocalizedString("course.certificates.name.qualifiedCertificate",
-                                         tableName: "Common",
-                                         bundle: Bundle(for: Course.self),
-                                         comment: "name of the certificate")
-            let explanation = NSLocalizedString("course.certificates.explanation.qualifiedCertificate",
-                                                tableName: "Common",
-                                                bundle: Bundle(for: Course.self),
-                                                comment: "explanation how to achieve the certificate")
+            let name = CommonLocalizedString("course.certificates.name.qualifiedCertificate", comment: "name of the certificate")
+            let explanation = CommonLocalizedString("course.certificates.explanation.qualifiedCertificate",
+                                                    comment: "explanation how to achieve the certificate")
             let url = self.enrollment?.certificates?.qualifiedCertificate
             certificates.append((name, explanation, url))
         }
 
         if let roa = self.certificates?.recordOfAchievement, roa.available {
-            let name = NSLocalizedString("course.certificates.name.recordOfAchievement",
-                                         tableName: "Common",
-                                         bundle: Bundle(for: Course.self),
-                                         comment: "name of the certificate")
-            let format = NSLocalizedString("course.certificates.explanation.recordOfAchievement",
-                                           tableName: "Common",
-                                           bundle: Bundle(for: Course.self),
-                                           comment: "explanation how to achieve the certificate")
+            let name = CommonLocalizedString("course.certificates.name.recordOfAchievement", comment: "name of the certificate")
+            let format = CommonLocalizedString("course.certificates.explanation.recordOfAchievement", comment: "explanation how to achieve the certificate")
             let explanation = roa.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
             let url = self.enrollment?.certificates?.recordOfAchievement
             certificates.append((name, explanation, url))
         }
 
         if let cop = self.certificates?.confirmationOfParticipation, cop.available {
-            let name = NSLocalizedString("course.certificates.name.confirmationOfParticipation",
-                                         tableName: "Common",
-                                         bundle: Bundle(for: Course.self),
-                                         comment: "name of the certificate")
-            let format = NSLocalizedString("course.certificates.explanation.confirmationOfParticipation",
-                                           tableName: "Common",
-                                           bundle: Bundle(for: Course.self),
-                                           comment: "explanation how to achieve the certificate")
+            let name = CommonLocalizedString("course.certificates.name.confirmationOfParticipation", comment: "name of the certificate")
+            let format = CommonLocalizedString("course.certificates.explanation.confirmationOfParticipation",
+                                               comment: "explanation how to achieve the certificate")
             let explanation = cop.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
             let url = self.enrollment?.certificates?.confirmationOfParticipation
             certificates.append((name, explanation, url))

@@ -10,7 +10,7 @@ import Result
 public class CoreDataHelper {
 
     public static var persistentContainer: NSPersistentContainer = {
-        let bundle = Bundle(identifier: "de.xikolo.common").require()
+        let bundle = Bundle(for: CoreDataHelper.self)
         let modelURL = bundle.url(forResource: "xikolo", withExtension: "momd").require()
         let model = NSManagedObjectModel(contentsOf: modelURL).require()
         let container = NSPersistentContainer(name: "xikolo", managedObjectModel: model)

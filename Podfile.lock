@@ -1,5 +1,5 @@
 PODS:
-  - BartyCrouch (3.9.0)
+  - BartyCrouch (3.13.0)
   - BMPlayer (1.0.1):
     - BMPlayer/Full (= 1.0.1)
   - BMPlayer/Core (1.0.1)
@@ -61,7 +61,7 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
-  - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, commit `a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac`)
+  - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
   - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `a8e110d`)
   - BrightFutures (~> 6.0)
   - Crashlytics (~> 3.9)
@@ -109,8 +109,8 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   BartyCrouch:
-    :commit: a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac
     :git: https://github.com/Flinesoft/BartyCrouch.git
+    :tag: 3.13.0
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
@@ -122,8 +122,8 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BartyCrouch:
-    :commit: a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac
     :git: https://github.com/Flinesoft/BartyCrouch.git
+    :tag: 3.13.0
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
@@ -132,7 +132,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/mathebox/SimpleRoundedButton.git
 
 SPEC CHECKSUMS:
-  BartyCrouch: dd28c3cdf187df4e339145a3b63dd718743382db
+  BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
   BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
   BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -161,6 +161,6 @@ SPEC CHECKSUMS:
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 8d27bf8914ce286e66bf872c78d6deb4f2cc3d2b
+PODFILE CHECKSUM: 1dd8a16486354652d5f2931d295d8a729b3e849b
 
 COCOAPODS: 1.5.3

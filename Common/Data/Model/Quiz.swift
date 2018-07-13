@@ -42,17 +42,17 @@ final class Quiz: Content {
 
         var strings = [String]()
         if hours > 0 {
-            let format = NSLocalizedString("%d hours", tableName: "Common", bundle: Bundle(for: Quiz.self), comment: "<number> of hours #bc-ignore!")
+            let format = CommonLocalizedString("%d hours", comment: "<number> of hours #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, hours))
         }
 
         if minutes > 0 {
-            let format = NSLocalizedString("%d minutes", tableName: "Common", bundle: Bundle(for: Quiz.self), comment: "<number> of minutes #bc-ignore!")
+            let format = CommonLocalizedString("%d minutes", comment: "<number> of minutes #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, minutes))
         }
 
         if seconds > 0 {
-            let format = NSLocalizedString("%d seconds", tableName: "Common", bundle: Bundle(for: Quiz.self), comment: "<number> of seconds #bc-ignore!")
+            let format = CommonLocalizedString("%d seconds", comment: "<number> of seconds #bc-ignore!")
             strings.append(String.localizedStringWithFormat(format, seconds))
         }
 

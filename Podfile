@@ -1,7 +1,7 @@
 use_frameworks!
 inhibit_all_warnings!
 
-pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :commit => 'a31aef6ad183b42b7b3dfc2e5e2c07bb212594ac'
+pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
 pod 'R.swift', '~> 4.0'
 pod 'SwiftLint', '~> 0.22'
 

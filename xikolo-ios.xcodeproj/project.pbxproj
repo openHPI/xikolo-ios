@@ -1235,8 +1235,8 @@
 				50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */,
 				50D60D2B20E0D2C7007A4199 /* Remove localizations */,
 				50CF201120DCDBFC0011BFE9 /* [CP] Embed Pods Frameworks */,
-				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 				50FA2DFD20E4B1A800656776 /* Embed Frameworks */,
+				50CF201220DCDBFC0011BFE9 /* Clear Build Number */,
 			);
 			buildRules = (
 			);
@@ -1405,7 +1405,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nmerge_base=`$git merge-base master HEAD`\nbranch_name=`$git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\ncommit_count_merge_base=`$git rev-list --count $merge_base`\ncommit_count_diff_head=`$git rev-list --count $merge_base..HEAD`\n\nbuild_number=$commit_count_merge_base\nif [ \"$branch_name\" != \"master\" ]; then\n  build_number=\"$build_number.$commit_count_diff_head\"\n  if [ \"$branch_name\" != \"dev\" ]; then\n    build_number=\"$build_number.0\"\n  fi\nfi\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $build_number\" \"${PRODUCT_SETTINGS_PATH}\"\n\necho \"Updated build number in ${PRODUCT_SETTINGS_PATH} to $build_number\"";
+			shellScript = "$SRCROOT/Build\\ Phases/set-build-number.sh";
 		};
 		50CF1F4420DCDBFC0011BFE9 /* Run R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1419,7 +1419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --rswiftignore \"iOS/.rswiftignore\" \"$SRCROOT/iOS\"";
+			shellScript = "$SRCROOT/Build\\ Phases/run-rswift.sh";
 		};
 		50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1433,7 +1433,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"${CONFIGURATION}\" == *Release ]]; then\n    suffix=\"Release\"\nelse\n    suffix=\"Debug\"\nfi\n\necho \"Using GoogleService-Info.plist for ${suffix} mode\"\ncp \"${PROJECT_DIR}/iOS/Branding/${PRODUCT_NAME}/GoogleService-Info-${suffix}.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"";
+			shellScript = "$SRCROOT/Build\\ Phases/copy-google-services-plist.sh";
 		};
 		50CF201120DCDBFC0011BFE9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1501,7 +1501,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"";
+			shellScript = "$SRCROOT/Build\\ Phases/clear-build-number.sh";
 		};
 		50D60D2B20E0D2C7007A4199 /* Remove localizations */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1515,7 +1515,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${PRODUCT_NAME}\" == \"openSAP\" ]; then\n    rm -r \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/de.lproj\"\nfi";
+			shellScript = "$SRCROOT/Build\\ Phases/remove-localizations.sh";
 		};
 		50D65A0D20DE33B100DFD183 /* Copy Brand Assets */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1529,7 +1529,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf ${PROJECT_DIR}/iOS/assets-ios-brand.generated.xcassets\ncp -R ${PROJECT_DIR}/iOS/Branding/${PRODUCT_NAME}/assets-ios-brand.xcassets ${PROJECT_DIR}/iOS/assets-ios-brand.generated.xcassets";
+			shellScript = "$SRCROOT/Build\\ Phases/copy-brand-assets.sh";
 		};
 		A742263FA3D2C2F59F41AA37 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -18,7 +18,7 @@ public let log: XCGLogger = {
         consoleDestination.showLevel = true
         consoleDestination.showFileName = false
         consoleDestination.showLineNumber = false
-        consoleDestination.showDate = false
+        consoleDestination.showDate = true
     #else
         consoleDestination.outputLevel = .severe
         consoleDestination.showLogIdentifier = true

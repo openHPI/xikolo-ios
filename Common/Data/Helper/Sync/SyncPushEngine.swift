@@ -112,7 +112,7 @@ public class SyncPushEngine {
                     return Future(value: ())
                 }
 
-                guard let result = pushFuture?.forced(), case .success(_) = result else {
+                guard pushFuture?.forced().value != nil else {
                     log.warning("Failed to push resource modification due to network issues")
                     return
                 }

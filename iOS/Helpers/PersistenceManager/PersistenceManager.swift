@@ -228,7 +228,7 @@ extension PersistenceManager {
                         self.didFailToDownloadResource(resource, with: error)
 
                         userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
-                    case .failure(let error):
+                    case let .failure(error):
                         CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
                         CrashlyticsHelper.shared.recordError(error)
                         log.error("Failed to complete download for '\(Resource.type)' resource '\(resourceId)': \(error)")

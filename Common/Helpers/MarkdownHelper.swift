@@ -31,12 +31,10 @@ public struct MarkdownHelper {
     }
 
     public static func attributedString(for markdown: String) -> Future<NSMutableAttributedString, XikoloError> {
-        let html = try? Down(markdownString: markdown).toHTML()
         return Future { complete in
-            DispatchQueue.global().async {
-                let attributedString = self.parser.attributedString(for: html ?? "")
-                complete(.success(attributedString))
-            }
+            let html = try? Down(markdownString: markdown).toHTML()
+            let attributedString = self.parser.attributedString(for: html ?? "")
+            complete(.success(attributedString))
         }
     }
 

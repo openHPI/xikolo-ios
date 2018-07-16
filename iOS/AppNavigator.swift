@@ -89,7 +89,7 @@ class AppNavigator {
 
         CoreDataHelper.viewContext.performAndWait {
             switch CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
-            case .success(let course):
+            case let .success(course):
                 couldFindCourse = true
                 let courseArea = url.pathComponents[safe: 3]
                 if courseArea == nil {
@@ -105,7 +105,7 @@ class AppNavigator {
                     log.info("Unable to open course area (\(courseArea ?? "")) for course (\(slugOrId)) inside the app")
                     canOpenInApp = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 log.info("Could not find course in local database: \(error)")
             }
         }
@@ -119,7 +119,7 @@ class AppNavigator {
 
         if couldFindCourse {
             return true
-        } else if case .success(_)? = courseFuture.forced(30.seconds.fromNow) {  // we only wait 30 seconds
+        } else if courseFuture.forced(30.seconds.fromNow)?.value != nil {  // we only wait 30 seconds
             return true
         }
 
@@ -169,4 +169,5 @@ class AppNavigator {
 
         tabBarController.present(courseNavigationController, animated: true)
     }
+
 }

@@ -9,28 +9,30 @@ PODS:
     - SnapKit (~> 4.0.0)
   - BrightFutures (6.0.1):
     - Result (~> 3.2.4)
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
-  - Down (0.5.1)
+  - Crashlytics (3.10.5):
+    - Fabric (~> 1.7.9)
+  - Down (0.5.2)
   - DZNEmptyDataSet (1.8.1)
-  - Fabric (1.7.2)
-  - Firebase/Core (4.8.2):
-    - FirebaseAnalytics (= 4.0.9)
-    - FirebaseCore (= 4.0.14)
-  - FirebaseAnalytics (4.0.9):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
+  - Fabric (1.7.9)
+  - Firebase/Core (5.4.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.1)
+  - Firebase/CoreOnly (5.4.0):
+    - FirebaseCore (= 5.0.5)
+  - FirebaseAnalytics (5.0.1):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.14):
+  - FirebaseCore (5.0.5):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (2.0.8):
-    - FirebaseCore (~> 4.0)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
-    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - FirebaseInstanceID (3.1.1):
+    - FirebaseCore (~> 5.0)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
   - HTMLStyler (0.0.1)
-  - KeychainAccess (3.1.0)
+  - KeychainAccess (3.1.1)
   - Marshal (1.2.4)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -48,27 +50,27 @@ PODS:
   - R.swift.Library (4.0.0)
   - ReachabilitySwift (4.1.0)
   - Result (3.2.4)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SimpleRoundedButton (1.0)
-  - SimulatorStatusMagic (2.1)
+  - SimulatorStatusMagic (2.2)
   - SnapKit (4.0.0)
-  - SwiftLint (0.25.0)
-  - XCGLogger (6.0.2):
-    - XCGLogger/Core (= 6.0.2)
-  - XCGLogger/Core (6.0.2):
+  - SwiftLint (0.26.0)
+  - XCGLogger (6.0.4):
+    - XCGLogger/Core (= 6.0.4)
+  - XCGLogger/Core (6.0.4):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
   - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `a8e110d`)
   - BrightFutures (~> 6.0)
-  - Crashlytics (~> 3.9)
+  - Crashlytics
   - Down (~> 0.4)
   - DZNEmptyDataSet (~> 1.8)
-  - Fabric (~> 1.7)
-  - Firebase/Core (~> 4.8)
+  - Fabric
+  - Firebase/Core
   - HTMLStyler (from `./Frameworks/HTMLStyler`)
   - KeychainAccess (~> 3.1)
   - Marshal (~> 1.2)
@@ -135,17 +137,17 @@ SPEC CHECKSUMS:
   BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
   BMPlayer: dbe5601e55a771b0f5c7f280e34dce5950eb032a
   BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
-  Down: 6ace44ecec0c408826342ed420002f39a18e38c3
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
+  Down: 587371ad58002b06023d9c602519216862c3acbc
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
-  Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
-  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
-  FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
-  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
+  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
+  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
+  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
+  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   HTMLStyler: f335ce6ed38231dce775a854aef7b6cd566c2633
-  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
@@ -154,13 +156,13 @@ SPEC CHECKSUMS:
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SimpleRoundedButton: 4a04d0d3d79986973f74e34d543d0bc089fbc3e6
-  SimulatorStatusMagic: 481558caf2b9ccb2ceba2cc193728d4db3dcac07
+  SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
-  XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
+  SwiftLint: f6b83e8d95ee1e91e11932d843af4fdcbf3fc764
+  XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 1dd8a16486354652d5f2931d295d8a729b3e849b
+PODFILE CHECKSUM: a34ef008ec131737130c2d707d1e97ec13ec60a2
 
 COCOAPODS: 1.5.3

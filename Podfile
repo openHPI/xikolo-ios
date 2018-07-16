@@ -6,9 +6,9 @@ pod 'R.swift', '~> 4.0'
 pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods
-    pod 'Firebase/Core', '~> 4.8'
-    pod 'Fabric', '~> 1.7'
-    pod 'Crashlytics', '~> 3.9'
+    pod 'Firebase/Core'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 target 'Common' do

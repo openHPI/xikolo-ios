@@ -18,6 +18,6 @@ install:
 script:
   - set -o pipefail
   - if [ "$BUILD" == 1 ]; then xcodebuild -workspace $TRAVIS_XCODE_WORKSPACE -scheme $SCHEME -sdk $SDK build | xcpretty; fi
-  - if [ "$TEST" == 1 ]; then bundle exec fastlane scheme:$SCHEME; fi
+  - if [ "$TEST" == 1 ]; then bundle exec fastlane run scan scheme:$SCHEME; fi
   - if [ "$CHECK_LOCALIZATION" == 1 ]; then bundle exec fastlane localize; git status --porcelain; git diff --quiet head Common iOS || travis_terminate 1; fi
   - if [ "$LINT" == 1 ]; then bundle exec danger --verbose; fi

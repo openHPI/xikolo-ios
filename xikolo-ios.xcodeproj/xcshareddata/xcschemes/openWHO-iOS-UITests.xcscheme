@@ -22,16 +22,6 @@
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50761B3E20FCAC5900CEDAF9"
-               BuildableName = "iOS-Tests.xctest"
-               BlueprintName = "iOS-Tests"
-               ReferencedContainer = "container:xikolo-ios.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -74,6 +64,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
+            BuildableName = "openHPI.app"
+            BlueprintName = "iOS"
+            ReferencedContainer = "container:xikolo-ios.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "openWHO-iOS-Debug">

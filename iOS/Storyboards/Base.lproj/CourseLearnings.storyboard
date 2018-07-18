@@ -144,49 +144,49 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s40-oe-5ie" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="132.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pZC-Ky-f3w">
-                                                <rect key="frame" x="16" y="8" width="343" height="108.5"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3R-aw-Xc8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="#bc-ignore!">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                    </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Loading text ..." translatesAutoresizingMaskIntoConstraints="NO" id="zQN-fr-A67">
-                                                        <rect key="frame" x="0.0" y="37.5" width="343" height="33"/>
-                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                                    </textView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHK-EI-eQB">
-                                                        <rect key="frame" x="0.0" y="78.5" width="343" height="30"/>
-                                                        <state key="normal" title="Display issues?"/>
-                                                        <connections>
-                                                            <segue destination="NW7-Yg-G1A" kind="show" identifier="openInWebView" id="Ach-Qd-eGW"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3R-aw-Xc8">
+                                                <rect key="frame" x="16" y="8" width="343" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <attributedString key="userComments">
+                                                    <fragment content="#bc-ignore!">
+                                                        <attributes>
+                                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Loading text ..." translatesAutoresizingMaskIntoConstraints="NO" id="zQN-fr-A67">
+                                                <rect key="frame" x="16" y="40" width="343" height="33"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHK-EI-eQB">
+                                                <rect key="frame" x="16" y="81" width="343" height="30"/>
+                                                <state key="normal" title="Display issues?"/>
+                                                <connections>
+                                                    <segue destination="NW7-Yg-G1A" kind="show" identifier="openInWebView" id="Ach-Qd-eGW"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="pZC-Ky-f3w" firstAttribute="top" secondItem="s40-oe-5ie" secondAttribute="topMargin" id="7iD-OP-9WY"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="pZC-Ky-f3w" secondAttribute="bottom" id="Yde-3y-cmB"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="pZC-Ky-f3w" secondAttribute="trailing" id="Ye7-3t-dNM"/>
-                                            <constraint firstItem="pZC-Ky-f3w" firstAttribute="leading" secondItem="s40-oe-5ie" secondAttribute="leadingMargin" id="hkn-L4-GJU"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="pHK-EI-eQB" secondAttribute="bottom" constant="13.5" id="BmY-8V-Fs4"/>
+                                            <constraint firstItem="pHK-EI-eQB" firstAttribute="top" secondItem="zQN-fr-A67" secondAttribute="bottom" constant="8" symbolic="YES" id="Ppo-Jm-mNf"/>
+                                            <constraint firstItem="zQN-fr-A67" firstAttribute="top" secondItem="I3R-aw-Xc8" secondAttribute="bottom" constant="8" symbolic="YES" id="Xq9-lb-gPg"/>
+                                            <constraint firstItem="I3R-aw-Xc8" firstAttribute="trailing" secondItem="s40-oe-5ie" secondAttribute="trailingMargin" id="Zan-RF-8DO"/>
+                                            <constraint firstItem="pHK-EI-eQB" firstAttribute="trailing" secondItem="s40-oe-5ie" secondAttribute="trailingMargin" id="iQa-g9-fs5"/>
+                                            <constraint firstItem="zQN-fr-A67" firstAttribute="leading" secondItem="s40-oe-5ie" secondAttribute="leadingMargin" id="lxm-V8-SIq"/>
+                                            <constraint firstItem="I3R-aw-Xc8" firstAttribute="top" secondItem="s40-oe-5ie" secondAttribute="topMargin" id="ofC-d0-Sbf"/>
+                                            <constraint firstItem="I3R-aw-Xc8" firstAttribute="leading" secondItem="s40-oe-5ie" secondAttribute="leadingMargin" id="u0C-Hc-XHZ"/>
+                                            <constraint firstItem="zQN-fr-A67" firstAttribute="trailing" secondItem="s40-oe-5ie" secondAttribute="trailingMargin" id="uwi-dU-dme"/>
+                                            <constraint firstItem="pHK-EI-eQB" firstAttribute="leading" secondItem="s40-oe-5ie" secondAttribute="leadingMargin" id="wFY-4a-N0f"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -563,6 +563,6 @@
         <image name="downloaded" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pt9-PY-lWf"/>
+        <segue reference="Ach-Qd-eGW"/>
     </inferredMetricsTieBreakers>
 </document>

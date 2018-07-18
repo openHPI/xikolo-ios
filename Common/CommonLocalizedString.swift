@@ -13,6 +13,7 @@ class CommonLocalizer {
 
 }
 
+// swiftlint:disable:next identifier_name
 func CommonLocalizedString(_ key: String, comment: String) -> String {
     return CommonLocalizer.localizedString(key, comment: comment)
 }

@@ -32,11 +32,13 @@ disabled_rules:
 
 included:
 - Common
+- Common-Tests
 - iOS
-- UI Tests
+- iOS-Tests
+- iOS-UITests
 
 excluded:
-- UI Tests/SnapshotHelper.swift
+- iOS-UITests/SnapshotHelper.swift
 - Common/R.generated.swift
 - iOS/R.generated.swift
 

@@ -26,6 +26,7 @@
 		5095B1E020EBB1E700572924 /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
+		509D7BF820FDBC0E00F983C4 /* BrightFutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509D7BF720FDBC0E00F983C4 /* BrightFutureTests.swift */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -414,6 +415,7 @@
 		5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHelperDelegateInstance.swift; sourceTree = "<group>"; };
 		5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+typed.swift"; sourceTree = "<group>"; };
 		509B10D0200790560042AA7D /* XikoloTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloTabBarController.swift; sourceTree = "<group>"; };
+		509D7BF720FDBC0E00F983C4 /* BrightFutureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightFutureTests.swift; sourceTree = "<group>"; };
 		50A9C97B1F5FF23C00C75CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
@@ -857,6 +859,7 @@
 		50761B5420FCADD600CEDAF9 /* Common-Tests */ = {
 			isa = PBXGroup;
 			children = (
+				509D7BF720FDBC0E00F983C4 /* BrightFutureTests.swift */,
 				50761B5720FCADD700CEDAF9 /* Info.plist */,
 			);
 			path = "Common-Tests";
@@ -1769,6 +1772,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509D7BF820FDBC0E00F983C4 /* BrightFutureTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -105,11 +105,8 @@ public class SyncEngine {
 
     private func buildCreateRequest(forQuery query: ResourceURLRepresentable,
                                     forResource resource: Pushable) -> Result<URLRequest, XikoloError> {
-        switch resource.resourceData() {
-        case let .success(resourceData):
+        return resource.resourceData().flatMap { resourceData in
             return self.buildCreateRequest(forQuery: query, withData: resourceData)
-        case let .failure(error):
-            return .failure(error)
         }
     }
 
@@ -363,11 +360,10 @@ public class SyncEngine {
                     return MergeMultipleResult(resources: resources, headers: networkResult.headers)
                 }
             }.inject(ImmediateExecutionContext) {
-                do {
-                    try context.save()
-                    return Future(value: ())
-                } catch {
-                    return Future(error: .coreData(error))
+                return Result<Void, AnyError> {
+                    return try context.save()
+                }.mapError { error in
+                    return .coreData(error.error)
                 }
             }.map(ImmediateExecutionContext) { mergeResult in
                 return SyncMultipleResult(objectIds: mergeResult.resources.map { $0.objectID }, headers: mergeResult.headers)
@@ -401,11 +397,10 @@ public class SyncEngine {
                     return MergeSingleResult(resource: resource, headers: networkResult.headers)
                 }
             }.inject(ImmediateExecutionContext) {
-                do {
-                    try context.save()
-                    return Future(value: ())
-                } catch {
-                    return Future(error: .coreData(error))
+                return Result<Void, AnyError> {
+                    return try context.save()
+                }.mapError { error in
+                    return .coreData(error.error)
                 }
             }.map(ImmediateExecutionContext) { mergeResult in
                 return SyncSingleResult(objectId: mergeResult.resource.objectID, headers: mergeResult.headers)
@@ -447,11 +442,10 @@ public class SyncEngine {
                     return Future(error: .unknownError(error))
                 }
             }.inject(ImmediateExecutionContext) {
-                do {
-                    try context.save()
-                    return Future(value: ())
-                } catch {
-                    return Future(error: .coreData(error))
+                return Result<Void, AnyError> {
+                    return try context.save()
+                }.mapError { error in
+                    return .coreData(error.error)
                 }
             }.onComplete(ImmediateExecutionContext) { result in
                 promise.complete(result)

@@ -90,7 +90,7 @@ class AccountViewController: UITableViewController {
             CoreDataHelper.viewContext.perform {
                 if let userId = UserProfileHelper.shared.userId {
                     let fetchRequest = UserHelper.FetchRequest.user(withId: userId)
-                    if case .success(let user) = CoreDataHelper.viewContext.fetchSingle(fetchRequest) {
+                    if let user = CoreDataHelper.viewContext.fetchSingle(fetchRequest).value {
                         self.user = user
                     }
                 }

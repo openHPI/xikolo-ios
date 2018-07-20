@@ -64,6 +64,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
+            BuildableName = "openHPI.app"
+            BlueprintName = "iOS"
+            ReferencedContainer = "container:xikolo-ios.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "openWHO-iOS-Debug">

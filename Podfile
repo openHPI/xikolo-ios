@@ -21,6 +21,10 @@ target 'Common' do
     pod 'SDWebImage', '~> 4.2'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
     pod 'XCGLogger', '~> 6.0'
+
+    target 'Common-Tests' do
+        inherit! :search_paths
+    end
 end
 
 target 'iOS' do

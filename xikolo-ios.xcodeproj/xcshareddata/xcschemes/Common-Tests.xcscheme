@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0920"
+   LastUpgradeVersion = "0940"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,22 +16,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "502E712A2018D8BF007FC8C0"
-               BuildableName = "iOS-UITests.xctest"
-               BlueprintName = "iOS-UITests"
+               BlueprintIdentifier = "50761B5220FCADD600CEDAF9"
+               BuildableName = "Common-Tests.xctest"
+               BlueprintName = "Common-Tests"
                ReferencedContainer = "container:xikolo-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
-            BuildableName = "openHPI.app"
-            BlueprintName = "iOS"
-            ReferencedContainer = "container:xikolo-ios.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,40 +36,21 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
-            BuildableName = "openHPI.app"
-            BlueprintName = "iOS"
-            ReferencedContainer = "container:xikolo-ios.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "openHPI-iOS-Release"
+      buildConfiguration = "openHPI-iOS-Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50CF1F4120DCDBFC0011BFE9"
-            BuildableName = "openHPI.app"
-            BlueprintName = "iOS"
-            ReferencedContainer = "container:xikolo-ios.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "openHPI-iOS-Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "openHPI-iOS-Release"
+      buildConfiguration = "openHPI-iOS-Debug"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -56,6 +56,8 @@ class CourseListLayout: UICollectionViewLayout {
         let numberOfColumns: Int
         if collectionView.traitCollection.horizontalSizeClass == .regular {
             numberOfColumns = collectionView.bounds.width > 960 ? 3 : 2
+        } else if collectionView.bounds.width > collectionView.bounds.height {
+            numberOfColumns = 2
         } else {
             numberOfColumns = 1
         }

@@ -18,8 +18,8 @@ class CourseListLayout: UICollectionViewLayout {
 
     weak var delegate: CourseListLayoutDelegate?
 
-    private var cellPadding: CGFloat = 16
-    private var linePadding: CGFloat = 24
+    private var cellPadding: CGFloat = 0
+    private var linePadding: CGFloat = 20
     private var headerHeight: CGFloat = 50
 
     private var cache: [IndexPath: UICollectionViewLayoutAttributes] = [:]
@@ -37,9 +37,19 @@ class CourseListLayout: UICollectionViewLayout {
 
     private func layoutInsets(for collectionView: UICollectionView) -> UIEdgeInsets {
         return UIEdgeInsets(top: self.delegate?.topInset() ?? 0,
-                            left: collectionView.layoutMargins.left,
+                            left: collectionView.layoutMargins.left - 14,
                             bottom: 0,
-                            right: collectionView.layoutMargins.right)
+                            right: collectionView.layoutMargins.right - 14)
+    }
+
+    private func numberOfColumms(for collectionView: UICollectionView) -> Int {
+        if collectionView.traitCollection.horizontalSizeClass == .regular {
+            return collectionView.bounds.width > 960 ? 3 : 2
+        } else if collectionView.bounds.width > collectionView.bounds.height {
+            return 2
+        } else {
+            return 1
+        }
     }
 
     override var collectionViewContentSize: CGSize {
@@ -53,15 +63,7 @@ class CourseListLayout: UICollectionViewLayout {
             return
         }
 
-        let numberOfColumns: Int
-        if collectionView.traitCollection.horizontalSizeClass == .regular {
-            numberOfColumns = collectionView.bounds.width > 960 ? 3 : 2
-        } else if collectionView.bounds.width > collectionView.bounds.height {
-            numberOfColumns = 2
-        } else {
-            numberOfColumns = 1
-        }
-
+        let numberOfColumns = self.numberOfColumms(for: collectionView)
         let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * cellPadding) / CGFloat(numberOfColumns)
         let layoutInsets = self.layoutInsets(for: collectionView)
 

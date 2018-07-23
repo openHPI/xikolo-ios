@@ -45,6 +45,8 @@ class CourseListViewController: UICollectionViewController {
 
         super.viewDidLoad()
 
+        self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
+
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
@@ -160,9 +162,10 @@ extension CourseListViewController: CourseListLayoutDelegate {
         }
 
         let course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
-        let imageHeight = boundingWidth / 2
+        let cardWidth = boundingWidth - 2 * 14
+        let imageHeight = cardWidth / 2
 
-        let boundingSize = CGSize(width: boundingWidth, height: CGFloat.infinity)
+        let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
         let titleText = course.title ?? ""
         let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
@@ -177,9 +180,10 @@ extension CourseListViewController: CourseListLayoutDelegate {
                                                                        attributes: teachersAttributes,
                                                                        context: nil)
 
-        var height = imageHeight
+        var height = imageHeight + 14
+
         if !titleText.isEmpty || !teachersText.isEmpty {
-            height += 6
+            height += 8
         }
 
         if !titleText.isEmpty {
@@ -194,7 +198,7 @@ extension CourseListViewController: CourseListLayoutDelegate {
             height += teachersSize.height
         }
 
-        return height
+        return height + 5
     }
 
     func topInset() -> CGFloat {

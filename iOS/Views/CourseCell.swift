@@ -12,8 +12,18 @@ class CourseCell: UICollectionViewCell {
     enum Configuration {
         case courseList
         case courseActivity
+
+        var showMultilineLabels: Bool {
+            switch self {
+            case .courseList:
+                return true
+            case .courseActivity:
+                return false
+            }
+        }
     }
 
+    @IBOutlet private weak var shadowView: UIView!
     @IBOutlet private weak var courseImage: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var teacherLabel: UILabel!
@@ -27,13 +37,20 @@ class CourseCell: UICollectionViewCell {
         super.awakeFromNib()
         self.isAccessibilityElement = true
 
-        self.courseImage.layer.cornerRadius = 4.0
+        let cornerRadius: CGFloat = 6.0
+
+        self.shadowView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.shadowView.layer.shadowOpacity = 0.25
+        self.shadowView.layer.shadowRadius = 8.0
+        self.shadowView.layer.cornerRadius = cornerRadius
+        self.shadowView.layer.shadowColor = UIColor.black.cgColor
+        self.shadowView.layer.masksToBounds = false
+
+        self.courseImage.layer.cornerRadius = cornerRadius
         self.courseImage.layer.masksToBounds = true
-        self.courseImage.layer.borderColor = UIColor(white: 0.0, alpha: 0.15).cgColor
-        self.courseImage.layer.borderWidth = 0.5
         self.courseImage.backgroundColor = Brand.default.colors.secondary
 
-        self.statusView.layer.cornerRadius = 4.0
+        self.statusView.layer.cornerRadius = cornerRadius
         self.statusView.layer.masksToBounds = true
         self.statusView.backgroundColor = Brand.default.colors.secondary
 
@@ -42,7 +59,7 @@ class CourseCell: UICollectionViewCell {
         gradient.locations = [0.0, 1.0]
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
         self.gradientView.layer.insertSublayer(gradient, at: 0)
-        self.gradientView.layer.cornerRadius = 4.0
+        self.gradientView.layer.cornerRadius = cornerRadius
         self.gradientView.layer.masksToBounds = true
 
         self.teacherLabel.textColor = Brand.default.colors.secondary
@@ -59,6 +76,9 @@ class CourseCell: UICollectionViewCell {
         self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in
             self.gradientView.isHidden = (image == nil)
         }
+
+        self.titleLabel.numberOfLines = configuration.showMultilineLabels ? 0 : 1
+        self.teacherLabel.numberOfLines = configuration.showMultilineLabels ? 0 : 1
 
         self.titleLabel.text = course.title
         self.teacherLabel.text = course.teachers

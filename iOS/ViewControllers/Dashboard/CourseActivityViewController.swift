@@ -17,10 +17,12 @@ class CourseActivityViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
+
         let request = CourseHelper.FetchRequest.enrolledCourses
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
 
-        let reuseIdentifier = R.reuseIdentifier.lastCourseCell.identifier
+        let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
                                                                                                         resultsControllers: [resultsController],
                                                                                                         cellReuseIdentifier: reuseIdentifier)
@@ -52,16 +54,16 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 150 + 6 + 20.5 + 4 + 18 // (image height + padding + text + padding + text)
-        var width = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
-
-        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
-            width -= 4 * flowLayout.minimumInteritemSpacing
-        }
-
-        width = min(width, 300)
-
+        let height: CGFloat = 12 + 150 + 8 + 20.5 + 4 + 18 // (image height + padding + text + padding + text)
+        let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
+        let width = min(availableWidth * 0.9, 300)
         return CGSize(width: width, height: height)
     }
 
@@ -71,15 +73,20 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
         let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath())
         let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
         let viewWidth = self.collectionView?.frame.size.width ?? 0
-        var horizontalPadding = max(0, (viewWidth - numberOfCellsInSection * cellSize.width) / 2)
+
+        var leftPadding = collectionView.layoutMargins.left - 14
+        var rightPadding = collectionView.layoutMargins.right - 14
 
         if #available(iOS 11.0, *) {
-            // nothing to do here
-        } else {
-            horizontalPadding += 20
+            leftPadding -= collectionView.safeAreaInsets.left
+            rightPadding -= collectionView.safeAreaInsets.right
         }
 
-        return UIEdgeInsets(top: 0, left: horizontalPadding, bottom: 0, right: horizontalPadding)
+        let horizontalCenteredPadding = (viewWidth - numberOfCellsInSection * cellSize.width) / 2
+        leftPadding = max(leftPadding, horizontalCenteredPadding)
+        rightPadding = max(leftPadding, horizontalCenteredPadding)
+
+        return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
 }

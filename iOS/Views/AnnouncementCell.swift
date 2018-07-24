@@ -25,16 +25,12 @@ class AnnouncementCell: UITableViewCell {
     @IBOutlet private var courseLabelContraints: [NSLayoutConstraint]!
 
     func configure(_ announcement: Announcement, showCourseTitle: Bool) {
-        if UserProfileHelper.shared.isLoggedIn, !announcement.visited {
-            self.readStateLabel.textColor = Brand.default.colors.secondary
-            self.readStateLabel.isHidden = false
-            self.separatorView.isHidden = false
-            self.titleLabel.textColor = .black
-        } else {
-            self.readStateLabel.isHidden = true
-            self.separatorView.isHidden = true
-            self.titleLabel.textColor = .gray
-        }
+        let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
+
+        self.readStateLabel.textColor = Brand.default.colors.secondary
+        self.readStateLabel.isHidden = !userIsLoggedIn || announcement.visited
+        self.separatorView.isHidden = !userIsLoggedIn || announcement.visited
+        self.titleLabel.textColor = userIsLoggedIn && announcement.visited ? .gray : .black
 
         self.courseLabel.textColor = Brand.default.colors.secondary
         if let courseTitle = announcement.course?.title, showCourseTitle {

@@ -4,7 +4,9 @@
 //
 
 import BrightFutures
+import CoreData
 import Foundation
+import Result
 
 public class AnnouncementHelper {
 
@@ -30,6 +32,39 @@ public class AnnouncementHelper {
         return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
+    }
+
+    @discardableResult public func markAllAsVisited() -> Future<Void, XikoloError> {
+        guard UserProfileHelper.shared.isLoggedIn else {
+            return Future(value: ())
+        }
+
+        let promise = Promise<Void, XikoloError>()
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let request = NSBatchUpdateRequest(entity: Announcement.entity())
+            request.resultType = .updatedObjectIDsResultType
+            request.predicate = NSPredicate(format: "visited == %@", NSNumber(value: false))
+            request.propertiesToUpdate = [
+                "visited": true,
+                "objectStateValue": ObjectState.modified.rawValue,
+            ]
+
+            let result = Result<[NSManagedObjectID], AnyError> {
+                let updateResult = try context.execute(request) as? NSBatchUpdateResult
+                return (updateResult?.result as? [NSManagedObjectID]) ?? []
+            }.mapError { error in
+                return XikoloError.coreData(error.error)
+            }.map { objectIDs in
+                let changes = [NSUpdatedObjectsKey: objectIDs]
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [CoreDataHelper.viewContext])
+            }
+
+            promise.complete(result)
+            self.delegate?.updateUnreadAnnouncementsBadge()
+        }
+
+        return promise.future
     }
 
     @discardableResult public func markAsVisited(_ item: Announcement) -> Future<Void, XikoloError> {

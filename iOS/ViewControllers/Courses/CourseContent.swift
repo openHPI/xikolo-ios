@@ -10,6 +10,7 @@ enum CourseContent {
     case learnings
     case discussions
     case courseDetails
+    case documents
     case announcements
     case certificates
 
@@ -17,6 +18,7 @@ enum CourseContent {
         .learnings,
         .discussions,
         .courseDetails,
+        .documents,
         .announcements,
         .certificates,
     ]
@@ -33,6 +35,8 @@ enum CourseContent {
             return NSLocalizedString("course-content.view.discussions.title", comment: "title of discussions view of course view")
         case .courseDetails:
             return NSLocalizedString("course-content.view.course-details.title", comment: "title of course details view of course view")
+        case .documents:
+            return NSLocalizedString("course-content.view.documents.title", comment: "title of documents view of course view")
         case .announcements:
             return NSLocalizedString("course-content.view.announcements.title", comment: "title of announcements view of course view")
         case .certificates:
@@ -48,6 +52,8 @@ enum CourseContent {
             return R.storyboard.webViewController.instantiateInitialViewController()
         case .courseDetails:
             return R.storyboard.courseDetails.instantiateInitialViewController()
+        case .documents:
+            return R.storyboard.courseDocuments.instantiateInitialViewController()
         case .announcements:
             return R.storyboard.tabNews.announcementsListViewController()
         case .certificates:

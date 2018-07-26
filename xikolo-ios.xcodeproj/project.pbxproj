@@ -26,6 +26,7 @@
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		508AB2C02109F0A10079EAE5 /* CourseDocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */; };
 		508AB2C22109F0DE0079EAE5 /* CourseDocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */; };
+		508AB2C4210A07DF0079EAE5 /* BrandFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C3210A07DF0079EAE5 /* BrandFeatures.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B6120ED10610085C6DB /* CommonLocalizedString.swift */; };
@@ -428,6 +429,7 @@
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDocumentHeader.xib; sourceTree = "<group>"; };
 		508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDocumentHeader.swift; sourceTree = "<group>"; };
+		508AB2C3210A07DF0079EAE5 /* BrandFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandFeatures.swift; sourceTree = "<group>"; };
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 			children = (
 				AB77C2961DF956EE00B30619 /* Brand.swift */,
 				50604585206BCE10009569D1 /* BrandColors.swift */,
+				508AB2C3210A07DF0079EAE5 /* BrandFeatures.swift */,
 				50D65A0E20DE87F700DFD183 /* CourseDateLabelStyle.swift */,
 			);
 			path = Branding;
@@ -1929,6 +1932,7 @@
 				50FA2E0720E4B22E00656776 /* Settings.swift in Sources */,
 				50FA2E3820E4B25800656776 /* CourseCertificates.swift in Sources */,
 				50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */,
+				508AB2C4210A07DF0079EAE5 /* BrandFeatures.swift in Sources */,
 				50FA2E1820E4B24300656776 /* LTIExerciseHelper.swift in Sources */,
 				50FA2E2D20E4B25000656776 /* SyncEngine.swift in Sources */,
 				50FA2E3A20E4B25800656776 /* CourseDate.swift in Sources */,

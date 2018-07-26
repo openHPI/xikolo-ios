@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import Common
 import UIKit
 
 enum CourseContent {
@@ -14,14 +15,24 @@ enum CourseContent {
     case announcements
     case certificates
 
-    static let orderedValues: [CourseContent] = [
-        .learnings,
-        .discussions,
-        .courseDetails,
-        .documents,
-        .announcements,
-        .certificates,
-    ]
+    static let orderedValues: [CourseContent] = {
+        var values: [CourseContent] = [
+            .learnings,
+            .discussions,
+            .courseDetails,
+        ]
+
+        if Brand.default.features.enableDocuments {
+            values.append(.documents)
+        }
+
+        values += [
+            .announcements,
+            .certificates,
+        ]
+
+        return values
+    }()
 
     var acessibleWithoutEnrollment: Bool {
         return self == .courseDetails || self == .certificates

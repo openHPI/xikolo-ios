@@ -18,8 +18,11 @@ class DocumentListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedSectionHeaderHeight = 44
+
         // register custom section header view
-//        self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
+        self.tableView.register(R.nib.courseDocumentHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDocumentHeader.name)
 
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
@@ -90,44 +93,29 @@ extension DocumentListViewController { // TableViewDelegate
         self.navigationController?.pushViewController(pdfViewController, animated: true)
     }
 
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseItemHeader.name) as? CourseItemHeader else {
-//            return nil
-//        }
-//
-//        let visualIndexPath = IndexPath(row: 0, section: section)
-//        guard let (controller, indexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
-//            return nil
-//        }
-//
-//        guard let section = controller.object(at: indexPath).section else {
-//            return nil
-//        }
-//
-//        header.configure(for: section, inOfflineMode: self.inOfflineMode)
-//        header.delegate = self
-//
-//        return header
-//    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseDocumentHeader.name) as? CourseDocumentHeader else {
+            return nil
+        }
 
-//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 50
-//    }
+        let visualIndexPath = IndexPath(row: 0, section: section)
+        guard let (controller, indexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
+            return nil
+        }
+
+        let document = controller.object(at: indexPath).document
+        header.configure(for: document)
+
+        return header
+    }
 
 }
 
 class DocumentListViewConfiguration: TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<DocumentLocalization>, indexPath: IndexPath) {
-//        let cell = cell.require(toHaveType: DocumentCell.self, hint: "CourseItemListViewController requires cell of type CourseItemCell")
         let item = controller.object(at: indexPath)
-//        cell.configure(for: item)
-        cell.textLabel?.text = item.title
-    }
-
-    func titleForDefaultHeader(forController controller: NSFetchedResultsController<DocumentLocalization>, forSection section: Int) -> String? {
-        let indexPath = IndexPath(row: 0, section: section)
-        return controller.object(at: indexPath).document.title
+        cell.textLabel?.text = item.languageCode
     }
 
 }

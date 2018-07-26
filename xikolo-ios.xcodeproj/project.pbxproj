@@ -24,6 +24,8 @@
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
+		508AB2C02109F0A10079EAE5 /* CourseDocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */; };
+		508AB2C22109F0DE0079EAE5 /* CourseDocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B6120ED10610085C6DB /* CommonLocalizedString.swift */; };
@@ -424,6 +426,8 @@
 		507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
+		508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDocumentHeader.xib; sourceTree = "<group>"; };
+		508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDocumentHeader.swift; sourceTree = "<group>"; };
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -711,6 +715,7 @@
 				AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */,
 				4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */,
 				7057FFD71ECA5BC400FF759B /* CourseDateHeader.swift */,
+				508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */,
 				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
 				50371FFD20501388006E9634 /* CourseItemDetailView.swift */,
@@ -1268,6 +1273,7 @@
 				506D7E1A2104B7730018D9E2 /* CourseCell.xib */,
 				50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */,
 				500228F120583139003301A7 /* CourseItemHeader.xib */,
+				508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */,
 				508BD0AF1FD6CCE100AF0167 /* CourseDateHeader.xib */,
 			);
 			path = Storyboards;
@@ -1511,6 +1517,7 @@
 				50CF1FFA20DCDBFC0011BFE9 /* Course.storyboard in Resources */,
 				50D60D3620E0F2A2007A4199 /* Pods-iOS.opensap-ios-release.xcconfig in Resources */,
 				50D60D3920E0F2A2007A4199 /* Pods-iOS.openwho-ios-release.xcconfig in Resources */,
+				508AB2C02109F0A10079EAE5 /* CourseDocumentHeader.xib in Resources */,
 				50CF1FFC20DCDBFC0011BFE9 /* CourseLearnings.storyboard in Resources */,
 				5054B2E52108B19500CE9067 /* CourseDocuments.storyboard in Resources */,
 				50CF1FFE20DCDBFC0011BFE9 /* CourseDateHeader.xib in Resources */,
@@ -1857,6 +1864,7 @@
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
 				50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */,
+				508AB2C22109F0DE0079EAE5 /* CourseDocumentHeader.swift in Sources */,
 				50CF1FA520DCDBFC0011BFE9 /* CourseViewController.swift in Sources */,
 				50CF1FA620DCDBFC0011BFE9 /* CourseCell.swift in Sources */,
 				50CF1FA820DCDBFC0011BFE9 /* CourseContentListViewController.swift in Sources */,

@@ -46,7 +46,11 @@ extension Document: Pullable {
         self.tags = try attributes.value(for: "tags")
 
         if let relationships = try? object.value(for: "relationships") as JSON {
-            try self.updateRelationship(forKeyPath: \Document.localizations, forKey: "localizations", fromObject: relationships, including: includes, inContext: context)
+            try self.updateRelationship(forKeyPath: \Document.localizations,
+                                        forKey: "localizations",
+                                        fromObject: relationships,
+                                        including: includes,
+                                        inContext: context)
         }
     }
 

@@ -135,12 +135,6 @@ extension DocumentListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDele
         return NSAttributedString(string: title)
     }
 
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.course-documents.description",
-                                            comment: "description for empty course documents list")
-        return NSAttributedString(string: description)
-    }
-
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
         self.refresh()
     }

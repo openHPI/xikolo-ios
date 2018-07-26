@@ -76,6 +76,20 @@ class DocumentListViewController: UITableViewController {
 
 extension DocumentListViewController { // TableViewDelegate
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let (controller, realIndexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath) else {
+            return
+        }
+
+        let documentLocaliztion = controller.object(at: realIndexPath)
+
+        guard let url = documentLocaliztion.fileURL else { return }
+
+        let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
+        pdfViewController.url = url
+        self.navigationController?.pushViewController(pdfViewController, animated: true)
+    }
+
 //    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseItemHeader.name) as? CourseItemHeader else {
 //            return nil

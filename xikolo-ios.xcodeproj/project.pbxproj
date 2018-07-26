@@ -23,6 +23,7 @@
 		5054B2E92108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2E82108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
+		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B6120ED10610085C6DB /* CommonLocalizedString.swift */; };
@@ -422,6 +423,7 @@
 		507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -1262,6 +1264,7 @@
 				50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */,
 				5054B2E42108B19500CE9067 /* CourseDocuments.storyboard */,
 				5040A60920795BFD00E98351 /* WebViewController.storyboard */,
+				508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */,
 				506D7E1A2104B7730018D9E2 /* CourseCell.xib */,
 				50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */,
 				500228F120583139003301A7 /* CourseItemHeader.xib */,
@@ -1501,6 +1504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50CF1FF720DCDBFC0011BFE9 /* WebViewController.storyboard in Resources */,
+				508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */,
 				50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */,
 				50CF1FF920DCDBFC0011BFE9 /* Main.storyboard in Resources */,
 				50D60D3D20E0F2A2007A4199 /* Pods-iOS.openhpi-ios-release.xcconfig in Resources */,

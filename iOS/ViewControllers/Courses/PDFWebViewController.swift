@@ -12,12 +12,20 @@ class PDFWebViewController: UIViewController {
 
     @IBOutlet private var shareButton: UIBarButtonItem!
 
-    var webView: WKWebView!
-    var url: URL!
-    private var tempPdfFile: TemporaryFile? = try? TemporaryFile(creatingTempDirectoryForFilename: "certificate.pdf")
+    var url: URL?
+
+    private var webView: WKWebView?
+    private var tempPDFFile: TemporaryFile? { //} = try? TemporaryFile(creatingTempDirectoryForFilename: "certificate.pdf") {
+        didSet {
+            try? oldValue?.deleteDirectory()
+            DispatchQueue.main.async {
+                self.navigationItem.rightBarButtonItem = self.tempPDFFile != nil ? self.shareButton : nil
+            }
+        }
+    }
 
     @IBAction func sharePDF(_ sender: UIBarButtonItem) {
-        guard let fileURL = self.tempPdfFile?.fileURL else { return }
+        guard let fileURL = self.tempPDFFile?.fileURL else { return }
         let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         self.present(activityViewController, animated: true)
@@ -25,53 +33,54 @@ class PDFWebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initializeWebView()
         self.navigationItem.rightBarButtonItem = nil
-        initializeWebView()
 
-        guard let temporaryFile = self.tempPdfFile else {
-            log.warning("temporary file location doesnt exist")
-            return
+        if let url = self.url {
+            self.loadPDF(for: url)
         }
-
-        self.loadPDF(to: temporaryFile)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        try? tempPdfFile?.deleteDirectory()
+        try? self.tempPDFFile?.deleteDirectory()
     }
 
-    func initializeWebView() {
-        // The manual initialization is necessary due to a bug in MSCoding in iOS 10
-        webView = WKWebView(frame: self.view.frame)
+    private func initializeWebView() {
+        // The manual initialization is necessary due to a bug in NSCoding in iOS 10
+        let webView = WKWebView(frame: self.view.frame)
         self.view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            self.webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            self.webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
         ])
+        self.webView = webView
     }
 
-    func loadPDF(to file: TemporaryFile) {
-        var request = URLRequest(url: self.url)
+    private func loadPDF(for url: URL) {
+        var request = URLRequest(url: url)
         request.setValue(Routes.Header.acceptPDF, forHTTPHeaderField: Routes.Header.acceptKey)
         for (key, value) in NetworkHelper.requestHeaders {
             request.setValue(value, forHTTPHeaderField: key)
         }
 
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let filename = response?.suggestedFilename ?? "\(url.lastPathComponent).pdf"
+
             do {
-                try data?.write(to: file.fileURL)
+                let tmpFile = try TemporaryFile(creatingTempDirectoryForFilename: filename)
+                try data?.write(to: tmpFile.fileURL)
+
+                self.tempPDFFile = tmpFile
+                let request = URLRequest(url: tmpFile.fileURL)
+                DispatchQueue.main.async {
+                    self.webView?.load(request)
+                }
             } catch {
                 log.error(error)
-            }
-
-            let request = URLRequest(url: file.fileURL)
-            DispatchQueue.main.async {
-                self.webView.load(request)
-                self.navigationItem.rightBarButtonItem = self.shareButton
             }
         }
 

@@ -16,6 +16,7 @@
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
+		508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C5210B20E80079EAE5 /* DashboardViewController.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B6120ED10610085C6DB /* CommonLocalizedString.swift */; };
@@ -407,6 +408,7 @@
 		507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		508AB2C5210B20E80079EAE5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		508BD0AE1FD6CCE100AF0167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseDateHeader.xib; sourceTree = "<group>"; };
 		508BD0B11FD6CCE800AF0167 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseDateHeader.strings; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -1064,6 +1066,7 @@
 		AB6AE0C61CF7D6B000708654 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				508AB2C5210B20E80079EAE5 /* DashboardViewController.swift */,
 				4E2B821C1DDB0EE200559217 /* CourseDatesListViewController.swift */,
 				4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */,
 			);
@@ -1801,6 +1804,7 @@
 				50CF1F6C20DCDBFC0011BFE9 /* CustomHeaderWebView.swift in Sources */,
 				50CF1F6E20DCDBFC0011BFE9 /* CourseItemHeader.swift in Sources */,
 				50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */,
+				508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */,
 				50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */,
 				50CF1F7220DCDBFC0011BFE9 /* CourseListLayout.swift in Sources */,
 				5095B1DD20EB81E900572924 /* CrashlyticsHelper.swift in Sources */,

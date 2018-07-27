@@ -53,6 +53,9 @@ class DocumentListViewController: UITableViewController {
 
         self.tableView.reloadData()
 
+        // needs to be called in order to display the header view correctly
+        self.tableView.layoutIfNeeded()
+
         self.setupEmptyState()
     }
 

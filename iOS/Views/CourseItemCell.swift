@@ -58,6 +58,7 @@ class CourseItemCell: UITableViewCell {
         }
 
         let isAvailable = !(self.delegate?.inOfflineMode ?? true) || video.isAvailableOffline
+        self.actionsButton.isEnabled = isAvailable
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : UIColor.lightGray
         self.actionsButton.isHidden = false
     }

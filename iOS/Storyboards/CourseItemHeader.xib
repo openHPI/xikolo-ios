@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,16 +19,15 @@
                 <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5M-nR-7iH">
                     <rect key="frame" x="16" y="0.0" width="343" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-Ly-v5e">
-                            <rect key="frame" x="16" y="22.5" width="30" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-Ly-v5e">
+                            <rect key="frame" x="16" y="14" width="30" height="28"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ny-cH-9gM">
-                            <rect key="frame" x="315" y="15" width="28" height="28"/>
+                            <rect key="frame" x="315" y="6" width="28" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="5ny-cH-9gM" secondAttribute="height" multiplier="1:1" id="IWx-NO-2u1"/>
                                 <constraint firstAttribute="width" constant="28" id="dHh-TF-eov"/>
                             </constraints>
                             <state key="normal" title="Button" image="dots"/>
@@ -40,11 +38,13 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="5ny-cH-9gM" firstAttribute="centerY" secondItem="a5M-nR-7iH" secondAttribute="centerY" constant="4" id="6Xl-aJ-5aE"/>
-                        <constraint firstItem="rvi-Ly-v5e" firstAttribute="centerY" secondItem="a5M-nR-7iH" secondAttribute="centerY" constant="6" id="EHf-iY-r1A"/>
+                        <constraint firstItem="5ny-cH-9gM" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" constant="6" id="9EZ-Lh-HQy"/>
+                        <constraint firstAttribute="bottom" secondItem="5ny-cH-9gM" secondAttribute="bottom" id="L9i-uV-hI6"/>
                         <constraint firstAttribute="trailing" secondItem="5ny-cH-9gM" secondAttribute="trailing" id="ZCR-ST-oQD"/>
                         <constraint firstItem="rvi-Ly-v5e" firstAttribute="leading" secondItem="a5M-nR-7iH" secondAttribute="leadingMargin" constant="8" id="cik-ND-LcY"/>
+                        <constraint firstItem="rvi-Ly-v5e" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="topMargin" constant="6" id="g7W-bh-Qi7"/>
                         <constraint firstItem="5ny-cH-9gM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rvi-Ly-v5e" secondAttribute="trailing" constant="8" symbolic="YES" id="jwU-Q8-Yd1"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="rvi-Ly-v5e" secondAttribute="bottom" id="pEx-mv-p7A"/>
                     </constraints>
                 </view>
             </subviews>

@@ -96,10 +96,12 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Z0Q-ox-T9X" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="topMargin" id="0MF-7X-o7p"/>
+                                        <constraint firstItem="Z0Q-ox-T9X" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUS-v4-gua" secondAttribute="topMargin" id="0MF-7X-o7p"/>
                                         <constraint firstItem="Z0Q-ox-T9X" firstAttribute="leading" secondItem="dUS-v4-gua" secondAttribute="leadingMargin" id="HIt-p6-20L"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Z0Q-ox-T9X" secondAttribute="trailing" id="Y64-lJ-NcP"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Z0Q-ox-T9X" secondAttribute="bottom" id="w9r-4x-1s3"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="L8U-Fp-wH1" secondAttribute="bottom" constant="14" id="bY7-I4-2eZ"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Z0Q-ox-T9X" secondAttribute="bottom" id="w9r-4x-1s3"/>
+                                        <constraint firstItem="L8U-Fp-wH1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUS-v4-gua" secondAttribute="top" constant="14" id="xl1-Uz-H2x"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

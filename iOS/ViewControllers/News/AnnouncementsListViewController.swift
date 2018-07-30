@@ -21,8 +21,17 @@ class AnnouncementsListViewController: UITableViewController {
 
     var course: Course?
 
+    @IBOutlet private var actionButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateUIAfterLoginStateChanged),
+                                               name: UserProfileHelper.loginStateDidChangeNotification,
+                                               object: nil)
+
+        self.updateUIAfterLoginStateChanged()
 
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
@@ -102,6 +111,24 @@ class AnnouncementsListViewController: UITableViewController {
         }
     }
 
+    @objc private func updateUIAfterLoginStateChanged() {
+        self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
+    }
+
+    @IBAction func tappedActionButton(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.barButtonItem = sender
+
+        let markAllAsReadActionTitle = NSLocalizedString("announcement.alert.mark all as read", comment: "alert action title to mark all announcements as read")
+        let markAllAsReadAction = UIAlertAction(title: markAllAsReadActionTitle, style: .default) { _ in
+            AnnouncementHelper.shared.markAllAsVisited()
+        }
+
+        alert.addAction(markAllAsReadAction)
+        alert.addCancelAction()
+
+        self.present(alert, animated: true)
+    }
 }
 
 extension AnnouncementsListViewController { // TableViewDelegate

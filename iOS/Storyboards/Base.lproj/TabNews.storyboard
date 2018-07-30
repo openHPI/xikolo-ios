@@ -143,10 +143,17 @@
                             <outlet property="delegate" destination="vxq-Ct-km1" id="axD-p1-lTo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News" id="ZnP-5l-3Ix"/>
+                    <navigationItem key="navigationItem" title="News" id="ZnP-5l-3Ix">
+                        <barButtonItem key="rightBarButtonItem" image="dots" id="Abn-bO-lDv">
+                            <connections>
+                                <action selector="tappedActionButton:" destination="vxq-Ct-km1" id="mM3-bB-oYe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="actionButton" destination="Abn-bO-lDv" id="22u-0J-hUq"/>
                         <segue destination="eQp-3j-Pq9" kind="show" identifier="ShowAnnouncement" id="8QI-od-mYg"/>
                     </connections>
                 </tableViewController>
@@ -297,6 +304,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dots" width="28" height="28"/>
         <image name="tab bar items/news" width="25" height="25"/>
     </resources>
 </document>

@@ -20,6 +20,8 @@ class CourseItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        self.readStateView.layer.cornerRadius = self.readStateView.bounds.width / 2
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                                name: DownloadState.didChangeNotification,
@@ -51,13 +53,15 @@ class CourseItemCell: UITableViewCell {
 
     private func configureActionsButton(for courseItem: CourseItem) {
         guard let video = courseItem.content as? Video, (video.streamURLForDownload != nil || video.slidesURL != nil) else {
-            self.actionsButton.isHidden = true
+            self.actionsButton.isEnabled = false
+            self.actionsButton.alpha = 0
             return
         }
 
         let isAvailable = !(self.delegate?.inOfflineMode ?? true) || video.isAvailableOffline
+        self.actionsButton.isEnabled = isAvailable
         self.actionsButton.tintColor = isAvailable ? Brand.default.colors.primary : UIColor.lightGray
-        self.actionsButton.isHidden = false
+        self.actionsButton.alpha = 1
     }
 
     @IBAction func tappedActionsButton() {

@@ -37,12 +37,22 @@ class CourseDetailViewController: UIViewController {
         self.statusView.backgroundColor = Brand.default.colors.secondary
 
         self.updateView()
+        self.updateImageViewAppearence()
+
         CourseHelper.syncCourse(self.course)
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass {
+            self.updateImageViewAppearence()
+        }
     }
 
     private func updateView() {
@@ -61,6 +71,12 @@ class CourseDetailViewController: UIViewController {
         }
 
         self.refreshEnrollmentViews()
+    }
+
+    private func updateImageViewAppearence() {
+        let showEdgeToEdge = self.traitCollection.horizontalSizeClass != .regular
+        self.imageView.layer.cornerRadius = showEdgeToEdge ? 0 : 6.0
+        self.imageView.layer.masksToBounds = true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

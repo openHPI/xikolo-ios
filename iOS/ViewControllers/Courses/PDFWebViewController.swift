@@ -15,7 +15,7 @@ class PDFWebViewController: UIViewController {
     var url: URL?
 
     private var webView: WKWebView?
-    private var tempPDFFile: TemporaryFile? { //} = try? TemporaryFile(creatingTempDirectoryForFilename: "certificate.pdf") {
+    private var tempPDFFile: TemporaryFile? {
         didSet {
             try? oldValue?.deleteDirectory()
             DispatchQueue.main.async {

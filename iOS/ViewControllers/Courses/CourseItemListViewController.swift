@@ -38,11 +38,11 @@ class CourseItemListViewController: UITableViewController {
         // register custom section header view
         self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
-        var separatorInsetLeft: CGFloat = 20.0
+        var separatorInsetLeft: CGFloat = 16.0
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets
         } else {
-            separatorInsetLeft += 15.0
+            separatorInsetLeft += 11.0
         }
 
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)

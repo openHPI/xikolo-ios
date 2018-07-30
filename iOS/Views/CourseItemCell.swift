@@ -20,6 +20,8 @@ class CourseItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        self.readStateView.layer.cornerRadius = self.readStateView.bounds.width / 2
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleAssetDownloadStateChangedNotification(_:)),
                                                name: DownloadState.didChangeNotification,

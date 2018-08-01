@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -103,18 +104,18 @@
         <scene sceneID="dty-iP-G4f">
             <objects>
                 <viewController id="2cl-8e-XIc" customClass="DashboardViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="W6S-74-lNE" customClass="UIScrollView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" id="W6S-74-lNE" customClass="UIScrollView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6l-Tk-6nX" userLabel="Scroll View Content">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6l-Tk-6nX" userLabel="Scroll View Content">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ufR-Dq-WYZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ufR-Dq-WYZ">
+                                        <rect key="frame" x="0.0" y="124" width="375" height="744"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-dl-Kvx">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="247"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qXf-ng-fIY">
                                                         <rect key="frame" x="0.0" y="24" width="375" height="154"/>
@@ -127,6 +128,9 @@
                                                     </containerView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My next dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUI-6e-Wl3">
                                                         <rect key="frame" x="16" y="0.0" width="343" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="tlk-uw-3Vd"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -143,7 +147,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dgc-6g-3LB">
-                                                <rect key="frame" x="0.0" y="247" width="375" height="475"/>
+                                                <rect key="frame" x="0.0" y="204" width="375" height="268"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4G-RU-f4c">
                                                         <rect key="frame" x="0.0" y="24" width="375" height="234"/>
@@ -154,9 +158,12 @@
                                                             <segue destination="siC-S8-0pE" kind="embed" id="Wk9-9E-iy2"/>
                                                         </connections>
                                                     </containerView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My current courses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-HW-M2j">
-                                                        <rect key="frame" x="16" y="0.0" width="343" height="36"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My current courses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-HW-M2j">
+                                                        <rect key="frame" x="16" y="0.0" width="343" height="26"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="26" id="cRL-mF-Dno"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -172,10 +179,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4sQ-li-unL">
-                                                <rect key="frame" x="0.0" y="722" width="375" height="278"/>
+                                                <rect key="frame" x="0.0" y="472" width="375" height="272"/>
                                                 <subviews>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHt-3K-joT">
-                                                        <rect key="frame" x="0.0" y="24" width="375" height="234"/>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHt-3K-joT">
+                                                        <rect key="frame" x="0.0" y="6" width="375" height="234"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="234" id="GVJ-Rz-F4w"/>
                                                         </constraints>
@@ -183,9 +190,12 @@
                                                             <segue destination="siC-S8-0pE" kind="embed" id="tnO-ZV-pmP"/>
                                                         </connections>
                                                     </containerView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My completed courses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toQ-7j-hjA">
-                                                        <rect key="frame" x="16" y="0.0" width="343" height="36"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My completed courses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toQ-7j-hjA">
+                                                        <rect key="frame" x="16" y="0.0" width="343" height="26"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="26" id="h1O-vN-hOY"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -208,7 +218,7 @@
                                     <constraint firstAttribute="bottom" secondItem="ufR-Dq-WYZ" secondAttribute="bottom" id="Gsr-re-qsW"/>
                                     <constraint firstItem="ufR-Dq-WYZ" firstAttribute="leading" secondItem="a6l-Tk-6nX" secondAttribute="leading" id="OCT-pn-dYF"/>
                                     <constraint firstAttribute="trailing" secondItem="ufR-Dq-WYZ" secondAttribute="trailing" id="kr6-n6-TAQ"/>
-                                    <constraint firstItem="ufR-Dq-WYZ" firstAttribute="top" secondItem="a6l-Tk-6nX" secondAttribute="top" id="r1A-bT-Goa"/>
+                                    <constraint firstItem="ufR-Dq-WYZ" firstAttribute="top" secondItem="a6l-Tk-6nX" secondAttribute="topMargin" id="r1A-bT-Goa"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -220,9 +230,10 @@
                             <constraint firstAttribute="bottom" secondItem="a6l-Tk-6nX" secondAttribute="bottom" id="rm6-RL-l1a"/>
                             <constraint firstItem="a6l-Tk-6nX" firstAttribute="trailing" secondItem="W6S-74-lNE" secondAttribute="trailing" id="vEY-jU-Knu"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="30I-iG-Co7"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard" id="a5b-BY-Del"/>
-                    <size key="freeformSize" width="375" height="1000"/>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="scrollView" destination="W6S-74-lNE" id="u0o-fY-tZS"/>
                     </connections>

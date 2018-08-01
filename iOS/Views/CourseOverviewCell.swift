@@ -25,9 +25,9 @@ class CourseOverviewCell: UITableViewCell {
         var fetchRequest: NSFetchRequest<Course> {
             switch self {
             case .currentCourses:
-                return CourseHelper.FetchRequest.enrolledCourses
+                return CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
             case .completedCourses:
-                return CourseHelper.FetchRequest.enrolledCourses
+                return CourseHelper.FetchRequest.completedCourses
             }
         }
     }

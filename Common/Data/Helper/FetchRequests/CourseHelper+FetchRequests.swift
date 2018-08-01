@@ -134,24 +134,14 @@ extension CourseHelper {
             return request
         }
 
-        public static var enrolledCourses: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                genericPredicate,
-                enrolledPredicate,
-                accessiblePredicate,
-            ])
-            return request
-        }
 
-        static var enrolledCurrentCoursesRequest: NSFetchRequest<Course> {
+        public static var enrolledCurrentCoursesRequest: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 genericPredicate,
                 enrolledPredicate,
                 accessiblePredicate,
                 notCompletedPredicate,
-                activePredicate,
             ])
             return request
         }
@@ -189,7 +179,7 @@ extension CourseHelper {
             return request
         }
 
-        static var completedCourses: NSFetchRequest<Course> {
+        public static var completedCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 genericPredicate,

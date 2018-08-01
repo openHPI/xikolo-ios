@@ -97,10 +97,7 @@ class CourseCell: UICollectionViewCell {
                 }
             }
         case .courseOverview:
-            if let enrollment = course.enrollment, enrollment.completed {
-                self.statusView.isHidden = false
-                self.statusLabel.text = NSLocalizedString("course-cell.status.completed", comment: "status 'completed' of a course")
-            } else if course.status == "announced" {
+            if course.status == "announced" {
                 self.statusView.isHidden = false
                 self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")
             }

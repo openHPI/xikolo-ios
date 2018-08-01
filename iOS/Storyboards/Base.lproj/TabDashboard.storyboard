@@ -228,6 +228,7 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
+                                            <variation key="widthClass=regular" axis="horizontal" distribution="fillEqually"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>

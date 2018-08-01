@@ -5,22 +5,53 @@
 
 import Common
 import CoreData
-import DZNEmptyDataSet
-import Foundation
 import UIKit
 
-class CourseOverviewViewController: UICollectionViewController {
+class CourseOverviewCell: UITableViewCell {
 
-    var fetchRequest: NSFetchRequest<Course>!
-    var resultsController: NSFetchedResultsController<Course>!
-    var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
+    enum Configuration {
+        case currentCourses
+        case completedCourses
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        var title: String {
+            switch self {
+            case .currentCourses:
+                return "Your current courses"
+            case .completedCourses:
+                return "Your completed courses"
+            }
+        }
 
+        var fetchRequest: NSFetchRequest<Course> {
+            switch self {
+            case .currentCourses:
+                return CourseHelper.FetchRequest.enrolledCourses
+            case .completedCourses:
+                return CourseHelper.FetchRequest.enrolledCourses
+            }
+        }
+    }
+
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
+
+    private var fetchRequest: NSFetchRequest<Course>!
+    private var resultsController: NSFetchedResultsController<Course>!
+    private var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
         self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
+        self.collectionView.delegate = self
+    }
 
-//        let request = CourseHelper.FetchRequest.enrolledCourses
+    func configure(for configuration: Configuration) {
+        self.titleLabel.text = configuration.title
+        self.fetchRequest = configuration.fetchRequest
+        self.configureCollectionView()
+    }
+
+    private func configureCollectionView() {
         resultsController = CoreDataHelper.createResultsController(self.fetchRequest, sectionNameKeyPath: nil)
 
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
@@ -42,16 +73,16 @@ class CourseOverviewViewController: UICollectionViewController {
 
 }
 
-extension CourseOverviewViewController {
+extension CourseOverviewCell: UICollectionViewDelegate {
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = resultsController.object(at: indexPath)
         AppNavigator.show(course: course)
     }
 
 }
 
-extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
+extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

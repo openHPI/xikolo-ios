@@ -112,10 +112,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ufR-Dq-WYZ">
-                                        <rect key="frame" x="0.0" y="124" width="375" height="744"/>
+                                        <rect key="frame" x="0.0" y="124" width="375" height="740"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-dl-Kvx">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qXf-ng-fIY">
                                                         <rect key="frame" x="0.0" y="24" width="375" height="154"/>
@@ -126,12 +126,12 @@
                                                             <segue destination="TzN-ab-aeu" kind="embed" id="bGb-zu-Y7X"/>
                                                         </connections>
                                                     </containerView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My next dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUI-6e-Wl3">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My next dates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUI-6e-Wl3">
                                                         <rect key="frame" x="16" y="0.0" width="343" height="24"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="tlk-uw-3Vd"/>
+                                                            <constraint firstAttribute="height" constant="26" id="tlk-uw-3Vd"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -147,7 +147,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dgc-6g-3LB">
-                                                <rect key="frame" x="0.0" y="204" width="375" height="268"/>
+                                                <rect key="frame" x="0.0" y="200" width="375" height="268"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4G-RU-f4c">
                                                         <rect key="frame" x="0.0" y="24" width="375" height="234"/>
@@ -155,7 +155,7 @@
                                                             <constraint firstAttribute="height" constant="234" id="76Y-uq-Oxx"/>
                                                         </constraints>
                                                         <connections>
-                                                            <segue destination="siC-S8-0pE" kind="embed" id="Wk9-9E-iy2"/>
+                                                            <segue destination="siC-S8-0pE" kind="embed" identifier="embedCurrentCourses" id="Wk9-9E-iy2"/>
                                                         </connections>
                                                     </containerView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My current courses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-HW-M2j">
@@ -179,7 +179,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4sQ-li-unL">
-                                                <rect key="frame" x="0.0" y="472" width="375" height="272"/>
+                                                <rect key="frame" x="0.0" y="468" width="375" height="272"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHt-3K-joT">
                                                         <rect key="frame" x="0.0" y="6" width="375" height="234"/>
@@ -187,7 +187,7 @@
                                                             <constraint firstAttribute="height" constant="234" id="GVJ-Rz-F4w"/>
                                                         </constraints>
                                                         <connections>
-                                                            <segue destination="siC-S8-0pE" kind="embed" id="tnO-ZV-pmP"/>
+                                                            <segue destination="siC-S8-0pE" kind="embed" identifier="embedCompletedCourses" id="tnO-ZV-pmP"/>
                                                         </connections>
                                                     </containerView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My completed courses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toQ-7j-hjA">
@@ -242,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="775" y="940"/>
         </scene>
-        <!--Course Activity View Controller-->
+        <!--Course Overview View Controller-->
         <scene sceneID="2oD-bA-n2d">
             <objects>
-                <collectionViewController id="siC-S8-0pE" customClass="CourseActivityViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="siC-S8-0pE" customClass="CourseOverviewViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="sph-AR-Bam">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

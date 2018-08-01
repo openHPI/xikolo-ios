@@ -63,7 +63,7 @@
 		50CF1F8A20DCDBFC0011BFE9 /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
 		50CF1F8B20DCDBFC0011BFE9 /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */; };
 		50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
-		50CF1F9420DCDBFC0011BFE9 /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
+		50CF1F9420DCDBFC0011BFE9 /* CourseOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseOverviewViewController.swift */; };
 		50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A61C2079781900E98351 /* CourseTransitioningDelegate.swift */; };
 		50CF1F9720DCDBFC0011BFE9 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
 		50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
@@ -329,7 +329,7 @@
 		4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateCell.swift; sourceTree = "<group>"; };
 		4E2B82191DDB00C900559217 /* CourseDateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDateHelper.swift; sourceTree = "<group>"; };
 		4E2B821C1DDB0EE200559217 /* CourseDatesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDatesListViewController.swift; sourceTree = "<group>"; };
-		4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseActivityViewController.swift; sourceTree = "<group>"; };
+		4E2B82221DDC9DB200559217 /* CourseOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseOverviewViewController.swift; sourceTree = "<group>"; };
 		4E6AB1F11DD36AB500B048DB /* CourseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDate.swift; sourceTree = "<group>"; };
 		500228E720580142003301A7 /* UIAlertViewController+cancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+cancel.swift"; sourceTree = "<group>"; };
 		500228EC20582573003301A7 /* CourseItemHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemHeader.swift; sourceTree = "<group>"; };
@@ -1068,7 +1068,7 @@
 			children = (
 				508AB2C5210B20E80079EAE5 /* DashboardViewController.swift */,
 				4E2B821C1DDB0EE200559217 /* CourseDatesListViewController.swift */,
-				4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */,
+				4E2B82221DDC9DB200559217 /* CourseOverviewViewController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1828,7 +1828,7 @@
 				50CF1F8B20DCDBFC0011BFE9 /* AnnouncementCell.swift in Sources */,
 				50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */,
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
-				50CF1F9420DCDBFC0011BFE9 /* CourseActivityViewController.swift in Sources */,
+				50CF1F9420DCDBFC0011BFE9 /* CourseOverviewViewController.swift in Sources */,
 				50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */,
 				50CF1F9720DCDBFC0011BFE9 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,

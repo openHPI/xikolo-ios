@@ -9,8 +9,9 @@ import DZNEmptyDataSet
 import Foundation
 import UIKit
 
-class CourseActivityViewController: UICollectionViewController {
+class CourseOverviewViewController: UICollectionViewController {
 
+    var fetchRequest: NSFetchRequest<Course>!
     var resultsController: NSFetchedResultsController<Course>!
     var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
 
@@ -19,14 +20,14 @@ class CourseActivityViewController: UICollectionViewController {
 
         self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
 
-        let request = CourseHelper.FetchRequest.enrolledCourses
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+//        let request = CourseHelper.FetchRequest.enrolledCourses
+        resultsController = CoreDataHelper.createResultsController(self.fetchRequest, sectionNameKeyPath: nil)
 
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
                                                                                                         resultsControllers: [resultsController],
                                                                                                         cellReuseIdentifier: reuseIdentifier)
-        let configuration = CourseActivityViewConfiguration().wrapped
+        let configuration = CourseOverviewViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         self.collectionView?.dataSource = resultsControllerDelegateImplementation
@@ -41,7 +42,7 @@ class CourseActivityViewController: UICollectionViewController {
 
 }
 
-extension CourseActivityViewController {
+extension CourseOverviewViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = resultsController.object(at: indexPath)
@@ -50,7 +51,7 @@ extension CourseActivityViewController {
 
 }
 
-extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
+extension CourseOverviewViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -91,12 +92,12 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
-struct CourseActivityViewConfiguration: CollectionViewResultsControllerConfiguration {
+struct CourseOverviewViewConfiguration: CollectionViewResultsControllerConfiguration {
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseActivityViewController requires cell of type CourseCell")
+        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseOverviewViewController requires cell of type CourseCell")
         let course = controller.object(at: indexPath)
-        cell.configure(course, forConfiguration: .courseActivity)
+        cell.configure(course, forConfiguration: .courseOverview)
     }
 
 }

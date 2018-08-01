@@ -13,9 +13,6 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.scrollView.bounces = true
-//        self.scrollView.alwaysBounceVertical = true
-
         // setup pull to refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -27,6 +24,14 @@ class DashboardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         TrackingHelper.shared.createEvent(.visitedDashboard)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.dashboardViewController.embedCurrentCourses(segue: segue) {
+            typedInfo.destination.fetchRequest = CourseHelper.FetchRequest.enrolledCourses
+        } else if let typedInfo = R.segue.dashboardViewController.embedCompletedCourses(segue: segue) {
+            typedInfo.destination.fetchRequest = CourseHelper.FetchRequest.enrolledCourses
+        }
     }
 
     @objc func refresh() {
@@ -42,7 +47,6 @@ class DashboardViewController: UIViewController {
                 stopRefreshControl()
             }
         }
-
     }
 
 }

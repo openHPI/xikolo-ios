@@ -16,7 +16,7 @@
         <scene sceneID="cpo-J6-K8J">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0XJ-Ct-Y4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="TzN-ab-aeu" customClass="CourseDatesListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="TzN-ab-aeu" customClass="CourseDateListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uSi-6e-ygS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

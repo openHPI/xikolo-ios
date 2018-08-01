@@ -8,7 +8,7 @@ import CoreData
 import DZNEmptyDataSet
 import UIKit
 
-class CourseDatesListViewController: UITableViewController {
+class CourseDateListViewController: UITableViewController {
 
     var resultsController: NSFetchedResultsController<CourseDate>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseDate>!
@@ -53,7 +53,7 @@ class CourseDatesListViewController: UITableViewController {
 
 }
 
-extension CourseDatesListViewController {
+extension CourseDateListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
@@ -79,7 +79,7 @@ struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguratio
 
 }
 
-extension CourseDatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseDateListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         guard let tableHeaderView = self.tableView.tableHeaderView else {

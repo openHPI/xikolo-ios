@@ -18,12 +18,12 @@ class CourseDateOverviewCell: UITableViewCell {
     }
 
     private func applyCardLook(to view: UIView) {
-        view.backgroundColor = Brand.default.colors.secondary.withAlphaComponent(0.2)
         view.layer.masksToBounds = false
         view.layer.cornerRadius = 6.0
         view.layer.shadowOpacity = 0.25
-        view.layer.shadowRadius = 6.0
+        view.layer.shadowRadius = 8.0
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
+
 }

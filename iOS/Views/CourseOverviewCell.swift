@@ -102,10 +102,6 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath())
-        let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
-        let viewWidth = self.collectionView?.frame.size.width ?? 0
-
         var leftPadding = collectionView.layoutMargins.left - 14
         var rightPadding = collectionView.layoutMargins.right - 14
 
@@ -113,10 +109,6 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
             leftPadding -= collectionView.safeAreaInsets.left
             rightPadding -= collectionView.safeAreaInsets.right
         }
-
-        let horizontalCenteredPadding = (viewWidth - numberOfCellsInSection * cellSize.width) / 2
-        leftPadding = max(leftPadding, horizontalCenteredPadding)
-        rightPadding = max(leftPadding, horizontalCenteredPadding)
 
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }

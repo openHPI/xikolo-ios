@@ -43,7 +43,7 @@ class DashboardViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return Brand.default.features.showCourseDatesOnDashboard ? 3 : 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,13 +51,14 @@ class DashboardViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        let section = Brand.default.features.showCourseDatesOnDashboard ? indexPath.section : indexPath.section + 1
+        if section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseDateOverviewCell, for: indexPath).require()
             cell.loadData()
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseOverviewCell, for: indexPath).require()
-            let configuration: CourseOverviewCell.Configuration = indexPath.section == 1 ? .currentCourses : .completedCourses
+            let configuration: CourseOverviewCell.Configuration = section == 1 ? .currentCourses : .completedCourses
             cell.configure(for: configuration)
             return cell
         }

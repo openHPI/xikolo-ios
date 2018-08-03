@@ -19,6 +19,7 @@ public struct Brand: Decodable {
         case colors
         case courseDateLabelStyle
         case useDummyCredentialsForSDWebImage
+        case features
     }
 
     public static let `default`: Brand = {
@@ -39,6 +40,7 @@ public struct Brand: Decodable {
     public var poweredByText: String?
     public let courseDateLabelStyle: CourseDateLabelStyle
     public let useDummyCredentialsForSDWebImage: Bool
+    public let features: BrandFeatures
 
     public var copyrightText: String {
         let currentYear = Calendar.current.component(.year, from: Date())
@@ -73,6 +75,7 @@ public struct Brand: Decodable {
         self.colors = try container.decode(BrandColors.self, forKey: .colors)
         self.courseDateLabelStyle = try container.decodeCourseDateLabelStyle(forKey: .courseDateLabelStyle)
         self.useDummyCredentialsForSDWebImage = try container.decodeIfPresent(Bool.self, forKey: .useDummyCredentialsForSDWebImage) ?? false
+        self.features = try container.decode(BrandFeatures.self, forKey: .features)
     }
 
 }

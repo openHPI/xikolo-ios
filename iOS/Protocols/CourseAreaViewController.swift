@@ -6,6 +6,6 @@
 import Common
 import Foundation
 
-protocol CourseContentViewController {
+protocol CourseAreaViewController {
     func configure(for course: Course)
 }

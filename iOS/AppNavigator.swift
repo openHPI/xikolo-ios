@@ -139,7 +139,7 @@ class AppNavigator {
         return true
     }
 
-    static func show(course: Course, with content: CourseContent = .learnings) {
+    static func show(course: Course, with content: CourseArea = .learnings) {
         self.currentCourseViewController?.closeCourse()
         self.currentCourseViewController = nil
 

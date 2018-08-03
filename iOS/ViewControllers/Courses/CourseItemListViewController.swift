@@ -292,7 +292,7 @@ extension CourseItemListViewController: UserActionsDelegate {
 
 }
 
-extension CourseItemListViewController: CourseContentViewController {
+extension CourseItemListViewController: CourseAreaViewController {
 
     func configure(for course: Course) {
         self.course = course

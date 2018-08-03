@@ -92,7 +92,7 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
 
 }
 
-extension CertificatesListViewController: CourseContentViewController {
+extension CertificatesListViewController: CourseAreaViewController {
 
     func configure(for course: Course) {
         self.course = course

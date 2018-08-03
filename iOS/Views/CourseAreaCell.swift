@@ -6,7 +6,7 @@
 import Common
 import UIKit
 
-class CourseContentCell: UICollectionViewCell {
+class CourseAreaCell: UICollectionViewCell {
 
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var hightlightView: UIView!
@@ -20,7 +20,7 @@ class CourseContentCell: UICollectionViewCell {
         self.hightlightView.clipsToBounds = true
     }
 
-    func configure(for content: CourseContent, selected: Bool) {
+    func configure(for content: CourseArea, selected: Bool) {
         self.titleView.text = content.title
         self.titleView.textColor = selected ? UIColor.black : UIColor.lightGray
         self.titleView.font = selected ? UIFont.boldSystemFont(ofSize: 14) : UIFont.systemFont(ofSize: 14)

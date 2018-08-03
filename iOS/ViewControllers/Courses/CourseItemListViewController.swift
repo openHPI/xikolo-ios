@@ -38,11 +38,17 @@ class CourseItemListViewController: UITableViewController {
         // register custom section header view
         self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
-        var separatorInsetLeft: CGFloat = 20.0
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedSectionHeaderHeight = 50
+
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 50
+
+        var separatorInsetLeft: CGFloat = 16.0
         if #available(iOS 11.0, *) {
             self.tableView.separatorInsetReference = .fromAutomaticInsets
         } else {
-            separatorInsetLeft += 15.0
+            separatorInsetLeft += 11.0
         }
 
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: separatorInsetLeft, bottom: 0, right: 0)
@@ -210,10 +216,6 @@ extension CourseItemListViewController { // TableViewDelegate
         return header
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-
 }
 
 class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
@@ -290,7 +292,7 @@ extension CourseItemListViewController: UserActionsDelegate {
 
 }
 
-extension CourseItemListViewController: CourseContentViewController {
+extension CourseItemListViewController: CourseAreaViewController {
 
     func configure(for course: Course) {
         self.course = course

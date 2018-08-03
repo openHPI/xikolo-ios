@@ -5,9 +5,9 @@
 
 import UIKit
 
-class CourseContentListViewController: UICollectionViewController {
+class CourseAreaListViewController: UICollectionViewController {
 
-    weak var delegate: CourseContentListViewControllerDelegate?
+    weak var delegate: CourseAreaListViewControllerDelegate?
 
     private var shouldScrollToSelectedItem: Bool = false
 
@@ -31,10 +31,10 @@ class CourseContentListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellReuseIdentifier = R.reuseIdentifier.courseContentCell.identifier
+        let cellReuseIdentifier = R.reuseIdentifier.courseAreaCell.identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
 
-        if let cell = cell as? CourseContentCell, let content = self.delegate?.accessibleContent[safe: indexPath.item] {
+        if let cell = cell as? CourseAreaCell, let content = self.delegate?.accessibleContent[safe: indexPath.item] {
             let selected = indexPath == self.selectedIndexPath
             cell.configure(for: content, selected: selected)
         }
@@ -74,7 +74,7 @@ class CourseContentListViewController: UICollectionViewController {
 
 }
 
-extension CourseContentListViewController: UICollectionViewDelegateFlowLayout {
+extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -111,9 +111,9 @@ extension CourseContentListViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
-protocol CourseContentListViewControllerDelegate: AnyObject {
-    var accessibleContent: [CourseContent] { get }
-    var selectedContent: CourseContent? { get }
+protocol CourseAreaListViewControllerDelegate: AnyObject {
+    var accessibleContent: [CourseArea] { get }
+    var selectedContent: CourseArea? { get }
 
-    func change(to content: CourseContent)
+    func change(to content: CourseArea)
 }

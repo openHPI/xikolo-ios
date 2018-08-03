@@ -6,7 +6,7 @@
 import Common
 import UIKit
 
-enum CourseContent {
+enum CourseArea {
 
     case learnings
     case discussions
@@ -15,8 +15,8 @@ enum CourseContent {
     case announcements
     case certificates
 
-    static let orderedValues: [CourseContent] = {
-        var values: [CourseContent] = [
+    static let orderedValues: [CourseArea] = {
+        var values: [CourseArea] = [
             .learnings,
             .discussions,
             .courseDetails,
@@ -55,7 +55,7 @@ enum CourseContent {
         }
     }
 
-    var viewController: (UIViewController & CourseContentViewController)? {
+    var viewController: (UIViewController & CourseAreaViewController)? {
         switch self {
         case .learnings:
             return R.storyboard.courseLearnings.instantiateInitialViewController()

@@ -35,7 +35,7 @@
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-KQ-kUh" userLabel="Scroll Content">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="330.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4b-Ar-94F">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4b-Ar-94F">
                                                 <rect key="frame" x="0.0" y="8" width="375" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="bKi-vh-nFT"/>
@@ -178,6 +178,7 @@
                                         <constraints>
                                             <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leading" id="4Un-7R-rJ1"/>
                                             <constraint firstAttribute="bottom" secondItem="kCa-Sj-iZr" secondAttribute="bottom" constant="20" symbolic="YES" id="BcB-pf-wkV"/>
+                                            <constraint firstItem="yCC-vf-4Pk" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="LpG-px-jRY"/>
                                             <constraint firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="NKn-rm-ONe"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="kCa-Sj-iZr" secondAttribute="trailing" id="Soh-C8-scF"/>
                                             <constraint firstItem="yCC-vf-4Pk" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="topMargin" id="Wb4-9s-QlN"/>
@@ -185,6 +186,11 @@
                                             <constraint firstItem="kCa-Sj-iZr" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="bottom" constant="8" symbolic="YES" id="bot-DA-QD3"/>
                                             <constraint firstItem="d4b-Ar-94F" firstAttribute="top" secondItem="bWt-KQ-kUh" secondAttribute="topMargin" id="i4Y-ou-QhK"/>
                                         </constraints>
+                                        <variation key="widthClass=regular">
+                                            <mask key="constraints">
+                                                <exclude reference="LpG-px-jRY"/>
+                                            </mask>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <mask key="constraints">
                                                 <exclude reference="4Un-7R-rJ1"/>
@@ -216,7 +222,13 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="YgW-nw-x6x"/>
+                                <exclude reference="Mvb-ch-MW1"/>
                                 <exclude reference="cT7-ff-Hlw"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="Mvb-ch-MW1"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">

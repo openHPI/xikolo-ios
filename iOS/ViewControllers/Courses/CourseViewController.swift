@@ -11,11 +11,11 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleView: UILabel!
 
-    private var courseContentListViewController: CourseContentListViewController?
-    private var courseContentViewController: UIViewController?
+    private var courseAreaListViewController: CourseAreaListViewController?
+    private var courseAreaViewController: UIViewController?
 
     var course: Course!
-    var content: CourseContent?
+    var content: CourseArea?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,32 +57,32 @@ class CourseViewController: UIViewController {
         }
 
         let content = self.content.require(hint: "This should never occur. Invalid use of course view controller")
-        self.courseContentListViewController?.refresh(animated: false)
+        self.courseAreaListViewController?.refresh(animated: false)
         self.updateContainerView(to: content)
     }
 
-    func updateContainerView(to content: CourseContent) {
-        if let viewController = self.courseContentViewController {
+    func updateContainerView(to content: CourseArea) {
+        if let viewController = self.courseAreaViewController {
             viewController.willMove(toParentViewController: nil)
             viewController.view.removeFromSuperview()
             viewController.removeFromParentViewController()
-            self.courseContentViewController = nil
+            self.courseAreaViewController = nil
         }
 
-        guard let courseContentViewController = content.viewController else { return }
-        courseContentViewController.configure(for: course)
+        guard let courseAreaViewController = content.viewController else { return }
+        courseAreaViewController.configure(for: course)
 
-        self.containerView.addSubview(courseContentViewController.view)
-        courseContentViewController.view.frame = self.containerView.bounds
-        self.addChildViewController(courseContentViewController)
-        courseContentViewController.didMove(toParentViewController: self)
-        self.courseContentViewController = courseContentViewController
+        self.containerView.addSubview(courseAreaViewController.view)
+        courseAreaViewController.view.frame = self.containerView.bounds
+        self.addChildViewController(courseAreaViewController)
+        courseAreaViewController.didMove(toParentViewController: self)
+        self.courseAreaViewController = courseAreaViewController
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let courseContentListViewController = segue.destination as? CourseContentListViewController {
-            courseContentListViewController.delegate = self
-            self.courseContentListViewController = courseContentListViewController
+        if let courseAreaListViewController = segue.destination as? CourseAreaListViewController {
+            courseAreaListViewController.delegate = self
+            self.courseAreaListViewController = courseAreaListViewController
         }
     }
 
@@ -103,21 +103,21 @@ class CourseViewController: UIViewController {
 
 }
 
-extension CourseViewController: CourseContentListViewControllerDelegate {
+extension CourseViewController: CourseAreaListViewControllerDelegate {
 
-    var accessibleContent: [CourseContent] {
+    var accessibleContent: [CourseArea] {
         if self.course.hasEnrollment && self.course.accessible {
-            return CourseContent.orderedValues
+            return CourseArea.orderedValues
         } else {
-            return CourseContent.orderedValues.filter { $0.acessibleWithoutEnrollment }
+            return CourseArea.orderedValues.filter { $0.acessibleWithoutEnrollment }
         }
     }
 
-    var selectedContent: CourseContent? {
+    var selectedContent: CourseArea? {
         return self.content
     }
 
-    func change(to content: CourseContent) {
+    func change(to content: CourseArea) {
         self.content = content
         self.updateContainerView(to: content)
     }

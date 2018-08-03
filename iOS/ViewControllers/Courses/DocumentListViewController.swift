@@ -123,7 +123,7 @@ class DocumentListViewConfiguration: TableViewResultsControllerConfiguration {
 
 }
 
-extension DocumentListViewController: CourseContentViewController {
+extension DocumentListViewController: CourseAreaViewController {
 
     func configure(for course: Course) {
         self.course = course

@@ -1,4 +1,7 @@
 
+/* alert action title to mark all announcements as read */
+"announcement.alert.mark all as read" = "Mark all as read";
+
 /* App state message for deprecated API version */
 "app-state.api-deprecated.please update the %@ app before %@" = "Please update the %@ app before %@";
 

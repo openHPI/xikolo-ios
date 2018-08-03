@@ -37,6 +37,25 @@ public final class CourseDate: NSManagedObject {
         return dateText
     }
 
+    public var contextAwareTtitle: String {
+        let title = self.title ?? "Unknown"
+        switch self.type {
+        case "course_start"?:
+            return CommonLocalizedString("course-date-cell.course-start.title",
+                                         comment: "title for course start in a course date cell")
+        case "section_start"?:
+            let format = CommonLocalizedString("course-date-cell.section-start.title.%@ starts",
+                                               comment: "format for section start in course date cell")
+            return String.localizedStringWithFormat(format, title)
+        case "item_submission_deadline"?:
+            let format = CommonLocalizedString("course-date-cell.item-submission.title.submission for %@ ends",
+                                               comment: "format for item submission in course date cell")
+            return String.localizedStringWithFormat(format, title)
+        default:
+            return title
+        }
+    }
+
 }
 
 extension CourseDate: Pullable {

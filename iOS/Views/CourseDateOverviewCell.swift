@@ -23,6 +23,7 @@ class CourseDateOverviewCell: UITableViewCell {
         super.awakeFromNib()
         self.applyCardLook(to: self.overviewContainer)
         self.applyCardLook(to: self.nextDateContainer)
+        self.nextDateCourseLabel.textColor = Brand.default.colors.secondary
         self.nextDateStackView.isHidden = true
     }
 
@@ -53,7 +54,7 @@ class CourseDateOverviewCell: UITableViewCell {
         if let courseDate = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value {
             self.nextDateDateLabel.text = courseDate.defaultDateString
             self.nextDateCourseLabel.text = courseDate.course?.title
-            self.nextDateTitleLabel.text = courseDate.title
+            self.nextDateTitleLabel.text = courseDate.contextAwareTtitle
             self.nextDateStackView.isHidden = false
         } else {
             self.nextDateStackView.isHidden = true

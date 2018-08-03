@@ -1,4 +1,13 @@
 
+/* title for course start in a course date cell */
+"course-date-cell.course-start.title" = "Kursstart";
+
+/* format for item submission in course date cell */
+"course-date-cell.item-submission.title.submission for %@ ends" = "Abgabe für %@ endet";
+
+/* format for section start in course date cell */
+"course-date-cell.section-start.title.%@ starts" = "%@ startet";
+
 /* course start at specific date in the future */
 "course-date-formatting.not-started.beginning %@" = "Startet am %@";
 

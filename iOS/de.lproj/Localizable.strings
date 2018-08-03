@@ -125,6 +125,12 @@
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "nicht eingeschrieben";
 
+/* headline for overview of completed courses */
+"dashboard.course-overview.My completed courses" = "Meine abgeschlossenen Kurs";
+
+/* headline for overview of current courses */
+"dashboard.course-overview.My current courses" = "Meine aktuellen Kurse";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
 

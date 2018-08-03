@@ -16,9 +16,9 @@ class CourseOverviewCell: UITableViewCell {
         var title: String {
             switch self {
             case .currentCourses:
-                return "Your current courses"
+                return NSLocalizedString("dashboard.course-overview.My current courses", comment: "headline for overview of current courses")
             case .completedCourses:
-                return "Your completed courses"
+                return NSLocalizedString("dashboard.course-overview.My completed courses", comment: "headline for overview of completed courses")
             }
         }
 

@@ -13,20 +13,13 @@ class CourseDateCell: UITableViewCell {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
 
-    static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter.localizedFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        return dateFormatter
-    }()
-
     override func awakeFromNib() {
         super.awakeFromNib()
         self.courseLabel.textColor = Brand.default.colors.secondary
     }
 
     func configure(_ courseDate: CourseDate) {
-        self.dateLabel.text = self.dateText(for: courseDate)
+        self.dateLabel.text = courseDate.defaultDateString
         self.courseLabel.text = courseDate.course?.title
         self.titleLabel.text = self.title(for: courseDate)
     }
@@ -48,19 +41,6 @@ class CourseDateCell: UITableViewCell {
         default:
             return title
         }
-    }
-
-    private func dateText(for courseDate: CourseDate) -> String {
-        guard let date = courseDate.date else {
-            return "Unknown"
-        }
-
-        var dateText = CourseDateCell.dateFormatter.string(from: date)
-        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
-            dateText += " (\(timeZoneAbbreviation))"
-        }
-
-        return dateText
     }
 
 }

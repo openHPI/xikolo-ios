@@ -52,7 +52,9 @@ class DashboardViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseDateOverviewCell, for: indexPath).require()
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseDateOverviewCell, for: indexPath).require()
+            cell.loadData()
+            return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseOverviewCell, for: indexPath).require()
             let configuration: CourseOverviewCell.Configuration = indexPath.section == 1 ? .currentCourses : .completedCourses

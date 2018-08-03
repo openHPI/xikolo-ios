@@ -17,6 +17,26 @@ public final class CourseDate: NSManagedObject {
         return NSFetchRequest<CourseDate>(entityName: "CourseDate")
     }
 
+    private static let defaultDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter.localizedFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter
+    }()
+
+    public var defaultDateString: String? {
+        guard let date = self.date else {
+            return nil
+        }
+
+        var dateText = CourseDate.defaultDateFormatter.string(from: date)
+        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
+            dateText += " (\(timeZoneAbbreviation))"
+        }
+
+        return dateText
+    }
+
 }
 
 extension CourseDate: Pullable {

@@ -142,7 +142,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-R5-lRv">
                                             <rect key="frame" x="16" y="11" width="343" height="294"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G13-HE-khe">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G13-HE-khe" customClass="CourseDateSummaryView" customModule="iOS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="137"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Course date overview" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-rK-PjH">
@@ -259,8 +259,14 @@
                                                             <include reference="1Zn-zN-29m"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <outlet property="allCountLabel" destination="agh-bs-D9q" id="iSL-T4-AL9"/>
+                                                        <outlet property="container" destination="jog-5J-HrR" id="Pge-9T-iq5"/>
+                                                        <outlet property="nextCountLabel" destination="ogE-dQ-r6D" id="pUp-ko-naV"/>
+                                                        <outlet property="todayCountLabel" destination="iiU-EV-MHc" id="a2I-is-KR8"/>
+                                                    </connections>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9" customClass="CourseDateNextUpView" customModule="iOS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="165" width="343" height="129"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Next up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkE-Xg-aPx">
@@ -333,6 +339,12 @@
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="container" destination="WAA-4x-gpz" id="ggV-iX-yDA"/>
+                                                        <outlet property="courseLabel" destination="lSC-4V-kbj" id="8OF-bj-YQT"/>
+                                                        <outlet property="dateLabel" destination="0wE-Ql-Yhg" id="d8e-S0-jrt"/>
+                                                        <outlet property="titleLabel" destination="sbY-bJ-Mn2" id="GFR-2P-yas"/>
+                                                    </connections>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -364,16 +376,8 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="allCountLabel" destination="agh-bs-D9q" id="VDs-sb-OL3"/>
-                                    <outlet property="nextDateContainer" destination="WAA-4x-gpz" id="HFn-pE-Yx6"/>
-                                    <outlet property="nextDateCourseLabel" destination="lSC-4V-kbj" id="sRd-DV-DjA"/>
-                                    <outlet property="nextDateDateLabel" destination="0wE-Ql-Yhg" id="CrC-Pe-kCc"/>
-                                    <outlet property="nextDateStackView" destination="H7O-CA-vs9" id="flU-8s-Hfe"/>
-                                    <outlet property="nextDateTitleLabel" destination="sbY-bJ-Mn2" id="sJb-gD-rko"/>
-                                    <outlet property="overviewContainer" destination="jog-5J-HrR" id="aNw-hv-azM"/>
-                                    <outlet property="overviewStackView" destination="G13-HE-khe" id="I5k-St-VVy"/>
-                                    <outlet property="sevenDaysCountLabel" destination="ogE-dQ-r6D" id="WYi-nL-2E0"/>
-                                    <outlet property="todayCountLabel" destination="iiU-EV-MHc" id="zZr-Ry-y9g"/>
+                                    <outlet property="nextUpView" destination="H7O-CA-vs9" id="pRU-cU-ETI"/>
+                                    <outlet property="summaryView" destination="G13-HE-khe" id="5e5-Hj-j1O"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="courseOverviewCell" rowHeight="256" id="OF5-Gz-soM" customClass="CourseOverviewCell" customModule="iOS" customModuleProvider="target">

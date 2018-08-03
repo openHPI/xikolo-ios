@@ -20,6 +20,8 @@
 		508AB2E82111AF950079EAE5 /* CourseOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2E72111AF950079EAE5 /* CourseOverviewCell.swift */; };
 		508AB2EA2111F41D0079EAE5 /* CourseDateOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2E92111F41D0079EAE5 /* CourseDateOverviewCell.swift */; };
 		508AB2EC211448E40079EAE5 /* BrandFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2EB211448E30079EAE5 /* BrandFeatures.swift */; };
+		508AB2EE21145A500079EAE5 /* CourseDateSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2ED21145A500079EAE5 /* CourseDateSummaryView.swift */; };
+		508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2EF21145A650079EAE5 /* CourseDateNextUpView.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B6120ED10610085C6DB /* CommonLocalizedString.swift */; };
@@ -411,6 +413,8 @@
 		508AB2E72111AF950079EAE5 /* CourseOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseOverviewCell.swift; sourceTree = "<group>"; };
 		508AB2E92111F41D0079EAE5 /* CourseDateOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewCell.swift; sourceTree = "<group>"; };
 		508AB2EB211448E30079EAE5 /* BrandFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandFeatures.swift; sourceTree = "<group>"; };
+		508AB2ED21145A500079EAE5 /* CourseDateSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateSummaryView.swift; sourceTree = "<group>"; };
+		508AB2EF21145A650079EAE5 /* CourseDateNextUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateNextUpView.swift; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+coreDataModelToCommon.swift"; sourceTree = "<group>"; };
 		50930B6120ED10610085C6DB /* CommonLocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonLocalizedString.swift; sourceTree = "<group>"; };
@@ -694,6 +698,8 @@
 				AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */,
 				4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */,
 				508AB2E92111F41D0079EAE5 /* CourseDateOverviewCell.swift */,
+				508AB2ED21145A500079EAE5 /* CourseDateSummaryView.swift */,
+				508AB2EF21145A650079EAE5 /* CourseDateNextUpView.swift */,
 				508AB2E72111AF950079EAE5 /* CourseOverviewCell.swift */,
 				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
@@ -1819,6 +1825,7 @@
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,
 				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,
 				50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */,
+				508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */,
 				50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */,
 				50CF1F8620DCDBFC0011BFE9 /* CALayer+UIColor.swift in Sources */,
 				5095B1DA20EA53E900572924 /* SyncHelper.swift in Sources */,
@@ -1847,6 +1854,7 @@
 				50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */,
 				50CF1FC820DCDBFC0011BFE9 /* CourseInteractor.swift in Sources */,
 				50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */,
+				508AB2EE21145A500079EAE5 /* CourseDateSummaryView.swift in Sources */,
 				50CF1FCC20DCDBFC0011BFE9 /* AnnouncementsListViewController.swift in Sources */,
 				50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */,
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,

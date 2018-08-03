@@ -109,7 +109,7 @@ extension WebViewController: WKNavigationDelegate {
     }
 }
 
-extension WebViewController: CourseContentViewController {
+extension WebViewController: CourseAreaViewController {
 
     func configure(for course: Course) {
         if let slug = course.slug {

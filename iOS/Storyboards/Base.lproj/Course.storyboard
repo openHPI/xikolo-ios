@@ -141,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="2606" y="0.0"/>
         </scene>
-        <!--Course Content List View Controller-->
+        <!--Course Area List View Controller-->
         <scene sceneID="0uV-xQ-a2c">
             <objects>
-                <collectionViewController id="yPP-nO-kFo" customClass="CourseContentListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="yPP-nO-kFo" customClass="CourseAreaListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" id="KBY-lC-wpD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,7 +156,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CourseContentCell" id="MQQ-G5-gWa" customClass="CourseContentCell" customModule="iOS" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CourseAreaCell" id="MQQ-G5-gWa" customClass="CourseAreaCell" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-3" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">

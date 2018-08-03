@@ -218,7 +218,7 @@ extension CourseDetailViewController: UITextViewDelegate {
 
 }
 
-extension CourseDetailViewController: CourseContentViewController {
+extension CourseDetailViewController: CourseAreaViewController {
 
     func configure(for course: Course) {
         self.course = course

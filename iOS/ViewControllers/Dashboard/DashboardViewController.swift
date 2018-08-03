@@ -38,6 +38,10 @@ class DashboardViewController: UITableViewController {
         CourseHelper.syncAllCourses().onComplete { _ in
             CourseDateHelper.syncAllCourseDates().onComplete { _ in
                 stopRefreshControl()
+                if Brand.default.features.showCourseDatesOnDashboard {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+                }
             }
         }
     }

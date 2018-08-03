@@ -63,4 +63,17 @@ class DashboardViewController: UITableViewController {
         }
     }
 
+    @IBAction func tappedOnCourseDateSummary(_ sender: UITapGestureRecognizer) {
+        self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseDates, sender: self)
+    }
+
+    @IBAction func tappedOnCourseDateNextUp(_ sender: UITapGestureRecognizer) {
+        let someCourseDate = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value
+        guard let course = someCourseDate?.course else {
+            return
+        }
+
+        AppNavigator.show(course: course)
+    }
+
 }

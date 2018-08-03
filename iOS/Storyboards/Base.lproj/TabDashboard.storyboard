@@ -212,6 +212,7 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstItem="TSC-UU-kfE" firstAttribute="centerY" secondItem="jog-5J-HrR" secondAttribute="centerY" id="2k0-I0-qXn"/>
                                                                 <constraint firstItem="TSC-UU-kfE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jog-5J-HrR" secondAttribute="topMargin" constant="8" id="5FQ-Xy-nmA"/>
@@ -234,6 +235,9 @@
                                                             <include reference="1Zn-zN-29m"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="wQ8-i1-0MU" appends="YES" id="hX2-FK-Lsy"/>
+                                                    </connections>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9">
                                                     <rect key="frame" x="0.0" y="171" width="343" height="129"/>
@@ -272,6 +276,7 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="lGw-Xi-RUH" secondAttribute="bottom" constant="8" id="6cd-5q-Jwy"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="AZW-QE-VE5"/>
@@ -283,6 +288,9 @@
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="9mn-2s-Pa4" appends="YES" id="OYc-qs-2hZ"/>
+                                                    </connections>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -378,10 +386,20 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Dashboard" id="gqL-aL-4lP"/>
                     <connections>
-                        <segue destination="TzN-ab-aeu" kind="show" id="IJW-tE-qqc"/>
+                        <segue destination="TzN-ab-aeu" kind="show" identifier="showCourseDates" id="IJW-tE-qqc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-3z-m5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wQ8-i1-0MU" userLabel="Summary Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="tappedOnCourseDateSummary:" destination="zYy-8h-RyC" id="fsa-20-PbT"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="9mn-2s-Pa4" userLabel="Next up Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="tappedOnCourseDateNextUp:" destination="zYy-8h-RyC" id="bwO-Ni-7Ip"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="809" y="938"/>
         </scene>

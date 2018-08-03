@@ -9,6 +9,7 @@ import UIKit
 
 class CourseDateOverviewCell: UITableViewCell {
 
+    @IBOutlet private weak var overviewStackView: UIStackView!
     @IBOutlet private weak var overviewContainer: UIView!
     @IBOutlet private weak var todayCountLabel: UILabel!
     @IBOutlet private weak var sevenDaysCountLabel: UILabel!
@@ -19,12 +20,19 @@ class CourseDateOverviewCell: UITableViewCell {
     @IBOutlet private weak var nextDateCourseLabel: UILabel!
     @IBOutlet private weak var nextDateTitleLabel: UILabel!
 
+    weak var delegate: CourseDateOverviewDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.applyCardLook(to: self.overviewContainer)
         self.applyCardLook(to: self.nextDateContainer)
         self.nextDateCourseLabel.textColor = Brand.default.colors.secondary
         self.nextDateStackView.isHidden = true
+
+        let overviewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnOverview))
+        self.overviewStackView.addGestureRecognizer(overviewGestureRecognizer)
+        let nextUpGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnNextUp))
+        self.nextDateStackView.addGestureRecognizer(nextUpGestureRecognizer)
     }
 
     private func applyCardLook(to view: UIView) {
@@ -65,5 +73,22 @@ class CourseDateOverviewCell: UITableViewCell {
         self.loadOverviewData()
         self.loadNextDateData()
     }
+
+    @objc func tappedOnOverview() {
+        self.delegate?.openCourseDateList()
+    }
+
+    @objc func tappedOnNextUp() {
+        if let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course {
+            self.delegate?.openCourse(course)
+        }
+    }
+
+}
+
+protocol CourseDateOverviewDelegate: AnyObject {
+
+    func openCourseDateList()
+    func openCourse(_ course: Course)
 
 }

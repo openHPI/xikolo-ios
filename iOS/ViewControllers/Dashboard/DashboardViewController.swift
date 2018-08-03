@@ -58,6 +58,7 @@ class DashboardViewController: UITableViewController {
         let section = Brand.default.features.showCourseDatesOnDashboard ? indexPath.section : indexPath.section + 1
         if section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseDateOverviewCell, for: indexPath).require()
+            cell.delegate = self
             cell.loadData()
             return cell
         } else {
@@ -78,6 +79,18 @@ class DashboardViewController: UITableViewController {
             return
         }
 
+        AppNavigator.show(course: course)
+    }
+
+}
+
+extension DashboardViewController: CourseDateOverviewDelegate {
+
+    func openCourseDateList() {
+        self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseDates, sender: self)
+    }
+
+    func openCourse(_ course: Course) {
         AppNavigator.show(course: course)
     }
 

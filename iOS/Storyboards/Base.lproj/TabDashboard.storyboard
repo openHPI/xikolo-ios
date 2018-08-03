@@ -259,9 +259,6 @@
                                                             <include reference="1Zn-zN-29m"/>
                                                         </mask>
                                                     </variation>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="wQ8-i1-0MU" appends="YES" id="ZJk-oF-PaW"/>
-                                                    </connections>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9">
                                                     <rect key="frame" x="0.0" y="165" width="343" height="129"/>
@@ -336,9 +333,6 @@
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="9mn-2s-Pa4" appends="YES" id="OYc-qs-2hZ"/>
-                                                    </connections>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -377,6 +371,7 @@
                                     <outlet property="nextDateStackView" destination="H7O-CA-vs9" id="flU-8s-Hfe"/>
                                     <outlet property="nextDateTitleLabel" destination="sbY-bJ-Mn2" id="sJb-gD-rko"/>
                                     <outlet property="overviewContainer" destination="jog-5J-HrR" id="aNw-hv-azM"/>
+                                    <outlet property="overviewStackView" destination="G13-HE-khe" id="I5k-St-VVy"/>
                                     <outlet property="sevenDaysCountLabel" destination="ogE-dQ-r6D" id="WYi-nL-2E0"/>
                                     <outlet property="todayCountLabel" destination="iiU-EV-MHc" id="zZr-Ry-y9g"/>
                                 </connections>
@@ -446,16 +441,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-3z-m5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="wQ8-i1-0MU" userLabel="Summary Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="tappedOnCourseDateSummary:" destination="zYy-8h-RyC" id="fsa-20-PbT"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="9mn-2s-Pa4" userLabel="Next up Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="tappedOnCourseDateNextUp:" destination="zYy-8h-RyC" id="bwO-Ni-7Ip"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="809" y="938"/>
         </scene>

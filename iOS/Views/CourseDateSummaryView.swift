@@ -13,12 +13,18 @@ class CourseDateSummaryView: UIStackView {
     @IBOutlet private weak var todayCountLabel: UILabel!
     @IBOutlet private weak var nextCountLabel: UILabel!
     @IBOutlet private weak var allCountLabel: UILabel!
+    @IBOutlet private var pills: [UIView]!
 
     weak var delegate: CourseDateOverviewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         CourseDateOverviewCell.applyCardLook(to: self.container)
+        for pill in self.pills {
+            pill.backgroundColor = Brand.default.colors.secondary
+            pill.layer.cornerRadius = pill.layer.bounds.height / 2
+            pill.layer.masksToBounds = true
+        }
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
         self.addGestureRecognizer(tapGestureRecognizer)
@@ -34,7 +40,7 @@ class CourseDateSummaryView: UIStackView {
         if let count = try? CoreDataHelper.viewContext.count(for: fetchRequest) {
             label.text = String(count)
         } else {
-            label.text = "?"
+            label.text = "-"
         }
     }
 

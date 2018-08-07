@@ -29,7 +29,6 @@ class AnnouncementViewController: UIViewController {
 
         self.updateView()
 
-        // swiftlint:disable:next multiline_arguments
         self.announcement.notifyOnChange(self, updateHandler: {
             self.updateView()
         }, deleteHandler: {

@@ -8,7 +8,8 @@ import Result
 
 extension AsyncType where Value: ResultProtocol {
 
-    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(), callback: @escaping () -> Result<Void, Self.Value.Error>) -> Future<Self.Value.Value, Self.Value.Error> {
+    func inject(_ context: @escaping ExecutionContext = DefaultThreadingModel(),
+                callback: @escaping () -> Result<Void, Self.Value.Error>) -> Future<Self.Value.Value, Self.Value.Error> {
         return self.flatMap(context) { value in
             return callback().map { value }
         }

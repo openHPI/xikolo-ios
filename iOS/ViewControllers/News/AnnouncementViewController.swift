@@ -15,8 +15,23 @@ class AnnouncementViewController: UIViewController {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
 
-    var announcement: Announcement!
+    private var announcementObserver: ManagedObjectObserver?
+
     var showCourseTitle: Bool = false
+    var announcement: Announcement! {
+        didSet {
+            self.announcementObserver = ManagedObjectObserver(object: self.announcement) { [weak self] type in
+                guard type == .update else { return }
+                DispatchQueue.main.async {
+                    self?.updateView()
+                }
+            }
+
+            DispatchQueue.main.async {
+                self.updateView()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +41,6 @@ class AnnouncementViewController: UIViewController {
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
-
-        self.updateView()
-
-        self.announcement.notifyOnChange(self, updateHandler: {
-            self.updateView()
-        }, deleteHandler: {
-            let isVisible = self.isViewLoaded && self.view.window != nil
-            self.navigationController?.popViewController(animated: isVisible)
-        })
     }
 
     override func viewDidAppear(_ animated: Bool) {

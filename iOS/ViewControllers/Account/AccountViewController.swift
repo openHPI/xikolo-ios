@@ -38,24 +38,27 @@ class AccountViewController: UITableViewController {
     @IBOutlet private weak var versionLabel: UILabel!
     @IBOutlet private weak var buildLabel: UILabel!
 
+    private var userObserver: ManagedObjectObserver?
+
     var headerHeight: HeaderHeight = .noContent
     var user: User? {
         didSet {
+            if let user = self.user {
+                self.userObserver = ManagedObjectObserver(object: user) { [weak self] type in
+                    guard type == .update else { return }
+                    DispatchQueue.main.async {
+                        self?.updateProfileInfo()
+                    }
+                }
+            } else {
+                self.userObserver = nil
+            }
+
             if self.user != oldValue {
                 DispatchQueue.main.async {
                     self.updateProfileInfo()
                 }
             }
-
-            if oldValue != nil {
-                oldValue?.removeNotifications(self)
-            }
-
-            self.user?.notifyOnChange(self, updateHandler: {
-                DispatchQueue.main.async {
-                    self.updateProfileInfo()
-                }
-            }, deleteHandler: {})
         }
     }
 

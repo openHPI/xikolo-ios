@@ -21,7 +21,18 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
 
-    var course: Course!
+    private var courseObserver: ManagedObjectObserver?
+
+    var course: Course! {
+        didSet {
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] type in
+                guard type == .update else { return }
+                DispatchQueue.main.async {
+                    self?.updateView()
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

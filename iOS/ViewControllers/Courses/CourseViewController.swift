@@ -14,18 +14,31 @@ class CourseViewController: UIViewController {
     private var courseAreaListViewController: CourseAreaListViewController?
     private var courseAreaViewController: UIViewController?
 
-    var course: Course!
+    private var courseObserver: ManagedObjectObserver?
+
     var content: CourseArea?
+    var course: Course! {
+        didSet {
+            self.updateView()
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] type in
+                guard type == .update else { return }
+                DispatchQueue.main.async {
+                    self?.updateView()
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.decideContent()
 
-        self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: { [weak self] in
-            self?.closeCourse()
-        })
+        SpotlightHelper.shared.setUserActivity(for: self.course)
+        CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
+    }
 
+    private func updateView() {
         self.titleView.text = self.course.title
 
         if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
@@ -35,9 +48,6 @@ class CourseViewController: UIViewController {
             titleView.frame = frame
             titleView.setNeedsLayout()
         }
-
-        SpotlightHelper.shared.setUserActivity(for: self.course)
-        CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
     }
 
     private func closeCourse() {

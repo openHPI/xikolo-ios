@@ -30,12 +30,12 @@ opt_in_rules:
 disabled_rules:
 - explicit_enum_raw_value
 
-included:
-- Common
-- Common-Tests
-- iOS
-- iOS-Tests
-- iOS-UITests
+# included:
+# - Common
+# - Common-Tests
+# - iOS
+# - iOS-Tests
+# - iOS-UITests
 
 excluded:
 - iOS-UITests/SnapshotHelper.swift

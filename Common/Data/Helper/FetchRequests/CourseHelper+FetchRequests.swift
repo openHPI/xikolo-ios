@@ -134,7 +134,6 @@ extension CourseHelper {
             return request
         }
 
-
         public static var enrolledCurrentCoursesRequest: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [

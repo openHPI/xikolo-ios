@@ -96,7 +96,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             return searchResultsController.object(at: indexPath)
         }
 
-        let (controller, dataIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        let (controller, dataIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)
         return controller.object(at: dataIndexPath)
     }
 
@@ -108,7 +108,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                     for type: NSFetchedResultsChangeType) {
         guard self.searchFetchResultsController == nil else { return }
 
-        let convertedIndexSet = self.indexSet(for: controller, with: IndexSet(integer: sectionIndex)).require(hint: self.errorMessageIndexSetConversion)
+        let indexSet = IndexSet(integer: sectionIndex)
+        let convertedIndexSet = self.indexSet(for: controller, with: indexSet)
 
         switch type {
         case .insert:
@@ -131,25 +132,33 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                     newIndexPath: IndexPath?) {
         guard self.searchFetchResultsController == nil else { return }
 
-        let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-        let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
         switch type {
         case .insert:
+            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell insert")
+            let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: self.errorMessageNewIndexPathConversion)])
+                self.collectionView?.insertItems(at: [convertedNewIndexPath])
             }))
         case .delete:
+            let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell delete")
+            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)])
+                self.collectionView?.deleteItems(at: [convertedIndexPath])
             }))
         case .update:
+            let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell update")
+            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.reloadItems(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)])
+                self.collectionView?.reloadItems(at: [convertedIndexPath])
             }))
         case .move:
+            let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell move")
+            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell move")
+            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
+            let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath.require(hint: self.errorMessageIndexPathConversion)])
-                self.collectionView?.insertItems(at: [convertedNewIndexPath.require(hint: self.errorMessageNewIndexPathConversion)])
+                self.collectionView?.deleteItems(at: [convertedIndexPath])
+                self.collectionView?.insertItems(at: [convertedNewIndexPath])
             }))
         }
     }
@@ -227,7 +236,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                     self.delegate?.configureSearchHeaderView(view, numberOfSearchResults: numberOfSearchResults)
                 }
             } else {
-                let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
+                let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)
                 if let sectionInfo = controller.sections?[newIndexPath.section] {
                     self.delegate?.configureHeaderView(view, sectionInfo: sectionInfo)
                 }
@@ -279,34 +288,29 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 }
 
 extension CoreDataCollectionViewDataSource { // Conversion of indices between data and views
+
     // correct "visual" indexPath for data controller and its indexPath (data->visual)
-    private func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
-        guard var newIndexPath = indexPath else {
-            return nil
-        }
+    private func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath) -> IndexPath {
+        var convertedIndexPath = indexPath
 
         for contr in self.fetchedResultsControllers {
             if contr == controller {
-                return newIndexPath
+                return convertedIndexPath
             } else {
-                newIndexPath.section += contr.sections?.count ?? 0
+                convertedIndexPath.section += contr.sections?.count ?? 0
             }
         }
 
-        return nil
+        fatalError("Convertion of indexPath (\(indexPath) in controller (\(controller.debugDescription) to indexPath failed")
     }
 
     // correct "visual" indexSet for data controller and its indexSet (data->visual)
-    private func indexSet(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexSet: IndexSet?) -> IndexSet? {
-        guard let newIndexSet = indexSet else {
-            return nil
-        }
-
+    private func indexSet(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexSet: IndexSet) -> IndexSet {
         var convertedIndexSet = IndexSet()
         var passedSections = 0
         for contr in self.fetchedResultsControllers {
             if contr == controller {
-                for index in newIndexSet {
+                for index in indexSet {
                     convertedIndexSet.insert(index + passedSections)
                 }
 
@@ -320,7 +324,7 @@ extension CoreDataCollectionViewDataSource { // Conversion of indices between da
     }
 
     // find data controller and its indexPath for a given "visual" indexPath (visual->data)
-    private func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<Object>, IndexPath)? {
+    private func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<Object>, IndexPath) {
         var passedSections = 0
         for contr in self.fetchedResultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
@@ -331,7 +335,7 @@ extension CoreDataCollectionViewDataSource { // Conversion of indices between da
             }
         }
 
-        return nil
+        fatalError("Convertion of indexPath (\(indexPath) to controller and indexPath failed")
     }
 
 }

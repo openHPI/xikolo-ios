@@ -91,17 +91,17 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
                     newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required")
+            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for table view cell insert")
             self.tableView?.insertRows(at: [newIndexPath], with: .fade)
         case .delete:
-            let indexPath = indexPath.require(hint: "indexPath is required")
+            let indexPath = indexPath.require(hint: "indexPath is required for table view cell delete")
             self.tableView?.deleteRows(at: [indexPath], with: .fade)
         case .update:
-            let indexPath = indexPath.require(hint: "indexPath is required")
+            let indexPath = indexPath.require(hint: "indexPath is required for table view cell update")
             self.tableView?.reloadRows(at: [indexPath], with: .fade)
         case .move:
-            let indexPath = indexPath.require(hint: "indexPath is required")
-            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required")
+            let indexPath = indexPath.require(hint: "indexPath is required for table view cell move")
+            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for table view cell move")
             self.tableView?.deleteRows(at: [indexPath], with: .fade)
             self.tableView?.insertRows(at: [newIndexPath], with: .fade)
         }

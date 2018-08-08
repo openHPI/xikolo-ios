@@ -249,8 +249,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         cell.configure(object, forConfiguration: .courseList)
     }
 
-    func configureHeaderView(_ view: UICollectionReusableView, sectionInfo: NSFetchedResultsSectionInfo) {
-        let headerView = view.require(toHaveType: CourseHeaderView.self, hint: "CourseList requires header cells of type CourseHeaderView")
+    func configureHeaderView(_ headerView: CourseHeaderView, sectionInfo: NSFetchedResultsSectionInfo) {
         headerView.configure(sectionInfo)
     }
 
@@ -266,10 +265,9 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         return NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
     }
 
-    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
-        let view = view.require(toHaveType: CourseHeaderView.self)
+    func configureSearchHeaderView(_ searchHeaderView: CourseHeaderView, numberOfSearchResults: Int) {
         let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
-        view.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
+        searchHeaderView.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
     }
 
 }

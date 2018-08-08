@@ -11,24 +11,25 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
 
     associatedtype Object: NSFetchRequestResult
     associatedtype Cell: UICollectionViewCell
+    associatedtype HeaderView: UICollectionReusableView
 
     func configure(_ cell: Cell, for object: Object)
-    func configureHeaderView(_ view: UICollectionReusableView, sectionInfo: NSFetchedResultsSectionInfo) // header view -> generic?
+    func configureHeaderView(_ headerView: HeaderView, sectionInfo: NSFetchedResultsSectionInfo)
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate?
-    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int)
+    func configureSearchHeaderView(_ searchHeaderView: HeaderView, numberOfSearchResults: Int)
 
 }
 
 extension CoreDataCollectionViewDataSourceDelegate {
 
-    func configureHeaderView(_ view: UICollectionReusableView, sectionInfo: NSFetchedResultsSectionInfo) {}
+    func configureHeaderView(_ view: HeaderView, sectionInfo: NSFetchedResultsSectionInfo) {}
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
         return nil
     }
 
-    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {}
+    func configureSearchHeaderView(_ view: HeaderView, numberOfSearchResults: Int) {}
 
 }
 
@@ -36,6 +37,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
     typealias Object = Delegate.Object
     typealias Cell = Delegate.Cell
+    typealias HeaderView = Delegate.HeaderView
 
     private let emptyCellReuseIdentifier = "collectionview.cell.empty"
 
@@ -226,7 +228,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.headerReuseIdentifier!, for: indexPath)
+            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.headerReuseIdentifier!, for: indexPath) as? HeaderView else {
+                fatalError("Unexpected header view type, expected \(HeaderView.self)")
+            }
+
             if let searchResultsController = self.searchFetchResultsController {
                 if let numberOfSearchResults = searchResultsController.fetchedObjects?.count {
                     self.delegate?.configureSearchHeaderView(view, numberOfSearchResults: numberOfSearchResults)

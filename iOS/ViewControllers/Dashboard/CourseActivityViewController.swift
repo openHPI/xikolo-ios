@@ -81,6 +81,8 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
 
 extension CourseActivityViewController: CoreDataCollectionViewDataSourceDelegate {
 
+    typealias HeaderView = UICollectionReusableView
+
     func configure(_ cell: CourseCell, for object: Course) {
         cell.configure(object, forConfiguration: .courseActivity)
     }

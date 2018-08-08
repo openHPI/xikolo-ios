@@ -92,7 +92,12 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     }
 
     func object(at indexPath: IndexPath) -> Object {
-        return self.visibleObject(at: indexPath)
+        if let searchResultsController = self.searchFetchResultsController {
+            return searchResultsController.object(at: indexPath)
+        }
+
+        let (controller, dataIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        return controller.object(at: dataIndexPath)
     }
 
     // MARK: NSFetchedResultsControllerDelegate
@@ -222,7 +227,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                     self.delegate?.configureSearchHeaderView(view, numberOfSearchResults: numberOfSearchResults)
                 }
             } else {
-                let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
+                let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
                 if let sectionInfo = controller.sections?[newIndexPath.section] {
                     self.delegate?.configureHeaderView(view, sectionInfo: sectionInfo)
                 }
@@ -232,15 +237,6 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         } else {
             return UICollectionReusableView()
         }
-    }
-
-    func visibleObject(at indexPath: IndexPath) -> Object {
-        if let searchResultsController = self.searchFetchResultsController {
-            return searchResultsController.object(at: indexPath)
-        }
-
-        let (controller, dataIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
-        return controller.object(at: dataIndexPath)
     }
 
     func search(withText searchText: String) {
@@ -284,7 +280,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
 extension CoreDataCollectionViewDataSource { // Conversion of indices between data and views
     // correct "visual" indexPath for data controller and its indexPath (data->visual)
-    func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
+    private func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
         guard var newIndexPath = indexPath else {
             return nil
         }
@@ -301,7 +297,7 @@ extension CoreDataCollectionViewDataSource { // Conversion of indices between da
     }
 
     // correct "visual" indexSet for data controller and its indexSet (data->visual)
-    func indexSet(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexSet: IndexSet?) -> IndexSet? {
+    private func indexSet(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexSet: IndexSet?) -> IndexSet? {
         guard let newIndexSet = indexSet else {
             return nil
         }
@@ -324,7 +320,7 @@ extension CoreDataCollectionViewDataSource { // Conversion of indices between da
     }
 
     // find data controller and its indexPath for a given "visual" indexPath (visual->data)
-    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<Object>, IndexPath)? {
+    private func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<Object>, IndexPath)? {
         var passedSections = 0
         for contr in self.fetchedResultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {

@@ -230,7 +230,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.headerReuseIdentifier!, for: indexPath)
             if let searchResultsController = self.searchFetchResultsController {
                 if let numberOfSearchResults = searchResultsController.fetchedObjects?.count {
                     self.delegate?.configureSearchHeaderView(view, numberOfSearchResults: numberOfSearchResults)

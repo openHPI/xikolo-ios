@@ -21,6 +21,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
 
+    private var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
 
     var course: Course! {
@@ -202,9 +203,7 @@ class CourseDetailViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.refreshEnrollmentViews()
-                if let parent = self.parent as? CourseViewController {
-                    parent.decideContent(newlyEnrolled: newlyCreated)
-                }
+                self.delegate?.enrollmentStateDidChange()
             }
         }.onFailure { _ in
             self.enrollmentButton.shake()
@@ -231,7 +230,8 @@ extension CourseDetailViewController: UITextViewDelegate {
 
 extension CourseDetailViewController: CourseAreaViewController {
 
-    func configure(for course: Course) {
+    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+        self.delegate = delegate
         self.course = course
     }
 

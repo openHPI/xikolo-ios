@@ -46,8 +46,8 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
         super.init()
 
         do {
-            fetchedResultsController.delegate = self
-            try fetchedResultsController.performFetch()
+            self.fetchedResultsController.delegate = self
+            try self.fetchedResultsController.performFetch()
         } catch {
             CrashlyticsHelper.shared.recordError(error)
             log.error(error)
@@ -55,11 +55,6 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
 
         self.tableView?.dataSource = self
         self.tableView?.reloadData()
-    }
-
-    var selectedObject: Object? {
-        guard let indexPath = self.tableView?.indexPathForSelectedRow else { return nil }
-        return self.object(at: indexPath)
     }
 
     func object(at indexPath: IndexPath) -> Object {

@@ -65,7 +65,7 @@
 		50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
 		50CF1F9420DCDBFC0011BFE9 /* CourseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B82221DDC9DB200559217 /* CourseActivityViewController.swift */; };
 		50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A61C2079781900E98351 /* CourseTransitioningDelegate.swift */; };
-		50CF1F9720DCDBFC0011BFE9 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
+		50CF1F9720DCDBFC0011BFE9 /* CoreDataCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */; };
 		50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
 		50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */; };
 		50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
@@ -287,7 +287,7 @@
 		24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVMetadataItem+convenience.swift"; sourceTree = "<group>"; };
 		2433A5A01CE634A00060DD98 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
 		2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemHelper.swift; sourceTree = "<group>"; };
-		2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
+		2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		243CE47E1D709999007C59B6 /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
 		243CE48B1D786421007C59B6 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
 		243CE4901D786717007C59B6 /* TrackingEventUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventUser.swift; sourceTree = "<group>"; };
@@ -1189,7 +1189,7 @@
 				AB6AE0C41CF7D69200708654 /* Account */,
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
 				24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */,
-				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
+				2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1829,7 +1829,7 @@
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
 				50CF1F9420DCDBFC0011BFE9 /* CourseActivityViewController.swift in Sources */,
 				50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */,
-				50CF1F9720DCDBFC0011BFE9 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
+				50CF1F9720DCDBFC0011BFE9 /* CoreDataCollectionViewDataSource.swift in Sources */,
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
 				50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */,

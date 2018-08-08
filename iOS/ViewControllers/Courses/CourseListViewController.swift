@@ -9,13 +9,7 @@ import UIKit
 
 class CourseListViewController: UICollectionViewController {
 
-    private lazy var resultsControllers: [NSFetchedResultsController<Course>] = [
-        CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "currentSectionName"),
-        CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
-        CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
-    ]
-
-    private var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
+    private var dataSource: CoreDataCollectionViewDataSource<CourseListViewController>!
 
     @available(iOS, obsoleted: 11.0)
     private var searchController: UISearchController?
@@ -49,31 +43,17 @@ class CourseListViewController: UICollectionViewController {
 
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
-                                                                                                        resultsControllers: resultsControllers,
-                                                                                                        searchFetchRequest: searchFetchRequest,
-                                                                                                        cellReuseIdentifier: reuseIdentifier)
-
-        resultsControllerDelegateImplementation.headerReuseIdentifier = R.nib.courseHeaderView.name
-        let configuration = CourseListViewConfiguration().wrapped
-        resultsControllerDelegateImplementation.configuration = configuration
-
-        for resultsController in resultsControllers {
-            resultsController.delegate = resultsControllerDelegateImplementation
-        }
-
-        self.collectionView?.dataSource = resultsControllerDelegateImplementation
-
-        do {
-            for resultsController in resultsControllers {
-                try resultsController.performFetch()
-            }
-        } catch {
-            CrashlyticsHelper.shared.recordError(error)
-            log.error(error)
-        }
-
-        self.collectionView?.reloadData()
+        let resultsControllers: [NSFetchedResultsController<Course>] = [
+            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "currentSectionName"),
+            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
+            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
+        ]
+        self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
+                                                           fetchedResultsControllers: resultsControllers,
+                                                           searchFetchRequest: searchFetchRequest,
+                                                           cellReuseIdentifier: reuseIdentifier,
+                                                           headerReuseIdentifier: R.nib.courseHeaderView.name,
+                                                           delegate: self)
 
         CourseHelper.syncAllCourses()
 
@@ -121,7 +101,7 @@ class CourseListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
+        let course = self.dataSource.object(at: indexPath)
         AppNavigator.show(course: course)
     }
 
@@ -157,11 +137,11 @@ extension CourseListViewController: CourseListLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-        if self.resultsControllerDelegateImplementation.isSearching && !self.resultsControllerDelegateImplementation.hasSearchResults {
+        if self.dataSource.isSearching && !self.dataSource.hasSearchResults {
             return 0.0
         }
 
-        let course = self.resultsControllerDelegateImplementation.visibleObject(at: indexPath)
+        let course = self.dataSource.object(at: indexPath)
         let cardWidth = boundingWidth - 2 * 14
         let imageHeight = cardWidth / 2
 
@@ -224,11 +204,11 @@ extension CourseListViewController: UISearchResultsUpdating {
         self.collectionView?.setContentOffset(scrollOffset, animated: true)
 
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {
-            self.resultsControllerDelegateImplementation.resetSearch()
+            self.dataSource.resetSearch()
             return
         }
 
-        self.resultsControllerDelegateImplementation.search(withText: searchText)
+        self.dataSource.search(withText: searchText)
     }
 
 }
@@ -263,17 +243,15 @@ extension CourseListViewController: UISearchControllerDelegate {
 
 }
 
-struct CourseListViewConfiguration: CollectionViewResultsControllerConfiguration {
+extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseList requires cells of type CourseCell")
-        let course = controller.object(at: indexPath)
-        cell.configure(course, forConfiguration: .courseList)
+    func configure(_ cell: CourseCell, for object: Course) {
+        cell.configure(object, forConfiguration: .courseList)
     }
 
-    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
+    func configureHeaderView(_ view: UICollectionReusableView, sectionInfo: NSFetchedResultsSectionInfo) {
         let headerView = view.require(toHaveType: CourseHeaderView.self, hint: "CourseList requires header cells of type CourseHeaderView")
-        headerView.configure(section)
+        headerView.configure(sectionInfo)
     }
 
     func searchPredicate(forSearchText searchText: String) -> NSPredicate? {

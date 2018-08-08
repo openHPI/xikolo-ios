@@ -7,8 +7,35 @@ import Common
 import CoreData
 import UIKit
 
-// swiftlint:disable:next type_name
-class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UICollectionViewDataSource {
+protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
+
+    associatedtype Object: NSFetchRequestResult
+    associatedtype Cell: UICollectionViewCell
+
+    func configure(_ cell: Cell, for object: Object)
+    func configureHeaderView(_ view: UICollectionReusableView, sectionInfo: NSFetchedResultsSectionInfo) // header view -> generic?
+
+    func searchPredicate(forSearchText searchText: String) -> NSPredicate?
+    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int)
+
+}
+
+extension CoreDataCollectionViewDataSourceDelegate {
+
+    func configureHeaderView(_ view: UICollectionReusableView, sectionInfo: NSFetchedResultsSectionInfo) {}
+
+    func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
+        return nil
+    }
+
+    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {}
+
+}
+
+class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
+
+    typealias Object = Delegate.Object
+    typealias Cell = Delegate.Cell
 
     private let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
     private let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
@@ -16,13 +43,45 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
 
     private let emptyCellReuseIdentifier = "collectionview.cell.empty"
 
-    weak var collectionView: UICollectionView?
-    var resultsControllers: [NSFetchedResultsController<T>] = [] // 2Think: Do we create a memory loop here?
-    var cellReuseIdentifier: String
-    var headerReuseIdentifier: String?
+    private weak var collectionView: UICollectionView?
+    private var fetchedResultsControllers: [NSFetchedResultsController<Object>]
+    private var cellReuseIdentifier: String
+    private var headerReuseIdentifier: String?
+    private weak var delegate: Delegate?
 
-    private var searchFetchRequest: NSFetchRequest<T>?
-    private var searchFetchResultsController: NSFetchedResultsController<T>?
+    private var searchFetchRequest: NSFetchRequest<Object>?
+    private var searchFetchResultsController: NSFetchedResultsController<Object>?
+
+    private var contentChangeOperations: [BlockOperation] = []
+
+    required init(_ collectionView: UICollectionView?,
+                  fetchedResultsControllers: [NSFetchedResultsController<Object>],
+                  searchFetchRequest: NSFetchRequest<Object>? = nil,
+                  cellReuseIdentifier: String,
+                  headerReuseIdentifier: String? = nil,
+                  delegate: Delegate) {
+        self.collectionView = collectionView
+        self.fetchedResultsControllers = fetchedResultsControllers
+        self.searchFetchRequest = searchFetchRequest
+        self.cellReuseIdentifier = cellReuseIdentifier
+        self.headerReuseIdentifier = headerReuseIdentifier
+        self.delegate = delegate
+        super.init()
+        self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: self.emptyCellReuseIdentifier)
+
+        do {
+            for fetchedResultsController in self.fetchedResultsControllers {
+                fetchedResultsController.delegate = self
+                try fetchedResultsController.performFetch()
+            }
+        } catch {
+            CrashlyticsHelper.shared.recordError(error)
+            log.error(error)
+        }
+
+        self.collectionView?.dataSource = self
+        self.collectionView?.reloadData()
+    }
 
     var isSearching: Bool {
         return self.searchFetchResultsController != nil
@@ -32,20 +91,11 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         return !(self.searchFetchResultsController?.fetchedObjects?.isEmpty ?? true)
     }
 
-    var configuration: CollectionViewResultsControllerConfigurationWrapper<T>?
-    private var contentChangeOperations: [BlockOperation] = []
-
-    required init(_ collectionView: UICollectionView?,
-                  resultsControllers: [NSFetchedResultsController<T>],
-                  searchFetchRequest: NSFetchRequest<T>? = nil,
-                  cellReuseIdentifier: String) {
-        self.collectionView = collectionView
-        self.resultsControllers = resultsControllers
-        self.searchFetchRequest = searchFetchRequest
-        self.cellReuseIdentifier = cellReuseIdentifier
-
-        self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: self.emptyCellReuseIdentifier)
+    func object(at indexPath: IndexPath) -> Object {
+        return self.visibleObject(at: indexPath)
     }
+
+    // MARK: NSFetchedResultsControllerDelegate
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
@@ -117,9 +167,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         }
 
         self.contentChangeOperations.removeAll(keepingCapacity: false)
-        self.configuration = nil
-        self.resultsControllers.removeAll(keepingCapacity: false)
-        self.collectionView = nil
+        self.fetchedResultsControllers.removeAll(keepingCapacity: false)
     }
 
     // MARK: UICollectionViewDataSource
@@ -128,7 +176,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         if self.isSearching {
             return 1
         } else {
-            return self.resultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
+            return self.fetchedResultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
         }
     }
 
@@ -137,7 +185,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
             return max(searchResultsController.fetchedObjects?.count ?? 0, 1)
         } else {
             var sectionsToGo = section
-            for controller in resultsControllers {
+            for controller in self.fetchedResultsControllers {
                 let sectionCount = controller.sections?.count ?? 0
                 if sectionsToGo >= sectionCount {
                     sectionsToGo -= sectionCount
@@ -156,13 +204,10 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
             return collectionView.dequeueReusableCell(withReuseIdentifier: self.emptyCellReuseIdentifier, for: indexPath)
         }
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
-        if let searchResultsController = self.searchFetchResultsController {
-            self.configuration?.configureCollectionCell(cell, for: searchResultsController, indexPath: indexPath)
-        } else {
-            let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
-            self.configuration?.configureCollectionCell(cell, for: controller, indexPath: newIndexPath)
-        }
+        let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath) as? Cell
+        let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(Cell.self)")
+        let object = self.object(at: indexPath)
+        self.delegate?.configure(cell, for: object)
 
         return cell
     }
@@ -174,12 +219,12 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier!, for: indexPath)
             if let searchResultsController = self.searchFetchResultsController {
                 if let numberOfSearchResults = searchResultsController.fetchedObjects?.count {
-                    self.configuration?.configureSearchHeaderView(view, numberOfSearchResults: numberOfSearchResults)
+                    self.delegate?.configureSearchHeaderView(view, numberOfSearchResults: numberOfSearchResults)
                 }
             } else {
                 let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
-                if let section = controller.sections?[newIndexPath.section] {
-                    self.configuration?.configureCollectionHeaderView(view, section: section)
+                if let sectionInfo = controller.sections?[newIndexPath.section] {
+                    self.delegate?.configureHeaderView(view, sectionInfo: sectionInfo)
                 }
             }
 
@@ -189,7 +234,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
         }
     }
 
-    func visibleObject(at indexPath: IndexPath) -> T {
+    func visibleObject(at indexPath: IndexPath) -> Object {
         if let searchResultsController = self.searchFetchResultsController {
             return searchResultsController.object(at: indexPath)
         }
@@ -199,7 +244,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
     }
 
     func search(withText searchText: String) {
-        guard let fetchRequest = self.searchFetchRequest?.copy() as? NSFetchRequest<T> else {
+        guard let fetchRequest = self.searchFetchRequest?.copy() as? NSFetchRequest<Object> else {
             log.warning("CollectionViewControllerDelegateImplementation is not configured for search. Missing search fetch request.")
             self.resetSearch()
             return
@@ -210,7 +255,7 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
             return
         }
 
-        let searchPredicate = self.configuration?.searchPredicate(forSearchText: searchText)
+        let searchPredicate = self.delegate?.searchPredicate(forSearchText: searchText)
         let fetchPredicate = fetchRequest.predicate
         let predicates = [fetchPredicate, searchPredicate].compactMap { $0 }
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -237,14 +282,14 @@ class CollectionViewResultsControllerDelegateImplementation<T: NSManagedObject>:
 
 }
 
-extension CollectionViewResultsControllerDelegateImplementation { // Conversion of indices between data and views
+extension CoreDataCollectionViewDataSource { // Conversion of indices between data and views
     // correct "visual" indexPath for data controller and its indexPath (data->visual)
     func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
         guard var newIndexPath = indexPath else {
             return nil
         }
 
-        for contr in resultsControllers {
+        for contr in self.fetchedResultsControllers {
             if contr == controller {
                 return newIndexPath
             } else {
@@ -263,7 +308,7 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
 
         var convertedIndexSet = IndexSet()
         var passedSections = 0
-        for contr in resultsControllers {
+        for contr in self.fetchedResultsControllers {
             if contr == controller {
                 for index in newIndexSet {
                     convertedIndexSet.insert(index + passedSections)
@@ -279,9 +324,9 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
     }
 
     // find data controller and its indexPath for a given "visual" indexPath (visual->data)
-    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<T>, IndexPath)? {
+    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<Object>, IndexPath)? {
         var passedSections = 0
-        for contr in resultsControllers {
+        for contr in self.fetchedResultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
                 let newIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - passedSections)
                 return (contr, newIndexPath)
@@ -291,74 +336,6 @@ extension CollectionViewResultsControllerDelegateImplementation { // Conversion 
         }
 
         return nil
-    }
-
-}
-
-protocol CollectionViewResultsControllerConfigurationProtocol {
-    associatedtype Content: NSManagedObject
-
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
-    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo)
-
-    func searchPredicate(forSearchText searchText: String) -> NSPredicate?
-    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int)
-
-}
-
-extension CollectionViewResultsControllerConfigurationProtocol {
-
-    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {}
-
-    func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
-        return nil
-    }
-
-    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {}
-
-}
-
-protocol CollectionViewResultsControllerConfiguration: CollectionViewResultsControllerConfigurationProtocol {
-    var wrapped: CollectionViewResultsControllerConfigurationWrapper<Content> { get }
-}
-
-extension CollectionViewResultsControllerConfiguration {
-    var wrapped: CollectionViewResultsControllerConfigurationWrapper<Content> {
-        return CollectionViewResultsControllerConfigurationWrapper(self)
-    }
-}
-
-// This is a wrapper for type erasure allowing the generic CollectionViewResultsControllerDelegateImplementation to be
-// configured with a concrete type (via a configuration struct).
-// swiftlint:disable:next type_name
-class CollectionViewResultsControllerConfigurationWrapper<T: NSManagedObject>: CollectionViewResultsControllerConfigurationProtocol {
-
-    private let configureCollectionCell: (UICollectionViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
-    private let configureCollectionHeaderView: (UICollectionReusableView, NSFetchedResultsSectionInfo) -> Void
-    private let searchPredicate: (String) -> NSPredicate?
-    private let configureSearchHeaderView: (UICollectionReusableView, Int) -> Void
-
-    required init<U: CollectionViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
-        self.configureCollectionCell = configuration.configureCollectionCell
-        self.configureCollectionHeaderView = configuration.configureCollectionHeaderView
-        self.searchPredicate = configuration.searchPredicate
-        self.configureSearchHeaderView = configuration.configureSearchHeaderView
-    }
-
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
-        self.configureCollectionCell(cell, controller, indexPath)
-    }
-
-    func configureCollectionHeaderView(_ view: UICollectionReusableView, section: NSFetchedResultsSectionInfo) {
-        self.configureCollectionHeaderView(view, section)
-    }
-
-    func searchPredicate(forSearchText searchText: String) -> NSPredicate? {
-        return self.searchPredicate(searchText)
-    }
-
-    func configureSearchHeaderView(_ view: UICollectionReusableView, numberOfSearchResults: Int) {
-        self.configureSearchHeaderView(view, numberOfSearchResults)
     }
 
 }

@@ -68,7 +68,7 @@ class CourseItemListViewController: UITableViewController {
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsControllers: [resultsController],
+                                                      fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
 
@@ -171,8 +171,7 @@ class CourseItemListViewController: UITableViewController {
 extension CourseItemListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let (controller, newIndexPath) = self.dataSource.controllerAndImplementationIndexPath(forVisual: indexPath)!
-        let item = controller.object(at: newIndexPath)
+        let item = self.dataSource.object(at: indexPath)
         if item.proctored && (self.course.enrollment?.proctored ?? false) {
             self.showProctoringDialog {
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -188,12 +187,8 @@ extension CourseItemListViewController { // TableViewDelegate
             return nil
         }
 
-        let visualIndexPath = IndexPath(row: 0, section: section)
-        guard let (controller, indexPath) = self.dataSource.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
-            return nil
-        }
-
-        guard let section = controller.object(at: indexPath).section else {
+        let indexPath = IndexPath(row: 0, section: section)
+        guard let section = self.dataSource.object(at: indexPath).section else {
             return nil
         }
 

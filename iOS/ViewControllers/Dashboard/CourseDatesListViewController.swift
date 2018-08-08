@@ -36,7 +36,7 @@ class CourseDatesListViewController: UITableViewController {
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
         let resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsControllers: [resultsController],
+                                                      fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
 
@@ -91,8 +91,7 @@ class CourseDatesListViewController: UITableViewController {
 extension CourseDatesListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let (controller, dataIndexPath) = self.dataSource.controllerAndImplementationIndexPath(forVisual: indexPath)!
-        let courseDate = controller.object(at: dataIndexPath)
+        let courseDate = self.dataSource.object(at: indexPath)
 
         guard let course = courseDate.course else {
             log.warning("Did not find course for course date")

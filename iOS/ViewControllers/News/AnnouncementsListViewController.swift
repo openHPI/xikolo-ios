@@ -52,7 +52,7 @@ class AnnouncementsListViewController: UITableViewController {
         let reuseIdentifier = R.reuseIdentifier.announcementCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsControllers: [resultsController],
+                                                      fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
 
@@ -118,8 +118,7 @@ class AnnouncementsListViewController: UITableViewController {
 extension AnnouncementsListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let (controller, newIndexPath) = self.dataSource.controllerAndImplementationIndexPath(forVisual: indexPath)!
-        let announcement = controller.object(at: newIndexPath)
+        let announcement = self.dataSource.object(at: indexPath)
         self.performSegue(withIdentifier: R.segue.announcementsListViewController.showAnnouncement, sender: announcement)
     }
 

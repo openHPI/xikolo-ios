@@ -11,21 +11,44 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleView: UILabel!
 
-    private var courseAreaListViewController: CourseAreaListViewController?
     private var courseAreaViewController: UIViewController?
+    private var courseAreaListViewController: CourseAreaListViewController? {
+        didSet {
+            self.courseAreaListViewController?.delegate = self
+        }
+    }
 
-    var course: Course!
-    var content: CourseArea?
+    private var courseObserver: ManagedObjectObserver?
+
+    var course: Course! {
+        didSet {
+            self.updateView()
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] type in
+                guard type == .update else { return }
+                DispatchQueue.main.async {
+                    self?.updateView()
+                }
+            }
+        }
+    }
+
+    var content: CourseArea? {
+        didSet {
+            guard self.viewIfLoaded != nil else { return }
+            self.updateContainerView()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.decideContent()
 
-        self.course.notifyOnChange(self, updateHandler: {}, deleteHandler: { [weak self] in
-            self?.closeCourse()
-        })
+        SpotlightHelper.shared.setUserActivity(for: self.course)
+        CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
+    }
 
+    private func updateView() {
         self.titleView.text = self.course.title
 
         if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
@@ -35,9 +58,6 @@ class CourseViewController: UIViewController {
             titleView.frame = frame
             titleView.setNeedsLayout()
         }
-
-        SpotlightHelper.shared.setUserActivity(for: self.course)
-        CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
     }
 
     private func closeCourse() {
@@ -49,19 +69,17 @@ class CourseViewController: UIViewController {
         self.closeCourse()
     }
 
-    func decideContent(newlyEnrolled: Bool = false) {
+    private func decideContent() {
         if !self.course.hasEnrollment {
             self.content = .courseDetails
-        } else if newlyEnrolled || self.content == nil {
-            self.content = course.accessible ? .learnings : .courseDetails
+        } else {
+            self.content = self.course.accessible ? .learnings : .courseDetails
         }
 
-        let content = self.content.require(hint: "This should never occur. Invalid use of course view controller")
         self.courseAreaListViewController?.refresh(animated: false)
-        self.updateContainerView(to: content)
     }
 
-    func updateContainerView(to content: CourseArea) {
+    private func updateContainerView() {
         if let viewController = self.courseAreaViewController {
             viewController.willMove(toParentViewController: nil)
             viewController.view.removeFromSuperview()
@@ -69,8 +87,8 @@ class CourseViewController: UIViewController {
             self.courseAreaViewController = nil
         }
 
-        guard let courseAreaViewController = content.viewController else { return }
-        courseAreaViewController.configure(for: course)
+        guard let courseAreaViewController = self.content?.viewController else { return }
+        courseAreaViewController.configure(for: self.course, delegate: self)
 
         self.containerView.addSubview(courseAreaViewController.view)
         courseAreaViewController.view.frame = self.containerView.bounds
@@ -81,7 +99,6 @@ class CourseViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let courseAreaListViewController = segue.destination as? CourseAreaListViewController {
-            courseAreaListViewController.delegate = self
             self.courseAreaListViewController = courseAreaListViewController
         }
     }
@@ -119,7 +136,14 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
 
     func change(to content: CourseArea) {
         self.content = content
-        self.updateContainerView(to: content)
+    }
+
+}
+
+extension CourseViewController: CourseAreaViewControllerDelegate {
+
+    func enrollmentStateDidChange() {
+        self.decideContent()
     }
 
 }

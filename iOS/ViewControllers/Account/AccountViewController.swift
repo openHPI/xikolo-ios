@@ -38,25 +38,27 @@ class AccountViewController: UITableViewController {
     @IBOutlet private weak var versionLabel: UILabel!
     @IBOutlet private weak var buildLabel: UILabel!
 
+    private var userObserver: ManagedObjectObserver?
+
     var headerHeight: HeaderHeight = .noContent
     var user: User? {
         didSet {
+            if let user = self.user {
+                self.userObserver = ManagedObjectObserver(object: user) { [weak self] type in
+                    guard type == .update else { return }
+                    DispatchQueue.main.async {
+                        self?.updateProfileInfo()
+                    }
+                }
+            } else {
+                self.userObserver = nil
+            }
+
             if self.user != oldValue {
                 DispatchQueue.main.async {
                     self.updateProfileInfo()
                 }
             }
-
-            if oldValue != nil {
-                oldValue?.removeNotifications(self)
-            }
-
-            // swiftlint:disable:next multiline_arguments
-            self.user?.notifyOnChange(self, updateHandler: {
-                DispatchQueue.main.async {
-                    self.updateProfileInfo()
-                }
-            }, deleteHandler: {})
         }
     }
 
@@ -125,7 +127,6 @@ class AccountViewController: UITableViewController {
                 view.isHidden = false
             }
 
-            // swiftlint:disable:next multiline_arguments
             UIView.animate(withDuration: 0.25, animations: {
                 self.headerHeight = .userProfile
                 self.view.layoutIfNeeded()
@@ -137,7 +138,6 @@ class AccountViewController: UITableViewController {
                 }
             })
         } else {
-            // swiftlint:disable:next multiline_arguments
             UIView.animate(withDuration: 0.25, animations: {
                 for view in profileViews {
                     view.alpha = 0

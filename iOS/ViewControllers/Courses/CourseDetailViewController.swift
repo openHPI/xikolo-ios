@@ -21,7 +21,19 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
 
-    var course: Course!
+    private var delegate: CourseAreaViewControllerDelegate?
+    private var courseObserver: ManagedObjectObserver?
+
+    var course: Course! {
+        didSet {
+            self.courseObserver = ManagedObjectObserver(object: self.course) { [weak self] type in
+                guard type == .update else { return }
+                DispatchQueue.main.async {
+                    self?.updateView()
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,9 +203,7 @@ class CourseDetailViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.refreshEnrollmentViews()
-                if let parent = self.parent as? CourseViewController {
-                    parent.decideContent(newlyEnrolled: newlyCreated)
-                }
+                self.delegate?.enrollmentStateDidChange()
             }
         }.onFailure { _ in
             self.enrollmentButton.shake()
@@ -220,7 +230,8 @@ extension CourseDetailViewController: UITextViewDelegate {
 
 extension CourseDetailViewController: CourseAreaViewController {
 
-    func configure(for course: Course) {
+    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+        self.delegate = delegate
         self.course = course
     }
 

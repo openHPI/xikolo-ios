@@ -1,4 +1,5 @@
 opt_in_rules:
+- anyobject_protocol
 - closure_end_indentation
 - closure_spacing
 - contains_over_first_not_nil
@@ -30,14 +31,9 @@ opt_in_rules:
 disabled_rules:
 - explicit_enum_raw_value
 
-included:
-- Common
-- Common-Tests
-- iOS
-- iOS-Tests
-- iOS-UITests
-
 excluded:
+- Pods
+- Frameworks
 - iOS-UITests/SnapshotHelper.swift
 - Common/R.generated.swift
 - iOS/R.generated.swift
@@ -50,6 +46,9 @@ identifier_name:
 
 trailing_comma:
   mandatory_comma: true
+
+multiline_arguments:
+  only_enforce_after_first_closure_on_first_line: true
 
 file_header:
   required_pattern: |

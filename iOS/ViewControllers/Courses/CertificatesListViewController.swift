@@ -94,7 +94,7 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
 
 extension CertificatesListViewController: CourseAreaViewController {
 
-    func configure(for course: Course) {
+    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
         self.course = course
     }
 

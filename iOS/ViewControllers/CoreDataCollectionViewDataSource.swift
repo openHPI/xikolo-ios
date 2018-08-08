@@ -37,10 +37,6 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     typealias Object = Delegate.Object
     typealias Cell = Delegate.Cell
 
-    private let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
-    private let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
-    private let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
-
     private let emptyCellReuseIdentifier = "collectionview.cell.empty"
 
     private weak var collectionView: UICollectionView?

@@ -17,8 +17,8 @@ class AnnouncementViewController: UIViewController {
 
     private var announcementObserver: ManagedObjectObserver?
 
-    var showCourseTitle: Bool = false
-    var announcement: Announcement! {
+    private var showCourseTitle: Bool = false
+    private var announcement: Announcement! {
         didSet {
             self.announcementObserver = ManagedObjectObserver(object: self.announcement) { [weak self] type in
                 guard type == .update else { return }
@@ -47,6 +47,11 @@ class AnnouncementViewController: UIViewController {
         super.viewDidAppear(animated)
         AnnouncementHelper.shared.markAsVisited(self.announcement)
         TrackingHelper.shared.createEvent(.visitedAnnouncement, resourceType: .announcement, resourceId: announcement.id)
+    }
+
+    func configure(for announcement: Announcement, showCourseTitle: Bool) {
+        self.showCourseTitle = showCourseTitle
+        self.announcement = announcement
     }
 
     private func updateView() {

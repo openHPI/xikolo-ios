@@ -11,8 +11,12 @@ class CourseViewController: UIViewController {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleView: UILabel!
 
-    private var courseAreaListViewController: CourseAreaListViewController?
     private var courseAreaViewController: UIViewController?
+    private var courseAreaListViewController: CourseAreaListViewController? {
+        didSet {
+            self.courseAreaListViewController?.delegate = self
+        }
+    }
 
     private var courseObserver: ManagedObjectObserver?
 
@@ -91,7 +95,6 @@ class CourseViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let courseAreaListViewController = segue.destination as? CourseAreaListViewController {
-            courseAreaListViewController.delegate = self
             self.courseAreaListViewController = courseAreaListViewController
         }
     }

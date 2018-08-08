@@ -106,8 +106,7 @@ class AnnouncementsListViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
         if let typedInfo = R.segue.announcementsListViewController.showAnnouncement(segue: segue) {
-            typedInfo.destination.announcement = announcement
-            typedInfo.destination.showCourseTitle = self.course == nil
+            typedInfo.destination.configure(for: announcement, showCourseTitle: self.course == nil)
         }
     }
 

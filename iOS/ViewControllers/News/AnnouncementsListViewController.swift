@@ -11,8 +11,7 @@ import UIKit
 
 class AnnouncementsListViewController: UITableViewController {
 
-    var resultsController: NSFetchedResultsController<Announcement>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<Announcement>!
+    private var dataSource: CoreDataTableViewDataSource<AnnouncementsListViewController>!
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -42,7 +41,7 @@ class AnnouncementsListViewController: UITableViewController {
         self.tableView.cellLayoutMarginsFollowReadableWidth = self.course != nil
 
         // setup table view data
-        var request: NSFetchRequest<Announcement>
+        let request: NSFetchRequest<Announcement>
 
         if let course = course {
             request = AnnouncementHelper.FetchRequest.announcements(forCourse: course)
@@ -51,25 +50,11 @@ class AnnouncementsListViewController: UITableViewController {
         }
 
         let reuseIdentifier = R.reuseIdentifier.announcementCell.identifier
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
-                                                                                                   resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: reuseIdentifier)
-
-        let configuration = AnnouncementsTableViewConfiguration(shouldShowCourseTitle: self.course == nil)
-        let configurationWrapper = configuration.wrapped
-        resultsControllerDelegateImplementation.configuration = configurationWrapper
-        resultsController.delegate = resultsControllerDelegateImplementation
-        tableView.dataSource = resultsControllerDelegateImplementation
-
-        self.refresh()
-
-        do {
-            try resultsController.performFetch()
-        } catch {
-            CrashlyticsHelper.shared.recordError(error)
-            log.error(error)
-        }
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsControllers: [resultsController],
+                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      delegate: self)
 
         self.setupEmptyState()
     }
@@ -133,20 +118,17 @@ class AnnouncementsListViewController: UITableViewController {
 extension AnnouncementsListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let announcement = resultsController.object(at: indexPath)
+        let (controller, newIndexPath) = self.dataSource.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        let announcement = controller.object(at: newIndexPath)
         self.performSegue(withIdentifier: R.segue.announcementsListViewController.showAnnouncement, sender: announcement)
     }
 
 }
 
-struct AnnouncementsTableViewConfiguration: TableViewResultsControllerConfiguration {
+extension AnnouncementsListViewController: CoreDataTableViewDataSourceDelegate {
 
-    var shouldShowCourseTitle: Bool
-
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Announcement>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: AnnouncementCell.self, hint: "AnnouncementsListViewController requires cells of type AnnouncementCell")
-        let announcement = controller.object(at: indexPath)
-        cell.configure(announcement, showCourseTitle: shouldShowCourseTitle)
+    func configure(_ cell: AnnouncementCell, for object: Announcement) {
+        cell.configure(for: object, showCourseTitle: self.course == nil)
     }
 
 }

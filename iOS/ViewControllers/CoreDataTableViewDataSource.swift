@@ -4,27 +4,63 @@
 //
 
 import CoreData
+import Common
 import UIKit
 
-// swiftlint:disable:next type_name
-class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
+protocol CoreDataTableViewDataSourceDelegate: AnyObject {
+
+    associatedtype Object: NSFetchRequestResult
+    associatedtype Cell: UITableViewCell
+
+    func configure(_ cell: Cell, for object: Object)
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Object>, forSection section: Int) -> String?
+
+}
+
+extension CoreDataTableViewDataSourceDelegate {
+
+    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Object>, forSection section: Int) -> String? {
+        return nil
+    }
+
+}
+
+class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate> : NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+
+    typealias Object = Delegate.Object
+    typealias Cell = Delegate.Cell
 
     private let errorMessageIndexSetConversion = "Convertion of IndexSet for multiple FetchedResultsControllers failed"
     private let errorMessageIndexPathConversion = "Convertion of IndexPath for multiple FetchedResultsControllers failed"
     private let errorMessageNewIndexPathConversion = "Convertion of NewIndexPath for multiple FetchedResultsControllers failed"
 
-    weak var tableView: UITableView?
-    var resultsControllers: [NSFetchedResultsController<T>]
-    var cellReuseIdentifier: String
-
-    var configuration: TableViewResultsControllerConfigurationWrapper<T>?
+    private weak var tableView: UITableView?
+    private let fetchedResultsControllers: [NSFetchedResultsController<Object>]
+    private let cellReuseIdentifier: String
+    private weak var delegte: Delegate?
 
     required init(_ tableView: UITableView,
-                  resultsController: [NSFetchedResultsController<T>],
-                  cellReuseIdentifier: String) {
+                  fetchedResultsControllers: [NSFetchedResultsController<Object>],
+                  cellReuseIdentifier: String,
+                  delegate: Delegate) {
         self.tableView = tableView
-        self.resultsControllers = resultsController
+        self.fetchedResultsControllers = fetchedResultsControllers
         self.cellReuseIdentifier = cellReuseIdentifier
+        self.delegte = delegate
+        super.init()
+
+        do {
+            for fetchedResultsController in self.fetchedResultsControllers {
+                fetchedResultsController.delegate = self
+                try fetchedResultsController.performFetch()
+            }
+        } catch {
+            CrashlyticsHelper.shared.recordError(error)
+            log.error(error)
+        }
+
+        self.tableView?.dataSource = self
+        self.tableView?.reloadData()
     }
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -75,14 +111,14 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     // MARK: UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return resultsControllers.reduce(0) { partialCount, controller -> Int in
+        return self.fetchedResultsControllers.reduce(0) { partialCount, controller -> Int in
             return (controller.sections?.count ?? 0) + partialCount
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var sectionsToGo = section
-        for controller in resultsControllers {
+        for controller in self.fetchedResultsControllers {
             let sectionCount = controller.sections?.count ?? 0
             if sectionsToGo >= sectionCount {
                 sectionsToGo -= sectionCount
@@ -95,15 +131,17 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
-        let (controller, newIndexPath) = controllerAndImplementationIndexPath(forVisual: indexPath)!
-        self.configuration?.configureTableCell(cell, for: controller, indexPath: newIndexPath)
+        let someCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as? Cell
+        let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(Cell.self)")
+        let (controller, newIndexPath) = self.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        let object = controller.object(at: newIndexPath)
+        self.delegte?.configure(cell, for: object)
         return cell
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let (controller, newSection) = controllerAndImplementationSection(forSection: section)!
-        guard let headerTitle = self.configuration?.titleForDefaultHeader(forController: controller, forSection: newSection) else {
+        let (controller, newSection) = self.controllerAndImplementationSection(forSection: section)!
+        guard let headerTitle = self.delegte?.titleForDefaultHeader(forController: controller, forSection: newSection) else {
             return nil
         }
 
@@ -112,14 +150,14 @@ class TableViewResultsControllerDelegateImplementation<T: NSManagedObject> : NSO
 
 }
 
-extension TableViewResultsControllerDelegateImplementation { // Conversion of indices between data and views
+extension CoreDataTableViewDataSource { // Conversion of indices between data and views
     // correct "visual" indexPath for data controller and its indexPath (data->visual)
     func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath?) -> IndexPath? {
         guard var newIndexPath = indexPath else {
             return nil
         }
 
-        for contr in resultsControllers {
+        for contr in self.fetchedResultsControllers {
             if contr == controller {
                 return newIndexPath
             } else {
@@ -135,7 +173,7 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
         guard let oldSectionIndex = sectionIndex else { return nil }
         var convertedIndexSet = IndexSet()
         var passedSections = 0
-        for contr in resultsControllers {
+        for contr in self.fetchedResultsControllers {
             if contr == controller {
                 passedSections += oldSectionIndex
                 convertedIndexSet.insert(passedSections)
@@ -149,9 +187,9 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
     }
 
     // find data controller and its sectionIndex for a given "visual" sectionIndex (visual->data)
-    func controllerAndImplementationSection(forSection section: Int) -> (NSFetchedResultsController<T>, Int)? {
+    func controllerAndImplementationSection(forSection section: Int) -> (NSFetchedResultsController<Object>, Int)? {
         var passedSections = 0
-        for contr in resultsControllers {
+        for contr in self.fetchedResultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > section {
                 let newSection = section - passedSections
                 return (contr, newSection)
@@ -164,9 +202,9 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
     }
 
     // find data controller and its indexPath for a given "visual" indexPath (visual->data)
-    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<T>, IndexPath)? {
+    func controllerAndImplementationIndexPath(forVisual indexPath: IndexPath) -> (NSFetchedResultsController<Object>, IndexPath)? {
         var passedSections = 0
-        for contr in resultsControllers {
+        for contr in self.fetchedResultsControllers {
             if passedSections + (contr.sections?.count ?? 0) > indexPath.section {
                 let newIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - passedSections)
                 return (contr, newIndexPath)
@@ -176,57 +214,6 @@ extension TableViewResultsControllerDelegateImplementation { // Conversion of in
         }
 
         return nil
-    }
-
-}
-
-protocol TableViewResultsControllerConfigurationProtocol {
-
-    associatedtype Content: NSManagedObject
-
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<Content>, indexPath: IndexPath)
-
-    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String?
-
-}
-
-extension TableViewResultsControllerConfigurationProtocol {
-
-    func titleForDefaultHeader(forController controller: NSFetchedResultsController<Content>, forSection section: Int) -> String? {
-        return nil
-    }
-
-}
-
-protocol TableViewResultsControllerConfiguration: TableViewResultsControllerConfigurationProtocol {
-    var wrapped: TableViewResultsControllerConfigurationWrapper<Content> { get }
-}
-
-extension TableViewResultsControllerConfiguration {
-    var wrapped: TableViewResultsControllerConfigurationWrapper<Content> {
-        return TableViewResultsControllerConfigurationWrapper(self)
-    }
-}
-
-// This is a wrapper for type erasure allowing the generic TableViewResultsControllerDelegateImplementation to be
-// configured with a concrete type (via a configuration struct).
-// swiftlint:disable:next type_name
-class TableViewResultsControllerConfigurationWrapper<T: NSManagedObject>: TableViewResultsControllerConfigurationProtocol {
-
-    private let _configureTableCell: (UITableViewCell, NSFetchedResultsController<T>, IndexPath) -> Void
-    private let _titleForDefaultHeader: (NSFetchedResultsController<T>, Int) -> String?
-
-    required init<U: TableViewResultsControllerConfiguration>(_ configuration: U) where U.Content == T {
-        self._configureTableCell = configuration.configureTableCell
-        self._titleForDefaultHeader = configuration.titleForDefaultHeader
-    }
-
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<T>, indexPath: IndexPath) {
-        self._configureTableCell(cell, controller, indexPath)
-    }
-
-    func titleForDefaultHeader(forController controller: NSFetchedResultsController<T>, forSection section: Int) -> String? {
-        return self._titleForDefaultHeader(controller, section)
     }
 
 }

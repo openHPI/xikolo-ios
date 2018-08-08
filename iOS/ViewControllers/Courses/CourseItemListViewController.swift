@@ -10,12 +10,9 @@ import DZNEmptyDataSet
 import UIKit
 
 class CourseItemListViewController: UITableViewController {
-    typealias Resource = CourseItem
 
-    var course: Course!
-
-    var resultsController: NSFetchedResultsController<CourseItem>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseItem>!
+    private var course: Course!
+    private var dataSource: CoreDataTableViewDataSource<CourseItemListViewController>!
 
     var contentToBePreloaded: [DetailedCourseItem.Type] = [Video.self, RichText.self]
     var isPreloading = false
@@ -69,24 +66,13 @@ class CourseItemListViewController: UITableViewController {
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseItemCell.identifier
         let request = CourseItemHelper.FetchRequest.orderedCourseItems(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
-                                                                                                   resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: reuseIdentifier)
-
-        let configuration = CourseItemListViewConfiguration(tableViewController: self).wrapped
-        resultsControllerDelegateImplementation.configuration = configuration
-        resultsController.delegate = resultsControllerDelegateImplementation
-        tableView.dataSource = resultsControllerDelegateImplementation
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "section.position") // must be the first sort descriptor
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsControllers: [resultsController],
+                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      delegate: self)
 
         self.refresh()
-
-        do {
-            try resultsController.performFetch()
-        } catch {
-            CrashlyticsHelper.shared.recordError(error)
-            log.error(error)
-        }
     }
 
     func setupEmptyState() {
@@ -185,7 +171,8 @@ class CourseItemListViewController: UITableViewController {
 extension CourseItemListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = self.resultsController.object(at: indexPath)
+        let (controller, newIndexPath) = self.dataSource.controllerAndImplementationIndexPath(forVisual: indexPath)!
+        let item = controller.object(at: newIndexPath)
         if item.proctored && (self.course.enrollment?.proctored ?? false) {
             self.showProctoringDialog {
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -202,7 +189,7 @@ extension CourseItemListViewController { // TableViewDelegate
         }
 
         let visualIndexPath = IndexPath(row: 0, section: section)
-        guard let (controller, indexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
+        guard let (controller, indexPath) = self.dataSource.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
             return nil
         }
 
@@ -218,19 +205,11 @@ extension CourseItemListViewController { // TableViewDelegate
 
 }
 
-class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
-    weak var tableViewController: CourseItemListViewController?
+extension CourseItemListViewController: CoreDataTableViewDataSourceDelegate {
 
-    init(tableViewController: CourseItemListViewController) {
-        self.tableViewController = tableViewController
-    }
-
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseItem>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: CourseItemCell.self, hint: "CourseItemListViewController requires cell of type CourseItemCell")
-        let item = controller.object(at: indexPath)
-        cell.delegate = self.tableViewController
-
-        cell.configure(for: item)
+    func configure(_ cell: CourseItemCell, for object: CourseItem) {
+        cell.delegate = self
+        cell.configure(for: object)
     }
 
 }

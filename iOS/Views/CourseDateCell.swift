@@ -25,7 +25,7 @@ class CourseDateCell: UITableViewCell {
         self.courseLabel.textColor = Brand.default.colors.secondary
     }
 
-    func configure(_ courseDate: CourseDate) {
+    func configure(for courseDate: CourseDate) {
         self.dateLabel.text = self.dateText(for: courseDate)
         self.courseLabel.text = courseDate.course?.title
         self.titleLabel.text = self.title(for: courseDate)

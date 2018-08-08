@@ -125,7 +125,7 @@ class DocumentListViewConfiguration: TableViewResultsControllerConfiguration {
 
 extension DocumentListViewController: CourseAreaViewController {
 
-    func configure(for course: Course) {
+    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
         self.course = course
     }
 

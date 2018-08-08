@@ -56,7 +56,7 @@ PODS:
   - SimpleRoundedButton (1.0)
   - SimulatorStatusMagic (2.2)
   - SnapKit (4.0.0)
-  - SwiftLint (0.26.0)
+  - SwiftLint (0.27.0)
   - XCGLogger (6.0.4):
     - XCGLogger/Core (= 6.0.4)
   - XCGLogger/Core (6.0.4):
@@ -160,7 +160,7 @@ SPEC CHECKSUMS:
   SimpleRoundedButton: 4a04d0d3d79986973f74e34d543d0bc089fbc3e6
   SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SwiftLint: f6b83e8d95ee1e91e11932d843af4fdcbf3fc764
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
 PODFILE CHECKSUM: accf44fb3443a074a5d9f6ad02f2833eb1b8daef

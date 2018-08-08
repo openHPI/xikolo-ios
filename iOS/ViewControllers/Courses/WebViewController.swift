@@ -111,7 +111,7 @@ extension WebViewController: WKNavigationDelegate {
 
 extension WebViewController: CourseAreaViewController {
 
-    func configure(for course: Course) {
+    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
         if let slug = course.slug {
             self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
         }

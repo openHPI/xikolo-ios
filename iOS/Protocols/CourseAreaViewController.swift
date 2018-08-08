@@ -7,5 +7,9 @@ import Common
 import Foundation
 
 protocol CourseAreaViewController {
-    func configure(for course: Course)
+    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate)
+}
+
+protocol CourseAreaViewControllerDelegate {
+    func enrollmentStateDidChange()
 }

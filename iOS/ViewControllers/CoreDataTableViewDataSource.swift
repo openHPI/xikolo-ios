@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import CoreData
 import Common
+import CoreData
 import UIKit
 
 protocol CoreDataTableViewDataSourceDelegate: AnyObject {

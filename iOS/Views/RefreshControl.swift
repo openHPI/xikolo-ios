@@ -38,8 +38,8 @@ class RefreshControl: UIRefreshControl {
 
         self.action().onSuccess { _ in
             self.postAction()
-            }.onComplete { _ in
-                stopRefreshControl()
+        }.onComplete { _ in
+            stopRefreshControl()
         }
     }
 

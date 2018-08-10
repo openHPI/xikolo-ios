@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 import DZNEmptyDataSet
@@ -28,10 +29,7 @@ class CourseDatesListViewController: UITableViewController {
         // register custom section header view
         self.tableView.register(R.nib.courseDateHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDateHeader.name)
 
-        // setup pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
+        self.setupRefreshControl()
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
@@ -66,23 +64,6 @@ class CourseDatesListViewController: UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
-    }
-
-    @objc func refresh() {
-        self.tableView.reloadEmptyDataSet()
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.tableView.refreshControl?.endRefreshing()
-            }
-        }
-
-        CourseHelper.syncAllCourses().onComplete { _ in
-            CourseDateHelper.syncAllCourseDates().onComplete { _ in
-                stopRefreshControl()
-            }
-        }
-
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -123,6 +104,16 @@ struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguratio
         let cell = cell.require(toHaveType: CourseDateCell.self, hint: "CourseDatesViewController requires cell of type CourseDateCell")
         let courseDate = controller.object(at: indexPath)
         cell.configure(courseDate)
+    }
+
+}
+
+extension CourseDatesListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseHelper.syncAllCourses().map { _ in
+            return CourseDateHelper.syncAllCourseDates()
+        }.asVoid()
     }
 
 }

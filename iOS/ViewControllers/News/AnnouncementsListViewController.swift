@@ -33,10 +33,7 @@ class AnnouncementsListViewController: UITableViewController {
 
         self.updateUIAfterLoginStateChanged()
 
-        // setup pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
+        self.setupRefreshControl()
 
         // set to follow readable width when course is present
         self.tableView.cellLayoutMarginsFollowReadableWidth = self.course != nil
@@ -86,23 +83,6 @@ class AnnouncementsListViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    @objc func refresh() {
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-
-        let refreshFuture: Future<SyncEngine.SyncMultipleResult, XikoloError>
-        if let course = self.course {
-            refreshFuture = AnnouncementHelper.shared.syncAnnouncements(for: course)
-        } else {
-            refreshFuture = AnnouncementHelper.shared.syncAllAnnouncements()
-        }
-
-        refreshFuture.onComplete { _ in
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.tableView.refreshControl?.endRefreshing()
-            }
-        }
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
         if let typedInfo = R.segue.announcementsListViewController.showAnnouncement(segue: segue) {
@@ -147,6 +127,18 @@ struct AnnouncementsTableViewConfiguration: TableViewResultsControllerConfigurat
         let cell = cell.require(toHaveType: AnnouncementCell.self, hint: "AnnouncementsListViewController requires cells of type AnnouncementCell")
         let announcement = controller.object(at: indexPath)
         cell.configure(announcement, showCourseTitle: shouldShowCourseTitle)
+    }
+
+}
+
+extension AnnouncementsListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        if let course = self.course {
+            return AnnouncementHelper.shared.syncAnnouncements(for: course).asVoid()
+        } else {
+            return AnnouncementHelper.shared.syncAllAnnouncements().asVoid()
+        }
     }
 
 }

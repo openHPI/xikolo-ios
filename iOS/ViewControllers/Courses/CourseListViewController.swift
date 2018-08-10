@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 import UIKit
@@ -47,6 +48,8 @@ class CourseListViewController: UICollectionViewController {
 
         self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
 
+        self.setupRefreshControl()
+
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
@@ -78,7 +81,6 @@ class CourseListViewController: UICollectionViewController {
         CourseHelper.syncAllCourses()
 
         self.setupSearchController()
-        self.addPullToRefresh()
     }
 
     private func setupSearchController() {
@@ -98,25 +100,6 @@ class CourseListViewController: UICollectionViewController {
             searchController.searchBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
             self.collectionView?.addSubview(searchController.searchBar)
             self.searchController = searchController
-        }
-    }
-
-    private func addPullToRefresh() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.collectionView?.refreshControl = refreshControl
-    }
-
-    @objc func refresh() {
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.collectionView?.refreshControl?.endRefreshing()
-            }
-        }
-
-        CourseHelper.syncAllCourses().onComplete { _ in
-            stopRefreshControl()
         }
     }
 
@@ -252,7 +235,7 @@ extension CourseListViewController: UISearchControllerDelegate {
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.addPullToRefresh()
+        self.setupRefreshControl()
 
         if #available(iOS 11.0, *) {
             // nothing to do here
@@ -292,6 +275,14 @@ struct CourseListViewConfiguration: CollectionViewResultsControllerConfiguration
         let view = view.require(toHaveType: CourseHeaderView.self)
         let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
         view.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
+    }
+
+}
+
+extension CourseListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseHelper.syncAllCourses().asVoid()
     }
 
 }

@@ -11,6 +11,7 @@ import UIKit
 
 class CourseDetailViewController: UIViewController {
 
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var languageView: UILabel!
@@ -51,7 +52,8 @@ class CourseDetailViewController: UIViewController {
         self.updateView()
         self.updateImageViewAppearence()
 
-        CourseHelper.syncCourse(self.course)
+        self.setupRefreshControl()
+        self.refresh()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reachabilityChanged),
@@ -208,6 +210,18 @@ class CourseDetailViewController: UIViewController {
         }.onFailure { _ in
             self.enrollmentButton.shake()
         }
+    }
+
+}
+
+extension CourseDetailViewController: RefreshableViewController {
+
+    var refreshableScrollView: UIScrollView {
+        return self.scrollView
+    }
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseHelper.syncCourse(self.course).asVoid()
     }
 
 }

@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import DZNEmptyDataSet
 import SafariServices
@@ -11,17 +12,22 @@ import UIKit
 class CertificatesListViewController: UITableViewController {
 
     var course: Course!
-    var certificates: [(name: String, explanation: String?, url: URL?)] = [] // swiftlint:disable:this large_tuple
+    var certificates: [(name: String, explanation: String?, url: URL?)] = [] { // swiftlint:disable:this large_tuple
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.certificates = self.course.availableCertificates
+        self.setupRefreshControl()
         self.setupEmptyState()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.certificates = self.course.availableCertificates
-        self.tableView.reloadData()
+        self.refresh()
     }
 
     func stateOfCertificate(withURL certificateURL: URL?) -> String {
@@ -68,6 +74,16 @@ extension CertificatesListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return self.certificates[section].explanation
+    }
+
+}
+
+extension CertificatesListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseHelper.syncCourse(self.course).onSuccess { _ in
+            self.certificates = self.course.availableCertificates
+        }.asVoid()
     }
 
 }

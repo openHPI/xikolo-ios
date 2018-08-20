@@ -16,7 +16,7 @@
         <!--News-->
         <scene sceneID="8B9-4V-QDc">
             <objects>
-                <tableViewController storyboardIdentifier="AnnouncementsListViewController" id="vxq-Ct-km1" customClass="AnnouncementsListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AnnouncementListViewController" id="vxq-Ct-km1" customClass="AnnouncementListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RGo-Bq-Vec">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -35,14 +35,15 @@ class CourseItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedSectionHeaderHeight = 50
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 50
+
         // register custom section header view
         self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedSectionHeaderHeight = 50
-
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 50
+        self.addRefreshControl()
 
         var separatorInsetLeft: CGFloat = 16.0
         if #available(iOS 11.0, *) {
@@ -60,11 +61,6 @@ class CourseItemListViewController: UITableViewController {
 
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
-
-        // setup pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseItemCell.identifier
@@ -94,32 +90,6 @@ class CourseItemListViewController: UITableViewController {
         tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
-    }
-
-    @objc func refresh() {
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.tableView.refreshControl?.endRefreshing()
-            }
-        }
-
-        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
-        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
-        self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
-
-        guard UserProfileHelper.shared.isLoggedIn else {
-            stopRefreshControl()
-            return
-        }
-
-        CourseItemHelper.syncCourseItems(forCourse: self.course).onSuccess { _ in
-            if preloadingWanted {
-                self.preloadCourseContent()
-            }
-        }.onComplete { _ in
-            stopRefreshControl()
-        }
     }
 
     func showItem(_ item: CourseItem) {
@@ -231,6 +201,23 @@ class CourseItemListViewConfiguration: TableViewResultsControllerConfiguration {
         cell.delegate = self.tableViewController
 
         cell.configure(for: item)
+    }
+
+}
+
+extension CourseItemListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
+    }
+
+    func postRefresh() {
+        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
+        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
+        self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
+
+        guard preloadingWanted else { return }
+        self.preloadCourseContent()
     }
 
 }

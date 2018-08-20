@@ -246,6 +246,7 @@
                         <outlet property="enrollmentButton" destination="ceU-6J-dNP" id="89a-80-Bxe"/>
                         <outlet property="imageView" destination="d4b-Ar-94F" id="Nnm-kT-fiS"/>
                         <outlet property="languageView" destination="3cX-gd-UHs" id="N9U-9N-r72"/>
+                        <outlet property="scrollView" destination="MWe-9L-XSn" id="mKh-Ik-PH7"/>
                         <outlet property="statusLabel" destination="hft-pf-uVT" id="ZOY-BP-Q4x"/>
                         <outlet property="statusView" destination="yCC-vf-4Pk" id="dPf-Cp-RUc"/>
                         <outlet property="teacherView" destination="DDY-g0-onI" id="bXT-QC-d5B"/>

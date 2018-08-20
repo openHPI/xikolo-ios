@@ -14,6 +14,7 @@
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
 		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
+		5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */; };
 		5054B2DD21087D6800CE9067 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DC21087D6800CE9067 /* Document.swift */; };
 		5054B2DF21087DB100CE9067 /* DocumentLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */; };
 		5054B2E1210880FA00CE9067 /* DocumentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2E0210880FA00CE9067 /* DocumentHelper.swift */; };
@@ -24,15 +25,16 @@
 		505641E52119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505641E42119B9A6009FC4F0 /* ObjectsDidChangeNotification.swift */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
+		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
+		508AB2C02109F0A10079EAE5 /* CourseDocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */; };
+		508AB2C22109F0DE0079EAE5 /* CourseDocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */; };
 		508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C5210B20E80079EAE5 /* DashboardViewController.swift */; };
 		508AB2E82111AF950079EAE5 /* CourseOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2E72111AF950079EAE5 /* CourseOverviewCell.swift */; };
 		508AB2EA2111F41D0079EAE5 /* CourseDateOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2E92111F41D0079EAE5 /* CourseDateOverviewCell.swift */; };
 		508AB2EC211448E40079EAE5 /* BrandFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2EB211448E30079EAE5 /* BrandFeatures.swift */; };
 		508AB2EE21145A500079EAE5 /* CourseDateSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2ED21145A500079EAE5 /* CourseDateSummaryView.swift */; };
 		508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2EF21145A650079EAE5 /* CourseDateNextUpView.swift */; };
-		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
-		508AB2C02109F0A10079EAE5 /* CourseDocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */; };
-		508AB2C22109F0DE0079EAE5 /* CourseDocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */; };
+		508B9FA8211D7A600090BD16 /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508B9FA7211D7A600090BD16 /* RefreshControl.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B6120ED10610085C6DB /* CommonLocalizedString.swift */; };
@@ -54,7 +56,7 @@
 		50CF1F5820DCDBFC0011BFE9 /* CourseItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50371FFD20501388006E9634 /* CourseItemDetailView.swift */; };
 		50CF1F5920DCDBFC0011BFE9 /* CourseSection+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228F620583DF9003301A7 /* CourseSection+Download.swift */; };
 		50CF1F5B20DCDBFC0011BFE9 /* CouseContent+image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */; };
-		50CF1F5C20DCDBFC0011BFE9 /* CourseDateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDatesListViewController.swift */; };
+		50CF1F5C20DCDBFC0011BFE9 /* CourseDateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B821C1DDB0EE200559217 /* CourseDateListViewController.swift */; };
 		50CF1F6120DCDBFC0011BFE9 /* CourseAreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017B3BD2049854F001D90A1 /* CourseAreaCell.swift */; };
 		50CF1F6A20DCDBFC0011BFE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875A5161B5697640030F38C /* AppDelegate.swift */; };
 		50CF1F6C20DCDBFC0011BFE9 /* CustomHeaderWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */; };
@@ -96,10 +98,9 @@
 		50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
 		50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */; };
 		50CF1FC820DCDBFC0011BFE9 /* CourseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6172079780500E98351 /* CourseInteractor.swift */; };
-		50CF1FCC20DCDBFC0011BFE9 /* AnnouncementsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */; };
+		50CF1FCC20DCDBFC0011BFE9 /* AnnouncementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70388C611EF1566A0093F186 /* AnnouncementListViewController.swift */; };
 		50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228E720580142003301A7 /* UIAlertViewController+cancel.swift */; };
 		50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */; };
-		50CF1FD220DCDBFC0011BFE9 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */; };
 		50CF1FD320DCDBFC0011BFE9 /* Video+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7621F20ACE6008C8138 /* Video+DetailedCourseItem.swift */; };
 		50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F7202C1F28E29B00779995 /* Video+Download.swift */; };
 		50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85225371B4D27D700C9BF56 /* AccountViewController.swift */; };
@@ -383,6 +384,7 @@
 		502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaViewController.swift; sourceTree = "<group>"; };
 		502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CouseContent+image.swift"; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
+		5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableViewController.swift; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
 		5040A60420795BBE00E98351 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
@@ -429,15 +431,16 @@
 		507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
+		508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDocumentHeader.xib; sourceTree = "<group>"; };
+		508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDocumentHeader.swift; sourceTree = "<group>"; };
 		508AB2C5210B20E80079EAE5 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		508AB2E72111AF950079EAE5 /* CourseOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseOverviewCell.swift; sourceTree = "<group>"; };
 		508AB2E92111F41D0079EAE5 /* CourseDateOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateOverviewCell.swift; sourceTree = "<group>"; };
 		508AB2EB211448E30079EAE5 /* BrandFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandFeatures.swift; sourceTree = "<group>"; };
 		508AB2ED21145A500079EAE5 /* CourseDateSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateSummaryView.swift; sourceTree = "<group>"; };
 		508AB2EF21145A650079EAE5 /* CourseDateNextUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDateNextUpView.swift; sourceTree = "<group>"; };
-		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
-		508AB2BF2109F0A10079EAE5 /* CourseDocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseDocumentHeader.xib; sourceTree = "<group>"; };
-		508AB2C12109F0DE0079EAE5 /* CourseDocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDocumentHeader.swift; sourceTree = "<group>"; };
+		508B9FA7211D7A600090BD16 /* RefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+coreDataModelToCommon.swift"; sourceTree = "<group>"; };
 		50930B6120ED10610085C6DB /* CommonLocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonLocalizedString.swift; sourceTree = "<group>"; };
@@ -487,7 +490,6 @@
 		50D65A2120E023C100DFD183 /* moocHOUSE-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseArea.swift; sourceTree = "<group>"; };
-		50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
 		50DD35141FD83D5E002B40CC /* CourseListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListLayout.swift; sourceTree = "<group>"; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
@@ -520,7 +522,7 @@
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
 		702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VideoQuality.swift"; sourceTree = "<group>"; };
-		70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementsListViewController.swift; sourceTree = "<group>"; };
+		70388C611EF1566A0093F186 /* AnnouncementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewController.swift; sourceTree = "<group>"; };
 		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				508B9FA7211D7A600090BD16 /* RefreshControl.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
 				500228EC20582573003301A7 /* CourseItemHeader.swift */,
@@ -790,6 +793,7 @@
 				502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */,
 				5060A5211F177304007896FF /* DetailedCourseItem.swift */,
 				50022901205928E2003301A7 /* UserActionsDelegate.swift */,
+				5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1112,7 +1116,7 @@
 		AB6AE0C71CF7D6CC00708654 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				70388C611EF1566A0093F186 /* AnnouncementsListViewController.swift */,
+				70388C611EF1566A0093F186 /* AnnouncementListViewController.swift */,
 				F80D67921B98683400E27520 /* AnnouncementViewController.swift */,
 			);
 			path = News;
@@ -1161,7 +1165,6 @@
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
 				50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */,
 				5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */,
-				50D9B1691F78EC6300F09056 /* UIRefreshControl.swift */,
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
@@ -1841,6 +1844,7 @@
 				50CF1F5C20DCDBFC0011BFE9 /* CourseDateListViewController.swift in Sources */,
 				508AB2E82111AF950079EAE5 /* CourseOverviewCell.swift in Sources */,
 				50CF1F6120DCDBFC0011BFE9 /* CourseAreaCell.swift in Sources */,
+				5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */,
 				50CF1F6A20DCDBFC0011BFE9 /* AppDelegate.swift in Sources */,
 				5095B1E020EBB1E700572924 /* NetworkIndicator.swift in Sources */,
 				50CF1F6C20DCDBFC0011BFE9 /* CustomHeaderWebView.swift in Sources */,
@@ -1893,10 +1897,9 @@
 				50CF1FC820DCDBFC0011BFE9 /* CourseInteractor.swift in Sources */,
 				50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */,
 				508AB2EE21145A500079EAE5 /* CourseDateSummaryView.swift in Sources */,
-				50CF1FCC20DCDBFC0011BFE9 /* AnnouncementsListViewController.swift in Sources */,
+				50CF1FCC20DCDBFC0011BFE9 /* AnnouncementListViewController.swift in Sources */,
 				50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */,
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
-				50CF1FD220DCDBFC0011BFE9 /* UIRefreshControl.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+DetailedCourseItem.swift in Sources */,
 				50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */,
 				50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */,
@@ -1911,6 +1914,7 @@
 				50CF1FE820DCDBFC0011BFE9 /* UIView+SafeCastable.swift in Sources */,
 				50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */,
 				50CF1FEC20DCDBFC0011BFE9 /* StreamPersistenceManager.swift in Sources */,
+				508B9FA8211D7A600090BD16 /* RefreshControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1942,7 +1946,6 @@
 				50FA2E0720E4B22E00656776 /* Settings.swift in Sources */,
 				50FA2E3820E4B25800656776 /* CourseCertificates.swift in Sources */,
 				50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */,
-				508AB2C4210A07DF0079EAE5 /* BrandFeatures.swift in Sources */,
 				50FA2E1820E4B24300656776 /* LTIExerciseHelper.swift in Sources */,
 				50FA2E2D20E4B25000656776 /* SyncEngine.swift in Sources */,
 				50FA2E3A20E4B25800656776 /* CourseDate.swift in Sources */,

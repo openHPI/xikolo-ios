@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 import DZNEmptyDataSet
@@ -20,6 +21,8 @@ class CourseDateListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.addRefreshControl()
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
@@ -75,6 +78,16 @@ struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguratio
         let cell = cell.require(toHaveType: CourseDateCell.self, hint: "CourseDatesViewController requires cell of type CourseDateCell")
         let courseDate = controller.object(at: indexPath)
         cell.configure(courseDate)
+    }
+
+}
+
+extension CourseDateListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseHelper.syncAllCourses().map { _ in
+            return CourseDateHelper.syncAllCourseDates()
+        }.asVoid()
     }
 
 }

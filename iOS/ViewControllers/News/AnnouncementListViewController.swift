@@ -85,7 +85,7 @@ class AnnouncementListViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let announcement = (sender as? Announcement).require(hint: "Sender must be Announcement")
-        if let typedInfo = R.segue.announcementsListViewController.showAnnouncement(segue: segue) {
+        if let typedInfo = R.segue.announcementListViewController.showAnnouncement(segue: segue) {
             typedInfo.destination.configure(for: announcement, showCourseTitle: self.course == nil)
         }
     }
@@ -114,7 +114,7 @@ extension AnnouncementListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let announcement = resultsController.object(at: indexPath)
-        self.performSegue(withIdentifier: R.segue.announcementsListViewController.showAnnouncement, sender: announcement)
+        self.performSegue(withIdentifier: R.segue.announcementListViewController.showAnnouncement, sender: announcement)
     }
 
 }

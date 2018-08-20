@@ -21,7 +21,7 @@ class CourseDateCell: UITableViewCell {
     func configure(_ courseDate: CourseDate) {
         self.dateLabel.text = courseDate.defaultDateString
         self.courseLabel.text = courseDate.course?.title
-        self.titleLabel.text = courseDate.contextAwareTtitle
+        self.titleLabel.text = courseDate.contextAwareTitle
     }
 
 }

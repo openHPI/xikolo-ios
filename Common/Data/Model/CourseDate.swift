@@ -37,7 +37,7 @@ public final class CourseDate: NSManagedObject {
         return dateText
     }
 
-    public var contextAwareTtitle: String {
+    public var contextAwareTitle: String {
         let title = self.title ?? "Unknown"
         switch self.type {
         case "course_start"?:

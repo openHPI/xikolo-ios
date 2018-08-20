@@ -30,7 +30,7 @@ class CourseDateNextUpView: UIStackView {
         if let courseDate = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value {
             self.dateLabel.text = courseDate.defaultDateString
             self.courseLabel.text = courseDate.course?.title
-            self.titleLabel.text = courseDate.contextAwareTtitle
+            self.titleLabel.text = courseDate.contextAwareTitle
             self.isHidden = false
         } else {
             self.isHidden = true

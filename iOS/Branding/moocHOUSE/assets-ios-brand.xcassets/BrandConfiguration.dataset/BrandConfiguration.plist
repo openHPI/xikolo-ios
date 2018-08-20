@@ -23,5 +23,10 @@
 		<key>window</key>
 		<string>primary</string>
 	</dict>
+	<key>features</key>
+	<dict>
+		<key>enableDocuments</key>
+		<false/>
+	</dict>
 </dict>
 </plist>

@@ -32,6 +32,9 @@
 /* title of discussions view of course view */
 "course-content.view.discussions.title" = "Diskussionen";
 
+/* title of documents view of course view */
+"course-content.view.documents.title" = "Dokumente";
+
 /* title of learnings view of course view */
 "course-content.view.learnings.title" = "Lernmaterial";
 
@@ -142,6 +145,9 @@
 
 /* title for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.title" = "Es gibt keine wichtigen Kursdaten";
+
+/* title for empty course documents list */
+"empty-view.course-documents.title" = "Für diesen Kurs sind keine Dokumente verfügbar";
 
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";

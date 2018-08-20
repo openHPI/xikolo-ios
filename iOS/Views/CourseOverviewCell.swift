@@ -5,20 +5,51 @@
 
 import Common
 import CoreData
-import DZNEmptyDataSet
-import Foundation
 import UIKit
 
-class CourseActivityViewController: UICollectionViewController {
+class CourseOverviewCell: UITableViewCell {
 
-    private var dataSource: CoreDataCollectionViewDataSource<CourseActivityViewController>!
+    enum Configuration {
+        case currentCourses
+        case completedCourses
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        var title: String {
+            switch self {
+            case .currentCourses:
+                return NSLocalizedString("dashboard.course-overview.My current courses", comment: "headline for overview of current courses")
+            case .completedCourses:
+                return NSLocalizedString("dashboard.course-overview.My completed courses", comment: "headline for overview of completed courses")
+            }
+        }
 
+        var fetchRequest: NSFetchRequest<Course> {
+            switch self {
+            case .currentCourses:
+                return CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
+            case .completedCourses:
+                return CourseHelper.FetchRequest.completedCourses
+            }
+        }
+    }
+
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
+
+    private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewCell>!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
         self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
+        self.collectionView.delegate = self
+    }
 
-        let request = CourseHelper.FetchRequest.enrolledCourses
+    func configure(for configuration: Configuration) {
+        self.titleLabel.text = configuration.title
+        self.configureCollectionView(for: configuration)
+    }
+   
+    private func configureCollectionView(for configuration: Configuration) {
+        let request = configuration.fetchRequest
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
@@ -29,16 +60,16 @@ class CourseActivityViewController: UICollectionViewController {
 
 }
 
-extension CourseActivityViewController {
+extension CourseOverviewCell: UICollectionViewDelegate {
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = self.dataSource.object(at: indexPath)
         AppNavigator.show(course: course)
     }
 
 }
 
-extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
+extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -58,10 +89,6 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath())
-        let numberOfObjectsInSection = CGFloat(self.dataSource.collectionView(collectionView, numberOfItemsInSection: section))
-        let viewWidth = self.collectionView?.frame.size.width ?? 0
-
         var leftPadding = collectionView.layoutMargins.left - 14
         var rightPadding = collectionView.layoutMargins.right - 14
 
@@ -70,21 +97,17 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
             rightPadding -= collectionView.safeAreaInsets.right
         }
 
-        let horizontalCenteredPadding = (viewWidth - numberOfObjectsInSection * cellSize.width) / 2
-        leftPadding = max(leftPadding, horizontalCenteredPadding)
-        rightPadding = max(leftPadding, horizontalCenteredPadding)
-
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
 }
 
-extension CourseActivityViewController: CoreDataCollectionViewDataSourceDelegate {
+extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
 
     typealias HeaderView = UICollectionReusableView
 
     func configure(_ cell: CourseCell, for object: Course) {
-        cell.configure(object, forConfiguration: .courseActivity)
+        cell.configure(object, forConfiguration: .courseOverview)
     }
 
 }

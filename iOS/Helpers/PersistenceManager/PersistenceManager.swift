@@ -166,7 +166,7 @@ extension PersistenceManager {
         var task: URLSessionTask?
 
         for (downloadtask, resourceId) in self.activeDownloads where resource.id == resourceId {
-            self.didCancelDownload(for: resource.id)
+            self.didCancelDownload(for: resource)
             task = downloadtask
             break
         }
@@ -206,6 +206,8 @@ extension PersistenceManager {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
                 if let error = error as NSError? {
+                    userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
+
                     let fetchRequest = self.fetchRequest
                     fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
                     fetchRequest.fetchLimit = 1
@@ -226,8 +228,6 @@ extension PersistenceManager {
                         }
 
                         self.didFailToDownloadResource(resource, with: error)
-
-                        userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
                     case let .failure(error):
                         CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
                         CrashlyticsHelper.shared.recordError(error)
@@ -235,7 +235,14 @@ extension PersistenceManager {
                     }
                 } else {
                     userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
-                    self.didFinishDownload(for: resourceId)
+
+                    let fetchRequest = self.fetchRequest
+                    fetchRequest.predicate = NSPredicate(format: "id == %@", resourceId)
+                    fetchRequest.fetchLimit = 1
+
+                    if let resource = context.fetchSingle(fetchRequest).value {
+                        self.didFinishDownload(for: resource)
+                    }
                 }
 
                 NotificationCenter.default.post(name: DownloadState.didChangeNotification, object: nil, userInfo: userInfo)
@@ -278,8 +285,8 @@ extension PersistenceManager {
 
     // MARK: delegate methods
 
-    func didStartDownload(for resourceId: String) {}
-    func didCancelDownload(for resourceId: String) {}
-    func didFinishDownload(for resourceId: String) {}
+    func didStartDownload(for resource: Resource) {}
+    func didCancelDownload(for resource: Resource) {}
+    func didFinishDownload(for resource: Resource) {}
 
 }

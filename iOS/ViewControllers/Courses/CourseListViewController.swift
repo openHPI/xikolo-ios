@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 import UIKit
@@ -41,6 +42,8 @@ class CourseListViewController: UICollectionViewController {
 
         self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
 
+        self.addRefreshControl()
+
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         let resultsControllers: [NSFetchedResultsController<Course>] = [
@@ -55,10 +58,9 @@ class CourseListViewController: UICollectionViewController {
                                                            headerReuseIdentifier: R.nib.courseHeaderView.name,
                                                            delegate: self)
 
-        CourseHelper.syncAllCourses()
+        self.refresh()
 
         self.setupSearchController()
-        self.addPullToRefresh()
     }
 
     private func setupSearchController() {
@@ -78,25 +80,6 @@ class CourseListViewController: UICollectionViewController {
             searchController.searchBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
             self.collectionView?.addSubview(searchController.searchBar)
             self.searchController = searchController
-        }
-    }
-
-    private func addPullToRefresh() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.collectionView?.refreshControl = refreshControl
-    }
-
-    @objc func refresh() {
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.collectionView?.refreshControl?.endRefreshing()
-            }
-        }
-
-        CourseHelper.syncAllCourses().onComplete { _ in
-            stopRefreshControl()
         }
     }
 
@@ -232,7 +215,7 @@ extension CourseListViewController: UISearchControllerDelegate {
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.addPullToRefresh()
+        self.addRefreshControl()
 
         if #available(iOS 11.0, *) {
             // nothing to do here
@@ -268,6 +251,14 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
     func configureSearchHeaderView(_ searchHeaderView: CourseHeaderView, numberOfSearchResults: Int) {
         let format = NSLocalizedString("%d courses found", tableName: "Common", comment: "<number> of courses found #bc-ignore!")
         searchHeaderView.configure(withText: String.localizedStringWithFormat(format, numberOfSearchResults))
+    }
+
+}
+
+extension CourseListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseHelper.syncAllCourses().asVoid()
     }
 
 }

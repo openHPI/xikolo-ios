@@ -3,18 +3,15 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 import DZNEmptyDataSet
 import UIKit
 
-class CourseDatesListViewController: UITableViewController {
+class CourseDateListViewController: UITableViewController {
 
-    @IBOutlet private var loginButton: UIBarButtonItem!
-
-    var courseActivityViewController: CourseActivityViewController?
-
-    private var dataSource: CoreDataTableViewDataSource<CourseDatesListViewController>!
+    private var dataSource: CoreDataTableViewDataSource<CourseDateListViewController>!
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -24,13 +21,7 @@ class CourseDatesListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // register custom section header view
-        self.tableView.register(R.nib.courseDateHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDateHeader.name)
-
-        // setup pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
+        self.addRefreshControl()
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
@@ -43,11 +34,6 @@ class CourseDatesListViewController: UITableViewController {
         self.setupEmptyState()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        TrackingHelper.shared.createEvent(.visitedDashboard)
-    }
-
     func setupEmptyState() {
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
@@ -55,40 +41,9 @@ class CourseDatesListViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    @objc func refresh() {
-        self.tableView.reloadEmptyDataSet()
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.tableView.refreshControl?.endRefreshing()
-            }
-        }
-
-        CourseHelper.syncAllCourses().onComplete { _ in
-            CourseDateHelper.syncAllCourseDates().onComplete { _ in
-                stopRefreshControl()
-            }
-        }
-
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseDateHeader.name)
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.courseDatesListViewController.embedCourseActivity(segue: segue) {
-            self.courseActivityViewController = typedInfo.destination
-        }
-    }
-
 }
 
-extension CourseDatesListViewController {
+extension CourseDateListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let courseDate = self.dataSource.object(at: indexPath)
@@ -103,7 +58,7 @@ extension CourseDatesListViewController {
 
 }
 
-extension CourseDatesListViewController: CoreDataTableViewDataSourceDelegate {
+extension CourseDateListViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: CourseDateCell, for object: CourseDate) {
         cell.configure(for: object)
@@ -111,7 +66,17 @@ extension CourseDatesListViewController: CoreDataTableViewDataSourceDelegate {
 
 }
 
-extension CourseDatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseDateListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return CourseHelper.syncAllCourses().map { _ in
+            return CourseDateHelper.syncAllCourseDates()
+        }.asVoid()
+    }
+
+}
+
+extension CourseDateListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         guard let tableHeaderView = self.tableView.tableHeaderView else {
@@ -133,10 +98,6 @@ extension CourseDatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetD
         let description = NSLocalizedString("empty-view.course-dates.no-dates.description",
                                             comment: "description for empty course dates list if logged in")
         return NSAttributedString(string: description)
-    }
-
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        self.refresh()
     }
 
 }

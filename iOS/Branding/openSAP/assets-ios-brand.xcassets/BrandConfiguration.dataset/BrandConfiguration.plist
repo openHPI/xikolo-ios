@@ -29,5 +29,12 @@
 		<key>window</key>
 		<string>secondary</string>
 	</dict>
+	<key>features</key>
+	<dict>
+		<key>enableDocuments</key>
+		<false/>
+		<key>showCourseDatesOnDashboard</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

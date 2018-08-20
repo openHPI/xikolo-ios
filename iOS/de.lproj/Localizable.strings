@@ -32,17 +32,11 @@
 /* title of discussions view of course view */
 "course-content.view.discussions.title" = "Diskussionen";
 
+/* title of documents view of course view */
+"course-content.view.documents.title" = "Dokumente";
+
 /* title of learnings view of course view */
 "course-content.view.learnings.title" = "Lernmaterial";
-
-/* title for course start in a course date cell */
-"course-date-cell.course-start.title" = "Kursstart";
-
-/* format for item submission in course date cell */
-"course-date-cell.item-submission.title.submission for %@ ends" = "Abgabe für %@ endet";
-
-/* format for section start in course date cell */
-"course-date-cell.section-start.title.%@ starts" = "%@ startet";
 
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Alle Lernmaterialien löschen";
@@ -125,6 +119,12 @@
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "nicht eingeschrieben";
 
+/* headline for overview of completed courses */
+"dashboard.course-overview.My completed courses" = "Meine abgeschlossenen Kurs";
+
+/* headline for overview of current courses */
+"dashboard.course-overview.My current courses" = "Meine aktuellen Kurse";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
 
@@ -142,6 +142,9 @@
 
 /* title for empty course dates list if logged in */
 "empty-view.course-dates.no-dates.title" = "Es gibt keine wichtigen Kursdaten";
+
+/* title for empty course documents list */
+"empty-view.course-documents.title" = "Für diesen Kurs sind keine Dokumente verfügbar";
 
 /* title of course enrollment button */
 "enrollment.button.enrolled.title" = "Eingeschrieben";

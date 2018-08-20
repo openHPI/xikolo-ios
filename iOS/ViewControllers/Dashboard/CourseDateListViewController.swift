@@ -9,11 +9,7 @@ import CoreData
 import DZNEmptyDataSet
 import UIKit
 
-class CourseDatesListViewController: UITableViewController {
-
-    @IBOutlet private var loginButton: UIBarButtonItem!
-
-    var courseActivityViewController: CourseActivityViewController?
+class CourseDateListViewController: UITableViewController {
 
     var resultsController: NSFetchedResultsController<CourseDate>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseDate>!
@@ -25,9 +21,6 @@ class CourseDatesListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // register custom section header view
-        self.tableView.register(R.nib.courseDateHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDateHeader.name)
 
         self.addRefreshControl()
 
@@ -54,11 +47,6 @@ class CourseDatesListViewController: UITableViewController {
         self.setupEmptyState()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        TrackingHelper.shared.createEvent(.visitedDashboard)
-    }
-
     func setupEmptyState() {
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
@@ -66,23 +54,9 @@ class CourseDatesListViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseDateHeader.name)
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let typedInfo = R.segue.courseDatesListViewController.embedCourseActivity(segue: segue) {
-            self.courseActivityViewController = typedInfo.destination
-        }
-    }
-
 }
 
-extension CourseDatesListViewController {
+extension CourseDateListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
@@ -108,7 +82,7 @@ struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguratio
 
 }
 
-extension CourseDatesListViewController: RefreshableViewController {
+extension CourseDateListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseHelper.syncAllCourses().map { _ in
@@ -118,7 +92,7 @@ extension CourseDatesListViewController: RefreshableViewController {
 
 }
 
-extension CourseDatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CourseDateListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         guard let tableHeaderView = self.tableView.tableHeaderView else {
@@ -140,10 +114,6 @@ extension CourseDatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetD
         let description = NSLocalizedString("empty-view.course-dates.no-dates.description",
                                             comment: "description for empty course dates list if logged in")
         return NSAttributedString(string: description)
-    }
-
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        self.refresh()
     }
 
 }

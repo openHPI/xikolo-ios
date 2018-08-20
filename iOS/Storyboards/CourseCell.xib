@@ -153,6 +153,9 @@
                             <constraint firstAttribute="trailing" secondItem="9EO-DH-BSR" secondAttribute="trailing" constant="14" id="v3f-2F-pNm"/>
                             <constraint firstItem="DVm-Gv-cMk" firstAttribute="leading" secondItem="9EO-DH-BSR" secondAttribute="leading" id="zke-Fc-n2l"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>

@@ -11,13 +11,13 @@ class CourseCell: UICollectionViewCell {
 
     enum Configuration {
         case courseList
-        case courseActivity
+        case courseOverview
 
         var showMultilineLabels: Bool {
             switch self {
             case .courseList:
                 return true
-            case .courseActivity:
+            case .courseOverview:
                 return false
             }
         }
@@ -96,11 +96,8 @@ class CourseCell: UICollectionViewCell {
                     self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
                 }
             }
-        case .courseActivity:
-            if let enrollment = course.enrollment, enrollment.completed {
-                self.statusView.isHidden = false
-                self.statusLabel.text = NSLocalizedString("course-cell.status.completed", comment: "status 'completed' of a course")
-            } else if course.status == "announced" {
+        case .courseOverview:
+            if course.status == "announced" {
                 self.statusView.isHidden = false
                 self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")
             }

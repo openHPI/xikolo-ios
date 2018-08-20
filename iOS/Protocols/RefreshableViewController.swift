@@ -17,7 +17,7 @@ protocol RefreshableViewController: AnyObject {
 
 extension RefreshableViewController {
 
-    func setupRefreshControl() {
+    func addRefreshControl() {
         let refreshControl = RefreshControl(action: self.refreshingAction, postAction: self.didRefresh)
         self.refreshableScrollView.refreshControl = refreshControl
     }

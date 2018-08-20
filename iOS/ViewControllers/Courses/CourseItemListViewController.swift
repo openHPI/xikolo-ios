@@ -61,7 +61,7 @@ class CourseItemListViewController: UITableViewController {
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
 
-        self.setupRefreshControl()
+        self.addRefreshControl()
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseItemCell.identifier

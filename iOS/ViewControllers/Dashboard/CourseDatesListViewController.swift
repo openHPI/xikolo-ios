@@ -29,7 +29,7 @@ class CourseDatesListViewController: UITableViewController {
         // register custom section header view
         self.tableView.register(R.nib.courseDateHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDateHeader.name)
 
-        self.setupRefreshControl()
+        self.addRefreshControl()
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier

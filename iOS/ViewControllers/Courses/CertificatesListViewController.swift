@@ -21,7 +21,7 @@ class CertificatesListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.certificates = self.course.availableCertificates
-        self.setupRefreshControl()
+        self.addRefreshControl()
         self.setupEmptyState()
     }
 

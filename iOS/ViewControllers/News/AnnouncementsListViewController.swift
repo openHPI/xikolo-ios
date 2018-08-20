@@ -33,7 +33,7 @@ class AnnouncementsListViewController: UITableViewController {
 
         self.updateUIAfterLoginStateChanged()
 
-        self.setupRefreshControl()
+        self.addRefreshControl()
 
         // set to follow readable width when course is present
         self.tableView.cellLayoutMarginsFollowReadableWidth = self.course != nil

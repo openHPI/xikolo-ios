@@ -52,7 +52,7 @@ class CourseDetailViewController: UIViewController {
         self.updateView()
         self.updateImageViewAppearence()
 
-        self.setupRefreshControl()
+        self.addRefreshControl()
         self.refresh()
 
         NotificationCenter.default.addObserver(self,

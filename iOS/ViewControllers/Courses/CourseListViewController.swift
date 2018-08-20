@@ -48,7 +48,7 @@ class CourseListViewController: UICollectionViewController {
 
         self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
 
-        self.setupRefreshControl()
+        self.addRefreshControl()
 
         let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
@@ -235,7 +235,7 @@ extension CourseListViewController: UISearchControllerDelegate {
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {
-        self.setupRefreshControl()
+        self.addRefreshControl()
 
         if #available(iOS 11.0, *) {
             // nothing to do here

@@ -88,15 +88,6 @@ extension DocumentListViewController: CoreDataTableViewDataSourceDelegate {
 
 }
 
-//class DocumentListViewConfiguration: TableViewResultsControllerConfiguration {
-//
-//    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<DocumentLocalization>, indexPath: IndexPath) {
-//        let item = controller.object(at: indexPath)
-//        cell.textLabel?.text = item.languageCode
-//    }
-//
-//}
-
 extension DocumentListViewController: CourseAreaViewController {
 
     func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {

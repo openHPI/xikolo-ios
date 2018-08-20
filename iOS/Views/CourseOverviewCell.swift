@@ -47,7 +47,7 @@ class CourseOverviewCell: UITableViewCell {
         self.titleLabel.text = configuration.title
         self.configureCollectionView(for: configuration)
     }
-   
+
     private func configureCollectionView(for configuration: Configuration) {
         let request = configuration.fetchRequest
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)

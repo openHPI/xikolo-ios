@@ -9,9 +9,12 @@ public struct DocumentLocalizationHelper {
 
     public struct FetchRequest {
 
-        public static func documentLocalizations(forCourse course: Course) -> NSFetchRequest<DocumentLocalization> {
+        public static func publicDocumentLocalizations(forCourse course: Course) -> NSFetchRequest<DocumentLocalization> {
             let request: NSFetchRequest<DocumentLocalization> = DocumentLocalization.fetchRequest()
-            request.predicate = NSPredicate(format: "%@ in document.courses", course)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "%@ in document.courses", course),
+                NSPredicate(format: "document.isPublic = %@", NSNumber(value: true)),
+            ])
             let documentSortDescriptor = NSSortDescriptor(key: "document.title", ascending: true)
             let localizationSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
             request.sortDescriptors = [documentSortDescriptor, localizationSortDescriptor]

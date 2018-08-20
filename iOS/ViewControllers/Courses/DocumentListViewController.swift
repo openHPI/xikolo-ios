@@ -31,7 +31,7 @@ class DocumentListViewController: UITableViewController {
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.documentCell.identifier
-        let request = DocumentLocalizationHelper.FetchRequest.documentLocalizations(forCourse: course)
+        let request = DocumentLocalizationHelper.FetchRequest.publicDocumentLocalizations(forCourse: course)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title") // must be the first sort descriptor
         resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
                                                                                                    resultsController: [resultsController],

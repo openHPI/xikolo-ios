@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import CoreData
 import DZNEmptyDataSet
@@ -24,10 +25,7 @@ class DocumentListViewController: UITableViewController {
         // register custom section header view
         self.tableView.register(R.nib.courseDocumentHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDocumentHeader.name)
 
-        // setup pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
+        self.addRefreshControl()
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.documentCell.identifier
@@ -66,18 +64,6 @@ class DocumentListViewController: UITableViewController {
         self.tableView.reloadEmptyDataSet()
     }
 
-    @objc func refresh() {
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.tableView.refreshControl?.endRefreshing()
-            }
-        }
-
-        DocumentHelper.syncDocuments(forCourse: self.course).onComplete { _ in
-            stopRefreshControl()
-        }
-    }
 }
 
 extension DocumentListViewController { // TableViewDelegate
@@ -127,6 +113,14 @@ extension DocumentListViewController: CourseAreaViewController {
 
     func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
         self.course = course
+    }
+
+}
+
+extension DocumentListViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        return DocumentHelper.syncDocuments(forCourse: self.course).asVoid()
     }
 
 }

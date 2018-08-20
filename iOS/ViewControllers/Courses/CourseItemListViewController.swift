@@ -35,14 +35,15 @@ class CourseItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedSectionHeaderHeight = 50
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 50
+
         // register custom section header view
         self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedSectionHeaderHeight = 50
-
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 50
+        self.addRefreshControl()
 
         var separatorInsetLeft: CGFloat = 16.0
         if #available(iOS 11.0, *) {
@@ -60,8 +61,6 @@ class CourseItemListViewController: UITableViewController {
 
         self.setupEmptyState()
         self.navigationItem.title = self.course.title
-
-        self.addRefreshControl()
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseItemCell.identifier

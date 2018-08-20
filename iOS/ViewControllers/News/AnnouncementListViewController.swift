@@ -9,7 +9,7 @@ import CoreData
 import DZNEmptyDataSet
 import UIKit
 
-class AnnouncementsListViewController: UITableViewController {
+class AnnouncementListViewController: UITableViewController {
 
     var resultsController: NSFetchedResultsController<Announcement>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<Announcement>!
@@ -26,14 +26,14 @@ class AnnouncementsListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.addRefreshControl()
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateUIAfterLoginStateChanged),
                                                name: UserProfileHelper.loginStateDidChangeNotification,
                                                object: nil)
 
         self.updateUIAfterLoginStateChanged()
-
-        self.addRefreshControl()
 
         // set to follow readable width when course is present
         self.tableView.cellLayoutMarginsFollowReadableWidth = self.course != nil
@@ -110,7 +110,7 @@ class AnnouncementsListViewController: UITableViewController {
     }
 }
 
-extension AnnouncementsListViewController { // TableViewDelegate
+extension AnnouncementListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let announcement = resultsController.object(at: indexPath)
@@ -131,7 +131,7 @@ struct AnnouncementsTableViewConfiguration: TableViewResultsControllerConfigurat
 
 }
 
-extension AnnouncementsListViewController: RefreshableViewController {
+extension AnnouncementListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         if let course = self.course {
@@ -143,7 +143,7 @@ extension AnnouncementsListViewController: RefreshableViewController {
 
 }
 
-extension AnnouncementsListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension AnnouncementListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let title = NSLocalizedString("empty-view.announcements.title", comment: "title for empty announcement list")
@@ -161,7 +161,7 @@ extension AnnouncementsListViewController: DZNEmptyDataSetSource, DZNEmptyDataSe
 
 }
 
-extension AnnouncementsListViewController: CourseAreaViewController {
+extension AnnouncementListViewController: CourseAreaViewController {
 
     func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
         self.course = course

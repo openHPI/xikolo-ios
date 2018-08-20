@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import UIKit
 
@@ -14,36 +15,13 @@ class DashboardViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 250
 
-        // setup pull to refresh
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
-
+        self.addRefreshControl()
         self.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         TrackingHelper.shared.createEvent(.visitedDashboard)
-    }
-
-    @objc func refresh() {
-        let deadline = UIRefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.tableView.refreshControl?.endRefreshing()
-            }
-        }
-
-        CourseHelper.syncAllCourses().onComplete { _ in
-            CourseDateHelper.syncAllCourseDates().onComplete { _ in
-                stopRefreshControl()
-                if Brand.default.features.showCourseDatesOnDashboard {
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    self.tableView.reloadRows(at: [indexPath], with: .fade)
-                }
-            }
-        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,6 +58,27 @@ class DashboardViewController: UITableViewController {
         }
 
         AppNavigator.show(course: course)
+    }
+
+}
+
+extension DashboardViewController: RefreshableViewController {
+
+    func refreshingAction() -> Future<Void, XikoloError> {
+        let courseFuture = CourseHelper.syncAllCourses()
+        if Brand.default.features.showCourseDatesOnDashboard {
+            return courseFuture.flatMap { _ in
+                return CourseDateHelper.syncAllCourseDates()
+            }.asVoid()
+        } else {
+            return courseFuture.asVoid()
+        }
+    }
+
+    func didRefresh() {
+        guard Brand.default.features.showCourseDatesOnDashboard else { return }
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.reloadRows(at: [indexPath], with: .fade)
     }
 
 }

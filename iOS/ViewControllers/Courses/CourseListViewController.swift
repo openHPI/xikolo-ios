@@ -78,7 +78,7 @@ class CourseListViewController: UICollectionViewController {
 
         self.collectionView?.reloadData()
 
-        CourseHelper.syncAllCourses()
+        self.refresh()
 
         self.setupSearchController()
     }

@@ -36,8 +36,8 @@ public struct Brand: Decodable {
     let platformTitle: String
 
     public let colors: BrandColors
-    public var singleSignOnButtonTitle: String?
-    public var poweredByText: String?
+    public let singleSignOnButtonTitle: String?
+    public let poweredByText: String?
     public let courseDateLabelStyle: CourseDateLabelStyle
     public let useDummyCredentialsForSDWebImage: Bool
     public let features: BrandFeatures

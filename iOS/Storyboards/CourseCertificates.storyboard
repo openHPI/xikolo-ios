@@ -6,38 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Web View Controller-->
-        <scene sceneID="daF-vb-uIf">
-            <objects>
-                <viewController storyboardIdentifier="PDFWebViewController" id="MiA-8u-nAY" customClass="PDFWebViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2lx-JY-Nu5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="9MV-Lu-5TY"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="6bu-JX-mDK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="8G6-OG-phD">
-                            <connections>
-                                <action selector="sharePDF:" destination="MiA-8u-nAY" id="vTh-mQ-Vpg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="shareButton" destination="8G6-OG-phD" id="gPm-XY-I4U"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KQa-99-g2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5234" y="-188"/>
-        </scene>
         <!--Certificates List View Controller-->
         <scene sceneID="MI7-gf-VZ7">
             <objects>

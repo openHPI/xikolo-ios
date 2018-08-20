@@ -6,10 +6,10 @@
 import Common
 import Foundation
 
-protocol CourseAreaViewController {
+protocol CourseAreaViewController: AnyObject {
     func configure(for course: Course, delegate: CourseAreaViewControllerDelegate)
 }
 
-protocol CourseAreaViewControllerDelegate {
+protocol CourseAreaViewControllerDelegate: AnyObject {
     func enrollmentStateDidChange()
 }

@@ -21,7 +21,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
 
-    private var delegate: CourseAreaViewControllerDelegate?
+    private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
 
     var course: Course! {

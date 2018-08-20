@@ -5,28 +5,60 @@
 
 import Common
 import CoreData
-import DZNEmptyDataSet
-import Foundation
 import UIKit
 
-class CourseActivityViewController: UICollectionViewController {
+class CourseOverviewCell: UITableViewCell {
 
-    var resultsController: NSFetchedResultsController<Course>!
-    var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
+    enum Configuration {
+        case currentCourses
+        case completedCourses
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        var title: String {
+            switch self {
+            case .currentCourses:
+                return NSLocalizedString("dashboard.course-overview.My current courses", comment: "headline for overview of current courses")
+            case .completedCourses:
+                return NSLocalizedString("dashboard.course-overview.My completed courses", comment: "headline for overview of completed courses")
+            }
+        }
 
+        var fetchRequest: NSFetchRequest<Course> {
+            switch self {
+            case .currentCourses:
+                return CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
+            case .completedCourses:
+                return CourseHelper.FetchRequest.completedCourses
+            }
+        }
+    }
+
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
+
+    private var fetchRequest: NSFetchRequest<Course>!
+    private var resultsController: NSFetchedResultsController<Course>!
+    private var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
         self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
+        self.collectionView.delegate = self
+    }
 
-        let request = CourseHelper.FetchRequest.enrolledCourses
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+    func configure(for configuration: Configuration) {
+        self.titleLabel.text = configuration.title
+        self.fetchRequest = configuration.fetchRequest
+        self.configureCollectionView()
+    }
+
+    private func configureCollectionView() {
+        resultsController = CoreDataHelper.createResultsController(self.fetchRequest, sectionNameKeyPath: nil)
 
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
                                                                                                         resultsControllers: [resultsController],
                                                                                                         cellReuseIdentifier: reuseIdentifier)
-        let configuration = CourseActivityViewConfiguration().wrapped
+        let configuration = CourseOverviewViewConfiguration().wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         self.collectionView?.dataSource = resultsControllerDelegateImplementation
@@ -41,16 +73,16 @@ class CourseActivityViewController: UICollectionViewController {
 
 }
 
-extension CourseActivityViewController {
+extension CourseOverviewCell: UICollectionViewDelegate {
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let course = resultsController.object(at: indexPath)
         AppNavigator.show(course: course)
     }
 
 }
 
-extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
+extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -70,10 +102,6 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellSize = self.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: IndexPath())
-        let numberOfCellsInSection = CGFloat(self.resultsController?.sections?[section].numberOfObjects ?? 0)
-        let viewWidth = self.collectionView?.frame.size.width ?? 0
-
         var leftPadding = collectionView.layoutMargins.left - 14
         var rightPadding = collectionView.layoutMargins.right - 14
 
@@ -82,21 +110,17 @@ extension CourseActivityViewController: UICollectionViewDelegateFlowLayout {
             rightPadding -= collectionView.safeAreaInsets.right
         }
 
-        let horizontalCenteredPadding = (viewWidth - numberOfCellsInSection * cellSize.width) / 2
-        leftPadding = max(leftPadding, horizontalCenteredPadding)
-        rightPadding = max(leftPadding, horizontalCenteredPadding)
-
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
 }
 
-struct CourseActivityViewConfiguration: CollectionViewResultsControllerConfiguration {
+struct CourseOverviewViewConfiguration: CollectionViewResultsControllerConfiguration {
 
     func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseActivityViewController requires cell of type CourseCell")
+        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseOverviewViewController requires cell of type CourseCell")
         let course = controller.object(at: indexPath)
-        cell.configure(course, forConfiguration: .courseActivity)
+        cell.configure(course, forConfiguration: .courseOverview)
     }
 
 }

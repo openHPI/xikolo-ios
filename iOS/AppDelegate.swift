@@ -149,7 +149,7 @@ extension AppDelegate: UITabBarControllerDelegate {
             return true
         }
 
-        guard navigationController.viewControllers.first is CourseDatesListViewController else {
+        guard navigationController.viewControllers.first is DashboardViewController else {
             return true
         }
 

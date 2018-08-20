@@ -38,15 +38,6 @@
 /* title of learnings view of course view */
 "course-content.view.learnings.title" = "Learnings";
 
-/* title for course start in a course date cell */
-"course-date-cell.course-start.title" = "Course Start";
-
-/* format for item submission in course date cell */
-"course-date-cell.item-submission.title.submission for %@ ends" = "Submission for %@ ends";
-
-/* format for section start in course date cell */
-"course-date-cell.section-start.title.%@ starts" = "%@ starts";
-
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Delete all learning materials";
 
@@ -127,6 +118,12 @@
 
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "not enrolled";
+
+/* headline for overview of completed courses */
+"dashboard.course-overview.My completed courses" = "My completed courses";
+
+/* headline for overview of current courses */
+"dashboard.course-overview.My current courses" = "My current courses";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";

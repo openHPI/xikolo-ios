@@ -33,6 +33,8 @@
 	<dict>
 		<key>enableDocuments</key>
 		<false/>
+		<key>showCourseDatesOnDashboard</key>
+		<true/>
 	</dict>
 </dict>
 </plist>

@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,22 +20,88 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="documentCell" textLabel="eJN-3e-h7i" style="IBUITableViewCellStyleDefault" id="D9x-Qe-TlQ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="documentCell" id="D9x-Qe-TlQ" customClass="CourseDocumentLocalizationCell" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D9x-Qe-TlQ" id="Fh4-i8-bUb">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eJN-3e-h7i">
-                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKj-57-JV3">
+                                            <rect key="frame" x="16" y="13" width="250" height="18"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MK8-kn-0ks">
+                                            <rect key="frame" x="274" y="8" width="85" height="28"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloaded" translatesAutoresizingMaskIntoConstraints="NO" id="IqN-4N-JPR">
+                                                    <rect key="frame" x="0.0" y="3.5" width="21" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="IqN-4N-JPR" secondAttribute="height" multiplier="1:1" id="TwB-CZ-jdO"/>
+                                                        <constraint firstAttribute="height" constant="21" id="p5b-np-HTc"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8J-5F-XTs" customClass="CircularProgressView" customModule="iOS" customModuleProvider="target">
+                                                    <rect key="frame" x="29" y="4" width="20" height="20"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Y8J-5F-XTs" secondAttribute="height" multiplier="1:1" id="rVT-fj-HOX"/>
+                                                        <constraint firstAttribute="height" constant="20" id="wC5-21-s6P"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                            <real key="value" value="1.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="gapWidth">
+                                                            <real key="value" value="1.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="indeterminateProgress">
+                                                            <real key="value" value="0.80000000000000004"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bc5-OF-ROD">
+                                                    <rect key="frame" x="57" y="0.0" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="28" id="gPK-Ft-aWS"/>
+                                                        <constraint firstAttribute="width" secondItem="bc5-OF-ROD" secondAttribute="height" multiplier="1:1" id="gtK-tc-fYG"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="dots"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="#bc-ignore!">
+                                                            <attributes>
+                                                                <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <connections>
+                                                        <action selector="tappedActionsButton" destination="D9x-Qe-TlQ" eventType="touchUpInside" id="RXU-J7-3mW"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MK8-kn-0ks" firstAttribute="centerY" secondItem="Fh4-i8-bUb" secondAttribute="centerY" id="5Kb-e1-mL7"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MK8-kn-0ks" secondAttribute="trailing" id="8cL-0s-PsL"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="EKj-57-JV3" secondAttribute="bottom" id="EtF-78-RJi"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MK8-kn-0ks" secondAttribute="bottom" constant="8" id="KRY-qT-kIZ"/>
+                                        <constraint firstItem="EKj-57-JV3" firstAttribute="leading" secondItem="Fh4-i8-bUb" secondAttribute="leadingMargin" id="Zfd-Sv-26D"/>
+                                        <constraint firstItem="EKj-57-JV3" firstAttribute="centerY" secondItem="Fh4-i8-bUb" secondAttribute="centerY" id="dIK-ym-Msn"/>
+                                        <constraint firstItem="MK8-kn-0ks" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Fh4-i8-bUb" secondAttribute="top" constant="8" id="v0g-BV-VfJ"/>
+                                        <constraint firstItem="EKj-57-JV3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Fh4-i8-bUb" secondAttribute="topMargin" id="vg4-pX-bM2"/>
+                                        <constraint firstItem="MK8-kn-0ks" firstAttribute="leading" secondItem="EKj-57-JV3" secondAttribute="trailing" constant="8" symbolic="YES" id="wuE-90-4ze"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="actionsButton" destination="bc5-OF-ROD" id="aky-f2-n9H"/>
+                                    <outlet property="downloadedIcon" destination="IqN-4N-JPR" id="2n2-BT-8Y9"/>
+                                    <outlet property="languageLabel" destination="EKj-57-JV3" id="kDb-cb-BNn"/>
+                                    <outlet property="progressView" destination="Y8J-5F-XTs" id="8ID-f5-rrW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,4 +115,8 @@
             <point key="canvasLocation" x="114" y="162"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dots" width="28" height="28"/>
+        <image name="downloaded" width="21" height="21"/>
+    </resources>
 </document>

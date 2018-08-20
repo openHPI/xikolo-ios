@@ -13,7 +13,7 @@ public final class DocumentLocalization: NSManagedObject {
     @NSManaged public var localizationDescription: String?
     @NSManaged public var languageCode: String?
     @NSManaged public var fileURL: URL?
-    @NSManaged private var localFileURL: URL?
+    @NSManaged public var localFileBookmark: NSData?
     @NSManaged private var revision: Int16
 
     @NSManaged public var document: Document

@@ -16,6 +16,14 @@ class DocumentListViewController: UITableViewController {
     var resultsController: NSFetchedResultsController<DocumentLocalization>!
     var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<DocumentLocalization>!
 
+    var inOfflineMode = ReachabilityHelper.connection == .none {
+        didSet {
+            if oldValue != self.inOfflineMode {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,7 +43,7 @@ class DocumentListViewController: UITableViewController {
                                                                                                    resultsController: [resultsController],
                                                                                                    cellReuseIdentifier: reuseIdentifier)
 
-        let configuration = DocumentListViewConfiguration().wrapped
+        let configuration = DocumentListViewConfiguration(listController: self).wrapped
         resultsControllerDelegateImplementation.configuration = configuration
         resultsController.delegate = resultsControllerDelegateImplementation
         tableView.dataSource = resultsControllerDelegateImplementation
@@ -55,6 +63,11 @@ class DocumentListViewController: UITableViewController {
         self.tableView.layoutIfNeeded()
 
         self.setupEmptyState()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged),
+                                               name: Notification.Name.reachabilityChanged,
+                                               object: nil)
     }
 
     func setupEmptyState() {
@@ -62,6 +75,10 @@ class DocumentListViewController: UITableViewController {
         self.tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView()
         self.tableView.reloadEmptyDataSet()
+    }
+
+    @objc func reachabilityChanged() {
+        self.inOfflineMode = ReachabilityHelper.connection == .none
     }
 
 }
@@ -75,7 +92,7 @@ extension DocumentListViewController { // TableViewDelegate
 
         let documentLocaliztion = controller.object(at: realIndexPath)
 
-        guard let url = documentLocaliztion.fileURL else { return }
+        guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocaliztion) ?? documentLocaliztion.fileURL else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         pdfViewController.url = url
@@ -102,9 +119,17 @@ extension DocumentListViewController { // TableViewDelegate
 
 class DocumentListViewConfiguration: TableViewResultsControllerConfiguration {
 
+    let listController: DocumentListViewController
+
+    init(listController: DocumentListViewController) {
+        self.listController = listController
+    }
+
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<DocumentLocalization>, indexPath: IndexPath) {
         let item = controller.object(at: indexPath)
-        cell.textLabel?.text = item.languageCode
+        let localizationCell = cell as! CourseDocumentLocalizationCell
+        localizationCell.delegate = self.listController
+        localizationCell.configure(for: item)
     }
 
 }
@@ -121,6 +146,31 @@ extension DocumentListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return DocumentHelper.syncDocuments(forCourse: self.course).asVoid()
+    }
+
+}
+
+extension DocumentListViewController: UserActionsDelegate {
+
+    func showAlert(with actions: [UIAlertAction], withTitle title: String?, on anchor: UIView) {
+        guard !actions.isEmpty else { return }
+
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = anchor
+        alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
+
+        for action in actions {
+            alert.addAction(action)
+        }
+
+        alert.addCancelAction()
+
+        self.present(alert, animated: true)
+    }
+
+    func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
+        // TODO: Do we need this?
+        return Future(value: ())
     }
 
 }

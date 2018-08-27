@@ -29,8 +29,8 @@ public class CoreDataHelper {
 
     public static let viewContext = persistentContainer.viewContext
 
-    public static func createResultsController<T: NSManagedObject>(_ fetchRequest: NSFetchRequest<T>,
-                                                                   sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
+    public static func createResultsController<T: NSFetchRequestResult>(_ fetchRequest: NSFetchRequest<T>,
+                                                                        sectionNameKeyPath: String?) -> NSFetchedResultsController<T> {
         return NSFetchedResultsController<T>(fetchRequest: fetchRequest,
                                              managedObjectContext: self.persistentContainer.viewContext,
                                              sectionNameKeyPath: sectionNameKeyPath,

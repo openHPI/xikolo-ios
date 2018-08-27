@@ -24,7 +24,7 @@ class AnnouncementCell: UITableViewCell {
 
     @IBOutlet private var courseLabelContraints: [NSLayoutConstraint]!
 
-    func configure(_ announcement: Announcement, showCourseTitle: Bool) {
+    func configure(for announcement: Announcement, showCourseTitle: Bool) {
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
 
         self.readStateLabel.textColor = Brand.default.colors.secondary

@@ -242,6 +242,7 @@
 		50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		7007E4132133FFB6005AC7A6 /* DownloadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -519,6 +520,7 @@
 		50FA2DEE20E4B1A800656776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemWebViewController.swift; sourceTree = "<group>"; };
 		58514D98E3A98476D78CB780 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListViewController.swift; sourceTree = "<group>"; };
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
 		702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VideoQuality.swift"; sourceTree = "<group>"; };
@@ -1080,6 +1082,7 @@
 				F85225371B4D27D700C9BF56 /* AccountViewController.swift */,
 				50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */,
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
+				7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1873,6 +1876,7 @@
 				50CF1F8720DCDBFC0011BFE9 /* DownloadState.swift in Sources */,
 				50CF1F8820DCDBFC0011BFE9 /* CourseDateCell.swift in Sources */,
 				50CF1F8A20DCDBFC0011BFE9 /* DownloadSettingsViewController.swift in Sources */,
+				7007E4132133FFB6005AC7A6 /* DownloadListViewController.swift in Sources */,
 				50CF1F8B20DCDBFC0011BFE9 /* AnnouncementCell.swift in Sources */,
 				50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */,
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,

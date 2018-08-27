@@ -16,6 +16,15 @@ extension VideoHelper {
             return request
         }
 
+        static func dowloadedVideos() -> NSFetchRequest<Video> {
+            let request: NSFetchRequest<Video> = Video.fetchRequest()
+            request.predicate = NSCompoundPredicate(
+                orPredicateWithSubpredicates: [NSPredicate(format: "localFileBookmark != nil"),
+                                               NSPredicate(format: "localSlidesBookmark != nil")]
+            )
+            return request
+        }
+
     }
 
 }

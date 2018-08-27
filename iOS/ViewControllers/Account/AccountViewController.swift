@@ -17,8 +17,8 @@ class AccountViewController: UITableViewController {
         case userProfile = 260
     }
 
-    static let feedbackIndexPath = IndexPath(row: 0, section: 2)
-    static let logoutIndexPath = IndexPath(row: 0, section: 3)
+    static let feedbackIndexPath = IndexPath(row: 0, section: 3)
+    static let logoutIndexPath = IndexPath(row: 0, section: 4)
 
     @IBOutlet private weak var videoSettingsCell: UITableViewCell!
     @IBOutlet private weak var downloadCell: UITableViewCell!

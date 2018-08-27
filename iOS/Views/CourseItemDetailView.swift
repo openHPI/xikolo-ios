@@ -231,10 +231,10 @@ class DetailedDataView: UIStackView {
         return label
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String == self.downloadType,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
+        guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == self.downloadType,
+            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             self.videoId == videoId else { return }
 
         DispatchQueue.main.async {

@@ -62,35 +62,31 @@ class CourseDocumentLocalizationCell: UITableViewCell {
                                  on: self.actionsButton)
     }
 
-    @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let documentLocalizationId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let downloadStateRawValue = noticaition.userInfo?[DownloadNotificationKey.downloadState] as? String,
+    @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+        guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == DocumentsPersistenceManager.downloadType,
+            let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
             let downloadState = DownloadState(rawValue: downloadStateRawValue),
             let documentLocalization = self.documentLocalization,
             documentLocalization.id == documentLocalizationId else { return }
 
-        if downloadType == DocumentsPersistenceManager.downloadType {
-            DispatchQueue.main.async {
-                self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
-                self.progressView.updateProgress(DocumentsPersistenceManager.shared.downloadProgress(for: documentLocalization))
-                self.downloadedIcon.isHidden = downloadState != .downloaded
-            }
+        DispatchQueue.main.async {
+            self.progressView.isHidden = downloadState == .notDownloaded || downloadState == .downloaded
+            self.progressView.updateProgress(DocumentsPersistenceManager.shared.downloadProgress(for: documentLocalization))
+            self.downloadedIcon.isHidden = downloadState != .downloaded
         }
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let documentLocalizationId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
+        guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == DocumentsPersistenceManager.downloadType,
+            let documentLocalizationId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             let documentLocalization = self.documentLocalization,
             documentLocalization.id == documentLocalizationId else { return }
 
-        if downloadType == DocumentsPersistenceManager.downloadType {
-            DispatchQueue.main.async {
-                self.progressView.isHidden = false
-                self.progressView.updateProgress(progress)
-            }
+        DispatchQueue.main.async {
+            self.progressView.isHidden = false
+            self.progressView.updateProgress(progress)
         }
     }
 

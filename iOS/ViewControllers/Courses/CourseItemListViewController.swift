@@ -229,12 +229,6 @@ extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDe
         return NSAttributedString(string: title)
     }
 
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.course-content.description",
-                                            comment: "description for empty course content list")
-        return NSAttributedString(string: description)
-    }
-
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
         self.refresh()
     }

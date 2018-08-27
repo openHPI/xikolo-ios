@@ -52,7 +52,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="mfS-ZC-zYV" firstAttribute="leading" secondItem="yr5-Fy-0W3" secondAttribute="leadingMargin" id="K0G-oR-vy1"/>
                 <constraint firstAttribute="bottom" secondItem="mfS-ZC-zYV" secondAttribute="bottom" id="aFX-DD-mwL"/>

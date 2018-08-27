@@ -66,7 +66,6 @@
                                                     <rect key="frame" x="57" y="0.0" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="gPK-Ft-aWS"/>
-                                                        <constraint firstAttribute="width" secondItem="bc5-OF-ROD" secondAttribute="height" multiplier="1:1" id="gtK-tc-fYG"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="dots"/>
                                                     <attributedString key="userComments">

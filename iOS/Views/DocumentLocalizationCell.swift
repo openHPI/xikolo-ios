@@ -6,7 +6,7 @@
 import Common
 import UIKit
 
-class CourseDocumentLocalizationCell: UITableViewCell {
+class DocumentLocalizationCell: UITableViewCell {
 
     typealias Delegate = DocumentListViewController & UserActionsDelegate
 

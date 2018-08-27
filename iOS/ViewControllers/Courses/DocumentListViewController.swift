@@ -31,7 +31,7 @@ class DocumentListViewController: UITableViewController {
         self.tableView.estimatedSectionHeaderHeight = 44
 
         // register custom section header view
-        self.tableView.register(R.nib.courseDocumentHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDocumentHeader.name)
+        self.tableView.register(R.nib.documentHeader(), forHeaderFooterViewReuseIdentifier: R.nib.documentHeader.name)
 
         self.addRefreshControl()
 
@@ -100,7 +100,7 @@ extension DocumentListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseDocumentHeader.name) as? CourseDocumentHeader else {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.documentHeader.name) as? DocumentHeader else {
             return nil
         }
 
@@ -127,7 +127,7 @@ class DocumentListViewConfiguration: TableViewResultsControllerConfiguration {
 
     func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<DocumentLocalization>, indexPath: IndexPath) {
         let item = controller.object(at: indexPath)
-        let localizationCell = cell as! CourseDocumentLocalizationCell
+        let localizationCell = cell as! DocumentLocalizationCell
         localizationCell.delegate = self.listController
         localizationCell.configure(for: item)
     }

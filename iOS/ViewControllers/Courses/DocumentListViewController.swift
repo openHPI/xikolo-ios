@@ -168,11 +168,6 @@ extension DocumentListViewController: UserActionsDelegate {
         self.present(alert, animated: true)
     }
 
-    func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
-        // TODO: Do we need this?
-        return Future(value: ())
-    }
-
 }
 
 extension DocumentListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {

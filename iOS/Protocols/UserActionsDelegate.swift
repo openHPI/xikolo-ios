@@ -13,3 +13,11 @@ protocol UserActionsDelegate: AnyObject {
     func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError>
 
 }
+
+extension UserActionsDelegate {
+
+    func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
+        return Future(value: ())
+    }
+
+}

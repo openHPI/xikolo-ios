@@ -37,25 +37,6 @@ final class DocumentsPersistenceManager: NSObject, FilePersistenceManager {
         self.startDownload(with: url, for: documentLocalization)
     }
 
-//    private func trackingContext(for documentLocalization: DocumentLocalization) -> [String: String?] {
-//        return [
-//            "section_id": video.item?.section?.id,
-//            "course_id": video.item?.section?.course?.id,
-//        ]
-//    }
-
-    func didStartDownload(for resource: DocumentLocalization) {
-//        TrackingHelper.shared.createEvent(.slidesDownloadStart, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
-    }
-
-    func didCancelDownload(for resource: DocumentLocalization) {
-//        TrackingHelper.shared.createEvent(.slidesDownloadCanceled, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
-    }
-
-    func didFinishDownload(for resource: DocumentLocalization) {
-//        TrackingHelper.shared.createEvent(.slidesDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
-    }
-
     func didFailToDownloadResource(_ resource: DocumentLocalization, with error: NSError) {
         CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
         CrashlyticsHelper.shared.recordError(error)

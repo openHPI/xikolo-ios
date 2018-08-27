@@ -8,6 +8,8 @@ import UIKit
 
 class CourseItemCell: UITableViewCell {
 
+    typealias Delegate = (CourseItemListViewController & UserActionsDelegate)
+
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var readStateView: UIView!
     @IBOutlet private weak var iconView: UIImageView!
@@ -15,7 +17,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
-    weak var delegate: (CourseItemListViewController & UserActionsDelegate)?
+    weak var delegate: Delegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

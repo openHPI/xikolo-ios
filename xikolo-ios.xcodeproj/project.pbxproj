@@ -85,7 +85,7 @@
 		50CF1F8B20DCDBFC0011BFE9 /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */; };
 		50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */; };
 		50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A61C2079781900E98351 /* CourseTransitioningDelegate.swift */; };
-		50CF1F9720DCDBFC0011BFE9 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */; };
+		50CF1F9720DCDBFC0011BFE9 /* CoreDataCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */; };
 		50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */; };
 		50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */; };
 		50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9AF2CC1CF3480E00ED3EB0 /* VideoViewController.swift */; };
@@ -110,7 +110,7 @@
 		50CF1FD720DCDBFC0011BFE9 /* CoursePresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6262079788900E98351 /* CoursePresentationAnimator.swift */; };
 		50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A6212079787000E98351 /* CoursePresentationController.swift */; };
 		50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040A63020797ED800E98351 /* CourseNavigationController.swift */; };
-		50CF1FE020DCDBFC0011BFE9 /* TableViewResultsControllerDelegateImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */; };
+		50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */; };
 		50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */; };
 		50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89473C11B3C46FD00553882 /* LoginViewController.swift */; };
 		50CF1FE620DCDBFC0011BFE9 /* RichText+DetailedCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019A7671F20AD4F008C8138 /* RichText+DetailedCourseItem.swift */; };
@@ -304,7 +304,7 @@
 		24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVMetadataItem+convenience.swift"; sourceTree = "<group>"; };
 		2433A5A01CE634A00060DD98 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
 		2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemHelper.swift; sourceTree = "<group>"; };
-		2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
+		2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		243CE47E1D709999007C59B6 /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
 		243CE48B1D786421007C59B6 /* TrackingEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvent.swift; sourceTree = "<group>"; };
 		243CE4901D786717007C59B6 /* TrackingEventUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEventUser.swift; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 		24A16D8F1CFFA3E500CAD9FE /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		24A16D911CFFA72100CAD9FE /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		24A17A011CD11E270056A8EE /* UIView+shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shake.swift"; sourceTree = "<group>"; };
-		24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewResultsControllerDelegateImplementation.swift; sourceTree = "<group>"; };
+		24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewDataSource.swift; sourceTree = "<group>"; };
 		24B6514A1D355B4A00624DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabNews.storyboard; sourceTree = "<group>"; };
 		24B6514C1D35797400624DBC /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
 		24B651501D3595C100624DBC /* NetworkIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkIndicator.swift; sourceTree = "<group>"; };
@@ -1236,8 +1236,8 @@
 				AB6AE0C71CF7D6CC00708654 /* News */,
 				AB6AE0C41CF7D69200708654 /* Account */,
 				ABCE242F1E8B938E00D55CB7 /* CustomHeaderWebView.swift */,
-				24B651441D351AF100624DBC /* TableViewResultsControllerDelegateImplementation.swift */,
-				2433A5AC1CE642AC0060DD98 /* CollectionViewResultsControllerDelegateImplementation.swift */,
+				24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */,
+				2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1888,7 +1888,7 @@
 				50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */,
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
 				50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */,
-				50CF1F9720DCDBFC0011BFE9 /* CollectionViewResultsControllerDelegateImplementation.swift in Sources */,
+				50CF1F9720DCDBFC0011BFE9 /* CoreDataCollectionViewDataSource.swift in Sources */,
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
 				50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */,
@@ -1917,7 +1917,7 @@
 				50CF1FD720DCDBFC0011BFE9 /* CoursePresentationAnimator.swift in Sources */,
 				50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */,
 				50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */,
-				50CF1FE020DCDBFC0011BFE9 /* TableViewResultsControllerDelegateImplementation.swift in Sources */,
+				50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */,
 				5054B2E72108B30E00CE9067 /* DocumentListViewController.swift in Sources */,
 				50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */,
 				50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */,

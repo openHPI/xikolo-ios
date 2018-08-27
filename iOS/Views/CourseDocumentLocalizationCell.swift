@@ -56,7 +56,10 @@ class CourseDocumentLocalizationCell: UITableViewCell {
 
     @IBAction func tappedActionsButton() {
         guard let documentLocalization = self.documentLocalization else { return }
-        self.delegate?.showAlert(with: documentLocalization.userActions, withTitle: documentLocalization.document.title, on: self.actionsButton)
+        self.delegate?.showAlert(with: documentLocalization.userActions,
+                                 title: documentLocalization.document.title,
+                                 message: documentLocalization.languageCode,
+                                 on: self.actionsButton)
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {

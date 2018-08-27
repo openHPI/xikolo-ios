@@ -9,10 +9,10 @@ import UIKit
 extension DocumentLocalization {
 
     var userActions: [UIAlertAction] {
-        return [self.downlodAction].compactMap { $0 }
+        return [self.downloadAction].compactMap { $0 }
     }
 
-    private var downlodAction: UIAlertAction? {
+    private var downloadAction: UIAlertAction? {
         let isOffline = ReachabilityHelper.connection == .none
         let downloadState = DocumentsPersistenceManager.shared.downloadState(for: self)
 

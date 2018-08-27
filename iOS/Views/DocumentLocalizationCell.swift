@@ -17,7 +17,7 @@ class DocumentLocalizationCell: UITableViewCell {
 
     private var documentLocalization: DocumentLocalization?
 
-    var delegate: Delegate?
+    weak var delegate: Delegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

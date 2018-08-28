@@ -11,8 +11,7 @@ import UIKit
 
 class CourseDateListViewController: UITableViewController {
 
-    var resultsController: NSFetchedResultsController<CourseDate>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<CourseDate>!
+    private var dataSource: CoreDataTableViewDataSource<CourseDateListViewController>!
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -26,24 +25,12 @@ class CourseDateListViewController: UITableViewController {
 
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.courseDateCell.identifier
-        resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
-                                                                                                   resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: reuseIdentifier)
+        let resultsController = CoreDataHelper.createResultsController(CourseDateHelper.FetchRequest.allCourseDates, sectionNameKeyPath: nil)
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsController: resultsController,
+                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      delegate: self)
 
-        let configuration = CourseDatesTableViewConfiguration().wrapped
-        resultsControllerDelegateImplementation.configuration = configuration
-        resultsController.delegate = resultsControllerDelegateImplementation
-        tableView.dataSource = resultsControllerDelegateImplementation
-
-        do {
-            try resultsController.performFetch()
-        } catch {
-            CrashlyticsHelper.shared.recordError(error)
-            log.error(error)
-        }
-
-        self.tableView.reloadData()
         self.setupEmptyState()
     }
 
@@ -59,8 +46,7 @@ class CourseDateListViewController: UITableViewController {
 extension CourseDateListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let (controller, dataIndexPath) = resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath)!
-        let courseDate = controller.object(at: dataIndexPath)
+        let courseDate = self.dataSource.object(at: indexPath)
 
         guard let course = courseDate.course else {
             log.warning("Did not find course for course date")
@@ -72,12 +58,10 @@ extension CourseDateListViewController {
 
 }
 
-struct CourseDatesTableViewConfiguration: TableViewResultsControllerConfiguration {
+extension CourseDateListViewController: CoreDataTableViewDataSourceDelegate {
 
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<CourseDate>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: CourseDateCell.self, hint: "CourseDatesViewController requires cell of type CourseDateCell")
-        let courseDate = controller.object(at: indexPath)
-        cell.configure(courseDate)
+    func configure(_ cell: CourseDateCell, for object: CourseDate) {
+        cell.configure(for: object)
     }
 
 }

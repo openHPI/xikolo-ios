@@ -13,8 +13,7 @@ class DocumentListViewController: UITableViewController {
 
     var course: Course!
 
-    var resultsController: NSFetchedResultsController<DocumentLocalization>!
-    var resultsControllerDelegateImplementation: TableViewResultsControllerDelegateImplementation<DocumentLocalization>!
+    private var dataSource: CoreDataTableViewDataSource<DocumentListViewController>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,26 +27,15 @@ class DocumentListViewController: UITableViewController {
         self.addRefreshControl()
 
         // setup table view data
-        let reuseIdentifier = R.reuseIdentifier.documentCell.identifier
         let request = DocumentLocalizationHelper.FetchRequest.publicDocumentLocalizations(forCourse: course)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title") // must be the first sort descriptor
-        resultsControllerDelegateImplementation = TableViewResultsControllerDelegateImplementation(tableView,
-                                                                                                   resultsController: [resultsController],
-                                                                                                   cellReuseIdentifier: reuseIdentifier)
-
-        let configuration = DocumentListViewConfiguration().wrapped
-        resultsControllerDelegateImplementation.configuration = configuration
-        resultsController.delegate = resultsControllerDelegateImplementation
-        tableView.dataSource = resultsControllerDelegateImplementation
+        let reuseIdentifier = R.reuseIdentifier.documentCell.identifier
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title") // must be the first sort descriptor
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsController: resultsController,
+                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      delegate: self)
 
         self.refresh()
-
-        do {
-            try resultsController.performFetch()
-        } catch {
-            CrashlyticsHelper.shared.recordError(error)
-            log.error(error)
-        }
 
         self.tableView.reloadData()
 
@@ -69,11 +57,7 @@ class DocumentListViewController: UITableViewController {
 extension DocumentListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let (controller, realIndexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: indexPath) else {
-            return
-        }
-
-        let documentLocaliztion = controller.object(at: realIndexPath)
+        let documentLocaliztion = self.dataSource.object(at: indexPath)
 
         guard let url = documentLocaliztion.fileURL else { return }
 
@@ -87,12 +71,8 @@ extension DocumentListViewController { // TableViewDelegate
             return nil
         }
 
-        let visualIndexPath = IndexPath(row: 0, section: section)
-        guard let (controller, indexPath) = self.resultsControllerDelegateImplementation.controllerAndImplementationIndexPath(forVisual: visualIndexPath) else {
-            return nil
-        }
-
-        let document = controller.object(at: indexPath).document
+        let indexPath = IndexPath(row: 0, section: section)
+        let document = self.dataSource.object(at: indexPath).document
         header.configure(for: document)
 
         return header
@@ -100,11 +80,10 @@ extension DocumentListViewController { // TableViewDelegate
 
 }
 
-class DocumentListViewConfiguration: TableViewResultsControllerConfiguration {
+extension DocumentListViewController: CoreDataTableViewDataSourceDelegate {
 
-    func configureTableCell(_ cell: UITableViewCell, for controller: NSFetchedResultsController<DocumentLocalization>, indexPath: IndexPath) {
-        let item = controller.object(at: indexPath)
-        cell.textLabel?.text = item.languageCode
+    func configure(_ cell: UITableViewCell, for object: DocumentLocalization) {
+        cell.textLabel?.text = object.languageCode
     }
 
 }

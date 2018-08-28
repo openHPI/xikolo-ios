@@ -35,9 +35,7 @@ class CourseOverviewCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
 
-    private var fetchRequest: NSFetchRequest<Course>!
-    private var resultsController: NSFetchedResultsController<Course>!
-    private var resultsControllerDelegateImplementation: CollectionViewResultsControllerDelegateImplementation<Course>!
+    private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewCell>!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,28 +45,17 @@ class CourseOverviewCell: UITableViewCell {
 
     func configure(for configuration: Configuration) {
         self.titleLabel.text = configuration.title
-        self.fetchRequest = configuration.fetchRequest
-        self.configureCollectionView()
+        self.configureCollectionView(for: configuration)
     }
 
-    private func configureCollectionView() {
-        resultsController = CoreDataHelper.createResultsController(self.fetchRequest, sectionNameKeyPath: nil)
-
+    private func configureCollectionView(for configuration: Configuration) {
+        let request = configuration.fetchRequest
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
-        resultsControllerDelegateImplementation = CollectionViewResultsControllerDelegateImplementation(self.collectionView,
-                                                                                                        resultsControllers: [resultsController],
-                                                                                                        cellReuseIdentifier: reuseIdentifier)
-        let configuration = CourseOverviewViewConfiguration().wrapped
-        resultsControllerDelegateImplementation.configuration = configuration
-        resultsController.delegate = resultsControllerDelegateImplementation
-        self.collectionView?.dataSource = resultsControllerDelegateImplementation
-
-        do {
-            try resultsController.performFetch()
-        } catch {
-            CrashlyticsHelper.shared.recordError(error)
-            log.error(error)
-        }
+        self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
+                                                           fetchedResultsControllers: [resultsController],
+                                                           cellReuseIdentifier: reuseIdentifier,
+                                                           delegate: self)
     }
 
 }
@@ -76,7 +63,7 @@ class CourseOverviewCell: UITableViewCell {
 extension CourseOverviewCell: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let course = resultsController.object(at: indexPath)
+        let course = self.dataSource.object(at: indexPath)
         AppNavigator.show(course: course)
     }
 
@@ -115,12 +102,12 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
 
 }
 
-struct CourseOverviewViewConfiguration: CollectionViewResultsControllerConfiguration {
+extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
 
-    func configureCollectionCell(_ cell: UICollectionViewCell, for controller: NSFetchedResultsController<Course>, indexPath: IndexPath) {
-        let cell = cell.require(toHaveType: CourseCell.self, hint: "CourseOverviewViewController requires cell of type CourseCell")
-        let course = controller.object(at: indexPath)
-        cell.configure(course, forConfiguration: .courseOverview)
+    typealias HeaderView = UICollectionReusableView
+
+    func configure(_ cell: CourseCell, for object: Course) {
+        cell.configure(object, forConfiguration: .courseOverview)
     }
 
 }

@@ -11,24 +11,24 @@ class DownloadItemListViewController: UITableViewController {
 
     var downloadType: DownloadType!
 
-    var resultsController: NSFetchedResultsController<NSFetchResultType>!
+    //var resultsController: NSFetchedResultsController<NSFetchResultType>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        var request: NSFetchRequest<resultsController>
+        var request: NSFetchRequest<Video>
         switch self.downloadType {
         case .stream:
             request = VideoHelper.FetchRequest.hasDownloadedVideo()
         case .slides:
             request = VideoHelper.FetchRequest.hasDownloadedSlides()
         case .document:
-            request = DocumentHelper.FetchRequest.downloaded()
+            break //request = DocumentHelper.FetchRequest.downloaded()
         default:
             break
         }
-        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.name")
-        try? resultsController.performFetch()
+        //let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.name")
+        //try? resultsController.performFetch()
 
     }
 
@@ -36,7 +36,7 @@ class DownloadItemListViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return resultsController.
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

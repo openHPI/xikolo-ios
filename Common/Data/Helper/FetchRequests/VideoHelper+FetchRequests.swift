@@ -19,7 +19,7 @@ extension VideoHelper {
             return request
         }
 
-        public static func hasDownloadedVideo(for courseID: String? = nil) -> NSFetchRequest<Video> {
+        public static func hasDownloadedVideo(inCourse courseID: String? = nil) -> NSFetchRequest<Video> {
             let request: NSFetchRequest<Video> = Video.fetchRequest()
             if let id = courseID {
                 let sectionSort = NSSortDescriptor(key: "item.section.position", ascending: true)
@@ -33,7 +33,7 @@ extension VideoHelper {
             return request
         }
 
-        public static func hasDownloadedSlides(for courseID: String? = nil) -> NSFetchRequest<Video> {
+        public static func hasDownloadedSlides(inCourse courseID: String? = nil) -> NSFetchRequest<Video> {
             let request: NSFetchRequest<Video> = Video.fetchRequest()
             if let id = courseID {
                 let sectionSort = NSSortDescriptor(key: "item.section.position", ascending: true)

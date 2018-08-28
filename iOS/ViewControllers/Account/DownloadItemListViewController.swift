@@ -7,19 +7,23 @@ import CoreData
 import Common
 import UIKit
 
-class DowloadListViewController: UITableViewController {
+class DownloadItemListViewController: UITableViewController {
 
     var downloadType: DownloadType!
+
+    var resultsController: NSFetchedResultsController<NSFetchResultType>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        var request: NSFetchRequest<Video>
+        var request: NSFetchRequest<resultsController>
         switch self.downloadType {
         case .stream:
             request = VideoHelper.FetchRequest.hasDownloadedVideo()
         case .slides:
             request = VideoHelper.FetchRequest.hasDownloadedSlides()
+        case .document:
+            request = DocumentHelper.FetchRequest.downloaded()
         default:
             break
         }
@@ -32,7 +36,7 @@ class DowloadListViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return resultsController.
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,4 +104,5 @@ class DowloadListViewController: UITableViewController {
 enum DownloadType {
     case stream
     case slides
+    case document
 }

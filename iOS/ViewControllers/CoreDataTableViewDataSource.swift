@@ -33,7 +33,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
     private weak var tableView: UITableView?
     private let fetchedResultsController: NSFetchedResultsController<Object>
     private let cellReuseIdentifier: String
-    private weak var delegte: Delegate?
+    private weak var delegate: Delegate?
 
     required init(_ tableView: UITableView,
                   fetchedResultsController: NSFetchedResultsController<Object>,
@@ -42,7 +42,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
         self.tableView = tableView
         self.fetchedResultsController = fetchedResultsController
         self.cellReuseIdentifier = cellReuseIdentifier
-        self.delegte = delegate
+        self.delegate = delegate
         super.init()
 
         do {
@@ -125,12 +125,12 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
         let someCell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as? Cell
         let cell = someCell.require(hint: "Unexpected cell type at \(indexPath), expected cell of type \(Cell.self)")
         let object = self.fetchedResultsController.object(at: indexPath)
-        self.delegte?.configure(cell, for: object)
+        self.delegate?.configure(cell, for: object)
         return cell
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.delegte?.titleForDefaultHeader(forSection: section)
+        return self.delegate?.titleForDefaultHeader(forSection: section)
     }
 
 }

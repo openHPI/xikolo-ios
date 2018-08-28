@@ -145,20 +145,26 @@ extension CourseListViewController: CourseListLayoutDelegate {
 
         var height = imageHeight + 14
 
-        if !titleText.isEmpty || !teachersText.isEmpty {
-            height += 8
-        }
+        if Brand.default.features.showCourseTeachers {
+            if !titleText.isEmpty || !teachersText.isEmpty {
+                height += 8
+            }
 
-        if !titleText.isEmpty {
-            height += titleSize.height
-        }
+            if !titleText.isEmpty {
+                height += titleSize.height
+            }
 
-        if !titleText.isEmpty && !teachersText.isEmpty {
-            height += 4
-        }
+            if !titleText.isEmpty && !teachersText.isEmpty {
+                height += 4
+            }
 
-        if !teachersText.isEmpty {
-            height += teachersSize.height
+            if !teachersText.isEmpty {
+                height += teachersSize.height
+            }
+        } else {
+            if !titleText.isEmpty {
+                height += 8 + titleSize.height
+            }
         }
 
         return height + 5

@@ -74,6 +74,7 @@ class CourseDetailViewController: UIViewController {
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
         self.teacherView.textColor = Brand.default.colors.secondary
+        self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)

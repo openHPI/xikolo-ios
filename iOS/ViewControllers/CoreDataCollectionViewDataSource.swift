@@ -19,6 +19,10 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
     func searchPredicate(forSearchText searchText: String) -> NSPredicate?
     func configureSearchHeaderView(_ searchHeaderView: HeaderView, numberOfSearchResults: Int)
 
+    func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath?
+    func modifiedNumberOfSections(_ numberOfSections: Int) -> Int?
+    func modifiedNumberOfItems(_ numberOfItems: Int, inSection section: Int) -> Int?
+    func collectionView(_ collectionView: UICollectionView, injectedCellForItemAt indexPath: IndexPath) -> UICollectionViewCell?
 }
 
 extension CoreDataCollectionViewDataSourceDelegate {
@@ -30,6 +34,23 @@ extension CoreDataCollectionViewDataSourceDelegate {
     }
 
     func configureSearchHeaderView(_ view: HeaderView, numberOfSearchResults: Int) {}
+
+    func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
+    func modifiedNumberOfSections(_ numberOfSections: Int) -> Int? {
+        return nil
+    }
+
+    func modifiedNumberOfItems(_ numberOfItems: Int, inSection section: Int) -> Int? {
+        return nil
+    }
+
+    func collectionView(_ collectionView: UICollectionView, injectedCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        return nil
+    }
+
 
 }
 
@@ -134,29 +155,34 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         case .insert:
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell insert")
             let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
+            let modifiedNewIndexPath = self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.insertItems(at: [convertedNewIndexPath])
+                self.collectionView?.insertItems(at: [modifiedNewIndexPath])
             }))
         case .delete:
             let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell delete")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
+            let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath])
+                self.collectionView?.deleteItems(at: [modifiedIndexPath])
             }))
         case .update:
             let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell update")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
+            let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.reloadItems(at: [convertedIndexPath])
+                self.collectionView?.reloadItems(at: [modifiedIndexPath])
             }))
         case .move:
             let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell move")
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell move")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
+            let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
+            let modifiedNewIndexPath = self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
             self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath])
-                self.collectionView?.insertItems(at: [convertedNewIndexPath])
+                self.collectionView?.deleteItems(at: [modifiedIndexPath])
+                self.collectionView?.insertItems(at: [modifiedNewIndexPath])
             }))
         }
     }
@@ -188,7 +214,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         if self.isSearching {
             return 1
         } else {
-            return self.fetchedResultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
+            let numberOfSections = self.fetchedResultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
+            return self.delegate?.modifiedNumberOfSections(numberOfSections) ?? numberOfSections
         }
     }
 
@@ -202,7 +229,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                 if sectionsToGo >= sectionCount {
                     sectionsToGo -= sectionCount
                 } else {
-                    return controller.sections?[sectionsToGo].numberOfObjects ?? 0
+                    let numberOfItems = controller.sections?[sectionsToGo].numberOfObjects ?? 0
+                    return self.delegate?.modifiedNumberOfItems(numberOfItems, inSection: sectionsToGo) ?? numberOfItems
                 }
             }
 
@@ -214,6 +242,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if self.searchFetchResultsController?.fetchedObjects?.isEmpty ?? false {
             return collectionView.dequeueReusableCell(withReuseIdentifier: self.emptyCellReuseIdentifier, for: indexPath)
+        }
+
+        if let cell = self.delegate?.collectionView(collectionView, injectedCellForItemAt: indexPath) {
+            return cell
         }
 
         let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath) as? Cell

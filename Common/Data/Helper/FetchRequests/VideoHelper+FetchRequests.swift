@@ -7,7 +7,7 @@ import CoreData
 
 extension VideoHelper {
 
-    struct FetchRequest {
+    public struct FetchRequest {
 
         static func video(withId videoId: String) -> NSFetchRequest<Video> {
             let request: NSFetchRequest<Video> = Video.fetchRequest()
@@ -16,12 +16,15 @@ extension VideoHelper {
             return request
         }
 
-        static func dowloadedVideos() -> NSFetchRequest<Video> {
+        public static func hasDownloadedVideo() -> NSFetchRequest<Video> {
             let request: NSFetchRequest<Video> = Video.fetchRequest()
-            request.predicate = NSCompoundPredicate(
-                orPredicateWithSubpredicates: [NSPredicate(format: "localFileBookmark != nil"),
-                                               NSPredicate(format: "localSlidesBookmark != nil")]
-            )
+            request.predicate = NSPredicate(format: "localFileBookmark != nil")
+            return request
+        }
+
+        public static func hasDownloadedSlides() -> NSFetchRequest<Video> {
+            let request: NSFetchRequest<Video> = Video.fetchRequest()
+            request.predicate = NSPredicate(format: "localSlidesBookmark != nil")
             return request
         }
 

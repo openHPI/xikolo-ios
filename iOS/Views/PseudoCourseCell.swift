@@ -33,17 +33,23 @@ class PseudoCourseCell: UICollectionViewCell {
     func configure(for style: Style, configuration: CourseListConfiguration) {
         switch (style, configuration) {
         case (.emptyCourseOverview, .currentCourses):
-            self.messageLabel.text = "You are enrolled in no courses yet"
-            self.actionLabel.text = "Discover available courses"
+            self.messageLabel.text = NSLocalizedString("dashboard.course-overview.no-courses.current.message",
+                                                       comment: "message text for course overview with no current courses") // "You are enrolled in no courses yet"
+            self.actionLabel.text = NSLocalizedString("dashboard.course-overview.no-courses.action",
+                                                      comment: "action text for course overview with no courses") // "Discover available courses"
         case (.emptyCourseOverview, .completedCourses):
-            self.messageLabel.text = "You haven't completed any courses yet"
-            self.actionLabel.text = "Discover available courses"
+            self.messageLabel.text = NSLocalizedString("dashboard.course-overview.no-courses.completed.message",
+                                                       comment: "message text for course overview with no completed courses") //"You haven't completed any courses yet"
+            self.actionLabel.text = NSLocalizedString("dashboard.course-overview.no-courses.action",
+                                                      comment: "action text for course overview with no courses")
         case (.showAllCoursesOfOverview, .currentCourses):
             self.messageLabel.text = nil
-            self.actionLabel.text = "Show all current courses"
+            self.actionLabel.text = NSLocalizedString("dashboard.course-overview.show-all-courses.current.action",
+                                                      comment: "action text for showing all current courses") // "Show all current courses"
         case (.showAllCoursesOfOverview, .completedCourses):
             self.messageLabel.text = nil
-            self.actionLabel.text = "Show all completed courses"
+            self.actionLabel.text = NSLocalizedString("dashboard.course-overview.show-all-courses.completed.action",
+                                                      comment: "action text for showing all completed courses") //"Show all completed courses"
         default:
             self.messageLabel.text = nil
             self.actionLabel.text = nil

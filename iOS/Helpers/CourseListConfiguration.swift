@@ -15,11 +15,11 @@ enum CourseListConfiguration {
     var title: String {
         switch self {
         case .allCourses:
-            return "Courses"
+            return NSLocalizedString("course-list.title.Courses", comment: "title for list of all courses")
         case .currentCourses:
-            return NSLocalizedString("dashboard.course-overview.My current courses", comment: "headline for overview of current courses")
+            return NSLocalizedString("course-list.title.My current courses", comment: "title for list of current courses")
         case .completedCourses:
-            return NSLocalizedString("dashboard.course-overview.My completed courses", comment: "headline for overview of completed courses")
+            return NSLocalizedString("course-list.title.My completed courses", comment: "title for list of completed courses")
         }
     }
 

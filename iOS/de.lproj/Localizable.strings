@@ -80,6 +80,15 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Folien";
 
+/* title for list of all courses */
+"course-list.title.Courses" = "Kurse";
+
+/* title for list of completed courses */
+"course-list.title.My completed courses" = "Meine abgeschlossenen Kurse";
+
+/* title for list of current courses */
+"course-list.title.My current courses" = "Meine aktuellen Kurse";
+
 /* delete all downloads in section */
 "course-section.combined-download-action.delete-downloads.title" = "Alle Lernmaterialien löschen";
 
@@ -119,11 +128,20 @@
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "nicht eingeschrieben";
 
-/* headline for overview of completed courses */
-"dashboard.course-overview.My completed courses" = "Meine abgeschlossenen Kurs";
+/* action text for course overview with no courses */
+"dashboard.course-overview.no-courses.action" = "Entdecke verfügbare Kurse";
 
-/* headline for overview of current courses */
-"dashboard.course-overview.My current courses" = "Meine aktuellen Kurse";
+/* message text for course overview with no completed courses */
+"dashboard.course-overview.no-courses.completed.message" = "noch keinen Kurs abgeschlossen";
+
+/* message text for course overview with no current courses */
+"dashboard.course-overview.no-courses.current.message" = "in noch keinen Kurs eingeschrieben";
+
+/* action text for showing all completed courses */
+"dashboard.course-overview.show-all-courses.completed.action" = "Alle meine abgeschlossenen Kurse anzeigen";
+
+/* action text for showing all current courses */
+"dashboard.course-overview.show-all-courses.current.action" = "Alle meine aktuellen Kurse anzeigen";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";

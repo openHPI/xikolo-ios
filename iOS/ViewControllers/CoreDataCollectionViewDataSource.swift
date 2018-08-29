@@ -61,6 +61,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     typealias HeaderView = Delegate.HeaderView
 
     private let emptyCellReuseIdentifier = "collectionview.cell.empty"
+    private let emptyHeaderReuseIdentifier = "collectionview.header.empty"
 
     private weak var collectionView: UICollectionView?
     private var fetchedResultsControllers: [NSFetchedResultsController<Object>]
@@ -87,6 +88,9 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         self.delegate = delegate
         super.init()
         self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: self.emptyCellReuseIdentifier)
+        self.collectionView?.register(UICollectionReusableView.self,
+                                      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                      withReuseIdentifier: self.emptyHeaderReuseIdentifier)
 
         do {
             for fetchedResultsController in self.fetchedResultsControllers {
@@ -260,7 +264,9 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.headerReuseIdentifier!, for: indexPath) as? HeaderView else {
+            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: self.headerReuseIdentifier!,
+                                                                             for: indexPath) as? HeaderView else {
                 fatalError("Unexpected header view type, expected \(HeaderView.self)")
             }
 

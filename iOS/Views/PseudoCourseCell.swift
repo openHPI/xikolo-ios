@@ -26,7 +26,7 @@ class PseudoCourseCell: UICollectionViewCell {
         self.bottomConstraint.constant = Brand.default.features.showCourseTeachers ? 54.5 : 35.5
     }
 
-    func configure(for style: Style, configuration: CourseOverviewCell.Configuration) {
+    func configure(for style: Style, configuration: CourseListConfiguration) {
         switch (style, configuration) {
         case (.emptyCourseOverview, .currentCourses):
             self.messageLabel.text = "You are enrolled in no courses yet"
@@ -40,6 +40,9 @@ class PseudoCourseCell: UICollectionViewCell {
         case (.showAllCoursesOfOverview, .completedCourses):
             self.messageLabel.text = nil
             self.actionLabel.text = "Show all completed courses"
+        default:
+            self.messageLabel.text = nil
+            self.actionLabel.text = nil
         }
     }
 

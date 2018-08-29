@@ -15,7 +15,6 @@ class CourseDateOverviewCell: UITableViewCell {
     weak var delegate: CourseDateOverviewDelegate? {
         didSet {
             self.summaryView.delegate = self.delegate
-            self.nextUpView.delegate = self.delegate
         }
     }
 
@@ -38,6 +37,5 @@ class CourseDateOverviewCell: UITableViewCell {
 protocol CourseDateOverviewDelegate: AnyObject {
 
     func openCourseDateList()
-    func openCourse(_ course: Course)
 
 }

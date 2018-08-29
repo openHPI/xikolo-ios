@@ -41,23 +41,19 @@ class DashboardViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseOverviewCell, for: indexPath).require()
-            let configuration: CourseOverviewCell.Configuration = section == 1 ? .currentCourses : .completedCourses
+            let configuration: CourseListConfiguration = section == 1 ? .currentCourses : .completedCourses
+            cell.delegate = self
             cell.configure(for: configuration)
             return cell
         }
     }
 
-    @IBAction func tappedOnCourseDateSummary(_ sender: UITapGestureRecognizer) {
-        self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseDates, sender: self)
-    }
-
-    @IBAction func tappedOnCourseDateNextUp(_ sender: UITapGestureRecognizer) {
-        let someCourseDate = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value
-        guard let course = someCourseDate?.course else {
-            return
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.dashboardViewController.showCourseList(segue: segue) {
+            if let configuration = sender as? CourseListConfiguration {
+                typedInfo.destination.configuration = configuration
+            }
         }
-
-        AppNavigator.show(course: course)
     }
 
 }
@@ -89,8 +85,12 @@ extension DashboardViewController: CourseDateOverviewDelegate {
         self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseDates, sender: self)
     }
 
-    func openCourse(_ course: Course) {
-        AppNavigator.show(course: course)
+}
+
+extension DashboardViewController: CourseOverviewDelegate {
+
+    func openCourseList(for configuration: CourseListConfiguration) {
+        self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseList, sender: configuration)
     }
 
 }

@@ -9,34 +9,13 @@ import UIKit
 
 class CourseOverviewCell: UITableViewCell {
 
-    enum Configuration {
-        case currentCourses
-        case completedCourses
-
-        var title: String {
-            switch self {
-            case .currentCourses:
-                return NSLocalizedString("dashboard.course-overview.My current courses", comment: "headline for overview of current courses")
-            case .completedCourses:
-                return NSLocalizedString("dashboard.course-overview.My completed courses", comment: "headline for overview of completed courses")
-            }
-        }
-
-        var fetchRequest: NSFetchRequest<Course> {
-            switch self {
-            case .currentCourses:
-                return CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
-            case .completedCourses:
-                return CourseHelper.FetchRequest.completedCourses
-            }
-        }
-    }
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
 
-    private var configuration: Configuration!
+    private var configuration: CourseListConfiguration!
     private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewCell>!
+
+    weak var delegate: CourseOverviewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,18 +24,16 @@ class CourseOverviewCell: UITableViewCell {
         self.collectionView.delegate = self
     }
 
-    func configure(for configuration: Configuration) {
+    func configure(for configuration: CourseListConfiguration) {
         self.configuration = configuration
         self.titleLabel.text = configuration.title
         self.configureCollectionView(for: configuration)
     }
 
-    private func configureCollectionView(for configuration: Configuration) {
-        let request = configuration.fetchRequest
-        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: nil)
+    private func configureCollectionView(for configuration: CourseListConfiguration) {
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
-                                                           fetchedResultsControllers: [resultsController],
+                                                           fetchedResultsControllers: configuration.resultsControllers,
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            delegate: self)
     }
@@ -71,7 +48,7 @@ extension CourseOverviewCell: UICollectionViewDelegate {
             if numberOfItemsInSection - 1 == 0 {
                 AppNavigator.showCourseList()
             } else {
-                print("TODO: open filtered course list")
+                self.delegate?.openCourseList(for: self.configuration)
             }
         } else {
             let course = self.dataSource.object(at: indexPath)
@@ -139,5 +116,11 @@ extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
         cell?.configure(for: style, configuration: self.configuration)
         return cell
     }
+
+}
+
+protocol CourseOverviewDelegate: AnyObject {
+
+    func openCourseList(for configuration: CourseListConfiguration)
 
 }

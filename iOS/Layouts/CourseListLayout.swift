@@ -7,6 +7,8 @@ import UIKit
 
 protocol CourseListLayoutDelegate: AnyObject {
 
+    var showHeaders: Bool { get }
+
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
 
     // only needed in iOS 10
@@ -90,7 +92,7 @@ class CourseListLayout: UICollectionViewLayout {
                     rowOffset = (yOffset.max() ?? 0.0) + self.linePadding
                 }
 
-                if item == 0 { // new section
+                if item == 0, self.delegate?.showHeaders ?? true { // new section
                     rowOffset += self.headerHeight
                 }
 
@@ -122,7 +124,6 @@ class CourseListLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
         let sectionsToAdd = NSMutableIndexSet()
         var layoutAttributes: [UICollectionViewLayoutAttributes] = []
 
@@ -135,11 +136,13 @@ class CourseListLayout: UICollectionViewLayout {
             }
         }
 
-        for section in sectionsToAdd {
-            let indexPath = IndexPath(item: 0, section: section)
-            let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
-            if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
-                layoutAttributes.append(sectionAttributes)
+        if self.delegate?.showHeaders ?? true {
+            for section in sectionsToAdd {
+                let indexPath = IndexPath(item: 0, section: section)
+                let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+                if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
+                    layoutAttributes.append(sectionAttributes)
+                }
             }
         }
 
@@ -152,6 +155,7 @@ class CourseListLayout: UICollectionViewLayout {
 
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard self.delegate?.showHeaders ?? true else { return nil }
         guard elementKind == UICollectionElementKindSectionHeader else { return nil }
 
         guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }

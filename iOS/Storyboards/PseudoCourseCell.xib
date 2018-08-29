@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raT-3Q-iQy" customClass="UICollectionReusableView">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="254.5"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-dp-sgX" customClass="InnerShadowView" customModule="iOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-dp-sgX">
                                 <rect key="frame" x="14" y="14" width="372" height="186.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-IY-02p">
@@ -44,7 +44,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="S0H-IY-02p" secondAttribute="trailing" id="0yo-du-37o"/>
                                     <constraint firstItem="S0H-IY-02p" firstAttribute="leading" secondItem="Wuq-dp-sgX" secondAttribute="leadingMargin" id="Iy1-cm-5Gf"/>

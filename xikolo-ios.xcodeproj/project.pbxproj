@@ -148,7 +148,6 @@
 		50D60D3C20E0F2A2007A4199 /* Pods-iOS.openhpi-ios-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 50D60D3420E0F2A1007A4199 /* Pods-iOS.openhpi-ios-debug.xcconfig */; };
 		50D60D3D20E0F2A2007A4199 /* Pods-iOS.openhpi-ios-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 50D60D3520E0F2A2007A4199 /* Pods-iOS.openhpi-ios-release.xcconfig */; };
 		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
-		50E0351D21356D0D001F963D /* InnerShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351C21356D0D001F963D /* InnerShadowView.swift */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
@@ -499,7 +498,6 @@
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
 		50DD35141FD83D5E002B40CC /* CourseListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListLayout.swift; sourceTree = "<group>"; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
-		50E0351C21356D0D001F963D /* InnerShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerShadowView.swift; sourceTree = "<group>"; };
 		50E0351E213673F8001F963D /* CourseListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListConfiguration.swift; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamingSettingsViewController.swift; sourceTree = "<group>"; };
 		50E16D041F47070A00D67632 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TabAccount.strings; sourceTree = "<group>"; };
@@ -729,7 +727,6 @@
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
 				5058578521351CBD006A5D15 /* PseudoCourseCell.swift */,
-				50E0351C21356D0D001F963D /* InnerShadowView.swift */,
 				500228EC20582573003301A7 /* CourseItemHeader.swift */,
 				5017B3BD2049854F001D90A1 /* CourseAreaCell.swift */,
 				AB91F9E41CED029B00007D06 /* CourseItemCell.swift */,
@@ -1874,7 +1871,6 @@
 				50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */,
 				50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */,
 				50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */,
-				50E0351D21356D0D001F963D /* InnerShadowView.swift in Sources */,
 				50CF1F7A20DCDBFC0011BFE9 /* CourseItemListViewController.swift in Sources */,
 				50CF1F7B20DCDBFC0011BFE9 /* CourseArea.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailViewController.swift in Sources */,

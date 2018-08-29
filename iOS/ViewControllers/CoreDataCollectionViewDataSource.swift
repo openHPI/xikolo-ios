@@ -20,6 +20,7 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
     func configureSearchHeaderView(_ searchHeaderView: HeaderView, numberOfSearchResults: Int)
 
     func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool
+    func itemLimit(forSection section: Int) -> Int?
 
     func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath?
     func numberOfAddtionalSections() -> Int
@@ -40,6 +41,10 @@ extension CoreDataCollectionViewDataSourceDelegate {
 
     func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool {
         return false
+    }
+
+    func itemLimit(forSection section: Int) -> Int? {
+        return nil
     }
 
     func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath? {
@@ -167,23 +172,49 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell insert")
             let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
             let modifiedNewIndexPath = self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.insertItems(at: [modifiedNewIndexPath])
-            }))
+            if let itemLimit = self.delegate?.itemLimit(forSection: modifiedNewIndexPath.section) {
+                if modifiedNewIndexPath.item < itemLimit {
+                    let deleteIndex = IndexPath(item: itemLimit - 1 , section: modifiedNewIndexPath.section)
+                    self.contentChangeOperations.append(BlockOperation(block: {
+                        self.collectionView?.deleteItems(at: [deleteIndex])
+                        self.collectionView?.insertItems(at: [modifiedNewIndexPath])
+                    }))
+                }
+            } else {
+                self.contentChangeOperations.append(BlockOperation(block: {
+                    self.collectionView?.insertItems(at: [modifiedNewIndexPath])
+                }))
+            }
         case .delete:
             let indexPath = indexPath.require(hint: "indexPath is required for collection view cell delete")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [modifiedIndexPath])
-            }))
+            if let itemLimit = self.delegate?.itemLimit(forSection: modifiedIndexPath.section) {
+                if modifiedIndexPath.item < itemLimit {
+                    self.contentChangeOperations.append(BlockOperation(block: {
+                        self.collectionView?.deleteItems(at: [modifiedIndexPath])
+                    }))
+                }
+            } else {
+                self.contentChangeOperations.append(BlockOperation(block: {
+                    self.collectionView?.deleteItems(at: [modifiedIndexPath])
+                }))
+            }
         case .update:
             let indexPath = indexPath.require(hint: "indexPath is required for collection view cell update")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.reloadItems(at: [modifiedIndexPath])
-            }))
+            if let itemLimit = self.delegate?.itemLimit(forSection: modifiedIndexPath.section) {
+                if modifiedIndexPath.item < itemLimit {
+                    self.contentChangeOperations.append(BlockOperation(block: {
+                        self.collectionView?.reloadItems(at: [modifiedIndexPath])
+                    }))
+                }
+            } else {
+                self.contentChangeOperations.append(BlockOperation(block: {
+                    self.collectionView?.reloadItems(at: [modifiedIndexPath])
+                }))
+            }
         case .move:
             let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell move")
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell move")
@@ -191,10 +222,37 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
             let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
             let modifiedNewIndexPath = self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [modifiedIndexPath])
-                self.collectionView?.insertItems(at: [modifiedNewIndexPath])
-            }))
+
+            if let itemLimit = self.delegate?.itemLimit(forSection: modifiedIndexPath.section) {
+                if modifiedIndexPath.item < itemLimit || modifiedNewIndexPath.item < itemLimit {
+                    if modifiedIndexPath.item < itemLimit {
+                        self.contentChangeOperations.append(BlockOperation(block: {
+                            self.collectionView?.deleteItems(at: [modifiedIndexPath])
+                        }))
+                    } else {
+                        let deleteIndex = IndexPath(item: itemLimit - 1 , section: modifiedIndexPath.section)
+                        self.contentChangeOperations.append(BlockOperation(block: {
+                            self.collectionView?.deleteItems(at: [deleteIndex])
+                        }))
+                    }
+
+                    if modifiedNewIndexPath.item < itemLimit {
+                        self.contentChangeOperations.append(BlockOperation(block: {
+                            self.collectionView?.insertItems(at: [modifiedNewIndexPath])
+                        }))
+                    } else {
+                        let insertIndex = IndexPath(item: itemLimit - 1 , section: modifiedNewIndexPath.section)
+                        self.contentChangeOperations.append(BlockOperation(block: {
+                            self.collectionView?.insertItems(at: [insertIndex])
+                        }))
+                    }
+                }
+            } else {
+                self.contentChangeOperations.append(BlockOperation(block: {
+                    self.collectionView?.deleteItems(at: [modifiedIndexPath])
+                    self.collectionView?.insertItems(at: [modifiedNewIndexPath])
+                }))
+            }
         }
     }
 
@@ -257,9 +315,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                 if sectionsToGo >= sectionCount {
                     sectionsToGo -= sectionCount
                 } else {
+                    let itemLimit = self.delegate?.itemLimit(forSection: sectionsToGo) ?? Int.max
                     let numberOfItems = controller.sections?[sectionsToGo].numberOfObjects ?? 0
                     let numberOfAddtionalItems = self.delegate?.numberOfAdditonalItems(for: numberOfItems, inSection: sectionsToGo) ?? 0
-                    return numberOfItems + numberOfAddtionalItems
+                    return min(itemLimit, numberOfItems) + numberOfAddtionalItems
                 }
             }
 

@@ -111,8 +111,13 @@ extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
         return preChangeItemCount == 0 || postChangeItemCount == 0
     }
 
+    func itemLimit(forSection section: Int) -> Int? {
+        return 5
+    }
+
     func numberOfAdditonalItems(for numberOfItems: Int, inSection section: Int) -> Int {
-        return numberOfItems > 5 || numberOfItems == 0 ? 1 : 0
+        let itemLimit = self.itemLimit(forSection: section) ?? Int.max
+        return numberOfItems > itemLimit || numberOfItems == 0 ? 1 : 0
     }
 
     func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {

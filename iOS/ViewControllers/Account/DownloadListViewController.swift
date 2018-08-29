@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import BrightFutures
 import Common
 import UIKit
 
@@ -13,37 +14,52 @@ class DownloadListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+
         // setup table view data
         let reuseIdentifier = R.reuseIdentifier.downloadedCourse.identifier
-        let request = CourseHelper.FetchRequest.coursesWithDownloads
-        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "title") // must be the first sort descriptor
-        self.dataSource = CoreDataTableViewDataSource(self.tableView,
-                                                      fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
-                                                      delegate: self)
+        self.getCourseIDs().onSuccess { (courseIDs) in
+            let request = CourseHelper.FetchRequest.courses(withIDs: courseIDs)
+            let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "title") // must be the first sort descriptor
+            self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                          fetchedResultsController: resultsController,
+                                                          cellReuseIdentifier: reuseIdentifier,
+                                                          delegate: self)
+        }
 
 
+
+
+    }
+
+    func getCourseIDs() -> Future<[String], XikoloError> {
         let videoRequest = VideoHelper.FetchRequest.hasDownloadedVideo()
         let slidesRequest = VideoHelper.FetchRequest.hasDownloadedSlides()
         var courseIDs: Set<String> = Set()
         //let documentsRequest =
-        do {
-            let downloadedVideos = try CoreDataHelper.persistentContainer.newBackgroundContext().fetch(videoRequest)
-            let downloadedSlides = try CoreDataHelper.persistentContainer.newBackgroundContext().fetch(slidesRequest)
-            for video in downloadedVideos {
-                if let courseID = video.item?.section?.course?.id {
-                    courseIDs.update(with: courseID)
-                }
+        let promise = Promise<[String], XikoloError>()
+        CoreDataHelper.persistentContainer.performBackgroundTask { (privateManagedObjectContext) in
 
-            }
-            for slide in downloadedSlides {
-                if let courseID = slide.item?.section?.course?.id {
-                    courseIDs.update(with: courseID)
-                }
-            }
-        } catch {
+            do {
+                let downloadedVideos = try privateManagedObjectContext.fetch(videoRequest)
+                let downloadedSlides = try privateManagedObjectContext.fetch(slidesRequest)
+                for video in downloadedVideos {
+                    if let courseID = video.item?.section?.course?.id {
+                        courseIDs.update(with: courseID)
+                    }
 
+                }
+                for slide in downloadedSlides {
+                    if let courseID = slide.item?.section?.course?.id {
+                        courseIDs.update(with: courseID)
+                    }
+                }
+                return promise.success(courseIDs.sorted())
+            } catch {
+                promise.failure(.coreData(error))
+            }
         }
+        return promise.future
     }
 
 

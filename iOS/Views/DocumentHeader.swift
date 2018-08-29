@@ -6,7 +6,7 @@
 import Common
 import UIKit
 
-class CourseDocumentHeader: UITableViewHeaderFooterView {
+class DocumentHeader: UITableViewHeaderFooterView {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!

@@ -15,6 +15,14 @@ class DocumentListViewController: UITableViewController {
 
     private var dataSource: CoreDataTableViewDataSource<DocumentListViewController>!
 
+    var inOfflineMode = ReachabilityHelper.connection == .none {
+        didSet {
+            if oldValue != self.inOfflineMode {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +30,7 @@ class DocumentListViewController: UITableViewController {
         self.tableView.estimatedSectionHeaderHeight = 44
 
         // register custom section header view
-        self.tableView.register(R.nib.courseDocumentHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseDocumentHeader.name)
+        self.tableView.register(R.nib.documentHeader(), forHeaderFooterViewReuseIdentifier: R.nib.documentHeader.name)
 
         self.addRefreshControl()
 
@@ -43,6 +51,11 @@ class DocumentListViewController: UITableViewController {
         self.tableView.layoutIfNeeded()
 
         self.setupEmptyState()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged),
+                                               name: Notification.Name.reachabilityChanged,
+                                               object: nil)
     }
 
     func setupEmptyState() {
@@ -52,6 +65,10 @@ class DocumentListViewController: UITableViewController {
         self.tableView.reloadEmptyDataSet()
     }
 
+    @objc func reachabilityChanged() {
+        self.inOfflineMode = ReachabilityHelper.connection == .none
+    }
+
 }
 
 extension DocumentListViewController { // TableViewDelegate
@@ -59,7 +76,7 @@ extension DocumentListViewController { // TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let documentLocaliztion = self.dataSource.object(at: indexPath)
 
-        guard let url = documentLocaliztion.fileURL else { return }
+        guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocaliztion) ?? documentLocaliztion.fileURL else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         pdfViewController.url = url
@@ -67,7 +84,7 @@ extension DocumentListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.courseDocumentHeader.name) as? CourseDocumentHeader else {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: R.nib.documentHeader.name) as? DocumentHeader else {
             return nil
         }
 
@@ -82,8 +99,9 @@ extension DocumentListViewController { // TableViewDelegate
 
 extension DocumentListViewController: CoreDataTableViewDataSourceDelegate {
 
-    func configure(_ cell: UITableViewCell, for object: DocumentLocalization) {
-        cell.textLabel?.text = object.languageCode
+    func configure(_ cell: DocumentLocalizationCell, for object: DocumentLocalization) {
+        cell.delegate = self
+        cell.configure(for: object)
     }
 
 }
@@ -100,6 +118,26 @@ extension DocumentListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return DocumentHelper.syncDocuments(forCourse: self.course).asVoid()
+    }
+
+}
+
+extension DocumentListViewController: UserActionsDelegate {
+
+    func showAlert(with actions: [UIAlertAction], title: String?, message: String?, on anchor: UIView) {
+        guard !actions.isEmpty else { return }
+
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = anchor
+        alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
+
+        for action in actions {
+            alert.addAction(action)
+        }
+
+        alert.addCancelAction()
+
+        self.present(alert, animated: true)
     }
 
 }

@@ -19,10 +19,13 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
     func searchPredicate(forSearchText searchText: String) -> NSPredicate?
     func configureSearchHeaderView(_ searchHeaderView: HeaderView, numberOfSearchResults: Int)
 
+    func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool
+
     func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath?
     func modifiedNumberOfSections(_ numberOfSections: Int) -> Int?
     func modifiedNumberOfItems(_ numberOfItems: Int, inSection section: Int) -> Int?
     func collectionView(_ collectionView: UICollectionView, injectedCellForItemAt indexPath: IndexPath) -> UICollectionViewCell?
+
 }
 
 extension CoreDataCollectionViewDataSourceDelegate {
@@ -34,6 +37,10 @@ extension CoreDataCollectionViewDataSourceDelegate {
     }
 
     func configureSearchHeaderView(_ view: HeaderView, numberOfSearchResults: Int) {}
+
+    func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool {
+        return false
+    }
 
     func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath? {
         return nil
@@ -50,7 +57,6 @@ extension CoreDataCollectionViewDataSourceDelegate {
     func collectionView(_ collectionView: UICollectionView, injectedCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
         return nil
     }
-
 
 }
 
@@ -72,6 +78,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     private var searchFetchResultsController: NSFetchedResultsController<Object>?
 
     private var contentChangeOperations: [BlockOperation] = []
+    private var preChangeItemCount: Int?
 
     required init(_ collectionView: UICollectionView?,
                   fetchedResultsControllers: [NSFetchedResultsController<Object>],
@@ -120,6 +127,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     }
 
     // MARK: NSFetchedResultsControllerDelegate
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.preChangeItemCount = self.numberOfCoreDataItems()
+    }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
@@ -190,13 +201,21 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard self.searchFetchResultsController == nil else { return }
 
-        self.collectionView?.performBatchUpdates({
-            for operation in self.contentChangeOperations {
-                operation.start()
-            }
-        }, completion: { _ in
+        let postChangeItemCount = self.numberOfCoreDataItems()
+
+        if self.delegate?.shouldReloadCollectionViewForUpdate(from: self.preChangeItemCount, to: postChangeItemCount) ?? true {
+            self.collectionView?.reloadData()
             self.contentChangeOperations.removeAll(keepingCapacity: false)
-        })
+        } else {
+            self.collectionView?.performBatchUpdates({
+                for operation in self.contentChangeOperations {
+                    operation.start()
+                }
+            }, completion: { _ in
+                self.contentChangeOperations.removeAll(keepingCapacity: false)
+            })
+
+        }
     }
 
     deinit {
@@ -209,6 +228,14 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     }
 
     // MARK: UICollectionViewDataSource
+
+    private func numberOfCoreDataItems() -> Int {
+        return self.fetchedResultsControllers.compactMap { controller in
+            return controller.sections
+        }.flatMap{ $0 }.map { section in
+            return section.numberOfObjects
+        }.reduce(0, +)
+    }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if self.isSearching {

@@ -101,6 +101,10 @@ extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
         cell.configure(object, forConfiguration: .courseOverview)
     }
 
+    func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool {
+        return preChangeItemCount == 0 || postChangeItemCount == 0
+    }
+
     func modifiedNumberOfItems(_ numberOfItems: Int, inSection section: Int) -> Int? {
         return numberOfItems + 1
     }

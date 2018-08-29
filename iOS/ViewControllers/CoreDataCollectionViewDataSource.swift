@@ -213,6 +213,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                 self.contentChangeOperations.removeAll(keepingCapacity: false)
             })
         }
+
+        self.preChangeItemCount = nil
     }
 
     private func insertItem(at insertIndexPath: IndexPath) {

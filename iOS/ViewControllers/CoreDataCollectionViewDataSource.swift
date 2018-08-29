@@ -61,7 +61,6 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     typealias HeaderView = Delegate.HeaderView
 
     private let emptyCellReuseIdentifier = "collectionview.cell.empty"
-    private let emptyHeaderReuseIdentifier = "collectionview.header.empty"
 
     private weak var collectionView: UICollectionView?
     private var fetchedResultsControllers: [NSFetchedResultsController<Object>]
@@ -88,9 +87,6 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         self.delegate = delegate
         super.init()
         self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: self.emptyCellReuseIdentifier)
-        self.collectionView?.register(UICollectionReusableView.self,
-                                      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                                      withReuseIdentifier: self.emptyHeaderReuseIdentifier)
 
         do {
             for fetchedResultsController in self.fetchedResultsControllers {

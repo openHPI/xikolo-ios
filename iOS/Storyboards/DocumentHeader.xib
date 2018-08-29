@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" id="yr5-Fy-0W3" customClass="CourseDocumentHeader" customModule="iOS" customModuleProvider="target">
+        <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" id="yr5-Fy-0W3" customClass="DocumentHeader" customModule="iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -52,7 +52,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="mfS-ZC-zYV" firstAttribute="leading" secondItem="yr5-Fy-0W3" secondAttribute="leadingMargin" id="K0G-oR-vy1"/>
                 <constraint firstAttribute="bottom" secondItem="mfS-ZC-zYV" secondAttribute="bottom" id="aFX-DD-mwL"/>

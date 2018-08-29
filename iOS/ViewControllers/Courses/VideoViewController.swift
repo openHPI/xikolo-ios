@@ -306,10 +306,10 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let downloadStateRawValue = noticaition.userInfo?[DownloadNotificationKey.downloadState] as? String,
+    @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+        guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
+            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
             let downloadState = DownloadState(rawValue: downloadStateRawValue),
             let video = self.video,
             video.id == videoId else { return }
@@ -333,10 +333,10 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
+        guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
+            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             let video = self.video,
             video.id == videoId else { return }
 

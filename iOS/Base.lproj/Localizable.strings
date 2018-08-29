@@ -143,6 +143,15 @@
 /* action text for showing all current courses */
 "dashboard.course-overview.show-all-courses.current.action" = "Show all my current courses";
 
+/* delete download of a document localization */
+"document-localization.download-action.delete-download.title" = "Delete document";
+
+/* start download of a document localization */
+"document-localization.download-action.start-download.title" = "Download document";
+
+/* stop download of a document localization */
+"document-localization.download-action.stop-download.title" = "Stop download of document";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";
 

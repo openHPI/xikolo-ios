@@ -84,7 +84,7 @@
         <attribute name="fileURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="languageCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="localFileURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="localFileBookmark" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="localizationDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="revision" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>

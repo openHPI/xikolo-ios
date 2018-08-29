@@ -164,14 +164,14 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                 self.collectionView?.insertItems(at: [modifiedNewIndexPath])
             }))
         case .delete:
-            let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell delete")
+            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell delete")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
             self.contentChangeOperations.append(BlockOperation(block: {
                 self.collectionView?.deleteItems(at: [modifiedIndexPath])
             }))
         case .update:
-            let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell update")
+            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell update")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
             self.contentChangeOperations.append(BlockOperation(block: {

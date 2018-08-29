@@ -67,7 +67,8 @@ extension CoreDataCollectionViewDataSourceDelegate {
 
 }
 
-// swiftlint:disable:next type_body_length
+// unable to split up since UICollectionViewDataSource and NSFetchedResultsControllerDelegate contain @objc methods
+// swiftlint:disable:next type_body_length line_length
 class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
 
     typealias Object = Delegate.Object

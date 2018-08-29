@@ -22,9 +22,9 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
     func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool
 
     func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath?
-    func modifiedNumberOfSections(_ numberOfSections: Int) -> Int?
-    func modifiedNumberOfItems(_ numberOfItems: Int, inSection section: Int) -> Int?
-    func collectionView(_ collectionView: UICollectionView, injectedCellForItemAt indexPath: IndexPath) -> UICollectionViewCell?
+    func numberOfAddtionalSections() -> Int
+    func numberOfAdditonalItems(for numberOfItems: Int, inSection section: Int) -> Int
+    func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell?
 
 }
 
@@ -46,15 +46,15 @@ extension CoreDataCollectionViewDataSourceDelegate {
         return nil
     }
 
-    func modifiedNumberOfSections(_ numberOfSections: Int) -> Int? {
-        return nil
+    func numberOfAddtionalSections() -> Int {
+        return 0
     }
 
-    func modifiedNumberOfItems(_ numberOfItems: Int, inSection section: Int) -> Int? {
-        return nil
+    func numberOfAdditonalItems(for numberOfItems: Int, inSection section: Int) -> Int {
+        return 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, injectedCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+    func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
         return nil
     }
 
@@ -242,7 +242,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             return 1
         } else {
             let numberOfSections = self.fetchedResultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
-            return self.delegate?.modifiedNumberOfSections(numberOfSections) ?? numberOfSections
+            let numberOfAdditionalSections = self.delegate?.numberOfAddtionalSections() ?? 0
+            return numberOfSections + numberOfAdditionalSections
         }
     }
 
@@ -257,7 +258,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                     sectionsToGo -= sectionCount
                 } else {
                     let numberOfItems = controller.sections?[sectionsToGo].numberOfObjects ?? 0
-                    return self.delegate?.modifiedNumberOfItems(numberOfItems, inSection: sectionsToGo) ?? numberOfItems
+                    let numberOfAddtionalItems = self.delegate?.numberOfAdditonalItems(for: numberOfItems, inSection: sectionsToGo) ?? 0
+                    return numberOfItems + numberOfAddtionalItems
                 }
             }
 
@@ -271,7 +273,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             return collectionView.dequeueReusableCell(withReuseIdentifier: self.emptyCellReuseIdentifier, for: indexPath)
         }
 
-        if let cell = self.delegate?.collectionView(collectionView, injectedCellForItemAt: indexPath) {
+        if let cell = self.delegate?.collectionView(collectionView, additionalCellForItemAt: indexPath) {
             return cell
         }
 
@@ -355,11 +357,11 @@ extension CoreDataCollectionViewDataSource { // Conversion of indices between da
     private func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath) -> IndexPath {
         var convertedIndexPath = indexPath
 
-        for contr in self.fetchedResultsControllers {
-            if contr == controller {
+        for resultsController in self.fetchedResultsControllers {
+            if resultsController == controller {
                 return convertedIndexPath
             } else {
-                convertedIndexPath.section += contr.sections?.count ?? 0
+                convertedIndexPath.section += resultsController.sections?.count ?? 0
             }
         }
 

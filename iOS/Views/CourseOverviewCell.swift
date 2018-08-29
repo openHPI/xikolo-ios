@@ -43,9 +43,11 @@ class CourseOverviewCell: UITableViewCell {
 extension CourseOverviewCell: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let numberOfItemsInSection = self.dataSource.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
-        if numberOfItemsInSection - 1 == indexPath.item {
-            if numberOfItemsInSection - 1 == 0 {
+        let numberOfItems = self.dataSource.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
+        let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfItems, inSection: indexPath.section)
+
+        if numberOfItems - numberOfAdditionalItems == indexPath.item {
+            if numberOfItems - numberOfAdditionalItems == 0 {
                 AppNavigator.showCourseList()
             } else {
                 self.delegate?.openCourseList(for: self.configuration)
@@ -71,7 +73,11 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height: CGFloat = 14 + 150 + 8 + 20.5 + 4 + 18 // (padding + image height + padding + text + padding + text)
         let numberOfItemsInSection = self.dataSource.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
-        let maximalWidth: CGFloat = numberOfItemsInSection - 1 > 0 && numberOfItemsInSection - 1 == indexPath.item ? 200 : 300
+        let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfItemsInSection, inSection: indexPath.section)
+
+        let hasCourses = numberOfItemsInSection - numberOfAdditionalItems > 0
+        let isLastCell = numberOfItemsInSection - numberOfAdditionalItems == indexPath.item
+        let maximalWidth: CGFloat = hasCourses && isLastCell ? 200 : 300
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
         let width = min(availableWidth * 0.9, maximalWidth)
         return CGSize(width: width, height: height)
@@ -105,18 +111,24 @@ extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
         return preChangeItemCount == 0 || postChangeItemCount == 0
     }
 
-    func modifiedNumberOfItems(_ numberOfItems: Int, inSection section: Int) -> Int? {
-        return numberOfItems + 1
+    func numberOfAdditonalItems(for numberOfItems: Int, inSection section: Int) -> Int {
+        return numberOfItems > 5 || numberOfItems == 0 ? 1 : 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, injectedCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
-        let numberOfItemsInSection = self.dataSource.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
-        guard numberOfItemsInSection - 1 == indexPath.item else {
+    func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        let numberOfItems = self.dataSource.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
+        let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfItems, inSection: indexPath.section)
+
+        guard numberOfAdditionalItems > 0 else {
+            return nil
+        }
+
+        guard numberOfItems - numberOfAdditionalItems == indexPath.item else {
             return nil
         }
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.nib.pseudoCourseCell, for: indexPath)
-        let style: PseudoCourseCell.Style = numberOfItemsInSection - 1 == 0 ? .emptyCourseOverview : .showAllCoursesOfOverview
+        let style: PseudoCourseCell.Style = numberOfItems - numberOfAdditionalItems == 0 ? .emptyCourseOverview : .showAllCoursesOfOverview
         cell?.configure(for: style, configuration: self.configuration)
         return cell
     }

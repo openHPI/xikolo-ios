@@ -194,7 +194,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4F-0n-P0h" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="md3-Kq-rrt">
                                                 <rect key="frame" x="16" y="8" width="343" height="130"/>
@@ -264,7 +264,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="md3-Kq-rrt" secondAttribute="trailing" id="1rS-Jx-09X"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="md3-Kq-rrt" secondAttribute="bottom" id="CWJ-KC-7qU"/>
+                                            <constraint firstAttribute="bottom" secondItem="md3-Kq-rrt" secondAttribute="bottom" id="CWJ-KC-7qU"/>
                                             <constraint firstItem="md3-Kq-rrt" firstAttribute="top" secondItem="G4F-0n-P0h" secondAttribute="topMargin" id="FE3-ET-lnX"/>
                                             <constraint firstItem="md3-Kq-rrt" firstAttribute="leading" secondItem="G4F-0n-P0h" secondAttribute="leadingMargin" id="NZq-oR-Ql7"/>
                                         </constraints>

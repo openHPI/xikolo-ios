@@ -26,7 +26,7 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
 
     func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath?
     func numberOfAddtionalSections() -> Int
-    func numberOfAdditonalItems(for numberOfItems: Int, inSection section: Int) -> Int
+    func numberOfAdditonalItems(for numberOfAdditonalItems: Int, inSection section: Int) -> Int
     func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell?
 
 }
@@ -57,7 +57,7 @@ extension CoreDataCollectionViewDataSourceDelegate {
         return 0
     }
 
-    func numberOfAdditonalItems(for numberOfItems: Int, inSection section: Int) -> Int {
+    func numberOfAdditonalItems(for numberOfCoreDataItems: Int, inSection section: Int) -> Int {
         return 0
     }
 
@@ -318,6 +318,20 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         }.reduce(0, +)
     }
 
+    func numberOfCoreDataItems(inSection section: Int) -> Int {
+        var sectionsToGo = section
+        for controller in self.fetchedResultsControllers {
+            let sectionCount = controller.sections?.count ?? 0
+            if sectionsToGo >= sectionCount {
+                sectionsToGo -= sectionCount
+            } else {
+                return controller.sections?[sectionsToGo].numberOfObjects ?? 0
+            }
+        }
+
+        fatalError("Incorrect section index")
+    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if self.isSearching {
             return 1
@@ -332,20 +346,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         if let searchResultsController = self.searchFetchResultsController {
             return max(searchResultsController.fetchedObjects?.count ?? 0, 1)
         } else {
-            var sectionsToGo = section
-            for controller in self.fetchedResultsControllers {
-                let sectionCount = controller.sections?.count ?? 0
-                if sectionsToGo >= sectionCount {
-                    sectionsToGo -= sectionCount
-                } else {
-                    let itemLimit = self.delegate?.itemLimit(forSection: sectionsToGo) ?? Int.max
-                    let numberOfItems = controller.sections?[sectionsToGo].numberOfObjects ?? 0
-                    let numberOfAddtionalItems = self.delegate?.numberOfAdditonalItems(for: numberOfItems, inSection: sectionsToGo) ?? 0
-                    return min(itemLimit, numberOfItems) + numberOfAddtionalItems
-                }
-            }
-
-            return 0
+            let numberOfCoreDataItems = self.numberOfCoreDataItems(inSection: section)
+            let numberOfAddtionalItems = self.delegate?.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: section) ?? 0
+            let itemLimit = self.delegate?.itemLimit(forSection: section) ?? Int.max
+            return min(itemLimit, numberOfCoreDataItems) + numberOfAddtionalItems
         }
     }
 

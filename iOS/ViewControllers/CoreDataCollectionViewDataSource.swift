@@ -173,28 +173,18 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
         switch type {
         case .insert:
-            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell insert")
-            let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
-            let modifiedNewIndexPath = self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
-            self.insertItem(at: modifiedNewIndexPath)
+            let convertedNewIndexPath = self.convert(newIndexPath, in: controller, for: type)
+            self.insertItem(at: convertedNewIndexPath)
         case .delete:
-            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell delete")
-            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-            let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
-            self.deleteItem(at: modifiedIndexPath)
+            let convertedIndexPath = self.convert(indexPath, in: controller, for: type)
+            self.deleteItem(at: convertedIndexPath)
         case .update:
-            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell update")
-            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-            let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
-            self.updateItem(at: modifiedIndexPath)
+            let convertedIndexPath = self.convert(indexPath, in: controller, for: type)
+            self.updateItem(at: convertedIndexPath)
         case .move:
-            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell move")
-            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell move")
-            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-            let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
-            let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
-            let modifiedNewIndexPath = self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
-            self.moveItem(from: modifiedIndexPath, to: modifiedNewIndexPath)
+            let convertedIndexPath = self.convert(indexPath, in: controller, for: type)
+            let convertedNewIndexPath = self.convert(newIndexPath, in: controller, for: type)
+            self.moveItem(from: convertedIndexPath, to: convertedNewIndexPath)
         }
     }
 
@@ -216,6 +206,14 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         }
 
         self.preChangeItemCount = nil
+    }
+
+    private func convert(_ indexPath: IndexPath?,
+                                   in controller: NSFetchedResultsController<NSFetchRequestResult>,
+                                   for type: NSFetchedResultsChangeType) -> IndexPath {
+        let requiredIndexPath = indexPath.require(hint: "required index path for \(type) not supplied")
+        let convertedNewIndexPath = self.indexPath(for: controller, with: requiredIndexPath)
+        return self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
     }
 
     private func insertItem(at insertIndexPath: IndexPath) {

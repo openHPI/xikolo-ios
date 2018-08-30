@@ -80,21 +80,33 @@ class CourseViewController: UIViewController {
     }
 
     private func updateContainerView() {
-        if let viewController = self.courseAreaViewController {
-            viewController.willMove(toParentViewController: nil)
-            viewController.view.removeFromSuperview()
-            viewController.removeFromParentViewController()
+        let animationTime: TimeInterval = 0.2
+
+        self.courseAreaViewController?.willMove(toParentViewController: nil)
+
+        // swiftlint:disable multiple_closures_with_trailing_closure
+        UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseInOut, animations: {
+            self.courseAreaViewController?.view.alpha = 0
+        }) { _ in
+            self.courseAreaViewController?.view.removeFromSuperview()
+            self.courseAreaViewController?.removeFromParentViewController()
             self.courseAreaViewController = nil
+
+            guard let newViewController = self.content?.viewController else { return }
+            newViewController.configure(for: self.course, delegate: self)
+            newViewController.view.frame = self.containerView.bounds
+            newViewController.view.alpha = 0
+
+            self.containerView.addSubview(newViewController.view)
+            self.addChildViewController(newViewController)
+            self.courseAreaViewController = newViewController
+
+            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseInOut, animations: {
+                newViewController.view.alpha = 1
+            }) { _ in
+                newViewController.didMove(toParentViewController: self)
+            }
         }
-
-        guard let courseAreaViewController = self.content?.viewController else { return }
-        courseAreaViewController.configure(for: self.course, delegate: self)
-
-        self.containerView.addSubview(courseAreaViewController.view)
-        courseAreaViewController.view.frame = self.containerView.bounds
-        self.addChildViewController(courseAreaViewController)
-        courseAreaViewController.didMove(toParentViewController: self)
-        self.courseAreaViewController = courseAreaViewController
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

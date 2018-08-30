@@ -188,7 +188,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             let modifiedIndexPath = self.delegate?.modifiedIndexPath(convertedIndexPath) ?? convertedIndexPath
             self.updateItem(at: modifiedIndexPath)
         case .move:
-            let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell move")
+            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell move")
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell move")
             let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
             let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)

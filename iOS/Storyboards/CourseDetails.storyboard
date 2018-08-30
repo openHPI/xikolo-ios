@@ -42,7 +42,7 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCC-vf-4Pk">
-                                                <rect key="frame" x="8" y="16" width="52" height="26"/>
+                                                <rect key="frame" x="16" y="16" width="52" height="26"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hft-pf-uVT">
                                                         <rect key="frame" x="4" y="4" width="44" height="18"/>
@@ -214,7 +214,7 @@
                             <constraint firstItem="MWe-9L-XSn" firstAttribute="top" secondItem="CsQ-Pt-R1r" secondAttribute="top" id="QnP-Is-H40"/>
                             <constraint firstItem="bWt-KQ-kUh" firstAttribute="trailingMargin" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="YgW-nw-x6x"/>
                             <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="cT7-ff-Hlw"/>
-                            <constraint firstItem="CsQ-Pt-R1r" firstAttribute="bottom" secondItem="MWe-9L-XSn" secondAttribute="bottom" id="mqB-qY-mYX"/>
+                            <constraint firstAttribute="bottom" secondItem="MWe-9L-XSn" secondAttribute="bottom" id="mqB-qY-mYX"/>
                             <constraint firstItem="MWe-9L-XSn" firstAttribute="leading" secondItem="sIY-aU-CD1" secondAttribute="leading" id="xBX-gx-O3a"/>
                             <constraint firstItem="bWt-KQ-kUh" firstAttribute="width" secondItem="sIY-aU-CD1" secondAttribute="width" id="zAP-uP-cC0"/>
                         </constraints>
@@ -239,7 +239,6 @@
                         </variation>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dateView" destination="AX1-JO-2go" id="XMf-fO-Gyt"/>
                         <outlet property="descriptionView" destination="f38-k8-QXv" id="T3G-v3-30g"/>

@@ -209,8 +209,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     }
 
     private func convert(_ indexPath: IndexPath?,
-                                   in controller: NSFetchedResultsController<NSFetchRequestResult>,
-                                   for type: NSFetchedResultsChangeType) -> IndexPath {
+                         in controller: NSFetchedResultsController<NSFetchRequestResult>,
+                         for type: NSFetchedResultsChangeType) -> IndexPath {
         let requiredIndexPath = indexPath.require(hint: "required index path for \(type) not supplied")
         let convertedNewIndexPath = self.indexPath(for: controller, with: requiredIndexPath)
         return self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath

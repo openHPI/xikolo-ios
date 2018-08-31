@@ -35,6 +35,8 @@
 		<true/>
 		<key>showCourseDatesOnDashboard</key>
 		<false/>
+		<key>showCourseTeachers</key>
+		<false/>
 	</dict>
 </dict>
 </plist>

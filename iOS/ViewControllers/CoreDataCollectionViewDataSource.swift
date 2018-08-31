@@ -3,6 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+// swiftlint:disable file_length
+
 import Common
 import CoreData
 import UIKit
@@ -19,6 +21,14 @@ protocol CoreDataCollectionViewDataSourceDelegate: AnyObject {
     func searchPredicate(forSearchText searchText: String) -> NSPredicate?
     func configureSearchHeaderView(_ searchHeaderView: HeaderView, numberOfSearchResults: Int)
 
+    func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool
+    func itemLimit(forSection section: Int) -> Int?
+
+    func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath?
+    func numberOfAddtionalSections() -> Int
+    func numberOfAdditonalItems(for numberOfAdditonalItems: Int, inSection section: Int) -> Int
+    func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell?
+
 }
 
 extension CoreDataCollectionViewDataSourceDelegate {
@@ -31,8 +41,34 @@ extension CoreDataCollectionViewDataSourceDelegate {
 
     func configureSearchHeaderView(_ view: HeaderView, numberOfSearchResults: Int) {}
 
+    func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool {
+        return false
+    }
+
+    func itemLimit(forSection section: Int) -> Int? {
+        return nil
+    }
+
+    func modifiedIndexPath(_ indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
+    func numberOfAddtionalSections() -> Int {
+        return 0
+    }
+
+    func numberOfAdditonalItems(for numberOfCoreDataItems: Int, inSection section: Int) -> Int {
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, additionalCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        return nil
+    }
+
 }
 
+// unable to split up since UICollectionViewDataSource and NSFetchedResultsControllerDelegate contain @objc methods
+// swiftlint:disable:next type_body_length line_length
 class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
 
     typealias Object = Delegate.Object
@@ -51,6 +87,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
     private var searchFetchResultsController: NSFetchedResultsController<Object>?
 
     private var contentChangeOperations: [BlockOperation] = []
+    private var preChangeItemCount: Int?
 
     required init(_ collectionView: UICollectionView?,
                   fetchedResultsControllers: [NSFetchedResultsController<Object>],
@@ -100,6 +137,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
     // MARK: NSFetchedResultsControllerDelegate
 
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.preChangeItemCount = self.numberOfCoreDataItems()
+    }
+
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
@@ -132,45 +173,126 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
         switch type {
         case .insert:
-            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell insert")
-            let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.insertItems(at: [convertedNewIndexPath])
-            }))
+            let convertedNewIndexPath = self.convert(newIndexPath, in: controller, for: type)
+            self.insertItem(at: convertedNewIndexPath)
         case .delete:
-            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell delete")
-            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath])
-            }))
+            let convertedIndexPath = self.convert(indexPath, in: controller, for: type)
+            self.deleteItem(at: convertedIndexPath)
         case .update:
-            let indexPath = indexPath.require(hint: "indexPath is required for collection view cell update")
-            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.reloadItems(at: [convertedIndexPath])
-            }))
+            let convertedIndexPath = self.convert(indexPath, in: controller, for: type)
+            self.updateItem(at: convertedIndexPath)
         case .move:
-            let indexPath = newIndexPath.require(hint: "indexPath is required for collection view cell move")
-            let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for collection view cell move")
-            let convertedIndexPath = self.indexPath(for: controller, with: indexPath)
-            let convertedNewIndexPath = self.indexPath(for: controller, with: newIndexPath)
-            self.contentChangeOperations.append(BlockOperation(block: {
-                self.collectionView?.deleteItems(at: [convertedIndexPath])
-                self.collectionView?.insertItems(at: [convertedNewIndexPath])
-            }))
+            let convertedIndexPath = self.convert(indexPath, in: controller, for: type)
+            let convertedNewIndexPath = self.convert(newIndexPath, in: controller, for: type)
+            self.moveItem(from: convertedIndexPath, to: convertedNewIndexPath)
         }
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard self.searchFetchResultsController == nil else { return }
 
-        self.collectionView?.performBatchUpdates({
-            for operation in self.contentChangeOperations {
-                operation.start()
-            }
-        }, completion: { _ in
+        let postChangeItemCount = self.numberOfCoreDataItems()
+        if self.delegate?.shouldReloadCollectionViewForUpdate(from: self.preChangeItemCount, to: postChangeItemCount) ?? true {
+            self.collectionView?.reloadData()
             self.contentChangeOperations.removeAll(keepingCapacity: false)
-        })
+        } else {
+            self.collectionView?.performBatchUpdates({
+                for operation in self.contentChangeOperations {
+                    operation.start()
+                }
+            }, completion: { _ in
+                self.contentChangeOperations.removeAll(keepingCapacity: false)
+            })
+        }
+
+        self.preChangeItemCount = nil
+    }
+
+    private func convert(_ indexPath: IndexPath?,
+                         in controller: NSFetchedResultsController<NSFetchRequestResult>,
+                         for type: NSFetchedResultsChangeType) -> IndexPath {
+        let requiredIndexPath = indexPath.require(hint: "required index path for \(type) not supplied")
+        let convertedNewIndexPath = self.indexPath(for: controller, with: requiredIndexPath)
+        return self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
+    }
+
+    private func insertItem(at insertIndexPath: IndexPath) {
+        if let itemLimit = self.delegate?.itemLimit(forSection: insertIndexPath.section) {
+            if insertIndexPath.item < itemLimit {
+                let deleteIndexPath = IndexPath(item: itemLimit - 1, section: insertIndexPath.section)
+                self.contentChangeOperations.append(BlockOperation {
+                    self.collectionView?.deleteItems(at: [deleteIndexPath])
+                    self.collectionView?.insertItems(at: [insertIndexPath])
+                })
+            }
+        } else {
+            self.contentChangeOperations.append(BlockOperation {
+                self.collectionView?.insertItems(at: [insertIndexPath])
+            })
+        }
+    }
+
+    private func deleteItem(at deleteIndexPath: IndexPath) {
+        if let itemLimit = self.delegate?.itemLimit(forSection: deleteIndexPath.section) {
+            if deleteIndexPath.item < itemLimit {
+                self.contentChangeOperations.append(BlockOperation {
+                    self.collectionView?.deleteItems(at: [deleteIndexPath])
+                })
+            }
+        } else {
+            self.contentChangeOperations.append(BlockOperation {
+                self.collectionView?.deleteItems(at: [deleteIndexPath])
+            })
+        }
+    }
+
+    private func updateItem(at updateIndexPath: IndexPath) {
+        if let itemLimit = self.delegate?.itemLimit(forSection: updateIndexPath.section) {
+            if updateIndexPath.item < itemLimit {
+                self.contentChangeOperations.append(BlockOperation {
+                    self.collectionView?.reloadItems(at: [updateIndexPath])
+                })
+            }
+        } else {
+            self.contentChangeOperations.append(BlockOperation {
+                self.collectionView?.reloadItems(at: [updateIndexPath])
+            })
+        }
+    }
+
+    private func moveItem(from fromIndexPath: IndexPath, to toNewIndexPath: IndexPath) {
+        if let itemLimit = self.delegate?.itemLimit(forSection: fromIndexPath.section) {
+            let movedFromLimitedList = fromIndexPath.item < itemLimit
+            let movedToLimitedList = toNewIndexPath.item < itemLimit
+            if movedFromLimitedList || movedToLimitedList {
+                if movedFromLimitedList {
+                    self.contentChangeOperations.append(BlockOperation {
+                        self.collectionView?.deleteItems(at: [fromIndexPath])
+                    })
+                } else {
+                    let deleteIndex = IndexPath(item: itemLimit - 1, section: fromIndexPath.section)
+                    self.contentChangeOperations.append(BlockOperation {
+                        self.collectionView?.deleteItems(at: [deleteIndex])
+                    })
+                }
+
+                if movedToLimitedList {
+                    self.contentChangeOperations.append(BlockOperation {
+                        self.collectionView?.insertItems(at: [toNewIndexPath])
+                    })
+                } else {
+                    let insertIndex = IndexPath(item: itemLimit - 1, section: toNewIndexPath.section)
+                    self.contentChangeOperations.append(BlockOperation {
+                        self.collectionView?.insertItems(at: [insertIndex])
+                    })
+                }
+            }
+        } else {
+            self.contentChangeOperations.append(BlockOperation {
+                self.collectionView?.deleteItems(at: [fromIndexPath])
+                self.collectionView?.insertItems(at: [toNewIndexPath])
+            })
+        }
     }
 
     deinit {
@@ -184,11 +306,37 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
     // MARK: UICollectionViewDataSource
 
+    private func numberOfCoreDataItems() -> Int {
+        return self.fetchedResultsControllers.compactMap { controller in
+            return controller.sections
+        }.flatMap {
+            return $0
+        }.map { section in
+            return section.numberOfObjects
+        }.reduce(0, +)
+    }
+
+    func numberOfCoreDataItems(inSection section: Int) -> Int {
+        var sectionsToGo = section
+        for controller in self.fetchedResultsControllers {
+            let sectionCount = controller.sections?.count ?? 0
+            if sectionsToGo >= sectionCount {
+                sectionsToGo -= sectionCount
+            } else {
+                return controller.sections?[sectionsToGo].numberOfObjects ?? 0
+            }
+        }
+
+        fatalError("Incorrect section index")
+    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if self.isSearching {
             return 1
         } else {
-            return self.fetchedResultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
+            let numberOfSections = self.fetchedResultsControllers.map { $0.sections?.count ?? 0 }.reduce(0, +)
+            let numberOfAdditionalSections = self.delegate?.numberOfAddtionalSections() ?? 0
+            return numberOfSections + numberOfAdditionalSections
         }
     }
 
@@ -196,17 +344,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         if let searchResultsController = self.searchFetchResultsController {
             return max(searchResultsController.fetchedObjects?.count ?? 0, 1)
         } else {
-            var sectionsToGo = section
-            for controller in self.fetchedResultsControllers {
-                let sectionCount = controller.sections?.count ?? 0
-                if sectionsToGo >= sectionCount {
-                    sectionsToGo -= sectionCount
-                } else {
-                    return controller.sections?[sectionsToGo].numberOfObjects ?? 0
-                }
-            }
-
-            return 0
+            let numberOfCoreDataItems = self.numberOfCoreDataItems(inSection: section)
+            let numberOfAddtionalItems = self.delegate?.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: section) ?? 0
+            let itemLimit = self.delegate?.itemLimit(forSection: section) ?? Int.max
+            return min(itemLimit, numberOfCoreDataItems) + numberOfAddtionalItems
         }
     }
 
@@ -214,6 +355,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if self.searchFetchResultsController?.fetchedObjects?.isEmpty ?? false {
             return collectionView.dequeueReusableCell(withReuseIdentifier: self.emptyCellReuseIdentifier, for: indexPath)
+        }
+
+        if let cell = self.delegate?.collectionView(collectionView, additionalCellForItemAt: indexPath) {
+            return cell
         }
 
         let someCell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath) as? Cell
@@ -228,7 +373,9 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.headerReuseIdentifier!, for: indexPath) as? HeaderView else {
+            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: self.headerReuseIdentifier!,
+                                                                             for: indexPath) as? HeaderView else {
                 fatalError("Unexpected header view type, expected \(HeaderView.self)")
             }
 
@@ -294,11 +441,11 @@ extension CoreDataCollectionViewDataSource { // Conversion of indices between da
     private func indexPath(for controller: NSFetchedResultsController<NSFetchRequestResult>, with indexPath: IndexPath) -> IndexPath {
         var convertedIndexPath = indexPath
 
-        for contr in self.fetchedResultsControllers {
-            if contr == controller {
+        for resultsController in self.fetchedResultsControllers {
+            if resultsController == controller {
                 return convertedIndexPath
             } else {
-                convertedIndexPath.section += contr.sections?.count ?? 0
+                convertedIndexPath.section += resultsController.sections?.count ?? 0
             }
         }
 

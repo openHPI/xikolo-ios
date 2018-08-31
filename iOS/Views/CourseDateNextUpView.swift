@@ -13,8 +13,6 @@ class CourseDateNextUpView: UIStackView {
     @IBOutlet private weak var courseLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
 
-    weak var delegate: CourseDateOverviewDelegate?
-
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -39,7 +37,7 @@ class CourseDateNextUpView: UIStackView {
 
     @objc func tappedOnView() {
         if let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course {
-            self.delegate?.openCourse(course)
+            AppNavigator.show(course: course)
         }
     }
 

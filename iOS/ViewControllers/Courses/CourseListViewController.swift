@@ -18,12 +18,7 @@ class CourseListViewController: UICollectionViewController {
     @available(iOS, obsoleted: 11.0)
     private var statusBarBackground: UIView?
 
-    enum CourseDisplayMode {
-        case enrolledOnly
-        case all
-        case explore
-        case bothSectioned
-    }
+    var configuration: CourseListConfiguration = .allCourses
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,16 +39,12 @@ class CourseListViewController: UICollectionViewController {
 
         self.addRefreshControl()
 
-        let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
+        self.navigationItem.title = self.configuration.title
+
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
-        let resultsControllers: [NSFetchedResultsController<Course>] = [
-            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "currentSectionName"),
-            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
-            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
-        ]
         self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
-                                                           fetchedResultsControllers: resultsControllers,
-                                                           searchFetchRequest: searchFetchRequest,
+                                                           fetchedResultsControllers: self.configuration.resultsControllers,
+                                                           searchFetchRequest: self.configuration.searchFetchRequest,
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            headerReuseIdentifier: R.nib.courseHeaderView.name,
                                                            delegate: self)
@@ -117,6 +108,10 @@ class CourseListViewController: UICollectionViewController {
 
 extension CourseListViewController: CourseListLayoutDelegate {
 
+    var showHeaders: Bool {
+        return self.configuration == .allCourses || self.dataSource.isSearching
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
@@ -145,20 +140,26 @@ extension CourseListViewController: CourseListLayoutDelegate {
 
         var height = imageHeight + 14
 
-        if !titleText.isEmpty || !teachersText.isEmpty {
-            height += 8
-        }
+        if Brand.default.features.showCourseTeachers {
+            if !titleText.isEmpty || !teachersText.isEmpty {
+                height += 8
+            }
 
-        if !titleText.isEmpty {
-            height += titleSize.height
-        }
+            if !titleText.isEmpty {
+                height += titleSize.height
+            }
 
-        if !titleText.isEmpty && !teachersText.isEmpty {
-            height += 4
-        }
+            if !titleText.isEmpty && !teachersText.isEmpty {
+                height += 4
+            }
 
-        if !teachersText.isEmpty {
-            height += teachersSize.height
+            if !teachersText.isEmpty {
+                height += teachersSize.height
+            }
+        } else {
+            if !titleText.isEmpty {
+                height += 8 + titleSize.height
+            }
         }
 
         return height + 5

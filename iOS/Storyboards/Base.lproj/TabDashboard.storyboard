@@ -101,6 +101,14 @@
             </objects>
             <point key="canvasLocation" x="1604" y="938"/>
         </scene>
+        <!--CourseListViewController-->
+        <scene sceneID="hVL-Kf-Qfl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TabCourses" referencedIdentifier="CourseListViewController" id="GSP-8j-Qsf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iph-cR-aJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="808" y="1373"/>
+        </scene>
         <!--Dashboard-->
         <scene sceneID="f4y-KC-UVu">
             <objects>
@@ -487,6 +495,7 @@
                     <navigationItem key="navigationItem" title="Dashboard" id="gqL-aL-4lP"/>
                     <connections>
                         <segue destination="TzN-ab-aeu" kind="show" identifier="showCourseDates" id="IJW-tE-qqc"/>
+                        <segue destination="GSP-8j-Qsf" kind="show" identifier="showCourseList" id="Bwg-2s-bY3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qpj-3z-m5t" userLabel="First Responder" sceneMemberID="firstResponder"/>

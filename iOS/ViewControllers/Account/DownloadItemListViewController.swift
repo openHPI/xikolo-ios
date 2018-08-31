@@ -18,7 +18,7 @@ class DownloadItemListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         var request: NSFetchRequest<Video>
         switch self.downloadType {
-        case .stream:
+        case .video:
             request = VideoHelper.FetchRequest.hasDownloadedVideo()
         case .slides:
             request = VideoHelper.FetchRequest.hasDownloadedSlides()
@@ -99,10 +99,4 @@ class DownloadItemListViewController: UITableViewController {
     }
     */
 
-}
-
-enum DownloadType {
-    case stream
-    case slides
-    case document
 }

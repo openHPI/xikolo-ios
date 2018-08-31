@@ -137,9 +137,13 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
 extension LoginViewController: UITextFieldDelegate {
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.emailField.layoutIfNeeded()
+        self.passwordField.layoutIfNeeded()
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        textField.layoutIfNeeded()
 
         if textField == self.emailField {
             self.passwordField.becomeFirstResponder()

@@ -29,4 +29,13 @@ public struct CourseHelper {
         return SyncEngine.shared.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
     }
 
+    public static func visit(_ course: Course) {
+        let courseObjectId = course.objectID
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let backgroundCourse = context.existingTypedObject(with: courseObjectId) as? Course
+            backgroundCourse?.lastVisited = Date()
+            try? context.save()
+        }
+    }
+
 }

@@ -152,13 +152,13 @@ class AppNavigator {
 
         let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
         let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
-        let courseDecisionViewController = topViewController.require(toHaveType: CourseViewController.self)
-        courseDecisionViewController.course = course
+        let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
+        courseViewController.course = course
 
         if course.accessible {
-            courseDecisionViewController.content = content
+            courseViewController.content = content
         } else {
-            courseDecisionViewController.content = .courseDetails
+            courseViewController.content = .courseDetails
         }
 
         self.currentCourseViewController = courseNavigationController
@@ -167,7 +167,9 @@ class AppNavigator {
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        tabBarController.present(courseNavigationController, animated: true)
+        tabBarController.present(courseNavigationController, animated: true) {
+            CourseHelper.visit(course)
+        }
     }
 
 }

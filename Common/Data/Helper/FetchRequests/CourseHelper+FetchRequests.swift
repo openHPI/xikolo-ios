@@ -46,10 +46,11 @@ extension CourseHelper {
             notEnrolledPredicate,
         ])
 
+        private static let customOrderSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+
         private static var genericCoursesRequest: NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
-            let customOrderSort = NSSortDescriptor(key: "order", ascending: true)
-            request.sortDescriptors = [customOrderSort]
+            request.sortDescriptors = [self.customOrderSortDescriptor]
             request.predicate = self.genericPredicate
             return request
         }
@@ -142,6 +143,10 @@ extension CourseHelper {
                 accessiblePredicate,
                 notCompletedPredicate,
             ])
+            request.sortDescriptors = [
+                NSSortDescriptor(key: "lastVisited", ascending: false),
+                self.customOrderSortDescriptor,
+            ]
             return request
         }
 

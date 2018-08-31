@@ -26,6 +26,7 @@ public final class Course: NSManagedObject {
     @NSManaged public var hidden: Bool
     @NSManaged public var enrollable: Bool
     @NSManaged public var external: Bool
+    @NSManaged public var lastVisited: Date?
 
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var enrollment: Enrollment?

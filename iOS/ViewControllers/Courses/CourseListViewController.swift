@@ -21,6 +21,7 @@ class CourseListViewController: UICollectionViewController {
     var configuration: CourseListConfiguration = .allCourses
 
     override func viewDidLoad() {
+        self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
         self.collectionView?.register(R.nib.courseHeaderView(),
                                       forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
@@ -31,11 +32,12 @@ class CourseListViewController: UICollectionViewController {
 
         super.viewDidLoad()
 
-        self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
+        self.navigationItem.title = self.configuration.title
+        if #available(iOS 11, *) {
+            self.navigationItem.largeTitleDisplayMode = self.configuration.largeTitleDisplayMode
+        }
 
         self.addRefreshControl()
-
-        self.navigationItem.title = self.configuration.title
 
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
         self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,

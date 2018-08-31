@@ -23,6 +23,10 @@ enum CourseListConfiguration {
         }
     }
 
+    var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode {
+        return self == .allCourses ? .automatic : .never
+    }
+
     var resultsControllers: [NSFetchedResultsController<Course>] {
         switch self {
         case .allCourses:

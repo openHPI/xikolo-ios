@@ -78,8 +78,9 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
         let itemLimit = self.itemLimit(forSection: indexPath.section) ?? Int.max
 
         let hasCourses = numberOfCoreDataItems > 0
+        let hasAddtionaltems = numberOfAdditionalItems > 0
         let isLastCell = min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item
-        let maximalWidth: CGFloat = hasCourses && isLastCell ? 200 : 300
+        let maximalWidth: CGFloat = hasCourses && hasAddtionaltems && isLastCell ? 200 : 300
         let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
         let width = min(availableWidth * 0.9, maximalWidth)
         return CGSize(width: width, height: height)

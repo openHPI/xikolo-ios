@@ -20,10 +20,6 @@ class CourseListViewController: UICollectionViewController {
 
     var configuration: CourseListConfiguration = .allCourses
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.courseHeaderView(),
                                       forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
@@ -89,10 +85,6 @@ class CourseListViewController: UICollectionViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        if let xikoloNavigationController = self.navigationController as? XikoloNavigationController {
-            xikoloNavigationController.fixShadowImage()
-        }
 
         if #available(iOS 11.0, *) {
             self.navigationItem.hidesSearchBarWhenScrolling = true

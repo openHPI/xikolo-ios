@@ -111,7 +111,14 @@ extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
     }
 
     func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool {
-        return preChangeItemCount == 0 || postChangeItemCount == 0
+        if preChangeItemCount == 0 || postChangeItemCount == 0 {
+            return true
+        }
+
+        let itemLimit = self.itemLimit(forSection: 0) ?? Int.max
+        let passedOverItemLimit = preChangeItemCount == itemLimit && (preChangeItemCount ?? Int.min) < postChangeItemCount
+        let passedUnderItemLimit = postChangeItemCount == itemLimit && postChangeItemCount < (preChangeItemCount ?? Int.max)
+        return passedOverItemLimit || passedUnderItemLimit
     }
 
     func itemLimit(forSection section: Int) -> Int? {

@@ -216,54 +216,66 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         return self.delegate?.modifiedIndexPath(convertedNewIndexPath) ?? convertedNewIndexPath
     }
 
-    private func insertItem(at insertIndexPath: IndexPath) {
-        if let itemLimit = self.delegate?.itemLimit(forSection: insertIndexPath.section) {
-            if insertIndexPath.item < itemLimit {
-                let deleteIndexPath = IndexPath(item: itemLimit - 1, section: insertIndexPath.section)
+    private func insertItem(at indexPath: IndexPath) {
+        if let itemLimit = self.delegate?.itemLimit(forSection: indexPath.section) {
+            if indexPath.item < itemLimit {
+                if self.numberOfCoreDataItems(inSection: indexPath.section) > itemLimit {
+                    let deleteIndexPath = IndexPath(item: itemLimit - 1, section: indexPath.section)
+                    self.contentChangeOperations.append(BlockOperation {
+                        self.collectionView?.deleteItems(at: [deleteIndexPath])
+                    })
+                }
+
                 self.contentChangeOperations.append(BlockOperation {
-                    self.collectionView?.deleteItems(at: [deleteIndexPath])
-                    self.collectionView?.insertItems(at: [insertIndexPath])
+                    self.collectionView?.insertItems(at: [indexPath])
                 })
             }
         } else {
             self.contentChangeOperations.append(BlockOperation {
-                self.collectionView?.insertItems(at: [insertIndexPath])
+                self.collectionView?.insertItems(at: [indexPath])
             })
         }
     }
 
-    private func deleteItem(at deleteIndexPath: IndexPath) {
-        if let itemLimit = self.delegate?.itemLimit(forSection: deleteIndexPath.section) {
-            if deleteIndexPath.item < itemLimit {
+    private func deleteItem(at indexPath: IndexPath) {
+        if let itemLimit = self.delegate?.itemLimit(forSection: indexPath.section) {
+            if indexPath.item < itemLimit {
                 self.contentChangeOperations.append(BlockOperation {
-                    self.collectionView?.deleteItems(at: [deleteIndexPath])
+                    self.collectionView?.deleteItems(at: [indexPath])
+                })
+
+                if self.numberOfCoreDataItems(inSection: indexPath.section) >= itemLimit { // TODO: what's the counts before or after?
+                    let insertIndexPath = IndexPath(item: itemLimit - 1, section: indexPath.section)
+                    self.contentChangeOperations.append(BlockOperation {
+                        self.collectionView?.insertItems(at: [insertIndexPath])
+                    })
+                }
+            }
+        } else {
+            self.contentChangeOperations.append(BlockOperation {
+                self.collectionView?.deleteItems(at: [indexPath])
+            })
+        }
+    }
+
+    private func updateItem(at indexPath: IndexPath) {
+        if let itemLimit = self.delegate?.itemLimit(forSection: indexPath.section) {
+            if indexPath.item < itemLimit {
+                self.contentChangeOperations.append(BlockOperation {
+                    self.collectionView?.reloadItems(at: [indexPath])
                 })
             }
         } else {
             self.contentChangeOperations.append(BlockOperation {
-                self.collectionView?.deleteItems(at: [deleteIndexPath])
+                self.collectionView?.reloadItems(at: [indexPath])
             })
         }
     }
 
-    private func updateItem(at updateIndexPath: IndexPath) {
-        if let itemLimit = self.delegate?.itemLimit(forSection: updateIndexPath.section) {
-            if updateIndexPath.item < itemLimit {
-                self.contentChangeOperations.append(BlockOperation {
-                    self.collectionView?.reloadItems(at: [updateIndexPath])
-                })
-            }
-        } else {
-            self.contentChangeOperations.append(BlockOperation {
-                self.collectionView?.reloadItems(at: [updateIndexPath])
-            })
-        }
-    }
-
-    private func moveItem(from fromIndexPath: IndexPath, to toNewIndexPath: IndexPath) {
+    private func moveItem(from fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
         if let itemLimit = self.delegate?.itemLimit(forSection: fromIndexPath.section) {
             let movedFromLimitedList = fromIndexPath.item < itemLimit
-            let movedToLimitedList = toNewIndexPath.item < itemLimit
+            let movedToLimitedList = toIndexPath.item < itemLimit
             if movedFromLimitedList || movedToLimitedList {
                 if movedFromLimitedList {
                     self.contentChangeOperations.append(BlockOperation {
@@ -278,10 +290,10 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
 
                 if movedToLimitedList {
                     self.contentChangeOperations.append(BlockOperation {
-                        self.collectionView?.insertItems(at: [toNewIndexPath])
+                        self.collectionView?.insertItems(at: [toIndexPath])
                     })
                 } else {
-                    let insertIndex = IndexPath(item: itemLimit - 1, section: toNewIndexPath.section)
+                    let insertIndex = IndexPath(item: itemLimit - 1, section: toIndexPath.section)
                     self.contentChangeOperations.append(BlockOperation {
                         self.collectionView?.insertItems(at: [insertIndex])
                     })
@@ -290,7 +302,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         } else {
             self.contentChangeOperations.append(BlockOperation {
                 self.collectionView?.deleteItems(at: [fromIndexPath])
-                self.collectionView?.insertItems(at: [toNewIndexPath])
+                self.collectionView?.insertItems(at: [toIndexPath])
             })
         }
     }

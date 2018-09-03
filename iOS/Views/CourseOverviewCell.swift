@@ -107,7 +107,7 @@ extension CourseOverviewCell: CoreDataCollectionViewDataSourceDelegate {
     typealias HeaderView = UICollectionReusableView
 
     func configure(_ cell: CourseCell, for object: Course) {
-        cell.configure(object, forConfiguration: .courseOverview)
+        cell.configure(object, for: .courseOverview)
     }
 
     func shouldReloadCollectionViewForUpdate(from preChangeItemCount: Int?, to postChangeItemCount: Int) -> Bool {

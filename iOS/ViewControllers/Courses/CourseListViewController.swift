@@ -224,7 +224,8 @@ extension CourseListViewController: UISearchControllerDelegate {
 extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
 
     func configure(_ cell: CourseCell, for object: Course) {
-        cell.configure(object, forConfiguration: .courseList)
+        let cellConfiguration: CourseCell.Configuration = self.configuration == .allCourses ? .courseList : .courseOverview
+        cell.configure(object, for: cellConfiguration)
     }
 
     func configureHeaderView(_ headerView: CourseHeaderView, sectionInfo: NSFetchedResultsSectionInfo) {

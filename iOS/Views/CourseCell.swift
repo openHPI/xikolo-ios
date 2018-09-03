@@ -70,7 +70,7 @@ class CourseCell: UICollectionViewCell {
         self.gradientView.layer.sublayers?.first?.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.width, height: self.gradientView.frame.size.height)
     }
 
-    func configure(_ course: Course, forConfiguration configuration: Configuration) {
+    func configure(_ course: Course, for configuration: Configuration) {
         self.courseImage.image = nil
         self.gradientView.isHidden = true
         self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in

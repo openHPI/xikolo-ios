@@ -11,5 +11,5 @@ protocol CourseAreaViewController: AnyObject {
 }
 
 protocol CourseAreaViewControllerDelegate: AnyObject {
-    func enrollmentStateDidChange()
+    func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool)
 }

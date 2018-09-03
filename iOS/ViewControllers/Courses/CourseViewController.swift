@@ -154,7 +154,8 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
 
 extension CourseViewController: CourseAreaViewControllerDelegate {
 
-    func enrollmentStateDidChange() {
+    func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
+        guard newlyCreated else { return }
         self.decideContent()
     }
 

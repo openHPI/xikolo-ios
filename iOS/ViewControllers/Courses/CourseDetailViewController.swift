@@ -172,7 +172,7 @@ class CourseDetailViewController: UIViewController {
         let completedActionTitle = NSLocalizedString("enrollment.options-alert.mask-as-completed-action.title",
                                                      comment: "title for 'mask as completed' action")
         let completedAction = UIAlertAction(title: completedActionTitle, style: .default) { _ in
-            self.actOnEnrollmentChange {
+            self.actOnEnrollmentChange(whenNewlyCreated: false) {
                 EnrollmentHelper.markAsCompleted(self.course)
             }
         }
@@ -180,7 +180,7 @@ class CourseDetailViewController: UIViewController {
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",
                                                     comment: "title for unenroll action")
         let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in
-            self.actOnEnrollmentChange {
+            self.actOnEnrollmentChange(whenNewlyCreated: false) {
                 EnrollmentHelper.delete(self.course.enrollment)
             }
         }
@@ -194,7 +194,7 @@ class CourseDetailViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    private func actOnEnrollmentChange(whenNewlyCreated newlyCreated: Bool = false, for task: () -> Future<Void, XikoloError>) {
+    private func actOnEnrollmentChange(whenNewlyCreated newlyCreated: Bool, for task: () -> Future<Void, XikoloError>) {
         self.enrollmentButton.startAnimating()
         task().onComplete { _ in
             self.enrollmentButton.stopAnimating()
@@ -206,7 +206,7 @@ class CourseDetailViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.refreshEnrollmentViews()
-                self.delegate?.enrollmentStateDidChange()
+                self.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
             }
         }.onFailure { _ in
             self.enrollmentButton.shake()

@@ -49,7 +49,7 @@ enum CourseListConfiguration {
     var searchFetchRequest: NSFetchRequest<Course> {
         switch self {
         case .allCourses:
-            return CourseHelper.FetchRequest.accessibleCourses
+            return CourseHelper.FetchRequest.searchableCourses
         case .currentCourses:
             return CourseHelper.FetchRequest.enrolledCurrentCoursesRequest
         case .completedCourses:

@@ -143,7 +143,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="courseDateOverviewCell" rowHeight="341" id="hJc-rE-KiO" customClass="CourseDateOverviewCell" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="341"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hJc-rE-KiO" id="Jgx-eM-c9w">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hJc-rE-KiO" id="Jgx-eM-c9w">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="341"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>

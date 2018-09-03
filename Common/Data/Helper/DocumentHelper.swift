@@ -16,7 +16,9 @@ public struct DocumentHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.include("localizations")
 
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query).flatMap { syncResult -> Future<Void, XikoloError> in
+        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest,
+                                               withQuery: query,
+                                               deleteNotExistingResources: false).flatMap { syncResult -> Future<Void, XikoloError> in
             let promise = Promise<Void, XikoloError>()
 
             CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -26,7 +28,7 @@ public struct DocumentHelper {
                     let document = context.typedObject(with: documentObjectId) as Document
                     document.courses.insert(course)
 
-                    // Resetting the document of all localization to notify the NSFetchedResultController about the changes
+                    // Re-setting the document of all localization to notify the NSFetchedResultController about the changes
                     for localization in document.localizations {
                         localization.document = document
                     }

@@ -47,7 +47,7 @@ extension CourseOverviewCell: UICollectionViewDelegate {
         let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: indexPath.section)
         let itemLimit = self.itemLimit(forSection: indexPath.section) ?? Int.max
 
-        if min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item {
+        if numberOfAdditionalItems > 0, min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item {
             if numberOfCoreDataItems == 0 {
                 AppNavigator.showCourseList()
             } else {

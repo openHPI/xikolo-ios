@@ -10,12 +10,12 @@ import UIKit
 class CourseCell: UICollectionViewCell {
 
     enum Configuration {
-        case courseList
+        case courseList(filtered: Bool)
         case courseOverview
 
         var showMultilineLabels: Bool {
             switch self {
-            case .courseList:
+            case .courseList(_):
                 return true
             case .courseOverview:
                 return false
@@ -87,8 +87,7 @@ class CourseCell: UICollectionViewCell {
         self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
 
         self.statusView.isHidden = true
-        switch configuration {
-        case .courseList:
+        if case let .courseList(filtered) = configuration, !filtered {
             if let enrollment = course.enrollment {
                 self.statusView.isHidden = false
                 if enrollment.completed {
@@ -97,7 +96,7 @@ class CourseCell: UICollectionViewCell {
                     self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
                 }
             }
-        case .courseOverview:
+        } else {
             if course.status == "announced" {
                 self.statusView.isHidden = false
                 self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")

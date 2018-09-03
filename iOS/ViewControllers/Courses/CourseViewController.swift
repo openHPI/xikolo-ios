@@ -32,7 +32,7 @@ class CourseViewController: UIViewController {
         }
     }
 
-    var content: CourseArea? {
+    var area: CourseArea? {
         didSet {
             guard self.viewIfLoaded != nil else { return }
             self.updateContainerView()
@@ -71,9 +71,9 @@ class CourseViewController: UIViewController {
 
     private func decideContent() {
         if !self.course.hasEnrollment {
-            self.content = .courseDetails
+            self.area = .courseDetails
         } else {
-            self.content = self.course.accessible ? .learnings : .courseDetails
+            self.area = self.course.accessible ? .learnings : .courseDetails
         }
 
         self.courseAreaListViewController?.refresh(animated: false)
@@ -92,7 +92,7 @@ class CourseViewController: UIViewController {
             self.courseAreaViewController?.removeFromParentViewController()
             self.courseAreaViewController = nil
 
-            guard let newViewController = self.content?.viewController else { return }
+            guard let newViewController = self.area?.viewController else { return }
             newViewController.configure(for: self.course, delegate: self)
             newViewController.view.frame = self.containerView.bounds
             newViewController.view.alpha = 0
@@ -136,23 +136,27 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
 
     var accessibleContent: [CourseArea] {
         if self.course.hasEnrollment && self.course.accessible {
-            return CourseArea.orderedValues
+            return CourseArea.availableAreas
         } else {
-            return CourseArea.orderedValues.filter { $0.acessibleWithoutEnrollment }
+            return CourseArea.availableAreas.filter { $0.acessibleWithoutEnrollment }
         }
     }
 
-    var selectedContent: CourseArea? {
-        return self.content
+    var selectedArea: CourseArea? {
+        return self.area
     }
 
-    func change(to content: CourseArea) {
-        self.content = content
+    func change(to area: CourseArea) {
+        self.area = area
     }
 
 }
 
 extension CourseViewController: CourseAreaViewControllerDelegate {
+
+    var currentArea: CourseArea? {
+        return self.area
+    }
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
         guard newlyCreated else { return }

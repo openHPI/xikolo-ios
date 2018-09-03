@@ -29,6 +29,9 @@
 /* title of learnings view of course view */
 "course-area.view.learnings.title" = "Learnings";
 
+/* title of recap view of course view */
+"course-area.view.recap.title" = "Recap";
+
 /* status 'completed' of a course */
 "course-cell.status.completed" = "completed";
 

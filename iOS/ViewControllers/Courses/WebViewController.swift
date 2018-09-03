@@ -112,8 +112,14 @@ extension WebViewController: WKNavigationDelegate {
 extension WebViewController: CourseAreaViewController {
 
     func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
-        if let slug = course.slug {
+        guard let currentArea = delegate.currentArea else { return }
+
+        if let slug = course.slug, currentArea == .discussions {
             self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
+        } else if currentArea == .recap {
+            var urlComponents = URLComponents(url: Routes.recap, resolvingAgainstBaseURL: false)
+            urlComponents?.queryItems = [URLQueryItem(name: "course_id", value: course.id)]
+            self.url = urlComponents?.url
         }
     }
 

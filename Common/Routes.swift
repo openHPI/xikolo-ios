@@ -40,6 +40,7 @@ public struct Routes {
     public static let singleSignOn = Routes.base.appendingQueryItems([Routes.QueryItem.inApp, Routes.QueryItem.redirect])
 
     public static let courses = Routes.base.appendingPathComponent("courses")
+    public static let recap = Routes.base.appendingPathComponent("learn")
 
     public static var imprint = Brand.default.imprintURL.appendingInAppParameter()
     public static let privacy = Brand.default.privacyURL.appendingInAppParameter()

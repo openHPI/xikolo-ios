@@ -156,9 +156,9 @@ class AppNavigator {
         courseViewController.course = course
 
         if course.accessible {
-            courseViewController.content = content
+            courseViewController.area = content
         } else {
-            courseViewController.content = .courseDetails
+            courseViewController.area = .courseDetails
         }
 
         self.currentCourseViewController = courseNavigationController

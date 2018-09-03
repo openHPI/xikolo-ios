@@ -27,6 +27,8 @@
 	<dict>
 		<key>enableDocuments</key>
 		<false/>
+		<key>enableRecap</key>
+		<true/>
 		<key>showCourseDatesOnDashboard</key>
 		<true/>
 		<key>showCourseTeachers</key>

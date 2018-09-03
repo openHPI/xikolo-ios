@@ -12,7 +12,7 @@ class CourseAreaListViewController: UICollectionViewController {
     private var shouldScrollToSelectedItem: Bool = false
 
     private var selectedIndexPath: IndexPath? {
-        guard let content = self.delegate?.selectedContent else { return nil }
+        guard let content = self.delegate?.selectedArea else { return nil }
         guard let index = self.delegate?.accessibleContent.index(of: content) else { return nil }
         return IndexPath(item: index, section: 0)
     }
@@ -113,7 +113,7 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
 
 protocol CourseAreaListViewControllerDelegate: AnyObject {
     var accessibleContent: [CourseArea] { get }
-    var selectedContent: CourseArea? { get }
+    var selectedArea: CourseArea? { get }
 
     func change(to content: CourseArea)
 }

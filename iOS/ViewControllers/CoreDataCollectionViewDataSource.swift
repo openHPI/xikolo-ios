@@ -244,7 +244,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                     self.collectionView?.deleteItems(at: [indexPath])
                 })
 
-                if self.numberOfCoreDataItems(inSection: indexPath.section) >= itemLimit { // TODO: what's the counts before or after?
+                if self.numberOfCoreDataItems(inSection: indexPath.section) >= itemLimit {
                     let insertIndexPath = IndexPath(item: itemLimit - 1, section: indexPath.section)
                     self.contentChangeOperations.append(BlockOperation {
                         self.collectionView?.insertItems(at: [insertIndexPath])

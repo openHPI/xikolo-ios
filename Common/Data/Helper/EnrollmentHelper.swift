@@ -61,6 +61,13 @@ public struct EnrollmentHelper {
             }
 
             enrollment.completed = true
+
+            // workaround to publish course enrollment changes to course (triggers update of course lists)
+            if let courseOfEnrollment = context.existingTypedObject(with: course.objectID) as? Course {
+                let updatedEnrollment = courseOfEnrollment.enrollment
+                courseOfEnrollment.enrollment = updatedEnrollment
+            }
+
             if enrollment.objectState != .new, enrollment.objectState != .deleted {
                 enrollment.objectState = .modified
             }

@@ -185,7 +185,7 @@ extension CourseItemListViewController: RefreshableViewController {
         return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
     }
 
-    func postRefresh() {
+    func didRefresh() {
         let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
         let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
         self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty

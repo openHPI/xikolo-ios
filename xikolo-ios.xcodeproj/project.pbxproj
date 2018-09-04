@@ -69,7 +69,6 @@
 		50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */; };
 		50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
 		50CF1F7220DCDBFC0011BFE9 /* CourseListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CourseListLayout.swift */; };
-		50CF1F7420DCDBFC0011BFE9 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */; };
 		50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
 		50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
@@ -319,7 +318,6 @@
 		24597D251CC6CA0D00FB5338 /* xikolo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = xikolo.xcdatamodel; sourceTree = "<group>"; };
 		2490C4CA1D1C5A9900F42949 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2490C4D51D1D6F7100F42949 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		249348191D9550FD006D4F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2493481B1D955101006D4F2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		249E3AA31D43C0A100D7663F /* QuizHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHelper.swift; sourceTree = "<group>"; };
@@ -1185,7 +1183,6 @@
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
-				249347FC1D8C4B32006D4F2C /* UIViewController+ChildViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1878,7 +1875,6 @@
 				5095B1DD20EB81E900572924 /* CrashlyticsHelper.swift in Sources */,
 				508AB2EA2111F41D0079EAE5 /* CourseDateOverviewCell.swift in Sources */,
 				5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */,
-				50CF1F7420DCDBFC0011BFE9 /* UIViewController+ChildViewController.swift in Sources */,
 				50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */,
 				50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */,
 				50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */,

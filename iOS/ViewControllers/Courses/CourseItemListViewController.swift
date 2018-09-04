@@ -217,6 +217,7 @@ extension CourseItemListViewController: UserActionsDelegate {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = anchor
         alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
+        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
         for action in actions {
             alert.addAction(action)

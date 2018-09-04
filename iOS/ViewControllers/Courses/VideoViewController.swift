@@ -278,6 +278,7 @@ class VideoViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
+        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
         alert.addAction(streamUserAction)
         alert.addCancelAction()
@@ -289,6 +290,7 @@ class VideoViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
+        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
         let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
         let openSlides = UIAlertAction(title: openSlidesActionTitle, style: .default) { _ in

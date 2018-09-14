@@ -1,2 +1,3 @@
 • New dashboard showing an overview of current and completed courses as well as upcoming course dates
-• Lots of smaller bug fixes and improvements for a better user experience
+• Lots of smaller improvements for a better user experience
+• iOS 12 support

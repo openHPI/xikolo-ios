@@ -53,6 +53,7 @@ class AnnouncementListViewController: UITableViewController {
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
 
+        self.refresh()
         self.setupEmptyState()
     }
 

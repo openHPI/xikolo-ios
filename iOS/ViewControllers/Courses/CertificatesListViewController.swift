@@ -22,12 +22,8 @@ class CertificatesListViewController: UITableViewController {
         super.viewDidLoad()
         self.certificates = self.course.availableCertificates
         self.addRefreshControl()
-        self.setupEmptyState()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.refresh()
+        self.setupEmptyState()
     }
 
     func stateOfCertificate(withURL certificateURL: URL?) -> String {
@@ -55,7 +51,7 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = self.certificates[indexPath.row].url else { return }
+        guard let url = self.certificates[indexPath.section].url else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         pdfViewController.url = url

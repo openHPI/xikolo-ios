@@ -32,6 +32,7 @@ class CourseItemCell: UITableViewCell {
 
     func configure(for courseItem: CourseItem) {
         self.item = courseItem
+        self.accessibilityIdentifier = "CourseItemCell-\(courseItem.contentType ?? "")"
 
         let inOfflineMode = self.delegate?.inOfflineMode ?? true
         let isAvailableInOfflineMode = courseItem.content?.isAvailableOffline ?? false

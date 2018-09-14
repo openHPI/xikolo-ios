@@ -36,6 +36,7 @@ class CourseCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.isAccessibilityElement = true
+        self.accessibilityIdentifier = "CourseCell"
 
         let cornerRadius: CGFloat = 6.0
 

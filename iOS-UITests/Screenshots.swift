@@ -19,8 +19,9 @@ class Screenshots: XCTestCase {
     }
 
     func testMakeScreenshots() {
-        LoginHelper.logoutIfPossible()
         let app = XCUIApplication()
+
+        LoginHelper.logoutIfPossible()
 
         // Course list
         Navigator.goToTabBarItem(.courses)
@@ -35,14 +36,16 @@ class Screenshots: XCTestCase {
         snapshot("2-Dashboard")
 
         // Course item list
-        // tap on first element in course activity view
+        // tap on first element in current courses view
         // course cell must be accessibility element (.isAccessibilityElement = true)
-        app.collectionViews.firstMatch.cells.firstMatch.tap()
+        let currentCoursesOverview = app.tables.cells["CourseOverview"].firstMatch
+        let firstCurrentCourse = currentCoursesOverview.otherElements["CourseCell"].firstMatch
+        firstCurrentCourse.tap()
         sleep(5)
         snapshot("3-Course-Items")
 
         // tap on first video item
-        app.tables.cells.containing(XCUIElement.ElementType.button, identifier: nil).firstMatch.tap()
+        app.tables.cells["CourseItemCell-video"].firstMatch.tap()
         sleep(4)
         snapshot("4-Video-Item")
     }

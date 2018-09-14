@@ -481,6 +481,7 @@
                                         <constraint firstAttribute="bottom" secondItem="5do-wy-ceR" secondAttribute="bottom" id="rkv-ip-JA9"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="CourseOverview"/>
                                 <connections>
                                     <outlet property="collectionView" destination="5do-wy-ceR" id="WFz-K4-uTE"/>
                                     <outlet property="titleLabel" destination="vz7-2m-52p" id="wb2-iV-uDQ"/>

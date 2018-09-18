@@ -96,7 +96,7 @@ public class SyncEngine {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
-        for (header, value) in NetworkHelper.requestHeaders {
+        for (header, value) in NetworkHelper.requestHeaders(for: url) {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -121,7 +121,7 @@ public class SyncEngine {
         request.httpBody = resourceData
 
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        for (header, value) in NetworkHelper.requestHeaders {
+        for (header, value) in NetworkHelper.requestHeaders(for: resourceUrl) {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -138,7 +138,7 @@ public class SyncEngine {
         request.httpMethod = "PATCH"
 
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        for (header, value) in NetworkHelper.requestHeaders {
+        for (header, value) in NetworkHelper.requestHeaders(for: resourceUrl) {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -156,7 +156,7 @@ public class SyncEngine {
         var request = URLRequest(url: resourceUrl)
         request.httpMethod = "DELETE"
 
-        for (header, value) in NetworkHelper.requestHeaders {
+        for (header, value) in NetworkHelper.requestHeaders(for: resourceUrl) {
             request.setValue(value, forHTTPHeaderField: header)
         }
 

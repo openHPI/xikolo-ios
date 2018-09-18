@@ -8,12 +8,12 @@ import Foundation
 
 public struct NetworkHelper {
 
-    public static var requestHeaders: [String: String] {
+    public static func requestHeaders(for url: URL) -> [String: String] {
         var headers = [
             Routes.Header.acceptKey: Routes.Header.acceptValue,
         ]
 
-        if UserProfileHelper.shared.isLoggedIn {
+        if UserProfileHelper.shared.isLoggedIn, url.host == Routes.base.host {
             headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.shared.userToken
         }
 
@@ -23,7 +23,7 @@ public struct NetworkHelper {
 
     public static func request(for url: URL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(url: url)
-        request.allHTTPHeaderFields = self.requestHeaders
+        request.allHTTPHeaderFields = self.requestHeaders(for: url)
         return request
     }
 

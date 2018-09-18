@@ -5,13 +5,12 @@
 
 import Common
 import UIKit
-import WebKit
 
 class WebViewController: UIViewController {
 
-    weak var loginDelegate: LoginDelegate?
+    @IBOutlet private weak var webView: UIWebView!
 
-    var webView: WKWebView!
+    weak var loginDelegate: LoginDelegate?
 
     var url: URL? {
         didSet {
@@ -23,22 +22,8 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initializeWebView()
-        self.webView.navigationDelegate = self
+        self.webView.delegate = self
         self.loadURL()
-    }
-
-    func initializeWebView() {
-        // The manual initialization is necessary due to a bug in MSCoding in iOS 10
-        self.webView = WKWebView(frame: self.view.frame)
-        self.view.addSubview(webView)
-        self.webView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            self.webView.topAnchor.constraint(equalTo: self.view.topAnchor),
-        ])
     }
 
     override func removeFromParentViewController() {
@@ -51,61 +36,58 @@ class WebViewController: UIViewController {
 
     private func loadURL() {
         guard let url = self.url else { return }
-        self.webView.load(NetworkHelper.request(for: url) as URLRequest)
+        webView.loadRequest(NetworkHelper.request(for: url) as URLRequest)
     }
 
 }
 
-extension WebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+extension WebViewController: UIWebViewDelegate {
+
+    func webViewDidStartLoad(_ webView: UIWebView) {
         NetworkIndicator.start()
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         NetworkIndicator.end()
     }
 
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         NetworkIndicator.end()
     }
 
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        NetworkIndicator.end()
-    }
-
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let documentURL = navigationAction.request.mainDocumentURL, documentURL.path ==  "/auth/app" {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
-            guard let queryItems = urlComponents?.queryItems else { return decisionHandler(.cancel) }
+            guard let queryItems = urlComponents?.queryItems else { return false }
 
             if let tokenItem = queryItems.first(where: { $0.name == "token" }) {
-                guard let token = tokenItem.value else { return decisionHandler(.cancel) }
+                guard let token = tokenItem.value else { return false }
 
                 UserProfileHelper.shared.didLogin(withToken: token)
                 self.loginDelegate?.didSuccessfullyLogin()
                 self.navigationController?.dismiss(animated: true)
-                return decisionHandler(.cancel)
+                return false
             }
 
-            return decisionHandler(.allow)
+            return true
         }
 
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
-        let headerIsPresent = navigationAction.request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
+        let headerIsPresent = request.allHTTPHeaderFields?.keys.contains(Routes.Header.authKey) ?? false
 
-        if userIsLoggedIn && !headerIsPresent {
+        if userIsLoggedIn, !headerIsPresent, let url = request.url, url.host == Routes.base.host {
             DispatchQueue.global().async {
                 DispatchQueue.main.async {
-                    var newRequest = navigationAction.request
-                    newRequest.allHTTPHeaderFields = NetworkHelper.requestHeaders
-                    self.webView.load(newRequest)
+                    var newRequest = request
+                    newRequest.allHTTPHeaderFields = NetworkHelper.requestHeaders(for: url)
+                    self.webView.loadRequest(newRequest)
                 }
             }
 
-            return decisionHandler(.cancel)
+            return false
         }
 
-        return decisionHandler(.allow)
+        return true
     }
 }
 

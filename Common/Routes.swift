@@ -30,7 +30,7 @@ public struct Routes {
         static let redirect = URLQueryItem(name: "redirect_to", value: "/auth/" + Brand.default.platformTitle)
     }
 
-    static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
+    public static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
 
     static let api = Routes.base.appendingPathComponents(["api", "v2"])
     private static let apiVersion = "3"

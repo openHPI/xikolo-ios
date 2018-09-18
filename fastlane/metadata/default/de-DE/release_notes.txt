@@ -1,3 +1,6 @@
+• Fehler beim Absenden von Selbsttests behoben
+
+Auch in Version 2.4:
 • Neues Dashboard mit der Übersicht von aktuellen und abgeschlossenen Kursen, sowie zukünftigen Kursterminen
 • Viele kleine Verbesserungen für eine besser Benutzerfreundlichkeit
 • Anpassungen für iOS 12

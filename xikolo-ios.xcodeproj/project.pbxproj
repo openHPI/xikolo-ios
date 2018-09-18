@@ -1613,7 +1613,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/set-build-number.sh";
+			shellScript = "$SRCROOT/Build\\ Phases/set-build-number.sh\n";
 		};
 		50CF1F4420DCDBFC0011BFE9 /* Run R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1624,10 +1624,11 @@
 			);
 			name = "Run R.swift";
 			outputPaths = (
+				"$(SRCROOT)/iOS/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Build\\ Phases/run-rswift.sh";
+			shellScript = "$SRCROOT/Build\\ Phases/run-rswift.sh\n";
 		};
 		50CF200F20DCDBFC0011BFE9 /* Copy GoogleServices-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;

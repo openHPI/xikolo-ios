@@ -19,8 +19,8 @@ class CourseOverviewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
-        self.collectionView?.register(R.nib.pseudoCourseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.pseudoCourseCell.identifier)
+        self.collectionView.register(R.nib.courseCell)
+        self.collectionView.register(R.nib.pseudoCourseCell)
         self.collectionView.delegate = self
     }
 

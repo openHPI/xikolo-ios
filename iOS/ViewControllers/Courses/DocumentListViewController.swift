@@ -30,7 +30,7 @@ class DocumentListViewController: UITableViewController {
         self.tableView.estimatedSectionHeaderHeight = 44
 
         // register custom section header view
-        self.tableView.register(R.nib.documentHeader(), forHeaderFooterViewReuseIdentifier: R.nib.documentHeader.name)
+        self.tableView.register(UINib(resource: R.nib.documentHeader), forHeaderFooterViewReuseIdentifier: R.nib.documentHeader.name)
 
         self.addRefreshControl()
 

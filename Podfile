@@ -2,7 +2,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
-pod 'R.swift', '~> 4.0'
+pod 'R.swift', '5.0.0.alpha.2'
 pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods

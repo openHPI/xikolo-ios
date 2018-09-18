@@ -21,8 +21,8 @@ class CourseListViewController: UICollectionViewController {
     var configuration: CourseListConfiguration = .allCourses
 
     override func viewDidLoad() {
-        self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
-        self.collectionView?.register(R.nib.courseHeaderView(),
+        self.collectionView?.register(R.nib.courseCell)
+        self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
                                       forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 

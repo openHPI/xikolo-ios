@@ -38,7 +38,7 @@ class CourseItemListViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 50
 
         // register custom section header view
-        self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
+        self.tableView.register(UINib(resource: R.nib.courseItemHeader), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
         self.addRefreshControl()
 

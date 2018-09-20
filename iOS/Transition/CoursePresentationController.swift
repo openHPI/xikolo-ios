@@ -21,4 +21,8 @@ final class CoursePresentationController: UIPresentationController {
         self.presentedView?.frame = self.frameOfPresentedViewInContainerView
     }
 
+    override var shouldRemovePresentersView: Bool {
+        return true
+    }
+
 }

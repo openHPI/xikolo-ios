@@ -143,9 +143,8 @@ class AppNavigator {
         self.currentCourseViewController?.closeCourse()
         self.currentCourseViewController = nil
 
-        guard let tabBarController = AppDelegate.instance().tabBarController else {
+        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
             let reason = "UITabBarController could not be found"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
             log.error(reason)
             return
         }
@@ -167,7 +166,7 @@ class AppNavigator {
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        tabBarController.present(courseNavigationController, animated: true) {
+        rootViewController.present(courseNavigationController, animated: true) {
             CourseHelper.visit(course)
         }
     }

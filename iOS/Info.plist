@@ -26,6 +26,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Upload photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>openHPI4.ttf</string>

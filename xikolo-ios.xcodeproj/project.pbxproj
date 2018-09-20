@@ -29,6 +29,7 @@
 		5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058578521351CBD006A5D15 /* PseudoCourseCell.swift */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
+		507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 507DFF9C2153E397006DC140 /* InfoPlist.strings */; };
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */; };
 		508AB2C22109F0DE0079EAE5 /* DocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */; };
@@ -439,6 +440,8 @@
 		507A5CD42021EEC1009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD72021EF02009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CD82021EF03009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
+		507DFF9F2153E411006DC140 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		507DFFA02153E41B006DC140 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFWebViewController.storyboard; sourceTree = "<group>"; };
 		508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentHeader.xib; sourceTree = "<group>"; };
 		508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHeader.swift; sourceTree = "<group>"; };
@@ -1081,6 +1084,7 @@
 				509B10D0200790560042AA7D /* XikoloTabBarController.swift */,
 				F80D679A1B98751700E27520 /* Localizable.strings */,
 				50CF202D20DCE6680011BFE9 /* Info.plist */,
+				507DFF9C2153E397006DC140 /* InfoPlist.strings */,
 				AB947CE11E19E1EC009888B0 /* Settings.bundle */,
 				A90587C51B3BFC130095DB89 /* assets-ios.xcassets */,
 				50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */,
@@ -1538,6 +1542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50CF1FF720DCDBFC0011BFE9 /* WebViewController.storyboard in Resources */,
+				507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */,
 				508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */,
 				50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */,
 				50CF1FF920DCDBFC0011BFE9 /* Main.storyboard in Resources */,
@@ -2124,6 +2129,15 @@
 				50502E2F1FD04E59000A8D35 /* de */,
 			);
 			name = CourseLearnings.storyboard;
+			sourceTree = "<group>";
+		};
+		507DFF9C2153E397006DC140 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				507DFF9F2153E411006DC140 /* en */,
+				507DFFA02153E41B006DC140 /* de */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		A90587C21B3BFC130095DB89 /* Main.storyboard */ = {

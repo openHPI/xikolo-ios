@@ -5,6 +5,7 @@
 
 import BrightFutures
 import Common
+import Foundation
 import UIKit
 
 class DownloadListViewController: UITableViewController {
@@ -26,6 +27,7 @@ class DownloadListViewController: UITableViewController {
             for downloadItem in self.downloadItems {
                 if var courseDownload = downloadedCourseList[downloadItem.courseID] {
                     courseDownload.properties[downloadItem.contentType.rawValue] = true
+                    downloadedCourseList[downloadItem.courseID] = courseDownload
                 } else {
                     var courseDownload = CourseDownload(id: downloadItem.courseID, title: downloadItem.courseTitle ?? "")
                     courseDownload.properties[downloadItem.contentType.rawValue] = true
@@ -148,19 +150,23 @@ class DownloadListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "streamSlidesCell", for: indexPath)
-        var count = 0
-        for item in courses[indexPath.section].properties {
-            if count < indexPath.row {
-                if item {
-
-                }
-            }
-            if item {
-                count = count + 1
-            }
-        }
-        cell.textLabel?.text = DownloadItem.DownloadType(rawValue: count)
+        cell.textLabel?.text = getTitle(for: downloadType(for: indexPath))
         return cell
+    }
+
+    func downloadType(for indexPath: IndexPath) -> DownloadItem.DownloadType {
+        var itemCount = 0
+        var returnCount = 0
+        for itemExists in courses[indexPath.section].properties {
+            if itemExists {
+                if indexPath.row == itemCount {
+                    return DownloadItem.DownloadType(rawValue: returnCount) ?? .video
+                }
+                itemCount += 1
+            }
+            returnCount += 1
+        }
+        return .video
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

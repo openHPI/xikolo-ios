@@ -9,24 +9,24 @@ import UIKit
 
 class DownloadItemListViewController: UITableViewController {
 
-    var downloadType: DownloadType!
+    //var downloadType: DownloadItem.DownloadType!
 
     //var resultsController: NSFetchedResultsController<NSFetchResultType>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        var request: NSFetchRequest<Video>
-        switch self.downloadType {
-        case .video:
-            request = VideoHelper.FetchRequest.hasDownloadedVideo()
-        case .slides:
-            request = VideoHelper.FetchRequest.hasDownloadedSlides()
-        case .document:
-            break //request = DocumentHelper.FetchRequest.downloaded()
-        default:
-            break
-        }
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        var request: NSFetchRequest<Video>
+//        switch self.downloadType {
+//        case .video:
+//            request = VideoHelper.FetchRequest.hasDownloadedVideo()
+//        case .slides:
+//            request = VideoHelper.FetchRequest.hasDownloadedSlides()
+//        case .document:
+//            break //request = DocumentHelper.FetchRequest.downloaded()
+//        default:
+//            break
+//        }
         //let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.name")
         //try? resultsController.performFetch()
 

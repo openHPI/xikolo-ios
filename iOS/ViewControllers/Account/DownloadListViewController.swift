@@ -11,9 +11,10 @@ class DownloadListViewController: UITableViewController {
 
     var dataSource: CoreDataTableViewDataSource<DownloadListViewController>!
     var hasDocuments: Bool = false
-    var courses: [CourseItem]
+    var courses: [CourseDownload] = []
     var courseTitles: [(courseTitle: String, courseID: String)] = []
     var downloadItems: [DownloadItem] = []
+
 
 
     override func viewDidLoad() {
@@ -21,22 +22,37 @@ class DownloadListViewController: UITableViewController {
 
         self.getData().onSuccess { (itemsArray) in
             self.downloadItems = itemsArray.flatMap {$0}
-            var courses: [String:CourseItem] = [:]
-            var courseTitles: [String:String]
+            var downloadedCourseList: [String:CourseDownload] = [:]
             for downloadItem in self.downloadItems {
-                if var content = courses[downloadItem.courseID]?.content {
-                    content.update(with: downloadItem.contentType) // TODO: Test
+                if var courseDownload = downloadedCourseList[downloadItem.courseID] {
+                    courseDownload.properties[downloadItem.contentType.rawValue] = true
                 } else {
-                    courses[downloadItem.courseID] = CourseItem(courseID: downloadItem.courseID,
-                                                                courseTitle: downloadItem.courseTitle,
-                                                                content: courses[downloadItem.courseID]?.content)
+                    var courseDownload = CourseDownload(id: downloadItem.courseID, title: downloadItem.courseTitle ?? "")
+                    courseDownload.properties[downloadItem.contentType.rawValue] = true
+                    downloadedCourseList[downloadItem.courseID] = courseDownload
                 }
-                courses[downloadItem.courseID] = CourseItem(courseID: downloadItem.courseID,
-                                                            courseTitle: downloadItem.courseTitle,
-                                                            content: Set(downloadItem.contentType)
-                courses[downloadItem.courseID]?.update(with: downloadItem.contentType)
-                courseTitles[downloadItem.courseTitle ?? ""]
+
             }
+            self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
+            self.tableView.reloadData()
+
+
+
+
+//            for downloadItem in self.downloadItems {
+//                if var content = courses[downloadItem.courseID]?.content {
+//                    content.update(with: downloadItem.contentType) // TODO: Test
+//                } else {
+//                    courses[downloadItem.courseID] = CourseItem(courseID: downloadItem.courseID,
+//                                                                courseTitle: downloadItem.courseTitle,
+//                                                                content: courses[downloadItem.courseID]?.content)
+//                }
+//                courses[downloadItem.courseID] = CourseItem(courseID: downloadItem.courseID,
+//                                                            courseTitle: downloadItem.courseTitle,
+//                                                            content: Set(downloadItem.contentType)
+//                courses[downloadItem.courseID]?.update(with: downloadItem.contentType)
+//                courseTitles[downloadItem.courseTitle ?? ""]
+//            }
         }
         // setup table view data
 //        let reuseIdentifier = R.reuseIdentifier.downloadedCourse.identifier
@@ -48,9 +64,9 @@ class DownloadListViewController: UITableViewController {
 
     func getData() -> Future<[[DownloadItem]], XikoloError> {
         var futures = [getVideoCourseIDs(), getSlidesCourseIDs()]
-        if Brand.default.features.enableDocuments {
-            futures.append(getDocumentsCourseIDs())
-        }
+//        if Brand.default.features.enableDocuments {
+//            futures.append(getDocumentsCourseIDs())
+//        }
         return futures.sequence()
     }
 
@@ -121,24 +137,47 @@ class DownloadListViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return courses.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return courses[section].properties.filter( { $0 } ).count
     }
 
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "streamSlidesCell", for: indexPath)
+        var count = 0
+        for item in courses[indexPath.section].properties {
+            if count < indexPath.row {
+                if item {
 
-        // Configure the cell...
-
+                }
+            }
+            if item {
+                count = count + 1
+            }
+        }
+        cell.textLabel?.text = DownloadItem.DownloadType(rawValue: count)
         return cell
     }
-    */
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return courses[section].title
+    }
+
+    func getTitle(for downloadType: DownloadItem.DownloadType?) -> String? {
+        guard let downloadType = downloadType else { return nil }
+        switch downloadType {
+        case .video:
+            return NSLocalizedString("settings.downloads.item.video", comment: "")
+        case .slides:
+            return NSLocalizedString("settings.downloads.item.stream", comment: "")
+        case .document:
+            return NSLocalizedString("settings.downloads.item.document", comment: "")
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -181,19 +220,30 @@ extension DownloadListViewController: CoreDataTableViewDataSourceDelegate {
 
 }
 
+struct CourseDownload {
+    var id: String
+    var title: String
+    var properties: [Bool] = [false, false, false]
+
+    init(id: String, title: String) {
+        self.id = id
+        self.title = title
+    }
+}
+
 struct DownloadItem {
     var courseID: String
     var courseTitle: String?
     var contentType: DownloadType
 
-    enum DownloadType {
-        case video
-        case slides
-        case document
+    enum DownloadType: Int {
+        case video = 0
+        case slides = 1
+        case document = 2
     }
 }
 
-struct CourseItem {
+fileprivate struct CourseItem {
     var courseID: String
     var courseTitle: String
     var content: Set<DownloadItem.DownloadType>

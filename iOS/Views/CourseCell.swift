@@ -15,7 +15,7 @@ class CourseCell: UICollectionViewCell {
 
         var showMultilineLabels: Bool {
             switch self {
-            case .courseList(_):
+            case .courseList:
                 return true
             case .courseOverview:
                 return false

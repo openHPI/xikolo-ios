@@ -94,7 +94,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        return AppNavigator.handle(userActivity: userActivity, forApplication: application, on: self.tabBarController)
+        return AppNavigator.handle(userActivity: userActivity)
+    }
+
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return AppNavigator.handle(url: url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

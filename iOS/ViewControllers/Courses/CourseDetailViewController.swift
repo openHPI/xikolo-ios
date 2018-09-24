@@ -238,7 +238,7 @@ extension CourseDetailViewController: LoginDelegate {
 extension CourseDetailViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return !AppNavigator.handle(URL, on: self)
+        return !AppNavigator.handle(url: URL, on: self)
     }
 
 }

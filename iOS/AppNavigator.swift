@@ -12,7 +12,7 @@ class AppNavigator {
     private static var currentCourseViewController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
-    static func handle(userActivity: NSUserActivity, forApplication application: UIApplication, on tabBarController: UITabBarController?) -> Bool {
+    static func handle(userActivity: NSUserActivity) -> Bool {
         var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
             // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
@@ -21,7 +21,7 @@ class AppNavigator {
             if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
                 activityURL = URL(string: uniqueIdentifier)
             }
-        } else {
+        } else if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
             activityURL = userActivity.webpageURL
         }
 
@@ -29,23 +29,16 @@ class AppNavigator {
             return false
         }
 
-        if handle(url) {
-            return true
-        }
-
-        // We can't handle the url, open it with a browser
-        let webpageUrl = url
-        application.open(webpageUrl)
-        return false
+        return self.handle(url: url)
     }
 
-    static func handle(_ url: URL, on sourceViewController: UIViewController) -> Bool {
+    static func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
         guard let url = MarkdownHelper.trueScheme(for: url) else {
             log.error("URL in Markdown or Markdownparser is broken")
             return false
         }
 
-        if self.handle(url) {
+        if self.handle(url: url) {
             return true
         }
 
@@ -61,9 +54,8 @@ class AppNavigator {
         return true
     }
 
-    static func handle(_ url: URL) -> Bool {
-        guard let hostURL = url.host else { return false }
-        guard hostURL == Brand.default.host else {
+    static func handle(url: URL) -> Bool {
+        guard url.host == Brand.default.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
@@ -119,7 +111,7 @@ class AppNavigator {
 
         if couldFindCourse {
             return true
-        } else if courseFuture.forced(30.seconds.fromNow)?.value != nil {  // we only wait 30 seconds
+        } else if courseFuture.forced(10.seconds.fromNow)?.value != nil {  // we only wait for 10 seconds
             return true
         }
 

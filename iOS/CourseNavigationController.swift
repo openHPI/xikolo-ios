@@ -10,6 +10,10 @@ class CourseNavigationController: XikoloNavigationController {
     static let dragPercentageThreshold: CGFloat = 0.5
     static let flickVelocityThreshold: CGFloat = 300
 
+    var courseViewController: CourseViewController? {
+        return self.viewControllers.first as? CourseViewController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

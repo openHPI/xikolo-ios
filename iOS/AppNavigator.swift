@@ -9,7 +9,7 @@ import UIKit
 
 class AppNavigator {
 
-    private static var currentCourseViewController: CourseNavigationController?
+    private static var currentCourseNavigationController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
     static func handle(userActivity: NSUserActivity) -> Bool {
@@ -131,12 +131,21 @@ class AppNavigator {
         return true
     }
 
-    static func show(course: Course, with content: CourseArea = .learnings) {
-        self.currentCourseViewController?.closeCourse()
-        self.currentCourseViewController = nil
+    static func show(course: Course, with courseArea: CourseArea = .learnings) {
+        if let courseViewController = self.currentCourseNavigationController?.courseViewController, courseViewController.course.id == course.id {
+            if course.accessible || courseArea.acessibleWithoutEnrollment {
+                self.currentCourseNavigationController?.popToRootViewController(animated: true)
+                courseViewController.area = courseArea
+            }
+
+            return
+        }
+
+        self.currentCourseNavigationController?.closeCourse()
+        self.currentCourseNavigationController = nil
 
         guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
-            let reason = "UITabBarController could not be found"
+            let reason = "root view controller could not be found"
             log.error(reason)
             return
         }
@@ -146,13 +155,13 @@ class AppNavigator {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
-        if course.accessible {
-            courseViewController.area = content
+        if course.accessible || courseArea.acessibleWithoutEnrollment {
+            courseViewController.area = courseArea
         } else {
             courseViewController.area = .courseDetails
         }
 
-        self.currentCourseViewController = courseNavigationController
+        self.currentCourseNavigationController = courseNavigationController
 
         courseNavigationController.transitioningDelegate = self.courseTransitioningDelegate
         courseNavigationController.modalPresentationStyle = .custom

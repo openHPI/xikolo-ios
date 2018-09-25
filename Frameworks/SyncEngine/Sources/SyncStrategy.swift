@@ -7,6 +7,7 @@ import Foundation
 import Marshal
 import Result
 
+// TODO: move to PULLABLE
 public protocol SyncStrategy {
 
     var resourceKeyAttribute: String { get }
@@ -19,12 +20,6 @@ public protocol SyncStrategy {
     func extractResourceData(from object: ResourceData) throws -> [ResourceData]
 
     func extractIncludedResourceData(from object: ResourceData) -> [ResourceData]
-    func findIncludedObject(forKey key: KeyType,
-                            ofObject object: ResourceData,
-                            with context: SynchronizationContext) -> FindIncludedObjectResult
-    func findIncludedObjects(forKey key: KeyType,
-                             ofObject object: ResourceData,
-                             with context: SynchronizationContext) -> FindIncludedObjectsResult
 
     func resourceData(for resource: Pushable) -> Result<Data, SyncError>
 

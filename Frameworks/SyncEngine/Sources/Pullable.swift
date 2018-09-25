@@ -29,7 +29,7 @@ extension Pullable where Self: NSManagedObject {
                                forKey key: KeyType,
                                fromObject object: ResourceData,
                                with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
-        switch context.strategy.findIncludedObject(forKey: key, ofObject: object, with: context) {
+        switch context.findIncludedObject(forKey: key, ofObject: object) {
         case let .object(_, includedObject):
             var existingObject = self[keyPath: keyPath] // TODO: also check if id is equal. update() does not updates the id
             do {
@@ -46,7 +46,7 @@ extension Pullable where Self: NSManagedObject {
                                forKey key: KeyType,
                                fromObject object: ResourceData,
                                with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
-        switch context.strategy.findIncludedObject(forKey: key, ofObject: object, with: context) {
+        switch context.findIncludedObject(forKey: key, ofObject: object) {
         case let .object(resourceId, includedObject):
             do {
                 if var existingObject = self[keyPath: keyPath] { // TODO: also check if id is equal. update() does not updates the id
@@ -82,7 +82,7 @@ extension Pullable where Self: NSManagedObject {
         var currentObjects = Set(self[keyPath: keyPath])
 
         do {
-            switch context.strategy.findIncludedObjects(forKey: key, ofObject: object, with: context) {
+            switch context.findIncludedObjects(forKey: key, ofObject: object) {
             case let .included(resourceIdsAndObjects, resourceIds):
                 for (resourceId, includedObject) in resourceIdsAndObjects {
                     if var currentObject = currentObjects.first(where: { $0.id == resourceId }) {
@@ -165,7 +165,7 @@ public class AbstractPullableContainer<A, B> where A: NSManagedObject & Pullable
 
         guard resourceIdentifier.type == C.type else { return }
 
-        switch self.context.strategy.findIncludedObject(forKey: self.key, ofObject: self.object, with: self.context) {
+        switch self.context.findIncludedObject(forKey: self.key, ofObject: self.object) {
         case let .object(_, includedObject):
             do {
                 if var existingObject = self.resource[keyPath: self.keyPath] as? C {

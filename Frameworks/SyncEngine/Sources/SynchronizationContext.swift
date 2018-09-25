@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import Marshal
 
 public struct SynchronizationContext {
 
@@ -31,6 +32,60 @@ public struct SynchronizationContext {
         }
 
         return objects.first
+    }
+
+    public func findIncludedObject(forKey key: KeyType, ofObject object: ResourceData) -> FindIncludedObjectResult {
+        guard let resourceIdentifier = try? object.value(for: "\(key).data") as ResourceIdentifier else {
+            return .notExisting
+        }
+
+        guard !self.includedResourceData.isEmpty else {
+            return .id(resourceIdentifier.id)
+        }
+
+        let includedResource = self.includedResourceData.first { item in
+            guard let identifier = try? ResourceIdentifier(object: item) else {
+                return false
+            }
+
+            return resourceIdentifier.id == identifier.id && resourceIdentifier.type == identifier.type
+        }
+
+        guard let resourceData = includedResource else {
+            return .id(resourceIdentifier.id)
+        }
+
+        return .object(resourceIdentifier.id, resourceData)
+    }
+
+    public func findIncludedObjects(forKey key: KeyType, ofObject object: ResourceData) -> FindIncludedObjectsResult {
+        guard let resourceIdentifiers = try? object.value(for: "\(key).data") as [ResourceIdentifier] else {
+            return .notExisting
+        }
+
+        guard !self.includedResourceData.isEmpty else {
+            return .included(objects: [], ids: resourceIdentifiers.map { $0.id })
+        }
+
+        var resourceData: [(id: String, object: ResourceData)] = []
+        var resourceIds: [String] = []
+        for resourceIdentifier in resourceIdentifiers {
+            let includedData = self.includedResourceData.first { item in
+                guard let identifier = try? ResourceIdentifier(object: item) else {
+                    return false
+                }
+
+                return resourceIdentifier.id == identifier.id && resourceIdentifier.type == identifier.type
+            }
+
+            if let includedResource = includedData {
+                resourceData.append((id: resourceIdentifier.id, object: includedResource))
+            } else {
+                resourceIds.append(resourceIdentifier.id)
+            }
+        }
+
+        return .included(objects: resourceData, ids: resourceIds)
     }
 
 }

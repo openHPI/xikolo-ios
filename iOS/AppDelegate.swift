@@ -7,7 +7,6 @@ import Common
 import Firebase
 import SDWebImage
 import UIKit
-import SyncEngine
 
 #if DEBUG
 import SimulatorStatusMagic
@@ -18,10 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
 
-    private lazy var pushEngine: SyncPushEngine<XikoloSyncConfig, JsonAPISyncStrategy> = {
-        let configuration = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: configuration, strategy: strategy)
+    private lazy var pushEngine: SyncPushEngine = { () -> SyncPushEngine<XikoloSyncEngine> in
+        let engine = XikoloSyncEngine()
         return SyncPushEngine(syncEngine: engine, delegate: CrashlyticsHelper.shared)
     }()
 

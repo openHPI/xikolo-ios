@@ -8,7 +8,7 @@ import CoreData
 import Foundation
 import SyncEngine
 
-public class SyncPushEngine<Configuration, Strategy> where Configuration: SyncConfig, Strategy: SyncStrategy {
+public class SyncPushEngine<Engine> where Engine: SyncEngine {
 
     var types: [(NSManagedObject & Pushable).Type] = []
 
@@ -20,9 +20,9 @@ public class SyncPushEngine<Configuration, Strategy> where Configuration: SyncCo
     }()
 
     private weak var delegate: SyncPushEngineDelegate?
-    private let syncEngine: SyncEngine<Configuration, Strategy>
+    private let syncEngine: Engine
 
-    public init(syncEngine: SyncEngine<Configuration, Strategy>, delegate: SyncPushEngineDelegate? = nil) {
+    public init(syncEngine: Engine, delegate: SyncPushEngineDelegate? = nil) {
         self.syncEngine = syncEngine
         self.delegate = delegate
     }

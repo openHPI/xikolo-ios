@@ -13,9 +13,7 @@ struct LTIExerciseHelper {
         let fetchRequest = LTIExerciseHelper.FetchRequest.ltiExercise(withId: ltiExercise.id)
         let query = SingleResourceQuery(resource: ltiExercise)
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }

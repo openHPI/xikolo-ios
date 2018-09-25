@@ -14,9 +14,7 @@ public struct UserHelper {
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }

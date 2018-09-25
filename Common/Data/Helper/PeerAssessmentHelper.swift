@@ -13,9 +13,7 @@ struct PeerAssessmentHelper {
         let fetchRequest = PeerAssessmentHelper.FetchRequest.peerAssessment(withId: peerAssessment.id)
         let query = SingleResourceQuery(resource: peerAssessment)
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }

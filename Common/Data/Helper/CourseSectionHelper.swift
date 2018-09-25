@@ -14,9 +14,7 @@ struct CourseSectionHelper {
         var query = MultipleResourcesQuery(type: CourseSection.self)
         query.addFilter(forKey: "course", withValue: course.id)
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }

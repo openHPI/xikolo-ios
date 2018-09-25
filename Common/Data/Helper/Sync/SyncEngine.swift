@@ -25,6 +25,15 @@ public struct XikoloSyncConfig: SyncConfig {
 
 }
 
+public struct XikoloSyncEngine: SyncEngine {
+
+    public let configuration = XikoloSyncConfig()
+    public let strategy = JsonAPISyncStrategy()
+
+    public init() {}
+
+}
+
 //
 //extension SyncEngine {
 //

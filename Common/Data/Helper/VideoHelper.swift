@@ -13,9 +13,7 @@ struct VideoHelper {
         let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)
         let query = SingleResourceQuery(resource: video)
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }

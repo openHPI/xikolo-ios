@@ -35,15 +35,19 @@ private struct NetworkResult {
 }
 
 
-public struct SyncEngine<Configuration, Strategy> where Configuration: SyncConfig, Strategy: SyncStrategy {
+public protocol SyncEngine {
 
-//    static var networkActivity: ((SyncNetworkActivityType) -> Void)?
+    associatedtype Configuration: SyncConfig
+    associatedtype Strategy: SyncStrategy
 
-//    enum SyncNetworkActivityType {
-//        case start
-//        case stop
-//    }
-    private let session: URLSession = {
+    var configuration: Configuration { get }
+    var strategy: Strategy { get }
+
+}
+
+public extension SyncEngine {
+
+    private var session: URLSession {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForResource = 300
         if #available(iOS 11, *) {
@@ -51,14 +55,6 @@ public struct SyncEngine<Configuration, Strategy> where Configuration: SyncConfi
         }
 
         return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
-    }()
-
-    let configuration: Configuration
-    let strategy: Strategy
-
-    public init(configuration: Configuration, strategy: Strategy) {
-        self.configuration = configuration
-        self.strategy = strategy
     }
 
     // MARK: - build url request

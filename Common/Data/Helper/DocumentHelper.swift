@@ -17,9 +17,7 @@ public struct DocumentHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.include("localizations")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResources(withFetchRequest: fetchRequest,
                                     withQuery: query,
                                     deleteNotExistingResources: false).mapError { error -> XikoloError in

@@ -14,9 +14,7 @@ public struct CourseItemHelper {
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }
@@ -46,9 +44,7 @@ public struct CourseItemHelper {
         query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).mapError { error -> XikoloError in
             return .synchronization(error)
         }
@@ -62,9 +58,7 @@ public struct CourseItemHelper {
         query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).mapError { error -> XikoloError in
             return .synchronization(error)
         }
@@ -75,9 +69,8 @@ public struct CourseItemHelper {
         var query = SingleResourceQuery(resource: courseItem)
         query.include("content")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+
+        let engine = XikoloSyncEngine()
         return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }

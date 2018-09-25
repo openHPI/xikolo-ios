@@ -14,9 +14,7 @@ public struct CourseHelper {
         query.include("channel")
         query.include("user_enrollment")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }
@@ -27,9 +25,7 @@ public struct CourseHelper {
         query.include("channel")
         query.include("user_enrollment")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }
@@ -40,9 +36,7 @@ public struct CourseHelper {
         query.include("channel")
         query.include("user_enrollment")
 
-        let config = XikoloSyncConfig()
-        let strategy = JsonAPISyncStrategy()
-        let engine = SyncEngine(configuration: config, strategy: strategy)
+        let engine = XikoloSyncEngine()
         return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query).mapError { error -> XikoloError in
             return .synchronization(error)
         }

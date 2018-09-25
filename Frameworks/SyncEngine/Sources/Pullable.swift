@@ -52,7 +52,7 @@ extension Pullable where Self: NSManagedObject {
                 if var existingObject = self[keyPath: keyPath] { // TODO: also check if id is equal. update() does not updates the id
                     try existingObject.update(from: includedObject, with: context)
                 } else {
-                    if var fetchedResource = try SyncEngine.findExistingResource(withId: resourceId, ofType: A.self, inContext: context.coreDataContext) {
+                    if var fetchedResource = try context.findExistingResource(withId: resourceId, ofType: A.self) {
                         try fetchedResource.update(from: includedObject, with: context)
                         self[keyPath: keyPath] = fetchedResource
                     } else {
@@ -63,10 +63,11 @@ extension Pullable where Self: NSManagedObject {
                 throw NestedMarshalError.nestedMarshalError(error, includeType: A.type, includeKey: key)
             }
         case let .id(resourceId):
-            if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceId, ofType: A.self, inContext: context.coreDataContext) {
+            if let fetchedResource = try context.findExistingResource(withId: resourceId, ofType: A.self) {
                 self[keyPath: keyPath] = fetchedResource
             } else {
-                SyncEngine.log?("relationship update saved (\(Self.type) --> \(A.type)?)", .info)
+                // TODO: logging
+                //SyncEngine.log?("relationship update saved (\(Self.type) --> \(A.type)?)", .info)
             }
         case .notExisting:
             // relationship does not exist, so we reset delete the possible relationship
@@ -90,7 +91,7 @@ extension Pullable where Self: NSManagedObject {
                             currentObjects.remove(at: index)
                         }
                     } else {
-                        if var fetchedResource = try SyncEngine.findExistingResource(withId: resourceId, ofType: A.self, inContext: context.coreDataContext) {
+                        if var fetchedResource = try context.findExistingResource(withId: resourceId, ofType: A.self) {
                             try fetchedResource.update(from: includedObject, with: context)
                             self[keyPath: keyPath].insert(fetchedResource)
                         } else {
@@ -106,7 +107,7 @@ extension Pullable where Self: NSManagedObject {
                             currentObjects.remove(at: index)
                         }
                     } else {
-                        if let fetchedResource = try SyncEngine.findExistingResource(withId: resourceId, ofType: A.self, inContext: context.coreDataContext) {
+                        if let fetchedResource = try context.findExistingResource(withId: resourceId, ofType: A.self) {
                             self[keyPath: keyPath].insert(fetchedResource)
                         }
                     }

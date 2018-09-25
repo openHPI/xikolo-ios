@@ -17,9 +17,14 @@ public struct DocumentHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.include("localizations")
 
-        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest,
-                                               withQuery: query,
-                                               deleteNotExistingResources: false).flatMap { syncResult -> Future<Void, XikoloError> in
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResources(withFetchRequest: fetchRequest,
+                                    withQuery: query,
+                                    deleteNotExistingResources: false).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }.flatMap { syncResult -> Future<Void, XikoloError> in
             let promise = Promise<Void, XikoloError>()
 
             CoreDataHelper.persistentContainer.performBackgroundTask { context in

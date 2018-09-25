@@ -9,10 +9,16 @@ import SyncEngine
 
 struct VideoHelper {
 
-    @discardableResult static func syncVideo(_ video: Video) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult static func syncVideo(_ video: Video) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)
         let query = SingleResourceQuery(resource: video)
-        return SyncEngine.syncResourceXikolo(withFetchRequest: fetchRequest, withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
 }

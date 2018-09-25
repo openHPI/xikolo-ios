@@ -9,10 +9,16 @@ import SyncEngine
 
 struct PeerAssessmentHelper {
 
-    @discardableResult static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = PeerAssessmentHelper.FetchRequest.peerAssessment(withId: peerAssessment.id)
         let query = SingleResourceQuery(resource: peerAssessment)
-        return SyncEngine.syncResourceXikolo(withFetchRequest: fetchRequest, withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
 }

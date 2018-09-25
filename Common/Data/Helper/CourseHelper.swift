@@ -9,25 +9,43 @@ import SyncEngine
 
 public struct CourseHelper {
 
-    @discardableResult public static func syncAllCourses() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public static func syncAllCourses() -> Future<SyncMultipleResult, XikoloError> {
         var query = MultipleResourcesQuery(type: Course.self)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.syncResourcesXikolo(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
-    @discardableResult public static func syncCourse(_ course: Course) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult public static func syncCourse(_ course: Course) -> Future<SyncSingleResult, XikoloError> {
         var query = SingleResourceQuery(resource: course)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.syncResourceXikolo(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
-    @discardableResult public static func syncCourse(forSlugOrId slugOrId: String) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult public static func syncCourse(forSlugOrId slugOrId: String) -> Future<SyncSingleResult, XikoloError> {
         var query = SingleResourceQuery(type: Course.self, id: slugOrId)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.syncResourceXikolo(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
     public static func visit(_ course: Course) {

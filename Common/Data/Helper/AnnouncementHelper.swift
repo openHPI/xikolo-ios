@@ -17,20 +17,32 @@ public class AnnouncementHelper {
 
     private init() {}
 
-    @discardableResult public func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public func syncAllAnnouncements() -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }.onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
 
-    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }.onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }

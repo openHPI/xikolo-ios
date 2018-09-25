@@ -7,6 +7,7 @@ import Common
 import Firebase
 import SDWebImage
 import UIKit
+import SyncEngine
 
 #if DEBUG
 import SimulatorStatusMagic
@@ -16,6 +17,13 @@ import SimulatorStatusMagic
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
+
+    private lazy var pushEngine: SyncPushEngine<XikoloSyncConfig, JsonAPISyncStrategy> = {
+        let configuration = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: configuration, strategy: strategy)
+        return SyncPushEngine(syncEngine: engine, delegate: CrashlyticsHelper.shared)
+    }()
 
     var window: UIWindow?
 
@@ -45,15 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
-        SyncPushEngine.shared.delegate = CrashlyticsHelper.shared
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
         // register resource to be pushed automatically
-        SyncPushEngine.shared.register(Announcement.self)
-        SyncPushEngine.shared.register(CourseItem.self)
-        SyncPushEngine.shared.register(Enrollment.self)
-        SyncPushEngine.shared.register(TrackingEvent.self)
-        SyncPushEngine.shared.startObserving()
+        self.pushEngine.register(Announcement.self)
+        self.pushEngine.register(CourseItem.self)
+        self.pushEngine.register(Enrollment.self)
+        self.pushEngine.register(TrackingEvent.self)
+        self.pushEngine.startObserving()
 
         UserProfileHelper.shared.migrateLegacyKeychain()
 
@@ -126,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         ReachabilityHelper.stopObserving()
-        SyncPushEngine.shared.stopObserving()
+        self.pushEngine.stopObserving()
         SpotlightHelper.shared.stopObserving()
     }
 

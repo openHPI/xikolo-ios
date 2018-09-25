@@ -8,19 +8,24 @@ import CoreData
 import Foundation
 import SyncEngine
 
-public class SyncPushEngine {
+public class SyncPushEngine<Configuration, Strategy> where Configuration: SyncConfig, Strategy: SyncStrategy {
 
     var types: [(NSManagedObject & Pushable).Type] = []
 
-    public static let shared = SyncPushEngine()
-
-    public weak var delegate: SyncPushEngineDelegate?
 
     private let persistentContainerQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
+
+    private weak var delegate: SyncPushEngineDelegate?
+    private let syncEngine: SyncEngine<Configuration, Strategy>
+
+    public init(syncEngine: SyncEngine<Configuration, Strategy>, delegate: SyncPushEngineDelegate? = nil) {
+        self.syncEngine = syncEngine
+        self.delegate = delegate
+    }
 
     public func startObserving() {
         NotificationCenter.default.addObserver(self,
@@ -91,11 +96,17 @@ public class SyncPushEngine {
 
                 var pushFuture: Future<Void, XikoloError>?
                 if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
-                    pushFuture = SyncEngine.saveResourceXikolo(pullableResource)
+                    pushFuture = self.syncEngine.saveResource(pullableResource).mapError { error -> XikoloError in
+                        return .synchronization(error)
+                    }
                 } else if resource.objectState == .new, !(resource is Pullable) {
-                    pushFuture = SyncEngine.createResourceXikolo(resource)
+                    pushFuture = self.syncEngine.createResource(resource).mapError { error -> XikoloError in
+                        return .synchronization(error)
+                    }
                 } else if let deletableResource = resource as? (Pullable & Pushable), resource.objectState == .deleted {
-                    pushFuture = SyncEngine.deleteResourceXikolo(deletableResource)
+                    pushFuture = self.syncEngine.deleteResource(deletableResource).mapError { error -> XikoloError in
+                        return .synchronization(error)
+                    }
                 } else {
                     log.warning("unhandle resource modification")
                 }

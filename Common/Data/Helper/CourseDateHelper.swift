@@ -9,16 +9,28 @@ import SyncEngine
 
 public struct CourseDateHelper {
 
-    @discardableResult public static func syncAllCourseDates() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public static func syncAllCourseDates() -> Future<SyncMultipleResult, XikoloError> {
         let query = MultipleResourcesQuery(type: CourseDate.self)
-        return SyncEngine.syncResourcesXikolo(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
-    @discardableResult public static func syncCourseDates(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public static func syncCourseDates(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseDateHelper.FetchRequest.courseDates(for: course)
         var query = MultipleResourcesQuery(type: CourseDate.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
 }

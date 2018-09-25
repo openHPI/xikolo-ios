@@ -15,18 +15,18 @@ protocol DetailedCourseItem {
 
     var detailedContent: [DetailedData] { get }
 
-    static func preloadContent(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError>
-    static func preloadContent(forSection section: CourseSection) -> Future<SyncEngine.SyncMultipleResult, XikoloError>
+    static func preloadContent(forCourse course: Course) -> Future<SyncMultipleResult, XikoloError>
+    static func preloadContent(forSection section: CourseSection) -> Future<SyncMultipleResult, XikoloError>
 
 }
 
 extension DetailedCourseItem {
 
-    static func preloadContent(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    static func preloadContent(forCourse course: Course) -> Future<SyncMultipleResult, XikoloError> {
         return CourseItemHelper.syncCourseItems(forCourse: course, withContentType: self.contentType)
     }
 
-    static func preloadContent(forSection section: CourseSection) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    static func preloadContent(forSection section: CourseSection) -> Future<SyncMultipleResult, XikoloError> {
         return CourseItemHelper.syncCourseItems(forSection: section, withContentType: self.contentType)
     }
 

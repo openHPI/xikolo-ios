@@ -9,11 +9,17 @@ import SyncEngine
 
 struct CourseSectionHelper {
 
-    static func syncCourseSections(forCourse course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    static func syncCourseSections(forCourse course: Course) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseSectionHelper.FetchRequest.allCourseSections(forCourse: course)
         var query = MultipleResourcesQuery(type: CourseSection.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query)
+
+        let config = XikoloSyncConfig()
+        let strategy = JsonAPISyncStrategy()
+        let engine = SyncEngine(configuration: config, strategy: strategy)
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
+            return .synchronization(error)
+        }
     }
 
 }

@@ -7,11 +7,10 @@ import Foundation
 import Marshal
 import Result
 
+// TODO: make JSONAPIPullable
 public struct JsonAPISyncStrategy: SyncStrategy {
 
-    public init() {
-        
-    }
+    public init() {}
 
     public var resourceKeyAttribute: String {
         return "id"

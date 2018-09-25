@@ -7,10 +7,41 @@ import BrightFutures
 import CoreData
 import SyncEngine
 
+public struct XikoloNetworker: SyncNetworker {
+
+    private var session: URLSession {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForResource = 90
+        if #available(iOS 11, *) {
+            configuration.waitsForConnectivity = true
+        }
+
+        return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
+    }
+
+    public func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        let task = self.session.dataTask(with: request) { (data, response, error) in
+            #if os(iOS)
+            NetworkIndicator.end()
+            #endif
+
+            completionHandler(data, response, error)
+        }
+
+        #if os(iOS)
+        NetworkIndicator.start()
+        #endif
+
+        task.resume()
+    }
+
+}
+
 
 public struct XikoloSyncEngine: SyncEngine {
 
     public let strategy = JsonAPISyncStrategy()
+    public let networker = XikoloNetworker()
 
     public var baseURL: URL = Routes.api
 

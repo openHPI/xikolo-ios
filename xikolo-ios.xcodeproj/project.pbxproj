@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		36CCE9152A57516F7B4DCF67 /* Pods_Common_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404B6E3B7B07070C964CF6A2 /* Pods_Common_Tests.framework */; };
 		498CD6E73ECFB46C24208C01 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DFF127FCB2215F2A56BA4 /* Pods_Common.framework */; };
+		5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
 		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
@@ -48,7 +49,6 @@
 		5095B1DC20EB570B00572924 /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
 		5095B1DD20EB81E900572924 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
 		5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */; };
-		5095B1E020EBB1E700572924 /* NetworkIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B651501D3595C100624DBC /* NetworkIndicator.swift */; };
 		5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
 		509D7BF820FDBC0E00F983C4 /* BrightFutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509D7BF720FDBC0E00F983C4 /* BrightFutureTests.swift */; };
@@ -660,6 +660,7 @@
 				2490C4CA1D1C5A9900F42949 /* Settings.swift */,
 				ABA0BB411E71AD4A007C6C9E /* DateLabelHelper.swift */,
 				50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */,
+				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -740,7 +741,6 @@
 				50082B4E20BFDA4400B4511C /* PersistenceManager */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
 				50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */,
-				24B651501D3595C100624DBC /* NetworkIndicator.swift */,
 				5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */,
 				50E0351E213673F8001F963D /* CourseListConfiguration.swift */,
 			);
@@ -1847,7 +1847,6 @@
 				50CF1F6120DCDBFC0011BFE9 /* CourseAreaCell.swift in Sources */,
 				5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */,
 				50CF1F6A20DCDBFC0011BFE9 /* AppDelegate.swift in Sources */,
-				5095B1E020EBB1E700572924 /* NetworkIndicator.swift in Sources */,
 				50CF1F6C20DCDBFC0011BFE9 /* CustomHeaderWebView.swift in Sources */,
 				50CF1F6E20DCDBFC0011BFE9 /* CourseItemHeader.swift in Sources */,
 				50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */,
@@ -1941,6 +1940,7 @@
 				50FA2E5120E4B26400656776 /* Date.swift in Sources */,
 				50FA2E0620E4B22E00656776 /* MarkdownHelper.swift in Sources */,
 				50FA2E3F20E4B25800656776 /* LTIExercise.swift in Sources */,
+				5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */,
 				50FA2E5220E4B26400656776 /* Date+Marshal.swift in Sources */,
 				50FA2E0720E4B22E00656776 /* Settings.swift in Sources */,
 				50FA2E3820E4B25800656776 /* CourseCertificates.swift in Sources */,

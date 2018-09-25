@@ -3,21 +3,23 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+#if os(iOS)
+
 import UIKit
 
-class NetworkIndicator {
+public class NetworkIndicator {
 
     private static let queue = DispatchQueue(label: "de.xikolo.queue.network-indicator")
     private (set) static var counter = 0
 
-    class func start() {
+    public class func start() {
         self.queue.sync {
             self.counter += 1
             self.update()
         }
     }
 
-    class func end() {
+    public class func end() {
         self.queue.sync {
             self.counter = max(self.counter - 1, 0)
             self.update()
@@ -31,3 +33,5 @@ class NetworkIndicator {
     }
 
 }
+
+#endif

@@ -34,12 +34,18 @@ private struct NetworkResult {
     let headers: [AnyHashable: Any]
 }
 
+public protocol SyncNetworker {
+    func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+}
+
 
 public protocol SyncEngine {
 
     associatedtype Strategy: SyncStrategy
+    associatedtype Networker: SyncNetworker
 
     var strategy: Strategy { get }
+    var networker: Networker { get }
 
     // Requests
     var baseURL: URL { get }
@@ -51,16 +57,6 @@ public protocol SyncEngine {
 }
 
 public extension SyncEngine {
-
-    private var session: URLSession {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForResource = 300
-        if #available(iOS 11, *) {
-            configuration.waitsForConnectivity = true
-        }
-
-        return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
-    }
 
     // MARK: - build url request
 
@@ -173,11 +169,10 @@ public extension SyncEngine {
         }
     }
 
-    // TODO: move to NETWORK
     private func doNetworkRequest(_ request: URLRequest, expectsData: Bool = true) -> Future<NetworkResult, SyncError> {
         let promise = Promise<NetworkResult, SyncError>()
 
-        let task = self.session.dataTask(with: request) { data, response, error in
+        self.networker.perform(request: request) { data, response, error in
             if let err = error {
                 promise.failure(.network(err))
                 return
@@ -227,7 +222,6 @@ public extension SyncEngine {
             }
         }
 
-        task.resume()
         return promise.future
     }
 

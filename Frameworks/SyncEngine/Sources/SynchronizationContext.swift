@@ -1,5 +1,5 @@
 //
-//  Created for schulcloud-mobile-ios under GPL-3.0 license.
+//  Created for xikolo-ios under MIT license.
 //  Copyright © HPI. All rights reserved.
 //
 

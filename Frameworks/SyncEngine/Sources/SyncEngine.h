@@ -1,9 +1,6 @@
 //
-//  SyncEngine.h
-//  SyncEngine
-//
-//  Created by Florian Morel on 14.06.18.
-//  Copyright © 2018 Hasso-Plattner-Institut. All rights reserved.
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -6,6 +6,7 @@
 import BrightFutures
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class RichText: Content {
 
@@ -28,7 +29,7 @@ extension RichText: Pullable {
         return "rich-texts"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.text = try attributes.value(for: "text")
     }

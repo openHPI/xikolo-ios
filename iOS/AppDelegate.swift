@@ -15,7 +15,6 @@ import SimulatorStatusMagic
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let syncHelper = SyncHelper()
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
 
     var window: UIWindow?
@@ -46,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
-        SyncEngine.shared.delegate = self.syncHelper
         SyncPushEngine.shared.delegate = CrashlyticsHelper.shared
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 

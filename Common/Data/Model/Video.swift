@@ -7,6 +7,7 @@ import AVFoundation
 import BrightFutures
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class Video: Content {
 
@@ -68,7 +69,7 @@ extension Video: Pullable {
         return "videos"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.audioSize = try attributes.value(for: "audio_size")
         self.audioURL = try attributes.value(for: "audio_url")

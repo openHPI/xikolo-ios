@@ -5,13 +5,14 @@
 
 import BrightFutures
 import Foundation
+import SyncEngine
 
 struct VideoHelper {
 
     @discardableResult static func syncVideo(_ video: Video) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)
         let query = SingleResourceQuery(resource: video)
-        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResourceXikolo(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

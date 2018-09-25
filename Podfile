@@ -14,11 +14,12 @@ end
 target 'Common' do
     platform :ios, '10.0'
     pod 'BrightFutures', '~> 6.0'
-    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'Down', '~> 0.4'
     pod 'KeychainAccess', '~> 3.1'
-    pod 'Marshal', '~> 1.2'
+    # pod 'Marshal', '~> 1.2'
     pod 'ReachabilitySwift', '~> 4.1'
     pod 'SDWebImage', '~> 4.2'
+    pod 'SyncEngine', :path => './Frameworks/SyncEngine'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
     pod 'XCGLogger', '~> 6.0'
 

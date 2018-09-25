@@ -5,6 +5,7 @@
 
 import BrightFutures
 import CoreData
+import SyncEngine
 
 public struct UserHelper {
 
@@ -12,7 +13,7 @@ public struct UserHelper {
         let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.shared.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
-        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResourceXikolo(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

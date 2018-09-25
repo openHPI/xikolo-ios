@@ -1,15 +1,15 @@
 //
-//  Created for xikolo-ios under MIT license.
+//  Created for schulcloud-mobile-ios under GPL-3.0 license.
 //  Copyright © HPI. All rights reserved.
 //
 
 import Foundation
 
-protocol ResourceURLRepresentable {
+public protocol ResourceURLRepresentable {
     func resourceURL(relativeTo baseURL: URL) -> URL?
 }
 
-protocol ResourceQuery: ResourceURLRepresentable {
+public protocol ResourceQuery: ResourceURLRepresentable {
     associatedtype Resource
 
     var resourceType: Resource.Type { get }
@@ -23,49 +23,49 @@ protocol ResourceQuery: ResourceURLRepresentable {
 }
 
 extension ResourceQuery {
-    mutating func addFilter(forKey key: String, withValue value: Any?) {
+    public mutating func addFilter(forKey key: String, withValue value: Any?) {
         self.filters[key] = value
     }
 
-    mutating func include(_ key: String) {
+    public mutating func include(_ key: String) {
         self.includes.append(key)
     }
 }
 
-struct SingleResourceQuery<Resource> : ResourceQuery where Resource: ResourceRepresentable {
+public struct SingleResourceQuery<Resource>: ResourceQuery where Resource: ResourceRepresentable {
 
     let id: String
-    let resourceType: Resource.Type
-    var filters: [String: Any?] = [:]
-    var includes: [String] = []
+    public let resourceType: Resource.Type
+    public var filters: [String: Any?] = [:]
+    public var includes: [String] = []
 
-    init(resource: Resource) {
+    public init(resource: Resource) {
         self.id = resource.id
         self.resourceType = Resource.self
     }
 
-    init(type: Resource.Type, id: String) {
+    public init(type: Resource.Type, id: String) {
         self.id = id
         self.resourceType = type
     }
 
-    func resourceURL(relativeTo baseURL: URL) -> URL? {
+    public func resourceURL(relativeTo baseURL: URL) -> URL? {
         return baseURL.appendingPathComponent(self.resourceType.type).appendingPathComponent(self.id)
     }
 
 }
 
-struct MultipleResourcesQuery<Resource> : ResourceQuery where Resource: ResourceTypeRepresentable {
+public struct MultipleResourcesQuery<Resource>: ResourceQuery where Resource: ResourceTypeRepresentable {
 
-    let resourceType: Resource.Type
-    var filters: [String: Any?] = [:]
-    var includes: [String] = []
+    public let resourceType: Resource.Type
+    public var filters: [String: Any?] = [:]
+    public var includes: [String] = []
 
-    init(type: Resource.Type) {
+    public init(type: Resource.Type) {
         self.resourceType = type
     }
 
-    func resourceURL(relativeTo baseURL: URL) -> URL? {
+    public func resourceURL(relativeTo baseURL: URL) -> URL? {
         return baseURL.appendingPathComponent(self.resourceType.type)
     }
 

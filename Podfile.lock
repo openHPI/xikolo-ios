@@ -33,7 +33,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - HTMLStyler (0.0.1)
   - KeychainAccess (3.1.1)
-  - Marshal (1.2.4)
+  - Marshal (1.2.7)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -57,6 +57,9 @@ PODS:
   - SimulatorStatusMagic (2.2)
   - SnapKit (4.0.0)
   - SwiftLint (0.27.0)
+  - SyncEngine (0.1.0):
+    - BrightFutures (~> 6.0)
+    - Marshal (~> 1.2)
   - XCGLogger (6.0.4):
     - XCGLogger/Core (= 6.0.4)
   - XCGLogger/Core (6.0.4):
@@ -73,13 +76,13 @@ DEPENDENCIES:
   - Firebase/Core
   - HTMLStyler (from `./Frameworks/HTMLStyler`)
   - KeychainAccess (~> 3.1)
-  - Marshal (~> 1.2)
   - R.swift (= 5.0.0.alpha.2)
   - ReachabilitySwift (~> 4.1)
   - SDWebImage (~> 4.2)
   - SimpleRoundedButton (from `https://github.com/mathebox/SimpleRoundedButton.git`, commit `91225d2`)
   - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
+  - SyncEngine (from `./Frameworks/SyncEngine`)
   - XCGLogger (~> 6.0)
 
 SPEC REPOS:
@@ -121,6 +124,8 @@ EXTERNAL SOURCES:
   SimpleRoundedButton:
     :commit: 91225d2
     :git: https://github.com/mathebox/SimpleRoundedButton.git
+  SyncEngine:
+    :path: "./Frameworks/SyncEngine"
 
 CHECKOUT OPTIONS:
   BartyCrouch:
@@ -148,7 +153,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   HTMLStyler: f335ce6ed38231dce775a854aef7b6cd566c2633
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
-  Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
+  Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
@@ -161,8 +166,9 @@ SPEC CHECKSUMS:
   SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  SyncEngine: abbdd8f385889df4593fa0e02ede04097bcfa725
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 5f9a20c5c6481b0c95a253b449ac7ac677917a46
+PODFILE CHECKSUM: eff10c59a920b7135ed28a4d55ea5491ed166c17
 
 COCOAPODS: 1.5.3

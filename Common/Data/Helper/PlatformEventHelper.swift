@@ -5,13 +5,14 @@
 
 import BrightFutures
 import Foundation
+import SyncEngine
 
 struct PlatformEventHelper {
 
     @discardableResult static func syncAllPlatformEvents() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
         let fetchRequest = PlatformEventHelper.FetchRequest.allPlatformEvents
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

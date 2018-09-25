@@ -5,6 +5,7 @@
 
 import BrightFutures
 import KeychainAccess
+import SyncEngine
 
 public class UserProfileHelper {
 
@@ -46,23 +47,23 @@ public class UserProfileHelper {
             }
 
             guard let urlResponse = response as? HTTPURLResponse else {
-                promise.failure(.api(.invalidResponse))
+                promise.failure(.synchronization(.api(.invalidResponse)))
                 return
             }
 
             guard 200 ... 299 ~= urlResponse.statusCode else {
-                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields)))
+                promise.failure(.synchronization(.api(.response(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields))))
                 return
             }
 
             guard let responseData = data else {
-                promise.failure(.api(.noData))
+                promise.failure(.synchronization(.api(.noData)))
                 return
             }
 
             do {
                 guard let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
-                    promise.failure(.api(.serializationError(.invalidDocumentStructure)))
+                    promise.failure(.synchronization(.api(.serialization(.invalidDocumentStructure))))
                     return
                 }
 
@@ -76,7 +77,7 @@ public class UserProfileHelper {
                 self.postLoginStateChange()
                 return promise.success(token)
             } catch {
-                promise.failure(.api(.serializationError(.jsonSerializationError(error))))
+                promise.failure(.synchronization(.api(.serialization(.jsonSerialization(error)))))
             }
         }
 

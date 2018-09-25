@@ -6,6 +6,7 @@
 import BrightFutures
 import CoreData
 import Foundation
+import SyncEngine
 
 public class SyncPushEngine {
 
@@ -90,11 +91,11 @@ public class SyncPushEngine {
 
                 var pushFuture: Future<Void, XikoloError>?
                 if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
-                    pushFuture = SyncEngine.shared.saveResource(pullableResource)
+                    pushFuture = SyncEngine.saveResourceXikolo(pullableResource)
                 } else if resource.objectState == .new, !(resource is Pullable) {
-                    pushFuture = SyncEngine.shared.createResource(resource)
+                    pushFuture = SyncEngine.createResourceXikolo(resource)
                 } else if let deletableResource = resource as? (Pullable & Pushable), resource.objectState == .deleted {
-                    pushFuture = SyncEngine.shared.deleteResource(deletableResource)
+                    pushFuture = SyncEngine.deleteResourceXikolo(deletableResource)
                 } else {
                     log.warning("unhandle resource modification")
                 }
@@ -103,7 +104,7 @@ public class SyncPushEngine {
                 pushFuture = pushFuture?.recoverWith { error -> Future<(), XikoloError> in
                     if case .network = error {
                         return Future(error: error)
-                    } else if case let .api(.responseError(statusCode: statusCode, headers: _)) = error, 500 ... 599 ~= statusCode {
+                    } else if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error, 500 ... 599 ~= statusCode {
                         return Future(error: error)
                     }
 

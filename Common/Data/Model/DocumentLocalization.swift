@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class DocumentLocalization: NSManagedObject {
 
@@ -30,7 +31,7 @@ extension DocumentLocalization: Pullable {
         return "document-localizations"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.localizationDescription = try attributes.value(for: "description")

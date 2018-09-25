@@ -17,8 +17,8 @@ struct CrashlyticsHelper {
 extension Crashlytics {
 
     func recordAPIError(_ error: XikoloError) {
-        guard case .api(_) = error else { return }
-        if case let .api(.responseError(statusCode: statusCode, headers: _)) = error,
+        guard case .synchronization(.api(_)) = error else { return }
+        if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error,
             !(200 ... 299 ~= statusCode || statusCode == 406 || statusCode == 503) { return }
         CrashlyticsHelper.shared.recordError(error)
     }

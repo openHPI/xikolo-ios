@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class CourseItem: NSManagedObject {
 
@@ -57,7 +58,7 @@ extension CourseItem: Pullable {
         return "course-items"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.position = try attributes.value(for: "position")
@@ -73,14 +74,12 @@ extension CourseItem: Pullable {
         try self.updateRelationship(forKeyPath: \CourseItem.section,
                                     forKey: "section",
                                     fromObject: relationships,
-                                    including: includes,
-                                    inContext: context)
+                                    with: context)
 
         try self.updateAbstractRelationship(forKeyPath: \CourseItem.content,
                                             forKey: "content",
                                             fromObject: relationships,
-                                            including: includes,
-                                            inContext: context) { container in
+                                            with: context) { container in
             try container.update(forType: Video.self)
             try container.update(forType: RichText.self)
             try container.update(forType: Quiz.self)
@@ -93,7 +92,7 @@ extension CourseItem: Pullable {
 
 extension CourseItem: Pushable {
 
-    var objectState: ObjectState {
+    public var objectState: ObjectState {
         get {
             return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for course item")
         }
@@ -102,11 +101,11 @@ extension CourseItem: Pushable {
         }
     }
 
-    func markAsUnchanged() {
+    public func markAsUnchanged() {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String: Any] {
+    public func resourceAttributes() -> [String: Any] {
         return ["visited": self.visited]
     }
 

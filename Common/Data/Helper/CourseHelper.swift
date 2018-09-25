@@ -5,6 +5,7 @@
 
 import BrightFutures
 import Foundation
+import SyncEngine
 
 public struct CourseHelper {
 
@@ -12,21 +13,21 @@ public struct CourseHelper {
         var query = MultipleResourcesQuery(type: Course.self)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.shared.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
+        return SyncEngine.syncResourcesXikolo(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
     }
 
     @discardableResult public static func syncCourse(_ course: Course) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         var query = SingleResourceQuery(resource: course)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.shared.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
+        return SyncEngine.syncResourceXikolo(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
     }
 
     @discardableResult public static func syncCourse(forSlugOrId slugOrId: String) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
         var query = SingleResourceQuery(type: Course.self, id: slugOrId)
         query.include("channel")
         query.include("user_enrollment")
-        return SyncEngine.shared.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
+        return SyncEngine.syncResourceXikolo(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
     }
 
     public static func visit(_ course: Course) {

@@ -7,6 +7,7 @@ import BrightFutures
 import Common
 import CoreData
 import Foundation
+import SyncEngine
 
 protocol DetailedCourseItem {
 

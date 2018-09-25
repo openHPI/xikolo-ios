@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SyncEngine
 
 final class QuizOption: NSObject, NSCoding, IncludedPullable {
 

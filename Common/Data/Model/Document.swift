@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class Document: NSManagedObject {
 
@@ -38,7 +39,7 @@ extension Document: Pullable {
         return "documents"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.documentDescription = try attributes.value(for: "description")
@@ -49,8 +50,7 @@ extension Document: Pullable {
             try self.updateRelationship(forKeyPath: \Document.localizations,
                                         forKey: "localizations",
                                         fromObject: relationships,
-                                        including: includes,
-                                        inContext: context)
+                                        with: context)
         }
     }
 

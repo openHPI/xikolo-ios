@@ -6,16 +6,19 @@
 import BrightFutures
 import CoreData
 import Foundation
+import SyncEngine
 
 public struct EnrollmentHelper {
 
-    public static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
+    public static func createEnrollment(for course: Course) -> Future<Void, XikoloError> { //TODO SyncError
         let attributes = ["completed": false]
         let relationships = ["course": course as AnyObject]
         let resourceData = Enrollment.resourceData(attributes: attributes, relationships: relationships)
 
-        return resourceData.flatMap { data in
-            return SyncEngine.shared.createResource(ofType: Enrollment.self, withData: data).asVoid()
+        return resourceData.mapError { error -> XikoloError in
+            return .synchronization(error)
+        }.flatMap { data in
+            return SyncEngine.createResourceXikolo(ofType: Enrollment.self, withData: data).asVoid()
         }
     }
 

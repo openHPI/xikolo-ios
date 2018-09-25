@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 final class Quiz: Content {
 
@@ -67,7 +68,7 @@ extension Quiz: Pullable {
         return "quizzes"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.instructions = try attributes.value(for: "instructions")
         self.lockSubmissionsAt = try attributes.value(for: "lock_submissions_at")

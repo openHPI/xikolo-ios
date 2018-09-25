@@ -5,6 +5,7 @@
 
 import BrightFutures
 import Foundation
+import SyncEngine
 
 struct CourseSectionHelper {
 
@@ -12,7 +13,7 @@ struct CourseSectionHelper {
         let fetchRequest = CourseSectionHelper.FetchRequest.allCourseSections(forCourse: course)
         var query = MultipleResourcesQuery(type: CourseSection.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

@@ -7,6 +7,7 @@ import BrightFutures
 import CoreData
 import Foundation
 import Result
+import SyncEngine
 
 public class AnnouncementHelper {
 
@@ -20,7 +21,7 @@ public class AnnouncementHelper {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
+        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
@@ -29,7 +30,7 @@ public class AnnouncementHelper {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
+        return SyncEngine.syncResourcesXikolo(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }

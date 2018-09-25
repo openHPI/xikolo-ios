@@ -4,6 +4,7 @@
 //
 
 import CoreData
+import SyncEngine
 
 final class PlatformEvent: NSManagedObject {
 
@@ -26,7 +27,7 @@ extension PlatformEvent: Pullable {
         return "platform-events"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.createdAt = try attributes.value(for: "created_at")
@@ -34,7 +35,7 @@ extension PlatformEvent: Pullable {
         self.type = try attributes.value(for: "type")
 
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \PlatformEvent.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
+        try self.updateRelationship(forKeyPath: \PlatformEvent.course, forKey: "course", fromObject: relationships, with: context)
     }
 
 }

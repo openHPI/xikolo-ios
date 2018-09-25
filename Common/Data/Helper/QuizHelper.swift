@@ -5,6 +5,7 @@
 
 import BrightFutures
 import Foundation
+import SyncEngine
 
 struct QuizHelper {
 
@@ -13,7 +14,7 @@ struct QuizHelper {
         var query = SingleResourceQuery(resource: quiz)
         query.include("questions")
         query.include("submission")
-        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return SyncEngine.syncResourceXikolo(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

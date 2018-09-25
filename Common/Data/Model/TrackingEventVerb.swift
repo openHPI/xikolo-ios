@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SyncEngine
 
 class TrackingEventVerb: NSObject, NSCoding {
 

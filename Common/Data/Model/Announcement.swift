@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class Announcement: NSManagedObject {
 
@@ -30,7 +31,7 @@ extension Announcement: Pullable {
         return "announcements"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.text = try attributes.value(for: "text")
@@ -39,7 +40,7 @@ extension Announcement: Pullable {
         self.visited = try attributes.value(for: "visited") || self.visited // announcements can't be set to 'not visited'
 
         if let relationships = try? object.value(for: "relationships") as JSON {
-            try self.updateRelationship(forKeyPath: \Announcement.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
+            try self.updateRelationship(forKeyPath: \Announcement.course, forKey: "course", fromObject: relationships, with: context)
         }
     }
 
@@ -47,7 +48,7 @@ extension Announcement: Pullable {
 
 extension Announcement: Pushable {
 
-    var objectState: ObjectState {
+    public var objectState: ObjectState {
         get {
             return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for announcement")
         }
@@ -56,11 +57,11 @@ extension Announcement: Pushable {
         }
     }
 
-    func markAsUnchanged() {
+    public func markAsUnchanged() {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String: Any] {
+    public func resourceAttributes() -> [String: Any] {
         return [ "visited": self.visited ]
     }
 

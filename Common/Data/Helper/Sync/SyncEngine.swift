@@ -7,7 +7,10 @@ import BrightFutures
 import CoreData
 import SyncEngine
 
-public struct XikoloSyncConfig: SyncConfig {
+
+public struct XikoloSyncEngine: SyncEngine {
+
+    public let strategy = JsonAPISyncStrategy()
 
     public var baseURL: URL = Routes.api
 
@@ -20,15 +23,6 @@ public struct XikoloSyncConfig: SyncConfig {
     public var persistentContainer: NSPersistentContainer {
         return CoreDataHelper.persistentContainer
     }
-
-    public init() {}
-
-}
-
-public struct XikoloSyncEngine: SyncEngine {
-
-    public let configuration = XikoloSyncConfig()
-    public let strategy = JsonAPISyncStrategy()
 
     public init() {}
 

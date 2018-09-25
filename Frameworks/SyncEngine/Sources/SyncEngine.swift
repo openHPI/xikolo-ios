@@ -37,11 +37,16 @@ private struct NetworkResult {
 
 public protocol SyncEngine {
 
-    associatedtype Configuration: SyncConfig
     associatedtype Strategy: SyncStrategy
 
-    var configuration: Configuration { get }
     var strategy: Strategy { get }
+
+    // Requests
+    var baseURL: URL { get }
+    var requestHeaders: [String: String] { get }
+
+    // Core Data
+    var persistentContainer: NSPersistentContainer { get }
 
 }
 
@@ -60,7 +65,7 @@ public extension SyncEngine {
     // MARK: - build url request
 
     private func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, SyncError> where Query: ResourceQuery {
-        guard let resourceUrl = query.resourceURL(relativeTo: configuration.baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
 
@@ -77,7 +82,7 @@ public extension SyncEngine {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
-        for (header, value) in self.configuration.requestHeaders {
+        for (header, value) in self.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -96,7 +101,7 @@ public extension SyncEngine {
 
     private func buildCreateRequest(forQuery query: ResourceURLRepresentable,
                                     withData resourceData: Data) -> Result<URLRequest, SyncError> {
-        guard let resourceUrl = query.resourceURL(relativeTo: self.configuration.baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
 
@@ -104,7 +109,7 @@ public extension SyncEngine {
         request.httpMethod = "POST"
         request.httpBody = resourceData
 
-        for (header, value) in self.configuration.requestHeaders {
+        for (header, value) in self.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -113,14 +118,14 @@ public extension SyncEngine {
 
     private func buildSaveRequest(forQuery query: ResourceURLRepresentable,
                                   forResource resource: Pushable) -> Result<URLRequest, SyncError> {
-        guard let resourceUrl = query.resourceURL(relativeTo: self.configuration.baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
 
         var request = URLRequest(url: resourceUrl)
         request.httpMethod = "PATCH"
 
-        for (header, value) in self.configuration.requestHeaders {
+        for (header, value) in self.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -131,14 +136,14 @@ public extension SyncEngine {
     }
 
     private func buildDeleteRequest(forQuery query: RawSingleResourceQuery) -> Result<URLRequest, SyncError> {
-        guard let resourceUrl = query.resourceURL(relativeTo: self.configuration.baseURL) else {
+        guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
 
         var request = URLRequest(url: resourceUrl)
         request.httpMethod = "DELETE"
 
-        for (header, value) in self.configuration.requestHeaders {
+        for (header, value) in self.requestHeaders {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
@@ -324,7 +329,7 @@ public extension SyncEngine {
                                         deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, SyncError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncMultipleResult, SyncError>()
 
-        configuration.persistentContainer.performBackgroundTask { context in
+        self.persistentContainer.performBackgroundTask { context in
             context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
             let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
@@ -361,7 +366,7 @@ public extension SyncEngine {
                                        withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, SyncError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncSingleResult, SyncError>()
 
-        configuration.persistentContainer.performBackgroundTask { context in
+        self.persistentContainer.performBackgroundTask { context in
             context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
             let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
@@ -406,7 +411,7 @@ public extension SyncEngine {
 
         let promise = Promise<SyncSingleResult, SyncError>()
 
-        configuration.persistentContainer.performBackgroundTask { coreDataContext in
+        self.persistentContainer.performBackgroundTask { coreDataContext in
             coreDataContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
             let context = SynchronizationContext(coreDataContext: coreDataContext, strategy: self.strategy, includedResourceData: [])

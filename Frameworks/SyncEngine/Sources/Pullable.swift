@@ -26,9 +26,9 @@ extension Pullable where Self: NSManagedObject {
     }
 
     public func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A>,
-                               forKey key: KeyType,
-                               fromObject object: ResourceData,
-                               with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
+                                      forKey key: KeyType,
+                                      fromObject object: ResourceData,
+                                      with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
         switch context.findIncludedObject(forKey: key, ofObject: object) {
         case let .object(_, includedObject):
             var existingObject = self[keyPath: keyPath] // TODO: also check if id is equal. update() does not updates the id
@@ -43,9 +43,9 @@ extension Pullable where Self: NSManagedObject {
     }
 
     public func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, A?>,
-                               forKey key: KeyType,
-                               fromObject object: ResourceData,
-                               with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
+                                      forKey key: KeyType,
+                                      fromObject object: ResourceData,
+                                      with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
         switch context.findIncludedObject(forKey: key, ofObject: object) {
         case let .object(resourceId, includedObject):
             do {
@@ -76,9 +76,9 @@ extension Pullable where Self: NSManagedObject {
     }
 
     public func updateRelationship<A>(forKeyPath keyPath: ReferenceWritableKeyPath<Self, Set<A>>,
-                               forKey key: KeyType,
-                               fromObject object: ResourceData,
-                               with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
+                                      forKey key: KeyType,
+                                      fromObject object: ResourceData,
+                                      with context: SynchronizationContext) throws where A: NSManagedObject & Pullable {
         var currentObjects = Set(self[keyPath: keyPath])
 
         do {

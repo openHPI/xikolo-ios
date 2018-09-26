@@ -9,12 +9,16 @@ import Foundation
 import Marshal
 import Result
 
-public struct SyncMultipleResult {
+public protocol SyncEngineResult {
+    var headers: [AnyHashable: Any] { get }
+}
+
+public struct SyncMultipleResult: SyncEngineResult {
     public let objectIds: [NSManagedObjectID]
     public let headers: [AnyHashable: Any]
 }
 
-public struct SyncSingleResult {
+public struct SyncSingleResult: SyncEngineResult {
     public let objectId: NSManagedObjectID
     public let headers: [AnyHashable: Any]
 }
@@ -29,13 +33,21 @@ private struct MergeSingleResult<Resource> where Resource: NSManagedObject & Pul
     let headers: [AnyHashable: Any]
 }
 
-private struct NetworkResult {
+private struct NetworkResult: SyncEngineResult {
     let resourceData: ResourceData
     let headers: [AnyHashable: Any]
 }
 
 public protocol SyncNetworker {
     func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+}
+
+
+public enum SyncEngineOperation {
+    case sync
+    case create
+    case save
+    case delete
 }
 
 
@@ -58,35 +70,28 @@ public protocol SyncEngine {
     func convertSyncError(_ error: SyncError) -> SyncEngineError
 
     // Logging
-    func didSynchronizeResource(ofType resourceType: String, withResult result: SyncSingleResult)
-    func didSynchronizeResources(ofType resourceType: String, withResult result: SyncMultipleResult)
-    func didCreateResource(ofType resourceType: String)
-    func didSaveResource(ofType resourceType: String)
-    func didDeleteResource(ofType resourceType: String)
-    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncEngineError)
-    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncEngineError)
-    func didFailToCreateResource(ofType resourceType: String, withError error: SyncEngineError)
-    func didFailToSaveResource(ofType resourceType: String, withError error: SyncEngineError)
-    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncEngineError)
+    func didSucceedOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withResult result: SyncEngineResult)
+    func didFailOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withError error: SyncEngineError)
 
 }
 
-//extension SyncEngine {
-//
-//    func didSynchronizeResource(ofType resourceType: String, withResult result: SyncSingleResult) {}
-//    func didSynchronizeResources(ofType resourceType: String, withResult result: SyncMultipleResult) {}
-//    func didCreateResource(ofType resourceType: String) {}
-//    func didSaveResource(ofType resourceType: String) {}
-//    func didDeleteResource(ofType resourceType: String) {}
-//    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncEngineError) {}
-//    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncEngineError) {}
-//    func didFailToCreateResource(ofType resourceType: String, withError error: SyncEngineError) {}
-//    func didFailToSaveResource(ofType resourceType: String, withError error: SyncEngineError) {}
-//    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncEngineError) {}
-//
-//}
+extension SyncEngine {
+
+    func didSucceedOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withResult result: SyncEngineResult) {}
+    func didFailOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withError error: SyncEngineError) {}
+
+}
 
 public extension SyncEngine {
+
+    private func handle<T: SyncEngineResult>(result: Result<T, SyncEngineError>, forOperation operation: SyncEngineOperation, forResourceType resourceType: String) {
+        switch result {
+        case let .success(syncEngineResult):
+            self.didSucceedOperation(operation, forResourceType: resourceType, withResult: syncEngineResult)
+        case let .failure(error):
+            self.didFailOperation(operation, forResourceType: resourceType, withError: error)
+        }
+    }
 
     // MARK: - build url request
 
@@ -383,10 +388,8 @@ public extension SyncEngine {
             }
         }
 
-        return promise.future.mapError(self.convertSyncError).onSuccess { result in
-            self.didSynchronizeResources(ofType: Resource.type, withResult: result)
-        }.onFailure { error in
-            self.didFailToSynchronizeResources(ofType: Resource.type, withError: error)
+        return promise.future.mapError(self.convertSyncError).andThen { result in
+            self.handle(result: result, forOperation: .sync, forResourceType: Resource.type)
         }
     }
 
@@ -423,10 +426,8 @@ public extension SyncEngine {
             }
         }
 
-        return promise.future.mapError(self.convertSyncError).onSuccess { result in
-            self.didSynchronizeResource(ofType: Resource.type, withResult: result)
-        }.onFailure { error in
-            self.didFailToSynchronizeResource(ofType: Resource.type, withError: error)
+        return promise.future.mapError(self.convertSyncError).andThen { result in
+            self.handle(result: result, forOperation: .sync, forResourceType: Resource.type)
         }
     }
 
@@ -472,10 +473,8 @@ public extension SyncEngine {
 
         }
 
-        return promise.future.mapError(self.convertSyncError).onSuccess { _ in
-            self.didCreateResource(ofType: Resource.type)
-        }.onFailure { error in
-            self.didFailToCreateResource(ofType: Resource.type, withError: error)
+        return promise.future.mapError(self.convertSyncError).andThen { result in
+            self.handle(result: result, forOperation: .sync, forResourceType: Resource.type)
         }
     }
 
@@ -488,11 +487,9 @@ public extension SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.mapError(self.convertSyncError).asVoid().onSuccess { _ in
-            self.didCreateResource(ofType: resourceType)
-        }.onFailure { error in
-            self.didFailToCreateResource(ofType: resourceType, withError: error)
-        }
+        return networkRequest.mapError(self.convertSyncError).andThen { result in
+            self.handle(result: result, forOperation: .sync, forResourceType: resourceType)
+        }.asVoid()
     }
 
     // MARK: - saving
@@ -506,11 +503,9 @@ public extension SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.mapError(self.convertSyncError).asVoid().onSuccess { _ in
-            self.didSaveResource(ofType: resourceType)
-        }.onFailure { error in
-            self.didFailToSaveResource(ofType: resourceType, withError: error)
-        }
+        return networkRequest.mapError(self.convertSyncError).andThen { result in
+            self.handle(result: result, forOperation: .sync, forResourceType: resourceType)
+        }.asVoid()
     }
 
     // MARK: - deleting
@@ -522,11 +517,9 @@ public extension SyncEngine {
             return self.doNetworkRequest(request, expectsData: false)
         }
 
-        return networkRequest.mapError(self.convertSyncError).asVoid().onSuccess { _ in
-            self.didDeleteResource(ofType: resourceType)
-        }.onFailure { error in
-            self.didFailToDeleteResource(ofType: resourceType, withError: error)
-        }
+        return networkRequest.mapError(self.convertSyncError).andThen { result in
+            self.handle(result: result, forOperation: .sync, forResourceType: resourceType)
+        }.asVoid()
     }
 
 }

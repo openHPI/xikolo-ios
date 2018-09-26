@@ -60,61 +60,19 @@ public struct XikoloSyncEngine: SyncEngine {
 
     // -
 
-    public func didSynchronizeResource(ofType resourceType: String, withResult result: SyncSingleResult) {
-        log.info("Successfully merged resource of type: \(resourceType)")
-        self.handleSyncSuccess(result)
+    public func didSucceedOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withResult result: SyncEngineResult) {
+        log.info("Successfully performed operation (\(operationType)) for resource type: \(resourceType)")
+        self.checkAPIStatus(statusCode: 200, headers: result.headers)
     }
 
-    public func didFailToSynchronizeResource(ofType resourceType: String, withError error: XikoloError) {
+    public func didFailOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withError error: XikoloError) {
         ErrorManager.shared.reportAPIError(error)
-        log.error("Failed to sync resource of type: \(resourceType) ==> \(error)")
-        self.handleSyncFailure(error)
-    }
+        log.error("Failed to perform operation (\(operationType)) for resource type: \(resourceType) ==> \(error)")
 
-    public func didSynchronizeResources(ofType resourceType: String, withResult result: SyncMultipleResult) {
-        log.info("Successfully merged resources of type: \(resourceType)")
-        self.handleSyncSuccess(result)
-    }
+        if case let .synchronization(.api(.response(statusCode: statusCode, headers: headers))) = error {
+            self.checkAPIStatus(statusCode: statusCode, headers: headers)
+        }
 
-    public func didFailToSynchronizeResources(ofType resourceType: String, withError error: XikoloError) {
-        ErrorManager.shared.reportAPIError(error)
-        log.error("Failed to sync resources of type: \(resourceType) ==> \(error)")
-        self.handleSyncFailure(error)
-    }
-
-    public func didCreateResource(ofType resourceType: String) {
-        log.info("Successfully created resource of type: \(resourceType)")
-    }
-
-    public func didFailToCreateResource(ofType resourceType: String, withError error: XikoloError) {
-        ErrorManager.shared.reportAPIError(error)
-        log.error("Failed to create resource of type: \(resourceType) ==> \(error)")
-    }
-
-    public func didSaveResource(ofType resourceType: String) {
-        log.info("Successfully saved resource of type: \(resourceType)")
-    }
-
-    public func didFailToSaveResource(ofType resourceType: String, withError error: XikoloError) {
-        ErrorManager.shared.reportAPIError(error)
-        log.error("Failed to save resource of type: \(resourceType) ==> \(error)")
-    }
-
-    public func didDeleteResource(ofType resourceType: String) {
-        log.info("Successfully deleted resource of type: \(resourceType)")
-    }
-
-    public func didFailToDeleteResource(ofType resourceType: String, withError error: XikoloError) {
-        ErrorManager.shared.reportAPIError(error)
-        log.error("Failed to delete resource of type: \(resourceType) ==> \(error)")
-    }
-
-    private func handleSyncSuccess(_ syncResult: SyncSingleResult) {
-        self.checkAPIStatus(statusCode: 200, headers: syncResult.headers)
-    }
-
-    private func handleSyncSuccess(_ syncResult: SyncMultipleResult) {
-        self.checkAPIStatus(statusCode: 200, headers: syncResult.headers)
     }
 
     private let dateFormatter: DateFormatter = {
@@ -122,11 +80,6 @@ public struct XikoloSyncEngine: SyncEngine {
         formatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
         return formatter
     }()
-
-    private func handleSyncFailure(_ error: XikoloError) {
-        guard case let .synchronization(.api(.response(statusCode: statusCode, headers: headers))) = error else { return }
-        self.checkAPIStatus(statusCode: statusCode, headers: headers)
-    }
 
     private func checkAPIStatus(statusCode: Int, headers: [AnyHashable: Any]) {
         let status: APIStatus

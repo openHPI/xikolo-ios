@@ -14,9 +14,7 @@ struct RichTextHelper {
         let query = SingleResourceQuery(resource: richText)
 
         let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

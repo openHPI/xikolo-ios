@@ -15,9 +15,7 @@ public struct CourseItemHelper {
         query.addFilter(forKey: "section", withValue: section.id)
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
     public static func syncCourseItems(forCourse course: Course) -> Future<[SyncMultipleResult], XikoloError> {
@@ -45,9 +43,7 @@ public struct CourseItemHelper {
         query.include("content")
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
     @discardableResult public static func syncCourseItems(forSection section: CourseSection,
@@ -59,9 +55,7 @@ public struct CourseItemHelper {
         query.include("content")
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
     @discardableResult public static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<SyncSingleResult, XikoloError> {
@@ -71,9 +65,7 @@ public struct CourseItemHelper {
 
 
         let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
     @discardableResult public static func markAsVisited(_ item: CourseItem) -> Future<Void, XikoloError> {

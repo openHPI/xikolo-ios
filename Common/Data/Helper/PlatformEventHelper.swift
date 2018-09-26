@@ -14,9 +14,7 @@ struct PlatformEventHelper {
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

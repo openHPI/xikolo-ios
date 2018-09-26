@@ -8,7 +8,7 @@ import CoreData
 import Foundation
 import SyncEngine
 
-public class SyncPushEngine<Engine> where Engine: SyncEngine {
+public class SyncPushEngine {
 
     var types: [(NSManagedObject & Pushable).Type] = []
 
@@ -18,9 +18,9 @@ public class SyncPushEngine<Engine> where Engine: SyncEngine {
         return queue
     }()
 
-    private let syncEngine: Engine
+    private let syncEngine: XikoloSyncEngine
 
-    public init(syncEngine: Engine) {
+    public init(syncEngine: XikoloSyncEngine) {
         self.syncEngine = syncEngine
     }
 
@@ -93,17 +93,11 @@ public class SyncPushEngine<Engine> where Engine: SyncEngine {
 
                 var pushFuture: Future<Void, XikoloError>?
                 if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
-                    pushFuture = self.syncEngine.saveResource(pullableResource).mapError { error -> XikoloError in
-                        return .synchronization(error)
-                    }
+                    pushFuture = self.syncEngine.saveResource(pullableResource)
                 } else if resource.objectState == .new, !(resource is Pullable) {
-                    pushFuture = self.syncEngine.createResource(resource).mapError { error -> XikoloError in
-                        return .synchronization(error)
-                    }
+                    pushFuture = self.syncEngine.createResource(resource)
                 } else if let deletableResource = resource as? (Pullable & Pushable), resource.objectState == .deleted {
-                    pushFuture = self.syncEngine.deleteResource(deletableResource).mapError { error -> XikoloError in
-                        return .synchronization(error)
-                    }
+                    pushFuture = self.syncEngine.deleteResource(deletableResource)
                 } else {
                     log.warning("unhandle resource modification")
                 }

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
 
-    private lazy var pushEngine: SyncPushEngine = { () -> SyncPushEngine<XikoloSyncEngine> in
+    private lazy var pushEngine: SyncPushEngine = {
         let engine = XikoloSyncEngine()
         return SyncPushEngine(syncEngine: engine)
     }()

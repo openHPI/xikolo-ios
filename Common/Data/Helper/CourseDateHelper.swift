@@ -13,9 +13,7 @@ public struct CourseDateHelper {
         let query = MultipleResourcesQuery(type: CourseDate.self)
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: CourseDateHelper.FetchRequest.allCourseDates, withQuery: query)
     }
 
     @discardableResult public static func syncCourseDates(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
@@ -24,9 +22,7 @@ public struct CourseDateHelper {
         query.addFilter(forKey: "course", withValue: course.id)
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

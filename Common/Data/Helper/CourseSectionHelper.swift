@@ -15,9 +15,7 @@ struct CourseSectionHelper {
         query.addFilter(forKey: "course", withValue: course.id)
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

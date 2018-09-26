@@ -21,7 +21,7 @@
 		504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83F9215B57D4006F2447 /* ErrorReporter.swift */; };
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
 		5052D27721591E9400927D52 /* SyncPushEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D27621591E9400927D52 /* SyncPushEngine.swift */; };
-		5052D27A2159208100927D52 /* SyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D2792159208100927D52 /* SyncEngine.swift */; };
+		5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D2792159208100927D52 /* XikoloSyncEngine.swift */; };
 		5054B2DD21087D6800CE9067 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DC21087D6800CE9067 /* Document.swift */; };
 		5054B2DF21087DB100CE9067 /* DocumentLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */; };
 		5054B2E1210880FA00CE9067 /* DocumentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5054B2E0210880FA00CE9067 /* DocumentHelper.swift */; };
@@ -396,7 +396,7 @@
 		50502E2C1FD04E56000A8D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CourseLearnings.storyboard; sourceTree = "<group>"; };
 		50502E2F1FD04E59000A8D35 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CourseLearnings.strings; sourceTree = "<group>"; };
 		5052D27621591E9400927D52 /* SyncPushEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPushEngine.swift; sourceTree = "<group>"; };
-		5052D2792159208100927D52 /* SyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEngine.swift; sourceTree = "<group>"; };
+		5052D2792159208100927D52 /* XikoloSyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XikoloSyncEngine.swift; sourceTree = "<group>"; };
 		5054B2DB21086CF600CE9067 /* xikolo 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 7.xcdatamodel"; sourceTree = "<group>"; };
 		5054B2DC21087D6800CE9067 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		5054B2DE21087DB100CE9067 /* DocumentLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentLocalization.swift; sourceTree = "<group>"; };
@@ -870,7 +870,7 @@
 			isa = PBXGroup;
 			children = (
 				5052D27621591E9400927D52 /* SyncPushEngine.swift */,
-				5052D2792159208100927D52 /* SyncEngine.swift */,
+				5052D2792159208100927D52 /* XikoloSyncEngine.swift */,
 				504D83FB215B64EC006F2447 /* APIStatus.swift */,
 			);
 			path = Sync;
@@ -1959,7 +1959,7 @@
 				5054B2E32108836300CE9067 /* DocumentHelper+FetchRequests.swift in Sources */,
 				50FA2E1C20E4B24300656776 /* RichTextHelper.swift in Sources */,
 				5054B2E92108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift in Sources */,
-				5052D27A2159208100927D52 /* SyncEngine.swift in Sources */,
+				5052D27A2159208100927D52 /* XikoloSyncEngine.swift in Sources */,
 				50FA2E4D20E4B25800656776 /* VideoStream.swift in Sources */,
 				50FA2E0A20E4B23600656776 /* BrandColors.swift in Sources */,
 				50FA2E2A20E4B24A00656776 /* RichTextHelper+FetchRequests.swift in Sources */,

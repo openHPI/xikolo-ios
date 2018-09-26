@@ -20,9 +20,7 @@ public struct DocumentHelper {
         let engine = XikoloSyncEngine()
         return engine.syncResources(withFetchRequest: fetchRequest,
                                     withQuery: query,
-                                    deleteNotExistingResources: false).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }.flatMap { syncResult -> Future<Void, XikoloError> in
+                                    deleteNotExistingResources: false).flatMap { syncResult -> Future<Void, XikoloError> in
             let promise = Promise<Void, XikoloError>()
 
             CoreDataHelper.persistentContainer.performBackgroundTask { context in

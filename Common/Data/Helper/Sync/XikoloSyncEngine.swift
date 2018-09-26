@@ -54,6 +54,9 @@ public struct XikoloSyncEngine: SyncEngine {
 
     public init() {}
 
+    public func convertSyncError(_ error: SyncError) -> XikoloError {
+        return XikoloError.synchronization(error)
+    }
 
     // -
 
@@ -62,7 +65,7 @@ public struct XikoloSyncEngine: SyncEngine {
         self.handleSyncSuccess(result)
     }
 
-    public func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncError) {
+    public func didFailToSynchronizeResource(ofType resourceType: String, withError error: XikoloError) {
         ErrorManager.shared.reportAPIError(error)
         log.error("Failed to sync resource of type: \(resourceType) ==> \(error)")
         self.handleSyncFailure(error)
@@ -73,7 +76,7 @@ public struct XikoloSyncEngine: SyncEngine {
         self.handleSyncSuccess(result)
     }
 
-    public func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncError) {
+    public func didFailToSynchronizeResources(ofType resourceType: String, withError error: XikoloError) {
         ErrorManager.shared.reportAPIError(error)
         log.error("Failed to sync resources of type: \(resourceType) ==> \(error)")
         self.handleSyncFailure(error)
@@ -83,7 +86,7 @@ public struct XikoloSyncEngine: SyncEngine {
         log.info("Successfully created resource of type: \(resourceType)")
     }
 
-    public func didFailToCreateResource(ofType resourceType: String, withError error: SyncError) {
+    public func didFailToCreateResource(ofType resourceType: String, withError error: XikoloError) {
         ErrorManager.shared.reportAPIError(error)
         log.error("Failed to create resource of type: \(resourceType) ==> \(error)")
     }
@@ -92,7 +95,7 @@ public struct XikoloSyncEngine: SyncEngine {
         log.info("Successfully saved resource of type: \(resourceType)")
     }
 
-    public func didFailToSaveResource(ofType resourceType: String, withError error: SyncError) {
+    public func didFailToSaveResource(ofType resourceType: String, withError error: XikoloError) {
         ErrorManager.shared.reportAPIError(error)
         log.error("Failed to save resource of type: \(resourceType) ==> \(error)")
     }
@@ -101,7 +104,7 @@ public struct XikoloSyncEngine: SyncEngine {
         log.info("Successfully deleted resource of type: \(resourceType)")
     }
 
-    public func didFailToDeleteResource(ofType resourceType: String, withError error: SyncError) {
+    public func didFailToDeleteResource(ofType resourceType: String, withError error: XikoloError) {
         ErrorManager.shared.reportAPIError(error)
         log.error("Failed to delete resource of type: \(resourceType) ==> \(error)")
     }
@@ -120,8 +123,8 @@ public struct XikoloSyncEngine: SyncEngine {
         return formatter
     }()
 
-    private func handleSyncFailure(_ error: SyncError) {
-        guard case let .api(.response(statusCode: statusCode, headers: headers)) = error else { return }
+    private func handleSyncFailure(_ error: XikoloError) {
+        guard case let .synchronization(.api(.response(statusCode: statusCode, headers: headers))) = error else { return }
         self.checkAPIStatus(statusCode: statusCode, headers: headers)
     }
 

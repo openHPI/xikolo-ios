@@ -23,9 +23,7 @@ public class AnnouncementHelper {
         query.addFilter(forKey: "global", withValue: "true")
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }.onComplete { _ in
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
@@ -36,9 +34,7 @@ public class AnnouncementHelper {
         query.addFilter(forKey: "course", withValue: course.id)
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }.onComplete { _ in
+        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }

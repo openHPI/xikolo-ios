@@ -15,9 +15,7 @@ public struct CourseHelper {
         query.include("user_enrollment")
 
         let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResources(withFetchRequest: CourseHelper.FetchRequest.allCourses, withQuery: query)
     }
 
     @discardableResult public static func syncCourse(_ course: Course) -> Future<SyncSingleResult, XikoloError> {
@@ -26,9 +24,7 @@ public struct CourseHelper {
         query.include("user_enrollment")
 
         let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withId: course.id), withQuery: query)
     }
 
     @discardableResult public static func syncCourse(forSlugOrId slugOrId: String) -> Future<SyncSingleResult, XikoloError> {
@@ -37,9 +33,7 @@ public struct CourseHelper {
         query.include("user_enrollment")
 
         let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResource(withFetchRequest: CourseHelper.FetchRequest.course(withSlugOrId: slugOrId), withQuery: query)
     }
 
     public static func visit(_ course: Course) {

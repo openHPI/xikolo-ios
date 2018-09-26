@@ -23,11 +23,11 @@ public class ErrorManager {
         self.reporters.forEach { $0.report(error) }
     }
 
-    func reportAPIError(_ error: SyncError) {
-        guard case .api(_) = error else { return }
-        if case let .api(.response(statusCode: statusCode, headers: _)) = error,
+    func reportAPIError(_ error: XikoloError) {
+        guard case .synchronization(.api(_)) = error else { return }
+        if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error,
             !(200 ... 299 ~= statusCode || statusCode == 406 || statusCode == 503) { return }
-        self.report(XikoloError.synchronization(error))
+        self.report(error)
     }
 
 }

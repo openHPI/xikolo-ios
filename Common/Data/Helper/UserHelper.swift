@@ -15,9 +15,7 @@ public struct UserHelper {
         query.include("profile")
 
         let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query).mapError { error -> XikoloError in
-            return .synchronization(error)
-        }
+        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

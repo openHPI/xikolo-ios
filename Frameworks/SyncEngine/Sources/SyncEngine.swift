@@ -43,6 +43,7 @@ public protocol SyncEngine {
 
     associatedtype Strategy: SyncStrategy
     associatedtype Networker: SyncNetworker
+    associatedtype SyncEngineError: Error
 
     var strategy: Strategy { get }
     var networker: Networker { get }
@@ -54,6 +55,7 @@ public protocol SyncEngine {
     // Core Data
     var persistentContainer: NSPersistentContainer { get }
 
+    func convertSyncError(_ error: SyncError) -> SyncEngineError
 
     // Logging
     func didSynchronizeResource(ofType resourceType: String, withResult result: SyncSingleResult)
@@ -61,11 +63,11 @@ public protocol SyncEngine {
     func didCreateResource(ofType resourceType: String)
     func didSaveResource(ofType resourceType: String)
     func didDeleteResource(ofType resourceType: String)
-    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncError)
-    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncError)
-    func didFailToCreateResource(ofType resourceType: String, withError error: SyncError)
-    func didFailToSaveResource(ofType resourceType: String, withError error: SyncError)
-    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncError)
+    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncEngineError)
+    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncEngineError)
+    func didFailToCreateResource(ofType resourceType: String, withError error: SyncEngineError)
+    func didFailToSaveResource(ofType resourceType: String, withError error: SyncEngineError)
+    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncEngineError)
 
 }
 
@@ -76,11 +78,11 @@ public protocol SyncEngine {
 //    func didCreateResource(ofType resourceType: String) {}
 //    func didSaveResource(ofType resourceType: String) {}
 //    func didDeleteResource(ofType resourceType: String) {}
-//    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncError) {}
-//    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncError) {}
-//    func didFailToCreateResource(ofType resourceType: String, withError error: SyncError) {}
-//    func didFailToSaveResource(ofType resourceType: String, withError error: SyncError) {}
-//    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncError) {}
+//    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncEngineError) {}
+//    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncEngineError) {}
+//    func didFailToCreateResource(ofType resourceType: String, withError error: SyncEngineError) {}
+//    func didFailToSaveResource(ofType resourceType: String, withError error: SyncEngineError) {}
+//    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncEngineError) {}
 //
 //}
 
@@ -348,7 +350,7 @@ public extension SyncEngine {
 
     public func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
                                         withQuery query: MultipleResourcesQuery<Resource>,
-                                        deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, SyncError> where Resource: NSManagedObject & Pullable {
+                                        deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncMultipleResult, SyncError>()
 
         self.persistentContainer.performBackgroundTask { context in
@@ -381,7 +383,7 @@ public extension SyncEngine {
             }
         }
 
-        return promise.future.onSuccess { result in
+        return promise.future.mapError(self.convertSyncError).onSuccess { result in
             self.didSynchronizeResources(ofType: Resource.type, withResult: result)
         }.onFailure { error in
             self.didFailToSynchronizeResources(ofType: Resource.type, withError: error)
@@ -389,7 +391,7 @@ public extension SyncEngine {
     }
 
     public func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
-                                       withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, SyncError> where Resource: NSManagedObject & Pullable {
+                                       withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncSingleResult, SyncError>()
 
         self.persistentContainer.performBackgroundTask { context in
@@ -421,7 +423,7 @@ public extension SyncEngine {
             }
         }
 
-        return promise.future.onSuccess { result in
+        return promise.future.mapError(self.convertSyncError).onSuccess { result in
             self.didSynchronizeResource(ofType: Resource.type, withResult: result)
         }.onFailure { error in
             self.didFailToSynchronizeResource(ofType: Resource.type, withError: error)
@@ -431,7 +433,7 @@ public extension SyncEngine {
     // MARK: - creating
 
     @discardableResult public func createResource<Resource>(ofType resourceType: Resource.Type,
-                                                            withData resourceData: Data) -> Future<SyncSingleResult, SyncError> where Resource: NSManagedObject & Pullable & Pushable {
+                                                            withData resourceData: Data) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
         let query = RawMultipleResourcesQuery(type: Resource.type)
         let urlRequest = self.buildCreateRequest(forQuery: query, withData: resourceData)
 
@@ -470,14 +472,14 @@ public extension SyncEngine {
 
         }
 
-        return promise.future.onSuccess { _ in
+        return promise.future.mapError(self.convertSyncError).onSuccess { _ in
             self.didCreateResource(ofType: Resource.type)
         }.onFailure { error in
             self.didFailToCreateResource(ofType: Resource.type, withError: error)
         }
     }
 
-    @discardableResult public func createResource(_ resource: Pushable) -> Future<Void, SyncError> {
+    @discardableResult public func createResource(_ resource: Pushable) -> Future<Void, SyncEngineError> {
         let resourceType = type(of: resource).type
         let query = RawMultipleResourcesQuery(type: resourceType)
         let urlRequest = self.buildCreateRequest(forQuery: query, forResource: resource)
@@ -486,7 +488,7 @@ public extension SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid().onSuccess { _ in
+        return networkRequest.mapError(self.convertSyncError).asVoid().onSuccess { _ in
             self.didCreateResource(ofType: resourceType)
         }.onFailure { error in
             self.didFailToCreateResource(ofType: resourceType, withError: error)
@@ -495,7 +497,7 @@ public extension SyncEngine {
 
     // MARK: - saving
 
-    @discardableResult public func saveResource(_ resource: Pullable & Pushable) -> Future<Void, SyncError> {
+    @discardableResult public func saveResource(_ resource: Pullable & Pushable) -> Future<Void, SyncEngineError> {
         let resourceType = type(of: resource).type
         let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
         let urlRequest = self.buildSaveRequest(forQuery: query, forResource: resource)
@@ -504,7 +506,7 @@ public extension SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid().onSuccess { _ in
+        return networkRequest.mapError(self.convertSyncError).asVoid().onSuccess { _ in
             self.didSaveResource(ofType: resourceType)
         }.onFailure { error in
             self.didFailToSaveResource(ofType: resourceType, withError: error)
@@ -513,14 +515,14 @@ public extension SyncEngine {
 
     // MARK: - deleting
 
-    @discardableResult public func deleteResource(_ resource: Pushable & Pullable) -> Future<Void, SyncError> {
+    @discardableResult public func deleteResource(_ resource: Pushable & Pullable) -> Future<Void, SyncEngineError> {
         let resourceType = type(of: resource).type
         let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
         let networkRequest = self.buildDeleteRequest(forQuery: query).flatMap { request in
             return self.doNetworkRequest(request, expectsData: false)
         }
 
-        return networkRequest.asVoid().onSuccess { _ in
+        return networkRequest.mapError(self.convertSyncError).asVoid().onSuccess { _ in
             self.didDeleteResource(ofType: resourceType)
         }.onFailure { error in
             self.didFailToDeleteResource(ofType: resourceType, withError: error)

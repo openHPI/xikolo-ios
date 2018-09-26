@@ -24,14 +24,3 @@ public protocol SyncStrategy {
     func resourceData(for resource: Pushable) -> Result<Data, SyncError>
 
 }
-
-public enum FindIncludedObjectResult {
-    case notExisting
-    case id(String)
-    case object(String, ResourceData)
-}
-
-public enum FindIncludedObjectsResult {
-    case notExisting
-    case included(objects: [(id: String, object: ResourceData)], ids: [String])
-}

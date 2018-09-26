@@ -7,6 +7,17 @@ import CoreData
 import Foundation
 import Marshal
 
+public enum FindIncludedObjectResult {
+    case notExisting
+    case id(String)
+    case object(String, ResourceData)
+}
+
+public enum FindIncludedObjectsResult {
+    case notExisting
+    case included(objects: [(id: String, object: ResourceData)], ids: [String])
+}
+
 public struct SynchronizationContext {
 
     let coreDataContext: NSManagedObjectContext

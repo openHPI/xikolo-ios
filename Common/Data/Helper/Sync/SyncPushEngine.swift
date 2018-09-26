@@ -12,19 +12,16 @@ public class SyncPushEngine<Engine> where Engine: SyncEngine {
 
     var types: [(NSManagedObject & Pushable).Type] = []
 
-
     private let persistentContainerQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
 
-    private weak var delegate: SyncPushEngineDelegate?
     private let syncEngine: Engine
 
-    public init(syncEngine: Engine, delegate: SyncPushEngineDelegate? = nil) {
+    public init(syncEngine: Engine) {
         self.syncEngine = syncEngine
-        self.delegate = delegate
     }
 
     public func startObserving() {
@@ -120,7 +117,7 @@ public class SyncPushEngine<Engine> where Engine: SyncEngine {
                     }
 
                     log.error("Failed to push resource modification - \(error)")
-                    self.delegate?.didFailToPushResourceModification(withError: error)
+                    ErrorManager.shared.report(error)
                     return Future(value: ())
                 }
 
@@ -146,8 +143,4 @@ public class SyncPushEngine<Engine> where Engine: SyncEngine {
         }
     }
 
-}
-
-public protocol SyncPushEngineDelegate: AnyObject {
-    func didFailToPushResourceModification(withError error: XikoloError)
 }

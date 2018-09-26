@@ -14,75 +14,30 @@ class XikoloTabBarController: UITabBarController {
         let message: String?
     }
 
-    enum State: Equatable {
-        case standard
-        case maintenance
-        case deprecated(expiresOn: Date)
-        case expired
-
-        private static let dateFormatter: DateFormatter = {
-            var formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            formatter.locale = Locale.current
-            return formatter
-        }()
-
-        static func == (lhs: State, rhs: State) -> Bool {
-            switch (lhs, rhs) {
-            case (.standard, .standard):
-                return true
-            case (.maintenance, .maintenance):
-                return true
-            case let (.deprecated(lhsDate), .deprecated(rhsDate)):
-                return lhsDate == rhsDate
-            case (.expired, .expired):
-                return true
-            default:
-                 return false
-            }
-        }
-
-        var configuration: Configuration {
-            switch self {
-            case .standard:
-                return Configuration(backgroundColor: .white, textColor: .clear, message: nil)
-            case .maintenance:
-                let format = NSLocalizedString("app-state.maintenance.server maintenance on %@",
-                                               comment: "App state message for server maintenance")
-                let message = String.localizedStringWithFormat(format, UIApplication.appName)
-                return Configuration(backgroundColor: Brand.default.colors.window, textColor: .white, message: message)
-            case .deprecated(expiresOn: let expirationDate):
-                let formattedExpirationDate = State.dateFormatter.string(from: expirationDate)
-                let format = NSLocalizedString("app-state.api-deprecated.please update the %@ app before %@",
-                                               comment: "App state message for deprecated API version")
-                let message = String.localizedStringWithFormat(format, UIApplication.appName, formattedExpirationDate)
-                return Configuration(backgroundColor: .orange, textColor: .white, message: message)
-            case .expired:
-                let format = NSLocalizedString("app-state.api-expired.app version of %@ expired - please update",
-                                               comment: "App state message for expired API version")
-                let message = String.localizedStringWithFormat(format, UIApplication.appName)
-                return Configuration(backgroundColor: .red, textColor: .white, message: message)
-            }
-        }
-    }
-
     private static let messageViewHeight: CGFloat = 16
     private static let messageLabelFontSize: CGFloat = 12
+
+    private static let dateFormatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.locale = Locale.current
+        return formatter
+    }()
 
     private var messageView = UIView()
     private var messageLabel = UILabel()
 
-    private var _state: State = .standard
-    var state: State {
+    private var _status: APIStatus = .standard
+    var status: APIStatus {
         get {
-            return self._state
+            return self._status
         }
         set {
-            guard self.state != newValue else { return }
+            guard self.status != newValue else { return }
 
             // allow only some status changes
-            switch (self.state, newValue) {
+            switch (self.status, newValue) {
             case (.standard, _):
                 break
             case (.deprecated, .maintenance):
@@ -97,13 +52,21 @@ class XikoloTabBarController: UITabBarController {
                 return
             }
 
-            log.verbose("Update app state from \(self.state) to \(newValue)")
-            let animationDuration: TimeInterval = self.state == .standard ? 0 : 0.25
+            log.verbose("Update app state from \(self.status) to \(newValue)")
+            let animationDuration: TimeInterval = self.status == .standard ? 0 : 0.25
             UIView.animate(withDuration: animationDuration) {
-                self._state = newValue
+                self._status = newValue
                 self.updateMessageViewAppearance()
             }
         }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustViewForKeyboardShow(_:)),
+                                               name: APIStatus.didChangeNotification,
+                                               object: nil)
     }
 
     override func viewDidLoad() {
@@ -129,22 +92,27 @@ class XikoloTabBarController: UITabBarController {
         self.updateMessageViewAppearance()
     }
 
+    @objc private func adjustViewForKeyboardShow(_ notification: Notification) {
+        guard let status = notification.userInfo?[APIStatusNotificationKey.status] as? APIStatus else { return }
+        self.status = status
+    }
+
     private func updateMessageViewAppearance() {
-        let config = self.state.configuration
+        let config = self.configuration(for: self.status)
         self.messageView.backgroundColor = config.backgroundColor
         self.messageLabel.textColor = config.textColor
         self.messageLabel.text = config.message
 
         let tabBarHeight = self.tabBar.frame.height
-        let tabBarItemHeight = self.tabBarItemHeight() ?? tabBarHeight
-        let tabBarOffset = self.state == .standard ? 0 : XikoloTabBarController.messageViewHeight
+        let tabBarItemHeight = self.heightOfTabBarItems() ?? tabBarHeight
+        let tabBarOffset = self.status == .standard ? 0 : XikoloTabBarController.messageViewHeight
 
         var newTabBarFrame = self.tabBar.frame
         newTabBarFrame.origin.y = self.view.frame.height - tabBarHeight - tabBarOffset
 
         var newMessageViewFrame = self.messageView.frame
-        newMessageViewFrame.origin.y = self.state == .standard ? tabBarHeight : tabBarItemHeight
-        newMessageViewFrame.size.height = self.state == .standard ? 0 : tabBarHeight - tabBarItemHeight + tabBarOffset
+        newMessageViewFrame.origin.y = self.status == .standard ? tabBarHeight : tabBarItemHeight
+        newMessageViewFrame.size.height = self.status == .standard ? 0 : tabBarHeight - tabBarItemHeight + tabBarOffset
 
         self.messageView.frame = newMessageViewFrame
         self.tabBar.frame = newTabBarFrame
@@ -154,7 +122,31 @@ class XikoloTabBarController: UITabBarController {
         }
     }
 
-    private func tabBarItemHeight() -> CGFloat? {
+    private func configuration(for status: APIStatus) -> Configuration {
+        switch status {
+        case .standard:
+            return Configuration(backgroundColor: .white, textColor: .clear, message: nil)
+        case .maintenance:
+            let format = NSLocalizedString("app-state.maintenance.server maintenance on %@",
+                                           comment: "App state message for server maintenance")
+            let message = String.localizedStringWithFormat(format, UIApplication.appName)
+            return Configuration(backgroundColor: Brand.default.colors.window, textColor: .white, message: message)
+        case .deprecated(expiresOn: let expirationDate):
+            let formattedExpirationDate = XikoloTabBarController.dateFormatter.string(from: expirationDate)
+            let format = NSLocalizedString("app-state.api-deprecated.please update the %@ app before %@",
+                                           comment: "App state message for deprecated API version")
+            let message = String.localizedStringWithFormat(format, UIApplication.appName, formattedExpirationDate)
+            return Configuration(backgroundColor: .orange, textColor: .white, message: message)
+        case .expired:
+            let format = NSLocalizedString("app-state.api-expired.app version of %@ expired - please update",
+                                           comment: "App state message for expired API version")
+            let message = String.localizedStringWithFormat(format, UIApplication.appName)
+            return Configuration(backgroundColor: .red, textColor: .white, message: message)
+        }
+    }
+
+
+    private func heightOfTabBarItems() -> CGFloat? {
         var heightCounter: [CGFloat: Int] = [:]
         for subview in self.tabBar.subviews.filter({ $0 != self.messageView }) {
             let subviewHeight = subview.frame.height

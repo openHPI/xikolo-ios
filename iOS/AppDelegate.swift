@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private lazy var pushEngine: SyncPushEngine = { () -> SyncPushEngine<XikoloSyncEngine> in
         let engine = XikoloSyncEngine()
-        return SyncPushEngine(syncEngine: engine, delegate: CrashlyticsHelper.shared)
+        return SyncPushEngine(syncEngine: engine)
     }()
 
     var window: UIWindow?
@@ -51,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
+
+        ErrorManager.shared.register(reporter: CrashlyticsHelper.shared)
 
         // register resource to be pushed automatically
         self.pushEngine.register(Announcement.self)

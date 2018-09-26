@@ -54,7 +54,35 @@ public protocol SyncEngine {
     // Core Data
     var persistentContainer: NSPersistentContainer { get }
 
+
+    // Logging
+    func didSynchronizeResource(ofType resourceType: String, withResult result: SyncSingleResult)
+    func didSynchronizeResources(ofType resourceType: String, withResult result: SyncMultipleResult)
+    func didCreateResource(ofType resourceType: String)
+    func didSaveResource(ofType resourceType: String)
+    func didDeleteResource(ofType resourceType: String)
+    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncError)
+    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncError)
+    func didFailToCreateResource(ofType resourceType: String, withError error: SyncError)
+    func didFailToSaveResource(ofType resourceType: String, withError error: SyncError)
+    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncError)
+
 }
+
+//extension SyncEngine {
+//
+//    func didSynchronizeResource(ofType resourceType: String, withResult result: SyncSingleResult) {}
+//    func didSynchronizeResources(ofType resourceType: String, withResult result: SyncMultipleResult) {}
+//    func didCreateResource(ofType resourceType: String) {}
+//    func didSaveResource(ofType resourceType: String) {}
+//    func didDeleteResource(ofType resourceType: String) {}
+//    func didFailToSynchronizeResource(ofType resourceType: String, withError error: SyncError) {}
+//    func didFailToSynchronizeResources(ofType resourceType: String, withError error: SyncError) {}
+//    func didFailToCreateResource(ofType resourceType: String, withError error: SyncError) {}
+//    func didFailToSaveResource(ofType resourceType: String, withError error: SyncError) {}
+//    func didFailToDeleteResource(ofType resourceType: String, withError error: SyncError) {}
+//
+//}
 
 public extension SyncEngine {
 
@@ -353,7 +381,11 @@ public extension SyncEngine {
             }
         }
 
-        return promise.future
+        return promise.future.onSuccess { result in
+            self.didSynchronizeResources(ofType: Resource.type, withResult: result)
+        }.onFailure { error in
+            self.didFailToSynchronizeResources(ofType: Resource.type, withError: error)
+        }
     }
 
     public func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
@@ -389,7 +421,11 @@ public extension SyncEngine {
             }
         }
 
-        return promise.future
+        return promise.future.onSuccess { result in
+            self.didSynchronizeResource(ofType: Resource.type, withResult: result)
+        }.onFailure { error in
+            self.didFailToSynchronizeResource(ofType: Resource.type, withError: error)
+        }
     }
 
     // MARK: - creating
@@ -434,7 +470,11 @@ public extension SyncEngine {
 
         }
 
-        return promise.future
+        return promise.future.onSuccess { _ in
+            self.didCreateResource(ofType: Resource.type)
+        }.onFailure { error in
+            self.didFailToCreateResource(ofType: Resource.type, withError: error)
+        }
     }
 
     @discardableResult public func createResource(_ resource: Pushable) -> Future<Void, SyncError> {
@@ -446,7 +486,11 @@ public extension SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid().onSuccess { _ in
+            self.didCreateResource(ofType: resourceType)
+        }.onFailure { error in
+            self.didFailToCreateResource(ofType: resourceType, withError: error)
+        }
     }
 
     // MARK: - saving
@@ -460,7 +504,11 @@ public extension SyncEngine {
             return self.doNetworkRequest(request)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid().onSuccess { _ in
+            self.didSaveResource(ofType: resourceType)
+        }.onFailure { error in
+            self.didFailToSaveResource(ofType: resourceType, withError: error)
+        }
     }
 
     // MARK: - deleting
@@ -472,7 +520,11 @@ public extension SyncEngine {
             return self.doNetworkRequest(request, expectsData: false)
         }
 
-        return networkRequest.asVoid()
+        return networkRequest.asVoid().onSuccess { _ in
+            self.didDeleteResource(ofType: resourceType)
+        }.onFailure { error in
+            self.didFailToDeleteResource(ofType: resourceType, withError: error)
+        }
     }
 
 }

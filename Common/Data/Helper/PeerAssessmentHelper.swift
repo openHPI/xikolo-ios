@@ -12,9 +12,7 @@ struct PeerAssessmentHelper {
     @discardableResult static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = PeerAssessmentHelper.FetchRequest.peerAssessment(withId: peerAssessment.id)
         let query = SingleResourceQuery(resource: peerAssessment)
-
-        let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

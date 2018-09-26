@@ -21,9 +21,7 @@ public class AnnouncementHelper {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-
-        let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
@@ -32,9 +30,7 @@ public class AnnouncementHelper {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
-
-        let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }

@@ -12,9 +12,7 @@ struct RichTextHelper {
     @discardableResult static func syncRichText(_ richText: RichText) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = RichTextHelper.FetchRequest.richText(withId: richText.id)
         let query = SingleResourceQuery(resource: richText)
-
-        let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

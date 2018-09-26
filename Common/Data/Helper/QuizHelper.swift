@@ -14,9 +14,7 @@ struct QuizHelper {
         var query = SingleResourceQuery(resource: quiz)
         query.include("questions")
         query.include("submission")
-
-        let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

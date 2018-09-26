@@ -348,9 +348,9 @@ public extension SyncEngine {
 
     // MARK: - sync
 
-    public func syncResources<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
-                                        withQuery query: MultipleResourcesQuery<Resource>,
-                                        deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
+    public func synchronize<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+                                      withQuery query: MultipleResourcesQuery<Resource>,
+                                      deleteNotExistingResources: Bool = true) -> Future<SyncMultipleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncMultipleResult, SyncError>()
 
         self.persistentContainer.performBackgroundTask { context in
@@ -390,8 +390,8 @@ public extension SyncEngine {
         }
     }
 
-    public func syncResource<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
-                                       withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
+    public func synchronize<Resource>(withFetchRequest fetchRequest: NSFetchRequest<Resource>,
+                                      withQuery query: SingleResourceQuery<Resource>) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable {
         let promise = Promise<SyncSingleResult, SyncError>()
 
         self.persistentContainer.performBackgroundTask { context in

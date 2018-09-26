@@ -12,9 +12,7 @@ struct PlatformEventHelper {
     @discardableResult static func syncAllPlatformEvents() -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = PlatformEventHelper.FetchRequest.allPlatformEvents
         let query = MultipleResourcesQuery(type: PlatformEvent.self)
-
-        let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

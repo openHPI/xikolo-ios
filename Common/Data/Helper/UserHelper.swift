@@ -13,9 +13,7 @@ public struct UserHelper {
         let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.shared.userId ?? "")
         var query = SingleResourceQuery(type: User.self, id: "me")
         query.include("profile")
-
-        let engine = XikoloSyncEngine()
-        return engine.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

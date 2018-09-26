@@ -17,10 +17,9 @@ public struct DocumentHelper {
         query.addFilter(forKey: "course", withValue: course.id)
         query.include("localizations")
 
-        let engine = XikoloSyncEngine()
-        return engine.syncResources(withFetchRequest: fetchRequest,
-                                    withQuery: query,
-                                    deleteNotExistingResources: false).flatMap { syncResult -> Future<Void, XikoloError> in
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest,
+                                              withQuery: query,
+                                              deleteNotExistingResources: false).flatMap { syncResult -> Future<Void, XikoloError> in
             let promise = Promise<Void, XikoloError>()
 
             CoreDataHelper.persistentContainer.performBackgroundTask { context in

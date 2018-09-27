@@ -50,7 +50,7 @@ final class QuizQuestion: NSManagedObject {
 
 }
 
-extension QuizQuestion: Pullable {
+extension QuizQuestion: JSONAPIPullable {
 
     static var type: String {
         return "quiz-questions"

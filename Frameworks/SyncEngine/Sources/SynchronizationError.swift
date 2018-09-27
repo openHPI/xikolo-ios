@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
 import Marshal
 
 public enum SyncError: Error {

@@ -23,7 +23,7 @@ public final class RichText: Content {
 
 }
 
-extension RichText: Pullable {
+extension RichText: JSONAPIPullable {
 
     public static var type: String {
         return "rich-texts"

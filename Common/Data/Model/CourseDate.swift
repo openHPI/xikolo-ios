@@ -59,7 +59,7 @@ public final class CourseDate: NSManagedObject {
 
 }
 
-extension CourseDate: Pullable {
+extension CourseDate: JSONAPIPullable {
 
     public static var type: String {
         return "course-dates"

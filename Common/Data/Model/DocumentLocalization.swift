@@ -25,7 +25,7 @@ public final class DocumentLocalization: NSManagedObject {
 
 }
 
-extension DocumentLocalization: Pullable {
+extension DocumentLocalization: JSONAPIPullable {
 
     public static var type: String {
         return "document-localizations"

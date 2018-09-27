@@ -18,7 +18,7 @@ final class PeerAssessment: Content {
 
 }
 
-extension PeerAssessment: Pullable {
+extension PeerAssessment: JSONAPIPullable {
 
     public static var type: String {
         return "peer-assessments"

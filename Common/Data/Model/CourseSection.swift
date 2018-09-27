@@ -32,7 +32,7 @@ public final class CourseSection: NSManagedObject {
 
 }
 
-extension CourseSection: Pullable {
+extension CourseSection: JSONAPIPullable {
 
     public static var type: String {
         return "course-sections"

@@ -15,7 +15,7 @@ public final class Announcement: NSManagedObject {
     @NSManaged public var publishedAt: Date?
     @NSManaged public var visited: Bool
     @NSManaged public var imageURL: URL?
-    @NSManaged private var objectStateValue: Int16
+    @NSManaged public var objectStateValue: Int16
 
     @NSManaged public var course: Course?
 
@@ -25,7 +25,7 @@ public final class Announcement: NSManagedObject {
 
 }
 
-extension Announcement: Pullable {
+extension Announcement: JSONAPIPullable {
 
     public static var type: String {
         return "announcements"
@@ -46,16 +46,7 @@ extension Announcement: Pullable {
 
 }
 
-extension Announcement: Pushable {
-
-    public var objectState: ObjectState {
-        get {
-            return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for announcement")
-        }
-        set {
-            self.objectStateValue = newValue.rawValue
-        }
-    }
+extension Announcement: JSONAPIPushable {
 
     public func markAsUnchanged() {
         self.objectState = .unchanged

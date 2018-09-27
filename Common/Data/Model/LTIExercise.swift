@@ -21,7 +21,7 @@ final class LTIExercise: Content {
 
 }
 
-extension LTIExercise: Pullable {
+extension LTIExercise: JSONAPIPullable {
 
     static var type: String {
         return "lti-exercises"

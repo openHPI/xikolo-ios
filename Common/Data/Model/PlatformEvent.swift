@@ -21,7 +21,7 @@ final class PlatformEvent: NSManagedObject {
 
 }
 
-extension PlatformEvent: Pullable {
+extension PlatformEvent: JSONAPIPullable {
 
     static var type: String {
         return "platform-events"

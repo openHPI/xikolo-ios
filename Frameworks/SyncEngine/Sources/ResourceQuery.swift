@@ -3,14 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Foundation
-
-public protocol ResourceURLRepresentable {
-    func resourceURL(relativeTo baseURL: URL) -> URL?
-}
-
-public protocol ResourceQuery: ResourceURLRepresentable {
-    associatedtype Resource
+public protocol ResourceQuery {
+    associatedtype Resource: ResourceTypeRepresentable
 
     var resourceType: Resource.Type { get }
     var filters: [String: Any?] { get set }
@@ -69,21 +63,4 @@ public struct MultipleResourcesQuery<Resource>: ResourceQuery where Resource: Re
         return baseURL.appendingPathComponent(self.resourceType.type)
     }
 
-}
-
-struct RawSingleResourceQuery: ResourceURLRepresentable {
-    let type: String
-    let id: String
-
-    func resourceURL(relativeTo baseURL: URL) -> URL? {
-        return baseURL.appendingPathComponent(self.type).appendingPathComponent(self.id)
-    }
-}
-
-struct RawMultipleResourcesQuery: ResourceURLRepresentable {
-    let type: String
-
-    func resourceURL(relativeTo baseURL: URL) -> URL? {
-        return baseURL.appendingPathComponent(self.type)
-    }
 }

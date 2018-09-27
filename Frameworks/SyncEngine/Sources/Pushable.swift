@@ -4,7 +4,6 @@
 //
 
 import CoreData
-import Foundation
 import Result
 
 public enum ObjectState: Int16 {
@@ -18,48 +17,25 @@ public protocol IncludedPushable {
     func resourceAttributes() -> [String: Any]
 }
 
-public protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult {
-    var objectState: ObjectState { get }
+public protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult, Validatable {
+    var objectStateValue: ObjectState.RawValue { get set }
 
-    static func resourceDataObject(attributes: [String: Any], relationships: [String: AnyObject]?) -> [String: Any]
     static func resourceData(attributes: [String: Any], relationships: [String: AnyObject]?) -> Result<Data, SyncError>
 
     func resourceRelationships() -> [String: AnyObject]?
     func markAsUnchanged()
+
+    func resourceData() -> Result<Data, SyncError>
 }
 
 public extension Pushable {
 
-    static func resourceDataObject(attributes: [String: Any], relationships: [String: AnyObject]?) -> [String: Any] {
-        var data: [String: Any] = [ "type": Self.type ]
-
-        data["attributes"] = attributes
-        if let resourceRelationships = relationships {
-            var relationships: [String: Any] = [:]
-            for (relationshipName, object) in resourceRelationships {
-                if let resource = object as? ResourceRepresentable {
-                    relationships[relationshipName] = ["data": resource.identifier]
-                } else if let resources = object as? [ResourceRepresentable] {
-                    relationships[relationshipName] = ["data": resources.map { $0.identifier }]
-                }
-            }
-
-            if !relationships.isEmpty {
-                data["relationships"] = relationships
-            }
+    public var objectState: ObjectState {
+        get {
+            return ObjectState(rawValue: self.objectStateValue) ?? .unchanged
         }
-
-        return data
-    }
-
-    static func resourceData(attributes: [String: Any], relationships: [String: AnyObject]?) -> Result<Data, SyncError> {
-        do {
-            let data = Self.resourceDataObject(attributes: attributes, relationships: relationships)
-            let json = ["data": data]
-            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-            return .success(jsonData)
-        } catch {
-            return .failure(.api(.serialization(.jsonSerialization(error))))
+        set {
+            self.objectStateValue = newValue.rawValue
         }
     }
 

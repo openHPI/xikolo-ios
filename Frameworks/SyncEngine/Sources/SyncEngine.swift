@@ -5,7 +5,6 @@
 
 import BrightFutures
 import CoreData
-import Foundation
 import Marshal
 import Result
 
@@ -53,11 +52,9 @@ public enum SyncEngineOperation {
 
 public protocol SyncEngine {
 
-    associatedtype Strategy: SyncStrategy
     associatedtype Networker: SyncNetworker
     associatedtype SyncEngineError: Error
 
-    var strategy: Strategy { get }
     var networker: Networker { get }
 
     // Requests
@@ -95,7 +92,7 @@ public extension SyncEngine {
 
     // MARK: - build url request
 
-    private func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, SyncError> where Query: ResourceQuery {
+    private func buildGetRequest<Query>(forQuery query: Query) -> Result<URLRequest, SyncError> where Query: ResourceQuery, Query.Resource: Pullable  {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -104,7 +101,7 @@ public extension SyncEngine {
             return .failure(.invalidURLComponents(resourceUrl))
         }
 
-        urlComponents.queryItems = self.strategy.queryItems(forQuery: query)
+        urlComponents.queryItems = Query.Resource.queryItems(forQuery: query)
 
         guard let url = urlComponents.url else {
             return .failure(.invalidURL(urlComponents.url?.absoluteString))
@@ -120,9 +117,9 @@ public extension SyncEngine {
         return .success(request)
     }
 
-    private func buildCreateRequest(forQuery query: ResourceURLRepresentable,
-                                    forResource resource: Pushable) -> Result<URLRequest, SyncError> {
-        switch self.strategy.resourceData(for: resource) {
+    private func buildCreateRequest<Resource>(forQuery query: MultipleResourcesQuery<Resource>,
+                                              forResource resource: Resource) -> Result<URLRequest, SyncError> where Resource: Pushable {
+        switch resource.resourceData() {
         case let .success(resourceData):
             return self.buildCreateRequest(forQuery: query, withData: resourceData)
         case let .failure(error):
@@ -130,8 +127,8 @@ public extension SyncEngine {
         }
     }
 
-    private func buildCreateRequest(forQuery query: ResourceURLRepresentable,
-                                    withData resourceData: Data) -> Result<URLRequest, SyncError> {
+    private func buildCreateRequest<Resource>(forQuery query: MultipleResourcesQuery<Resource>,
+                                              withData resourceData: Data) -> Result<URLRequest, SyncError> where Resource: Pushable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -147,8 +144,8 @@ public extension SyncEngine {
         return .success(request)
     }
 
-    private func buildSaveRequest(forQuery query: ResourceURLRepresentable,
-                                  forResource resource: Pushable) -> Result<URLRequest, SyncError> {
+    private func buildSaveRequest<Resource>(forQuery query: SingleResourceQuery<Resource>,
+                                            forResource resource: Resource) -> Result<URLRequest, SyncError> where Resource: Pullable & Pushable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -160,13 +157,13 @@ public extension SyncEngine {
             request.setValue(value, forHTTPHeaderField: header)
         }
 
-        return self.strategy.resourceData(for: resource).map { data in
+        return resource.resourceData().map { data in
             request.httpBody = data
             return request
         }
     }
 
-    private func buildDeleteRequest(forQuery query: RawSingleResourceQuery) -> Result<URLRequest, SyncError> {
+    private func buildDeleteRequest<Resource>(forQuery query: SingleResourceQuery<Resource>) -> Result<URLRequest, SyncError> where Resource: Pullable & Pushable {
         guard let resourceUrl = query.resourceURL(relativeTo: self.baseURL) else {
             return .failure(.invalidResourceURL)
         }
@@ -204,7 +201,7 @@ public extension SyncEngine {
         }
     }
 
-    private func doNetworkRequest(_ request: URLRequest, expectsData: Bool = true) -> Future<NetworkResult, SyncError> {
+    private func doNetworkRequest<Resource>(_ request: URLRequest, forResource: Resource.Type, expectsData: Bool = true) -> Future<NetworkResult, SyncError> where Resource: Validatable {
         let promise = Promise<NetworkResult, SyncError>()
 
         self.networker.perform(request: request) { data, response, error in
@@ -234,10 +231,9 @@ public extension SyncEngine {
             }
 
             do {
-                // special handling for calendar endpoint which returns an array
                 let resourceData: MarshalDictionary
                 if let resourceDataArray = try JSONSerialization.jsonObject(with: responseData, options: []) as? [MarshalDictionary] {
-                    resourceData = ["data": resourceDataArray]
+                    resourceData = Resource.transformServerResponseArray(resourceDataArray)
                 } else if let resourceDataObject = try JSONSerialization.jsonObject(with: responseData, options: []) as? MarshalDictionary {
                     resourceData = resourceDataObject
                 } else {
@@ -245,7 +241,7 @@ public extension SyncEngine {
                     return
                 }
 
-                switch self.strategy.validateResourceData(resourceData) {
+                switch Resource.validateServerResponse(resourceData) {
                 case .success:
                     let result = NetworkResult(resourceData: resourceData, headers: urlResponse.allHeaderFields)
                     promise.success(result)
@@ -266,17 +262,16 @@ public extension SyncEngine {
                                           withExistingObjects objects: [Resource],
                                           deleteNotExistingResources: Bool,
                                           in coreDataContext: NSManagedObjectContext) -> Future<[Resource], SyncError> where Resource: NSManagedObject & Pullable {
-
         do {
             var existingObjects = objects
             var newObjects: [Resource] = []
 
-            let includedResourceData = self.strategy.extractIncludedResourceData(from: object)
-            let context = SynchronizationContext(coreDataContext: coreDataContext, strategy: strategy, includedResourceData: includedResourceData)
-            let dataArray = try self.strategy.extractResourceData(from: object) as [ResourceData]
+            let includedResourceData = Resource.extractIncludedResourceData(from: object)
+            let context = SynchronizationContext(coreDataContext: coreDataContext, includedResourceData: includedResourceData)
+            let dataArray = try Resource.extractResourceData(from: object) as [ResourceData]
 
             for data in dataArray {
-                let id = try data.value(for: context.strategy.resourceKeyAttribute) as String
+                let id = try data.value(for: Resource.resourceKeyAttribute) as String
                 if var existingObject = existingObjects.first(where: { $0.id == id }) {
                     try existingObject.update(from: data, with: context)
                     if let index = existingObjects.index(of: existingObject) {
@@ -319,11 +314,11 @@ public extension SyncEngine {
         do {
             let newObject: Resource
 
-            let includedResourceData = self.strategy.extractIncludedResourceData(from: object)
-            let context = SynchronizationContext(coreDataContext: coreDataContext, strategy: self.strategy, includedResourceData: includedResourceData)
-            let data = try self.strategy.extractResourceData(from: object) as ResourceData
+            let includedResourceData = Resource.extractIncludedResourceData(from: object)
+            let context = SynchronizationContext(coreDataContext: coreDataContext, includedResourceData: includedResourceData)
+            let data = try Resource.extractResourceData(from: object) as ResourceData
 
-            let id = try data.value(for: self.strategy.resourceKeyAttribute) as String
+            let id = try data.value(for: Resource.resourceKeyAttribute) as String
 
             if var existingObject = existingObject {
                 if existingObject.id == id {
@@ -364,7 +359,7 @@ public extension SyncEngine {
             let coreDataFetch = self.fetchCoreDataObjects(withFetchRequest: fetchRequest, inContext: context)
             let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
                 return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
-                    return self.doNetworkRequest(request)
+                    return self.doNetworkRequest(request, forResource: Resource.self)
                 }
             }
 
@@ -403,7 +398,7 @@ public extension SyncEngine {
             let coreDataFetch = self.fetchCoreDataObject(withFetchRequest: fetchRequest, inContext: context)
             let networkRequest = self.buildGetRequest(forQuery: query).flatMap { request in
                 return retry(ImmediateExecutionContext, times: 5, coolDown: DispatchTimeInterval.seconds(2)) {
-                    return self.doNetworkRequest(request)
+                    return self.doNetworkRequest(request, forResource: Resource.self)
                 }
             }
 
@@ -435,11 +430,11 @@ public extension SyncEngine {
 
     @discardableResult public func createResource<Resource>(ofType resourceType: Resource.Type,
                                                             withData resourceData: Data) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
-        let query = RawMultipleResourcesQuery(type: Resource.type)
+        let query = MultipleResourcesQuery(type: Resource.self)
         let urlRequest = self.buildCreateRequest(forQuery: query, withData: resourceData)
 
         let networkRequest = urlRequest.flatMap { request in
-            return self.doNetworkRequest(request)
+            return self.doNetworkRequest(request, forResource: Resource.self)
         }
 
         let promise = Promise<SyncSingleResult, SyncError>()
@@ -447,7 +442,7 @@ public extension SyncEngine {
         self.persistentContainer.performBackgroundTask { coreDataContext in
             coreDataContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
-            let context = SynchronizationContext(coreDataContext: coreDataContext, strategy: self.strategy, includedResourceData: [])
+            let context = SynchronizationContext(coreDataContext: coreDataContext, includedResourceData: [])
 
             networkRequest.flatMap(ImmediateExecutionContext) { networkResult -> Future<SyncSingleResult, SyncError> in
                 do {
@@ -478,47 +473,44 @@ public extension SyncEngine {
         }
     }
 
-    @discardableResult public func createResource(_ resource: Pushable) -> Future<Void, SyncEngineError> {
-        let resourceType = type(of: resource).type
-        let query = RawMultipleResourcesQuery(type: resourceType)
+    @discardableResult public func createResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pushable {
+        let query = MultipleResourcesQuery(type: Resource.self)
         let urlRequest = self.buildCreateRequest(forQuery: query, forResource: resource)
 
         let networkRequest = urlRequest.flatMap { request in
-            return self.doNetworkRequest(request)
+            return self.doNetworkRequest(request, forResource: Resource.self)
         }
 
         return networkRequest.mapError(self.convertSyncError).andThen { result in
-            self.handle(result: result, forOperation: .sync, forResourceType: resourceType)
+            self.handle(result: result, forOperation: .sync, forResourceType: Resource.type)
         }.asVoid()
     }
 
     // MARK: - saving
 
-    @discardableResult public func saveResource(_ resource: Pullable & Pushable) -> Future<Void, SyncEngineError> {
-        let resourceType = type(of: resource).type
-        let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
+    @discardableResult public func saveResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pullable & Pushable {
+        let query = SingleResourceQuery(type: Resource.self, id: resource.id)
         let urlRequest = self.buildSaveRequest(forQuery: query, forResource: resource)
 
         let networkRequest = urlRequest.flatMap { request in
-            return self.doNetworkRequest(request)
+            return self.doNetworkRequest(request, forResource: Resource.self)
         }
 
         return networkRequest.mapError(self.convertSyncError).andThen { result in
-            self.handle(result: result, forOperation: .sync, forResourceType: resourceType)
+            self.handle(result: result, forOperation: .sync, forResourceType: Resource.type)
         }.asVoid()
     }
 
     // MARK: - deleting
 
-    @discardableResult public func deleteResource(_ resource: Pushable & Pullable) -> Future<Void, SyncEngineError> {
-        let resourceType = type(of: resource).type
-        let query = RawSingleResourceQuery(type: resourceType, id: resource.id)
+    @discardableResult public func deleteResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pullable & Pushable {
+        let query = SingleResourceQuery(type: Resource.self, id: resource.id)
         let networkRequest = self.buildDeleteRequest(forQuery: query).flatMap { request in
-            return self.doNetworkRequest(request, expectsData: false)
+            return self.doNetworkRequest(request, forResource: Resource.self, expectsData: false)
         }
 
         return networkRequest.mapError(self.convertSyncError).andThen { result in
-            self.handle(result: result, forOperation: .sync, forResourceType: resourceType)
+            self.handle(result: result, forOperation: .sync, forResourceType: Resource.type)
         }.asVoid()
     }
 

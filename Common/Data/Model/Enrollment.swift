@@ -32,7 +32,7 @@ public final class Enrollment: NSManagedObject {
 
 }
 
-extension Enrollment: Pullable {
+extension Enrollment: JSONAPIPullable {
 
     public static var type: String {
         return "enrollments"
@@ -53,16 +53,7 @@ extension Enrollment: Pullable {
 
 }
 
-extension Enrollment: Pushable {
-
-    public var objectState: ObjectState {
-        get {
-            return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for enrollment")
-        }
-        set {
-            self.objectStateValue = newValue.rawValue
-        }
-    }
+extension Enrollment: JSONAPIPushable {
 
     public func markAsUnchanged() {
         self.objectState = .unchanged

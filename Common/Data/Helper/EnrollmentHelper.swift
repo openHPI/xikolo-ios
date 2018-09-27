@@ -19,8 +19,7 @@ public struct EnrollmentHelper {
         return resourceData.mapError { error -> XikoloError in
             return .synchronization(error)
         }.flatMap { data in
-            let engine = XikoloSyncEngine()
-            return engine.createResource(ofType: Enrollment.self, withData: data).asVoid()
+            return XikoloSyncEngine().createResource(ofType: Enrollment.self, withData: data).asVoid()
         }
     }
 

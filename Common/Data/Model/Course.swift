@@ -104,7 +104,7 @@ public final class Course: NSManagedObject {
 
 }
 
-extension Course: Pullable {
+extension Course: JSONAPIPullable {
 
     public static var type: String {
         return "courses"

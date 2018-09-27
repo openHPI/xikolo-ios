@@ -4,23 +4,32 @@
 //
 
 import CoreData
-import Foundation
 import Marshal
 
-public protocol Pullable: ResourceRepresentable {
+public protocol Pullable: ResourceRepresentable, Validatable {
 
     static func value(from object: ResourceData, with context: SynchronizationContext) throws -> Self
 
     mutating func update(from object: ResourceData, with context: SynchronizationContext) throws
+
+
+    // strategy
+    static var resourceKeyAttribute: String { get } // todo: use keypath!?
+
+    static func queryItems<Query>(forQuery query: Query) -> [URLQueryItem] where Query: ResourceQuery
+    static func validateObjectCreation(object: ResourceData) throws
+    static func extractResourceData(from object: ResourceData) throws -> ResourceData
+    static func extractResourceData(from object: ResourceData) throws -> [ResourceData]
+    static func extractIncludedResourceData(from object: ResourceData) -> [ResourceData]
 
 }
 
 extension Pullable where Self: NSManagedObject {
 
     public static func value(from object: ResourceData, with context: SynchronizationContext) throws -> Self {
-        try context.strategy.validateObjectCreation(object: object, toHaveType: Self.type)
+        try Self.validateObjectCreation(object: object)
         var managedObject = self.init(entity: self.entity(), insertInto: context.coreDataContext)
-        try managedObject.id = object.value(for: context.strategy.resourceKeyAttribute)
+        try managedObject.id = object.value(for: Self.resourceKeyAttribute)
         try managedObject.update(from: object, with: context)
         return managedObject
     }

@@ -39,7 +39,6 @@ public struct XikoloNetworker: SyncNetworker {
 
 public struct XikoloSyncEngine: SyncEngine {
 
-    public let strategy = JsonAPISyncStrategy()
     public let networker = XikoloNetworker()
 
     public let baseURL: URL = Routes.api

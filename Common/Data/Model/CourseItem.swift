@@ -19,7 +19,7 @@ public final class CourseItem: NSManagedObject {
     @NSManaged public var icon: String?
     @NSManaged public var exerciseType: String?
     @NSManaged public var deadline: Date?
-    @NSManaged private var objectStateValue: Int16
+    @NSManaged public var objectStateValue: Int16
 
     @NSManaged public var content: Content?
     @NSManaged public var section: CourseSection?
@@ -52,7 +52,7 @@ public final class CourseItem: NSManagedObject {
 
 }
 
-extension CourseItem: Pullable {
+extension CourseItem: JSONAPIPullable {
 
     public static var type: String {
         return "course-items"
@@ -90,16 +90,7 @@ extension CourseItem: Pullable {
 
 }
 
-extension CourseItem: Pushable {
-
-    public var objectState: ObjectState {
-        get {
-            return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for course item")
-        }
-        set {
-            self.objectStateValue = newValue.rawValue
-        }
-    }
+extension CourseItem: JSONAPIPushable {
 
     public func markAsUnchanged() {
         self.objectState = .unchanged

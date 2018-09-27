@@ -4,7 +4,6 @@
 //
 
 import CoreData
-import Foundation
 import Marshal
 
 public enum FindIncludedObjectResult {
@@ -21,9 +20,7 @@ public enum FindIncludedObjectsResult {
 public struct SynchronizationContext {
 
     let coreDataContext: NSManagedObjectContext
-    let strategy: SyncStrategy
     var includedResourceData: [ResourceData] = []
-
 
     // TODO: move to DATABASE
     func findExistingResource<Resource>(withId objectId: String,

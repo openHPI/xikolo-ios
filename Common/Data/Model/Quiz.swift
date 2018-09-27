@@ -62,7 +62,7 @@ final class Quiz: Content {
 
 }
 
-extension Quiz: Pullable {
+extension Quiz: JSONAPIPullable {
 
     static var type: String {
         return "quizzes"

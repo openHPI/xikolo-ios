@@ -19,7 +19,7 @@ public final class User: NSManagedObject {
 
 }
 
-extension User: Pullable {
+extension User: JSONAPIPullable {
 
     public static var type: String {
         return "users"

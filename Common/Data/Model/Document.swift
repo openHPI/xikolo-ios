@@ -33,7 +33,7 @@ public final class Document: NSManagedObject {
 
 }
 
-extension Document: Pullable {
+extension Document: JSONAPIPullable {
 
     public static var type: String {
         return "documents"

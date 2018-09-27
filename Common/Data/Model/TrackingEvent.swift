@@ -34,14 +34,17 @@ public final class TrackingEvent: NSManagedObject {
 
 }
 
-extension TrackingEvent: Pushable {
+extension TrackingEvent: JSONAPIPushable {
 
     public static var type: String {
         return "tracking-events"
     }
 
-    public var objectState: ObjectState {
-        return .new
+    public var objectStateValue: Int16 {
+        get {
+            return ObjectState.new.rawValue
+        }
+        set {}
     }
 
     public func markAsUnchanged() {

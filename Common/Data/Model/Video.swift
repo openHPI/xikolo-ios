@@ -63,7 +63,7 @@ public final class Video: Content {
 
 }
 
-extension Video: Pullable {
+extension Video: JSONAPIPullable {
 
     public static var type: String {
         return "videos"

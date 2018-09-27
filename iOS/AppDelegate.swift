@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
 
-    private lazy var pushEngine: SyncPushEngine = {
+    private lazy var pushEngineManager: SyncPushEngineManager = {
         let engine = XikoloSyncEngine()
-        return SyncPushEngine(syncEngine: engine)
+        return SyncPushEngineManager(syncEngine: engine)
     }()
 
     var window: UIWindow?
@@ -55,11 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ErrorManager.shared.register(reporter: CrashlyticsHelper.shared)
 
         // register resource to be pushed automatically
-        self.pushEngine.register(Announcement.self)
-        self.pushEngine.register(CourseItem.self)
-        self.pushEngine.register(Enrollment.self)
-        self.pushEngine.register(TrackingEvent.self)
-        self.pushEngine.startObserving()
+        self.pushEngineManager.register(Announcement.self)
+        self.pushEngineManager.register(CourseItem.self)
+        self.pushEngineManager.register(Enrollment.self)
+        self.pushEngineManager.register(TrackingEvent.self)
+        self.pushEngineManager.startObserving()
 
         UserProfileHelper.shared.migrateLegacyKeychain()
 
@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         ReachabilityHelper.stopObserving()
-        self.pushEngine.stopObserving()
+        self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
     }
 

@@ -74,3 +74,14 @@ extension JSONAPIPushable {
     }
 
 }
+
+private extension ResourceRepresentable {
+
+    var identifier: [String: String] {
+        return [
+            "type": Self.type,
+            "id": self.id,
+        ]
+    }
+
+}

@@ -33,15 +33,10 @@ public struct SynchronizationContext {
         fetchRequest.predicate = NSPredicate(format: "id = %@", objectId)
 
         let objects = try self.coreDataContext.fetch(fetchRequest)
-
-        if objects.count > 1 {
-            // TODO: Logging
-            //            SyncEngine.log?("Found multiple resources while updating relationship (entity name: \(entityName), \(objectId))", .warning)
-        }
-
         return objects.first
     }
 
+    // TODO: move to DATABASE
     public func findIncludedObject(forKey key: KeyType, ofObject object: ResourceData) -> FindIncludedObjectResult {
         guard let resourceIdentifier = try? object.value(for: "\(key).data") as ResourceIdentifier else {
             return .notExisting
@@ -66,6 +61,7 @@ public struct SynchronizationContext {
         return .object(resourceIdentifier.id, resourceData)
     }
 
+    // TODO: move to DATABASE
     public func findIncludedObjects(forKey key: KeyType, ofObject object: ResourceData) -> FindIncludedObjectsResult {
         guard let resourceIdentifiers = try? object.value(for: "\(key).data") as [ResourceIdentifier] else {
             return .notExisting

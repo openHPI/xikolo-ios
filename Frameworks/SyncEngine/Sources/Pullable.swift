@@ -9,13 +9,10 @@ import Marshal
 public protocol Pullable: ResourceRepresentable, Validatable {
 
     static func value(from object: ResourceData, with context: SynchronizationContext) throws -> Self
-
     mutating func update(from object: ResourceData, with context: SynchronizationContext) throws
 
-
     // strategy
-    static var resourceKeyAttribute: String { get } // todo: use keypath!?
-
+    static var resourceKeyAttribute: String { get }
     static func queryItems<Query>(forQuery query: Query) -> [URLQueryItem] where Query: ResourceQuery
     static func validateObjectCreation(object: ResourceData) throws
     static func extractResourceData(from object: ResourceData) throws -> ResourceData

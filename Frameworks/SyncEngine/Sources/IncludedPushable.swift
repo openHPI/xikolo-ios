@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-public protocol ResourceRepresentable: ResourceTypeRepresentable {
+public protocol IncludedPushable {
 
-    var id: String { get set }
+    func resourceAttributes() -> [String: Any]
 
 }

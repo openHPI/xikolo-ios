@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-public protocol ResourceRepresentable: ResourceTypeRepresentable {
+public protocol ResourceTypeRepresentable {
 
-    var id: String { get set }
+    static var type: String { get }
 
 }

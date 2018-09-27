@@ -6,26 +6,16 @@
 import CoreData
 import Result
 
-public enum ObjectState: Int16 {
-    case unchanged = 0
-    case new
-    case modified
-    case deleted
-}
-
-public protocol IncludedPushable {
-    func resourceAttributes() -> [String: Any]
-}
-
 public protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult, Validatable {
-    var objectStateValue: ObjectState.RawValue { get set }
 
     static func resourceData(attributes: [String: Any], relationships: [String: AnyObject]?) -> Result<Data, SyncError>
 
+    var objectStateValue: ObjectState.RawValue { get set }
+
+    func resourceData() -> Result<Data, SyncError>
     func resourceRelationships() -> [String: AnyObject]?
     func markAsUnchanged()
 
-    func resourceData() -> Result<Data, SyncError>
 }
 
 public extension Pushable {

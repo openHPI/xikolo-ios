@@ -8,48 +8,6 @@ import CoreData
 import Marshal
 import Result
 
-public protocol SyncEngineResult {
-    var headers: [AnyHashable: Any] { get }
-}
-
-public struct SyncMultipleResult: SyncEngineResult {
-    public let objectIds: [NSManagedObjectID]
-    public let headers: [AnyHashable: Any]
-}
-
-public struct SyncSingleResult: SyncEngineResult {
-    public let objectId: NSManagedObjectID
-    public let headers: [AnyHashable: Any]
-}
-
-private struct MergeMultipleResult<Resource> where Resource: NSManagedObject & Pullable {
-    let resources: [Resource]
-    let headers: [AnyHashable: Any]
-}
-
-private struct MergeSingleResult<Resource> where Resource: NSManagedObject & Pullable {
-    let resource: Resource
-    let headers: [AnyHashable: Any]
-}
-
-private struct NetworkResult: SyncEngineResult {
-    let resourceData: ResourceData
-    let headers: [AnyHashable: Any]
-}
-
-public protocol SyncNetworker {
-    func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
-}
-
-
-public enum SyncEngineOperation {
-    case sync
-    case create
-    case save
-    case delete
-}
-
-
 public protocol SyncEngine {
 
     associatedtype Networker: SyncNetworker
@@ -72,7 +30,7 @@ public protocol SyncEngine {
 
 }
 
-extension SyncEngine {
+public extension SyncEngine {
 
     func didSucceedOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withResult result: SyncEngineResult) {}
     func didFailOperation(_ operationType: SyncEngineOperation, forResourceType resourceType: String, withError error: SyncEngineError) {}

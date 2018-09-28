@@ -54,6 +54,7 @@ class CourseCell: UICollectionViewCell {
         self.statusView.layer.cornerRadius = cornerRadius
         self.statusView.layer.masksToBounds = true
         self.statusView.backgroundColor = Brand.default.colors.secondary
+        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]

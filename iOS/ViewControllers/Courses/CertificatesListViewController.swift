@@ -62,7 +62,9 @@ extension CertificatesListViewController { // TableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
         let certificate = self.certificates[indexPath.section]
         cell.textLabel?.text = certificate.name
+        cell.textLabel?.backgroundColor = .white
         cell.detailTextLabel?.text = self.stateOfCertificate(withURL: certificate.url)
+        cell.detailTextLabel?.backgroundColor = .white
         cell.enable(certificate.url != nil)
         cell.accessoryType = certificate.url != nil ? .disclosureIndicator : .none
         return cell

@@ -132,7 +132,10 @@ class AppNavigator {
     }
 
     static func show(course: Course, with courseArea: CourseArea = .learnings) {
-        if let courseViewController = self.currentCourseNavigationController?.courseViewController, courseViewController.course.id == course.id {
+        let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
+        let someCourseViewController = self.currentCourseNavigationController?.courseViewController
+
+        if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
             if course.accessible || courseArea.acessibleWithoutEnrollment {
                 self.currentCourseNavigationController?.popToRootViewController(animated: true)
                 courseViewController.area = courseArea

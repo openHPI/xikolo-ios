@@ -5,6 +5,7 @@
 
 import BrightFutures
 import Common
+import CoreData
 import UIKit
 
 class DashboardViewController: UITableViewController {
@@ -17,6 +18,14 @@ class DashboardViewController: UITableViewController {
 
         self.addRefreshControl()
         self.refresh()
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +62,18 @@ class DashboardViewController: UITableViewController {
             if let configuration = sender as? CourseListConfiguration {
                 typedInfo.destination.configuration = configuration
             }
+        }
+    }
+
+    @objc private func coreDataChange(notification: Notification) {
+        let shouldCheckForChangesToPush = [NSUpdatedObjectsKey, NSInsertedObjectsKey, NSDeletedObjectsKey, NSRefreshedObjectsKey].map { key in
+            guard let objects = notification.userInfo?[key] as? Set<NSManagedObject>, !objects.isEmpty else { return false }
+            return objects.contains { $0 is CourseDate }
+            }.reduce(false) { $0 || $1 }
+
+        if shouldCheckForChangesToPush {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .fade)
         }
     }
 

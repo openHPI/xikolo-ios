@@ -140,6 +140,7 @@ class DetailedDataView: UIStackView {
 
     private lazy var progressView: CircularProgressView = {
         let progress = CircularProgressView()
+        progress.backgroundColor = .white
         progress.lineWidth = 1.25
         progress.gapWidth = 0.0
         progress.indeterminateProgress = 0.8
@@ -212,6 +213,7 @@ class DetailedDataView: UIStackView {
     private func textLabel(forContentItem contentItem: DetailedData, in downloadState: DownloadState, inOfflineMode isOffline: Bool) -> UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
+        label.backgroundColor = .white
 
         let downloaded: Bool
         switch contentItem {

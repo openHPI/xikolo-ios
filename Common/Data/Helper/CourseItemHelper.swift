@@ -5,20 +5,21 @@
 
 import BrightFutures
 import Foundation
+import SyncEngine
 
 public struct CourseItemHelper {
 
-    public static func syncCourseItems(forSection section: CourseSection) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    public static func syncCourseItems(forSection section: CourseSection) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.orderedCourseItems(forSection: section)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
-    public static func syncCourseItems(forCourse course: Course) -> Future<[SyncEngine.SyncMultipleResult], XikoloError> {
+    public static func syncCourseItems(forCourse course: Course) -> Future<[SyncMultipleResult], XikoloError> {
         return CourseSectionHelper.syncCourseSections(forCourse: course).flatMap { sectionObjectIds in
-            return sectionObjectIds.objectIds.compactMap { sectionObjectId -> Future<SyncEngine.SyncMultipleResult, XikoloError> in
-                let promise = Promise<SyncEngine.SyncMultipleResult, XikoloError>()
+            return sectionObjectIds.objectIds.compactMap { sectionObjectId -> Future<SyncMultipleResult, XikoloError> in
+                let promise = Promise<SyncMultipleResult, XikoloError>()
 
                 CoreDataHelper.persistentContainer.performBackgroundTask { context in
                     let courseSection = context.typedObject(with: sectionObjectId) as CourseSection
@@ -32,30 +33,30 @@ public struct CourseItemHelper {
     }
 
     @discardableResult public static func syncCourseItems(forCourse course: Course,
-                                                          withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+                                                          withContentType type: String) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forCourse: course, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "course", withValue: course.id)
         query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
     @discardableResult public static func syncCourseItems(forSection section: CourseSection,
-                                                          withContentType type: String) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+                                                          withContentType type: String) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItems(forSection: section, withContentType: type)
         var query = MultipleResourcesQuery(type: CourseItem.self)
         query.addFilter(forKey: "section", withValue: section.id)
         query.addFilter(forKey: "content_type", withValue: type)
         query.include("content")
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false)
     }
 
-    @discardableResult public static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult public static func syncCourseItemWithContent(_ courseItem: CourseItem) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.courseItem(withId: courseItem.id)
         var query = SingleResourceQuery(resource: courseItem)
         query.include("content")
-        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
     @discardableResult public static func markAsVisited(_ item: CourseItem) -> Future<Void, XikoloError> {

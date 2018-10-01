@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SyncEngine
 
 public final class EnrollmentCertificates: NSObject, NSCoding, IncludedPullable {
 

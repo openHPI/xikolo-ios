@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class CourseSection: NSManagedObject {
 
@@ -31,13 +32,13 @@ public final class CourseSection: NSManagedObject {
 
 }
 
-extension CourseSection: Pullable {
+extension CourseSection: JSONAPIPullable {
 
     public static var type: String {
         return "course-sections"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.position = try attributes.value(for: "position")
@@ -47,6 +48,6 @@ extension CourseSection: Pullable {
         self.endsAt = try attributes.value(for: "end_at")
 
         let relationships = try object.value(for: "relationships") as JSON
-        try self.updateRelationship(forKeyPath: \CourseSection.course, forKey: "course", fromObject: relationships, including: includes, inContext: context)
+        try self.updateRelationship(forKeyPath: \CourseSection.course, forKey: "course", fromObject: relationships, with: context)
     }
 }

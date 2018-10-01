@@ -66,12 +66,12 @@ class DashboardViewController: UITableViewController {
     }
 
     @objc private func coreDataChange(notification: Notification) {
-        let shouldCheckForChangesToPush = [NSUpdatedObjectsKey, NSInsertedObjectsKey, NSDeletedObjectsKey, NSRefreshedObjectsKey].map { key in
+        let courseDatesUpdated = [NSUpdatedObjectsKey, NSInsertedObjectsKey, NSDeletedObjectsKey, NSRefreshedObjectsKey].map { key in
             guard let objects = notification.userInfo?[key] as? Set<NSManagedObject>, !objects.isEmpty else { return false }
             return objects.contains { $0 is CourseDate }
-            }.reduce(false) { $0 || $1 }
+        }.reduce(false) { $0 || $1 }
 
-        if shouldCheckForChangesToPush {
+        if courseDatesUpdated {
             let indexPath = IndexPath(row: 0, section: 0)
             self.tableView.reloadRows(at: [indexPath], with: .fade)
         }

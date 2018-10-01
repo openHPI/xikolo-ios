@@ -6,6 +6,12 @@
 import Common
 import UIKit
 
+extension DocumentLocalization: Persistable {
+
+    static let identifierKeyPath: WritableKeyPath<DocumentLocalization, String> = \DocumentLocalization.id
+
+}
+
 extension DocumentLocalization {
 
     var userActions: [UIAlertAction] {

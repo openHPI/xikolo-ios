@@ -15,8 +15,12 @@ import SimulatorStatusMagic
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let syncHelper = SyncHelper()
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
+
+    private lazy var pushEngineManager: SyncPushEngineManager = {
+        let engine = XikoloSyncEngine()
+        return SyncPushEngineManager(syncEngine: engine)
+    }()
 
     var window: UIWindow?
 
@@ -46,16 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
-        SyncEngine.shared.delegate = self.syncHelper
-        SyncPushEngine.shared.delegate = CrashlyticsHelper.shared
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
+        ErrorManager.shared.register(reporter: CrashlyticsHelper.shared)
+
         // register resource to be pushed automatically
-        SyncPushEngine.shared.register(Announcement.self)
-        SyncPushEngine.shared.register(CourseItem.self)
-        SyncPushEngine.shared.register(Enrollment.self)
-        SyncPushEngine.shared.register(TrackingEvent.self)
-        SyncPushEngine.shared.startObserving()
+        self.pushEngineManager.register(Announcement.self)
+        self.pushEngineManager.register(CourseItem.self)
+        self.pushEngineManager.register(Enrollment.self)
+        self.pushEngineManager.register(TrackingEvent.self)
+        self.pushEngineManager.startObserving()
 
         UserProfileHelper.shared.migrateLegacyKeychain()
 
@@ -128,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         ReachabilityHelper.stopObserving()
-        SyncPushEngine.shared.stopObserving()
+        self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
     }
 

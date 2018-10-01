@@ -7,6 +7,7 @@ import BrightFutures
 import CoreData
 import Foundation
 import Result
+import SyncEngine
 
 public class AnnouncementHelper {
 
@@ -16,20 +17,20 @@ public class AnnouncementHelper {
 
     private init() {}
 
-    @discardableResult public func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public func syncAllAnnouncements() -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
 
-    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
+    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }

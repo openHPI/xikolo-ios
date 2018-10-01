@@ -6,6 +6,12 @@
 import Common
 import UIKit
 
+extension Video: Persistable {
+
+    static let identifierKeyPath: WritableKeyPath<Video, String> = \Video.id
+
+}
+
 extension Video {
 
     var streamURLForDownload: URL? {

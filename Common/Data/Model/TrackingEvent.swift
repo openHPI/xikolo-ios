@@ -4,6 +4,7 @@
 //
 
 import CoreData
+import SyncEngine
 
 public final class TrackingEvent: NSManagedObject {
 
@@ -33,21 +34,24 @@ public final class TrackingEvent: NSManagedObject {
 
 }
 
-extension TrackingEvent: Pushable {
+extension TrackingEvent: JSONAPIPushable {
 
     public static var type: String {
         return "tracking-events"
     }
 
-    var objectState: ObjectState {
-        return .new
+    public var objectStateValue: Int16 {
+        get {
+            return ObjectState.new.rawValue
+        }
+        set {}
     }
 
-    func markAsUnchanged() {
+    public func markAsUnchanged() {
         // No need to implement something here
     }
 
-    func resourceAttributes() -> [String: Any] {
+    public func resourceAttributes() -> [String: Any] {
         let dateFormatOptions: ISO8601DateFormatter.Options
         if #available(iOS 11.2, *) {
             // Yes, .withFractionalSeconds is avaiable since iOS 11.0 but this will crash on iOS 11.1

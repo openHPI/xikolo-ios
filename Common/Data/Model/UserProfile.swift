@@ -4,6 +4,7 @@
 //
 
 import CoreData
+import SyncEngine
 
 public final class UserProfile: NSManagedObject {
 
@@ -21,13 +22,13 @@ public final class UserProfile: NSManagedObject {
 
 }
 
-extension UserProfile: Pullable {
+extension UserProfile: JSONAPIPullable {
 
     public static var type: String {
         return "user-profile"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.displayName = try attributes.value(for: "display_name")
         self.firstName = try attributes.value(for: "first_name")

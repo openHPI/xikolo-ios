@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class CourseItem: NSManagedObject {
 
@@ -18,7 +19,7 @@ public final class CourseItem: NSManagedObject {
     @NSManaged public var icon: String?
     @NSManaged public var exerciseType: String?
     @NSManaged public var deadline: Date?
-    @NSManaged private var objectStateValue: Int16
+    @NSManaged public var objectStateValue: Int16
 
     @NSManaged public var content: Content?
     @NSManaged public var section: CourseSection?
@@ -51,13 +52,13 @@ public final class CourseItem: NSManagedObject {
 
 }
 
-extension CourseItem: Pullable {
+extension CourseItem: JSONAPIPullable {
 
     public static var type: String {
         return "course-items"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.position = try attributes.value(for: "position")
@@ -73,14 +74,12 @@ extension CourseItem: Pullable {
         try self.updateRelationship(forKeyPath: \CourseItem.section,
                                     forKey: "section",
                                     fromObject: relationships,
-                                    including: includes,
-                                    inContext: context)
+                                    with: context)
 
         try self.updateAbstractRelationship(forKeyPath: \CourseItem.content,
                                             forKey: "content",
                                             fromObject: relationships,
-                                            including: includes,
-                                            inContext: context) { container in
+                                            with: context) { container in
             try container.update(forType: Video.self)
             try container.update(forType: RichText.self)
             try container.update(forType: Quiz.self)
@@ -91,22 +90,13 @@ extension CourseItem: Pullable {
 
 }
 
-extension CourseItem: Pushable {
+extension CourseItem: JSONAPIPushable {
 
-    var objectState: ObjectState {
-        get {
-            return ObjectState(rawValue: self.objectStateValue).require(hint: "No object state for course item")
-        }
-        set {
-            self.objectStateValue = newValue.rawValue
-        }
-    }
-
-    func markAsUnchanged() {
+    public func markAsUnchanged() {
         self.objectState = .unchanged
     }
 
-    func resourceAttributes() -> [String: Any] {
+    public func resourceAttributes() -> [String: Any] {
         return ["visited": self.visited]
     }
 

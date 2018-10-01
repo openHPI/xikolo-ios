@@ -125,19 +125,41 @@ public class UserProfileHelper {
 
     public private(set) var userId: String? {
         get {
-            return self.keychain[KeychainKey.userId.rawValue]
+            do {
+                return try self.keychain.get(KeychainKey.userId.rawValue)
+            } catch {
+                ErrorManager.shared.report(error)
+                return nil
+            }
         }
         set {
-            self.keychain[KeychainKey.userId.rawValue] = newValue
+            do {
+                if let value = newValue {
+                    try self.keychain.set(value, key: KeychainKey.userId.rawValue)
+                } else {
+                    try self.keychain.remove(KeychainKey.userId.rawValue)
+                }
+            } catch {
+                ErrorManager.shared.report(error)
+            }
         }
     }
 
     var userToken: String {
         get {
-            return self.keychain[KeychainKey.userToken.rawValue] ?? ""
+            do {
+                return try self.keychain.get(KeychainKey.userToken.rawValue) ?? ""
+            } catch {
+                ErrorManager.shared.report(error)
+                return ""
+            }
         }
         set {
-            self.keychain[KeychainKey.userToken.rawValue] = newValue
+            do {
+                try self.keychain.set(newValue, key: KeychainKey.userToken.rawValue)
+            } catch {
+                ErrorManager.shared.report(error)
+            }
         }
     }
 
@@ -146,6 +168,7 @@ public class UserProfileHelper {
             try self.keychain.removeAll()
         } catch {
             log.error("Failed to clear keychain - \(error)")
+            ErrorManager.shared.report(error)
             self.delegate?.didFailToClearKeychain(withError: error)
         }
     }

@@ -10,17 +10,11 @@ import SyncEngine
 
 public struct EnrollmentHelper {
 
-
-    public static func createEnrollment(for course: Course) -> Future<Void, XikoloError> { //TODO SyncError
+    public static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
         let attributes = ["completed": false]
         let relationships = ["course": course as AnyObject]
         let resourceData = Enrollment.resourceData(attributes: attributes, relationships: relationships)
-
-        return resourceData.mapError { error -> XikoloError in
-            return .synchronization(error)
-        }.flatMap { data in
-            return XikoloSyncEngine().createResource(ofType: Enrollment.self, withData: data).asVoid()
-        }
+        return XikoloSyncEngine().createResource(ofType: Enrollment.self, withData: resourceData).asVoid()
     }
 
     public static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {

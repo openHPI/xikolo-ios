@@ -386,12 +386,20 @@ public extension SyncEngine {
 
     // MARK: - creating
 
-    @discardableResult public func createResource<Resource>(ofType resourceType: Resource.Type,
-                                                            withData resourceData: Data) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
-        let query = MultipleResourcesQuery(type: Resource.self)
-        let urlRequest = self.buildCreateRequest(forQuery: query, withData: resourceData)
+    @discardableResult
+    public func createResource<Resource>(ofType resourceType: Resource.Type,
+                                         withData resourceData: Data) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
+        let resourceDataResult = Result<Data, SyncError>(value: resourceData)
+        return self.createResource(ofType: resourceType, withData: resourceDataResult)
+    }
 
-        let networkRequest = urlRequest.flatMap { request in
+    @discardableResult
+    public func createResource<Resource>(ofType resourceType: Resource.Type,
+                                        withData resourceDataResult: Result<Data, SyncError>) -> Future<SyncSingleResult, SyncEngineError> where Resource: NSManagedObject & Pullable & Pushable {
+        let networkRequest = resourceDataResult.flatMap { resourceData -> Result<URLRequest, SyncError> in
+            let query = MultipleResourcesQuery(type: Resource.self)
+            return self.buildCreateRequest(forQuery: query, withData: resourceData)
+        }.flatMap { request in
             return self.doNetworkRequest(request, forResource: Resource.self)
         }
 
@@ -431,7 +439,8 @@ public extension SyncEngine {
         }
     }
 
-    @discardableResult public func createResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pushable {
+    @discardableResult
+    public func createResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pushable {
         let query = MultipleResourcesQuery(type: Resource.self)
         let urlRequest = self.buildCreateRequest(forQuery: query, forResource: resource)
 
@@ -446,7 +455,8 @@ public extension SyncEngine {
 
     // MARK: - saving
 
-    @discardableResult public func saveResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pullable & Pushable {
+    @discardableResult
+    public func saveResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pullable & Pushable {
         let query = SingleResourceQuery(type: Resource.self, id: resource.id)
         let urlRequest = self.buildSaveRequest(forQuery: query, forResource: resource)
 
@@ -461,7 +471,8 @@ public extension SyncEngine {
 
     // MARK: - deleting
 
-    @discardableResult public func deleteResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pullable & Pushable {
+    @discardableResult
+    public func deleteResource<Resource>(_ resource: Resource) -> Future<Void, SyncEngineError> where Resource: Pullable & Pushable {
         let query = SingleResourceQuery(type: Resource.self, id: resource.id)
         let networkRequest = self.buildDeleteRequest(forQuery: query).flatMap { request in
             return self.doNetworkRequest(request, forResource: Resource.self, expectsData: false)

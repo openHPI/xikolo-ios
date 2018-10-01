@@ -181,16 +181,18 @@ extension CourseItemListViewController: CoreDataTableViewDataSourceDelegate {
 
 extension CourseItemListViewController: RefreshableViewController {
 
+    private var preloadingWanted: Bool {
+        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
+        return contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
+    }
+
     func refreshingAction() -> Future<Void, XikoloError> {
+        self.isPreloading = self.preloadingWanted && !self.contentToBePreloaded.isEmpty
         return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
     }
 
     func didRefresh() {
-        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
-        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
-        self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
-
-        guard preloadingWanted else { return }
+        guard self.preloadingWanted else { return }
         self.preloadCourseContent()
     }
 

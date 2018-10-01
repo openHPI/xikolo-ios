@@ -1,4 +1,4 @@
-• Fix bug when submitting quizzes
+• Bug fixes and general improvements
 
 Also in version 2.4:
 • New dashboard showing an overview of current and completed courses as well as upcoming course dates

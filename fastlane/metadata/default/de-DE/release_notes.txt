@@ -1,4 +1,4 @@
-• Fehler beim Absenden von Selbsttests behoben
+• Fehlerkorrekturen und allgemeine Verbesserungen
 
 Auch in Version 2.4:
 • Neues Dashboard mit der Übersicht von aktuellen und abgeschlossenen Kursen, sowie zukünftigen Kursterminen

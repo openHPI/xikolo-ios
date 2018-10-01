@@ -20,7 +20,7 @@ public struct XikoloNetworker: SyncNetworker {
     }
 
     public func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        let task = self.session.dataTask(with: request) { (data, response, error) in
+        let task = self.session.dataTask(with: request) { data, response, error in
             #if os(iOS)
             NetworkIndicator.end()
             #endif

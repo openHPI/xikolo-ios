@@ -145,7 +145,6 @@ class XikoloTabBarController: UITabBarController {
         }
     }
 
-
     private func heightOfTabBarItems() -> CGFloat? {
         var heightCounter: [CGFloat: Int] = [:]
         for subview in self.tabBar.subviews.filter({ $0 != self.messageView }) {

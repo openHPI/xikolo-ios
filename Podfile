@@ -16,7 +16,6 @@ target 'Common' do
     pod 'BrightFutures', '~> 6.0'
     pod 'Down', '~> 0.4'
     pod 'KeychainAccess', '~> 3.1'
-    # pod 'Marshal', '~> 1.2'
     pod 'ReachabilitySwift', '~> 4.1'
     pod 'SDWebImage', '~> 4.2'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'

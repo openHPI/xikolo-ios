@@ -3,10 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import SyncEngine
-
 public protocol ErrorReporter {
+
     func report(_ error: Error)
+
 }
 
 public class ErrorManager {

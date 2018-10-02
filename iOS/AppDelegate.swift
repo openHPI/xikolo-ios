@@ -4,6 +4,7 @@
 //
 
 import Common
+import Crashlytics
 import Firebase
 import SDWebImage
 import UIKit
@@ -52,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AnnouncementHelper.shared.delegate = self
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
-        ErrorManager.shared.register(reporter: CrashlyticsHelper.shared)
+        ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
 
         // register resource to be pushed automatically
         self.pushEngineManager.register(Announcement.self)
@@ -71,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try ReachabilityHelper.startObserving()
         } catch {
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.report(error)
             log.error("Failed to start reachability notification")
         }
 
@@ -165,14 +166,14 @@ extension AppDelegate: UITabBarControllerDelegate {
 
         guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
             let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            ErrorManager.shared.reportStoryboardError(reason: reason)
             log.error(reason)
             return false
         }
 
         guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
             let reason = "Could not find LoginViewController"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            ErrorManager.shared.reportStoryboardError(reason: reason)
             log.error(reason)
             return false
         }

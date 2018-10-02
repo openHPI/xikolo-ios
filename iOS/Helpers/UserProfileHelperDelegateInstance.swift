@@ -4,7 +4,6 @@
 //
 
 import Common
-import Foundation
 
 class UserProfileHelperDelegateInstance: UserProfileHelperDelegate {
 
@@ -14,14 +13,6 @@ class UserProfileHelperDelegateInstance: UserProfileHelperDelegate {
 
     func networkActivityEnded() {
         NetworkIndicator.end()
-    }
-
-    public func didFailToClearKeychain(withError error: Error) {
-        CrashlyticsHelper.shared.recordError(error)
-    }
-
-    public func didFailToClearCoreDataEnitity(withError error: XikoloError) {
-        CrashlyticsHelper.shared.recordError(error)
     }
 
 }

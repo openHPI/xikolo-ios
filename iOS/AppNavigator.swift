@@ -121,7 +121,7 @@ class AppNavigator {
     @discardableResult static func showCourseList() -> Bool {
         guard let tabBarController = AppDelegate.instance().tabBarController else {
             let reason = "UITabBarController could not be found"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            ErrorManager.shared.reportStoryboardError(reason: reason)
             log.error(reason)
             return false
         }

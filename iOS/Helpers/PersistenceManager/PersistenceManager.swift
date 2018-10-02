@@ -160,8 +160,8 @@ extension PersistenceManager {
             self.resourceModificationAfterDeletingDownload(for: resource)
             try context.save()
         } catch {
-            CrashlyticsHelper.shared.setObjectValue((Self.downloadType, resourceIdentifier), forKey: "resource")
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.remember((Self.downloadType, resourceIdentifier), forKey: "resource")
+            ErrorManager.shared.report(error)
             log.error("An error occured deleting the file: \(error)")
         }
 
@@ -233,16 +233,16 @@ extension PersistenceManager {
                                 self.resourceModificationAfterDeletingDownload(for: resource)
                                 try context.save()
                             } catch {
-                                CrashlyticsHelper.shared.setObjectValue((Self.downloadType, resourceId), forKey: "resource")
-                                CrashlyticsHelper.shared.recordError(error)
+                                ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                                ErrorManager.shared.report(error)
                                 log.error("An error occured deleting the file: \(error)")
                             }
                         }
 
                         self.didFailToDownloadResource(resource, with: error)
                     case let .failure(error):
-                        CrashlyticsHelper.shared.setObjectValue((Self.downloadType, resourceId), forKey: "resource")
-                        CrashlyticsHelper.shared.recordError(error)
+                        ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                        ErrorManager.shared.report(error)
                         log.error("Failed to complete download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
                     }
                 } else {
@@ -283,8 +283,8 @@ extension PersistenceManager {
                     self.deleteDownload(for: resource, in: context)
                 }
             case let .failure(error):
-                CrashlyticsHelper.shared.setObjectValue((Self.downloadType, resourceId), forKey: "resource")
-                CrashlyticsHelper.shared.recordError(error)
+                ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                ErrorManager.shared.report(error)
                 log.error("Failed to finish download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
             }
         }

@@ -64,7 +64,7 @@ class SpotlightHelper {
                                     attributeSet: attributeSet)
         CSSearchableIndex.default().indexSearchableItems([item]) { error in
             if let error = error {
-                CrashlyticsHelper.shared.recordError(error)
+                ErrorManager.shared.report(error)
                 log.error(error.localizedDescription)
             } else {
                 log.verbose("Item indexed.")
@@ -80,7 +80,7 @@ class SpotlightHelper {
 
         CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [url.absoluteString]) { error in
             if let error = error {
-                CrashlyticsHelper.shared.recordError(error)
+                ErrorManager.shared.report(error)
                 log.error(error.localizedDescription)
             } else {
                 log.verbose("Item deleted.")

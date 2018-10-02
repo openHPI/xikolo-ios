@@ -84,10 +84,13 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
             let fetchRequest = NSFetchRequest(entityName: entityName) as NSFetchRequest<NSFetchRequestResult>
 
-            if let objects = try? context.fetch(fetchRequest) {
+            do {
+                let objects = try context.fetch(fetchRequest)
                 for case let object as (NSManagedObject & Pushable) in objects {
                     self.pushChanges(for: object.objectID)
                 }
+            } catch {
+                ErrorManager.shared.report(error)
             }
         }
     }
@@ -144,6 +147,7 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                     try context.save()
                 } catch {
                     log.error("while pushing core data changes: \(error)")
+                    ErrorManager.shared.report(error)
                 }
             }
         }
@@ -170,10 +174,13 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
             let fetchRequest = NSFetchRequest(entityName: entityName) as NSFetchRequest<NSFetchRequestResult>
             fetchRequest.predicate = NSPredicate(format: "objectStateValue != %d", ObjectState.unchanged.rawValue)
 
-            if let objects = try? context.fetch(fetchRequest) {
+            do {
+                let objects = try context.fetch(fetchRequest)
                 for case let object as (NSManagedObject & Pushable) in objects {
                     self.pushChanges(for: object.objectID)
                 }
+            } catch {
+                ErrorManager.shared.report(error)
             }
         }
     }
@@ -231,6 +238,7 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
                     try context.save()
                 } catch {
                     log.error("while pushing core data changes: \(error)")
+                    ErrorManager.shared.report(error)
                 }
             }
         }

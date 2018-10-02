@@ -32,7 +32,7 @@ class RichtextViewController: UIViewController {
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
 
-        CrashlyticsHelper.shared.setObjectValue(self.courseItem.id, forKey: "item_id")
+        ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
 
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }

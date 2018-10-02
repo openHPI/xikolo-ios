@@ -97,7 +97,7 @@ public class UserProfileHelper {
     public func logout() {
         self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onFailure { error in
-            self.delegate?.didFailToClearCoreDataEnitity(withError: error)
+            ErrorManager.shared.report(error)
         }.onComplete { _ in
             self.postLoginStateChange()
         }
@@ -169,7 +169,6 @@ public class UserProfileHelper {
         } catch {
             log.error("Failed to clear keychain - \(error)")
             ErrorManager.shared.report(error)
-            self.delegate?.didFailToClearKeychain(withError: error)
         }
     }
 
@@ -196,8 +195,5 @@ public protocol UserProfileHelperDelegate: AnyObject {
 
     func networkActivityStarted()
     func networkActivityEnded()
-
-    func didFailToClearKeychain(withError error: Error)
-    func didFailToClearCoreDataEnitity(withError error: XikoloError)
 
 }

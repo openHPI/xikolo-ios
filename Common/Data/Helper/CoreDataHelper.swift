@@ -65,6 +65,7 @@ public class CoreDataHelper {
                 promise.success(())
             } catch {
                 log.error("Failed to bulk delete all enities of \(entityName) - \(error)")
+                ErrorManager.shared.report(error)
                 promise.failure(.coreData(error))
             }
         }

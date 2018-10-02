@@ -38,8 +38,8 @@ final class DocumentsPersistenceManager: NSObject, FilePersistenceManager {
     }
 
     func didFailToDownloadResource(_ resource: DocumentLocalization, with error: NSError) {
-        CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
-        CrashlyticsHelper.shared.recordError(error)
+        ErrorManager.shared.remember((Resource.type, resource.id), forKey: "resource")
+        ErrorManager.shared.report(error)
         log.error("Unknown asset download error (resource type: \(Resource.type) | resource id: \(resource.id) | domain: \(error.domain) | code: \(error.code)")
 
         // show error

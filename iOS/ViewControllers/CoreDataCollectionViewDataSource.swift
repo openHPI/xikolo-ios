@@ -110,7 +110,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
                 try fetchedResultsController.performFetch()
             }
         } catch {
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.report(error)
             log.error(error)
         }
 
@@ -430,7 +430,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         do {
             try self.searchFetchResultsController?.performFetch()
         } catch {
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.report(error)
             log.error(error)
         }
 

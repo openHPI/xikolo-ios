@@ -6,10 +6,12 @@
 public protocol ErrorReporter {
 
     func report(_ error: Error)
+    func reportStoryboardError(reason: String)
+    func remember(_ value: Any?, forKey key: String)
 
 }
 
-public class ErrorManager {
+public class ErrorManager: ErrorReporter {
 
     private var reporters: [ErrorReporter] = []
 
@@ -21,6 +23,14 @@ public class ErrorManager {
 
     public func report(_ error: Error) {
         self.reporters.forEach { $0.report(error) }
+    }
+
+    public func reportStoryboardError(reason: String) {
+        self.reporters.forEach { $0.reportStoryboardError(reason: reason) }
+    }
+
+    public func remember(_ value: Any?, forKey key: String) {
+        self.reporters.forEach { $0.remember(value, forKey: key) }
     }
 
     func reportAPIError(_ error: XikoloError) {

@@ -90,7 +90,7 @@ class VideoViewController: UIViewController {
                                        name: Notification.Name.reachabilityChanged,
                                        object: nil)
 
-        CrashlyticsHelper.shared.setObjectValue(self.courseItem.id, forKey: "item_id")
+        ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
     }
 
     override func viewWillAppear(_ animated: Bool) {

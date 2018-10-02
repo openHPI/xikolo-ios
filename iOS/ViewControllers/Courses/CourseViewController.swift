@@ -45,7 +45,7 @@ class CourseViewController: UIViewController {
         self.decideContent()
 
         SpotlightHelper.shared.setUserActivity(for: self.course)
-        CrashlyticsHelper.shared.setObjectValue(self.course.id, forKey: "course_id")
+        ErrorManager.shared.remember(self.course.id, forKey: "course_id")
     }
 
     private func updateView() {

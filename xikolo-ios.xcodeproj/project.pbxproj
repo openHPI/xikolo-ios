@@ -49,7 +49,7 @@
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
 		50930B6220ED10610085C6DB /* CommonLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B6120ED10610085C6DB /* CommonLocalizedString.swift */; };
 		5095B1DC20EB570B00572924 /* Filemanager+temporaryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */; };
-		5095B1DD20EB81E900572924 /* CrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */; };
+		5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */; };
 		5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1DE20EBA9D700572924 /* UserDefaults+playbackRate.swift */; };
 		5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
@@ -450,7 +450,7 @@
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPersistenceManager.swift; sourceTree = "<group>"; };
-		50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsHelper.swift; sourceTree = "<group>"; };
+		50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crashlytics.swift; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50CF1F3E20DCCF4F0011BFE9 /* openHPI-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
@@ -743,7 +743,7 @@
 			children = (
 				50082B4E20BFDA4400B4511C /* PersistenceManager */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
-				50BEC82E2036BB7F00CEF963 /* CrashlyticsHelper.swift */,
+				50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */,
 				5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */,
 				50E0351E213673F8001F963D /* CourseListConfiguration.swift */,
 			);
@@ -1855,7 +1855,7 @@
 				508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */,
 				50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */,
 				50CF1F7220DCDBFC0011BFE9 /* CourseListLayout.swift in Sources */,
-				5095B1DD20EB81E900572924 /* CrashlyticsHelper.swift in Sources */,
+				5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */,
 				508AB2EA2111F41D0079EAE5 /* CourseDateOverviewCell.swift in Sources */,
 				5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */,
 				50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */,

@@ -11,10 +11,11 @@ import UIKit
 
 class CourseItemListViewController: UITableViewController {
 
+    private static let contentToBePreloaded: [PreloadableCourseItemContent.Type] = [Video.self, RichText.self]
+
     private var course: Course!
     private var dataSource: CoreDataTableViewDataSource<CourseItemListViewController>!
 
-    var contentToBePreloaded: [DetailedCourseItem.Type] = [Video.self, RichText.self]
     var isPreloading = false
     var inOfflineMode = ReachabilityHelper.connection == .none {
         didSet {
@@ -102,7 +103,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     func preloadCourseContent() {
-        self.contentToBePreloaded.traverse { contentType in
+        CourseItemListViewController.contentToBePreloaded.traverse { contentType in
             return contentType.preloadContent(forCourse: self.course)
         }.onComplete { _ in
             self.isPreloading = false
@@ -187,7 +188,7 @@ extension CourseItemListViewController: RefreshableViewController {
     }
 
     func refreshingAction() -> Future<Void, XikoloError> {
-        self.isPreloading = self.preloadingWanted && !self.contentToBePreloaded.isEmpty
+        self.isPreloading = self.preloadingWanted && !CourseItemListViewController.contentToBePreloaded.isEmpty
         return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
     }
 
@@ -207,6 +208,14 @@ extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDe
 
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
         self.refresh()
+    }
+
+}
+
+extension CourseItemListViewController: CourseItemCellDelegate {
+
+    func isPreloading(for contentType: String?) -> Bool {
+        return self.isPreloading && CourseItemListViewController.contentToBePreloaded.contains { $0.contentType == contentType }
     }
 
 }

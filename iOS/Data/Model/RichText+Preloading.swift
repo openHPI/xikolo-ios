@@ -3,11 +3,9 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import BrightFutures
 import Common
-import Foundation
 
-extension RichText: DetailedCourseItem {
+extension RichText: PreloadableCourseItemContent {
 
     static var contentType: String {
         return "rich_text"

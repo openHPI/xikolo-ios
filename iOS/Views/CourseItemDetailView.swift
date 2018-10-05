@@ -64,16 +64,14 @@ class CourseItemDetailView: UIView {
         ])
     }
 
-    func configure(for courseItem: CourseItem, with delegate: CourseItemListViewController?) {
+    func configure(for courseItem: CourseItem, with delegate: CourseItemCellDelegate?) {
         self.courseItem = courseItem
 
-        if !(delegate?.contentToBePreloaded.contains(where: { $0.contentType == courseItem.contentType }) ?? false) {
-            // only certain content items will show additional information
-            self.isHidden = true
-        } else if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, !detailedContent.isEmpty {
+        let detailedContent = courseItem.detailedContent
+        if !detailedContent.isEmpty {
             self.setContent(detailedContent, inOfflineMode: delegate?.inOfflineMode ?? false)
             self.isHidden = false
-        } else if delegate?.isPreloading ?? false {
+        } else if delegate?.isPreloading(for: courseItem.contentType) ?? false {
             self.isShimmering = true
             self.isHidden = false
         } else {

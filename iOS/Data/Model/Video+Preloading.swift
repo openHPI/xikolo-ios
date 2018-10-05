@@ -4,9 +4,8 @@
 //
 
 import Common
-import Foundation
 
-extension Video: DetailedCourseItem {
+extension Video: PreloadableCourseItemContent {
 
     static var contentType: String {
         return "video"

@@ -17,6 +17,7 @@ public struct NetworkHelper {
             headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.shared.userToken
         }
 
+        headers[Routes.Header.contentTypeKey] = Routes.Header.contentTypeValue
         headers[Routes.Header.userPlatformKey] = Routes.Header.userPlatformValue
         return headers
     }

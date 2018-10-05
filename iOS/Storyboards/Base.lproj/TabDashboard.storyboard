@@ -149,7 +149,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-R5-lRv">
                                             <rect key="frame" x="16" y="11" width="343" height="307"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G13-HE-khe" customClass="CourseDateSummaryView" customModule="iOS" customModuleProvider="target">
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G13-HE-khe" customClass="CourseDateSummaryView" customModule="iOS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="149"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Course date overview" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-rK-PjH">
@@ -159,10 +159,10 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jog-5J-HrR">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jog-5J-HrR" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="32.5" width="343" height="116.5"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TSC-UU-kfE">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TSC-UU-kfE">
                                                                     <rect key="frame" x="16" y="16.5" width="311" height="82"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="REJ-hZ-MSL">
@@ -322,7 +322,7 @@
                                                         <outletCollection property="pills" destination="2Wz-o1-Dk1" collectionClass="NSMutableArray" id="Hm6-yY-aln"/>
                                                     </connections>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9" customClass="CourseDateNextUpView" customModule="iOS" customModuleProvider="target">
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9" customClass="CourseDateNextUpView" customModule="iOS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="177" width="343" height="130"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Next up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkE-Xg-aPx">
@@ -332,10 +332,10 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAA-4x-gpz">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WAA-4x-gpz" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="32.5" width="343" height="97.5"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGw-Xi-RUH">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" ambiguous="YES" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGw-Xi-RUH">
                                                                     <rect key="frame" x="16" y="16" width="311" height="64.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wE-Ql-Yhg">

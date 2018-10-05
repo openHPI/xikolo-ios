@@ -17,6 +17,7 @@
 		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */; };
+		503988732166920400F9043B /* ShadowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503988722166920400F9043B /* ShadowContainerView.swift */; };
 		5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046BD09212B4DC700B9F2CD /* DocumentLocalization+Download.swift */; };
 		504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83F9215B57D4006F2447 /* ErrorReporter.swift */; };
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
@@ -379,6 +380,7 @@
 		5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableViewController.swift; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		50371FFD20501388006E9634 /* CourseItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemDetailView.swift; sourceTree = "<group>"; };
+		503988722166920400F9043B /* ShadowContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowContainerView.swift; sourceTree = "<group>"; };
 		5040A60420795BBE00E98351 /* CourseDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetails.storyboard; sourceTree = "<group>"; };
 		5040A60920795BFD00E98351 /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
 		5040A61220795CB200E98351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Course.storyboard; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 		24B651471D3551C400624DBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				503988722166920400F9043B /* ShadowContainerView.swift */,
 				508B9FA7211D7A600090BD16 /* RefreshControl.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
@@ -1892,6 +1895,7 @@
 				50CF1FB520DCDBFC0011BFE9 /* VideoPlayerControlView.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
+				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,
 				50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */,
 				50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */,
 				50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */,

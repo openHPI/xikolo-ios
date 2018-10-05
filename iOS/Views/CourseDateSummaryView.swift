@@ -19,7 +19,12 @@ class CourseDateSummaryView: UIStackView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        CourseDateOverviewCell.applyCardLook(to: self.container)
+
+        self.container.layer.cornerRadius = 6.0
+
+//        self.container.backgroundColor = .green
+//        CardView.addShadow(to: self.shadowContainer)
+//        CardView.addRoundedCorners(to: self.container)
 
         self.todayCountLabel.backgroundColor = Brand.default.colors.secondary
         self.nextCountLabel.backgroundColor = Brand.default.colors.secondary
@@ -34,6 +39,12 @@ class CourseDateSummaryView: UIStackView {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
         self.addGestureRecognizer(tapGestureRecognizer)
     }
+
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        CardView.updateClippingPath(of: self.container)
+//        CardView.updateShadowPath(of: self.shadowContainer)
+//    }
 
     func loadData() {
         self.loadCountData(for: CourseDateHelper.FetchRequest.courseDatesForNextDays(numberOfDays: 1), into: self.todayCountLabel)

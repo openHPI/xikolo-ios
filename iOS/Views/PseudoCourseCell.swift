@@ -20,12 +20,7 @@ class PseudoCourseCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.cardView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        self.cardView.layer.shadowOpacity = 0.25
-        self.cardView.layer.shadowRadius = 8.0
         self.cardView.layer.cornerRadius = 6.0
-        self.cardView.layer.shadowColor = UIColor.black.cgColor
-        self.cardView.layer.masksToBounds = false
         self.actionLabel.textColor = Brand.default.colors.window
         self.bottomConstraint.constant = Brand.default.features.showCourseTeachers ? 54.5 : 35.5
     }

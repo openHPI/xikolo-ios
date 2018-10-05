@@ -52,7 +52,7 @@
                                     </fragment>
                                 </attributedString>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9EO-DH-BSR">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9EO-DH-BSR" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="14" y="14" width="372" height="186.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Wq-0A-2eF" userLabel="Course Image">

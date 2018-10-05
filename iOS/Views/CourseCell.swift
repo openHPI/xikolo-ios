@@ -40,12 +40,7 @@ class CourseCell: UICollectionViewCell {
 
         let cornerRadius: CGFloat = 6.0
 
-        self.shadowView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        self.shadowView.layer.shadowOpacity = 0.25
-        self.shadowView.layer.shadowRadius = 8.0
         self.shadowView.layer.cornerRadius = cornerRadius
-        self.shadowView.layer.shadowColor = UIColor.black.cgColor
-        self.shadowView.layer.masksToBounds = false
 
         self.courseImage.layer.cornerRadius = cornerRadius
         self.courseImage.layer.masksToBounds = true

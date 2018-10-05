@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raT-3Q-iQy" customClass="UICollectionReusableView">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="255"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-dp-sgX">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wuq-dp-sgX" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="14" y="14" width="372" height="187"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="S0H-IY-02p">

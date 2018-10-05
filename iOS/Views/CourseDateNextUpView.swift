@@ -16,7 +16,8 @@ class CourseDateNextUpView: UIStackView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        CourseDateOverviewCell.applyCardLook(to: self.container)
+        self.container.layer.cornerRadius = 6.0
+
         self.courseLabel.textColor = Brand.default.colors.secondary
         self.isHidden = true
 

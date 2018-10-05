@@ -3,8 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Common
-import CoreData
 import UIKit
 
 class CourseDateOverviewCell: UITableViewCell {
@@ -16,15 +14,6 @@ class CourseDateOverviewCell: UITableViewCell {
         didSet {
             self.summaryView.delegate = self.delegate
         }
-    }
-
-    static func applyCardLook(to view: UIView) {
-        view.layer.masksToBounds = false
-        view.layer.cornerRadius = 6.0
-        view.layer.shadowOpacity = 0.25
-        view.layer.shadowRadius = 8.0
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
 
     func loadData() {

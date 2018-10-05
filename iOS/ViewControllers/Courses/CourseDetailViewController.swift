@@ -200,16 +200,15 @@ class CourseDetailViewController: UIViewController {
         task().onComplete { _ in
             self.enrollmentButton.stopAnimating()
         }.onSuccess { _ in
-            if newlyCreated {
-                CourseHelper.syncCourse(self.course)
-                CourseDateHelper.syncCourseDates(for: self.course)
-            }
+            CourseHelper.syncCourse(self.course)
+            CourseDateHelper.syncCourseDates(for: self.course)
 
             DispatchQueue.main.async {
                 self.refreshEnrollmentViews()
                 self.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
             }
-        }.onFailure { _ in
+        }.onFailure { error in
+            ErrorManager.shared.report(error)
             self.enrollmentButton.shake()
         }
     }

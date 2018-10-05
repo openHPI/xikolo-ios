@@ -13,7 +13,7 @@ end
 
 target 'Common' do
     platform :ios, '10.0'
-    pod 'BrightFutures', '~> 6.0'
+    pod 'BrightFutures', '~> 7.0'
     pod 'Down', '~> 0.4'
     pod 'KeychainAccess', '~> 3.1'
     pod 'ReachabilitySwift', '~> 4.1'

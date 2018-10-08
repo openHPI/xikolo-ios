@@ -11,6 +11,9 @@ public struct Routes {
         public static let userPlatformKey = "User-Platform"
         public static let userPlatformValue = "iOS"
 
+        public static let userAgentKey = "User-Agent"
+        public static let userAgentValue = "\(UIApplication.appName)/\(UIApplication.appVersion) iOS/\(UIApplication.osVersion) (\(UIApplication.device))"
+
         public static let acceptKey = "Accept"
         public static let acceptValue = "application/vnd.api+json; xikolo-version=\(Routes.apiVersion)"
         public static let acceptPDF = "application/pdf"

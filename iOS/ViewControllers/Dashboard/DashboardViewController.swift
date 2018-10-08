@@ -66,13 +66,8 @@ class DashboardViewController: UITableViewController {
     }
 
     @objc private func coreDataChange(notification: Notification) {
-        let courseDatesChanged = [NSUpdatedObjectsKey, NSInsertedObjectsKey, NSDeletedObjectsKey, NSRefreshedObjectsKey].map { key in
-            guard let objects = notification.userInfo?[key] as? Set<NSManagedObject>, !objects.isEmpty else { return false }
-            return objects.contains { $0 is CourseDate }
-        }.reduce(false) { $0 || $1 }
-
-        let refreshedObjects =  notification.userInfo?[NSRefreshedObjectsKey] as? Set<NSManagedObject>
-        let courseRefreshed = refreshedObjects?.contains { $0 is Course } ?? false
+        let courseDatesChanged = notification.includesChanges(for: CourseDate.self)
+        let courseRefreshed = notification.includesChanges(for: Course.self, keys: [NSRefreshedObjectsKey])
 
         if courseDatesChanged || courseRefreshed {
             let indexPath = IndexPath(row: 0, section: 0)

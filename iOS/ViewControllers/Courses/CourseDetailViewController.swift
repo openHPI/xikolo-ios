@@ -202,6 +202,7 @@ class CourseDetailViewController: UIViewController {
         }.onSuccess { _ in
             CourseHelper.syncCourse(self.course)
             CourseDateHelper.syncCourseDates(for: self.course)
+            AnnouncementHelper.shared.syncAnnouncements(for: self.course)
 
             DispatchQueue.main.async {
                 self.refreshEnrollmentViews()

@@ -22,6 +22,14 @@ class AnnouncementListViewController: UITableViewController {
 
     @IBOutlet private var actionButton: UIBarButtonItem!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -94,6 +102,12 @@ class AnnouncementListViewController: UITableViewController {
 
         self.present(alert, animated: true)
     }
+
+    @objc private func coreDataChange(notification: Notification) {
+        guard notification.includesChanges(for: Enrollment.self, keys: [NSUpdatedObjectsKey, NSRefreshedObjectsKey]) else { return }
+        self.tableView.reloadData()
+    }
+
 }
 
 extension AnnouncementListViewController { // TableViewDelegate

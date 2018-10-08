@@ -4,9 +4,6 @@ about: Create a report to help us improve
 
 ---
 
-**Affected Component**
-View, ViewController, ...
-
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -27,7 +24,10 @@ If applicable, add screenshots to help explain your problem.
  - Type: [e.g. iPhone6, Simulator]
  - OS: [e.g. iOS8.1]
  - App Version: [e.g. 2.2.0]
- - Build number: [e.g. 962]  
+ - Build number: [e.g. 962]
+
+**Affected Component**
+View, ViewController, ...
 
 **Additional context**
 Add any other context about the problem here.

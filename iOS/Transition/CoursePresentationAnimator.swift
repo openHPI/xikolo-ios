@@ -12,11 +12,11 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else {
+        guard let fromViewController = transitionContext.viewController(forKey: .from) else {
             fatalError("from view controller could not be found")
         }
 
-        guard let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
+        guard let toViewController = transitionContext.viewController(forKey: .to) else {
             fatalError("to view controller could not be found")
         }
 
@@ -37,7 +37,7 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         containerView.addSubview(overlayView)
 
-        let animationDuration = transitionDuration(using: transitionContext)
+        let animationDuration = self.transitionDuration(using: transitionContext)
 
         toViewController.view.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)
 

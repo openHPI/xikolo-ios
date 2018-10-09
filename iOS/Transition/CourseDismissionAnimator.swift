@@ -23,12 +23,18 @@ class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
             return propertyAnimator
         }
 
-        guard let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else {
+        guard let fromViewController = transitionContext.viewController(forKey: .from) else {
             fatalError("from view controller could not be found")
         }
 
-        guard let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
+        guard let toViewController = transitionContext.viewController(forKey: .to) else {
             fatalError("from view controller could not be found")
+        }
+
+        // Update frame of toViewController's view to avoid UI glitches when dismissing a course
+        // in a different device orientation compared to the orientation the course was opened in
+        if let windowFrame = AppDelegate.instance().window?.frame {
+            toViewController.view.frame = windowFrame
         }
 
         let containerView = transitionContext.containerView

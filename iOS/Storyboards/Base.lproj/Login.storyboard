@@ -60,7 +60,7 @@
                                             <outlet property="delegate" destination="Njp-vV-ZS8" id="FI1-1p-hcC"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atu-fQ-cU3" customClass="SimpleRoundedButton" customModule="SimpleRoundedButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atu-fQ-cU3" customClass="LoadingButton" customModule="iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100" width="343" height="44"/>
                                         <color key="backgroundColor" red="0.8302288055" green="0.29916566610000001" blue="0.065744034950000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" identifier="loginButton"/>
@@ -266,6 +266,6 @@
     </scenes>
     <resources>
         <image name="brand logo" width="400" height="49"/>
-        <image name="sso logo" width="404" height="200"/>
+        <image name="sso logo" width="97.284278869628906" height="48.160533905029297"/>
     </resources>
 </document>

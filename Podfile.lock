@@ -53,7 +53,6 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
-  - SimpleRoundedButton (1.0)
   - SimulatorStatusMagic (2.3)
   - SnapKit (4.0.0)
   - SwiftLint (0.27.0)
@@ -79,7 +78,6 @@ DEPENDENCIES:
   - R.swift (= 5.0.0.alpha.2)
   - ReachabilitySwift (~> 4.1)
   - SDWebImage (~> 4.2)
-  - SimpleRoundedButton (from `https://github.com/mathebox/SimpleRoundedButton.git`, commit `91225d2`)
   - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
   - SyncEngine (from `./Frameworks/SyncEngine`)
@@ -121,9 +119,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/openHPI/bmplayer.git
   HTMLStyler:
     :path: "./Frameworks/HTMLStyler"
-  SimpleRoundedButton:
-    :commit: 91225d2
-    :git: https://github.com/mathebox/SimpleRoundedButton.git
   SyncEngine:
     :path: "./Frameworks/SyncEngine"
 
@@ -134,9 +129,6 @@ CHECKOUT OPTIONS:
   BMPlayer:
     :commit: a8e110d
     :git: https://github.com/openHPI/bmplayer.git
-  SimpleRoundedButton:
-    :commit: 91225d2
-    :git: https://github.com/mathebox/SimpleRoundedButton.git
 
 SPEC CHECKSUMS:
   BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
@@ -162,13 +154,12 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SimpleRoundedButton: 4a04d0d3d79986973f74e34d543d0bc089fbc3e6
   SimulatorStatusMagic: 631fe6e4195a8a8d587ad8744af9015126526cc2
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SyncEngine: 4fa00bd5bb9ed38e78e5e3ecec1b44f0db6732d1
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
-PODFILE CHECKSUM: 8ceaee20ca95c74c9087f22494d22c8825968221
+PODFILE CHECKSUM: 806aca067f5932df2e075e38e243b314eb751e86
 
 COCOAPODS: 1.5.3

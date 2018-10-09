@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import SDWebImage
-import SimpleRoundedButton
 import UIKit
 
 class CourseDetailViewController: UIViewController {
@@ -18,7 +17,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var dateView: UILabel!
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
-    @IBOutlet private weak var enrollmentButton: SimpleRoundedButton!
+    @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
 
@@ -196,21 +195,24 @@ class CourseDetailViewController: UIViewController {
     }
 
     private func actOnEnrollmentChange(whenNewlyCreated newlyCreated: Bool, for task: () -> Future<Void, XikoloError>) {
-        self.enrollmentButton.startAnimating()
-        task().onComplete { _ in
-            self.enrollmentButton.stopAnimating()
-        }.onSuccess { _ in
-            CourseHelper.syncCourse(self.course)
-            CourseDateHelper.syncCourseDates(for: self.course)
-            AnnouncementHelper.shared.syncAnnouncements(for: self.course)
+        self.enrollmentButton.startAnimation()
+        let dispatchTime = 500.milliseconds.fromNow
+        task().earliest(at: dispatchTime).onComplete { [weak self] _ in
+            self?.enrollmentButton.stopAnimation()
+        }.onSuccess { [weak self] _ in
+            if let course = self?.course {
+                CourseHelper.syncCourse(course)
+                CourseDateHelper.syncCourseDates(for: course)
+                AnnouncementHelper.shared.syncAnnouncements(for: course)
+            }
 
             DispatchQueue.main.async {
-                self.refreshEnrollmentViews()
-                self.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
+                self?.refreshEnrollmentViews()
+                self?.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
             }
-        }.onFailure { error in
+        }.onFailure { [weak self] error in
             ErrorManager.shared.report(error)
-            self.enrollmentButton.shake()
+            self?.enrollmentButton.shake()
         }
     }
 

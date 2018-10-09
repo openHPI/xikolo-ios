@@ -3,9 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-protocol CourseItemCellDelegate {
+protocol CourseItemCellDelegate: AnyObject {
 
     var inOfflineMode: Bool { get }
+
     func isPreloading(for contentType: String?) -> Bool
 
 }

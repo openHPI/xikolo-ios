@@ -6,15 +6,14 @@
 import BrightFutures
 import Common
 import UIKit
-import WebKit
 
 class PDFWebViewController: UIViewController {
 
+    @IBOutlet private weak var webView: UIWebView!
     @IBOutlet private var shareButton: UIBarButtonItem!
 
     var url: URL?
 
-    private var webView: WKWebView?
     private var tempPDFFile: TemporaryFile? {
         didSet {
             try? oldValue?.deleteDirectory()
@@ -33,7 +32,6 @@ class PDFWebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initializeWebView()
         self.navigationItem.rightBarButtonItem = nil
 
         if let url = self.url {
@@ -46,25 +44,10 @@ class PDFWebViewController: UIViewController {
         try? self.tempPDFFile?.deleteDirectory()
     }
 
-    private func initializeWebView() {
-        // The manual initialization is necessary due to a bug in NSCoding in iOS 10
-        let webView = WKWebView(frame: self.view.frame)
-        self.view.addSubview(webView)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            webView.topAnchor.constraint(equalTo: self.view.topAnchor),
-        ])
-        webView.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
-        self.webView = webView
-    }
-
     private func loadPDF(for url: URL) {
         var request = URLRequest(url: url)
         request.setValue(Routes.Header.acceptPDF, forHTTPHeaderField: Routes.Header.acceptKey)
-        for (key, value) in NetworkHelper.requestHeaders {
+        for (key, value) in NetworkHelper.requestHeaders(for: url) {
             request.setValue(value, forHTTPHeaderField: key)
         }
 
@@ -78,7 +61,7 @@ class PDFWebViewController: UIViewController {
                 self.tempPDFFile = tmpFile
                 let request = URLRequest(url: tmpFile.fileURL)
                 DispatchQueue.main.async {
-                    self.webView?.load(request)
+                    self.webView.loadRequest(request)
                 }
             } catch {
                 log.error(error)

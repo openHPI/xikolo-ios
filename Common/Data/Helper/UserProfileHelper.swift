@@ -5,6 +5,7 @@
 
 import BrightFutures
 import KeychainAccess
+import SyncEngine
 
 public class UserProfileHelper {
 
@@ -46,23 +47,23 @@ public class UserProfileHelper {
             }
 
             guard let urlResponse = response as? HTTPURLResponse else {
-                promise.failure(.api(.invalidResponse))
+                promise.failure(.synchronization(.api(.invalidResponse)))
                 return
             }
 
             guard 200 ... 299 ~= urlResponse.statusCode else {
-                promise.failure(.api(.responseError(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields)))
+                promise.failure(.synchronization(.api(.response(statusCode: urlResponse.statusCode, headers: urlResponse.allHeaderFields))))
                 return
             }
 
             guard let responseData = data else {
-                promise.failure(.api(.noData))
+                promise.failure(.synchronization(.api(.noData)))
                 return
             }
 
             do {
                 guard let json = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
-                    promise.failure(.api(.serializationError(.invalidDocumentStructure)))
+                    promise.failure(.synchronization(.api(.serialization(.invalidDocumentStructure))))
                     return
                 }
 
@@ -76,7 +77,7 @@ public class UserProfileHelper {
                 self.postLoginStateChange()
                 return promise.success(token)
             } catch {
-                promise.failure(.api(.serializationError(.jsonSerializationError(error))))
+                promise.failure(.synchronization(.api(.serialization(.jsonSerialization(error)))))
             }
         }
 
@@ -96,7 +97,7 @@ public class UserProfileHelper {
     public func logout() {
         self.clearKeychain()
         CoreDataHelper.clearCoreDataStorage().onFailure { error in
-            self.delegate?.didFailToClearCoreDataEnitity(withError: error)
+            ErrorManager.shared.report(error)
         }.onComplete { _ in
             self.postLoginStateChange()
         }
@@ -124,19 +125,41 @@ public class UserProfileHelper {
 
     public private(set) var userId: String? {
         get {
-            return self.keychain[KeychainKey.userId.rawValue]
+            do {
+                return try self.keychain.get(KeychainKey.userId.rawValue)
+            } catch {
+                ErrorManager.shared.report(error)
+                return nil
+            }
         }
         set {
-            self.keychain[KeychainKey.userId.rawValue] = newValue
+            do {
+                if let value = newValue {
+                    try self.keychain.set(value, key: KeychainKey.userId.rawValue)
+                } else {
+                    try self.keychain.remove(KeychainKey.userId.rawValue)
+                }
+            } catch {
+                ErrorManager.shared.report(error)
+            }
         }
     }
 
     var userToken: String {
         get {
-            return self.keychain[KeychainKey.userToken.rawValue] ?? ""
+            do {
+                return try self.keychain.get(KeychainKey.userToken.rawValue) ?? ""
+            } catch {
+                ErrorManager.shared.report(error)
+                return ""
+            }
         }
         set {
-            self.keychain[KeychainKey.userToken.rawValue] = newValue
+            do {
+                try self.keychain.set(newValue, key: KeychainKey.userToken.rawValue)
+            } catch {
+                ErrorManager.shared.report(error)
+            }
         }
     }
 
@@ -145,7 +168,7 @@ public class UserProfileHelper {
             try self.keychain.removeAll()
         } catch {
             log.error("Failed to clear keychain - \(error)")
-            self.delegate?.didFailToClearKeychain(withError: error)
+            ErrorManager.shared.report(error)
         }
     }
 
@@ -172,8 +195,5 @@ public protocol UserProfileHelperDelegate: AnyObject {
 
     func networkActivityStarted()
     func networkActivityEnded()
-
-    func didFailToClearKeychain(withError error: Error)
-    func didFailToClearCoreDataEnitity(withError error: XikoloError)
 
 }

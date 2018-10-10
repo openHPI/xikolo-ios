@@ -29,6 +29,9 @@
 /* title of learnings view of course view */
 "course-area.view.learnings.title" = "Learnings";
 
+/* title of recap view of course view */
+"course-area.view.recap.title" = "Recap";
+
 /* status 'completed' of a course */
 "course-cell.status.completed" = "completed";
 
@@ -80,6 +83,15 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
 
+/* title for list of all courses */
+"course-list.title.Courses" = "Courses";
+
+/* title for list of completed courses */
+"course-list.title.My completed courses" = "My completed courses";
+
+/* title for list of current courses */
+"course-list.title.My current courses" = "My current courses";
+
 /* delete all downloads in section */
 "course-section.combined-download-action.delete-downloads.title" = "Delete all learning materials";
 
@@ -119,11 +131,29 @@
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "not enrolled";
 
-/* headline for overview of completed courses */
-"dashboard.course-overview.My completed courses" = "My completed courses";
+/* action text for course overview with no courses */
+"dashboard.course-overview.no-courses.action" = "Discover available courses";
 
-/* headline for overview of current courses */
-"dashboard.course-overview.My current courses" = "My current courses";
+/* message text for course overview with no completed courses */
+"dashboard.course-overview.no-courses.completed.message" = "You haven't completed any courses yet";
+
+/* message text for course overview with no current courses */
+"dashboard.course-overview.no-courses.current.message" = "You aren't enrolled in any courses yet";
+
+/* action text for showing all completed courses */
+"dashboard.course-overview.show-all-courses.completed.action" = "Show all completed courses";
+
+/* action text for showing all current courses */
+"dashboard.course-overview.show-all-courses.current.action" = "Show all my current courses";
+
+/* delete download of a document localization */
+"document-localization.download-action.delete-download.title" = "Delete document";
+
+/* start download of a document localization */
+"document-localization.download-action.start-download.title" = "Download document";
+
+/* stop download of a document localization */
+"document-localization.download-action.stop-download.title" = "Stop download of document";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";

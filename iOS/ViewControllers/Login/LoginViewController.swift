@@ -5,7 +5,6 @@
 
 import Common
 import SafariServices
-import SimpleRoundedButton
 import UIKit
 import WebKit
 
@@ -13,7 +12,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
     @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
-    @IBOutlet private weak var loginButton: SimpleRoundedButton!
+    @IBOutlet private weak var loginButton: LoadingButton!
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var singleSignOnView: UIView!
     @IBOutlet private weak var singleSignOnButton: UIButton!
@@ -56,9 +55,10 @@ class LoginViewController: UIViewController, WKUIDelegate {
             return
         }
 
-        loginButton.startAnimating()
-        UserProfileHelper.shared.login(email, password: password).onComplete { [weak self] _ in
-            self?.loginButton.stopAnimating()
+        self.loginButton.startAnimation()
+        let dispatchTime = 500.milliseconds.fromNow
+        UserProfileHelper.shared.login(email, password: password).earliest(at: dispatchTime).onComplete { [weak self] _ in
+            self?.loginButton.stopAnimation()
         }.onSuccess { [weak self] _ in
             self?.delegate?.didSuccessfullyLogin()
             self?.presentingViewController?.dismiss(animated: true)
@@ -137,9 +137,13 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
 extension LoginViewController: UITextFieldDelegate {
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.emailField.layoutIfNeeded()
+        self.passwordField.layoutIfNeeded()
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        textField.layoutIfNeeded()
 
         if textField == self.emailField {
             self.passwordField.becomeFirstResponder()

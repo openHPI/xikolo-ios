@@ -64,16 +64,14 @@ class CourseItemDetailView: UIView {
         ])
     }
 
-    func configure(for courseItem: CourseItem, with delegate: CourseItemListViewController?) {
+    func configure(for courseItem: CourseItem, with delegate: CourseItemCellDelegate?) {
         self.courseItem = courseItem
 
-        if !(delegate?.contentToBePreloaded.contains(where: { $0.contentType == courseItem.contentType }) ?? false) {
-            // only certain content items will show additional information
-            self.isHidden = true
-        } else if let detailedContent = (courseItem.content as? DetailedCourseItem)?.detailedContent, !detailedContent.isEmpty {
+        let detailedContent = courseItem.detailedContent
+        if !detailedContent.isEmpty {
             self.setContent(detailedContent, inOfflineMode: delegate?.inOfflineMode ?? false)
             self.isHidden = false
-        } else if delegate?.isPreloading ?? false {
+        } else if delegate?.isPreloading(for: courseItem.contentType) ?? false {
             self.isShimmering = true
             self.isHidden = false
         } else {
@@ -140,6 +138,7 @@ class DetailedDataView: UIStackView {
 
     private lazy var progressView: CircularProgressView = {
         let progress = CircularProgressView()
+        progress.backgroundColor = .white
         progress.lineWidth = 1.25
         progress.gapWidth = 0.0
         progress.indeterminateProgress = 0.8
@@ -212,6 +211,7 @@ class DetailedDataView: UIStackView {
     private func textLabel(forContentItem contentItem: DetailedData, in downloadState: DownloadState, inOfflineMode isOffline: Bool) -> UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
+        label.backgroundColor = .white
 
         let downloaded: Bool
         switch contentItem {
@@ -231,10 +231,10 @@ class DetailedDataView: UIStackView {
         return label
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String == self.downloadType,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
+        guard notification.userInfo?[DownloadNotificationKey.downloadType] as? String == self.downloadType,
+            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             self.videoId == videoId else { return }
 
         DispatchQueue.main.async {

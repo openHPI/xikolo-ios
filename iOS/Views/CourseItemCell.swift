@@ -8,8 +8,6 @@ import UIKit
 
 class CourseItemCell: UITableViewCell {
 
-    typealias Delegate = (CourseItemListViewController & UserActionsDelegate)
-
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var readStateView: UIView!
     @IBOutlet private weak var iconView: UIImageView!
@@ -17,7 +15,7 @@ class CourseItemCell: UITableViewCell {
     @IBOutlet private weak var actionsButton: UIButton!
 
     var item: CourseItem?
-    weak var delegate: Delegate?
+    weak var delegate: (CourseItemCellDelegate & UserActionsDelegate)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +30,7 @@ class CourseItemCell: UITableViewCell {
 
     func configure(for courseItem: CourseItem) {
         self.item = courseItem
+        self.accessibilityIdentifier = "CourseItemCell-\(courseItem.contentType ?? "")"
 
         let inOfflineMode = self.delegate?.inOfflineMode ?? true
         let isAvailableInOfflineMode = courseItem.content?.isAvailableOffline ?? false
@@ -68,11 +67,11 @@ class CourseItemCell: UITableViewCell {
 
     @IBAction func tappedActionsButton() {
         guard let video = self.item?.content as? Video else { return }
-        self.delegate?.showAlert(with: video.userActions, withTitle: self.item?.title, on: self.actionsButton)
+        self.delegate?.showAlert(with: video.userActions, title: self.item?.title, on: self.actionsButton)
     }
 
-    @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
+    @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+        guard let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
             let item = self.item,
             let video = item.content as? Video,
             video.id == videoId else { return }

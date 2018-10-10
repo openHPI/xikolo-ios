@@ -4,6 +4,7 @@
 //
 
 import CoreData
+import SyncEngine
 
 extension CourseHelper {
 
@@ -61,10 +62,27 @@ extension CourseHelper {
             notEnrolledPredicate,
         ])
 
+        private static let currentCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            genericPredicate,
+            accessiblePredicate,
+            notCompletedPredicate,
+            activePredicate,
+        ])
+        private static let upcomingCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            genericPredicate,
+            announcedPredicate,
+            notCompletedPredicate,
+        ])
+        private static let selfpacedCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            genericPredicate,
+            selfpacedPredicate,
+        ])
+
+        private static let customOrderSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+
         private static var genericCoursesRequest: NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
-            let customOrderSort = NSSortDescriptor(key: "order", ascending: true)
-            request.sortDescriptors = [customOrderSort]
+            request.sortDescriptors = [self.customOrderSortDescriptor]
             request.predicate = self.genericPredicate
             return request
         }
@@ -98,15 +116,6 @@ extension CourseHelper {
             return Course.fetchRequest() as NSFetchRequest<Course>
         }
 
-        public static var accessibleCourses: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                genericPredicate,
-                accessiblePredicate,
-            ])
-            return request
-        }
-
         static var interestingCoursesRequest: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
@@ -119,30 +128,28 @@ extension CourseHelper {
 
         public static var currentCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                genericPredicate,
-                accessiblePredicate,
-                notCompletedPredicate,
-                activePredicate,
-            ])
+            request.predicate = self.currentCoursesPredicate
             return request
         }
 
         public static var upcomingCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                genericPredicate,
-                announcedPredicate,
-                notCompletedPredicate,
-            ])
+            request.predicate = self.upcomingCoursesPredicate
             return request
         }
 
         public static var selfpacedCourses: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                genericPredicate,
-                selfpacedPredicate,
+            request.predicate = self.selfpacedCoursesPredicate
+            return request
+        }
+
+        public static var searchableCourses: NSFetchRequest<Course> {
+            let request = self.genericCoursesRequest
+            request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
+                self.currentCoursesPredicate,
+                self.upcomingCoursesPredicate,
+                self.selfpacedCoursesPredicate,
             ])
             return request
         }
@@ -165,6 +172,10 @@ extension CourseHelper {
                 accessiblePredicate,
                 notCompletedPredicate,
             ])
+            request.sortDescriptors = [
+                NSSortDescriptor(key: "lastVisited", ascending: false),
+                self.customOrderSortDescriptor,
+            ]
             return request
         }
 

@@ -49,7 +49,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
             self.fetchedResultsController.delegate = self
             try self.fetchedResultsController.performFetch()
         } catch {
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.report(error)
             log.error(error)
         }
 

@@ -6,7 +6,6 @@
 import BrightFutures
 import Common
 import SDWebImage
-import SimpleRoundedButton
 import UIKit
 
 class CourseDetailViewController: UIViewController {
@@ -18,7 +17,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var dateView: UILabel!
     @IBOutlet private weak var teacherView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
-    @IBOutlet private weak var enrollmentButton: SimpleRoundedButton!
+    @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
 
@@ -48,6 +47,7 @@ class CourseDetailViewController: UIViewController {
         self.statusView.layer.cornerRadius = 4.0
         self.statusView.layer.masksToBounds = true
         self.statusView.backgroundColor = Brand.default.colors.secondary
+        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         self.updateView()
         self.updateImageViewAppearence()
@@ -74,6 +74,7 @@ class CourseDetailViewController: UIViewController {
         self.languageView.text = self.course.localizedLanguage
         self.teacherView.text = self.course.teachers
         self.teacherView.textColor = Brand.default.colors.secondary
+        self.teacherView.isHidden = !Brand.default.features.showCourseTeachers
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
@@ -171,7 +172,7 @@ class CourseDetailViewController: UIViewController {
         let completedActionTitle = NSLocalizedString("enrollment.options-alert.mask-as-completed-action.title",
                                                      comment: "title for 'mask as completed' action")
         let completedAction = UIAlertAction(title: completedActionTitle, style: .default) { _ in
-            self.actOnEnrollmentChange {
+            self.actOnEnrollmentChange(whenNewlyCreated: false) {
                 EnrollmentHelper.markAsCompleted(self.course)
             }
         }
@@ -179,7 +180,7 @@ class CourseDetailViewController: UIViewController {
         let unenrollActionTitle = NSLocalizedString("enrollment.options-alert.unenroll-action.title",
                                                     comment: "title for unenroll action")
         let unenrollAction = UIAlertAction(title: unenrollActionTitle, style: .destructive) { _ in
-            self.actOnEnrollmentChange {
+            self.actOnEnrollmentChange(whenNewlyCreated: false) {
                 EnrollmentHelper.delete(self.course.enrollment)
             }
         }
@@ -193,22 +194,25 @@ class CourseDetailViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    private func actOnEnrollmentChange(whenNewlyCreated newlyCreated: Bool = false, for task: () -> Future<Void, XikoloError>) {
-        self.enrollmentButton.startAnimating()
-        task().onComplete { _ in
-            self.enrollmentButton.stopAnimating()
-        }.onSuccess { _ in
-            if newlyCreated {
-                CourseHelper.syncCourse(self.course)
-                CourseDateHelper.syncCourseDates(for: self.course)
+    private func actOnEnrollmentChange(whenNewlyCreated newlyCreated: Bool, for task: () -> Future<Void, XikoloError>) {
+        self.enrollmentButton.startAnimation()
+        let dispatchTime = 500.milliseconds.fromNow
+        task().earliest(at: dispatchTime).onComplete { [weak self] _ in
+            self?.enrollmentButton.stopAnimation()
+        }.onSuccess { [weak self] _ in
+            if let course = self?.course {
+                CourseHelper.syncCourse(course)
+                CourseDateHelper.syncCourseDates(for: course)
+                AnnouncementHelper.shared.syncAnnouncements(for: course)
             }
 
             DispatchQueue.main.async {
-                self.refreshEnrollmentViews()
-                self.delegate?.enrollmentStateDidChange()
+                self?.refreshEnrollmentViews()
+                self?.delegate?.enrollmentStateDidChange(whenNewlyCreated: newlyCreated)
             }
-        }.onFailure { _ in
-            self.enrollmentButton.shake()
+        }.onFailure { [weak self] error in
+            ErrorManager.shared.report(error)
+            self?.enrollmentButton.shake()
         }
     }
 
@@ -237,7 +241,7 @@ extension CourseDetailViewController: LoginDelegate {
 extension CourseDetailViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return !AppNavigator.handle(URL, on: self)
+        return !AppNavigator.handle(url: URL, on: self)
     }
 
 }

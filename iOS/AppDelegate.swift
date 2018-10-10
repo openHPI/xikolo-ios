@@ -4,6 +4,7 @@
 //
 
 import Common
+import Crashlytics
 import Firebase
 import SDWebImage
 import UIKit
@@ -15,8 +16,12 @@ import SimulatorStatusMagic
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let syncHelper = SyncHelper()
     private let userProfileHelperDelegateInstance = UserProfileHelperDelegateInstance()
+
+    private lazy var pushEngineManager: SyncPushEngineManager = {
+        let engine = XikoloSyncEngine()
+        return SyncPushEngineManager(syncEngine: engine)
+    }()
 
     var window: UIWindow?
 
@@ -46,16 +51,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         TrackingHelper.shared.delegate = self
         AnnouncementHelper.shared.delegate = self
-        SyncEngine.shared.delegate = self.syncHelper
-        SyncPushEngine.shared.delegate = CrashlyticsHelper.shared
         UserProfileHelper.shared.delegate = self.userProfileHelperDelegateInstance
 
+        ErrorManager.shared.register(reporter: Crashlytics.sharedInstance())
+
         // register resource to be pushed automatically
-        SyncPushEngine.shared.register(Announcement.self)
-        SyncPushEngine.shared.register(CourseItem.self)
-        SyncPushEngine.shared.register(Enrollment.self)
-        SyncPushEngine.shared.register(TrackingEvent.self)
-        SyncPushEngine.shared.startObserving()
+        self.pushEngineManager.register(Announcement.self)
+        self.pushEngineManager.register(CourseItem.self)
+        self.pushEngineManager.register(Enrollment.self)
+        self.pushEngineManager.register(TrackingEvent.self)
+        self.pushEngineManager.startObserving()
 
         UserProfileHelper.shared.migrateLegacyKeychain()
 
@@ -67,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try ReachabilityHelper.startObserving()
         } catch {
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.report(error)
             log.error("Failed to start reachability notification")
         }
 
@@ -94,7 +99,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        return AppNavigator.handle(userActivity: userActivity, forApplication: application, on: self.tabBarController)
+        return AppNavigator.handle(userActivity: userActivity)
+    }
+
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return AppNavigator.handle(url: url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -122,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         ReachabilityHelper.stopObserving()
-        SyncPushEngine.shared.stopObserving()
+        self.pushEngineManager.stopObserving()
         SpotlightHelper.shared.stopObserving()
     }
 
@@ -155,14 +166,14 @@ extension AppDelegate: UITabBarControllerDelegate {
 
         guard let loginNavigationController = R.storyboard.login.instantiateInitialViewController() else {
             let reason = "Initial view controller of Login stroyboard in not of type UINavigationController"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            ErrorManager.shared.reportStoryboardError(reason: reason)
             log.error(reason)
             return false
         }
 
         guard let loginViewController = loginNavigationController.viewControllers.first as? LoginViewController else {
             let reason = "Could not find LoginViewController"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            ErrorManager.shared.reportStoryboardError(reason: reason)
             log.error(reason)
             return false
         }

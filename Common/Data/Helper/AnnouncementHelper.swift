@@ -7,6 +7,7 @@ import BrightFutures
 import CoreData
 import Foundation
 import Result
+import SyncEngine
 
 public class AnnouncementHelper {
 
@@ -14,22 +15,26 @@ public class AnnouncementHelper {
 
     public weak var delegate: AnnouncementHelperDelegate?
 
-    private init() {}
+    private init() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
+    }
 
-    @discardableResult public func syncAllAnnouncements() -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
+    @discardableResult public func syncAllAnnouncements() -> Future<SyncMultipleResult, XikoloError> {
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "global", withValue: "true")
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
+        return XikoloSyncEngine().synchronize(withFetchRequest: Announcement.fetchRequest(), withQuery: query).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
 
-    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncEngine.SyncMultipleResult, XikoloError> {
-        let fetchRequest = AnnouncementHelper.FetchRequest.allAnnouncements
+    @discardableResult public func syncAnnouncements(for course: Course) -> Future<SyncMultipleResult, XikoloError> {
+        let fetchRequest = AnnouncementHelper.FetchRequest.announcements(forCourse: course)
         var query = MultipleResourcesQuery(type: Announcement.self)
         query.addFilter(forKey: "course", withValue: course.id)
-        return SyncEngine.shared.syncResources(withFetchRequest: fetchRequest, withQuery: query, deleteNotExistingResources: false).onComplete { _ in
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query).onComplete { _ in
             self.delegate?.updateUnreadAnnouncementsBadge()
         }
     }
@@ -87,6 +92,11 @@ public class AnnouncementHelper {
         }
 
         return promise.future
+    }
+
+    @objc private func coreDataChange(notification: Notification) {
+        guard notification.includesChanges(for: Enrollment.self, keys: [NSUpdatedObjectsKey, NSRefreshedObjectsKey]) else { return }
+        self.delegate?.updateUnreadAnnouncementsBadge()
     }
 
 }

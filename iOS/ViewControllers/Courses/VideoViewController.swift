@@ -90,7 +90,7 @@ class VideoViewController: UIViewController {
                                        name: Notification.Name.reachabilityChanged,
                                        object: nil)
 
-        CrashlyticsHelper.shared.setObjectValue(self.courseItem.id, forKey: "item_id")
+        ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -278,6 +278,7 @@ class VideoViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
+        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
         alert.addAction(streamUserAction)
         alert.addCancelAction()
@@ -289,6 +290,7 @@ class VideoViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
+        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
         let openSlidesActionTitle = NSLocalizedString("course-item.slides-alert.open-action.title", comment: "title to cancel alert")
         let openSlides = UIAlertAction(title: openSlidesActionTitle, style: .default) { _ in
@@ -306,10 +308,10 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    @objc func handleAssetDownloadStateChangedNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let downloadStateRawValue = noticaition.userInfo?[DownloadNotificationKey.downloadState] as? String,
+    @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {
+        guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
+            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let downloadStateRawValue = notification.userInfo?[DownloadNotificationKey.downloadState] as? String,
             let downloadState = DownloadState(rawValue: downloadStateRawValue),
             let video = self.video,
             video.id == videoId else { return }
@@ -333,10 +335,10 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @objc func handleAssetDownloadProgressNotification(_ noticaition: Notification) {
-        guard let downloadType = noticaition.userInfo?[DownloadNotificationKey.downloadType] as? String,
-            let videoId = noticaition.userInfo?[DownloadNotificationKey.resourceId] as? String,
-            let progress = noticaition.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
+    @objc func handleAssetDownloadProgressNotification(_ notification: Notification) {
+        guard let downloadType = notification.userInfo?[DownloadNotificationKey.downloadType] as? String,
+            let videoId = notification.userInfo?[DownloadNotificationKey.resourceId] as? String,
+            let progress = notification.userInfo?[DownloadNotificationKey.downloadProgress] as? Double,
             let video = self.video,
             video.id == videoId else { return }
 

@@ -11,7 +11,7 @@ class CourseItemWebViewController: WebViewController {
     var courseItem: CourseItem! {
         didSet {
             self.setURL()
-            CrashlyticsHelper.shared.setObjectValue(self.courseItem.id, forKey: "item_id")
+            ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
         }
     }
 
@@ -31,7 +31,7 @@ class CourseItemWebViewController: WebViewController {
                 self.url = self.quizURL(for: courseItem)
             }
         }.onFailure { error in
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.report(error)
             log.error("\(error)")
         }
     }

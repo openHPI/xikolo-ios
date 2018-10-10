@@ -30,16 +30,10 @@ class RefreshControl: UIRefreshControl {
 
     @objc func callAction() {
         let deadline = RefreshControl.minimumSpinningTime.fromNow
-        let stopRefreshControl = {
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                self.endRefreshing()
-            }
-        }
-
         self.action().onSuccess { _ in
             self.postAction()
-        }.onComplete { _ in
-            stopRefreshControl()
+        }.earliest(at: deadline).onComplete(ImmediateOnMainExecutionContext) { _ in
+            self.endRefreshing()
         }
     }
 

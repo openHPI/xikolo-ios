@@ -10,6 +10,10 @@ class CourseNavigationController: XikoloNavigationController {
     static let dragPercentageThreshold: CGFloat = 0.5
     static let flickVelocityThreshold: CGFloat = 300
 
+    var courseViewController: CourseViewController? {
+        return self.viewControllers.first as? CourseViewController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +26,7 @@ class CourseNavigationController: XikoloNavigationController {
     }
 
     @objc func closeCourse() {
-        self.dismiss(animated: true)
+        super.dismiss(animated: true)
     }
 
     @objc func handlePullDown(sender: UIPanGestureRecognizer) {
@@ -40,7 +44,7 @@ class CourseNavigationController: XikoloNavigationController {
         switch sender.state {
         case .began:
             interactor.hasStarted = true
-            self.dismiss(animated: true)
+            super.dismiss(animated: true)
         case .changed:
             interactor.shouldFinish = shouldFinishByDragging || shouldFinishByFlicking
             interactor.update(dragPercentage)
@@ -53,6 +57,11 @@ class CourseNavigationController: XikoloNavigationController {
         default:
             break
         }
+    }
+
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        guard self.presentedViewController != nil else { return }
+        super.dismiss(animated: flag, completion: completion)
     }
 
 }

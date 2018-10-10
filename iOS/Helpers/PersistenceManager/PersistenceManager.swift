@@ -7,9 +7,15 @@ import Common
 import CoreData
 import Foundation
 
+protocol Persistable {
+
+    static var identifierKeyPath: WritableKeyPath<Self, String> { get }
+
+}
+
 protocol PersistenceManager: AnyObject {
 
-    associatedtype Resource: NSManagedObject & ResourceRepresentable
+    associatedtype Resource: NSManagedObject & Persistable
     associatedtype Session: URLSession
 
     static var shared: Self { get }
@@ -90,8 +96,9 @@ extension PersistenceManager {
             return
         }
 
-        task.taskDescription = resource.id
-        self.activeDownloads[task] = resource.id
+        let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
+        task.taskDescription = resourceIdentifier
+        self.activeDownloads[task] = resourceIdentifier
 
         task.resume()
 
@@ -106,7 +113,7 @@ extension PersistenceManager {
 
             var userInfo: [String: Any] = [:]
             userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
-            userInfo[DownloadNotificationKey.resourceId] = resource.id
+            userInfo[DownloadNotificationKey.resourceId] = resourceIdentifier
             userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloading.rawValue
 
             NotificationCenter.default.post(name: DownloadState.didChangeNotification, object: nil, userInfo: userInfo)
@@ -118,7 +125,8 @@ extension PersistenceManager {
             return .downloaded
         }
 
-        for (_, resourceId) in self.activeDownloads where resource.id == resourceId {
+        let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
+        for (_, resourceId) in self.activeDownloads where resourceIdentifier == resourceId {
             return self.progresses[resourceId] != nil ? .downloading : .pending
         }
 
@@ -126,7 +134,8 @@ extension PersistenceManager {
     }
 
     func downloadProgress(for resource: Resource) -> Double? {
-        return self.progresses[resource.id]
+        let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
+        return self.progresses[resourceIdentifier]
     }
 
     func deleteDownload(for resource: Resource) {
@@ -143,29 +152,32 @@ extension PersistenceManager {
     func deleteDownload(for resource: Resource, in context: NSManagedObjectContext) {
         guard let localFileLocation = self.localFileLocation(for: resource) else { return }
 
+        let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
+
         do {
             try FileManager.default.removeItem(at: localFileLocation)
             resource[keyPath: self.keyPath] = nil
             self.resourceModificationAfterDeletingDownload(for: resource)
             try context.save()
         } catch {
-            CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
-            CrashlyticsHelper.shared.recordError(error)
+            ErrorManager.shared.remember((Self.downloadType, resourceIdentifier), forKey: "resource")
+            ErrorManager.shared.report(error)
             log.error("An error occured deleting the file: \(error)")
         }
 
         var userInfo: [String: Any] = [:]
         userInfo[DownloadNotificationKey.downloadType] = Self.downloadType
-        userInfo[DownloadNotificationKey.resourceId] = resource.id
+        userInfo[DownloadNotificationKey.resourceId] = resourceIdentifier
         userInfo[DownloadNotificationKey.downloadState] = DownloadState.notDownloaded.rawValue
 
         NotificationCenter.default.post(name: DownloadState.didChangeNotification, object: nil, userInfo: userInfo)
     }
 
     func cancelDownload(for resource: Resource) {
+        let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
         var task: URLSessionTask?
 
-        for (downloadtask, resourceId) in self.activeDownloads where resource.id == resourceId {
+        for (downloadtask, resourceId) in self.activeDownloads where resourceIdentifier == resourceId {
             self.didCancelDownload(for: resource)
             task = downloadtask
             break
@@ -221,17 +233,17 @@ extension PersistenceManager {
                                 self.resourceModificationAfterDeletingDownload(for: resource)
                                 try context.save()
                             } catch {
-                                CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
-                                CrashlyticsHelper.shared.recordError(error)
+                                ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                                ErrorManager.shared.report(error)
                                 log.error("An error occured deleting the file: \(error)")
                             }
                         }
 
                         self.didFailToDownloadResource(resource, with: error)
                     case let .failure(error):
-                        CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
-                        CrashlyticsHelper.shared.recordError(error)
-                        log.error("Failed to complete download for '\(Resource.type)' resource '\(resourceId)': \(error)")
+                        ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                        ErrorManager.shared.report(error)
+                        log.error("Failed to complete download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
                     }
                 } else {
                     userInfo[DownloadNotificationKey.downloadState] = DownloadState.downloaded.rawValue
@@ -265,15 +277,15 @@ extension PersistenceManager {
                     let bookmark = try location.bookmarkData()
                     resource[keyPath: self.keyPath] = NSData(data: bookmark)
                     try context.save()
-                    log.debug("Successfully downloaded file for '\(Resource.type)' resource '\(resourceId)'")
+                    log.debug("Successfully downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
                 } catch {
-                    log.debug("Failed to downloaded file for '\(Resource.type)' resource '\(resourceId)'")
+                    log.debug("Failed to downloaded file for '\(Self.downloadType)' resource '\(resourceId)'")
                     self.deleteDownload(for: resource, in: context)
                 }
             case let .failure(error):
-                CrashlyticsHelper.shared.setObjectValue((Resource.type, resourceId), forKey: "resource")
-                CrashlyticsHelper.shared.recordError(error)
-                log.error("Failed to finish download for '\(Resource.type)' resource '\(resourceId)': \(error)")
+                ErrorManager.shared.remember((Self.downloadType, resourceId), forKey: "resource")
+                ErrorManager.shared.report(error)
+                log.error("Failed to finish download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
             }
         }
     }

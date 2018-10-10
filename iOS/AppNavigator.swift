@@ -9,10 +9,10 @@ import UIKit
 
 class AppNavigator {
 
-    private static var currentCourseViewController: CourseNavigationController?
+    private static var currentCourseNavigationController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
-    static func handle(userActivity: NSUserActivity, forApplication application: UIApplication, on tabBarController: UITabBarController?) -> Bool {
+    static func handle(userActivity: NSUserActivity) -> Bool {
         var activityURL: URL?
         if userActivity.activityType == CSSearchableItemActionType {
             // This activity represents an item indexed using Core Spotlight, so restore the context related to the unique identifier.
@@ -21,7 +21,7 @@ class AppNavigator {
             if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
                 activityURL = URL(string: uniqueIdentifier)
             }
-        } else {
+        } else if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
             activityURL = userActivity.webpageURL
         }
 
@@ -29,23 +29,16 @@ class AppNavigator {
             return false
         }
 
-        if handle(url) {
-            return true
-        }
-
-        // We can't handle the url, open it with a browser
-        let webpageUrl = url
-        application.open(webpageUrl)
-        return false
+        return self.handle(url: url)
     }
 
-    static func handle(_ url: URL, on sourceViewController: UIViewController) -> Bool {
+    static func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
         guard let url = MarkdownHelper.trueScheme(for: url) else {
             log.error("URL in Markdown or Markdownparser is broken")
             return false
         }
 
-        if self.handle(url) {
+        if self.handle(url: url) {
             return true
         }
 
@@ -61,9 +54,8 @@ class AppNavigator {
         return true
     }
 
-    static func handle(_ url: URL) -> Bool {
-        guard let hostURL = url.host else { return false }
-        guard hostURL == Brand.default.host else {
+    static func handle(url: URL) -> Bool {
+        guard url.host == Brand.default.host else {
             log.debug("Can't open \(url) inside of the app because host is wrong")
             return false
         }
@@ -119,17 +111,17 @@ class AppNavigator {
 
         if couldFindCourse {
             return true
-        } else if courseFuture.forced(30.seconds.fromNow)?.value != nil {  // we only wait 30 seconds
+        } else if courseFuture.forced(10.seconds.fromNow)?.value != nil {  // we only wait for 10 seconds
             return true
         }
 
         return false
     }
 
-    private static func showCourseList() -> Bool {
+    @discardableResult static func showCourseList() -> Bool {
         guard let tabBarController = AppDelegate.instance().tabBarController else {
             let reason = "UITabBarController could not be found"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+            ErrorManager.shared.reportStoryboardError(reason: reason)
             log.error(reason)
             return false
         }
@@ -139,35 +131,48 @@ class AppNavigator {
         return true
     }
 
-    static func show(course: Course, with content: CourseArea = .learnings) {
-        self.currentCourseViewController?.closeCourse()
-        self.currentCourseViewController = nil
+    static func show(course: Course, with courseArea: CourseArea = .learnings) {
+        let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
+        let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
-        guard let tabBarController = AppDelegate.instance().tabBarController else {
-            let reason = "UITabBarController could not be found"
-            CrashlyticsHelper.shared.recordCustomExceptionName("Storyboard Error", reason: reason, frameArray: [])
+        if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
+            if course.accessible || courseArea.acessibleWithoutEnrollment {
+                self.currentCourseNavigationController?.popToRootViewController(animated: true)
+                courseViewController.area = courseArea
+            }
+
+            return
+        }
+
+        self.currentCourseNavigationController?.closeCourse()
+        self.currentCourseNavigationController = nil
+
+        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
+            let reason = "root view controller could not be found"
             log.error(reason)
             return
         }
 
         let courseNavigationController = R.storyboard.course.instantiateInitialViewController().require()
         let topViewController = courseNavigationController.topViewController.require(hint: "Top view controller required")
-        let courseDecisionViewController = topViewController.require(toHaveType: CourseViewController.self)
-        courseDecisionViewController.course = course
+        let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
+        courseViewController.course = course
 
-        if course.accessible {
-            courseDecisionViewController.content = content
+        if course.accessible || courseArea.acessibleWithoutEnrollment {
+            courseViewController.area = courseArea
         } else {
-            courseDecisionViewController.content = .courseDetails
+            courseViewController.area = .courseDetails
         }
 
-        self.currentCourseViewController = courseNavigationController
+        self.currentCourseNavigationController = courseNavigationController
 
         courseNavigationController.transitioningDelegate = self.courseTransitioningDelegate
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        tabBarController.present(courseNavigationController, animated: true)
+        rootViewController.present(courseNavigationController, animated: true) {
+            CourseHelper.visit(course)
+        }
     }
 
 }

@@ -193,7 +193,7 @@ platform :ios do
   flavors.each do |flavor|
     lane :"release_#{flavor.downcase}" do
       ensure_git_branch(branch: 'master')
-      upload_ipa(flavor: flavor)
+      upload_ipa(flavor: flavor, automatic_release: true)
     end
   end
 
@@ -215,6 +215,7 @@ platform :ios do
     if options[:flavor]
       flavor = options[:flavor]
       skip_metadata = (options[:skip_metadata] ? true : false)
+      automatic_release = (options[:automatic_release] ? true : false)
       gym(
         scheme: "#{flavor}-iOS",
         include_bitcode: true,
@@ -234,6 +235,7 @@ platform :ios do
         copyright: copyright(flavor: flavor),
         skip_screenshots: true,
         skip_metadata: skip_metadata,
+        automatic_release: automatic_release,
       )
     else
       UI.user_error! "No flavor supplied for IPA upload"

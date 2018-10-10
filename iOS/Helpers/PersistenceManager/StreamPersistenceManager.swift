@@ -87,8 +87,8 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
             return
         }
 
-        CrashlyticsHelper.shared.setObjectValue((Resource.type, resource.id), forKey: "resource")
-        CrashlyticsHelper.shared.recordError(error)
+        ErrorManager.shared.remember((Resource.type, resource.id), forKey: "resource")
+        ErrorManager.shared.report(error)
         log.error("Unknown asset download error (video id: \(resource.id) | domain: \(error.domain) | code: \(error.code)")
 
         // show error

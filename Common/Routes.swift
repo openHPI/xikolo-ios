@@ -11,9 +11,15 @@ public struct Routes {
         public static let userPlatformKey = "User-Platform"
         public static let userPlatformValue = "iOS"
 
+        public static let userAgentKey = "User-Agent"
+        public static let userAgentValue = "\(UIApplication.appName)/\(UIApplication.appVersion) iOS/\(UIApplication.osVersion) (\(UIApplication.device))"
+
         public static let acceptKey = "Accept"
         public static let acceptValue = "application/vnd.api+json; xikolo-version=\(Routes.apiVersion)"
         public static let acceptPDF = "application/pdf"
+
+        public static let contentTypeKey = "Content-Type"
+        public static let contentTypeValue = "application/vnd.api+json"
 
         public static let authKey = "Authorization"
         public static let authValuePrefix = "Token token="
@@ -30,7 +36,7 @@ public struct Routes {
         static let redirect = URLQueryItem(name: "redirect_to", value: "/auth/" + Brand.default.platformTitle)
     }
 
-    static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
+    public static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
 
     static let api = Routes.base.appendingPathComponents(["api", "v2"])
     private static let apiVersion = "3"
@@ -40,6 +46,7 @@ public struct Routes {
     public static let singleSignOn = Routes.base.appendingQueryItems([Routes.QueryItem.inApp, Routes.QueryItem.redirect])
 
     public static let courses = Routes.base.appendingPathComponent("courses")
+    public static let recap = Routes.base.appendingPathComponent("learn")
 
     public static var imprint = Brand.default.imprintURL.appendingInAppParameter()
     public static let privacy = Brand.default.privacyURL.appendingInAppParameter()

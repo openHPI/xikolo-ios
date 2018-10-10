@@ -11,10 +11,11 @@ import UIKit
 
 class CourseItemListViewController: UITableViewController {
 
+    private static let contentToBePreloaded: [PreloadableCourseItemContent.Type] = [Video.self, RichText.self]
+
     private var course: Course!
     private var dataSource: CoreDataTableViewDataSource<CourseItemListViewController>!
 
-    var contentToBePreloaded: [DetailedCourseItem.Type] = [Video.self, RichText.self]
     var isPreloading = false
     var inOfflineMode = ReachabilityHelper.connection == .none {
         didSet {
@@ -38,7 +39,7 @@ class CourseItemListViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 50
 
         // register custom section header view
-        self.tableView.register(R.nib.courseItemHeader(), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
+        self.tableView.register(UINib(resource: R.nib.courseItemHeader), forHeaderFooterViewReuseIdentifier: R.nib.courseItemHeader.name)
 
         self.addRefreshControl()
 
@@ -102,7 +103,7 @@ class CourseItemListViewController: UITableViewController {
     }
 
     func preloadCourseContent() {
-        self.contentToBePreloaded.traverse { contentType in
+        CourseItemListViewController.contentToBePreloaded.traverse { contentType in
             return contentType.preloadContent(forCourse: self.course)
         }.onComplete { _ in
             self.isPreloading = false
@@ -181,16 +182,18 @@ extension CourseItemListViewController: CoreDataTableViewDataSourceDelegate {
 
 extension CourseItemListViewController: RefreshableViewController {
 
+    private var preloadingWanted: Bool {
+        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
+        return contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
+    }
+
     func refreshingAction() -> Future<Void, XikoloError> {
+        self.isPreloading = self.preloadingWanted && !CourseItemListViewController.contentToBePreloaded.isEmpty
         return CourseItemHelper.syncCourseItems(forCourse: self.course).asVoid()
     }
 
-    func postRefresh() {
-        let contentPreloadOption = UserDefaults.standard.contentPreloadSetting
-        let preloadingWanted = contentPreloadOption == .always || (contentPreloadOption == .wifiOnly && ReachabilityHelper.connection == .wifi)
-        self.isPreloading = preloadingWanted && !self.contentToBePreloaded.isEmpty
-
-        guard preloadingWanted else { return }
+    func didRefresh() {
+        guard self.preloadingWanted else { return }
         self.preloadCourseContent()
     }
 
@@ -209,14 +212,23 @@ extension CourseItemListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDe
 
 }
 
+extension CourseItemListViewController: CourseItemCellDelegate {
+
+    func isPreloading(for contentType: String?) -> Bool {
+        return self.isPreloading && CourseItemListViewController.contentToBePreloaded.contains { $0.contentType == contentType }
+    }
+
+}
+
 extension CourseItemListViewController: UserActionsDelegate {
 
-    func showAlert(with actions: [UIAlertAction], withTitle title: String? = nil, on anchor: UIView) {
+    func showAlert(with actions: [UIAlertAction], title: String?, message: String?, on anchor: UIView) {
         guard !actions.isEmpty else { return }
 
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = anchor
         alert.popoverPresentationController?.sourceRect = anchor.bounds.insetBy(dx: -4, dy: -4)
+        alert.popoverPresentationController?.permittedArrowDirections = [.left, .right]
 
         for action in actions {
             alert.addAction(action)

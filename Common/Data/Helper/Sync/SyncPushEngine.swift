@@ -6,20 +6,22 @@
 import BrightFutures
 import CoreData
 import Foundation
+import SyncEngine
 
-public class SyncPushEngine {
-
-    var types: [(NSManagedObject & Pushable).Type] = []
-
-    public static let shared = SyncPushEngine()
-
-    public weak var delegate: SyncPushEngineDelegate?
+public class SyncPushEngineManager {
 
     private let persistentContainerQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
+
+    let syncEngine: XikoloSyncEngine
+    private var pushEngines: [SyncPushEngine] = []
+
+    public init(syncEngine: XikoloSyncEngine) {
+        self.syncEngine = syncEngine
+    }
 
     public func startObserving() {
         NotificationCenter.default.addObserver(self,
@@ -32,14 +34,14 @@ public class SyncPushEngine {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: CoreDataHelper.viewContext)
     }
 
-    public func register(_ newType: NSManagedObject.Type) {
-        guard let pushableType = newType as? (NSManagedObject & Pushable).Type else {
-            return
-        }
+    public func register<Resource>(_ newType: Resource.Type) where Resource: NSManagedObject & Pushable {
+        let pushEngine = SyncPushEnginePush(type: Resource.self, manager: self)
+        self.pushEngines.append(pushEngine)
+    }
 
-        if !self.types.contains(where: { $0 == newType }) {
-            self.types.append(pushableType)
-        }
+    public func register<Resource>(_ newType: Resource.Type) where Resource: NSManagedObject & Pushable & Pullable {
+        let pushEngine = SyncPushEnginePushPull(type: Resource.self, manager: self)
+        self.pushEngines.append(pushEngine)
     }
 
     @objc private func coreDataChange(note: Notification) {
@@ -49,36 +51,55 @@ public class SyncPushEngine {
         }.reduce(false) { $0 || $1 }
 
         if shouldCheckForChangesToPush {
-            self.check()
+            self.pushEngines.forEach { $0.check() }
         }
+
+    }
+
+    func addOperation(_ block: @escaping () -> Void) {
+        self.persistentContainerQueue.addOperation(block)
+    }
+
+}
+
+protocol SyncPushEngine {
+    func check()
+}
+
+class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObject & Pushable {
+
+    private let resourceType: Resource.Type
+    weak var manager: SyncPushEngineManager?
+
+    init(type: Resource.Type, manager: SyncPushEngineManager) {
+        self.resourceType = type
+        self.manager = manager
     }
 
     func check() {
-        for type in self.types {
-            guard let entityName = type.entity().name else {
-                continue
-            }
+        guard let entityName = Resource.entity().name else {
+            return
+        }
 
-            CoreDataHelper.persistentContainer.performBackgroundTask { context in
-                let fetchRequest = NSFetchRequest(entityName: entityName) as NSFetchRequest<NSFetchRequestResult>
-                if type is Pullable.Type {
-                    fetchRequest.predicate = NSPredicate(format: "objectStateValue != %d", ObjectState.unchanged.rawValue)
-                }
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let fetchRequest = NSFetchRequest(entityName: entityName) as NSFetchRequest<NSFetchRequestResult>
 
-                if let objects = try? context.fetch(fetchRequest) {
-                    for case let object as (NSManagedObject & Pushable) in objects {
-                        self.pushChanges(for: object.objectID)
-                    }
+            do {
+                let objects = try context.fetch(fetchRequest)
+                for case let object as (NSManagedObject & Pushable) in objects {
+                    self.pushChanges(for: object.objectID)
                 }
+            } catch {
+                ErrorManager.shared.report(error)
             }
         }
     }
 
     private func pushChanges(for managedObjectId: NSManagedObjectID) {
-        self.persistentContainerQueue.addOperation {
+        self.manager?.addOperation {
             let context = CoreDataHelper.persistentContainer.newBackgroundContext()
             context.performAndWait {
-                guard let object = try? context.existingObject(with: managedObjectId), let resource = object as? (NSManagedObject & Pushable) else {
+                guard let object = try? context.existingObject(with: managedObjectId), let resource = object as? Resource else {
                     log.info("Resource to be pushed could not be found")
                     return
                 }
@@ -89,12 +110,9 @@ public class SyncPushEngine {
                 }
 
                 var pushFuture: Future<Void, XikoloError>?
-                if let pullableResource = resource as? (Pullable & Pushable), resource.objectState == .modified {
-                    pushFuture = SyncEngine.shared.saveResource(pullableResource)
-                } else if resource.objectState == .new, !(resource is Pullable) {
-                    pushFuture = SyncEngine.shared.createResource(resource)
-                } else if let deletableResource = resource as? (Pullable & Pushable), resource.objectState == .deleted {
-                    pushFuture = SyncEngine.shared.deleteResource(deletableResource)
+
+                if resource.objectState == .new {
+                    pushFuture = self.manager?.syncEngine.createResource(resource)
                 } else {
                     log.warning("unhandle resource modification")
                 }
@@ -103,12 +121,12 @@ public class SyncPushEngine {
                 pushFuture = pushFuture?.recoverWith { error -> Future<(), XikoloError> in
                     if case .network = error {
                         return Future(error: error)
-                    } else if case let .api(.responseError(statusCode: statusCode, headers: _)) = error, 500 ... 599 ~= statusCode {
+                    } else if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error, 500 ... 599 ~= statusCode {
                         return Future(error: error)
                     }
 
                     log.error("Failed to push resource modification - \(error)")
-                    self.delegate?.didFailToPushResourceModification(withError: error)
+                    ErrorManager.shared.report(error)
                     return Future(value: ())
                 }
 
@@ -129,6 +147,7 @@ public class SyncPushEngine {
                     try context.save()
                 } catch {
                     log.error("while pushing core data changes: \(error)")
+                    ErrorManager.shared.report(error)
                 }
             }
         }
@@ -136,6 +155,93 @@ public class SyncPushEngine {
 
 }
 
-public protocol SyncPushEngineDelegate: AnyObject {
-    func didFailToPushResourceModification(withError error: XikoloError)
+class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManagedObject & Pushable & Pullable {
+
+    private let resourceType: Resource.Type
+    weak var manager: SyncPushEngineManager?
+
+    init(type: Resource.Type, manager: SyncPushEngineManager) {
+        self.resourceType = type
+        self.manager = manager
+    }
+
+    func check() {
+        guard let entityName = Resource.entity().name else {
+            return
+        }
+
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
+            let fetchRequest = NSFetchRequest(entityName: entityName) as NSFetchRequest<NSFetchRequestResult>
+            fetchRequest.predicate = NSPredicate(format: "objectStateValue != %d", ObjectState.unchanged.rawValue)
+
+            do {
+                let objects = try context.fetch(fetchRequest)
+                for case let object as (NSManagedObject & Pushable) in objects {
+                    self.pushChanges(for: object.objectID)
+                }
+            } catch {
+                ErrorManager.shared.report(error)
+            }
+        }
+    }
+
+    private func pushChanges(for managedObjectId: NSManagedObjectID) {
+        self.manager?.addOperation {
+            let context = CoreDataHelper.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                guard let object = try? context.existingObject(with: managedObjectId), let resource = object as? Resource else {
+                    log.info("Resource to be pushed could not be found")
+                    return
+                }
+
+                guard resource.objectState != .unchanged else {
+                    log.info("No change to be pushed for resource of type \(type(of: resource).type)")
+                    return
+                }
+
+                var pushFuture: Future<Void, XikoloError>?
+                if resource.objectState == .modified {
+                    pushFuture = self.manager?.syncEngine.saveResource(resource)
+                } else if resource.objectState == .deleted {
+                    pushFuture = self.manager?.syncEngine.deleteResource(resource)
+                } else {
+                    log.warning("unhandle resource modification")
+                }
+
+                // it makes only sense to retry on network errors
+                pushFuture = pushFuture?.recoverWith { error -> Future<(), XikoloError> in
+                    if case .network = error {
+                        return Future(error: error)
+                    } else if case let .synchronization(.api(.response(statusCode: statusCode, headers: _))) = error, 500 ... 599 ~= statusCode {
+                        return Future(error: error)
+                    }
+
+                    log.error("Failed to push resource modification - \(error)")
+                    ErrorManager.shared.report(error)
+                    return Future(value: ())
+                }
+
+                guard pushFuture?.forced().value != nil else {
+                    log.warning("Failed to push resource modification due to network issues")
+                    return
+                }
+
+                // post sync actions
+                if resource.objectState == .deleted {
+                    context.delete(resource)
+                    log.verbose("Deleted local resource of type: \(type(of: resource).type)")
+                } else if resource.objectState == .new || resource.objectState == .modified {
+                    resource.markAsUnchanged()
+                }
+
+                do {
+                    try context.save()
+                } catch {
+                    log.error("while pushing core data changes: \(error)")
+                    ErrorManager.shared.report(error)
+                }
+            }
+        }
+    }
+
 }

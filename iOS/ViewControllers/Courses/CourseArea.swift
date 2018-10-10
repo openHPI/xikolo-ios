@@ -13,29 +13,36 @@ enum CourseArea {
     case courseDetails
     case documents
     case announcements
+    case recap
     case certificates
 
-    static let orderedValues: [CourseArea] = {
-        var values: [CourseArea] = [
+    static var availableAreas: [CourseArea] = {
+        let values: [CourseArea] = [
             .learnings,
             .discussions,
             .courseDetails,
-        ]
-
-        if Brand.default.features.enableDocuments {
-            values.append(.documents)
-        }
-
-        values += [
+            .documents,
             .announcements,
+            .recap,
             .certificates,
         ]
 
-        return values
+        return values.filter { $0.isAvailable }
     }()
 
     var acessibleWithoutEnrollment: Bool {
         return self == .courseDetails || self == .certificates
+    }
+
+    var isAvailable: Bool {
+        switch self {
+        case .documents:
+            return Brand.default.features.enableDocuments
+        case .recap:
+            return Brand.default.features.enableRecap
+        default:
+            return true
+        }
     }
 
     var title: String {
@@ -50,6 +57,8 @@ enum CourseArea {
             return NSLocalizedString("course-area.view.documents.title", comment: "title of documents view of course view")
         case .announcements:
             return NSLocalizedString("course-area.view.announcements.title", comment: "title of announcements view of course view")
+        case .recap:
+            return NSLocalizedString("course-area.view.recap.title", comment: "title of recap view of course view")
         case .certificates:
             return NSLocalizedString("course-area.view.certificates.title", comment: "title of certificates view of course view")
         }
@@ -67,6 +76,8 @@ enum CourseArea {
             return R.storyboard.courseDocuments.instantiateInitialViewController()
         case .announcements:
             return R.storyboard.tabNews.announcementListViewController()
+        case .recap:
+            return R.storyboard.webViewController.instantiateInitialViewController()
         case .certificates:
             return R.storyboard.courseCertificates.instantiateInitialViewController()
         }

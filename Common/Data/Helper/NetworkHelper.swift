@@ -8,22 +8,24 @@ import Foundation
 
 public struct NetworkHelper {
 
-    public static var requestHeaders: [String: String] {
+    public static func requestHeaders(for url: URL) -> [String: String] {
         var headers = [
             Routes.Header.acceptKey: Routes.Header.acceptValue,
+            Routes.Header.contentTypeKey: Routes.Header.contentTypeValue,
+            Routes.Header.userPlatformKey: Routes.Header.userPlatformValue,
+            Routes.Header.userAgentKey: Routes.Header.userAgentValue,
         ]
 
-        if UserProfileHelper.shared.isLoggedIn {
+        if UserProfileHelper.shared.isLoggedIn, url.host == Routes.base.host {
             headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.shared.userToken
         }
 
-        headers[Routes.Header.userPlatformKey] = Routes.Header.userPlatformValue
         return headers
     }
 
     public static func request(for url: URL) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(url: url)
-        request.allHTTPHeaderFields = self.requestHeaders
+        request.allHTTPHeaderFields = self.requestHeaders(for: url)
         return request
     }
 

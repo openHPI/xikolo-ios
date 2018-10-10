@@ -7,6 +7,8 @@ import UIKit
 
 protocol CourseListLayoutDelegate: AnyObject {
 
+    var showHeaders: Bool { get }
+
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
 
     // only needed in iOS 10
@@ -18,9 +20,10 @@ class CourseListLayout: UICollectionViewLayout {
 
     weak var delegate: CourseListLayoutDelegate?
 
-    private var cellPadding: CGFloat = 0
-    private var linePadding: CGFloat = 20
-    private var headerHeight: CGFloat = 50
+    private let cellPadding: CGFloat = 0
+    private let linePadding: CGFloat = 6
+    private let headerHeight: CGFloat = 36
+    private let headerPillHeight: CGFloat = 50
 
     private var cache: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     private var sectionRange: [Int: (minimum: CGFloat, maximum: CGFloat)] = [:]
@@ -38,7 +41,7 @@ class CourseListLayout: UICollectionViewLayout {
     private func layoutInsets(for collectionView: UICollectionView) -> UIEdgeInsets {
         return UIEdgeInsets(top: self.delegate?.topInset() ?? 0,
                             left: collectionView.layoutMargins.left - 14,
-                            bottom: 0,
+                            bottom: 8,
                             right: collectionView.layoutMargins.right - 14)
     }
 
@@ -90,7 +93,7 @@ class CourseListLayout: UICollectionViewLayout {
                     rowOffset = (yOffset.max() ?? 0.0) + self.linePadding
                 }
 
-                if item == 0 { // new section
+                if item == 0, self.delegate?.showHeaders ?? true { // new section
                     rowOffset += self.headerHeight
                 }
 
@@ -109,6 +112,7 @@ class CourseListLayout: UICollectionViewLayout {
                 column = column < (numberOfColumns - 1) ? (column + 1) : 0
             }
 
+            self.contentHeight += layoutInsets.bottom
             let sectionEnd = (yOffset.max() ?? 0.0) + self.linePadding
             self.sectionRange[section] = (minimum: sectionStart, maximum: sectionEnd)
         }
@@ -122,7 +126,6 @@ class CourseListLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
         let sectionsToAdd = NSMutableIndexSet()
         var layoutAttributes: [UICollectionViewLayoutAttributes] = []
 
@@ -135,11 +138,13 @@ class CourseListLayout: UICollectionViewLayout {
             }
         }
 
-        for section in sectionsToAdd {
-            let indexPath = IndexPath(item: 0, section: section)
-            let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
-            if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
-                layoutAttributes.append(sectionAttributes)
+        if self.delegate?.showHeaders ?? true {
+            for section in sectionsToAdd {
+                let indexPath = IndexPath(item: 0, section: section)
+                let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+                if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
+                    layoutAttributes.append(sectionAttributes)
+                }
             }
         }
 
@@ -152,6 +157,7 @@ class CourseListLayout: UICollectionViewLayout {
 
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard self.delegate?.showHeaders ?? true else { return nil }
         guard elementKind == UICollectionElementKindSectionHeader else { return nil }
 
         guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }
@@ -174,7 +180,7 @@ class CourseListLayout: UICollectionViewLayout {
             offsetY = contentOffsetY
         }
 
-        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.headerHeight)
+        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.headerPillHeight)
         let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
         layoutAttributes.frame = frame
         layoutAttributes.isHidden = false

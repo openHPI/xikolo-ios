@@ -37,14 +37,14 @@ class CourseItemHeader: UITableViewHeaderFooterView {
         guard let section = self.section else { return }
 
         if section.allVideosPreloaded {
-            self.delegate?.showAlert(with: section.userActions, withTitle: section.title, on: self.actionsButton)
+            self.delegate?.showAlert(with: section.userActions, title: section.title, on: self.actionsButton)
         } else {
             let spinnerTitle = NSLocalizedString("course-section.loading-spinner.title",
                                                  comment: "title for spinner when loading section content")
             self.delegate?.showAlertSpinner(title: spinnerTitle) {
                 return CourseItemHelper.syncCourseItems(forSection: section, withContentType: Video.contentType).asVoid()
-            }.onSuccess {
-                self.delegate?.showAlert(with: section.userActions, withTitle: section.title, on: self.actionsButton)
+            }.onSuccess { _ in
+                self.delegate?.showAlert(with: section.userActions, title: section.title, on: self.actionsButton)
             }
         }
 

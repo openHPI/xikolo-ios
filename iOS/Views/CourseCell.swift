@@ -10,7 +10,7 @@ import UIKit
 class CourseCell: UICollectionViewCell {
 
     enum Configuration {
-        case courseList
+        case courseList(filtered: Bool)
         case courseOverview
 
         var showMultilineLabels: Bool {
@@ -36,15 +36,11 @@ class CourseCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.isAccessibilityElement = true
+        self.accessibilityIdentifier = "CourseCell"
 
         let cornerRadius: CGFloat = 6.0
 
-        self.shadowView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        self.shadowView.layer.shadowOpacity = 0.25
-        self.shadowView.layer.shadowRadius = 8.0
         self.shadowView.layer.cornerRadius = cornerRadius
-        self.shadowView.layer.shadowColor = UIColor.black.cgColor
-        self.shadowView.layer.masksToBounds = false
 
         self.courseImage.layer.cornerRadius = cornerRadius
         self.courseImage.layer.masksToBounds = true
@@ -53,6 +49,7 @@ class CourseCell: UICollectionViewCell {
         self.statusView.layer.cornerRadius = cornerRadius
         self.statusView.layer.masksToBounds = true
         self.statusView.backgroundColor = Brand.default.colors.secondary
+        self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
@@ -70,7 +67,7 @@ class CourseCell: UICollectionViewCell {
         self.gradientView.layer.sublayers?.first?.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.width, height: self.gradientView.frame.size.height)
     }
 
-    func configure(_ course: Course, forConfiguration configuration: Configuration) {
+    func configure(_ course: Course, for configuration: Configuration) {
         self.courseImage.image = nil
         self.gradientView.isHidden = true
         self.courseImage.sd_setImage(with: course.imageURL, placeholderImage: nil) { image, _, _, _ in
@@ -82,12 +79,12 @@ class CourseCell: UICollectionViewCell {
 
         self.titleLabel.text = course.title
         self.teacherLabel.text = course.teachers
+        self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
         self.languageLabel.text = course.localizedLanguage
         self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)
 
         self.statusView.isHidden = true
-        switch configuration {
-        case .courseList:
+        if case let .courseList(filtered) = configuration, !filtered {
             if let enrollment = course.enrollment {
                 self.statusView.isHidden = false
                 if enrollment.completed {
@@ -96,7 +93,7 @@ class CourseCell: UICollectionViewCell {
                     self.statusLabel.text = NSLocalizedString("course-cell.status.enrolled", comment: "status 'enrolled' of a course")
                 }
             }
-        case .courseOverview:
+        } else {
             if course.status == "announced" {
                 self.statusView.isHidden = false
                 self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")

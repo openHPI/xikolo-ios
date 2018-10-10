@@ -33,7 +33,11 @@
 	<dict>
 		<key>enableDocuments</key>
 		<true/>
+		<key>enableRecap</key>
+		<false/>
 		<key>showCourseDatesOnDashboard</key>
+		<false/>
+		<key>showCourseTeachers</key>
 		<false/>
 	</dict>
 </dict>

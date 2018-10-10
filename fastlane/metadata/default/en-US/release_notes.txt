@@ -1,4 +1,6 @@
 • Bug fixes and general improvements
 
-Also in version 2.3:
-• Add option to download slides for offline usage
+Also in version 2.4:
+• New dashboard showing an overview of current and completed courses as well as upcoming course dates
+• Lots of smaller improvements for a better user experience
+• iOS 12 support

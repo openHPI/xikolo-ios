@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 final class LTIExercise: Content {
 
@@ -20,13 +21,13 @@ final class LTIExercise: Content {
 
 }
 
-extension LTIExercise: Pullable {
+extension LTIExercise: JSONAPIPullable {
 
     static var type: String {
         return "lti-exercises"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.instructions = try attributes.value(for: "instructions")
         self.weight = try attributes.value(for: "weight")

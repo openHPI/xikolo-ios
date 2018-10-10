@@ -5,13 +5,14 @@
 
 import BrightFutures
 import Foundation
+import SyncEngine
 
 struct PeerAssessmentHelper {
 
-    @discardableResult static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<SyncEngine.SyncSingleResult, XikoloError> {
+    @discardableResult static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = PeerAssessmentHelper.FetchRequest.peerAssessment(withId: peerAssessment.id)
         let query = SingleResourceQuery(resource: peerAssessment)
-        return SyncEngine.shared.syncResource(withFetchRequest: fetchRequest, withQuery: query)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
     }
 
 }

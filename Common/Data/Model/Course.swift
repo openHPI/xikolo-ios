@@ -6,6 +6,7 @@
 import BrightFutures
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class Course: NSManagedObject {
 
@@ -26,6 +27,7 @@ public final class Course: NSManagedObject {
     @NSManaged public var hidden: Bool
     @NSManaged public var enrollable: Bool
     @NSManaged public var external: Bool
+    @NSManaged public var lastVisited: Date?
 
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var enrollment: Enrollment?
@@ -102,13 +104,13 @@ public final class Course: NSManagedObject {
 
 }
 
-extension Course: Pullable {
+extension Course: JSONAPIPullable {
 
     public static var type: String {
         return "courses"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.slug = try attributes.value(for: "slug")
@@ -132,8 +134,7 @@ extension Course: Pullable {
             try self.updateRelationship(forKeyPath: \Course.enrollment,
                                         forKey: "user_enrollment",
                                         fromObject: relationships,
-                                        including: includes,
-                                        inContext: context)
+                                        with: context)
         }
 
     }

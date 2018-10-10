@@ -18,19 +18,11 @@ class CourseListViewController: UICollectionViewController {
     @available(iOS, obsoleted: 11.0)
     private var statusBarBackground: UIView?
 
-    enum CourseDisplayMode {
-        case enrolledOnly
-        case all
-        case explore
-        case bothSectioned
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    var configuration: CourseListConfiguration = .allCourses
 
     override func viewDidLoad() {
-        self.collectionView?.register(R.nib.courseHeaderView(),
+        self.collectionView?.register(R.nib.courseCell)
+        self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
                                       forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
@@ -40,20 +32,17 @@ class CourseListViewController: UICollectionViewController {
 
         super.viewDidLoad()
 
-        self.collectionView?.register(R.nib.courseCell(), forCellWithReuseIdentifier: R.reuseIdentifier.courseCell.identifier)
+        self.navigationItem.title = self.configuration.title
+        if #available(iOS 11, *) {
+            self.navigationItem.largeTitleDisplayMode = self.configuration.largeTitleDisplayMode
+        }
 
         self.addRefreshControl()
 
-        let searchFetchRequest = CourseHelper.FetchRequest.accessibleCourses
         let reuseIdentifier = R.reuseIdentifier.courseCell.identifier
-        let resultsControllers: [NSFetchedResultsController<Course>] = [
-            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.currentCourses, sectionNameKeyPath: "currentSectionName"),
-            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.upcomingCourses, sectionNameKeyPath: "upcomingSectionName"),
-            CoreDataHelper.createResultsController(CourseHelper.FetchRequest.selfpacedCourses, sectionNameKeyPath: "selfpacedSectionName"),
-        ]
         self.dataSource = CoreDataCollectionViewDataSource(self.collectionView,
-                                                           fetchedResultsControllers: resultsControllers,
-                                                           searchFetchRequest: searchFetchRequest,
+                                                           fetchedResultsControllers: self.configuration.resultsControllers,
+                                                           searchFetchRequest: self.configuration.searchFetchRequest,
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            headerReuseIdentifier: R.nib.courseHeaderView.name,
                                                            delegate: self)
@@ -99,10 +88,6 @@ class CourseListViewController: UICollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if let xikoloNavigationController = self.navigationController as? XikoloNavigationController {
-            xikoloNavigationController.fixShadowImage()
-        }
-
         if #available(iOS 11.0, *) {
             self.navigationItem.hidesSearchBarWhenScrolling = true
         }
@@ -116,6 +101,10 @@ class CourseListViewController: UICollectionViewController {
 }
 
 extension CourseListViewController: CourseListLayoutDelegate {
+
+    var showHeaders: Bool {
+        return self.configuration == .allCourses || self.dataSource.isSearching
+    }
 
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
@@ -145,20 +134,26 @@ extension CourseListViewController: CourseListLayoutDelegate {
 
         var height = imageHeight + 14
 
-        if !titleText.isEmpty || !teachersText.isEmpty {
-            height += 8
-        }
+        if Brand.default.features.showCourseTeachers {
+            if !titleText.isEmpty || !teachersText.isEmpty {
+                height += 8
+            }
 
-        if !titleText.isEmpty {
-            height += titleSize.height
-        }
+            if !titleText.isEmpty {
+                height += titleSize.height
+            }
 
-        if !titleText.isEmpty && !teachersText.isEmpty {
-            height += 4
-        }
+            if !titleText.isEmpty && !teachersText.isEmpty {
+                height += 4
+            }
 
-        if !teachersText.isEmpty {
-            height += teachersSize.height
+            if !teachersText.isEmpty {
+                height += teachersSize.height
+            }
+        } else {
+            if !titleText.isEmpty {
+                height += 8 + titleSize.height
+            }
         }
 
         return height + 5
@@ -229,7 +224,8 @@ extension CourseListViewController: UISearchControllerDelegate {
 extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
 
     func configure(_ cell: CourseCell, for object: Course) {
-        cell.configure(object, forConfiguration: .courseList)
+        let filtered = self.configuration != .allCourses
+        cell.configure(object, for: .courseList(filtered: filtered))
     }
 
     func configureHeaderView(_ headerView: CourseHeaderView, sectionInfo: NSFetchedResultsSectionInfo) {

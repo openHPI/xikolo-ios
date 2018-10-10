@@ -2,7 +2,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
-pod 'R.swift', '~> 4.0'
+pod 'R.swift', '5.0.0.alpha.2'
 pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods
@@ -13,12 +13,12 @@ end
 
 target 'Common' do
     platform :ios, '10.0'
-    pod 'BrightFutures', '~> 6.0'
-    pod 'Down', '~> 0.4' #:git => 'https://github.com/iwasrobbed/Down', :commit => '18eb466'
+    pod 'BrightFutures', '~> 7.0'
+    pod 'Down', '~> 0.4'
     pod 'KeychainAccess', '~> 3.1'
-    pod 'Marshal', '~> 1.2'
     pod 'ReachabilitySwift', '~> 4.1'
     pod 'SDWebImage', '~> 4.2'
+    pod 'SyncEngine', :path => './Frameworks/SyncEngine'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
     pod 'XCGLogger', '~> 6.0'
 
@@ -32,7 +32,6 @@ target 'iOS' do
     firebase_pods
     pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
     pod 'DZNEmptyDataSet', '~> 1.8'
-    pod 'SimpleRoundedButton', :git => 'https://github.com/mathebox/SimpleRoundedButton.git', :commit => '91225d2'
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end
 

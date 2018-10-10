@@ -4,26 +4,49 @@
 //
 
 import CoreData
+import SyncEngine
 
 extension AnnouncementHelper {
 
     public struct FetchRequest {
 
+        private static var enrolledCoursePredicate: NSPredicate {
+            let deletedEnrollmentPrecidate = NSPredicate(format: "course.enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)
+            let notDeletedEnrollmentPredicate = NSCompoundPredicate(notPredicateWithSubpredicate: deletedEnrollmentPrecidate)
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "course.enrollment != nil"),
+                notDeletedEnrollmentPredicate,
+            ])
+        }
+
+        private static var noCourseOrEnrolledCoursePredicate: NSPredicate {
+            return NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "course == nil"),
+                self.enrolledCoursePredicate,
+            ])
+        }
+
         public static var allAnnouncements: NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
             let dateSort = NSSortDescriptor(key: "publishedAt", ascending: false)
             request.sortDescriptors = [dateSort]
+            request.predicate = self.noCourseOrEnrolledCoursePredicate
             return request
         }
 
         public static var unreadAnnouncements: NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
-            request.predicate = NSPredicate(format: "visited = %@", NSNumber(value: false))
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "visited = %@", NSNumber(value: false)),
+                self.noCourseOrEnrolledCoursePredicate,
+            ])
             return request
         }
 
         public static func announcements(forCourse course: Course) -> NSFetchRequest<Announcement> {
-            let request: NSFetchRequest<Announcement> = AnnouncementHelper.FetchRequest.allAnnouncements
+            let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
+            let dateSort = NSSortDescriptor(key: "publishedAt", ascending: false)
+            request.sortDescriptors = [dateSort]
             request.predicate = NSPredicate(format: "course = %@", course)
             return request
         }

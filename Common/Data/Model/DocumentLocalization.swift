@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 public final class DocumentLocalization: NSManagedObject {
 
@@ -13,7 +14,7 @@ public final class DocumentLocalization: NSManagedObject {
     @NSManaged public var localizationDescription: String?
     @NSManaged public var languageCode: String?
     @NSManaged public var fileURL: URL?
-    @NSManaged private var localFileURL: URL?
+    @NSManaged public var localFileBookmark: NSData?
     @NSManaged private var revision: Int16
 
     @NSManaged public var document: Document
@@ -24,13 +25,13 @@ public final class DocumentLocalization: NSManagedObject {
 
 }
 
-extension DocumentLocalization: Pullable {
+extension DocumentLocalization: JSONAPIPullable {
 
     public static var type: String {
         return "document-localizations"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.title = try attributes.value(for: "title")
         self.localizationDescription = try attributes.value(for: "description")

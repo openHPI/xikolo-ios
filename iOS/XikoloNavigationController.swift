@@ -20,11 +20,12 @@ class XikoloNavigationController: UINavigationController {
         }
     }
 
-    func fixShadowImage() {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         self.hideShadowImage(inView: self.view)
     }
 
-    @discardableResult func hideShadowImage(inView view: UIView) -> Bool {
+    @discardableResult private func hideShadowImage(inView view: UIView, level: Int = 0) -> Bool {
         if let imageView = view as? UIImageView {
             let size = imageView.bounds.size.height
             if size <= 1 && size > 0 && imageView.subviews.isEmpty {
@@ -37,7 +38,11 @@ class XikoloNavigationController: UINavigationController {
         }
 
         for subview in view.subviews {
-            if self.hideShadowImage(inView: subview) {
+            if subview is UISearchBar || subview is UICollectionView || subview is UITableView || subview is UIRefreshControl || subview is UIVisualEffectView {
+                continue
+            }
+
+            if self.hideShadowImage(inView: subview, level: level + 1) {
                 break
             }
         }

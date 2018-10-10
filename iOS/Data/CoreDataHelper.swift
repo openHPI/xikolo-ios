@@ -34,7 +34,7 @@ extension CoreDataHelper {
 
                 UserDefaults.standard.didMigrateCoreDataModelToCommon = true
             } catch {
-                CrashlyticsHelper.shared.recordError(error)
+                ErrorManager.shared.report(error)
             }
         }
     }

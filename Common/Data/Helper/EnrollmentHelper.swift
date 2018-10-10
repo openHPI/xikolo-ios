@@ -6,6 +6,7 @@
 import BrightFutures
 import CoreData
 import Foundation
+import SyncEngine
 
 public struct EnrollmentHelper {
 
@@ -13,10 +14,7 @@ public struct EnrollmentHelper {
         let attributes = ["completed": false]
         let relationships = ["course": course as AnyObject]
         let resourceData = Enrollment.resourceData(attributes: attributes, relationships: relationships)
-
-        return resourceData.flatMap { data in
-            return SyncEngine.shared.createResource(ofType: Enrollment.self, withData: data).asVoid()
-        }
+        return XikoloSyncEngine().createResource(ofType: Enrollment.self, withData: resourceData).asVoid()
     }
 
     public static func delete(_ enrollment: Enrollment?) -> Future<Void, XikoloError> {
@@ -61,6 +59,13 @@ public struct EnrollmentHelper {
             }
 
             enrollment.completed = true
+
+            // workaround to publish course enrollment changes to course (triggers update of course lists)
+            if let courseOfEnrollment = context.existingTypedObject(with: course.objectID) as? Course {
+                let updatedEnrollment = courseOfEnrollment.enrollment
+                courseOfEnrollment.enrollment = updatedEnrollment
+            }
+
             if enrollment.objectState != .new, enrollment.objectState != .deleted {
                 enrollment.objectState = .modified
             }

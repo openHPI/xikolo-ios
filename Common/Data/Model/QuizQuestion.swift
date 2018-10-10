@@ -5,6 +5,7 @@
 
 import CoreData
 import Foundation
+import SyncEngine
 
 final class QuizQuestion: NSManagedObject {
 
@@ -49,13 +50,13 @@ final class QuizQuestion: NSManagedObject {
 
 }
 
-extension QuizQuestion: Pullable {
+extension QuizQuestion: JSONAPIPullable {
 
     static var type: String {
         return "quiz-questions"
     }
 
-    func update(withObject object: ResourceData, including includes: [ResourceData]?, inContext context: NSManagedObjectContext) throws {
+    public func update(from object: ResourceData, with context: SynchronizationContext) throws {
         let attributes = try object.value(for: "attributes") as JSON
         self.text = try attributes.value(for: "instructions")
         self.explanation = try attributes.value(for: "explanation")

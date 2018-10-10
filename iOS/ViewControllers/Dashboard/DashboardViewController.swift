@@ -5,6 +5,7 @@
 
 import BrightFutures
 import Common
+import CoreData
 import UIKit
 
 class DashboardViewController: UITableViewController {
@@ -17,6 +18,14 @@ class DashboardViewController: UITableViewController {
 
         self.addRefreshControl()
         self.refresh()
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -41,23 +50,29 @@ class DashboardViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseOverviewCell, for: indexPath).require()
-            let configuration: CourseOverviewCell.Configuration = section == 1 ? .currentCourses : .completedCourses
+            let configuration: CourseListConfiguration = section == 1 ? .currentCourses : .completedCourses
+            cell.delegate = self
             cell.configure(for: configuration)
             return cell
         }
     }
 
-    @IBAction func tappedOnCourseDateSummary(_ sender: UITapGestureRecognizer) {
-        self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseDates, sender: self)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.dashboardViewController.showCourseList(segue: segue) {
+            if let configuration = sender as? CourseListConfiguration {
+                typedInfo.destination.configuration = configuration
+            }
+        }
     }
 
-    @IBAction func tappedOnCourseDateNextUp(_ sender: UITapGestureRecognizer) {
-        let someCourseDate = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value
-        guard let course = someCourseDate?.course else {
-            return
-        }
+    @objc private func coreDataChange(notification: Notification) {
+        let courseDatesChanged = notification.includesChanges(for: CourseDate.self)
+        let courseRefreshed = notification.includesChanges(for: Course.self, keys: [NSRefreshedObjectsKey])
 
-        AppNavigator.show(course: course)
+        if courseDatesChanged || courseRefreshed {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .fade)
+        }
     }
 
 }
@@ -89,8 +104,12 @@ extension DashboardViewController: CourseDateOverviewDelegate {
         self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseDates, sender: self)
     }
 
-    func openCourse(_ course: Course) {
-        AppNavigator.show(course: course)
+}
+
+extension DashboardViewController: CourseOverviewDelegate {
+
+    func openCourseList(for configuration: CourseListConfiguration) {
+        self.performSegue(withIdentifier: R.segue.dashboardViewController.showCourseList, sender: configuration)
     }
 
 }

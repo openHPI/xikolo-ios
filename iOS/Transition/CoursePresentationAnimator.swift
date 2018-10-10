@@ -12,26 +12,34 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
+        guard let fromViewController = transitionContext.viewController(forKey: .from) else {
+            fatalError("from view controller could not be found")
+        }
+
+        guard let toViewController = transitionContext.viewController(forKey: .to) else {
+            fatalError("to view controller could not be found")
+        }
+
         let containerView = transitionContext.containerView
 
         let overlayView = UIView()
-        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        overlayView.backgroundColor = UIColor.black
         overlayView.frame = containerView.bounds
         overlayView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         overlayView.alpha = 0.0
         overlayView.tag = 437
 
+        if let snapshot = fromViewController.view.snapshotView(afterScreenUpdates: true) {
+            snapshot.alpha = 0.2
+            overlayView.addSubview(snapshot)
+        }
+
         containerView.addSubview(overlayView)
 
-        let animationDuration = transitionDuration(using: transitionContext)
+        let animationDuration = self.transitionDuration(using: transitionContext)
 
         toViewController.view.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)
-        toViewController.view.layer.shadowColor = UIColor.black.cgColor
-        toViewController.view.layer.shadowOffset = CGSize(width: 0.0, height: 16.0)
-        toViewController.view.layer.shadowOpacity = 0.3
-        toViewController.view.layer.shadowRadius = 24.0
 
         for subview in toViewController.view.subviews {
             subview.layer.cornerRadius = 16.0
@@ -44,7 +52,7 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         containerView.addSubview(toViewController.view)
 
-        UIView.animate(withDuration: animationDuration, animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseInOut, animations: {
             toViewController.view.transform = CGAffineTransform.identity
             overlayView.alpha = 1.0
         }, completion: { finished in

@@ -26,7 +26,10 @@ class CourseNavigationController: XikoloNavigationController {
     }
 
     @objc func closeCourse() {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        feedbackGenerator.prepare()
         super.dismiss(animated: true)
+        feedbackGenerator.impactOccurred()
     }
 
     @objc func handlePullDown(sender: UIPanGestureRecognizer) {
@@ -41,6 +44,9 @@ class CourseNavigationController: XikoloNavigationController {
         let velocity = sender.velocity(in: self.view)
         let shouldFinishByFlicking = velocity.y > CourseNavigationController.flickVelocityThreshold
 
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        feedbackGenerator.prepare()
+
         switch sender.state {
         case .began:
             interactor.hasStarted = true
@@ -53,7 +59,12 @@ class CourseNavigationController: XikoloNavigationController {
             interactor.cancel()
         case .ended:
             interactor.hasStarted = false
-            interactor.shouldFinish ? interactor.finish() : interactor.cancel()
+            if interactor.shouldFinish {
+                interactor.finish()
+                feedbackGenerator.impactOccurred()
+            } else {
+                interactor.cancel()
+            }
         default:
             break
         }

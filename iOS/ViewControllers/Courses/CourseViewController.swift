@@ -35,6 +35,13 @@ class CourseViewController: UIViewController {
     var area: CourseArea? {
         didSet {
             guard self.viewIfLoaded != nil else { return }
+
+            if self.area != oldValue {
+                let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+                feedbackGenerator.prepare()
+                feedbackGenerator.impactOccurred()
+            }
+
             self.updateContainerView()
         }
     }

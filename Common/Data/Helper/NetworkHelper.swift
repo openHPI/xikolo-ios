@@ -8,17 +8,20 @@ import Foundation
 
 public struct NetworkHelper {
 
-    public static func requestHeaders(for url: URL) -> [String: String] {
+    public static func requestHeaders(for url: URL, additionalHeaders: [String: String] = [:]) -> [String: String] {
         var headers = [
             Routes.Header.acceptKey: Routes.Header.acceptValue,
+            Routes.Header.userPlatformKey: Routes.Header.userPlatformValue,
         ]
+
+        for (key, value) in additionalHeaders {
+            headers[key] = value
+        }
 
         if UserProfileHelper.shared.isLoggedIn, url.host == Routes.base.host {
             headers[Routes.Header.authKey] = Routes.Header.authValuePrefix + UserProfileHelper.shared.userToken
         }
 
-        headers[Routes.Header.contentTypeKey] = Routes.Header.contentTypeValue
-        headers[Routes.Header.userPlatformKey] = Routes.Header.userPlatformValue
         return headers
     }
 

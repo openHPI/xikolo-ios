@@ -66,10 +66,15 @@ class PDFWebViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nil
         self.webView.isHidden = true
+        self.progress.alpha = 0.0
 
         if let url = self.url {
             self.loadPDF(for: url)
         }
+
+        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
+            self.progress.alpha = CGFloat(1.0)
+        }, completion: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

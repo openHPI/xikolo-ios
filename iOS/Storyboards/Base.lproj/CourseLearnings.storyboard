@@ -111,6 +111,7 @@
                                     <outlet property="iconView" destination="L8U-Fp-wH1" id="ZYN-fe-P6P"/>
                                     <outlet property="readStateView" destination="f0u-JP-r4C" id="Dda-eM-RsX"/>
                                     <outlet property="titleView" destination="vm4-Hr-k3d" id="OqI-3b-6NJ"/>
+                                    <segue destination="ggS-zs-FkB" kind="show" identifier="ShowCourseItem" id="96M-St-Bmm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -120,11 +121,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="wbr-Ja-Sax"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <segue destination="Sj1-Jn-P6O" kind="show" identifier="ShowVideo" id="aZH-1e-yZw"/>
-                        <segue destination="NW7-Yg-G1A" kind="show" identifier="ShowCourseItem" id="Pt9-PY-lWf"/>
-                        <segue destination="rg3-oN-kal" kind="show" identifier="ShowRichtext" id="PBS-PI-ajC"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70L-nu-wuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -133,7 +129,7 @@
         <!--Richtext View Controller-->
         <scene sceneID="tVE-lt-FrA">
             <objects>
-                <viewController id="rg3-oN-kal" customClass="RichtextViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RichtextViewController" id="rg3-oN-kal" customClass="RichtextViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="t4O-cz-BsG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -585,12 +581,24 @@
             </objects>
             <point key="canvasLocation" x="213" y="1133"/>
         </scene>
+        <!--Course Item View Controller-->
+        <scene sceneID="Us7-VF-fEh">
+            <objects>
+                <viewController id="ggS-zs-FkB" customClass="CourseItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d3e-zm-Zms">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NxG-og-J3b"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ypd-MR-3a0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1834" y="-110"/>
+        </scene>
     </scenes>
     <resources>
         <image name="dots" width="28" height="28"/>
         <image name="downloaded" width="21" height="21"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Pt9-PY-lWf"/>
-    </inferredMetricsTieBreakers>
 </document>

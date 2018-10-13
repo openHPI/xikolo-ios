@@ -66,3 +66,11 @@ extension RichtextViewController: UITextViewDelegate {
     }
 
 }
+
+extension RichtextViewController: CourseItemContentViewController {
+
+    func configure(for item: CourseItem) {
+        self.courseItem = item
+    }
+
+}

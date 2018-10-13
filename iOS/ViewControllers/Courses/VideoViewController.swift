@@ -523,3 +523,11 @@ extension VideoViewController: BMPlayerDelegate {
     }
 
 }
+
+extension VideoViewController: CourseItemContentViewController {
+
+    func configure(for item: CourseItem) {
+        self.courseItem = item
+    }
+
+}

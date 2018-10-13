@@ -80,22 +80,22 @@ class CourseItemListViewController: UITableViewController {
     }
 
     func showItem(_ item: CourseItem) {
-        CourseItemHelper.markAsVisited(item)
-        let context = [
-            "content_type": item.contentType,
-            "section_id": item.section?.id,
-            "course_id": self.course.id,
-        ]
-        TrackingHelper.shared.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
-
-        switch item.contentType {
-        case "video"?:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showVideo, sender: item)
-        case "rich_text"?:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showRichtext, sender: item)
-        default:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: item)
-        }
+//        CourseItemHelper.markAsVisited(item)
+//        let context = [
+//            "content_type": item.contentType,
+//            "section_id": item.section?.id,
+//            "course_id": self.course.id,
+//        ]
+//        TrackingHelper.shared.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
+//
+//        switch item.contentType {
+//        case "video"?:
+//            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showVideo, sender: item)
+//        case "rich_text"?:
+//            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showRichtext, sender: item)
+//        default:
+//            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: item)
+//        }
     }
 
     @objc func reachabilityChanged() {
@@ -122,19 +122,25 @@ class CourseItemListViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let courseItem = sender as? CourseItem else {
-            log.debug("Sender is not a course item")
-            super.prepare(for: segue, sender: sender)
-            return
-        }
+        guard let cell = sender as? CourseItemCell else { return }
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
 
-        if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
-        } else if let typedInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
-        } else if let typedInfo = R.segue.courseItemListViewController.showRichtext(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
+        if let typeInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
+            typeInfo.destination.item = self.dataSource.object(at: indexPath)
         }
+//        guard let courseItem = sender as? CourseItem else {
+//            log.debug("Sender is not a course item")
+//            super.prepare(for: segue, sender: sender)
+//            return
+//        }
+//
+//        if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
+//            typedInfo.destination.courseItem = courseItem
+//        } else if let typedInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
+//            typedInfo.destination.courseItem = courseItem
+//        } else if let typedInfo = R.segue.courseItemListViewController.showRichtext(segue: segue) {
+//            typedInfo.destination.courseItem = courseItem
+//        }
     }
 
 }

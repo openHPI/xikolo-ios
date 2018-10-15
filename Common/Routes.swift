@@ -19,7 +19,7 @@ public struct Routes {
         public static let acceptPDF = "application/pdf"
 
         public static let contentTypeKey = "Content-Type"
-        public static let contentTypeValue = "application/vnd.api+json"
+        public static let contentTypeValueJSONAPI = "application/vnd.api+json"
 
         public static let authKey = "Authorization"
         public static let authValuePrefix = "Token token="

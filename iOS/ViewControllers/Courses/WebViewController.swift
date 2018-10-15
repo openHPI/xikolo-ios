@@ -10,6 +10,17 @@ class WebViewController: UIViewController {
 
     @IBOutlet private weak var webView: UIWebView!
 
+    private lazy var progress: CircularProgressView = {
+        let progress = CircularProgressView()
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        progress.lineWidth = 4
+        progress.tintColor = Brand.default.colors.primary
+
+        let progressValue: CGFloat? = nil
+        progress.updateProgress(progressValue)
+        return progress
+    }()
+
     weak var loginDelegate: LoginDelegate?
 
     var url: URL? {
@@ -20,10 +31,30 @@ class WebViewController: UIViewController {
         }
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.view.addSubview(self.progress)
+        NSLayoutConstraint.activate([
+            self.progress.centerXAnchor.constraint(equalTo: self.view.layoutMarginsGuide.centerXAnchor),
+            self.progress.centerYAnchor.constraint(equalTo: self.view.layoutMarginsGuide.centerYAnchor),
+            self.progress.heightAnchor.constraint(equalToConstant: 50),
+            self.progress.widthAnchor.constraint(equalTo: self.progress.heightAnchor),
+        ])
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.webView.isHidden = true
         self.webView.delegate = self
+
+        self.progress.alpha = 0.0
+
         self.loadURL()
+
+        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
+            self.progress.alpha = CGFloat(1.0)
+        }, completion: nil)
     }
 
     override func removeFromParentViewController() {
@@ -48,6 +79,8 @@ extension WebViewController: UIWebViewDelegate {
     }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.progress.isHidden = true
+        self.webView.isHidden = false
         NetworkIndicator.end()
     }
 

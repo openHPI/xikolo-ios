@@ -7,4 +7,9 @@ import Common
 
 protocol CourseItemContentViewController: AnyObject {
     func configure(for item: CourseItem)
+    func prepareForCourseItemChange()
+}
+
+extension CourseItemContentViewController {
+    func prepareForCourseItemChange() {}
 }

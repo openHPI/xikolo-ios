@@ -98,18 +98,23 @@ class VideoViewController: UIViewController {
         self.toggleControlBars(animated)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        if !(self.navigationController?.viewControllers.contains(self) ?? false) {
-            self.player?.pause()
-        }
-
-        if !(self.navigationController?.viewControllers.contains(self) ?? true) {
-            self.trackVideoClose()
-            self.player?.prepareToDealloc()
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // TODO
     }
+
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        if !(self.navigationController?.viewControllers.contains(self) ?? false) {
+//            self.player?.pause()
+//        }
+//
+//        if !(self.navigationController?.viewControllers.contains(self) ?? true) {
+//            self.trackVideoClose()
+//            self.player?.prepareToDealloc()
+//        }
+//    }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -137,6 +142,7 @@ class VideoViewController: UIViewController {
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enablePlaytimeGestures = true
+        BMPlayerConf.shouldAutoPlay = false
 
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
         let player = CustomBMPlayer(customControlView: self.playerControlView)
@@ -528,6 +534,11 @@ extension VideoViewController: CourseItemContentViewController {
 
     func configure(for item: CourseItem) {
         self.courseItem = item
+    }
+
+    func prepareForCourseItemChange() {
+        self.player?.pause()
+        self.trackVideoClose() // Really
     }
 
 }

@@ -111,7 +111,7 @@
                                     <outlet property="iconView" destination="L8U-Fp-wH1" id="ZYN-fe-P6P"/>
                                     <outlet property="readStateView" destination="f0u-JP-r4C" id="Dda-eM-RsX"/>
                                     <outlet property="titleView" destination="vm4-Hr-k3d" id="OqI-3b-6NJ"/>
-                                    <segue destination="ggS-zs-FkB" kind="show" identifier="ShowCourseItem" id="96M-St-Bmm"/>
+                                    <segue destination="qjq-Jf-C4q" kind="show" identifier="ShowCourseItem" id="ocO-cc-Njs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -186,7 +186,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="s40-oe-5ie" firstAttribute="top" secondItem="TET-md-G1G" secondAttribute="top" id="A9r-C4-Gzp"/>
-                                    <constraint firstAttribute="bottom" secondItem="s40-oe-5ie" secondAttribute="bottom" constant="20" symbolic="YES" id="CgM-Jq-Tjq"/>
+                                    <constraint firstAttribute="bottom" secondItem="s40-oe-5ie" secondAttribute="bottom" id="CgM-Jq-Tjq"/>
                                     <constraint firstAttribute="trailing" secondItem="s40-oe-5ie" secondAttribute="trailing" id="MZW-ee-X5a"/>
                                     <constraint firstItem="s40-oe-5ie" firstAttribute="leading" secondItem="TET-md-G1G" secondAttribute="leading" id="OFo-4M-cJZ"/>
                                 </constraints>
@@ -582,19 +582,12 @@
             <point key="canvasLocation" x="213" y="1133"/>
         </scene>
         <!--Course Item View Controller-->
-        <scene sceneID="Us7-VF-fEh">
+        <scene sceneID="tat-jM-1pT">
             <objects>
-                <viewController id="ggS-zs-FkB" customClass="CourseItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="d3e-zm-Zms">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="NxG-og-J3b"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ypd-MR-3a0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qjq-Jf-C4q" customClass="CourseItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1bX-Mb-KMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834" y="-110"/>
+            <point key="canvasLocation" x="1798" y="-110"/>
         </scene>
     </scenes>
     <resources>

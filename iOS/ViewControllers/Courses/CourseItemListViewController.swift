@@ -126,7 +126,7 @@ class CourseItemListViewController: UITableViewController {
         guard let indexPath = self.tableView.indexPath(for: cell) else { return }
 
         if let typeInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
-            typeInfo.destination.item = self.dataSource.object(at: indexPath)
+            typeInfo.destination.currentItem = self.dataSource.object(at: indexPath)
         }
 //        guard let courseItem = sender as? CourseItem else {
 //            log.debug("Sender is not a course item")

@@ -15,6 +15,7 @@ class PDFWebViewController: UIViewController {
         let progress = CircularProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
         progress.lineWidth = 4
+        progress.gapWidth = 2
         progress.tintColor = Brand.default.colors.primary
 
         let progressValue: CGFloat? = nil

@@ -9,50 +9,66 @@ import UIKit
 
 class DownloadItemListViewController: UITableViewController {
 
-    //var downloadType: DownloadItem.DownloadType!
+    var downloadType: DownloadItem.DownloadType!
+    var courseID: String!
 
-    //var resultsController: NSFetchedResultsController<NSFetchResultType>!
+    var sections: [Int:Int] = [:]
+
+    var resultsController: NSFetchedResultsController<Video>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.navigationItem.rightBarButtonItem = self.editButtonItem
-//        var request: NSFetchRequest<Video>
-//        switch self.downloadType {
-//        case .video:
-//            request = VideoHelper.FetchRequest.hasDownloadedVideo()
-//        case .slides:
-//            request = VideoHelper.FetchRequest.hasDownloadedSlides()
-//        case .document:
-//            break //request = DocumentHelper.FetchRequest.downloaded()
-//        default:
-//            break
-//        }
-        //let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.name")
-        //try? resultsController.performFetch()
+        var request: NSFetchRequest<Video>
+        switch self.downloadType {
+        case .video?:
+            request = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: courseID)
+        case .slides?:
+            request = VideoHelper.FetchRequest.hasDownloadedSlides(inCourse: courseID)
+        default:
+            request = Video.fetchRequest()
+        }
+        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
+        do {
+            try resultsController.performFetch()
+            //self.tableView.reloadData()
+        } catch {
+            log.error()
+        }
 
+    }
+
+    func configure(for courseID: String ,withDownloadType downloadType: DownloadItem.DownloadType) {
+        self.downloadType = downloadType
+        self.courseID = courseID
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return resultsController.sections?.count ?? 0
+//        let videos = resultsController.fetchedObjects.require()
+//        videos.forEach { (video) in
+//            if let section = video.item?.section {
+//                let count = (sections[Int(section.position)] ?? 0) + 1
+//                sections.updateValue(count, forKey: Int(section.position))
+//            }
+//        }
+        //return self.sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return resultsController.sections?[section].numberOfObjects ?? 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "downloadItemCell", for: indexPath)
+        let video = resultsController.object(at: indexPath)
+        cell.textLabel?.text = video.item?.title ?? video.summary ?? ""
+        //cell.detailTextLabel?.text = self.downloadType == .video ? video.singleStream.
+        // TODO: maybe set size
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -71,21 +87,6 @@ class DownloadItemListViewController: UITableViewController {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
     }
     */
 

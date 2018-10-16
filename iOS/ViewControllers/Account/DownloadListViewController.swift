@@ -138,12 +138,10 @@ class DownloadListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return courses.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return courses[section].properties.filter( { $0 } ).count
     }
 
@@ -179,19 +177,15 @@ class DownloadListViewController: UITableViewController {
         case .video:
             return NSLocalizedString("settings.downloads.item.video", comment: "")
         case .slides:
-            return NSLocalizedString("settings.downloads.item.stream", comment: "")
+            return NSLocalizedString("settings.downloads.item.slides", comment: "")
         case .document:
             return NSLocalizedString("settings.downloads.item.document", comment: "")
         }
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: R.segue.downloadListViewController.showDownloadItems, sender: indexPath)
     }
-    */
 
     /*
     // Override to support editing the table view.
@@ -207,12 +201,14 @@ class DownloadListViewController: UITableViewController {
 
     // MARK: - Navigation
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "" {
-//            let vc = segue.destination.require(toHaveType: DownloadItemListViewController.self)
-//            vc.downloadType =
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = (sender as? IndexPath).require(hint: "Sender must be IndexPath")
+        let course = courses[indexPath.section]
+        let downloadType = self.downloadType(for: indexPath)
+        if let typedInfo = R.segue.downloadListViewController.showDownloadItems(segue: segue) {
+            typedInfo.destination.configure(for: course.id, withDownloadType: downloadType)
+        }
+    }
 
 }
 

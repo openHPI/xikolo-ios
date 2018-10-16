@@ -11,8 +11,57 @@ import CoreData
 
 class CourseItemViewController: UIPageViewController {
 
-    private var previousItem: CourseItem?
-    private var nextItem: CourseItem?
+    private lazy var previousItemButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        button.setBackgroundImage(R.image.arrowHeadLeft(), for: .normal)
+        button.addTarget(self, action: #selector(showPreviousItem), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var nextItemButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        button.setBackgroundImage(R.image.arrowHeadRight(), for: .normal)
+        button.addTarget(self, action: #selector(showNextItem), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var progressLabel: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 40, height: 24)
+        label.text = "2 / 11"
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
+        label.tintColor = UIColor.darkText
+        return label
+    }()
+
+    private lazy var contentControlView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [
+            self.previousItemButton,
+            self.progressLabel,
+            self.nextItemButton,
+        ])
+        stack.axis = .horizontal
+        stack.spacing = 8
+        return stack
+    }()
+
+    private var previousItem: CourseItem? {
+        didSet {
+            let enabled = self.previousItem != nil
+            self.previousItemButton.isEnabled = enabled
+            self.previousItemButton.tintColor = enabled ? Brand.default.colors.primary : .lightGray
+        }
+    }
+
+    private var nextItem: CourseItem? {
+        didSet {
+            let enabled = self.nextItem != nil
+            self.nextItemButton.isEnabled = enabled
+            self.nextItemButton.tintColor = enabled ? Brand.default.colors.primary : .lightGray
+        }
+    }
 
     private var previousItemViewController: UIViewController?
     private var nextItemViewController: UIViewController?
@@ -27,6 +76,11 @@ class CourseItemViewController: UIPageViewController {
 
             self.previousItem = self.currentItem?.previousItem
             self.nextItem = self.currentItem?.nextItem
+
+            if let item = self.currentItem, let section = item.section {
+                self.progressLabel.text = "\(item.position) / \(section.items.count)"
+            }
+
         }
     }
 
@@ -35,11 +89,30 @@ class CourseItemViewController: UIPageViewController {
         self.delegate = self
 
         self.view.backgroundColor = .white
+        self.navigationItem.titleView = self.contentControlView
 
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
         newViewController.configure(for: item)
         self.setViewControllers([newViewController], direction: .forward, animated: true)
+    }
+
+    @objc private func showPreviousItem() {
+        guard let item = self.previousItem else { return }
+        guard let newViewController = self.viewController(for: item) else { return }
+        newViewController.configure(for: item)
+        self.setViewControllers([newViewController], direction: .reverse, animated: true) { _ in
+            self.currentItem = item
+        }
+    }
+
+    @objc private func showNextItem() {
+        guard let item = self.nextItem else { return }
+        guard let newViewController = self.viewController(for: item) else { return }
+        newViewController.configure(for: item)
+        self.setViewControllers([newViewController], direction: .forward, animated: true) { _ in
+            self.currentItem = item
+        }
     }
 
     private func viewController(for item: CourseItem) -> (UIViewController & CourseItemContentViewController)? {

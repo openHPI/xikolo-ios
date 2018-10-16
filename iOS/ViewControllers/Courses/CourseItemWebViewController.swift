@@ -11,7 +11,6 @@ class CourseItemWebViewController: WebViewController {
     var courseItem: CourseItem! {
         didSet {
             self.setURL()
-            ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
         }
     }
 

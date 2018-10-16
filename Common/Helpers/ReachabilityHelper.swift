@@ -16,6 +16,10 @@ public class ReachabilityHelper {
         return self.reachability.connection
     }
 
+    public static var hasConnection: Bool {
+        return self.connection != .none
+    }
+
     public static func startObserving() throws {
         try self.reachability.startNotifier()
     }

@@ -11,8 +11,6 @@ import CoreData
 
 class CourseItemViewController: UIPageViewController {
 
-//    private var courseItemViewController: UIViewController?
-
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
 
@@ -23,9 +21,12 @@ class CourseItemViewController: UIPageViewController {
 
     var currentItem: CourseItem? {
         didSet {
-//            self.updateView()
             self.trackItemVisit()
 
+            ErrorManager.shared.remember(self.currentItem?.id, forKey: "item_id")
+
+            self.previousItem = self.currentItem?.previousItem
+            self.nextItem = self.currentItem?.nextItem
         }
     }
 
@@ -33,8 +34,7 @@ class CourseItemViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
 
-        self.previousItem = self.currentItem?.previousItem
-        self.nextItem = self.currentItem?.nextItem
+        self.view.backgroundColor = .white
 
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
@@ -42,44 +42,14 @@ class CourseItemViewController: UIPageViewController {
         self.setViewControllers([newViewController], direction: .forward, animated: true)
     }
 
-//    private func updateView() {
-//        guard let item = self.item else { return }
-//        guard let newViewController = self.viewControllerForCurrentItem else { return }
-//        newViewController.configure(for: item)
-//        self.setViewControllers([newViewController], direction: .forward, animated: true)
-//
-//        let animationTime: TimeInterval = 0.15
-//
-//        self.courseItemViewController?.willMove(toParentViewController: nil)
-//
-//        // swiftlint:disable multiple_closures_with_trailing_closure
-//        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseInOut, animations: {
-//            self.courseItemViewController?.view.alpha = 0
-//        }) { _ in
-//            self.courseItemViewController?.view.removeFromSuperview()
-//            self.courseItemViewController?.removeFromParentViewController()
-//            self.courseItemViewController = nil
-//
-//            guard let item = self.item else { return }
-//            guard let newViewController = self.viewControllerForCurrentItem else { return }
-//            newViewController.configure(for: item)
-//            newViewController.view.frame = self.view.bounds
-//            newViewController.view.alpha = 0
-//
-//            self.view.addSubview(newViewController.view)
-//            self.addChildViewController(newViewController)
-//            self.courseItemViewController = newViewController
-//
-//            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseInOut, animations: {
-//                newViewController.view.alpha = 1
-//            }) { _ in
-//                newViewController.didMove(toParentViewController: self)
-//            }
-//        }
-//    }
-
     private func viewController(for item: CourseItem) -> (UIViewController & CourseItemContentViewController)? {
-        // TODO if item is protocored
+        guard !item.proctored else {
+            return nil // TODO proctored view
+        }
+
+        guard item.hasAvailableContent else {
+            return nil // TODO: unavailable view
+        }
 
         switch item.contentType {
         case "video"?:
@@ -93,6 +63,8 @@ class CourseItemViewController: UIPageViewController {
 
     private func trackItemVisit() {
         guard let item = self.currentItem else { return }
+        guard !item.proctored else { return }
+        guard item.hasAvailableContent else { return }
 
         CourseItemHelper.markAsVisited(item)
         let context = [
@@ -153,14 +125,10 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
         guard finished && completed else { return }
 
         if self.swipeDirection == .forward {
-            self.previousItem = self.currentItem
             self.currentItem = self.nextItem
-            self.nextItem = self.currentItem?.nextItem
             self.previousItemViewController = previousViewController
         } else if self.swipeDirection == .reverse {
-            self.nextItem = self.currentItem
             self.currentItem = self.previousItem
-            self.previousItem = self.currentItem?.previousItem
             self.nextItemViewController = previousViewController
         } else {
             preconditionFailure()

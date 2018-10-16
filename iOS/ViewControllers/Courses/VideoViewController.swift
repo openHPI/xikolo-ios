@@ -89,8 +89,6 @@ class VideoViewController: UIViewController {
                                        selector: #selector(reachabilityChanged),
                                        name: Notification.Name.reachabilityChanged,
                                        object: nil)
-
-        ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +98,7 @@ class VideoViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // TODO
+        // TODO: autoploay
     }
 
 //    override func viewWillDisappear(_ animated: Bool) {

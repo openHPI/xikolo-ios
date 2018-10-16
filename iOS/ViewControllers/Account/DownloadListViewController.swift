@@ -184,7 +184,16 @@ class DownloadListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: R.segue.downloadListViewController.showDownloadItems, sender: indexPath)
+        switch downloadType(for: indexPath) {
+        case .video:
+            performSegue(withIdentifier: R.segue.downloadListViewController.showVideoDownloads, sender: courses[indexPath.section].id)
+        case .slides:
+            performSegue(withIdentifier: R.segue.downloadListViewController.showSlideDownloads, sender: courses[indexPath.section].id)
+        case .document:
+            performSegue(withIdentifier: R.segue.downloadListViewController.showDocumentDownloads, sender: courses[indexPath.section].id)
+        default:
+            break
+        }
     }
 
     /*
@@ -202,12 +211,24 @@ class DownloadListViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = (sender as? IndexPath).require(hint: "Sender must be IndexPath")
-        let course = courses[indexPath.section]
-        let downloadType = self.downloadType(for: indexPath)
-        if let typedInfo = R.segue.downloadListViewController.showDownloadItems(segue: segue) {
-            typedInfo.destination.configure(for: course.id, withDownloadType: downloadType)
+        let courseID = (sender as? String).require(hint: "Sender must be Course ID")
+        switch segue.identifier {
+        case "ShowVideoDownloads"?:
+            if let typedInfo = R.segue.downloadListViewController.showVideoDownloads(segue: segue) {
+                typedInfo.destination.configure(for: courseID)
+            }
+        case "ShowSlideDownloads"?:
+            if let typedInfo = R.segue.downloadListViewController.showSlideDownloads(segue: segue) {
+                typedInfo.destination.configure(for: courseID)
+            }
+        case "ShowDocumentDownloads"?:
+            if let typedInfo = R.segue.downloadListViewController.showDocumentDownloads(segue: segue) {
+                typedInfo.destination.configure(for: courseID)
+            }
+        default:
+            break
         }
+
     }
 
 }

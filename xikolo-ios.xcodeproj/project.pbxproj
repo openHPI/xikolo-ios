@@ -248,8 +248,10 @@
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */; };
-		7007E415213444AC005AC7A6 /* DownloadItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E414213444AC005AC7A6 /* DownloadItemListViewController.swift */; };
+		7007E415213444AC005AC7A6 /* DownloadedVideosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */; };
 		7007E41721357C76005AC7A6 /* DownloadedCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E41621357C76005AC7A6 /* DownloadedCourseCell.swift */; };
+		709D11B221763C810030FE96 /* DownloadedSlidesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */; };
+		709D11B321763C810030FE96 /* DownloadedDocumentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D11B121763C800030FE96 /* DownloadedDocumentsListViewController.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -534,7 +536,7 @@
 		50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemWebViewController.swift; sourceTree = "<group>"; };
 		58514D98E3A98476D78CB780 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListViewController.swift; sourceTree = "<group>"; };
-		7007E414213444AC005AC7A6 /* DownloadItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItemListViewController.swift; sourceTree = "<group>"; };
+		7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosListViewController.swift; sourceTree = "<group>"; };
 		7007E41621357C76005AC7A6 /* DownloadedCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedCourseCell.swift; sourceTree = "<group>"; };
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
@@ -544,6 +546,8 @@
 		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		709C93591EF09C2C00F8F045 /* ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
+		709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadedSlidesListViewController.swift; sourceTree = "<group>"; };
+		709D11B121763C800030FE96 /* DownloadedDocumentsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadedDocumentsListViewController.swift; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
 		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
 		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
@@ -1100,11 +1104,13 @@
 		AB6AE0C41CF7D69200708654 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				709D11B121763C800030FE96 /* DownloadedDocumentsListViewController.swift */,
+				709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */,
 				F85225371B4D27D700C9BF56 /* AccountViewController.swift */,
 				50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */,
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 				7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */,
-				7007E414213444AC005AC7A6 /* DownloadItemListViewController.swift */,
+				7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1878,7 +1884,7 @@
 				5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */,
 				50CF1F6A20DCDBFC0011BFE9 /* AppDelegate.swift in Sources */,
 				50CF1F6C20DCDBFC0011BFE9 /* CustomHeaderWebView.swift in Sources */,
-				7007E415213444AC005AC7A6 /* DownloadItemListViewController.swift in Sources */,
+				7007E415213444AC005AC7A6 /* DownloadedVideosListViewController.swift in Sources */,
 				50CF1F6E20DCDBFC0011BFE9 /* CourseItemHeader.swift in Sources */,
 				50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */,
 				508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */,
@@ -1898,6 +1904,7 @@
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,
 				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,
 				50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */,
+				709D11B221763C810030FE96 /* DownloadedSlidesListViewController.swift in Sources */,
 				508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */,
 				50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */,
 				50CF1F8620DCDBFC0011BFE9 /* CALayer+UIColor.swift in Sources */,
@@ -1942,6 +1949,7 @@
 				50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */,
 				50CF1FDA20DCDBFC0011BFE9 /* CourseNavigationController.swift in Sources */,
 				50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */,
+				709D11B321763C810030FE96 /* DownloadedDocumentsListViewController.swift in Sources */,
 				5054B2E72108B30E00CE9067 /* DocumentListViewController.swift in Sources */,
 				50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */,
 				50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */,

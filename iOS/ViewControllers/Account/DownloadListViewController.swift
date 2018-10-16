@@ -175,11 +175,11 @@ class DownloadListViewController: UITableViewController {
         guard let downloadType = downloadType else { return nil }
         switch downloadType {
         case .video:
-            return NSLocalizedString("settings.downloads.item.video", comment: "")
+            return NSLocalizedString("settings.downloads.item.video", comment: "download type video")
         case .slides:
-            return NSLocalizedString("settings.downloads.item.slides", comment: "")
+            return NSLocalizedString("settings.downloads.item.slides", comment: "download type slides")
         case .document:
-            return NSLocalizedString("settings.downloads.item.document", comment: "")
+            return NSLocalizedString("settings.downloads.item.document", comment: "download type documents")
         }
     }
 

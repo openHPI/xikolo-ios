@@ -221,6 +221,15 @@
 /* course content preload setting: wifi only */
 "settings.course-item-content-preload.wifi-only" = "Nur mit WLAN";
 
+/* download type documents */
+"settings.downloads.item.document" = "Dokument";
+
+/* download type slides */
+"settings.downloads.item.slides" = "Folien";
+
+/* download type video */
+"settings.downloads.item.video" = "Videos";
+
 /* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
 

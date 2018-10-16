@@ -44,7 +44,9 @@ public struct XikoloSyncEngine: SyncEngine {
     public let baseURL: URL = Routes.api
 
     public var requestHeaders: [String: String] {
-        return NetworkHelper.requestHeaders(for: self.baseURL)
+        return NetworkHelper.requestHeaders(for: self.baseURL, additionalHeaders: [
+            Routes.Header.contentTypeKey: Routes.Header.contentTypeValueJSONAPI,
+        ])
     }
 
     public var persistentContainer: NSPersistentContainer {

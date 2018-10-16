@@ -35,6 +35,13 @@ class CourseViewController: UIViewController {
     var area: CourseArea? {
         didSet {
             guard self.viewIfLoaded != nil else { return }
+
+            if self.area != oldValue {
+                let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+                feedbackGenerator.prepare()
+                feedbackGenerator.impactOccurred()
+            }
+
             self.updateContainerView()
         }
     }
@@ -80,12 +87,12 @@ class CourseViewController: UIViewController {
     }
 
     private func updateContainerView() {
-        let animationTime: TimeInterval = 0.2
+        let animationTime: TimeInterval = 0.15
 
         self.courseAreaViewController?.willMove(toParentViewController: nil)
 
         // swiftlint:disable multiple_closures_with_trailing_closure
-        UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseInOut, animations: {
             self.courseAreaViewController?.view.alpha = 0
         }) { _ in
             self.courseAreaViewController?.view.removeFromSuperview()

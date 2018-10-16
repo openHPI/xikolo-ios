@@ -3,7 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import BrightFutures
 import Common
 import UIKit
 
@@ -12,7 +11,19 @@ class PDFWebViewController: UIViewController {
     @IBOutlet private weak var webView: UIWebView!
     @IBOutlet private var shareButton: UIBarButtonItem!
 
-    var url: URL?
+    private lazy var progress: CircularProgressView = {
+        let progress = CircularProgressView()
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        progress.lineWidth = 4
+        progress.gapWidth = 2
+        progress.tintColor = Brand.default.colors.primary
+
+        let progressValue: CGFloat? = nil
+        progress.updateProgress(progressValue)
+        return progress
+    }()
+
+    private lazy var downloadSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
 
     private var tempPDFFile: TemporaryFile? {
         didSet {
@@ -21,6 +32,28 @@ class PDFWebViewController: UIViewController {
                 self.navigationItem.rightBarButtonItem = self.tempPDFFile != nil ? self.shareButton : nil
             }
         }
+    }
+
+    private var currentDownload: URLSessionDownloadTask?
+
+    var url: URL? {
+        didSet {
+            guard self.viewIfLoaded != nil else { return }
+            guard let url = self.url else { return }
+            self.loadPDF(for: url)
+        }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.view.addSubview(self.progress)
+        NSLayoutConstraint.activate([
+            self.progress.centerXAnchor.constraint(equalTo: self.view.layoutMarginsGuide.centerXAnchor),
+            self.progress.centerYAnchor.constraint(equalTo: self.view.layoutMarginsGuide.centerYAnchor),
+            self.progress.heightAnchor.constraint(equalToConstant: 50),
+            self.progress.widthAnchor.constraint(equalTo: self.progress.heightAnchor),
+        ])
     }
 
     @IBAction func sharePDF(_ sender: UIBarButtonItem) {
@@ -33,14 +66,21 @@ class PDFWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nil
+        self.webView.isHidden = true
+        self.progress.alpha = 0.0
 
         if let url = self.url {
             self.loadPDF(for: url)
         }
+
+        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
+            self.progress.alpha = CGFloat(1.0)
+        }, completion: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        self.currentDownload?.cancel()
         try? self.tempPDFFile?.deleteDirectory()
     }
 
@@ -51,24 +91,57 @@ class PDFWebViewController: UIViewController {
             request.setValue(value, forHTTPHeaderField: key)
         }
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            let filename = response?.suggestedFilename ?? "\(url.lastPathComponent).pdf"
+        let task = self.downloadSession.downloadTask(with: request)
+        self.currentDownload = task
+        task.resume()
+    }
 
-            do {
-                let tmpFile = try TemporaryFile(creatingTempDirectoryForFilename: filename)
-                try data?.write(to: tmpFile.fileURL)
+}
 
-                self.tempPDFFile = tmpFile
-                let request = URLRequest(url: tmpFile.fileURL)
-                DispatchQueue.main.async {
-                    self.webView.loadRequest(request)
-                }
-            } catch {
-                log.error(error)
-            }
+extension PDFWebViewController: URLSessionDownloadDelegate {
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        DispatchQueue.main.async {
+            self.progress.updateProgress(1.0, animated: true)
         }
 
-        task.resume()
+        let filename: String = {
+            if let suggestedFilename = downloadTask.response?.suggestedFilename {
+                return suggestedFilename
+            } else if let requestURL = downloadTask.currentRequest?.url {
+                return "\(requestURL.lastPathComponent).\(requestURL.pathExtension)"
+            } else {
+                return "file"
+            }
+        }()
+
+        do {
+            let tmpFile = try TemporaryFile(creatingTempDirectoryForFilename: filename)
+            try Data(contentsOf: location).write(to: tmpFile.fileURL)
+
+            self.tempPDFFile = tmpFile
+            let request = URLRequest(url: tmpFile.fileURL)
+            DispatchQueue.main.async {
+                self.webView.loadRequest(request)
+                self.progress.isHidden = true
+                self.webView.isHidden = false
+            }
+
+            self.currentDownload = nil
+        } catch {
+            log.error(error)
+        }
+    }
+
+    func urlSession(_ session: URLSession,
+                    downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64,
+                    totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64) {
+        let value = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+        DispatchQueue.main.async {
+            self.progress.updateProgress(value, animated: true)
+        }
     }
 
 }

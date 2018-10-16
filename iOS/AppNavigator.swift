@@ -170,6 +170,10 @@ class AppNavigator {
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        feedbackGenerator.prepare()
+        feedbackGenerator.impactOccurred()
+
         rootViewController.present(courseNavigationController, animated: true) {
             CourseHelper.visit(course)
         }

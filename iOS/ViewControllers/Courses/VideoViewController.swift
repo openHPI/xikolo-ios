@@ -97,12 +97,12 @@ class VideoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.toggleControlBars(animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         // TODO: autoploay
     }
 
@@ -119,12 +119,16 @@ class VideoViewController: UIViewController {
 //        }
 //    }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
         if self.parent?.navigationItem.rightBarButtonItem == self.actionMenuButton {
             self.parent?.navigationItem.rightBarButtonItem = nil
         }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
 
         if let courseNavigationController = self.navigationController as? CourseNavigationController,
             let courseTransitioningDelegate = courseNavigationController.transitioningDelegate as? CourseTransitioningDelegate,

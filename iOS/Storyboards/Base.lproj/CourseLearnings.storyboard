@@ -542,13 +542,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="jcE-7d-09B">
-                        <barButtonItem key="rightBarButtonItem" image="dots" id="EWN-Dz-37N">
-                            <connections>
-                                <action selector="showActionMenu:" destination="Sj1-Jn-P6O" id="iWM-jw-gcp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="descriptionView" destination="oXV-0t-btA" id="Z3t-UJ-blJ"/>

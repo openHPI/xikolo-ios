@@ -31,6 +31,13 @@ class VideoViewController: UIViewController {
 
     @IBOutlet private var iPadFullScreenContraints: [NSLayoutConstraint]!
 
+    private lazy var actionMenuButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+        button.isEnabled = false
+        button.tintColor = .lightGray
+        return button
+    }()
+
     var courseItem: CourseItem!
     var video: Video?
     var videoPlayerConfigured = false
@@ -47,9 +54,6 @@ class VideoViewController: UIViewController {
         self.layoutPlayer()
 
         self.errorView.isHidden = true
-
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.tintColor = .lightGray
 
         self.videoActionsButton.isEnabled = false
         self.videoActionsButton.tintColor = .lightGray
@@ -93,6 +97,7 @@ class VideoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
         self.toggleControlBars(animated)
     }
 
@@ -116,6 +121,10 @@ class VideoViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+
+        if self.parent?.navigationItem.rightBarButtonItem == self.actionMenuButton {
+            self.parent?.navigationItem.rightBarButtonItem = nil
+        }
 
         if let courseNavigationController = self.navigationController as? CourseNavigationController,
             let courseTransitioningDelegate = courseNavigationController.transitioningDelegate as? CourseTransitioningDelegate,
@@ -183,8 +192,8 @@ class VideoViewController: UIViewController {
         self.video = video
 
         let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
-        self.navigationItem.rightBarButtonItem?.isEnabled = hasUserActions
-        self.navigationItem.rightBarButtonItem?.tintColor = hasUserActions ? Brand.default.colors.primary : .lightGray
+        self.actionMenuButton.isEnabled = hasUserActions
+        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : .lightGray
 
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
         let streamDownloadProgress = StreamPersistenceManager.shared.downloadProgress(for: video)

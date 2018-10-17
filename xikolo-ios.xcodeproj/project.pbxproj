@@ -65,6 +65,7 @@
 		5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */; };
 		5095B1E420EBD41900572924 /* NSManagedObjectContext+typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B1E320EBD41900572924 /* NSManagedObjectContext+typed.swift */; };
 		50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */; };
+		50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */; };
 		50CF1F4620DCDBFC0011BFE9 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */; };
 		50CF1F4E20DCDBFC0011BFE9 /* RichtextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAC56061D142B4A008D30FB /* RichtextViewController.swift */; };
 		50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D67921B98683400E27520 /* AnnouncementViewController.swift */; };
@@ -472,6 +473,7 @@
 		50B15BDB1FDFD4C200CD86F1 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigator.swift; sourceTree = "<group>"; };
 		50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPersistenceManager.swift; sourceTree = "<group>"; };
+		50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableContentViewController.swift; sourceTree = "<group>"; };
 		50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crashlytics.swift; sourceTree = "<group>"; };
 		50C92B5E1FBC49DF001AFC08 /* CourseDateHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDateHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50C92B851FBC4CEF001AFC08 /* CourseHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -1123,6 +1125,7 @@
 				ABC8A14C1D6895A00059CEF2 /* WebViewController.swift */,
 				50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */,
 				503CEE952177082D00F34694 /* ProcotoredItemViewController.swift */,
+				50BC011A217755B500F38B30 /* UnavailableContentViewController.swift */,
 				AB9A3D8C1E61CE2500384B1E /* CourseDetailViewController.swift */,
 				70F379CE205B643400149C3B /* CertificatesListViewController.swift */,
 				5054B2E62108B30E00CE9067 /* DocumentListViewController.swift */,
@@ -1957,6 +1960,7 @@
 				50B71B88212AC61C008CE681 /* DocumentsPersistenceManager.swift in Sources */,
 				50CF1FEC20DCDBFC0011BFE9 /* StreamPersistenceManager.swift in Sources */,
 				508B9FA8211D7A600090BD16 /* RefreshControl.swift in Sources */,
+				50BC011B217755B500F38B30 /* UnavailableContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

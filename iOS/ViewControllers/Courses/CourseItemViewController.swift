@@ -94,7 +94,14 @@ class CourseItemViewController: UIPageViewController {
         guard let item = self.currentItem else { return }
         guard let newViewController = self.viewController(for: item) else { return }
         newViewController.configure(for: item)
-        self.setViewControllers([newViewController], direction: .forward, animated: true)
+        self.setViewControllers([newViewController], direction: .forward, animated: false)
+    }
+
+    func reload(animated: Bool) {
+        guard let item = self.currentItem else { return }
+        guard let newViewController = self.viewController(for: item) else { return }
+        newViewController.configure(for: item)
+        self.setViewControllers([newViewController], direction: .forward, animated: animated)
     }
 
     @objc private func showPreviousItem() {
@@ -123,8 +130,10 @@ class CourseItemViewController: UIPageViewController {
         }
 
         guard item.hasAvailableContent else {
-            return R.storyboard.courseLearnings.proctoredItemViewController()
-//            return nil // TODO: unavailable view
+            let viewController = R.storyboard.courseLearnings.unavailableContentViewController()
+            viewController?.configure(for: item)
+            viewController?.delegate = self
+            return viewController
         }
 
         switch item.contentType {

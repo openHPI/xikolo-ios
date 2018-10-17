@@ -116,12 +116,15 @@ class CourseItemViewController: UIPageViewController {
     }
 
     private func viewController(for item: CourseItem) -> (UIViewController & CourseItemContentViewController)? {
-        guard !item.proctored else {
-            return nil // TODO proctored view
+        guard !item.isProctoredInProctoredCourse else {
+            let viewController = R.storyboard.courseLearnings.proctoredItemViewController()
+            viewController?.configure(for: item)
+            return viewController
         }
 
         guard item.hasAvailableContent else {
-            return nil // TODO: unavailable view
+            return R.storyboard.courseLearnings.proctoredItemViewController()
+//            return nil // TODO: unavailable view
         }
 
         switch item.contentType {
@@ -136,7 +139,7 @@ class CourseItemViewController: UIPageViewController {
 
     private func trackItemVisit() {
         guard let item = self.currentItem else { return }
-        guard !item.proctored else { return }
+        guard !item.isProctoredInProctoredCourse else { return }
         guard item.hasAvailableContent else { return }
 
         CourseItemHelper.markAsVisited(item)

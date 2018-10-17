@@ -582,6 +582,73 @@
             </objects>
             <point key="canvasLocation" x="1798" y="-110"/>
         </scene>
+        <!--Proctored Item View Controller-->
+        <scene sceneID="mso-dU-7nm">
+            <objects>
+                <viewController storyboardIdentifier="ProctoredItemViewController" id="sJq-n0-WVP" customClass="ProctoredItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kyN-Jf-bdz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fBm-1B-haM">
+                                <rect key="frame" x="24" y="186" width="327" height="128.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hoo-px-hyn">
+                                        <rect key="frame" x="137" y="0.0" width="53" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="#bc-ignore!"/>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This item needs to be proctored" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUB-PH-5jY">
+                                        <rect key="frame" x="27" y="28" width="273.5" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxP-nf-a2L">
+                                        <rect key="frame" x="0.0" y="64" width="327" height="64.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="vBq-oo-xsM"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vBq-oo-xsM"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="vBq-oo-xsM"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fBm-1B-haM" firstAttribute="centerX" secondItem="kyN-Jf-bdz" secondAttribute="centerX" id="5yV-9h-UGz"/>
+                            <constraint firstItem="fBm-1B-haM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vc7-nK-r3V" secondAttribute="leading" constant="16" id="DZz-qN-HPG"/>
+                            <constraint firstItem="vc7-nK-r3V" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fBm-1B-haM" secondAttribute="trailing" constant="16" id="maP-WV-F0E"/>
+                            <constraint firstItem="fBm-1B-haM" firstAttribute="centerY" secondItem="kyN-Jf-bdz" secondAttribute="centerY" multiplier="0.75" id="wQw-YZ-KlD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vc7-nK-r3V"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="itemTitleLabel" destination="Hoo-px-hyn" id="ScF-2G-vg5"/>
+                        <outlet property="titleLabel" destination="vUB-PH-5jY" id="gTt-Ag-xuF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mCJ-Ar-TxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2742" y="668"/>
+        </scene>
     </scenes>
     <resources>
         <image name="dots" width="28" height="28"/>

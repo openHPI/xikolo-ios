@@ -50,12 +50,6 @@
 /* stop all downloads for video */
 "course-item.combined-download-action.stop-download.title" = "Stop all downloads";
 
-/* message for proctoring alert */
-"course-item.proctoring.alert.message" = "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.";
-
-/* title for proctoring alert */
-"course-item.proctoring.alert.title" = "This item needs to be proctored";
-
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Open slides";
 

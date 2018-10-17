@@ -12,4 +12,9 @@ extension CourseItem {
         return ReachabilityHelper.hasConnection || itemContentIsAvailableOffline
     }
 
+    var isProctoredInProctoredCourse: Bool {
+        let courseIsProctored = self.section?.course?.enrollment?.proctored ?? false
+        return self.proctored && courseIsProctored
+    }
+
 }

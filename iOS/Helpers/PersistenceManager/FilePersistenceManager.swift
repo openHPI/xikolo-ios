@@ -36,7 +36,7 @@ extension FilePersistenceManager {
         guard let fileName = task.originalRequest?.url?.lastPathComponent else { return }
         guard let contentId = task.taskDescription else { return }
 
-        let documentLocation = documentsDirectory.appendingPathComponent(contentId + "_" + Self.downloadType + "_" + fileName)
+        let documentLocation = documentsDirectory.appendingPathComponent(Self.downloadType + "_" + contentId + "_" + fileName)
 
         do {
             if FileManager.default.fileExists(atPath: documentLocation.path) {

@@ -11,18 +11,20 @@ class DownloadedDocumentsListViewController: UITableViewController {
 
     var courseID: String!
 
-    var resultsController: NSFetchedResultsController<Document>!
+    private var dataSource: CoreDataTableViewDataSource<DownloadedDocumentsListViewController>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        let request: NSFetchRequest<Document> = DocumentHelper.FetchRequest.downloaded()
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
-        do {
-            try resultsController.performFetch()
-        } catch {
-            log.error()
-        }
+
+        guard let course = fetchCourse(withID: courseID) else { return }
+        let request: NSFetchRequest<DocumentLocalization> = DocumentLocalizationHelper.FetchRequest.downloadedDocumentLocalizations(forCourse: course)
+
+        let reuseIdentifier = "downloadItemCell"
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title") // must be first sort descriptor
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsController: resultsController,
+                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      delegate: self)
 
     }
 
@@ -30,31 +32,27 @@ class DownloadedDocumentsListViewController: UITableViewController {
         self.courseID = courseID
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return resultsController.sections?.count ?? 0
+    func fetchCourse(withID id: String) -> Course? {
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+        return CoreDataHelper.viewContext.fetchSingle(request).value
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultsController.sections?[section].numberOfObjects ?? 0
+}
+
+extension DownloadedDocumentsListViewController: CoreDataTableViewDataSourceDelegate {
+
+    func configure(_ cell: UITableViewCell, for object: DocumentLocalization) {
+        cell.textLabel?.text = object.languageCode
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "downloadItemCell", for: indexPath)
-        let document = resultsController.object(at: indexPath)
-        cell.textLabel?.text = document.title
-        //cell.detailTextLabel?.text = self.downloadType == .video ? video.singleStream.
-        // TODO: maybe set size
-        return cell
+    func canEditRow(at indexPath: IndexPath) -> Bool {
+        return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func commit(editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let document = resultsController.object(at: indexPath)
-            for localization in document.localizations {
-                DocumentsPersistenceManager.shared.deleteDownload(for: localization)
-            }
+            let documentLocalization = self.dataSource.object(at: indexPath)
+            DocumentsPersistenceManager.shared.deleteDownload(for: documentLocalization)
         }
     }
 

@@ -11,18 +11,18 @@ class DownloadedSlidesListViewController: UITableViewController {
 
     var courseID: String!
 
-    var resultsController: NSFetchedResultsController<Video>!
+    private var dataSource: CoreDataTableViewDataSource<DownloadedSlidesListViewController>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem
         let request: NSFetchRequest<Video> = VideoHelper.FetchRequest.hasDownloadedSlides(inCourse: courseID)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
-        do {
-            try resultsController.performFetch()
-        } catch {
-            log.error()
-        }
+
+        let reuseIdentifier = "downloadItemCell"
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsController: resultsController,
+                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      delegate: self)
 
     }
 
@@ -30,28 +30,21 @@ class DownloadedSlidesListViewController: UITableViewController {
         self.courseID = courseID
     }
 
-    // MARK: - Table view data source
+}
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return resultsController.sections?.count ?? 0
+extension DownloadedSlidesListViewController: CoreDataTableViewDataSourceDelegate {
+
+    func configure(_ cell: UITableViewCell, for object: Video) {
+        cell.textLabel?.text = object.item?.title ?? object.summary
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultsController.sections?[section].numberOfObjects ?? 0
+    func canEditRow(at indexPath: IndexPath) -> Bool {
+        return true
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "downloadItemCell", for: indexPath)
-        let video = resultsController.object(at: indexPath)
-        cell.textLabel?.text = video.item?.title ?? video.summary ?? ""
-        //cell.detailTextLabel?.text = self.downloadType == .video ? video.singleStream.
-        // TODO: maybe set size
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func commit(editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let video = resultsController.object(at: indexPath)
+            let video = self.dataSource.object(at: indexPath)
             SlidesPersistenceManager.shared.deleteDownload(for: video)
         }
     }

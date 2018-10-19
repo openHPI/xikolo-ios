@@ -5,6 +5,7 @@
 
 import BrightFutures
 import Common
+import CoreData
 import Foundation
 import UIKit
 
@@ -16,12 +17,23 @@ class DownloadListViewController: UITableViewController {
     var courseTitles: [(courseTitle: String, courseID: String)] = []
     var downloadItems: [DownloadItem] = []
 
-
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(coreDataChange(notification:)),
+                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+                                               object: CoreDataHelper.viewContext)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.getData().onSuccess { (itemsArray) in
+        self.refresh()
+    }
+
+    @discardableResult
+    func refresh() -> Future<[[DownloadItem]], XikoloError> {
+        return self.getData().onSuccess { (itemsArray) in
             self.downloadItems = itemsArray.flatMap {$0}
             var downloadedCourseList: [String:CourseDownload] = [:]
             for downloadItem in self.downloadItems {
@@ -37,8 +49,8 @@ class DownloadListViewController: UITableViewController {
             }
             self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
             self.tableView.reloadData()
-            }.onFailure { (error) in
-                log.error(error.localizedDescription)
+        }.onFailure { (error) in
+            log.error(error.localizedDescription)
         }
     }
 
@@ -172,7 +184,6 @@ class DownloadListViewController: UITableViewController {
         }
     }
 
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let course = fetchCourse(withID: courses[indexPath.section].id).require(hint: "Course has to exist")
         if editingStyle == .delete {
@@ -182,7 +193,7 @@ class DownloadListViewController: UITableViewController {
             case .slides:
                 SlidesPersistenceManager.shared.deleteDownloads(for: course)
             case .document:
-                break//DocumentsPersistenceManager.shared.deleteDownloads(for: course)
+                DocumentsPersistenceManager.shared.deleteDownloads(for: course)
 
             }
         }
@@ -214,6 +225,14 @@ class DownloadListViewController: UITableViewController {
             break
         }
 
+    }
+
+    @objc private func coreDataChange(notification: Notification) {
+        let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey])
+        let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey])
+        if containsVideoDeletion || containsDocumentDeletion {
+            self.refresh()
+        }
     }
 
 }

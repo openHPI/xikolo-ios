@@ -58,6 +58,21 @@ final class DocumentsPersistenceManager: NSObject, FilePersistenceManager {
 
 }
 
+extension DocumentsPersistenceManager {
+
+    func deleteDownloads(for course: Course) {
+        self.persistentContainerQueue.addOperation {
+            course.documents.forEach({ document in
+                document.localizations.filter({ documentLocalization -> Bool in
+                    return DocumentsPersistenceManager.shared.downloadState(for: documentLocalization) == .downloaded
+                }).forEach({ documentLocalization in
+                    self.deleteDownload(for: documentLocalization)
+                })
+            })
+        }
+    }
+}
+
 extension DocumentsPersistenceManager: URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

@@ -362,10 +362,8 @@ class VideoViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedInfo = R.segue.videoViewController.showSlides(segue: segue), let video = video {
-            if let localFileLocation = SlidesPersistenceManager.shared.localFileLocation(for: video) {
-                typedInfo.destination.url = localFileLocation
-            } else {
-                typedInfo.destination.url = video.slidesURL
+            if let url = SlidesPersistenceManager.shared.localFileLocation(for: video) ?? video.slidesURL {
+                typedInfo.destination.configure(for: url, filename: self.courseItem.title)
             }
         }
     }

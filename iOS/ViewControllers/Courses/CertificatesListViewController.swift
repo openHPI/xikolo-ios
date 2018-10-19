@@ -51,10 +51,12 @@ extension CertificatesListViewController { // TableViewDelegate
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = self.certificates[indexPath.section].url else { return }
+        let certificate = self.certificates[indexPath.section]
+        guard let url = certificate.url else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
-        pdfViewController.url = url
+        let filename = [self.course.title, certificate.name].compactMap { $0 }.joined(separator: " - ")
+        pdfViewController.configure(for: url, filename: filename)
         self.navigationController?.pushViewController(pdfViewController, animated: true)
     }
 

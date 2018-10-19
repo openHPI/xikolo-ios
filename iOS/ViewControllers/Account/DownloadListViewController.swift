@@ -37,38 +37,16 @@ class DownloadListViewController: UITableViewController {
             }
             self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
             self.tableView.reloadData()
-
-
-
-
-//            for downloadItem in self.downloadItems {
-//                if var content = courses[downloadItem.courseID]?.content {
-//                    content.update(with: downloadItem.contentType) // TODO: Test
-//                } else {
-//                    courses[downloadItem.courseID] = CourseItem(courseID: downloadItem.courseID,
-//                                                                courseTitle: downloadItem.courseTitle,
-//                                                                content: courses[downloadItem.courseID]?.content)
-//                }
-//                courses[downloadItem.courseID] = CourseItem(courseID: downloadItem.courseID,
-//                                                            courseTitle: downloadItem.courseTitle,
-//                                                            content: Set(downloadItem.contentType)
-//                courses[downloadItem.courseID]?.update(with: downloadItem.contentType)
-//                courseTitles[downloadItem.courseTitle ?? ""]
-//            }
+            }.onFailure { (error) in
+                log.error(error.localizedDescription)
         }
-        // setup table view data
-//        let reuseIdentifier = R.reuseIdentifier.downloadedCourse.identifier
-//        self.getData().onSuccess { (downloadItems) in
-//
-//        }
-
     }
 
     func getData() -> Future<[[DownloadItem]], XikoloError> {
         var futures = [getVideoCourseIDs(), getSlidesCourseIDs()]
-//        if Brand.default.features.enableDocuments {
-//            futures.append(getDocumentsCourseIDs())
-//        }
+        if Brand.default.features.enableDocuments {
+            futures.append(getDocumentsCourseIDs())
+        }
         return futures.sequence()
     }
 
@@ -113,7 +91,7 @@ class DownloadListViewController: UITableViewController {
     }
 
     func getDocumentsCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        let documentsRequest = DocumentHelper.FetchRequest.downloaded()
+        let documentsRequest = DocumentHelper.FetchRequest.hasDownloadedLocalization()
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { (privateManagedObjectContext) in
@@ -191,22 +169,29 @@ class DownloadListViewController: UITableViewController {
             performSegue(withIdentifier: R.segue.downloadListViewController.showSlideDownloads, sender: courses[indexPath.section].id)
         case .document:
             performSegue(withIdentifier: R.segue.downloadListViewController.showDocumentDownloads, sender: courses[indexPath.section].id)
-        default:
-            break
         }
     }
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let course = fetchCourse(withID: courses[indexPath.section].id).require(hint: "Course has to exist")
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            switch downloadType(for: indexPath) {
+            case .video:
+                StreamPersistenceManager.shared.deleteDownloads(for: course)
+            case .slides:
+                SlidesPersistenceManager.shared.deleteDownloads(for: course)
+            case .document:
+                break//DocumentsPersistenceManager.shared.deleteDownloads(for: course)
+
+            }
+        }
     }
-    */
+
+    func fetchCourse(withID id: String) -> Course? {
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+        return CoreDataHelper.viewContext.fetchSingle(request).value
+    }
 
     // MARK: - Navigation
 

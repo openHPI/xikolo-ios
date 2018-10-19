@@ -24,21 +24,6 @@ extension CourseHelper {
             deletedEnrollmentPrecidate,
         ])
 
-//        private static let hasDownloadsPredicate = NSPredicate(format: "(SUBQUERY(sections.items, $item, ($item.contentType = %@) && (($item.localFileBookmark != nil) || ($item.localSlidesBookmark))).@count != 0)", "video")
-
-
-//        private static let hasDownloadsPredicate = NSPredicate(format: """
-//        (SUBQUERY(sections,
-//        $section,
-//        (
-//            SUBQUERY(
-//                $section.items,
-//                $item,
-//                ($item.contentType = %@) && (($item.content.localFileBookmark != nil) || ($item.content.localSlidesBookmark != nil))
-//            ).@count != 0
-//        )).@count != 0)
-//        """, "video")
-
         private static let announcedPredicate = NSPredicate(format: "status = %@", "announced")
         private static let previewPredicate = NSPredicate(format: "status = %@", "preview")
         private static let activePredicate = NSPredicate(format: "status = %@", "active")
@@ -103,14 +88,6 @@ extension CourseHelper {
             request.fetchLimit = 1
             return request
         }
-
-        public static func courses(withIDs ids: [String])-> NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
-            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-            request.predicate = NSPredicate(format: "ANY id IN %@", ids)
-            return request
-        }
-
 
         static var allCourses: NSFetchRequest<Course> {
             return Course.fetchRequest() as NSFetchRequest<Course>

@@ -39,7 +39,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
     typealias Cell = Delegate.Cell
 
     private weak var tableView: UITableView?
-    public let fetchedResultsController: NSFetchedResultsController<Object>
+    private let fetchedResultsController: NSFetchedResultsController<Object>
     private let cellReuseIdentifier: String
     private weak var delegate: Delegate?
 

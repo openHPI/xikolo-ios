@@ -21,6 +21,14 @@ public struct DocumentLocalizationHelper {
             return request
         }
 
+        public static func downloadedDocumentLocalizations(forCourse course: Course) -> NSFetchRequest<DocumentLocalization> {
+            let request = publicDocumentLocalizations(forCourse: course)
+            let predicates = request.predicate.require(hint: "Self declared request is missing predicate")
+            let downloadedPredicate = NSPredicate(format: "localFileBookmark != nil")
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicates, downloadedPredicate])
+            return request
+        }
+
     }
 
 }

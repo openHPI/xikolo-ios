@@ -89,7 +89,7 @@ extension WebViewController: UIWebViewDelegate {
     }
 
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
+        if let documentURL = request.mainDocumentURL, documentURL.path == "/auth/app" {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
 

@@ -43,7 +43,9 @@ public struct Routes {
 
     static let authenticate = Routes.api.appendingPathComponent("authenticate")
     public static let register = Routes.base.appendingPathComponents(["account", "new"]).appendingInAppParameter()
-    public static let singleSignOn = Routes.base.appendingQueryItems([Routes.QueryItem.inApp, Routes.QueryItem.redirect])
+    public static let singleSignOn = Routes.base
+        .appendingPathComponents(["auth", Brand.default.platformTitle])
+        .appendingQueryItems([Routes.QueryItem.inApp, Routes.QueryItem.redirect])
 
     public static let courses = Routes.base.appendingPathComponent("courses")
     public static let recap = Routes.base.appendingPathComponent("learn")

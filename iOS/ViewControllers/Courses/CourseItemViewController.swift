@@ -29,7 +29,6 @@ class CourseItemViewController: UIPageViewController {
     var currentItem: CourseItem? {
         didSet {
             self.trackItemVisit()
-
             ErrorManager.shared.remember(self.currentItem?.id, forKey: "item_id")
 
             self.previousItem = self.currentItem?.previousItem
@@ -37,8 +36,9 @@ class CourseItemViewController: UIPageViewController {
 
             if let item = self.currentItem, let section = item.section {
                 self.progressLabel.text = "\(item.position) / \(section.items.count)"
+            } else {
+                self.progressLabel.text = nil
             }
-
         }
     }
 
@@ -107,7 +107,7 @@ extension CourseItemViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let item = self.previousItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        self.previousItemViewController = newViewController // XXX
+        self.previousItemViewController = newViewController
         newViewController.configure(for: item)
         return newViewController
     }
@@ -115,7 +115,7 @@ extension CourseItemViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let item = self.nextItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        self.nextItemViewController = newViewController // XXX
+        self.nextItemViewController = newViewController
         newViewController.configure(for: item)
         return newViewController
     }
@@ -143,11 +143,13 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
                             didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {
+        guard finished && completed else {
+            return
+        }
+
         guard let previousViewController = previousViewControllers.first, previousViewControllers.count == 1 else {
             preconditionFailure()
         }
-
-        guard finished && completed else { return }
 
         if self.swipeDirection == .forward {
             self.currentItem = self.nextItem
@@ -159,8 +161,7 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
             preconditionFailure()
         }
 
-        self.swipeDirection = nil //XXX there and back?
+        self.swipeDirection = nil
     }
-
 
 }

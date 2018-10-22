@@ -7,7 +7,7 @@ import CoreData
 
 extension CourseSectionHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static func orderedCourseSections(forCourse course: Course) -> NSFetchRequest<CourseSection> {
             let request: NSFetchRequest<CourseSection> = CourseSection.fetchRequest()

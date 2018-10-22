@@ -6,7 +6,7 @@
 import BrightFutures
 import Foundation
 
-public struct NetworkHelper {
+public enum NetworkHelper {
 
     public static func requestHeaders(for url: URL, additionalHeaders: [String: String] = [:]) -> [String: String] {
         var headers = [

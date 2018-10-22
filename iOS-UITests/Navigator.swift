@@ -5,7 +5,7 @@
 
 import XCTest
 
-struct Navigator {
+enum Navigator {
 
     enum TabBarItem: Int {
         case dashboard = 0
@@ -17,4 +17,5 @@ struct Navigator {
     static func goToTabBarItem(_ item: TabBarItem) {
         XCUIApplication().tabBars.buttons.element(boundBy: item.rawValue).tap()
     }
+
 }

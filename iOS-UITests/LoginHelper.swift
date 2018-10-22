@@ -5,7 +5,7 @@
 
 import XCTest
 
-class LoginHelper {
+enum LoginHelper {
 
     static var loginCredentials: (email: String, password: String) {
         guard let path = Bundle(for: LoginHelper.self).path(forResource: "Credentials", ofType: "plist") else {

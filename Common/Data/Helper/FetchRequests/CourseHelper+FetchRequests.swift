@@ -8,7 +8,7 @@ import SyncEngine
 
 extension CourseHelper {
 
-    public struct FetchRequest {
+    public enum FetchRequest {
 
         private static let genericPredicate = NSPredicate(format: "external != %@", NSNumber(value: true))
 

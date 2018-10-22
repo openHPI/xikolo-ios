@@ -6,7 +6,7 @@
 import Foundation
 import Reachability
 
-public class ReachabilityHelper {
+public enum ReachabilityHelper {
 
     static var reachability: Reachability = {
         return Reachability(hostname: Brand.default.host)!

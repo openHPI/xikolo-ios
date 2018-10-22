@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-public struct DocumentHelper {
+public enum DocumentHelper {
 
     public static func syncDocuments(forCourse course: Course) -> Future<Void, XikoloError> {
         let courseObjectId = course.objectID

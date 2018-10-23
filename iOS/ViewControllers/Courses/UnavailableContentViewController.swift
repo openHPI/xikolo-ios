@@ -13,21 +13,21 @@ class UnavailableContentViewController: UIViewController {
 
     weak var delegate: CourseItemViewController?
 
-    private var item: CourseItem? {
+    private var courseItem: CourseItem? {
         didSet {
             guard self.viewIfLoaded != nil else { return }
-            self.itemTitleLabel.text = self.item?.title
+            self.itemTitleLabel.text = self.courseItem?.title
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.itemTitleLabel.text = self.item?.title
+        self.itemTitleLabel.text = self.courseItem?.title
         self.reloadButton.tintColor = Brand.default.colors.primary
     }
 
     @IBAction func reloadItem() {
-        guard let item = self.item else { return }
+        guard let item = self.courseItem else { return }
 
         self.reloadButton.startAnimation()
         let dispatchTime = 500.milliseconds.fromNow
@@ -42,8 +42,12 @@ class UnavailableContentViewController: UIViewController {
 
 extension UnavailableContentViewController: CourseItemContentViewController {
 
+    var item: CourseItem? {
+        return self.courseItem
+    }
+
     func configure(for item: CourseItem) {
-        self.item = item
+        self.courseItem = item
     }
 
 }

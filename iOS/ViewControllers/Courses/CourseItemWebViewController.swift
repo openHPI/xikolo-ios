@@ -44,6 +44,10 @@ class CourseItemWebViewController: WebViewController {
 
 extension CourseItemWebViewController: CourseItemContentViewController {
 
+    var item: CourseItem? {
+        return self.courseItem
+    }
+
     func configure(for item: CourseItem) {
         self.courseItem = item
     }

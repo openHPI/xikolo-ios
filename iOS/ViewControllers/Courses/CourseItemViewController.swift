@@ -21,11 +21,6 @@ class CourseItemViewController: UIPageViewController {
     private var previousItem: CourseItem?
     private var nextItem: CourseItem?
 
-    private var previousItemViewController: UIViewController?
-    private var nextItemViewController: UIViewController?
-
-    private var swipeDirection: UIPageViewController.NavigationDirection?
-
     var currentItem: CourseItem? {
         didSet {
             self.trackItemVisit()
@@ -36,6 +31,7 @@ class CourseItemViewController: UIPageViewController {
 
             if let item = self.currentItem, let section = item.section {
                 self.progressLabel.text = "\(item.position) / \(section.items.count)"
+                self.progressLabel.sizeToFit()
             } else {
                 self.progressLabel.text = nil
             }
@@ -107,7 +103,6 @@ extension CourseItemViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let item = self.previousItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        self.previousItemViewController = newViewController
         newViewController.configure(for: item)
         return newViewController
     }
@@ -115,7 +110,6 @@ extension CourseItemViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let item = self.nextItem else { return nil }
         guard let newViewController = self.viewController(for: item) else { return nil }
-        self.nextItemViewController = newViewController
         newViewController.configure(for: item)
         return newViewController
     }
@@ -123,21 +117,6 @@ extension CourseItemViewController: UIPageViewControllerDataSource {
 }
 
 extension CourseItemViewController: UIPageViewControllerDelegate {
-
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        guard let pendingViewController = pendingViewControllers.first, pendingViewControllers.count == 1 else {
-            preconditionFailure()
-        }
-
-        self.viewControllers?.compactMap { $0 as? CourseItemContentViewController }.forEach { $0.prepareForCourseItemChange() }
-        if pendingViewController == self.nextItemViewController {
-            self.swipeDirection = .forward
-        } else if pendingViewController == self.previousItemViewController {
-            self.swipeDirection = .reverse
-        } else {
-            preconditionFailure()
-        }
-    }
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             didFinishAnimating finished: Bool,
@@ -147,21 +126,15 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
             return
         }
 
-        guard let previousViewController = previousViewControllers.first, previousViewControllers.count == 1 else {
+        guard let currentViewController = self.viewControllers?.first, self.viewControllers?.count == 1 else {
             preconditionFailure()
         }
 
-        if self.swipeDirection == .forward {
-            self.currentItem = self.nextItem
-            self.previousItemViewController = previousViewController
-        } else if self.swipeDirection == .reverse {
-            self.currentItem = self.previousItem
-            self.nextItemViewController = previousViewController
-        } else {
+        guard let currentCourseItemContentViewController = currentViewController as? CourseItemContentViewController else {
             preconditionFailure()
         }
 
-        self.swipeDirection = nil
+        self.currentItem = currentCourseItemContentViewController.item
     }
 
 }

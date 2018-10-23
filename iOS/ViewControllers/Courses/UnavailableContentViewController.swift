@@ -26,7 +26,7 @@ class UnavailableContentViewController: UIViewController {
         self.reloadButton.tintColor = Brand.default.colors.primary
     }
 
-    @IBAction func reloadItem() {
+    @IBAction private func reloadItem() {
         guard let item = self.courseItem else { return }
 
         self.reloadButton.startAnimation()

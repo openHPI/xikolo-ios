@@ -33,7 +33,7 @@ class CourseItemHeader: UITableViewHeaderFooterView {
         self.actionsButton.tintColor = !inOfflineMode || !section.userActions.isEmpty ? Brand.default.colors.primary : .lightGray
     }
 
-    @IBAction func tappedActionsButton(_ sender: UIButton) {
+    @IBAction private func tappedActionsButton(_ sender: UIButton) {
         guard let section = self.section else { return }
 
         if section.allVideosPreloaded {

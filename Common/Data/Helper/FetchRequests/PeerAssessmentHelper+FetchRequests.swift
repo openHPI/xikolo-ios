@@ -7,7 +7,7 @@ import CoreData
 
 extension PeerAssessmentHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static func peerAssessment(withId assessmentId: String) -> NSFetchRequest<PeerAssessment> {
             let request: NSFetchRequest<PeerAssessment> = PeerAssessment.fetchRequest()

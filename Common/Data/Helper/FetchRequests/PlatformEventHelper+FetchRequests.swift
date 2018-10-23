@@ -7,7 +7,7 @@ import CoreData
 
 extension PlatformEventHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static var allPlatformEvents: NSFetchRequest<PlatformEvent> {
             let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()

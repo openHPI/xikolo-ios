@@ -54,7 +54,7 @@ class DocumentLocalizationCell: UITableViewCell {
         self.downloadedIcon.isHidden = downloadState != .downloaded
     }
 
-    @IBAction func tappedActionsButton() {
+    @IBAction private func tappedActionsButton() {
         guard let documentLocalization = self.documentLocalization else { return }
         self.delegate?.showAlert(with: documentLocalization.userActions,
                                  title: documentLocalization.document.title,

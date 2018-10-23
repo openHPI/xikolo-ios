@@ -7,7 +7,7 @@ import Common
 import CoreSpotlight
 import UIKit
 
-class AppNavigator {
+enum AppNavigator {
 
     private static weak var currentCourseNavigationController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()

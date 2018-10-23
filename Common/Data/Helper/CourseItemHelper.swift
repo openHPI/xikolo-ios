@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-public struct CourseItemHelper {
+public enum CourseItemHelper {
 
     public static func syncCourseItems(forSection section: CourseSection) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseItemHelper.FetchRequest.orderedCourseItems(forSection: section)

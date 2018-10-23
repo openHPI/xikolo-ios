@@ -17,7 +17,7 @@ struct XikoloImageLoader: ImageLoader {
 
 }
 
-public struct MarkdownHelper {
+public enum MarkdownHelper {
 
     static let parser: Parser = {
         var parser = Parser()

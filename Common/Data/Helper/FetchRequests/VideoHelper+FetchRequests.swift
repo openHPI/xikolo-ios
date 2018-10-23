@@ -7,7 +7,7 @@ import CoreData
 
 extension VideoHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static func video(withId videoId: String) -> NSFetchRequest<Video> {
             let request: NSFetchRequest<Video> = Video.fetchRequest()

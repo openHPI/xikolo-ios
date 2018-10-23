@@ -5,9 +5,9 @@
 
 import Foundation
 
-public struct DateLabelHelper {
+public enum DateLabelHelper {
 
-    fileprivate static let dateFormatter: DateFormatter = {
+    private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter.localizedFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none

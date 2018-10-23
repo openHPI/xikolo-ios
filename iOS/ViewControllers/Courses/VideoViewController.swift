@@ -54,7 +54,7 @@ class VideoViewController: UIViewController {
 
     private var video: Video?
     private var videoPlayerConfigured = false
-    private var sentFirstAutoPlayEvent = false
+    private var didViewAppear = false
 
     private var player: CustomBMPlayer?
     private let playerControlView = VideoPlayerControlView()
@@ -104,9 +104,12 @@ class VideoViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
+        self.didViewAppear = true
 
-        self.player?.play()
-        self.trackVideoPlay()
+        if let player = self.player, !player.isPlaying {
+            player.play()
+            self.trackVideoPlay()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -120,8 +123,16 @@ class VideoViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        if let parent = self.parent as? UIPageViewController, !(parent.viewControllers?.contains(self) ?? false) {
-            self.player?.pause()
+        guard let pageViewController = self.parent as? UIPageViewController else { return }
+        let isNotPresentedInPageViewController = !(pageViewController.viewControllers?.contains(self) ?? false)
+        let pageViewControllerDismissed = pageViewController.parent?.presentingViewController == nil
+        guard isNotPresentedInPageViewController || pageViewControllerDismissed else { return }
+
+        if let player = self.player, player.isPlaying {
+            player.pause()
+        }
+
+        if self.didViewAppear {
             self.trackVideoClose()
         }
     }
@@ -251,6 +262,11 @@ class VideoViewController: UIViewController {
         self.player?.setVideo(resource: asset)
         self.updatePreferredVideoBitrate()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+
+        if let player = self.player, !player.isPlaying, self.isBeingPresented {
+            player.play()
+            self.trackVideoPlay()
+        }
     }
 
     @IBAction func openSlides() {
@@ -491,17 +507,7 @@ extension VideoViewController { // Video tracking
 extension VideoViewController: BMPlayerDelegate {
 
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
-        if state == .bufferFinished {
-            if player.isPlaying {
-                player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
-            }
-
-            if !self.sentFirstAutoPlayEvent {  // only once
-                self.trackVideoPlay()
-                self.sentFirstAutoPlayEvent = true
-            }
-
-        } else if state == .playedToTheEnd {
+        if state == .playedToTheEnd {
             self.trackVideoEnd()
         }
     }

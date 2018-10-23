@@ -7,7 +7,7 @@ import CoreData
 
 extension QuizHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static func quiz(withId quizId: String) -> NSFetchRequest<Quiz> {
             let request: NSFetchRequest<Quiz> = Quiz.fetchRequest()

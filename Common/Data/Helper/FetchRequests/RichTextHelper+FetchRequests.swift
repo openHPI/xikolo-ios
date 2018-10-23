@@ -7,7 +7,7 @@ import CoreData
 
 extension RichTextHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static func richText(withId richTextId: String) -> NSFetchRequest<RichText> {
             let request: NSFetchRequest<RichText> = RichText.fetchRequest()

@@ -8,7 +8,7 @@ import SyncEngine
 
 extension AnnouncementHelper {
 
-    public struct FetchRequest {
+    public enum FetchRequest {
 
         private static var enrolledCoursePredicate: NSPredicate {
             let deletedEnrollmentPrecidate = NSPredicate(format: "course.enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)

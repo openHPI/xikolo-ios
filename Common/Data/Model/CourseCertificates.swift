@@ -12,13 +12,13 @@ public final class CourseCertificates: NSObject, NSCoding, IncludedPullable {
     public var recordOfAchievement: CourseCertificatesHash?
     public var qualifiedCertificate: CourseCertificatesHash?
 
-    required public init(object: ResourceData) throws {
+    public required init(object: ResourceData) throws {
         self.confirmationOfParticipation = try object.value(for: "confirmation_of_participation")
         self.recordOfAchievement = try object.value(for: "record_of_achievement")
         self.qualifiedCertificate = try object.value(for: "qualified_certificate")
     }
 
-    required public init(coder decoder: NSCoder) {
+    public required init(coder decoder: NSCoder) {
         self.confirmationOfParticipation = decoder.decodeObject(forKey: "confirmation_of_participation") as? CourseCertificatesHash
         self.recordOfAchievement = decoder.decodeObject(forKey: "record_of_achievement") as? CourseCertificatesHash
         self.qualifiedCertificate = decoder.decodeObject(forKey: "qualified_certificate") as? CourseCertificatesHash

@@ -8,7 +8,7 @@ import CoreData
 import Foundation
 import SyncEngine
 
-public struct EnrollmentHelper {
+public enum EnrollmentHelper {
 
     public static func createEnrollment(for course: Course) -> Future<Void, XikoloError> {
         let attributes = ["completed": false]

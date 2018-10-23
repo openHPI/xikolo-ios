@@ -5,9 +5,9 @@
 
 import CoreData
 
-public struct DocumentLocalizationHelper {
+public enum DocumentLocalizationHelper {
 
-    public struct FetchRequest {
+    public enum FetchRequest {
 
         public static func publicDocumentLocalizations(forCourse course: Course) -> NSFetchRequest<DocumentLocalization> {
             let request: NSFetchRequest<DocumentLocalization> = DocumentLocalization.fetchRequest()

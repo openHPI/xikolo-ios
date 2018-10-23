@@ -143,7 +143,7 @@ class CourseDetailViewController: UIViewController {
         self.refreshEnrollButton()
     }
 
-    @IBAction func enroll(_ sender: UIButton) {
+    @IBAction private func enroll(_ sender: UIButton) {
         if UserProfileHelper.shared.isLoggedIn {
             if !course.hasEnrollment {
                 self.createEnrollment()

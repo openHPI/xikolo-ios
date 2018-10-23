@@ -7,7 +7,7 @@ import BrightFutures
 import CoreData
 import SyncEngine
 
-public struct UserHelper {
+public enum UserHelper {
 
     @discardableResult public static func syncMe() -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = UserHelper.FetchRequest.user(withId: UserProfileHelper.shared.userId ?? "")

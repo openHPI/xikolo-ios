@@ -249,7 +249,7 @@ class VideoViewController: UIViewController {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
     }
 
-    @IBAction func openSlides() {
+    @IBAction private func openSlides() {
         if let video = self.video, SlidesPersistenceManager.shared.localFileLocation(for: video) != nil || ReachabilityHelper.connection != .none {
             self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
         } else {
@@ -257,7 +257,7 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @IBAction func showActionMenu(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
         guard let actions = self.video?.userActions else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -272,7 +272,7 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    @IBAction func showVideoActionMenu(_ sender: UIButton) {
+    @IBAction private func showVideoActionMenu(_ sender: UIButton) {
         guard let streamUserAction = self.video?.streamUserAction else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -286,7 +286,7 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    @IBAction func showSlidesActionMenu(_ sender: UIButton) {
+    @IBAction private func showSlidesActionMenu(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)

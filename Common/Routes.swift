@@ -5,9 +5,9 @@
 
 import Foundation
 
-public struct Routes {
+public enum Routes {
 
-    public struct Header {
+    public enum Header {
         public static let userPlatformKey = "X-User-Platform"
         public static let userPlatformValue = "iOS"
 
@@ -26,12 +26,12 @@ public struct Routes {
         public static let apiVersionExpirationDate = "X-Api-Version-Expiration-Date"
     }
 
-    public struct HeaderParameter {
+    public enum HeaderParameter {
         public static let email = "email"
         public static let password = "password"
     }
 
-    struct QueryItem {
+    enum QueryItem {
         static let inApp = URLQueryItem(name: "in_app", value: "true")
         static let redirect = URLQueryItem(name: "redirect_to", value: "/auth/" + Brand.default.platformTitle)
     }

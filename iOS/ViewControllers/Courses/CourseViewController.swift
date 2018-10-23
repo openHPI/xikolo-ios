@@ -72,10 +72,6 @@ class CourseViewController: UIViewController {
         courseNavigationController?.closeCourse()
     }
 
-    @IBAction func tappedCloseButton(_ sender: Any) {
-        self.closeCourse()
-    }
-
     private func decideContent() {
         if !self.course.hasEnrollment {
             self.area = .courseDetails
@@ -122,7 +118,11 @@ class CourseViewController: UIViewController {
         }
     }
 
-    @IBAction func shareCourse(_ sender: UIBarButtonItem) {
+    @IBAction private func tappedCloseButton(_ sender: Any) {
+        self.closeCourse()
+    }
+
+    @IBAction private func shareCourse(_ sender: UIBarButtonItem) {
         let activityItems = ([self.course.title, self.course.url] as [Any?]).compactMap { $0 }
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender

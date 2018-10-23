@@ -5,6 +5,7 @@
 
 import Foundation
 
+// swiftlint:disable:next convenience_type
 class CommonLocalizer {
 
     static func localizedString(_ key: String, comment: String) -> String {

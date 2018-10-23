@@ -7,7 +7,7 @@ import CoreData
 
 extension UserHelper {
 
-    public struct FetchRequest {
+    public enum FetchRequest {
 
         public static func user(withId userId: String) -> NSFetchRequest<User> {
             let request: NSFetchRequest<User> = User.fetchRequest()

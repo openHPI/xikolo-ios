@@ -8,8 +8,8 @@ import UIKit
 
 class UnavailableContentViewController: UIViewController {
 
-    @IBOutlet weak var itemTitleLabel: UILabel!
-    @IBOutlet weak var reloadButton: LoadingButton!
+    @IBOutlet private weak var itemTitleLabel: UILabel!
+    @IBOutlet private weak var reloadButton: LoadingButton!
 
     weak var delegate: CourseItemViewController?
 

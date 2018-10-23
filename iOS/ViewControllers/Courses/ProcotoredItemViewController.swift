@@ -8,8 +8,8 @@ import UIKit
 
 class ProctoredItemViewController: UIViewController {
 
-    @IBOutlet weak var itemTitleLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var itemTitleLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
 
     private var courseItem: CourseItem? {
         didSet {

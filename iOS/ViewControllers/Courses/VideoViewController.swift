@@ -38,13 +38,26 @@ class VideoViewController: UIViewController {
         return button
     }()
 
-    var courseItem: CourseItem!
-    var video: Video?
-    var videoPlayerConfigured = false
+    private var courseItemObserver: ManagedObjectObserver?
+
+    var courseItem: CourseItem! {
+        didSet {
+            self.courseItemObserver = ManagedObjectObserver(object: self.courseItem) { [weak self] type in
+                guard type == .update else { return }
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async {
+                    strongSelf.updateView(for: strongSelf.courseItem)
+                }
+            }
+        }
+    }
+
+    private var video: Video?
+    private var videoPlayerConfigured = false
     private var sentFirstAutoPlayEvent = false
 
-    var player: CustomBMPlayer?
-    let playerControlView = VideoPlayerControlView()
+    private var player: CustomBMPlayer?
+    private let playerControlView = VideoPlayerControlView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,19 +78,7 @@ class VideoViewController: UIViewController {
         self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
 
         self.updateView(for: self.courseItem)
-        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { [weak self] syncResult in
-            CoreDataHelper.viewContext.perform {
-                guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: syncResult.objectId) as? CourseItem else {
-                    log.warning("Failed to retrieve course item to display")
-                    return
-                }
-
-                self?.courseItem = courseItem
-                DispatchQueue.main.async {
-                    self?.updateView(for: courseItem)
-                }
-            }
-        }
+        CourseItemHelper.syncCourseItemWithContent(self.courseItem)
 
         // register notification observer
         let notificationCenter = NotificationCenter.default

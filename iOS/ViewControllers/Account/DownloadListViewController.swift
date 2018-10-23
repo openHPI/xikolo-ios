@@ -33,9 +33,9 @@ class DownloadListViewController: UITableViewController {
 
     @discardableResult
     func refresh() -> Future<[[DownloadItem]], XikoloError> {
-        return self.getData().onSuccess { (itemsArray) in
-            self.downloadItems = itemsArray.flatMap {$0}
-            var downloadedCourseList: [String:CourseDownload] = [:]
+        return self.getData().onSuccess { itemsArray in
+            self.downloadItems = itemsArray.flatMap { $0 }
+            var downloadedCourseList: [String: CourseDownload] = [:]
             for downloadItem in self.downloadItems {
                 if var courseDownload = downloadedCourseList[downloadItem.courseID] {
                     courseDownload.properties[downloadItem.contentType.rawValue] = true
@@ -45,20 +45,22 @@ class DownloadListViewController: UITableViewController {
                     courseDownload.properties[downloadItem.contentType.rawValue] = true
                     downloadedCourseList[downloadItem.courseID] = courseDownload
                 }
-
             }
+
             self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
             self.tableView.reloadData()
-        }.onFailure { (error) in
+        }.onFailure { error in
             log.error(error.localizedDescription)
         }
     }
 
     func getData() -> Future<[[DownloadItem]], XikoloError> {
         var futures = [getVideoCourseIDs(), getSlidesCourseIDs()]
+
         if Brand.default.features.enableDocuments {
             futures.append(getDocumentsCourseIDs())
         }
+
         return futures.sequence()
     }
 
@@ -66,7 +68,7 @@ class DownloadListViewController: UITableViewController {
         let videoRequest = VideoHelper.FetchRequest.hasDownloadedVideo()
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
-        CoreDataHelper.persistentContainer.performBackgroundTask { (privateManagedObjectContext) in
+        CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             do {
                 let downloadedVideos = try privateManagedObjectContext.fetch(videoRequest)
                 for video in downloadedVideos {
@@ -74,11 +76,13 @@ class DownloadListViewController: UITableViewController {
                         items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .video))
                     }
                 }
+
                 return promise.success(items)
             } catch {
                 promise.failure(.coreData(error))
             }
         }
+
         return promise.future
     }
 
@@ -86,7 +90,7 @@ class DownloadListViewController: UITableViewController {
         let slidesRequest = VideoHelper.FetchRequest.hasDownloadedSlides()
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
-        CoreDataHelper.persistentContainer.performBackgroundTask { (privateManagedObjectContext) in
+        CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             do {
                 let downloadedSlides = try privateManagedObjectContext.fetch(slidesRequest)
                 for slide in downloadedSlides {
@@ -94,11 +98,13 @@ class DownloadListViewController: UITableViewController {
                         items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .slides))
                     }
                 }
+
                 return promise.success(items)
             } catch {
                 promise.failure(.coreData(error))
             }
         }
+
         return promise.future
     }
 
@@ -106,22 +112,27 @@ class DownloadListViewController: UITableViewController {
         let documentsRequest = DocumentHelper.FetchRequest.hasDownloadedLocalization()
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
-        CoreDataHelper.persistentContainer.performBackgroundTask { (privateManagedObjectContext) in
+        CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             do {
                 let downloadedDocuments = try privateManagedObjectContext.fetch(documentsRequest)
                 if !downloadedDocuments.isEmpty {
                     self.hasDocuments = true
                 }
+
                 for document in downloadedDocuments {
-                    let downloadItems = document.courses.map({ (course) -> DownloadItem in
-                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .document)})
+                    let downloadItems = document.courses.map { course -> DownloadItem in
+                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .document)
+                    }
+
                     items.append(contentsOf: downloadItems)
                 }
+
                 return promise.success(items)
             } catch {
                 promise.failure(.coreData(error))
             }
         }
+
         return promise.future
     }
 
@@ -132,9 +143,8 @@ class DownloadListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courses[section].properties.filter( { $0 } ).count
+        return courses[section].properties.filter { $0 }.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "streamSlidesCell", for: indexPath)
@@ -148,13 +158,16 @@ class DownloadListViewController: UITableViewController {
         for itemExists in courses[indexPath.section].properties {
             if itemExists {
                 if indexPath.row == itemCount {
-                    return DownloadItem.DownloadType(rawValue: returnCount) ?? .video
+                    return DownloadItem.DownloadType(rawValue: returnCount).require(hint: "Trying to initialize DownloadType from invalid value")
                 }
+
                 itemCount += 1
             }
+
             returnCount += 1
         }
-        return .video
+
+        preconditionFailure("Invalid data in download list view")
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -194,7 +207,6 @@ class DownloadListViewController: UITableViewController {
                 SlidesPersistenceManager.shared.deleteDownloads(for: course)
             case .document:
                 DocumentsPersistenceManager.shared.deleteDownloads(for: course)
-
             }
         }
     }
@@ -228,8 +240,9 @@ class DownloadListViewController: UITableViewController {
     }
 
     @objc private func coreDataChange(notification: Notification) {
-        let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey])
-        let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey])
+        let keys = [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey]
+        let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: keys)
+        let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: keys)
         if containsVideoDeletion || containsDocumentDeletion {
             self.refresh()
         }
@@ -270,7 +283,7 @@ struct DownloadItem {
     }
 }
 
-fileprivate struct CourseItem {
+private struct CourseItem {
     var courseID: String
     var courseTitle: String
     var content: Set<DownloadItem.DownloadType>

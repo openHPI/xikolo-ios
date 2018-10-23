@@ -149,21 +149,21 @@ extension StreamPersistenceManager {
 extension StreamPersistenceManager {
 
     func startDownloads(for course: Course) {
-        course.sections.forEach({ courseSection in
+        course.sections.forEach { courseSection in
             self.startDownloads(for: courseSection)
-        })
+        }
     }
 
     func deleteDownloads(for course: Course) {
-        course.sections.forEach({ courseSection in
+        course.sections.forEach { courseSection in
             self.deleteDownloads(for: courseSection)
-        })
+        }
     }
 
     func cancelDownloads(for course: Course) {
-        course.sections.forEach({ courseSection in
+        course.sections.forEach { courseSection in
             self.cancelDownloads(for: courseSection)
-        })
+        }
     }
 
 }

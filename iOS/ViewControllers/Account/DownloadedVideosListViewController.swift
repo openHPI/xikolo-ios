@@ -3,8 +3,8 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import CoreData
 import Common
+import CoreData
 import UIKit
 
 class DownloadedVideosListViewController: UITableViewController {
@@ -43,7 +43,7 @@ class DownloadedVideosListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "downloadItemCell", for: indexPath)
         let video = resultsController.object(at: indexPath)
         cell.textLabel?.text = video.item?.title ?? video.summary ?? ""
-        //cell.detailTextLabel?.text = self.downloadType == .video ? video.singleStream.
+        // cell.detailTextLabel?.text = self.downloadType == .video ? video.singleStream.
         // TODO: maybe set size
         return cell
     }

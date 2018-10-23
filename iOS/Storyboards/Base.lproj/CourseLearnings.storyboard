@@ -676,8 +676,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRv-HS-VLP" customClass="LoadingButton" customModule="iOS" customModuleProvider="target">
-                                        <rect key="frame" x="142" y="89" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="135" y="89" width="60" height="30"/>
+                                        <state key="normal" title="try again"/>
                                         <connections>
                                             <action selector="reloadItem" destination="fMv-dz-ATe" eventType="touchUpInside" id="tHJ-xl-L5h"/>
                                         </connections>

@@ -10,6 +10,8 @@ class WebViewController: UIViewController {
 
     @IBOutlet private weak var webView: UIWebView!
 
+    private var courseArea: CourseArea?
+
     private lazy var progress: CircularProgressView = {
         let progress = CircularProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
@@ -126,12 +128,16 @@ extension WebViewController: UIWebViewDelegate {
 
 extension WebViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
-        guard let currentArea = delegate.currentArea else { return }
+    var area: CourseArea {
+        return self.courseArea.require()
+    }
 
-        if let slug = course.slug, currentArea == .discussions {
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        self.courseArea = area
+
+        if let slug = course.slug, area == .discussions {
             self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
-        } else if currentArea == .recap {
+        } else if area == .recap {
             var urlComponents = URLComponents(url: Routes.recap, resolvingAgainstBaseURL: false)
             urlComponents?.queryItems = [URLQueryItem(name: "course_id", value: course.id)]
             self.url = urlComponents?.url

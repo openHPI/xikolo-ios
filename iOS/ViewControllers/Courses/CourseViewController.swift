@@ -8,13 +8,19 @@ import UIKit
 
 class CourseViewController: UIViewController {
 
-    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleView: UILabel!
 
     private var courseAreaViewController: UIViewController?
     private var courseAreaListViewController: CourseAreaListViewController? {
         didSet {
             self.courseAreaListViewController?.delegate = self
+        }
+    }
+
+    private var courseAreaPageViewController: UIPageViewController? {
+        didSet {
+            self.courseAreaPageViewController?.dataSource = self
+            self.courseAreaPageViewController?.delegate = self
         }
     }
 
@@ -32,19 +38,7 @@ class CourseViewController: UIViewController {
         }
     }
 
-    var area: CourseArea? {
-        didSet {
-            guard self.viewIfLoaded != nil else { return }
-
-            if self.area != oldValue {
-                let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-                feedbackGenerator.prepare()
-                feedbackGenerator.impactOccurred()
-            }
-
-            self.updateContainerView()
-        }
-    }
+    var area: CourseArea?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,47 +68,63 @@ class CourseViewController: UIViewController {
 
     private func decideContent() {
         if !self.course.hasEnrollment {
-            self.area = .courseDetails
+            self.update(to: .courseDetails, updateCourseAreaSelection: true)
         } else {
-            self.area = self.course.accessible ? .learnings : .courseDetails
+            let area: CourseArea = self.course.accessible ? .learnings : .courseDetails
+            self.update(to: area, updateCourseAreaSelection: true)
         }
 
         self.courseAreaListViewController?.refresh(animated: false)
     }
 
+    private func update(to area: CourseArea, updateCourseAreaSelection: Bool) {
+        guard self.viewIfLoaded != nil else { return }
+//        guard self.area != area else { return }
+
+        self.area = area
+
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        feedbackGenerator.prepare()
+        feedbackGenerator.impactOccurred()
+
+        self.updateContainerView()
+
+        if updateCourseAreaSelection {
+            self.courseAreaListViewController?.refresh(animated: true)
+        }
+    }
+
     private func updateContainerView() {
         let animationTime: TimeInterval = 0.15
 
-        self.courseAreaViewController?.willMove(toParentViewController: nil)
-
         // swiftlint:disable multiple_closures_with_trailing_closure
-        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn, animations: { /// XXX delay
             self.courseAreaViewController?.view.alpha = 0
         }) { _ in
-            self.courseAreaViewController?.view.removeFromSuperview()
-            self.courseAreaViewController?.removeFromParentViewController()
             self.courseAreaViewController = nil
 
-            guard let newViewController = self.area?.viewController else { return }
-            newViewController.configure(for: self.course, delegate: self)
-            newViewController.view.frame = self.containerView.bounds
+            guard let area = self.area, let newViewController = area.viewController else {
+                self.courseAreaPageViewController?.setViewControllers(nil, direction: .forward, animated: false)
+                return
+            }
+
+            newViewController.configure(for: self.course, with: area, delegate: self)
             newViewController.view.alpha = 0
 
-            self.containerView.addSubview(newViewController.view)
-            self.addChildViewController(newViewController)
             self.courseAreaViewController = newViewController
+            self.courseAreaPageViewController?.setViewControllers([newViewController], direction: .forward, animated: false)
 
-            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut, animations: {
                 newViewController.view.alpha = 1
-            }) { _ in
-                newViewController.didMove(toParentViewController: self)
-            }
+            })
         }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let courseAreaListViewController = segue.destination as? CourseAreaListViewController {
             self.courseAreaListViewController = courseAreaListViewController
+        } else if let courseAreaPageViewController = segue.destination as? UIPageViewController {
+            self.courseAreaPageViewController = courseAreaPageViewController
         }
     }
 
@@ -141,7 +151,7 @@ class CourseViewController: UIViewController {
 
 extension CourseViewController: CourseAreaListViewControllerDelegate {
 
-    var accessibleContent: [CourseArea] {
+    var accessibleAreas: [CourseArea] {
         if self.course.hasEnrollment && self.course.accessible {
             return CourseArea.availableAreas
         } else {
@@ -154,16 +164,71 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
     }
 
     func change(to area: CourseArea) {
-        self.area = area
+        self.update(to: area, updateCourseAreaSelection: false)
+    }
+
+}
+
+extension CourseViewController: UIPageViewControllerDataSource {
+
+    private var previousAvailableArea: CourseArea? {
+        let areas = self.accessibleAreas
+        guard let currentArea = self.area else { return nil }
+        guard let index = areas.index(of: currentArea) else { return nil }
+        let indexBefore = areas.index(before: index)
+        return areas[safe: indexBefore]
+    }
+
+    private var nextAvailableArea: CourseArea? {
+        let areas = self.accessibleAreas
+        guard let currentArea = self.area else { return nil }
+        guard let index = areas.index(of: currentArea) else { return nil }
+        let indexAfter = areas.index(after: index)
+        return areas[safe: indexAfter]
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let area = self.previousAvailableArea else { return nil }
+        guard let viewController = area.viewController else { return nil }
+        viewController.configure(for: self.course, with: area, delegate: self)
+        return viewController
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let area = self.nextAvailableArea else { return nil }
+        guard let viewController = area.viewController else { return nil }
+        viewController.configure(for: self.course, with: area, delegate: self)
+        return viewController
+    }
+
+}
+
+extension CourseViewController: UIPageViewControllerDelegate {
+
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
+        guard finished && completed else {
+            return
+        }
+
+        let currentViewControllers = self.courseAreaPageViewController?.viewControllers
+        guard let currentViewController = currentViewControllers?.first, currentViewControllers?.count == 1 else {
+            preconditionFailure()
+        }
+
+        guard let currentCourseAreaViewController = currentViewController as? CourseAreaViewController else {
+            preconditionFailure()
+        }
+
+        self.area = currentCourseAreaViewController.area
+        self.courseAreaListViewController?.refresh(animated: true)
     }
 
 }
 
 extension CourseViewController: CourseAreaViewControllerDelegate {
-
-    var currentArea: CourseArea? {
-        return self.area
-    }
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
         guard newlyCreated else { return }

@@ -13,7 +13,7 @@ class CourseAreaListViewController: UICollectionViewController {
 
     private var selectedIndexPath: IndexPath? {
         guard let content = self.delegate?.selectedArea else { return nil }
-        guard let index = self.delegate?.accessibleContent.index(of: content) else { return nil }
+        guard let index = self.delegate?.accessibleAreas.index(of: content) else { return nil }
         return IndexPath(item: index, section: 0)
     }
 
@@ -27,14 +27,14 @@ class CourseAreaListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.delegate?.accessibleContent.count ?? 0
+        return self.delegate?.accessibleAreas.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellReuseIdentifier = R.reuseIdentifier.courseAreaCell.identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
 
-        if let cell = cell as? CourseAreaCell, let content = self.delegate?.accessibleContent[safe: indexPath.item] {
+        if let cell = cell as? CourseAreaCell, let content = self.delegate?.accessibleAreas[safe: indexPath.item] {
             let selected = indexPath == self.selectedIndexPath
             cell.configure(for: content, selected: selected)
         }
@@ -44,7 +44,7 @@ class CourseAreaListViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath != self.selectedIndexPath else { return }
-        guard let content = self.delegate?.accessibleContent[safe: indexPath.item] else { return }
+        guard let content = self.delegate?.accessibleAreas[safe: indexPath.item] else { return }
 
         self.delegate?.change(to: content)
         collectionView.reloadData()
@@ -66,9 +66,13 @@ class CourseAreaListViewController: UICollectionViewController {
     }
 
     func refresh(animated: Bool) {
-        self.collectionView?.reloadData()
+        let dispatchTime = animated ? 250.milliseconds.fromNow : 0.milliseconds.fromNow // XXX
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            self.collectionView?.reloadData()
+        }
+
         if let selectedIndexPath = self.selectedIndexPath {
-            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
+            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: animated)
         }
     }
 
@@ -79,7 +83,7 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let titleText = self.delegate?.accessibleContent[safe: indexPath.item]?.title ?? ""
+        let titleText = self.delegate?.accessibleAreas[safe: indexPath.item]?.title ?? ""
         let boundingSize = CGSize(width: CGFloat.infinity, height: 34)
         let titleAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
@@ -112,7 +116,7 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 protocol CourseAreaListViewControllerDelegate: AnyObject {
-    var accessibleContent: [CourseArea] { get }
+    var accessibleAreas: [CourseArea] { get }
     var selectedArea: CourseArea? { get }
 
     func change(to content: CourseArea)

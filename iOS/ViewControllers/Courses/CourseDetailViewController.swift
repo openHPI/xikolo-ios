@@ -248,7 +248,12 @@ extension CourseDetailViewController: UITextViewDelegate {
 
 extension CourseDetailViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .courseDetails
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        precondition(area == self.area)
         self.delegate = delegate
         self.course = course
     }

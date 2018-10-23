@@ -109,7 +109,12 @@ extension DocumentListViewController: CoreDataTableViewDataSourceDelegate {
 
 extension DocumentListViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .documents
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        precondition(area == self.area)
         self.course = course
     }
 

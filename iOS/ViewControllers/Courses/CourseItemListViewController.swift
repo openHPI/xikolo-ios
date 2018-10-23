@@ -261,7 +261,12 @@ extension CourseItemListViewController: UserActionsDelegate {
 
 extension CourseItemListViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .learnings
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        precondition(area == self.area)
         self.course = course
     }
 

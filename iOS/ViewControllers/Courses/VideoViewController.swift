@@ -65,16 +65,16 @@ class VideoViewController: UIViewController {
         self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
 
         self.updateView(for: self.courseItem)
-        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
+        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { [weak self] syncResult in
             CoreDataHelper.viewContext.perform {
                 guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: syncResult.objectId) as? CourseItem else {
                     log.warning("Failed to retrieve course item to display")
                     return
                 }
 
-                self.courseItem = courseItem
+                self?.courseItem = courseItem
                 DispatchQueue.main.async {
-                    self.updateView(for: self.courseItem)
+                    self?.updateView(for: courseItem)
                 }
             }
         }
@@ -103,21 +103,10 @@ class VideoViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
-        // TODO: autoploay
-    }
 
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//
-//        if !(self.navigationController?.viewControllers.contains(self) ?? false) {
-//            self.player?.pause()
-//        }
-//
-//        if !(self.navigationController?.viewControllers.contains(self) ?? true) {
-//            self.trackVideoClose()
-//            self.player?.prepareToDealloc()
-//        }
-//    }
+        self.player?.play()
+        self.trackVideoPlay()
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -130,12 +119,9 @@ class VideoViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        if let courseNavigationController = self.navigationController as? CourseNavigationController,
-            let courseTransitioningDelegate = courseNavigationController.transitioningDelegate as? CourseTransitioningDelegate,
-            courseTransitioningDelegate.interactionController.shouldFinish {
+        if let parent = self.parent as? UIPageViewController, !(parent.viewControllers?.contains(self) ?? false) {
             self.player?.pause()
             self.trackVideoClose()
-            self.player?.prepareToDealloc()
         }
     }
 
@@ -549,11 +535,6 @@ extension VideoViewController: CourseItemContentViewController {
 
     func configure(for item: CourseItem) {
         self.courseItem = item
-    }
-
-    func prepareForCourseItemChange() {
-        self.player?.pause()
-        self.trackVideoClose() // Really
     }
 
 }

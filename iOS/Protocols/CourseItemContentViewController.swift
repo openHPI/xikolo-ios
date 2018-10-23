@@ -9,9 +9,4 @@ protocol CourseItemContentViewController: AnyObject {
     var item: CourseItem? { get }
 
     func configure(for item: CourseItem)
-    func prepareForCourseItemChange()
-}
-
-extension CourseItemContentViewController {
-    func prepareForCourseItemChange() {}
 }

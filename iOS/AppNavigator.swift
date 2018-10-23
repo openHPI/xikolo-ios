@@ -9,7 +9,7 @@ import UIKit
 
 class AppNavigator {
 
-    private static var currentCourseNavigationController: CourseNavigationController?
+    private static weak var currentCourseNavigationController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
     static func handle(userActivity: NSUserActivity) -> Bool {

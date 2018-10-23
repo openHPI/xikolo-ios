@@ -34,8 +34,9 @@ extension FilePersistenceManager {
     func downloadTask(_ task: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else { return }
         guard let fileName = task.originalRequest?.url?.lastPathComponent else { return }
+        guard let contentId = task.taskDescription else { return }
 
-        let documentLocation = documentsDirectory.appendingPathComponent(fileName)
+        let documentLocation = documentsDirectory.appendingPathComponent(Self.downloadType + "_" + contentId + "_" + fileName)
 
         do {
             if FileManager.default.fileExists(atPath: documentLocation.path) {

@@ -21,6 +21,15 @@
 		<key>window</key>
 		<string>primary</string>
 	</dict>
+	<key>singleSignOn</key>
+	<dict>
+		<key>provider</key>
+		<string>oidc</string>
+		<key>platformTitle</key>
+		<string>hpi</string>
+		<key>buttonTitle</key>
+		<string>HPI OpenID Connect</string>
+	</dict>
 	<key>features</key>
 	<dict>
 		<key>enableDocuments</key>

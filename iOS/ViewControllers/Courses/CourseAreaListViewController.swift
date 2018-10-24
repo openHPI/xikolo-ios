@@ -12,9 +12,16 @@ class CourseAreaListViewController: UICollectionViewController {
     private var shouldScrollToSelectedItem: Bool = false
 
     private var selectedIndexPath: IndexPath? {
-        guard let content = self.delegate?.selectedArea else { return nil }
-        guard let index = self.delegate?.accessibleAreas.index(of: content) else { return nil }
-        return IndexPath(item: index, section: 0)
+        didSet {
+            if let oldIndexPath = oldValue {
+                self.collectionView?.reloadItems(at: [oldIndexPath])
+            }
+
+            if let newIndexPath = self.selectedIndexPath {
+                self.collectionView?.reloadItems(at: [newIndexPath])
+                self.collectionView?.scrollToItem(at: newIndexPath, at: .centeredHorizontally, animated: true)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -35,20 +42,19 @@ class CourseAreaListViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
 
         if let cell = cell as? CourseAreaCell, let content = self.delegate?.accessibleAreas[safe: indexPath.item] {
-            let selected = indexPath == self.selectedIndexPath
-            cell.configure(for: content, selected: selected)
+            cell.configure(for: content)
+            cell.isSelected = indexPath == self.selectedIndexPath
         }
 
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath != self.selectedIndexPath else { return }
+        guard let selectedIndexPath = self.selectedIndexPath, indexPath != selectedIndexPath else { return }
         guard let content = self.delegate?.accessibleAreas[safe: indexPath.item] else { return }
 
         self.delegate?.change(to: content)
-        collectionView.reloadData()
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        self.selectedIndexPath = indexPath
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -66,14 +72,11 @@ class CourseAreaListViewController: UICollectionViewController {
     }
 
     func refresh(animated: Bool) {
-        let dispatchTime = animated ? 250.milliseconds.fromNow : 0.milliseconds.fromNow // XXX
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.collectionView?.reloadData()
-        }
-
-        if let selectedIndexPath = self.selectedIndexPath {
-            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: animated)
-        }
+        self.selectedIndexPath = {
+            guard let content = self.delegate?.selectedArea else { return nil }
+            guard let index = self.delegate?.accessibleAreas.index(of: content) else { return nil }
+            return IndexPath(item: index, section: 0)
+        }()
     }
 
 }

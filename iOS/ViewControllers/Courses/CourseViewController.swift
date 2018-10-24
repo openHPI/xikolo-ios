@@ -68,20 +68,17 @@ class CourseViewController: UIViewController {
 
     private func decideContent() {
         if !self.course.hasEnrollment {
-            self.update(to: .courseDetails, updateCourseAreaSelection: true)
+            self.manuallyUpdate(to: .courseDetails, updateCourseAreaSelection: true)
         } else {
             let area: CourseArea = self.course.accessible ? .learnings : .courseDetails
-            self.update(to: area, updateCourseAreaSelection: true)
+            self.manuallyUpdate(to: area, updateCourseAreaSelection: true)
         }
-
-        self.courseAreaListViewController?.refresh(animated: false)
     }
 
-    private func update(to area: CourseArea, updateCourseAreaSelection: Bool) {
-        guard self.viewIfLoaded != nil else { return }
-//        guard self.area != area else { return }
-
+    private func manuallyUpdate(to area: CourseArea, updateCourseAreaSelection: Bool) {
         self.area = area
+
+        guard self.viewIfLoaded != nil else { return }
 
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
         feedbackGenerator.prepare()
@@ -164,7 +161,7 @@ extension CourseViewController: CourseAreaListViewControllerDelegate {
     }
 
     func change(to area: CourseArea) {
-        self.update(to: area, updateCourseAreaSelection: false)
+        self.manuallyUpdate(to: area, updateCourseAreaSelection: false)
     }
 
 }

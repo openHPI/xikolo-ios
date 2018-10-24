@@ -8,10 +8,6 @@
 	<string>https://www.sap.com/corporate/en/legal/impressum.html</string>
 	<key>privacyURL</key>
 	<string>https://www.sap.com/corporate/en/legal/privacy.html</string>
-	<key>platformTitle</key>
-	<string>sap</string>
-	<key>singleSignOnButtonTitle</key>
-	<string>Single Sign On</string>
 	<key>copyrightName</key>
 	<string>SAP</string>
 	<key>poweredByText</key>
@@ -28,6 +24,15 @@
 		<string>#8AB54E</string>
 		<key>window</key>
 		<string>secondary</string>
+	</dict>
+	<key>singleSignOn</key>
+	<dict>
+		<key>provider</key>
+		<string>saml</string>
+		<key>platformTitle</key>
+		<string>sap</string>
+		<key>buttonTitle</key>
+		<string>Single Sign On</string>
 	</dict>
 	<key>features</key>
 	<dict>

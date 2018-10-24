@@ -8,8 +8,6 @@
 	<string>https://open.hpi.de/pages/imprint</string>
 	<key>privacyURL</key>
 	<string>https://open.hpi.de/pages/privacy</string>
-	<key>platformTitle</key>
-	<string>hpi</string>
 	<key>copyrightName</key>
 	<string>HPI</string>
 	<key>colors</key>

@@ -34,7 +34,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
                                                name: NSNotification.Name.UIKeyboardWillHide,
                                                object: nil)
 
-        if let title = Brand.default.singleSignOnButtonTitle {
+        if let title = Brand.default.singleSignOn?.buttonTitle {
             self.singleSignOnView.isHidden = false
             self.singleSignOnButton.backgroundColor = Brand.default.colors.primary
             self.singleSignOnButton.setTitle(title, for: .normal)

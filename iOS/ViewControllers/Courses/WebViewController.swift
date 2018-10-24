@@ -89,7 +89,7 @@ extension WebViewController: UIWebViewDelegate {
     }
 
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let documentURL = request.mainDocumentURL, documentURL.path == "/auth/app" {
+        if let documentURL = Routes.isAppAuthenticationURL(for: request) {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
 
@@ -103,6 +103,19 @@ extension WebViewController: UIWebViewDelegate {
             }
 
             return true
+        } else if let documentURL = Routes.isSingleSignOnCallbackURL(for: request) {
+            let modifiedURL = Routes.addCallbackParameters(to: documentURL)
+            guard modifiedURL != documentURL else { return true }
+
+            DispatchQueue.global().async {
+                DispatchQueue.main.async {
+                    var newRequest = request
+                    newRequest.url = modifiedURL
+                    self.webView.loadRequest(newRequest)
+                }
+            }
+
+            return false
         }
 
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn

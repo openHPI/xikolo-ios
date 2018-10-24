@@ -229,8 +229,13 @@ extension CourseViewController: UIPageViewControllerDelegate {
 extension CourseViewController: CourseAreaViewControllerDelegate {
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool) {
-        guard newlyCreated else { return }
-        self.decideContent()
+        self.courseAreaListViewController?.reloadData()
+
+        if newlyCreated {
+            self.decideContent()
+        } else {
+            self.courseAreaListViewController?.refresh(animated: true)
+        }
     }
 
 }

@@ -13,11 +13,13 @@ class CourseAreaListViewController: UICollectionViewController {
 
     private var selectedIndexPath: IndexPath? {
         didSet {
-            if let oldIndexPath = oldValue {
+            let numberOfItems = self.collectionView?.numberOfItems(inSection: 0) ?? 0
+
+            if let oldIndexPath = oldValue, oldIndexPath.item < numberOfItems {
                 self.collectionView?.reloadItems(at: [oldIndexPath])
             }
 
-            if let newIndexPath = self.selectedIndexPath {
+            if let newIndexPath = self.selectedIndexPath, newIndexPath.item < numberOfItems {
                 self.collectionView?.reloadItems(at: [newIndexPath])
                 self.collectionView?.scrollToItem(at: newIndexPath, at: .centeredHorizontally, animated: true)
             }
@@ -69,6 +71,10 @@ class CourseAreaListViewController: UICollectionViewController {
             self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
             self.shouldScrollToSelectedItem = false
         }
+    }
+
+    func reloadData() {
+        self.collectionView?.reloadData()
     }
 
     func refresh(animated: Bool) {

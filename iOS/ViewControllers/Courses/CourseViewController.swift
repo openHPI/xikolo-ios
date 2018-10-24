@@ -95,7 +95,7 @@ class CourseViewController: UIViewController {
         let animationTime: TimeInterval = 0.15
 
         // swiftlint:disable multiple_closures_with_trailing_closure
-        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn, animations: { /// XXX delay
+        UIView.animate(withDuration: animationTime, delay: animationTime, options: .curveEaseIn, animations: {
             self.courseAreaViewController?.view.alpha = 0
         }) { _ in
             self.courseAreaViewController = nil
@@ -111,6 +111,7 @@ class CourseViewController: UIViewController {
             self.courseAreaViewController = newViewController
             self.courseAreaPageViewController?.setViewControllers([newViewController], direction: .forward, animated: false)
 
+            // swiftlint:disable:next trailing_closure
             UIView.animate(withDuration: animationTime, delay: 0, options: .curveEaseOut, animations: {
                 newViewController.view.alpha = 1
             })

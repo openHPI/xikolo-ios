@@ -12,8 +12,8 @@ extension CourseItemHelper {
         public static func orderedCourseItems(forCourse course: Course) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSPredicate(format: "section.course = %@", course)
-            let sectionSort = NSSortDescriptor(key: "section.position", ascending: true)
-            let positionSort = NSSortDescriptor(key: "position", ascending: true)
+            let sectionSort = NSSortDescriptor(keyPath: \CourseItem.section?.position, ascending: true)
+            let positionSort = NSSortDescriptor(keyPath: \CourseItem.position, ascending: true)
             request.sortDescriptors = [sectionSort, positionSort]
             return request
         }
@@ -21,7 +21,7 @@ extension CourseItemHelper {
         static func orderedCourseItems(forSection section: CourseSection) -> NSFetchRequest<CourseItem> {
             let request: NSFetchRequest<CourseItem> = CourseItem.fetchRequest()
             request.predicate = NSPredicate(format: "section = %@", section)
-            let titleSort = NSSortDescriptor(key: "position", ascending: true)
+            let titleSort = NSSortDescriptor(keyPath: \CourseItem.position, ascending: true)
             request.sortDescriptors = [titleSort]
             return request
         }

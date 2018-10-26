@@ -63,7 +63,7 @@ extension CourseHelper {
             selfpacedPredicate,
         ])
 
-        private static let customOrderSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        private static let customOrderSortDescriptor = NSSortDescriptor(keyPath: \Course.order, ascending: true)
 
         private static var genericCoursesRequest: NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
@@ -150,7 +150,7 @@ extension CourseHelper {
                 notCompletedPredicate,
             ])
             request.sortDescriptors = [
-                NSSortDescriptor(key: "lastVisited", ascending: false),
+                NSSortDescriptor(keyPath: \Course.lastVisited, ascending: false),
                 self.customOrderSortDescriptor,
             ]
             return request
@@ -201,8 +201,8 @@ extension CourseHelper {
 
         static var allCoursesSectioned: NSFetchRequest<Course> {
             let request = self.genericCoursesRequest
-            let enrolledSort = NSSortDescriptor(key: "enrollment", ascending: false)
-            let startDateSort = NSSortDescriptor(key: "startsAt", ascending: false)
+            let enrolledSort = NSSortDescriptor(keyPath: \Course.enrollment, ascending: false)
+            let startDateSort = NSSortDescriptor(keyPath: \Course.startsAt, ascending: false)
             request.sortDescriptors = [enrolledSort, startDateSort]
             return request
         }

@@ -14,7 +14,7 @@ extension CourseSectionHelper {
             let coursePredicate = NSPredicate(format: "course = %@", course)
             let accessiblePredicate = NSPredicate(format: "accessible == true")
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [coursePredicate, accessiblePredicate])
-            let positionSort = NSSortDescriptor(key: "position", ascending: true)
+            let positionSort = NSSortDescriptor(keyPath: \CourseSection.position, ascending: true)
             request.sortDescriptors = [positionSort]
             return request
         }

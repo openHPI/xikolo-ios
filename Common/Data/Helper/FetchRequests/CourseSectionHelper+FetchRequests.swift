@@ -7,7 +7,7 @@ import CoreData
 
 extension CourseSectionHelper {
 
-    enum FetchRequest {
+    public enum FetchRequest {
 
         static func orderedCourseSections(forCourse course: Course) -> NSFetchRequest<CourseSection> {
             let request: NSFetchRequest<CourseSection> = CourseSection.fetchRequest()
@@ -22,6 +22,17 @@ extension CourseSectionHelper {
         static func allCourseSections(forCourse course: Course) -> NSFetchRequest<CourseSection> {
             let request: NSFetchRequest<CourseSection> = CourseSection.fetchRequest()
             request.predicate = NSPredicate(format: "course = %@", course)
+            return request
+        }
+
+        public static func nextUnpublishedSection(for course: Course) -> NSFetchRequest<CourseSection> {
+            let request: NSFetchRequest<CourseSection> = CourseSection.fetchRequest()
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "course = %@", course),
+                NSPredicate(format: "startsAt > %@", NSDate()),
+            ])
+            request.sortDescriptors = [NSSortDescriptor(keyPath: \CourseSection.startsAt, ascending: true)]
+            request.fetchLimit = 1
             return request
         }
 

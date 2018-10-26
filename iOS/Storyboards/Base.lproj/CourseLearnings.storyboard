@@ -21,6 +21,28 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="rJc-jS-PCf"/>
                         <inset key="separatorInset" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="P6G-f9-mf8">
+                            <rect key="frame" x="0.0" y="139.5" width="375" height="57"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="next section start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lh1-zS-1LH">
+                                    <rect key="frame" x="62.5" y="28" width="250" height="21"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <attributedString key="userComments">
+                                        <fragment content="#bc-ignore!"/>
+                                    </attributedString>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="lh1-zS-1LH" firstAttribute="top" secondItem="P6G-f9-mf8" secondAttribute="topMargin" id="7Uy-EF-1wy"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="lh1-zS-1LH" secondAttribute="bottom" id="RX8-zV-3nY"/>
+                                <constraint firstItem="lh1-zS-1LH" firstAttribute="width" secondItem="P6G-f9-mf8" secondAttribute="width" multiplier="2/3" id="fzd-Tx-vXO"/>
+                                <constraint firstItem="lh1-zS-1LH" firstAttribute="centerX" secondItem="P6G-f9-mf8" secondAttribute="centerX" id="xP5-v0-U7D"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseItemCell" rowHeight="66" id="G9e-ER-HXC" customClass="CourseItemCell" customModule="iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="66"/>
@@ -125,6 +147,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="wbr-Ja-Sax"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="nextSectionStartLabel" destination="lh1-zS-1LH" id="RoH-An-ZRg"/>
                         <segue destination="Sj1-Jn-P6O" kind="show" identifier="ShowVideo" id="aZH-1e-yZw"/>
                         <segue destination="NW7-Yg-G1A" kind="show" identifier="ShowCourseItem" id="Pt9-PY-lWf"/>
                         <segue destination="rg3-oN-kal" kind="show" identifier="ShowRichtext" id="PBS-PI-ajC"/>

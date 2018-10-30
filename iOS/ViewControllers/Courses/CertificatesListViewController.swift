@@ -23,9 +23,9 @@ class CertificatesListViewController: UICollectionViewController {
         if let certificateListLayout = self.collectionView?.collectionViewLayout as? CertificateListLayout {
             certificateListLayout.delegate = self
         }
-        
+
         super.viewDidLoad()
-        
+
         self.certificates = self.course.availableCertificates
         self.addRefreshControl()
         self.refresh()
@@ -47,84 +47,84 @@ class CertificatesListViewController: UICollectionViewController {
 }
 
 extension CertificatesListViewController: CertificateListLayoutDelegate {
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
 
         let cardWidth = boundingWidth - 2 * 14
         let boxHeight = cardWidth / 2 - 20
-        
+
         let certificate = self.certificates[indexPath.item]
         let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
-        
+
         let explanationText = certificate.explanation ?? ""
         let explanationAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
         let explanationSize = NSString(string: explanationText).boundingRect(with: boundingSize,
                                                                        options: .usesLineFragmentOrigin,
                                                                        attributes: explanationAttributes,
                                                                        context: nil)
-        
+
         var height = boxHeight
-        
+
         if !explanationText.isEmpty {
             height += 8 + explanationSize.height
         }
-        
+
         return height
     }
-    
+
 }
 
 extension CertificatesListViewController { // CollectionViewDelegate
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.certificates.count
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellReuseIdentifier = R.reuseIdentifier.certificateCell.identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
         let certificate = self.certificates[indexPath.item]
         let stateOfCertificate = self.stateOfCertificate(withURL: certificate.url)
-        
+
         if let cell = cell as? CertificateCell {
             cell.configure(certificate, stateOfCertificate: stateOfCertificate)
         }
-        
+
         return cell
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let certificate = self.certificates[indexPath.item]
         guard let url = certificate.url else { return }
-        
+
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         pdfViewController.url = url
         self.navigationController?.pushViewController(pdfViewController, animated: true)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if #available(iOS 11.0, *) {
             self.navigationItem.hidesSearchBarWhenScrolling = false
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if #available(iOS 11.0, *) {
             self.navigationItem.hidesSearchBarWhenScrolling = true
         }
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.collectionView?.performBatchUpdates(nil)
     }
-    
+
 }
 
 extension CertificatesListViewController: RefreshableViewController {

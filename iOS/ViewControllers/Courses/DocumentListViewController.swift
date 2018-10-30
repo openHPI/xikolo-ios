@@ -114,7 +114,7 @@ extension DocumentListViewController: CourseAreaViewController {
     }
 
     func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
-        precondition(area == self.area)
+        assert(area == self.area)
         self.course = course
     }
 

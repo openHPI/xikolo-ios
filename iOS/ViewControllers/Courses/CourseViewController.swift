@@ -211,13 +211,8 @@ extension CourseViewController: UIPageViewControllerDelegate {
             return
         }
 
-        let currentViewControllers = self.courseAreaPageViewController?.viewControllers
-        guard let currentViewController = currentViewControllers?.first, currentViewControllers?.count == 1 else {
-            preconditionFailure()
-        }
-
-        guard let currentCourseAreaViewController = currentViewController as? CourseAreaViewController else {
-            preconditionFailure()
+        guard let currentCourseAreaViewController = self.courseAreaPageViewController?.viewControllers?.first as? CourseAreaViewController else {
+            return
         }
 
         self.area = currentCourseAreaViewController.area

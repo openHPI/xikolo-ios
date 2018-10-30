@@ -128,12 +128,8 @@ extension CourseItemViewController: UIPageViewControllerDelegate {
             return
         }
 
-        guard let currentViewController = self.viewControllers?.first, self.viewControllers?.count == 1 else {
-            preconditionFailure()
-        }
-
-        guard let currentCourseItemContentViewController = currentViewController as? CourseItemContentViewController else {
-            preconditionFailure()
+        guard let currentCourseItemContentViewController = self.viewControllers?.first as? CourseItemContentViewController else {
+            return
         }
 
         self.currentItem = currentCourseItemContentViewController.item

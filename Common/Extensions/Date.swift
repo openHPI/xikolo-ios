@@ -11,11 +11,11 @@ extension Date {
         return self.addingTimeInterval(-1 * timeInterval)
     }
 
-    var inPast: Bool {
+    public var inPast: Bool {
         return !self.inFuture
     }
 
-    var inFuture: Bool {
+    public var inFuture: Bool {
         return self.timeIntervalSinceNow > 0
     }
 

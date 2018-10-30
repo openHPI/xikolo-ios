@@ -13,6 +13,22 @@ class CourseItemListViewController: UITableViewController {
 
     private static let contentToBePreloaded: [PreloadableCourseItemContent.Type] = [Video.self, RichText.self]
 
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter.localizedFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
+    private static let timeFormatter: DateFormatter = {
+        let formatter = DateFormatter.localizedFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
+    @IBOutlet private weak var nextSectionStartLabel: UILabel!
+
     private var course: Course!
     private var dataSource: CoreDataTableViewDataSource<CourseItemListViewController>!
 
@@ -58,6 +74,7 @@ class CourseItemListViewController: UITableViewController {
                                                object: nil)
 
         self.setupEmptyState()
+        self.updateFooterView()
         self.navigationItem.title = self.course.title
 
         // setup table view data
@@ -75,7 +92,6 @@ class CourseItemListViewController: UITableViewController {
     func setupEmptyState() {
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
     }
 
@@ -137,6 +153,48 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard let footerView = tableView.tableFooterView else {
+            return
+        }
+
+        let size = footerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        if footerView.frame.size.height != size.height {
+            footerView.frame.size.height = size.height
+            tableView.tableFooterView = footerView
+            tableView.layoutIfNeeded()
+        }
+    }
+
+    private func updateFooterView() {
+        guard self.course.startsAt?.inPast ?? true else {
+            self.nextSectionStartLabel.isHidden = true
+            return
+        }
+
+        let request = CourseSectionHelper.FetchRequest.nextUnpublishedSection(for: self.course)
+        guard let sectionStartDate = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
+            self.nextSectionStartLabel.isHidden = true
+            return
+        }
+
+        var dateText = CourseItemListViewController.dateFormatter.string(from: sectionStartDate)
+        dateText = dateText.replacingOccurrences(of: " ", with: "\u{00a0}") // replace spaces with non-breaking spaces
+
+        var timeText = CourseItemListViewController.timeFormatter.string(from: sectionStartDate)
+        timeText = timeText.replacingOccurrences(of: " ", with: "\u{00a0}") // replace spaces with non-breaking spaces
+        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
+            timeText += " (\(timeZoneAbbreviation))"
+        }
+
+        let format = NSLocalizedString("course-item-list.footer.The next section will be available on %@ at %@",
+                                       comment: "Format string for the next section start in the footer of course item list")
+        self.nextSectionStartLabel.text = String(format: format, dateText, timeText)
+        self.nextSectionStartLabel.isHidden = false
+    }
+
 }
 
 extension CourseItemListViewController { // TableViewDelegate
@@ -193,6 +251,8 @@ extension CourseItemListViewController: RefreshableViewController {
     }
 
     func didRefresh() {
+        self.updateFooterView()
+
         guard self.preloadingWanted else { return }
         self.preloadCourseContent()
     }

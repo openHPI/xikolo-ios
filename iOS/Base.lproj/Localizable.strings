@@ -41,6 +41,9 @@
 /* status 'upcoming' of a course */
 "course-cell.status.upcoming" = "Upcoming";
 
+/* Format string for the next section start in the footer of course item list */
+"course-item-list.footer.The next section will be available on %@ at %@" = "The next section will be available on %@ at %@.";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Delete all learning materials";
 

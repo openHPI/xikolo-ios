@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-enum CourseSectionHelper {
+public enum CourseSectionHelper {
 
     static func syncCourseSections(forCourse course: Course) -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = CourseSectionHelper.FetchRequest.allCourseSections(forCourse: course)

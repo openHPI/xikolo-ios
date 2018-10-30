@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CertificateCell" id="u1S-UF-y6L" customClass="CertificateCell" customModule="iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="400" height="140"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiE-eD-q7d" customClass="UICollectionReusableView">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="140"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Certificate Acquisition Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kd-kc-eqp" userLabel="Description Label">
+                                <rect key="frame" x="14" y="118" width="372" height="18"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                                <attributedString key="userComments">
+                                    <fragment content="#bc-ignore!">
+                                        <attributes>
+                                            <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vXX-Tp-evO" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
+                                <rect key="frame" x="14" y="14" width="372" height="96"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95A-oi-1Z5" userLabel="Gradient View">
+                                        <rect key="frame" x="0.0" y="48" width="372" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="uQ4-bp-rR3"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Certificate Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5m-CL-Mrr">
+                                        <rect key="frame" x="8" y="15" width="360" height="20.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="#bc-ignore!">
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE8-ZP-FOo">
+                                        <rect key="frame" x="8" y="74" width="44" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="#bc-ignore!">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="95A-oi-1Z5" secondAttribute="trailing" id="4TK-ur-esX"/>
+                                    <constraint firstItem="TE8-ZP-FOo" firstAttribute="leading" secondItem="X5m-CL-Mrr" secondAttribute="leading" id="ZeI-Xj-7Hp"/>
+                                    <constraint firstItem="X5m-CL-Mrr" firstAttribute="leading" secondItem="vXX-Tp-evO" secondAttribute="leading" constant="8" id="aqZ-w7-Ckd"/>
+                                    <constraint firstAttribute="bottom" secondItem="95A-oi-1Z5" secondAttribute="bottom" id="hFg-x3-EbZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="X5m-CL-Mrr" secondAttribute="trailing" constant="4" id="nGy-5d-GgJ"/>
+                                    <constraint firstItem="X5m-CL-Mrr" firstAttribute="top" secondItem="vXX-Tp-evO" secondAttribute="top" constant="15" id="s4U-Hf-aUb"/>
+                                    <constraint firstItem="95A-oi-1Z5" firstAttribute="leading" secondItem="vXX-Tp-evO" secondAttribute="leading" id="vB2-fU-fpq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vXX-Tp-evO" secondAttribute="trailing" constant="14" id="1rM-TT-evH"/>
+                            <constraint firstItem="3kd-kc-eqp" firstAttribute="leading" secondItem="vXX-Tp-evO" secondAttribute="leading" id="Fko-ns-Qxq"/>
+                            <constraint firstItem="vXX-Tp-evO" firstAttribute="bottom" secondItem="TE8-ZP-FOo" secondAttribute="bottom" constant="4" id="Jwj-v7-bQ2"/>
+                            <constraint firstItem="vXX-Tp-evO" firstAttribute="leading" secondItem="eiE-eD-q7d" secondAttribute="leading" constant="14" id="fPr-75-0tO"/>
+                            <constraint firstItem="vXX-Tp-evO" firstAttribute="top" secondItem="eiE-eD-q7d" secondAttribute="top" constant="14" id="gbI-yb-6fJ"/>
+                            <constraint firstAttribute="bottom" secondItem="3kd-kc-eqp" secondAttribute="bottom" constant="4" id="kuZ-Ck-AKx"/>
+                            <constraint firstItem="vXX-Tp-evO" firstAttribute="trailing" secondItem="3kd-kc-eqp" secondAttribute="trailing" id="o3t-JC-AeE"/>
+                            <constraint firstItem="3kd-kc-eqp" firstAttribute="top" secondItem="vXX-Tp-evO" secondAttribute="bottom" constant="8" id="x3F-xc-y65"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="eiE-eD-q7d" firstAttribute="leading" secondItem="u1S-UF-y6L" secondAttribute="leading" id="27C-9p-AQp"/>
+                <constraint firstItem="eiE-eD-q7d" firstAttribute="top" secondItem="u1S-UF-y6L" secondAttribute="top" id="85n-Un-a1E"/>
+                <constraint firstAttribute="bottom" secondItem="eiE-eD-q7d" secondAttribute="bottom" id="ijY-w3-jzc"/>
+                <constraint firstAttribute="trailing" secondItem="eiE-eD-q7d" secondAttribute="trailing" id="ixV-30-ewf"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="eg4-jT-5Wt"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="3kd-kc-eqp" id="eQo-23-J1o"/>
+                <outlet property="gradientView" destination="95A-oi-1Z5" id="W7d-IF-bHL"/>
+                <outlet property="shadowView" destination="vXX-Tp-evO" id="pfj-dL-0Pt"/>
+                <outlet property="statusLabel" destination="TE8-ZP-FOo" id="8kO-Ps-HaO"/>
+                <outlet property="titleLabel" destination="X5m-CL-Mrr" id="zyw-eu-ptB"/>
+            </connections>
+            <point key="canvasLocation" x="-67.200000000000003" y="59.370314842578715"/>
+        </collectionViewCell>
+    </objects>
+</document>

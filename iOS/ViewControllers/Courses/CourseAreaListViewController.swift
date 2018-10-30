@@ -12,9 +12,18 @@ class CourseAreaListViewController: UICollectionViewController {
     private var shouldScrollToSelectedItem: Bool = false
 
     private var selectedIndexPath: IndexPath? {
-        guard let content = self.delegate?.selectedArea else { return nil }
-        guard let index = self.delegate?.accessibleContent.index(of: content) else { return nil }
-        return IndexPath(item: index, section: 0)
+        didSet {
+            let numberOfItems = self.collectionView?.numberOfItems(inSection: 0) ?? 0
+
+            if let oldIndexPath = oldValue, oldIndexPath.item < numberOfItems {
+                self.collectionView?.reloadItems(at: [oldIndexPath])
+            }
+
+            if let newIndexPath = self.selectedIndexPath, newIndexPath.item < numberOfItems {
+                self.collectionView?.reloadItems(at: [newIndexPath])
+                self.collectionView?.scrollToItem(at: newIndexPath, at: .centeredHorizontally, animated: true)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,28 +36,27 @@ class CourseAreaListViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.delegate?.accessibleContent.count ?? 0
+        return self.delegate?.accessibleAreas.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellReuseIdentifier = R.reuseIdentifier.courseAreaCell.identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
 
-        if let cell = cell as? CourseAreaCell, let content = self.delegate?.accessibleContent[safe: indexPath.item] {
-            let selected = indexPath == self.selectedIndexPath
-            cell.configure(for: content, selected: selected)
+        if let cell = cell as? CourseAreaCell, let content = self.delegate?.accessibleAreas[safe: indexPath.item] {
+            cell.configure(for: content)
+            cell.isSelected = indexPath == self.selectedIndexPath
         }
 
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath != self.selectedIndexPath else { return }
-        guard let content = self.delegate?.accessibleContent[safe: indexPath.item] else { return }
+        guard let selectedIndexPath = self.selectedIndexPath, indexPath != selectedIndexPath else { return }
+        guard let content = self.delegate?.accessibleAreas[safe: indexPath.item] else { return }
 
         self.delegate?.change(to: content)
-        collectionView.reloadData()
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        self.selectedIndexPath = indexPath
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -65,11 +73,16 @@ class CourseAreaListViewController: UICollectionViewController {
         }
     }
 
-    func refresh(animated: Bool) {
+    func reloadData() {
         self.collectionView?.reloadData()
-        if let selectedIndexPath = self.selectedIndexPath {
-            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
-        }
+    }
+
+    func refresh(animated: Bool) {
+        self.selectedIndexPath = {
+            guard let content = self.delegate?.selectedArea else { return nil }
+            guard let index = self.delegate?.accessibleAreas.index(of: content) else { return nil }
+            return IndexPath(item: index, section: 0)
+        }()
     }
 
 }
@@ -79,7 +92,7 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let titleText = self.delegate?.accessibleContent[safe: indexPath.item]?.title ?? ""
+        let titleText = self.delegate?.accessibleAreas[safe: indexPath.item]?.title ?? ""
         let boundingSize = CGSize(width: CGFloat.infinity, height: 34)
         let titleAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
@@ -112,7 +125,7 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 protocol CourseAreaListViewControllerDelegate: AnyObject {
-    var accessibleContent: [CourseArea] { get }
+    var accessibleAreas: [CourseArea] { get }
     var selectedArea: CourseArea? { get }
 
     func change(to content: CourseArea)

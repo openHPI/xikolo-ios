@@ -137,7 +137,8 @@ extension CertificatesListViewController { // CollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let url = self.certificates[indexPath.section].url else { return }
+        let certificate = self.certificates[indexPath.item]
+        guard let url = certificate.url else { return }
         
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         pdfViewController.url = url

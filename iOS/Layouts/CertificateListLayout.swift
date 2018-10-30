@@ -60,7 +60,7 @@ class CertificateListLayout: UICollectionViewLayout {
         }
         
         let numberOfColumns = self.numberOfColumms(for: collectionView)
-        let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * cellPadding) / CGFloat(numberOfColumns)
+        let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * self.cellPadding) / CGFloat(numberOfColumns)
         let layoutInsets = self.layoutInsets(for: collectionView)
         
         var xOffset = [CGFloat]()

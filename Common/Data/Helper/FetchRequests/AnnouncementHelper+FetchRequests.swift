@@ -28,7 +28,7 @@ extension AnnouncementHelper {
 
         public static var allAnnouncements: NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "publishedAt", ascending: false)
+            let dateSort = NSSortDescriptor(keyPath: \Announcement.publishedAt, ascending: false)
             request.sortDescriptors = [dateSort]
             request.predicate = self.noCourseOrEnrolledCoursePredicate
             return request
@@ -45,7 +45,7 @@ extension AnnouncementHelper {
 
         public static func announcements(forCourse course: Course) -> NSFetchRequest<Announcement> {
             let request: NSFetchRequest<Announcement> = Announcement.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "publishedAt", ascending: false)
+            let dateSort = NSSortDescriptor(keyPath: \Announcement.publishedAt, ascending: false)
             request.sortDescriptors = [dateSort]
             request.predicate = NSPredicate(format: "course = %@", course)
             return request

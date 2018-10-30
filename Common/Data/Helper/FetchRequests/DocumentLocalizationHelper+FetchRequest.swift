@@ -15,8 +15,8 @@ public enum DocumentLocalizationHelper {
                 NSPredicate(format: "%@ in document.courses", course),
                 NSPredicate(format: "document.isPublic = %@", NSNumber(value: true)),
             ])
-            let documentSortDescriptor = NSSortDescriptor(key: "document.title", ascending: true)
-            let localizationSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+            let documentSortDescriptor = NSSortDescriptor(keyPath: \DocumentLocalization.document.title, ascending: true)
+            let localizationSortDescriptor = NSSortDescriptor(keyPath: \DocumentLocalization.title, ascending: true)
             request.sortDescriptors = [documentSortDescriptor, localizationSortDescriptor]
             return request
         }

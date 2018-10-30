@@ -9,9 +9,6 @@ protocol CertificateListLayoutDelegate: AnyObject {
        
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
     
-    // only needed in iOS 10
-    func topInset() -> CGFloat
-    
 }
 
 class CertificateListLayout: UICollectionViewLayout {
@@ -20,8 +17,6 @@ class CertificateListLayout: UICollectionViewLayout {
     
     private let cellPadding: CGFloat = 0
     private let linePadding: CGFloat = 6
-    private let headerHeight: CGFloat = 36
-    private let headerPillHeight: CGFloat = 50
     
     private var cache: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     private var sectionRange: [Int: (minimum: CGFloat, maximum: CGFloat)] = [:]
@@ -37,10 +32,10 @@ class CertificateListLayout: UICollectionViewLayout {
     }
     
     private func layoutInsets(for collectionView: UICollectionView) -> UIEdgeInsets {
-        return UIEdgeInsets(top: self.delegate?.topInset() ?? 0,
-                            left: collectionView.layoutMargins.left - 14,
+        return UIEdgeInsets(top: 0,
+                            left: collectionView.layoutMargins.left,
                             bottom: 8,
-                            right: collectionView.layoutMargins.right - 14)
+                            right: collectionView.layoutMargins.right)
     }
     
     private func numberOfColumms(for collectionView: UICollectionView) -> Int {
@@ -91,10 +86,6 @@ class CertificateListLayout: UICollectionViewLayout {
                     rowOffset = (yOffset.max() ?? 0.0) + self.linePadding
                 }
                 
-//                if item == 0, self.delegate?.showFooters ?? true { // new section
-//                    rowOffset += self.headerHeight
-//                }
-                
                 let height = self.delegate?.collectionView(collectionView,
                                                            heightForCellAtIndexPath: indexPath,
                                                            withBoundingWidth: columnWidth) ?? 0
@@ -136,55 +127,11 @@ class CertificateListLayout: UICollectionViewLayout {
             }
         }
         
-//        if self.delegate?.showFooters ?? true {
-//            for section in sectionsToAdd {
-//                let indexPath = IndexPath(item: 0, section: section)
-//                let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionFooter, at: indexPath)
-//                if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
-//                    layoutAttributes.append(sectionAttributes)
-//                }
-//            }
-//        }
-        
         return layoutAttributes
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return self.cache[indexPath]
-    }
-    
-    override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
-                                                       at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-//        guard self.delegate?.showFooters ?? true else { return nil }
-        guard elementKind == UICollectionElementKindSectionFooter else { return nil }
-        
-        guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }
-        guard let collectionView = collectionView else { return nil }
-        
-        let contentOffsetY: CGFloat
-        if #available(iOS 11.0, *) {
-            contentOffsetY = collectionView.contentOffset.y + collectionView.safeAreaInsets.top
-        } else {
-            let navigationBarHeight = (self.delegate as? UIViewController)?.topLayoutGuide.length ?? 64
-            contentOffsetY = collectionView.contentOffset.y + navigationBarHeight
-        }
-        
-        let offsetY: CGFloat
-        if contentOffsetY < sectionRange.minimum {
-            offsetY = sectionRange.minimum
-        } else if contentOffsetY > sectionRange.maximum - self.headerHeight {
-            offsetY = sectionRange.maximum - self.headerHeight
-        } else {
-            offsetY = contentOffsetY
-        }
-        
-        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.headerPillHeight)
-        let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, with: indexPath)
-        layoutAttributes.frame = frame
-        layoutAttributes.isHidden = false
-        layoutAttributes.zIndex = 1
-        
-        return layoutAttributes
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {

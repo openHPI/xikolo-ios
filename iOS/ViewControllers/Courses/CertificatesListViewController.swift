@@ -10,29 +10,19 @@ import SafariServices
 import UIKit
 
 class CertificatesListViewController: UICollectionViewController {
-    
-    // private var dataSource: CoreDataCollectionViewDataSource<CertificatesListViewController>!
 
     var course: Course!
     var certificates: [(name: String, explanation: String?, url: URL?)] = [] { // swiftlint:disable:this large_tuple
         didSet {
-            //self.tableView.reloadData()
             self.collectionView?.reloadData()
         }
     }
 
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.certificateCell)
-//        self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
-//                                      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-//                                      withReuseIdentifier: R.nib.courseHeaderView.name)
-        
         if let certificateListLayout = self.collectionView?.collectionViewLayout as? CertificateListLayout {
             certificateListLayout.delegate = self
         }
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self // ????
         
         super.viewDidLoad()
         
@@ -61,58 +51,27 @@ extension CertificatesListViewController: CertificateListLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-//        if self.dataSource.isSearching && !self.dataSource.hasSearchResults {
-//            return 0.0
-//        }
-        
-//        let course = self.dataSource.object(at: indexPath)
+
         let cardWidth = boundingWidth - 2 * 14
-        let imageHeight = cardWidth / 2
+        let boxHeight = cardWidth / 2 - 20
         
+        let certificate = self.certificates[indexPath.item]
         let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
-        let titleText = self.course.title ?? ""
-        let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
-        let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
-                                                                 options: .usesLineFragmentOrigin,
-                                                                 attributes: titleAttributes,
-                                                                 context: nil)
         
-        let teachersText = self.course.teachers ?? ""
-        let teachersAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
-        let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
+        let explanationText = certificate.explanation ?? ""
+        let explanationAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+        let explanationSize = NSString(string: explanationText).boundingRect(with: boundingSize,
                                                                        options: .usesLineFragmentOrigin,
-                                                                       attributes: teachersAttributes,
+                                                                       attributes: explanationAttributes,
                                                                        context: nil)
         
-        var height = imageHeight + 14
+        var height = boxHeight
         
-        if Brand.default.features.showCourseTeachers {
-            if !titleText.isEmpty || !teachersText.isEmpty {
-                height += 8
-            }
-            
-            if !titleText.isEmpty {
-                height += titleSize.height
-            }
-            
-            if !titleText.isEmpty && !teachersText.isEmpty {
-                height += 4
-            }
-            
-            if !teachersText.isEmpty {
-                height += teachersSize.height
-            }
-        } else {
-            if !titleText.isEmpty {
-                height += 8 + titleSize.height
-            }
+        if !explanationText.isEmpty {
+            height += 8 + explanationSize.height
         }
         
-        return height + 5
-    }
-    
-    func topInset() -> CGFloat {
-        return 0
+        return height
     }
     
 }
@@ -167,43 +126,6 @@ extension CertificatesListViewController { // CollectionViewDelegate
     }
     
 }
-
-//extension CertificatesListViewController { // TableViewDelegate
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return self.certificates.count
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let url = self.certificates[indexPath.section].url else { return }
-//
-//        let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
-//        pdfViewController.url = url
-//        self.navigationController?.pushViewController(pdfViewController, animated: true)
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
-//        let certificate = self.certificates[indexPath.section]
-//        cell.textLabel?.text = certificate.name
-//        cell.textLabel?.backgroundColor = .white
-//        cell.detailTextLabel?.text = self.stateOfCertificate(withURL: certificate.url)
-//        cell.detailTextLabel?.backgroundColor = .white
-//        cell.enable(certificate.url != nil)
-//        cell.accessoryType = certificate.url != nil ? .disclosureIndicator : .none
-//        return cell
-//    }
-//
-//    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        return self.certificates[section].explanation
-//    }
-
-//}
-
 
 extension CertificatesListViewController: RefreshableViewController {
 

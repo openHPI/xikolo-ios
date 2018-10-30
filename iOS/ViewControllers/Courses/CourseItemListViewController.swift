@@ -95,25 +95,6 @@ class CourseItemListViewController: UITableViewController {
         tableView.reloadEmptyDataSet()
     }
 
-    func showItem(_ item: CourseItem) {
-        CourseItemHelper.markAsVisited(item)
-        let context = [
-            "content_type": item.contentType,
-            "section_id": item.section?.id,
-            "course_id": self.course.id,
-        ]
-        TrackingHelper.shared.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
-
-        switch item.contentType {
-        case "video"?:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showVideo, sender: item)
-        case "rich_text"?:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showRichtext, sender: item)
-        default:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: item)
-        }
-    }
-
     @objc func reachabilityChanged() {
         self.inOfflineMode = ReachabilityHelper.connection == .none
     }
@@ -126,30 +107,12 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
-    func showProctoringDialog(onComplete completionBlock: @escaping () -> Void) {
-        let alertTitle = NSLocalizedString("course-item.proctoring.alert.title", comment: "title for proctoring alert")
-        let alertMessage = NSLocalizedString("course-item.proctoring.alert.message", comment: "message for proctoring alert")
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-
-        let confirmTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
-        alert.addAction(UIAlertAction(title: confirmTitle, style: .default))
-
-        self.present(alert, animated: true, completion: completionBlock)
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let courseItem = sender as? CourseItem else {
-            log.debug("Sender is not a course item")
-            super.prepare(for: segue, sender: sender)
-            return
-        }
+        guard let cell = sender as? CourseItemCell else { return }
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
 
-        if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
-        } else if let typedInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
-        } else if let typedInfo = R.segue.courseItemListViewController.showRichtext(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
+        if let typeInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
+            typeInfo.destination.currentItem = self.dataSource.object(at: indexPath)
         }
     }
 
@@ -200,15 +163,7 @@ class CourseItemListViewController: UITableViewController {
 extension CourseItemListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = self.dataSource.object(at: indexPath)
-        if item.proctored && (self.course.enrollment?.proctored ?? false) {
-            self.showProctoringDialog {
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
-        } else {
-            self.showItem(item)
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

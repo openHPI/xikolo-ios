@@ -137,6 +137,7 @@
                                     <outlet property="iconView" destination="L8U-Fp-wH1" id="ZYN-fe-P6P"/>
                                     <outlet property="readStateView" destination="f0u-JP-r4C" id="Dda-eM-RsX"/>
                                     <outlet property="titleView" destination="vm4-Hr-k3d" id="OqI-3b-6NJ"/>
+                                    <segue destination="qjq-Jf-C4q" kind="show" identifier="ShowCourseItem" id="ocO-cc-Njs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -148,9 +149,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="nextSectionStartLabel" destination="lh1-zS-1LH" id="RoH-An-ZRg"/>
-                        <segue destination="Sj1-Jn-P6O" kind="show" identifier="ShowVideo" id="aZH-1e-yZw"/>
-                        <segue destination="NW7-Yg-G1A" kind="show" identifier="ShowCourseItem" id="Pt9-PY-lWf"/>
-                        <segue destination="rg3-oN-kal" kind="show" identifier="ShowRichtext" id="PBS-PI-ajC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70L-nu-wuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -160,12 +158,12 @@
         <!--Richtext View Controller-->
         <scene sceneID="tVE-lt-FrA">
             <objects>
-                <viewController id="rg3-oN-kal" customClass="RichtextViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RichtextViewController" id="rg3-oN-kal" customClass="RichtextViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="t4O-cz-BsG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TET-md-G1G">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="TET-md-G1G">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s40-oe-5ie" userLabel="Scroll Content View">
@@ -217,7 +215,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="s40-oe-5ie" firstAttribute="top" secondItem="TET-md-G1G" secondAttribute="top" id="A9r-C4-Gzp"/>
-                                    <constraint firstAttribute="bottom" secondItem="s40-oe-5ie" secondAttribute="bottom" constant="20" symbolic="YES" id="CgM-Jq-Tjq"/>
+                                    <constraint firstAttribute="bottom" secondItem="s40-oe-5ie" secondAttribute="bottom" id="CgM-Jq-Tjq"/>
                                     <constraint firstAttribute="trailing" secondItem="s40-oe-5ie" secondAttribute="trailing" id="MZW-ee-X5a"/>
                                     <constraint firstItem="s40-oe-5ie" firstAttribute="leading" secondItem="TET-md-G1G" secondAttribute="leading" id="OFo-4M-cJZ"/>
                                 </constraints>
@@ -571,13 +569,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="jcE-7d-09B">
-                        <barButtonItem key="rightBarButtonItem" image="dots" id="EWN-Dz-37N">
-                            <connections>
-                                <action selector="showActionMenu:" destination="Sj1-Jn-P6O" id="iWM-jw-gcp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="descriptionView" destination="oXV-0t-btA" id="Z3t-UJ-blJ"/>
@@ -610,12 +601,152 @@
             </objects>
             <point key="canvasLocation" x="213" y="1133"/>
         </scene>
+        <!--Course Item View Controller-->
+        <scene sceneID="tat-jM-1pT">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qjq-Jf-C4q" customClass="CourseItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1bX-Mb-KMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1798" y="-110"/>
+        </scene>
+        <!--Proctored Item View Controller-->
+        <scene sceneID="mso-dU-7nm">
+            <objects>
+                <viewController storyboardIdentifier="ProctoredItemViewController" id="sJq-n0-WVP" customClass="ProctoredItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kyN-Jf-bdz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fBm-1B-haM">
+                                <rect key="frame" x="24" y="186" width="327" height="128.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hoo-px-hyn">
+                                        <rect key="frame" x="137" y="0.0" width="53" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="#bc-ignore!"/>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This item needs to be proctored" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUB-PH-5jY">
+                                        <rect key="frame" x="27" y="28" width="273.5" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxP-nf-a2L">
+                                        <rect key="frame" x="0.0" y="64" width="327" height="64.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="vBq-oo-xsM"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vBq-oo-xsM"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="vBq-oo-xsM"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fBm-1B-haM" firstAttribute="centerX" secondItem="kyN-Jf-bdz" secondAttribute="centerX" id="5yV-9h-UGz"/>
+                            <constraint firstItem="fBm-1B-haM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vc7-nK-r3V" secondAttribute="leading" constant="16" id="DZz-qN-HPG"/>
+                            <constraint firstItem="vc7-nK-r3V" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fBm-1B-haM" secondAttribute="trailing" constant="16" id="maP-WV-F0E"/>
+                            <constraint firstItem="fBm-1B-haM" firstAttribute="centerY" secondItem="kyN-Jf-bdz" secondAttribute="centerY" multiplier="0.75" id="wQw-YZ-KlD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vc7-nK-r3V"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="itemTitleLabel" destination="Hoo-px-hyn" id="ScF-2G-vg5"/>
+                        <outlet property="titleLabel" destination="vUB-PH-5jY" id="gTt-Ag-xuF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mCJ-Ar-TxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2742" y="668"/>
+        </scene>
+        <!--Unavailable Content View Controller-->
+        <scene sceneID="sCQ-L5-8dA">
+            <objects>
+                <viewController storyboardIdentifier="UnavailableContentViewController" id="fMv-dz-ATe" customClass="UnavailableContentViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4MC-cy-goJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="K56-KD-CXl">
+                                <rect key="frame" x="22.5" y="190.5" width="330.5" height="119"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKG-zg-jm0">
+                                        <rect key="frame" x="138.5" y="0.0" width="53" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="#bc-ignore!"/>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This item requires internet connection to load the content" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gi-0A-Kif">
+                                        <rect key="frame" x="0.0" y="28" width="330.5" height="49"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRv-HS-VLP" customClass="LoadingButton" customModule="iOS" customModuleProvider="target">
+                                        <rect key="frame" x="135" y="89" width="60" height="30"/>
+                                        <state key="normal" title="try again"/>
+                                        <connections>
+                                            <action selector="reloadItem" destination="fMv-dz-ATe" eventType="touchUpInside" id="tHJ-xl-L5h"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="Z9B-YW-WNL"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Z9B-YW-WNL"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="Z9B-YW-WNL"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="K56-KD-CXl" firstAttribute="centerX" secondItem="4MC-cy-goJ" secondAttribute="centerX" id="P5f-Au-gVI"/>
+                            <constraint firstItem="K56-KD-CXl" firstAttribute="centerY" secondItem="4MC-cy-goJ" secondAttribute="centerY" multiplier="0.75" id="Wr5-aU-BIs"/>
+                            <constraint firstItem="wAW-RO-axl" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="K56-KD-CXl" secondAttribute="trailing" constant="16" id="b7K-KL-aED"/>
+                            <constraint firstItem="K56-KD-CXl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wAW-RO-axl" secondAttribute="leading" constant="16" id="wSF-Jd-Sjl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wAW-RO-axl"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="itemTitleLabel" destination="DKG-zg-jm0" id="o6b-zG-IsC"/>
+                        <outlet property="reloadButton" destination="yRv-HS-VLP" id="IWc-Pd-H3Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4s5-3I-vfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3513" y="665"/>
+        </scene>
     </scenes>
     <resources>
         <image name="dots" width="28" height="28"/>
         <image name="downloaded" width="21" height="21"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Pt9-PY-lWf"/>
-    </inferredMetricsTieBreakers>
 </document>

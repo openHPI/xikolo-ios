@@ -27,11 +27,11 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustViewForKeyboardShow(_:)),
-                                               name: NSNotification.Name.UIKeyboardWillShow,
+                                               name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustViewForKeyboardHide(_:)),
-                                               name: NSNotification.Name.UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
         if let title = Brand.default.singleSignOn?.buttonTitle {
@@ -105,7 +105,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     @objc func adjustViewForKeyboardShow(_ notification: Notification) {
         // On some devices, the keyboard can overlap with some UI elements. To prevent this, we move
         // the `inputContainer` upwards. The other views will reposition accordingly.
-        let keyboardFrameValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+        let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardHeight = keyboardFrameValue?.cgRectValue.size.height ?? 0.0
 
         let contentInset: CGFloat

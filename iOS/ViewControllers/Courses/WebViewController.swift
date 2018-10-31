@@ -59,8 +59,8 @@ class WebViewController: UIViewController {
         }, completion: nil)
     }
 
-    override func removeFromParentViewController() {
-        super.removeFromParentViewController()
+    override func removeFromParent() {
+        super.removeFromParent()
         if self.webView.isLoading {
             self.webView.stopLoading()
             NetworkIndicator.end()
@@ -90,7 +90,7 @@ extension WebViewController: UIWebViewDelegate {
         NetworkIndicator.end()
     }
 
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         if let documentURL = Routes.isAppAuthenticationURL(for: request) {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }

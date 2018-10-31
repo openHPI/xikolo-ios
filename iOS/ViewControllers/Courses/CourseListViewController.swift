@@ -23,7 +23,7 @@ class CourseListViewController: UICollectionViewController {
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.courseCell)
         self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
-                                      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
         if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
@@ -119,14 +119,14 @@ extension CourseListViewController: CardListLayoutDelegate {
 
         let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
         let titleText = course.title ?? ""
-        let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
                                                                  options: .usesLineFragmentOrigin,
                                                                  attributes: titleAttributes,
                                                                  context: nil)
 
         let teachersText = course.teachers ?? ""
-        let teachersAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+        let teachersAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
         let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
                                                                        options: .usesLineFragmentOrigin,
                                                                        attributes: teachersAttributes,

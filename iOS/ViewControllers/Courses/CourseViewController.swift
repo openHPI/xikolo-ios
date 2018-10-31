@@ -53,7 +53,7 @@ class CourseViewController: UIViewController {
         self.titleView.text = self.course.title
 
         if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedStringKey.font: self.titleView.font]).width
+            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedString.Key.font: self.titleView.font]).width
             var frame = titleView.frame
             frame.size.width = titleWidth + 2
             titleView.frame = frame

@@ -101,7 +101,7 @@ class CourseItemDetailView: UIView {
         pulseAnimation.fromValue = UIColor(white: 0.9, alpha: 1.0).cgColor
         pulseAnimation.toValue = UIColor(white: 0.95, alpha: 1.0).cgColor
         pulseAnimation.duration = 1
-        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = .infinity
         return pulseAnimation

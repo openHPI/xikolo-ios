@@ -5,7 +5,7 @@
 
 import Foundation
 
-public typealias Style = [NSAttributedStringKey: Any]
+public typealias Style = [NSAttributedString.Key: Any]
 
 public protocol StyleCollection {
 

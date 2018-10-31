@@ -49,9 +49,9 @@ class CourseItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 50
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 50
 
         // register custom section header view
@@ -123,7 +123,7 @@ class CourseItemListViewController: UITableViewController {
             return
         }
 
-        let size = footerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        let size = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         if footerView.frame.size.height != size.height {
             footerView.frame.size.height = size.height
             tableView.tableFooterView = footerView

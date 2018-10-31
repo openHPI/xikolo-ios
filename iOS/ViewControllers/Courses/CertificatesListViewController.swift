@@ -59,7 +59,7 @@ extension CertificatesListViewController: CardListLayoutDelegate {
         let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
 
         let explanationText = certificate.explanation ?? ""
-        let explanationAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .footnote)]
+        let explanationAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .footnote)]
         let explanationSize = NSString(string: explanationText).boundingRect(with: boundingSize,
                                                                              options: .usesLineFragmentOrigin,
                                                                              attributes: explanationAttributes,

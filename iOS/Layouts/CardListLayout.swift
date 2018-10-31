@@ -153,7 +153,7 @@ class CardListLayout: UICollectionViewLayout {
         if self.delegate?.showHeaders ?? true {
             for section in sectionsToAdd {
                 let indexPath = IndexPath(item: 0, section: section)
-                let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+                let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)
                 if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
                     layoutAttributes.append(sectionAttributes)
                 }
@@ -170,7 +170,7 @@ class CardListLayout: UICollectionViewLayout {
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard self.delegate?.showHeaders ?? true else { return nil }
-        guard elementKind == UICollectionElementKindSectionHeader else { return nil }
+        guard elementKind == UICollectionView.elementKindSectionHeader else { return nil }
 
         guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }
         guard let collectionView = collectionView else { return nil }
@@ -193,7 +193,7 @@ class CardListLayout: UICollectionViewLayout {
         }
 
         let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.headerPillHeight)
-        let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
+        let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
         layoutAttributes.frame = frame
         layoutAttributes.isHidden = false
         layoutAttributes.zIndex = 1

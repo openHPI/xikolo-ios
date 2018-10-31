@@ -18,7 +18,7 @@ extension UIAlertController {
     ///   - customView: A `UIView` which will be displayed in place of the message string.
     ///   - fallbackMessage: An optional fallback message string, which will be displayed in case something went wrong with inserting the custom view.
     ///   - preferredStyle: The preferred style of the `UIAlertController`.
-    convenience init(title: String?, customView: UIView, fallbackMessage: String?, preferredStyle: UIAlertControllerStyle) {
+    convenience init(title: String?, customView: UIView, fallbackMessage: String?, preferredStyle: UIAlertController.Style) {
 
         let marker = "__CUSTOM_CONTENT_MARKER__"
         self.init(title: title, message: marker, preferredStyle: preferredStyle)

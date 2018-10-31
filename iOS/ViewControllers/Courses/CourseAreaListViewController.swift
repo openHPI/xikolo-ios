@@ -94,7 +94,7 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let titleText = self.delegate?.accessibleAreas[safe: indexPath.item]?.title ?? ""
         let boundingSize = CGSize(width: CGFloat.infinity, height: 34)
-        let titleAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
                                                                  options: .usesLineFragmentOrigin,
                                                                  attributes: titleAttributes,

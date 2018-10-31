@@ -93,7 +93,7 @@ class VideoPlayerControlView: BMPlayerControlView {
 
             self.iPadFullScreenButton.setTitleColor(UIColor(white: 1.0, alpha: 0.9), for: .normal)
             self.iPadFullScreenButton.addTarget(self, action: #selector(oniPadFullscreenButtonPressed), for: .touchUpInside)
-            for state in [UIControlState.selected, UIControlState.normal] {
+            for state in [UIControl.State.selected, UIControl.State.normal] {
                 self.iPadFullScreenButton.setImage(self.fullscreenButton.image(for: state), for: state)
             }
 

@@ -137,7 +137,7 @@ class VideoViewController: UIViewController {
         }
     }
 
-    override func prefersHomeIndicatorAutoHidden() -> Bool {
+    override var prefersHomeIndicatorAutoHidden: Bool {
         let orientation = UIDevice.current.orientation
         let isInLandscapeOrientation = orientation == .landscapeRight || orientation == .landscapeLeft
         return UIDevice.current.userInterfaceIdiom == .phone && isInLandscapeOrientation
@@ -261,7 +261,8 @@ class VideoViewController: UIViewController {
         let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
         self.player?.setVideo(resource: asset)
         self.updatePreferredVideoBitrate()
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try? AVAudioSession.sharedInstance().setActive(true)
 
         if let player = self.player, !player.isPlaying, self.isBeingPresented {
             player.play()

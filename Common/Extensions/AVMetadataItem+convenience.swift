@@ -27,7 +27,7 @@ extension AVMetadataItem {
 
     class func artworkItem(_ image: UIImage) -> AVMetadataItem? {
         let item = AVMutableMetadataItem()
-        item.value = UIImagePNGRepresentation(image) as (NSCopying & NSObjectProtocol)?
+        item.value = image.pngData() as NSData?
         item.dataType = kCMMetadataBaseDataType_PNG as String
         item.identifier = AVMetadataIdentifier.commonIdentifierArtwork
         item.extendedLanguageTag = "und" // Undefined language

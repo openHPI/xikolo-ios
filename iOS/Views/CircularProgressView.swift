@@ -31,7 +31,7 @@ class CircularProgressView: UIView {
     @IBInspectable var indeterminateProgress: CGFloat = Defaults.indeterminateProgress
     @IBInspectable var indeterminateDuration: Double = Defaults.indeterminateDuration
 
-    var timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    var timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
 
     var progress: CGFloat {
         return self.progressLayer.progress

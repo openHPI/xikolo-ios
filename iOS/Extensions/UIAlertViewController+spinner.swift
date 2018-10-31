@@ -7,7 +7,7 @@ import UIKit
 
 extension UIAlertController {
 
-    convenience init(spinnerTitled title: String?, preferredStyle: UIAlertControllerStyle) {
+    convenience init(spinnerTitled title: String?, preferredStyle: UIAlertController.Style) {
         let progress = CircularProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
         progress.lineWidth = 2

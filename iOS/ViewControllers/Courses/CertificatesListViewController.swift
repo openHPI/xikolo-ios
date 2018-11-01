@@ -61,9 +61,9 @@ extension CertificatesListViewController: CardListLayoutDelegate {
         let explanationText = certificate.explanation ?? ""
         let explanationAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .footnote)]
         let explanationSize = NSString(string: explanationText).boundingRect(with: boundingSize,
-                                                                       options: .usesLineFragmentOrigin,
-                                                                       attributes: explanationAttributes,
-                                                                       context: nil)
+                                                                             options: .usesLineFragmentOrigin,
+                                                                             attributes: explanationAttributes,
+                                                                             context: nil)
 
         var height = boxHeight
 

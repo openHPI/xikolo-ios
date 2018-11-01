@@ -11,7 +11,6 @@ class CertificateCell: UICollectionViewCell {
 
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var shadowView: UIView!
-    @IBOutlet private weak var gradientView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
 
@@ -20,19 +19,6 @@ class CertificateCell: UICollectionViewCell {
 
         let cornerRadius: CGFloat = 6.0
         self.shadowView.layer.cornerRadius = cornerRadius
-
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.3).cgColor]
-        gradient.locations = [0.0, 1.0]
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
-        self.gradientView.layer.insertSublayer(gradient, at: 0)
-        self.gradientView.layer.cornerRadius = cornerRadius
-        self.gradientView.layer.masksToBounds = true
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.gradientView.layer.sublayers?.first?.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.width, height: self.gradientView.frame.size.height)
     }
 
     func configure(_ certificate: (name: String, explanation: String?, url: URL?), stateOfCertificate: String) {
@@ -42,8 +28,10 @@ class CertificateCell: UICollectionViewCell {
 
         let achieved = certificate.url != nil
         self.isUserInteractionEnabled = achieved
-        self.shadowView.backgroundColor = achieved ? Brand.default.colors.primary : UIColor(red: 214 / 255, green: 214 / 255, blue: 214 / 255, alpha: 1)
-        self.titleLabel.textColor = achieved ? UIColor.white : UIColor(red: 94 / 255, green: 94 / 255, blue: 94 / 255, alpha: 1)
+        self.shadowView.backgroundColor = achieved ? Brand.default.colors.primary : UIColor.lightGray
+        self.titleLabel.backgroundColor = self.shadowView.backgroundColor
+        self.statusLabel.backgroundColor = self.shadowView.backgroundColor
+        self.titleLabel.textColor = achieved ? UIColor.white : UIColor.darkText
     }
 
 }

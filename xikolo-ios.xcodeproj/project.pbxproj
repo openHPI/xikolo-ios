@@ -77,7 +77,7 @@
 		50CF1F6E20DCDBFC0011BFE9 /* CourseItemHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228EC20582573003301A7 /* CourseItemHeader.swift */; };
 		50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */; };
 		50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
-		50CF1F7220DCDBFC0011BFE9 /* CourseListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CourseListLayout.swift */; };
+		50CF1F7220DCDBFC0011BFE9 /* CardListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CardListLayout.swift */; };
 		50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
 		50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
@@ -505,7 +505,7 @@
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseArea.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
-		50DD35141FD83D5E002B40CC /* CourseListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListLayout.swift; sourceTree = "<group>"; };
+		50DD35141FD83D5E002B40CC /* CardListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListLayout.swift; sourceTree = "<group>"; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		50E0351E213673F8001F963D /* CourseListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListConfiguration.swift; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamingSettingsViewController.swift; sourceTree = "<group>"; };
@@ -1004,7 +1004,7 @@
 		50DD35131FD83D24002B40CC /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				50DD35141FD83D5E002B40CC /* CourseListLayout.swift */,
+				50DD35141FD83D5E002B40CC /* CardListLayout.swift */,
 				B43896CE218524E700CFE622 /* CertificateListLayout.swift */,
 			);
 			path = Layouts;
@@ -1884,7 +1884,7 @@
 				50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */,
 				508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */,
 				50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */,
-				50CF1F7220DCDBFC0011BFE9 /* CourseListLayout.swift in Sources */,
+				50CF1F7220DCDBFC0011BFE9 /* CardListLayout.swift in Sources */,
 				5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */,
 				508AB2EA2111F41D0079EAE5 /* CourseDateOverviewCell.swift in Sources */,
 				5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */,

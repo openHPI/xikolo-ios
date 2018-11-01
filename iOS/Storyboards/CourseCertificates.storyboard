@@ -13,11 +13,11 @@
         <scene sceneID="TJg-od-Zm0">
             <objects>
                 <collectionViewController storyboardIdentifier="CertificatesListViewController" id="gKY-WI-qpe" customClass="CertificatesListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="y7b-oJ-pZk">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="y7b-oJ-pZk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewLayout key="collectionViewLayout" id="8Nf-o4-zI7" customClass="CertificateListLayout" customModule="iOS" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="8Nf-o4-zI7" customClass="CardListLayout" customModule="iOS" customModuleProvider="target"/>
                         <cells/>
                         <connections>
                             <outlet property="dataSource" destination="gKY-WI-qpe" id="5Zz-FE-4hV"/>

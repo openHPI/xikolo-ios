@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol CourseListLayoutDelegate: AnyObject {
+protocol CardListLayoutDelegate: AnyObject {
 
     var showHeaders: Bool { get }
 
@@ -16,9 +16,17 @@ protocol CourseListLayoutDelegate: AnyObject {
 
 }
 
-class CourseListLayout: UICollectionViewLayout {
+extension CardListLayoutDelegate {
 
-    weak var delegate: CourseListLayoutDelegate?
+    var showHeaders: Bool { return false }
+
+    func topInset() -> CGFloat { return 0 }
+
+}
+
+class CardListLayout: UICollectionViewLayout {
+
+    weak var delegate: CardListLayoutDelegate?
 
     private let cellPadding: CGFloat = 0
     private let linePadding: CGFloat = 6
@@ -67,7 +75,7 @@ class CourseListLayout: UICollectionViewLayout {
         }
 
         let numberOfColumns = self.numberOfColumms(for: collectionView)
-        let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * cellPadding) / CGFloat(numberOfColumns)
+        let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * self.cellPadding) / CGFloat(numberOfColumns)
         let layoutInsets = self.layoutInsets(for: collectionView)
 
         var xOffset = [CGFloat]()

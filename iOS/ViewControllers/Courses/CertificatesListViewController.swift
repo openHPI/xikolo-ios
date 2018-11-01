@@ -20,7 +20,7 @@ class CertificatesListViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.certificateCell)
-        if let certificateListLayout = self.collectionView?.collectionViewLayout as? CertificateListLayout {
+        if let certificateListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             certificateListLayout.delegate = self
         }
 
@@ -46,7 +46,7 @@ class CertificatesListViewController: UICollectionViewController {
 
 }
 
-extension CertificatesListViewController: CertificateListLayoutDelegate {
+extension CertificatesListViewController: CardListLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
@@ -59,7 +59,7 @@ extension CertificatesListViewController: CertificateListLayoutDelegate {
         let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
 
         let explanationText = certificate.explanation ?? ""
-        let explanationAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
+        let explanationAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .footnote)]
         let explanationSize = NSString(string: explanationText).boundingRect(with: boundingSize,
                                                                        options: .usesLineFragmentOrigin,
                                                                        attributes: explanationAttributes,

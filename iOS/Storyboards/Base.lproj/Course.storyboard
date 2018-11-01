@@ -27,18 +27,21 @@
                                     <segue destination="yPP-nO-kFo" kind="embed" id="RFs-so-JUN"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGS-px-ZG2">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KL2-g9-OIx">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <connections>
+                                    <segue destination="6qK-3g-pc6" kind="embed" id="lSN-d1-iw9"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="KL2-g9-OIx" secondAttribute="bottom" id="8mA-M8-Xzp"/>
                             <constraint firstItem="TJT-Kl-tfg" firstAttribute="leading" secondItem="raX-iA-spo" secondAttribute="leading" id="9fh-ld-RXQ"/>
                             <constraint firstItem="TJT-Kl-tfg" firstAttribute="top" secondItem="fUc-Ws-hEN" secondAttribute="top" id="EFQ-7A-hix"/>
-                            <constraint firstAttribute="bottom" secondItem="kGS-px-ZG2" secondAttribute="bottom" id="IpU-ws-GVO"/>
-                            <constraint firstItem="kGS-px-ZG2" firstAttribute="trailing" secondItem="raX-iA-spo" secondAttribute="trailing" id="Qwa-DN-rcE"/>
-                            <constraint firstItem="kGS-px-ZG2" firstAttribute="leading" secondItem="raX-iA-spo" secondAttribute="leading" id="YTl-bz-Hld"/>
-                            <constraint firstItem="kGS-px-ZG2" firstAttribute="top" secondItem="TJT-Kl-tfg" secondAttribute="bottom" id="lZS-BY-RnE"/>
+                            <constraint firstItem="KL2-g9-OIx" firstAttribute="leading" secondItem="raX-iA-spo" secondAttribute="leading" id="Ved-2z-ePs"/>
+                            <constraint firstAttribute="trailing" secondItem="KL2-g9-OIx" secondAttribute="trailing" id="akK-38-4R1"/>
+                            <constraint firstItem="KL2-g9-OIx" firstAttribute="top" secondItem="TJT-Kl-tfg" secondAttribute="bottom" id="jIw-8M-6IA"/>
                             <constraint firstItem="TJT-Kl-tfg" firstAttribute="trailing" secondItem="raX-iA-spo" secondAttribute="trailing" id="szC-2n-xTx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fUc-Ws-hEN"/>
@@ -106,7 +109,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="containerView" destination="kGS-px-ZG2" id="nXu-7I-A8c"/>
                         <outlet property="titleView" destination="lSe-9y-mWG" id="LoG-R2-gUX"/>
                         <segue destination="Nqa-is-6mG" kind="presentation" identifier="ShowLogin" id="GuI-2H-Gxr"/>
                     </connections>
@@ -212,7 +214,15 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSj-Eh-hW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4295" y="-1"/>
+            <point key="canvasLocation" x="4249" y="-121"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="aEa-7s-EC9">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6qK-3g-pc6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s3N-Vb-Gz2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4249" y="221"/>
         </scene>
     </scenes>
 </document>

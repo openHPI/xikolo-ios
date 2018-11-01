@@ -57,7 +57,7 @@ public final class Video: Content {
         return items
     }
 
-    public override var isAvailableOffline: Bool {
+    override public var isAvailableOffline: Bool {
         return self.localFileBookmark != nil || self.localSlidesBookmark != nil
     }
 

@@ -7,9 +7,9 @@ import Common
 import CoreSpotlight
 import UIKit
 
-class AppNavigator {
+enum AppNavigator {
 
-    private static var currentCourseNavigationController: CourseNavigationController?
+    private static weak var currentCourseNavigationController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
     static func handle(userActivity: NSUserActivity) -> Bool {
@@ -147,6 +147,9 @@ class AppNavigator {
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
 
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        feedbackGenerator.prepare()
+
         guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
             let reason = "root view controller could not be found"
             log.error(reason)
@@ -170,8 +173,6 @@ class AppNavigator {
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        feedbackGenerator.prepare()
         feedbackGenerator.impactOccurred()
 
         rootViewController.present(courseNavigationController, animated: true) {

@@ -143,7 +143,7 @@ class CourseDetailViewController: UIViewController {
         self.refreshEnrollButton()
     }
 
-    @IBAction func enroll(_ sender: UIButton) {
+    @IBAction private func enroll(_ sender: UIButton) {
         if UserProfileHelper.shared.isLoggedIn {
             if !course.hasEnrollment {
                 self.createEnrollment()
@@ -248,7 +248,12 @@ extension CourseDetailViewController: UITextViewDelegate {
 
 extension CourseDetailViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .courseDetails
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        assert(area == self.area)
         self.delegate = delegate
         self.course = course
     }

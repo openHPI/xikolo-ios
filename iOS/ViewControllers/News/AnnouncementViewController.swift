@@ -83,7 +83,7 @@ class AnnouncementViewController: UIViewController {
         }
     }
 
-    @IBAction func tappedCourseTitle() {
+    @IBAction private func tappedCourseTitle() {
         guard let course = announcement.course else { return }
         AppNavigator.show(course: course)
     }

@@ -65,7 +65,7 @@ class CourseItemCell: UITableViewCell {
         self.actionsButton.alpha = 1
     }
 
-    @IBAction func tappedActionsButton() {
+    @IBAction private func tappedActionsButton() {
         guard let video = self.item?.content as? Video else { return }
         self.delegate?.showAlert(with: video.userActions, title: self.item?.title, on: self.actionsButton)
     }

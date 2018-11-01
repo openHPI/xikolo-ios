@@ -13,7 +13,7 @@ class LoadingButton: UIButton {
         let progress = CircularProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
         progress.lineWidth = 2.2
-        progress.tintColor = .white
+        progress.tintColor = self.tintColor
 
         let progressValue: CGFloat? = nil
         progress.updateProgress(progressValue)
@@ -31,6 +31,11 @@ class LoadingButton: UIButton {
             self.spinner.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
             self.spinner.widthAnchor.constraint(equalTo: self.spinner.heightAnchor),
         ])
+    }
+
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        self.spinner.tintColor = self.tintColor
     }
 
     func startAnimation() {

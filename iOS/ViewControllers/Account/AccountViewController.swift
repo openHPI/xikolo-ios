@@ -267,7 +267,7 @@ class AccountViewController: UITableViewController {
         return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
 
-    @IBAction func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }
+    @IBAction private func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }
 
 }
 

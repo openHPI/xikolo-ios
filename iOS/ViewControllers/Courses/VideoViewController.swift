@@ -31,13 +31,33 @@ class VideoViewController: UIViewController {
 
     @IBOutlet private var iPadFullScreenContraints: [NSLayoutConstraint]!
 
-    var courseItem: CourseItem!
-    var video: Video?
-    var videoPlayerConfigured = false
-    private var sentFirstAutoPlayEvent = false
+    private lazy var actionMenuButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: R.image.dots(), style: .plain, target: self, action: #selector(showActionMenu(_:)))
+        button.isEnabled = false
+        button.tintColor = .lightGray
+        return button
+    }()
 
-    var player: CustomBMPlayer?
-    let playerControlView = VideoPlayerControlView()
+    private var courseItemObserver: ManagedObjectObserver?
+
+    var courseItem: CourseItem! {
+        didSet {
+            self.courseItemObserver = ManagedObjectObserver(object: self.courseItem) { [weak self] type in
+                guard type == .update else { return }
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async {
+                    strongSelf.updateView(for: strongSelf.courseItem)
+                }
+            }
+        }
+    }
+
+    private var video: Video?
+    private var videoPlayerConfigured = false
+    private var didViewAppear = false
+
+    private var player: CustomBMPlayer?
+    private let playerControlView = VideoPlayerControlView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +67,6 @@ class VideoViewController: UIViewController {
         self.layoutPlayer()
 
         self.errorView.isHidden = true
-
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.tintColor = .lightGray
 
         self.videoActionsButton.isEnabled = false
         self.videoActionsButton.tintColor = .lightGray
@@ -61,19 +78,7 @@ class VideoViewController: UIViewController {
         self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
 
         self.updateView(for: self.courseItem)
-        CourseItemHelper.syncCourseItemWithContent(self.courseItem).onSuccess { syncResult in
-            CoreDataHelper.viewContext.perform {
-                guard let courseItem = CoreDataHelper.viewContext.existingTypedObject(with: syncResult.objectId) as? CourseItem else {
-                    log.warning("Failed to retrieve course item to display")
-                    return
-                }
-
-                self.courseItem = courseItem
-                DispatchQueue.main.async {
-                    self.updateView(for: self.courseItem)
-                }
-            }
-        }
+        CourseItemHelper.syncCourseItemWithContent(self.courseItem)
 
         // register notification observer
         let notificationCenter = NotificationCenter.default
@@ -89,8 +94,6 @@ class VideoViewController: UIViewController {
                                        selector: #selector(reachabilityChanged),
                                        name: Notification.Name.reachabilityChanged,
                                        object: nil)
-
-        ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,28 +101,39 @@ class VideoViewController: UIViewController {
         self.toggleControlBars(animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.parent?.navigationItem.rightBarButtonItem = self.actionMenuButton
+        self.didViewAppear = true
+
+        if let player = self.player, !player.isPlaying {
+            player.play()
+            self.trackVideoPlay()
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        if !(self.navigationController?.viewControllers.contains(self) ?? false) {
-            self.player?.pause()
-        }
-
-        if !(self.navigationController?.viewControllers.contains(self) ?? true) {
-            self.trackVideoClose()
-            self.player?.prepareToDealloc()
+        if self.parent?.navigationItem.rightBarButtonItem == self.actionMenuButton {
+            self.parent?.navigationItem.rightBarButtonItem = nil
         }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        if let courseNavigationController = self.navigationController as? CourseNavigationController,
-            let courseTransitioningDelegate = courseNavigationController.transitioningDelegate as? CourseTransitioningDelegate,
-            courseTransitioningDelegate.interactionController.shouldFinish {
-            self.player?.pause()
+        guard let pageViewController = self.parent as? UIPageViewController else { return }
+        let isNotPresentedInPageViewController = !(pageViewController.viewControllers?.contains(self) ?? false)
+        let pageViewControllerDismissed = pageViewController.parent?.presentingViewController == nil
+        guard isNotPresentedInPageViewController || pageViewControllerDismissed else { return }
+
+        if let player = self.player, player.isPlaying {
+            player.pause()
+        }
+
+        if self.didViewAppear {
             self.trackVideoClose()
-            self.player?.prepareToDealloc()
         }
     }
 
@@ -137,6 +151,7 @@ class VideoViewController: UIViewController {
         BMPlayerConf.enableVolumeGestures = false
         BMPlayerConf.enableBrightnessGestures = false
         BMPlayerConf.enablePlaytimeGestures = true
+        BMPlayerConf.shouldAutoPlay = false
 
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
         let player = CustomBMPlayer(customControlView: self.playerControlView)
@@ -179,8 +194,8 @@ class VideoViewController: UIViewController {
         self.video = video
 
         let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
-        self.navigationItem.rightBarButtonItem?.isEnabled = hasUserActions
-        self.navigationItem.rightBarButtonItem?.tintColor = hasUserActions ? Brand.default.colors.primary : .lightGray
+        self.actionMenuButton.isEnabled = hasUserActions
+        self.actionMenuButton.tintColor = hasUserActions ? Brand.default.colors.primary : .lightGray
 
         let streamDownloadState = StreamPersistenceManager.shared.downloadState(for: video)
         let streamDownloadProgress = StreamPersistenceManager.shared.downloadProgress(for: video)
@@ -247,9 +262,14 @@ class VideoViewController: UIViewController {
         self.player?.setVideo(resource: asset)
         self.updatePreferredVideoBitrate()
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+
+        if let player = self.player, !player.isPlaying, self.isBeingPresented {
+            player.play()
+            self.trackVideoPlay()
+        }
     }
 
-    @IBAction func openSlides() {
+    @IBAction private func openSlides() {
         if let video = self.video, SlidesPersistenceManager.shared.localFileLocation(for: video) != nil || ReachabilityHelper.connection != .none {
             self.performSegue(withIdentifier: R.segue.videoViewController.showSlides, sender: self.video)
         } else {
@@ -257,7 +277,7 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @IBAction func showActionMenu(_ sender: UIBarButtonItem) {
+    @IBAction private func showActionMenu(_ sender: UIBarButtonItem) {
         guard let actions = self.video?.userActions else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -272,7 +292,7 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    @IBAction func showVideoActionMenu(_ sender: UIButton) {
+    @IBAction private func showVideoActionMenu(_ sender: UIButton) {
         guard let streamUserAction = self.video?.streamUserAction else { return }
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -286,7 +306,7 @@ class VideoViewController: UIViewController {
         self.present(alert, animated: true)
     }
 
-    @IBAction func showSlidesActionMenu(_ sender: UIButton) {
+    @IBAction private func showSlidesActionMenu(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds.insetBy(dx: -4, dy: -4)
@@ -362,10 +382,8 @@ class VideoViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedInfo = R.segue.videoViewController.showSlides(segue: segue), let video = video {
-            if let localFileLocation = SlidesPersistenceManager.shared.localFileLocation(for: video) {
-                typedInfo.destination.url = localFileLocation
-            } else {
-                typedInfo.destination.url = video.slidesURL
+            if let url = SlidesPersistenceManager.shared.localFileLocation(for: video) ?? video.slidesURL {
+                typedInfo.destination.configure(for: url, filename: self.courseItem.title)
             }
         }
     }
@@ -487,17 +505,7 @@ extension VideoViewController { // Video tracking
 extension VideoViewController: BMPlayerDelegate {
 
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
-        if state == .bufferFinished {
-            if player.isPlaying {
-                player.avPlayer?.rate = self.playerControlView.playRate  // has to be set after playback started
-            }
-
-            if !self.sentFirstAutoPlayEvent {  // only once
-                self.trackVideoPlay()
-                self.sentFirstAutoPlayEvent = true
-            }
-
-        } else if state == .playedToTheEnd {
+        if state == .playedToTheEnd {
             self.trackVideoEnd()
         }
     }
@@ -520,6 +528,18 @@ extension VideoViewController: BMPlayerDelegate {
         } else {
             self.trackVideoOrientationChangePortrait()
         }
+    }
+
+}
+
+extension VideoViewController: CourseItemContentViewController {
+
+    var item: CourseItem? {
+        return self.courseItem
+    }
+
+    func configure(for item: CourseItem) {
+        self.courseItem = item
     }
 
 }

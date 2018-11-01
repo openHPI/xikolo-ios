@@ -56,7 +56,7 @@ class SpotlightHelper {
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: "Course")
         // Add metadata that supplies details about the item.
         attributeSet.title = course.title
-        attributeSet.contentDescription = (course.abstract ?? "") + " " + (course.teachers ?? "")
+        attributeSet.contentDescription = [course.abstract, course.teachers].compactMap { $0 }.joined(separator: " ")
 
         // Create an item with a unique identifier, a domain identifier, and the attribute set you created earlier.
         let item = CSSearchableItem(uniqueIdentifier: url.absoluteString,

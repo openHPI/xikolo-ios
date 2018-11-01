@@ -5,10 +5,10 @@
 
 import Foundation
 
-public struct Routes {
+public enum Routes {
 
-    public struct Header {
-        public static let userPlatformKey = "User-Platform"
+    public enum Header {
+        public static let userPlatformKey = "X-User-Platform"
         public static let userPlatformValue = "iOS"
 
         public static let userAgentKey = "User-Agent"
@@ -19,21 +19,20 @@ public struct Routes {
         public static let acceptPDF = "application/pdf"
 
         public static let contentTypeKey = "Content-Type"
-        public static let contentTypeValue = "application/vnd.api+json"
+        public static let contentTypeValueJSONAPI = "application/vnd.api+json"
 
         public static let authKey = "Authorization"
         public static let authValuePrefix = "Token token="
         public static let apiVersionExpirationDate = "X-Api-Version-Expiration-Date"
     }
 
-    public struct HeaderParameter {
+    public enum HeaderParameter {
         public static let email = "email"
         public static let password = "password"
     }
 
-    struct QueryItem {
+    enum QueryItem {
         static let inApp = URLQueryItem(name: "in_app", value: "true")
-        static let redirect = URLQueryItem(name: "redirect_to", value: "/auth/" + Brand.default.platformTitle)
     }
 
     public static let base = URL(string: "https://" + Brand.default.host).require(hint: "Invalid base URL")
@@ -43,7 +42,13 @@ public struct Routes {
 
     static let authenticate = Routes.api.appendingPathComponent("authenticate")
     public static let register = Routes.base.appendingPathComponents(["account", "new"]).appendingInAppParameter()
-    public static let singleSignOn = Routes.base.appendingQueryItems([Routes.QueryItem.inApp, Routes.QueryItem.redirect])
+    public static let singleSignOn: URL? = {
+        guard let platformTitle = Brand.default.singleSignOn?.platformTitle else { return nil }
+        return Routes.base
+            .appendingPathComponents(["auth", platformTitle])
+            .appendingInAppParameter()
+            .appendingQueryItem(URLQueryItem(name: "redirect_to", value: "/auth/" + platformTitle))
+    }()
 
     public static let courses = Routes.base.appendingPathComponent("courses")
     public static let recap = Routes.base.appendingPathComponent("learn")
@@ -67,21 +72,41 @@ public struct Routes {
         return localizedURL.require(hint: "Invalid URL for password reset")
     }
 
+    public static func addCallbackParameters(to url: URL) -> URL {
+        if Brand.default.singleSignOn?.provider == .oidc {
+            return url.appendingInAppParameter()
+        } else {
+            return url
+        }
+    }
+
+    public static func isAppAuthenticationURL(for request: URLRequest) -> URL? {
+        guard let url = request.url, url.path == "/auth/app" else { return nil }
+        return url
+    }
+
+    public static func isSingleSignOnCallbackURL(for request: URLRequest) -> URL? {
+        guard let platformTitle = Brand.default.singleSignOn?.platformTitle else { return nil }
+        guard let url = request.url, url.path == "/auth/\(platformTitle)/callback" else { return nil }
+        return url
+    }
+
 }
 
 private extension URL {
 
-    func appendingQueryItems(_ queryItems: [URLQueryItem]) -> URL? {
-        var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = queryItems
-        return urlComponents?.url
+    func appendingQueryItem(_ queryItem: URLQueryItem) -> URL {
+        var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false).require()
+        if urlComponents.queryItems == nil {
+            urlComponents.queryItems = [queryItem]
+        } else if !(urlComponents.queryItems?.contains(queryItem) ?? false) {
+            urlComponents.queryItems?.append(queryItem)
+        }
+        return urlComponents.url.require(hint: "Invalid url with query item parameter")
     }
 
     func appendingInAppParameter() -> URL {
-        var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = [Routes.QueryItem.inApp]
-        let url = urlComponents?.url
-        return url.require(hint: "Invalid url with in-app parameter")
+        return self.appendingQueryItem(Routes.QueryItem.inApp)
     }
 
 }

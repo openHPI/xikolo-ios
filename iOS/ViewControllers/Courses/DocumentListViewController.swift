@@ -74,12 +74,13 @@ class DocumentListViewController: UITableViewController {
 extension DocumentListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let documentLocaliztion = self.dataSource.object(at: indexPath)
+        let documentLocalization = self.dataSource.object(at: indexPath)
 
-        guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocaliztion) ?? documentLocaliztion.fileURL else { return }
+        guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocalization) ?? documentLocalization.fileURL else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
-        pdfViewController.url = url
+        let filename = [documentLocalization.document.title, documentLocalization.title].compactMap { $0 }.joined(separator: " - ")
+        pdfViewController.configure(for: url, filename: filename)
         self.navigationController?.pushViewController(pdfViewController, animated: true)
     }
 
@@ -108,7 +109,12 @@ extension DocumentListViewController: CoreDataTableViewDataSourceDelegate {
 
 extension DocumentListViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .documents
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        assert(area == self.area)
         self.course = course
     }
 

@@ -41,6 +41,9 @@
 /* status 'upcoming' of a course */
 "course-cell.status.upcoming" = "Zukünftig";
 
+/* Format string for the next section start in the footer of course item list */
+"course-item-list.footer.The next section will be available on %@ at %@" = "Die nächsten Inhalte werden am %@ um %@ verfügbar sein.";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Alle Lernmaterialien löschen";
 
@@ -49,12 +52,6 @@
 
 /* stop all downloads for video */
 "course-item.combined-download-action.stop-download.title" = "Alle Downloads stoppen";
-
-/* message for proctoring alert */
-"course-item.proctoring.alert.message" = "Diese Aufgabe muss unter Online-Aufsicht abgelegt werden, um das von Ihnen gebuchte qualifizierte Zertifikat zu erhalten. Das ist nur an einem Computer mit Kamera möglich.";
-
-/* title for proctoring alert */
-"course-item.proctoring.alert.title" = "Für dieses Element ist eine Online-Aufsicht erforderlich";
 
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Folien anschauen";

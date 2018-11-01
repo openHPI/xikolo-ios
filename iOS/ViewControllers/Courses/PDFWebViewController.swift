@@ -15,6 +15,7 @@ class PDFWebViewController: UIViewController {
         let progress = CircularProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
         progress.lineWidth = 4
+        progress.gapWidth = 2
         progress.tintColor = Brand.default.colors.primary
 
         let progressValue: CGFloat? = nil
@@ -35,7 +36,8 @@ class PDFWebViewController: UIViewController {
 
     private var currentDownload: URLSessionDownloadTask?
 
-    var url: URL? {
+    private var filename: String?
+    private var url: URL? {
         didSet {
             guard self.viewIfLoaded != nil else { return }
             guard let url = self.url else { return }
@@ -55,27 +57,30 @@ class PDFWebViewController: UIViewController {
         ])
     }
 
-    @IBAction func sharePDF(_ sender: UIBarButtonItem) {
-        guard let fileURL = self.tempPDFFile?.fileURL else { return }
-        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.barButtonItem = sender
-        self.present(activityViewController, animated: true)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nil
         self.webView.isHidden = true
+        self.progress.alpha = 0.0
 
         if let url = self.url {
             self.loadPDF(for: url)
         }
+
+        UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveLinear, animations: {
+            self.progress.alpha = CGFloat(1.0)
+        }, completion: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.currentDownload?.cancel()
         try? self.tempPDFFile?.deleteDirectory()
+    }
+
+    func configure(for url: URL, filename: String?) {
+        self.url = url
+        self.filename = filename
     }
 
     private func loadPDF(for url: URL) {
@@ -90,6 +95,13 @@ class PDFWebViewController: UIViewController {
         task.resume()
     }
 
+    @IBAction private func sharePDF(_ sender: UIBarButtonItem) {
+        guard let fileURL = self.tempPDFFile?.fileURL else { return }
+        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = sender
+        self.present(activityViewController, animated: true)
+    }
+
 }
 
 extension PDFWebViewController: URLSessionDownloadDelegate {
@@ -100,13 +112,19 @@ extension PDFWebViewController: URLSessionDownloadDelegate {
         }
 
         let filename: String = {
+            if let filename = self.filename {
+                return "\(filename).pdf"
+            }
+
             if let suggestedFilename = downloadTask.response?.suggestedFilename {
                 return suggestedFilename
-            } else if let requestURL = downloadTask.currentRequest?.url {
-                return "\(requestURL.lastPathComponent).\(requestURL.pathExtension)"
-            } else {
-                return "file"
             }
+
+            if let requestURL = downloadTask.currentRequest?.url {
+                return "\(requestURL.lastPathComponent).\(requestURL.pathExtension)"
+            }
+
+            return "file.pdf"
         }()
 
         do {

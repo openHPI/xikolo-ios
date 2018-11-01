@@ -146,10 +146,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="341"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-R5-lRv">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-R5-lRv">
                                             <rect key="frame" x="16" y="11" width="343" height="307"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G13-HE-khe" customClass="CourseDateSummaryView" customModule="iOS" customModuleProvider="target">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G13-HE-khe" customClass="CourseDateSummaryView" customModule="iOS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="149"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Course date overview" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-rK-PjH">
@@ -159,11 +159,11 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jog-5J-HrR" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jog-5J-HrR" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="32.5" width="343" height="116.5"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TSC-UU-kfE">
-                                                                    <rect key="frame" x="16" y="16.5" width="311" height="82"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TSC-UU-kfE">
+                                                                    <rect key="frame" x="16" y="17.5" width="311" height="82"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="REJ-hZ-MSL">
                                                                             <rect key="frame" x="0.0" y="0.0" width="311" height="22"/>
@@ -294,7 +294,7 @@
                                                                 <constraint firstItem="TSC-UU-kfE" firstAttribute="centerY" secondItem="jog-5J-HrR" secondAttribute="centerY" id="2k0-I0-qXn"/>
                                                                 <constraint firstItem="TSC-UU-kfE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jog-5J-HrR" secondAttribute="topMargin" constant="8" id="5FQ-Xy-nmA"/>
                                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="TSC-UU-kfE" secondAttribute="bottom" constant="8" id="hvk-YK-lq0"/>
-                                                                <constraint firstAttribute="trailingMargin" secondItem="TSC-UU-kfE" secondAttribute="trailing" constant="8" id="lFa-th-aju"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="TSC-UU-kfE" secondAttribute="trailing" priority="999" constant="8" id="lFa-th-aju"/>
                                                                 <constraint firstItem="TSC-UU-kfE" firstAttribute="leading" secondItem="jog-5J-HrR" secondAttribute="leadingMargin" constant="8" id="xvj-5h-yaI"/>
                                                             </constraints>
                                                         </view>
@@ -322,7 +322,7 @@
                                                         <outletCollection property="pills" destination="2Wz-o1-Dk1" collectionClass="NSMutableArray" id="Hm6-yY-aln"/>
                                                     </connections>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9" customClass="CourseDateNextUpView" customModule="iOS" customModuleProvider="target">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="H7O-CA-vs9" customClass="CourseDateNextUpView" customModule="iOS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="177" width="343" height="130"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Next up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkE-Xg-aPx">
@@ -332,11 +332,11 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WAA-4x-gpz" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAA-4x-gpz" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="32.5" width="343" height="97.5"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" ambiguous="YES" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGw-Xi-RUH">
-                                                                    <rect key="frame" x="16" y="16" width="311" height="64.5"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGw-Xi-RUH">
+                                                                    <rect key="frame" x="16" y="16.5" width="311" height="64.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wE-Ql-Yhg">
                                                                             <rect key="frame" x="143" y="0.0" width="25.5" height="14.5"/>
@@ -390,11 +390,11 @@
                                                             <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="lGw-Xi-RUH" secondAttribute="bottom" constant="8" id="6cd-5q-Jwy"/>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="272" id="AZW-QE-VE5"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="272" id="AZW-QE-VE5"/>
                                                                 <constraint firstItem="lGw-Xi-RUH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WAA-4x-gpz" secondAttribute="topMargin" constant="8" id="gNx-qX-NK2"/>
                                                                 <constraint firstItem="lGw-Xi-RUH" firstAttribute="leading" secondItem="WAA-4x-gpz" secondAttribute="leadingMargin" constant="8" id="l6R-Dp-KhY"/>
                                                                 <constraint firstItem="lGw-Xi-RUH" firstAttribute="centerY" secondItem="WAA-4x-gpz" secondAttribute="centerY" id="wVp-fG-LIG"/>
-                                                                <constraint firstAttribute="trailingMargin" secondItem="lGw-Xi-RUH" secondAttribute="trailing" constant="8" id="yzD-U4-cYd"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="lGw-Xi-RUH" secondAttribute="trailing" priority="999" constant="8" id="yzD-U4-cYd"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -425,9 +425,9 @@
                                     <constraints>
                                         <constraint firstItem="ecQ-R5-lRv" firstAttribute="leading" secondItem="Jgx-eM-c9w" secondAttribute="leadingMargin" id="7B0-vE-uXc"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ecQ-R5-lRv" secondAttribute="bottom" constant="12" id="Cjx-WL-AbH"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="ecQ-R5-lRv" secondAttribute="trailing" id="dJz-vj-oWd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ecQ-R5-lRv" secondAttribute="trailing" priority="999" id="dJz-vj-oWd"/>
                                         <constraint firstItem="ecQ-R5-lRv" firstAttribute="top" secondItem="Jgx-eM-c9w" secondAttribute="topMargin" id="kEn-47-t4g"/>
-                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ecQ-R5-lRv" secondAttribute="trailing" id="uB3-te-J63"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ecQ-R5-lRv" secondAttribute="trailing" priority="999" id="uB3-te-J63"/>
                                     </constraints>
                                     <variation key="widthClass=regular">
                                         <mask key="constraints">

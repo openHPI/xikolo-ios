@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-struct VideoHelper {
+enum VideoHelper {
 
     @discardableResult static func syncVideo(_ video: Video) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = VideoHelper.FetchRequest.video(withId: video.id)

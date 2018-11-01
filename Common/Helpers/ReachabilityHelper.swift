@@ -6,7 +6,7 @@
 import Foundation
 import Reachability
 
-public class ReachabilityHelper {
+public enum ReachabilityHelper {
 
     static var reachability: Reachability = {
         return Reachability(hostname: Brand.default.host)!
@@ -14,6 +14,10 @@ public class ReachabilityHelper {
 
     public static var connection: Reachability.Connection {
         return self.reachability.connection
+    }
+
+    public static var hasConnection: Bool {
+        return self.connection != .none
     }
 
     public static func startObserving() throws {

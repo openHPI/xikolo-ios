@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-struct PeerAssessmentHelper {
+enum PeerAssessmentHelper {
 
     @discardableResult static func syncPeerAssessment(_ peerAssessment: PeerAssessment) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = PeerAssessmentHelper.FetchRequest.peerAssessment(withId: peerAssessment.id)

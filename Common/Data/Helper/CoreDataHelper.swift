@@ -7,7 +7,7 @@ import BrightFutures
 import CoreData
 import Result
 
-public class CoreDataHelper {
+public class CoreDataHelper { // swiftlint:disable:this convenience_type
 
     public static var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: CoreDataHelper.self)

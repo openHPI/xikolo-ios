@@ -28,26 +28,19 @@ public final class CourseItem: NSManagedObject {
         return NSFetchRequest<CourseItem>(entityName: "CourseItem")
     }
 
-    var next: CourseItem? {
-        return self.neighbor(1)
+    public var nextItem: CourseItem? {
+        return self.neighbor(forwards: true)
     }
 
-    var previous: CourseItem? {
-        return self.neighbor(-1)
+    public var previousItem: CourseItem? {
+        return self.neighbor(forwards: false)
     }
 
-    private func neighbor(_ direction: Int) -> CourseItem? {
-        let items = self.section?.itemsSorted ?? []
-        if var index = items.index(of: self) {
-            index += direction
-            if index < 0 || index >= items.count {
-                return nil
-            }
-
-            return items[index]
-        }
-
-        return nil
+    private func neighbor(forwards directionForwards: Bool) -> CourseItem? {
+        guard let items = self.section?.itemsSorted else { return nil }
+        guard let currentIndex = items.index(of: self) else { return nil }
+        let nextIndex = directionForwards ? items.index(after: currentIndex) : items.index(before: currentIndex)
+        return items[safe: nextIndex]
     }
 
 }

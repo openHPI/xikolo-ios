@@ -20,7 +20,7 @@ extension DownloadProgress {
     static let didChangeNotification = Notification.Name("de.xikolo.ios.download.progressChanged")
 }
 
-struct DownloadNotificationKey {
+enum DownloadNotificationKey {
 
     static let resourceId = "ResourceIdKey"
     static let downloadState = "ResourceDownloadStateKey"

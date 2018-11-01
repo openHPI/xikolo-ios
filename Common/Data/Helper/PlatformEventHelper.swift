@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-struct PlatformEventHelper {
+enum PlatformEventHelper {
 
     @discardableResult static func syncAllPlatformEvents() -> Future<SyncMultipleResult, XikoloError> {
         let fetchRequest = PlatformEventHelper.FetchRequest.allPlatformEvents

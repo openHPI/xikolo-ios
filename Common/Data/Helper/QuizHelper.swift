@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-struct QuizHelper {
+enum QuizHelper {
 
     @discardableResult static func syncQuiz(_ quiz: Quiz) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = QuizHelper.FetchRequest.quiz(withId: quiz.id)

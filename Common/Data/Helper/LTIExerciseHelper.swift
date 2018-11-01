@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-struct LTIExerciseHelper {
+enum LTIExerciseHelper {
 
     @discardableResult static func syncLTIExercise(_ ltiExercise: LTIExercise) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = LTIExerciseHelper.FetchRequest.ltiExercise(withId: ltiExercise.id)

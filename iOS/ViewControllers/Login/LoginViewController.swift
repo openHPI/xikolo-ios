@@ -34,7 +34,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
                                                name: NSNotification.Name.UIKeyboardWillHide,
                                                object: nil)
 
-        if let title = Brand.default.singleSignOnButtonTitle {
+        if let title = Brand.default.singleSignOn?.buttonTitle {
             self.singleSignOnView.isHidden = false
             self.singleSignOnButton.backgroundColor = Brand.default.colors.primary
             self.singleSignOnButton.setTitle(title, for: .normal)
@@ -44,11 +44,11 @@ class LoginViewController: UIViewController, WKUIDelegate {
 
     }
 
-    @IBAction func dismiss() {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+    @IBAction private func dismiss() {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func login() {
+    @IBAction private func login() {
         guard let email = emailField.text, let password = passwordField.text else {
             self.emailField.shake()
             self.passwordField.shake()
@@ -68,23 +68,23 @@ class LoginViewController: UIViewController, WKUIDelegate {
         }
     }
 
-    @IBAction func register() {
+    @IBAction private func register() {
         let safariVC = SFSafariViewController(url: Routes.register)
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: true)
     }
 
-    @IBAction func forgotPassword() {
+    @IBAction private func forgotPassword() {
         let safariVC = SFSafariViewController(url: Routes.localizedForgotPasswordURL)
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: true)
     }
 
-    @IBAction func singleSignOn() {
+    @IBAction private func singleSignOn() {
         self.performSegue(withIdentifier: R.segue.loginViewController.showSSOWebView, sender: self)
     }
 
-    @IBAction func tappedBackground() {
+    @IBAction private func tappedBackground() {
         self.emailField.resignFirstResponder()
         self.passwordField.resignFirstResponder()
     }

@@ -42,7 +42,12 @@ Determines the commit for a given build number
 ```
 fastlane ios lint
 ```
-Lint swift code with swiftline
+Lint swift code with swiftlint
+### ios format
+```
+fastlane ios format
+```
+Format swift code with swiftlint
 ### ios localize
 ```
 fastlane ios localize

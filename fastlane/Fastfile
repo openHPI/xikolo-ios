@@ -102,10 +102,19 @@ platform :ios do
     end
   end
 
-  desc "Lint swift code with swiftline"
-  lane :lint do
+  desc "Lint swift code with swiftlint"
+  lane :lint do |options|
+    run_swiftlint(mode: :lint)
+  end
+
+  desc "Format swift code with swiftlint"
+  lane :format do |options|
+    run_swiftlint(mode: :autocorrect)
+  end
+
+  private_lane :run_swiftlint do |options|
     swiftlint(
-      mode: :lint,
+      mode: options[:mode],
       executable: "Pods/SwiftLint/swiftlint",
       config_file: ".swiftlint.yml",
       ignore_exit_status: true,

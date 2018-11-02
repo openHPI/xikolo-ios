@@ -58,9 +58,10 @@ class CardListLayout: UICollectionViewLayout {
     }
 
     private func numberOfColumms(for collectionView: UICollectionView) -> Int {
+        let contentWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
         if collectionView.traitCollection.horizontalSizeClass == .regular {
-            return collectionView.bounds.width > 960 ? 3 : 2
-        } else if collectionView.bounds.width > collectionView.bounds.height {
+            return contentWidth > 960 ? 3 : 2
+        } else if contentWidth > collectionView.bounds.height {
             return 2
         } else {
             return 1

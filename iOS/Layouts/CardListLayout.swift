@@ -18,9 +18,13 @@ protocol CardListLayoutDelegate: AnyObject {
 
 extension CardListLayoutDelegate {
 
-    var showHeaders: Bool { return false }
+    var showHeaders: Bool {
+        return false
+    }
 
-    func topInset() -> CGFloat { return 0 }
+    func topInset() -> CGFloat {
+        return 0
+    }
 
 }
 

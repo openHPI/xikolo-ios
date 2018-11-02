@@ -28,10 +28,13 @@ class CertificateCell: UICollectionViewCell {
 
         let achieved = url != nil
         self.isUserInteractionEnabled = achieved
-        self.shadowView.backgroundColor = achieved ? Brand.default.colors.primary : UIColor.lightGray
-        self.titleLabel.backgroundColor = self.shadowView.backgroundColor
-        self.statusLabel.backgroundColor = self.shadowView.backgroundColor
-        self.titleLabel.textColor = achieved ? UIColor.white : UIColor.darkText
+        let cardColor = achieved ? Brand.default.colors.primary : UIColor(white: 0.8, alpha: 1.0)
+        self.shadowView.backgroundColor = cardColor
+        self.titleLabel.backgroundColor = cardColor
+        self.statusLabel.backgroundColor = cardColor
+        let textColor = achieved ? UIColor.white : UIColor.darkText
+        self.titleLabel.textColor = textColor
+        self.statusLabel.textColor = textColor
     }
 
 }

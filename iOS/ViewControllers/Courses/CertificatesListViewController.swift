@@ -53,7 +53,7 @@ extension CertificatesListViewController: CardListLayoutDelegate {
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
 
         let cardWidth = boundingWidth - 2 * 14
-        let boxHeight = cardWidth / 2 - 20
+        let boxHeight: CGFloat = 120
 
         let certificate = self.certificates[indexPath.item]
         let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
@@ -103,22 +103,6 @@ extension CertificatesListViewController { // CollectionViewDelegate
         let filename = [self.course.title, certificate.name].compactMap { $0 }.joined(separator: " - ")
         pdfViewController.configure(for: url, filename: filename)
         self.navigationController?.pushViewController(pdfViewController, animated: true)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if #available(iOS 11.0, *) {
-            self.navigationItem.hidesSearchBarWhenScrolling = false
-        }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if #available(iOS 11.0, *) {
-            self.navigationItem.hidesSearchBarWhenScrolling = true
-        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

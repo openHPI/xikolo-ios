@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="140"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Certificate Acquisition Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kd-kc-eqp" userLabel="Description Label">
-                                <rect key="frame" x="8" y="116" width="384" height="16"/>
+                                <rect key="frame" x="14" y="116" width="372" height="16"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
@@ -38,10 +38,10 @@
                                 </attributedString>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vXX-Tp-evO" customClass="ShadowContainerView" customModule="iOS" customModuleProvider="target">
-                                <rect key="frame" x="8" y="8" width="384" height="100"/>
+                                <rect key="frame" x="14" y="8" width="372" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Certificate Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5m-CL-Mrr">
-                                        <rect key="frame" x="16" y="16" width="360" height="20.5"/>
+                                        <rect key="frame" x="16" y="16" width="348" height="20.5"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -73,7 +73,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="X5m-CL-Mrr" secondAttribute="trailing" id="FW5-t8-R7m"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="X5m-CL-Mrr" secondAttribute="trailing" priority="999" id="FW5-t8-R7m"/>
                                     <constraint firstItem="TE8-ZP-FOo" firstAttribute="leading" secondItem="X5m-CL-Mrr" secondAttribute="leading" id="ZeI-Xj-7Hp"/>
                                     <constraint firstItem="X5m-CL-Mrr" firstAttribute="leading" secondItem="vXX-Tp-evO" secondAttribute="leadingMargin" id="oeP-p4-6uy"/>
                                     <constraint firstItem="X5m-CL-Mrr" firstAttribute="top" secondItem="vXX-Tp-evO" secondAttribute="topMargin" id="xNY-oS-LkW"/>
@@ -84,11 +84,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vXX-Tp-evO" firstAttribute="leading" secondItem="eiE-eD-q7d" secondAttribute="leading" constant="14" id="6Ng-1f-KJS"/>
                             <constraint firstItem="3kd-kc-eqp" firstAttribute="leading" secondItem="vXX-Tp-evO" secondAttribute="leading" id="Fko-ns-Qxq"/>
-                            <constraint firstItem="vXX-Tp-evO" firstAttribute="leading" secondItem="eiE-eD-q7d" secondAttribute="leadingMargin" id="Q7Y-nw-nkk"/>
                             <constraint firstItem="vXX-Tp-evO" firstAttribute="top" secondItem="eiE-eD-q7d" secondAttribute="topMargin" id="YJc-lD-Aeo"/>
                             <constraint firstItem="vXX-Tp-evO" firstAttribute="trailing" secondItem="3kd-kc-eqp" secondAttribute="trailing" id="o3t-JC-AeE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vXX-Tp-evO" secondAttribute="trailing" id="uCq-5l-k2d"/>
+                            <constraint firstAttribute="trailing" secondItem="vXX-Tp-evO" secondAttribute="trailing" priority="999" constant="14" id="uCq-5l-k2d"/>
                             <constraint firstAttribute="bottomMargin" secondItem="3kd-kc-eqp" secondAttribute="bottom" id="uzg-U2-5P7"/>
                             <constraint firstItem="3kd-kc-eqp" firstAttribute="top" secondItem="vXX-Tp-evO" secondAttribute="bottom" constant="8" symbolic="YES" id="x3F-xc-y65"/>
                         </constraints>

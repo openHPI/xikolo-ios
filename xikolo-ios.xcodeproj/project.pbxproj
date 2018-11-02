@@ -83,7 +83,7 @@
 		50CF1F6E20DCDBFC0011BFE9 /* CourseItemHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500228EC20582573003301A7 /* CourseItemHeader.swift */; };
 		50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */; };
 		50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A17A011CD11E270056A8EE /* UIView+shake.swift */; };
-		50CF1F7220DCDBFC0011BFE9 /* CourseListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CourseListLayout.swift */; };
+		50CF1F7220DCDBFC0011BFE9 /* CardListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD35141FD83D5E002B40CC /* CardListLayout.swift */; };
 		50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */; };
 		50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */; };
 		50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F379CE205B643400149C3B /* CertificatesListViewController.swift */; };
@@ -253,6 +253,8 @@
 		50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
+		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -514,7 +516,7 @@
 		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseArea.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
-		50DD35141FD83D5E002B40CC /* CourseListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListLayout.swift; sourceTree = "<group>"; };
+		50DD35141FD83D5E002B40CC /* CardListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListLayout.swift; sourceTree = "<group>"; };
 		50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseHeaderView.xib; sourceTree = "<group>"; };
 		50E0351E213673F8001F963D /* CourseListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListConfiguration.swift; sourceTree = "<group>"; };
 		50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStreamingSettingsViewController.swift; sourceTree = "<group>"; };
@@ -552,7 +554,7 @@
 		709C93591EF09C2C00F8F045 /* ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
 		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
-		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
+		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		721CB820BE8AA15350FE4192 /* Pods-Common-Tests.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.moochouse-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common-Tests/Pods-Common-Tests.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -611,6 +613,8 @@
 		AE02E17D2976D63433FFF854 /* Pods-Common-Tests.openhpi-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.openhpi-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-Common-Tests/Pods-Common-Tests.openhpi-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		B2757AC90EE7F9E7335E0A1E /* Pods-Common.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.moochouse-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
 		B49BCD96E6962FD19BC751AB /* Pods_openHPI_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openHPI_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4E079EA218791A600EA53F5 /* CertificateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CertificateCell.xib; sourceTree = "<group>"; };
+		B4E079EC21879C9200EA53F5 /* CertificateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateCell.swift; sourceTree = "<group>"; };
 		BD7BC23A67AF268E12B4BDDB /* Pods_openWHO_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_openWHO_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B4D55388B8CBBDFADCD864 /* Pods-Common.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.opensap-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
 		E5C3AB05064630FBDBF3CF8E /* Pods-Common.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.opensap-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
@@ -763,6 +767,7 @@
 				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
 				50371FFD20501388006E9634 /* CourseItemDetailView.swift */,
+				B4E079EC21879C9200EA53F5 /* CertificateCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1012,7 +1017,7 @@
 		50DD35131FD83D24002B40CC /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				50DD35141FD83D5E002B40CC /* CourseListLayout.swift */,
+				50DD35141FD83D5E002B40CC /* CardListLayout.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -1323,6 +1328,7 @@
 				5058578321344C75006A5D15 /* PseudoCourseCell.xib */,
 				500228F120583139003301A7 /* CourseItemHeader.xib */,
 				508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */,
+				B4E079EA218791A600EA53F5 /* CertificateCell.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1560,6 +1566,7 @@
 				507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */,
 				508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */,
 				50CF1FF820DCDBFC0011BFE9 /* TabCourses.storyboard in Resources */,
+				B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */,
 				50CF1FF920DCDBFC0011BFE9 /* Main.storyboard in Resources */,
 				50D60D3D20E0F2A2007A4199 /* Pods-iOS.openhpi-ios-release.xcconfig in Resources */,
 				50CF1FFA20DCDBFC0011BFE9 /* Course.storyboard in Resources */,
@@ -1891,7 +1898,7 @@
 				50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */,
 				508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */,
 				50CF1F7020DCDBFC0011BFE9 /* UIView+shake.swift in Sources */,
-				50CF1F7220DCDBFC0011BFE9 /* CourseListLayout.swift in Sources */,
+				50CF1F7220DCDBFC0011BFE9 /* CardListLayout.swift in Sources */,
 				5095B1DD20EB81E900572924 /* Crashlytics.swift in Sources */,
 				508AB2EA2111F41D0079EAE5 /* CourseDateOverviewCell.swift in Sources */,
 				5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */,
@@ -1919,6 +1926,7 @@
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,
 				50CF1F9620DCDBFC0011BFE9 /* CourseTransitioningDelegate.swift in Sources */,
 				50CF1F9720DCDBFC0011BFE9 /* CoreDataCollectionViewDataSource.swift in Sources */,
+				B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */,
 				50CF1F9E20DCDBFC0011BFE9 /* AppNavigator.swift in Sources */,
 				50CF1F9F20DCDBFC0011BFE9 /* CourseHeaderView.swift in Sources */,
 				50CF1FA020DCDBFC0011BFE9 /* VideoViewController.swift in Sources */,

@@ -26,7 +26,7 @@ class CourseListViewController: UICollectionViewController {
                                       forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
-        if let courseListLayout = self.collectionView?.collectionViewLayout as? CourseListLayout {
+        if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
         }
 
@@ -100,7 +100,7 @@ class CourseListViewController: UICollectionViewController {
 
 }
 
-extension CourseListViewController: CourseListLayoutDelegate {
+extension CourseListViewController: CardListLayoutDelegate {
 
     var showHeaders: Bool {
         return self.configuration == .allCourses || self.dataSource.isSearching

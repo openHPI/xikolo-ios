@@ -9,17 +9,23 @@ import DZNEmptyDataSet
 import SafariServices
 import UIKit
 
-class CertificatesListViewController: UITableViewController {
+class CertificatesListViewController: UICollectionViewController {
 
     var course: Course!
     var certificates: [(name: String, explanation: String?, url: URL?)] = [] { // swiftlint:disable:this large_tuple
         didSet {
-            self.tableView.reloadData()
+            self.collectionView?.reloadData()
         }
     }
 
     override func viewDidLoad() {
+        self.collectionView?.register(R.nib.certificateCell)
+        if let certificateListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
+            certificateListLayout.delegate = self
+        }
+
         super.viewDidLoad()
+
         self.certificates = self.course.availableCertificates
         self.addRefreshControl()
         self.refresh()
@@ -40,18 +46,57 @@ class CertificatesListViewController: UITableViewController {
 
 }
 
-extension CertificatesListViewController { // TableViewDelegate
+extension CertificatesListViewController: CardListLayoutDelegate {
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForCellAtIndexPath indexPath: IndexPath,
+                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+
+        let cardWidth = boundingWidth - 2 * 14
+        let boxHeight: CGFloat = 120
+
+        let certificate = self.certificates[indexPath.item]
+        let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
+
+        let explanationText = certificate.explanation ?? ""
+        let explanationAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .footnote)]
+        let explanationSize = NSString(string: explanationText).boundingRect(with: boundingSize,
+                                                                             options: .usesLineFragmentOrigin,
+                                                                             attributes: explanationAttributes,
+                                                                             context: nil)
+
+        var height = boxHeight
+
+        if !explanationText.isEmpty {
+            height += 8 + explanationSize.height
+        }
+
+        return height
+    }
+
+}
+
+extension CertificatesListViewController { // CollectionViewDelegate
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.certificates.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cellReuseIdentifier = R.reuseIdentifier.certificateCell.identifier
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
+        let certificate = self.certificates[indexPath.item]
+        let stateOfCertificate = self.stateOfCertificate(withURL: certificate.url)
+
+        if let cell = cell as? CertificateCell {
+            cell.configure(certificate.name, explanation: certificate.explanation, url: certificate.url, stateOfCertificate: stateOfCertificate)
+        }
+
+        return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let certificate = self.certificates[indexPath.section]
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let certificate = self.certificates[indexPath.item]
         guard let url = certificate.url else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
@@ -60,20 +105,9 @@ extension CertificatesListViewController { // TableViewDelegate
         self.navigationController?.pushViewController(pdfViewController, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
-        let certificate = self.certificates[indexPath.section]
-        cell.textLabel?.text = certificate.name
-        cell.textLabel?.backgroundColor = .white
-        cell.detailTextLabel?.text = self.stateOfCertificate(withURL: certificate.url)
-        cell.detailTextLabel?.backgroundColor = .white
-        cell.enable(certificate.url != nil)
-        cell.accessoryType = certificate.url != nil ? .disclosureIndicator : .none
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return self.certificates[section].explanation
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionView?.performBatchUpdates(nil)
     }
 
 }
@@ -100,10 +134,9 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
     }
 
     func setupEmptyState() {
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.tableFooterView = UIView()
-        self.tableView.reloadEmptyDataSet()
+        self.collectionView?.emptyDataSetSource = self
+        self.collectionView?.emptyDataSetDelegate = self
+        self.collectionView?.reloadEmptyDataSet()
     }
 
 }

@@ -16,7 +16,7 @@
 
 
 ### Development toolchain
-- Xcode 10
+- Xcode 10.1
 - bundler: `gem install bundler`
 
 The following tools will be installed via bundler:

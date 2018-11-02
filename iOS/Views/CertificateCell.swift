@@ -21,12 +21,12 @@ class CertificateCell: UICollectionViewCell {
         self.shadowView.layer.cornerRadius = cornerRadius
     }
 
-    func configure(_ certificate: (name: String, explanation: String?, url: URL?), stateOfCertificate: String) {
-        self.titleLabel.text = certificate.name
-        self.descriptionLabel.text = certificate.explanation
+    func configure(_ name: String, explanation: String?, url: URL?, stateOfCertificate: String) {
+        self.titleLabel.text = name
+        self.descriptionLabel.text = explanation
         self.statusLabel.text = stateOfCertificate
 
-        let achieved = certificate.url != nil
+        let achieved = url != nil
         self.isUserInteractionEnabled = achieved
         self.shadowView.backgroundColor = achieved ? Brand.default.colors.primary : UIColor.lightGray
         self.titleLabel.backgroundColor = self.shadowView.backgroundColor

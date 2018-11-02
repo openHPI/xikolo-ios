@@ -89,7 +89,7 @@ extension CertificatesListViewController { // CollectionViewDelegate
         let stateOfCertificate = self.stateOfCertificate(withURL: certificate.url)
 
         if let cell = cell as? CertificateCell {
-            cell.configure(certificate, stateOfCertificate: stateOfCertificate)
+            cell.configure(certificate.name, explanation: certificate.explanation, url: certificate.url, stateOfCertificate: stateOfCertificate)
         }
 
         return cell

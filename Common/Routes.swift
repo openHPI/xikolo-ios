@@ -102,6 +102,7 @@ private extension URL {
         } else if !(urlComponents.queryItems?.contains(queryItem) ?? false) {
             urlComponents.queryItems?.append(queryItem)
         }
+
         return urlComponents.url.require(hint: "Invalid url with query item parameter")
     }
 

@@ -7,6 +7,7 @@ import UIKit
 
 protocol CardListLayoutDelegate: AnyObject {
 
+    var followReadableWidth: Bool { get }
     var showHeaders: Bool { get }
 
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
@@ -17,6 +18,10 @@ protocol CardListLayoutDelegate: AnyObject {
 }
 
 extension CardListLayoutDelegate {
+
+    var followReadableWidth: Bool {
+        return false
+    }
 
     var showHeaders: Bool {
         return false
@@ -51,14 +56,17 @@ class CardListLayout: UICollectionViewLayout {
     }
 
     private func layoutInsets(for collectionView: UICollectionView) -> UIEdgeInsets {
+        let followReadableWidth = self.delegate?.followReadableWidth ?? false
+        let guide = followReadableWidth ? collectionView.readableContentGuide : collectionView.layoutMarginsGuide
+        let layoutFrame = guide.layoutFrame
         return UIEdgeInsets(top: self.delegate?.topInset() ?? 0,
-                            left: collectionView.layoutMargins.left - 14,
+                            left: layoutFrame.minX - 14,
                             bottom: 8,
-                            right: collectionView.layoutMargins.right - 14)
+                            right: collectionView.bounds.width - layoutFrame.maxX - 14)
     }
 
     private func numberOfColumms(for collectionView: UICollectionView) -> Int {
-        let contentWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
+        let contentWidth = self.contentWidth
         if collectionView.traitCollection.horizontalSizeClass == .regular {
             return contentWidth > 960 ? 3 : 2
         } else if contentWidth > collectionView.bounds.height {
@@ -106,7 +114,7 @@ class CardListLayout: UICollectionViewLayout {
                     rowOffset = (yOffset.max() ?? 0.0) + self.linePadding
                 }
 
-                if item == 0, self.delegate?.showHeaders ?? true { // new section
+                if item == 0, self.delegate?.showHeaders ?? false { // new section
                     rowOffset += self.headerHeight
                 }
 

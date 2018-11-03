@@ -48,30 +48,40 @@ class CertificatesListViewController: UICollectionViewController {
 
 extension CertificatesListViewController: CardListLayoutDelegate {
 
+    var followReadableWidth: Bool {
+        return true
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+        let cardMargin: CGFloat = 14
+        let cardPadding: CGFloat = 16
+        let cardWidth = boundingWidth - 2 * cardMargin
+        let textWidth = cardWidth - 2 * cardPadding
 
-        let cardWidth = boundingWidth - 2 * 14
-        let boxHeight: CGFloat = 120
+        let titleHeight = self.certificates.map { certificate -> CGFloat in
+            return certificate.name.height(forTextStyle: .headline, boundingWidth: textWidth)
+        }.max() ?? 0
+
+        let statusHeight = self.certificates.map { certificate -> CGFloat in
+            let statusText = self.stateOfCertificate(withURL: certificate.url)
+            return statusText.height(forTextStyle: .subheadline, boundingWidth: textWidth)
+        }.max() ?? 0
 
         let certificate = self.certificates[indexPath.item]
-        let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
+        let explanationHeight = certificate.explanation?.height(forTextStyle: .footnote, boundingWidth: cardWidth) ?? 0
 
-        let explanationText = certificate.explanation ?? ""
-        let explanationAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .footnote)]
-        let explanationSize = NSString(string: explanationText).boundingRect(with: boundingSize,
-                                                                             options: .usesLineFragmentOrigin,
-                                                                             attributes: explanationAttributes,
-                                                                             context: nil)
+        var height = cardMargin
+        height += 2 * cardPadding
+        height += 8
+        height += 8
+        height += titleHeight
+        height += statusHeight
+        height += explanationHeight
+        height += 5
 
-        var height = boxHeight
-
-        if !explanationText.isEmpty {
-            height += 8 + explanationSize.height
-        }
-
-        return height
+        return ceil(height)
     }
 
 }

@@ -117,43 +117,25 @@ extension CourseListViewController: CardListLayoutDelegate {
         let cardWidth = boundingWidth - 2 * 14
         let imageHeight = cardWidth / 2
 
-        let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
-        let titleText = course.title ?? ""
-        let titleAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
-        let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
-                                                                 options: .usesLineFragmentOrigin,
-                                                                 attributes: titleAttributes,
-                                                                 context: nil)
-
-        let teachersText = course.teachers ?? ""
-        let teachersAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)]
-        let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
-                                                                       options: .usesLineFragmentOrigin,
-                                                                       attributes: teachersAttributes,
-                                                                       context: nil)
+        let titleHeight = course.title?.height(forTextStyle: .headline, boundingWidth: cardWidth) ?? 0
+        let teachersHeight = course.teachers?.height(forTextStyle: .subheadline, boundingWidth: cardWidth) ?? 0
 
         var height = imageHeight + 14
 
         if Brand.default.features.showCourseTeachers {
-            if !titleText.isEmpty || !teachersText.isEmpty {
+            if titleHeight > 0 || teachersHeight > 0 {
                 height += 8
             }
 
-            if !titleText.isEmpty {
-                height += titleSize.height
-            }
-
-            if !titleText.isEmpty && !teachersText.isEmpty {
+            if titleHeight > 0 && teachersHeight > 0 {
                 height += 4
             }
 
-            if !teachersText.isEmpty {
-                height += teachersSize.height
-            }
+            height += titleHeight
+            height += teachersHeight
         } else {
-            if !titleText.isEmpty {
-                height += 8 + titleSize.height
-            }
+            height += 8
+            height += titleHeight
         }
 
         return height + 5

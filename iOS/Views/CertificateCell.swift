@@ -28,7 +28,7 @@ class CertificateCell: UICollectionViewCell {
 
         let achieved = url != nil
         self.isUserInteractionEnabled = achieved
-        let cardColor = achieved ? Brand.default.colors.primary : UIColor(white: 0.8, alpha: 1.0)
+        let cardColor = achieved ? Brand.default.colors.primary : UIColor(white: 0.75, alpha: 1.0)
         self.shadowView.backgroundColor = cardColor
         self.titleLabel.backgroundColor = cardColor
         self.statusLabel.backgroundColor = cardColor

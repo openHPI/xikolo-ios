@@ -8,11 +8,14 @@ import UIKit
 protocol CardListLayoutDelegate: AnyObject {
 
     var followReadableWidth: Bool { get }
-    var showHeaders: Bool { get }
     var topInset: CGFloat { get } // only needed in iOS 10
+    var cardInset: CGFloat { get }
+    var heightForHeader: CGFloat { get }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat
-    func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForCellAtIndexPath indexPath: IndexPath,
+                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat
 
 }
 
@@ -22,11 +25,15 @@ extension CardListLayoutDelegate {
         return false
     }
 
-    var showHeaders: Bool {
-        return false
+    var topInset: CGFloat {
+        return 0
     }
 
-    var topInset: CGFloat {
+    var cardInset: CGFloat {
+        return 0
+    }
+
+    var heightForHeader: CGFloat {
         return 0
     }
 
@@ -38,8 +45,6 @@ class CardListLayout: UICollectionViewLayout {
 
     private let cellPadding: CGFloat = 0
     private let linePadding: CGFloat = 6
-    private let headerHeight: CGFloat = 36
-    private let headerPillHeight: CGFloat = 50
 
     private var cache: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     private var sectionRange: [Int: (minimum: CGFloat, maximum: CGFloat)] = [:]
@@ -58,10 +63,11 @@ class CardListLayout: UICollectionViewLayout {
         let followReadableWidth = self.delegate?.followReadableWidth ?? false
         let guide = followReadableWidth ? collectionView.readableContentGuide : collectionView.layoutMarginsGuide
         let layoutFrame = guide.layoutFrame
+        let cardInset = self.delegate?.cardInset ?? 0
         return UIEdgeInsets(top: self.delegate?.topInset ?? 0,
-                            left: layoutFrame.minX - 14,
+                            left: layoutFrame.minX - cardInset,
                             bottom: 8,
-                            right: collectionView.bounds.width - layoutFrame.maxX - 14)
+                            right: collectionView.bounds.width - layoutFrame.maxX - cardInset)
     }
 
     private func numberOfColumms(for collectionView: UICollectionView) -> Int {
@@ -111,8 +117,10 @@ class CardListLayout: UICollectionViewLayout {
                     rowOffset = (yOffset.max() ?? 0.0) + self.linePadding
                 }
 
-                if item == 0, self.delegate?.showHeaders ?? false { // new section
-                    rowOffset += self.headerHeight
+                // new section
+                if item == 0, let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 {
+                    let cardInset = self.delegate?.cardInset ?? 0
+                    rowOffset += headerHeight - cardInset
                 }
 
                 let height = self.delegate?.collectionView(collectionView,
@@ -130,10 +138,11 @@ class CardListLayout: UICollectionViewLayout {
                 column = column < (numberOfColumns - 1) ? (column + 1) : 0
             }
 
-            self.contentHeight += layoutInsets.bottom
             let sectionEnd = (yOffset.max() ?? 0.0) + self.linePadding
             self.sectionRange[section] = (minimum: sectionStart, maximum: sectionEnd)
         }
+
+        self.contentHeight += layoutInsets.bottom
     }
 
     override func invalidateLayout() {
@@ -156,7 +165,7 @@ class CardListLayout: UICollectionViewLayout {
             }
         }
 
-        if self.delegate?.showHeaders ?? true {
+        if let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 {
             for section in sectionsToAdd {
                 let indexPath = IndexPath(item: 0, section: section)
                 let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)
@@ -175,7 +184,7 @@ class CardListLayout: UICollectionViewLayout {
 
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard self.delegate?.showHeaders ?? true else { return nil }
+        guard let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 else { return nil }
         guard elementKind == UICollectionView.elementKindSectionHeader else { return nil }
 
         guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }
@@ -192,13 +201,13 @@ class CardListLayout: UICollectionViewLayout {
         let offsetY: CGFloat
         if contentOffsetY < sectionRange.minimum {
             offsetY = sectionRange.minimum
-        } else if contentOffsetY > sectionRange.maximum - self.headerHeight {
-            offsetY = sectionRange.maximum - self.headerHeight
+        } else if contentOffsetY > sectionRange.maximum - headerHeight {
+            offsetY = sectionRange.maximum - headerHeight
         } else {
             offsetY = contentOffsetY
         }
 
-        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.headerPillHeight)
+        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: headerHeight)
         let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
         layoutAttributes.frame = frame
         layoutAttributes.isHidden = false

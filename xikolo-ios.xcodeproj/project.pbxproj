@@ -46,6 +46,7 @@
 		5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058578521351CBD006A5D15 /* PseudoCourseCell.swift */; };
 		506D7E1B2104B7730018D9E2 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D7E1A2104B7730018D9E2 /* CourseCell.xib */; };
 		50761B5820FCADD700CEDAF9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
+		5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077012D218F38BC005568A6 /* InnerPillLabel.swift */; };
 		507DFF9A2153E397006DC140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 507DFF9C2153E397006DC140 /* InfoPlist.strings */; };
 		508AB2BC2109CDA40079EAE5 /* PDFWebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BB2109CDA40079EAE5 /* PDFWebViewController.storyboard */; };
 		508AB2C02109F0A10079EAE5 /* DocumentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */; };
@@ -447,6 +448,7 @@
 		50761B4320FCAC5A00CEDAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50761B5320FCADD600CEDAF9 /* Common-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Common-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50761B5720FCADD700CEDAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5077012D218F38BC005568A6 /* InnerPillLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerPillLabel.swift; sourceTree = "<group>"; };
 		507A5CC92021CBAA009B1F95 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		507A5CCB2021CBBC009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		507A5CCF2021EC81009B1F95 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
@@ -751,6 +753,7 @@
 			children = (
 				50046F6E216B938D00D59073 /* LoadingButton.swift */,
 				503988722166920400F9043B /* ShadowContainerView.swift */,
+				5077012D218F38BC005568A6 /* InnerPillLabel.swift */,
 				508B9FA7211D7A600090BD16 /* RefreshControl.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
@@ -1893,6 +1896,7 @@
 				50CF1F5B20DCDBFC0011BFE9 /* CouseContent+image.swift in Sources */,
 				50CF1F5C20DCDBFC0011BFE9 /* CourseDateListViewController.swift in Sources */,
 				508AB2E82111AF950079EAE5 /* CourseOverviewCell.swift in Sources */,
+				5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */,
 				50CF1F6120DCDBFC0011BFE9 /* CourseAreaCell.swift in Sources */,
 				5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */,
 				50CF1F6A20DCDBFC0011BFE9 /* AppDelegate.swift in Sources */,

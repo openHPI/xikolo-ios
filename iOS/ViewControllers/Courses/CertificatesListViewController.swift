@@ -52,6 +52,10 @@ extension CertificatesListViewController: CardListLayoutDelegate {
         return true
     }
 
+    var cardInset: CGFloat {
+        return 14
+    }
+
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
         return CertificateCell.minimalWidth(for: traitCollection)
     }
@@ -121,7 +125,7 @@ extension CertificatesListViewController { // CollectionViewDelegate
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.collectionView?.performBatchUpdates(nil)
+        self.collectionViewLayout.invalidateLayout()
     }
 
 }

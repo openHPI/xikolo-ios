@@ -190,7 +190,7 @@
         <scene sceneID="4ai-qd-h8d">
             <objects>
                 <viewController storyboardIdentifier="RichtextViewController" id="eQp-3j-Pq9" customClass="AnnouncementViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="nii-Jl-n7P">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="nii-Jl-n7P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

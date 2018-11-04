@@ -72,7 +72,13 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 14 + 150 + 8 + 20.5 + 4 + 18 // (padding + image height + padding + text + padding + text)
+        var height: CGFloat = 14
+        height += 150 // image
+        height += 8 // padding
+        height += UIFont.preferredFont(forTextStyle: .headline).pointSize
+        height += 4 //padding
+        height += UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+
         let numberOfCoreDataItems = self.dataSource.numberOfCoreDataItems(inSection: indexPath.section)
         let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: indexPath.section)
         let itemLimit = self.itemLimit(forSection: indexPath.section) ?? Int.max

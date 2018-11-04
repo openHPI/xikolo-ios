@@ -106,6 +106,18 @@ extension CourseListViewController: CardListLayoutDelegate {
         return self.configuration == .allCourses || self.dataSource.isSearching
     }
 
+    var topInset: CGFloat {
+        if #available(iOS 11.0, *) {
+            return 0
+        } else {
+            return self.searchController?.searchBar.bounds.height ?? 0
+        }
+    }
+
+    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
+        return CourseCell.minimalWidth(for: traitCollection)
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
@@ -139,14 +151,6 @@ extension CourseListViewController: CardListLayoutDelegate {
         }
 
         return height + 5
-    }
-
-    func topInset() -> CGFloat {
-        if #available(iOS 11.0, *) {
-            return 0
-        } else {
-            return self.searchController?.searchBar.bounds.height ?? 0
-        }
     }
 
 }

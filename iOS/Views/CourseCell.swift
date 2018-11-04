@@ -102,3 +102,39 @@ class CourseCell: UICollectionViewCell {
     }
 
 }
+
+extension CourseCell {
+
+    static func minimalWidth(for traitCollection: UITraitCollection) -> CGFloat {
+        switch traitCollection.preferredContentSizeCategory {
+        case .extraSmall:
+            return 280
+        case .small:
+            return 290
+        case .medium:
+            return 300
+        case .extraLarge:
+            return 320
+        case .extraExtraLarge:
+            return 330
+        case .extraExtraExtraLarge:
+            return 340
+
+        // Accessibility sizes
+        case .accessibilityMedium:
+            return 360
+        case .accessibilityLarge:
+            return 380
+        case .accessibilityExtraLarge:
+            return 400
+        case .accessibilityExtraExtraLarge:
+            return 420
+        case .accessibilityExtraExtraExtraLarge:
+            return 440
+
+        default: // large
+            return 310
+        }
+    }
+
+}

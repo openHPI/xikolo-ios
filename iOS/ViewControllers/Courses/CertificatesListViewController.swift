@@ -52,6 +52,10 @@ extension CertificatesListViewController: CardListLayoutDelegate {
         return true
     }
 
+    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
+        return CertificateCell.minimalWidth(for: traitCollection)
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {

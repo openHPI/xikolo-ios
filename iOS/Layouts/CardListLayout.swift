@@ -9,11 +9,10 @@ protocol CardListLayoutDelegate: AnyObject {
 
     var followReadableWidth: Bool { get }
     var showHeaders: Bool { get }
+    var topInset: CGFloat { get } // only needed in iOS 10
 
+    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat
     func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
-
-    // only needed in iOS 10
-    func topInset() -> CGFloat
 
 }
 
@@ -27,7 +26,7 @@ extension CardListLayoutDelegate {
         return false
     }
 
-    func topInset() -> CGFloat {
+    var topInset: CGFloat {
         return 0
     }
 
@@ -59,21 +58,19 @@ class CardListLayout: UICollectionViewLayout {
         let followReadableWidth = self.delegate?.followReadableWidth ?? false
         let guide = followReadableWidth ? collectionView.readableContentGuide : collectionView.layoutMarginsGuide
         let layoutFrame = guide.layoutFrame
-        return UIEdgeInsets(top: self.delegate?.topInset() ?? 0,
+        return UIEdgeInsets(top: self.delegate?.topInset ?? 0,
                             left: layoutFrame.minX - 14,
                             bottom: 8,
                             right: collectionView.bounds.width - layoutFrame.maxX - 14)
     }
 
     private func numberOfColumms(for collectionView: UICollectionView) -> Int {
-        let contentWidth = self.contentWidth
-        if collectionView.traitCollection.horizontalSizeClass == .regular {
-            return contentWidth > 960 ? 3 : 2
-        } else if contentWidth > collectionView.bounds.height {
-            return 2
-        } else {
+        guard let minimalCardWidth = self.delegate?.minimalCardWidth(for: collectionView.traitCollection) else {
             return 1
         }
+
+        let numberOfColumns = Int(floor(self.contentWidth / minimalCardWidth))
+        return max(1, numberOfColumns)
     }
 
     override var collectionViewContentSize: CGSize {

@@ -38,3 +38,39 @@ class CertificateCell: UICollectionViewCell {
     }
 
 }
+
+extension CertificateCell {
+
+    static func minimalWidth(for traitCollection: UITraitCollection) -> CGFloat {
+        switch traitCollection.preferredContentSizeCategory {
+        case .extraSmall:
+            return 270
+        case .small:
+            return 280
+        case .medium:
+            return 290
+        case .extraLarge:
+            return 310
+        case .extraExtraLarge:
+            return 320
+        case .extraExtraExtraLarge:
+            return 330
+
+        // Accessibility sizes
+        case .accessibilityMedium:
+            return 370
+        case .accessibilityLarge:
+            return 390
+        case .accessibilityExtraLarge:
+            return 410
+        case .accessibilityExtraExtraLarge:
+            return 430
+        case .accessibilityExtraExtraExtraLarge:
+            return 450
+
+        default: // large
+            return 300
+        }
+    }
+
+}

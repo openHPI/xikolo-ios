@@ -105,7 +105,7 @@ class CourseCell: UICollectionViewCell {
 
 extension CourseCell {
 
-    static func minimalWidth(for traitCollection: UITraitCollection) -> CGFloat {
+    static func minimalWidth(for traitCollection: UITraitCollection) -> CGFloat { // swiftlint:disable:this cyclomatic_complexity
         switch traitCollection.preferredContentSizeCategory {
         case .extraSmall:
             return 280

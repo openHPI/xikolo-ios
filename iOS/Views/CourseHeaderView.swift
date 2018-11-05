@@ -15,14 +15,14 @@ class CourseHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundView.layer.masksToBounds = true
-        self.backgroundView.layer.cornerRadius = self.backgroundView.frame.height/2
+        self.backgroundView.layer.cornerRadius = self.backgroundView.frame.height / 2
         self.backgroundView.backgroundColor = UIColor(white: 1.0, alpha: 0.9)
         self.titleView.textColor = Brand.default.colors.secondary
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.backgroundView.layer.cornerRadius = self.backgroundView.frame.height/2
+        self.backgroundView.layer.cornerRadius = self.backgroundView.frame.height / 2
     }
 
     func configure(_ section: NSFetchedResultsSectionInfo) {

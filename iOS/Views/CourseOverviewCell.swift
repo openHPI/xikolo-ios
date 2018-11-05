@@ -76,7 +76,7 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
         height += 150 // image
         height += 8 // padding
         height += UIFont.preferredFont(forTextStyle: .headline).pointSize
-        height += 4 //padding
+        height += 4 // padding
         height += UIFont.preferredFont(forTextStyle: .subheadline).pointSize
 
         let numberOfCoreDataItems = self.dataSource.numberOfCoreDataItems(inSection: indexPath.section)

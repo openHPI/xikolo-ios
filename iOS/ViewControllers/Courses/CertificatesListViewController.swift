@@ -125,7 +125,7 @@ extension CertificatesListViewController { // CollectionViewDelegate
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.collectionViewLayout.invalidateLayout()
+        self.collectionView.performBatchUpdates(nil)
     }
 
 }

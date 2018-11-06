@@ -11,6 +11,7 @@ class CourseOverviewCell: UITableViewCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
 
     private var configuration: CourseListConfiguration!
     private var dataSource: CoreDataCollectionViewDataSource<CourseOverviewCell>!
@@ -36,6 +37,28 @@ class CourseOverviewCell: UITableViewCell {
                                                            fetchedResultsControllers: configuration.resultsControllers,
                                                            cellReuseIdentifier: reuseIdentifier,
                                                            delegate: self)
+
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateCollectionViewHeight()
+    }
+
+    @objc private func updateCollectionViewHeight() {
+        let courseCellWidth = CourseCell.minimalWidth(for: self.collectionView.traitCollection)
+        let availableWidth = (self.superview?.bounds.width ?? 500) - self.collectionView.layoutMargins.left - self.collectionView.layoutMargins.right
+        let preferedWidth = min(availableWidth * 0.9, courseCellWidth)
+
+        var height: CGFloat = 14
+        height += preferedWidth / 2 // image
+        height += 8 // padding
+        height += UIFont.preferredFont(forTextStyle: .headline).pointSize
+        height += 4 // padding
+        height += UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+        height += 4 // padding
+
+        self.collectionViewHeight.constant = height
     }
 
 }
@@ -72,12 +95,9 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var height: CGFloat = 14
-        height += 150 // image
-        height += 8 // padding
-        height += UIFont.preferredFont(forTextStyle: .headline).pointSize
-        height += 4 // padding
-        height += UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+        let courseCellWidth = CourseCell.minimalWidth(for: collectionView.traitCollection)
+        let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
+        let preferedWidth = min(availableWidth * 0.9, courseCellWidth)
 
         let numberOfCoreDataItems = self.dataSource.numberOfCoreDataItems(inSection: indexPath.section)
         let numberOfAdditionalItems = self.numberOfAdditonalItems(for: numberOfCoreDataItems, inSection: indexPath.section)
@@ -86,9 +106,16 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
         let hasCourses = numberOfCoreDataItems > 0
         let hasAddtionaltems = numberOfAdditionalItems > 0
         let isLastCell = min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item
-        let maximalWidth: CGFloat = hasCourses && hasAddtionaltems && isLastCell ? 200 : 300
-        let availableWidth = collectionView.bounds.width - collectionView.layoutMargins.left - collectionView.layoutMargins.right
-        let width = min(availableWidth * 0.9, maximalWidth)
+        let width: CGFloat = hasCourses && hasAddtionaltems && isLastCell ? preferedWidth * 2 / 3 : preferedWidth
+
+        var height: CGFloat = 14
+        height += preferedWidth / 2 // image
+        height += 8 // padding
+        height += UIFont.preferredFont(forTextStyle: .headline).pointSize
+        height += 4 // padding
+        height += UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+        height += 4 // padding
+
         return CGSize(width: width, height: height)
     }
 

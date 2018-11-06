@@ -14,6 +14,7 @@ class CourseDateSummaryView: UIStackView {
     @IBOutlet private weak var nextCountLabel: UILabel!
     @IBOutlet private weak var allCountLabel: UILabel!
     @IBOutlet private var pills: [UIView]!
+    @IBOutlet private var widthConstraint: NSLayoutConstraint!
 
     weak var delegate: CourseDateOverviewDelegate?
 
@@ -47,6 +48,12 @@ class CourseDateSummaryView: UIStackView {
 
     @objc func tappedOnView() {
         self.delegate?.openCourseDateList()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let cellWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        self.widthConstraint.constant = cellWidth - 2 * 14
     }
 
 }

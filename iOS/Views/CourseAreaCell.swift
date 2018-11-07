@@ -11,10 +11,16 @@ class CourseAreaCell: UICollectionViewCell {
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var hightlightView: UIView!
 
+    static func font(whenSelected selected: Bool) -> UIFont {
+        let preferredFontSize = UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+        return selected ? UIFont.boldSystemFont(ofSize: preferredFontSize) : UIFont.systemFont(ofSize: preferredFontSize)
+    }
+
     override var isSelected: Bool {
         didSet {
+            let preferredFontSize = UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+            self.titleView.font = CourseAreaCell.font(whenSelected: self.isSelected)
             self.titleView.textColor = self.isSelected ? UIColor.black : UIColor.lightGray
-            self.titleView.font = self.isSelected ? UIFont.boldSystemFont(ofSize: 14) : UIFont.systemFont(ofSize: 14)
             self.hightlightView.isHidden = !self.isSelected
         }
     }

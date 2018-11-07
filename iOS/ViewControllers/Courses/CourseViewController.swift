@@ -9,6 +9,7 @@ import UIKit
 class CourseViewController: UIViewController {
 
     @IBOutlet private weak var titleView: UILabel!
+    @IBOutlet private weak var courseAreaListContainerHeight: NSLayoutConstraint!
 
     private var courseAreaViewController: UIViewController?
     private var courseAreaListViewController: CourseAreaListViewController? {
@@ -49,6 +50,12 @@ class CourseViewController: UIViewController {
         ErrorManager.shared.remember(self.course.id, forKey: "course_id")
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateCourseAreaListContainerHeight()
+        self.courseAreaListViewController?.reloadData()
+    }
+
     private func updateView() {
         self.titleView.text = self.course.title
 
@@ -59,6 +66,11 @@ class CourseViewController: UIViewController {
             titleView.frame = frame
             titleView.setNeedsLayout()
         }
+    }
+
+    private func updateCourseAreaListContainerHeight() {
+        let containerHeight = CourseAreaCell.font(whenSelected: true).lineHeight + 2 * 8
+        self.courseAreaListContainerHeight.constant = containerHeight
     }
 
     private func closeCourse() {

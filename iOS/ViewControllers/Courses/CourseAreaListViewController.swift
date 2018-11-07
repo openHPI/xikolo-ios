@@ -73,6 +73,13 @@ class CourseAreaListViewController: UICollectionViewController {
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let selectedIndexPath = self.selectedIndexPath {
+            self.collectionView?.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: false)
+        }
+    }
+
     func reloadData() {
         self.collectionView?.reloadData()
     }
@@ -92,14 +99,17 @@ extension CourseAreaListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let font = CourseAreaCell.font(whenSelected: true)
+        let cellHeight = font.lineHeight + 2 * 8
+
         let titleText = self.delegate?.accessibleAreas[safe: indexPath.item]?.title ?? ""
-        let boundingSize = CGSize(width: CGFloat.infinity, height: 34)
-        let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
+        let boundingSize = CGSize(width: CGFloat.infinity, height: cellHeight)
+        let titleAttributes = [NSAttributedString.Key.font: font]
         let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
                                                                  options: .usesLineFragmentOrigin,
                                                                  attributes: titleAttributes,
                                                                  context: nil)
-        return CGSize(width: titleSize.width + 2, height: 34) // 2pt extra to prevent the title for truncation
+        return CGSize(width: titleSize.width + 2, height: cellHeight) // 2pt extra to prevent the title for truncation
     }
 
     func collectionView(_ collectionView: UICollectionView,

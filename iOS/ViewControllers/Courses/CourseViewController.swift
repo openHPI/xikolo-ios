@@ -70,7 +70,7 @@ class CourseViewController: UIViewController {
 
     private func updateCourseAreaListContainerHeight() {
         let containerHeight = CourseAreaCell.font(whenSelected: true).lineHeight + 2 * 8
-        self.courseAreaListContainerHeight.constant = containerHeight
+        self.courseAreaListContainerHeight.constant = ceil(containerHeight)
     }
 
     private func closeCourse() {

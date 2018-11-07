@@ -121,7 +121,7 @@ extension CourseListViewController: CardListLayoutDelegate {
     var heightForHeader: CGFloat {
         let margin: CGFloat = 8
         let padding: CGFloat = 8
-        return 2 * margin + 2 * padding + UIFont.preferredFont(forTextStyle: .headline).pointSize
+        return 2 * margin + 2 * padding + UIFont.preferredFont(forTextStyle: .headline).lineHeight
     }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {

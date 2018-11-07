@@ -53,9 +53,9 @@ class CourseOverviewCell: UITableViewCell {
         var height: CGFloat = 14
         height += preferedWidth / 2 // image
         height += 8 // padding
-        height += UIFont.preferredFont(forTextStyle: .headline).pointSize
+        height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
         height += 4 // padding
-        height += UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+        height += UIFont.preferredFont(forTextStyle: .subheadline).lineHeight
         height += 4 // padding
 
         self.collectionViewHeight.constant = height
@@ -111,9 +111,9 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
         var height: CGFloat = 14
         height += preferedWidth / 2 // image
         height += 8 // padding
-        height += UIFont.preferredFont(forTextStyle: .headline).pointSize
+        height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
         height += 4 // padding
-        height += UIFont.preferredFont(forTextStyle: .subheadline).pointSize
+        height += UIFont.preferredFont(forTextStyle: .subheadline).lineHeight
         height += 4 // padding
 
         return CGSize(width: width, height: height)

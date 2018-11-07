@@ -49,16 +49,8 @@ class CourseOverviewCell: UITableViewCell {
         let courseCellWidth = CourseCell.minimalWidth(for: self.collectionView.traitCollection)
         let availableWidth = (self.superview?.bounds.width ?? 500) - self.collectionView.layoutMargins.left - self.collectionView.layoutMargins.right
         let preferedWidth = min(availableWidth * 0.9, courseCellWidth)
-
-        var height: CGFloat = 14
-        height += preferedWidth / 2 // image
-        height += 8 // padding
-        height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
-        height += 4 // padding
-        height += UIFont.preferredFont(forTextStyle: .subheadline).lineHeight
-        height += 4 // padding
-
-        self.collectionViewHeight.constant = height
+        let height = CourseCell.heightForOverviewList(forWidth: preferedWidth)
+        self.collectionViewHeight.constant = ceil(height)
     }
 
 }
@@ -106,15 +98,8 @@ extension CourseOverviewCell: UICollectionViewDelegateFlowLayout {
         let hasCourses = numberOfCoreDataItems > 0
         let hasAddtionaltems = numberOfAdditionalItems > 0
         let isLastCell = min(itemLimit, numberOfCoreDataItems) + numberOfAdditionalItems - 1 == indexPath.item
-        let width: CGFloat = hasCourses && hasAddtionaltems && isLastCell ? preferedWidth * 2 / 3 : preferedWidth
-
-        var height: CGFloat = 14
-        height += preferedWidth / 2 // image
-        height += 8 // padding
-        height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
-        height += 4 // padding
-        height += UIFont.preferredFont(forTextStyle: .subheadline).lineHeight
-        height += 4 // padding
+        let width = hasCourses && hasAddtionaltems && isLastCell ? preferedWidth * 2 / 3 : preferedWidth
+        let height = CourseCell.heightForOverviewList(forWidth: preferedWidth)
 
         return CGSize(width: width, height: height)
     }

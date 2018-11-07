@@ -22,7 +22,6 @@ class PseudoCourseCell: UICollectionViewCell {
         super.awakeFromNib()
         self.cardView.layer.cornerRadius = 6.0
         self.actionLabel.textColor = Brand.default.colors.window
-        self.bottomConstraint.constant = Brand.default.features.showCourseTeachers ? 54.5 : 35.5
     }
 
     func configure(for style: Style, configuration: CourseListConfiguration) {
@@ -49,6 +48,11 @@ class PseudoCourseCell: UICollectionViewCell {
             self.messageLabel.text = nil
             self.actionLabel.text = nil
         }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.bottomConstraint.constant = CourseCell.cardBottomOffset
     }
 
 }

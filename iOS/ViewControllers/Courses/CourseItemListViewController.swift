@@ -131,6 +131,11 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.tableView.reloadData()
+    }
+
     private func updateFooterView() {
         guard self.course.startsAt?.inPast ?? true else {
             self.nextSectionStartLabel.isHidden = true

@@ -21,7 +21,7 @@ class CourseItemDetailView: UIView {
     private let shimmerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
-        view.layer.cornerRadius = 6.0
+        view.layer.cornerRadius = view.frame.height / 2
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
@@ -62,6 +62,17 @@ class CourseItemDetailView: UIView {
             self.shimmerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.shimmerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
         ])
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.shimmerView.layer.cornerRadius = self.shimmerView.frame.height / 2
+    }
+
+    override var intrinsicContentSize: CGSize {
+        let superSize = super.intrinsicContentSize
+        let height = max(superSize.height, UIFont.preferredFont(forTextStyle: .caption1).lineHeight)
+        return CGSize(width: superSize.width, height: height)
     }
 
     func configure(for courseItem: CourseItem, with delegate: CourseItemCellDelegate?) {
@@ -139,7 +150,7 @@ class DetailedDataView: UIStackView {
     private lazy var progressView: CircularProgressView = {
         let progress = CircularProgressView()
         progress.backgroundColor = .white
-        progress.lineWidth = 1.25
+        progress.lineWidth = self.progressViewLineWidth
         progress.gapWidth = 0.0
         progress.indeterminateProgress = 0.8
         progress.tintColor = Brand.default.colors.primary
@@ -154,14 +165,32 @@ class DetailedDataView: UIStackView {
         imageView.bounds = CGRect(x: 0, y: 0, width: 12, height: 14)
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = UIColor.darkText.withAlphaComponent(0.7)
+
+        if #available(iOS 11, *) {
+            imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        }
+
         return imageView
     }()
+
+    private var progressViewLineWidth: CGFloat {
+        if #available(iOS 11, *) {
+            return self.traitCollection.preferredContentSizeCategory < .accessibilityMedium ? 1.25 : 2.5
+        } else {
+            return 1.25
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.axis = .horizontal
         self.distribution = .fill
         self.alignment = .center
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.progressView.lineWidth = self.progressViewLineWidth
     }
 
     func configure(for data: DetailedData, for video: Video?, inOfflineMode: Bool) {
@@ -210,7 +239,8 @@ class DetailedDataView: UIStackView {
 
     private func textLabel(forContentItem contentItem: DetailedData, in downloadState: DownloadState, inOfflineMode isOffline: Bool) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        label.adjustsFontForContentSizeCategory = true
         label.backgroundColor = .white
 
         let downloaded: Bool

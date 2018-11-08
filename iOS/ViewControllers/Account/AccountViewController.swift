@@ -12,11 +12,6 @@ import UIKit
 
 class AccountViewController: UITableViewController {
 
-    enum HeaderHeight: CGFloat {
-        case noContent = 190
-        case userProfile = 260
-    }
-
     static let feedbackIndexPath = IndexPath(row: 0, section: 2)
     static let logoutIndexPath = IndexPath(row: 0, section: 3)
 
@@ -40,7 +35,6 @@ class AccountViewController: UITableViewController {
 
     private var userObserver: ManagedObjectObserver?
 
-    var headerHeight: HeaderHeight = .noContent
     var user: User? {
         didSet {
             if let user = self.user {
@@ -128,7 +122,6 @@ class AccountViewController: UITableViewController {
             }
 
             UIView.animate(withDuration: 0.25, animations: {
-                self.headerHeight = .userProfile
                 self.view.layoutIfNeeded()
             }, completion: { _ in
                 UIView.animate(withDuration: 0.25) {
@@ -148,7 +141,6 @@ class AccountViewController: UITableViewController {
                 }
 
                 UIView.animate(withDuration: 0.25) {
-                    self.headerHeight = .noContent
                     self.view.layoutIfNeeded()
                 }
             })
@@ -205,19 +197,28 @@ class AccountViewController: UITableViewController {
         return super.tableView(tableView, cellForRowAt: self.indexPathIncludingHiddenCells(for: indexPath))
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        // Dynamic sizing for the header view
         if let headerView = self.tableView.tableHeaderView {
-            let height = self.headerHeight.rawValue
-            var headerFrame = headerView.frame
-
-            // Don't set the same height again to prevent a infinte loop hang.
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
+            let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            if headerView.frame.size.height != size.height {
+                headerView.frame.size.height = size.height
                 self.tableView.tableHeaderView = headerView
+                self.tableView.layoutIfNeeded()
+            }
+        }
+
+        if let footerView = self.tableView.tableFooterView {
+            let size = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            if footerView.frame.size.height != size.height {
+                footerView.frame.size.height = size.height
+                self.tableView.tableFooterView = footerView
+                self.tableView.layoutIfNeeded()
             }
         }
     }

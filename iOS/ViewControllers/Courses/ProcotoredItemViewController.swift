@@ -35,4 +35,5 @@ extension ProctoredItemViewController: CourseItemContentViewController {
     func configure(for item: CourseItem) {
         self.courseItem = item
     }
+
 }

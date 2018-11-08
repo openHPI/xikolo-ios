@@ -18,7 +18,6 @@ class CourseAreaCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            let preferredFontSize = UIFont.preferredFont(forTextStyle: .subheadline).pointSize
             self.titleView.font = CourseAreaCell.font(whenSelected: self.isSelected)
             self.titleView.textColor = self.isSelected ? UIColor.black : UIColor.lightGray
             self.hightlightView.isHidden = !self.isSelected

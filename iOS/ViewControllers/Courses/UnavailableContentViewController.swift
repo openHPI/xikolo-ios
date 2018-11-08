@@ -24,6 +24,7 @@ class UnavailableContentViewController: UIViewController {
         super.viewDidLoad()
         self.itemTitleLabel.text = self.courseItem?.title
         self.reloadButton.tintColor = Brand.default.colors.primary
+        self.reloadButton.titleLabel?.adjustsFontForContentSizeCategory = true
     }
 
     @IBAction private func reloadItem() {

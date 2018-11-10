@@ -21,7 +21,7 @@ class CourseAreaListViewController: UICollectionViewController {
 
             if let newIndexPath = self.selectedIndexPath, newIndexPath.item < numberOfItems {
                 self.collectionView?.reloadItems(at: [newIndexPath])
-                self.collectionView?.scrollToItem(at: newIndexPath, at: .centeredHorizontally, animated: true)
+                self.collectionView?.scrollToItem(at: newIndexPath, at: .centeredHorizontally, animated: trueUnlessReduceMotionEnabled)
             }
         }
     }

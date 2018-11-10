@@ -290,7 +290,7 @@ class VideoViewController: UIViewController {
 
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     @IBAction private func showVideoActionMenu(_ sender: UIButton) {
@@ -304,7 +304,7 @@ class VideoViewController: UIViewController {
         alert.addAction(streamUserAction)
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     @IBAction private func showSlidesActionMenu(_ sender: UIButton) {
@@ -326,7 +326,7 @@ class VideoViewController: UIViewController {
 
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     @objc func handleAssetDownloadStateChangedNotification(_ notification: Notification) {

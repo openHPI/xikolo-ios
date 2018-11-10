@@ -120,7 +120,7 @@ extension CertificatesListViewController { // CollectionViewDelegate
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         let filename = [self.course.title, certificate.name].compactMap { $0 }.joined(separator: " - ")
         pdfViewController.configure(for: url, filename: filename)
-        self.navigationController?.pushViewController(pdfViewController, animated: true)
+        self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

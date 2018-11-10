@@ -180,7 +180,7 @@ extension AppDelegate: UITabBarControllerDelegate {
 
         loginViewController.delegate = self
 
-        tabBarController.present(loginNavigationController, animated: true)
+        tabBarController.present(loginNavigationController, animated: trueUnlessReduceMotionEnabled)
 
         return false
     }

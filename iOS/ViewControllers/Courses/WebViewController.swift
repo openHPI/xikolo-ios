@@ -100,7 +100,7 @@ extension WebViewController: UIWebViewDelegate {
 
                 UserProfileHelper.shared.didLogin(withToken: token)
                 self.loginDelegate?.didSuccessfullyLogin()
-                self.navigationController?.dismiss(animated: true)
+                self.navigationController?.dismiss(animated: trueUnlessReduceMotionEnabled)
                 return false
             }
 

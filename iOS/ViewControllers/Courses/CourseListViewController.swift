@@ -175,7 +175,7 @@ extension CourseListViewController: UISearchResultsUpdating {
             scrollOffset = CGPoint(x: 0, y: self.topLayoutGuide.length * -1.0)
         }
 
-        self.collectionView?.setContentOffset(scrollOffset, animated: true)
+        self.collectionView?.setContentOffset(scrollOffset, animated: trueUnlessReduceMotionEnabled)
 
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {
             self.dataSource.resetSearch()

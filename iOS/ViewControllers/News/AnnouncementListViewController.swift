@@ -100,7 +100,7 @@ class AnnouncementListViewController: UITableViewController {
         alert.addAction(markAllAsReadAction)
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     @objc private func coreDataChange(notification: Notification) {

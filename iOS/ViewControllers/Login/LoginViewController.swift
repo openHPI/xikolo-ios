@@ -45,7 +45,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     }
 
     @IBAction private func dismiss() {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: trueUnlessReduceMotionEnabled, completion: nil)
     }
 
     @IBAction private func login() {
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
             self?.loginButton.stopAnimation()
         }.onSuccess { [weak self] _ in
             self?.delegate?.didSuccessfullyLogin()
-            self?.presentingViewController?.dismiss(animated: true)
+            self?.presentingViewController?.dismiss(animated: trueUnlessReduceMotionEnabled)
         }.onFailure { [weak self] _ in
             self?.emailField.shake()
             self?.passwordField.shake()
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     @IBAction private func register() {
         let safariVC = SFSafariViewController(url: Routes.register)
         safariVC.preferredControlTintColor = Brand.default.colors.window
-        self.present(safariVC, animated: true)
+        self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
     }
 
     @IBAction private func forgotPassword() {

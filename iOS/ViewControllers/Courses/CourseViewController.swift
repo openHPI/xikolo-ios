@@ -99,7 +99,7 @@ class CourseViewController: UIViewController {
         self.updateContainerView()
 
         if updateCourseAreaSelection {
-            self.courseAreaListViewController?.refresh(animated: true)
+            self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
         }
     }
 
@@ -154,7 +154,7 @@ class CourseViewController: UIViewController {
             TrackingHelper.shared.createEvent(.shareCourse, resourceType: .course, resourceId: self.course.id, context: context)
         }
 
-        self.present(activityViewController, animated: true)
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
 }
@@ -228,7 +228,7 @@ extension CourseViewController: UIPageViewControllerDelegate {
         }
 
         self.area = currentCourseAreaViewController.area
-        self.courseAreaListViewController?.refresh(animated: true)
+        self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
     }
 
 }
@@ -241,7 +241,7 @@ extension CourseViewController: CourseAreaViewControllerDelegate {
         if newlyCreated {
             self.decideContent()
         } else {
-            self.courseAreaListViewController?.refresh(animated: true)
+            self.courseAreaListViewController?.refresh(animated: trueUnlessReduceMotionEnabled)
         }
     }
 

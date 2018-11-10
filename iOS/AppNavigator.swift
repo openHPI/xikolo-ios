@@ -49,7 +49,7 @@ enum AppNavigator {
 
         let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
         webViewController.url = url
-        sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
+        sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
 
         return true
     }
@@ -137,7 +137,7 @@ enum AppNavigator {
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
             if course.accessible || courseArea.acessibleWithoutEnrollment {
-                self.currentCourseNavigationController?.popToRootViewController(animated: true)
+                self.currentCourseNavigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
                 courseViewController.area = courseArea
             }
 
@@ -175,7 +175,7 @@ enum AppNavigator {
 
         feedbackGenerator.impactOccurred()
 
-        rootViewController.present(courseNavigationController, animated: true) {
+        rootViewController.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
             CourseHelper.visit(course)
         }
     }

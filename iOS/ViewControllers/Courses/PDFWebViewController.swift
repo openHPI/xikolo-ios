@@ -99,7 +99,7 @@ class PDFWebViewController: UIViewController {
         guard let fileURL = self.tempPDFFile?.fileURL else { return }
         let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
-        self.present(activityViewController, animated: true)
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
 }
@@ -108,7 +108,7 @@ extension PDFWebViewController: URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         DispatchQueue.main.async {
-            self.progress.updateProgress(1.0, animated: true)
+            self.progress.updateProgress(1.0, animated: trueUnlessReduceMotionEnabled)
         }
 
         let filename: String = {
@@ -152,7 +152,7 @@ extension PDFWebViewController: URLSessionDownloadDelegate {
                     totalBytesExpectedToWrite: Int64) {
         let value = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
         DispatchQueue.main.async {
-            self.progress.updateProgress(value, animated: true)
+            self.progress.updateProgress(value, animated: trueUnlessReduceMotionEnabled)
         }
     }
 

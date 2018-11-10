@@ -81,7 +81,7 @@ extension DocumentListViewController { // TableViewDelegate
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
         let filename = [documentLocalization.document.title, documentLocalization.title].compactMap { $0 }.joined(separator: " - ")
         pdfViewController.configure(for: url, filename: filename)
-        self.navigationController?.pushViewController(pdfViewController, animated: true)
+        self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -144,7 +144,7 @@ extension DocumentListViewController: UserActionsDelegate {
 
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

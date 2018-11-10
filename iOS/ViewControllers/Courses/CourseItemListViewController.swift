@@ -168,7 +168,7 @@ class CourseItemListViewController: UITableViewController {
 extension CourseItemListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -256,7 +256,7 @@ extension CourseItemListViewController: UserActionsDelegate {
 
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
@@ -267,11 +267,11 @@ extension CourseItemListViewController: UserActionsDelegate {
             promise.failure(.userCanceled)
         }
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
 
         task().onComplete { result in
             promise.tryComplete(result)
-            alert.dismiss(animated: true)
+            alert.dismiss(animated: trueUnlessReduceMotionEnabled)
         }
 
         return promise.future

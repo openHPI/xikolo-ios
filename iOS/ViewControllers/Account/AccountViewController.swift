@@ -153,14 +153,14 @@ class AccountViewController: UITableViewController {
         case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
             if UIDevice.current.userInterfaceIdiom == .pad {
                 self.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
             } else {
                 self.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
             }
         case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
             if UIDevice.current.userInterfaceIdiom == .pad {
                 self.performSegue(withIdentifier: R.segue.accountViewController.modalDownloadSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
             } else {
                 self.performSegue(withIdentifier: R.segue.accountViewController.pushDownloadSettings, sender: self)
             }
@@ -242,7 +242,7 @@ class AccountViewController: UITableViewController {
 
         let safariVC = SFSafariViewController(url: urlToOpen)
         safariVC.preferredControlTintColor = Brand.default.colors.window
-        self.present(safariVC, animated: true, completion: nil)
+        self.present(safariVC, animated: trueUnlessReduceMotionEnabled, completion: nil)
     }
 
     private func sendFeedbackMail() {
@@ -252,7 +252,7 @@ class AccountViewController: UITableViewController {
         composeVC.setSubject(Brand.default.feedbackSubject)
         composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: true)
         composeVC.navigationBar.tintColor = Brand.default.colors.window
-        self.present(composeVC, animated: true, completion: nil)
+        self.present(composeVC, animated: trueUnlessReduceMotionEnabled, completion: nil)
     }
 
     private var feedbackMailSystemInfo: String {
@@ -275,7 +275,7 @@ class AccountViewController: UITableViewController {
 extension AccountViewController: MFMailComposeViewControllerDelegate {
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: trueUnlessReduceMotionEnabled, completion: nil)
     }
 
 }

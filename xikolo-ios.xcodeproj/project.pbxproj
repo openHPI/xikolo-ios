@@ -22,6 +22,7 @@
 		502E7179201B1C78007FC8C0 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E7178201B1C78007FC8C0 /* LoginHelper.swift */; };
 		502E718920207C92007FC8C0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E718820207C92007FC8C0 /* Navigator.swift */; };
 		5035232E21806FA600F2E7A4 /* SingleSignOnConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */; };
+		503578942195BF1500982093 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503578932195BF1500982093 /* Accessibility.swift */; };
 		5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */; };
 		503988732166920400F9043B /* ShadowContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503988722166920400F9043B /* ShadowContainerView.swift */; };
 		5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039887421679A0600F9043B /* CourseItemCellDelegate.swift */; };
@@ -399,6 +400,7 @@
 		502F3DD7209BB193006B3DAC /* CourseAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaViewController.swift; sourceTree = "<group>"; };
 		502F3DDC209C35ED006B3DAC /* CouseContent+image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CouseContent+image.swift"; sourceTree = "<group>"; };
 		5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSignOnConfiguration.swift; sourceTree = "<group>"; };
+		503578932195BF1500982093 /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
 		503585041F3AF6AA002A666C /* String+ascii.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ascii.swift"; sourceTree = "<group>"; };
 		5036A536211C0EC7003B0C6B /* RefreshableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableViewController.swift; sourceTree = "<group>"; };
 		50371FF8204ECB8E006E9634 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 			isa = PBXGroup;
 			children = (
 				50082B4E20BFDA4400B4511C /* PersistenceManager */,
+				503578932195BF1500982093 /* Accessibility.swift */,
 				3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */,
 				50BEC82E2036BB7F00CEF963 /* Crashlytics.swift */,
 				5095B1E120EBB45800572924 /* UserProfileHelperDelegateInstance.swift */,
@@ -1889,6 +1892,7 @@
 				50CF1F4F20DCDBFC0011BFE9 /* AnnouncementViewController.swift in Sources */,
 				5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */,
 				50CF1F5020DCDBFC0011BFE9 /* CourseDismissionAnimator.swift in Sources */,
+				503578942195BF1500982093 /* Accessibility.swift in Sources */,
 				5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */,
 				5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */,
 				50CF1F5120DCDBFC0011BFE9 /* PersistenceManager.swift in Sources */,

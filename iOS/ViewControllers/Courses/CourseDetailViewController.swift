@@ -191,7 +191,7 @@ class CourseDetailViewController: UIViewController {
         alert.addAction(completedAction)
         alert.addAction(unenrollAction)
         alert.addAction(cancelAction)
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func actOnEnrollmentChange(whenNewlyCreated newlyCreated: Bool, for task: () -> Future<Void, XikoloError>) {

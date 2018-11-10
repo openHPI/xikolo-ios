@@ -242,7 +242,7 @@ class AccountViewController: UITableViewController {
 
         let safariVC = SFSafariViewController(url: urlToOpen)
         safariVC.preferredControlTintColor = Brand.default.colors.window
-        self.present(safariVC, animated: trueUnlessReduceMotionEnabled, completion: nil)
+        self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func sendFeedbackMail() {
@@ -252,7 +252,7 @@ class AccountViewController: UITableViewController {
         composeVC.setSubject(Brand.default.feedbackSubject)
         composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: true)
         composeVC.navigationBar.tintColor = Brand.default.colors.window
-        self.present(composeVC, animated: trueUnlessReduceMotionEnabled, completion: nil)
+        self.present(composeVC, animated: trueUnlessReduceMotionEnabled)
     }
 
     private var feedbackMailSystemInfo: String {
@@ -275,7 +275,7 @@ class AccountViewController: UITableViewController {
 extension AccountViewController: MFMailComposeViewControllerDelegate {
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: trueUnlessReduceMotionEnabled, completion: nil)
+        controller.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
 
 }

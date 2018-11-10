@@ -45,7 +45,7 @@ class LoginViewController: UIViewController, WKUIDelegate {
     }
 
     @IBAction private func dismiss() {
-        self.presentingViewController?.dismiss(animated: trueUnlessReduceMotionEnabled, completion: nil)
+        self.presentingViewController?.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
 
     @IBAction private func login() {

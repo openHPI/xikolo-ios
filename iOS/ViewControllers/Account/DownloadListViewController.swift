@@ -32,6 +32,14 @@ class DownloadListViewController: UITableViewController {
         self.refresh()
     }
 
+    func refreshAndDismissIfEmpty() {
+        self.refresh().onSuccess { _ in
+            if self.courses.isEmpty {
+                self.navigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
+            }
+        }
+    }
+
     @discardableResult
     func refresh() -> Future<[[DownloadItem]], XikoloError> {
         return self.getData().onSuccess { itemsArray in
@@ -245,7 +253,7 @@ class DownloadListViewController: UITableViewController {
         let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: keys)
         let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: keys)
         if containsVideoDeletion || containsDocumentDeletion {
-            self.refresh()
+            self.refreshAndDismissIfEmpty()
         }
     }
 

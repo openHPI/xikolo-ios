@@ -152,6 +152,12 @@
 /* stop download of a document localization */
 "document-localization.download-action.stop-download.title" = "Dokument-Download stoppen";
 
+/* description for empty download list */
+"empty-view.account.download.no-downloads.description" = "Keine Downloads";
+
+/* title for empty download list */
+"empty-view.account.download.no-downloads.title" = "Im Kursbereich kannst du Materialien herunterladen, um sie ohne Internetverbindung ansehen zu können";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";
 

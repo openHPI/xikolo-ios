@@ -6,6 +6,7 @@
 import BrightFutures
 import Common
 import CoreData
+import DZNEmptyDataSet
 import Foundation
 import UIKit
 
@@ -15,6 +16,18 @@ class DownloadListViewController: UITableViewController {
     var courses: [CourseDownload] = []
     var courseTitles: [(courseTitle: String, courseID: String)] = []
     var downloadItems: [DownloadItem] = []
+
+    deinit {
+        self.tableView?.emptyDataSetSource = nil
+        self.tableView?.emptyDataSetDelegate = nil
+    }
+
+    func setupEmptyState() {
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
+        tableView.reloadEmptyDataSet()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +42,7 @@ class DownloadListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.setupEmptyState()
         self.refresh()
     }
 
@@ -255,6 +269,22 @@ class DownloadListViewController: UITableViewController {
         if containsVideoDeletion || containsDocumentDeletion {
             self.refreshAndDismissIfEmpty()
         }
+    }
+
+}
+
+extension DownloadListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = NSLocalizedString("empty-view.account.download.no-downloads.title",
+                                      comment: "title for empty download list")
+        return NSAttributedString(string: title)
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let description = NSLocalizedString("empty-view.account.download.no-downloads.description",
+                                            comment: "description for empty download list")
+        return NSAttributedString(string: description)
     }
 
 }

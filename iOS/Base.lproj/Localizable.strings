@@ -152,6 +152,12 @@
 /* stop download of a document localization */
 "document-localization.download-action.stop-download.title" = "Stop download of document";
 
+/* description for empty download list */
+"empty-view.account.download.no-downloads.description" = "Go to a course to download videos, slides and more for offline use";
+
+/* title for empty download list */
+"empty-view.account.download.no-downloads.title" = "You have no downloads";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";
 

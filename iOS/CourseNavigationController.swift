@@ -19,10 +19,40 @@ class CourseNavigationController: XikoloNavigationController {
 
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePullDown(sender:)))
         self.view.addGestureRecognizer(panGestureRecognizer)
+
+        for view in self.view.subviews {
+            view.layer.cornerRadius = 16.0
+            view.layer.masksToBounds = true
+
+            if #available(iOS 11.0, *) {
+                view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            }
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return trueUnlessReduceMotionEnabled ? .lightContent : .default
+        return .lightContent
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard let pageViewController = self.topViewController as? UIPageViewController else {
+            return
+        }
+
+        guard pageViewController.viewControllers?.first is VideoViewController else {
+            return
+        }
+
+        for view in self.view.subviews {
+            view.layer.masksToBounds = !self.navigationBar.isHidden
+        }
+    }
+
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        guard self.presentedViewController != nil else { return }
+        super.dismiss(animated: flag, completion: completion)
     }
 
     @objc func closeCourse() {
@@ -68,11 +98,6 @@ class CourseNavigationController: XikoloNavigationController {
         default:
             break
         }
-    }
-
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        guard self.presentedViewController != nil else { return }
-        super.dismiss(animated: flag, completion: completion)
     }
 
 }

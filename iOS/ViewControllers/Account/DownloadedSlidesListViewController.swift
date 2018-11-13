@@ -42,7 +42,7 @@ extension DownloadedSlidesListViewController: CoreDataTableViewDataSourceDelegat
         return true
     }
 
-    func commit(editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func commit(editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let video = self.dataSource.object(at: indexPath)
             SlidesPersistenceManager.shared.deleteDownload(for: video)

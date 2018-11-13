@@ -49,7 +49,7 @@ extension DownloadedDocumentsListViewController: CoreDataTableViewDataSourceDele
         return true
     }
 
-    func commit(editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func commit(editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let documentLocalization = self.dataSource.object(at: indexPath)
             DocumentsPersistenceManager.shared.deleteDownload(for: documentLocalization)

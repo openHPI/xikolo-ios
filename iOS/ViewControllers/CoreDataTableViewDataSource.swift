@@ -15,7 +15,7 @@ protocol CoreDataTableViewDataSourceDelegate: AnyObject {
     func configure(_ cell: Cell, for object: Object)
     func titleForDefaultHeader(forSection section: Int) -> String?
     func canEditRow(at indexPath: IndexPath) -> Bool
-    func commit(editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    func commit(editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
 
 }
 
@@ -29,7 +29,7 @@ extension CoreDataTableViewDataSourceDelegate {
         return false
     }
 
-    func commit(editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) { }
+    func commit(editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { }
 
 }
 
@@ -145,7 +145,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
         return self.delegate?.canEditRow(at: indexPath) ?? false
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         self.delegate?.commit(editingStyle: editingStyle, forRowAt: indexPath)
     }
 

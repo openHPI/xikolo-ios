@@ -17,7 +17,7 @@ public final class RichText: Content {
         return NSFetchRequest<RichText>(entityName: "RichText")
     }
 
-    public override var isAvailableOffline: Bool {
+    override public var isAvailableOffline: Bool {
         return self.text != nil
     }
 

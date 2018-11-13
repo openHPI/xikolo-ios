@@ -88,7 +88,7 @@ class AnnouncementListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UserProfileHelper.shared.isLoggedIn ? self.actionButton : nil
     }
 
-    @IBAction func tappedActionButton(_ sender: UIBarButtonItem) {
+    @IBAction private func tappedActionButton(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
 
@@ -100,7 +100,7 @@ class AnnouncementListViewController: UITableViewController {
         alert.addAction(markAllAsReadAction)
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     @objc private func coreDataChange(notification: Notification) {
@@ -159,7 +159,12 @@ extension AnnouncementListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
 
 extension AnnouncementListViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .announcements
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        assert(area == self.area)
         self.course = course
     }
 

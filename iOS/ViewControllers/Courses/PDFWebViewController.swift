@@ -36,7 +36,8 @@ class PDFWebViewController: UIViewController {
 
     private var currentDownload: URLSessionDownloadTask?
 
-    var url: URL? {
+    private var filename: String?
+    private var url: URL? {
         didSet {
             guard self.viewIfLoaded != nil else { return }
             guard let url = self.url else { return }
@@ -54,13 +55,6 @@ class PDFWebViewController: UIViewController {
             self.progress.heightAnchor.constraint(equalToConstant: 50),
             self.progress.widthAnchor.constraint(equalTo: self.progress.heightAnchor),
         ])
-    }
-
-    @IBAction func sharePDF(_ sender: UIBarButtonItem) {
-        guard let fileURL = self.tempPDFFile?.fileURL else { return }
-        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.barButtonItem = sender
-        self.present(activityViewController, animated: true)
     }
 
     override func viewDidLoad() {
@@ -84,6 +78,11 @@ class PDFWebViewController: UIViewController {
         try? self.tempPDFFile?.deleteDirectory()
     }
 
+    func configure(for url: URL, filename: String?) {
+        self.url = url
+        self.filename = filename
+    }
+
     private func loadPDF(for url: URL) {
         var request = URLRequest(url: url)
         request.setValue(Routes.Header.acceptPDF, forHTTPHeaderField: Routes.Header.acceptKey)
@@ -96,23 +95,36 @@ class PDFWebViewController: UIViewController {
         task.resume()
     }
 
+    @IBAction private func sharePDF(_ sender: UIBarButtonItem) {
+        guard let fileURL = self.tempPDFFile?.fileURL else { return }
+        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = sender
+        self.present(activityViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
 }
 
 extension PDFWebViewController: URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         DispatchQueue.main.async {
-            self.progress.updateProgress(1.0, animated: true)
+            self.progress.updateProgress(1.0, animated: trueUnlessReduceMotionEnabled)
         }
 
         let filename: String = {
+            if let filename = self.filename {
+                return "\(filename).pdf"
+            }
+
             if let suggestedFilename = downloadTask.response?.suggestedFilename {
                 return suggestedFilename
-            } else if let requestURL = downloadTask.currentRequest?.url {
-                return "\(requestURL.lastPathComponent).\(requestURL.pathExtension)"
-            } else {
-                return "file"
             }
+
+            if let requestURL = downloadTask.currentRequest?.url {
+                return "\(requestURL.lastPathComponent).\(requestURL.pathExtension)"
+            }
+
+            return "file.pdf"
         }()
 
         do {
@@ -140,7 +152,7 @@ extension PDFWebViewController: URLSessionDownloadDelegate {
                     totalBytesExpectedToWrite: Int64) {
         let value = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
         DispatchQueue.main.async {
-            self.progress.updateProgress(value, animated: true)
+            self.progress.updateProgress(value, animated: trueUnlessReduceMotionEnabled)
         }
     }
 

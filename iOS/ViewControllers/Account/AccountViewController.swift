@@ -12,11 +12,6 @@ import UIKit
 
 class AccountViewController: UITableViewController {
 
-    enum HeaderHeight: CGFloat {
-        case noContent = 190
-        case userProfile = 260
-    }
-
     static let feedbackIndexPath = IndexPath(row: 0, section: 3)
     static let logoutIndexPath = IndexPath(row: 0, section: 4)
 
@@ -40,7 +35,6 @@ class AccountViewController: UITableViewController {
 
     private var userObserver: ManagedObjectObserver?
 
-    var headerHeight: HeaderHeight = .noContent
     var user: User? {
         didSet {
             if let user = self.user {
@@ -128,7 +122,6 @@ class AccountViewController: UITableViewController {
             }
 
             UIView.animate(withDuration: 0.25, animations: {
-                self.headerHeight = .userProfile
                 self.view.layoutIfNeeded()
             }, completion: { _ in
                 UIView.animate(withDuration: 0.25) {
@@ -148,7 +141,6 @@ class AccountViewController: UITableViewController {
                 }
 
                 UIView.animate(withDuration: 0.25) {
-                    self.headerHeight = .noContent
                     self.view.layoutIfNeeded()
                 }
             })
@@ -161,14 +153,14 @@ class AccountViewController: UITableViewController {
         case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
             if UIDevice.current.userInterfaceIdiom == .pad {
                 self.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
             } else {
                 self.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
             }
         case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
             if UIDevice.current.userInterfaceIdiom == .pad {
                 self.performSegue(withIdentifier: R.segue.accountViewController.modalDownloadSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
             } else {
                 self.performSegue(withIdentifier: R.segue.accountViewController.pushDownloadSettings, sender: self)
             }
@@ -205,19 +197,28 @@ class AccountViewController: UITableViewController {
         return super.tableView(tableView, cellForRowAt: self.indexPathIncludingHiddenCells(for: indexPath))
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        // Dynamic sizing for the header view
         if let headerView = self.tableView.tableHeaderView {
-            let height = self.headerHeight.rawValue
-            var headerFrame = headerView.frame
-
-            // Don't set the same height again to prevent a infinte loop hang.
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
+            let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            if headerView.frame.size.height != size.height {
+                headerView.frame.size.height = size.height
                 self.tableView.tableHeaderView = headerView
+                self.tableView.layoutIfNeeded()
+            }
+        }
+
+        if let footerView = self.tableView.tableFooterView {
+            let size = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            if footerView.frame.size.height != size.height {
+                footerView.frame.size.height = size.height
+                self.tableView.tableFooterView = footerView
+                self.tableView.layoutIfNeeded()
             }
         }
     }
@@ -241,7 +242,7 @@ class AccountViewController: UITableViewController {
 
         let safariVC = SFSafariViewController(url: urlToOpen)
         safariVC.preferredControlTintColor = Brand.default.colors.window
-        self.present(safariVC, animated: true, completion: nil)
+        self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func sendFeedbackMail() {
@@ -251,7 +252,7 @@ class AccountViewController: UITableViewController {
         composeVC.setSubject(Brand.default.feedbackSubject)
         composeVC.setMessageBody(self.feedbackMailSystemInfo, isHTML: true)
         composeVC.navigationBar.tintColor = Brand.default.colors.window
-        self.present(composeVC, animated: true, completion: nil)
+        self.present(composeVC, animated: trueUnlessReduceMotionEnabled)
     }
 
     private var feedbackMailSystemInfo: String {
@@ -267,14 +268,14 @@ class AccountViewController: UITableViewController {
         return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
 
-    @IBAction func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }
+    @IBAction private func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }
 
 }
 
 extension AccountViewController: MFMailComposeViewControllerDelegate {
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
 
 }

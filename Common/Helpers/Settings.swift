@@ -5,10 +5,10 @@
 
 import UIKit
 
-class Settings {
+enum Settings {
 
-    class func open() {
-        guard let appSettings = URL(string: UIApplicationOpenSettingsURLString) else { return }
+    static func open() {
+        guard let appSettings = URL(string: UIApplication.openSettingsURLString) else { return }
         guard UIApplication.shared.canOpenURL(appSettings) else { return }
         UIApplication.shared.open(appSettings)
     }

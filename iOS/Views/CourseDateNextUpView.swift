@@ -12,6 +12,7 @@ class CourseDateNextUpView: UIStackView {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var courseLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private var widthConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +41,12 @@ class CourseDateNextUpView: UIStackView {
         if let course = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value?.course {
             AppNavigator.show(course: course)
         }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let cellWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        self.widthConstraint.constant = cellWidth - 2 * 14
     }
 
 }

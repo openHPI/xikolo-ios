@@ -41,6 +41,9 @@
 /* status 'upcoming' of a course */
 "course-cell.status.upcoming" = "Upcoming";
 
+/* Format string for the next section start in the footer of course item list */
+"course-item-list.footer.The next section will be available on %@ at %@" = "The next section will be available on %@ at %@.";
+
 /* delete all downloads for video */
 "course-item.combined-download-action.delete-download.title" = "Delete all learning materials";
 
@@ -49,12 +52,6 @@
 
 /* stop all downloads for video */
 "course-item.combined-download-action.stop-download.title" = "Stop all downloads";
-
-/* message for proctoring alert */
-"course-item.proctoring.alert.message" = "In order to receive your booked qualified certificate you have to complete this assignment on a computer with a webcam.";
-
-/* title for proctoring alert */
-"course-item.proctoring.alert.title" = "This item needs to be proctored";
 
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Open slides";

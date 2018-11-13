@@ -14,6 +14,7 @@ class CourseDateSummaryView: UIStackView {
     @IBOutlet private weak var nextCountLabel: UILabel!
     @IBOutlet private weak var allCountLabel: UILabel!
     @IBOutlet private var pills: [UIView]!
+    @IBOutlet private var widthConstraint: NSLayoutConstraint!
 
     weak var delegate: CourseDateOverviewDelegate?
 
@@ -25,12 +26,7 @@ class CourseDateSummaryView: UIStackView {
         self.todayCountLabel.backgroundColor = Brand.default.colors.secondary
         self.nextCountLabel.backgroundColor = Brand.default.colors.secondary
         self.allCountLabel.backgroundColor = Brand.default.colors.secondary
-
-        for pill in self.pills {
-            pill.backgroundColor = Brand.default.colors.secondary
-            pill.layer.cornerRadius = pill.layer.bounds.height / 2
-            pill.layer.masksToBounds = true
-        }
+        self.pills.forEach { $0.backgroundColor = Brand.default.colors.secondary }
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
         self.addGestureRecognizer(tapGestureRecognizer)
@@ -52,6 +48,12 @@ class CourseDateSummaryView: UIStackView {
 
     @objc func tappedOnView() {
         self.delegate?.openCourseDateList()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let cellWidth = CourseCell.minimalWidth(for: self.traitCollection)
+        self.widthConstraint.constant = cellWidth - 2 * 14
     }
 
 }

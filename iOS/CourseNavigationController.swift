@@ -22,13 +22,13 @@ class CourseNavigationController: XikoloNavigationController {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return trueUnlessReduceMotionEnabled ? .lightContent : .default
     }
 
     @objc func closeCourse() {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
         feedbackGenerator.prepare()
-        super.dismiss(animated: true)
+        super.dismiss(animated: trueUnlessReduceMotionEnabled)
         feedbackGenerator.impactOccurred()
     }
 
@@ -50,7 +50,7 @@ class CourseNavigationController: XikoloNavigationController {
         switch sender.state {
         case .began:
             interactor.hasStarted = true
-            super.dismiss(animated: true)
+            super.dismiss(animated: trueUnlessReduceMotionEnabled)
         case .changed:
             interactor.shouldFinish = shouldFinishByDragging || shouldFinishByFlicking
             interactor.update(dragPercentage)

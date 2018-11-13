@@ -31,7 +31,7 @@ class CircularProgressView: UIView {
     @IBInspectable var indeterminateProgress: CGFloat = Defaults.indeterminateProgress
     @IBInspectable var indeterminateDuration: Double = Defaults.indeterminateDuration
 
-    var timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    var timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
 
     var progress: CGFloat {
         return self.progressLayer.progress
@@ -51,7 +51,7 @@ class CircularProgressView: UIView {
         setupDefaults()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupDefaults()
     }
@@ -188,7 +188,7 @@ class CircularProgressView: UIView {
 
     }
 
-    struct Defaults {
+    enum Defaults {
         static let progress: CGFloat = 0
         static let lineWidth: CGFloat = 2.0
         static let gapWidth: CGFloat = 0
@@ -196,7 +196,7 @@ class CircularProgressView: UIView {
         static let indeterminateProgress: CGFloat = 0.8
     }
 
-    struct AnimationKeys {
+    enum AnimationKeys {
         static let progress = "progress"
         static let rotation = "transform.rotation"
     }

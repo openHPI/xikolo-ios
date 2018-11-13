@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-public struct CourseHelper {
+public enum CourseHelper {
 
     @discardableResult public static func syncAllCourses() -> Future<SyncMultipleResult, XikoloError> {
         var query = MultipleResourcesQuery(type: Course.self)

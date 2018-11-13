@@ -7,7 +7,7 @@ import CoreData
 
 extension DocumentHelper {
 
-    public struct FetchRequest {
+    public enum FetchRequest {
 
         public static func documents(forCourse course: Course) -> NSFetchRequest<Document> {
             let request: NSFetchRequest<Document> = Document.fetchRequest()

@@ -7,9 +7,9 @@ import Common
 import CoreSpotlight
 import UIKit
 
-class AppNavigator {
+enum AppNavigator {
 
-    private static var currentCourseNavigationController: CourseNavigationController?
+    private static weak var currentCourseNavigationController: CourseNavigationController?
     private static let courseTransitioningDelegate = CourseTransitioningDelegate()
 
     static func handle(userActivity: NSUserActivity) -> Bool {
@@ -49,7 +49,7 @@ class AppNavigator {
 
         let webViewController = R.storyboard.webViewController.instantiateInitialViewController().require()
         webViewController.url = url
-        sourceViewController.navigationController?.pushViewController(webViewController, animated: true)
+        sourceViewController.navigationController?.pushViewController(webViewController, animated: trueUnlessReduceMotionEnabled)
 
         return true
     }
@@ -137,7 +137,7 @@ class AppNavigator {
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
             if course.accessible || courseArea.acessibleWithoutEnrollment {
-                self.currentCourseNavigationController?.popToRootViewController(animated: true)
+                self.currentCourseNavigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
                 courseViewController.area = courseArea
             }
 
@@ -146,6 +146,9 @@ class AppNavigator {
 
         self.currentCourseNavigationController?.closeCourse()
         self.currentCourseNavigationController = nil
+
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        feedbackGenerator.prepare()
 
         guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
             let reason = "root view controller could not be found"
@@ -170,11 +173,9 @@ class AppNavigator {
         courseNavigationController.modalPresentationStyle = .custom
         courseNavigationController.modalPresentationCapturesStatusBarAppearance = true
 
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        feedbackGenerator.prepare()
         feedbackGenerator.impactOccurred()
 
-        rootViewController.present(courseNavigationController, animated: true) {
+        rootViewController.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
             CourseHelper.visit(course)
         }
     }

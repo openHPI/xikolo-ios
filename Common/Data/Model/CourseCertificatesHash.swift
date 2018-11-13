@@ -11,12 +11,12 @@ public final class CourseCertificatesHash: NSObject, NSCoding, IncludedPullable 
     public var available: Bool
     public var threshold: Int32?
 
-    required public init(object: ResourceData) throws {
+    public required init(object: ResourceData) throws {
         self.available = try object.value(for: "available")
         self.threshold = try object.value(for: "threshold")
     }
 
-    required public init(coder decoder: NSCoder) {
+    public required init(coder decoder: NSCoder) {
         available = decoder.decodeBool(forKey: "available")
         threshold = decoder.decodeObject(forKey: "threshold") as? Int32
     }

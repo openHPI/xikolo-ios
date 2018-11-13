@@ -5,25 +5,46 @@
 
 import UIKit
 
-protocol CourseListLayoutDelegate: AnyObject {
+protocol CardListLayoutDelegate: AnyObject {
 
-    var showHeaders: Bool { get }
+    var followReadableWidth: Bool { get }
+    var topInset: CGFloat { get } // only needed in iOS 10
+    var cardInset: CGFloat { get }
+    var heightForHeader: CGFloat { get }
 
-    func collectionView(_ collectionView: UICollectionView, heightForCellAtIndexPath indexPath: IndexPath, withBoundingWidth boundingWidth: CGFloat) -> CGFloat
-
-    // only needed in iOS 10
-    func topInset() -> CGFloat
+    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForCellAtIndexPath indexPath: IndexPath,
+                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat
 
 }
 
-class CourseListLayout: UICollectionViewLayout {
+extension CardListLayoutDelegate {
 
-    weak var delegate: CourseListLayoutDelegate?
+    var followReadableWidth: Bool {
+        return false
+    }
+
+    var topInset: CGFloat {
+        return 0
+    }
+
+    var cardInset: CGFloat {
+        return 0
+    }
+
+    var heightForHeader: CGFloat {
+        return 0
+    }
+
+}
+
+class CardListLayout: UICollectionViewLayout {
+
+    weak var delegate: CardListLayoutDelegate?
 
     private let cellPadding: CGFloat = 0
     private let linePadding: CGFloat = 6
-    private let headerHeight: CGFloat = 36
-    private let headerPillHeight: CGFloat = 50
 
     private var cache: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     private var sectionRange: [Int: (minimum: CGFloat, maximum: CGFloat)] = [:]
@@ -39,20 +60,23 @@ class CourseListLayout: UICollectionViewLayout {
     }
 
     private func layoutInsets(for collectionView: UICollectionView) -> UIEdgeInsets {
-        return UIEdgeInsets(top: self.delegate?.topInset() ?? 0,
-                            left: collectionView.layoutMargins.left - 14,
+        let followReadableWidth = self.delegate?.followReadableWidth ?? false
+        let guide = followReadableWidth ? collectionView.readableContentGuide : collectionView.layoutMarginsGuide
+        let layoutFrame = guide.layoutFrame
+        let cardInset = self.delegate?.cardInset ?? 0
+        return UIEdgeInsets(top: self.delegate?.topInset ?? 0,
+                            left: layoutFrame.minX - cardInset,
                             bottom: 8,
-                            right: collectionView.layoutMargins.right - 14)
+                            right: collectionView.bounds.width - layoutFrame.maxX - cardInset)
     }
 
     private func numberOfColumms(for collectionView: UICollectionView) -> Int {
-        if collectionView.traitCollection.horizontalSizeClass == .regular {
-            return collectionView.bounds.width > 960 ? 3 : 2
-        } else if collectionView.bounds.width > collectionView.bounds.height {
-            return 2
-        } else {
+        guard let minimalCardWidth = self.delegate?.minimalCardWidth(for: collectionView.traitCollection) else {
             return 1
         }
+
+        let numberOfColumns = Int(floor(self.contentWidth / minimalCardWidth))
+        return max(1, numberOfColumns)
     }
 
     override var collectionViewContentSize: CGSize {
@@ -67,7 +91,7 @@ class CourseListLayout: UICollectionViewLayout {
         }
 
         let numberOfColumns = self.numberOfColumms(for: collectionView)
-        let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * cellPadding) / CGFloat(numberOfColumns)
+        let columnWidth = (self.contentWidth - CGFloat(max(0, numberOfColumns - 1)) * self.cellPadding) / CGFloat(numberOfColumns)
         let layoutInsets = self.layoutInsets(for: collectionView)
 
         var xOffset = [CGFloat]()
@@ -93,8 +117,10 @@ class CourseListLayout: UICollectionViewLayout {
                     rowOffset = (yOffset.max() ?? 0.0) + self.linePadding
                 }
 
-                if item == 0, self.delegate?.showHeaders ?? true { // new section
-                    rowOffset += self.headerHeight
+                // new section
+                if item == 0, let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 {
+                    let cardInset = self.delegate?.cardInset ?? 0
+                    rowOffset += headerHeight - cardInset
                 }
 
                 let height = self.delegate?.collectionView(collectionView,
@@ -112,10 +138,11 @@ class CourseListLayout: UICollectionViewLayout {
                 column = column < (numberOfColumns - 1) ? (column + 1) : 0
             }
 
-            self.contentHeight += layoutInsets.bottom
             let sectionEnd = (yOffset.max() ?? 0.0) + self.linePadding
             self.sectionRange[section] = (minimum: sectionStart, maximum: sectionEnd)
         }
+
+        self.contentHeight += layoutInsets.bottom
     }
 
     override func invalidateLayout() {
@@ -138,10 +165,10 @@ class CourseListLayout: UICollectionViewLayout {
             }
         }
 
-        if self.delegate?.showHeaders ?? true {
+        if let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 {
             for section in sectionsToAdd {
                 let indexPath = IndexPath(item: 0, section: section)
-                let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: indexPath)
+                let attributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)
                 if let sectionAttributes = attributes, sectionAttributes.frame.intersects(rect) {
                     layoutAttributes.append(sectionAttributes)
                 }
@@ -157,8 +184,8 @@ class CourseListLayout: UICollectionViewLayout {
 
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String,
                                                        at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard self.delegate?.showHeaders ?? true else { return nil }
-        guard elementKind == UICollectionElementKindSectionHeader else { return nil }
+        guard let headerHeight = self.delegate?.heightForHeader, headerHeight > 0 else { return nil }
+        guard elementKind == UICollectionView.elementKindSectionHeader else { return nil }
 
         guard let sectionRange = self.sectionRange[indexPath.section] else { return nil }
         guard let collectionView = collectionView else { return nil }
@@ -174,14 +201,14 @@ class CourseListLayout: UICollectionViewLayout {
         let offsetY: CGFloat
         if contentOffsetY < sectionRange.minimum {
             offsetY = sectionRange.minimum
-        } else if contentOffsetY > sectionRange.maximum - self.headerHeight {
-            offsetY = sectionRange.maximum - self.headerHeight
+        } else if contentOffsetY > sectionRange.maximum - headerHeight {
+            offsetY = sectionRange.maximum - headerHeight
         } else {
             offsetY = contentOffsetY
         }
 
-        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: self.headerPillHeight)
-        let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
+        let frame = CGRect(x: 0, y: offsetY, width: collectionView.bounds.width, height: headerHeight)
+        let layoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
         layoutAttributes.frame = frame
         layoutAttributes.isHidden = false
         layoutAttributes.zIndex = 1

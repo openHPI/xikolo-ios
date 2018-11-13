@@ -99,10 +99,10 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
             alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
-                alert.dismiss(animated: true)
+                alert.dismiss(animated: trueUnlessReduceMotionEnabled)
             })
 
-            AppDelegate.instance().tabBarController?.present(alert, animated: true)
+            AppDelegate.instance().tabBarController?.present(alert, animated: trueUnlessReduceMotionEnabled)
         }
     }
 

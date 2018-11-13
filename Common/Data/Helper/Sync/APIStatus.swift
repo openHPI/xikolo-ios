@@ -33,6 +33,6 @@ extension APIStatus {
     public static let didChangeNotification = Notification.Name("de.xikolo.ios.download.progressChanged")
 }
 
-public struct APIStatusNotificationKey {
+public enum APIStatusNotificationKey {
     public static let status = "status"
 }

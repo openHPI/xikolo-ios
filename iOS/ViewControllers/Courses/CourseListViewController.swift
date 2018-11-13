@@ -23,10 +23,10 @@ class CourseListViewController: UICollectionViewController {
     override func viewDidLoad() {
         self.collectionView?.register(R.nib.courseCell)
         self.collectionView?.register(UINib(resource: R.nib.courseHeaderView),
-                                      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                       withReuseIdentifier: R.nib.courseHeaderView.name)
 
-        if let courseListLayout = self.collectionView?.collectionViewLayout as? CourseListLayout {
+        if let courseListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
             courseListLayout.delegate = self
         }
 
@@ -95,15 +95,37 @@ class CourseListViewController: UICollectionViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.collectionView?.performBatchUpdates(nil)
+        self.collectionViewLayout.invalidateLayout()
     }
 
 }
 
-extension CourseListViewController: CourseListLayoutDelegate {
+extension CourseListViewController: CardListLayoutDelegate {
 
     var showHeaders: Bool {
         return self.configuration == .allCourses || self.dataSource.isSearching
+    }
+
+    var topInset: CGFloat {
+        if #available(iOS 11.0, *) {
+            return 0
+        } else {
+            return self.searchController?.searchBar.bounds.height ?? 0
+        }
+    }
+
+    var cardInset: CGFloat {
+        return 14
+    }
+
+    var heightForHeader: CGFloat {
+        let margin: CGFloat = 8
+        let padding: CGFloat = 8
+        return 2 * margin + 2 * padding + UIFont.preferredFont(forTextStyle: .headline).lineHeight
+    }
+
+    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
+        return CourseCell.minimalWidth(for: traitCollection)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -117,54 +139,28 @@ extension CourseListViewController: CourseListLayoutDelegate {
         let cardWidth = boundingWidth - 2 * 14
         let imageHeight = cardWidth / 2
 
-        let boundingSize = CGSize(width: cardWidth, height: CGFloat.infinity)
-        let titleText = course.title ?? ""
-        let titleAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .headline)]
-        let titleSize = NSString(string: titleText).boundingRect(with: boundingSize,
-                                                                 options: .usesLineFragmentOrigin,
-                                                                 attributes: titleAttributes,
-                                                                 context: nil)
-
-        let teachersText = course.teachers ?? ""
-        let teachersAttributes = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .subheadline)]
-        let teachersSize = NSString(string: teachersText).boundingRect(with: boundingSize,
-                                                                       options: .usesLineFragmentOrigin,
-                                                                       attributes: teachersAttributes,
-                                                                       context: nil)
+        let titleHeight = course.title?.height(forTextStyle: .headline, boundingWidth: cardWidth) ?? 0
+        let teachersHeight = course.teachers?.height(forTextStyle: .subheadline, boundingWidth: cardWidth) ?? 0
 
         var height = imageHeight + 14
 
         if Brand.default.features.showCourseTeachers {
-            if !titleText.isEmpty || !teachersText.isEmpty {
+            if titleHeight > 0 || teachersHeight > 0 {
                 height += 8
             }
 
-            if !titleText.isEmpty {
-                height += titleSize.height
-            }
-
-            if !titleText.isEmpty && !teachersText.isEmpty {
+            if titleHeight > 0 && teachersHeight > 0 {
                 height += 4
             }
 
-            if !teachersText.isEmpty {
-                height += teachersSize.height
-            }
+            height += titleHeight
+            height += teachersHeight
         } else {
-            if !titleText.isEmpty {
-                height += 8 + titleSize.height
-            }
+            height += 8
+            height += titleHeight
         }
 
         return height + 5
-    }
-
-    func topInset() -> CGFloat {
-        if #available(iOS 11.0, *) {
-            return 0
-        } else {
-            return self.searchController?.searchBar.bounds.height ?? 0
-        }
     }
 
 }
@@ -179,7 +175,7 @@ extension CourseListViewController: UISearchResultsUpdating {
             scrollOffset = CGPoint(x: 0, y: self.topLayoutGuide.length * -1.0)
         }
 
-        self.collectionView?.setContentOffset(scrollOffset, animated: true)
+        self.collectionView?.setContentOffset(scrollOffset, animated: trueUnlessReduceMotionEnabled)
 
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {
             self.dataSource.resetSearch()

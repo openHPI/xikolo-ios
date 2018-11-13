@@ -10,6 +10,8 @@ class WebViewController: UIViewController {
 
     @IBOutlet private weak var webView: UIWebView!
 
+    private var courseArea: CourseArea?
+
     private lazy var progress: CircularProgressView = {
         let progress = CircularProgressView()
         progress.translatesAutoresizingMaskIntoConstraints = false
@@ -57,8 +59,8 @@ class WebViewController: UIViewController {
         }, completion: nil)
     }
 
-    override func removeFromParentViewController() {
-        super.removeFromParentViewController()
+    override func removeFromParent() {
+        super.removeFromParent()
         if self.webView.isLoading {
             self.webView.stopLoading()
             NetworkIndicator.end()
@@ -88,8 +90,8 @@ extension WebViewController: UIWebViewDelegate {
         NetworkIndicator.end()
     }
 
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let documentURL = request.mainDocumentURL, documentURL.path ==  "/auth/app" {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+        if let documentURL = Routes.isAppAuthenticationURL(for: request) {
             let urlComponents = URLComponents(url: documentURL, resolvingAgainstBaseURL: false)
             guard let queryItems = urlComponents?.queryItems else { return false }
 
@@ -98,11 +100,24 @@ extension WebViewController: UIWebViewDelegate {
 
                 UserProfileHelper.shared.didLogin(withToken: token)
                 self.loginDelegate?.didSuccessfullyLogin()
-                self.navigationController?.dismiss(animated: true)
+                self.navigationController?.dismiss(animated: trueUnlessReduceMotionEnabled)
                 return false
             }
 
             return true
+        } else if let documentURL = Routes.isSingleSignOnCallbackURL(for: request) {
+            let modifiedURL = Routes.addCallbackParameters(to: documentURL)
+            guard modifiedURL != documentURL else { return true }
+
+            DispatchQueue.global().async {
+                DispatchQueue.main.async {
+                    var newRequest = request
+                    newRequest.url = modifiedURL
+                    self.webView.loadRequest(newRequest)
+                }
+            }
+
+            return false
         }
 
         let userIsLoggedIn = UserProfileHelper.shared.isLoggedIn
@@ -126,12 +141,16 @@ extension WebViewController: UIWebViewDelegate {
 
 extension WebViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
-        guard let currentArea = delegate.currentArea else { return }
+    var area: CourseArea {
+        return self.courseArea.require()
+    }
 
-        if let slug = course.slug, currentArea == .discussions {
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        self.courseArea = area
+
+        if let slug = course.slug, area == .discussions {
             self.url = Routes.courses.appendingPathComponents([slug, "pinboard"])
-        } else if currentArea == .recap {
+        } else if area == .recap {
             var urlComponents = URLComponents(url: Routes.recap, resolvingAgainstBaseURL: false)
             urlComponents?.queryItems = [URLQueryItem(name: "course_id", value: course.id)]
             self.url = urlComponents?.url

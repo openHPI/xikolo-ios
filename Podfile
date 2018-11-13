@@ -1,14 +1,16 @@
 use_frameworks!
 inhibit_all_warnings!
 
+project 'xikolo-ios', 'openHPI-iOS-Debug' => :debug, 'openSAP-iOS-Debug' => :debug, 'openWHO-iOS-Debug' => :debug, 'moocHOUSE-iOS-Debug' => :debug
+
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
 pod 'R.swift', '5.0.0.alpha.2'
 pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods
     pod 'Firebase/Core'
-    pod 'Fabric'
-    pod 'Crashlytics'
+    pod 'Fabric', '~> 1.8.2'
+    pod 'Crashlytics', '~> 3.11.1'
 end
 
 target 'Common' do
@@ -30,7 +32,7 @@ end
 target 'iOS' do
     platform :ios, '10.0'
     firebase_pods
-    pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => 'a8e110d'
+    pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => '8675a3fdefb3149a64af6ce16c66d673549c2ae7'
     pod 'DZNEmptyDataSet', '~> 1.8'
     pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end

@@ -32,12 +32,14 @@ class RichtextViewController: UIViewController {
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
 
-        ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
+        self.updateView()
 
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
 
     private func updateView() {
+        guard self.viewIfLoaded != nil else { return }
+
         self.titleView.text = self.courseItem.title
 
         guard let richText = self.courseItem.content as? RichText, let markdown = richText.text else {
@@ -63,6 +65,18 @@ extension RichtextViewController: UITextViewDelegate {
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         return !AppNavigator.handle(url: URL, on: self)
+    }
+
+}
+
+extension RichtextViewController: CourseItemContentViewController {
+
+    var item: CourseItem? {
+        return self.courseItem
+    }
+
+    func configure(for item: CourseItem) {
+        self.courseItem = item
     }
 
 }

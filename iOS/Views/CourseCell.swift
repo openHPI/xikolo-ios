@@ -51,7 +51,7 @@ class CourseCell: UICollectionViewCell {
         self.statusView.backgroundColor = Brand.default.colors.secondary
         self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
-        let gradient: CAGradientLayer = CAGradientLayer()
+        let gradient = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.5).cgColor]
         gradient.locations = [0.0, 1.0]
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
@@ -99,6 +99,62 @@ class CourseCell: UICollectionViewCell {
                 self.statusLabel.text = NSLocalizedString("course-cell.status.upcoming", comment: "status 'upcoming' of a course")
             }
         }
+    }
+
+}
+
+extension CourseCell {
+
+    static func minimalWidth(for traitCollection: UITraitCollection) -> CGFloat { // swiftlint:disable:this cyclomatic_complexity
+        switch traitCollection.preferredContentSizeCategory {
+        case .extraSmall:
+            return 280
+        case .small:
+            return 290
+        case .medium:
+            return 300
+        case .extraLarge:
+            return 320
+        case .extraExtraLarge:
+            return 330
+        case .extraExtraExtraLarge:
+            return 340
+
+        // Accessibility sizes
+        case .accessibilityMedium:
+            return 360
+        case .accessibilityLarge:
+            return 380
+        case .accessibilityExtraLarge:
+            return 400
+        case .accessibilityExtraExtraLarge:
+            return 420
+        case .accessibilityExtraExtraExtraLarge:
+            return 440
+
+        default: // large
+            return 310
+        }
+    }
+
+    static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
+        var height: CGFloat = 14
+        height += width / 2 // image
+        height += self.cardBottomOffset
+        return height
+    }
+
+    static var cardBottomOffset: CGFloat {
+        var height: CGFloat = 8 // padding
+        height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
+
+        if Brand.default.features.showCourseTeachers {
+            height += 4 // padding
+            height += UIFont.preferredFont(forTextStyle: .subheadline).lineHeight
+        }
+
+        height += 4 // padding
+        return height
     }
 
 }

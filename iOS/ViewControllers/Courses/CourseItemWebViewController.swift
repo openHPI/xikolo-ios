@@ -11,7 +11,6 @@ class CourseItemWebViewController: WebViewController {
     var courseItem: CourseItem! {
         didSet {
             self.setURL()
-            ErrorManager.shared.remember(self.courseItem.id, forKey: "item_id")
         }
     }
 
@@ -39,6 +38,18 @@ class CourseItemWebViewController: WebViewController {
     private func quizURL(for courseItem: CourseItem) -> URL? {
         guard let courseId = self.courseItem.section?.course?.id else { return nil }
         return Routes.courses.appendingPathComponents([courseId, "items", courseItem.id])
+    }
+
+}
+
+extension CourseItemWebViewController: CourseItemContentViewController {
+
+    var item: CourseItem? {
+        return self.courseItem
+    }
+
+    func configure(for item: CourseItem) {
+        self.courseItem = item
     }
 
 }

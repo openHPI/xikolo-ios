@@ -9,7 +9,7 @@ final class CoursePresentationController: UIPresentationController {
 
     override var frameOfPresentedViewInContainerView: CGRect {
         let containerView = self.containerView.require()
-        let statusBarHeight = UIApplication.shared.isStatusBarHidden ? 0 : max(12, UIApplication.shared.statusBarFrame.height + 4)
+        let statusBarHeight = UIApplication.shared.isStatusBarHidden || !trueUnlessReduceMotionEnabled ? 0 : max(12, UIApplication.shared.statusBarFrame.height + 4)
         return CGRect(x: 0,
                       y: statusBarHeight,
                       width: containerView.bounds.width,

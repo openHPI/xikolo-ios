@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,22 +16,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5M-nR-7iH">
-                    <rect key="frame" x="16" y="0.0" width="343" height="50"/>
+                    <rect key="frame" x="16" y="6" width="343" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-Ly-v5e">
-                            <rect key="frame" x="16" y="14" width="30" height="28"/>
+                            <rect key="frame" x="16" y="13" width="30" height="18"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ny-cH-9gM">
-                            <rect key="frame" x="315" y="6" width="28" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ny-cH-9gM">
+                            <rect key="frame" x="299" y="0.0" width="44" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="28" id="dHh-TF-eov"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="dHh-TF-eov"/>
                             </constraints>
-                            <state key="normal" title="Button" image="dots"/>
+                            <state key="normal" image="dots"/>
                             <connections>
                                 <action selector="tappedActionsButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="feT-VR-8aw"/>
                             </connections>
@@ -39,13 +39,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="5ny-cH-9gM" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" constant="6" id="9EZ-Lh-HQy"/>
+                        <constraint firstItem="5ny-cH-9gM" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" priority="999" id="9EZ-Lh-HQy"/>
                         <constraint firstAttribute="bottom" secondItem="5ny-cH-9gM" secondAttribute="bottom" id="L9i-uV-hI6"/>
                         <constraint firstAttribute="trailing" secondItem="5ny-cH-9gM" secondAttribute="trailing" id="ZCR-ST-oQD"/>
                         <constraint firstItem="rvi-Ly-v5e" firstAttribute="leading" secondItem="a5M-nR-7iH" secondAttribute="leadingMargin" constant="8" id="cik-ND-LcY"/>
-                        <constraint firstItem="rvi-Ly-v5e" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="topMargin" constant="6" id="g7W-bh-Qi7"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="44" id="fbt-Ee-Wkc"/>
+                        <constraint firstItem="rvi-Ly-v5e" firstAttribute="top" secondItem="a5M-nR-7iH" secondAttribute="top" priority="999" constant="13" id="fxT-Mw-Gij"/>
                         <constraint firstItem="5ny-cH-9gM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rvi-Ly-v5e" secondAttribute="trailing" constant="8" symbolic="YES" id="jwU-Q8-Yd1"/>
-                        <constraint firstAttribute="bottomMargin" secondItem="rvi-Ly-v5e" secondAttribute="bottom" id="pEx-mv-p7A"/>
+                        <constraint firstAttribute="bottom" secondItem="rvi-Ly-v5e" secondAttribute="bottom" priority="999" constant="13" id="vZt-fC-kTQ"/>
                     </constraints>
                 </view>
             </subviews>
@@ -53,8 +54,8 @@
             <constraints>
                 <constraint firstItem="a5M-nR-7iH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="9BF-eh-a6F"/>
                 <constraint firstAttribute="bottom" secondItem="a5M-nR-7iH" secondAttribute="bottom" id="Dm1-e7-1YZ"/>
-                <constraint firstAttribute="trailingMargin" secondItem="a5M-nR-7iH" secondAttribute="trailing" id="LNy-rw-LmA"/>
-                <constraint firstItem="a5M-nR-7iH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cfy-MQ-Dqj"/>
+                <constraint firstAttribute="trailingMargin" secondItem="a5M-nR-7iH" secondAttribute="trailing" priority="999" id="LNy-rw-LmA"/>
+                <constraint firstItem="a5M-nR-7iH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="999" constant="6" id="cfy-MQ-Dqj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

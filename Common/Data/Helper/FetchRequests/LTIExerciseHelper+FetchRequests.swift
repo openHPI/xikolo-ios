@@ -7,7 +7,7 @@ import CoreData
 
 extension LTIExerciseHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static func ltiExercise(withId id: String) -> NSFetchRequest<LTIExercise> {
             let request: NSFetchRequest<LTIExercise> = LTIExercise.fetchRequest()

@@ -7,7 +7,7 @@ import CoreData
 
 extension VideoHelper {
 
-    public struct FetchRequest {
+    enum FetchRequest {
 
         static let hasDownloadedVideoPredicate = NSPredicate(format: "localFileBookmark != nil")
         static let hasDownloadedSlidesPredicate = NSPredicate(format: "localSlidesBookmark != nil")

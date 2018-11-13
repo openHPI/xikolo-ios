@@ -37,6 +37,7 @@ class AnnouncementViewController: UIViewController {
         super.viewDidLoad()
 
         self.courseButton.tintColor = Brand.default.colors.secondary
+        self.courseButton.titleLabel?.adjustsFontForContentSizeCategory = true
 
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
@@ -83,7 +84,7 @@ class AnnouncementViewController: UIViewController {
         }
     }
 
-    @IBAction func tappedCourseTitle() {
+    @IBAction private func tappedCourseTitle() {
         guard let course = announcement.course else { return }
         AppNavigator.show(course: course)
     }

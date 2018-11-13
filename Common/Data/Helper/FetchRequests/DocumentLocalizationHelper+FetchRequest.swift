@@ -5,9 +5,9 @@
 
 import CoreData
 
-public struct DocumentLocalizationHelper {
+public enum DocumentLocalizationHelper {
 
-    public struct FetchRequest {
+    public enum FetchRequest {
 
         public static func publicDocumentLocalizations(forCourse course: Course) -> NSFetchRequest<DocumentLocalization> {
             let request: NSFetchRequest<DocumentLocalization> = DocumentLocalization.fetchRequest()
@@ -15,8 +15,8 @@ public struct DocumentLocalizationHelper {
                 NSPredicate(format: "%@ in document.courses", course),
                 NSPredicate(format: "document.isPublic = %@", NSNumber(value: true)),
             ])
-            let documentSortDescriptor = NSSortDescriptor(key: "document.title", ascending: true)
-            let localizationSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+            let documentSortDescriptor = NSSortDescriptor(keyPath: \DocumentLocalization.document.title, ascending: true)
+            let localizationSortDescriptor = NSSortDescriptor(keyPath: \DocumentLocalization.title, ascending: true)
             request.sortDescriptors = [documentSortDescriptor, localizationSortDescriptor]
             return request
         }

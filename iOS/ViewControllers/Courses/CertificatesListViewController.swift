@@ -9,17 +9,23 @@ import DZNEmptyDataSet
 import SafariServices
 import UIKit
 
-class CertificatesListViewController: UITableViewController {
+class CertificatesListViewController: UICollectionViewController {
 
     var course: Course!
     var certificates: [(name: String, explanation: String?, url: URL?)] = [] { // swiftlint:disable:this large_tuple
         didSet {
-            self.tableView.reloadData()
+            self.collectionView?.reloadData()
         }
     }
 
     override func viewDidLoad() {
+        self.collectionView?.register(R.nib.certificateCell)
+        if let certificateListLayout = self.collectionView?.collectionViewLayout as? CardListLayout {
+            certificateListLayout.delegate = self
+        }
+
         super.viewDidLoad()
+
         self.certificates = self.course.availableCertificates
         self.addRefreshControl()
         self.refresh()
@@ -40,38 +46,86 @@ class CertificatesListViewController: UITableViewController {
 
 }
 
-extension CertificatesListViewController { // TableViewDelegate
+extension CertificatesListViewController: CardListLayoutDelegate {
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    var followReadableWidth: Bool {
+        return true
+    }
+
+    var cardInset: CGFloat {
+        return 14
+    }
+
+    func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
+        return CertificateCell.minimalWidth(for: traitCollection)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        heightForCellAtIndexPath indexPath: IndexPath,
+                        withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
+        let cardMargin: CGFloat = 14
+        let cardPadding: CGFloat = 16
+        let cardWidth = boundingWidth - 2 * cardMargin
+        let textWidth = cardWidth - 2 * cardPadding
+
+        let titleHeight = self.certificates.map { certificate -> CGFloat in
+            return certificate.name.height(forTextStyle: .headline, boundingWidth: textWidth)
+        }.max() ?? 0
+
+        let statusHeight = self.certificates.map { certificate -> CGFloat in
+            let statusText = self.stateOfCertificate(withURL: certificate.url)
+            return statusText.height(forTextStyle: .subheadline, boundingWidth: textWidth)
+        }.max() ?? 0
+
+        let certificate = self.certificates[indexPath.item]
+        let explanationHeight = certificate.explanation?.height(forTextStyle: .footnote, boundingWidth: cardWidth) ?? 0
+
+        var height = cardMargin
+        height += 2 * cardPadding
+        height += 8
+        height += 8
+        height += titleHeight
+        height += statusHeight
+        height += explanationHeight
+        height += 5
+
+        return ceil(height)
+    }
+
+}
+
+extension CertificatesListViewController { // CollectionViewDelegate
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.certificates.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cellReuseIdentifier = R.reuseIdentifier.certificateCell.identifier
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
+        let certificate = self.certificates[indexPath.item]
+        let stateOfCertificate = self.stateOfCertificate(withURL: certificate.url)
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = self.certificates[indexPath.section].url else { return }
+        if let cell = cell as? CertificateCell {
+            cell.configure(certificate.name, explanation: certificate.explanation, url: certificate.url, stateOfCertificate: stateOfCertificate)
+        }
 
-        let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
-        pdfViewController.url = url
-        self.navigationController?.pushViewController(pdfViewController, animated: true)
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "certificateCell", for: indexPath)
-        let certificate = self.certificates[indexPath.section]
-        cell.textLabel?.text = certificate.name
-        cell.textLabel?.backgroundColor = .white
-        cell.detailTextLabel?.text = self.stateOfCertificate(withURL: certificate.url)
-        cell.detailTextLabel?.backgroundColor = .white
-        cell.enable(certificate.url != nil)
-        cell.accessoryType = certificate.url != nil ? .disclosureIndicator : .none
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return self.certificates[section].explanation
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let certificate = self.certificates[indexPath.item]
+        guard let url = certificate.url else { return }
+
+        let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
+        let filename = [self.course.title, certificate.name].compactMap { $0 }.joined(separator: " - ")
+        pdfViewController.configure(for: url, filename: filename)
+        self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.collectionView.performBatchUpdates(nil)
     }
 
 }
@@ -98,17 +152,21 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
     }
 
     func setupEmptyState() {
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.tableFooterView = UIView()
-        self.tableView.reloadEmptyDataSet()
+        self.collectionView?.emptyDataSetSource = self
+        self.collectionView?.emptyDataSetDelegate = self
+        self.collectionView?.reloadEmptyDataSet()
     }
 
 }
 
 extension CertificatesListViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .certificates
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        assert(area == self.area)
         self.course = course
     }
 

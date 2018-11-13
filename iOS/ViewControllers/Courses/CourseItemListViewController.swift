@@ -13,6 +13,22 @@ class CourseItemListViewController: UITableViewController {
 
     private static let contentToBePreloaded: [PreloadableCourseItemContent.Type] = [Video.self, RichText.self]
 
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter.localizedFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
+    private static let timeFormatter: DateFormatter = {
+        let formatter = DateFormatter.localizedFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
+    @IBOutlet private weak var nextSectionStartLabel: UILabel!
+
     private var course: Course!
     private var dataSource: CoreDataTableViewDataSource<CourseItemListViewController>!
 
@@ -33,9 +49,9 @@ class CourseItemListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 50
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 50
 
         // register custom section header view
@@ -58,6 +74,7 @@ class CourseItemListViewController: UITableViewController {
                                                object: nil)
 
         self.setupEmptyState()
+        self.updateFooterView()
         self.navigationItem.title = self.course.title
 
         // setup table view data
@@ -75,27 +92,7 @@ class CourseItemListViewController: UITableViewController {
     func setupEmptyState() {
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
         tableView.reloadEmptyDataSet()
-    }
-
-    func showItem(_ item: CourseItem) {
-        CourseItemHelper.markAsVisited(item)
-        let context = [
-            "content_type": item.contentType,
-            "section_id": item.section?.id,
-            "course_id": self.course.id,
-        ]
-        TrackingHelper.shared.createEvent(.visitedItem, resourceType: .item, resourceId: item.id, context: context)
-
-        switch item.contentType {
-        case "video"?:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showVideo, sender: item)
-        case "rich_text"?:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showRichtext, sender: item)
-        default:
-            self.performSegue(withIdentifier: R.segue.courseItemListViewController.showCourseItem, sender: item)
-        }
     }
 
     @objc func reachabilityChanged() {
@@ -110,31 +107,60 @@ class CourseItemListViewController: UITableViewController {
         }
     }
 
-    func showProctoringDialog(onComplete completionBlock: @escaping () -> Void) {
-        let alertTitle = NSLocalizedString("course-item.proctoring.alert.title", comment: "title for proctoring alert")
-        let alertMessage = NSLocalizedString("course-item.proctoring.alert.message", comment: "message for proctoring alert")
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let cell = sender as? CourseItemCell else { return }
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
 
-        let confirmTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
-        alert.addAction(UIAlertAction(title: confirmTitle, style: .default))
-
-        self.present(alert, animated: true, completion: completionBlock)
+        if let typeInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
+            typeInfo.destination.currentItem = self.dataSource.object(at: indexPath)
+        }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let courseItem = sender as? CourseItem else {
-            log.debug("Sender is not a course item")
-            super.prepare(for: segue, sender: sender)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        guard let footerView = tableView.tableFooterView else {
             return
         }
 
-        if let typedInfo = R.segue.courseItemListViewController.showVideo(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
-        } else if let typedInfo = R.segue.courseItemListViewController.showCourseItem(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
-        } else if let typedInfo = R.segue.courseItemListViewController.showRichtext(segue: segue) {
-            typedInfo.destination.courseItem = courseItem
+        let size = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        if footerView.frame.size.height != size.height {
+            footerView.frame.size.height = size.height
+            tableView.tableFooterView = footerView
+            tableView.layoutIfNeeded()
         }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.tableView.reloadData()
+    }
+
+    private func updateFooterView() {
+        guard self.course.startsAt?.inPast ?? true else {
+            self.nextSectionStartLabel.isHidden = true
+            return
+        }
+
+        let request = CourseSectionHelper.FetchRequest.nextUnpublishedSection(for: self.course)
+        guard let sectionStartDate = CoreDataHelper.viewContext.fetchSingle(request).value?.startsAt else {
+            self.nextSectionStartLabel.isHidden = true
+            return
+        }
+
+        var dateText = CourseItemListViewController.dateFormatter.string(from: sectionStartDate)
+        dateText = dateText.replacingOccurrences(of: " ", with: "\u{00a0}") // replace spaces with non-breaking spaces
+
+        var timeText = CourseItemListViewController.timeFormatter.string(from: sectionStartDate)
+        timeText = timeText.replacingOccurrences(of: " ", with: "\u{00a0}") // replace spaces with non-breaking spaces
+        if let timeZoneAbbreviation = TimeZone.current.abbreviation() {
+            timeText += " (\(timeZoneAbbreviation))"
+        }
+
+        let format = NSLocalizedString("course-item-list.footer.The next section will be available on %@ at %@",
+                                       comment: "Format string for the next section start in the footer of course item list")
+        self.nextSectionStartLabel.text = String(format: format, dateText, timeText)
+        self.nextSectionStartLabel.isHidden = false
     }
 
 }
@@ -142,15 +168,7 @@ class CourseItemListViewController: UITableViewController {
 extension CourseItemListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = self.dataSource.object(at: indexPath)
-        if item.proctored && (self.course.enrollment?.proctored ?? false) {
-            self.showProctoringDialog {
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
-        } else {
-            self.showItem(item)
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+        tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -193,6 +211,8 @@ extension CourseItemListViewController: RefreshableViewController {
     }
 
     func didRefresh() {
+        self.updateFooterView()
+
         guard self.preloadingWanted else { return }
         self.preloadCourseContent()
     }
@@ -236,7 +256,7 @@ extension CourseItemListViewController: UserActionsDelegate {
 
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     func showAlertSpinner(title: String?, task: () -> Future<Void, XikoloError>) -> Future<Void, XikoloError> {
@@ -247,11 +267,11 @@ extension CourseItemListViewController: UserActionsDelegate {
             promise.failure(.userCanceled)
         }
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
 
         task().onComplete { result in
             promise.tryComplete(result)
-            alert.dismiss(animated: true)
+            alert.dismiss(animated: trueUnlessReduceMotionEnabled)
         }
 
         return promise.future
@@ -261,7 +281,12 @@ extension CourseItemListViewController: UserActionsDelegate {
 
 extension CourseItemListViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .learnings
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        assert(area == self.area)
         self.course = course
     }
 

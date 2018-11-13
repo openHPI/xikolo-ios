@@ -26,7 +26,7 @@ class DocumentListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 44
 
         // register custom section header view
@@ -74,13 +74,14 @@ class DocumentListViewController: UITableViewController {
 extension DocumentListViewController { // TableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let documentLocaliztion = self.dataSource.object(at: indexPath)
+        let documentLocalization = self.dataSource.object(at: indexPath)
 
-        guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocaliztion) ?? documentLocaliztion.fileURL else { return }
+        guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocalization) ?? documentLocalization.fileURL else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
-        pdfViewController.url = url
-        self.navigationController?.pushViewController(pdfViewController, animated: true)
+        let filename = [documentLocalization.document.title, documentLocalization.title].compactMap { $0 }.joined(separator: " - ")
+        pdfViewController.configure(for: url, filename: filename)
+        self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -108,7 +109,12 @@ extension DocumentListViewController: CoreDataTableViewDataSourceDelegate {
 
 extension DocumentListViewController: CourseAreaViewController {
 
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate) {
+    var area: CourseArea {
+        return .documents
+    }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate) {
+        assert(area == self.area)
         self.course = course
     }
 
@@ -138,7 +144,7 @@ extension DocumentListViewController: UserActionsDelegate {
 
         alert.addCancelAction()
 
-        self.present(alert, animated: true)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

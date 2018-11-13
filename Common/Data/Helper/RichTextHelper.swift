@@ -7,7 +7,7 @@ import BrightFutures
 import Foundation
 import SyncEngine
 
-struct RichTextHelper {
+enum RichTextHelper {
 
     @discardableResult static func syncRichText(_ richText: RichText) -> Future<SyncSingleResult, XikoloError> {
         let fetchRequest = RichTextHelper.FetchRequest.richText(withId: richText.id)

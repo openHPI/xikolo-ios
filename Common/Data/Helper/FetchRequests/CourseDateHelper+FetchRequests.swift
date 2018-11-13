@@ -8,7 +8,7 @@ import SyncEngine
 
 extension CourseDateHelper {
 
-    public struct FetchRequest {
+    public enum FetchRequest {
 
         private static var enrolledCoursePredicate: NSPredicate {
             let deletedEnrollmentPrecidate = NSPredicate(format: "course.enrollment.objectStateValue = %d", ObjectState.deleted.rawValue)
@@ -21,9 +21,9 @@ extension CourseDateHelper {
 
         public static var allCourseDates: NSFetchRequest<CourseDate> {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "date", ascending: true)
-            let courseSort = NSSortDescriptor(key: "course.title", ascending: true)
-            let titleSort = NSSortDescriptor(key: "title", ascending: true)
+            let dateSort = NSSortDescriptor(keyPath: \CourseDate.date, ascending: true)
+            let courseSort = NSSortDescriptor(keyPath: \CourseDate.course?.title, ascending: true)
+            let titleSort = NSSortDescriptor(keyPath: \CourseDate.title, ascending: true)
             request.sortDescriptors = [dateSort, courseSort, titleSort]
             request.predicate = self.enrolledCoursePredicate
             return request
@@ -37,7 +37,7 @@ extension CourseDateHelper {
 
         public static var nextCourseDate: NSFetchRequest<CourseDate> {
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "date", ascending: true)
+            let dateSort = NSSortDescriptor(keyPath: \CourseDate.date, ascending: true)
             request.sortDescriptors = [dateSort]
             request.predicate = self.enrolledCoursePredicate
             request.fetchLimit = 1

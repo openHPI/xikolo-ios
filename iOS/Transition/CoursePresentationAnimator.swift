@@ -32,6 +32,7 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         if let snapshot = fromViewController.view.snapshotView(afterScreenUpdates: true) {
             snapshot.alpha = 0.2
+            snapshot.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             overlayView.addSubview(snapshot)
         }
 

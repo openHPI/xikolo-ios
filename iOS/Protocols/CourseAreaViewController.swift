@@ -7,12 +7,14 @@ import Common
 import Foundation
 
 protocol CourseAreaViewController: AnyObject {
-    func configure(for course: Course, delegate: CourseAreaViewControllerDelegate)
+
+    var area: CourseArea { get }
+
+    func configure(for course: Course, with area: CourseArea, delegate: CourseAreaViewControllerDelegate)
+
 }
 
 protocol CourseAreaViewControllerDelegate: AnyObject {
-
-    var currentArea: CourseArea? { get }
 
     func enrollmentStateDidChange(whenNewlyCreated newlyCreated: Bool)
 

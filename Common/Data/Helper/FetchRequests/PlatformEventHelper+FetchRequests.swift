@@ -7,11 +7,11 @@ import CoreData
 
 extension PlatformEventHelper {
 
-    struct FetchRequest {
+    enum FetchRequest {
 
         static var allPlatformEvents: NSFetchRequest<PlatformEvent> {
             let request: NSFetchRequest<PlatformEvent> = PlatformEvent.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "createdAt", ascending: false)
+            let dateSort = NSSortDescriptor(keyPath: \PlatformEvent.createdAt, ascending: false)
             request.sortDescriptors = [dateSort]
             return request
         }

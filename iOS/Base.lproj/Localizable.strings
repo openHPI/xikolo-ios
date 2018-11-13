@@ -200,6 +200,9 @@
 /* title to cancel alert */
 "global.alert.cancel" = "Cancel";
 
+/* title to delete alert */
+"global.alert.delete" = "Delete";
+
 /* title to confirm alert */
 "global.alert.ok" = "OK";
 
@@ -223,6 +226,15 @@
 
 /* course content preload setting: wifi only */
 "settings.course-item-content-preload.wifi-only" = "Wifi only";
+
+/* message for deleting documents */
+"settings.downloads.alert.delete.message.documents for course %@" = "Do you really want to delete all downloaded documents from the course %@?";
+
+/* message for deleting videos */
+"settings.downloads.alert.delete.message.slides for course %@" = "Do you really want to delete all downloaded slides from the course %@?";
+
+/* message for deleting videos */
+"settings.downloads.alert.delete.message.videos for course %@" = "Do you really want to delete all downloaded videos from the course %@?";
 
 /* download type documents */
 "settings.downloads.item.document" = "Documents";

@@ -31,7 +31,6 @@ class DownloadListViewController: UITableViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(coreDataChange(notification:)),
@@ -71,6 +70,11 @@ class DownloadListViewController: UITableViewController {
             }
 
             self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
+            if self.courses.isEmpty {
+                self.navigationItem.rightBarButtonItem = nil
+            } else {
+                self.navigationItem.rightBarButtonItem = self.editButtonItem
+            }
             self.tableView.reloadData()
         }.onFailure { error in
             log.error(error.localizedDescription)
@@ -223,15 +227,37 @@ class DownloadListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let course = fetchCourse(withID: courses[indexPath.section].id).require(hint: "Course has to exist")
         if editingStyle == .delete {
-            switch downloadType(for: indexPath) {
+            let downloadType = self.downloadType(for: indexPath)
+            switch downloadType {
             case .video:
-                StreamPersistenceManager.shared.deleteDownloads(for: course)
+                let format = NSLocalizedString("settings.downloads.alert.delete.message.videos for course %@", comment: "message for deleting videos")
+                let message = String.localizedStringWithFormat(format, courses[indexPath.section].title)
+                showAlertForDeletingContent(withMessage: message) { _ in
+                    StreamPersistenceManager.shared.deleteDownloads(for: course)
+                }
             case .slides:
-                SlidesPersistenceManager.shared.deleteDownloads(for: course)
+                let format = NSLocalizedString("settings.downloads.alert.delete.message.slides for course %@", comment: "message for deleting videos")
+                let message = String.localizedStringWithFormat(format, courses[indexPath.section].title)
+                showAlertForDeletingContent(withMessage: message) { _ in
+                    SlidesPersistenceManager.shared.deleteDownloads(for: course)
+                }
             case .document:
-                DocumentsPersistenceManager.shared.deleteDownloads(for: course)
+                let format = NSLocalizedString("settings.downloads.alert.delete.message.documents for course %@", comment: "message for deleting documents")
+                let message = String.localizedStringWithFormat(format, courses[indexPath.section].title)
+                showAlertForDeletingContent(withMessage: message) { _ in
+                    DocumentsPersistenceManager.shared.deleteDownloads(for: course)
+                }
             }
         }
+    }
+
+    func showAlertForDeletingContent(withMessage message: String?, andAction action: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let deleteTitle = NSLocalizedString("global.alert.delete", comment: "title to delete alert")
+        let deleteAction = UIAlertAction(title: deleteTitle, style: .destructive, handler: action)
+        alert.addCancelAction()
+        alert.addAction(deleteAction)
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     func fetchCourse(withID id: String) -> Course? {

@@ -15,6 +15,7 @@ class DownloadedVideosListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         let request: NSFetchRequest<Video> = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: courseID)
         resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
         do {

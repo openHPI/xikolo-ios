@@ -15,6 +15,7 @@ class DownloadedDocumentsListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         guard let course = fetchCourse(withID: courseID) else { return }
         let request: NSFetchRequest<DocumentLocalization> = DocumentLocalizationHelper.FetchRequest.downloadedDocumentLocalizations(forCourse: course)

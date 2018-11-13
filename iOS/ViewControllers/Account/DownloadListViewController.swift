@@ -11,7 +11,6 @@ import UIKit
 
 class DownloadListViewController: UITableViewController {
 
-    var dataSource: CoreDataTableViewDataSource<DownloadListViewController>!
     var hasDocuments: Bool = false
     var courses: [CourseDownload] = []
     var courseTitles: [(courseTitle: String, courseID: String)] = []
@@ -19,6 +18,8 @@ class DownloadListViewController: UITableViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(coreDataChange(notification:)),
                                                name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
@@ -246,16 +247,6 @@ class DownloadListViewController: UITableViewController {
         if containsVideoDeletion || containsDocumentDeletion {
             self.refresh()
         }
-    }
-
-}
-
-extension DownloadListViewController: CoreDataTableViewDataSourceDelegate {
-    typealias Object = Course
-    typealias Cell = DownloadedCourseCell
-
-    func configure(_ cell: Cell, for object: Object) {
-        cell.configure(for: object)
     }
 
 }

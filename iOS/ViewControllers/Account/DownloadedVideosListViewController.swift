@@ -26,8 +26,9 @@ class DownloadedVideosListViewController: UITableViewController {
 
     }
 
-    func configure(for courseID: String) {
-        self.courseID = courseID
+    func configure(for courseDownload: CourseDownload) {
+        self.courseID = courseDownload.id
+        self.navigationItem.title = courseDownload.title
     }
 
     // MARK: - Table view data source
@@ -44,8 +45,7 @@ class DownloadedVideosListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "downloadItemCell", for: indexPath)
         let video = resultsController.object(at: indexPath)
         cell.textLabel?.text = video.item?.title ?? video.summary ?? ""
-        // cell.detailTextLabel?.text = self.downloadType == .video ? video.singleStream.
-        // TODO: maybe set size
+        cell.detailTextLabel?.text = StreamPersistenceManager.shared.formattedFileSize(for: video)
         return cell
     }
 

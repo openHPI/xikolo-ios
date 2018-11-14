@@ -29,8 +29,9 @@ class DownloadedDocumentsListViewController: UITableViewController {
 
     }
 
-    func configure(for courseID: String) {
-        self.courseID = courseID
+    func configure(for courseDownload: CourseDownload) {
+        self.courseID = courseDownload.id
+        self.navigationItem.title = courseDownload.title
     }
 
     func fetchCourse(withID id: String) -> Course? {
@@ -44,6 +45,7 @@ extension DownloadedDocumentsListViewController: CoreDataTableViewDataSourceDele
 
     func configure(_ cell: UITableViewCell, for object: DocumentLocalization) {
         cell.textLabel?.text = object.languageCode
+        cell.detailTextLabel?.text = DocumentsPersistenceManager.shared.formattedFileSize(for: object)
     }
 
     func canEditRow(at indexPath: IndexPath) -> Bool {

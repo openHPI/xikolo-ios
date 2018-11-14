@@ -24,11 +24,11 @@ class DownloadedSlidesListViewController: UITableViewController {
                                                       fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
-
     }
 
-    func configure(for courseID: String) {
-        self.courseID = courseID
+    func configure(for courseDownload: CourseDownload) {
+        self.courseID = courseDownload.id
+        self.navigationItem.title = courseDownload.title
     }
 
 }
@@ -37,6 +37,7 @@ extension DownloadedSlidesListViewController: CoreDataTableViewDataSourceDelegat
 
     func configure(_ cell: UITableViewCell, for object: Video) {
         cell.textLabel?.text = object.item?.title ?? object.summary
+        cell.detailTextLabel?.text = SlidesPersistenceManager.shared.formattedFileSize(for: object)
     }
 
     func canEditRow(at indexPath: IndexPath) -> Bool {

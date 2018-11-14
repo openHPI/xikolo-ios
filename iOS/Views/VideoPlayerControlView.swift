@@ -176,7 +176,7 @@ class VideoPlayerControlView: BMPlayerControlView {
 
     @objc private func oniPadFullscreenButtonPressed() {
         self.iPadFullScreenButton.isSelected = !self.iPadFullScreenButton.isSelected
-        self.videoController?.activateiPadFullScreenMode(self.iPadFullScreenButton.isSelected)
+        self.videoController?.setiPadFullScreenMode(self.iPadFullScreenButton.isSelected)
     }
 
 }

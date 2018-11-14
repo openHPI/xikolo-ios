@@ -34,6 +34,14 @@ class CourseNavigationController: XikoloNavigationController {
         return .lightContent
     }
 
+    override var childForStatusBarHidden: UIViewController? {
+        guard let pageViewController = self.topViewController as? UIPageViewController else {
+            return nil
+        }
+
+        return pageViewController.viewControllers?.first
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 

@@ -52,6 +52,28 @@ class VideoViewController: UIViewController {
         }
     }
 
+    private var videoIsFullScreenOniPad = false {
+        didSet {
+            guard self.videoIsFullScreenOniPad != oldValue else { return }
+
+            DispatchQueue.main.async {
+                self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.25) {
+                    self.toggleControlBars(trueUnlessReduceMotionEnabled)
+                    self.setNeedsStatusBarAppearanceUpdate()
+
+                    if self.videoIsFullScreenOniPad {
+                        NSLayoutConstraint.activate(self.iPadFullScreenContraints)
+                    } else {
+                        NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
+                    }
+
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
+
     private var video: Video?
     private var videoPlayerConfigured = false
     private var didViewAppear = false
@@ -137,10 +159,16 @@ class VideoViewController: UIViewController {
         }
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return self.videoIsFullScreenOniPad
+    }
+
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .fade
+    }
+
     override var prefersHomeIndicatorAutoHidden: Bool {
-        let orientation = UIDevice.current.orientation
-        let isInLandscapeOrientation = orientation == .landscapeRight || orientation == .landscapeLeft
-        return UIDevice.current.userInterfaceIdiom == .phone && isInLandscapeOrientation
+        return UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation.isLandscape
     }
 
     func layoutPlayer() {
@@ -169,17 +197,8 @@ class VideoViewController: UIViewController {
         self.videoContainer.layoutIfNeeded()
     }
 
-    func activateiPadFullScreenMode(_ isFullScreen: Bool) {
-        self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.25) {
-            if isFullScreen {
-                NSLayoutConstraint.activate(self.iPadFullScreenContraints)
-            } else {
-                NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
-            }
-
-            self.view.layoutIfNeeded()
-        }
+    func setiPadFullScreenMode(_ isFullScreen: Bool) {
+        self.videoIsFullScreenOniPad = isFullScreen
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -392,7 +411,7 @@ class VideoViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        self.toggleControlBars(true)
+        self.toggleControlBars(trueUnlessReduceMotionEnabled)
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
 
         if #available(iOS 11.0, *) {
@@ -400,11 +419,9 @@ class VideoViewController: UIViewController {
         }
     }
 
-    @discardableResult private func toggleControlBars(_ animated: Bool) -> Bool {
-        let hiddenBars = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
+    private func toggleControlBars(_ animated: Bool) {
+        let hiddenBars = (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone) || self.videoIsFullScreenOniPad
         self.navigationController?.setNavigationBarHidden(hiddenBars, animated: animated)
-        self.tabBarController?.tabBar.isHidden = hiddenBars
-        return hiddenBars
     }
 
     private func updatePreferredVideoBitrate() {

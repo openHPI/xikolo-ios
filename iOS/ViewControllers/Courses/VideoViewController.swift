@@ -55,23 +55,7 @@ class VideoViewController: UIViewController {
     private var videoIsFullScreenOniPad = false {
         didSet {
             guard self.videoIsFullScreenOniPad != oldValue else { return }
-
-            DispatchQueue.main.async {
-                self.view.layoutIfNeeded()
-                UIView.animate(withDuration: 0.25) {
-                    self.toggleControlBars(trueUnlessReduceMotionEnabled)
-                    self.setNeedsStatusBarAppearanceUpdate()
-                    self.updateCornersOfVideoContainer(for: self.traitCollection)
-
-                    if self.videoIsFullScreenOniPad {
-                        NSLayoutConstraint.activate(self.iPadFullScreenContraints)
-                    } else {
-                        NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
-                    }
-
-                    self.view.layoutIfNeeded()
-                }
-            }
+            self.updateiPadFullScreenMode(trueUnlessReduceMotionEnabled)
         }
     }
 
@@ -413,7 +397,7 @@ class VideoViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        self.toggleControlBars(trueUnlessReduceMotionEnabled)
+        self.updateiPadFullScreenMode(false)
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
 
         if #available(iOS 11.0, *) {
@@ -435,6 +419,33 @@ class VideoViewController: UIViewController {
         let shouldRoundCorners = traitCollection.horizontalSizeClass == .regular && !self.videoIsFullScreenOniPad
         self.videoContainer.layer.cornerRadius = shouldRoundCorners ? 6 : 0
         self.videoContainer.layer.masksToBounds = shouldRoundCorners
+    }
+
+    private func updateiPadFullScreenMode(_ animated: Bool) {
+        let updateUI = {
+            self.toggleControlBars(animated)
+            self.setNeedsStatusBarAppearanceUpdate()
+            self.updateCornersOfVideoContainer(for: self.traitCollection)
+
+            if self.videoIsFullScreenOniPad {
+                NSLayoutConstraint.activate(self.iPadFullScreenContraints)
+            } else {
+                NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
+            }
+
+            self.view.layoutIfNeeded()
+        }
+
+        DispatchQueue.main.async {
+            if animated {
+                self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.25) {
+                    updateUI()
+                }
+            } else {
+                updateUI()
+            }
+        }
     }
 
     private func updatePreferredVideoBitrate() {

@@ -151,7 +151,7 @@ class VideoViewController: UIViewController {
     }
 
     override var prefersStatusBarHidden: Bool {
-        return self.videoIsFullScreenOniPad
+        return self.videoIsFullScreen
     }
 
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {

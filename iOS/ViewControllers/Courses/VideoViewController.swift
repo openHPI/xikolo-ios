@@ -61,6 +61,7 @@ class VideoViewController: UIViewController {
                 UIView.animate(withDuration: 0.25) {
                     self.toggleControlBars(trueUnlessReduceMotionEnabled)
                     self.setNeedsStatusBarAppearanceUpdate()
+                    self.updateCornersOfVideoContainer(for: self.traitCollection)
 
                     if self.videoIsFullScreenOniPad {
                         NSLayoutConstraint.activate(self.iPadFullScreenContraints)
@@ -87,6 +88,7 @@ class VideoViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
         self.layoutPlayer()
+        self.updateCornersOfVideoContainer(for: self.traitCollection)
 
         self.errorView.isHidden = true
 
@@ -419,9 +421,20 @@ class VideoViewController: UIViewController {
         }
     }
 
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        self.updateCornersOfVideoContainer(for: newCollection)
+    }
+
     private func toggleControlBars(_ animated: Bool) {
         let hiddenBars = (UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone) || self.videoIsFullScreenOniPad
         self.navigationController?.setNavigationBarHidden(hiddenBars, animated: animated)
+    }
+
+    private func updateCornersOfVideoContainer(for traitCollection: UITraitCollection) {
+        let shouldRoundCorners = traitCollection.horizontalSizeClass == .regular && !self.videoIsFullScreenOniPad
+        self.videoContainer.layer.cornerRadius = shouldRoundCorners ? 6 : 0
+        self.videoContainer.layer.masksToBounds = shouldRoundCorners
     }
 
     private func updatePreferredVideoBitrate() {

@@ -51,7 +51,7 @@ post_install do |installer|
     # but creates only one pod license file for iOS instead of one license file for each target
     # Additonally, it provides more customization possibilities.
     Pod::UI.info "Adding Pod Licenses"
-    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'HTMLStyler']
+    excluded = ['BartyCrouch', 'R.swift', 'R.swift.Library', 'SwiftLint', 'SimulatorStatusMagic', 'SyncEngine', 'HTMLStyler']
     sandbox = installer.sandbox
     common_target = installer.aggregate_targets.select { |target| target.label.include? 'Common' }.first
     ios_target = installer.aggregate_targets.select { |target| target.label.include? 'iOS' }.first

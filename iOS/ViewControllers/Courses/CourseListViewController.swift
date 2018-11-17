@@ -102,10 +102,6 @@ class CourseListViewController: UICollectionViewController {
 
 extension CourseListViewController: CardListLayoutDelegate {
 
-    var showHeaders: Bool {
-        return self.configuration == .allCourses || self.dataSource.isSearching
-    }
-
     var topInset: CGFloat {
         if #available(iOS 11.0, *) {
             return 0
@@ -119,6 +115,10 @@ extension CourseListViewController: CardListLayoutDelegate {
     }
 
     var heightForHeader: CGFloat {
+        guard self.configuration == .allCourses || self.dataSource.isSearching else {
+            return 0 // Don't show header for these configurations
+        }
+
         let margin: CGFloat = 8
         let padding: CGFloat = 8
         return 2 * margin + 2 * padding + UIFont.preferredFont(forTextStyle: .headline).lineHeight

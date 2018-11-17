@@ -74,3 +74,48 @@ extension CertificateCell {
     }
 
 }
+
+extension CertificateCell {
+
+    static var cardInset: CGFloat {
+        return 14
+    }
+
+    static func height(for certificate: Course.Certificate, forWidth width: CGFloat, delegate: CertificateCellDelegate) -> CGFloat {
+        let cardMargin = CertificateCell.cardInset
+        let cardPadding: CGFloat = 16
+        let cardWidth = width - 2 * cardMargin
+        let textWidth = cardWidth - 2 * cardPadding
+
+        let titleHeight = delegate.maximalHeightForTitle(withWidth: textWidth)
+        let statusHeight = delegate.maximalHeightForStatus(withWidth: textWidth)
+        let explanationHeight = certificate.explanation?.height(forTextStyle: .footnote, boundingWidth: cardWidth) ?? 0
+
+        var height = cardMargin
+        height += 2 * cardPadding
+        height += 8
+        height += 8
+        height += titleHeight
+        height += statusHeight
+        height += explanationHeight
+        height += 5
+
+        return height
+    }
+
+    static func heightForTitle(_ title: String, withWidth width: CGFloat) -> CGFloat {
+        return title.height(forTextStyle: .headline, boundingWidth: width)
+    }
+
+    static func heightForStatus(_ status: String, withWidth width: CGFloat) -> CGFloat {
+        return status.height(forTextStyle: .subheadline, boundingWidth: width)
+    }
+
+}
+
+protocol CertificateCellDelegate: AnyObject {
+
+    func maximalHeightForTitle(withWidth width: CGFloat) -> CGFloat
+    func maximalHeightForStatus(withWidth width: CGFloat) -> CGFloat
+
+}

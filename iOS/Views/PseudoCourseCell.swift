@@ -52,7 +52,7 @@ class PseudoCourseCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.bottomConstraint.constant = CourseCell.cardBottomOffset
+        self.bottomConstraint.constant = CourseCell.cardBottomOffsetForOverviewList
     }
 
 }

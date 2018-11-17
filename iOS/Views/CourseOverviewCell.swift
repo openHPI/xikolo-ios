@@ -47,9 +47,10 @@ class CourseOverviewCell: UITableViewCell {
 
     @objc private func updateCollectionViewHeight() {
         let courseCellWidth = CourseCell.minimalWidth(for: self.collectionView.traitCollection)
-        let availableWidth = (self.superview?.bounds.width ?? 500) - self.collectionView.layoutMargins.left - self.collectionView.layoutMargins.right
-        let preferedWidth = min(availableWidth * 0.9, courseCellWidth)
-        let height = CourseCell.heightForOverviewList(forWidth: preferedWidth)
+        let boundsWidth = max(self.superview?.bounds.width ?? 0, self.collectionView.bounds.width)
+        let availableWidth = boundsWidth - self.collectionView.layoutMargins.left - self.collectionView.layoutMargins.right
+        let preferredWidth = min(availableWidth * 0.9, courseCellWidth)
+        let height = CourseCell.heightForOverviewList(forWidth: preferredWidth)
         self.collectionViewHeight.constant = ceil(height)
     }
 

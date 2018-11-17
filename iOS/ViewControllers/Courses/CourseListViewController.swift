@@ -234,6 +234,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
                 NSPredicate(format: "title CONTAINS[c] %@", searchTextPart),
                 NSPredicate(format: "teachers CONTAINS[c] %@", searchTextPart),
                 NSPredicate(format: "abstract CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "slug CONTAINS[c] %@", searchTextPart),
             ])
         }
 

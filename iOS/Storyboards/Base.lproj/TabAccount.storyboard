@@ -545,7 +545,7 @@
             </objects>
             <point key="canvasLocation" x="1716.8" y="1393.4032983508248"/>
         </scene>
-        <!--Downloads-->
+        <!--Downloaded Content-->
         <scene sceneID="j5i-Fd-hFt">
             <objects>
                 <tableViewController storyboardIdentifier="DownloadListViewController" id="PYC-Vo-6CG" customClass="DownloadListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -580,7 +580,7 @@
                             <outlet property="delegate" destination="PYC-Vo-6CG" id="Kye-Kv-cHw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Downloads" largeTitleDisplayMode="never" id="JQL-ib-5Ua"/>
+                    <navigationItem key="navigationItem" title="Downloaded Content" largeTitleDisplayMode="never" id="JQL-ib-5Ua"/>
                     <connections>
                         <segue destination="DN4-ct-Adc" kind="show" identifier="ShowVideoDownloads" id="hWD-28-ZPz"/>
                         <segue destination="8LL-oA-gm6" kind="show" identifier="ShowSlideDownloads" id="VQK-qe-sjK"/>

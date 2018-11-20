@@ -38,8 +38,8 @@
 /* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "zoF-aO-Ebb"; */
 "zoF-aO-Ebb.headerTitle" = "Info";
 
-/* Class = "UINavigationItem"; title = "Downloads"; ObjectID = "JQL-ib-5Ua"; */
-"JQL-ib-5Ua.title" = "Downloads";
+/* Class = "UINavigationItem"; title = "Downloaded Content"; ObjectID = "JQL-ib-5Ua"; */
+"JQL-ib-5Ua.title" = "Inhalte";
 
 /* Class = "UILabel"; text = "Downloaded Content"; ObjectID = "Q91-Eg-kES"; */
 "Q91-Eg-kES.text" = "Heruntergeladene Inhalte";

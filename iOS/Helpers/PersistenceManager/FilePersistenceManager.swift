@@ -64,13 +64,3 @@ extension FilePersistenceManager {
     }
 
 }
-
-extension FilePersistenceManager {
-
-    func fileSize(for resource: Resource) -> Int64? {
-        guard let url = localFileLocation(for: resource) else { return nil }
-        let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
-        return attributes?[.size] as? Int64
-    }
-
-}

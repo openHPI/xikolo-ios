@@ -41,5 +41,5 @@
 /* Class = "UINavigationItem"; title = "Downloads"; ObjectID = "JQL-ib-5Ua"; */
 "JQL-ib-5Ua.title" = "Downloads";
 
-/* Class = "UILabel"; text = "Downloads"; ObjectID = "Q91-Eg-kES"; */
+/* Class = "UILabel"; text = "Downloaded Content"; ObjectID = "Q91-Eg-kES"; */
 "Q91-Eg-kES.text" = "Heruntergeladene Inhalte";

@@ -257,6 +257,7 @@
 		50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */; };
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
+		700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */; };
 		7007E415213444AC005AC7A6 /* DownloadedVideosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */; };
 		709D11B221763C810030FE96 /* DownloadedSlidesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */; };
@@ -556,6 +557,7 @@
 		50FA2DEE20E4B1A800656776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemWebViewController.swift; sourceTree = "<group>"; };
 		58514D98E3A98476D78CB780 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+fileSize.swift"; sourceTree = "<group>"; };
 		7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListViewController.swift; sourceTree = "<group>"; };
 		7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosListViewController.swift; sourceTree = "<group>"; };
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -1231,6 +1233,7 @@
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
+				700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1985,6 +1988,7 @@
 				50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */,
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,
+				700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */,
 				50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */,
 				50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */,
 				50CF1FD720DCDBFC0011BFE9 /* CoursePresentationAnimator.swift in Sources */,

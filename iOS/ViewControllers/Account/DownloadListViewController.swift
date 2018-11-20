@@ -55,7 +55,7 @@ class DownloadListViewController: UITableViewController {
 
     @discardableResult
     func refresh() -> Future<[[DownloadItem]], XikoloError> {
-        return self.getCourseIDs().onSuccess { itemsArray in
+        return self.courseIDs().onSuccess { itemsArray in
             self.downloadItems = itemsArray.flatMap { $0 }
             var downloadedCourseList: [String: CourseDownload] = [:]
             for downloadItem in self.downloadItems {
@@ -77,26 +77,46 @@ class DownloadListViewController: UITableViewController {
         }
     }
 
-    func getCourseIDs() -> Future<[[DownloadItem]], XikoloError> {
-        var futures = [getVideoCourseIDs(), getSlidesCourseIDs()]
+    private func courseIDs() -> Future<[[DownloadItem]], XikoloError> {
+        var futures = [streamCourseIDs(), slidesCourseIDs()]
 
         if Brand.default.features.enableDocuments {
-            futures.append(getDocumentsCourseIDs())
+            futures.append(documentsCourseIDs())
         }
 
         return futures.sequence()
     }
 
-    func getVideoCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        let videoRequest = VideoHelper.FetchRequest.hasDownloadedVideo()
+    private func streamCourseIDs() -> Future<[DownloadItem], XikoloError> {
+        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.hasDownloadedVideo(),
+                              contentType: .video,
+                              keyPath: \Video.item?.section?.course)
+    }
+
+    private func slidesCourseIDs() -> Future<[DownloadItem], XikoloError> {
+        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.hasDownloadedSlides(),
+                              contentType: .slides,
+                              keyPath: \Video.item?.section?.course)
+    }
+
+    private func documentsCourseIDs() -> Future<[DownloadItem], XikoloError> {
+        return self.courseIDs(fetchRequest: DocumentHelper.FetchRequest.hasDownloadedLocalization(),
+                              contentType: .document,
+                              keyPath: \Document.courses)
+    }
+
+    private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
+                                     contentType: DownloadItem.DownloadType,
+                                     keyPath: KeyPath<Resource, Course?>) -> Future<[DownloadItem], XikoloError> {
+
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             do {
-                let downloadedVideos = try privateManagedObjectContext.fetch(videoRequest)
-                for video in downloadedVideos {
-                    if let course = video.item?.section?.course {
-                        items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .video))
+                let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
+                for video in downloadedItems {
+                    if let course = video[keyPath: keyPath] {
+                        items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType))
                     }
                 }
 
@@ -109,40 +129,18 @@ class DownloadListViewController: UITableViewController {
         return promise.future
     }
 
-    func getSlidesCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        let slidesRequest = VideoHelper.FetchRequest.hasDownloadedSlides()
+    private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
+                                     contentType: DownloadItem.DownloadType,
+                                     keyPath: KeyPath<Resource, Set<Course>>) -> Future<[DownloadItem], XikoloError> {
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             do {
-                let downloadedSlides = try privateManagedObjectContext.fetch(slidesRequest)
-                for slide in downloadedSlides {
-                    if let course = slide.item?.section?.course {
-                        items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .slides))
-                    }
-                }
-
-                return promise.success(items)
-            } catch {
-                promise.failure(.coreData(error))
-            }
-        }
-
-        return promise.future
-    }
-
-    func getDocumentsCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        let documentsRequest = DocumentHelper.FetchRequest.hasDownloadedLocalization()
-        var items: [DownloadItem] = []
-        let promise = Promise<[DownloadItem], XikoloError>()
-        CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
-            do {
-                let downloadedDocuments = try privateManagedObjectContext.fetch(documentsRequest)
-                for document in downloadedDocuments {
-                    let downloadItems = document.courses.map { course -> DownloadItem in
-                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .document)
-                    }
-
+                let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
+                for item in downloadedItems {
+                    let downloadItems = item[keyPath: keyPath].map({ course -> DownloadItem in
+                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType)
+                    })
                     items.append(contentsOf: downloadItems)
                 }
 

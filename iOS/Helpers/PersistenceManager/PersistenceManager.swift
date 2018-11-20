@@ -38,6 +38,8 @@ protocol PersistenceManager: AnyObject {
     func deleteDownload(for resource: Resource)
     func cancelDownload(for resource: Resource)
 
+    func fileSize(for resource: Resource) -> Int64?
+
     // callbacks
     func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?)
     func didFinishDownloadTask(_ task: URLSessionTask, to location: URL)
@@ -200,12 +202,6 @@ extension PersistenceManager {
         }
 
         return url
-    }
-
-    func fileSize(for resource: Resource) -> Int64? {
-        guard let url = localFileLocation(for: resource) else { return nil }
-        let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
-        return attributes?[.size] as? Int64
     }
 
     func formattedFileSize(for resource: Resource) -> String? {

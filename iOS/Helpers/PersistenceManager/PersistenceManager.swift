@@ -204,8 +204,8 @@ extension PersistenceManager {
 
     func fileSize(for resource: Resource) -> Int64? {
         guard let url = localFileLocation(for: resource) else { return nil }
-        guard let attributes = try? FileManager.default.attributesOfItem(atPath: url.absoluteString) else { return nil }
-        return attributes[.size] as? Int64
+        let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
+        return attributes?[.size] as? Int64
     }
 
     func formattedFileSize(for resource: Resource) -> String? {

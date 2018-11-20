@@ -44,7 +44,7 @@ class DownloadedDocumentsListViewController: UITableViewController {
 extension DownloadedDocumentsListViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: UITableViewCell, for object: DocumentLocalization) {
-        cell.textLabel?.text = object.languageCode
+        cell.textLabel?.text = [object.document.title, object.languageCode].compactMap { $0 }.joined(separator: " - ")
         cell.detailTextLabel?.text = DocumentsPersistenceManager.shared.formattedFileSize(for: object)
     }
 

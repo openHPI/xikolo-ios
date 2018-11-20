@@ -55,7 +55,7 @@ class DownloadListViewController: UITableViewController {
 
     @discardableResult
     func refresh() -> Future<[[DownloadItem]], XikoloError> {
-        return self.getData().onSuccess { itemsArray in
+        return self.getCourseIDs().onSuccess { itemsArray in
             self.downloadItems = itemsArray.flatMap { $0 }
             var downloadedCourseList: [String: CourseDownload] = [:]
             for downloadItem in self.downloadItems {
@@ -70,18 +70,14 @@ class DownloadListViewController: UITableViewController {
             }
 
             self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
-            if self.courses.isEmpty {
-                self.navigationItem.rightBarButtonItem = nil
-            } else {
-                self.navigationItem.rightBarButtonItem = self.editButtonItem
-            }
+            self.navigationItem.rightBarButtonItem = self.courses.isEmpty ? nil : self.editButtonItem
             self.tableView.reloadData()
         }.onFailure { error in
             log.error(error.localizedDescription)
         }
     }
 
-    func getData() -> Future<[[DownloadItem]], XikoloError> {
+    func getCourseIDs() -> Future<[[DownloadItem]], XikoloError> {
         var futures = [getVideoCourseIDs(), getSlidesCourseIDs()]
 
         if Brand.default.features.enableDocuments {
@@ -142,10 +138,6 @@ class DownloadListViewController: UITableViewController {
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             do {
                 let downloadedDocuments = try privateManagedObjectContext.fetch(documentsRequest)
-                if !downloadedDocuments.isEmpty {
-                    self.hasDocuments = true
-                }
-
                 for document in downloadedDocuments {
                     let downloadItems = document.courses.map { course -> DownloadItem in
                         return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: .document)
@@ -269,23 +261,14 @@ class DownloadListViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let downloadItem = (sender as? CourseDownload).require(hint: "Sender must be DownloadItem")
-        switch segue.identifier {
-        case "ShowVideoDownloads"?:
-            if let typedInfo = R.segue.downloadListViewController.showVideoDownloads(segue: segue) {
-                typedInfo.destination.configure(for: downloadItem)
-            }
-        case "ShowSlideDownloads"?:
-            if let typedInfo = R.segue.downloadListViewController.showSlideDownloads(segue: segue) {
-                typedInfo.destination.configure(for: downloadItem)
-            }
-        case "ShowDocumentDownloads"?:
-            if let typedInfo = R.segue.downloadListViewController.showDocumentDownloads(segue: segue) {
-                typedInfo.destination.configure(for: downloadItem)
-            }
-        default:
-            break
-        }
 
+        if let typedInfo = R.segue.downloadListViewController.showVideoDownloads(segue: segue) {
+            typedInfo.destination.configure(for: downloadItem)
+        } else if let typedInfo = R.segue.downloadListViewController.showSlideDownloads(segue: segue) {
+            typedInfo.destination.configure(for: downloadItem)
+        } else if let typedInfo = R.segue.downloadListViewController.showDocumentDownloads(segue: segue) {
+            typedInfo.destination.configure(for: downloadItem)
+        }
     }
 
     @objc private func coreDataChange(notification: Notification) {
@@ -336,10 +319,4 @@ struct DownloadItem {
         case slides = 1
         case document = 2
     }
-}
-
-private struct CourseItem {
-    var courseID: String
-    var courseTitle: String
-    var content: Set<DownloadItem.DownloadType>
 }

@@ -29,9 +29,12 @@ extension VideoHelper {
                 let sectionSort = NSSortDescriptor(key: "item.section.position", ascending: true)
                 let positionSort = NSSortDescriptor(key: "item.position", ascending: true)
                 request.sortDescriptors = [sectionSort, positionSort]
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [hasDownloadedVideoPredicate, inCoursePredicate(withID: id)])
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                    self.hasDownloadedVideoPredicate,
+                    self.inCoursePredicate(withID: id),
+                ])
             } else {
-                request.predicate = hasDownloadedVideoPredicate
+                request.predicate = self.hasDownloadedVideoPredicate
             }
 
             return request
@@ -43,9 +46,12 @@ extension VideoHelper {
                 let sectionSort = NSSortDescriptor(key: "item.section.position", ascending: true)
                 let positionSort = NSSortDescriptor(key: "item.position", ascending: true)
                 request.sortDescriptors = [sectionSort, positionSort]
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [hasDownloadedSlidesPredicate, inCoursePredicate(withID: id)])
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                    self.hasDownloadedSlidesPredicate,
+                    self.inCoursePredicate(withID: id),
+                ])
             } else {
-                request.predicate = hasDownloadedSlidesPredicate
+                request.predicate = self.hasDownloadedSlidesPredicate
             }
 
             return request

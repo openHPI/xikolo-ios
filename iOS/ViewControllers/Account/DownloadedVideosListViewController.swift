@@ -18,14 +18,15 @@ class DownloadedVideosListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         let request = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: courseID)
+        let reuseIdentifier = R.reuseIdentifier.downloadItemCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: "downloadItemCell",
+                                                      cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
     }
 
-    func configure(for courseDownload: CourseDownload) {
+    func configure(for courseDownload: DownloadListViewController.CourseDownload) {
         self.courseID = courseDownload.id
         self.navigationItem.title = courseDownload.title
     }

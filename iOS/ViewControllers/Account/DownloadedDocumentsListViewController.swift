@@ -20,8 +20,8 @@ class DownloadedDocumentsListViewController: UITableViewController {
         guard let course = fetchCourse(withID: courseID) else { return }
         let request = DocumentLocalizationHelper.FetchRequest.downloadedDocumentLocalizations(forCourse: course)
 
-        let reuseIdentifier = "downloadItemCell"
-        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title") // must be first sort descriptor
+        let reuseIdentifier = R.reuseIdentifier.downloadItemCell.identifier
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title")
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
@@ -29,7 +29,7 @@ class DownloadedDocumentsListViewController: UITableViewController {
 
     }
 
-    func configure(for courseDownload: CourseDownload) {
+    func configure(for courseDownload: DownloadListViewController.CourseDownload) {
         self.courseID = courseDownload.id
         self.navigationItem.title = courseDownload.title
     }

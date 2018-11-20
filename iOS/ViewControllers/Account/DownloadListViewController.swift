@@ -12,10 +12,33 @@ import UIKit
 
 class DownloadListViewController: UITableViewController {
 
-    var hasDocuments: Bool = false
-    var courses: [CourseDownload] = []
-    var courseTitles: [(courseTitle: String, courseID: String)] = []
-    var downloadItems: [DownloadItem] = []
+    struct CourseDownload {
+        var id: String
+        var title: String
+        var properties: [Bool] = [false, false, false]
+
+        init(id: String, title: String) {
+            self.id = id
+            self.title = title
+        }
+    }
+
+    private struct DownloadItem {
+
+        enum DownloadType: Int {
+            case video = 0
+            case slides = 1
+            case document = 2
+        }
+
+        var courseID: String
+        var courseTitle: String?
+        var contentType: DownloadType
+    }
+
+    private var courses: [CourseDownload] = []
+    private var courseTitles: [(courseTitle: String, courseID: String)] = []
+    private var downloadItems: [DownloadItem] = []
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -54,19 +77,15 @@ class DownloadListViewController: UITableViewController {
     }
 
     @discardableResult
-    func refresh() -> Future<[[DownloadItem]], XikoloError> {
+    private func refresh() -> Future<[[DownloadItem]], XikoloError> {
         return self.courseIDs().onSuccess { itemsArray in
             self.downloadItems = itemsArray.flatMap { $0 }
             var downloadedCourseList: [String: CourseDownload] = [:]
             for downloadItem in self.downloadItems {
-                if var courseDownload = downloadedCourseList[downloadItem.courseID] {
-                    courseDownload.properties[downloadItem.contentType.rawValue] = true
-                    downloadedCourseList[downloadItem.courseID] = courseDownload
-                } else {
-                    var courseDownload = CourseDownload(id: downloadItem.courseID, title: downloadItem.courseTitle ?? "")
-                    courseDownload.properties[downloadItem.contentType.rawValue] = true
-                    downloadedCourseList[downloadItem.courseID] = courseDownload
-                }
+                let courseId = downloadItem.courseID
+                var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
+                courseDownload.properties[downloadItem.contentType.rawValue] = true
+                downloadedCourseList[downloadItem.courseID] = courseDownload
             }
 
             self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
@@ -157,20 +176,20 @@ class DownloadListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return courses.count
+        return self.courses.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courses[section].properties.filter { $0 }.count
+        return self.courses[section].properties.filter { $0 }.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "streamSlidesCell", for: indexPath)
-        cell.textLabel?.text = getTitle(for: downloadType(for: indexPath))
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
+        cell.textLabel?.text = self.title(for: downloadType(for: indexPath))
         return cell
     }
 
-    func downloadType(for indexPath: IndexPath) -> DownloadItem.DownloadType {
+    private func downloadType(for indexPath: IndexPath) -> DownloadItem.DownloadType {
         var itemCount = 0
         var returnCount = 0
         for itemExists in courses[indexPath.section].properties {
@@ -192,7 +211,7 @@ class DownloadListViewController: UITableViewController {
         return courses[section].title
     }
 
-    func getTitle(for downloadType: DownloadItem.DownloadType?) -> String? {
+    private func title(for downloadType: DownloadItem.DownloadType?) -> String? {
         guard let downloadType = downloadType else { return nil }
         switch downloadType {
         case .video:
@@ -218,36 +237,39 @@ class DownloadListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let course = fetchCourse(withID: courses[indexPath.section].id).require(hint: "Course has to exist")
         if editingStyle == .delete {
-            let downloadType = self.downloadType(for: indexPath)
-            switch downloadType {
+            let courseTitle = self.courses[indexPath.section].title
+            switch self.downloadType(for: indexPath) {
             case .video:
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.videos for course %@", comment: "message for deleting videos")
-                let message = String.localizedStringWithFormat(format, courses[indexPath.section].title)
-                showAlertForDeletingContent(withMessage: message) { _ in
+                let title = NSLocalizedString("settings.downloads.alert.delete.title.streams", comment: "title for deleting streams")
+                let format = NSLocalizedString("settings.downloads.alert.delete.message.streams for course %@", comment: "message for deleting streams")
+                let message = String.localizedStringWithFormat(format, courseTitle)
+                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
                     StreamPersistenceManager.shared.deleteDownloads(for: course)
                 }
             case .slides:
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.slides for course %@", comment: "message for deleting videos")
-                let message = String.localizedStringWithFormat(format, courses[indexPath.section].title)
-                showAlertForDeletingContent(withMessage: message) { _ in
+                let title = NSLocalizedString("settings.downloads.alert.delete.title.slides", comment: "title for deleting slides")
+                let format = NSLocalizedString("settings.downloads.alert.delete.message.slides for course %@", comment: "message for deleting slides")
+                let message = String.localizedStringWithFormat(format, courseTitle)
+                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
                     SlidesPersistenceManager.shared.deleteDownloads(for: course)
                 }
             case .document:
+                let title = NSLocalizedString("settings.downloads.alert.delete.title.documents", comment: "title for deleting documents")
                 let format = NSLocalizedString("settings.downloads.alert.delete.message.documents for course %@", comment: "message for deleting documents")
-                let message = String.localizedStringWithFormat(format, courses[indexPath.section].title)
-                showAlertForDeletingContent(withMessage: message) { _ in
+                let message = String.localizedStringWithFormat(format, courseTitle)
+                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
                     DocumentsPersistenceManager.shared.deleteDownloads(for: course)
                 }
             }
         }
     }
 
-    func showAlertForDeletingContent(withMessage message: String?, andAction action: ((UIAlertAction) -> Void)?) {
+    func showAlertForDeletingContent(withTitle title: String, message: String, action: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let deleteTitle = NSLocalizedString("global.alert.delete", comment: "title to delete alert")
         let deleteAction = UIAlertAction(title: deleteTitle, style: .destructive, handler: action)
-        alert.addCancelAction()
         alert.addAction(deleteAction)
+        alert.addCancelAction()
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
@@ -295,27 +317,4 @@ extension DownloadListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDele
         return NSAttributedString(string: description)
     }
 
-}
-
-struct CourseDownload {
-    var id: String
-    var title: String
-    var properties: [Bool] = [false, false, false]
-
-    init(id: String, title: String) {
-        self.id = id
-        self.title = title
-    }
-}
-
-struct DownloadItem {
-    var courseID: String
-    var courseTitle: String?
-    var contentType: DownloadType
-
-    enum DownloadType: Int {
-        case video = 0
-        case slides = 1
-        case document = 2
-    }
 }

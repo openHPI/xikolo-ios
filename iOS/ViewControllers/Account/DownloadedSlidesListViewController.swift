@@ -19,7 +19,7 @@ class DownloadedSlidesListViewController: UITableViewController {
 
         let request = VideoHelper.FetchRequest.hasDownloadedSlides(inCourse: courseID)
 
-        let reuseIdentifier = "downloadItemCell"
+        let reuseIdentifier = R.reuseIdentifier.downloadItemCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
@@ -27,7 +27,7 @@ class DownloadedSlidesListViewController: UITableViewController {
                                                       delegate: self)
     }
 
-    func configure(for courseDownload: CourseDownload) {
+    func configure(for courseDownload: DownloadListViewController.CourseDownload) {
         self.courseID = courseDownload.id
         self.navigationItem.title = courseDownload.title
     }

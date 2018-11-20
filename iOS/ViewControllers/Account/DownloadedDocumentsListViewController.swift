@@ -18,7 +18,7 @@ class DownloadedDocumentsListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         guard let course = fetchCourse(withID: courseID) else { return }
-        let request: NSFetchRequest<DocumentLocalization> = DocumentLocalizationHelper.FetchRequest.downloadedDocumentLocalizations(forCourse: course)
+        let request = DocumentLocalizationHelper.FetchRequest.downloadedDocumentLocalizations(forCourse: course)
 
         let reuseIdentifier = "downloadItemCell"
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "document.title") // must be first sort descriptor

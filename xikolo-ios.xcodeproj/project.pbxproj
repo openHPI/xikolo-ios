@@ -1134,13 +1134,13 @@
 		AB6AE0C41CF7D69200708654 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				709D11B121763C800030FE96 /* DownloadedDocumentsListViewController.swift */,
-				709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */,
 				F85225371B4D27D700C9BF56 /* AccountViewController.swift */,
 				50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */,
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 				7007E4122133FFB6005AC7A6 /* DownloadListViewController.swift */,
 				7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */,
+				709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */,
+				709D11B121763C800030FE96 /* DownloadedDocumentsListViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";

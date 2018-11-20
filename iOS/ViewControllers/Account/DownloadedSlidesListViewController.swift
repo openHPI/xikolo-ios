@@ -16,7 +16,8 @@ class DownloadedSlidesListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        let request: NSFetchRequest<Video> = VideoHelper.FetchRequest.hasDownloadedSlides(inCourse: courseID)
+
+        let request = VideoHelper.FetchRequest.hasDownloadedSlides(inCourse: courseID)
 
         let reuseIdentifier = "downloadItemCell"
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")

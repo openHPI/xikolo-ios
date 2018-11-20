@@ -11,19 +11,18 @@ class DownloadedVideosListViewController: UITableViewController {
 
     var courseID: String!
 
-    var resultsController: NSFetchedResultsController<Video>!
+    private var dataSource: CoreDataTableViewDataSource<DownloadedVideosListViewController>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        let request: NSFetchRequest<Video> = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: courseID)
-        resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
-        do {
-            try resultsController.performFetch()
-        } catch {
-            log.error()
-        }
 
+        let request = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: courseID)
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
+        self.dataSource = CoreDataTableViewDataSource(self.tableView,
+                                                      fetchedResultsController: resultsController,
+                                                      cellReuseIdentifier: "downloadItemCell",
+                                                      delegate: self)
     }
 
     func configure(for courseDownload: CourseDownload) {
@@ -31,27 +30,22 @@ class DownloadedVideosListViewController: UITableViewController {
         self.navigationItem.title = courseDownload.title
     }
 
-    // MARK: - Table view data source
+}
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return resultsController.sections?.count ?? 0
+extension DownloadedVideosListViewController: CoreDataTableViewDataSourceDelegate {
+
+    func configure(_ cell: UITableViewCell, for object: Video) {
+        cell.textLabel?.text = object.item?.title
+        cell.detailTextLabel?.text = StreamPersistenceManager.shared.formattedFileSize(for: object)
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultsController.sections?[section].numberOfObjects ?? 0
+    func canEditRow(at indexPath: IndexPath) -> Bool {
+        return true
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "downloadItemCell", for: indexPath)
-        let video = resultsController.object(at: indexPath)
-        cell.textLabel?.text = video.item?.title ?? video.summary ?? ""
-        cell.detailTextLabel?.text = StreamPersistenceManager.shared.formattedFileSize(for: video)
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func commit(editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let video = resultsController.object(at: indexPath)
+            let video = self.dataSource.object(at: indexPath)
             StreamPersistenceManager.shared.deleteDownload(for: video)
         }
     }

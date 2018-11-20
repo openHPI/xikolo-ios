@@ -38,21 +38,10 @@ class CoursePresentationAnimator: NSObject, UIViewControllerAnimatedTransitionin
 
         containerView.addSubview(overlayView)
 
-        let animationDuration = self.transitionDuration(using: transitionContext)
-
         toViewController.view.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)
-
-        for subview in toViewController.view.subviews {
-            subview.layer.cornerRadius = 16.0
-            subview.clipsToBounds = true
-
-            if #available(iOS 11.0, *) {
-                subview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            }
-        }
-
         containerView.addSubview(toViewController.view)
 
+        let animationDuration = self.transitionDuration(using: transitionContext)
         UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseInOut, animations: {
             toViewController.view.transform = CGAffineTransform.identity
             overlayView.alpha = 1.0

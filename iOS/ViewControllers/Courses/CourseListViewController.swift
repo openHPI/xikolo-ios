@@ -102,10 +102,6 @@ class CourseListViewController: UICollectionViewController {
 
 extension CourseListViewController: CardListLayoutDelegate {
 
-    var showHeaders: Bool {
-        return self.configuration == .allCourses || self.dataSource.isSearching
-    }
-
     var topInset: CGFloat {
         if #available(iOS 11.0, *) {
             return 0
@@ -115,13 +111,15 @@ extension CourseListViewController: CardListLayoutDelegate {
     }
 
     var cardInset: CGFloat {
-        return 14
+        return CourseCell.cardInset
     }
 
     var heightForHeader: CGFloat {
-        let margin: CGFloat = 8
-        let padding: CGFloat = 8
-        return 2 * margin + 2 * padding + UIFont.preferredFont(forTextStyle: .headline).lineHeight
+        guard self.configuration == .allCourses || self.dataSource.isSearching else {
+            return 0 // Don't show header for these configurations
+        }
+
+        return ceil(CourseHeaderView.height)
     }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
@@ -132,35 +130,11 @@ extension CourseListViewController: CardListLayoutDelegate {
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
         if self.dataSource.isSearching && !self.dataSource.hasSearchResults {
-            return 0.0
+            return 0
         }
 
         let course = self.dataSource.object(at: indexPath)
-        let cardWidth = boundingWidth - 2 * 14
-        let imageHeight = cardWidth / 2
-
-        let titleHeight = course.title?.height(forTextStyle: .headline, boundingWidth: cardWidth) ?? 0
-        let teachersHeight = course.teachers?.height(forTextStyle: .subheadline, boundingWidth: cardWidth) ?? 0
-
-        var height = imageHeight + 14
-
-        if Brand.default.features.showCourseTeachers {
-            if titleHeight > 0 || teachersHeight > 0 {
-                height += 8
-            }
-
-            if titleHeight > 0 && teachersHeight > 0 {
-                height += 4
-            }
-
-            height += titleHeight
-            height += teachersHeight
-        } else {
-            height += 8
-            height += titleHeight
-        }
-
-        return height + 5
+        return ceil(CourseCell.heightForCourseList(forWidth: boundingWidth, for: course))
     }
 
 }
@@ -234,6 +208,7 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
                 NSPredicate(format: "title CONTAINS[c] %@", searchTextPart),
                 NSPredicate(format: "teachers CONTAINS[c] %@", searchTextPart),
                 NSPredicate(format: "abstract CONTAINS[c] %@", searchTextPart),
+                NSPredicate(format: "slug CONTAINS[c] %@", searchTextPart),
             ])
         }
 

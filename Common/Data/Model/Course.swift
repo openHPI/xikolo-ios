@@ -72,37 +72,6 @@ public final class Course: NSManagedObject {
         return self.enrollment != nil && self.enrollment?.objectState != .deleted
     }
 
-    public var availableCertificates: [(name: String, explanation: String?, url: URL?)] { // swiftlint:disable:this large_tuple
-        var certificates: [(String, String?, URL?)] = []
-
-        if let certificate = self.certificates?.qualifiedCertificate, certificate.available {
-            let name = CommonLocalizedString("course.certificates.name.qualifiedCertificate", comment: "name of the certificate")
-            let explanation = CommonLocalizedString("course.certificates.explanation.qualifiedCertificate",
-                                                    comment: "explanation how to achieve the certificate")
-            let url = self.enrollment?.certificates?.qualifiedCertificate
-            certificates.append((name, explanation, url))
-        }
-
-        if let roa = self.certificates?.recordOfAchievement, roa.available {
-            let name = CommonLocalizedString("course.certificates.name.recordOfAchievement", comment: "name of the certificate")
-            let format = CommonLocalizedString("course.certificates.explanation.recordOfAchievement", comment: "explanation how to achieve the certificate")
-            let explanation = roa.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
-            let url = self.enrollment?.certificates?.recordOfAchievement
-            certificates.append((name, explanation, url))
-        }
-
-        if let cop = self.certificates?.confirmationOfParticipation, cop.available {
-            let name = CommonLocalizedString("course.certificates.name.confirmationOfParticipation", comment: "name of the certificate")
-            let format = CommonLocalizedString("course.certificates.explanation.confirmationOfParticipation",
-                                               comment: "explanation how to achieve the certificate")
-            let explanation = cop.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
-            let url = self.enrollment?.certificates?.confirmationOfParticipation
-            certificates.append((name, explanation, url))
-        }
-
-        return certificates
-    }
-
 }
 
 extension Course: JSONAPIPullable {
@@ -138,6 +107,43 @@ extension Course: JSONAPIPullable {
                                         with: context)
         }
 
+    }
+
+}
+
+extension Course {
+
+    public typealias Certificate = (name: String, explanation: String?, url: URL?)
+
+    public var availableCertificates: [Certificate] {
+        var certificates: [Certificate] = []
+
+        if let certificate = self.certificates?.qualifiedCertificate, certificate.available {
+            let name = CommonLocalizedString("course.certificates.name.qualifiedCertificate", comment: "name of the certificate")
+            let explanation = CommonLocalizedString("course.certificates.explanation.qualifiedCertificate",
+                                                    comment: "explanation how to achieve the certificate")
+            let url = self.enrollment?.certificates?.qualifiedCertificate
+            certificates.append((name, explanation, url))
+        }
+
+        if let roa = self.certificates?.recordOfAchievement, roa.available {
+            let name = CommonLocalizedString("course.certificates.name.recordOfAchievement", comment: "name of the certificate")
+            let format = CommonLocalizedString("course.certificates.explanation.recordOfAchievement", comment: "explanation how to achieve the certificate")
+            let explanation = roa.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
+            let url = self.enrollment?.certificates?.recordOfAchievement
+            certificates.append((name, explanation, url))
+        }
+
+        if let cop = self.certificates?.confirmationOfParticipation, cop.available {
+            let name = CommonLocalizedString("course.certificates.name.confirmationOfParticipation", comment: "name of the certificate")
+            let format = CommonLocalizedString("course.certificates.explanation.confirmationOfParticipation",
+                                               comment: "explanation how to achieve the certificate")
+            let explanation = cop.threshold.map { String.localizedStringWithFormat(format, Int($0)) }
+            let url = self.enrollment?.certificates?.confirmationOfParticipation
+            certificates.append((name, explanation, url))
+        }
+
+        return certificates
     }
 
 }

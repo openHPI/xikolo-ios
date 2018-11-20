@@ -137,14 +137,56 @@ extension CourseCell {
         }
     }
 
-    static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
-        var height: CGFloat = 14
-        height += width / 2 // image
-        height += self.cardBottomOffset
+}
+
+extension CourseCell {
+
+    static var cardInset: CGFloat {
+        return 14
+    }
+
+    static func heightForCourseList(forWidth width: CGFloat, for course: Course) -> CGFloat {
+        let cardWidth = width - 2 * self.cardInset
+        let imageHeight = cardWidth / 2
+
+        let titleHeight = course.title?.height(forTextStyle: .headline, boundingWidth: cardWidth) ?? 0
+        let teachersHeight = course.teachers?.height(forTextStyle: .subheadline, boundingWidth: cardWidth) ?? 0
+
+        var height = self.cardInset + imageHeight
+
+        if Brand.default.features.showCourseTeachers {
+            if titleHeight > 0 || teachersHeight > 0 {
+                height += 8
+            }
+
+            if titleHeight > 0 && teachersHeight > 0 {
+                height += 4
+            }
+
+            height += titleHeight
+            height += teachersHeight
+        } else {
+            height += 8
+            height += titleHeight
+        }
+
+        height += 5
+
         return height
     }
 
-    static var cardBottomOffset: CGFloat {
+}
+
+extension CourseCell {
+
+    static func heightForOverviewList(forWidth width: CGFloat) -> CGFloat {
+        var height: CGFloat = CourseCell.cardInset
+        height += width / 2 // image
+        height += self.cardBottomOffsetForOverviewList
+        return height
+    }
+
+    static var cardBottomOffsetForOverviewList: CGFloat {
         var height: CGFloat = 8 // padding
         height += UIFont.preferredFont(forTextStyle: .headline).lineHeight
 

@@ -52,6 +52,18 @@ class VideoViewController: UIViewController {
         }
     }
 
+    private var videoIsFullScreenOniPad = false {
+        didSet {
+            guard self.videoIsFullScreenOniPad != oldValue else { return }
+            self.updateUIForFullScreenMode(trueUnlessReduceMotionEnabled)
+        }
+    }
+
+    private var videoIsFullScreen: Bool {
+        let videoIsFullScreenOnihone = UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation.isLandscape
+        return videoIsFullScreenOnihone || self.videoIsFullScreenOniPad
+    }
+
     private var video: Video?
     private var videoPlayerConfigured = false
     private var didViewAppear = false
@@ -65,6 +77,7 @@ class VideoViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
         self.layoutPlayer()
+        self.updateCornersOfVideoContainer(for: self.traitCollection)
 
         self.errorView.isHidden = true
 
@@ -137,10 +150,16 @@ class VideoViewController: UIViewController {
         }
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return self.videoIsFullScreen
+    }
+
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .fade
+    }
+
     override var prefersHomeIndicatorAutoHidden: Bool {
-        let orientation = UIDevice.current.orientation
-        let isInLandscapeOrientation = orientation == .landscapeRight || orientation == .landscapeLeft
-        return UIDevice.current.userInterfaceIdiom == .phone && isInLandscapeOrientation
+        return self.videoIsFullScreen
     }
 
     func layoutPlayer() {
@@ -169,17 +188,8 @@ class VideoViewController: UIViewController {
         self.videoContainer.layoutIfNeeded()
     }
 
-    func activateiPadFullScreenMode(_ isFullScreen: Bool) {
-        self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.25) {
-            if isFullScreen {
-                NSLayoutConstraint.activate(self.iPadFullScreenContraints)
-            } else {
-                NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
-            }
-
-            self.view.layoutIfNeeded()
-        }
+    func setiPadFullScreenMode(_ isFullScreen: Bool) {
+        self.videoIsFullScreenOniPad = isFullScreen
     }
 
     private func updateView(for courseItem: CourseItem) {
@@ -392,19 +402,55 @@ class VideoViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        self.toggleControlBars(true)
+        self.updateUIForFullScreenMode(false)
         self.playerControlView.changeOrientation(to: UIDevice.current.orientation)
-
-        if #available(iOS 11.0, *) {
-            self.setNeedsUpdateOfHomeIndicatorAutoHidden()
-        }
     }
 
-    @discardableResult private func toggleControlBars(_ animated: Bool) -> Bool {
-        let hiddenBars = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
-        self.navigationController?.setNavigationBarHidden(hiddenBars, animated: animated)
-        self.tabBarController?.tabBar.isHidden = hiddenBars
-        return hiddenBars
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        self.updateCornersOfVideoContainer(for: newCollection)
+    }
+
+    private func toggleControlBars(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(self.videoIsFullScreen, animated: animated)
+    }
+
+    private func updateCornersOfVideoContainer(for traitCollection: UITraitCollection) {
+        let shouldRoundCorners = traitCollection.horizontalSizeClass == .regular && !self.videoIsFullScreenOniPad
+        self.videoContainer.layer.cornerRadius = shouldRoundCorners ? 6 : 0
+        self.videoContainer.layer.masksToBounds = shouldRoundCorners
+    }
+
+    private func updateUIForFullScreenMode(_ animated: Bool) {
+        let updateUI = {
+            self.toggleControlBars(animated)
+            self.setNeedsStatusBarAppearanceUpdate()
+
+            if #available(iOS 11.0, *) {
+                self.setNeedsUpdateOfHomeIndicatorAutoHidden()
+            }
+
+            self.updateCornersOfVideoContainer(for: self.traitCollection)
+
+            if self.videoIsFullScreenOniPad {
+                NSLayoutConstraint.activate(self.iPadFullScreenContraints)
+            } else {
+                NSLayoutConstraint.deactivate(self.iPadFullScreenContraints)
+            }
+
+            self.view.layoutIfNeeded()
+        }
+
+        DispatchQueue.main.async {
+            if animated {
+                self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.25) {
+                    updateUI()
+                }
+            } else {
+                updateUI()
+            }
+        }
     }
 
     private func updatePreferredVideoBitrate() {

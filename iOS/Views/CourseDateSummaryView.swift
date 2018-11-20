@@ -53,7 +53,7 @@ class CourseDateSummaryView: UIStackView {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         let cellWidth = CourseCell.minimalWidth(for: self.traitCollection)
-        self.widthConstraint.constant = cellWidth - 2 * 14
+        self.widthConstraint.constant = cellWidth - 2 * CourseCell.cardInset
     }
 
 }

@@ -12,7 +12,7 @@ import UIKit
 class CertificatesListViewController: UICollectionViewController {
 
     var course: Course!
-    var certificates: [(name: String, explanation: String?, url: URL?)] = [] { // swiftlint:disable:this large_tuple
+    var certificates: [Course.Certificate] = [] {
         didSet {
             self.collectionView?.reloadData()
         }
@@ -53,7 +53,7 @@ extension CertificatesListViewController: CardListLayoutDelegate {
     }
 
     var cardInset: CGFloat {
-        return 14
+        return CertificateCell.cardInset
     }
 
     func minimalCardWidth(for traitCollection: UITraitCollection) -> CGFloat {
@@ -63,32 +63,8 @@ extension CertificatesListViewController: CardListLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForCellAtIndexPath indexPath: IndexPath,
                         withBoundingWidth boundingWidth: CGFloat) -> CGFloat {
-        let cardMargin: CGFloat = 14
-        let cardPadding: CGFloat = 16
-        let cardWidth = boundingWidth - 2 * cardMargin
-        let textWidth = cardWidth - 2 * cardPadding
-
-        let titleHeight = self.certificates.map { certificate -> CGFloat in
-            return certificate.name.height(forTextStyle: .headline, boundingWidth: textWidth)
-        }.max() ?? 0
-
-        let statusHeight = self.certificates.map { certificate -> CGFloat in
-            let statusText = self.stateOfCertificate(withURL: certificate.url)
-            return statusText.height(forTextStyle: .subheadline, boundingWidth: textWidth)
-        }.max() ?? 0
-
         let certificate = self.certificates[indexPath.item]
-        let explanationHeight = certificate.explanation?.height(forTextStyle: .footnote, boundingWidth: cardWidth) ?? 0
-
-        var height = cardMargin
-        height += 2 * cardPadding
-        height += 8
-        height += 8
-        height += titleHeight
-        height += statusHeight
-        height += explanationHeight
-        height += 5
-
+        let height = CertificateCell.height(for: certificate, forWidth: boundingWidth, delegate: self)
         return ceil(height)
     }
 
@@ -155,6 +131,23 @@ extension CertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
         self.collectionView?.emptyDataSetSource = self
         self.collectionView?.emptyDataSetDelegate = self
         self.collectionView?.reloadEmptyDataSet()
+    }
+
+}
+
+extension CertificatesListViewController: CertificateCellDelegate {
+
+    func maximalHeightForTitle(withWidth width: CGFloat) -> CGFloat {
+        return self.certificates.map { certificate -> CGFloat in
+            return CertificateCell.heightForTitle(certificate.name, withWidth: width)
+        }.max() ?? 0
+    }
+
+    func maximalHeightForStatus(withWidth width: CGFloat) -> CGFloat {
+        return self.certificates.map { certificate -> CGFloat in
+            let statusText = self.stateOfCertificate(withURL: certificate.url)
+            return CertificateCell.heightForStatus(statusText, withWidth: width)
+        }.max() ?? 0
     }
 
 }

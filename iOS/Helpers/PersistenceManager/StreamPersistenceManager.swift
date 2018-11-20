@@ -203,9 +203,9 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
 extension StreamPersistenceManager {
 
-    func fileSize(for resource: Resource) -> Int64? {
-        guard let url = localFileLocation(for: resource) else { return nil }
-        return try? Int64(FileManager.default.allocatedSizeOfDirectory(at: url))
+    func fileSize(for resource: Video) -> UInt64? {
+        guard let url = self.localFileLocation(for: resource) else { return nil }
+        return try? FileManager.default.allocatedSizeOfDirectory(at: url)
     }
 
 }

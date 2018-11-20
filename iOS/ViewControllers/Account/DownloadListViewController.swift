@@ -138,9 +138,10 @@ class DownloadListViewController: UITableViewController {
             do {
                 let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
                 for item in downloadedItems {
-                    let downloadItems = item[keyPath: keyPath].map({ course -> DownloadItem in
+                    let downloadItems = item[keyPath: keyPath].map { course -> DownloadItem in
                         return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType)
-                    })
+                    }
+
                     items.append(contentsOf: downloadItems)
                 }
 

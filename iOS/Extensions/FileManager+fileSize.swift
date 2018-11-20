@@ -3,9 +3,11 @@
 //  Copyright © HPI. All rights reserved.
 //
 // Taken from https://gist.github.com/NikolaiRuhe/408cefb953c4bea15506a3f80a3e5b96
+//
+
 import Foundation
 
-public extension FileManager {
+extension FileManager {
 
     /// Calculate the allocated size of a directory and all its contents on the volume.
     ///
@@ -19,7 +21,7 @@ public extension FileManager {
     public func allocatedSizeOfDirectory(at directoryURL: URL) throws -> UInt64 {
 
         // The error handler simply stores the error and stops traversal
-        var enumeratorError: Error? = nil
+        var enumeratorError: Error?
         func errorHandler(_: URL, error: Error) -> Bool {
             enumeratorError = error
             return false
@@ -36,12 +38,12 @@ public extension FileManager {
 
         // Perform the traversal.
         for item in enumerator {
-
             // Bail out on errors from the errorHandler.
             if enumeratorError != nil { break }
 
             // Add up individual file sizes.
-            let contentItemURL = item as! URL
+            guard let contentItemURL = item as? URL else { continue }
+
             accumulatedSize += try contentItemURL.regularFileAllocatedSize()
         }
 
@@ -50,17 +52,10 @@ public extension FileManager {
 
         return accumulatedSize
     }
+
 }
 
-
-fileprivate let allocatedSizeResourceKeys: Set<URLResourceKey> = [
-    .isRegularFileKey,
-    .fileAllocatedSizeKey,
-    .totalFileAllocatedSizeKey,
-]
-
-
-fileprivate extension URL {
+extension URL {
 
     func regularFileAllocatedSize() throws -> UInt64 {
         let resourceValues = try self.resourceValues(forKeys: allocatedSizeResourceKeys)
@@ -77,4 +72,11 @@ fileprivate extension URL {
         // meta data and compression) This value should always be available.
         return UInt64(resourceValues.totalFileAllocatedSize ?? resourceValues.fileAllocatedSize ?? 0)
     }
+
 }
+
+private let allocatedSizeResourceKeys: Set<URLResourceKey> = [
+    .isRegularFileKey,
+    .fileAllocatedSizeKey,
+    .totalFileAllocatedSizeKey,
+]

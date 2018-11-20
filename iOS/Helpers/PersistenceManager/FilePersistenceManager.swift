@@ -67,20 +67,9 @@ extension FilePersistenceManager {
 
 extension FilePersistenceManager {
 
-    func fileSize(for resource: Resource) -> Int64? {
+    func fileSize(for resource: Resource) -> UInt64? {
         guard let url = localFileLocation(for: resource) else { return nil }
-        let resourceValues = try? url.resourceValues(forKeys: [
-            .isRegularFileKey,
-            .fileAllocatedSizeKey,
-            .totalFileAllocatedSizeKey,
-            ])
-
-        // We only look at regular files.
-        guard resourceValues?.isRegularFile ?? false else {
-            return nil
-        }
-        guard let fileSize = resourceValues?.totalFileAllocatedSize ?? resourceValues?.fileAllocatedSize else { return nil }
-        return Int64(fileSize)
+        return try? url.regularFileAllocatedSize()
     }
 
 }

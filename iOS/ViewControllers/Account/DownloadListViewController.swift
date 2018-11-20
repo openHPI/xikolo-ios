@@ -24,16 +24,15 @@ class DownloadListViewController: UITableViewController {
     }
 
     private struct DownloadItem {
-
-        enum DownloadType: Int {
-            case video = 0
-            case slides = 1
-            case document = 2
-        }
-
         var courseID: String
         var courseTitle: String?
         var contentType: DownloadType
+    }
+
+    private enum DownloadType: Int {
+        case video = 0
+        case slides = 1
+        case document = 2
     }
 
     private var courses: [CourseDownload] = []
@@ -125,7 +124,7 @@ class DownloadListViewController: UITableViewController {
     }
 
     private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
-                                     contentType: DownloadItem.DownloadType,
+                                     contentType: DownloadType,
                                      keyPath: KeyPath<Resource, Course?>) -> Future<[DownloadItem], XikoloError> {
 
         var items: [DownloadItem] = []
@@ -149,7 +148,7 @@ class DownloadListViewController: UITableViewController {
     }
 
     private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
-                                     contentType: DownloadItem.DownloadType,
+                                     contentType: DownloadType,
                                      keyPath: KeyPath<Resource, Set<Course>>) -> Future<[DownloadItem], XikoloError> {
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
@@ -189,13 +188,13 @@ class DownloadListViewController: UITableViewController {
         return cell
     }
 
-    private func downloadType(for indexPath: IndexPath) -> DownloadItem.DownloadType {
+    private func downloadType(for indexPath: IndexPath) -> DownloadType {
         var itemCount = 0
         var returnCount = 0
         for itemExists in courses[indexPath.section].properties {
             if itemExists {
                 if indexPath.row == itemCount {
-                    return DownloadItem.DownloadType(rawValue: returnCount).require(hint: "Trying to initialize DownloadType from invalid value")
+                    return DownloadType(rawValue: returnCount).require(hint: "Trying to initialize DownloadType from invalid value")
                 }
 
                 itemCount += 1
@@ -211,7 +210,7 @@ class DownloadListViewController: UITableViewController {
         return courses[section].title
     }
 
-    private func title(for downloadType: DownloadItem.DownloadType?) -> String? {
+    private func title(for downloadType: DownloadType?) -> String? {
         guard let downloadType = downloadType else { return nil }
         switch downloadType {
         case .video:

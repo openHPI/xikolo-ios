@@ -146,6 +146,28 @@ extension StreamPersistenceManager {
 
 }
 
+extension StreamPersistenceManager {
+
+    func startDownloads(for course: Course) {
+        course.sections.forEach { courseSection in
+            self.startDownloads(for: courseSection)
+        }
+    }
+
+    func deleteDownloads(for course: Course) {
+        course.sections.forEach { courseSection in
+            self.deleteDownloads(for: courseSection)
+        }
+    }
+
+    func cancelDownloads(for course: Course) {
+        course.sections.forEach { courseSection in
+            self.cancelDownloads(for: courseSection)
+        }
+    }
+
+}
+
 extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -175,6 +197,15 @@ extension StreamPersistenceManager: AVAssetDownloadDelegate {
         userInfo[DownloadNotificationKey.downloadProgress] = percentComplete
 
         NotificationCenter.default.post(name: DownloadProgress.didChangeNotification, object: nil, userInfo: userInfo)
+    }
+
+}
+
+extension StreamPersistenceManager {
+
+    func fileSize(for resource: Video) -> UInt64? {
+        guard let url = self.localFileLocation(for: resource) else { return nil }
+        return try? FileManager.default.allocatedSizeOfDirectory(at: url)
     }
 
 }

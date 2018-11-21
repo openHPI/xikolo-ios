@@ -64,3 +64,12 @@ extension FilePersistenceManager {
     }
 
 }
+
+extension FilePersistenceManager {
+
+    func fileSize(for resource: Resource) -> UInt64? {
+        guard let url = localFileLocation(for: resource) else { return nil }
+        return try? url.regularFileAllocatedSize()
+    }
+
+}

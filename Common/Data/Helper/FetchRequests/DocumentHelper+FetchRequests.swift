@@ -15,6 +15,12 @@ extension DocumentHelper {
             return request
         }
 
+        public static func hasDownloadedLocalization() -> NSFetchRequest<Document> {
+            let request: NSFetchRequest<Document> = Document.fetchRequest()
+            request.predicate = NSPredicate(format: "ANY localizations.localFileBookmark != nil")
+            return request
+        }
+
     }
 
 }

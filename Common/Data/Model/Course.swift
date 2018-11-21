@@ -32,6 +32,7 @@ public final class Course: NSManagedObject {
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var enrollment: Enrollment?
     @NSManaged public var dates: Set<CourseDate>
+    @NSManaged public var documents: Set<Document>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
         return NSFetchRequest<Course>(entityName: "Course")

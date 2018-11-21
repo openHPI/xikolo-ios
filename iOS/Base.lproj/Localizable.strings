@@ -152,6 +152,12 @@
 /* stop download of a document localization */
 "document-localization.download-action.stop-download.title" = "Stop download of document";
 
+/* description for empty download list */
+"empty-view.account.download.no-downloads.description" = "Go to a course to download videos, slides and more for offline usage";
+
+/* title for empty download list */
+"empty-view.account.download.no-downloads.title" = "You have no downloaded content";
+
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";
 
@@ -194,6 +200,9 @@
 /* title to cancel alert */
 "global.alert.cancel" = "Cancel";
 
+/* title to delete alert */
+"global.alert.delete" = "Delete";
+
 /* title to confirm alert */
 "global.alert.ok" = "OK";
 
@@ -217,6 +226,33 @@
 
 /* course content preload setting: wifi only */
 "settings.course-item-content-preload.wifi-only" = "Wifi only";
+
+/* message for deleting documents */
+"settings.downloads.alert.delete.message.documents for course %@" = "Do you really want to delete all downloaded documents from the course %@?";
+
+/* message for deleting slides */
+"settings.downloads.alert.delete.message.slides for course %@" = "Do you really want to delete all downloaded slides from the course %@?";
+
+/* message for deleting streams */
+"settings.downloads.alert.delete.message.streams for course %@" = "Do you really want to delete all downloaded videos from the course %@?";
+
+/* title for deleting documents */
+"settings.downloads.alert.delete.title.documents" = "Delete all documents";
+
+/* title for deleting slides */
+"settings.downloads.alert.delete.title.slides" = "Delete all slides";
+
+/* title for deleting streams */
+"settings.downloads.alert.delete.title.streams" = "Delete all videos";
+
+/* download type documents */
+"settings.downloads.item.document" = "Documents";
+
+/* download type slides */
+"settings.downloads.item.slides" = "Slides";
+
+/* download type video */
+"settings.downloads.item.video" = "Videos";
 
 /* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS app on GitHub";

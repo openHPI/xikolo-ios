@@ -37,7 +37,8 @@ protocol PersistenceManager: AnyObject {
     func downloadProgress(for resource: Resource) -> Double?
     func deleteDownload(for resource: Resource)
     func cancelDownload(for resource: Resource)
-    func localFileLocation(for resource: Resource) -> URL?
+
+    func fileSize(for resource: Resource) -> UInt64?
 
     // callbacks
     func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?)
@@ -201,6 +202,11 @@ extension PersistenceManager {
         }
 
         return url
+    }
+
+    func formattedFileSize(for resource: Resource) -> String? {
+        guard let sizeInBytes = self.fileSize(for: resource) else { return nil }
+        return ByteCountFormatter.string(fromByteCount: Int64(sizeInBytes), countStyle: .file)
     }
 
     // MARK: callbacks

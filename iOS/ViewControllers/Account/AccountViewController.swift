@@ -12,8 +12,8 @@ import UIKit
 
 class AccountViewController: UITableViewController {
 
-    static let feedbackIndexPath = IndexPath(row: 0, section: 2)
-    static let logoutIndexPath = IndexPath(row: 0, section: 3)
+    static let feedbackIndexPath = IndexPath(row: 0, section: 3)
+    static let logoutIndexPath = IndexPath(row: 0, section: 4)
 
     @IBOutlet private weak var videoSettingsCell: UITableViewCell!
     @IBOutlet private weak var downloadCell: UITableViewCell!
@@ -267,8 +267,6 @@ class AccountViewController: UITableViewController {
         ]
         return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
-
-    @IBAction private func unwindToSettingsViewController(_ segue: UIStoryboardSegue) { }
 
 }
 

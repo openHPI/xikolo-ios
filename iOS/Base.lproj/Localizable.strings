@@ -153,10 +153,10 @@
 "document-localization.download-action.stop-download.title" = "Stop download of document";
 
 /* description for empty download list */
-"empty-view.account.download.no-downloads.description" = "Go to a course to download videos, slides and more for offline use";
+"empty-view.account.download.no-downloads.description" = "Go to a course to download videos, slides and more for offline usage";
 
 /* title for empty download list */
-"empty-view.account.download.no-downloads.title" = "You have no downloads";
+"empty-view.account.download.no-downloads.title" = "You have no downloaded content";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "There might be more news later on.";

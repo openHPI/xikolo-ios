@@ -27,7 +27,7 @@ class DownloadedSlidesListViewController: UITableViewController {
                                                       delegate: self)
     }
 
-    func configure(for courseDownload: DownloadListViewController.CourseDownload) {
+    func configure(for courseDownload: DownloadedContentListViewController.CourseDownload) {
         self.courseID = courseDownload.id
         self.navigationItem.title = courseDownload.title
     }

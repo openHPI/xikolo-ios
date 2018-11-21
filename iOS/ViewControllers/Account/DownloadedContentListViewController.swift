@@ -10,7 +10,7 @@ import DZNEmptyDataSet
 import Foundation
 import UIKit
 
-class DownloadListViewController: UITableViewController {
+class DownloadedContentListViewController: UITableViewController {
 
     struct CourseDownload {
         var id: String
@@ -191,7 +191,7 @@ class DownloadListViewController: UITableViewController {
     private func downloadType(for indexPath: IndexPath) -> DownloadType {
         var itemCount = 0
         var returnCount = 0
-        for itemExists in courses[indexPath.section].properties {
+        for itemExists in self.courses[indexPath.section].properties {
             if itemExists {
                 if indexPath.row == itemCount {
                     return DownloadType(rawValue: returnCount).require(hint: "Trying to initialize DownloadType from invalid value")
@@ -207,7 +207,7 @@ class DownloadListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return courses[section].title
+        return self.courses[section].title
     }
 
     private func title(for downloadType: DownloadType?) -> String? {
@@ -225,16 +225,16 @@ class DownloadListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch downloadType(for: indexPath) {
         case .video:
-            performSegue(withIdentifier: R.segue.downloadListViewController.showVideoDownloads, sender: courses[indexPath.section])
+            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showVideoDownloads, sender: self.courses[indexPath.section])
         case .slides:
-            performSegue(withIdentifier: R.segue.downloadListViewController.showSlideDownloads, sender: courses[indexPath.section])
+            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showSlideDownloads, sender: self.courses[indexPath.section])
         case .document:
-            performSegue(withIdentifier: R.segue.downloadListViewController.showDocumentDownloads, sender: courses[indexPath.section])
+            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showDocumentDownloads, sender: self.courses[indexPath.section])
         }
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let course = fetchCourse(withID: courses[indexPath.section].id).require(hint: "Course has to exist")
+        let course = self.fetchCourse(withID: self.courses[indexPath.section].id).require(hint: "Course has to exist")
         if editingStyle == .delete {
             let courseTitle = self.courses[indexPath.section].title
             switch self.downloadType(for: indexPath) {
@@ -282,11 +282,11 @@ class DownloadListViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let downloadItem = (sender as? CourseDownload).require(hint: "Sender must be DownloadItem")
 
-        if let typedInfo = R.segue.downloadListViewController.showVideoDownloads(segue: segue) {
+        if let typedInfo = R.segue.downloadedContentListViewController.showVideoDownloads(segue: segue) {
             typedInfo.destination.configure(for: downloadItem)
-        } else if let typedInfo = R.segue.downloadListViewController.showSlideDownloads(segue: segue) {
+        } else if let typedInfo = R.segue.downloadedContentListViewController.showSlideDownloads(segue: segue) {
             typedInfo.destination.configure(for: downloadItem)
-        } else if let typedInfo = R.segue.downloadListViewController.showDocumentDownloads(segue: segue) {
+        } else if let typedInfo = R.segue.downloadedContentListViewController.showDocumentDownloads(segue: segue) {
             typedInfo.destination.configure(for: downloadItem)
         }
     }
@@ -302,17 +302,15 @@ class DownloadListViewController: UITableViewController {
 
 }
 
-extension DownloadListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension DownloadedContentListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let title = NSLocalizedString("empty-view.account.download.no-downloads.title",
-                                      comment: "title for empty download list")
+        let title = NSLocalizedString("empty-view.account.download.no-downloads.title", comment: "title for empty download list")
         return NSAttributedString(string: title)
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let description = NSLocalizedString("empty-view.account.download.no-downloads.description",
-                                            comment: "description for empty download list")
+        let description = NSLocalizedString("empty-view.account.download.no-downloads.description", comment: "description for empty download list")
         return NSAttributedString(string: description)
     }
 

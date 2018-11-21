@@ -231,7 +231,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="PYC-Vo-6CG" kind="show" identifier="" id="KLF-Ac-1Wu"/>
+                                            <segue destination="PYC-Vo-6CG" kind="show" identifier="ShowDownloadedContent" id="KLF-Ac-1Wu"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -538,7 +538,7 @@
         <!--Downloaded Content-->
         <scene sceneID="j5i-Fd-hFt">
             <objects>
-                <tableViewController storyboardIdentifier="DownloadListViewController" id="PYC-Vo-6CG" customClass="DownloadListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DownloadListViewController" id="PYC-Vo-6CG" customClass="DownloadedContentListViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="USx-6d-9Cm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

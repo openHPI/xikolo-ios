@@ -153,10 +153,10 @@
 "document-localization.download-action.stop-download.title" = "Dokument-Download stoppen";
 
 /* description for empty download list */
-"empty-view.account.download.no-downloads.description" = "Im Kursbereich kannst du Materialien herunterladen, um sie ohne Internetverbindung ansehen zu können";
+"empty-view.account.download.no-downloads.description" = "Im Kursbereich kannst du Materialien herunterladen, um sie ohne Internetverbindung nutzen zu können";
 
 /* title for empty download list */
-"empty-view.account.download.no-downloads.title" = "Keine Downloads";
+"empty-view.account.download.no-downloads.title" = "Keine heruntergeladenen Inhalte";
 
 /* description for empty announcement list */
 "empty-view.announcements.description" = "Zukünftig werden hier Neuigkeiten erscheinen.";

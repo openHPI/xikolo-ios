@@ -12,8 +12,8 @@ import UIKit
 
 class DownloadedContentListViewController: UITableViewController {
 
-    @IBOutlet var tableViewHeader: UIView!
-    @IBOutlet weak var totalFileSizeLabel: UILabel!
+    @IBOutlet private var tableViewHeader: UIView!
+    @IBOutlet private weak var totalFileSizeLabel: UILabel!
 
     struct CourseDownload {
         var id: String
@@ -193,21 +193,48 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     private func updateTotalFileSizeLabel() {
-        let fileSize = self.courses.reduce(0) { (result, courseDownload) -> UInt64 in
+        let fileSize = self.courses.reduce(0) { result, courseDownload -> UInt64 in
             return result + self.aggregatedFileSize(for: courseDownload)
         }
 
-        self.totalFileSizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
+        let format = NSLocalizedString("settings.downloads.total size: %@", comment: "total size label")
+        let formattedFileSize = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
+        self.totalFileSizeLabel.text = String.localizedStringWithFormat(format, formattedFileSize)
         self.tableViewHeader.isHidden = self.courses.isEmpty
     }
 
     private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {
-        return courseDownload.data.reduce(0) { (result, data) -> UInt64 in
+        return courseDownload.data.reduce(0) { result, data -> UInt64 in
             return result + data.value
         }
     }
 
-    // MARK: - Table view data source
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let downloadItem = (sender as? CourseDownload).require(hint: "Sender must be DownloadItem")
+
+        if let typedInfo = R.segue.downloadedContentListViewController.showVideoDownloads(segue: segue) {
+            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
+        } else if let typedInfo = R.segue.downloadedContentListViewController.showSlideDownloads(segue: segue) {
+            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
+        } else if let typedInfo = R.segue.downloadedContentListViewController.showDocumentDownloads(segue: segue) {
+            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
+        }
+    }
+
+    @objc private func coreDataChange(notification: Notification) {
+        let keys = [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey]
+        let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: keys)
+        let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: keys)
+        if containsVideoDeletion || containsDocumentDeletion {
+            self.refresh()
+        }
+    }
+
+}
+
+extension DownloadedContentListViewController { // Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.courses.count
@@ -244,7 +271,9 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
-    // MARK: - editing
+}
+
+extension DownloadedContentListViewController { // editing
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -282,41 +311,18 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
-    func showAlertForDeletingContent(withTitle title: String, message: String, action: ((UIAlertAction) -> Void)?) {
+    private func fetchCourse(withID id: String) -> Course? {
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+        return CoreDataHelper.viewContext.fetchSingle(request).value
+    }
+
+    private func showAlertForDeletingContent(withTitle title: String, message: String, action: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let deleteTitle = NSLocalizedString("global.alert.delete", comment: "title to delete alert")
         let deleteAction = UIAlertAction(title: deleteTitle, style: .destructive, handler: action)
         alert.addAction(deleteAction)
         alert.addCancelAction()
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    func fetchCourse(withID id: String) -> Course? {
-        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
-        return CoreDataHelper.viewContext.fetchSingle(request).value
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let downloadItem = (sender as? CourseDownload).require(hint: "Sender must be DownloadItem")
-
-        if let typedInfo = R.segue.downloadedContentListViewController.showVideoDownloads(segue: segue) {
-            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
-        } else if let typedInfo = R.segue.downloadedContentListViewController.showSlideDownloads(segue: segue) {
-            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
-        } else if let typedInfo = R.segue.downloadedContentListViewController.showDocumentDownloads(segue: segue) {
-            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
-        }
-    }
-
-    @objc private func coreDataChange(notification: Notification) {
-        let keys = [NSDeletedObjectsKey, NSRefreshedObjectsKey, NSUpdatedObjectsKey]
-        let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: keys)
-        let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: keys)
-        if containsVideoDeletion || containsDocumentDeletion {
-            self.refresh()
-        }
     }
 
 }

@@ -254,6 +254,9 @@
 /* download type video */
 "settings.downloads.item.video" = "Videos";
 
+/* total size label */
+"settings.downloads.total size: %@" = "Gesamtgröße: %@";
+
 /* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
 

@@ -43,6 +43,3 @@
 
 /* Class = "UILabel"; text = "Downloaded Content"; ObjectID = "Q91-Eg-kES"; */
 "Q91-Eg-kES.text" = "Heruntergeladene Inhalte";
-
-/* Class = "UILabel"; text = "Total size of downloaded content"; ObjectID = "CYJ-Lv-Doc"; */
-"CYJ-Lv-Doc.text" = "Gesamtgröße der heruntergeladenen Inhalte";

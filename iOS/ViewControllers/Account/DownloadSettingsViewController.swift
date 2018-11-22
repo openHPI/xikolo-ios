@@ -8,8 +8,6 @@ import UIKit
 
 class DownloadSettingsViewController: UITableViewController {
 
-    @IBOutlet private weak var doneButton: UIBarButtonItem!
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 

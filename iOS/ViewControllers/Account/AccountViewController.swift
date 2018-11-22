@@ -268,6 +268,8 @@ class AccountViewController: UITableViewController {
         return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
 
+    @IBAction private func unwindToSettingsViewController(_ segue: UIStoryboardSegue) {}
+
 }
 
 extension AccountViewController: MFMailComposeViewControllerDelegate {

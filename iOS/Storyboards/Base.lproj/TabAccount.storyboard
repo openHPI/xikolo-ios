@@ -331,7 +331,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOY-X6-cgU">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21.5"/>
+                                                    <rect key="frame" x="8" y="11" width="359" height="21.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.82745098039999998" green="0.098039215690000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -436,13 +436,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Download" largeTitleDisplayMode="never" id="D4w-gU-Zbc">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="kMf-sn-KIn"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="kMf-sn-KIn">
+                            <connections>
+                                <segue destination="EiS-Qr-zVk" kind="unwind" unwindAction="unwindToSettingsViewController:" id="r4Y-KI-25E"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="doneButton" destination="kMf-sn-KIn" id="Mum-up-vp9"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKh-MJ-Tiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="EiS-Qr-zVk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2393" y="1393"/>
         </scene>
@@ -487,13 +489,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Video Streaming" largeTitleDisplayMode="never" id="Xwk-nE-GTG">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="2Wu-dX-5bc"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="2Wu-dX-5bc">
+                            <connections>
+                                <segue destination="dJm-iv-lLf" kind="unwind" unwindAction="unwindToSettingsViewController:" id="kfn-Bs-RqF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="doneButton" destination="2Wu-dX-5bc" id="QYt-dg-DvY"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYQ-jN-7ru" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="dJm-iv-lLf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2393" y="704"/>
         </scene>

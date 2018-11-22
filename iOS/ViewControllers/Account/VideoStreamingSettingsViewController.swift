@@ -8,8 +8,6 @@ import UIKit
 
 class VideoStreamingSettingsViewController: UITableViewController {
 
-    @IBOutlet private weak var doneButton: UIBarButtonItem!
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -17,6 +15,7 @@ class VideoStreamingSettingsViewController: UITableViewController {
             navigationItem.rightBarButtonItem = nil
         }
     }
+
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2

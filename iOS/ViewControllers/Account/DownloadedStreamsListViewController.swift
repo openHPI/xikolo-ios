@@ -7,37 +7,44 @@ import Common
 import CoreData
 import UIKit
 
-class DownloadedVideosListViewController: UITableViewController {
+class DownloadedStreamsListViewController: UITableViewController {
 
-    var courseID: String!
+    var courseId: String!
 
-    private var dataSource: CoreDataTableViewDataSource<DownloadedVideosListViewController>!
+    private var dataSource: CoreDataTableViewDataSource<DownloadedStreamsListViewController>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.title = DownloadedContentListViewController.DownloadType.video.title
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        let request = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: courseID)
+        let request = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: self.courseId)
         let reuseIdentifier = R.reuseIdentifier.downloadItemCell.identifier
-        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.position")
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
     }
 
-    func configure(for courseDownload: DownloadedContentListViewController.CourseDownload) {
-        self.courseID = courseDownload.id
-        self.navigationItem.title = courseDownload.title
+    func configure(forCourseWithId courseId: String) {
+        self.courseId = courseId
     }
 
 }
 
-extension DownloadedVideosListViewController: CoreDataTableViewDataSourceDelegate {
+extension DownloadedStreamsListViewController: CoreDataTableViewDataSourceDelegate {
 
     func configure(_ cell: UITableViewCell, for object: Video) {
         cell.textLabel?.text = object.item?.title
         cell.detailTextLabel?.text = StreamPersistenceManager.shared.formattedFileSize(for: object)
+    }
+
+    func titleForDefaultHeader(forSection section: Int) -> String? {
+        let indexPath = IndexPath(row: 0, section: section)
+        guard let dataSource = self.dataSource else { return nil }
+        return dataSource.object(at: indexPath).item?.section?.title
     }
 
     func canEditRow(at indexPath: IndexPath) -> Bool {

@@ -251,7 +251,7 @@
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
-		7007E415213444AC005AC7A6 /* DownloadedVideosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */; };
+		7007E415213444AC005AC7A6 /* DownloadedStreamsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E414213444AC005AC7A6 /* DownloadedStreamsListViewController.swift */; };
 		709D11B221763C810030FE96 /* DownloadedSlidesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */; };
 		709D11B321763C810030FE96 /* DownloadedDocumentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D11B121763C800030FE96 /* DownloadedDocumentsListViewController.swift */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
@@ -551,7 +551,7 @@
 		58514D98E3A98476D78CB780 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+fileSize.swift"; sourceTree = "<group>"; };
 		7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentListViewController.swift; sourceTree = "<group>"; };
-		7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosListViewController.swift; sourceTree = "<group>"; };
+		7007E414213444AC005AC7A6 /* DownloadedStreamsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedStreamsListViewController.swift; sourceTree = "<group>"; };
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
 		702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VideoQuality.swift"; sourceTree = "<group>"; };
@@ -1130,7 +1130,7 @@
 				50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */,
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 				7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */,
-				7007E414213444AC005AC7A6 /* DownloadedVideosListViewController.swift */,
+				7007E414213444AC005AC7A6 /* DownloadedStreamsListViewController.swift */,
 				709D11B021763C800030FE96 /* DownloadedSlidesListViewController.swift */,
 				709D11B121763C800030FE96 /* DownloadedDocumentsListViewController.swift */,
 			);
@@ -1907,7 +1907,7 @@
 				5036A537211C0EC7003B0C6B /* RefreshableViewController.swift in Sources */,
 				50CF1F6A20DCDBFC0011BFE9 /* AppDelegate.swift in Sources */,
 				50CF1F6C20DCDBFC0011BFE9 /* CustomHeaderWebView.swift in Sources */,
-				7007E415213444AC005AC7A6 /* DownloadedVideosListViewController.swift in Sources */,
+				7007E415213444AC005AC7A6 /* DownloadedStreamsListViewController.swift in Sources */,
 				50CF1F6E20DCDBFC0011BFE9 /* CourseItemHeader.swift in Sources */,
 				50CF1F6F20DCDBFC0011BFE9 /* UIAlertViewController+customView.swift in Sources */,
 				508AB2C6210B20E80079EAE5 /* DashboardViewController.swift in Sources */,

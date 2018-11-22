@@ -9,27 +9,28 @@ import UIKit
 
 class DownloadedSlidesListViewController: UITableViewController {
 
-    var courseID: String!
+    var courseId: String!
 
     private var dataSource: CoreDataTableViewDataSource<DownloadedSlidesListViewController>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.title = DownloadedContentListViewController.DownloadType.slides.title
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        let request = VideoHelper.FetchRequest.hasDownloadedSlides(inCourse: courseID)
+        let request = VideoHelper.FetchRequest.hasDownloadedSlides(inCourse: self.courseId)
 
         let reuseIdentifier = R.reuseIdentifier.downloadItemCell.identifier
-        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.title")
+        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.position")
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
                                                       cellReuseIdentifier: reuseIdentifier,
                                                       delegate: self)
     }
 
-    func configure(for courseDownload: DownloadedContentListViewController.CourseDownload) {
-        self.courseID = courseDownload.id
-        self.navigationItem.title = courseDownload.title
+    func configure(forCourseWithId courseId: String) {
+        self.courseId = courseId
     }
 
 }
@@ -39,6 +40,12 @@ extension DownloadedSlidesListViewController: CoreDataTableViewDataSourceDelegat
     func configure(_ cell: UITableViewCell, for object: Video) {
         cell.textLabel?.text = object.item?.title ?? object.summary
         cell.detailTextLabel?.text = SlidesPersistenceManager.shared.formattedFileSize(for: object)
+    }
+
+    func titleForDefaultHeader(forSection section: Int) -> String? {
+        let indexPath = IndexPath(row: 0, section: section)
+        guard let dataSource = self.dataSource else { return nil }
+        return dataSource.object(at: indexPath).item?.section?.title
     }
 
     func canEditRow(at indexPath: IndexPath) -> Bool {

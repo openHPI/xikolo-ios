@@ -29,10 +29,21 @@ class DownloadedContentListViewController: UITableViewController {
         var contentType: DownloadType
     }
 
-    private enum DownloadType: Int {
+    enum DownloadType: Int {
         case video = 0
         case slides = 1
         case document = 2
+
+        var title: String {
+            switch self {
+            case .video:
+                return NSLocalizedString("settings.downloads.item.video", comment: "download type video")
+            case .slides:
+                return NSLocalizedString("settings.downloads.item.slides", comment: "download type slides")
+            case .document:
+                return NSLocalizedString("settings.downloads.item.document", comment: "download type documents")
+            }
+        }
     }
 
     private var courses: [CourseDownload] = []
@@ -184,7 +195,7 @@ class DownloadedContentListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
-        cell.textLabel?.text = self.title(for: downloadType(for: indexPath))
+        cell.textLabel?.text = self.downloadType(for: indexPath).title
         return cell
     }
 
@@ -208,18 +219,6 @@ class DownloadedContentListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.courses[section].title
-    }
-
-    private func title(for downloadType: DownloadType?) -> String? {
-        guard let downloadType = downloadType else { return nil }
-        switch downloadType {
-        case .video:
-            return NSLocalizedString("settings.downloads.item.video", comment: "download type video")
-        case .slides:
-            return NSLocalizedString("settings.downloads.item.slides", comment: "download type slides")
-        case .document:
-            return NSLocalizedString("settings.downloads.item.document", comment: "download type documents")
-        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -283,11 +282,11 @@ class DownloadedContentListViewController: UITableViewController {
         let downloadItem = (sender as? CourseDownload).require(hint: "Sender must be DownloadItem")
 
         if let typedInfo = R.segue.downloadedContentListViewController.showVideoDownloads(segue: segue) {
-            typedInfo.destination.configure(for: downloadItem)
+            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
         } else if let typedInfo = R.segue.downloadedContentListViewController.showSlideDownloads(segue: segue) {
-            typedInfo.destination.configure(for: downloadItem)
+            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
         } else if let typedInfo = R.segue.downloadedContentListViewController.showDocumentDownloads(segue: segue) {
-            typedInfo.destination.configure(for: downloadItem)
+            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
         }
     }
 

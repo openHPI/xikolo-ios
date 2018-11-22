@@ -19,7 +19,7 @@ class DownloadedStreamsListViewController: UITableViewController {
         self.navigationItem.title = DownloadedContentListViewController.DownloadType.video.title
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        let request = VideoHelper.FetchRequest.hasDownloadedVideo(inCourse: self.courseId)
+        let request = VideoHelper.FetchRequest.videosWithDownloadedStream(inCourse: self.courseId)
         let reuseIdentifier = R.reuseIdentifier.downloadItemCell.identifier
         let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.position")
         self.dataSource = CoreDataTableViewDataSource(self.tableView,

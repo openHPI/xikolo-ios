@@ -29,6 +29,12 @@ public enum DocumentLocalizationHelper {
             return request
         }
 
+        public static func hasDownloadedLocalization() -> NSFetchRequest<DocumentLocalization> {
+            let request: NSFetchRequest<DocumentLocalization> = DocumentLocalization.fetchRequest()
+            request.predicate = NSPredicate(format: "localFileBookmark != nil")
+            return request
+        }
+
     }
 
 }

@@ -15,7 +15,7 @@ class DownloadedContentListViewController: UITableViewController {
     struct CourseDownload {
         var id: String
         var title: String
-        var properties: [Bool] = [false, false, false]
+        var data: [DownloadType: UInt64] = [:]
 
         init(id: String, title: String) {
             self.id = id
@@ -27,12 +27,13 @@ class DownloadedContentListViewController: UITableViewController {
         var courseID: String
         var courseTitle: String?
         var contentType: DownloadType
+        var fileSize: UInt64?
     }
 
-    enum DownloadType: Int {
-        case video = 0
-        case slides = 1
-        case document = 2
+    enum DownloadType: CaseIterable {
+        case video
+        case slides
+        case document
 
         var title: String {
             switch self {
@@ -78,23 +79,16 @@ class DownloadedContentListViewController: UITableViewController {
         self.refresh()
     }
 
-    func refreshAndDismissIfEmpty() {
-        self.refresh().onSuccess { _ in
-            if self.courses.isEmpty {
-                self.navigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
-            }
-        }
-    }
-
     @discardableResult
     private func refresh() -> Future<[[DownloadItem]], XikoloError> {
         return self.courseIDs().onSuccess { itemsArray in
             self.downloadItems = itemsArray.flatMap { $0 }
             var downloadedCourseList: [String: CourseDownload] = [:]
+
             for downloadItem in self.downloadItems {
                 let courseId = downloadItem.courseID
                 var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
-                courseDownload.properties[downloadItem.contentType.rawValue] = true
+                courseDownload.data[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
                 downloadedCourseList[downloadItem.courseID] = courseDownload
             }
 
@@ -117,27 +111,32 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     private func streamCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.hasDownloadedVideo(),
+        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.videosWithDownloadedStream(),
                               contentType: .video,
-                              keyPath: \Video.item?.section?.course)
+                              keyPath: \Video.item?.section?.course,
+                              persistenceManager: StreamPersistenceManager.shared)
     }
 
     private func slidesCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.hasDownloadedSlides(),
+        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.videosWithDownloadedSlides(),
                               contentType: .slides,
-                              keyPath: \Video.item?.section?.course)
+                              keyPath: \Video.item?.section?.course,
+                              persistenceManager: SlidesPersistenceManager.shared)
     }
 
     private func documentsCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        return self.courseIDs(fetchRequest: DocumentHelper.FetchRequest.hasDownloadedLocalization(),
+        return self.courseIDs(fetchRequest: DocumentLocalizationHelper.FetchRequest.hasDownloadedLocalization(),
                               contentType: .document,
-                              keyPath: \Document.courses)
+                              keyPath: \DocumentLocalization.document.courses,
+                              persistenceManager: DocumentsPersistenceManager.shared)
     }
 
-    private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
-                                     contentType: DownloadType,
-                                     keyPath: KeyPath<Resource, Course?>) -> Future<[DownloadItem], XikoloError> {
-
+    private func courseIDs<Resource, Manager>(
+        fetchRequest: NSFetchRequest<Resource>,
+        contentType: DownloadType,
+        keyPath: KeyPath<Resource, Course?>,
+        persistenceManager: Manager
+    ) -> Future<[DownloadItem], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
@@ -145,7 +144,8 @@ class DownloadedContentListViewController: UITableViewController {
                 let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
                 for video in downloadedItems {
                     if let course = video[keyPath: keyPath] {
-                        items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType))
+                        let fileSize = persistenceManager.fileSize(for: video)
+                        items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType, fileSize: fileSize))
                     }
                 }
 
@@ -158,9 +158,12 @@ class DownloadedContentListViewController: UITableViewController {
         return promise.future
     }
 
-    private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
-                                     contentType: DownloadType,
-                                     keyPath: KeyPath<Resource, Set<Course>>) -> Future<[DownloadItem], XikoloError> {
+    private func courseIDs<Resource, Manager>(
+        fetchRequest: NSFetchRequest<Resource>,
+        contentType: DownloadType,
+        keyPath: KeyPath<Resource, Set<Course>>,
+        persistenceManager: Manager
+    ) -> Future<[DownloadItem], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
@@ -168,7 +171,8 @@ class DownloadedContentListViewController: UITableViewController {
                 let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
                 for item in downloadedItems {
                     let downloadItems = item[keyPath: keyPath].map { course -> DownloadItem in
-                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType)
+                        let fileSize = persistenceManager.fileSize(for: item)
+                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType, fileSize: fileSize)
                     }
 
                     items.append(contentsOf: downloadItems)
@@ -190,31 +194,19 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.courses[section].properties.filter { $0 }.count
+        return self.courses[section].data.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
-        cell.textLabel?.text = self.downloadType(for: indexPath).title
+        let data = Array(self.courses[indexPath.section].data)[indexPath.row]
+        cell.textLabel?.text = data.key.title
+        cell.detailTextLabel?.text = ByteCountFormatter.string(fromByteCount: Int64(data.value), countStyle: .file)
         return cell
     }
 
     private func downloadType(for indexPath: IndexPath) -> DownloadType {
-        var itemCount = 0
-        var returnCount = 0
-        for itemExists in self.courses[indexPath.section].properties {
-            if itemExists {
-                if indexPath.row == itemCount {
-                    return DownloadType(rawValue: returnCount).require(hint: "Trying to initialize DownloadType from invalid value")
-                }
-
-                itemCount += 1
-            }
-
-            returnCount += 1
-        }
-
-        preconditionFailure("Invalid data in download list view")
+        return self.courses[indexPath.section].data.map { $0.key }[indexPath.row]
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -222,7 +214,7 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch downloadType(for: indexPath) {
+        switch self.downloadType(for: indexPath) {
         case .video:
             performSegue(withIdentifier: R.segue.downloadedContentListViewController.showVideoDownloads, sender: self.courses[indexPath.section])
         case .slides:
@@ -295,7 +287,7 @@ class DownloadedContentListViewController: UITableViewController {
         let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: keys)
         let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: keys)
         if containsVideoDeletion || containsDocumentDeletion {
-            self.refreshAndDismissIfEmpty()
+            self.refresh()
         }
     }
 

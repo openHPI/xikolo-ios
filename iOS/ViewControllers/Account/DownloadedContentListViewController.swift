@@ -12,6 +12,9 @@ import UIKit
 
 class DownloadedContentListViewController: UITableViewController {
 
+    @IBOutlet var tableViewHeader: UIView!
+    @IBOutlet weak var totalFileSizeLabel: UILabel!
+
     struct CourseDownload {
         var id: String
         var title: String
@@ -47,9 +50,11 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
-    private var courses: [CourseDownload] = []
-    private var courseTitles: [(courseTitle: String, courseID: String)] = []
-    private var downloadItems: [DownloadItem] = []
+    private var courses: [CourseDownload] = [] {
+        didSet {
+            self.updateTotalFileSizeLabel()
+        }
+    }
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
@@ -82,10 +87,10 @@ class DownloadedContentListViewController: UITableViewController {
     @discardableResult
     private func refresh() -> Future<[[DownloadItem]], XikoloError> {
         return self.courseIDs().onSuccess { itemsArray in
-            self.downloadItems = itemsArray.flatMap { $0 }
+            let downloadItems = itemsArray.flatMap { $0 }
             var downloadedCourseList: [String: CourseDownload] = [:]
 
-            for downloadItem in self.downloadItems {
+            for downloadItem in downloadItems {
                 let courseId = downloadItem.courseID
                 var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
                 courseDownload.data[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
@@ -187,6 +192,21 @@ class DownloadedContentListViewController: UITableViewController {
         return promise.future
     }
 
+    private func updateTotalFileSizeLabel() {
+        let fileSize = self.courses.reduce(0) { (result, courseDownload) -> UInt64 in
+            return result + self.aggregatedFileSize(for: courseDownload)
+        }
+
+        self.totalFileSizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
+        self.tableViewHeader.isHidden = self.courses.isEmpty
+    }
+
+    private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {
+        return courseDownload.data.reduce(0) { (result, data) -> UInt64 in
+            return result + data.value
+        }
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -224,32 +244,40 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
+    // MARK: - editing
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.navigationItem.hidesBackButton = editing
+    }
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let course = self.fetchCourse(withID: self.courses[indexPath.section].id).require(hint: "Course has to exist")
-        if editingStyle == .delete {
-            let courseTitle = self.courses[indexPath.section].title
-            switch self.downloadType(for: indexPath) {
-            case .video:
-                let title = NSLocalizedString("settings.downloads.alert.delete.title.streams", comment: "title for deleting streams")
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.streams for course %@", comment: "message for deleting streams")
-                let message = String.localizedStringWithFormat(format, courseTitle)
-                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                    StreamPersistenceManager.shared.deleteDownloads(for: course)
-                }
-            case .slides:
-                let title = NSLocalizedString("settings.downloads.alert.delete.title.slides", comment: "title for deleting slides")
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.slides for course %@", comment: "message for deleting slides")
-                let message = String.localizedStringWithFormat(format, courseTitle)
-                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                    SlidesPersistenceManager.shared.deleteDownloads(for: course)
-                }
-            case .document:
-                let title = NSLocalizedString("settings.downloads.alert.delete.title.documents", comment: "title for deleting documents")
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.documents for course %@", comment: "message for deleting documents")
-                let message = String.localizedStringWithFormat(format, courseTitle)
-                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                    DocumentsPersistenceManager.shared.deleteDownloads(for: course)
-                }
+        guard editingStyle == .delete else { return }
+
+        let downloadItem = self.courses[indexPath.section]
+        let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
+
+        switch self.downloadType(for: indexPath) {
+        case .video:
+            let title = NSLocalizedString("settings.downloads.alert.delete.title.streams", comment: "title for deleting streams")
+            let format = NSLocalizedString("settings.downloads.alert.delete.message.streams for course %@", comment: "message for deleting streams")
+            let message = String.localizedStringWithFormat(format, downloadItem.title)
+            self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
+                StreamPersistenceManager.shared.deleteDownloads(for: course)
+            }
+        case .slides:
+            let title = NSLocalizedString("settings.downloads.alert.delete.title.slides", comment: "title for deleting slides")
+            let format = NSLocalizedString("settings.downloads.alert.delete.message.slides for course %@", comment: "message for deleting slides")
+            let message = String.localizedStringWithFormat(format, downloadItem.title)
+            self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
+                SlidesPersistenceManager.shared.deleteDownloads(for: course)
+            }
+        case .document:
+            let title = NSLocalizedString("settings.downloads.alert.delete.title.documents", comment: "title for deleting documents")
+            let format = NSLocalizedString("settings.downloads.alert.delete.message.documents for course %@", comment: "message for deleting documents")
+            let message = String.localizedStringWithFormat(format, downloadItem.title)
+            self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
+                DocumentsPersistenceManager.shared.deleteDownloads(for: course)
             }
         }
     }

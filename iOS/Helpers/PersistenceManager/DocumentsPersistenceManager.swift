@@ -71,6 +71,7 @@ extension DocumentsPersistenceManager {
             }
         }
     }
+
 }
 
 extension DocumentsPersistenceManager: URLSessionDownloadDelegate {

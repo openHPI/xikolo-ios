@@ -1,0 +1,141 @@
+//
+//  Created for xikolo-ios under MIT license.
+//  Copyright © HPI. All rights reserved.
+//
+
+import BrightFutures
+import Common
+import CoreData
+import UIKit
+
+class AvailableCertificatesListViewController: UITableViewController {
+
+//    private struct CourseCertificates {
+//        var courseTitle: String?
+//        var properties: [String?] = [nil, nil, nil]
+//
+//        init(title: String) {
+//            self.courseTitle = title
+//        }
+//    }
+
+    struct Certificate {
+        var title: String?
+        var courseTitle: String?
+        var url: URL
+    }
+
+    var certificates: [[Certificate]] = [] {
+        didSet {
+            self.refresh()
+        }
+    }
+
+    var courseID: String!
+
+    typealias Certificates = EnrollmentCertificates
+
+    //private var certificates: [CourseCertificates] = []
+
+    //private var dataSource: CoreDataTableViewDataSource<AvailableCertificatesListViewController>!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.refresh()
+        EnrollmentHelper.syncEnrollments().onSuccess { _ in
+            self.refresh()
+        }
+    }
+
+    func refresh() {
+        self.reloadData().onSuccess(callback: { certificates in
+            self.certificates = certificates
+        })
+        self.tableView.reloadData()
+    }
+
+    func reloadData() -> Future<[[Certificate]], XikoloError> {
+        let request = EnrollmentHelper.FetchRequest.allEnrollments()
+        let promise = Promise<[[Certificate]], XikoloError>()
+        CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
+            do {
+                var certificateList: [[Certificate]] = []
+                let enrollments = try privateManagedObjectContext.fetch(request)
+                //let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
+                for enrollment in enrollments {
+                    var courseCertificates: [Certificate] = []
+                    if let enrollmentCertificates = enrollment.certificates {
+                        if let url = enrollmentCertificates.confirmationOfParticipation {
+                            let courseTitle = enrollment.course?.title
+                            let title = NSLocalizedString("course.certificates.name.confirmationOfParticipation", comment: "name of the certificate")
+                            courseCertificates.append(Certificate(title: title, courseTitle: courseTitle, url: url))
+                        }
+
+                        if let url = enrollmentCertificates.recordOfAchievement {
+                            let courseTitle = enrollment.course?.title
+                            let title = NSLocalizedString("course.certificates.name.recordOfAchievement", comment: "name of the certificate")
+                            courseCertificates.append(Certificate(title: title, courseTitle: courseTitle, url: url))
+                        }
+
+                        if let url = enrollmentCertificates.qualifiedCertificate {
+                            let courseTitle = enrollment.course?.title
+                            let title = NSLocalizedString("course.certificates.name.qualifiedCertificate", comment: "name of the certificate")
+                            courseCertificates.append(Certificate(title: title, courseTitle: courseTitle, url: url))
+                        }
+
+                    }
+
+                    if !courseCertificates.isEmpty {
+                        certificateList.append(courseCertificates)
+                    }
+                }
+
+                return promise.success(certificateList)
+            } catch {
+                promise.failure(.coreData(error))
+            }
+        }
+
+        return promise.future
+    }
+
+    func configure(for courseDownload: DownloadedContentListViewController.CourseDownload) { // TODO
+        self.courseID = courseDownload.id
+        self.navigationItem.title = courseDownload.title
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.certificates.count
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.certificates[section].count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.certificateOverviewCell, for: indexPath).require()
+        cell.textLabel?.text = self.certificates[indexPath.section][indexPath.row].title
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.certificates[section][0].courseTitle
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let certificate = certificates[indexPath.section][indexPath.row]
+        performSegue(withIdentifier: R.segue.availableCertificatesListViewController.showCertificate.identifier, sender: certificate)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let typedInfo = R.segue.availableCertificatesListViewController.showCertificate(segue: segue) {
+            if let certificate = sender as? Certificate {
+                typedInfo.destination.configure(for: certificate.url, filename: certificate.title)
+            }
+        }
+    }
+
+}

@@ -76,4 +76,10 @@ public enum EnrollmentHelper {
         return promise.future
     }
 
+    public static func syncEnrollments() -> Future<SyncMultipleResult, XikoloError> {
+        let fetchRequest = EnrollmentHelper.FetchRequest.allEnrollments()
+        let query = MultipleResourcesQuery(type: Enrollment.self)
+        return XikoloSyncEngine().synchronize(withFetchRequest: fetchRequest, withQuery: query)
+    }
+
 }

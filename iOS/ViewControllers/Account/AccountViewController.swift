@@ -203,24 +203,8 @@ class AccountViewController: UITableViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        if let headerView = self.tableView.tableHeaderView {
-            let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-            if headerView.frame.size.height != size.height {
-                headerView.frame.size.height = size.height
-                self.tableView.tableHeaderView = headerView
-                self.tableView.layoutIfNeeded()
-            }
-        }
-
-        if let footerView = self.tableView.tableFooterView {
-            let size = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-            if footerView.frame.size.height != size.height {
-                footerView.frame.size.height = size.height
-                self.tableView.tableFooterView = footerView
-                self.tableView.layoutIfNeeded()
-            }
-        }
+        self.tableView.resizeTableHeaderView()
+        self.tableView.resizeTableFooterView()
     }
 
     private func indexPathIncludingHiddenCells(for indexPath: IndexPath) -> IndexPath {

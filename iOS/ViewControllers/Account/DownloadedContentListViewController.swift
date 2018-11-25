@@ -102,15 +102,7 @@ class DownloadedContentListViewController: UITableViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        if let headerView = self.tableView.tableHeaderView {
-            let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-            if headerView.frame.size.height != size.height {
-                headerView.frame.size.height = size.height
-                self.tableView.tableHeaderView = headerView
-                self.tableView.layoutIfNeeded()
-            }
-        }
+        self.tableView.resizeTableHeaderView()
     }
 
     private func setupEmptyState() {

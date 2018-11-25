@@ -10,15 +10,6 @@ import UIKit
 
 class AvailableCertificatesListViewController: UITableViewController {
 
-//    private struct CourseCertificates {
-//        var courseTitle: String?
-//        var properties: [String?] = [nil, nil, nil]
-//
-//        init(title: String) {
-//            self.courseTitle = title
-//        }
-//    }
-
     struct Certificate {
         var title: String?
         var courseTitle: String?
@@ -35,13 +26,9 @@ class AvailableCertificatesListViewController: UITableViewController {
 
     typealias Certificates = EnrollmentCertificates
 
-    //private var certificates: [CourseCertificates] = []
-
-    //private var dataSource: CoreDataTableViewDataSource<AvailableCertificatesListViewController>!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationItem.rightBarButtonItem = self.editButtonItem
+
         self.refresh()
         EnrollmentHelper.syncEnrollments().onSuccess { _ in
             self.refresh()
@@ -49,9 +36,10 @@ class AvailableCertificatesListViewController: UITableViewController {
     }
 
     func refresh() {
-        self.reloadData().onSuccess(callback: { certificates in
+        self.reloadData().onSuccess { certificates in
             self.certificates = certificates
-        })
+        }
+
         self.tableView.reloadData()
     }
 
@@ -62,7 +50,6 @@ class AvailableCertificatesListViewController: UITableViewController {
             do {
                 var certificateList: [[Certificate]] = []
                 let enrollments = try privateManagedObjectContext.fetch(request)
-                //let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
                 for enrollment in enrollments {
                     var courseCertificates: [Certificate] = []
                     if let enrollmentCertificates = enrollment.certificates {
@@ -98,11 +85,6 @@ class AvailableCertificatesListViewController: UITableViewController {
         }
 
         return promise.future
-    }
-
-    func configure(for courseDownload: DownloadedContentListViewController.CourseDownload) { // TODO
-        self.courseID = courseDownload.id
-        self.navigationItem.title = courseDownload.title
     }
 
     // MARK: - Table view data source

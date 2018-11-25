@@ -227,23 +227,11 @@
 /* course content preload setting: wifi only */
 "settings.course-item-content-preload.wifi-only" = "Wifi only";
 
-/* message for deleting documents */
-"settings.downloads.alert.delete.message.documents for course %@" = "Do you really want to delete all downloaded documents from the course %@?";
+/* message for deleting downloaded content */
+"settings.downloads.alert.delete.message" = "Do you really to want to delete these content items?";
 
-/* message for deleting slides */
-"settings.downloads.alert.delete.message.slides for course %@" = "Do you really want to delete all downloaded slides from the course %@?";
-
-/* message for deleting streams */
-"settings.downloads.alert.delete.message.streams for course %@" = "Do you really want to delete all downloaded videos from the course %@?";
-
-/* title for deleting documents */
-"settings.downloads.alert.delete.title.documents" = "Delete all documents";
-
-/* title for deleting slides */
-"settings.downloads.alert.delete.title.slides" = "Delete all slides";
-
-/* title for deleting streams */
-"settings.downloads.alert.delete.title.streams" = "Delete all videos";
+/* title for deleting downloaded content */
+"settings.downloads.alert.delete.title" = "Delete downloaded content";
 
 /* download type documents */
 "settings.downloads.item.document" = "Documents";
@@ -253,6 +241,12 @@
 
 /* download type video */
 "settings.downloads.item.video" = "Videos";
+
+/* button title for deselecting all rows */
+"settings.downloads.toolbar.deselect all" = "Deselect all";
+
+/* button title for selecting all rows */
+"settings.downloads.toolbar.select all" = "Select all";
 
 /* total size label */
 "settings.downloads.total size: %@" = "Total size: %@";

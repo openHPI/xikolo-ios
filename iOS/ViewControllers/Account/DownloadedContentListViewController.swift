@@ -14,6 +14,10 @@ class DownloadedContentListViewController: UITableViewController {
 
     @IBOutlet private var tableViewHeader: UIView!
     @IBOutlet private weak var totalFileSizeLabel: UILabel!
+    @IBOutlet private weak var selectAllBarButton: UIBarButtonItem!
+    @IBOutlet private weak var deleteBarButton: UIBarButtonItem!
+
+    private var userIsSwipingOnRow = false
 
     struct CourseDownload {
         var id: String
@@ -48,24 +52,36 @@ class DownloadedContentListViewController: UITableViewController {
                 return NSLocalizedString("settings.downloads.item.document", comment: "download type documents")
             }
         }
+
+        var persistenceManager: ContentPersistanceManager {
+            switch self {
+            case .video:
+                return StreamPersistenceManager.shared
+            case .slides:
+                return SlidesPersistenceManager.shared
+            case .document:
+                return DocumentsPersistenceManager.shared
+            }
+        }
     }
 
     private var courses: [CourseDownload] = [] {
         didSet {
+            let isEditing = self.isEditing && !self.courses.isEmpty
+            self.navigationController?.setToolbarHidden(!isEditing, animated: trueUnlessReduceMotionEnabled)
+            self.navigationItem.setHidesBackButton(isEditing, animated: trueUnlessReduceMotionEnabled)
+
+            self.updateToolBar()
             self.updateTotalFileSizeLabel()
+
+            self.navigationItem.rightBarButtonItem = self.courses.isEmpty ? nil : self.editButtonItem
+            self.tableView.reloadData()
         }
     }
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
-    }
-
-    func setupEmptyState() {
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
-        tableView.reloadEmptyDataSet()
     }
 
     override func awakeFromNib() {
@@ -84,6 +100,26 @@ class DownloadedContentListViewController: UITableViewController {
         self.refresh()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let headerView = self.tableView.tableHeaderView {
+            let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+            if headerView.frame.size.height != size.height {
+                headerView.frame.size.height = size.height
+                self.tableView.tableHeaderView = headerView
+                self.tableView.layoutIfNeeded()
+            }
+        }
+    }
+
+    private func setupEmptyState() {
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.tableFooterView = UIView()
+        self.tableView.reloadEmptyDataSet()
+    }
+
     @discardableResult
     private func refresh() -> Future<[[DownloadItem]], XikoloError> {
         return self.courseIDs().onSuccess { itemsArray in
@@ -98,18 +134,19 @@ class DownloadedContentListViewController: UITableViewController {
             }
 
             self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
-            self.navigationItem.rightBarButtonItem = self.courses.isEmpty ? nil : self.editButtonItem
-            self.tableView.reloadData()
         }.onFailure { error in
             log.error(error.localizedDescription)
         }
     }
 
     private func courseIDs() -> Future<[[DownloadItem]], XikoloError> {
-        var futures = [streamCourseIDs(), slidesCourseIDs()]
+        var futures = [
+            self.streamCourseIDs(),
+            self.slidesCourseIDs(),
+        ]
 
         if Brand.default.features.enableDocuments {
-            futures.append(documentsCourseIDs())
+            futures.append(self.documentsCourseIDs())
         }
 
         return futures.sequence()
@@ -261,14 +298,24 @@ extension DownloadedContentListViewController { // Table view data source
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !self.isEditing else {
+            self.updateToolBar()
+            return
+        }
+
         switch self.downloadType(for: indexPath) {
         case .video:
-            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showVideoDownloads, sender: self.courses[indexPath.section])
+            self.performSegue(withIdentifier: R.segue.downloadedContentListViewController.showVideoDownloads, sender: self.courses[indexPath.section])
         case .slides:
-            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showSlideDownloads, sender: self.courses[indexPath.section])
+            self.performSegue(withIdentifier: R.segue.downloadedContentListViewController.showSlideDownloads, sender: self.courses[indexPath.section])
         case .document:
-            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showDocumentDownloads, sender: self.courses[indexPath.section])
+            self.performSegue(withIdentifier: R.segue.downloadedContentListViewController.showDocumentDownloads, sender: self.courses[indexPath.section])
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard self.isEditing else { return }
+        self.updateToolBar()
     }
 
 }
@@ -277,38 +324,27 @@ extension DownloadedContentListViewController { // editing
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        self.navigationItem.hidesBackButton = editing
+        self.updateToolBar()
+        self.navigationController?.setToolbarHidden(!editing, animated: animated)
+        self.navigationItem.setHidesBackButton(editing, animated: animated)
+    }
+
+    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        super.tableView(tableView, willBeginEditingRowAt: indexPath)
+        self.navigationController?.setToolbarHidden(true, animated: trueUnlessReduceMotionEnabled)
+        self.navigationItem.setHidesBackButton(false, animated: trueUnlessReduceMotionEnabled)
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
 
-        let downloadItem = self.courses[indexPath.section]
-        let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
-
-        switch self.downloadType(for: indexPath) {
-        case .video:
-            let title = NSLocalizedString("settings.downloads.alert.delete.title.streams", comment: "title for deleting streams")
-            let format = NSLocalizedString("settings.downloads.alert.delete.message.streams for course %@", comment: "message for deleting streams")
-            let message = String.localizedStringWithFormat(format, downloadItem.title)
-            self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                StreamPersistenceManager.shared.deleteDownloads(for: course)
-            }
-        case .slides:
-            let title = NSLocalizedString("settings.downloads.alert.delete.title.slides", comment: "title for deleting slides")
-            let format = NSLocalizedString("settings.downloads.alert.delete.message.slides for course %@", comment: "message for deleting slides")
-            let message = String.localizedStringWithFormat(format, downloadItem.title)
-            self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                SlidesPersistenceManager.shared.deleteDownloads(for: course)
-            }
-        case .document:
-            let title = NSLocalizedString("settings.downloads.alert.delete.title.documents", comment: "title for deleting documents")
-            let format = NSLocalizedString("settings.downloads.alert.delete.message.documents for course %@", comment: "message for deleting documents")
-            let message = String.localizedStringWithFormat(format, downloadItem.title)
-            self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                DocumentsPersistenceManager.shared.deleteDownloads(for: course)
-            }
+        let alert = UIAlertController { _ in
+            let downloadItem = self.courses[indexPath.section]
+            let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
+            self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
         }
+
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
     private func fetchCourse(withID id: String) -> Course? {
@@ -316,12 +352,64 @@ extension DownloadedContentListViewController { // editing
         return CoreDataHelper.viewContext.fetchSingle(request).value
     }
 
-    private func showAlertForDeletingContent(withTitle title: String, message: String, action: ((UIAlertAction) -> Void)?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let deleteTitle = NSLocalizedString("global.alert.delete", comment: "title to delete alert")
-        let deleteAction = UIAlertAction(title: deleteTitle, style: .destructive, handler: action)
-        alert.addAction(deleteAction)
-        alert.addCancelAction()
+    private func updateToolBar() {
+        var title: String {
+            let allRowsSelected = self.allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
+            if allRowsSelected {
+                return NSLocalizedString("settings.downloads.toolbar.deselect all", comment: "button title for deselecting all rows")
+            } else {
+                return NSLocalizedString("settings.downloads.toolbar.select all", comment: "button title for selecting all rows")
+            }
+        }
+
+        self.selectAllBarButton.title = title
+        self.deleteBarButton.isEnabled = !(self.tableView.indexPathsForSelectedRows?.isEmpty ?? true)
+    }
+
+    private var allIndexPaths: [IndexPath] {
+        return (0..<self.tableView.numberOfSections).flatMap { section in
+            return (0..<self.tableView.numberOfRows(inSection: section)).map { row in
+                return IndexPath(row: row, section: section)
+            }
+        }
+    }
+
+    @IBAction private func selectMultiple() {
+        let allIndexPaths = self.allIndexPaths
+        let allRowsSelected = allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
+        self.tableView.beginUpdates()
+
+        if allRowsSelected {
+            allIndexPaths.forEach { indexPath in
+                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
+            }
+        } else {
+            allIndexPaths.forEach { indexPath in
+                self.tableView.selectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled, scrollPosition: .none)
+            }
+        }
+
+        self.tableView.endUpdates()
+        self.updateToolBar()
+    }
+
+    @IBAction private func deleteSelectedIndexPaths() {
+        guard let indexPaths = self.tableView.indexPathsForSelectedRows else {
+            return
+        }
+
+        let alert = UIAlertController { [weak self] _ in
+            guard let self = self else { return }
+
+            for indexPath in indexPaths {
+                let downloadItem = self.courses[indexPath.section]
+                let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
+                self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
+            }
+
+            self.setEditing(false, animated: trueUnlessReduceMotionEnabled)
+        }
+
         self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 

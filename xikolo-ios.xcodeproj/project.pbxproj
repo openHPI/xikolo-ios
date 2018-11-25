@@ -30,6 +30,8 @@
 		503988792167A04200F9043B /* CourseItem+DetailedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503988782167A04200F9043B /* CourseItem+DetailedContent.swift */; };
 		503CEE942174EEE200F34694 /* CourseItem+AvailableContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503CEE932174EEE200F34694 /* CourseItem+AvailableContent.swift */; };
 		503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503CEE952177082D00F34694 /* ProcotoredItemViewController.swift */; };
+		5044C8DD21A8089C006490CE /* ContentPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5044C8DC21A8089C006490CE /* ContentPersistenceManager.swift */; };
+		5044C8E321A8105C006490CE /* UIAlertViewController+downloadedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5044C8E221A8105C006490CE /* UIAlertViewController+downloadedContent.swift */; };
 		5046BD0A212B4DC700B9F2CD /* DocumentLocalization+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046BD09212B4DC700B9F2CD /* DocumentLocalization+Download.swift */; };
 		504D83FA215B57D4006F2447 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83F9215B57D4006F2447 /* ErrorReporter.swift */; };
 		504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D83FB215B64EC006F2447 /* APIStatus.swift */; };
@@ -418,6 +420,8 @@
 		5040A6262079788900E98351 /* CoursePresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePresentationAnimator.swift; sourceTree = "<group>"; };
 		5040A62B207978BA00E98351 /* CourseDismissionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDismissionAnimator.swift; sourceTree = "<group>"; };
 		5040A63020797ED800E98351 /* CourseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigationController.swift; sourceTree = "<group>"; };
+		5044C8DC21A8089C006490CE /* ContentPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPersistenceManager.swift; sourceTree = "<group>"; };
+		5044C8E221A8105C006490CE /* UIAlertViewController+downloadedContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+downloadedContent.swift"; sourceTree = "<group>"; };
 		5046BD09212B4DC700B9F2CD /* DocumentLocalization+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentLocalization+Download.swift"; sourceTree = "<group>"; };
 		504D83F9215B57D4006F2447 /* ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
 		504D83FB215B64EC006F2447 /* APIStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStatus.swift; sourceTree = "<group>"; };
@@ -856,6 +860,7 @@
 				50F720271F28D72D00779995 /* StreamPersistenceManager.swift */,
 				50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */,
 				50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */,
+				5044C8DC21A8089C006490CE /* ContentPersistenceManager.swift */,
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
 			);
 			path = PersistenceManager;
@@ -1222,6 +1227,7 @@
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
 				50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */,
 				5002290B205B05C3003301A7 /* UIAlertViewController+spinner.swift */,
+				5044C8E221A8105C006490CE /* UIAlertViewController+downloadedContent.swift */,
 				AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */,
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
@@ -1962,6 +1968,7 @@
 				50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */,
 				50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */,
 				503988792167A04200F9043B /* CourseItem+DetailedContent.swift in Sources */,
+				5044C8DD21A8089C006490CE /* ContentPersistenceManager.swift in Sources */,
 				50CF1FBD20DCDBFC0011BFE9 /* WebViewController.swift in Sources */,
 				50CF1FC820DCDBFC0011BFE9 /* CourseInteractor.swift in Sources */,
 				5039887521679A0600F9043B /* CourseItemCellDelegate.swift in Sources */,
@@ -1969,6 +1976,7 @@
 				508AB2EE21145A500079EAE5 /* CourseDateSummaryView.swift in Sources */,
 				50CF1FCC20DCDBFC0011BFE9 /* AnnouncementListViewController.swift in Sources */,
 				5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */,
+				5044C8E321A8105C006490CE /* UIAlertViewController+downloadedContent.swift in Sources */,
 				50CF1FCD20DCDBFC0011BFE9 /* UIAlertViewController+cancel.swift in Sources */,
 				50CF1FD020DCDBFC0011BFE9 /* CourseItemWebViewController.swift in Sources */,
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,

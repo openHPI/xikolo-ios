@@ -60,14 +60,12 @@ final class DocumentsPersistenceManager: NSObject, FilePersistenceManager {
 
 extension DocumentsPersistenceManager {
 
-    func deleteDownloads(for course: Course) {
+    func deleteDownloads(for document: Document) {
         self.persistentContainerQueue.addOperation {
-            course.documents.forEach { document in
-                document.localizations.filter { documentLocalization -> Bool in
-                    return DocumentsPersistenceManager.shared.downloadState(for: documentLocalization) == .downloaded
-                }.forEach { documentLocalization in
-                    self.deleteDownload(for: documentLocalization)
-                }
+            document.localizations.filter { documentLocalization -> Bool in
+                return DocumentsPersistenceManager.shared.downloadState(for: documentLocalization) == .downloaded
+            }.forEach { documentLocalization in
+                self.deleteDownload(for: documentLocalization)
             }
         }
     }

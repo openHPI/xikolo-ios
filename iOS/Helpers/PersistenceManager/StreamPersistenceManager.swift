@@ -146,16 +146,6 @@ extension StreamPersistenceManager {
 
 }
 
-extension StreamPersistenceManager {
-
-    func deleteDownloads(for course: Course) {
-        course.sections.forEach { courseSection in
-            self.deleteDownloads(for: courseSection)
-        }
-    }
-
-}
-
 extension StreamPersistenceManager: AVAssetDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

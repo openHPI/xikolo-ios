@@ -115,16 +115,6 @@ extension SlidesPersistenceManager {
 
 }
 
-extension SlidesPersistenceManager {
-
-    func deleteDownloads(for course: Course) {
-        course.sections.forEach { courseSection in
-            self.deleteDownloads(for: courseSection)
-        }
-    }
-
-}
-
 extension SlidesPersistenceManager: URLSessionDownloadDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

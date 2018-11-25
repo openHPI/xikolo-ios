@@ -22,7 +22,7 @@ class DownloadedContentListViewController: UITableViewController {
     struct CourseDownload {
         var id: String
         var title: String
-        var data: [DownloadType: UInt64] = [:]
+        var data: [DownloadedContentType: UInt64] = [:]
 
         init(id: String, title: String) {
             self.id = id
@@ -33,11 +33,11 @@ class DownloadedContentListViewController: UITableViewController {
     private struct DownloadItem {
         var courseID: String
         var courseTitle: String?
-        var contentType: DownloadType
+        var contentType: DownloadedContentType
         var fileSize: UInt64?
     }
 
-    enum DownloadType: CaseIterable {
+    enum DownloadedContentType: CaseIterable {
         case video
         case slides
         case document
@@ -65,16 +65,16 @@ class DownloadedContentListViewController: UITableViewController {
         }
     }
 
-    private var courses: [CourseDownload] = [] {
+    private var courseDownloads: [CourseDownload] = [] {
         didSet {
-            let isEditing = self.isEditing && !self.courses.isEmpty
+            let isEditing = self.isEditing && !self.courseDownloads.isEmpty
             self.navigationController?.setToolbarHidden(!isEditing, animated: trueUnlessReduceMotionEnabled)
             self.navigationItem.setHidesBackButton(isEditing, animated: trueUnlessReduceMotionEnabled)
 
-            self.updateToolBar()
+            self.updateToolBarButtons()
             self.updateTotalFileSizeLabel()
 
-            self.navigationItem.rightBarButtonItem = self.courses.isEmpty ? nil : self.editButtonItem
+            self.navigationItem.rightBarButtonItem = self.courseDownloads.isEmpty ? nil : self.editButtonItem
             self.tableView.reloadData()
         }
     }
@@ -133,7 +133,7 @@ class DownloadedContentListViewController: UITableViewController {
                 downloadedCourseList[downloadItem.courseID] = courseDownload
             }
 
-            self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
+            self.courseDownloads = downloadedCourseList.values.sorted { $0.title < $1.title }
         }.onFailure { error in
             log.error(error.localizedDescription)
         }
@@ -175,7 +175,7 @@ class DownloadedContentListViewController: UITableViewController {
 
     private func courseIDs<Resource, Manager>(
         fetchRequest: NSFetchRequest<Resource>,
-        contentType: DownloadType,
+        contentType: DownloadedContentType,
         keyPath: KeyPath<Resource, Course?>,
         persistenceManager: Manager
     ) -> Future<[DownloadItem], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
@@ -202,7 +202,7 @@ class DownloadedContentListViewController: UITableViewController {
 
     private func courseIDs<Resource, Manager>(
         fetchRequest: NSFetchRequest<Resource>,
-        contentType: DownloadType,
+        contentType: DownloadedContentType,
         keyPath: KeyPath<Resource, Set<Course>>,
         persistenceManager: Manager
     ) -> Future<[DownloadItem], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
@@ -230,33 +230,19 @@ class DownloadedContentListViewController: UITableViewController {
     }
 
     private func updateTotalFileSizeLabel() {
-        let fileSize = self.courses.reduce(0) { result, courseDownload -> UInt64 in
+        let fileSize = self.courseDownloads.reduce(0) { result, courseDownload -> UInt64 in
             return result + self.aggregatedFileSize(for: courseDownload)
         }
 
         let format = NSLocalizedString("settings.downloads.total size: %@", comment: "total size label")
         let formattedFileSize = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
         self.totalFileSizeLabel.text = String.localizedStringWithFormat(format, formattedFileSize)
-        self.tableViewHeader.isHidden = self.courses.isEmpty
+        self.tableViewHeader.isHidden = self.courseDownloads.isEmpty
     }
 
     private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {
         return courseDownload.data.reduce(0) { result, data -> UInt64 in
             return result + data.value
-        }
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let downloadItem = (sender as? CourseDownload).require(hint: "Sender must be DownloadItem")
-
-        if let typedInfo = R.segue.downloadedContentListViewController.showVideoDownloads(segue: segue) {
-            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
-        } else if let typedInfo = R.segue.downloadedContentListViewController.showSlideDownloads(segue: segue) {
-            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
-        } else if let typedInfo = R.segue.downloadedContentListViewController.showDocumentDownloads(segue: segue) {
-            typedInfo.destination.configure(forCourseWithId: downloadItem.id)
         }
     }
 
@@ -274,48 +260,54 @@ class DownloadedContentListViewController: UITableViewController {
 extension DownloadedContentListViewController { // Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.courses.count
+        return self.courseDownloads.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.courses[section].data.count
+        return self.courseDownloads[section].data.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
-        let data = Array(self.courses[indexPath.section].data)[indexPath.row]
+        let data = Array(self.courseDownloads[indexPath.section].data)[indexPath.row]
         cell.textLabel?.text = data.key.title
         cell.detailTextLabel?.text = ByteCountFormatter.string(fromByteCount: Int64(data.value), countStyle: .file)
         return cell
     }
 
-    private func downloadType(for indexPath: IndexPath) -> DownloadType {
-        return self.courses[indexPath.section].data.map { $0.key }[indexPath.row]
+    private func downloadType(for indexPath: IndexPath) -> DownloadedContentType {
+        return self.courseDownloads[indexPath.section].data.map { $0.key }[indexPath.row]
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.courses[section].title
+        return self.courseDownloads[section].title
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard !self.isEditing else {
-            self.updateToolBar()
+            self.updateToolBarButtons()
             return
         }
 
+        let courseId = self.courseDownloads[indexPath.section].id
+
         switch self.downloadType(for: indexPath) {
         case .video:
-            self.performSegue(withIdentifier: R.segue.downloadedContentListViewController.showVideoDownloads, sender: self.courses[indexPath.section])
+            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedStreamsListConfiguration.self)
+            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
         case .slides:
-            self.performSegue(withIdentifier: R.segue.downloadedContentListViewController.showSlideDownloads, sender: self.courses[indexPath.section])
+            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedSlidesListConfiguration.self)
+            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
         case .document:
-            self.performSegue(withIdentifier: R.segue.downloadedContentListViewController.showDocumentDownloads, sender: self.courses[indexPath.section])
+            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedDocumentsListConfiguration.self)
+            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
         }
+
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard self.isEditing else { return }
-        self.updateToolBar()
+        self.updateToolBarButtons()
     }
 
 }
@@ -324,7 +316,7 @@ extension DownloadedContentListViewController { // editing
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        self.updateToolBar()
+        self.updateToolBarButtons()
         self.navigationController?.setToolbarHidden(!editing, animated: animated)
         self.navigationItem.setHidesBackButton(editing, animated: animated)
     }
@@ -339,7 +331,7 @@ extension DownloadedContentListViewController { // editing
         guard editingStyle == .delete else { return }
 
         let alert = UIAlertController { _ in
-            let downloadItem = self.courses[indexPath.section]
+            let downloadItem = self.courseDownloads[indexPath.section]
             let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
             self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
         }
@@ -352,7 +344,7 @@ extension DownloadedContentListViewController { // editing
         return CoreDataHelper.viewContext.fetchSingle(request).value
     }
 
-    private func updateToolBar() {
+    private func updateToolBarButtons() {
         var title: String {
             let allRowsSelected = self.allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
             if allRowsSelected {
@@ -390,7 +382,7 @@ extension DownloadedContentListViewController { // editing
         }
 
         self.tableView.endUpdates()
-        self.updateToolBar()
+        self.updateToolBarButtons()
     }
 
     @IBAction private func deleteSelectedIndexPaths() {
@@ -402,7 +394,7 @@ extension DownloadedContentListViewController { // editing
             guard let self = self else { return }
 
             for indexPath in indexPaths {
-                let downloadItem = self.courses[indexPath.section]
+                let downloadItem = self.courseDownloads[indexPath.section]
                 let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
                 self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
             }

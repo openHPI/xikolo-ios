@@ -12,8 +12,8 @@ extension VideoHelper {
         private static let hasDownloadedStreamPredicate = NSPredicate(format: "localFileBookmark != nil")
         private static let hasDownloadedSlidesPredicate = NSPredicate(format: "localSlidesBookmark != nil")
 
-        static func inCoursePredicate(withID id: String) -> NSPredicate {
-            return NSPredicate(format: "item.section.course.id = %@", id)
+        static func inCoursePredicate(_ course: Course) -> NSPredicate {
+            return NSPredicate(format: "item.section.course = %@", course)
         }
 
         static func video(withId videoId: String) -> NSFetchRequest<Video> {
@@ -23,15 +23,15 @@ extension VideoHelper {
             return request
         }
 
-        public static func videosWithDownloadedStream(inCourse courseID: String? = nil) -> NSFetchRequest<Video> {
+        public static func videosWithDownloadedStream(in course: Course? = nil) -> NSFetchRequest<Video> {
             let request: NSFetchRequest<Video> = Video.fetchRequest()
-            if let id = courseID {
+            if let course = course {
                 let sectionSort = NSSortDescriptor(key: "item.section.position", ascending: true)
                 let positionSort = NSSortDescriptor(key: "item.position", ascending: true)
                 request.sortDescriptors = [sectionSort, positionSort]
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                     self.hasDownloadedStreamPredicate,
-                    self.inCoursePredicate(withID: id),
+                    self.inCoursePredicate(course),
                 ])
             } else {
                 request.predicate = self.hasDownloadedStreamPredicate
@@ -40,15 +40,15 @@ extension VideoHelper {
             return request
         }
 
-        public static func videosWithDownloadedSlides(inCourse courseID: String? = nil) -> NSFetchRequest<Video> {
+        public static func videosWithDownloadedSlides(in course: Course? = nil) -> NSFetchRequest<Video> {
             let request: NSFetchRequest<Video> = Video.fetchRequest()
-            if let id = courseID {
+            if let course = course {
                 let sectionSort = NSSortDescriptor(key: "item.section.position", ascending: true)
                 let positionSort = NSSortDescriptor(key: "item.position", ascending: true)
                 request.sortDescriptors = [sectionSort, positionSort]
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                     self.hasDownloadedSlidesPredicate,
-                    self.inCoursePredicate(withID: id),
+                    self.inCoursePredicate(course),
                 ])
             } else {
                 request.predicate = self.hasDownloadedSlidesPredicate

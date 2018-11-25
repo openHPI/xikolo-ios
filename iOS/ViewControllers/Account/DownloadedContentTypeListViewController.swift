@@ -7,37 +7,61 @@ import Common
 import CoreData
 import UIKit
 
-class DownloadedSlidesListViewController: UITableViewController {
+class DownloadedContentTypeListViewController<Configuration: DownloadedContentTypeListConfiguraton>: UITableViewController {
 
-    @IBOutlet private weak var selectAllBarButton: UIBarButtonItem!
-    @IBOutlet private weak var deleteBarButton: UIBarButtonItem!
+    typealias Resource = Configuration.Manager.Resource
 
-    private var courseId: String!
-    private var dataSource: CoreDataTableViewDataSource<DownloadedSlidesListViewController>!
+    private let cellReuseIdentifier = "downloadedItem"
+
+    private lazy var selectBarButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(selectMultiple))
+    private lazy var deleteBarButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteSelectedIndexPaths))
+
+    private var courseId: String
+    private var dataSource: CoreDataTableViewDataSource<DownloadedContentTypeListViewController>!
+
+    init(forCourseId courseId: String, configuration: Configuration.Type) {
+        self.courseId = courseId
+
+        super.init(style: .grouped)
+
+        // Workaround for hiding additional top offset of the table view caused by groped style
+        // See: https://stackoverflow.com/a/18938763/7414898
+        let frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 0.001)
+        self.tableView.tableHeaderView = UIView(frame: frame)
+
+        self.tableView.allowsSelection = false
+        self.tableView.allowsMultipleSelectionDuringEditing = true
+        self.tableView.cellLayoutMarginsFollowReadableWidth = true
+        self.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
+    }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.title = DownloadedContentListViewController.DownloadType.slides.title
+        self.navigationItem.title = Configuration.navigationTitle
         self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        let request = VideoHelper.FetchRequest.videosWithDownloadedSlides(inCourse: self.courseId)
+        self.toolbarItems = [
+            self.selectBarButton,
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            self.deleteBarButton,
+        ]
 
-        let reuseIdentifier = R.reuseIdentifier.downloadItemCell.identifier
-        let resultsController = CoreDataHelper.createResultsController(request, sectionNameKeyPath: "item.section.position")
+        guard let course = self.fetchCourse(withID: self.courseId) else { return }
+        let resultsController = Configuration.resultsController(for: course)
         self.dataSource = CoreDataTableViewDataSource(self.tableView,
                                                       fetchedResultsController: resultsController,
-                                                      cellReuseIdentifier: reuseIdentifier,
+                                                      cellReuseIdentifier: self.cellReuseIdentifier,
                                                       delegate: self)
-    }
-
-    func configure(forCourseWithId courseId: String) {
-        self.courseId = courseId
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        self.updateToolBar()
+        self.updateToolBarButtons()
         self.navigationController?.setToolbarHidden(!editing, animated: animated)
         self.navigationItem.setHidesBackButton(editing, animated: animated)
     }
@@ -50,15 +74,20 @@ class DownloadedSlidesListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard self.isEditing else { return }
-        self.updateToolBar()
+        self.updateToolBarButtons()
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard self.isEditing else { return }
-        self.updateToolBar()
+        self.updateToolBarButtons()
     }
 
-    private func updateToolBar() {
+    private func fetchCourse(withID id: String) -> Course? {
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+        return CoreDataHelper.viewContext.fetchSingle(request).value
+    }
+
+    private func updateToolBarButtons() {
         var title: String {
             let allRowsSelected = self.allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
             if allRowsSelected {
@@ -68,7 +97,7 @@ class DownloadedSlidesListViewController: UITableViewController {
             }
         }
 
-        self.selectAllBarButton.title = title
+        self.selectBarButton.title = title
         self.deleteBarButton.isEnabled = !(self.tableView.indexPathsForSelectedRows?.isEmpty ?? true)
     }
 
@@ -80,7 +109,7 @@ class DownloadedSlidesListViewController: UITableViewController {
         }
     }
 
-    @IBAction private func selectMultiple() {
+    @objc private func selectMultiple() {
         let allIndexPaths = self.allIndexPaths
         let allRowsSelected = allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
         self.tableView.beginUpdates()
@@ -96,10 +125,10 @@ class DownloadedSlidesListViewController: UITableViewController {
         }
 
         self.tableView.endUpdates()
-        self.updateToolBar()
+        self.updateToolBarButtons()
     }
 
-    @IBAction private func deleteSelectedIndexPaths() {
+    @objc private func deleteSelectedIndexPaths() {
         guard let indexPaths = self.tableView.indexPathsForSelectedRows else {
             return
         }
@@ -109,7 +138,7 @@ class DownloadedSlidesListViewController: UITableViewController {
 
             for indexPath in indexPaths {
                 let object = self.dataSource.object(at: indexPath)
-                SlidesPersistenceManager.shared.deleteDownload(for: object)
+                Configuration.persistenceManager.deleteDownload(for: object)
             }
 
             self.setEditing(false, animated: trueUnlessReduceMotionEnabled)
@@ -120,17 +149,17 @@ class DownloadedSlidesListViewController: UITableViewController {
 
 }
 
-extension DownloadedSlidesListViewController: CoreDataTableViewDataSourceDelegate {
+extension DownloadedContentTypeListViewController: CoreDataTableViewDataSourceDelegate {
 
-    func configure(_ cell: UITableViewCell, for object: Video) {
-        cell.textLabel?.text = object.item?.title
-        cell.detailTextLabel?.text = SlidesPersistenceManager.shared.formattedFileSize(for: object)
+    func configure(_ cell: UITableViewCell, for object: Resource) {
+        cell.textLabel?.text = object[keyPath: Configuration.cellTitleKeyPath]
+        cell.detailTextLabel?.text = Configuration.persistenceManager.formattedFileSize(for: object)
     }
 
     func titleForDefaultHeader(forSection section: Int) -> String? {
         let indexPath = IndexPath(row: 0, section: section)
         guard let dataSource = self.dataSource else { return nil }
-        return dataSource.object(at: indexPath).item?.section?.title
+        return dataSource.object(at: indexPath)[keyPath: Configuration.sectionTitleKeyPath]
     }
 
     func canEditRow(at indexPath: IndexPath) -> Bool {
@@ -139,8 +168,8 @@ extension DownloadedSlidesListViewController: CoreDataTableViewDataSourceDelegat
 
     func commit(editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let video = self.dataSource.object(at: indexPath)
-            SlidesPersistenceManager.shared.deleteDownload(for: video)
+            let object = self.dataSource.object(at: indexPath)
+            Configuration.persistenceManager.deleteDownload(for: object)
         }
     }
 

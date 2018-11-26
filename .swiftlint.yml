@@ -44,6 +44,11 @@ opt_in_rules:
 disabled_rules:
 - explicit_enum_raw_value
 
+analyzer_rules:
+- explicit_self
+- unused_import
+- unused_private_declaration
+
 excluded:
 - Pods
 - Frameworks

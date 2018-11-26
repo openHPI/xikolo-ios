@@ -23,9 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return SyncPushEngineManager(syncEngine: engine)
     }()
 
+    private var tabBarController: UITabBarController? {
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            let reason = "UITabBarController could not be found"
+            ErrorManager.shared.reportStoryboardError(reason: reason)
+            log.error(reason)
+            return nil
+        }
+
+        return tabBarController
+    }
+
     var window: UIWindow?
 
-    class func instance() -> AppDelegate {
+    static func instance() -> AppDelegate {
         let instance = UIApplication.shared.delegate as? AppDelegate
         return instance.require(hint: "Unable to find AppDelegate")
     }
@@ -137,15 +148,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SpotlightHelper.shared.stopObserving()
     }
 
-    var tabBarController: UITabBarController? {
-        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
-            log.warning("UITabBarController could not be found")
-            return nil
-        }
-
-        return tabBarController
-    }
-
 }
 
 extension AppDelegate: UITabBarControllerDelegate {
@@ -185,6 +187,12 @@ extension AppDelegate: UITabBarControllerDelegate {
         return false
     }
 
+    func switchToCourseListTab() -> Bool {
+        guard let tabBarController = self.tabBarController else { return false }
+        tabBarController.selectedIndex = 1
+        return true
+    }
+
 }
 
 extension AppDelegate: LoginDelegate {
@@ -192,6 +200,7 @@ extension AppDelegate: LoginDelegate {
     func didSuccessfullyLogin() {
         self.tabBarController?.selectedIndex = 0
     }
+
 }
 
 extension AppDelegate: AnnouncementHelperDelegate {

@@ -119,16 +119,7 @@ enum AppNavigator {
     }
 
     @discardableResult static func showCourseList() -> Bool {
-        guard let tabBarController = AppDelegate.instance().tabBarController else {
-            let reason = "UITabBarController could not be found"
-            ErrorManager.shared.reportStoryboardError(reason: reason)
-            log.error(reason)
-            return false
-        }
-
-        // url points to courses list
-        tabBarController.selectedIndex = 1
-        return true
+        return AppDelegate.instance().switchToCourseListTab()
     }
 
     static func show(course: Course, with courseArea: CourseArea = .learnings) {

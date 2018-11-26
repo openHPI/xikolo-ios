@@ -12,10 +12,17 @@ import UIKit
 
 class DownloadedContentListViewController: UITableViewController {
 
+    @IBOutlet private var tableViewHeader: UIView!
+    @IBOutlet private weak var totalFileSizeLabel: UILabel!
+    @IBOutlet private weak var selectAllBarButton: UIBarButtonItem!
+    @IBOutlet private weak var deleteBarButton: UIBarButtonItem!
+
+    private var userIsSwipingOnRow = false
+
     struct CourseDownload {
         var id: String
         var title: String
-        var properties: [Bool] = [false, false, false]
+        var data: [DownloadedContentType: UInt64] = [:]
 
         init(id: String, title: String) {
             self.id = id
@@ -26,29 +33,55 @@ class DownloadedContentListViewController: UITableViewController {
     private struct DownloadItem {
         var courseID: String
         var courseTitle: String?
-        var contentType: DownloadType
+        var contentType: DownloadedContentType
+        var fileSize: UInt64?
     }
 
-    private enum DownloadType: Int {
-        case video = 0
-        case slides = 1
-        case document = 2
+    enum DownloadedContentType: CaseIterable {
+        case video
+        case slides
+        case document
+
+        var title: String {
+            switch self {
+            case .video:
+                return NSLocalizedString("settings.downloads.item.video", comment: "download type video")
+            case .slides:
+                return NSLocalizedString("settings.downloads.item.slides", comment: "download type slides")
+            case .document:
+                return NSLocalizedString("settings.downloads.item.document", comment: "download type documents")
+            }
+        }
+
+        var persistenceManager: ContentPersistanceManager {
+            switch self {
+            case .video:
+                return StreamPersistenceManager.shared
+            case .slides:
+                return SlidesPersistenceManager.shared
+            case .document:
+                return DocumentsPersistenceManager.shared
+            }
+        }
     }
 
-    private var courses: [CourseDownload] = []
-    private var courseTitles: [(courseTitle: String, courseID: String)] = []
-    private var downloadItems: [DownloadItem] = []
+    private var courseDownloads: [CourseDownload] = [] {
+        didSet {
+            let isEditing = self.isEditing && !self.courseDownloads.isEmpty
+            self.navigationController?.setToolbarHidden(!isEditing, animated: trueUnlessReduceMotionEnabled)
+            self.navigationItem.setHidesBackButton(isEditing, animated: trueUnlessReduceMotionEnabled)
+
+            self.updateToolBarButtons()
+            self.updateTotalFileSizeLabel()
+
+            self.navigationItem.rightBarButtonItem = self.courseDownloads.isEmpty ? nil : self.editButtonItem
+            self.tableView.reloadData()
+        }
+    }
 
     deinit {
         self.tableView?.emptyDataSetSource = nil
         self.tableView?.emptyDataSetDelegate = nil
-    }
-
-    func setupEmptyState() {
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
-        tableView.reloadEmptyDataSet()
     }
 
     override func awakeFromNib() {
@@ -67,66 +100,77 @@ class DownloadedContentListViewController: UITableViewController {
         self.refresh()
     }
 
-    func refreshAndDismissIfEmpty() {
-        self.refresh().onSuccess { _ in
-            if self.courses.isEmpty {
-                self.navigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
-            }
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableView.resizeTableHeaderView()
+    }
+
+    private func setupEmptyState() {
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.tableFooterView = UIView()
+        self.tableView.reloadEmptyDataSet()
     }
 
     @discardableResult
     private func refresh() -> Future<[[DownloadItem]], XikoloError> {
         return self.courseIDs().onSuccess { itemsArray in
-            self.downloadItems = itemsArray.flatMap { $0 }
+            let downloadItems = itemsArray.flatMap { $0 }
             var downloadedCourseList: [String: CourseDownload] = [:]
-            for downloadItem in self.downloadItems {
+
+            for downloadItem in downloadItems {
                 let courseId = downloadItem.courseID
                 var courseDownload = downloadedCourseList[courseId, default: CourseDownload(id: courseId, title: downloadItem.courseTitle ?? "")]
-                courseDownload.properties[downloadItem.contentType.rawValue] = true
+                courseDownload.data[downloadItem.contentType, default: 0] += downloadItem.fileSize ?? 0
                 downloadedCourseList[downloadItem.courseID] = courseDownload
             }
 
-            self.courses = downloadedCourseList.values.sorted { $0.title < $1.title }
-            self.navigationItem.rightBarButtonItem = self.courses.isEmpty ? nil : self.editButtonItem
-            self.tableView.reloadData()
+            self.courseDownloads = downloadedCourseList.values.sorted { $0.title < $1.title }
         }.onFailure { error in
             log.error(error.localizedDescription)
         }
     }
 
     private func courseIDs() -> Future<[[DownloadItem]], XikoloError> {
-        var futures = [streamCourseIDs(), slidesCourseIDs()]
+        var futures = [
+            self.streamCourseIDs(),
+            self.slidesCourseIDs(),
+        ]
 
         if Brand.default.features.enableDocuments {
-            futures.append(documentsCourseIDs())
+            futures.append(self.documentsCourseIDs())
         }
 
         return futures.sequence()
     }
 
     private func streamCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.hasDownloadedVideo(),
+        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.videosWithDownloadedStream(),
                               contentType: .video,
-                              keyPath: \Video.item?.section?.course)
+                              keyPath: \Video.item?.section?.course,
+                              persistenceManager: StreamPersistenceManager.shared)
     }
 
     private func slidesCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.hasDownloadedSlides(),
+        return self.courseIDs(fetchRequest: VideoHelper.FetchRequest.videosWithDownloadedSlides(),
                               contentType: .slides,
-                              keyPath: \Video.item?.section?.course)
+                              keyPath: \Video.item?.section?.course,
+                              persistenceManager: SlidesPersistenceManager.shared)
     }
 
     private func documentsCourseIDs() -> Future<[DownloadItem], XikoloError> {
-        return self.courseIDs(fetchRequest: DocumentHelper.FetchRequest.hasDownloadedLocalization(),
+        return self.courseIDs(fetchRequest: DocumentLocalizationHelper.FetchRequest.hasDownloadedLocalization(),
                               contentType: .document,
-                              keyPath: \Document.courses)
+                              keyPath: \DocumentLocalization.document.courses,
+                              persistenceManager: DocumentsPersistenceManager.shared)
     }
 
-    private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
-                                     contentType: DownloadType,
-                                     keyPath: KeyPath<Resource, Course?>) -> Future<[DownloadItem], XikoloError> {
-
+    private func courseIDs<Resource, Manager>(
+        fetchRequest: NSFetchRequest<Resource>,
+        contentType: DownloadedContentType,
+        keyPath: KeyPath<Resource, Course?>,
+        persistenceManager: Manager
+    ) -> Future<[DownloadItem], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
@@ -134,7 +178,8 @@ class DownloadedContentListViewController: UITableViewController {
                 let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
                 for video in downloadedItems {
                     if let course = video[keyPath: keyPath] {
-                        items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType))
+                        let fileSize = persistenceManager.fileSize(for: video)
+                        items.append(DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType, fileSize: fileSize))
                     }
                 }
 
@@ -147,9 +192,12 @@ class DownloadedContentListViewController: UITableViewController {
         return promise.future
     }
 
-    private func courseIDs<Resource>(fetchRequest: NSFetchRequest<Resource>,
-                                     contentType: DownloadType,
-                                     keyPath: KeyPath<Resource, Set<Course>>) -> Future<[DownloadItem], XikoloError> {
+    private func courseIDs<Resource, Manager>(
+        fetchRequest: NSFetchRequest<Resource>,
+        contentType: DownloadedContentType,
+        keyPath: KeyPath<Resource, Set<Course>>,
+        persistenceManager: Manager
+    ) -> Future<[DownloadItem], XikoloError> where Manager: PersistenceManager, Manager.Resource == Resource {
         var items: [DownloadItem] = []
         let promise = Promise<[DownloadItem], XikoloError>()
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
@@ -157,7 +205,8 @@ class DownloadedContentListViewController: UITableViewController {
                 let downloadedItems = try privateManagedObjectContext.fetch(fetchRequest)
                 for item in downloadedItems {
                     let downloadItems = item[keyPath: keyPath].map { course -> DownloadItem in
-                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType)
+                        let fileSize = persistenceManager.fileSize(for: item)
+                        return DownloadItem(courseID: course.id, courseTitle: course.title, contentType: contentType, fileSize: fileSize)
                     }
 
                     items.append(contentsOf: downloadItems)
@@ -172,122 +221,20 @@ class DownloadedContentListViewController: UITableViewController {
         return promise.future
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.courses.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.courses[section].properties.filter { $0 }.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
-        cell.textLabel?.text = self.title(for: downloadType(for: indexPath))
-        return cell
-    }
-
-    private func downloadType(for indexPath: IndexPath) -> DownloadType {
-        var itemCount = 0
-        var returnCount = 0
-        for itemExists in self.courses[indexPath.section].properties {
-            if itemExists {
-                if indexPath.row == itemCount {
-                    return DownloadType(rawValue: returnCount).require(hint: "Trying to initialize DownloadType from invalid value")
-                }
-
-                itemCount += 1
-            }
-
-            returnCount += 1
+    private func updateTotalFileSizeLabel() {
+        let fileSize = self.courseDownloads.reduce(0) { result, courseDownload -> UInt64 in
+            return result + self.aggregatedFileSize(for: courseDownload)
         }
 
-        preconditionFailure("Invalid data in download list view")
+        let format = NSLocalizedString("settings.downloads.total size: %@", comment: "total size label")
+        let formattedFileSize = ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
+        self.totalFileSizeLabel.text = String.localizedStringWithFormat(format, formattedFileSize)
+        self.tableViewHeader.isHidden = self.courseDownloads.isEmpty
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.courses[section].title
-    }
-
-    private func title(for downloadType: DownloadType?) -> String? {
-        guard let downloadType = downloadType else { return nil }
-        switch downloadType {
-        case .video:
-            return NSLocalizedString("settings.downloads.item.video", comment: "download type video")
-        case .slides:
-            return NSLocalizedString("settings.downloads.item.slides", comment: "download type slides")
-        case .document:
-            return NSLocalizedString("settings.downloads.item.document", comment: "download type documents")
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch downloadType(for: indexPath) {
-        case .video:
-            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showVideoDownloads, sender: self.courses[indexPath.section])
-        case .slides:
-            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showSlideDownloads, sender: self.courses[indexPath.section])
-        case .document:
-            performSegue(withIdentifier: R.segue.downloadedContentListViewController.showDocumentDownloads, sender: self.courses[indexPath.section])
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let course = self.fetchCourse(withID: self.courses[indexPath.section].id).require(hint: "Course has to exist")
-        if editingStyle == .delete {
-            let courseTitle = self.courses[indexPath.section].title
-            switch self.downloadType(for: indexPath) {
-            case .video:
-                let title = NSLocalizedString("settings.downloads.alert.delete.title.streams", comment: "title for deleting streams")
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.streams for course %@", comment: "message for deleting streams")
-                let message = String.localizedStringWithFormat(format, courseTitle)
-                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                    StreamPersistenceManager.shared.deleteDownloads(for: course)
-                }
-            case .slides:
-                let title = NSLocalizedString("settings.downloads.alert.delete.title.slides", comment: "title for deleting slides")
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.slides for course %@", comment: "message for deleting slides")
-                let message = String.localizedStringWithFormat(format, courseTitle)
-                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                    SlidesPersistenceManager.shared.deleteDownloads(for: course)
-                }
-            case .document:
-                let title = NSLocalizedString("settings.downloads.alert.delete.title.documents", comment: "title for deleting documents")
-                let format = NSLocalizedString("settings.downloads.alert.delete.message.documents for course %@", comment: "message for deleting documents")
-                let message = String.localizedStringWithFormat(format, courseTitle)
-                self.showAlertForDeletingContent(withTitle: title, message: message) { _ in
-                    DocumentsPersistenceManager.shared.deleteDownloads(for: course)
-                }
-            }
-        }
-    }
-
-    func showAlertForDeletingContent(withTitle title: String, message: String, action: ((UIAlertAction) -> Void)?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let deleteTitle = NSLocalizedString("global.alert.delete", comment: "title to delete alert")
-        let deleteAction = UIAlertAction(title: deleteTitle, style: .destructive, handler: action)
-        alert.addAction(deleteAction)
-        alert.addCancelAction()
-        self.present(alert, animated: trueUnlessReduceMotionEnabled)
-    }
-
-    func fetchCourse(withID id: String) -> Course? {
-        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
-        return CoreDataHelper.viewContext.fetchSingle(request).value
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let downloadItem = (sender as? CourseDownload).require(hint: "Sender must be DownloadItem")
-
-        if let typedInfo = R.segue.downloadedContentListViewController.showVideoDownloads(segue: segue) {
-            typedInfo.destination.configure(for: downloadItem)
-        } else if let typedInfo = R.segue.downloadedContentListViewController.showSlideDownloads(segue: segue) {
-            typedInfo.destination.configure(for: downloadItem)
-        } else if let typedInfo = R.segue.downloadedContentListViewController.showDocumentDownloads(segue: segue) {
-            typedInfo.destination.configure(for: downloadItem)
+    private func aggregatedFileSize(for courseDownload: CourseDownload) -> UInt64 {
+        return courseDownload.data.reduce(0) { result, data -> UInt64 in
+            return result + data.value
         }
     }
 
@@ -296,8 +243,158 @@ class DownloadedContentListViewController: UITableViewController {
         let containsVideoDeletion = notification.includesChanges(for: Video.self, keys: keys)
         let containsDocumentDeletion = notification.includesChanges(for: DocumentLocalization.self, keys: keys)
         if containsVideoDeletion || containsDocumentDeletion {
-            self.refreshAndDismissIfEmpty()
+            self.refresh()
         }
+    }
+
+}
+
+extension DownloadedContentListViewController { // Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.courseDownloads.count
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.courseDownloads[section].data.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.downloadTypeCell, for: indexPath).require()
+        let data = Array(self.courseDownloads[indexPath.section].data)[indexPath.row]
+        cell.textLabel?.text = data.key.title
+        cell.detailTextLabel?.text = ByteCountFormatter.string(fromByteCount: Int64(data.value), countStyle: .file)
+        return cell
+    }
+
+    private func downloadType(for indexPath: IndexPath) -> DownloadedContentType {
+        return self.courseDownloads[indexPath.section].data.map { $0.key }[indexPath.row]
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.courseDownloads[section].title
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !self.isEditing else {
+            self.updateToolBarButtons()
+            return
+        }
+
+        let courseId = self.courseDownloads[indexPath.section].id
+
+        switch self.downloadType(for: indexPath) {
+        case .video:
+            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedStreamsListConfiguration.self)
+            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
+        case .slides:
+            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedSlidesListConfiguration.self)
+            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
+        case .document:
+            let viewController = DownloadedContentTypeListViewController(forCourseId: courseId, configuration: DownloadedDocumentsListConfiguration.self)
+            self.navigationController?.pushViewController(viewController, animated: trueUnlessReduceMotionEnabled)
+        }
+
+    }
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard self.isEditing else { return }
+        self.updateToolBarButtons()
+    }
+
+}
+
+extension DownloadedContentListViewController { // editing
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.updateToolBarButtons()
+        self.navigationController?.setToolbarHidden(!editing, animated: animated)
+        self.navigationItem.setHidesBackButton(editing, animated: animated)
+    }
+
+    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        super.tableView(tableView, willBeginEditingRowAt: indexPath)
+        self.navigationController?.setToolbarHidden(true, animated: trueUnlessReduceMotionEnabled)
+        self.navigationItem.setHidesBackButton(false, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+
+        let alert = UIAlertController { _ in
+            let downloadItem = self.courseDownloads[indexPath.section]
+            let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
+            self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
+        }
+
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
+    }
+
+    private func fetchCourse(withID id: String) -> Course? {
+        let request = CourseHelper.FetchRequest.course(withSlugOrId: id)
+        return CoreDataHelper.viewContext.fetchSingle(request).value
+    }
+
+    private func updateToolBarButtons() {
+        var title: String {
+            let allRowsSelected = self.allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
+            if allRowsSelected {
+                return NSLocalizedString("settings.downloads.toolbar.deselect all", comment: "button title for deselecting all rows")
+            } else {
+                return NSLocalizedString("settings.downloads.toolbar.select all", comment: "button title for selecting all rows")
+            }
+        }
+
+        self.selectAllBarButton.title = title
+        self.deleteBarButton.isEnabled = !(self.tableView.indexPathsForSelectedRows?.isEmpty ?? true)
+    }
+
+    private var allIndexPaths: [IndexPath] {
+        return (0..<self.tableView.numberOfSections).flatMap { section in
+            return (0..<self.tableView.numberOfRows(inSection: section)).map { row in
+                return IndexPath(row: row, section: section)
+            }
+        }
+    }
+
+    @IBAction private func selectMultiple() {
+        let allIndexPaths = self.allIndexPaths
+        let allRowsSelected = allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
+        self.tableView.beginUpdates()
+
+        if allRowsSelected {
+            allIndexPaths.forEach { indexPath in
+                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
+            }
+        } else {
+            allIndexPaths.forEach { indexPath in
+                self.tableView.selectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled, scrollPosition: .none)
+            }
+        }
+
+        self.tableView.endUpdates()
+        self.updateToolBarButtons()
+    }
+
+    @IBAction private func deleteSelectedIndexPaths() {
+        guard let indexPaths = self.tableView.indexPathsForSelectedRows else {
+            return
+        }
+
+        let alert = UIAlertController { [weak self] _ in
+            guard let self = self else { return }
+
+            for indexPath in indexPaths {
+                let downloadItem = self.courseDownloads[indexPath.section]
+                let course = self.fetchCourse(withID: downloadItem.id).require(hint: "Course has to exist")
+                self.downloadType(for: indexPath).persistenceManager.deleteDownloads(for: course)
+            }
+
+            self.setEditing(false, animated: trueUnlessReduceMotionEnabled)
+        }
+
+        self.present(alert, animated: trueUnlessReduceMotionEnabled)
     }
 
 }

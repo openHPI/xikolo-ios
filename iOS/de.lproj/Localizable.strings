@@ -236,23 +236,11 @@
 /* course content preload setting: wifi only */
 "settings.course-item-content-preload.wifi-only" = "Nur mit WLAN";
 
-/* message for deleting documents */
-"settings.downloads.alert.delete.message.documents for course %@" = "Möchtest du wirklich alle heruntergeladenen Dokumente aus dem Kurs %@ löschen?";
+/* message for deleting downloaded content */
+"settings.downloads.alert.delete.message" = "Möchtest du wirklich diese Inhalte löschen?";
 
-/* message for deleting slides */
-"settings.downloads.alert.delete.message.slides for course %@" = "Möchtest du wirklich alle heruntergeladenen Folien aus dem Kurs %@ löschen?";
-
-/* message for deleting streams */
-"settings.downloads.alert.delete.message.streams for course %@" = "Möchtest du wirklich alle heruntergeladenen Videos aus dem Kurs %@ löschen?";
-
-/* title for deleting documents */
-"settings.downloads.alert.delete.title.documents" = "Alle Dokumente löschen";
-
-/* title for deleting slides */
-"settings.downloads.alert.delete.title.slides" = "Alle Folien löschen";
-
-/* title for deleting streams */
-"settings.downloads.alert.delete.title.streams" = "Alle Videos löschen";
+/* title for deleting downloaded content */
+"settings.downloads.alert.delete.title" = "Heruntergeladene Inhalte löschen";
 
 /* download type documents */
 "settings.downloads.item.document" = "Dokument";
@@ -262,6 +250,15 @@
 
 /* download type video */
 "settings.downloads.item.video" = "Videos";
+
+/* button title for deselecting all rows */
+"settings.downloads.toolbar.deselect all" = "Markierung aufheben";
+
+/* button title for selecting all rows */
+"settings.downloads.toolbar.select all" = "Alle markieren";
+
+/* total size label */
+"settings.downloads.total size: %@" = "Gesamtgröße: %@";
 
 /* title for link to GitHub repo (includes application name) */
 "settings.github-link.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";

@@ -71,7 +71,9 @@ final class SlidesPersistenceManager: NSObject, FilePersistenceManager {
                 alert.dismiss(animated: trueUnlessReduceMotionEnabled)
             })
 
-            AppDelegate.instance().tabBarController?.present(alert, animated: trueUnlessReduceMotionEnabled)
+            let rootViewController = AppDelegate.instance().window?.rootViewController
+            let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
+            presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
         }
     }
 
@@ -110,28 +112,6 @@ extension SlidesPersistenceManager {
             }.forEach { video in
                 self.cancelDownload(for: video)
             }
-        }
-    }
-
-}
-
-extension SlidesPersistenceManager {
-
-    func startDownloads(for course: Course) {
-        course.sections.forEach { courseSection in
-            self.startDownloads(for: courseSection)
-        }
-    }
-
-    func deleteDownloads(for course: Course) {
-        course.sections.forEach { courseSection in
-            self.deleteDownloads(for: courseSection)
-        }
-    }
-
-    func cancelDownloads(for course: Course) {
-        course.sections.forEach { courseSection in
-            self.cancelDownloads(for: courseSection)
         }
     }
 

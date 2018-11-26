@@ -68,3 +68,30 @@ extension Enrollment: JSONAPIPushable {
     }
 
 }
+
+extension Enrollment {
+
+    public typealias Certificate = (name: String, url: URL)
+
+    public var earnedCertificates: [Certificate] {
+        var certificates: [Certificate] = []
+
+        if let certificate = self.certificates?.qualifiedCertificate {
+            let name = CommonLocalizedString("course.certificates.name.qualifiedCertificate", comment: "name of the certificate")
+            certificates.append((name: name, url: certificate))
+        }
+
+        if let roa = self.certificates?.recordOfAchievement {
+            let name = CommonLocalizedString("course.certificates.name.recordOfAchievement", comment: "name of the certificate")
+            certificates.append((name: name, url: roa))
+        }
+
+        if let cop = self.certificates?.confirmationOfParticipation {
+            let name = CommonLocalizedString("course.certificates.name.confirmationOfParticipation", comment: "name of the certificate")
+            certificates.append((name: name, url: cop))
+        }
+
+        return certificates
+    }
+
+}

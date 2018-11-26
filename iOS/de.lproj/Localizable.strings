@@ -122,15 +122,6 @@
 /* the current state of a certificate */
 "course.certificates.achieved" = "erreicht";
 
-/* name of the certificate */
-"course.certificates.name.confirmationOfParticipation" = "Teilnahmebestätigung";
-
-/* name of the certificate */
-"course.certificates.name.qualifiedCertificate" = "Qualifizierte Zertifikat";
-
-/* name of the certificate */
-"course.certificates.name.recordOfAchievement" = "Zeugnis";
-
 /* the current state of a certificate */
 "course.certificates.not-achieved" = "nicht erreicht";
 

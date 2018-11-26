@@ -10,21 +10,15 @@ import UIKit
 
 class AvailableCertificatesListViewController: UITableViewController {
 
-    struct Certificate {
-        var title: String?
-        var courseTitle: String?
-        var url: URL
-    }
+    typealias CertificateData = (courseTitle: String?, certificates: [Enrollment.Certificate])
 
-    var certificates: [[Certificate]] = [] {
+    var certificates: [CertificateData] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
 
     var courseID: String!
-
-    typealias Certificates = EnrollmentCertificates
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,40 +35,18 @@ class AvailableCertificatesListViewController: UITableViewController {
         }
     }
 
-    func reloadData() -> Future<[[Certificate]], XikoloError> {
-        let promise = Promise<[[Certificate]], XikoloError>()
+    func reloadData() -> Future<[CertificateData], XikoloError> {
+        let promise = Promise<[CertificateData], XikoloError>()
 
-        CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
+        CoreDataHelper.persistentContainer.performBackgroundTask { context in
             do {
-                var certificateList: [[Certificate]] = []
                 let request = EnrollmentHelper.FetchRequest.allEnrollments()
-                let enrollments = try privateManagedObjectContext.fetch(request)
-                for enrollment in enrollments {
-                    var courseCertificates: [Certificate] = []
-                    if let enrollmentCertificates = enrollment.certificates {
-                        if let url = enrollmentCertificates.confirmationOfParticipation {
-                            let courseTitle = enrollment.course?.title
-                            let title = NSLocalizedString("course.certificates.name.confirmationOfParticipation", comment: "name of the certificate")
-                            courseCertificates.append(Certificate(title: title, courseTitle: courseTitle, url: url))
-                        }
+                let enrollments = try context.fetch(request)
 
-                        if let url = enrollmentCertificates.recordOfAchievement {
-                            let courseTitle = enrollment.course?.title
-                            let title = NSLocalizedString("course.certificates.name.recordOfAchievement", comment: "name of the certificate")
-                            courseCertificates.append(Certificate(title: title, courseTitle: courseTitle, url: url))
-                        }
-
-                        if let url = enrollmentCertificates.qualifiedCertificate {
-                            let courseTitle = enrollment.course?.title
-                            let title = NSLocalizedString("course.certificates.name.qualifiedCertificate", comment: "name of the certificate")
-                            courseCertificates.append(Certificate(title: title, courseTitle: courseTitle, url: url))
-                        }
-
-                    }
-
-                    if !courseCertificates.isEmpty {
-                        certificateList.append(courseCertificates)
-                    }
+                let certificateList = enrollments.compactMap { enrollment -> (String?, [Enrollment.Certificate])? in
+                    let earnedCertificates = enrollment.earnedCertificates
+                    guard !earnedCertificates.isEmpty else { return nil }
+                    return (enrollment.course?.title, enrollment.earnedCertificates)
                 }
 
                 return promise.success(certificateList)
@@ -93,28 +65,28 @@ class AvailableCertificatesListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.certificates[section].count
+        return self.certificates[section].certificates.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.certificateOverviewCell, for: indexPath).require()
-        cell.textLabel?.text = self.certificates[indexPath.section][indexPath.row].title
+        cell.textLabel?.text = self.certificates[indexPath.section].certificates[indexPath.row].name
         return cell
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.certificates[section].first?.courseTitle
+        return self.certificates[section].courseTitle
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let certificate = certificates[indexPath.section][indexPath.row]
-        performSegue(withIdentifier: R.segue.availableCertificatesListViewController.showCertificate.identifier, sender: certificate)
+        let certificate = certificates[indexPath.section].certificates[indexPath.row]
+        self.performSegue(withIdentifier: R.segue.availableCertificatesListViewController.showCertificate.identifier, sender: certificate)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let typedInfo = R.segue.availableCertificatesListViewController.showCertificate(segue: segue) {
-            if let certificate = sender as? Certificate {
-                typedInfo.destination.configure(for: certificate.url, filename: certificate.title)
+            if let certificate = sender as? Enrollment.Certificate {
+                typedInfo.destination.configure(for: certificate.url, filename: certificate.name)
             }
         }
     }

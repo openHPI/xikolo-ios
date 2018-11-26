@@ -46,3 +46,6 @@
 
 /* Class = "UILabel"; text = "Certificates"; ObjectID = "rf9-al-hA3"; */
 "rf9-al-hA3.text" = "Leistungsnachweise";
+
+/* Class = "UINavigationItem"; title = "Certificates"; ObjectID = "huT-EM-z1s"; */
+"huT-EM-z1s.title" = "Leistungsnachweise";

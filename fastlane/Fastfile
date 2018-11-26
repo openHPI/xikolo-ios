@@ -125,6 +125,7 @@ platform :ios do
   desc "- uses bartycrouch"
   desc "- translates storyboard files and NSLocalizedString usages"
   lane :localize do
+    File.delete("../iOS/R.generated.swift") if File.exist? "../iOS/R.generated.swift"
     sh "../Pods/BartyCrouch/bartycrouch interfaces -p ../iOS/"
     sh "../Pods/BartyCrouch/bartycrouch code -p ../Common/ -l ../Common/ -s -c -e -f 'CommonLocalizedString'"
     sh "../Pods/BartyCrouch/bartycrouch code -p ../iOS/ -l ../iOS/ -s -c -e"

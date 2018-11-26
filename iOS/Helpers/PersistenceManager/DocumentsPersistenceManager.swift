@@ -52,7 +52,9 @@ final class DocumentsPersistenceManager: NSObject, FilePersistenceManager {
                 alert.dismiss(animated: trueUnlessReduceMotionEnabled)
             })
 
-            AppDelegate.instance().tabBarController?.present(alert, animated: trueUnlessReduceMotionEnabled)
+            let rootViewController = AppDelegate.instance().window?.rootViewController
+            let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
+            presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
         }
     }
 

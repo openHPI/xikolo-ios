@@ -21,6 +21,18 @@ class CourseCell: UICollectionViewCell {
                 return false
             }
         }
+
+        static func == (lhs: Configuration, rhs: Configuration) -> Bool {
+            switch (lhs, rhs) {
+            case (.courseOverview, .courseOverview):
+                return true
+            case let (.courseList(filtered: lhsFiltered), .courseList(filtered: rhsFiltered)):
+                return lhsFiltered == rhsFiltered
+            default:
+                return false
+            }
+
+        }
     }
 
     @IBOutlet private weak var shadowView: UIView!
@@ -79,7 +91,12 @@ class CourseCell: UICollectionViewCell {
         self.teacherLabel.numberOfLines = configuration.showMultilineLabels ? 0 : 1
 
         self.titleLabel.text = course.title
-        self.teacherLabel.text = course.teachers
+        self.teacherLabel.text = {
+            guard configuration == .courseOverview else { return course.teachers }
+            guard Brand.default.features.showCourseTeachers else { return course.teachers }
+            guard course.teachers?.isEmpty ?? true else { return course.teachers }
+            return " " // forces text into teachers label to avoid misplacment for course image
+        }()
         self.teacherLabel.isHidden = !Brand.default.features.showCourseTeachers
         self.languageLabel.text = course.localizedLanguage
         self.dateLabel.text = DateLabelHelper.labelFor(startDate: course.startsAt, endDate: course.endsAt)

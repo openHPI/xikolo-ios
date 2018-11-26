@@ -256,6 +256,8 @@
 		50FA2E6520E51B3100656776 /* UIApplication+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */; };
 		50FA2E6620E51B7E00656776 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B15BE01FDFE93D00CD86F1 /* ReachabilityHelper.swift */; };
 		700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */; };
+		700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */; };
+		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
 		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
@@ -559,6 +561,8 @@
 		50FE19371FCDB9B700F9D211 /* CourseItemWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemWebViewController.swift; sourceTree = "<group>"; };
 		58514D98E3A98476D78CB780 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+fileSize.swift"; sourceTree = "<group>"; };
+		700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCertificatesListViewController.swift; sourceTree = "<group>"; };
+		700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnrollmentHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentListViewController.swift; sourceTree = "<group>"; };
 		70103CEE20110C31006DA177 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+localizedFormatter.swift"; sourceTree = "<group>"; };
@@ -973,6 +977,7 @@
 				50F57D1F1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift */,
 				5054B2E22108836300CE9067 /* DocumentHelper+FetchRequests.swift */,
 				5054B2E82108BF9B00CE9067 /* DocumentLocalizationHelper+FetchRequest.swift */,
+				700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */,
 				50F57D941FBC9D9200910950 /* LTIExerciseHelper+FetchRequests.swift */,
 				50F57DAE1FBD82C200910950 /* PeerAssessmentHelper+FetchRequests.swift */,
 				50F57DBB1FBD83FA00910950 /* PlatformEventHelper+FetchRequests.swift */,
@@ -1140,6 +1145,7 @@
 				7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */,
 				5044C8E421A85488006490CE /* DownloadedContentTypeListViewController.swift */,
 				508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */,
+				700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1936,6 +1942,7 @@
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
 				50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */,
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,
+				700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */,
 				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,
 				50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */,
 				508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */,
@@ -2107,6 +2114,7 @@
 				50FA2E2420E4B24A00656776 /* CourseItemHelper+FetchRequests.swift in Sources */,
 				50FA2DFF20E4B1FB00656776 /* Routes.swift in Sources */,
 				50FA2E4420E4B25800656776 /* QuizOption.swift in Sources */,
+				700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */,
 				5054B2DF21087DB100CE9067 /* DocumentLocalization.swift in Sources */,
 				50FA2E1620E4B24300656776 /* CourseSectionHelper.swift in Sources */,
 				5054B2DD21087D6800CE9067 /* Document.swift in Sources */,

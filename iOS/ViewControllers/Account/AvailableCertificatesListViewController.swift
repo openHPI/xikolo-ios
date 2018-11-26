@@ -18,7 +18,7 @@ class AvailableCertificatesListViewController: UITableViewController {
 
     var certificates: [[Certificate]] = [] {
         didSet {
-            self.refresh()
+            self.tableView.reloadData()
         }
     }
 
@@ -39,16 +39,15 @@ class AvailableCertificatesListViewController: UITableViewController {
         self.reloadData().onSuccess { certificates in
             self.certificates = certificates
         }
-
-        self.tableView.reloadData()
     }
 
     func reloadData() -> Future<[[Certificate]], XikoloError> {
-        let request = EnrollmentHelper.FetchRequest.allEnrollments()
         let promise = Promise<[[Certificate]], XikoloError>()
+
         CoreDataHelper.persistentContainer.performBackgroundTask { privateManagedObjectContext in
             do {
                 var certificateList: [[Certificate]] = []
+                let request = EnrollmentHelper.FetchRequest.allEnrollments()
                 let enrollments = try privateManagedObjectContext.fetch(request)
                 for enrollment in enrollments {
                     var courseCertificates: [Certificate] = []
@@ -104,7 +103,7 @@ class AvailableCertificatesListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.certificates[section][0].courseTitle
+        return self.certificates[section].first?.courseTitle
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

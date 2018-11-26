@@ -6,6 +6,7 @@
 import BrightFutures
 import Common
 import CoreData
+import DZNEmptyDataSet
 import UIKit
 
 class AvailableCertificatesListViewController: UITableViewController {
@@ -20,22 +21,36 @@ class AvailableCertificatesListViewController: UITableViewController {
 
     var courseID: String!
 
+    deinit {
+        self.tableView?.emptyDataSetSource = nil
+        self.tableView?.emptyDataSetDelegate = nil
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.setupEmptyState()
         self.refresh()
+
         EnrollmentHelper.syncEnrollments().onSuccess { _ in
             self.refresh()
         }
     }
 
-    func refresh() {
+    private func setupEmptyState() {
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.tableFooterView = UIView()
+        self.tableView.reloadEmptyDataSet()
+    }
+
+    private func refresh() {
         self.reloadData().onSuccess { certificates in
             self.certificates = certificates
         }
     }
 
-    func reloadData() -> Future<[CertificateData], XikoloError> {
+    private func reloadData() -> Future<[CertificateData], XikoloError> {
         let promise = Promise<[CertificateData], XikoloError>()
 
         CoreDataHelper.persistentContainer.performBackgroundTask { context in
@@ -89,6 +104,22 @@ class AvailableCertificatesListViewController: UITableViewController {
                 typedInfo.destination.configure(for: certificate.url, filename: certificate.name)
             }
         }
+    }
+
+}
+
+extension AvailableCertificatesListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = NSLocalizedString("empty-view.account.certificates.no-certificates.title",
+                                      comment: "title for empty certificates list")
+        return NSAttributedString(string: title)
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let description = NSLocalizedString("empty-view.account.certificates.no-certificates.description",
+                                            comment: "description for empty certificates list")
+        return NSAttributedString(string: description)
     }
 
 }

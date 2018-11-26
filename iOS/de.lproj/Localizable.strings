@@ -152,6 +152,12 @@
 /* stop download of a document localization */
 "document-localization.download-action.stop-download.title" = "Dokument-Download stoppen";
 
+/* description for empty certificates list */
+"empty-view.account.certificates.no-certificates.description" = "Schließe Kurse ab, um Leistungsnachweise zu erhalten";
+
+/* title for empty certificates list */
+"empty-view.account.certificates.no-certificates.title" = "Keine Leistungsnachweise";
+
 /* description for empty download list */
 "empty-view.account.download.no-downloads.description" = "Im Kursbereich kannst du Materialien herunterladen, um sie ohne Internetverbindung nutzen zu können";
 

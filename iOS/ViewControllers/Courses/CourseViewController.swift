@@ -56,6 +56,26 @@ class CourseViewController: UIViewController {
         self.courseAreaListViewController?.reloadData()
     }
 
+    func show(item: CourseItem, animated: Bool) {
+        self.area = .learnings
+
+        guard let viewController = R.storyboard.courseLearnings.courseItemViewController() else { return }
+        viewController.currentItem = item
+
+        self.navigationController?.pushViewController(viewController, animated: animated)
+    }
+
+    func show(documentLocalization: DocumentLocalization, animated: Bool) {
+        self.area = .documents
+
+        guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocalization) ?? documentLocalization.fileURL else { return }
+
+        let viewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
+        viewController.configure(for: url, filename: documentLocalization.filename)
+
+        self.navigationController?.pushViewController(viewController, animated: animated)
+    }
+
     private func updateView() {
         self.titleView.text = self.course.title
 

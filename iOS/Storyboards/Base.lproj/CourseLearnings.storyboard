@@ -609,7 +609,7 @@
         <!--Course Item View Controller-->
         <scene sceneID="tat-jM-1pT">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qjq-Jf-C4q" customClass="CourseItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="CourseItemViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qjq-Jf-C4q" customClass="CourseItemViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bX-Mb-KMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1798" y="-110"/>

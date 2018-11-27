@@ -29,7 +29,8 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
         let frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 0.001)
         self.tableView.tableHeaderView = UIView(frame: frame)
 
-        self.tableView.allowsSelection = false
+        self.tableView.allowsSelection = true
+        self.tableView.allowsMultipleSelection = false
         self.tableView.allowsMultipleSelectionDuringEditing = true
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
         self.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
@@ -73,8 +74,12 @@ class DownloadedContentTypeListViewController<Configuration: DownloadedContentTy
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard self.isEditing else { return }
-        self.updateToolBarButtons()
+        if self.isEditing {
+            self.updateToolBarButtons()
+        } else {
+            let object = self.dataSource.object(at: indexPath)
+            Configuration.show(object)
+        }
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

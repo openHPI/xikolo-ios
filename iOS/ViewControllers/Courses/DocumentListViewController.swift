@@ -79,8 +79,7 @@ extension DocumentListViewController { // TableViewDelegate
         guard let url = DocumentsPersistenceManager.shared.localFileLocation(for: documentLocalization) ?? documentLocalization.fileURL else { return }
 
         let pdfViewController = R.storyboard.pdfWebViewController.instantiateInitialViewController().require()
-        let filename = [documentLocalization.document.title, documentLocalization.title].compactMap { $0 }.joined(separator: " - ")
-        pdfViewController.configure(for: url, filename: filename)
+        pdfViewController.configure(for: url, filename: documentLocalization.filename)
         self.navigationController?.pushViewController(pdfViewController, animated: trueUnlessReduceMotionEnabled)
     }
 

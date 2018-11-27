@@ -122,14 +122,20 @@ enum AppNavigator {
         return AppDelegate.instance().switchToCourseListTab()
     }
 
-    static func show(course: Course, with courseArea: CourseArea = .learnings) {
+    typealias CourseOpenAction = (CourseViewController) -> Void
+    typealias CourseClosedAction = (CourseViewController, Bool) -> Void
+
+    static func navigate(to course: Course,
+                         courseArea: CourseArea,
+                         courseOpenAction: CourseOpenAction,
+                         courseClosedAction: CourseClosedAction) {
         let currentlyPresentsCourse = self.currentCourseNavigationController?.view.window != nil
         let someCourseViewController = self.currentCourseNavigationController?.courseViewController
 
         if let courseViewController = someCourseViewController, courseViewController.course.id == course.id, currentlyPresentsCourse {
             if course.accessible || courseArea.acessibleWithoutEnrollment {
                 self.currentCourseNavigationController?.popToRootViewController(animated: trueUnlessReduceMotionEnabled)
-                courseViewController.area = courseArea
+                courseOpenAction(courseViewController)
             }
 
             return
@@ -152,11 +158,8 @@ enum AppNavigator {
         let courseViewController = topViewController.require(toHaveType: CourseViewController.self)
         courseViewController.course = course
 
-        if course.accessible || courseArea.acessibleWithoutEnrollment {
-            courseViewController.area = courseArea
-        } else {
-            courseViewController.area = .courseDetails
-        }
+        let accessible = course.accessible || courseArea.acessibleWithoutEnrollment
+        courseClosedAction(courseViewController, accessible)
 
         self.currentCourseNavigationController = courseNavigationController
 
@@ -169,6 +172,52 @@ enum AppNavigator {
         rootViewController.present(courseNavigationController, animated: trueUnlessReduceMotionEnabled) {
             CourseHelper.visit(course)
         }
+    }
+
+    static func show(course: Course, with courseArea: CourseArea = .learnings) {
+        let courseOpenAction: CourseOpenAction = { courseViewController in
+            courseViewController.area = courseArea
+        }
+
+        let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
+            if accessible {
+                courseViewController.area = courseArea
+            } else {
+                courseViewController.area = .courseDetails
+            }
+        }
+
+        self.navigate(to: course, courseArea: courseArea, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+    }
+
+    static func show(item: CourseItem) {
+        guard let course = item.section?.course else { return }
+
+        let courseOpenAction: CourseOpenAction = { courseViewController in
+            courseViewController.show(item: item, animated: trueUnlessReduceMotionEnabled)
+        }
+
+        let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
+            guard accessible else { return }
+            courseViewController.show(item: item, animated: false)
+        }
+
+        self.navigate(to: course, courseArea: .learnings, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
+    }
+
+    static func show(documentLocalization: DocumentLocalization) {
+        guard let course = documentLocalization.document.courses.first else { return }
+
+        let courseOpenAction: CourseOpenAction = { courseViewController in
+            courseViewController.show(documentLocalization: documentLocalization, animated: trueUnlessReduceMotionEnabled)
+        }
+
+        let courseClosedAction: CourseClosedAction = { courseViewController, accessible in
+            guard accessible else { return }
+            courseViewController.show(documentLocalization: documentLocalization, animated: false)
+        }
+
+        self.navigate(to: course, courseArea: .documents, courseOpenAction: courseOpenAction, courseClosedAction: courseClosedAction)
     }
 
 }

@@ -41,3 +41,11 @@ extension DocumentLocalization: JSONAPIPullable {
     }
 
 }
+
+extension DocumentLocalization {
+
+    public var filename: String {
+        return [self.document.title, self.title].compactMap { $0 }.joined(separator: " - ")
+    }
+
+}

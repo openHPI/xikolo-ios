@@ -10,6 +10,11 @@ extension DocumentLocalization: Persistable {
 
     static let identifierKeyPath: WritableKeyPath<DocumentLocalization, String> = \DocumentLocalization.id
 
+    public override func prepareForDeletion() {
+        super.prepareForDeletion()
+        DocumentsPersistenceManager.shared.prepareForDeletion(of: self)
+    }
+
 }
 
 extension DocumentLocalization {

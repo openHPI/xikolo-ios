@@ -187,6 +187,17 @@ extension PersistenceManager {
         task?.cancel()
     }
 
+    func prepareForDeletion(of resource: Resource) {
+        switch self.downloadState(for: resource) {
+        case .pending, .downloading:
+            self.cancelDownload(for: resource)
+        case .downloaded:
+            self.deleteDownload(for: resource)
+        default:
+            break
+        }
+    }
+
     func localFileLocation(for resource: Resource) -> URL? {
         guard let bookmarkData = resource[keyPath: self.keyPath] as Data? else {
             return nil

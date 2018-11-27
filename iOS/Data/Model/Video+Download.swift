@@ -10,6 +10,12 @@ extension Video: Persistable {
 
     static let identifierKeyPath: WritableKeyPath<Video, String> = \Video.id
 
+    public override func prepareForDeletion() {
+        super.prepareForDeletion()
+        StreamPersistenceManager.shared.prepareForDeletion(of: self)
+        SlidesPersistenceManager.shared.prepareForDeletion(of: self)
+    }
+
 }
 
 extension Video {

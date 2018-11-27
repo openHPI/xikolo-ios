@@ -20,6 +20,7 @@ protocol PersistenceManager: AnyObject {
 
     static var shared: Self { get }
     static var downloadType: String { get }
+    static var titleForFailedDownloadAlert: String { get }
 
     var persistentContainerQueue: OperationQueue { get }
     var session: Session { get }
@@ -30,23 +31,10 @@ protocol PersistenceManager: AnyObject {
     var progresses: [String: Double] { get set }
     var didRestorePersistenceManager: Bool { get set }
 
-    // functionality
-    func restoreDownloads()
-    func startDownload(with url: URL, for resource: Resource)
-    func downloadState(for resource: Resource) -> DownloadState
-    func downloadProgress(for resource: Resource) -> Double?
-    func deleteDownload(for resource: Resource)
-    func cancelDownload(for resource: Resource)
-
     func fileSize(for resource: Resource) -> UInt64?
-
-    // callbacks
-    func didCompleteDownloadTask(_ task: URLSessionTask, with error: Error?)
-    func didFinishDownloadTask(_ task: URLSessionTask, to location: URL)
 
     // configuration
     func downloadTask(with url: URL, for resource: Resource, on session: Session) -> URLSessionTask?
-    func didFailToDownloadResource(_ resource: Resource, with error: NSError)
     func resourceModificationAfterStartingDownload(for resource: Resource)
     func resourceModificationAfterDeletingDownload(for resource: Resource)
 
@@ -150,7 +138,7 @@ extension PersistenceManager {
         }
     }
 
-    func deleteDownload(for resource: Resource, in context: NSManagedObjectContext) {
+    private func deleteDownload(for resource: Resource, in context: NSManagedObjectContext) {
         guard let localFileLocation = self.localFileLocation(for: resource) else { return }
 
         let resourceIdentifier = resource[keyPath: Resource.identifierKeyPath]
@@ -304,6 +292,34 @@ extension PersistenceManager {
                 ErrorManager.shared.report(error)
                 log.error("Failed to finish download for '\(Self.downloadType)' resource '\(resourceId)': \(error)")
             }
+        }
+    }
+
+    func didFailToDownloadResource(_ resource: Resource, with error: NSError) {
+        let resourceId = resource[keyPath: Resource.identifierKeyPath]
+
+        if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+            log.debug("Canceled download of resource (type: \(Resource.self) id: \(resourceId))")
+            return
+        }
+
+        ErrorManager.shared.remember((Resource.self, resourceId), forKey: "resource")
+        ErrorManager.shared.report(error)
+        log.error("Unknown asset download error (resource type: \(Resource.self) | resource id: \(resourceId) | domain: \(error.domain) | code: \(error.code)")
+
+        // show error
+        DispatchQueue.main.async {
+            let alertTitle = Self.titleForFailedDownloadAlert
+            let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+            let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
+            alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
+                alert.dismiss(animated: trueUnlessReduceMotionEnabled)
+            })
+
+            let rootViewController = AppDelegate.instance().window?.rootViewController
+            let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
+            presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
         }
     }
 

@@ -13,8 +13,10 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
     typealias Session = AVAssetDownloadURLSession
 
-    static var shared = StreamPersistenceManager()
-    static var downloadType = "stream"
+    static let shared = StreamPersistenceManager()
+    static let downloadType = "stream"
+    static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.stream.title",
+                                                               comment: "title of alert for stream download errors")
 
     let keyPath: ReferenceWritableKeyPath<Video, NSData?> = \Video.localFileBookmark
 
@@ -79,33 +81,6 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
     func didFinishDownload(for resource: Video) {
         TrackingHelper.shared.createEvent(.videoDownloadFinished, resourceType: .video, resourceId: resource.id, context: self.trackingContext(for: resource))
-    }
-
-    func didFailToDownloadResource(_ resource: Video, with error: NSError) {
-        if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
-            log.debug("Canceled download of video (video id: \(resource.id))")
-            return
-        }
-
-        ErrorManager.shared.remember((Resource.type, resource.id), forKey: "resource")
-        ErrorManager.shared.report(error)
-        log.error("Unknown asset download error (video id: \(resource.id) | domain: \(error.domain) | code: \(error.code)")
-
-        // show error
-        DispatchQueue.main.async {
-            let alertTitle = NSLocalizedString("course-item.stream-download-action.download-error.title",
-                                               comment: "title to download error alert")
-            let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
-            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-            let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
-            alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
-                alert.dismiss(animated: trueUnlessReduceMotionEnabled)
-            })
-
-            let rootViewController = AppDelegate.instance().window?.rootViewController
-            let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
-            presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
-        }
     }
 
 }

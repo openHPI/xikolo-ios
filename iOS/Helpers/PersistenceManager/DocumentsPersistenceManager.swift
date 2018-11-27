@@ -10,8 +10,10 @@ import UIKit
 
 final class DocumentsPersistenceManager: NSObject, FilePersistenceManager {
 
-    static var shared = DocumentsPersistenceManager(keyPath: \DocumentLocalization.localFileBookmark)
-    static var downloadType = "documents"
+    static let shared = DocumentsPersistenceManager(keyPath: \DocumentLocalization.localFileBookmark)
+    static let downloadType = "documents"
+    static let titleForFailedDownloadAlert = NSLocalizedString("alert.download-error.documents.title",
+                                                               comment: "title of alert for stream download errors")
 
     lazy var persistentContainerQueue = self.createPersistenceContainerQueue()
     lazy var session: URLSession = self.createURLSession(withIdentifier: "documents-download")
@@ -35,27 +37,6 @@ final class DocumentsPersistenceManager: NSObject, FilePersistenceManager {
     func startDownload(for documentLocalization: DocumentLocalization) {
         guard let url = documentLocalization.fileURL else { return }
         self.startDownload(with: url, for: documentLocalization)
-    }
-
-    func didFailToDownloadResource(_ resource: DocumentLocalization, with error: NSError) {
-        ErrorManager.shared.remember((Resource.type, resource.id), forKey: "resource")
-        ErrorManager.shared.report(error)
-        log.error("Unknown asset download error (resource type: \(Resource.type) | resource id: \(resource.id) | domain: \(error.domain) | code: \(error.code)")
-
-        // show error
-        DispatchQueue.main.async {
-            let alertTitle = "Document Download Error"
-            let alertMessage = "Domain: \(error.domain)\nCode: \(error.code)"
-            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-            let actionTitle = NSLocalizedString("global.alert.ok", comment: "title to confirm alert")
-            alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
-                alert.dismiss(animated: trueUnlessReduceMotionEnabled)
-            })
-
-            let rootViewController = AppDelegate.instance().window?.rootViewController
-            let presentingViewController = rootViewController?.presentedViewController ?? rootViewController
-            presentingViewController?.present(alert, animated: trueUnlessReduceMotionEnabled)
-        }
     }
 
 }

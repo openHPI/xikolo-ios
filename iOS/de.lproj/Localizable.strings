@@ -1,4 +1,13 @@
 
+/* title of alert for stream download errors */
+"alert.download-error.documents.title" = "Fehler beim Dokument-Download";
+
+/* title of alert for slides download errors */
+"alert.download-error.slides.title" = "Fehler beim Folien-Download";
+
+/* title of alert for stream download errors */
+"alert.download-error.stream.title" = "Fehler beim Video-Download";
+
 /* alert action title to mark all announcements as read */
 "announcement.alert.mark all as read" = "Alle als gelesen markieren";
 
@@ -67,9 +76,6 @@
 
 /* delete stream download for video */
 "course-item.stream-download-action.delete-download.title" = "Video löschen";
-
-/* title to download error alert */
-"course-item.stream-download-action.download-error.title" = "Fehler beim Video-Download";
 
 /* start download of stream for video */
 "course-item.stream-download-action.start-download.title" = "Video herunterladen";

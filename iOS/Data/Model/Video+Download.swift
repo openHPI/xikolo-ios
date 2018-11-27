@@ -10,7 +10,7 @@ extension Video: Persistable {
 
     static let identifierKeyPath: WritableKeyPath<Video, String> = \Video.id
 
-    public override func prepareForDeletion() {
+    override public func prepareForDeletion() { // swiftlint:disable:this override_in_extension
         super.prepareForDeletion()
         StreamPersistenceManager.shared.prepareForDeletion(of: self)
         SlidesPersistenceManager.shared.prepareForDeletion(of: self)

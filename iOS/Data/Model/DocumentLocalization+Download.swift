@@ -10,7 +10,7 @@ extension DocumentLocalization: Persistable {
 
     static let identifierKeyPath: WritableKeyPath<DocumentLocalization, String> = \DocumentLocalization.id
 
-    public override func prepareForDeletion() {
+    override public func prepareForDeletion() { // swiftlint:disable:this override_in_extension
         super.prepareForDeletion()
         DocumentsPersistenceManager.shared.prepareForDeletion(of: self)
     }

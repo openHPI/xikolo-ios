@@ -68,7 +68,7 @@ public struct Brand: Decodable {
         self.host = try container.decode(String.self, forKey: .host)
         self.imprintURL = try container.decodeURL(forKey: .imprintURL)
         self.privacyURL = try container.decodeURL(forKey: .privacyURL)
-        self.singleSignOn = try container.decode(SingleSignOnConfiguration.self, forKey: .singleSignOn)
+        self.singleSignOn = try? container.decode(SingleSignOnConfiguration.self, forKey: .singleSignOn)
         self.copyrightName = try container.decode(String.self, forKey: .copyrightName)
         self.poweredByText = try container.decodeIfPresent(String.self, forKey: .poweredByText)
         self.colors = try container.decode(BrandColors.self, forKey: .colors)

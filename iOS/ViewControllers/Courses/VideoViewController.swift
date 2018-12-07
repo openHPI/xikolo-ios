@@ -554,14 +554,14 @@ extension VideoViewController: BMPlayerDelegate {
     func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
         if state == .playedToTheEnd {
             self.trackVideoEnd()
+        } else if state == .bufferFinished {
+            player.avPlayer?.rate = self.playerControlView.playRate
         }
     }
 
-    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
-    }
+    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {}
 
-    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
-    }
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {}
 
     func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {
         if playing {

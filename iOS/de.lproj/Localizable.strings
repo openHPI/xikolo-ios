@@ -224,6 +224,33 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* cell title for app feedback */
+"settings.cell-title.app-feedback" = "App-Feedback senden";
+
+/* cell title for certificates */
+"settings.cell-title.certificates" = "Leistungsnachweise";
+
+/* cell title for data privacy statement */
+"settings.cell-title.data-privacy" = "Datenschutzerklärung";
+
+/* cell title for download settings */
+"settings.cell-title.download-settings" = "Download";
+
+/* cell title for downloaded content */
+"settings.cell-title.downloaded-content" = "Heruntergeladene Inhalte";
+
+/* title for link to GitHub repo (includes application name) */
+"settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
+
+/* cell title for imprint */
+"settings.cell-title.imprint" = "Impressum";
+
+/* cell title for logout */
+"settings.cell-title.logout" = "Ausloggen";
+
+/* section title for streaming settings */
+"settings.cell-title.streaming-settings" = "Video-Streaming";
+
 /* course content preload setting: always */
 "settings.course-item-content-preload.always" = "Immer";
 
@@ -263,8 +290,11 @@
 /* total size label */
 "settings.downloads.total size: %@" = "Gesamtgröße: %@";
 
-/* title for link to GitHub repo (includes application name) */
-"settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
+/* section title for about */
+"settings.section-title.about" = "Info";
+
+/* section title for settings */
+"settings.section-title.settings" = "Einstellungen";
 
 /* best video quality */
 "settings.video-quality.best" = "Beste";
@@ -286,33 +316,3 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
-
-/* section title for streaming settings */
-"settings.cell-title.streaming-settings" = "Video-Streaming";
-
-/* cell title for data privacy statement */
-"settings.cell-title.data-privacy" = "Datenschutzerklärung";
-
-/* cell title for imprint */
-"settings.cell-title.imprint" = "Impressum";
-
-/* cell title for app feedback */
-"settings.cell-title.app-feedback" = "App-Feedback senden";
-
-/* cell title for logout */
-"settings.cell-title.logout" = "Ausloggen";
-
-/* cell title for download settings */
-"settings.cell-title.download-settings" = "Download";
-
-/* section title for settings */
-"settings.section-title.settings" = "Einstellungen";
-
-/* section title for about */
-"settings.section-title.about" = "Info";
-
-/* cell title for downloaded content */
-"settings.cell-title.downloaded-content" = "Heruntergeladene Inhalte";
-
-/* cell title for certificates */
-"settings.cell-title.certificates" = "Leistungsnachweise";

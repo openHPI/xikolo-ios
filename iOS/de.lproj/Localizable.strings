@@ -264,7 +264,7 @@
 "settings.downloads.total size: %@" = "Gesamtgröße: %@";
 
 /* title for link to GitHub repo (includes application name) */
-"settings.github-link.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
+"settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
 
 /* best video quality */
 "settings.video-quality.best" = "Beste";
@@ -287,34 +287,32 @@
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
 
-
-
-/* section title for video streaming quality */
-"settings.video-quality" = "Video-Streaming"
+/* section title for streaming settings */
+"settings.cell-title.streaming-settings" = "Video-Streaming";
 
 /* cell title for data privacy statement */
-"settings.data-privacy" = "Datenschutzerklärung";
+"settings.cell-title.data-privacy" = "Datenschutzerklärung";
 
 /* cell title for imprint */
-"settings.imprint" = "Impressum";
+"settings.cell-title.imprint" = "Impressum";
 
 /* cell title for app feedback */
-"settings.app-feedback" = "App-Feedback senden";
+"settings.cell-title.app-feedback" = "App-Feedback senden";
 
 /* cell title for logout */
-"settings.logout" = "Ausloggen";
+"settings.cell-title.logout" = "Ausloggen";
 
-/* cell title for download */
-"settings.download" = "Download";
+/* cell title for download settings */
+"settings.cell-title.download-settings" = "Download";
 
 /* section title for settings */
-"settings.settings" = "Einstellungen";
+"settings.section-title.settings" = "Einstellungen";
 
-/* section title for information */
-"settings.info" = "Info";
+/* section title for about */
+"settings.section-title.about" = "Info";
 
 /* cell title for downloaded content */
-"settings.downloaded-content" = "Heruntergeladene Inhalte";
+"settings.cell-title.downloaded-content" = "Heruntergeladene Inhalte";
 
 /* cell title for certificates */
-"settings.certificates" = "Leistungsnachweise";
+"settings.cell-title.certificates" = "Leistungsnachweise";

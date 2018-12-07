@@ -12,72 +12,58 @@ import UIKit
 
 class AccountViewController: UITableViewController {
 
-    var data: [Section] = [
-        Section(
-            title: NSLocalizedString("", comment: ""),
-            items: [
-                Item(
-                    title: <#T##String#>,
-                    type: CellType.classic,
-                    action: { viewController in
-                        if UIDevice.current.userInterfaceIdiom == .pad {
-                            viewController.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
-                            //self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
-                        } else {
-                            viewController.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
-                        }
+    private lazy var showStreamingSettingsItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.streaming-settings", comment: "section title for streaming settings")
+        return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showStreamingSettings)
+    }()
 
-                },
-                    visible: true),
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
-            ]
-        ),
-        Section(
-            title: NSLocalizedString("", comment: ""),
-            items: [
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>),
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
-            ]
-        ),
-        Section(
-            title: NSLocalizedString("settings.info", comment: "section title for information"),
-            items: [
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>),
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>),
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
-            ]
-        ),
-        Section(
-            title: nil,
-            items: [
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
-            ]
-        ),
-        Section(
-            title: NSLocalizedString("settings.logout", comment: "section title for logout"),
-            items: [
-                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
-            ]
-        )
-    ]
+    private lazy var showDownloadSettingsItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.download-settings", comment: "cell title for download settings")
+        return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showDownloadSettings)
+    }()
 
-    NSLocalizedString("settings.video-quality", comment: "cell title for video streaming quality")
-    NSLocalizedString("settings.data-privacy", comment: "cell title for data privacy statement")
-    NSLocalizedString("settings.imprint", comment: "cell title for imprint")
-    NSLocalizedString("settings.app-feedback", comment: "cell title for app feedback")
-    NSLocalizedString("settings.download", comment: "cell title for download")
-    NSLocalizedString("settings.settings", comment: "section title for settings")
-    NSLocalizedString("settings.downloaded-content", comment: "cell title for downloaded content")
-    NSLocalizedString("settings.certificates", comment: "cell title for certificates")
+    private lazy var showDownloadedContentItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.downloaded-content", comment: "cell title for downloaded content")
+        return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showDownloadedContent)
+    }()
 
-    static let feedbackIndexPath = IndexPath(row: 0, section: 3)
-    static let logoutIndexPath = IndexPath(row: 0, section: 4)
+    private lazy var showCertificatesItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.certificates", comment: "cell title for certificates")
+        return SegueItem(title: title, segueIdentifier: R.segue.accountViewController.showCertificates)
+    }()
 
-    @IBOutlet private weak var videoSettingsCell: UITableViewCell!
-    @IBOutlet private weak var downloadCell: UITableViewCell!
-    @IBOutlet private weak var imprintCell: UITableViewCell!
-    @IBOutlet private weak var dataPrivacyCell: UITableViewCell!
-    @IBOutlet private weak var githubCell: UITableViewCell!
+    private lazy var showImprintItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.imprint", comment: "cell title for imprint")
+        return URLItem(title: title, url: Routes.imprint)
+    }()
+
+    private lazy var showPrivacyStatementItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.data-privacy", comment: "cell title for data privacy statement")
+        return URLItem(title: title, url: Routes.privacy)
+    }()
+
+    private lazy var showGithubPageItem: Item = {
+        let format = NSLocalizedString("settings.cell-title.github.%@ iOS app on GitHub",
+                                      comment: "title for link to GitHub repo (includes application name)")
+        let title = String.localizedStringWithFormat(format, UIApplication.appName)
+        return URLItem(title: title, url: Routes.github)
+    }()
+
+    private lazy var sendFeedbackItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.app-feedback", comment: "cell title for app feedback")
+        return ActionItem(title: title, cellReuseIdentifier: R.reuseIdentifier.defaultCell.identifier) { viewController in
+            viewController.sendFeedbackMail()
+        }
+    }()
+
+    private lazy var logoutItem: Item = {
+        let title = NSLocalizedString("settings.cell-title.logout", comment: "cell title for logout")
+        return ActionItem(title: title, cellReuseIdentifier: R.reuseIdentifier.logoutCell.identifier, action: { _ in
+            UserProfileHelper.shared.logout()
+        })
+    }()
+
+    private lazy var content = self.generateContent()
 
     @IBOutlet private var loginButton: UIBarButtonItem!
 
@@ -119,11 +105,6 @@ class AccountViewController: UITableViewController {
 
         self.updateUIAfterLoginStateChanged()
 
-        // set text for github link
-        let localizedGithubText = NSLocalizedString("settings.github-link.%@ iOS app on GitHub",
-                                                    comment: "title for link to GitHub repo (includes application name)")
-        self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
-
         // set copyright and app version info
         self.copyrightLabel.text = Brand.default.copyrightText
         self.poweredByLabel.text = Brand.default.poweredByText
@@ -163,6 +144,7 @@ class AccountViewController: UITableViewController {
             self.user = nil
         }
 
+        self.content = self.generateContent()
         self.tableView.reloadData()
     }
 
@@ -205,58 +187,72 @@ class AccountViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
-        switch newIndexPath {
-        case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                self.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
-            } else {
-                self.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
-            }
-        case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                self.performSegue(withIdentifier: R.segue.accountViewController.modalDownloadSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
-            } else {
-                self.performSegue(withIdentifier: R.segue.accountViewController.pushDownloadSettings, sender: self)
-            }
-        case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
-            self.open(url: Routes.imprint)
-        case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):
-            self.open(url: Routes.privacy)
-        case let githubIndexPath where githubIndexPath == tableView.indexPath(for: self.githubCell):
-            self.open(url: Routes.github)
-        case AccountViewController.feedbackIndexPath:
-            self.sendFeedbackMail()
-        case AccountViewController.logoutIndexPath:
-            UserProfileHelper.shared.logout()
-        default:
-            break
+    private func generateContent() -> [Section] {
+        let settingsSectionTitle = NSLocalizedString("settings.section-title.settings", comment: "section title for settings")
+        let aboutSectionTitle = NSLocalizedString("settings.section-title.about", comment: "section title for about")
+
+        var sections = [
+            Section(title: settingsSectionTitle, items: [
+                self.showStreamingSettingsItem,
+                self.showDownloadSettingsItem,
+            ]),
+        ]
+
+        if UserProfileHelper.shared.isLoggedIn {
+            sections += [
+                Section(items: [
+                    self.showDownloadedContentItem,
+                    self.showCertificatesItem,
+                ]),
+            ]
         }
+
+        sections += [
+            Section(title: aboutSectionTitle, items: [
+                self.showImprintItem,
+                self.showPrivacyStatementItem,
+                self.showGithubPageItem
+            ]),
+        ]
+
+        if MFMailComposeViewController.canSendMail() {
+            sections.append(Section(items: [
+                self.sendFeedbackItem,
+            ]))
+        }
+
+        if UserProfileHelper.shared.isLoggedIn {
+            sections += [
+                Section(items: [
+                    self.logoutItem,
+                ]),
+            ]
+        }
+
+        return sections
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var numberOfSections = super.numberOfSections(in: tableView)
+        return self.content.count
+    }
 
-        if !MFMailComposeViewController.canSendMail() {
-            numberOfSections -= 1
-        }
-
-        if !UserProfileHelper.shared.isLoggedIn {
-            numberOfSections -= 1
-        }
-
-        return numberOfSections
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.content[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return super.tableView(tableView, cellForRowAt: self.indexPathIncludingHiddenCells(for: indexPath))
+        let item = self.content[indexPath.section].items[indexPath.item]
+        let cell = tableView.dequeueReusableCell(withIdentifier: item.cellReuseIdentifier, for: indexPath)
+        item.configure(cell)
+        return cell
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.content[indexPath.section].items[indexPath.item].performAction(on: self)
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.content[section].title
     }
 
     override func viewDidLayoutSubviews() {
@@ -265,29 +261,13 @@ class AccountViewController: UITableViewController {
         self.tableView.resizeTableFooterView()
     }
 
-    private func indexPathIncludingHiddenCells(for indexPath: IndexPath) -> IndexPath {
-        var newIndexPath = indexPath
-
-        if !MFMailComposeViewController.canSendMail(), indexPath.section >= AccountViewController.feedbackIndexPath.section {
-            newIndexPath.section += 1
-        }
-
-        if !UserProfileHelper.shared.isLoggedIn, indexPath.section >= AccountViewController.logoutIndexPath.section {
-            newIndexPath.section += 1
-        }
-
-        return newIndexPath
-    }
-
-    private func open(url: URL?) {
-        guard let urlToOpen = url else { return }
-
-        let safariVC = SFSafariViewController(url: urlToOpen)
+    func open(url: URL) {
+        let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
     }
 
-    private func sendFeedbackMail() {
+    func sendFeedbackMail() {
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
         composeVC.setToRecipients(Brand.default.feedbackRecipients)
@@ -323,21 +303,60 @@ extension AccountViewController: MFMailComposeViewControllerDelegate {
 }
 
 
+import Rswift
+
 struct Section {
-    var title: String?
-    var items: [Item]
+    let title: String?
+    let items: [Item]
 }
 
-struct Item {
-    var title: String
-    var type: CellType
-    var action: Action
-    var visible: Bool
+extension Section {
+    init(items: [Item]) {
+        self.init(title: nil, items: items)
+    }
 }
 
-enum CellType {
-    case logout
-    case classic
+protocol Item {
+    var title: String { get }
+    var cellReuseIdentifier: String { get }
+
+    func configure(_ cell: UITableViewCell)
+    func performAction(on viewController: AccountViewController)
 }
 
-typealias Action = (AccountViewController) -> Void
+extension Item {
+    func configure(_ cell: UITableViewCell) {
+        cell.textLabel?.text = self.title
+    }
+}
+
+struct SegueItem<T: StoryboardSegueIdentifierType>: Item where T.SourceType == AccountViewController {
+    let title: String
+    let segueIdentifier: T
+    let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
+
+    func performAction(on viewController: AccountViewController) {
+        viewController.performSegue(withIdentifier: self.segueIdentifier.identifier, sender: nil)
+    }
+}
+
+struct URLItem: Item {
+    let title: String
+    let url: URL
+    let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
+
+    func performAction(on viewController: AccountViewController) {
+        viewController.open(url: self.url)
+    }
+}
+
+struct ActionItem: Item {
+    let title: String
+    let action: (AccountViewController) -> Void
+    let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
+
+    func configure(_ cell: UITableViewCell) {}
+    func performAction(on viewController: AccountViewController) {
+        self.action(viewController)
+    }
+}

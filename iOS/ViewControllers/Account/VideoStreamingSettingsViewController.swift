@@ -8,14 +8,6 @@ import UIKit
 
 class VideoStreamingSettingsViewController: UITableViewController {
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if UIDevice.current.userInterfaceIdiom != .pad {
-            navigationItem.rightBarButtonItem = nil
-        }
-    }
-
     // data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -83,4 +75,5 @@ class VideoStreamingSettingsViewController: UITableViewController {
             return nil
         }
     }
+
 }

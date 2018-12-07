@@ -286,3 +286,35 @@
 
 /* section title for video quality on wifi connection */
 "settings.video-quality.section-header.on wifi" = "Video-Qualität mit WLAN";
+
+
+
+/* section title for video streaming quality */
+"settings.video-quality" = "Video-Streaming"
+
+/* cell title for data privacy statement */
+"settings.data-privacy" = "Datenschutzerklärung";
+
+/* cell title for imprint */
+"settings.imprint" = "Impressum";
+
+/* cell title for app feedback */
+"settings.app-feedback" = "App-Feedback senden";
+
+/* cell title for logout */
+"settings.logout" = "Ausloggen";
+
+/* cell title for download */
+"settings.download" = "Download";
+
+/* section title for settings */
+"settings.settings" = "Einstellungen";
+
+/* section title for information */
+"settings.info" = "Info";
+
+/* cell title for downloaded content */
+"settings.downloaded-content" = "Heruntergeladene Inhalte";
+
+/* cell title for certificates */
+"settings.certificates" = "Leistungsnachweise";

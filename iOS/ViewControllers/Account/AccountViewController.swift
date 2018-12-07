@@ -12,6 +12,64 @@ import UIKit
 
 class AccountViewController: UITableViewController {
 
+    var data: [Section] = [
+        Section(
+            title: NSLocalizedString("", comment: ""),
+            items: [
+                Item(
+                    title: <#T##String#>,
+                    type: CellType.classic,
+                    action: { viewController in
+                        if UIDevice.current.userInterfaceIdiom == .pad {
+                            viewController.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
+                            //self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
+                        } else {
+                            viewController.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
+                        }
+
+                },
+                    visible: true),
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
+            ]
+        ),
+        Section(
+            title: NSLocalizedString("", comment: ""),
+            items: [
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>),
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
+            ]
+        ),
+        Section(
+            title: NSLocalizedString("settings.info", comment: "section title for information"),
+            items: [
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>),
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>),
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
+            ]
+        ),
+        Section(
+            title: nil,
+            items: [
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
+            ]
+        ),
+        Section(
+            title: NSLocalizedString("settings.logout", comment: "section title for logout"),
+            items: [
+                Item(title: <#T##String#>, type: <#T##CellType#>, action: <#T##Action##Action##(AccountViewController) -> Void#>, visible: <#T##Bool#>)
+            ]
+        )
+    ]
+
+    NSLocalizedString("settings.video-quality", comment: "cell title for video streaming quality")
+    NSLocalizedString("settings.data-privacy", comment: "cell title for data privacy statement")
+    NSLocalizedString("settings.imprint", comment: "cell title for imprint")
+    NSLocalizedString("settings.app-feedback", comment: "cell title for app feedback")
+    NSLocalizedString("settings.download", comment: "cell title for download")
+    NSLocalizedString("settings.settings", comment: "section title for settings")
+    NSLocalizedString("settings.downloaded-content", comment: "cell title for downloaded content")
+    NSLocalizedString("settings.certificates", comment: "cell title for certificates")
+
     static let feedbackIndexPath = IndexPath(row: 0, section: 3)
     static let logoutIndexPath = IndexPath(row: 0, section: 4)
 
@@ -266,7 +324,7 @@ extension AccountViewController: MFMailComposeViewControllerDelegate {
 
 
 struct Section {
-    var title: String
+    var title: String?
     var items: [Item]
 }
 
@@ -282,4 +340,4 @@ enum CellType {
     case classic
 }
 
-typealias Action = () -> Void
+typealias Action = (AccountViewController) -> Void

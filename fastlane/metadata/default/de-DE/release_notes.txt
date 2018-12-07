@@ -1,3 +1,6 @@
+• Die Wiedergabegeschwindigkeit wird nun korrekt beim Startne von Videos gesetzt
+
+Auch in Version 2.5:
 • Verbesserte Navigation im Kurs: Wische nach links oder rechts um zwischen Kursinhalten zu wechseln. Das funktioniert auch für Kursbreiche.
 • Alle erhaltene Zertifikate können nun im Konto-Tab eingesehen werden
 • Heruntergeladene Kursinhalte können im Konto-Tab verwaltet werden

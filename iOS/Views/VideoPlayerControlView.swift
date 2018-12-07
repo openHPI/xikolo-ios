@@ -158,7 +158,11 @@ class VideoPlayerControlView: BMPlayerControlView {
         UserDefaults.standard.playbackRate = self.playRate
 
         self.updatePlaybackRateButton()
-        self.delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: self.playRate)
+
+        if (self.player?.playerLayer?.player?.rate ?? 0.0) > 0.0 {
+            self.delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: self.playRate)
+        }
+
         self.videoController?.trackVideoPlayRateChange(oldPlayRate: oldPlayRate, newPlayRate: self.playRate)
     }
 

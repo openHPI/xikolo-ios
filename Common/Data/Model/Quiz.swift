@@ -7,33 +7,19 @@ import CoreData
 import Foundation
 import SyncEngine
 
-final class Quiz: Content {
+public final class Quiz: Content {
 
-    @NSManaged var id: String
-    @NSManaged var instructions: String?
-    @NSManaged var lockSubmissionsAt: Date?
-    @NSManaged var publishResultsAt: Date?
-    @NSManaged var showWelcomePage: Bool
-    @NSManaged var timeLimit: Int32
-    @NSManaged var allowedAttempts: Int32
-    @NSManaged private var maxPointsValue: NSDecimalNumber?
+    @NSManaged public var id: String
+    @NSManaged public var instructions: String?
+    @NSManaged public var lockSubmissionsAt: Date?
+    @NSManaged public var publishResultsAt: Date?
+    @NSManaged public var showWelcomePage: Bool
+    @NSManaged public var timeLimit: Int32
+    @NSManaged public var allowedAttempts: Int32
     @NSManaged var questions: Set<QuizQuestion>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Quiz> {
         return NSFetchRequest<Quiz>(entityName: "Quiz")
-    }
-
-    var maxPoints: Double? {
-        get {
-            return self.maxPointsValue?.doubleValue
-        }
-        set {
-            if let value = newValue {
-                self.maxPointsValue = NSDecimalNumber(value: value)
-            } else {
-                self.maxPointsValue = nil
-            }
-        }
     }
 
     var formattedTimeLimit: [String] {
@@ -64,7 +50,7 @@ final class Quiz: Content {
 
 extension Quiz: JSONAPIPullable {
 
-    static var type: String {
+    static public var type: String {
         return "quizzes"
     }
 
@@ -75,7 +61,6 @@ extension Quiz: JSONAPIPullable {
         self.publishResultsAt = try attributes.value(for: "publish_results_at")
         self.timeLimit = try attributes.value(for: "time_limit")
         self.allowedAttempts = try attributes.value(for: "allowed_attempts")
-        self.maxPoints = try attributes.value(for: "max_points")
         self.showWelcomePage = try attributes.value(for: "show_welcome_page")
 
 //        let relationships = try object.value(for: "relationships") as JSON

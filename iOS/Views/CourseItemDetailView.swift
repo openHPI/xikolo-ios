@@ -257,7 +257,8 @@ class DetailedDataView: UIStackView {
             label.text = NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
             downloaded = downloadState == .downloaded
         case let .points(maxPoints: maxPoints):
-            label.text = String(maxPoints)
+            let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
+            label.text = String.localizedStringWithFormat(format, maxPoints)
             downloaded = false
         }
 

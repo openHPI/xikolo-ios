@@ -13,7 +13,7 @@ public final class CourseItem: NSManagedObject {
     @NSManaged public var title: String?
     @NSManaged public var position: Int32
     @NSManaged public var visited: Bool
-    @NSManaged public var maxPoints: Float
+    @NSManaged public var maxPoints: Double
     @NSManaged public var proctored: Bool
     @NSManaged public var accessible: Bool
     @NSManaged public var contentType: String?

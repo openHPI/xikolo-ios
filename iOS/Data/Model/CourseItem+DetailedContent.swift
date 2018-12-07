@@ -8,7 +8,12 @@ import Common
 extension CourseItem {
 
     var detailedContent: [DetailedData] {
-        return (self.content as? DetailedCourseItemContent)?.detailedContent ?? []
+        var data = (self.content as? DetailedCourseItemContent)?.detailedContent ?? []
+        if self.maxPoints > 0.0 {
+            data.append(DetailedData.points(maxPoints: self.maxPoints))
+        }
+
+        return data
     }
 
 }

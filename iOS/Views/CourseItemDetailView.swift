@@ -218,6 +218,8 @@ class DetailedDataView: UIStackView {
                 return (StreamPersistenceManager.shared.downloadState(for: video), StreamPersistenceManager.shared.downloadProgress(for: video))
             case .slides:
                 return (SlidesPersistenceManager.shared.downloadState(for: video), SlidesPersistenceManager.shared.downloadProgress(for: video))
+            case .points(maxPoints: _):
+                return (.notDownloaded, nil)
             }
         }()
 
@@ -254,6 +256,9 @@ class DetailedDataView: UIStackView {
         case .slides:
             label.text = NSLocalizedString("course-item.video.slides.label", comment: "Shown in course content list")
             downloaded = downloadState == .downloaded
+        case let .points(maxPoints: maxPoints):
+            label.text = String(maxPoints)
+            downloaded = false
         }
 
         label.textColor = downloaded || !isOffline ? .darkText : .lightGray

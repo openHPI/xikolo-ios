@@ -13,6 +13,7 @@ public final class CourseItem: NSManagedObject {
     @NSManaged public var title: String?
     @NSManaged public var position: Int32
     @NSManaged public var visited: Bool
+    @NSManaged public var maxPoints: Float
     @NSManaged public var proctored: Bool
     @NSManaged public var accessible: Bool
     @NSManaged public var contentType: String?
@@ -59,6 +60,7 @@ extension CourseItem: JSONAPIPullable {
         self.icon = try attributes.value(for: "icon")
         self.contentType = try attributes.value(for: "content_type")
         self.exerciseType = try attributes.value(for: "exercise_type")
+        self.maxPoints = try attributes.value(for: "max_points")
         self.proctored = try attributes.value(for: "proctored")
         self.accessible = try attributes.value(for: "accessible")
         self.visited = try attributes.value(for: "visited") || self.visited  // course items can't be set to 'not visited'

@@ -16,5 +16,6 @@ enum DetailedData {
     case text(readingTime: TimeInterval)
     case stream(duration: TimeInterval)
     case slides
+    case points(maxPoints: Float)
 
 }

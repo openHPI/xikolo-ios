@@ -777,8 +777,9 @@
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
 				5058578521351CBD006A5D15 /* PseudoCourseCell.swift */,
 				500228EC20582573003301A7 /* CourseItemHeader.swift */,
-				5017B3BD2049854F001D90A1 /* CourseAreaCell.swift */,
 				AB91F9E41CED029B00007D06 /* CourseItemCell.swift */,
+				50371FFD20501388006E9634 /* CourseItemDetailView.swift */,
+				5017B3BD2049854F001D90A1 /* CourseAreaCell.swift */,
 				AB2802D31D2AC425008C8BAE /* AnnouncementCell.swift */,
 				4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */,
 				508AB2E92111F41D0079EAE5 /* CourseDateOverviewCell.swift */,
@@ -790,7 +791,6 @@
 				5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */,
 				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
-				50371FFD20501388006E9634 /* CourseItemDetailView.swift */,
 				B4E079EC21879C9200EA53F5 /* CertificateCell.swift */,
 			);
 			path = Views;

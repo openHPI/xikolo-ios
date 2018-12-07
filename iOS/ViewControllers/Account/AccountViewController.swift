@@ -263,3 +263,23 @@ extension AccountViewController: MFMailComposeViewControllerDelegate {
     }
 
 }
+
+
+struct Section {
+    var title: String
+    var items: [Item]
+}
+
+struct Item {
+    var title: String
+    var type: CellType
+    var action: Action
+    var visible: Bool
+}
+
+enum CellType {
+    case logout
+    case classic
+}
+
+typealias Action = () -> Void

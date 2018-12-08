@@ -56,9 +56,9 @@ class AccountViewControllerDataSource: NSObject {
 
     private lazy var logoutItem: DataSourceItem = {
         let title = NSLocalizedString("settings.cell-title.logout", comment: "cell title for logout")
-        return ActionItem(title: title, cellReuseIdentifier: R.reuseIdentifier.logoutCell.identifier, action: { _ in
+        return ActionItem(title: title, cellReuseIdentifier: R.reuseIdentifier.logoutCell.identifier) { _ in
             UserProfileHelper.shared.logout()
-        })
+        }
     }()
 
     private lazy var content = self.generateContent()
@@ -141,6 +141,7 @@ extension AccountViewControllerDataSource: UITableViewDataSource {
 
 }
 
+// swiftlint:disable:next private_over_fileprivate
 fileprivate struct DataSourceSection {
     let title: String?
     let items: [DataSourceItem]
@@ -166,6 +167,7 @@ extension DataSourceItem {
     }
 }
 
+// swiftlint:disable:next private_over_fileprivate
 fileprivate struct SegueItem<T: StoryboardSegueIdentifierType>: DataSourceItem where T.SourceType == AccountViewController {
     let title: String
     let segueIdentifier: T
@@ -176,6 +178,7 @@ fileprivate struct SegueItem<T: StoryboardSegueIdentifierType>: DataSourceItem w
     }
 }
 
+// swiftlint:disable:next private_over_fileprivate
 fileprivate struct URLItem: DataSourceItem {
     let title: String
     let url: URL
@@ -186,6 +189,7 @@ fileprivate struct URLItem: DataSourceItem {
     }
 }
 
+// swiftlint:disable:next private_over_fileprivate
 fileprivate struct ActionItem: DataSourceItem {
     let title: String
     let cellReuseIdentifier: String

@@ -16,6 +16,7 @@
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
 		5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE8F2171E9390001805E /* CourseItemViewController.swift */; };
 		5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE912171F21D0001805E /* CourseItemContentViewController.swift */; };
+		502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */; };
 		502E712E2018D8BF007FC8C0 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E712D2018D8BF007FC8C0 /* Screenshots.swift */; };
 		502E716C2018DC72007FC8C0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E716B2018DC72007FC8C0 /* SnapshotHelper.swift */; };
 		502E7172201A20C9007FC8C0 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 502E7171201A20C9007FC8C0 /* Credentials.plist */; };
@@ -392,6 +393,7 @@
 		5019CE8F2171E9390001805E /* CourseItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemViewController.swift; sourceTree = "<group>"; };
 		5019CE912171F21D0001805E /* CourseItemContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItemContentViewController.swift; sourceTree = "<group>"; };
 		501D083B1FA209F900D1B1E9 /* xikolo 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 5.xcdatamodel"; sourceTree = "<group>"; };
+		502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewControllerDataSource.swift; sourceTree = "<group>"; };
 		502E712B2018D8BF007FC8C0 /* iOS-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		502E712D2018D8BF007FC8C0 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		502E712F2018D8BF007FC8C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1140,6 +1142,7 @@
 			isa = PBXGroup;
 			children = (
 				F85225371B4D27D700C9BF56 /* AccountViewController.swift */,
+				502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */,
 				50E16CF11F46E28200D67632 /* VideoStreamingSettingsViewController.swift */,
 				5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */,
 				7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */,
@@ -1907,6 +1910,7 @@
 				5095B1E220EBB45800572924 /* UserProfileHelperDelegateInstance.swift in Sources */,
 				50CF1F5020DCDBFC0011BFE9 /* CourseDismissionAnimator.swift in Sources */,
 				503578942195BF1500982093 /* Accessibility.swift in Sources */,
+				502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */,
 				5058578621351CBD006A5D15 /* PseudoCourseCell.swift in Sources */,
 				5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */,
 				50CF1F5120DCDBFC0011BFE9 /* PersistenceManager.swift in Sources */,

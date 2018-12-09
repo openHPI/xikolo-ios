@@ -164,6 +164,7 @@ protocol DataSourceItem {
 
 protocol ConfigurableDataSourceItem: DataSourceItem {
     var title: String { get }
+
     func configure(_ cell: UITableViewCell)
 }
 

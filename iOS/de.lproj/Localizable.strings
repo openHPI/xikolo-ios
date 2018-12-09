@@ -245,9 +245,6 @@
 /* cell title for imprint */
 "settings.cell-title.imprint" = "Impressum";
 
-/* cell title for logout */
-"settings.cell-title.logout" = "Ausloggen";
-
 /* section title for streaming settings */
 "settings.cell-title.streaming-settings" = "Video-Streaming";
 

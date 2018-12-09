@@ -19,3 +19,6 @@
 
 /* Class = "UINavigationItem"; title = "Certificates"; ObjectID = "huT-EM-z1s"; */
 "huT-EM-z1s.title" = "Leistungsnachweise";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "UOY-X6-cgU"; */
+"UOY-X6-cgU.text" = "Ausloggen";

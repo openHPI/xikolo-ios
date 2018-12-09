@@ -49,14 +49,13 @@ class AccountViewControllerDataSource: NSObject {
 
     private lazy var sendFeedbackItem: DataSourceItem = {
         let title = NSLocalizedString("settings.cell-title.app-feedback", comment: "cell title for app feedback")
-        return ActionItem(title: title, cellReuseIdentifier: R.reuseIdentifier.defaultCell.identifier) { viewController in
+        return ActionItem(title: title) { viewController in
             viewController.sendFeedbackMail()
         }
     }()
 
     private lazy var logoutItem: DataSourceItem = {
-        let title = NSLocalizedString("settings.cell-title.logout", comment: "cell title for logout")
-        return ActionItem(title: title, cellReuseIdentifier: R.reuseIdentifier.logoutCell.identifier) { _ in
+        return LogoutItem { _ in
             UserProfileHelper.shared.logout()
         }
     }()
@@ -131,7 +130,11 @@ extension AccountViewControllerDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = self.content[indexPath.section].items[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: item.cellReuseIdentifier, for: indexPath)
-        item.configure(cell)
+
+        if let configurableItem = item as? ConfigurableDataSourceItem {
+            configurableItem.configure(cell)
+        }
+
         return cell
     }
 
@@ -154,21 +157,24 @@ extension DataSourceSection {
 }
 
 protocol DataSourceItem {
-    var title: String { get }
     var cellReuseIdentifier: String { get }
 
-    func configure(_ cell: UITableViewCell)
     func performAction(on viewController: AccountViewController)
 }
 
-extension DataSourceItem {
+protocol ConfigurableDataSourceItem: DataSourceItem {
+    var title: String { get }
+    func configure(_ cell: UITableViewCell)
+}
+
+extension ConfigurableDataSourceItem {
     fileprivate func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = self.title
     }
 }
 
 // swiftlint:disable:next private_over_fileprivate
-fileprivate struct SegueItem<T: StoryboardSegueIdentifierType>: DataSourceItem where T.SourceType == AccountViewController {
+fileprivate struct SegueItem<T: StoryboardSegueIdentifierType>: ConfigurableDataSourceItem where T.SourceType == AccountViewController {
     let title: String
     let segueIdentifier: T
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
@@ -179,7 +185,7 @@ fileprivate struct SegueItem<T: StoryboardSegueIdentifierType>: DataSourceItem w
 }
 
 // swiftlint:disable:next private_over_fileprivate
-fileprivate struct URLItem: DataSourceItem {
+fileprivate struct URLItem: ConfigurableDataSourceItem {
     let title: String
     let url: URL
     let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
@@ -190,12 +196,21 @@ fileprivate struct URLItem: DataSourceItem {
 }
 
 // swiftlint:disable:next private_over_fileprivate
-fileprivate struct ActionItem: DataSourceItem {
+fileprivate struct ActionItem: ConfigurableDataSourceItem {
+    let cellReuseIdentifier = R.reuseIdentifier.defaultCell.identifier
     let title: String
-    let cellReuseIdentifier: String
     let action: (AccountViewController) -> Void
 
-    func configure(_ cell: UITableViewCell) {}
+    func performAction(on viewController: AccountViewController) {
+        self.action(viewController)
+    }
+}
+
+// swiftlint:disable:next private_over_fileprivate
+fileprivate struct LogoutItem: DataSourceItem {
+    let cellReuseIdentifier = R.reuseIdentifier.logoutCell.identifier
+    let action: (AccountViewController) -> Void
+
     func performAction(on viewController: AccountViewController) {
         self.action(viewController)
     }

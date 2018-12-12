@@ -58,7 +58,7 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
             try self.fetchedResultsController.performFetch()
         } catch {
             ErrorManager.shared.report(error)
-            log.error(error)
+            log.error("Error fetching items", error: error)
         }
 
         self.tableView?.dataSource = self

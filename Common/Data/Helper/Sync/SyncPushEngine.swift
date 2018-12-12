@@ -125,7 +125,7 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                         return Future(error: error)
                     }
 
-                    log.error("Failed to push resource modification - \(error)")
+                    log.error("Failed to push resource modification", error: error)
                     ErrorManager.shared.report(error)
                     return Future(value: ())
                 }
@@ -138,7 +138,7 @@ class SyncPushEnginePush<Resource>: SyncPushEngine where Resource: NSManagedObje
                 // post sync actions
                 if resource.objectState == .deleted || !(resource is Pullable) {
                     context.delete(resource)
-                    log.verbose("Deleted local resource of type: \(type(of: resource).type)")
+                    log.info("Deleted local resource of type: %@", type(of: resource).type)
                 } else if resource.objectState == .new || resource.objectState == .modified {
                     resource.markAsUnchanged()
                 }
@@ -229,7 +229,7 @@ class SyncPushEnginePushPull<Resource>: SyncPushEngine where Resource: NSManaged
                 // post sync actions
                 if resource.objectState == .deleted {
                     context.delete(resource)
-                    log.verbose("Deleted local resource of type: \(type(of: resource).type)")
+                    log.info("Deleted local resource of type: %@", type(of: resource).type)
                 } else if resource.objectState == .new || resource.objectState == .modified {
                     resource.markAsUnchanged()
                 }

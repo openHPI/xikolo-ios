@@ -17,7 +17,7 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
 
         container.loadPersistentStores { _, error in
             if let error = error {
-                log.severe("Unresolved error \(error)")
+                log.error("Persistant store load error", error: error)
                 fatalError("Unresolved error \(error)")
             }
 
@@ -58,13 +58,13 @@ public class CoreDataHelper { // swiftlint:disable:this convenience_type
                 let result = try privateManagedObjectContext.execute(deleteRequest) as? NSBatchDeleteResult
                 guard let objectIDArray = result?.result as? [NSManagedObjectID] else { return }
                 let changes = [NSDeletedObjectsKey: objectIDArray]
-                log.verbose("Try to delete all enities of \(entityName) (\(objectIDArray.count) enities)")
+                log.info("Try to delete all entities of %@, %d entities", entityName, objectIDArray.count)
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [self.viewContext])
                 try privateManagedObjectContext.save()
 
                 promise.success(())
             } catch {
-                log.error("Failed to bulk delete all enities of \(entityName) - \(error)")
+                log.error("Failed to bulk delete all entities of %@", entityName, error: error)
                 ErrorManager.shared.report(error)
                 promise.failure(.coreData(error))
             }

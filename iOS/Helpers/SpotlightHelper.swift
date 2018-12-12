@@ -67,7 +67,7 @@ class SpotlightHelper {
                 ErrorManager.shared.report(error)
                 log.error(error.localizedDescription)
             } else {
-                log.verbose("Item indexed.")
+                log.info("Item indexed.")
             }
         }
     }
@@ -83,7 +83,7 @@ class SpotlightHelper {
                 ErrorManager.shared.report(error)
                 log.error(error.localizedDescription)
             } else {
-                log.verbose("Item deleted.")
+                log.info("Item deleted.")
             }
         }
     }

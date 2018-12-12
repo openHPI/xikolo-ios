@@ -69,9 +69,6 @@ PODS:
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
-  - ObjcExceptionBridging (1.0.1):
-    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
-  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - R.swift (5.0.0.alpha.3):
     - R.swift.Library (~> 5.0.0.alpha.2)
   - R.swift.Library (5.0.0.alpha.2)
@@ -86,10 +83,6 @@ PODS:
   - SyncEngine (0.1.0):
     - BrightFutures (~> 7.0)
     - Marshal (~> 1.2)
-  - XCGLogger (6.1.0):
-    - XCGLogger/Core (= 6.1.0)
-  - XCGLogger/Core (6.1.0):
-    - ObjcExceptionBridging
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
@@ -108,7 +101,6 @@ DEPENDENCIES:
   - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
   - SyncEngine (from `./Frameworks/SyncEngine`)
-  - XCGLogger (~> 6.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -127,7 +119,6 @@ SPEC REPOS:
     - Marshal
     - nanopb
     - NVActivityIndicatorView
-    - ObjcExceptionBridging
     - R.swift
     - R.swift.Library
     - ReachabilitySwift
@@ -136,7 +127,6 @@ SPEC REPOS:
     - SimulatorStatusMagic
     - SnapKit
     - SwiftLint
-    - XCGLogger
 
 EXTERNAL SOURCES:
   BartyCrouch:
@@ -177,7 +167,6 @@ SPEC CHECKSUMS:
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: ca4207ecc94545a1611ca0b2ae1197458b6ba30a
   R.swift.Library: 3c21b823839bf5a6769dc7f96cb44479dab51b1b
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
@@ -187,8 +176,7 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: 6772320e40b52049053a518c17db9b0634a0b45a
   SyncEngine: 4fa00bd5bb9ed38e78e5e3ecec1b44f0db6732d1
-  XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
 
-PODFILE CHECKSUM: 2e2c0f5a621f5690648fac3a1623abaec1a79aa0
+PODFILE CHECKSUM: dcf36f86a3d9cf8eb48bd8aff22a6d42443d7add
 
 COCOAPODS: 1.5.3

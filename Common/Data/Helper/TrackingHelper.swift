@@ -144,7 +144,7 @@ public class TrackingHelper {
                                   trackingContext: trackingContext as [String: AnyObject],
                                   inContext: context)
                     promise.complete(context.saveWithResult())
-                    log.verbose("Created tracking event '\(trackingVerb.type)'")
+                    log.info("Created tracking event '\(trackingVerb.type)'")
                 }
             #endif
         }

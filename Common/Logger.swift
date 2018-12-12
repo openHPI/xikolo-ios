@@ -52,6 +52,4 @@ public struct Logger {
     public func fault(_ message: String, file: String = #file, _ args: CVarArg...) {
         self.log(type: .fault, file: file, message, args)
     }
-
 }
-

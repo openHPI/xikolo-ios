@@ -141,7 +141,7 @@ extension PDFWebViewController: URLSessionDownloadDelegate {
 
             self.currentDownload = nil
         } catch {
-            log.error(error)
+            log.error("Error processing PDF", error: error)
         }
     }
 

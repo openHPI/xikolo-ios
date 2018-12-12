@@ -3,35 +3,55 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import XCGLogger
+import os
 
-public let log: XCGLogger = {
+let log = Logger(subsystem: "de.xikolo.common", category: "Common")
 
-    let log = XCGLogger(identifier: "default", includeDefaultDestinations: false)
-    let consoleDestination = ConsoleDestination(owner: nil, identifier: "default.consoleDestination")
+public struct Logger {
 
-    #if DEBUG
-        consoleDestination.outputLevel = .verbose
-        consoleDestination.showLogIdentifier = false
-        consoleDestination.showFunctionName = false
-        consoleDestination.showThreadName = false
-        consoleDestination.showLevel = true
-        consoleDestination.showFileName = false
-        consoleDestination.showLineNumber = false
-        consoleDestination.showDate = true
-    #else
-        consoleDestination.outputLevel = .severe
-        consoleDestination.showLogIdentifier = true
-        consoleDestination.showFunctionName = true
-        consoleDestination.showThreadName = true
-        consoleDestination.showLevel = true
-        consoleDestination.showFileName = true
-        consoleDestination.showLineNumber = true
-        consoleDestination.showDate = true
-    #endif
+    private let log: OSLog
 
-    log.add(destination: consoleDestination)
-    log.logAppDetails()
+    public init(subsystem: String, category: String) {
+        self.log = OSLog(subsystem: subsystem, category: category)
+    }
 
-    return log
-}()
+    private func log(type: OSLogType, file: String, _ message: String, _ args: [CVarArg]) {
+        let expendedMessage = String(format: message, arguments: args)
+        if let url = URL(string: file) {
+            os_log("[%@] %@", log: self.log, type: type, url.lastPathComponent, expendedMessage)
+        } else {
+            os_log("%@", log: self.log, type: type, expendedMessage)
+        }
+    }
+
+    public func info(_ message: String, file: String = #file, _ args: CVarArg...) {
+        self.log(type: .info, file: file, message, args)
+    }
+
+    public func debug(_ message: String, file: String = #file, _ args: CVarArg...) {
+        self.log(type: .debug, file: file, message, args)
+    }
+
+    public func warning(_ message: String, file: String = #file, _ args: CVarArg...) {
+        self.log(type: .default, file: file, message, args)
+    }
+
+    public func error(_ message: String, file: String = #file, _ args: CVarArg..., error: Error? = nil) {
+        var builtArgs = args
+        var builtMessage: String = message
+
+        if let error = error {
+            let originalMessage = String(format: message, arguments: args)
+            builtMessage = "%@ ===> Error found: %@"
+            builtArgs = [originalMessage, String(reflecting: error)]
+        }
+
+        self.log(type: .error, file: file, builtMessage, builtArgs)
+    }
+
+    public func fault(_ message: String, file: String = #file, _ args: CVarArg...) {
+        self.log(type: .fault, file: file, message, args)
+    }
+
+}
+

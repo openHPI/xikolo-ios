@@ -41,7 +41,7 @@ extension NSManagedObjectContext {
         guard let object = managedObject as? T else {
             let message = "Type mismatch for NSManagedObject (required)"
             let reason = "required: \(T.self), found: \(type(of: managedObject))"
-            log.severe("\(message): \(reason)")
+            log.error("%@: %@", message, reason)
             fatalError("\(message): \(reason)")
         }
 

@@ -62,6 +62,9 @@
 /* stop all downloads for video */
 "course-item.combined-download-action.stop-download.title" = "Alle Downloads stoppen";
 
+/* maximum points for course item */
+"course-item.max-points" = "%.1f Punkte";
+
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Folien anschauen";
 

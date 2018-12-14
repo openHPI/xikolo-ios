@@ -10,6 +10,8 @@ class LTIHintViewController: UIViewController {
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
     @IBOutlet weak var instructionsView: UILabel!
+    @IBOutlet weak var typeView: UILabel!
+    @IBOutlet weak var pointsView: UILabel!
     @IBOutlet private weak var startButton: UIButton!
 
     weak var delegate: CourseItemViewController?
@@ -23,13 +25,18 @@ class LTIHintViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
         self.itemTitleLabel.text = self.courseItem?.title
         self.startButton.tintColor = Brand.default.colors.primary
-        self.startButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        //self.startButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        self.instructionsView.text = ltiExercise.instructions
+        //self.typeView = ltiExercise.type TODO with new API
+        //self.pointsView.text = self.courseItem.maxPoints
     }
 
     @IBAction private func startItem() {
         guard let item = self.courseItem else { return }
+
         self.perf
 
     }

@@ -13,6 +13,8 @@ import UIKit
 import SimulatorStatusMagic
 #endif
 
+let log = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

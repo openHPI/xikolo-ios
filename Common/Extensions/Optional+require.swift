@@ -17,7 +17,7 @@ extension Optional {
                 message.append(". Debugging hint: \(hint)")
             }
 
-            log.severe(message)
+            log.error("%@", message)
 
             let exception = NSException(
                 name: .invalidArgumentException,

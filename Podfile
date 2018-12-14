@@ -4,25 +4,24 @@ inhibit_all_warnings!
 project 'xikolo-ios', 'openHPI-iOS-Debug' => :debug, 'openSAP-iOS-Debug' => :debug, 'openWHO-iOS-Debug' => :debug, 'moocHOUSE-iOS-Debug' => :debug
 
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
-pod 'R.swift', '5.0.0.alpha.2'
+pod 'R.swift', '5.0.0.alpha.3'
 pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods
     pod 'Firebase/Core'
-    pod 'Fabric', '~> 1.8.2'
-    pod 'Crashlytics', '~> 3.11.1'
+    pod 'Fabric', '~> 1.9.0'
+    pod 'Crashlytics', '~> 3.12.0'
 end
 
 target 'Common' do
     platform :ios, '10.0'
     pod 'BrightFutures', '~> 7.0'
-    pod 'Down', '~> 0.4'
+    pod 'Down', '0.5.2'
     pod 'KeychainAccess', '~> 3.1'
     pod 'ReachabilitySwift', '~> 4.1'
     pod 'SDWebImage', '~> 4.2'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
-    pod 'XCGLogger', '~> 6.0'
 
     target 'Common-Tests' do
         inherit! :search_paths

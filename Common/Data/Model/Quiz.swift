@@ -16,24 +16,10 @@ final class Quiz: Content {
     @NSManaged var showWelcomePage: Bool
     @NSManaged var timeLimit: Int32
     @NSManaged var allowedAttempts: Int32
-    @NSManaged private var maxPointsValue: NSDecimalNumber?
     @NSManaged var questions: Set<QuizQuestion>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Quiz> {
         return NSFetchRequest<Quiz>(entityName: "Quiz")
-    }
-
-    var maxPoints: Double? {
-        get {
-            return self.maxPointsValue?.doubleValue
-        }
-        set {
-            if let value = newValue {
-                self.maxPointsValue = NSDecimalNumber(value: value)
-            } else {
-                self.maxPointsValue = nil
-            }
-        }
     }
 
     var formattedTimeLimit: [String] {
@@ -75,7 +61,6 @@ extension Quiz: JSONAPIPullable {
         self.publishResultsAt = try attributes.value(for: "publish_results_at")
         self.timeLimit = try attributes.value(for: "time_limit")
         self.allowedAttempts = try attributes.value(for: "allowed_attempts")
-        self.maxPoints = try attributes.value(for: "max_points")
         self.showWelcomePage = try attributes.value(for: "show_welcome_page")
 
 //        let relationships = try object.value(for: "relationships") as JSON

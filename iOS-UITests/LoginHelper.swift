@@ -5,7 +5,7 @@
 
 import XCTest
 
-enum LoginHelper {
+class LoginHelper { // swiftlint:disable:this convenience_type
 
     static var loginCredentials: (email: String, password: String) {
         guard let path = Bundle(for: LoginHelper.self).path(forResource: "Credentials", ofType: "plist") else {

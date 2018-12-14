@@ -62,6 +62,9 @@
 /* stop all downloads for video */
 "course-item.combined-download-action.stop-download.title" = "Alle Downloads stoppen";
 
+/* maximum points for course item */
+"course-item.max-points" = "%.1f Punkte";
+
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Folien anschauen";
 
@@ -224,6 +227,30 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* cell title for app feedback */
+"settings.cell-title.app-feedback" = "App-Feedback senden";
+
+/* cell title for certificates */
+"settings.cell-title.certificates" = "Leistungsnachweise";
+
+/* cell title for data privacy statement */
+"settings.cell-title.data-privacy" = "Datenschutzerklärung";
+
+/* cell title for download settings */
+"settings.cell-title.download-settings" = "Download";
+
+/* cell title for downloaded content */
+"settings.cell-title.downloaded-content" = "Heruntergeladene Inhalte";
+
+/* title for link to GitHub repo (includes application name) */
+"settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
+
+/* cell title for imprint */
+"settings.cell-title.imprint" = "Impressum";
+
+/* section title for streaming settings */
+"settings.cell-title.streaming-settings" = "Video-Streaming";
+
 /* course content preload setting: always */
 "settings.course-item-content-preload.always" = "Immer";
 
@@ -263,8 +290,11 @@
 /* total size label */
 "settings.downloads.total size: %@" = "Gesamtgröße: %@";
 
-/* title for link to GitHub repo (includes application name) */
-"settings.github-link.%@ iOS app on GitHub" = "%@ iOS App auf GitHub";
+/* section title for about */
+"settings.section-title.about" = "Info";
+
+/* section title for settings */
+"settings.section-title.settings" = "Einstellungen";
 
 /* best video quality */
 "settings.video-quality.best" = "Beste";

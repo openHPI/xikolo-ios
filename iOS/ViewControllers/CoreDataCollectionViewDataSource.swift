@@ -111,7 +111,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             }
         } catch {
             ErrorManager.shared.report(error)
-            log.error(error)
+            log.error("Error fetching items", error: error)
         }
 
         self.collectionView?.dataSource = self
@@ -431,7 +431,7 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             try self.searchFetchResultsController?.performFetch()
         } catch {
             ErrorManager.shared.report(error)
-            log.error(error)
+            log.error("Error fetching search item", error: error)
         }
 
         self.collectionView?.reloadData()

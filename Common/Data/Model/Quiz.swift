@@ -50,7 +50,7 @@ public final class Quiz: Content {
 
 extension Quiz: JSONAPIPullable {
 
-    static public var type: String {
+    public static var type: String {
         return "quizzes"
     }
 

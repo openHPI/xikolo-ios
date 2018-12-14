@@ -224,6 +224,30 @@
 /* label for app version */
 "settings.app.version.label" = "Version";
 
+/* cell title for app feedback */
+"settings.cell-title.app-feedback" = "Send App Feedback";
+
+/* cell title for certificates */
+"settings.cell-title.certificates" = "Certificates";
+
+/* cell title for data privacy statement */
+"settings.cell-title.data-privacy" = "Data Privacy Statement";
+
+/* cell title for download settings */
+"settings.cell-title.download-settings" = "Download";
+
+/* cell title for downloaded content */
+"settings.cell-title.downloaded-content" = "Downloaded Content";
+
+/* title for link to GitHub repo (includes application name) */
+"settings.cell-title.github.%@ iOS app on GitHub" = "%@ iOS app on GitHub";
+
+/* cell title for imprint */
+"settings.cell-title.imprint" = "Imprint";
+
+/* section title for streaming settings */
+"settings.cell-title.streaming-settings" = "Video Streaming";
+
 /* course content preload setting: always */
 "settings.course-item-content-preload.always" = "Always";
 
@@ -263,8 +287,11 @@
 /* total size label */
 "settings.downloads.total size: %@" = "Total size: %@";
 
-/* title for link to GitHub repo (includes application name) */
-"settings.github-link.%@ iOS app on GitHub" = "%@ iOS app on GitHub";
+/* section title for about */
+"settings.section-title.about" = "About";
+
+/* section title for settings */
+"settings.section-title.settings" = "Settings";
 
 /* best video quality */
 "settings.video-quality.best" = "Best";

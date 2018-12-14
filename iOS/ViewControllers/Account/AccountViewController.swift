@@ -12,14 +12,7 @@ import UIKit
 
 class AccountViewController: UITableViewController {
 
-    static let feedbackIndexPath = IndexPath(row: 0, section: 3)
-    static let logoutIndexPath = IndexPath(row: 0, section: 4)
-
-    @IBOutlet private weak var videoSettingsCell: UITableViewCell!
-    @IBOutlet private weak var downloadCell: UITableViewCell!
-    @IBOutlet private weak var imprintCell: UITableViewCell!
-    @IBOutlet private weak var dataPrivacyCell: UITableViewCell!
-    @IBOutlet private weak var githubCell: UITableViewCell!
+    private lazy var dataSource = AccountViewControllerDataSource()
 
     @IBOutlet private var loginButton: UIBarButtonItem!
 
@@ -59,12 +52,9 @@ class AccountViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.updateUIAfterLoginStateChanged()
+        self.tableView.dataSource = self.dataSource
 
-        // set text for github link
-        let localizedGithubText = NSLocalizedString("settings.github-link.%@ iOS app on GitHub",
-                                                    comment: "title for link to GitHub repo (includes application name)")
-        self.githubCell.textLabel?.text = String.localizedStringWithFormat(localizedGithubText, UIApplication.appName)
+        self.updateUIAfterLoginStateChanged()
 
         // set copyright and app version info
         self.copyrightLabel.text = Brand.default.copyrightText
@@ -105,6 +95,7 @@ class AccountViewController: UITableViewController {
             self.user = nil
         }
 
+        self.dataSource.reloadContent()
         self.tableView.reloadData()
     }
 
@@ -148,57 +139,7 @@ class AccountViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newIndexPath = self.indexPathIncludingHiddenCells(for: indexPath)
-        switch newIndexPath {
-        case let videoStreamingIndexPath where videoStreamingIndexPath == tableView.indexPath(for: self.videoSettingsCell):
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                self.performSegue(withIdentifier: R.segue.accountViewController.modalStreamingSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
-            } else {
-                self.performSegue(withIdentifier: R.segue.accountViewController.pushStreamingSettings, sender: self)
-            }
-        case let downloadIndexPath where downloadIndexPath == tableView.indexPath(for: self.downloadCell):
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                self.performSegue(withIdentifier: R.segue.accountViewController.modalDownloadSettings, sender: self)
-                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
-            } else {
-                self.performSegue(withIdentifier: R.segue.accountViewController.pushDownloadSettings, sender: self)
-            }
-        case let imprintIndexPath where imprintIndexPath == tableView.indexPath(for: self.imprintCell):
-            self.open(url: Routes.imprint)
-        case let dataPrivacyIndexPath where dataPrivacyIndexPath == tableView.indexPath(for: self.dataPrivacyCell):
-            self.open(url: Routes.privacy)
-        case let githubIndexPath where githubIndexPath == tableView.indexPath(for: self.githubCell):
-            self.open(url: Routes.github)
-        case AccountViewController.feedbackIndexPath:
-            self.sendFeedbackMail()
-        case AccountViewController.logoutIndexPath:
-            UserProfileHelper.shared.logout()
-        default:
-            break
-        }
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        var numberOfSections = super.numberOfSections(in: tableView)
-
-        if !MFMailComposeViewController.canSendMail() {
-            numberOfSections -= 1
-        }
-
-        if !UserProfileHelper.shared.isLoggedIn {
-            numberOfSections -= 1
-        }
-
-        return numberOfSections
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return super.tableView(tableView, cellForRowAt: self.indexPathIncludingHiddenCells(for: indexPath))
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        self.dataSource.item(for: indexPath).performAction(on: self)
     }
 
     override func viewDidLayoutSubviews() {
@@ -207,29 +148,13 @@ class AccountViewController: UITableViewController {
         self.tableView.resizeTableFooterView()
     }
 
-    private func indexPathIncludingHiddenCells(for indexPath: IndexPath) -> IndexPath {
-        var newIndexPath = indexPath
-
-        if !MFMailComposeViewController.canSendMail(), indexPath.section >= AccountViewController.feedbackIndexPath.section {
-            newIndexPath.section += 1
-        }
-
-        if !UserProfileHelper.shared.isLoggedIn, indexPath.section >= AccountViewController.logoutIndexPath.section {
-            newIndexPath.section += 1
-        }
-
-        return newIndexPath
-    }
-
-    private func open(url: URL?) {
-        guard let urlToOpen = url else { return }
-
-        let safariVC = SFSafariViewController(url: urlToOpen)
+    func open(url: URL) {
+        let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = Brand.default.colors.window
         self.present(safariVC, animated: trueUnlessReduceMotionEnabled)
     }
 
-    private func sendFeedbackMail() {
+    func sendFeedbackMail() {
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
         composeVC.setToRecipients(Brand.default.feedbackRecipients)
@@ -251,8 +176,6 @@ class AccountViewController: UITableViewController {
         ]
         return "<br/><br/><small>" + components.joined(separator: "<br/>") + "</small>"
     }
-
-    @IBAction private func unwindToSettingsViewController(_ segue: UIStoryboardSegue) {}
 
 }
 

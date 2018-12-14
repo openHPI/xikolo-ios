@@ -9,7 +9,8 @@ import UIKit
 class LTIHintViewController: UIViewController {
 
     @IBOutlet private weak var itemTitleLabel: UILabel!
-    @IBOutlet private weak var startButton: Button!
+    @IBOutlet weak var instructionsView: UILabel!
+    @IBOutlet private weak var startButton: UIButton!
 
     weak var delegate: CourseItemViewController?
 

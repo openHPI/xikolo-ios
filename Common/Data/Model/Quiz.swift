@@ -7,15 +7,15 @@ import CoreData
 import Foundation
 import SyncEngine
 
-public final class Quiz: Content {
+final class Quiz: Content {
 
-    @NSManaged public var id: String
-    @NSManaged public var instructions: String?
-    @NSManaged public var lockSubmissionsAt: Date?
-    @NSManaged public var publishResultsAt: Date?
-    @NSManaged public var showWelcomePage: Bool
-    @NSManaged public var timeLimit: Int32
-    @NSManaged public var allowedAttempts: Int32
+    @NSManaged var id: String
+    @NSManaged var instructions: String?
+    @NSManaged var lockSubmissionsAt: Date?
+    @NSManaged var publishResultsAt: Date?
+    @NSManaged var showWelcomePage: Bool
+    @NSManaged var timeLimit: Int32
+    @NSManaged var allowedAttempts: Int32
     @NSManaged var questions: Set<QuizQuestion>
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Quiz> {
@@ -50,7 +50,7 @@ public final class Quiz: Content {
 
 extension Quiz: JSONAPIPullable {
 
-    public static var type: String {
+    static var type: String {
         return "quizzes"
     }
 

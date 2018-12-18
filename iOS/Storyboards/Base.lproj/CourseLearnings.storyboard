@@ -862,7 +862,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zsy-2v-rgP">
-                                                <rect key="frame" x="16" y="149" width="343" height="305.5"/>
+                                                <rect key="frame" x="16" y="138.5" width="343" height="326.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0C-PM-wzS">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="16"/>
@@ -888,44 +888,32 @@
                                                             <fragment content="#bc-ignore!"/>
                                                         </attributedString>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="h1v-Gw-34B">
-                                                        <rect key="frame" x="0.0" y="118.5" width="343" height="32"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Course item icons/quiz" translatesAutoresizingMaskIntoConstraints="NO" id="Oeb-7I-A1a">
-                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="32" id="xXX-I8-EFI"/>
-                                                                    <constraint firstAttribute="width" constant="32" id="ygv-lL-Gqy"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ungraded/bonus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o68-9c-PQk">
-                                                                <rect key="frame" x="40" y="0.0" width="211" height="32"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <attributedString key="userComments">
-                                                                    <fragment content="#bc-ignore!"/>
-                                                                </attributedString>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="max Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-5s-WRE">
-                                                                <rect key="frame" x="259" y="0.0" width="84" height="32"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <attributedString key="userComments">
-                                                                    <fragment content="#bc-ignore!"/>
-                                                                </attributedString>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ungraded/bonus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o68-9c-PQk">
+                                                        <rect key="frame" x="0.0" y="118.5" width="343" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!"/>
+                                                        </attributedString>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="max Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-5s-WRE">
+                                                        <rect key="frame" x="0.0" y="151" width="343" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="#bc-ignore!"/>
+                                                        </attributedString>
+                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This item requires you to submit something on an external platform.  You will need an internet connection to load the content." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FH-9A-EUU">
-                                                        <rect key="frame" x="0.0" y="162.5" width="343" height="99"/>
+                                                        <rect key="frame" x="0.0" y="183.5" width="343" height="99"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF0-gS-qZg" customClass="LoadingButton" customModule="iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="273.5" width="343" height="32"/>
+                                                        <rect key="frame" x="0.0" y="294.5" width="343" height="32"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                         <state key="normal" title="Start"/>
                                                     </button>
@@ -966,6 +954,7 @@
                         <outlet property="instructionsView" destination="mDG-hv-RPN" id="5he-uS-7a6"/>
                         <outlet property="itemTitleLabel" destination="s0C-PM-wzS" id="eMz-X6-DhT"/>
                         <outlet property="pointsView" destination="Td9-5s-WRE" id="KjM-w6-87w"/>
+                        <outlet property="startButton" destination="rF0-gS-qZg" id="EbS-Oj-j5P"/>
                         <outlet property="typeView" destination="o68-9c-PQk" id="nuu-NK-OWi"/>
                     </connections>
                 </viewController>
@@ -975,7 +964,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Course item icons/quiz" width="21" height="21"/>
         <image name="dots" width="28" height="28"/>
         <image name="downloaded" width="21" height="21"/>
     </resources>

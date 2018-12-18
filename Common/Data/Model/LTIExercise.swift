@@ -13,7 +13,19 @@ final public class LTIExercise: Content {
     @NSManaged public var instructions: String?
     @NSManaged public var weight: Int32
     @NSManaged public var allowedAttempts: Int32
-    @NSManaged public var lockSubmissionsAt: Date?
+    @NSManaged private var exerciseTypeValue: String?
+    @NSManaged public var launchURL: URL?
+
+    public var exerciseType: ExerciseType? {
+        guard let value = exerciseTypeValue else { return nil }
+        return ExerciseType.init(rawValue: value)
+    }
+
+    public enum ExerciseType : String {
+        case main = "main"
+        case bonus = "bonus"
+        case ungraded = "ungraded"
+    }
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LTIExercise> {
         return NSFetchRequest<LTIExercise>(entityName: "LTIExercise")
@@ -32,7 +44,8 @@ extension LTIExercise: JSONAPIPullable {
         self.instructions = try attributes.value(for: "instructions")
         self.weight = try attributes.value(for: "weight")
         self.allowedAttempts = try attributes.value(for: "allowed_attempts")
-        self.lockSubmissionsAt = try attributes.value(for: "lock_submissions_at")
+        self.exerciseTypeValue = try attributes.value(for: "exercise_type")
+        self.launchURL = try attributes.value(for: "launch_url")
     }
 
 }

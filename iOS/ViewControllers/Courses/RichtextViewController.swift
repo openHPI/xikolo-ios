@@ -11,6 +11,7 @@ class RichtextViewController: UIViewController {
 
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var textView: UITextView!
+    @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint!
 
     private var courseItemObserver: ManagedObjectObserver?
 
@@ -31,6 +32,15 @@ class RichtextViewController: UIViewController {
         self.textView.delegate = self
         self.textView.textContainerInset = UIEdgeInsets.zero
         self.textView.textContainer.lineFragmentPadding = 0
+
+        if #available(iOS 11, *) {
+            // nothing to do here
+        } else {
+            if let navigationBarHeight = self.navigationController?.navigationBar.frame.height {
+                self.scrollViewTopConstraint.constant = navigationBarHeight
+            }
+
+        }
 
         self.updateView()
 

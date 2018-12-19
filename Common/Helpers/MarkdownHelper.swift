@@ -38,14 +38,4 @@ public enum MarkdownHelper {
         }
     }
 
-    public static func trueScheme(for url: URL) -> URL? {
-        guard url.host != nil else {
-            return Routes.base.appendingPathComponent(url.absoluteString)
-        }
-
-        guard url.scheme?.hasPrefix("http") ?? false else { return nil }
-
-        return url
-    }
-
 }

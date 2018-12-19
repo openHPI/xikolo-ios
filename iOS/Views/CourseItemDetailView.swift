@@ -147,6 +147,14 @@ class DetailedDataView: UIStackView {
         return formatter
     }()
 
+    private static let pointsFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.decimalSeparator = "."
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+
     private lazy var progressView: CircularProgressView = {
         let progress = CircularProgressView()
         progress.backgroundColor = .white
@@ -258,7 +266,9 @@ class DetailedDataView: UIStackView {
             downloaded = downloadState == .downloaded
         case let .points(maxPoints: maxPoints):
             let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
-            label.text = String.localizedStringWithFormat(format, maxPoints)
+            let number = NSNumber(value: maxPoints)
+            let formattedNumber = DetailedDataView.pointsFormatter.string(from: number)
+            label.text = formattedNumber.flatMap { String.localizedStringWithFormat(format, $0) }
             downloaded = false
         }
 

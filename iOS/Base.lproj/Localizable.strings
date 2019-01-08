@@ -63,7 +63,7 @@
 "course-item.combined-download-action.stop-download.title" = "Stop all downloads";
 
 /* maximum points for course item */
-"course-item.max-points" = "%.1f points";
+"course-item.max-points" = "%@ points";
 
 /* title to cancel alert */
 "course-item.slides-alert.open-action.title" = "Open slides";

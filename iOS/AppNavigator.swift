@@ -33,7 +33,7 @@ enum AppNavigator {
     }
 
     static func handle(url: URL, on sourceViewController: UIViewController) -> Bool {
-        guard let url = MarkdownHelper.trueScheme(for: url) else {
+        guard let url = self.sanitizedURL(for: url) else {
             log.error("URL in Markdown or Markdownparser is broken")
             return false
         }
@@ -68,6 +68,20 @@ enum AppNavigator {
         default:
             return false
         }
+    }
+
+    private static func sanitizedURL(for url: URL) -> URL? {
+        guard url.host != nil else {
+            // make relative URL relative to base route
+            return Routes.base.appendingPathComponent(url.absoluteString)
+        }
+
+        guard url.scheme?.hasPrefix("http") ?? false else {
+            // don't allow HTTP
+            return nil
+        }
+
+        return url
     }
 
     private static func handleCourseURL(_ url: URL) -> Bool {

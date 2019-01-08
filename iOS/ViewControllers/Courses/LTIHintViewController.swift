@@ -47,6 +47,7 @@ class LTIHintViewController: UIViewController {
                 self.instructionsView.isHidden = false
             }
         }
+
         switch self.courseItem.exerciseType {
         case "main"?:
             self.typeView.text = NSLocalizedString("course.item.exercise-type.main", comment: "course item main type")
@@ -57,7 +58,6 @@ class LTIHintViewController: UIViewController {
         default:
             self.typeView.isHidden = true
         }
-
 
         let maxPoints = self.courseItem?.maxPoints
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")

@@ -7,7 +7,7 @@ import CoreData
 import Foundation
 import SyncEngine
 
-final public class LTIExercise: Content {
+public final class LTIExercise: Content {
 
     @NSManaged public var id: String
     @NSManaged public var instructions: String?

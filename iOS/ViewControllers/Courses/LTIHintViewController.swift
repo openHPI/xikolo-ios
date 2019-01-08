@@ -38,23 +38,24 @@ class LTIHintViewController: UIViewController {
     }
 
     func updateView() {
+        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
+        self.itemTitleLabel.text = self.courseItem?.title
+        self.startButton.tintColor = Brand.default.colors.primary
+        if let markdown = ltiExercise.instructions {
+            MarkdownHelper.attributedString(for: markdown).onSuccess(DispatchQueue.main.context) { attributedString in
+                self.instructionsView.attributedText = attributedString
+                self.instructionsView.isHidden = false
+            }
+        }
+        self.typeView.text = self.courseItem.exerciseType // TODO: Translate
+
+
         let maxPoints = self.courseItem?.maxPoints
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
 
         self.pointsView.text = maxPoints.flatMap({ maxPoints -> String? in
             String.localizedStringWithFormat(format, maxPoints)
         })
-
-        guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
-        self.itemTitleLabel.text = self.courseItem?.title
-        self.startButton.tintColor = Brand.default.colors.primary
-        //self.startButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        self.instructionsView.text = ltiExercise.instructions
-        //self.typeView = ltiExercise.type TODO with new API
-        //LTIExercise.ExerciseType
-        self.typeView.text = ltiExercise.exerciseType?.rawValue
-        //self.pointsView.text = self.courseItem?.maxPoints
-        //maxPoints.flatMap(String.localizedStringWithFormat(format, $0))
     }
 
     @IBAction private func startItem() {

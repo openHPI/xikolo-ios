@@ -47,7 +47,16 @@ class LTIHintViewController: UIViewController {
                 self.instructionsView.isHidden = false
             }
         }
-        self.typeView.text = self.courseItem.exerciseType // TODO: Translate
+        switch self.courseItem.exerciseType {
+        case "main"?:
+            self.typeView.text = NSLocalizedString("course.item.exercise-type.main", comment: "course item main type")
+        case "bonus"?:
+            self.typeView.text = NSLocalizedString("course.item.exercise-type.bonus", comment: "course item bonus type")
+        case "ungraded"?:
+            self.typeView.text = NSLocalizedString("course.item.exercise-type.ungraded", comment: "course item ungraded type")
+        default:
+            self.typeView.isHidden = true
+        }
 
 
         let maxPoints = self.courseItem?.maxPoints
@@ -58,13 +67,12 @@ class LTIHintViewController: UIViewController {
         })
     }
 
-    @IBAction private func startItem() {
-        guard let item = self.courseItem else { return }
-
-        //self.perf
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let item = self.courseItem, let ltiExercise = item.content as? LTIExercise else { return }
+        if let typedInfo = R.segue.ltiHintViewController.openLTIURL(segue: segue) {
+            typedInfo.destination.url = ltiExercise.launchURL
+        }
     }
-
 }
 
 extension LTIHintViewController: CourseItemContentViewController {

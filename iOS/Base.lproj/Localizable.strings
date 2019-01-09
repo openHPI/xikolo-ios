@@ -137,6 +137,15 @@
 /* the current state of a certificate */
 "course.certificates.not-enrolled" = "not enrolled";
 
+/* course item bonus type */
+"course.item.exercise-type.bonus" = "bonus exercise";
+
+/* course item main type */
+"course.item.exercise-type.main" = "graded exercise";
+
+/* course item ungraded type */
+"course.item.exercise-type.ungraded" = "ungraded exercise";
+
 /* action text for course overview with no courses */
 "dashboard.course-overview.no-courses.action" = "Discover available courses";
 

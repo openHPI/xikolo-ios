@@ -79,6 +79,8 @@ class CourseItemViewController: UIPageViewController {
             return R.storyboard.courseLearnings.videoViewController()
         case "rich_text"?:
             return R.storyboard.courseLearnings.richtextViewController()
+        case "lti_exercise"?:
+            return R.storyboard.courseLearnings.ltiHintViewController()
         default:
             return R.storyboard.courseLearnings.courseItemWebViewController()
         }

@@ -8,6 +8,14 @@ import UIKit
 
 class LTIHintViewController: UIViewController {
 
+    private static let pointsFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.decimalSeparator = "."
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }()
+
     @IBOutlet private weak var itemTitleLabel: UILabel!
     @IBOutlet private weak var instructionsView: UILabel!
     @IBOutlet private weak var typeView: UILabel!
@@ -33,14 +41,15 @@ class LTIHintViewController: UIViewController {
         super.viewDidLoad()
 
         self.updateView()
-
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }
 
     func updateView() {
         guard let ltiExercise = self.courseItem?.content as? LTIExercise else { return }
+
         self.itemTitleLabel.text = self.courseItem?.title
-        self.startButton.tintColor = Brand.default.colors.primary
+        self.startButton.backgroundColor = Brand.default.colors.primary
+
         if let markdown = ltiExercise.instructions {
             MarkdownHelper.attributedString(for: markdown).onSuccess(DispatchQueue.main.context) { attributedString in
                 self.instructionsView.attributedText = attributedString
@@ -59,12 +68,9 @@ class LTIHintViewController: UIViewController {
             self.typeView.isHidden = true
         }
 
-        let maxPoints = self.courseItem?.maxPoints
         let format = NSLocalizedString("course-item.max-points", comment: "maximum points for course item")
-
-        self.pointsView.text = maxPoints.flatMap({ maxPoints -> String? in
-            String.localizedStringWithFormat(format, maxPoints)
-        })
+        let number = NSNumber(value: self.courseItem.maxPoints)
+        self.pointsView.text = LTIHintViewController.pointsFormatter.string(from: number).flatMap { String.localizedStringWithFormat(format, $0) }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

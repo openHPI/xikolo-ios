@@ -29,14 +29,11 @@
 /* Class = "UIButton"; normalTitle = "try again"; ObjectID = "yRv-HS-VLP"; */
 "yRv-HS-VLP.normalTitle" = "erneut versuchen";
 
-/* Class = "UILabel"; text = "This item requires you to submit something on an external platform.  You will need an internet connection to load the content."; ObjectID = "7FH-9A-EUU"; */
-"7FH-9A-EUU.text" = "Für diese Aufgabe musst du etwas auf einer externen Plattform einreichen. Dafür brauchst du eine Internetverbindung.";
+/* Class = "UILabel"; text = "You will be redirected to an external tool which may not work great on mobile devices. If you experience any issues, please consider using the web application."; ObjectID = "7FH-9A-EUU"; */
+"7FH-9A-EUU.text" = "Es wird eine externe Anwendung geöffnet, das nicht für mobile Geräte optimiert sein könnte. Bitte benutze die Webanwendung, falls Fehler auftreten sollten.";
 
 /* Class = "UILabel"; text = "Loading instructions ..."; ObjectID = "mDG-hv-RPN"; */
 "mDG-hv-RPN.text" = "Anweisungen laden...";
-
-/* Class = "UILabel"; text = "Instructions"; ObjectID = "mwA-Xn-NdU"; */
-"mwA-Xn-NdU.text" = "Anweisungen";
 
 /* Class = "UIButton"; normalTitle = "Launch Exercise Tool"; ObjectID = "rF0-gS-qZg"; */
 "rF0-gS-qZg.normalTitle" = "Aufgabe starten";

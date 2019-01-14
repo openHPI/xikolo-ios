@@ -1681,6 +1681,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
 			);
 			name = "Run R.swift";
 			outputPaths = (

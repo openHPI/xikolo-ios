@@ -35,6 +35,10 @@ class CourseDetailViewController: UIViewController {
         }
     }
 
+    @IBAction func playTeaser(_ sender: Any) {
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

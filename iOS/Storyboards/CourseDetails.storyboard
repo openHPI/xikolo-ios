@@ -174,19 +174,39 @@
                                                     </fragment>
                                                 </attributedString>
                                             </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFq-yS-eqm">
+                                                <rect key="frame" x="0.0" y="8" width="375" height="128"/>
+                                                <accessibility key="accessibilityConfiguration" label="Play course teaser video"/>
+                                                <connections>
+                                                    <action selector="playTeaser:" destination="HmT-zz-ZfW" eventType="touchUpInside" id="GV1-iq-8vn"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-LV-ifB">
+                                                <rect key="frame" x="315" y="16" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="cfC-NC-HEq"/>
+                                                    <constraint firstAttribute="height" constant="44" id="tdZ-XH-ftv"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="f38-k8-QXv" secondAttribute="trailing" id="16n-JB-vX7"/>
                                             <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leading" id="4Un-7R-rJ1"/>
+                                            <constraint firstItem="NFq-yS-eqm" firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="F4f-Fn-Ebh"/>
+                                            <constraint firstItem="JSj-LV-ifB" firstAttribute="trailing" secondItem="bWt-KQ-kUh" secondAttribute="trailingMargin" id="IFW-Ua-p6Q"/>
+                                            <constraint firstItem="JSj-LV-ifB" firstAttribute="top" secondItem="NFq-yS-eqm" secondAttribute="topMargin" id="JzR-dW-ztZ"/>
                                             <constraint firstItem="yCC-vf-4Pk" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="LpG-px-jRY"/>
+                                            <constraint firstItem="NFq-yS-eqm" firstAttribute="bottom" secondItem="d4b-Ar-94F" secondAttribute="bottom" id="MRq-gh-EGj"/>
                                             <constraint firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="NKn-rm-ONe"/>
                                             <constraint firstItem="ceU-6J-dNP" firstAttribute="top" secondItem="Kg8-BI-OgB" secondAttribute="bottom" constant="16" id="O0h-VF-Iu9"/>
+                                            <constraint firstItem="NFq-yS-eqm" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="top" id="RdT-WM-Vir"/>
                                             <constraint firstItem="yCC-vf-4Pk" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="topMargin" id="Wb4-9s-QlN"/>
                                             <constraint firstItem="f38-k8-QXv" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="XD8-IA-ZBW"/>
                                             <constraint firstItem="Kg8-BI-OgB" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="Yrn-YX-psz"/>
                                             <constraint firstItem="ceU-6J-dNP" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="bQf-3L-90u"/>
                                             <constraint firstAttribute="bottom" secondItem="f38-k8-QXv" secondAttribute="bottom" constant="20" symbolic="YES" id="ew5-ic-5wu"/>
+                                            <constraint firstItem="NFq-yS-eqm" firstAttribute="leading" secondItem="d4b-Ar-94F" secondAttribute="leading" id="h6i-Pa-JMS"/>
                                             <constraint firstItem="d4b-Ar-94F" firstAttribute="top" secondItem="bWt-KQ-kUh" secondAttribute="topMargin" id="i4Y-ou-QhK"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="ceU-6J-dNP" secondAttribute="trailing" id="lYP-T5-kAq"/>
                                             <constraint firstItem="f38-k8-QXv" firstAttribute="top" secondItem="ceU-6J-dNP" secondAttribute="bottom" constant="12" id="r7C-0M-P9l"/>

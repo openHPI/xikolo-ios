@@ -4,7 +4,7 @@ inhibit_all_warnings!
 project 'xikolo-ios', 'openHPI-iOS-Debug' => :debug, 'openSAP-iOS-Debug' => :debug, 'openWHO-iOS-Debug' => :debug, 'moocHOUSE-iOS-Debug' => :debug
 
 pod 'BartyCrouch', :git => 'https://github.com/Flinesoft/BartyCrouch.git', :tag => '3.13.0'
-pod 'R.swift', '5.0.0.alpha.3'
+pod 'R.swift', '~> 5.0'
 pod 'SwiftLint', '~> 0.22'
 
 def firebase_pods

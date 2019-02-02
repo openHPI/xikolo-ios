@@ -28,6 +28,7 @@ public final class Course: NSManagedObject {
     @NSManaged public var enrollable: Bool
     @NSManaged public var external: Bool
     @NSManaged public var lastVisited: Date?
+    @NSManaged public var teaserStream: VideoStream?
 
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var enrollment: Enrollment?
@@ -97,6 +98,7 @@ extension Course: JSONAPIPullable {
         self.hidden = try attributes.value(for: "hidden")
         self.enrollable = try attributes.value(for: "enrollable")
         self.external = try attributes.value(for: "external")
+        self.teaserStream = try attributes.value(for: "teaser_stream")
 
         self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
 

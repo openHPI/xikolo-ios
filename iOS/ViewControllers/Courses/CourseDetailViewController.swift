@@ -3,8 +3,10 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import AVKit
 import BrightFutures
 import Common
+import CoreGraphics
 import SDWebImage
 import UIKit
 
@@ -20,6 +22,8 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var playView: UIVisualEffectView!
+    @IBOutlet private weak var playTeaserButton: UIButton!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -36,7 +40,13 @@ class CourseDetailViewController: UIViewController {
     }
 
     @IBAction func playTeaser(_ sender: Any) {
-        
+        guard let url = course.teaserStream?.hlsURL else { return }
+        //let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+        let player = AVPlayer(url: url)
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.playTeaserButton.frame
+        self.view.layer.addSublayer(playerLayer)
+        player.play()
     }
 
     override func viewDidLoad() {
@@ -63,6 +73,10 @@ class CourseDetailViewController: UIViewController {
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
+
+        CourseHelper.syncCourse(course).onSuccess { _ in
+            
+        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -82,6 +96,22 @@ class CourseDetailViewController: UIViewController {
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
+        let origin = self.imageView.frame - self.playView.frame
+        let region = CGRect(origin: <#T##CGPoint#>, size: self.playView.frame + 
+        print(self.imageView.image?.averageColor())
+
+        if course.teaserStream != nil {
+            if self.playView.isHidden {
+                self.playView.alpha = 0
+                self.playView.isHidden = false
+
+                UIView.animate(withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                    self.playView.alpha = 1
+                }, completion: nil)
+            }
+        } else {
+            self.playView.isHidden = true
+        }
 
         if let description = self.course.courseDescription ?? self.course.abstract {
             MarkdownHelper.attributedString(for: description).onSuccess(DispatchQueue.main.context) { attributedString in

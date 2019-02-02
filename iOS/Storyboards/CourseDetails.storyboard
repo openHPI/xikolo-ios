@@ -181,23 +181,65 @@
                                                     <action selector="playTeaser:" destination="HmT-zz-ZfW" eventType="touchUpInside" id="GV1-iq-8vn"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-LV-ifB">
-                                                <rect key="frame" x="315" y="16" width="44" height="44"/>
+                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0e-hi-OYV">
+                                                <rect key="frame" x="323" y="16" width="44" height="44"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ahQ-Gk-BQZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLm-bX-xdU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WK5-yW-qsb">
+                                                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-LV-ifB">
+                                                                        <rect key="frame" x="6" y="6" width="32" height="32"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="32" id="cfC-NC-HEq"/>
+                                                                            <constraint firstAttribute="height" constant="32" id="tdZ-XH-ftv"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="JSj-LV-ifB" firstAttribute="centerX" secondItem="WK5-yW-qsb" secondAttribute="centerX" id="7YU-nI-UBx"/>
+                                                                    <constraint firstItem="JSj-LV-ifB" firstAttribute="centerY" secondItem="WK5-yW-qsb" secondAttribute="centerY" id="bG5-zw-Y7y"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <vibrancyEffect>
+                                                                <blurEffect style="extraLight"/>
+                                                            </vibrancyEffect>
+                                                        </visualEffectView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="LLm-bX-xdU" firstAttribute="leading" secondItem="ahQ-Gk-BQZ" secondAttribute="leading" id="PZB-bQ-Efr"/>
+                                                        <constraint firstAttribute="bottom" secondItem="LLm-bX-xdU" secondAttribute="bottom" id="e6j-jE-bSM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="LLm-bX-xdU" secondAttribute="trailing" id="kF6-FG-h0U"/>
+                                                        <constraint firstItem="LLm-bX-xdU" firstAttribute="top" secondItem="ahQ-Gk-BQZ" secondAttribute="top" id="vfs-BH-RtW"/>
+                                                    </constraints>
+                                                </view>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="44" id="cfC-NC-HEq"/>
-                                                    <constraint firstAttribute="height" constant="44" id="tdZ-XH-ftv"/>
+                                                    <constraint firstAttribute="height" constant="44" id="QWx-o9-zRP"/>
+                                                    <constraint firstAttribute="width" constant="44" id="dEr-cj-7q3"/>
                                                 </constraints>
-                                            </imageView>
+                                                <blurEffect style="extraLight"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </visualEffectView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="f38-k8-QXv" secondAttribute="trailing" id="16n-JB-vX7"/>
+                                            <constraint firstItem="d0e-hi-OYV" firstAttribute="trailing" secondItem="NFq-yS-eqm" secondAttribute="trailingMargin" id="1nm-Mf-Aqz"/>
                                             <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leading" id="4Un-7R-rJ1"/>
                                             <constraint firstItem="NFq-yS-eqm" firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="F4f-Fn-Ebh"/>
-                                            <constraint firstItem="JSj-LV-ifB" firstAttribute="trailing" secondItem="bWt-KQ-kUh" secondAttribute="trailingMargin" id="IFW-Ua-p6Q"/>
-                                            <constraint firstItem="JSj-LV-ifB" firstAttribute="top" secondItem="NFq-yS-eqm" secondAttribute="topMargin" id="JzR-dW-ztZ"/>
                                             <constraint firstItem="yCC-vf-4Pk" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="LpG-px-jRY"/>
                                             <constraint firstItem="NFq-yS-eqm" firstAttribute="bottom" secondItem="d4b-Ar-94F" secondAttribute="bottom" id="MRq-gh-EGj"/>
+                                            <constraint firstItem="d0e-hi-OYV" firstAttribute="top" secondItem="NFq-yS-eqm" secondAttribute="topMargin" id="MUN-0x-o3M"/>
                                             <constraint firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="NKn-rm-ONe"/>
                                             <constraint firstItem="ceU-6J-dNP" firstAttribute="top" secondItem="Kg8-BI-OgB" secondAttribute="bottom" constant="16" id="O0h-VF-Iu9"/>
                                             <constraint firstItem="NFq-yS-eqm" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="top" id="RdT-WM-Vir"/>
@@ -272,6 +314,8 @@
                         <outlet property="enrollmentButton" destination="ceU-6J-dNP" id="89a-80-Bxe"/>
                         <outlet property="imageView" destination="d4b-Ar-94F" id="Nnm-kT-fiS"/>
                         <outlet property="languageView" destination="3cX-gd-UHs" id="N9U-9N-r72"/>
+                        <outlet property="playTeaserButton" destination="NFq-yS-eqm" id="QcO-hd-N1f"/>
+                        <outlet property="playView" destination="d0e-hi-OYV" id="5g4-cT-EKX"/>
                         <outlet property="scrollView" destination="MWe-9L-XSn" id="mKh-Ik-PH7"/>
                         <outlet property="statusLabel" destination="hft-pf-uVT" id="ZOY-BP-Q4x"/>
                         <outlet property="statusView" destination="yCC-vf-4Pk" id="dPf-Cp-RUc"/>
@@ -285,4 +329,7 @@
             <point key="canvasLocation" x="2909.5999999999999" y="-188.45577211394306"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play" width="100" height="100"/>
+    </resources>
 </document>

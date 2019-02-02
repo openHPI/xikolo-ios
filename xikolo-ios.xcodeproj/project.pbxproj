@@ -260,6 +260,7 @@
 		700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C121A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift */; };
 		700398C421A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700398C321A998B600FE9D81 /* EnrollmentHelper+FetchRequests.swift */; };
 		7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7007E4122133FFB6005AC7A6 /* DownloadedContentListViewController.swift */; };
+		70F3CCE821EE102A003E8E36 /* UIImage+averageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F3CCE721EE102A003E8E36 /* UIImage+averageColor.swift */; };
 		B4E079EB218791A600EA53F5 /* CertificateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E079EA218791A600EA53F5 /* CertificateCell.xib */; };
 		B4E079ED21879C9200EA53F5 /* CertificateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E079EC21879C9200EA53F5 /* CertificateCell.swift */; };
 		F88ADBF4AC545211C7BA4AF5 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58514D98E3A98476D78CB780 /* Pods_iOS.framework */; };
@@ -578,6 +579,7 @@
 		70A830B11EC7C2560029235D /* xikolo 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 3.xcdatamodel"; sourceTree = "<group>"; };
 		70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
 		70F379CE205B643400149C3B /* CertificatesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificatesListViewController.swift; sourceTree = "<group>"; };
+		70F3CCE721EE102A003E8E36 /* UIImage+averageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+averageColor.swift"; sourceTree = "<group>"; };
 		70F8C27D1F24C6010091F202 /* xikolo 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 4.xcdatamodel"; sourceTree = "<group>"; };
 		721CB820BE8AA15350FE4192 /* Pods-Common-Tests.moochouse-ios-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.moochouse-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-Common-Tests/Pods-Common-Tests.moochouse-ios-release.xcconfig"; sourceTree = "<group>"; };
 		7E4F62A61B3C2ED1006FCAD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1245,6 +1247,7 @@
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */,
+				70F3CCE721EE102A003E8E36 /* UIImage+averageColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1940,6 +1943,7 @@
 				50CF1F8020DCDBFC0011BFE9 /* XikoloNavigationController.swift in Sources */,
 				50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */,
 				700398C221A96E4F00FE9D81 /* AvailableCertificatesListViewController.swift in Sources */,
+				70F3CCE821EE102A003E8E36 /* UIImage+averageColor.swift in Sources */,
 				50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */,
 				50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */,
 				508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */,

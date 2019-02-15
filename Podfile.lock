@@ -77,6 +77,7 @@ PODS:
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
+  - SimulatorStatusMagic (2.4.1)
   - SnapKit (4.2.0)
   - SwiftLint (0.29.3)
   - SyncEngine (0.1.0):
@@ -97,6 +98,7 @@ DEPENDENCIES:
   - R.swift (~> 5.0)
   - ReachabilitySwift (~> 4.1)
   - SDWebImage (~> 4.2)
+  - SimulatorStatusMagic (~> 2.1)
   - SwiftLint (~> 0.22)
   - SyncEngine (from `./Frameworks/SyncEngine`)
 
@@ -122,6 +124,7 @@ SPEC REPOS:
     - ReachabilitySwift
     - Result
     - SDWebImage
+    - SimulatorStatusMagic
     - SnapKit
     - SwiftLint
 
@@ -169,10 +172,11 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   Result: a6e784bebf48b471d59cddc1adb81f41f678c487
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
   SyncEngine: 4fa00bd5bb9ed38e78e5e3ecec1b44f0db6732d1
 
-PODFILE CHECKSUM: 53241d27164bbb10a6f63573cfb36e13adce5699
+PODFILE CHECKSUM: 9f4ec2b803c83df214bc4638079252e3709502ae
 
 COCOAPODS: 1.5.3

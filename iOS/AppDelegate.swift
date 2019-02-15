@@ -9,6 +9,10 @@ import Firebase
 import SDWebImage
 import UIKit
 
+#if DEBUG
+import SimulatorStatusMagic
+#endif
+
 let log = Logger(subsystem: "de.xikolo.iOS", category: "iOS")
 
 @UIApplicationMain
@@ -94,6 +98,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             SDWebImageDownloader.shared().username = "open"
             SDWebImageDownloader.shared().password = "SAP"
         }
+
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-cleanStatusBar") {
+            log.info("Setup clean status bar")
+            SDStatusBarManager.sharedInstance().enableOverrides()
+        }
+        #endif
 
         return true
     }

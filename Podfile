@@ -33,6 +33,7 @@ target 'iOS' do
     firebase_pods
     pod 'BMPlayer', :git => 'https://github.com/openHPI/bmplayer.git', :commit => '3cf7dd96b031172f2290da09e8bffbc2a3bade4e'
     pod 'DZNEmptyDataSet', '~> 1.8'
+    pod 'SimulatorStatusMagic', '~> 2.1', :configurations => ['openHPI-iOS-Debug', 'openSAP-iOS-Debug', 'openWHO-iOS-Debug', 'moocHOUSE-iOS-Debug']
 end
 
 post_install do |installer|

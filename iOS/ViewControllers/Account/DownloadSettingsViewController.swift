@@ -77,14 +77,14 @@ class DownloadSettingsViewController: UITableViewController {
             let newVideoQuality = VideoQuality.orderedValues[indexPath.row]
             if oldVideoQuality != newVideoQuality {
                 UserDefaults.standard.videoQualityForDownload = newVideoQuality
-                newRow = VideoQuality.orderedValues.index(of: oldVideoQuality)
+                newRow = VideoQuality.orderedValues.firstIndex(of: oldVideoQuality)
             }
         case 1:
             let oldPreloadOption = UserDefaults.standard.contentPreloadSetting
             let newPreloadOption = CourseItemContentPreloadSetting.orderedValues[indexPath.row]
             if oldPreloadOption != newPreloadOption {
                 UserDefaults.standard.contentPreloadSetting = newPreloadOption
-                newRow = CourseItemContentPreloadSetting.orderedValues.index(of: oldPreloadOption)
+                newRow = CourseItemContentPreloadSetting.orderedValues.firstIndex(of: oldPreloadOption)
             }
         default:
             break

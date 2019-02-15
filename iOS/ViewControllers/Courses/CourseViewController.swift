@@ -80,7 +80,8 @@ class CourseViewController: UIViewController {
         self.titleView.text = self.course.title
 
         if let titleView = self.navigationItem.titleView, let text = self.titleView.text {
-            let titleWidth = NSString(string: text).size(withAttributes: [NSAttributedString.Key.font: self.titleView.font]).width
+            let font = self.titleView.font ?? UIFont.systemFont(ofSize: 14, weight: .medium)
+            let titleWidth = NSString(string: text).size(withAttributes: [.font: font]).width
             var frame = titleView.frame
             frame.size.width = titleWidth + 2
             titleView.frame = frame
@@ -204,7 +205,7 @@ extension CourseViewController: UIPageViewControllerDataSource {
     private var previousAvailableArea: CourseArea? {
         let areas = self.accessibleAreas
         guard let currentArea = self.area else { return nil }
-        guard let index = areas.index(of: currentArea) else { return nil }
+        guard let index = areas.firstIndex(of: currentArea) else { return nil }
         let indexBefore = areas.index(before: index)
         return areas[safe: indexBefore]
     }
@@ -212,7 +213,7 @@ extension CourseViewController: UIPageViewControllerDataSource {
     private var nextAvailableArea: CourseArea? {
         let areas = self.accessibleAreas
         guard let currentArea = self.area else { return nil }
-        guard let index = areas.index(of: currentArea) else { return nil }
+        guard let index = areas.firstIndex(of: currentArea) else { return nil }
         let indexAfter = areas.index(after: index)
         return areas[safe: indexAfter]
     }

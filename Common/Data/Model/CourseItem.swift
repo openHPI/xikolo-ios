@@ -39,7 +39,7 @@ public final class CourseItem: NSManagedObject {
 
     private func neighbor(forwards directionForwards: Bool) -> CourseItem? {
         guard let items = self.section?.itemsSorted else { return nil }
-        guard let currentIndex = items.index(of: self) else { return nil }
+        guard let currentIndex = items.firstIndex(of: self) else { return nil }
         let nextIndex = directionForwards ? items.index(after: currentIndex) : items.index(before: currentIndex)
         return items[safe: nextIndex]
     }

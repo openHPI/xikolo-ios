@@ -41,12 +41,12 @@ class CourseDetailViewController: UIViewController {
 
     @IBAction func playTeaser(_ sender: Any) {
         guard let url = course.teaserStream?.hlsURL else { return }
-        //let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
         let player = AVPlayer(url: url)
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = self.playTeaserButton.frame
-        self.view.layer.addSublayer(playerLayer)
-        player.play()
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.present(playerViewController, animated: true) {
+            playerViewController.player!.play()
+        }
     }
 
     override func viewDidLoad() {
@@ -96,18 +96,21 @@ class CourseDetailViewController: UIViewController {
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
-        let origin = self.imageView.frame - self.playView.frame
-        let region = CGRect(origin: <#T##CGPoint#>, size: self.playView.frame + 
-        print(self.imageView.image?.averageColor())
+//        let origin = self.imageView.frame - self.playView.frame
+//        let region = CGRect(origin: , size: self.playView.frame +
+//        print(self.imageView.image?.averageColor())
 
-        if course.teaserStream != nil {
+        if course.teaserStream?.hlsURL != nil {
             if self.playView.isHidden {
-                self.playView.alpha = 0
-                self.playView.isHidden = false
+//                self.playView.alpha = 0
+//                self.playView.isHidden = false
 
-                UIView.animate(withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-                    self.playView.alpha = 1
-                }, completion: nil)
+                UIView.transition(with: self.playView, duration: 0.25, options: .curveEaseInOut, animations: {
+                    self.playView.isHidden = false
+                } )
+//                UIView.animate(withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+//                    self.playView.alpha = 1
+//                }, completion: nil)
             }
         } else {
             self.playView.isHidden = true

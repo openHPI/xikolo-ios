@@ -232,7 +232,7 @@ public extension SyncEngine {
                 let id = try data.value(for: Resource.resourceKeyAttribute) as String
                 if var existingObject = existingObjects.first(where: { $0.id == id }) {
                     try existingObject.update(from: data, with: context)
-                    if let index = existingObjects.index(of: existingObject) {
+                    if let index = existingObjects.firstIndex(of: existingObject) {
                         existingObjects.remove(at: index)
                     }
 

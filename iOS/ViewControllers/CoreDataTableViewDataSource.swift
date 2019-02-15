@@ -85,9 +85,9 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
             self.tableView?.insertSections(sectionIndex, with: .fade)
         case .delete:
             self.tableView?.deleteSections(sectionIndex, with: .fade)
-        case .move:
+        case .move, .update:
             break
-        case .update:
+        @unknown default:
             break
         }
     }
@@ -112,6 +112,8 @@ class CoreDataTableViewDataSource<Delegate: CoreDataTableViewDataSourceDelegate>
             let newIndexPath = newIndexPath.require(hint: "newIndexPath is required for table view cell move")
             self.tableView?.deleteRows(at: [indexPath], with: .fade)
             self.tableView?.insertRows(at: [newIndexPath], with: .fade)
+        @unknown default:
+            break
         }
     }
 

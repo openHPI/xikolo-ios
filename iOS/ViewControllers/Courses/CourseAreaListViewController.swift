@@ -87,7 +87,7 @@ class CourseAreaListViewController: UICollectionViewController {
     func refresh(animated: Bool) {
         self.selectedIndexPath = {
             guard let content = self.delegate?.selectedArea else { return nil }
-            guard let index = self.delegate?.accessibleAreas.index(of: content) else { return nil }
+            guard let index = self.delegate?.accessibleAreas.firstIndex(of: content) else { return nil }
             return IndexPath(item: index, section: 0)
         }()
     }

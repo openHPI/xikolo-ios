@@ -55,7 +55,7 @@ class VideoStreamingSettingsViewController: UITableViewController {
             // update preferred video quality
             UserDefaults.standard[keyPath: videoQualityKeyPath] = newVideoQuality
 
-            if let oldVideoQualityRow = VideoQuality.orderedValues.index(of: oldVideoQuality) {
+            if let oldVideoQualityRow = VideoQuality.orderedValues.firstIndex(of: oldVideoQuality) {
                 let oldVideoQualityIndexPath = IndexPath(row: oldVideoQualityRow, section: indexPath.section)
                 tableView.reloadRows(at: [oldVideoQualityIndexPath, indexPath], with: .none)
             } else {

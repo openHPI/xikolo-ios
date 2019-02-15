@@ -5,7 +5,6 @@
 
 import Common
 import MessageUI
-import Result
 import SafariServices
 import SDWebImage
 import UIKit

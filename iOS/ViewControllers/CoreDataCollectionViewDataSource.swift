@@ -161,6 +161,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             }))
         case .move, .update:
             break
+        @unknown default:
+            break
         }
     }
 
@@ -185,6 +187,8 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
             let convertedIndexPath = self.convert(indexPath, in: controller, for: type)
             let convertedNewIndexPath = self.convert(newIndexPath, in: controller, for: type)
             self.moveItem(from: convertedIndexPath, to: convertedNewIndexPath)
+        @unknown default:
+            break
         }
     }
 

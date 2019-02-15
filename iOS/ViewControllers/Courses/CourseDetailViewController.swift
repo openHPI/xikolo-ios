@@ -44,8 +44,8 @@ class CourseDetailViewController: UIViewController {
         let player = AVPlayer(url: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
-        self.present(playerViewController, animated: true) {
-            playerViewController.player!.play()
+        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
+            playerViewController.player?.play()
         }
     }
 
@@ -96,25 +96,9 @@ class CourseDetailViewController: UIViewController {
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
-//        let origin = self.imageView.frame - self.playView.frame
-//        let region = CGRect(origin: , size: self.playView.frame +
-//        print(self.imageView.image?.averageColor())
-
-        if course.teaserStream?.hlsURL != nil {
-            if self.playView.isHidden {
-//                self.playView.alpha = 0
-//                self.playView.isHidden = false
-
-                UIView.transition(with: self.playView, duration: 0.25, options: .curveEaseInOut, animations: {
-                    self.playView.isHidden = false
-                } )
-//                UIView.animate(withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-//                    self.playView.alpha = 1
-//                }, completion: nil)
-            }
-        } else {
-            self.playView.isHidden = true
-        }
+        UIView.transition(with: self.playView, duration: 0.25, options: .curveEaseInOut, animations: {
+            self.playView.isHidden = self.course.teaserStream?.hlsURL == nil
+        } )
 
         if let description = self.course.courseDescription ?? self.course.abstract {
             MarkdownHelper.attributedString(for: description).onSuccess(DispatchQueue.main.context) { attributedString in

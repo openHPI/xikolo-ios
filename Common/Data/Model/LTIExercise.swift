@@ -7,13 +7,13 @@ import CoreData
 import Foundation
 import SyncEngine
 
-final class LTIExercise: Content {
+public final class LTIExercise: Content {
 
-    @NSManaged var id: String
-    @NSManaged var instructions: String?
-    @NSManaged var weight: Int32
-    @NSManaged var allowedAttempts: Int32
-    @NSManaged var lockSubmissionsAt: Date?
+    @NSManaged public var id: String
+    @NSManaged public var instructions: String?
+    @NSManaged public var weight: Int32
+    @NSManaged public var allowedAttempts: Int32
+    @NSManaged public var launchURL: URL?
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<LTIExercise> {
         return NSFetchRequest<LTIExercise>(entityName: "LTIExercise")
@@ -23,7 +23,7 @@ final class LTIExercise: Content {
 
 extension LTIExercise: JSONAPIPullable {
 
-    static var type: String {
+    public static var type: String {
         return "lti-exercises"
     }
 
@@ -32,7 +32,7 @@ extension LTIExercise: JSONAPIPullable {
         self.instructions = try attributes.value(for: "instructions")
         self.weight = try attributes.value(for: "weight")
         self.allowedAttempts = try attributes.value(for: "allowed_attempts")
-        self.lockSubmissionsAt = try attributes.value(for: "lock_submissions_at")
+        self.launchURL = try attributes.value(for: "launch_url")
     }
 
 }

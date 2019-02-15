@@ -37,16 +37,6 @@ class CourseDetailViewController: UIViewController {
         }
     }
 
-    @IBAction func playTeaser(_ sender: Any) {
-        guard let url = course.teaserStream?.hlsURL else { return }
-        let player = AVPlayer(url: url)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
-            playerViewController.player?.play()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -94,7 +84,7 @@ class CourseDetailViewController: UIViewController {
         self.imageView.sd_setImage(with: self.course.imageURL)
         UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
-        } )
+        })
 
         if let description = self.course.courseDescription ?? self.course.abstract {
             MarkdownHelper.attributedString(for: description).onSuccess(DispatchQueue.main.context) { attributedString in
@@ -169,6 +159,16 @@ class CourseDetailViewController: UIViewController {
             }
         } else {
             self.performSegue(withIdentifier: R.segue.courseDetailViewController.showLogin, sender: nil)
+        }
+    }
+
+    @IBAction private func playTeaser(_ sender: Any) {
+        guard let url = course.teaserStream?.hlsURL else { return }
+        let player = AVPlayer(url: url)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
+            playerViewController.player?.play()
         }
     }
 

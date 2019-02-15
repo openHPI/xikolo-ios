@@ -6,7 +6,6 @@
 import AVKit
 import BrightFutures
 import Common
-import CoreGraphics
 import SDWebImage
 import UIKit
 
@@ -22,8 +21,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
-    @IBOutlet private weak var playView: UIVisualEffectView!
-    @IBOutlet private weak var playTeaserButton: UIButton!
+    @IBOutlet private weak var teaserView: UIVisualEffectView!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -74,9 +72,7 @@ class CourseDetailViewController: UIViewController {
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
 
-        CourseHelper.syncCourse(course).onSuccess { _ in
-            
-        }
+        CourseHelper.syncCourse(course)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -96,8 +92,8 @@ class CourseDetailViewController: UIViewController {
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
-        UIView.transition(with: self.playView, duration: 0.25, options: .curveEaseInOut, animations: {
-            self.playView.isHidden = self.course.teaserStream?.hlsURL == nil
+        UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
+            self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
         } )
 
         if let description = self.course.courseDescription ?? self.course.abstract {

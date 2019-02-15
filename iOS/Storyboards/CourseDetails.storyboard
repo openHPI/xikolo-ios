@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HmT-zz-ZfW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HmT-zz-ZfW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -314,12 +314,11 @@
                         <outlet property="enrollmentButton" destination="ceU-6J-dNP" id="89a-80-Bxe"/>
                         <outlet property="imageView" destination="d4b-Ar-94F" id="Nnm-kT-fiS"/>
                         <outlet property="languageView" destination="3cX-gd-UHs" id="N9U-9N-r72"/>
-                        <outlet property="playTeaserButton" destination="NFq-yS-eqm" id="QcO-hd-N1f"/>
-                        <outlet property="playView" destination="d0e-hi-OYV" id="5g4-cT-EKX"/>
                         <outlet property="scrollView" destination="MWe-9L-XSn" id="mKh-Ik-PH7"/>
                         <outlet property="statusLabel" destination="hft-pf-uVT" id="ZOY-BP-Q4x"/>
                         <outlet property="statusView" destination="yCC-vf-4Pk" id="dPf-Cp-RUc"/>
                         <outlet property="teacherView" destination="DDY-g0-onI" id="bXT-QC-d5B"/>
+                        <outlet property="teaserView" destination="d0e-hi-OYV" id="5g4-cT-EKX"/>
                         <outlet property="titleView" destination="ms1-Wm-QhH" id="7Cq-t2-84h"/>
                         <segue destination="NEg-5o-jXX" kind="show" identifier="ShowLogin" id="giU-wL-kWG"/>
                     </connections>

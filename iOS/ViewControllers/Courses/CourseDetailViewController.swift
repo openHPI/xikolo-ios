@@ -165,8 +165,8 @@ class CourseDetailViewController: UIViewController {
         }
     }
 
-    @IBAction private func playTeaser(_ sender: Any) {
-        guard let url = course.teaserStream?.hlsURL else { return }
+    @IBAction private func playTeaser() {
+        guard let url = self.course.teaserStream?.hlsURL else { return }
         let player = AVPlayer(url: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player

@@ -181,7 +181,7 @@
                                                     <action selector="playTeaser:" destination="HmT-zz-ZfW" eventType="touchUpInside" id="GV1-iq-8vn"/>
                                                 </connections>
                                             </button>
-                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0e-hi-OYV">
+                                            <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0e-hi-OYV">
                                                 <rect key="frame" x="341" y="16" width="26" height="26"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ahQ-Gk-BQZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>

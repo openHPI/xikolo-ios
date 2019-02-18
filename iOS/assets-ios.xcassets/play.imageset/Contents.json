@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-spielen-filled-100.png"
+      "filename" : "play.pdf"
     }
   ],
   "info" : {
@@ -10,6 +10,7 @@
     "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "template"
+    "template-rendering-intent" : "template",
+    "preserves-vector-representation" : true
   }
 }

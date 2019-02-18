@@ -51,6 +51,9 @@ class CourseDetailViewController: UIViewController {
         self.statusView.backgroundColor = Brand.default.colors.secondary
         self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
+        self.teaserView.layer.cornerRadius = 4.0
+        self.teaserView.layer.masksToBounds = true
+
         self.updateView()
         self.updateImageViewAppearence()
 

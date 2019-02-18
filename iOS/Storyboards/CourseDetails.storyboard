@@ -182,23 +182,19 @@
                                                 </connections>
                                             </button>
                                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0e-hi-OYV">
-                                                <rect key="frame" x="323" y="16" width="44" height="44"/>
+                                                <rect key="frame" x="341" y="16" width="26" height="26"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ahQ-Gk-BQZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLm-bX-xdU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WK5-yW-qsb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSj-LV-ifB">
-                                                                        <rect key="frame" x="6" y="6" width="32" height="32"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="32" id="cfC-NC-HEq"/>
-                                                                            <constraint firstAttribute="height" constant="32" id="tdZ-XH-ftv"/>
-                                                                        </constraints>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <constraints>
@@ -219,16 +215,9 @@
                                                     </constraints>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="QWx-o9-zRP"/>
-                                                    <constraint firstAttribute="width" constant="44" id="dEr-cj-7q3"/>
+                                                    <constraint firstAttribute="width" secondItem="d0e-hi-OYV" secondAttribute="height" multiplier="1:1" id="rJr-sE-2hD"/>
                                                 </constraints>
                                                 <blurEffect style="extraLight"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="6"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maksToBounds" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
                                             </visualEffectView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,6 +240,7 @@
                                             <constraint firstItem="NFq-yS-eqm" firstAttribute="leading" secondItem="d4b-Ar-94F" secondAttribute="leading" id="h6i-Pa-JMS"/>
                                             <constraint firstItem="d4b-Ar-94F" firstAttribute="top" secondItem="bWt-KQ-kUh" secondAttribute="topMargin" id="i4Y-ou-QhK"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="ceU-6J-dNP" secondAttribute="trailing" id="lYP-T5-kAq"/>
+                                            <constraint firstItem="d0e-hi-OYV" firstAttribute="height" secondItem="yCC-vf-4Pk" secondAttribute="height" id="nmC-BL-QLl"/>
                                             <constraint firstItem="f38-k8-QXv" firstAttribute="top" secondItem="ceU-6J-dNP" secondAttribute="bottom" constant="12" id="r7C-0M-P9l"/>
                                             <constraint firstItem="Kg8-BI-OgB" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="bottom" constant="8" symbolic="YES" id="tCH-UB-NHe"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Kg8-BI-OgB" secondAttribute="trailing" id="tbX-dO-avP"/>
@@ -329,6 +319,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="play" width="100" height="100"/>
+        <image name="play" width="26" height="26"/>
     </resources>
 </document>

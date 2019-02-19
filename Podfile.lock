@@ -162,7 +162,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
-  HTMLStyler: f335ce6ed38231dce775a854aef7b6cd566c2633
+  HTMLStyler: 72837c551899fda8c5f62dfd9b46432537602d1b
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -175,8 +175,8 @@ SPEC CHECKSUMS:
   SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
-  SyncEngine: 4fa00bd5bb9ed38e78e5e3ecec1b44f0db6732d1
+  SyncEngine: 7382f94cc232d80cce27dd60a06bb1b3aa18f133
 
 PODFILE CHECKSUM: 9f4ec2b803c83df214bc4638079252e3709502ae
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

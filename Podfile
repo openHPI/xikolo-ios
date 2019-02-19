@@ -13,8 +13,7 @@ def firebase_pods
     pod 'Crashlytics', '~> 3.12.0'
 end
 
-target 'Common' do
-    platform :ios, '10.0'
+def common_pods
     pod 'BrightFutures', '~> 7.0'
     pod 'Down', '0.5.2'
     pod 'KeychainAccess', '~> 3.1'
@@ -22,10 +21,16 @@ target 'Common' do
     pod 'SDWebImage', '~> 4.2'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
+end
 
-    target 'Common-Tests' do
-        inherit! :search_paths
-    end
+target 'Common' do
+    platform :ios, '10.0'
+    common_pods
+end
+
+target 'Common-Tests' do
+    platform :ios, '10.0'
+    common_pods
 end
 
 target 'iOS' do

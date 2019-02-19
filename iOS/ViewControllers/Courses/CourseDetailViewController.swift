@@ -3,6 +3,7 @@
 //  Copyright © HPI. All rights reserved.
 //
 
+import AVKit
 import BrightFutures
 import Common
 import SDWebImage
@@ -20,6 +21,7 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet private weak var enrollmentButton: LoadingButton!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var teaserView: UIVisualEffectView!
 
     private weak var delegate: CourseAreaViewControllerDelegate?
     private var courseObserver: ManagedObjectObserver?
@@ -49,6 +51,9 @@ class CourseDetailViewController: UIViewController {
         self.statusView.backgroundColor = Brand.default.colors.secondary
         self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
+        self.teaserView.layer.cornerRadius = 4.0
+        self.teaserView.layer.masksToBounds = true
+
         self.updateView()
         self.updateImageViewAppearence()
 
@@ -59,6 +64,8 @@ class CourseDetailViewController: UIViewController {
                                                selector: #selector(reachabilityChanged),
                                                name: Notification.Name.reachabilityChanged,
                                                object: nil)
+
+        CourseHelper.syncCourse(course)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -78,6 +85,11 @@ class CourseDetailViewController: UIViewController {
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
+
+        // swiftlint:disable:next trailing_closure
+        UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
+            self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
+        })
 
         if let description = self.course.courseDescription ?? self.course.abstract {
             MarkdownHelper.attributedString(for: description).onSuccess(DispatchQueue.main.context) { attributedString in
@@ -152,6 +164,16 @@ class CourseDetailViewController: UIViewController {
             }
         } else {
             self.performSegue(withIdentifier: R.segue.courseDetailViewController.showLogin, sender: nil)
+        }
+    }
+
+    @IBAction private func playTeaser() {
+        guard let url = self.course.teaserStream?.hlsURL else { return }
+        let player = AVPlayer(url: url)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.present(playerViewController, animated: trueUnlessReduceMotionEnabled) {
+            playerViewController.player?.play()
         }
     }
 

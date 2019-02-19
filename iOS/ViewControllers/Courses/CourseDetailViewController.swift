@@ -85,7 +85,9 @@ class CourseDetailViewController: UIViewController {
 
         self.dateView.text = DateLabelHelper.labelFor(startDate: self.course.startsAt, endDate: self.course.endsAt)
         self.imageView.sd_setImage(with: self.course.imageURL)
-        UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: { // swiftlint:disable:this trailing_closure
+
+        // swiftlint:disable:next trailing_closure
+        UIView.transition(with: self.teaserView, duration: 0.25, options: .curveEaseInOut, animations: {
             self.teaserView.isHidden = self.course.teaserStream?.hlsURL == nil
         })
 

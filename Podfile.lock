@@ -1,12 +1,6 @@
 PODS:
   - BartyCrouch (3.13.0)
-  - BMPlayer (1.0.1):
-    - BMPlayer/Full (= 1.0.1)
-  - BMPlayer/Core (1.0.1)
-  - BMPlayer/Full (1.0.1):
-    - BMPlayer/Core
-    - NVActivityIndicatorView (~> 4.4.0)
-    - SnapKit (~> 4.2.0)
+  - Binge (0.1.0)
   - BrightFutures (7.0.0):
     - Result (~> 4.0.0)
   - Crashlytics (3.12.0):
@@ -66,9 +60,6 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - NVActivityIndicatorView (4.4.1):
-    - NVActivityIndicatorView/Presenter (= 4.4.1)
-  - NVActivityIndicatorView/Presenter (4.4.1)
   - R.swift (5.0.1):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.0)
@@ -78,7 +69,6 @@ PODS:
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
   - SimulatorStatusMagic (2.4.1)
-  - SnapKit (4.2.0)
   - SwiftLint (0.29.3)
   - SyncEngine (0.1.0):
     - BrightFutures (~> 7.0)
@@ -86,7 +76,7 @@ PODS:
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
-  - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `3cf7dd96b031172f2290da09e8bffbc2a3bade4e`)
+  - Binge (from `./Frameworks/Binge`)
   - BrightFutures (~> 7.0)
   - Crashlytics (~> 3.12.0)
   - Down (= 0.5.2)
@@ -118,23 +108,20 @@ SPEC REPOS:
     - KeychainAccess
     - Marshal
     - nanopb
-    - NVActivityIndicatorView
     - R.swift
     - R.swift.Library
     - ReachabilitySwift
     - Result
     - SDWebImage
     - SimulatorStatusMagic
-    - SnapKit
     - SwiftLint
 
 EXTERNAL SOURCES:
   BartyCrouch:
     :git: https://github.com/Flinesoft/BartyCrouch.git
     :tag: 3.13.0
-  BMPlayer:
-    :commit: 3cf7dd96b031172f2290da09e8bffbc2a3bade4e
-    :git: https://github.com/openHPI/bmplayer.git
+  Binge:
+    :path: "./Frameworks/Binge"
   HTMLStyler:
     :path: "./Frameworks/HTMLStyler"
   SyncEngine:
@@ -144,13 +131,10 @@ CHECKOUT OPTIONS:
   BartyCrouch:
     :git: https://github.com/Flinesoft/BartyCrouch.git
     :tag: 3.13.0
-  BMPlayer:
-    :commit: 3cf7dd96b031172f2290da09e8bffbc2a3bade4e
-    :git: https://github.com/openHPI/bmplayer.git
 
 SPEC CHECKSUMS:
   BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
-  BMPlayer: 1e57d1b2e283f810b0e01b9a1d2b1d60aa0ab907
+  Binge: 7443a5b5f6f3a0d54787fe1e32908a8a47e97931
   BrightFutures: 7d7436e937dfc83d814c11920f157fc2a53f5bd5
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Down: 587371ad58002b06023d9c602519216862c3acbc
@@ -166,17 +150,15 @@ SPEC CHECKSUMS:
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  NVActivityIndicatorView: f0a6b0ed2973d9544da268f4eb76696f0a9577b0
   R.swift: a8e1a7e7f38441282fbcb7a3c266076eb38b77ba
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   Result: a6e784bebf48b471d59cddc1adb81f41f678c487
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
   SyncEngine: 7382f94cc232d80cce27dd60a06bb1b3aa18f133
 
-PODFILE CHECKSUM: b908988574b4b3e1a59b18ceacfaa1564b0b2488
+PODFILE CHECKSUM: eee32b02229c39370367e40228ec193a43125d97
 
 COCOAPODS: 1.6.0

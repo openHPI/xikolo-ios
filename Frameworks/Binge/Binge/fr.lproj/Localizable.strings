@@ -1,0 +1,17 @@
+/* navigation bar title for the media option selection */
+"media-option-selection.navigation-bar.title" = "Audio et sous-titres";
+
+/* section title for playback rate in the media option selection */
+"media-option-selection.section.title.playback-rate" = "Vitesse de Lecture";
+
+/* section title for audio in the media option selection */
+"media-option-selection.section.title.audio" = "Audio";
+
+/* section title for subtitles and closed captions in the media option selection */
+"media-option-selection.section.title.subtitles" = "Sous-titres et STC";
+
+/* cell title for an unknonw option in the media option selection */
+"media-option-selection.cell.title.unknown" = "Inconnu";
+
+/* cell title for the off option in the media option selection */
+"media-option-selection.cell.title.off" = "Désactivé";

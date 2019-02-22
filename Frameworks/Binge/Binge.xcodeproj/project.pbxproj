@@ -21,6 +21,7 @@
 		500162C42214660700DD5C03 /* BingeLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCC20621FB3FF900497A88 /* BingeLoadingIndicator.swift */; };
 		500162C52214660700DD5C03 /* BingePaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509F56ED22003EA50045FF71 /* BingePaddedLabel.swift */; };
 		500162C62214660700DD5C03 /* BingeFullScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063FE1F220992D700ABD02B /* BingeFullScreenPresenter.swift */; };
+		504AB511221ED3EF004342B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504AB510221ED363004342B7 /* Assets.xcassets */; };
 		507DBF2322146D7B00E1AADF /* BingePlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DBF2222146D7B00E1AADF /* BingePlayerDelegate.swift */; };
 		507DBF2522146FF300E1AADF /* BingePlaybackRateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DBF2422146FF300E1AADF /* BingePlaybackRateDelegate.swift */; };
 		507DBF272214701100E1AADF /* BingeControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DBF262214701100E1AADF /* BingeControlDelegate.swift */; };
@@ -53,6 +54,7 @@
 		503391FE21F607AB00D60857 /* BingeControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeControlsViewController.swift; sourceTree = "<group>"; };
 		5033920221F6081700D60857 /* BingeMediaSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeMediaSelectionViewController.swift; sourceTree = "<group>"; };
 		5033920421F6084F00D60857 /* BingeMediaOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeMediaOptionCell.swift; sourceTree = "<group>"; };
+		504AB510221ED363004342B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5063FE1F220992D700ABD02B /* BingeFullScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeFullScreenPresenter.swift; sourceTree = "<group>"; };
 		506F33BD21F9EE4800F240D7 /* BingePlaybackRateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingePlaybackRateCell.swift; sourceTree = "<group>"; };
 		507DBF2222146D7B00E1AADF /* BingePlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingePlayerDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		508AB2D221108F8D0079EAE5 /* Binge */ = {
 			isa = PBXGroup;
 			children = (
+				504AB510221ED363004342B7 /* Assets.xcassets */,
 				503391F421F6070100D60857 /* BingeClickThroughView.swift */,
 				503391F621F6072100D60857 /* BingeTimeSlider.swift */,
 				503391F821F6073900D60857 /* BingePlayerView.swift */,
@@ -233,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504AB511221ED3EF004342B7 /* Assets.xcassets in Resources */,
 				507DBF2A2215660D00E1AADF /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

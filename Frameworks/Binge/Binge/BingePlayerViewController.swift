@@ -142,15 +142,6 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
-    private var isStandAlone: Bool = false {
-        didSet {
-            self.layoutState = self._layoutState
-            self.controlsViewController.adaptToLayoutState(self.layoutState,
-                                                           allowFullScreenMode: self.allowFullScreenMode,
-                                                           isStandAlone: self.isStandAlone)
-        }
-    }
-
     public var allowFullScreenMode: Bool = true {
         didSet {
             self.layoutState = self._layoutState
@@ -160,9 +151,13 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
+    private var isStandAlone: Bool {
+        return self.parent == nil && self.presentingViewController != nil
+    }
+
     public var phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation = true
     private var shouldEnterFullScreenModeInLandscapeOrientation: Bool {
-        return UIDevice.current.userInterfaceIdiom == .phone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
+        return UIDevice.current.userInterfaceIdiom == .phone && !self.isStandAlone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
     }
 
     private var fullscreenPresenter: BingeFullScreenPresenter?
@@ -258,7 +253,9 @@ public class BingePlayerViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.isStandAlone = self.presentingViewController != nil
+        self.controlsViewController.adaptToLayoutState(self.layoutState,
+                                                       allowFullScreenMode: self.allowFullScreenMode,
+                                                       isStandAlone: self.isStandAlone)
 
         if self.shouldEnterFullScreenModeInLandscapeOrientation, UIDevice.current.orientation.isLandscape {
             self.layoutState = .fullscreen
@@ -403,7 +400,7 @@ public class BingePlayerViewController: UIViewController {
 
         if self.layoutState == .inline, currentOrientation.isLandscape {
             self.layoutState = .fullscreen
-        } else if self.layoutState == .fullscreen, currentOrientation == .portrait, self.presentedViewController == nil {
+        } else if self.layoutState == .fullscreen, currentOrientation == .portrait {
             self.layoutState = .inline
         }
     }
@@ -712,7 +709,7 @@ extension BingePlayerViewController {
 
     private func autoHideControlsOverlay(withDelay delay: TimeInterval = 7.0) {
         guard self.player.timeControlStatus == .playing else { return }
-        guard self.presentedViewController == nil else { return }
+        guard self.presentedViewController == nil else { return } // Shows media selection options
         guard self.layoutState != .remote else { return }
 
         self.controlsOverlayDispatchWorkItem?.cancel()

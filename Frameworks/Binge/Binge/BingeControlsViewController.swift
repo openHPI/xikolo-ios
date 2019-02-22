@@ -34,8 +34,8 @@ class BingeControlsViewController: UIViewController {
         slider.isEnabled = false
         slider.translatesAutoresizingMaskIntoConstraints = false
 
-        slider.setThumbImage(UIImage(named: "thumb-small"), for: .normal)
-        slider.setThumbImage(UIImage(named: "thumb-big"), for: .highlighted)
+        slider.setThumbImage(UIImage.bingeImage(named: "thumb-small"), for: .normal)
+        slider.setThumbImage(UIImage.bingeImage(named: "thumb-big"), for: .highlighted)
         slider.addTarget(self, action: #selector(changeProgress), for: .valueChanged)
 
         return slider
@@ -62,8 +62,8 @@ class BingeControlsViewController: UIViewController {
     private lazy var fullScreenButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.setImage(UIImage(named: "ios-expand"), for: .normal)
-        button.setImage(UIImage(named: "ios-contract"), for: .selected)
+        button.setImage(UIImage.bingeImage(named: "ios-expand"), for: .normal)
+        button.setImage(UIImage.bingeImage(named: "ios-contract"), for: .selected)
         button.addTarget(self, action: #selector(toggleFullScreenMode), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -78,7 +78,7 @@ class BingeControlsViewController: UIViewController {
     private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.setImage(UIImage(named: "ios-close"), for: .normal)
+        button.setImage(UIImage.bingeImage(named: "ios-close"), for: .normal)
         button.addTarget(self, action: #selector(dismissPlayer), for: .touchUpInside)
         button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +136,7 @@ class BingeControlsViewController: UIViewController {
     private lazy var settingsButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.setImage(UIImage(named: "ios-options"), for: .normal)
+        button.setImage(UIImage.bingeImage(named: "ios-options"), for: .normal)
         button.addTarget(self, action: #selector(showMediaSelection), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -172,8 +172,8 @@ class BingeControlsViewController: UIViewController {
     private lazy var playPauseButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.setImage(UIImage(named: "ios-play"), for: .normal)
-        button.setImage(UIImage(named: "ios-pause"), for: .selected)
+        button.setImage(UIImage.bingeImage(named: "ios-play"), for: .normal)
+        button.setImage(UIImage.bingeImage(named: "ios-pause"), for: .selected)
         button.addTarget(self, action: #selector(playPauseVideo), for: .touchUpInside)
         button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -183,7 +183,7 @@ class BingeControlsViewController: UIViewController {
     private lazy var seekForwardButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.setImage(UIImage(named: "ios-refresh"), for: .normal)
+        button.setImage(UIImage.bingeImage(named: "ios-refresh"), for: .normal)
         button.addTarget(self, action: #selector(seekForwards), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -192,7 +192,7 @@ class BingeControlsViewController: UIViewController {
     private lazy var seekBackwardButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.setImage(UIImage(named: "ios-refresh"), for: .normal)
+        button.setImage(UIImage.bingeImage(named: "ios-refresh"), for: .normal)
         button.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
         button.addTarget(self, action: #selector(seekBackwards), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -441,4 +441,14 @@ extension AVAsset {
         guard let urlAsset = self as? AVURLAsset else { return false }
         return urlAsset.url.isFileURL
     }
+}
+
+
+extension UIImage {
+
+    static func bingeImage(named name: String) -> UIImage? {
+        let bundle = Bundle(for: BingeControlsViewController.self)
+        return UIImage(named: name, in: bundle, compatibleWith: nil)
+    }
+
 }

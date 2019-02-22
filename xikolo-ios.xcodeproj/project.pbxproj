@@ -122,7 +122,6 @@
 		50CF1FAD20DCDBFC0011BFE9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500A257D20824C2500EB7AE4 /* R.generated.swift */; };
 		50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB95897B1DC4A42700586137 /* UITableViewCell+enable.swift */; };
 		50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A5211F177304007896FF /* DetailedCourseItemContent.swift */; };
-		50CF1FB520DCDBFC0011BFE9 /* VideoPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */; };
 		50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED7F1FE3D9680096095B /* UserDefaults+contentPreload.swift */; };
 		50CF1FB820DCDBFC0011BFE9 /* SlidesPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */; };
 		50CF1FB920DCDBFC0011BFE9 /* CourseItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB91F9E41CED029B00007D06 /* CourseItemCell.swift */; };
@@ -533,7 +532,6 @@
 		50D65A1F20E023C000DFD183 /* moocHOUSE-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Common.xcconfig"; sourceTree = "<group>"; };
 		50D65A2020E023C100DFD183 /* moocHOUSE-iOS-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Release.xcconfig"; sourceTree = "<group>"; };
 		50D65A2120E023C100DFD183 /* moocHOUSE-iOS-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "moocHOUSE-iOS-Debug.xcconfig"; sourceTree = "<group>"; };
-		50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlView.swift; sourceTree = "<group>"; };
 		50D91643207D080000DDB6E1 /* CourseArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseArea.swift; sourceTree = "<group>"; };
 		50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchTimeInterval+DispatchTime.swift"; sourceTree = "<group>"; };
 		50DD35141FD83D5E002B40CC /* CardListLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListLayout.swift; sourceTree = "<group>"; };
@@ -793,7 +791,6 @@
 				508AB2E72111AF950079EAE5 /* CourseOverviewCell.swift */,
 				508AB2C12109F0DE0079EAE5 /* DocumentHeader.swift */,
 				5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */,
-				50D7AEA11F2224DA00A42EBC /* VideoPlayerControlView.swift */,
 				50371FF8204ECB8E006E9634 /* CircularProgressView.swift */,
 				B4E079EC21879C9200EA53F5 /* CertificateCell.swift */,
 			);
@@ -1975,7 +1972,6 @@
 				70893B5621C3D1F600AF22E3 /* LTIHintViewController.swift in Sources */,
 				50CF1FB120DCDBFC0011BFE9 /* UITableViewCell+enable.swift in Sources */,
 				50CF1FB320DCDBFC0011BFE9 /* DetailedCourseItemContent.swift in Sources */,
-				50CF1FB520DCDBFC0011BFE9 /* VideoPlayerControlView.swift in Sources */,
 				50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */,
 				50CF1FB620DCDBFC0011BFE9 /* UserDefaults+contentPreload.swift in Sources */,
 				503988732166920400F9043B /* ShadowContainerView.swift in Sources */,

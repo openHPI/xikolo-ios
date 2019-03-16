@@ -6,7 +6,13 @@
 import Common
 import UIKit
 
+protocol CourseSearchFiltersViewControllerDelegate: AnyObject {
+    func filter(for filterType: CourseSearchFilterType) -> CourseSearchFilter?
+}
+
 class CourseSearchFiltersViewController: UICollectionViewController {
+
+    weak var delegate: CourseSearchFiltersViewControllerDelegate?
 
     init() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -54,18 +60,15 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 2
+        return CourseSearchFilterType.availableFilterTypes.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.courseSearchFilterCell, for: indexPath)!
 
-        // Configure the cell
-
-        if indexPath.item == 0 {
-            cell.isSelected = true
-        }
+        let filterType = CourseSearchFilterType.availableFilterTypes[indexPath.item]
+        let filter = self.delegate?.filter(for: filterType)
+        cell.configure(for: filterType, with: filter)
 
         return cell
     }
@@ -112,7 +115,10 @@ extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CourseSearchFilterCell.size(forTitle: "Label")
+        #warning("use self sizing cells?")
+        let filterType = CourseSearchFilterType.availableFilterTypes[indexPath.item]
+        let filter = self.delegate?.filter(for: filterType)
+        return CourseSearchFilterCell.size(for: filterType, with: filter)
     }
 
     func collectionView(_ collectionView: UICollectionView,

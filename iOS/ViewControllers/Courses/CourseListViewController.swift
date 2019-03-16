@@ -20,6 +20,9 @@ class CourseListViewController: UICollectionViewController {
 
     private var filterContainerHeightConstraint: NSLayoutConstraint?
     private var searchFilterViewController: CourseSearchFiltersViewController?
+    private var searchFilters: [CourseSearchFilterType: CourseSearchFilter] = [
+        .language: CourseLanguageSearchFilter(languages: ["de"]),
+    ]
 
     var configuration: CourseListConfiguration = .allCourses
 
@@ -96,6 +99,7 @@ class CourseListViewController: UICollectionViewController {
         self.filterContainerHeightConstraint?.isActive = true
 
         let searchFilterViewController = CourseSearchFiltersViewController()
+        searchFilterViewController.delegate = self
         filterContainer.addSubview(searchFilterViewController.view)
         searchFilterViewController.view.frame = filterContainer.frame
         self.addChild(searchFilterViewController)
@@ -105,7 +109,7 @@ class CourseListViewController: UICollectionViewController {
 
     private func updateSearchFilterContainerHeight(isSearching: Bool) {
         if isSearching {
-            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.size(forTitle: "Test").height
+            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.size(for: .language, with: nil).height
         } else {
             self.filterContainerHeightConstraint?.constant = 0
         }
@@ -275,7 +279,9 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
             ])
         }
 
-        return NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
+        let searchTextPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
+        let searchFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: self.searchFilters.values.map { $0.predicate })
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [searchTextPredicate, searchFilterPredicate])
     }
 
     func configureSearchHeaderView(_ searchHeaderView: CourseHeaderView, numberOfSearchResults: Int) {
@@ -289,6 +295,14 @@ extension CourseListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseHelper.syncAllCourses().asVoid()
+    }
+
+}
+
+extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
+
+    func filter(for filterType: CourseSearchFilterType) -> CourseSearchFilter? {
+        return self.searchFilters[filterType]
     }
 
 }

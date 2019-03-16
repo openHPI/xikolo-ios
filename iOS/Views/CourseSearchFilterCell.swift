@@ -26,16 +26,17 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.titleLabel.font = CourseSearchFilterCell.titleFont
     }
 
-    override var isSelected: Bool {
-        didSet {
-            self.titleLabel.textColor = self.isSelected ? UIColor.white : UIColor.lightGray
-            self.layer.backgroundColor = self.isSelected ? Brand.default.colors.window.cgColor : UIColor.white.cgColor
-            self.backgroundColor = self.isSelected ? Brand.default.colors.window : UIColor.white
-            self.layer.borderColor = self.isSelected ? Brand.default.colors.window.cgColor : UIColor.lightGray.cgColor
-        }
+    func configure(for filterType: CourseSearchFilterType, with filter: CourseSearchFilter?) {
+        self.titleLabel.text = CourseSearchFilterCell.title(for: filterType, with: filter)
+        self.titleLabel.textColor = filter == nil ? UIColor.lightGray :  UIColor.white
+        #warning("twice?")
+        self.layer.backgroundColor = filter == nil ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
+        self.backgroundColor = filter == nil ? UIColor.white : Brand.default.colors.window
+        self.layer.borderColor = filter == nil ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
     }
 
-    static func size(forTitle title: String) -> CGSize {
+    static func size(for filterType: CourseSearchFilterType, with filter: CourseSearchFilter?) -> CGSize {
+        let title = self.title(for: filterType, with: filter)
         let fontHeight = CourseSearchFilterCell.titleFont.lineHeight
 
         let boundingSize = CGSize(width: CGFloat.infinity, height: fontHeight)
@@ -47,6 +48,16 @@ class CourseSearchFilterCell: UICollectionViewCell {
 
         return CGSize(width: titleSize.width + 2 * CourseSearchFilterCell.padding + 2,
                       height: fontHeight + 2 * CourseSearchFilterCell.padding)
+    }
+
+    private static func title(for filterType: CourseSearchFilterType, with filter: CourseSearchFilter?) -> String {
+        var title = filterType.title
+
+        if let counterValue = filter?.counterValue {
+            title += " · \(counterValue)"
+        }
+
+        return title
     }
 
 }

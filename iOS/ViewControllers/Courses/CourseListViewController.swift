@@ -142,7 +142,6 @@ class CourseListViewController: UICollectionViewController {
             }
         }()
         self.updateSearchFilterContainerHeight(isSearching: isSearching)
-        self.searchFilterViewController?.reloadData()
         self.collectionViewLayout.invalidateLayout()
     }
 
@@ -240,6 +239,8 @@ extension CourseListViewController: UISearchControllerDelegate {
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.collectionView.layoutIfNeeded()
         })
+
+        #warning("Clear serach filters?")
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {

@@ -5,28 +5,23 @@
 
 import CoreData
 
-enum CourseSearchFilterType: CaseIterable {
-    case language
+protocol CourseSearchFilter{
+    static var title: String { get }
+    static var options: [String] { get }
 
-    var title: String {
-        switch self {
-        case .language:
-            return "Language"
-        }
-    }
-
-    static var availableFilterTypes: [CourseSearchFilterType] {
-        return CourseSearchFilterType.allCases
-    }
-
-}
-
-protocol CourseSearchFilter {
     var counterValue: Int { get }
     var predicate: NSPredicate { get }
+
+    init(selectedOptions: [String])
 }
 
 struct CourseLanguageSearchFilter: CourseSearchFilter {
+
+    static let title: String = "Language"
+    static var options: [String] {
+        #warning("Determine options")
+        return ["de", "en"]
+    }
 
     let languages: [String]
 
@@ -38,6 +33,10 @@ struct CourseLanguageSearchFilter: CourseSearchFilter {
         #warning("use really CONTAINS[c] ?")
         let languagePredicates = self.languages.map { NSPredicate(format: "language CONTAINS[c] %@", $0) }
         return NSCompoundPredicate(orPredicateWithSubpredicates: languagePredicates)
+    }
+
+    init(selectedOptions: [String]) {
+        self.languages = selectedOptions
     }
 
 }

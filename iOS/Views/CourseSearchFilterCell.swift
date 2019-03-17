@@ -26,7 +26,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.titleLabel.font = CourseSearchFilterCell.titleFont
     }
 
-    func configure(for filterType: CourseSearchFilterType, with filter: CourseSearchFilter?) {
+    func configure(for filterType: CourseSearchFilter.Type, with filter: CourseSearchFilter?) {
         self.titleLabel.text = CourseSearchFilterCell.title(for: filterType, with: filter)
         self.titleLabel.textColor = filter == nil ? UIColor.lightGray :  UIColor.white
         #warning("twice?")
@@ -35,7 +35,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.layer.borderColor = filter == nil ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
     }
 
-    static func size(for filterType: CourseSearchFilterType, with filter: CourseSearchFilter?) -> CGSize {
+    static func size(for filterType: CourseSearchFilter.Type, with filter: CourseSearchFilter?) -> CGSize {
         let title = self.title(for: filterType, with: filter)
         let fontHeight = CourseSearchFilterCell.titleFont.lineHeight
 
@@ -50,7 +50,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
                       height: fontHeight + 2 * CourseSearchFilterCell.padding)
     }
 
-    private static func title(for filterType: CourseSearchFilterType, with filter: CourseSearchFilter?) -> String {
+    private static func title(for filterType: CourseSearchFilter.Type, with filter: CourseSearchFilter?) -> String {
         var title = filterType.title
 
         if let counterValue = filter?.counterValue {

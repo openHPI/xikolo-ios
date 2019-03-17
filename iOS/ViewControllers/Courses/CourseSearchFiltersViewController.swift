@@ -6,13 +6,19 @@
 import Common
 import UIKit
 
-protocol CourseSearchFiltersViewControllerDelegate: AnyObject {
-    func filter(for filterType: CourseSearchFilterType) -> CourseSearchFilter?
-}
-
 class CourseSearchFiltersViewController: UICollectionViewController {
 
-    weak var delegate: CourseSearchFiltersViewControllerDelegate?
+    private let availableFilterTypes: [CourseSearchFilter.Type] = [
+        CourseLanguageSearchFilter.self,
+    ]
+
+    private var currentSelection: [String: CourseSearchFilter] = [
+        CourseLanguageSearchFilter.title: CourseLanguageSearchFilter(selectedOptions: ["de"]),
+    ]
+
+    var activeFilters: [CourseSearchFilter] {
+        return Array(self.currentSelection.values)
+    }
 
     init() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -60,14 +66,14 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CourseSearchFilterType.availableFilterTypes.count
+        return self.availableFilterTypes.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.courseSearchFilterCell, for: indexPath)!
 
-        let filterType = CourseSearchFilterType.availableFilterTypes[indexPath.item]
-        let filter = self.delegate?.filter(for: filterType)
+        let filterType = self.availableFilterTypes[indexPath.item]
+        let filter = self.currentSelection[filterType.title]
         cell.configure(for: filterType, with: filter)
 
         return cell
@@ -116,8 +122,8 @@ extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout 
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         #warning("use self sizing cells?")
-        let filterType = CourseSearchFilterType.availableFilterTypes[indexPath.item]
-        let filter = self.delegate?.filter(for: filterType)
+        let filterType = self.availableFilterTypes[indexPath.item]
+        let filter = self.currentSelection[filterType.title]
         return CourseSearchFilterCell.size(for: filterType, with: filter)
     }
 

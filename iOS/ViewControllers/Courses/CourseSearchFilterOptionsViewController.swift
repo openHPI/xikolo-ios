@@ -13,6 +13,9 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
 
     private let cellReuseIdentifier = "SearchFilterOptionItem"
 
+    private lazy var selectAllBarButton = UIBarButtonItem(title: "Select all", style: .plain, target: self, action: #selector(selectAllOptions))
+    private lazy var deselectAllBarButton = UIBarButtonItem(title: "Deselect all", style: .plain, target: self, action: #selector(deselectAllOptions))
+
     let filter: CourseSearchFilter
     var options: [String]
     var selectedOptions: Set<String>
@@ -42,6 +45,17 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
         self.navigationItem.title = "Refine search"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(applyChanges))
+
+        self.toolbarItems = [
+            self.deselectAllBarButton,
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            self.selectAllBarButton,
+        ]
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setToolbarHidden(false, animated: animated)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,9 +66,10 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath)
         let title = self.options[indexPath.row]
         let isSelected = self.selectedOptions.contains(title)
+
         cell.textLabel?.text = title
         cell.accessoryType = isSelected ? .checkmark : .none
-        cell.selectedBackgroundView = UIView()
+        cell.selectionStyle = .none
 
         if isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -71,12 +86,14 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
         let option = self.options[indexPath.row]
         self.selectedOptions.insert(option)
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        self.updateBarButtons()
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let option = self.options[indexPath.row]
         self.selectedOptions.remove(option)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        self.updateBarButtons()
     }
 
     @objc private func cancel() {
@@ -91,6 +108,32 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
         }
 
         self.dismiss(animated: trueUnlessReduceMotionEnabled)
+    }
+
+    @objc private func selectAllOptions() {
+        for section in 0..<self.tableView.numberOfSections {
+            for row in 0..<self.tableView.numberOfRows(inSection: section) {
+                let indexPath = IndexPath(row: row, section: section)
+                self.tableView.selectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled, scrollPosition: .none)
+                self.tableView(self.tableView, didSelectRowAt: indexPath)
+            }
+        }
+    }
+
+    @objc private func deselectAllOptions() {
+        for section in 0..<self.tableView.numberOfSections {
+            for row in 0..<self.tableView.numberOfRows(inSection: section) {
+                let indexPath = IndexPath(row: row, section: section)
+                self.tableView.deselectRow(at: indexPath, animated: trueUnlessReduceMotionEnabled)
+                self.tableView(self.tableView, didDeselectRowAt: indexPath)
+            }
+        }
+    }
+
+    private func updateBarButtons() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = !self.selectedOptions.isEmpty
+        self.selectAllBarButton.isEnabled = self.selectedOptions.count != self.options.count
+        self.deselectAllBarButton.isEnabled = !self.selectedOptions.isEmpty
     }
 
 }

@@ -105,7 +105,7 @@ class CourseListViewController: UICollectionViewController {
 
     private func updateSearchFilterContainerHeight(isSearching: Bool) {
         if isSearching {
-            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.size(for: .language, with: []).height
+            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.size(for: .language, with: []).height + 2
         } else {
             self.filterContainerHeightConstraint?.constant = 0
         }

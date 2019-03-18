@@ -105,7 +105,7 @@ class CourseListViewController: UICollectionViewController {
 
     private func updateSearchFilterContainerHeight(isSearching: Bool) {
         if isSearching {
-            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.size(for: .language, with: []).height + 2
+            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.cellHeight()
         } else {
             self.filterContainerHeightConstraint?.constant = 0
         }
@@ -240,7 +240,7 @@ extension CourseListViewController: UISearchControllerDelegate {
             self.collectionView.layoutIfNeeded()
         })
 
-        #warning("Clear serach filters?")
+        self.searchFilterViewController?.clearFilters()
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {

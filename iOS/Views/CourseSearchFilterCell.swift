@@ -26,6 +26,11 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.titleLabel.font = CourseSearchFilterCell.titleFont
     }
 
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        layoutAttributes.frame.size = self.contentView.systemLayoutSizeFitting(layoutAttributes.size)
+        return layoutAttributes
+    }
+
     func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
         let isNormalState = selectedOptions?.isEmpty ?? true
         self.titleLabel.text = CourseSearchFilterCell.title(for: filter, with: selectedOptions)
@@ -36,19 +41,8 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.layer.borderColor = isNormalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
     }
 
-    static func size(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) -> CGSize {
-        let title = self.title(for: filter, with: selectedOptions)
-        let fontHeight = CourseSearchFilterCell.titleFont.lineHeight
-
-        let boundingSize = CGSize(width: CGFloat.infinity, height: fontHeight)
-        let titleAttributes = [NSAttributedString.Key.font: CourseSearchFilterCell.titleFont]
-        let titleSize = NSString(string: title).boundingRect(with: boundingSize,
-                                                             options: .usesLineFragmentOrigin,
-                                                             attributes: titleAttributes,
-                                                             context: nil)
-
-        return CGSize(width: titleSize.width + 2 * CourseSearchFilterCell.padding + 2,
-                      height: fontHeight + 2 * CourseSearchFilterCell.padding)
+    static func cellHeight() -> CGFloat {
+        return CourseSearchFilterCell.titleFont.lineHeight + 2 * CourseSearchFilterCell.padding + 2
     }
 
     private static func title(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) -> String {

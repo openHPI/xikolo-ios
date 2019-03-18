@@ -8,11 +8,13 @@ import UIKit
 
 class CourseSearchFiltersViewController: UICollectionViewController {
 
-    var activeFilters: [CourseSearchFilter: Set<String>] = [:]
+    private(set) var activeFilters: [CourseSearchFilter: Set<String>] = [:]
 
     init() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         super.init(collectionViewLayout: flowLayout)
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.preservesSuperviewLayoutMargins = true
@@ -29,6 +31,12 @@ class CourseSearchFiltersViewController: UICollectionViewController {
         self.collectionView.backgroundColor = .white
 
         self.collectionView.register(R.nib.courseSearchFilterCell)
+    }
+
+    func clearFilters() {
+        self.activeFilters = [:]
+        self.collectionView.reloadSections(IndexSet([0]))
+        self.collectionView.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -68,15 +76,6 @@ class CourseSearchFiltersViewController: UICollectionViewController {
 }
 
 extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        #warning("use self sizing cells?")
-        let filter = CourseSearchFilter.availableCases[indexPath.item]
-        let selectedOptions = self.activeFilters[filter]
-        return CourseSearchFilterCell.size(for: filter, with: selectedOptions)
-    }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

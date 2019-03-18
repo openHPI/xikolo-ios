@@ -6,9 +6,20 @@
 import Common
 import UIKit
 
+protocol CourseSearchFiltersViewControllerDelegate: AnyObject {
+    func didChangeFilters()
+}
+
 class CourseSearchFiltersViewController: UICollectionViewController {
 
-    private(set) var activeFilters: [CourseSearchFilter: Set<String>] = [:]
+    private(set) var activeFilters: [CourseSearchFilter: Set<String>] = [:] {
+        didSet {
+            self.collectionView.reloadData()
+            self.delegate?.didChangeFilters()
+        }
+    }
+
+    weak var delegate: CourseSearchFiltersViewControllerDelegate?
 
     init() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -20,6 +31,7 @@ class CourseSearchFiltersViewController: UICollectionViewController {
         self.collectionView.preservesSuperviewLayoutMargins = true
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,7 +48,6 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     func clearFilters() {
         self.activeFilters = [:]
         self.collectionView.reloadSections(IndexSet([0]))
-        self.collectionView.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -62,8 +73,6 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Show options for \(CourseSearchFilter.availableCases[indexPath.item])")
-
         let filter = CourseSearchFilter.availableCases[indexPath.item]
         let selectedOptions = self.activeFilters[filter]
 
@@ -96,7 +105,5 @@ extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout 
 extension CourseSearchFiltersViewController: CourseSearchFilterOptionsViewControllerDelegate {
     func setOptions(_ selectedOptions: Set<String>?, for filter: CourseSearchFilter) {
         self.activeFilters[filter] = selectedOptions
-        self.collectionView.reloadData()
-        #warning("reload coruse list")
     }
 }

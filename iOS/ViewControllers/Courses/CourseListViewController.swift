@@ -96,6 +96,7 @@ class CourseListViewController: UICollectionViewController {
         self.filterContainerHeightConstraint?.isActive = true
 
         let searchFilterViewController = CourseSearchFiltersViewController()
+        searchFilterViewController.delegate = self
         filterContainer.addSubview(searchFilterViewController.view)
         searchFilterViewController.view.frame = filterContainer.frame
         self.addChild(searchFilterViewController)
@@ -199,7 +200,11 @@ extension CourseListViewController: UISearchResultsUpdating {
 
         self.collectionView?.setContentOffset(scrollOffset, animated: trueUnlessReduceMotionEnabled)
 
-        guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {
+        let searchText = searchController.searchBar.text
+        let hasSearchText = !(searchText?.isEmpty ?? true)
+        let hasActiveFilters = !(self.searchFilterViewController?.activeFilters.isEmpty ?? true)
+
+        guard searchController.isActive, (hasSearchText || hasActiveFilters) else {
             self.dataSource.resetSearch()
             return
         }
@@ -299,6 +304,20 @@ extension CourseListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseHelper.syncAllCourses().asVoid()
+    }
+
+}
+
+extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
+
+    func didChangeFilters() {
+        if #available(iOS 11, *) {
+            guard let searchController = self.navigationItem.searchController else { return }
+            self.updateSearchResults(for: searchController)
+        } else {
+            guard let searchController = self.searchController else { return }
+            self.updateSearchResults(for: searchController)
+        }
     }
 
 }

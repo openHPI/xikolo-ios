@@ -22,18 +22,9 @@ enum CourseSearchFilter: CaseIterable {
     }
 
     var options: [String] {
-        guard let entityName = Course.entity().name else {
-            return []
-        }
-
         switch self {
         case .language:
-            #warning("Refactor")
-            let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
-            fetchRequest.resultType = .dictionaryResultType
-            fetchRequest.propertiesToFetch = [NSString(string: "language")]
-            fetchRequest.returnsObjectsAsFaults = false
-            fetchRequest.returnsDistinctResults = true
+            let fetchRequest = CourseHelper.FetchRequest.distinctLanguages
             let dicts = try? CoreDataHelper.viewContext.fetch(fetchRequest)
             let values = dicts?.flatMap { $0.allValues }.compactMap { $0 as? String }
             return values ?? []

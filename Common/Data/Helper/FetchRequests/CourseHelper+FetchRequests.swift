@@ -158,6 +158,17 @@ extension CourseHelper {
             return request
         }
 
+        public static var distinctLanguages: NSFetchRequest<NSDictionary> {
+            let entityName = Course.entity().name!
+            let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
+            fetchRequest.predicate = self.visiblePredicate
+            fetchRequest.resultType = .dictionaryResultType
+            fetchRequest.propertiesToFetch = [NSString(string: "language")]
+            fetchRequest.returnsObjectsAsFaults = false
+            fetchRequest.returnsDistinctResults = true
+            return fetchRequest
+        }
+
     }
 
 }

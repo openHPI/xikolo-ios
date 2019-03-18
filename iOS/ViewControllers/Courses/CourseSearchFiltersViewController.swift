@@ -8,17 +8,7 @@ import UIKit
 
 class CourseSearchFiltersViewController: UICollectionViewController {
 
-    private let availableFilterTypes: [CourseSearchFilter.Type] = [
-        CourseLanguageSearchFilter.self,
-    ]
-
-    private var activeSelection: [String: CourseSearchFilter] = [
-        CourseLanguageSearchFilter.title: CourseLanguageSearchFilter(selectedOptions: ["de"]),
-    ]
-
-    var activeFilters: [CourseSearchFilter] {
-        return Array(self.activeSelection.values)
-    }
+    var activeFilters: [CourseSearchFilter: Set<String>] = [:]
 
     init() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -48,15 +38,15 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.availableFilterTypes.count
+        return CourseSearchFilter.availableCases.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.courseSearchFilterCell, for: indexPath)!
 
-        let filterType = self.availableFilterTypes[indexPath.item]
-        let filter = self.activeSelection[filterType.title]
-        cell.configure(for: filterType, with: filter)
+        let filter = CourseSearchFilter.availableCases[indexPath.item]
+        let selectedOptions = self.activeFilters[filter]
+        cell.configure(for: filter, with: selectedOptions)
 
         return cell
     }
@@ -64,8 +54,16 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Show options for \(CourseSearchFilter.availableCases[indexPath.item])")
 
+        let filter = CourseSearchFilter.availableCases[indexPath.item]
+        let selectedOptions = self.activeFilters[filter]
+
+        let optionsViewController = CourseSearchFilterOptionsViewController(filter: filter, selectedOptions: selectedOptions, delegate: self)
+        let navigationController = UINavigationController(rootViewController: optionsViewController)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
+
 
 }
 
@@ -75,9 +73,9 @@ extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout 
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         #warning("use self sizing cells?")
-        let filterType = self.availableFilterTypes[indexPath.item]
-        let filter = self.activeSelection[filterType.title]
-        return CourseSearchFilterCell.size(for: filterType, with: filter)
+        let filter = CourseSearchFilter.availableCases[indexPath.item]
+        let selectedOptions = self.activeFilters[filter]
+        return CourseSearchFilterCell.size(for: filter, with: selectedOptions)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -94,4 +92,12 @@ extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout 
         return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
+}
+
+extension CourseSearchFiltersViewController: CourseSearchFilterOptionsViewControllerDelegate {
+    func setOptions(_ selectedOptions: Set<String>?, for filter: CourseSearchFilter) {
+        self.activeFilters[filter] = selectedOptions
+        self.collectionView.reloadData()
+        #warning("reload coruse list")
+    }
 }

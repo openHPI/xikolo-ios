@@ -26,17 +26,18 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.titleLabel.font = CourseSearchFilterCell.titleFont
     }
 
-    func configure(for filterType: CourseSearchFilter.Type, with filter: CourseSearchFilter?) {
-        self.titleLabel.text = CourseSearchFilterCell.title(for: filterType, with: filter)
-        self.titleLabel.textColor = filter == nil ? UIColor.lightGray :  UIColor.white
+    func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
+        let isNormalState = selectedOptions?.isEmpty ?? true
+        self.titleLabel.text = CourseSearchFilterCell.title(for: filter, with: selectedOptions)
+        self.titleLabel.textColor = isNormalState ? UIColor.lightGray :  UIColor.white
         #warning("twice?")
-        self.layer.backgroundColor = filter == nil ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
-        self.backgroundColor = filter == nil ? UIColor.white : Brand.default.colors.window
-        self.layer.borderColor = filter == nil ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
+        self.layer.backgroundColor = isNormalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
+        self.backgroundColor = isNormalState ? UIColor.white : Brand.default.colors.window
+        self.layer.borderColor = isNormalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
     }
 
-    static func size(for filterType: CourseSearchFilter.Type, with filter: CourseSearchFilter?) -> CGSize {
-        let title = self.title(for: filterType, with: filter)
+    static func size(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) -> CGSize {
+        let title = self.title(for: filter, with: selectedOptions)
         let fontHeight = CourseSearchFilterCell.titleFont.lineHeight
 
         let boundingSize = CGSize(width: CGFloat.infinity, height: fontHeight)
@@ -50,14 +51,12 @@ class CourseSearchFilterCell: UICollectionViewCell {
                       height: fontHeight + 2 * CourseSearchFilterCell.padding)
     }
 
-    private static func title(for filterType: CourseSearchFilter.Type, with filter: CourseSearchFilter?) -> String {
-        var title = filterType.title
-
-        if let counterValue = filter?.counterValue {
-            title += " · \(counterValue)"
+    private static func title(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) -> String {
+        if let options = selectedOptions, !options.isEmpty {
+            return "\(filter.title) · \(options.count)"
+        } else {
+            return filter.title
         }
-
-        return title
     }
 
 }

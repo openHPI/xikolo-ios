@@ -71,6 +71,8 @@
 		508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44121AB390400801530 /* SubtitleTableViewCell.swift */; };
 		508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */; };
 		508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */; };
+		50911AF5223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */; };
+		50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */; };
 		50913F27218C9E90006C7F11 /* String+height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50913F26218C9E90006C7F11 /* String+height.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
@@ -492,6 +494,8 @@
 		508FF44121AB390400801530 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentTypeListConfiguraton.swift; sourceTree = "<group>"; };
 		508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+resizeViews.swift"; sourceTree = "<group>"; };
+		50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterOptionsViewController.swift; sourceTree = "<group>"; };
+		50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		50913F26218C9E90006C7F11 /* String+height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+height.swift"; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+coreDataModelToCommon.swift"; sourceTree = "<group>"; };
@@ -784,6 +788,7 @@
 				503988722166920400F9043B /* ShadowContainerView.swift */,
 				5077012D218F38BC005568A6 /* InnerPillLabel.swift */,
 				508B9FA7211D7A600090BD16 /* RefreshControl.swift */,
+				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
 				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
@@ -1171,6 +1176,7 @@
 				70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
 				50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */,
+				50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */,
 				50146FCE2222C8B900177E96 /* CourseSearchFilter.swift */,
 				AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */,
 				AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */,
@@ -2015,6 +2021,7 @@
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,
 				700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */,
 				50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */,
+				50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */,
 				50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */,
 				50CF1FD720DCDBFC0011BFE9 /* CoursePresentationAnimator.swift in Sources */,
 				50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */,
@@ -2022,6 +2029,7 @@
 				50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */,
 				5054B2E72108B30E00CE9067 /* DocumentListViewController.swift in Sources */,
 				50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */,
+				50911AF5223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift in Sources */,
 				50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */,
 				50CF1FE620DCDBFC0011BFE9 /* RichText+Preloading.swift in Sources */,
 				50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */,

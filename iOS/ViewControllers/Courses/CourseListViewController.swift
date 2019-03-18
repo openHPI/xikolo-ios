@@ -105,7 +105,7 @@ class CourseListViewController: UICollectionViewController {
 
     private func updateSearchFilterContainerHeight(isSearching: Bool) {
         if isSearching {
-            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.size(for: CourseLanguageSearchFilter.self, with: nil).height
+            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.size(for: .language, with: []).height
         } else {
             self.filterContainerHeightConstraint?.constant = 0
         }
@@ -279,7 +279,8 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         let searchTextPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
 
         if let activeSearchFilters = self.searchFilterViewController?.activeFilters {
-            let searchFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: activeSearchFilters.map { $0.predicate })
+            let subpredicates = activeSearchFilters.map { (filter, selectedOptions) in filter.predicate(forSelectedOptions: selectedOptions) }
+            let searchFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subpredicates)
             return NSCompoundPredicate(andPredicateWithSubpredicates: [searchTextPredicate, searchFilterPredicate])
         } else {
             return searchTextPredicate

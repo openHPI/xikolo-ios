@@ -73,7 +73,6 @@ class CourseSearchFiltersViewController: UICollectionViewController {
             cell.configure(for: filter, with: selectedOptions)
         }
 
-
         return cell
     }
 
@@ -90,7 +89,6 @@ class CourseSearchFiltersViewController: UICollectionViewController {
             self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
         }
     }
-
 
 }
 

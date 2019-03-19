@@ -13,7 +13,7 @@ class CourseSearchFilterCell: UICollectionViewCell {
         return UIFont.preferredFont(forTextStyle: .callout)
     }
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

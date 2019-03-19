@@ -66,7 +66,7 @@ class CourseSearchFiltersViewController: UICollectionViewController {
 
         if indexPath.item == CourseSearchFilter.availableCases.count { // last cell / clear cell
             cell.configureAppearance(normalState: true)
-            cell.titleLabel.text = "Clear"
+            cell.titleLabel.text = NSLocalizedString("course-list.search.filter.clear", comment: "Title for button for clearning all filters")
         } else {
             let filter = CourseSearchFilter.availableCases[indexPath.item]
             let selectedOptions = self.activeFilters[filter]

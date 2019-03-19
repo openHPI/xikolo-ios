@@ -340,9 +340,9 @@ extension DownloadedContentListViewController { // editing
         var title: String {
             let allRowsSelected = self.allIndexPaths.count == self.tableView.indexPathsForSelectedRows?.count
             if allRowsSelected {
-                return NSLocalizedString("settings.downloads.toolbar.deselect all", comment: "button title for deselecting all rows")
+                return NSLocalizedString("global.list.selection.deselect all", comment: "Title for button for deselecting all items in a list")
             } else {
-                return NSLocalizedString("settings.downloads.toolbar.select all", comment: "button title for selecting all rows")
+                return NSLocalizedString("global.list.selection.select all", comment: "Title for button for selecting all items in a list")
             }
         }
 

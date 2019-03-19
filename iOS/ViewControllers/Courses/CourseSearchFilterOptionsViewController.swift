@@ -13,8 +13,15 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
 
     private let cellReuseIdentifier = "SearchFilterOptionItem"
 
-    private lazy var selectAllBarButton = UIBarButtonItem(title: "Select all", style: .plain, target: self, action: #selector(selectAllOptions))
-    private lazy var deselectAllBarButton = UIBarButtonItem(title: "Deselect all", style: .plain, target: self, action: #selector(deselectAllOptions))
+    private lazy var selectAllBarButton: UIBarButtonItem = {
+        let title = NSLocalizedString("global.list.selection.select all", comment: "Title for button for selecting all items in a list")
+        return UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(selectAllOptions))
+    }()
+
+    private lazy var deselectAllBarButton: UIBarButtonItem = {
+        let title = NSLocalizedString("global.list.selection.deselect all", comment: "Title for button for deselecting all items in a list")
+        return UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(deselectAllOptions))
+    }()
 
     let filter: CourseSearchFilter
     var options: [String]
@@ -42,9 +49,13 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Refine search"
+        self.navigationItem.title = NSLocalizedString("course-list.search.filter.options.title.refine serach",
+                                                      comment: "Title for filter options menu")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(applyChanges))
+        self.navigationItem.rightBarButtonItem = {
+            let title = NSLocalizedString("course-list.search.filter.options.apply", comment: "Title for applying selected filter options")
+            return UIBarButtonItem(title: title, style: .done, target: self, action: #selector(applyChanges))
+        }()
 
         self.toolbarItems = [
             self.deselectAllBarButton,

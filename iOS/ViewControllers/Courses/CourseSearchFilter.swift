@@ -17,7 +17,7 @@ enum CourseSearchFilter: CaseIterable {
     var title: String {
         switch self {
         case .language:
-            return "Language"
+            return NSLocalizedString("course-list.search.filter.title.language", comment: "Title for language filter")
         }
     }
 

@@ -31,6 +31,13 @@ enum CourseSearchFilter: CaseIterable {
         }
     }
 
+    func displayName(forOption option: String) -> String? {
+        switch self {
+        case .language:
+            return Course.localize(language: option)
+        }
+    }
+
     func predicate(forSelectedOptions selectedOptions: Set<String>) -> NSPredicate {
         switch self {
         case .language:

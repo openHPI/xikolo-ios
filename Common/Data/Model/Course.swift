@@ -52,13 +52,13 @@ public final class Course: NSManagedObject {
         }
     }
 
-    public var localizedLanguage: String? {
-        guard let language = language else {
-            return nil
-        }
-
+    public static func localize(language: String) -> String? {
         let locale = NSLocale(localeIdentifier: Brand.default.locale.identifier)
         return locale.displayName(forKey: NSLocale.Key.languageCode, value: language)
+    }
+
+    public var localizedLanguage: String? {
+        return self.language.flatMap(Course.localize)
     }
 
     public var url: URL? {

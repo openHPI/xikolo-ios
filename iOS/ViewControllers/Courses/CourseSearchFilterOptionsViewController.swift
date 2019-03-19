@@ -64,10 +64,10 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath)
-        let title = self.options[indexPath.row]
-        let isSelected = self.selectedOptions.contains(title)
+        let option = self.options[indexPath.row]
+        let isSelected = self.selectedOptions.contains(option)
 
-        cell.textLabel?.text = title
+        cell.textLabel?.text = self.filter.displayName(forOption: option)
         cell.accessoryType = isSelected ? .checkmark : .none
         cell.selectionStyle = .none
 

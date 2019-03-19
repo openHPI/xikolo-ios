@@ -41,8 +41,7 @@ enum CourseSearchFilter: CaseIterable {
     func predicate(forSelectedOptions selectedOptions: Set<String>) -> NSPredicate {
         switch self {
         case .language:
-            #warning("use really CONTAINS[c] ?")
-            let languagePredicates = selectedOptions.map { NSPredicate(format: "language CONTAINS[c] %@", $0) }
+            let languagePredicates = selectedOptions.map { NSPredicate(format: "language == %@", $0) }
             return NSCompoundPredicate(orPredicateWithSubpredicates: languagePredicates)
         }
     }

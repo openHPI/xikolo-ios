@@ -234,7 +234,7 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.updateSearchFilterContainerHeight(isSearching: true)
         self.collectionViewLayout.invalidateLayout()
 
-        // swiftint:disable:next trailing_closure
+        // swiftlint:disable:next trailing_closure
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.collectionView.layoutIfNeeded()
         })
@@ -244,7 +244,7 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.updateSearchFilterContainerHeight(isSearching: false)
         self.collectionViewLayout.invalidateLayout()
 
-        // swiftint:disable:next trailing_closure
+        // swiftlint:disable:next trailing_closure
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.collectionView.layoutIfNeeded()
         })

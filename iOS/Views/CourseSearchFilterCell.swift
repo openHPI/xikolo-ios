@@ -37,7 +37,12 @@ class CourseSearchFilterCell: UICollectionViewCell {
         self.titleLabel.text = CourseSearchFilterCell.title(for: filter, with: selectedOptions)
     }
 
-    func configureAppearance(normalState: Bool) {
+    func configureForClearButton() {
+        self.configureAppearance(normalState: true)
+        self.titleLabel.text = NSLocalizedString("course-list.search.filter.clear", comment: "Title for button for clearning all filters")
+    }
+
+    private func configureAppearance(normalState: Bool) {
         self.titleLabel.textColor = normalState ? UIColor.lightGray : UIColor.white
         self.layer.backgroundColor = normalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
         self.layer.borderColor = normalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor

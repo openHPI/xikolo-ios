@@ -57,15 +57,22 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CourseSearchFilter.availableCases.count
+        let numberOfAdditionalCells = self.activeFilters.isEmpty ? 0 : 1
+        return CourseSearchFilter.availableCases.count + numberOfAdditionalCells
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.courseSearchFilterCell, for: indexPath)!
 
-        let filter = CourseSearchFilter.availableCases[indexPath.item]
-        let selectedOptions = self.activeFilters[filter]
-        cell.configure(for: filter, with: selectedOptions)
+        if indexPath.item == CourseSearchFilter.availableCases.count { // last cell / clear cell
+            cell.configureAppearance(normalState: true)
+            cell.titleLabel.text = "Clear"
+        } else {
+            let filter = CourseSearchFilter.availableCases[indexPath.item]
+            let selectedOptions = self.activeFilters[filter]
+            cell.configure(for: filter, with: selectedOptions)
+        }
+
 
         return cell
     }
@@ -73,12 +80,15 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let filter = CourseSearchFilter.availableCases[indexPath.item]
-        let selectedOptions = self.activeFilters[filter]
-
-        let optionsViewController = CourseSearchFilterOptionsViewController(filter: filter, selectedOptions: selectedOptions, delegate: self)
-        let navigationController = UINavigationController(rootViewController: optionsViewController)
-        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+        if indexPath.item == CourseSearchFilter.availableCases.count { // last cell / clear cell
+            self.clearFilters()
+        } else {
+            let filter = CourseSearchFilter.availableCases[indexPath.item]
+            let selectedOptions = self.activeFilters[filter]
+            let optionsViewController = CourseSearchFilterOptionsViewController(filter: filter, selectedOptions: selectedOptions, delegate: self)
+            let navigationController = UINavigationController(rootViewController: optionsViewController)
+            self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
+        }
     }
 
 

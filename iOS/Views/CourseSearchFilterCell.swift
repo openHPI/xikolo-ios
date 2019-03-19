@@ -33,10 +33,14 @@ class CourseSearchFilterCell: UICollectionViewCell {
 
     func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
         let isNormalState = selectedOptions?.isEmpty ?? true
+        self.configureAppearance(normalState: isNormalState)
         self.titleLabel.text = CourseSearchFilterCell.title(for: filter, with: selectedOptions)
-        self.titleLabel.textColor = isNormalState ? UIColor.lightGray : UIColor.white
-        self.layer.backgroundColor = isNormalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
-        self.layer.borderColor = isNormalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
+    }
+
+    func configureAppearance(normalState: Bool) {
+        self.titleLabel.textColor = normalState ? UIColor.lightGray : UIColor.white
+        self.layer.backgroundColor = normalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
+        self.layer.borderColor = normalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
     }
 
     static func cellHeight() -> CGFloat {

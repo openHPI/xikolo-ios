@@ -34,10 +34,8 @@ class CourseSearchFilterCell: UICollectionViewCell {
     func configure(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) {
         let isNormalState = selectedOptions?.isEmpty ?? true
         self.titleLabel.text = CourseSearchFilterCell.title(for: filter, with: selectedOptions)
-        self.titleLabel.textColor = isNormalState ? UIColor.lightGray :  UIColor.white
-        #warning("twice?")
+        self.titleLabel.textColor = isNormalState ? UIColor.lightGray : UIColor.white
         self.layer.backgroundColor = isNormalState ? UIColor.white.cgColor : Brand.default.colors.window.cgColor
-        self.backgroundColor = isNormalState ? UIColor.white : Brand.default.colors.window
         self.layer.borderColor = isNormalState ? UIColor.lightGray.cgColor : Brand.default.colors.window.cgColor
     }
 

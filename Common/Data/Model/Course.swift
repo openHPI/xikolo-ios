@@ -29,6 +29,8 @@ public final class Course: NSManagedObject {
     @NSManaged public var external: Bool
     @NSManaged public var lastVisited: Date?
     @NSManaged public var teaserStream: VideoStream?
+    @NSManaged public var categories: String?
+    @NSManaged public var topics: String?
 
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var enrollment: Enrollment?
@@ -54,7 +56,12 @@ public final class Course: NSManagedObject {
 
     public static func localize(language: String) -> String? {
         let locale = NSLocale(localeIdentifier: Brand.default.locale.identifier)
-        return locale.displayName(forKey: NSLocale.Key.languageCode, value: language)
+        switch language {
+        case "cn":
+            return locale.displayName(forKey: NSLocale.Key.languageCode, value: "zh-cn")
+        default:
+            return locale.displayName(forKey: NSLocale.Key.languageCode, value: language)
+        }
     }
 
     public var localizedLanguage: String? {
@@ -100,6 +107,12 @@ extension Course: JSONAPIPullable {
         self.external = try attributes.value(for: "external")
         self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
 
+        let categoryValues = try attributes.value(for: "classifiers.category") as [String]?
+        self.categories = Course.arrayString(for: categoryValues)
+
+        let topicValues = try attributes.value(for: "classifiers.topic") as [String]?
+        self.topics = Course.arrayString(for: topicValues)
+
         self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
 
         if let relationships = try? object.value(for: "relationships") as JSON {
@@ -108,7 +121,14 @@ extension Course: JSONAPIPullable {
                                         fromObject: relationships,
                                         with: context)
         }
+    }
 
+    private static func arrayString(for values: [String]?) -> String? {
+        return values?.joined(separator: ";")
+    }
+
+    public static func arrayValues(for arrayString: String?) -> [String]? {
+        return arrayString?.split(separator: ";").compactMap(String.init)
     }
 
 }

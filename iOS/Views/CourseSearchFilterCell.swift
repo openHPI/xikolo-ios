@@ -52,12 +52,16 @@ class CourseSearchFilterCell: UICollectionViewCell {
         return CourseSearchFilterCell.titleFont.lineHeight + 2 * CourseSearchFilterCell.padding + 2
     }
 
-    private static func title(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) -> String {
-        if let options = selectedOptions, !options.isEmpty {
-            return "\(filter.title) · \(options.count)"
-        } else {
+    private static func title(for filter: CourseSearchFilter, with selectedOptions: Set<String>?) -> String? {
+        guard let options = selectedOptions, !options.isEmpty else {
             return filter.title
         }
+
+        guard let title = filter.title else {
+            return String(options.count)
+        }
+
+        return "\(title) · \(options.count)"
     }
 
 }

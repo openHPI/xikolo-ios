@@ -20,6 +20,7 @@ public struct Brand: Decodable {
         case showCurrentCoursesInSelfPacedSection
         case useDummyCredentialsForSDWebImage
         case features
+        case courseClassifierSearchFilters
     }
 
     public static let `default`: Brand = {
@@ -41,6 +42,7 @@ public struct Brand: Decodable {
     public let showCurrentCoursesInSelfPacedSection: Bool
     public let useDummyCredentialsForSDWebImage: Bool
     public let features: BrandFeatures
+    public let courseClassifierSearchFilters: CourseClassifierSearchFilter?
 
     public var copyrightText: String {
         let currentYear = Calendar.current.component(.year, from: Date())
@@ -76,6 +78,7 @@ public struct Brand: Decodable {
         self.showCurrentCoursesInSelfPacedSection = try container.decodeIfPresent(Bool.self, forKey: .showCurrentCoursesInSelfPacedSection) ?? false
         self.useDummyCredentialsForSDWebImage = try container.decodeIfPresent(Bool.self, forKey: .useDummyCredentialsForSDWebImage) ?? false
         self.features = try container.decode(BrandFeatures.self, forKey: .features)
+        self.courseClassifierSearchFilters = try? container.decode(CourseClassifierSearchFilter.self, forKey: .courseClassifierSearchFilters)
     }
 
 }

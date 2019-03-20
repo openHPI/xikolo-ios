@@ -32,9 +32,11 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
         self.filter = filter
         self.delegate = delegate
 
-        let options = filter.options
+        let options = filter.options()
         self.options = options
-        self.selectedOptions = selectedOptions ?? Set(options)
+
+        let defaultOptions = filter.allOptionsActivatedByDefault ? Set(options) : Set([])
+        self.selectedOptions = selectedOptions ?? defaultOptions
 
         super.init(style: .grouped)
 
@@ -73,7 +75,7 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.filter.options.count
+        return self.options.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,7 +117,8 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
     }
 
     @objc private func applyChanges() {
-        if self.selectedOptions.count == self.options.count {
+        let optionsCountOfDefaultSettings = self.filter.allOptionsActivatedByDefault ? self.options.count : 0
+        if self.selectedOptions.count == optionsCountOfDefaultSettings {
             self.delegate?.setOptions(nil, for: self.filter)
         } else {
             self.delegate?.setOptions(self.selectedOptions, for: self.filter)
@@ -145,7 +148,8 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
     }
 
     private func updateBarButtons() {
-        self.navigationItem.rightBarButtonItem?.isEnabled = !self.selectedOptions.isEmpty
+        let enableApplyButton = self.filter.allOptionsActivatedByDefault ? !self.selectedOptions.isEmpty : true
+        self.navigationItem.rightBarButtonItem?.isEnabled = enableApplyButton
         self.selectAllBarButton.isEnabled = self.selectedOptions.count != self.options.count
         self.deselectAllBarButton.isEnabled = !self.selectedOptions.isEmpty
     }

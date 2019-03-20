@@ -169,6 +169,32 @@ extension CourseHelper {
             return fetchRequest
         }
 
+        public static var categories: NSFetchRequest<NSDictionary> {
+            let entityName = Course.entity().name!
+            let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                 self.visiblePredicate,
+                 NSPredicate(format: "categories != nil"),
+            ])
+            fetchRequest.resultType = .dictionaryResultType
+            fetchRequest.propertiesToFetch = [NSString(string: "categories")]
+            fetchRequest.returnsObjectsAsFaults = false
+            return fetchRequest
+        }
+
+        public static var topics: NSFetchRequest<NSDictionary> {
+            let entityName = Course.entity().name!
+            let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.visiblePredicate,
+                NSPredicate(format: "topics != nil"),
+            ])
+            fetchRequest.resultType = .dictionaryResultType
+            fetchRequest.propertiesToFetch = [NSString(string: "topics")]
+            fetchRequest.returnsObjectsAsFaults = false
+            return fetchRequest
+        }
+
     }
 
 }

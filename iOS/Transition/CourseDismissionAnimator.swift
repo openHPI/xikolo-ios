@@ -31,29 +31,17 @@ class CourseDismissionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
             fatalError("from view controller could not be found")
         }
 
+        transitionContext.containerView.insertSubview(toViewController.view, at: 0)
+
         // Update frame of toViewController's view to avoid UI glitches when dismissing a course
         // in a different device orientation compared to the orientation the course was opened in
-        if let windowFrame = AppDelegate.instance().window?.frame {
-            toViewController.view.frame = windowFrame
-        }
-
-        let containerView = transitionContext.containerView
-        containerView.insertSubview(toViewController.view, at: 0)
-
-        let overlayView = containerView.viewWithTag(437)
-        overlayView?.subviews.forEach { $0.removeFromSuperview() }
-
-        if let snapshot = toViewController.view.snapshotView(afterScreenUpdates: true) {
-            snapshot.alpha = 0.2
-            overlayView?.addSubview(snapshot)
-        }
+        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
 
         let animationDuration = self.transitionDuration(using: transitionContext)
         let animator = UIViewPropertyAnimator(duration: animationDuration, timingParameters: UICubicTimingParameters(animationCurve: .easeInOut))
 
         animator.addAnimations {
-            fromViewController.view.transform = CGAffineTransform(translationX: 0, y: containerView.bounds.height)
-            overlayView?.alpha = 0
+            fromViewController.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.bounds.height)
         }
 
         animator.addCompletion { _ in

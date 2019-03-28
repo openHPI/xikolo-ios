@@ -20,7 +20,7 @@ In order to have a consistent code formatting, we would like you to set some set
 We use [R.swift](https://github.com/mac-cain13/R.swift) to keep a certain level of code quality. The linter will run for every pull request and there is also a fastlane command for this.
 
 #### Using self
-One thing we can't enforce with R.swift is not to omit `self`. We prefer writing `self` explicitly becuase we believe this helps to distinguish between member attributes and local variabels.
+One thing we can't enforce with R.swift is not to omit `self`. We prefer writing `self` explicitly because we believe this helps to distinguish between member attributes and local variabels.
 
 ### Localization
 We use [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) to ensure a complete localization of the applications. Simple run `bundle exec fastlane localize` to add entries for missing localizations in storyboard files and `NSLocalizedString` usages. Here are some tips to promote a consistent usage:
@@ -28,8 +28,8 @@ We use [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) to ensure a compl
 #### Exlusion of storyboard elements
 Add `#bc-ignore!` to 'Comment For Localizer' box in the utilities pane instead of adding `#bc-ignore!` to the elements value.
 <div>
-	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/IB-Comment-Exclusion-Example1.png" width="275px" height="491px">
-	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/IB-Comment-Exclusion-Example2.png" width="272px" height="195px">
+	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/Images/IB-Comment-Exclusion-Example1.png" width="255px" height="437px">
+	<img src="https://raw.githubusercontent.com/Flinesoft/BartyCrouch/stable/Images/IB-Comment-Exclusion-Example2.png" width="254px" height="140px">
 </div>
 
 #### Support of stringsdict files

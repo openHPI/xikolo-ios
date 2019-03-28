@@ -248,6 +248,21 @@ public class BingePlayerViewController: UIViewController {
         if #available(iOS 11, *) {
             self.routeDetector.isRouteDetectionEnabled = true
         }
+
+        self.addObserver(self, forKeyPath: "player.timeControlStatus", options: [.new, .initial], context: &playerViewControllerKVOContext)
+        self.addObserver(self, forKeyPath: "player.currentItem.loadedTimeRanges", options: [.new, .initial], context: &playerViewControllerKVOContext)
+        self.addObserver(self, forKeyPath: "player.currentItem.status", options: [.new, .initial], context: &playerViewControllerKVOContext)
+
+        AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [.new], context: &playerViewControllerKVOContext)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: nil)
+        if self.isAirPlayActivated {
+            self.layoutState = .remote
+        }
+
+        if #available(iOS 11, *) {
+            NotificationCenter.default.addObserver(self, selector: #selector(handleMultipleRoutes), name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
+        }
     }
 
     override public func viewDidAppear(_ animated: Bool) {
@@ -262,41 +277,25 @@ public class BingePlayerViewController: UIViewController {
         }
 
         self.setupPlayerPeriodicTimeObserver()
-
-        self.addObserver(self, forKeyPath: "player.timeControlStatus", options: [.new, .initial], context: &playerViewControllerKVOContext)
-        self.addObserver(self, forKeyPath: "player.currentItem.loadedTimeRanges", options: [.new, .initial], context: &playerViewControllerKVOContext)
-        self.addObserver(self, forKeyPath: "player.currentItem.status", options: [.new, .initial], context: &playerViewControllerKVOContext)
-
-        AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [.new], context: &playerViewControllerKVOContext)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChanged), name: AVAudioSession.routeChangeNotification, object: nil)
-        if self.isAirPlayActivated {
-            self.layoutState = .remote
-        }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
-
-        if #available(iOS 11, *) {
-            NotificationCenter.default.addObserver(self, selector: #selector(handleMultipleRoutes), name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
-        }
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         self.cleanUpPlayerPeriodicTimeObserver()
+    }
 
-        self.removeObserver(self, forKeyPath: "player.timeControlStatus", context: &playerViewControllerKVOContext)
-        self.removeObserver(self, forKeyPath: "player.currentItem.loadedTimeRanges", context: &playerViewControllerKVOContext)
-        self.removeObserver(self, forKeyPath: "player.currentItem.status", context: &playerViewControllerKVOContext)
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
 
-        AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume", context: &playerViewControllerKVOContext)
+        let currentOrientation = UIDevice.current.orientation
+        self.delegate?.didChangeOrientation(to: currentOrientation)
 
-        NotificationCenter.default.removeObserver(self, name: AVAudioSession.routeChangeNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+        guard self.shouldEnterFullScreenModeInLandscapeOrientation else { return }
 
-        if #available(iOS 11, *) {
-            NotificationCenter.default.removeObserver(self, name: .AVRouteDetectorMultipleRoutesDetectedDidChange, object: nil)
+        if self.layoutState == .inline, currentOrientation.isLandscape {
+            self.layoutState = .fullscreen
+        } else if self.layoutState == .fullscreen, currentOrientation == .portrait {
+            self.layoutState = .inline
         }
     }
 
@@ -368,7 +367,7 @@ public class BingePlayerViewController: UIViewController {
     }
 
     override public var prefersStatusBarHidden: Bool {
-        return self.controlsContainer.isHidden || (UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation.isLandscape)
+        return self.controlsContainer.isHidden && self.traitCollection.verticalSizeClass == .regular
     }
 
     override public var prefersHomeIndicatorAutoHidden: Bool {
@@ -390,19 +389,6 @@ public class BingePlayerViewController: UIViewController {
         self.showControlsOverlay()
         self.updateMediaPlayerInfoCenter()
         self.delegate?.didReachEndofPlayback()
-    }
-
-    @objc private func orientationChanged() {
-        let currentOrientation = UIDevice.current.orientation
-        self.delegate?.didChangeOrientation(to: currentOrientation)
-
-        guard self.shouldEnterFullScreenModeInLandscapeOrientation else { return }
-
-        if self.layoutState == .inline, currentOrientation.isLandscape {
-            self.layoutState = .fullscreen
-        } else if self.layoutState == .fullscreen, currentOrientation == .portrait {
-            self.layoutState = .inline
-        }
     }
 
     @objc private func toggleControlOverlay() {

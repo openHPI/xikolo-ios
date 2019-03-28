@@ -8,26 +8,23 @@
 
 import UIKit
 
-struct BingeFullScreenPresenter {
+class BingeFullScreenPresenter {
 
     let viewController: UIViewController
+    let originalWindow: UIWindow
     let originalParent: UIViewController
-    let window: UIWindow
-    let originalRootViewController: UIViewController
     let originalContainer: UIView
+
+    var newWindow: UIWindow?
 
     init?(for viewController: UIViewController) {
         self.viewController = viewController
-
-        guard let parent = viewController.parent else {
-            return nil
-        }
 
         guard let window = UIApplication.shared.keyWindow else {
             return nil
         }
 
-        guard let rootViewController = window.rootViewController else {
+        guard let parent = viewController.parent else {
             return nil
         }
 
@@ -35,9 +32,8 @@ struct BingeFullScreenPresenter {
             return nil
         }
 
+        self.originalWindow = window
         self.originalParent = parent
-        self.window = window
-        self.originalRootViewController = rootViewController
         self.originalContainer = container
     }
 
@@ -46,43 +42,41 @@ struct BingeFullScreenPresenter {
         self.viewController.removeFromParent()
         self.viewController.view.removeFromSuperview()
 
-        self.window.addSubview(self.viewController.view)
-        self.viewController.view.frame = self.originalContainer.frame
+        self.originalWindow.addSubview(self.viewController.view)
+        self.viewController.view.frame = self.originalContainer.convert(self.viewController.view.frame, to: self.originalWindow)
 
         self.viewController.view.layer.cornerRadius = self.originalContainer.layer.cornerRadius
         self.viewController.view.layer.masksToBounds = self.viewController.view.layer.cornerRadius > 0
 
-        UIView.transition(with: self.window, duration: 0.25, options: .curveEaseInOut, animations: {
-            self.viewController.view.frame = self.window.frame
+        UIView.transition(with: self.originalWindow, duration: 0.25, options: .curveEaseInOut, animations: {
+            self.viewController.view.frame = self.originalWindow.frame
             self.viewController.view.layer.cornerRadius = 0
             self.viewController.view.layoutIfNeeded()
         }) { _ in
             self.viewController.view.removeFromSuperview()
-            self.window.rootViewController = self.viewController
+            self.newWindow = UIWindow(frame: self.originalWindow.frame)
+            self.newWindow?.rootViewController = self.viewController
+            self.newWindow?.makeKeyAndVisible()
         }
     }
 
     func close() {
-        self.originalRootViewController.view.setNeedsLayout()
-        self.originalRootViewController.view.layoutIfNeeded()
-
-        self.window.rootViewController = self.originalRootViewController
-        self.window.addSubview(self.viewController.view)
+        self.originalWindow.makeKeyAndVisible()
+        self.originalWindow.addSubview(self.viewController.view)
 
         self.viewController.view.layer.cornerRadius = self.originalContainer.layer.cornerRadius
         self.viewController.view.layer.masksToBounds = self.viewController.view.layer.cornerRadius > 0
 
-        CATransaction.flush()
-
-        UIView.transition(with: self.window, duration: 0.25, options: .curveEaseInOut, animations: {
-            self.viewController.view.frame = self.originalContainer.frame
+        UIView.transition(with: self.originalWindow, duration: 0.25, options: .curveEaseInOut, animations: {
+            self.viewController.view.frame = self.originalWindow.convert(self.originalContainer.frame, from: self.originalParent.view)
             self.viewController.view.layoutIfNeeded()
         }) { _ in
             self.viewController.view.removeFromSuperview()
             self.originalParent.addChild(self.viewController)
             self.originalContainer.addSubview(self.viewController.view)
             self.viewController.didMove(toParent: self.originalParent)
-            self.viewController.view.frame = self.originalContainer.convert(self.viewController.view.frame, from: self.window)
+            self.viewController.view.frame = self.originalContainer.bounds
+
         }
     }
 

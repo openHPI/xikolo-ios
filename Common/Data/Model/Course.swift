@@ -98,7 +98,7 @@ extension Course: JSONAPIPullable {
         self.hidden = try attributes.value(for: "hidden")
         self.enrollable = try attributes.value(for: "enrollable")
         self.external = try attributes.value(for: "external")
-        self.teaserStream = try attributes.value(for: "teaser_stream")
+        self.teaserStream = try attributes.value(for: "teaser_stream") ?? self.teaserStream
 
         self.order = NSNumber(value: abs(self.startsAt?.timeIntervalSinceNow ?? TimeInterval.infinity))
 

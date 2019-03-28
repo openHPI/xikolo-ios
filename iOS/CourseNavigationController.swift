@@ -35,19 +35,13 @@ class CourseNavigationController: XikoloNavigationController {
     }
 
     override var childForStatusBarHidden: UIViewController? {
-        guard let pageViewController = self.topViewController as? UIPageViewController else {
-            return nil
-        }
-
-        return pageViewController.viewControllers?.first
+        let pageViewController = self.topViewController as? UIPageViewController
+        return pageViewController?.viewControllers?.first
     }
 
     override var childForHomeIndicatorAutoHidden: UIViewController? {
-        guard let pageViewController = self.topViewController as? UIPageViewController else {
-            return nil
-        }
-
-        return pageViewController.viewControllers?.first
+        let pageViewController = self.topViewController as? UIPageViewController
+        return pageViewController?.viewControllers?.first
     }
 
     override func viewDidLayoutSubviews() {

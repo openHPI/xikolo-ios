@@ -17,8 +17,6 @@ class DownloadedContentListViewController: UITableViewController {
     @IBOutlet private weak var selectAllBarButton: UIBarButtonItem!
     @IBOutlet private weak var deleteBarButton: UIBarButtonItem!
 
-    private var userIsSwipingOnRow = false
-
     struct CourseDownload {
         var id: String
         var title: String

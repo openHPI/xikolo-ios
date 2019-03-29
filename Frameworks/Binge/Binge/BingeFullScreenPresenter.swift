@@ -38,6 +38,8 @@ class BingeFullScreenPresenter {
     }
 
     func open() {
+        self.viewController.presentedViewController?.dismiss(animated: false)
+
         self.viewController.willMove(toParent: nil)
         self.viewController.removeFromParent()
         self.viewController.view.removeFromSuperview()
@@ -54,15 +56,18 @@ class BingeFullScreenPresenter {
             self.viewController.view.layoutIfNeeded()
         }) { _ in
             self.viewController.view.removeFromSuperview()
-            self.newWindow = UIWindow(frame: self.originalWindow.frame)
+            self.newWindow = UIWindow()
             self.newWindow?.rootViewController = self.viewController
             self.newWindow?.makeKeyAndVisible()
+            self.newWindow?.frame = UIScreen.main.bounds
         }
     }
 
     func close() {
-        self.originalWindow.makeKeyAndVisible()
+        self.viewController.presentedViewController?.dismiss(animated: false)
+
         self.originalWindow.addSubview(self.viewController.view)
+        self.originalWindow.makeKeyAndVisible()
 
         self.viewController.view.layer.cornerRadius = self.originalContainer.layer.cornerRadius
         self.viewController.view.layer.masksToBounds = self.viewController.view.layer.cornerRadius > 0
@@ -76,7 +81,6 @@ class BingeFullScreenPresenter {
             self.originalContainer.addSubview(self.viewController.view)
             self.viewController.didMove(toParent: self.originalParent)
             self.viewController.view.frame = self.originalContainer.bounds
-
         }
     }
 

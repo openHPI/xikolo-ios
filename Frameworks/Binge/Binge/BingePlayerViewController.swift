@@ -116,29 +116,27 @@ public class BingePlayerViewController: UIViewController {
     }
 
     private func adaptToLayoutState() {
-        DispatchQueue.main.async {
-            self.controlsViewController.adaptToLayoutState(self.layoutState,
-                                                           allowFullScreenMode: self.allowFullScreenMode,
-                                                           isStandAlone: self.isStandAlone)
-            if self.layoutState == .pictureInPicture {
-                self.hideControlsOverlay()
-            } else if self.layoutState == .remote {
-                self.showControlsOverlay()
-            } else if self.player.timeControlStatus == .paused {
-                self.showControlsOverlay() /// XXX: why here?
-            }
+        self.controlsViewController.adaptToLayoutState(self.layoutState,
+                                                       allowFullScreenMode: self.allowFullScreenMode,
+                                                       isStandAlone: self.isStandAlone)
+        if self.layoutState == .pictureInPicture {
+            self.hideControlsOverlay()
+        } else if self.layoutState == .remote {
+            self.showControlsOverlay()
+        } else if self.player.timeControlStatus == .paused {
+            self.showControlsOverlay() /// XXX: why here?
+        }
 
-            self.delegate?.didChangeLayoutState(to: self.layoutState)
+        self.delegate?.didChangeLayoutState(to: self.layoutState)
 
-            guard !self.isStandAlone else { return }
+        guard !self.isStandAlone else { return }
 
-            if let fullscreenPresenter = self.fullscreenPresenter, self.layoutState != .fullscreen {
-                fullscreenPresenter.close()
-                self.fullscreenPresenter = nil
-            } else if self.layoutState == .fullscreen {
-                self.fullscreenPresenter = BingeFullScreenPresenter(for: self)
-                self.fullscreenPresenter?.open()
-            }
+        if let fullscreenPresenter = self.fullscreenPresenter, self.layoutState != .fullscreen {
+            fullscreenPresenter.close()
+            self.fullscreenPresenter = nil
+        } else if self.layoutState == .fullscreen {
+            self.fullscreenPresenter = BingeFullScreenPresenter(for: self)
+            self.fullscreenPresenter?.open()
         }
     }
 
@@ -699,7 +697,7 @@ extension BingePlayerViewController {
         guard self.layoutState != .remote else { return }
 
         self.controlsOverlayDispatchWorkItem?.cancel()
-    
+
         let workItem = DispatchWorkItem { [weak self] in
             guard let view = self?.view else { return }
             UIView.transition(with: view,

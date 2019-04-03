@@ -15,6 +15,7 @@ opt_in_rules:
 - file_header
 - first_where
 - joined_default_parameter
+- last_where
 - let_var_whitespace
 - literal_expression_end_indentation
 - modifier_order

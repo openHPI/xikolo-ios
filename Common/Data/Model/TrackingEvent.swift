@@ -44,7 +44,7 @@ extension TrackingEvent: JSONAPIPushable {
         get {
             return ObjectState.new.rawValue
         }
-        set {}
+        set {} // swiftlint:disable:this unused_setter_value
     }
 
     public func markAsUnchanged() {

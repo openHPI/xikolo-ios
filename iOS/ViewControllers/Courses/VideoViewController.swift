@@ -94,6 +94,8 @@ class VideoViewController: UIViewController {
         self.slidesView.isHidden = true
         self.slidesDownloadedIcon.tintColor = UIColor.darkText.withAlphaComponent(0.7)
 
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+
         self.updateView(for: self.courseItem)
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
 
@@ -113,10 +115,10 @@ class VideoViewController: UIViewController {
                                        object: nil)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
 //        self.toggleControlBars(animated)
-    }
+//    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -141,6 +143,7 @@ class VideoViewController: UIViewController {
         guard isNotPresentedInPageViewController || pageViewControllerDismissed else { return }
 
         // TODO
+        self.playerViewController?.pausePlayback()
 //        if let player = self.pla, player.isPlaying {
 //            player.pause()
 //        }

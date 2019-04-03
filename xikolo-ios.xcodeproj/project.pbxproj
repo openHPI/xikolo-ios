@@ -13,6 +13,7 @@
 		50046F6D216B53EB00D59073 /* Notification+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F6C216B53EB00D59073 /* Notification+CoreData.swift */; };
 		50046F6F216B938D00D59073 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F6E216B938D00D59073 /* LoadingButton.swift */; };
 		50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */; };
+		500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */; };
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
 		5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE8F2171E9390001805E /* CourseItemViewController.swift */; };
 		5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE912171F21D0001805E /* CourseItemContentViewController.swift */; };
@@ -379,6 +380,7 @@
 		50082B5E20BFDAC900B4511C /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
 		50082B6420C0358C00B4511C /* xikolo 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "xikolo 6.xcdatamodel"; sourceTree = "<group>"; };
 		500A257D20824C2500EB7AE4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentHelper.swift; sourceTree = "<group>"; };
 		5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeCastable.swift"; sourceTree = "<group>"; };
 		5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentLocalizationCell.swift; sourceTree = "<group>"; };
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 				50082B5920BFDA9C00B4511C /* SlidesPersistenceManager.swift */,
 				50B71B87212AC61C008CE681 /* DocumentsPersistenceManager.swift */,
 				5044C8DC21A8089C006490CE /* ContentPersistenceManager.swift */,
+				500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */,
 				50082B5E20BFDAC900B4511C /* DownloadState.swift */,
 			);
 			path = PersistenceManager;
@@ -1951,6 +1954,7 @@
 				50CF1F8A20DCDBFC0011BFE9 /* DownloadSettingsViewController.swift in Sources */,
 				7007E4132133FFB6005AC7A6 /* DownloadedContentListViewController.swift in Sources */,
 				50CF1F8B20DCDBFC0011BFE9 /* AnnouncementCell.swift in Sources */,
+				500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */,
 				50CF1F9120DCDBFC0011BFE9 /* VideoStreamingSettingsViewController.swift in Sources */,
 				5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */,
 				5095B1DF20EBA9D700572924 /* UserDefaults+playbackRate.swift in Sources */,

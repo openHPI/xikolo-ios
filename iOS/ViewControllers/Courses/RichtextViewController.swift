@@ -11,7 +11,7 @@ class RichtextViewController: UIViewController {
 
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var textView: UITextView!
-    @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var scrollViewTopConstraint: NSLayoutConstraint!
 
     private var courseItemObserver: ManagedObjectObserver?
 

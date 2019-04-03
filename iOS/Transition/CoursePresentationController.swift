@@ -54,6 +54,7 @@ final class CoursePresentationController: UIPresentationController {
             return
         }
 
+        // swiftlint:disable:next trailing_closure
         coordinator.animate(alongsideTransition: { _ in
             self.dimmingView.alpha = 1.0
         })
@@ -65,6 +66,7 @@ final class CoursePresentationController: UIPresentationController {
             return
         }
 
+        // swiftlint:disable:next trailing_closure
         coordinator.animate(alongsideTransition: { _ in
             self.dimmingView.alpha = 0.1
         })

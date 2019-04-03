@@ -25,7 +25,7 @@ enum DownloadedStreamsListConfiguration: DownloadedContentTypeListConfiguraton {
     static let persistenceManager = StreamPersistenceManager.shared
     static let cellTitleKeyPath = \Video.item?.title
     static let sectionTitleKeyPath = \Video.item?.section?.title
-    static let navigationTitle = DownloadedContentListViewController.DownloadedContentType.video.title
+    static let navigationTitle = DownloadedContentHelper.ContentType.video.title
 
     static func resultsController(for course: Course) -> NSFetchedResultsController<Video> {
         let request = VideoHelper.FetchRequest.videosWithDownloadedStream(in: course)
@@ -44,7 +44,7 @@ enum DownloadedSlidesListConfiguration: DownloadedContentTypeListConfiguraton {
     static let persistenceManager = SlidesPersistenceManager.shared
     static let cellTitleKeyPath = \Video.item?.title
     static let sectionTitleKeyPath = \Video.item?.section?.title
-    static let navigationTitle = DownloadedContentListViewController.DownloadedContentType.slides.title
+    static let navigationTitle = DownloadedContentHelper.ContentType.slides.title
 
     static func resultsController(for course: Course) -> NSFetchedResultsController<Video> {
         let request = VideoHelper.FetchRequest.videosWithDownloadedSlides(in: course)
@@ -63,7 +63,7 @@ enum DownloadedDocumentsListConfiguration: DownloadedContentTypeListConfiguraton
     static let persistenceManager = DocumentsPersistenceManager.shared
     static let cellTitleKeyPath = \DocumentLocalization.title as KeyPath<DocumentLocalization, String?>
     static let sectionTitleKeyPath = \DocumentLocalization.document.title as KeyPath<DocumentLocalization, String?>
-    static let navigationTitle = DownloadedContentListViewController.DownloadedContentType.document.title
+    static let navigationTitle = DownloadedContentHelper.ContentType.document.title
 
     static func resultsController(for course: Course) -> NSFetchedResultsController<DocumentLocalization> {
         let request = DocumentLocalizationHelper.FetchRequest.downloadedDocumentLocalizations(forCourse: course)

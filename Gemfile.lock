@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/jcouball/ruby-git.git
+  revision: d6058159a410fad3e9d0f0a9b2bd5fe6380d6bfd
+  branch: normalize_encoding
+  specs:
+    git (1.5.0)
+      rchardet (~> 1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -131,7 +139,6 @@ GEM
     fourflusher (2.2.0)
     fuzzy_match (2.0.4)
     gh_inspector (1.1.3)
-    git (1.5.0)
     google-api-client (0.23.9)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.7.0)
@@ -187,6 +194,7 @@ GEM
     plist (3.5.0)
     public_suffix (2.0.5)
     rake (12.3.2)
+    rchardet (1.8.0)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -244,6 +252,7 @@ DEPENDENCIES
   danger (~> 5.5)
   danger-swiftlint (~> 0.11)
   fastlane (~> 2.55)
+  git!
 
 BUNDLED WITH
-   1.16.6
+   1.17.1

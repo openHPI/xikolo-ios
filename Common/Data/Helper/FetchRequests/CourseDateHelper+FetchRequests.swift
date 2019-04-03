@@ -52,7 +52,7 @@ extension CourseDateHelper {
             let fromDate = calendar.startOfDay(for: today)
             let toDate = calendar.date(byAdding: .day, value: numberOfDays, to: fromDate).require()
 
-            let fromPredicate = NSPredicate(format: "date >= %@", fromDate as NSDate)
+            let fromPredicate = NSPredicate(format: "date >= %@", today as NSDate)
             let toPredicate = NSPredicate(format: "date < %@", toDate as NSDate)
 
             let request: NSFetchRequest<CourseDate> = CourseDate.fetchRequest()

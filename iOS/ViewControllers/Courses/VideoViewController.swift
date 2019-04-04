@@ -64,8 +64,6 @@ class VideoViewController: UIViewController {
         return videoIsFullScreenOnihone || self.videoIsFullScreenOniPad
     }
 
-
-
     private var video: Video?
     private var videoPlayerConfigured = false
     private var didViewAppear = false

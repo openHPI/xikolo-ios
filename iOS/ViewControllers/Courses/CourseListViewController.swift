@@ -201,8 +201,8 @@ extension CourseListViewController: UISearchResultsUpdating {
         self.collectionView?.setContentOffset(scrollOffset, animated: trueUnlessReduceMotionEnabled)
 
         let searchText = searchController.searchBar.text
-        let hasSearchText = !(searchText?.isEmpty ?? true)
-        let hasActiveFilters = !(self.searchFilterViewController?.activeFilters.isEmpty ?? true)
+        let hasSearchText = searchText?.isEmpty == false
+        let hasActiveFilters = self.searchFilterViewController?.activeFilters.isEmpty == false
 
         guard searchController.isActive, (hasSearchText || hasActiveFilters) else {
             self.dataSource.resetSearch()
@@ -235,8 +235,8 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.collectionViewLayout.invalidateLayout()
 
         // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-            self.collectionView.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+            self?.collectionView.layoutIfNeeded()
         })
     }
 
@@ -245,8 +245,8 @@ extension CourseListViewController: UISearchControllerDelegate {
         self.collectionViewLayout.invalidateLayout()
 
         // swiftlint:disable:next trailing_closure
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-            self.collectionView.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+            self?.collectionView.layoutIfNeeded()
         })
 
         self.searchFilterViewController?.clearFilters()
@@ -288,8 +288,8 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
         let searchTextPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
 
         if let activeSearchFilters = self.searchFilterViewController?.activeFilters {
-            let subpredicates = activeSearchFilters.map { filter, selectedOptions in filter.predicate(forSelectedOptions: selectedOptions) }
-            let searchFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subpredicates)
+            let filterSubpredicates = activeSearchFilters.map { filter, selectedOptions in filter.predicate(forSelectedOptions: selectedOptions) }
+            let searchFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: filterSubpredicates)
             return NSCompoundPredicate(andPredicateWithSubpredicates: [searchTextPredicate, searchFilterPredicate])
         } else {
             return searchTextPredicate

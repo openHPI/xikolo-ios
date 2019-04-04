@@ -20,6 +20,18 @@
 /* course start at specfic date in the past */
 "course-date-formatting.started.since %@" = "Since %@";
 
+/* Title for proficiency level filter (who) */
+"course-list.search.filter.title.proficiency level" = "Proficiency Level";
+
+/* Title for target audience filter (sap) */
+"course-list.search.filter.title.target audience" = "Target Audience";
+
+/* Title for topic filter (sap) */
+"course-list.search.filter.title.topic" = "Topic";
+
+/* Title for track filter (hpi) */
+"course-list.search.filter.title.track" = "Track";
+
 /* explanation how to achieve the certificate */
 "course.certificates.explanation.confirmationOfParticipation" = "A confirmation of participation is issued to those who have completed at least %d%% of the course material.";
 

@@ -8,7 +8,7 @@ import UIKit
 protocol CardListLayoutDelegate: AnyObject {
 
     var followReadableWidth: Bool { get }
-    var topInset: CGFloat { get } // only needed in iOS 10
+    var topInset: CGFloat { get }
     var cardInset: CGFloat { get }
     var heightForHeader: CGFloat { get }
 

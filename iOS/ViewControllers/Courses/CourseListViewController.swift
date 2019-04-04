@@ -18,6 +18,9 @@ class CourseListViewController: UICollectionViewController {
     @available(iOS, obsoleted: 11.0)
     private var statusBarBackground: UIView?
 
+    private var filterContainerHeightConstraint: NSLayoutConstraint?
+    private var searchFilterViewController: CourseSearchFiltersViewController?
+
     var configuration: CourseListConfiguration = .allCourses
 
     override func viewDidLoad() {
@@ -50,6 +53,7 @@ class CourseListViewController: UICollectionViewController {
         self.refresh()
 
         self.setupSearchController()
+        self.addFilterView()
     }
 
     private func setupSearchController() {
@@ -69,6 +73,42 @@ class CourseListViewController: UICollectionViewController {
             searchController.searchBar.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
             self.collectionView?.addSubview(searchController.searchBar)
             self.searchController = searchController
+        }
+    }
+
+    private func addFilterView() {
+        let filterContainer = UIView()
+        filterContainer.backgroundColor = .blue
+        self.collectionView.addSubview(filterContainer)
+
+        filterContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        if #available(iOS 11.0, *) {
+            filterContainer.topAnchor.constraint(equalTo: self.collectionView.topAnchor).isActive = true
+        } else {
+            filterContainer.topAnchor.constraint(equalTo: self.collectionView.topAnchor, constant: 44).isActive = true
+        }
+
+        filterContainer.leadingAnchor.constraint(equalTo: self.collectionView.leadingAnchor).isActive = true
+        filterContainer.trailingAnchor.constraint(equalTo: self.collectionView.trailingAnchor).isActive = true
+        filterContainer.widthAnchor.constraint(equalTo: self.collectionView.widthAnchor).isActive = true
+        self.filterContainerHeightConstraint = filterContainer.heightAnchor.constraint(equalToConstant: 0)
+        self.filterContainerHeightConstraint?.isActive = true
+
+        let searchFilterViewController = CourseSearchFiltersViewController()
+        searchFilterViewController.delegate = self
+        filterContainer.addSubview(searchFilterViewController.view)
+        searchFilterViewController.view.frame = filterContainer.frame
+        self.addChild(searchFilterViewController)
+        searchFilterViewController.didMove(toParent: self)
+        self.searchFilterViewController = searchFilterViewController
+    }
+
+    private func updateSearchFilterContainerHeight(isSearching: Bool) {
+        if isSearching {
+            self.filterContainerHeightConstraint?.constant = CourseSearchFilterCell.cellHeight()
+        } else {
+            self.filterContainerHeightConstraint?.constant = 0
         }
     }
 
@@ -95,6 +135,14 @@ class CourseListViewController: UICollectionViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        let isSearching: Bool = {
+            if #available(iOS 11, *) {
+                return self.navigationItem.searchController?.isActive ?? false
+            } else {
+                return self.searchController?.isActive ?? false
+            }
+        }()
+        self.updateSearchFilterContainerHeight(isSearching: isSearching)
         self.collectionViewLayout.invalidateLayout()
     }
 
@@ -103,10 +151,11 @@ class CourseListViewController: UICollectionViewController {
 extension CourseListViewController: CardListLayoutDelegate {
 
     var topInset: CGFloat {
+        let filterViewHeight = self.filterContainerHeightConstraint?.constant ?? 0
         if #available(iOS 11.0, *) {
-            return 0
+            return filterViewHeight
         } else {
-            return self.searchController?.searchBar.bounds.height ?? 0
+            return (self.searchController?.searchBar.bounds.height ?? 0) + filterViewHeight
         }
     }
 
@@ -151,7 +200,11 @@ extension CourseListViewController: UISearchResultsUpdating {
 
         self.collectionView?.setContentOffset(scrollOffset, animated: trueUnlessReduceMotionEnabled)
 
-        guard let searchText = searchController.searchBar.text, !searchText.isEmpty, searchController.isActive else {
+        let searchText = searchController.searchBar.text
+        let hasSearchText = searchText?.isEmpty == false
+        let hasActiveFilters = self.searchFilterViewController?.activeFilters.isEmpty == false
+
+        guard searchController.isActive, (hasSearchText || hasActiveFilters) else {
             self.dataSource.resetSearch()
             return
         }
@@ -177,6 +230,26 @@ extension CourseListViewController: UISearchControllerDelegate {
             statusBarBackground.autoresizingMask = [.flexibleWidth]
             self.statusBarBackground = statusBarBackground
         }
+
+        self.updateSearchFilterContainerHeight(isSearching: true)
+        self.collectionViewLayout.invalidateLayout()
+
+        // swiftlint:disable:next trailing_closure
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+            self?.collectionView.layoutIfNeeded()
+        })
+    }
+
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.updateSearchFilterContainerHeight(isSearching: false)
+        self.collectionViewLayout.invalidateLayout()
+
+        // swiftlint:disable:next trailing_closure
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
+            self?.collectionView.layoutIfNeeded()
+        })
+
+        self.searchFilterViewController?.clearFilters()
     }
 
     func didDismissSearchController(_ searchController: UISearchController) {
@@ -212,7 +285,16 @@ extension CourseListViewController: CoreDataCollectionViewDataSourceDelegate {
             ])
         }
 
-        return NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
+        let searchTextPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
+
+        if let activeSearchFilters = self.searchFilterViewController?.activeFilters {
+            let filterSubpredicates = activeSearchFilters.map { filter, selectedOptions in filter.predicate(forSelectedOptions: selectedOptions) }
+            let searchFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: filterSubpredicates)
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [searchTextPredicate, searchFilterPredicate])
+        } else {
+            return searchTextPredicate
+        }
+
     }
 
     func configureSearchHeaderView(_ searchHeaderView: CourseHeaderView, numberOfSearchResults: Int) {
@@ -226,6 +308,20 @@ extension CourseListViewController: RefreshableViewController {
 
     func refreshingAction() -> Future<Void, XikoloError> {
         return CourseHelper.syncAllCourses().asVoid()
+    }
+
+}
+
+extension CourseListViewController: CourseSearchFiltersViewControllerDelegate {
+
+    func didChangeFilters() {
+        if #available(iOS 11, *) {
+            guard let searchController = self.navigationItem.searchController else { return }
+            self.updateSearchResults(for: searchController)
+        } else {
+            guard let searchController = self.searchController else { return }
+            self.updateSearchResults(for: searchController)
+        }
     }
 
 }

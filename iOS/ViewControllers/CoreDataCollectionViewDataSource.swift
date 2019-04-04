@@ -408,21 +408,22 @@ class CoreDataCollectionViewDataSource<Delegate: CoreDataCollectionViewDataSourc
         }
     }
 
-    func search(withText searchText: String) {
+    func search(withText searchText: String?) {
         guard let fetchRequest = self.searchFetchRequest?.copy() as? NSFetchRequest<Object> else {
             log.warning("CollectionViewControllerDelegateImplementation is not configured for search. Missing search fetch request.")
             self.resetSearch()
             return
         }
 
-        guard !searchText.isEmpty else {
+        let searchPredicate = searchText.flatMap { self.delegate?.searchPredicate(forSearchText: $0) }
+        let fetchPredicate = fetchRequest.predicate
+        let predicates = [fetchPredicate, searchPredicate].compactMap { $0 }
+
+        guard !predicates.isEmpty else {
             self.resetSearch()
             return
         }
 
-        let searchPredicate = self.delegate?.searchPredicate(forSearchText: searchText)
-        let fetchPredicate = fetchRequest.predicate
-        let predicates = [fetchPredicate, searchPredicate].compactMap { $0 }
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
 
         self.searchFetchResultsController = CoreDataHelper.createResultsController(fetchRequest, sectionNameKeyPath: nil)

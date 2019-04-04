@@ -89,6 +89,18 @@
 /* Shown in course content list */
 "course-item.video.slides.label" = "Slides";
 
+/* Title for button for clearning all filters */
+"course-list.search.filter.clear" = "Clear";
+
+/* Title for applying selected filter options */
+"course-list.search.filter.options.apply" = "Apply";
+
+/* Title for filter options menu */
+"course-list.search.filter.options.title.refine serach" = "Refine search";
+
+/* Title for language filter */
+"course-list.search.filter.title.language" = "Language";
+
 /* title for list of all courses */
 "course-list.title.Courses" = "Courses";
 
@@ -230,6 +242,12 @@
 /* title to confirm alert */
 "global.alert.ok" = "OK";
 
+/* Title for button for deselecting all items in a list */
+"global.list.selection.deselect all" = "Deselect all";
+
+/* Title for button for selecting all items in a list */
+"global.list.selection.select all" = "Select all";
+
 /* label for app build */
 "settings.app.build.label" = "Build";
 
@@ -289,12 +307,6 @@
 
 /* download type video */
 "settings.downloads.item.video" = "Videos";
-
-/* button title for deselecting all rows */
-"settings.downloads.toolbar.deselect all" = "Deselect all";
-
-/* button title for selecting all rows */
-"settings.downloads.toolbar.select all" = "Select all";
 
 /* total size label */
 "settings.downloads.total size: %@" = "Total size: %@";

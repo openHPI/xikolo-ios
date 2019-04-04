@@ -41,5 +41,10 @@
 		<key>showCourseTeachers</key>
 		<true/>
 	</dict>
+	<key>courseClassifierSearchFilters</key>
+	<dict>
+		<key>category</key>
+		<string>track</string>
+	</dict>
 </dict>
 </plist>

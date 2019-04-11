@@ -4,7 +4,6 @@
 //
 
 import CoreData
-import Result
 
 public protocol Pushable: ResourceTypeRepresentable, IncludedPushable, NSFetchRequestResult, Validatable {
 

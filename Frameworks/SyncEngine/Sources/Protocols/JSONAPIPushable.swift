@@ -3,8 +3,6 @@
 //  Copyright © HPI. All rights reserved.
 //
 
-import Result
-
 public protocol JSONAPIPushable: Pushable, JSONAPIValidatable { }
 
 extension JSONAPIPushable {

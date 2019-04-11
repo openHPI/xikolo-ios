@@ -4,7 +4,6 @@
 //
 
 import BrightFutures
-import Result
 
 extension AsyncType where Value: ResultProtocol {
 

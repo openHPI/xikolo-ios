@@ -7,8 +7,7 @@ PODS:
     - BMPlayer/Core
     - NVActivityIndicatorView (~> 4.4.0)
     - SnapKit (~> 4.2.0)
-  - BrightFutures (7.0.0):
-    - Result (~> 4.0.0)
+  - BrightFutures (8.0.0)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - Down (0.5.2)
@@ -73,7 +72,6 @@ PODS:
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.0)
   - ReachabilitySwift (4.3.0)
-  - Result (4.0.1)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
@@ -81,13 +79,13 @@ PODS:
   - SnapKit (4.2.0)
   - SwiftLint (0.31.0)
   - SyncEngine (0.1.0):
-    - BrightFutures (~> 7.0)
+    - BrightFutures (~> 8.0)
     - Marshal (~> 1.2)
 
 DEPENDENCIES:
   - BartyCrouch (from `https://github.com/Flinesoft/BartyCrouch.git`, tag `3.13.0`)
   - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `3cf7dd96b031172f2290da09e8bffbc2a3bade4e`)
-  - BrightFutures (~> 7.0)
+  - BrightFutures (~> 8.0)
   - Crashlytics (~> 3.12.0)
   - Down (= 0.5.2)
   - DZNEmptyDataSet (~> 1.8)
@@ -122,7 +120,6 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - ReachabilitySwift
-    - Result
     - SDWebImage
     - SimulatorStatusMagic
     - SnapKit
@@ -151,7 +148,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   BartyCrouch: 69e5e6ec67e77951dc1c22aa48abbf05d175b81c
   BMPlayer: 1e57d1b2e283f810b0e01b9a1d2b1d60aa0ab907
-  BrightFutures: 7d7436e937dfc83d814c11920f157fc2a53f5bd5
+  BrightFutures: f8427b46feabaf73c5e71ace7d86d65dfbb47696
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Down: 587371ad58002b06023d9c602519216862c3acbc
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -170,13 +167,12 @@ SPEC CHECKSUMS:
   R.swift: a8e1a7e7f38441282fbcb7a3c266076eb38b77ba
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  Result: a6e784bebf48b471d59cddc1adb81f41f678c487
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
-  SyncEngine: 7382f94cc232d80cce27dd60a06bb1b3aa18f133
+  SyncEngine: 0b941e576dfb5073344d043fbc70919c42c32435
 
-PODFILE CHECKSUM: b908988574b4b3e1a59b18ceacfaa1564b0b2488
+PODFILE CHECKSUM: 85447c248bf656aa9b67030b30f41ebb9813e453
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.1

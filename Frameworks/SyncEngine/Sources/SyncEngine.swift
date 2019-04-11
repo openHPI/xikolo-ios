@@ -6,7 +6,6 @@
 import BrightFutures
 import CoreData
 import Marshal
-import Result
 
 public protocol SyncEngine {
 
@@ -329,10 +328,10 @@ public extension SyncEngine {
                     return MergeMultipleResult(resources: resources, headers: networkResult.headers)
                 }
             }.inject(ImmediateExecutionContext) {
-                return Result<Void, AnyError> {
+                return Result<Void, Error> {
                     return try context.save()
                 }.mapError { error in
-                    return .coreData(error.error)
+                    return .coreData(error)
                 }
             }.map(ImmediateExecutionContext) { mergeResult in
                 return SyncMultipleResult(objectIds: mergeResult.resources.map { $0.objectID }, headers: mergeResult.headers)
@@ -367,10 +366,10 @@ public extension SyncEngine {
                     return MergeSingleResult(resource: resource, headers: networkResult.headers)
                 }
             }.inject(ImmediateExecutionContext) {
-                return Result<Void, AnyError> {
+                return Result<Void, Error> {
                     return try context.save()
                 }.mapError { error in
-                    return .coreData(error.error)
+                    return .coreData(error)
                 }
             }.map(ImmediateExecutionContext) { mergeResult in
                 return SyncSingleResult(objectId: mergeResult.resource.objectID, headers: mergeResult.headers)
@@ -423,10 +422,10 @@ public extension SyncEngine {
                     return Future(error: .unknown(error))
                 }
             }.inject(ImmediateExecutionContext) {
-                return Result<Void, AnyError> {
+                return Result<Void, Error> {
                     return try coreDataContext.save()
                 }.mapError { error in
-                    return .coreData(error.error)
+                    return .coreData(error)
                 }
             }.onComplete(ImmediateExecutionContext) { result in
                 promise.complete(result)

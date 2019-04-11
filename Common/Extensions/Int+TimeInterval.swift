@@ -5,13 +5,13 @@
 
 import Foundation
 
-extension Int {
+public extension Int {
 
-    public var days: TimeInterval {
+    var days: TimeInterval {
         return TimeInterval(self * 24 * 60 * 60)
     }
 
-    public var day: TimeInterval {
+    var day: TimeInterval {
         return self.days
     }
 

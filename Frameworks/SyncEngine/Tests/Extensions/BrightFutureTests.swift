@@ -4,7 +4,6 @@
 //
 
 import BrightFutures
-import Result
 import XCTest
 
 @testable import Common

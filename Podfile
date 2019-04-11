@@ -14,7 +14,7 @@ def firebase_pods
 end
 
 def common_pods
-    pod 'BrightFutures', '~> 7.0'
+    pod 'BrightFutures', '~> 8.0'
     pod 'Down', '0.5.2'
     pod 'KeychainAccess', '~> 3.1'
     pod 'ReachabilitySwift', '~> 4.1'

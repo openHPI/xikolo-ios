@@ -95,8 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // of SDWebImage to pass.
             // See 'SDWebImageDownloaderOperation.urlSession(_:task:didReceive:completionHandler:)'
             // SDWebImage (ver. 4.0.0) -> SDWebImageDownloaderOperation -> Line 408
-            SDWebImageDownloader.shared().username = "open"
-            SDWebImageDownloader.shared().password = "SAP"
+            SDWebImageDownloader.shared.config.username = "open"
+            SDWebImageDownloader.shared.config.password = "SAP"
         }
 
         #if DEBUG

@@ -15,7 +15,7 @@ end
 
 def common_pods
     pod 'BrightFutures', '~> 8.0'
-    pod 'Down', '0.5.2'
+    pod 'Down', '~> 0.5'
     pod 'KeychainAccess', '~> 3.1'
     pod 'ReachabilitySwift', '~> 4.1'
     pod 'SDWebImage', '~> 5.0'

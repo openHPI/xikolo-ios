@@ -10,7 +10,7 @@ PODS:
   - BrightFutures (8.0.0)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
-  - Down (0.5.2)
+  - Down (0.6.6)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.9.0)
   - Firebase/Core (5.15.0):
@@ -87,7 +87,7 @@ DEPENDENCIES:
   - BMPlayer (from `https://github.com/openHPI/bmplayer.git`, commit `3cf7dd96b031172f2290da09e8bffbc2a3bade4e`)
   - BrightFutures (~> 8.0)
   - Crashlytics (~> 3.12.0)
-  - Down (= 0.5.2)
+  - Down (~> 0.5)
   - DZNEmptyDataSet (~> 1.8)
   - Fabric (~> 1.9.0)
   - Firebase/Core
@@ -150,7 +150,7 @@ SPEC CHECKSUMS:
   BMPlayer: 1e57d1b2e283f810b0e01b9a1d2b1d60aa0ab907
   BrightFutures: f8427b46feabaf73c5e71ace7d86d65dfbb47696
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  Down: 587371ad58002b06023d9c602519216862c3acbc
+  Down: 71bf4af3c04fa093e65dffa25c4b64fa61287373
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
@@ -173,6 +173,6 @@ SPEC CHECKSUMS:
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   SyncEngine: 0b941e576dfb5073344d043fbc70919c42c32435
 
-PODFILE CHECKSUM: b0709512e426a2b207dd9e8cc089dc3bde330d5a
+PODFILE CHECKSUM: 00aecf20cc0045b24913cf5d0a251d60554bec8d
 
 COCOAPODS: 1.6.1

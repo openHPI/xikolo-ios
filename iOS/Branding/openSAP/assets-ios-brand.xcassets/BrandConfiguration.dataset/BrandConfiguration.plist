@@ -12,8 +12,6 @@
 	<string>SAP</string>
 	<key>poweredByText</key>
 	<string>Powered by HPI / openHPI</string>
-	<key>useDummyCredentialsForSDWebImage</key>
-	<true/>
 	<key>colors</key>
 	<dict>
 		<key>primary</key>

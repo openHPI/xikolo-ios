@@ -18,7 +18,6 @@ public struct Brand: Decodable {
         case colors
         case courseDateLabelStyle
         case showCurrentCoursesInSelfPacedSection
-        case useDummyCredentialsForSDWebImage
         case features
         case courseClassifierSearchFilters
     }
@@ -40,7 +39,6 @@ public struct Brand: Decodable {
     public let poweredByText: String?
     public let courseDateLabelStyle: CourseDateLabelStyle
     public let showCurrentCoursesInSelfPacedSection: Bool
-    public let useDummyCredentialsForSDWebImage: Bool
     public let features: BrandFeatures
     public let courseClassifierSearchFilters: CourseClassifierSearchFilter?
 
@@ -76,7 +74,6 @@ public struct Brand: Decodable {
         self.colors = try container.decode(BrandColors.self, forKey: .colors)
         self.courseDateLabelStyle = try container.decodeCourseDateLabelStyle(forKey: .courseDateLabelStyle)
         self.showCurrentCoursesInSelfPacedSection = try container.decodeIfPresent(Bool.self, forKey: .showCurrentCoursesInSelfPacedSection) ?? false
-        self.useDummyCredentialsForSDWebImage = try container.decodeIfPresent(Bool.self, forKey: .useDummyCredentialsForSDWebImage) ?? false
         self.features = try container.decode(BrandFeatures.self, forKey: .features)
         self.courseClassifierSearchFilters = try? container.decode(CourseClassifierSearchFilter.self, forKey: .courseClassifierSearchFilters)
     }

@@ -7,11 +7,7 @@ import UIKit
 
 extension UIApplication {
 
-    #if os(tvOS)
-    public static let platform = "tvOS"
-    #else
-    public static let platform = "iOS"
-    #endif
+    public static let platform = UIDevice.current.systemName
 
     public static let osVersion: String = {
         let version = ProcessInfo().operatingSystemVersion

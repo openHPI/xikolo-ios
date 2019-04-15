@@ -43,6 +43,14 @@ class CourseSearchFiltersViewController: UICollectionViewController {
         self.collectionView.backgroundColor = .white
 
         self.collectionView.register(R.nib.courseSearchFilterCell)
+
+        let layoutMargins = self.collectionView.layoutMargins
+        self.collectionView.layoutMargins = UIEdgeInsets(top: 0, left: layoutMargins.left, bottom: 0, right: layoutMargins.right)
+
+        if #available(iOS 11.0, *) {
+            let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            flowLayout?.sectionInsetReference = .fromLayoutMargins
+        }
     }
 
     func clearFilters() {
@@ -87,24 +95,6 @@ class CourseSearchFiltersViewController: UICollectionViewController {
             let navigationController = UINavigationController(rootViewController: optionsViewController)
             self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
         }
-    }
-
-}
-
-extension CourseSearchFiltersViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        var leftPadding = collectionView.layoutMargins.left
-        var rightPadding = collectionView.layoutMargins.right
-
-        if #available(iOS 11.0, *) {
-            leftPadding -= collectionView.safeAreaInsets.left
-            rightPadding -= collectionView.safeAreaInsets.right
-        }
-
-        return UIEdgeInsets(top: 0, left: leftPadding, bottom: 0, right: rightPadding)
     }
 
 }

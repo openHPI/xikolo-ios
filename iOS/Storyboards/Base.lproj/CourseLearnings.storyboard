@@ -68,7 +68,7 @@
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="U0c-TZ-Kbb">
-                                            <rect key="frame" x="68" y="15" width="239" height="44"/>
+                                            <rect key="frame" x="68" y="15" width="239" height="43.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="850" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm4-Hr-k3d">
                                                     <rect key="frame" x="0.0" y="0.0" width="239" height="12.5"/>
@@ -86,7 +86,7 @@
                                                     </attributedString>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G72-sV-YTv" customClass="CourseItemDetailView" customModule="iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="14.5" width="239" height="29.5"/>
+                                                    <rect key="frame" x="0.0" y="14.5" width="239" height="29"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="cwc-td-Mvi"/>
@@ -121,16 +121,19 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="fOH-l8-5Rz" secondAttribute="trailing" id="BUB-Zb-j1P"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="U0c-TZ-Kbb" secondAttribute="bottom" constant="4" id="DIx-6W-Zzg"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="U0c-TZ-Kbb" secondAttribute="bottom" constant="4" id="DIx-6W-Zzg"/>
                                         <constraint firstItem="f0u-JP-r4C" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="GRk-aQ-NAp"/>
                                         <constraint firstItem="fOH-l8-5Rz" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="top" id="HNg-3I-Bub"/>
+                                        <constraint firstItem="U0c-TZ-Kbb" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="Haq-QN-4Hq"/>
                                         <constraint firstItem="f0u-JP-r4C" firstAttribute="leading" secondItem="dUS-v4-gua" secondAttribute="leadingMargin" id="PGf-Dz-OJk"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="L8U-Fp-wH1" secondAttribute="bottom" constant="4" id="TOb-LX-QUc"/>
                                         <constraint firstItem="U0c-TZ-Kbb" firstAttribute="leading" secondItem="L8U-Fp-wH1" secondAttribute="trailing" constant="8" symbolic="YES" id="euH-Bi-ikq"/>
                                         <constraint firstItem="fOH-l8-5Rz" firstAttribute="leading" secondItem="U0c-TZ-Kbb" secondAttribute="trailing" constant="8" symbolic="YES" id="gby-Ji-8uI"/>
                                         <constraint firstItem="L8U-Fp-wH1" firstAttribute="leading" secondItem="f0u-JP-r4C" secondAttribute="trailing" constant="8" symbolic="YES" id="k49-og-pHl"/>
-                                        <constraint firstItem="U0c-TZ-Kbb" firstAttribute="top" secondItem="dUS-v4-gua" secondAttribute="topMargin" constant="4" id="kXF-hn-UVQ"/>
+                                        <constraint firstItem="U0c-TZ-Kbb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUS-v4-gua" secondAttribute="topMargin" constant="4" id="kXF-hn-UVQ"/>
                                         <constraint firstItem="L8U-Fp-wH1" firstAttribute="centerY" secondItem="dUS-v4-gua" secondAttribute="centerY" id="kqj-Ta-P6o"/>
                                         <constraint firstAttribute="bottom" secondItem="fOH-l8-5Rz" secondAttribute="bottom" id="lP4-cV-l3s"/>
+                                        <constraint firstItem="L8U-Fp-wH1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUS-v4-gua" secondAttribute="topMargin" constant="4" id="o5j-3a-xZh"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

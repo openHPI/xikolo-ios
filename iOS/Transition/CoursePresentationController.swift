@@ -21,7 +21,7 @@ final class CoursePresentationController: UIPresentationController {
             if #available(iOS 11, *) {
                 return self.containerView?.safeAreaInsets.top ?? 0
             } else {
-                return self.containerView?.layoutMargins.top ?? 0
+                return self.presentedViewController.prefersStatusBarHidden ? 0 : 20
             }
         }()
 

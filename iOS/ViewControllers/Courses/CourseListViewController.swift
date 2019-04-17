@@ -134,6 +134,8 @@ class CourseListViewController: UICollectionViewController {
 
         if #available(iOS 11.0, *) {
             self.navigationItem.hidesSearchBarWhenScrolling = true
+        } else {
+            self.collectionViewLayout.invalidateLayout()
         }
     }
 

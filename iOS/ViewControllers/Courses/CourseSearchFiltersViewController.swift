@@ -85,6 +85,7 @@ class CourseSearchFiltersViewController: UICollectionViewController {
             let selectedOptions = self.activeFilters[filter]
             let optionsViewController = CourseSearchFilterOptionsViewController(filter: filter, selectedOptions: selectedOptions, delegate: self)
             let navigationController = UINavigationController(rootViewController: optionsViewController)
+            navigationController.modalPresentationStyle = .formSheet
             self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
         }
     }

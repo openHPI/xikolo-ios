@@ -57,8 +57,14 @@ class CourseSearchFiltersViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfAdditionalCells = self.activeFilters.isEmpty ? 0 : 1
-        return CourseSearchFilter.availableCases.count + numberOfAdditionalCells
+        if #available(iOS 11, *) {
+            let numberOfAdditionalCells = self.activeFilters.isEmpty ? 1 : 1
+            return CourseSearchFilter.availableCases.count + numberOfAdditionalCells
+        } else {
+            // On iOS 10, the clear button does not show up when filters get activated. So we use this workaround
+            // of always showing the clear button (last additional cell) for the user still using iOS 10.
+            return CourseSearchFilter.availableCases.count + 1
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

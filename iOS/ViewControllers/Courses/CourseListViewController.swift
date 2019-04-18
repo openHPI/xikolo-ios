@@ -152,6 +152,14 @@ class CourseListViewController: UICollectionViewController {
         self.collectionViewLayout.invalidateLayout()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if #available(iOS 11, *) {
+            // nothing to do here
+        } else {
+            self.collectionViewLayout.invalidateLayout()
+        }
+    }
+
 }
 
 extension CourseListViewController: CardListLayoutDelegate {

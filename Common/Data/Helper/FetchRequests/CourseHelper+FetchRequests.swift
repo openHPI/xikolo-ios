@@ -10,7 +10,7 @@ extension CourseHelper {
 
     public enum FetchRequest {
 
-        private static let genericPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+        private static let visiblePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "external != %@", NSNumber(value: true)),
             NSPredicate(format: "status != %@", "preparation"),
         ])
@@ -55,25 +55,25 @@ extension CourseHelper {
         }()
 
         private static let currentCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            genericPredicate,
+            visiblePredicate,
             NSCompoundPredicate(notPredicateWithSubpredicate: futurePredicate),
             NSCompoundPredicate(notPredicateWithSubpredicate: pastPredicate),
         ])
         private static let upcomingCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            genericPredicate,
+            visiblePredicate,
             futurePredicate,
         ])
         private static let selfpacedCoursesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            genericPredicate,
+            visiblePredicate,
             pastPredicate,
         ])
 
         private static let customOrderSortDescriptor = NSSortDescriptor(keyPath: \Course.order, ascending: true)
 
-        private static var genericCoursesRequest: NSFetchRequest<Course> {
+        private static var visibleCoursesRequest: NSFetchRequest<Course> {
             let request: NSFetchRequest<Course> = Course.fetchRequest()
             request.sortDescriptors = [self.customOrderSortDescriptor]
-            request.predicate = self.genericPredicate
+            request.predicate = self.visiblePredicate
             return request
         }
 
@@ -99,7 +99,7 @@ extension CourseHelper {
         }
 
         public static var currentCourses: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
+            let request = self.visibleCoursesRequest
             request.predicate = self.currentCoursesPredicate
             request.sortDescriptors = [
                 NSSortDescriptor(keyPath: \Course.startsAt, ascending: true),
@@ -109,7 +109,7 @@ extension CourseHelper {
         }
 
         public static var upcomingCourses: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
+            let request = self.visibleCoursesRequest
             request.predicate = self.upcomingCoursesPredicate
             request.sortDescriptors = [
                 NSSortDescriptor(keyPath: \Course.startsAt, ascending: true),
@@ -119,13 +119,13 @@ extension CourseHelper {
         }
 
         public static var selfpacedCourses: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
+            let request = self.visibleCoursesRequest
             request.predicate = self.selfpacedCoursesPredicate
             return request
         }
 
         public static var searchableCourses: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
+            let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
                 self.currentCoursesPredicate,
                 self.upcomingCoursesPredicate,
@@ -135,9 +135,9 @@ extension CourseHelper {
         }
 
         public static var enrolledCurrentCoursesRequest: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
+            let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                genericPredicate,
+                visiblePredicate,
                 enrolledPredicate,
                 notCompletedPredicate,
             ])
@@ -149,13 +149,50 @@ extension CourseHelper {
         }
 
         public static var completedCourses: NSFetchRequest<Course> {
-            let request = self.genericCoursesRequest
+            let request = self.visibleCoursesRequest
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                genericPredicate,
+                visiblePredicate,
                 enrolledPredicate,
                 completedPredicate,
             ])
             return request
+        }
+
+        public static var distinctLanguages: NSFetchRequest<NSDictionary> {
+            let entityName = Course.entity().name!
+            let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
+            fetchRequest.predicate = self.visiblePredicate
+            fetchRequest.resultType = .dictionaryResultType
+            fetchRequest.propertiesToFetch = [NSString(string: "language")]
+            fetchRequest.returnsObjectsAsFaults = false
+            fetchRequest.returnsDistinctResults = true
+            return fetchRequest
+        }
+
+        public static var categories: NSFetchRequest<NSDictionary> {
+            let entityName = Course.entity().name!
+            let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                 self.visiblePredicate,
+                 NSPredicate(format: "categories != nil"),
+            ])
+            fetchRequest.resultType = .dictionaryResultType
+            fetchRequest.propertiesToFetch = [NSString(string: "categories")]
+            fetchRequest.returnsObjectsAsFaults = false
+            return fetchRequest
+        }
+
+        public static var topics: NSFetchRequest<NSDictionary> {
+            let entityName = Course.entity().name!
+            let fetchRequest = NSFetchRequest<NSDictionary>(entityName: entityName)
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                self.visiblePredicate,
+                NSPredicate(format: "topics != nil"),
+            ])
+            fetchRequest.resultType = .dictionaryResultType
+            fetchRequest.propertiesToFetch = [NSString(string: "topics")]
+            fetchRequest.returnsObjectsAsFaults = false
+            return fetchRequest
         }
 
     }

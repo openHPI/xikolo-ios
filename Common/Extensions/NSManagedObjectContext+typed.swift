@@ -5,7 +5,6 @@
 
 import CoreData
 import Foundation
-import Result
 
 extension NSManagedObjectContext {
 

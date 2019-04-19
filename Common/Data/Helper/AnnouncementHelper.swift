@@ -6,7 +6,6 @@
 import BrightFutures
 import CoreData
 import Foundation
-import Result
 import SyncEngine
 
 public class AnnouncementHelper {
@@ -55,11 +54,11 @@ public class AnnouncementHelper {
                 "objectStateValue": ObjectState.modified.rawValue,
             ]
 
-            let result = Result<[NSManagedObjectID], AnyError> {
+            let result = Result<[NSManagedObjectID], Error> {
                 let updateResult = try context.execute(request) as? NSBatchUpdateResult
                 return (updateResult?.result as? [NSManagedObjectID]) ?? []
             }.mapError { error in
-                return XikoloError.coreData(error.error)
+                return XikoloError.coreData(error)
             }.map { objectIDs in
                 let changes = [NSUpdatedObjectsKey: objectIDs]
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [CoreDataHelper.viewContext])

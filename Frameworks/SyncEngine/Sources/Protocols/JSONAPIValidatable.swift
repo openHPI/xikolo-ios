@@ -4,7 +4,6 @@
 //
 
 import Marshal
-import Result
 
 public protocol JSONAPIValidatable: Validatable {}
 

@@ -47,5 +47,10 @@
 		<key>showCourseTeachers</key>
 		<false/>
 	</dict>
+	<key>courseClassifierSearchFilters</key>
+	<dict>
+		<key>category</key>
+		<string>proficiencyLevel</string>
+	</dict>
 </dict>
 </plist>

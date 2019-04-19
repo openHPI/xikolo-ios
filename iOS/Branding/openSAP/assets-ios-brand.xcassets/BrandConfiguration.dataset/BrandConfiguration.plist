@@ -12,8 +12,6 @@
 	<string>SAP</string>
 	<key>poweredByText</key>
 	<string>Powered by HPI / openHPI</string>
-	<key>useDummyCredentialsForSDWebImage</key>
-	<true/>
 	<key>colors</key>
 	<dict>
 		<key>primary</key>
@@ -44,6 +42,13 @@
 		<true/>
 		<key>showCourseTeachers</key>
 		<true/>
+	</dict>
+	<key>courseClassifierSearchFilters</key>
+	<dict>
+		<key>category</key>
+		<string>targetAudience</string>
+		<key>topic</key>
+		<string>topic</string>
 	</dict>
 </dict>
 </plist>

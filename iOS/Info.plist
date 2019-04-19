@@ -27,6 +27,8 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
+	<string>Take and upload photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload photos</string>
 	<key>UIAppFonts</key>
 	<array>

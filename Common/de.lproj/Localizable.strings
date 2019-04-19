@@ -20,6 +20,18 @@
 /* course start at specfic date in the past */
 "course-date-formatting.started.since %@" = "Seit %@";
 
+/* Title for proficiency level filter (who) */
+"course-list.search.filter.title.proficiency level" = "Kompetenzstufe";
+
+/* Title for target audience filter (sap) */
+"course-list.search.filter.title.target audience" = "Zielgruppe";
+
+/* Title for topic filter (sap) */
+"course-list.search.filter.title.topic" = "Thema";
+
+/* Title for track filter (hpi) */
+"course-list.search.filter.title.track" = "Kategorie";
+
 /* explanation how to achieve the certificate */
 "course.certificates.explanation.confirmationOfParticipation" = "Die Teilnahmebestätigung erhält, wer auf zumindest %d%% der Kursunterlagen zugegriffen hat.";
 

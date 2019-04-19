@@ -15,6 +15,10 @@
 		50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */; };
 		500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */; };
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
+		50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */; };
+		50146FCB2222875E00177E96 /* CourseSearchFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */; };
+		50146FCD2222879D00177E96 /* CourseSearchFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50146FCC2222879D00177E96 /* CourseSearchFilterCell.swift */; };
+		50146FCF2222C8B900177E96 /* CourseSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50146FCE2222C8B900177E96 /* CourseSearchFilter.swift */; };
 		5019CE902171E9390001805E /* CourseItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE8F2171E9390001805E /* CourseItemViewController.swift */; };
 		5019CE922171F21D0001805E /* CourseItemContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5019CE912171F21D0001805E /* CourseItemContentViewController.swift */; };
 		502902E021BABA79004B1B43 /* AccountViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502902DF21BABA79004B1B43 /* AccountViewControllerDataSource.swift */; };
@@ -68,6 +72,9 @@
 		508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44121AB390400801530 /* SubtitleTableViewCell.swift */; };
 		508FF44421AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */; };
 		508FF44621AB42B200801530 /* UITableViewController+resizeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */; };
+		50911AF5223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */; };
+		50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */; };
+		50911AF922414457000C2007 /* CourseClassifierSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50911AF822414457000C2007 /* CourseClassifierSearchFilter.swift */; };
 		50913F27218C9E90006C7F11 /* String+height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50913F26218C9E90006C7F11 /* String+height.swift */; };
 		50930B5E20ECEE5D0085C6DB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */; };
 		50930B6020ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */; };
@@ -167,6 +174,7 @@
 		50CF200C20DCDBFC0011BFE9 /* CourseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */; };
 		50CF200D20DCDBFC0011BFE9 /* CourseDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5040A60420795BBE00E98351 /* CourseDetails.storyboard */; };
 		50CF200E20DCDBFC0011BFE9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F80D679A1B98751700E27520 /* Localizable.strings */; };
+		50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */; };
 		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -386,6 +394,10 @@
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
 		501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
 		5012123D1FCC670D0022A7AF /* Date+Marshal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Marshal.swift"; sourceTree = "<group>"; };
+		50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFiltersViewController.swift; sourceTree = "<group>"; };
+		50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseSearchFilterCell.xib; sourceTree = "<group>"; };
+		50146FCC2222879D00177E96 /* CourseSearchFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterCell.swift; sourceTree = "<group>"; };
+		50146FCE2222C8B900177E96 /* CourseSearchFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilter.swift; sourceTree = "<group>"; };
 		5014E2FA1FCEDFFA007255B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		5014E2FD1FCEDFFF007255B5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Login.strings; sourceTree = "<group>"; };
 		5017B3BB204983E7001D90A1 /* CourseAreaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAreaListViewController.swift; sourceTree = "<group>"; };
@@ -485,6 +497,9 @@
 		508FF44121AB390400801530 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		508FF44321AB3F0100801530 /* DownloadedContentTypeListConfiguraton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedContentTypeListConfiguraton.swift; sourceTree = "<group>"; };
 		508FF44521AB42B200801530 /* UITableViewController+resizeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+resizeViews.swift"; sourceTree = "<group>"; };
+		50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterOptionsViewController.swift; sourceTree = "<group>"; };
+		50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
+		50911AF822414457000C2007 /* CourseClassifierSearchFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseClassifierSearchFilter.swift; sourceTree = "<group>"; };
 		50913F26218C9E90006C7F11 /* String+height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+height.swift"; sourceTree = "<group>"; };
 		50930B5D20ECEE5D0085C6DB /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		50930B5F20ECEEE80085C6DB /* UserDefaults+coreDataModelToCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+coreDataModelToCommon.swift"; sourceTree = "<group>"; };
@@ -508,6 +523,7 @@
 		50CF201820DCDD720011BFE9 /* openHPI-iOS-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "openHPI-iOS-Common.xcconfig"; sourceTree = "<group>"; };
 		50CF202D20DCE6680011BFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D50AB920876DBB005ACC2B /* CourseCertificates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseCertificates.storyboard; sourceTree = "<group>"; };
+		50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DispatchTimeInterval.swift"; sourceTree = "<group>"; };
 		50D60D2E20E0F2A1007A4199 /* Pods-iOS.opensap-ios-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-iOS.opensap-ios-release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.opensap-ios-release.xcconfig"; sourceTree = "<group>"; };
 		50D60D2F20E0F2A1007A4199 /* Pods-iOS.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-iOS.opensap-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		50D60D3020E0F2A1007A4199 /* Pods-iOS.openwho-ios-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-iOS.openwho-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS/Pods-iOS.openwho-ios-debug.xcconfig"; sourceTree = "<group>"; };
@@ -765,6 +781,7 @@
 				508AB2EB211448E30079EAE5 /* BrandFeatures.swift */,
 				50D65A0E20DE87F700DFD183 /* CourseDateLabelStyle.swift */,
 				5035232D21806FA600F2E7A4 /* SingleSignOnConfiguration.swift */,
+				50911AF822414457000C2007 /* CourseClassifierSearchFilter.swift */,
 			);
 			path = Branding;
 			sourceTree = "<group>";
@@ -776,10 +793,12 @@
 				503988722166920400F9043B /* ShadowContainerView.swift */,
 				5077012D218F38BC005568A6 /* InnerPillLabel.swift */,
 				508B9FA7211D7A600090BD16 /* RefreshControl.swift */,
+				50911AF6223E29A9000C2007 /* DefaultTableViewCell.swift */,
 				508FF44121AB390400801530 /* SubtitleTableViewCell.swift */,
 				F8FABFBC1B580B7A0007F308 /* CourseCell.swift */,
 				AB4A01BF1E802CD7005CD595 /* CourseHeaderView.swift */,
 				5058578521351CBD006A5D15 /* PseudoCourseCell.swift */,
+				50146FCC2222879D00177E96 /* CourseSearchFilterCell.swift */,
 				500228EC20582573003301A7 /* CourseItemHeader.swift */,
 				AB91F9E41CED029B00007D06 /* CourseItemCell.swift */,
 				50371FFD20501388006E9634 /* CourseItemDetailView.swift */,
@@ -837,6 +856,7 @@
 				50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */,
 				70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */,
 				50F45AD3200D05F9009304A3 /* Int+TimeInterval.swift */,
+				50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
 				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
@@ -1161,6 +1181,9 @@
 			children = (
 				70E37FCC207D47FF00F9872F /* PDFWebViewController.swift */,
 				7E5C55701B4D32B3004DCDC7 /* CourseListViewController.swift */,
+				50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */,
+				50911AF4223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift */,
+				50146FCE2222C8B900177E96 /* CourseSearchFilter.swift */,
 				AB4F226D1D7CB95500ED0BF1 /* CourseViewController.swift */,
 				AB91F9DF1CECB1A300007D06 /* CourseItemListViewController.swift */,
 				5019CE8F2171E9390001805E /* CourseItemViewController.swift */,
@@ -1367,6 +1390,7 @@
 				506D7E1A2104B7730018D9E2 /* CourseCell.xib */,
 				50DD352D1FD8983E002B40CC /* CourseHeaderView.xib */,
 				5058578321344C75006A5D15 /* PseudoCourseCell.xib */,
+				50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */,
 				500228F120583139003301A7 /* CourseItemHeader.xib */,
 				508AB2BF2109F0A10079EAE5 /* DocumentHeader.xib */,
 				B4E079EA218791A600EA53F5 /* CertificateCell.xib */,
@@ -1518,7 +1542,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = HPI;
 				TargetAttributes = {
 					502E712A2018D8BF007FC8C0 = {
@@ -1539,6 +1563,7 @@
 					};
 					50CF1F4120DCDBFC0011BFE9 = {
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1549,13 +1574,14 @@
 					50FA2DEA20E4B1A800656776 = {
 						CreatedOnToolsVersion = 9.4.1;
 						DevelopmentTeam = WP53SSE8S6;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = A90587B61B3BFC130095DB89 /* Build configuration list for PBXProject "xikolo-ios" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1615,6 +1641,7 @@
 				5054B2E52108B19500CE9067 /* CourseDocuments.storyboard in Resources */,
 				50CF1FFF20DCDBFC0011BFE9 /* LaunchScreen.storyboard in Resources */,
 				50CF200020DCDBFC0011BFE9 /* TabAccount.storyboard in Resources */,
+				50146FCB2222875E00177E96 /* CourseSearchFilterCell.xib in Resources */,
 				50CF200120DCDBFC0011BFE9 /* CourseCertificates.storyboard in Resources */,
 				50CF200220DCDBFC0011BFE9 /* CourseItemHeader.xib in Resources */,
 				5058578421344C75006A5D15 /* PseudoCourseCell.xib in Resources */,
@@ -1724,7 +1751,6 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SyncEngine/SyncEngine.framework",
 			);
@@ -1742,7 +1768,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SyncEngine.framework",
 			);
@@ -1827,7 +1852,6 @@
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SyncEngine/SyncEngine.framework",
 			);
@@ -1842,7 +1866,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SyncEngine.framework",
 			);
@@ -1935,9 +1958,11 @@
 				50CF1F7520DCDBFC0011BFE9 /* UIAlertViewController+spinner.swift in Sources */,
 				50CF1F7720DCDBFC0011BFE9 /* CourseListViewController.swift in Sources */,
 				50046F6F216B938D00D59073 /* LoadingButton.swift in Sources */,
+				50146FCD2222879D00177E96 /* CourseSearchFilterCell.swift in Sources */,
 				50CF1F7920DCDBFC0011BFE9 /* CertificatesListViewController.swift in Sources */,
 				50CF1F7A20DCDBFC0011BFE9 /* CourseItemListViewController.swift in Sources */,
 				50CF1F7B20DCDBFC0011BFE9 /* CourseArea.swift in Sources */,
+				50146FCF2222C8B900177E96 /* CourseSearchFilter.swift in Sources */,
 				508FF44221AB390400801530 /* SubtitleTableViewCell.swift in Sources */,
 				50CF1F7D20DCDBFC0011BFE9 /* CourseDetailViewController.swift in Sources */,
 				503CEE962177082D00F34694 /* ProcotoredItemViewController.swift in Sources */,
@@ -1996,6 +2021,7 @@
 				50CF1FD320DCDBFC0011BFE9 /* Video+Preloading.swift in Sources */,
 				700398C021A437CD00FE9D81 /* FileManager+fileSize.swift in Sources */,
 				50CF1FD520DCDBFC0011BFE9 /* Video+Download.swift in Sources */,
+				50911AF7223E29A9000C2007 /* DefaultTableViewCell.swift in Sources */,
 				50CF1FD620DCDBFC0011BFE9 /* AccountViewController.swift in Sources */,
 				50CF1FD720DCDBFC0011BFE9 /* CoursePresentationAnimator.swift in Sources */,
 				50CF1FD920DCDBFC0011BFE9 /* CoursePresentationController.swift in Sources */,
@@ -2003,8 +2029,10 @@
 				50CF1FE020DCDBFC0011BFE9 /* CoreDataTableViewDataSource.swift in Sources */,
 				5054B2E72108B30E00CE9067 /* DocumentListViewController.swift in Sources */,
 				50CF1FE120DCDBFC0011BFE9 /* CourseAreaViewController.swift in Sources */,
+				50911AF5223E2652000C2007 /* CourseSearchFilterOptionsViewController.swift in Sources */,
 				50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */,
 				50CF1FE620DCDBFC0011BFE9 /* RichText+Preloading.swift in Sources */,
+				50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */,
 				503CEE942174EEE200F34694 /* CourseItem+AvailableContent.swift in Sources */,
 				50CF1FE820DCDBFC0011BFE9 /* UIView+SafeCastable.swift in Sources */,
 				50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */,
@@ -2040,6 +2068,7 @@
 				50FA2E0620E4B22E00656776 /* MarkdownHelper.swift in Sources */,
 				50FA2E3F20E4B25800656776 /* LTIExercise.swift in Sources */,
 				5001321F215AAAEE0055016F /* NetworkIndicator.swift in Sources */,
+				50911AF922414457000C2007 /* CourseClassifierSearchFilter.swift in Sources */,
 				50FA2E5220E4B26400656776 /* Date+Marshal.swift in Sources */,
 				50FA2E0720E4B22E00656776 /* Settings.swift in Sources */,
 				50FA2E3820E4B25800656776 /* CourseCertificates.swift in Sources */,
@@ -2066,6 +2095,7 @@
 				5054B2E1210880FA00CE9067 /* DocumentHelper.swift in Sources */,
 				50FA2E3D20E4B25800656776 /* Enrollment.swift in Sources */,
 				50FA2E0F20E4B24300656776 /* NetworkHelper.swift in Sources */,
+				50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */,
 				50FA2E1A20E4B24300656776 /* PlatformEventHelper.swift in Sources */,
 				50FA2E4920E4B25800656776 /* TrackingEventResource.swift in Sources */,
 				50FA2E4020E4B25800656776 /* PeerAssessment.swift in Sources */,
@@ -2314,7 +2344,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2379,7 +2408,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-tests";
@@ -2443,7 +2471,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-tests";
@@ -2507,7 +2534,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-tests";
@@ -2567,7 +2593,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-tests";
@@ -2627,7 +2652,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-tests";
@@ -2687,7 +2711,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-tests";
@@ -2747,7 +2770,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "iOS-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-tests";
@@ -2814,7 +2836,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2880,7 +2901,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.common-tests";
@@ -2946,7 +2966,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.common-tests";
@@ -3012,7 +3031,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.common-tests";
@@ -3074,7 +3092,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.common-tests";
@@ -3135,7 +3152,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.common-tests";
@@ -3196,7 +3212,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.common-tests";
@@ -3257,7 +3272,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Common-Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.common-tests";
@@ -3320,7 +3334,7 @@
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -3339,7 +3353,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3361,10 +3374,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "openHPI-iOS-Debug";
 		};
@@ -3418,8 +3429,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -3438,7 +3450,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3459,10 +3470,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "openHPI-iOS-Release";
 		};
@@ -3517,7 +3526,7 @@
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -3536,7 +3545,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3558,10 +3566,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "openSAP-iOS-Debug";
 		};
@@ -3615,8 +3621,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -3635,7 +3642,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3656,10 +3662,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "openSAP-iOS-Release";
 		};
@@ -3714,7 +3718,7 @@
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -3733,7 +3737,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3755,10 +3758,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "openWHO-iOS-Debug";
 		};
@@ -3813,7 +3814,7 @@
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -3832,7 +3833,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3854,10 +3854,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "moocHOUSE-iOS-Debug";
 		};
@@ -3911,8 +3909,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -3931,7 +3930,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3952,10 +3950,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "openWHO-iOS-Release";
 		};
@@ -4009,8 +4005,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -4029,7 +4026,6 @@
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "iOS-UITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.xikolo.ios-uitest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4050,10 +4046,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WP53SSE8S6;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = "moocHOUSE-iOS-Release";
 		};
@@ -4116,7 +4110,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -4188,7 +4181,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -4259,7 +4251,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -4330,7 +4321,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -4396,7 +4386,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -4461,7 +4450,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -4526,7 +4514,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -4591,7 +4578,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Common/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.common;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;

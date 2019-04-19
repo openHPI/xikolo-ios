@@ -14,11 +14,11 @@ def firebase_pods
 end
 
 def common_pods
-    pod 'BrightFutures', '~> 7.0'
-    pod 'Down', '0.5.2'
+    pod 'BrightFutures', '~> 8.0'
+    pod 'Down', '~> 0.5'
     pod 'KeychainAccess', '~> 3.1'
     pod 'ReachabilitySwift', '~> 4.1'
-    pod 'SDWebImage', '~> 4.2'
+    pod 'SDWebImage', '~> 5.0'
     pod 'SyncEngine', :path => './Frameworks/SyncEngine'
     pod 'HTMLStyler', :path => './Frameworks/HTMLStyler'
 end

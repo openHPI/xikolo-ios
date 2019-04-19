@@ -21,6 +21,7 @@
 		500162C42214660700DD5C03 /* BingeLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCC20621FB3FF900497A88 /* BingeLoadingIndicator.swift */; };
 		500162C52214660700DD5C03 /* BingePaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509F56ED22003EA50045FF71 /* BingePaddedLabel.swift */; };
 		500162C62214660700DD5C03 /* BingeFullScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063FE1F220992D700ABD02B /* BingeFullScreenPresenter.swift */; };
+		5032A6BD226AEA6A00862C23 /* Accessiblity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5032A6BC226AEA6A00862C23 /* Accessiblity.swift */; };
 		504AB511221ED3EF004342B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504AB510221ED363004342B7 /* Assets.xcassets */; };
 		507DBF2322146D7B00E1AADF /* BingePlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DBF2222146D7B00E1AADF /* BingePlayerDelegate.swift */; };
 		507DBF2522146FF300E1AADF /* BingePlaybackRateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DBF2422146FF300E1AADF /* BingePlaybackRateDelegate.swift */; };
@@ -46,6 +47,7 @@
 		500162A52214654B00DD5C03 /* BingeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BingeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		500162AC2214654B00DD5C03 /* BingeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeTests.swift; sourceTree = "<group>"; };
 		500162AE2214654B00DD5C03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5032A6BC226AEA6A00862C23 /* Accessiblity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessiblity.swift; sourceTree = "<group>"; };
 		503391F421F6070100D60857 /* BingeClickThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeClickThroughView.swift; sourceTree = "<group>"; };
 		503391F621F6072100D60857 /* BingeTimeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingeTimeSlider.swift; sourceTree = "<group>"; };
 		503391F821F6073900D60857 /* BingePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingePlayerView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				504AB510221ED363004342B7 /* Assets.xcassets */,
 				503391F421F6070100D60857 /* BingeClickThroughView.swift */,
+				5032A6BC226AEA6A00862C23 /* Accessiblity.swift */,
 				503391F621F6072100D60857 /* BingeTimeSlider.swift */,
 				503391F821F6073900D60857 /* BingePlayerView.swift */,
 				503391FA21F6076500D60857 /* BingeMediaSelectionDelegate.swift */,
@@ -271,6 +274,7 @@
 				500162C32214660700DD5C03 /* BingePlaybackRateCell.swift in Sources */,
 				500162C52214660700DD5C03 /* BingePaddedLabel.swift in Sources */,
 				500162C12214660700DD5C03 /* BingeMediaSelectionViewController.swift in Sources */,
+				5032A6BD226AEA6A00862C23 /* Accessiblity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +334,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.Binge;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -359,7 +362,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.Binge;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -383,7 +385,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.BingeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -404,7 +405,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xikolo.BingeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -467,7 +467,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -522,7 +522,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

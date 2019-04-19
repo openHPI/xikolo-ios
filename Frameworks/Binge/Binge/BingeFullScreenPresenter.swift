@@ -57,17 +57,26 @@ class BingeFullScreenPresenter {
         }) { _ in
             self.viewController.view.removeFromSuperview()
             self.newWindow = UIWindow()
+            self.newWindow?.windowLevel = self.originalWindow.windowLevel + 1
             self.newWindow?.rootViewController = self.viewController
             self.newWindow?.makeKeyAndVisible()
-            self.newWindow?.frame = UIScreen.main.bounds
         }
     }
 
     func close() {
         self.viewController.presentedViewController?.dismiss(animated: false)
 
-        self.originalWindow.addSubview(self.viewController.view)
+        if let newWindow = self.newWindow {
+            let newWindowIsHorizontal = newWindow.frame.width > newWindow.frame.height
+            let originalWindowIsHorizontal = self.originalWindow.frame.width > self.originalWindow.frame.height
+            if newWindowIsHorizontal != originalWindowIsHorizontal {
+                self.newWindow?.windowLevel = self.originalWindow.windowLevel
+            }
+        }
+
+        self.newWindow = nil
         self.originalWindow.makeKeyAndVisible()
+        self.originalWindow.addSubview(self.viewController.view)
 
         self.viewController.view.layer.cornerRadius = self.originalContainer.layer.cornerRadius
         self.viewController.view.layer.masksToBounds = self.viewController.view.layer.cornerRadius > 0

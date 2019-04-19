@@ -74,6 +74,11 @@ public class BingePlayerViewController: UIViewController {
             if let asset = self.asset {
                 let item = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: BingePlayerViewController.assetKeysRequiredToPlay)
                 self.player.replaceCurrentItem(with: item)
+
+                if let preferredPeakBitRate = self.preferredPeakBitRate {
+                    self.player.currentItem?.preferredPeakBitRate = preferredPeakBitRate
+                }
+
                 NotificationCenter.default.addObserver(self, selector: #selector(reachedPlaybackEnd), name: .AVPlayerItemDidPlayToEndTime, object: item)
             }
 
@@ -115,6 +120,14 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
+
+    public var preferredPeakBitRate: Double? {
+        didSet {
+            guard let preferredPeakBitRate = self.preferredPeakBitRate else { return }
+            self.player.currentItem?.preferredPeakBitRate = preferredPeakBitRate
+        }
+    }
+
     private func adaptToLayoutState() {
         self.controlsViewController.adaptToLayoutState(self.layoutState,
                                                        allowFullScreenMode: self.allowFullScreenMode,
@@ -123,8 +136,6 @@ public class BingePlayerViewController: UIViewController {
             self.hideControlsOverlay()
         } else if self.layoutState == .remote {
             self.showControlsOverlay()
-        } else if self.player.timeControlStatus == .paused {
-            self.showControlsOverlay() /// XXX: why here?
         }
 
         self.delegate?.didChangeLayoutState(to: self.layoutState)
@@ -551,7 +562,7 @@ extension BingePlayerViewController: BingeControlDelegate {
 
         let navigationController = UINavigationController()
         navigationController.viewControllers = [mediaSelectionViewController]
-        navigationController.modalPresentationStyle = self.shouldEnterFullScreenModeInLandscapeOrientation ? .currentContext : .popover
+        navigationController.modalPresentationStyle = .popover
         navigationController.navigationBar.barStyle = .blackOpaque
         navigationController.navigationBar.barTintColor = UIColor(white: 0.1, alpha: 1.0)
         navigationController.navigationBar.tintColor = .white
@@ -566,7 +577,7 @@ extension BingePlayerViewController: BingeControlDelegate {
         popoverPresentationController?.sourceView = sourceView
         popoverPresentationController?.sourceRect = sourceView.bounds
 
-        self.present(navigationController, animated: true)
+        self.present(navigationController, animated: trueUnlessReduceMotionEnabled)
     }
 
     var fullscreenTitle: String? {
@@ -659,7 +670,7 @@ extension BingePlayerViewController: BingeControlDelegate {
 
     func dismissPlayer() {
         self.pausePlayback()
-        self.dismiss(animated: true)
+        self.dismiss(animated: trueUnlessReduceMotionEnabled)
     }
 
 }
@@ -721,6 +732,12 @@ extension BingePlayerViewController: UIPopoverPresentationControllerDelegate {
 
     public func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
         self.autoHideControlsOverlay()
+    }
+
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        // The underlying view controller should not be removed when the media selection menu is present.
+        // Therefore, we use `UIModalPresentationStyle.overFullScreen` for compact horizontal size classes.
+        return traitCollection.horizontalSizeClass == .compact ? .overFullScreen : .popover
     }
 
 }

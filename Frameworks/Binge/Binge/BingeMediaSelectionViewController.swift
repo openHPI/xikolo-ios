@@ -41,7 +41,7 @@ class BingeMediaSelectionViewController: UITableViewController {
     }
 
     @objc private func close() {
-        self.navigationController?.dismiss(animated: true) {
+        self.navigationController?.dismiss(animated: trueUnlessReduceMotionEnabled) {
             self.delegate.didCloseMediaSelection()
         }
     }

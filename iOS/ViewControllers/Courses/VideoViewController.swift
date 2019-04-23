@@ -56,7 +56,7 @@ class VideoViewController: UIViewController {
         didSet {
             self.playerViewController?.wantsAutoPlay = true
 //            self.playerViewController?.playbackRate = configuration.playbackRate
-//            self.playerViewController?.delegate = self
+            self.playerViewController?.delegate = self
         }
     }
 
@@ -335,62 +335,58 @@ class VideoViewController: UIViewController {
 
 }
 
-extension VideoViewController { // Video tracking
+extension VideoViewController: BingePlayerDelegate { // Video tracking
 
     private var newTrackingContext: [String: String?] {
-        var context = [
+        return [
             "section_id": self.video?.item?.section?.id,
             "course_id": self.video?.item?.section?.course?.id,
-            // TODO
-//            "current_speed": self.playerViewController?.playbackRate.flatMap(String.init()),
-            "current_orientation": UIDevice.current.orientation.isLandscape ? "landscape" : "portrait",
+            "current_speed": (self.playerViewController?.playbackRate).map({ String($0) }),
+            "current_orientation": UIApplication.shared.statusBarOrientation.isLandscape ? "landscape" : "portrait",
             "current_quality": "hls",
-//            "current_source": self.playerControlView?.offlineLabel.isHidden ? "online" : "offline",
+            "current_source": self.currentSourceValue(for: self.playerViewController?.asset),
+            "current_time": self.playerViewController?.currentTime.map({ String($0) }),
         ]
-
-        // TODO
-//        if let currentTime = self.playerViewController.player.currentTime().seconds {
-//            context["currentTime"] = String(describing: currentTime)
-//        }
-
-        return context
     }
 
-    func trackVideoPlay() {
+    private func currentSourceValue(for asset: AVAsset?) -> String? {
+        guard let urlAsset = self.playerViewController?.asset as? AVURLAsset else { return nil }
+        return urlAsset.url.isFileURL ? "offline" : "online"
+    }
+
+    func didStartPlayback() {
         guard let video = self.video else { return }
         TrackingHelper.shared.createEvent(.videoPlaybackPlay, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
 
-    func trackVideoPause() {
+    func didPausePlayback() {
         guard let video = self.video else { return }
         TrackingHelper.shared.createEvent(.videoPlaybackPause, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
 
-    func trackVideoPlayRateChange(oldPlayRate: Float, newPlayRate: Float) {
+    func didChangePlaybackRate(from oldRate: Float, to newRate: Float) {
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext
         context["current_speed"] = nil
-        context["old_speed"] = String(oldPlayRate)
-        context["new_speed"] = String(newPlayRate)
+        context["old_speed"] = String(oldRate)
+        context["new_speed"] = String(newRate)
+
         TrackingHelper.shared.createEvent(.videoPlaybackChangeSpeed, resourceType: .video, resourceId: video.id, context: context)
     }
 
-    func trackVideoSeek(from: TimeInterval?, to: TimeInterval) { // swiftlint:disable:this identifier_name
+    func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) { // swiftlint:disable:this identifier_name
         guard let video = self.video else { return }
 
         var context = self.newTrackingContext
         context["current_time"] = nil
-        context["new_current_time"] = String(to)
-
-        if let from = from {
-            context["old_current_time"] = String(from)
-        }
+        context["new_current_time"] = String(newTime)
+        context["old_current_time"] = String(oldTime)
 
         TrackingHelper.shared.createEvent(.videoPlaybackSeek, resourceType: .video, resourceId: video.id, context: context)
     }
 
-    func trackVideoEnd() {
+    func didReachEndofPlayback() {
         guard let video = self.video else { return }
         TrackingHelper.shared.createEvent(.videoPlaybackEnd, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
@@ -400,20 +396,13 @@ extension VideoViewController { // Video tracking
         TrackingHelper.shared.createEvent(.videoPlaybackClose, resourceType: .video, resourceId: video.id, context: self.newTrackingContext)
     }
 
-    func trackVideoOrientationChangePortrait() {
+    func didChangeOrientation(to orientation: UIInterfaceOrientation) {
         guard let video = self.video else { return }
 
+        let verb: TrackingHelper.AnalyticsVerb = orientation.isLandscape ? .videoPlaybackDeviceOrientationLandscape : .videoPlaybackDeviceOrientationPortrait
         var context = self.newTrackingContext
         context["current_orientation"] = nil
-        TrackingHelper.shared.createEvent(.videoPlaybackDeviceOrientationPortrait, resourceType: .video, resourceId: video.id, context: context)
-    }
-
-    func trackVideoOrientationChangeLandscape() {
-        guard let video = self.video else { return }
-
-        var context = self.newTrackingContext
-        context["current_orientation"] = nil
-        TrackingHelper.shared.createEvent(.videoPlaybackDeviceOrientationLandscape, resourceType: .video, resourceId: video.id, context: context)
+        TrackingHelper.shared.createEvent(verb, resourceType: .video, resourceId: video.id, context: context)
     }
 
 }

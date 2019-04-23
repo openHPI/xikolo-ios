@@ -63,12 +63,10 @@ class VideoViewController: UIViewController {
 //    }
 
     private var video: Video?
-    private var videoPlayerConfigured = false // TODO needed?
     private var didViewAppear = false
 
     private var playerViewController: BingePlayerViewController? {
         didSet {
-            self.playerViewController?.wantsAutoPlay = true
             self.playerViewController?.wantsAutoPlay = true
 //            self.playerViewController?.playbackRate = configuration.playbackRate
 //            self.playerViewController?.delegate = self
@@ -174,7 +172,7 @@ class VideoViewController: UIViewController {
         self.show(video: video)
     }
 
-    private func show(video: Video) { // swiftlint:disable:this function_body_length
+    private func show(video: Video) {
         self.video = video
 
         let hasUserActions = ReachabilityHelper.connection != .none || !video.userActions.isEmpty
@@ -212,44 +210,13 @@ class VideoViewController: UIViewController {
             self.descriptionView.isHidden = true
         }
 
-        // configure video player
-        if self.videoPlayerConfigured { return }
+        // don't reconfigure video player
+        guard self.playerViewController?.asset == nil else { return }
 
         // pull latest change for video content item
         video.managedObjectContext?.refresh(video, mergeChanges: true)
 
-        // determine video url (local file, currently downloading or remote)
-        var videoURL: URL
-        if let localFileLocation = StreamPersistenceManager.shared.localFileLocation(for: video),
-            AVURLAsset(url: localFileLocation).assetCache?.isPlayableOffline ?? false {
-            videoURL = localFileLocation
-        } else if let streamURL = video.streamURLForDownload {
-            videoURL = streamURL
-        } else if let hdURL = video.singleStream?.hdURL, ReachabilityHelper.connection == .wifi {
-            videoURL = hdURL
-        } else if let sdURL = video.singleStream?.sdURL {
-            videoURL = sdURL
-        } else {
-            return
-        }
-
-        self.videoPlayerConfigured = true
-
-//        let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
-//        self.player?.setVideo(resource: asset)
-//        self.updatePreferredVideoBitrate()
-//        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-//        try? AVAudioSession.sharedInstance().setActive(true)
-//
-//        if let player = self.player, !player.isPlaying, self.isBeingPresented {
-//            player.play()
-//            self.trackVideoPlay()
-//        }
-
-        self.playerViewController?.asset = AVURLAsset(url: videoURL)
-        self.playerViewController?.assetTitle = video.item?.title
-        self.playerViewController?.assetSubtitle = video.item?.section?.course?.title
-//        self.startProgress = configuration.startProgress
+        self.playerViewController?.configure(for: video)
     }
 
     @IBAction private func openSlides() {

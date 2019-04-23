@@ -87,6 +87,19 @@ final class StreamPersistenceManager: NSObject, PersistenceManager {
 
 extension StreamPersistenceManager {
 
+    func offlinePlayableAsset(for video: Video) -> AVURLAsset? {
+        guard let localFileLocation = self.localFileLocation(for: video) else {
+            return nil
+        }
+
+        let asset = AVURLAsset(url: localFileLocation)
+        return asset.assetCache?.isPlayableOffline == true ? asset : nil
+    }
+
+}
+
+extension StreamPersistenceManager {
+
     func startDownloads(for section: CourseSection) {
         self.persistentContainerQueue.addOperation {
             section.items.compactMap { item in

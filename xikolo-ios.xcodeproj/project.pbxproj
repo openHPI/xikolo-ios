@@ -177,6 +177,7 @@
 		50D52164225FC50500C9860D /* Int+DispatchTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */; };
 		50D65A0C20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D65A0B20DE2B0600DFD183 /* assets-ios-brand.generated.xcassets */; };
 		50E0351F213673F8001F963D /* CourseListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0351E213673F8001F963D /* CourseListConfiguration.swift */; };
+		50F8AD3A226F404F00A1D082 /* Binge+Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F8AD39226F404F00A1D082 /* Binge+Video.swift */; };
 		50FA2DEF20E4B1A800656776 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA2DED20E4B1A800656776 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FA2DF220E4B1A800656776 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; };
 		50FA2DF320E4B1A800656776 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA2DEB20E4B1A800656776 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -575,6 +576,7 @@
 		50F6A5B51FB316A6007DBAFF /* VideoStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoStream.swift; sourceTree = "<group>"; };
 		50F720271F28D72D00779995 /* StreamPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamPersistenceManager.swift; sourceTree = "<group>"; };
 		50F7202C1F28E29B00779995 /* Video+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+Download.swift"; sourceTree = "<group>"; };
+		50F8AD39226F404F00A1D082 /* Binge+Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binge+Video.swift"; sourceTree = "<group>"; };
 		50FA2DEB20E4B1A800656776 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FA2DED20E4B1A800656776 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		50FA2DEE20E4B1A800656776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1271,6 +1273,7 @@
 				5011292420DA465D00EE9050 /* UIView+SafeCastable.swift */,
 				24A17A011CD11E270056A8EE /* UIView+shake.swift */,
 				700398BF21A437CD00FE9D81 /* FileManager+fileSize.swift */,
+				50F8AD39226F404F00A1D082 /* Binge+Video.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2033,6 +2036,7 @@
 				50CF1FE220DCDBFC0011BFE9 /* LoginViewController.swift in Sources */,
 				50CF1FE620DCDBFC0011BFE9 /* RichText+Preloading.swift in Sources */,
 				50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */,
+				50F8AD3A226F404F00A1D082 /* Binge+Video.swift in Sources */,
 				503CEE942174EEE200F34694 /* CourseItem+AvailableContent.swift in Sources */,
 				50CF1FE820DCDBFC0011BFE9 /* UIView+SafeCastable.swift in Sources */,
 				50CF1FEB20DCDBFC0011BFE9 /* CircularProgressView.swift in Sources */,

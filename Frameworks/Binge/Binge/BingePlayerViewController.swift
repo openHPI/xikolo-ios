@@ -128,6 +128,10 @@ public class BingePlayerViewController: UIViewController {
         }
     }
 
+    public var currentTime: Double? {
+        return self.player.currentItem?.currentTime().seconds
+    }
+
     private func adaptToLayoutState() {
         self.controlsViewController.adaptToLayoutState(self.layoutState,
                                                        allowFullScreenMode: self.allowFullScreenMode,
@@ -166,7 +170,8 @@ public class BingePlayerViewController: UIViewController {
 
     public var phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation = true
     private var shouldEnterFullScreenModeInLandscapeOrientation: Bool {
-        return UIDevice.current.userInterfaceIdiom == .phone && !self.isStandAlone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
+        return !self.isStandAlone && self.allowFullScreenMode && self.phonesWillAutomaticallyEnterFullScreenModeInLandscapeOrientation
     }
 
     private var fullscreenPresenter: BingeFullScreenPresenter?
@@ -296,15 +301,17 @@ public class BingePlayerViewController: UIViewController {
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        let currentOrientation = UIDevice.current.orientation
-        self.delegate?.didChangeOrientation(to: currentOrientation)
+        if self.shouldEnterFullScreenModeInLandscapeOrientation {
+            if self.layoutState == .inline, size.width >= size.height {
+                self.layoutState = .fullscreen
+            } else if self.layoutState == .fullscreen, size.width < size.height {
+                self.layoutState = .inline
+            }
+        }
 
-        guard self.shouldEnterFullScreenModeInLandscapeOrientation else { return }
-
-        if self.layoutState == .inline, currentOrientation.isLandscape {
-            self.layoutState = .fullscreen
-        } else if self.layoutState == .fullscreen, currentOrientation == .portrait {
-            self.layoutState = .inline
+        coordinator.animateAlongsideTransition(in: nil, animation: nil) { _ in
+            let currentOrientation = UIApplication.shared.statusBarOrientation
+            self.delegate?.didChangeOrientation(to: currentOrientation)
         }
     }
 
@@ -351,9 +358,7 @@ public class BingePlayerViewController: UIViewController {
                 }
 
                 if self.wantsAutoPlay {
-                    try? AVAudioSession.sharedInstance().setActive(true)
-                    self.player.play()
-                    self.hideControlsOverlay()
+                    self.startPlayback()
                 } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                         self.showControlsOverlay()

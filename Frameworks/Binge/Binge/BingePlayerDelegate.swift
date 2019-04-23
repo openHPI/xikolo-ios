@@ -15,7 +15,7 @@ public protocol BingePlayerDelegate: AnyObject {
     func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval)
     func didReachEndofPlayback()
     func didChangeLayoutState(to state: LayoutState)
-    func didChangeOrientation(to orientation: UIDeviceOrientation)
+    func didChangeOrientation(to orientation: UIInterfaceOrientation)
 }
 
 public extension BingePlayerDelegate {
@@ -25,5 +25,5 @@ public extension BingePlayerDelegate {
     func didSeek(from oldTime: TimeInterval, to newTime: TimeInterval) {}
     func didReachEndofPlayback() {}
     func didChangeLayoutState(to state: LayoutState) {}
-    func didChangeOrientation(to orientation: UIDeviceOrientation) {}
+    func didChangeOrientation(to orientation: UIInterfaceOrientation) {}
 }

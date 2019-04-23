@@ -14,7 +14,6 @@ import UIKit
 class VideoViewController: UIViewController {
 
     @IBOutlet private weak var videoContainer: UIView!
-    @IBOutlet private weak var errorView: UIView!
     @IBOutlet private weak var titleView: UILabel!
     @IBOutlet private weak var descriptionView: UITextView!
 
@@ -82,8 +81,6 @@ class VideoViewController: UIViewController {
         self.descriptionView.textContainer.lineFragmentPadding = 0
 
         self.updateCornersOfVideoContainer(for: self.traitCollection)
-
-        self.errorView.isHidden = true
 
         self.videoActionsButton.isEnabled = false
         self.videoActionsButton.tintColor = .lightGray
@@ -233,12 +230,10 @@ class VideoViewController: UIViewController {
         } else if let sdURL = video.singleStream?.sdURL {
             videoURL = sdURL
         } else {
-            self.errorView.isHidden = false
             return
         }
 
         self.videoPlayerConfigured = true
-        self.errorView.isHidden = true
 
 //        let asset = BMPlayerResource(url: videoURL, name: self.courseItem?.title ?? "")
 //        self.player?.setVideo(resource: asset)

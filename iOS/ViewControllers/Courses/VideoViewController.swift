@@ -10,6 +10,7 @@ import AVKit
 import Binge
 import Common
 import UIKit
+import Reachability
 
 class VideoViewController: UIViewController {
 
@@ -395,17 +396,19 @@ class VideoViewController: UIViewController {
     }
 
     private func updatePreferredVideoBitrate() {
-        // TODO
-//        if let video = self.video, StreamPersistenceManager.shared.localFileLocation(for: video) == nil {
-//            let videoQuaility: VideoQuality
-//            if ReachabilityHelper.connection == .wifi {
-//                videoQuaility = UserDefaults.standard.videoQualityOnWifi
-//            } else {
-//                videoQuaility = UserDefaults.standard.videoQualityOnCellular
-//            }
-//
-//            self.player?.avPlayer?.currentItem?.preferredPeakBitRate = Double(videoQuaility.rawValue)
-//        }
+        guard let video = self.video else { return }
+        guard StreamPersistenceManager.shared.localFileLocation(for: video) == nil else { return }
+
+        let videoQuality = self.streamingQuality(for: ReachabilityHelper.connection)
+        self.playerViewController?.preferredPeakBitRate = Double(videoQuality.rawValue)
+    }
+
+    private func streamingQuality(for connection: Reachability.Connection) -> VideoQuality {
+        if ReachabilityHelper.connection == .wifi {
+            return UserDefaults.standard.videoQualityOnWifi
+        } else {
+            return UserDefaults.standard.videoQualityOnCellular
+        }
     }
 
 }

@@ -55,6 +55,10 @@ class AccountViewController: UITableViewController {
 
         self.updateUIAfterLoginStateChanged()
 
+        self.profileImage.layer.cornerRadius = self.profileImage.bounds.width / 2
+        self.profileImage.layer.borderWidth = 3.0
+        self.profileImage.layer.borderColor = UIColor.white.cgColor
+
         // set copyright and app version info
         self.copyrightLabel.text = Brand.default.copyrightText
         self.poweredByLabel.text = Brand.default.poweredByText

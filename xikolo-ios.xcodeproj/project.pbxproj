@@ -113,7 +113,6 @@
 		50CF1F8120DCDBFC0011BFE9 /* UserActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022901205928E2003301A7 /* UserActionsDelegate.swift */; };
 		50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509B10D0200790560042AA7D /* XikoloTabBarController.swift */; };
 		50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */; };
-		50CF1F8620DCDBFC0011BFE9 /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B6514C1D35797400624DBC /* CALayer+UIColor.swift */; };
 		50CF1F8720DCDBFC0011BFE9 /* DownloadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50082B5E20BFDAC900B4511C /* DownloadState.swift */; };
 		50CF1F8820DCDBFC0011BFE9 /* CourseDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B80AA1DDDE43D0058552D /* CourseDateCell.swift */; };
 		50CF1F8A20DCDBFC0011BFE9 /* DownloadSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057ED8C1FE3DB230096095B /* DownloadSettingsViewController.swift */; };
@@ -357,7 +356,6 @@
 		24A17A011CD11E270056A8EE /* UIView+shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shake.swift"; sourceTree = "<group>"; };
 		24B651441D351AF100624DBC /* CoreDataTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewDataSource.swift; sourceTree = "<group>"; };
 		24B6514A1D355B4A00624DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabNews.storyboard; sourceTree = "<group>"; };
-		24B6514C1D35797400624DBC /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
 		24B651501D3595C100624DBC /* NetworkIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkIndicator.swift; sourceTree = "<group>"; };
 		24D48E171CCA4FC100E8051E /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		24D48E5F1CCA9AE100E8051E /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -1263,7 +1261,6 @@
 			isa = PBXGroup;
 			children = (
 				5057ED7E1FE3D91B0096095B /* UserDefaults */,
-				24B6514C1D35797400624DBC /* CALayer+UIColor.swift */,
 				50913F26218C9E90006C7F11 /* String+height.swift */,
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
 				50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */,
@@ -1980,7 +1977,6 @@
 				50CF1F8320DCDBFC0011BFE9 /* XikoloTabBarController.swift in Sources */,
 				508AB2F021145A650079EAE5 /* CourseDateNextUpView.swift in Sources */,
 				50CF1F8420DCDBFC0011BFE9 /* UserDefaults+VideoQuality.swift in Sources */,
-				50CF1F8620DCDBFC0011BFE9 /* CALayer+UIColor.swift in Sources */,
 				50CF1F8720DCDBFC0011BFE9 /* DownloadState.swift in Sources */,
 				50CF1F8820DCDBFC0011BFE9 /* CourseDateCell.swift in Sources */,
 				50CF1F8A20DCDBFC0011BFE9 /* DownloadSettingsViewController.swift in Sources */,

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HmT-zz-ZfW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HmT-zz-ZfW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="340.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4b-Ar-94F">
-                                                <rect key="frame" x="0.0" y="8" width="375" height="128"/>
+                                                <rect key="frame" x="16" y="8" width="343" height="128"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="bKi-vh-nFT"/>
@@ -44,7 +44,7 @@
                                                 </connections>
                                             </imageView>
                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCC-vf-4Pk">
-                                                <rect key="frame" x="16" y="16" width="52" height="26"/>
+                                                <rect key="frame" x="24" y="16" width="52" height="26"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hft-pf-uVT">
                                                         <rect key="frame" x="4" y="4" width="44" height="18"/>
@@ -179,7 +179,7 @@
                                                 </attributedString>
                                             </textView>
                                             <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0e-hi-OYV">
-                                                <rect key="frame" x="333" y="16" width="26" height="26"/>
+                                                <rect key="frame" x="325" y="16" width="26" height="26"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ahQ-Gk-BQZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -220,11 +220,11 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="f38-k8-QXv" secondAttribute="trailing" id="16n-JB-vX7"/>
-                                            <constraint firstItem="d0e-hi-OYV" firstAttribute="trailing" secondItem="bWt-KQ-kUh" secondAttribute="trailingMargin" id="1nm-Mf-Aqz"/>
-                                            <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leading" id="4Un-7R-rJ1"/>
-                                            <constraint firstItem="yCC-vf-4Pk" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="LpG-px-jRY"/>
+                                            <constraint firstItem="d0e-hi-OYV" firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailingMargin" id="1nm-Mf-Aqz"/>
+                                            <constraint firstItem="d4b-Ar-94F" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="4Un-7R-rJ1"/>
+                                            <constraint firstItem="yCC-vf-4Pk" firstAttribute="leading" secondItem="d4b-Ar-94F" secondAttribute="leadingMargin" id="LpG-px-jRY"/>
                                             <constraint firstItem="d0e-hi-OYV" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="topMargin" id="MUN-0x-o3M"/>
-                                            <constraint firstAttribute="trailing" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="NKn-rm-ONe"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="d4b-Ar-94F" secondAttribute="trailing" id="NKn-rm-ONe"/>
                                             <constraint firstItem="ceU-6J-dNP" firstAttribute="top" secondItem="Kg8-BI-OgB" secondAttribute="bottom" constant="16" id="O0h-VF-Iu9"/>
                                             <constraint firstItem="yCC-vf-4Pk" firstAttribute="top" secondItem="d4b-Ar-94F" secondAttribute="topMargin" id="Wb4-9s-QlN"/>
                                             <constraint firstItem="f38-k8-QXv" firstAttribute="leading" secondItem="bWt-KQ-kUh" secondAttribute="leadingMargin" id="XD8-IA-ZBW"/>

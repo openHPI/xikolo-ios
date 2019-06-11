@@ -41,6 +41,8 @@ class CourseDetailViewController: UIViewController {
         super.viewDidLoad()
 
         self.imageView.backgroundColor = Brand.default.colors.secondary
+        self.imageView.layer.cornerRadius = 6.0
+        self.imageView.layer.masksToBounds = true
 
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
@@ -55,7 +57,6 @@ class CourseDetailViewController: UIViewController {
         self.teaserView.layer.masksToBounds = true
 
         self.updateView()
-        self.updateImageViewAppearence()
 
         self.addRefreshControl()
         self.refresh()
@@ -66,14 +67,6 @@ class CourseDetailViewController: UIViewController {
                                                object: nil)
 
         CourseHelper.syncCourse(course)
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        if self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass {
-            self.updateImageViewAppearence()
-        }
     }
 
     private func updateView() {
@@ -98,12 +91,6 @@ class CourseDetailViewController: UIViewController {
         }
 
         self.refreshEnrollmentViews()
-    }
-
-    private func updateImageViewAppearence() {
-        let showEdgeToEdge = self.traitCollection.horizontalSizeClass != .regular
-        self.imageView.layer.cornerRadius = showEdgeToEdge ? 0 : 6.0
-        self.imageView.layer.masksToBounds = true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

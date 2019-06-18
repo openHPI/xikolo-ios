@@ -38,7 +38,11 @@ class CourseSearchFilterOptionsViewController: UITableViewController {
         let defaultOptions = filter.allOptionsActivatedByDefault ? Set(options) : Set([])
         self.selectedOptions = selectedOptions ?? defaultOptions
 
-        super.init(style: .grouped)
+        if #available(iOS 13, *) {
+            super.init(style: .insetGrouped)
+        } else {
+            super.init(style: .grouped)
+        }
 
         self.tableView.allowsMultipleSelection = true
         self.tableView.cellLayoutMarginsFollowReadableWidth = true

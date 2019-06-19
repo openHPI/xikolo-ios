@@ -80,6 +80,7 @@ class VideoViewController: UIViewController {
         self.updateCornersOfVideoContainer(for: self.traitCollection)
 
         self.errorView.isHidden = true
+        self.errorView.layer.roundCorners(for: .default)
 
         self.videoActionsButton.isEnabled = false
         self.videoActionsButton.tintColor = .lightGray

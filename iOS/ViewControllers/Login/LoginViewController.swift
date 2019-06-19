@@ -25,6 +25,10 @@ class LoginViewController: UIViewController, WKUIDelegate {
         self.loginButton.backgroundColor = Brand.default.colors.primary
         self.registerButton.backgroundColor = Brand.default.colors.primary.withAlphaComponent(0.2)
 
+        self.loginButton.layer.roundCorners(for: .default)
+        self.registerButton.layer.roundCorners(for: .default)
+        self.singleSignOnButton.layer.roundCorners(for: .default)
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustViewForKeyboardShow(_:)),
                                                name: UIResponder.keyboardWillShowNotification,

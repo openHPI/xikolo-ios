@@ -41,20 +41,19 @@ class CourseDetailViewController: UIViewController {
         super.viewDidLoad()
 
         self.imageView.backgroundColor = Brand.default.colors.secondary
-        self.imageView.layer.cornerRadius = 6.0
-        self.imageView.layer.masksToBounds = true
+        self.imageView.layer.roundCorners(for: .default)
+
+        self.enrollmentButton.layer.roundCorners(for: .default)
 
         self.descriptionView.textContainerInset = UIEdgeInsets.zero
         self.descriptionView.textContainer.lineFragmentPadding = 0
         self.descriptionView.delegate = self
 
-        self.statusView.layer.cornerRadius = 4.0
-        self.statusView.layer.masksToBounds = true
+        self.statusView.layer.roundCorners(for: .inner)
         self.statusView.backgroundColor = Brand.default.colors.secondary
         self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
-        self.teaserView.layer.cornerRadius = 4.0
-        self.teaserView.layer.masksToBounds = true
+        self.teaserView.layer.roundCorners(for: .inner)
 
         self.updateView()
 

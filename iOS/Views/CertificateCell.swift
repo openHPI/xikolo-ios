@@ -17,8 +17,7 @@ class CertificateCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let cornerRadius: CGFloat = 6.0
-        self.shadowView.layer.cornerRadius = cornerRadius
+        self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
     }
 
     func configure(_ name: String, explanation: String?, url: URL?, stateOfCertificate: String) {

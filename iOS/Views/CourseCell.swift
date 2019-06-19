@@ -50,16 +50,12 @@ class CourseCell: UICollectionViewCell {
         self.isAccessibilityElement = true
         self.accessibilityIdentifier = "CourseCell"
 
-        let cornerRadius: CGFloat = 6.0
+        self.shadowView.layer.roundCorners(for: .default, masksToBounds: false)
 
-        self.shadowView.layer.cornerRadius = cornerRadius
-
-        self.courseImage.layer.cornerRadius = cornerRadius
-        self.courseImage.layer.masksToBounds = true
+        self.courseImage.layer.roundCorners(for: .default)
         self.courseImage.backgroundColor = Brand.default.colors.secondary
 
-        self.statusView.layer.cornerRadius = cornerRadius
-        self.statusView.layer.masksToBounds = true
+        self.statusView.layer.roundCorners(for: .default)
         self.statusView.backgroundColor = Brand.default.colors.secondary
         self.statusLabel.backgroundColor = Brand.default.colors.secondary
 
@@ -68,8 +64,7 @@ class CourseCell: UICollectionViewCell {
         gradient.locations = [0.0, 1.0]
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.gradientView.frame.size.width, height: self.gradientView.frame.size.height)
         self.gradientView.layer.insertSublayer(gradient, at: 0)
-        self.gradientView.layer.cornerRadius = cornerRadius
-        self.gradientView.layer.masksToBounds = true
+        self.gradientView.layer.roundCorners(for: .default)
 
         self.teacherLabel.textColor = Brand.default.colors.secondary
     }

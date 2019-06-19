@@ -40,6 +40,8 @@ class LTIHintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.startButton.layer.roundCorners(for: .default)
+
         self.updateView()
         CourseItemHelper.syncCourseItemWithContent(self.courseItem)
     }

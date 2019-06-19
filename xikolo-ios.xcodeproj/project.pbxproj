@@ -15,6 +15,7 @@
 		50046F71216BBAD200D59073 /* BrightFuture+earliest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50046F70216BBAD200D59073 /* BrightFuture+earliest.swift */; };
 		500B907F2254B854000B0D05 /* DownloadedContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B907E2254B854000B0D05 /* DownloadedContentHelper.swift */; };
 		5011EF03212AEC3800B1D7F1 /* DocumentLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011EF02212AEC3800B1D7F1 /* DocumentLocalizationCell.swift */; };
+		5012913422BA64DC00AAB58B /* CALayer+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */; };
 		50146FC92221829500177E96 /* CourseSearchFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */; };
 		50146FCB2222875E00177E96 /* CourseSearchFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */; };
 		50146FCD2222879D00177E96 /* CourseSearchFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50146FCC2222879D00177E96 /* CourseSearchFilterCell.swift */; };
@@ -393,6 +394,7 @@
 		501212081FCC65B00022A7AF /* ModelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObserver.swift; sourceTree = "<group>"; };
 		501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
 		5012123D1FCC670D0022A7AF /* Date+Marshal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Marshal.swift"; sourceTree = "<group>"; };
+		5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+roundedCorners.swift"; sourceTree = "<group>"; };
 		50146FC82221829500177E96 /* CourseSearchFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFiltersViewController.swift; sourceTree = "<group>"; };
 		50146FCA2222875E00177E96 /* CourseSearchFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseSearchFilterCell.xib; sourceTree = "<group>"; };
 		50146FCC2222879D00177E96 /* CourseSearchFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterCell.swift; sourceTree = "<group>"; };
@@ -1263,6 +1265,7 @@
 			isa = PBXGroup;
 			children = (
 				5057ED7E1FE3D91B0096095B /* UserDefaults */,
+				5012913322BA64DC00AAB58B /* CALayer+roundedCorners.swift */,
 				50913F26218C9E90006C7F11 /* String+height.swift */,
 				500228E720580142003301A7 /* UIAlertViewController+cancel.swift */,
 				50022906205B05B2003301A7 /* UIAlertViewController+customView.swift */,
@@ -1946,6 +1949,7 @@
 				50CF1F5920DCDBFC0011BFE9 /* CourseSection+Download.swift in Sources */,
 				50CF1F5B20DCDBFC0011BFE9 /* CouseContent+image.swift in Sources */,
 				50CF1F5C20DCDBFC0011BFE9 /* CourseDateListViewController.swift in Sources */,
+				5012913422BA64DC00AAB58B /* CALayer+roundedCorners.swift in Sources */,
 				508AB2E82111AF950079EAE5 /* CourseOverviewCell.swift in Sources */,
 				5077012E218F38BC005568A6 /* InnerPillLabel.swift in Sources */,
 				5044C8E521A85488006490CE /* DownloadedContentTypeListViewController.swift in Sources */,

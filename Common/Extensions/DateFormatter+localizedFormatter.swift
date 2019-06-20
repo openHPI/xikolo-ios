@@ -18,3 +18,17 @@ extension DateFormatter {
     }
 
 }
+
+extension DateIntervalFormatter {
+
+    public static func localizedFormatter(locale: Locale = Brand.default.locale,
+                                          calendar: Calendar = Calendar.autoupdatingCurrent,
+                                          timeZone: TimeZone = TimeZone.autoupdatingCurrent) -> DateIntervalFormatter {
+        let dateIntervalFormatter = DateIntervalFormatter()
+        dateIntervalFormatter.locale = locale
+        dateIntervalFormatter.calendar = calendar
+        dateIntervalFormatter.timeZone = timeZone
+        return dateIntervalFormatter
+    }
+
+}

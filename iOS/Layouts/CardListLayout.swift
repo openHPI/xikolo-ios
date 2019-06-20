@@ -101,7 +101,7 @@ class CardListLayout: UICollectionViewLayout {
             xOffsetForColumn = { layoutInsets.left + CGFloat($0) * (columnWidth + self.cellPadding) }
         }
 
-        var xOffset = (0 ..< numberOfColumns).map(xOffsetForColumn)
+        let xOffset = (0 ..< numberOfColumns).map(xOffsetForColumn)
         var yOffset = [CGFloat](repeating: layoutInsets.top - self.linePadding, count: numberOfColumns)
 
         var rowOffset: CGFloat = 0

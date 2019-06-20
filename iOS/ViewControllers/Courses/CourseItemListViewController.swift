@@ -13,19 +13,8 @@ class CourseItemListViewController: UITableViewController {
 
     private static let contentToBePreloaded: [PreloadableCourseItemContent.Type] = [Video.self, RichText.self]
 
-    private static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter.localizedFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter
-    }()
-
-    private static let timeFormatter: DateFormatter = {
-        let formatter = DateFormatter.localizedFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
-        return formatter
-    }()
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
+    private static let timeFormatter = DateFormatter.localizedFormatter(dateStyle: .none, timeStyle: .short)
 
     @IBOutlet private weak var nextSectionStartLabel: UILabel!
 

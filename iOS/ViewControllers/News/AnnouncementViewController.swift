@@ -10,6 +10,8 @@ import UIKit
 
 class AnnouncementViewController: UIViewController {
 
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
+
     @IBOutlet private weak var courseButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
@@ -66,10 +68,7 @@ class AnnouncementViewController: UIViewController {
         self.titleLabel.text = self.announcement.title
 
         if let date = self.announcement.publishedAt {
-            let dateFormatter = DateFormatter.localizedFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-            self.dateLabel.text = dateFormatter.string(from: date)
+            self.dateLabel.text = AnnouncementViewController.dateFormatter.string(from: date)
             self.dateLabel.isHidden = false
         } else {
             self.dateLabel.isHidden = true

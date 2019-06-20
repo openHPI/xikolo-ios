@@ -28,7 +28,7 @@ class CourseDateNextUpView: UIStackView {
 
     func loadData() {
         if let courseDate = CoreDataHelper.viewContext.fetchSingle(CourseDateHelper.FetchRequest.nextCourseDate).value {
-            self.dateLabel.text = courseDate.defaultDateString
+            self.dateLabel.text = courseDate.formattedDateWithTimeZone
             self.courseLabel.text = courseDate.course?.title
             self.titleLabel.text = courseDate.contextAwareTitle
             self.isHidden = false

@@ -7,19 +7,8 @@ import Foundation
 
 public enum DateLabelHelper {
 
-    private static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter.localizedFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
-        return dateFormatter
-    }()
-
-    private static let dateIntervalFormatter: DateIntervalFormatter = {
-        let dateIntervalFormatter = DateIntervalFormatter.localizedFormatter()
-        dateIntervalFormatter.dateStyle = .long
-        dateIntervalFormatter.timeStyle = .none
-        return dateIntervalFormatter
-    }()
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
+    private static let dateIntervalFormatter = DateIntervalFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
 
     public static func labelFor(startDate: Date?, endDate: Date?) -> String {
         if endDate?.inPast ?? false {

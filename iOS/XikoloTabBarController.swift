@@ -17,13 +17,7 @@ class XikoloTabBarController: UITabBarController {
     private static let messageViewHeight: CGFloat = 16
     private static let messageLabelFontSize: CGFloat = 12
 
-    private static let dateFormatter: DateFormatter = {
-        var formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        formatter.locale = Locale.current
-        return formatter
-    }()
+    private static let dateFormatter = DateFormatter.localizedFormatter(dateStyle: .long, timeStyle: .none)
 
     private var messageView = UIView()
     private var messageLabel = UILabel()

@@ -258,7 +258,6 @@
 		50FA2E5220E4B26400656776 /* Date+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012123D1FCC670D0022A7AF /* Date+Marshal.swift */; };
 		50FA2E5320E4B26400656776 /* DateFormatter+localizedFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */; };
 		50FA2E5420E4B26400656776 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
-		50FA2E5920E4B26400656776 /* Int+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F45AD3200D05F9009304A3 /* Int+TimeInterval.swift */; };
 		50FA2E5A20E4B26400656776 /* Optional+require.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EFACB01FFE3C0100169C35 /* Optional+require.swift */; };
 		50FA2E5B20E4B26400656776 /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
 		50FA2E5C20E4B26400656776 /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
@@ -568,7 +567,6 @@
 		50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DeviceInfo.swift"; sourceTree = "<group>"; };
 		50EFACB01FFE3C0100169C35 /* Optional+require.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+require.swift"; sourceTree = "<group>"; };
 		50EFACBD1FFFB25400169C35 /* SafeCastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCastable.swift; sourceTree = "<group>"; };
-		50F45AD3200D05F9009304A3 /* Int+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+TimeInterval.swift"; sourceTree = "<group>"; };
 		50F45AE0200D06BD009304A3 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		50F57D1F1FBC7A0A00910950 /* CourseSectionHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseSectionHelper+FetchRequests.swift"; sourceTree = "<group>"; };
 		50F57D391FBC7D3200910950 /* CourseItemHelper+FetchRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseItemHelper+FetchRequests.swift"; sourceTree = "<group>"; };
@@ -864,7 +862,6 @@
 				70103D09201138EF006DA177 /* DateFormatter+localizedFormatter.swift */,
 				50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */,
 				70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */,
-				50F45AD3200D05F9009304A3 /* Int+TimeInterval.swift */,
 				50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
@@ -2152,7 +2149,6 @@
 				50FA2E5C20E4B26400656776 /* String+regex.swift in Sources */,
 				50FA2E5A20E4B26400656776 /* Optional+require.swift in Sources */,
 				50FA2E1520E4B24300656776 /* CourseItemHelper.swift in Sources */,
-				50FA2E5920E4B26400656776 /* Int+TimeInterval.swift in Sources */,
 				50FA2E1420E4B24300656776 /* CourseDateHelper.swift in Sources */,
 				50FA2E3920E4B25800656776 /* CourseCertificatesHash.swift in Sources */,
 				50FA2E3C20E4B25800656776 /* CourseSection.swift in Sources */,

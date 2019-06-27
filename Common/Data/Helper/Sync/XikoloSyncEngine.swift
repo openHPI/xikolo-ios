@@ -92,7 +92,8 @@ public struct XikoloSyncEngine: SyncEngine {
         } else if 200 ... 299 ~= statusCode,
             let expirationDateString = headers[Routes.Header.apiVersionExpirationDate] as? String,
             let expirationDate = self.dateFormatter.date(from: expirationDateString),
-            expirationDate <= Date().subtractingTimeInterval(14.days) {
+            let notificationStartDate = Calendar.current.date(byAdding: .day, value: -14, to: Date()),
+            expirationDate <= notificationStartDate {
             status = .deprecated(expiresOn: expirationDate)
         } else {
             status = .standard

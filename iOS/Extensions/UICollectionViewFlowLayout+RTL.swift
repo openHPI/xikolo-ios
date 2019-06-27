@@ -7,7 +7,8 @@ import UIKit
 
 extension UICollectionViewFlowLayout {
 
-    open override var flipsHorizontallyInOppositeLayoutDirection: Bool {
+    // swiftlint:disable:next override_in_extension
+    override open var flipsHorizontallyInOppositeLayoutDirection: Bool {
         return true
     }
 

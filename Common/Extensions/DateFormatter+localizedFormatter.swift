@@ -9,7 +9,7 @@ extension DateFormatter {
 
     public static func localizedFormatter(dateStyle: DateFormatter.Style,
                                           timeStyle: DateFormatter.Style,
-                                          locale: Locale = Brand.default.locale,
+                                          locale: Locale = Locale.supportedCurrent,
                                           calendar: Calendar = Calendar.autoupdatingCurrent,
                                           timeZone: TimeZone = TimeZone.autoupdatingCurrent) -> DateFormatter {
         let dateFormatter = DateFormatter()
@@ -27,7 +27,7 @@ extension DateIntervalFormatter {
 
     public static func localizedFormatter(dateStyle: DateIntervalFormatter.Style,
                                           timeStyle: DateIntervalFormatter.Style,
-                                          locale: Locale = Brand.default.locale,
+                                          locale: Locale = Locale.supportedCurrent,
                                           calendar: Calendar = Calendar.autoupdatingCurrent,
                                           timeZone: TimeZone = TimeZone.autoupdatingCurrent) -> DateIntervalFormatter {
         let dateIntervalFormatter = DateIntervalFormatter()

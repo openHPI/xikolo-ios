@@ -44,19 +44,6 @@ public final class Video: Content {
         return nil
     }
 
-    func metadata() -> [AVMetadataItem] {
-        var items: [AVMetadataItem] = []
-        if let courseItem = self.item, let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierTitle, value: courseItem.title) {
-            items.append(item)
-        }
-
-        if let item = AVMetadataItem.item(AVMetadataIdentifier.commonIdentifierDescription, value: summary) {
-            items.append(item)
-        }
-
-        return items
-    }
-
     override public var isAvailableOffline: Bool {
         return self.localFileBookmark != nil || self.localSlidesBookmark != nil
     }

@@ -252,7 +252,6 @@
 		50FA2E4C20E4B25800656776 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A16D6B1CFC883A00CAD9FE /* Video.swift */; };
 		50FA2E4D20E4B25800656776 /* VideoStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6A5B51FB316A6007DBAFF /* VideoStream.swift */; };
 		50FA2E4E20E4B25E00656776 /* SafeCastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EFACBD1FFFB25400169C35 /* SafeCastable.swift */; };
-		50FA2E4F20E4B26400656776 /* AVMetadataItem+convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */; };
 		50FA2E5020E4B26400656776 /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */; };
 		50FA2E5120E4B26400656776 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F45AE0200D06BD009304A3 /* Date.swift */; };
 		50FA2E5220E4B26400656776 /* Date+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012123D1FCC670D0022A7AF /* Date+Marshal.swift */; };
@@ -260,7 +259,6 @@
 		50FA2E5420E4B26400656776 /* DispatchTimeInterval+DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9B1721F78ED6400F09056 /* DispatchTimeInterval+DispatchTime.swift */; };
 		50FA2E5A20E4B26400656776 /* Optional+require.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EFACB01FFE3C0100169C35 /* Optional+require.swift */; };
 		50FA2E5B20E4B26400656776 /* String+ascii.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503585041F3AF6AA002A666C /* String+ascii.swift */; };
-		50FA2E5C20E4B26400656776 /* String+regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7057FFD31EC9D8CE00FF759B /* String+regex.swift */; };
 		50FA2E5D20E4B26400656776 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */; };
 		50FA2E5E20E4B26400656776 /* URL+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50604592206BCF48009569D1 /* URL+URLQueryItem.swift */; };
 		50FA2E6220E51A0500656776 /* SpotlightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F12EC1F2914BD00D5DFE8 /* SpotlightHelper.swift */; };
@@ -330,7 +328,6 @@
 		1ABD1EF74B25436217AF1A6F /* Pods-Common-Tests.opensap-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Tests.opensap-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-Common-Tests/Pods-Common-Tests.opensap-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		1D81376974D976645CABF257 /* Pods-Common.moochouse-ios-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.moochouse-ios-debug.xcconfig"; path = "Pods/Target Support Files/Pods-Common/Pods-Common.moochouse-ios-debug.xcconfig"; sourceTree = "<group>"; };
 		240E03441CE38D590078A364 /* CourseSectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSectionHelper.swift; sourceTree = "<group>"; };
-		24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVMetadataItem+convenience.swift"; sourceTree = "<group>"; };
 		2433A5A01CE634A00060DD98 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
 		2433A5A81CE637A00060DD98 /* CourseItemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItemHelper.swift; sourceTree = "<group>"; };
 		2433A5AC1CE642AC0060DD98 /* CoreDataCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -595,7 +592,6 @@
 		702520801F6FFFD6003E0F80 /* UserDefaults+VideoQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+VideoQuality.swift"; sourceTree = "<group>"; };
 		70388C611EF1566A0093F186 /* AnnouncementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewController.swift; sourceTree = "<group>"; };
 		70451A1D2080FE77002D5D3E /* Filemanager+temporaryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filemanager+temporaryFile.swift"; sourceTree = "<group>"; };
-		7057FFD31EC9D8CE00FF759B /* String+regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+regex.swift"; sourceTree = "<group>"; };
 		70893B5521C3D1F600AF22E3 /* LTIHintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIHintViewController.swift; sourceTree = "<group>"; };
 		709C93561EF09C2C00F8F045 /* assets-ios-brand.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "assets-ios-brand.xcassets"; sourceTree = "<group>"; };
 		709C93591EF09C2C00F8F045 /* ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ios.entitlements; sourceTree = "<group>"; };
@@ -855,7 +851,6 @@
 			children = (
 				50D6432E1F8E582200A89331 /* UIApplication+AppInfo.swift */,
 				50ED3C4E1F4AE1C300CD8466 /* UIApplication+DeviceInfo.swift */,
-				24128FAB1D183287000684B7 /* AVMetadataItem+convenience.swift */,
 				501212301FCC66B50022A7AF /* Collection+SafeSubscript.swift */,
 				50F45AE0200D06BD009304A3 /* Date.swift */,
 				5012123D1FCC670D0022A7AF /* Date+Marshal.swift */,
@@ -865,7 +860,6 @@
 				50D52163225FC50500C9860D /* Int+DispatchTimeInterval.swift */,
 				50EFACB01FFE3C0100169C35 /* Optional+require.swift */,
 				503585041F3AF6AA002A666C /* String+ascii.swift */,
-				7057FFD31EC9D8CE00FF759B /* String+regex.swift */,
 				50D65A0620DE17AE00DFD183 /* UIColor+hex.swift */,
 				50604592206BCF48009569D1 /* URL+URLQueryItem.swift */,
 				50046F6C216B53EB00D59073 /* Notification+CoreData.swift */,
@@ -2071,7 +2065,6 @@
 				50FA2E5E20E4B26400656776 /* URL+URLQueryItem.swift in Sources */,
 				50FA2E6420E51AD000656776 /* UIApplication+AppInfo.swift in Sources */,
 				50FA2E3620E4B25800656776 /* Content.swift in Sources */,
-				50FA2E4F20E4B26400656776 /* AVMetadataItem+convenience.swift in Sources */,
 				50FA2E4620E4B25800656776 /* TrackingEvent.swift in Sources */,
 				504D83FC215B64EC006F2447 /* APIStatus.swift in Sources */,
 				50FA2E1720E4B24300656776 /* EnrollmentHelper.swift in Sources */,
@@ -2146,7 +2139,6 @@
 				50FA2E1B20E4B24300656776 /* QuizHelper.swift in Sources */,
 				50FA2DFE20E4B1FB00656776 /* Error.swift in Sources */,
 				50FA2E2120E4B24A00656776 /* AnnouncementHelper+FetchRequests.swift in Sources */,
-				50FA2E5C20E4B26400656776 /* String+regex.swift in Sources */,
 				50FA2E5A20E4B26400656776 /* Optional+require.swift in Sources */,
 				50FA2E1520E4B24300656776 /* CourseItemHelper.swift in Sources */,
 				50FA2E1420E4B24300656776 /* CourseDateHelper.swift in Sources */,
